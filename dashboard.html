@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Navigation -->
+<div class="top-nav">
+    <div class="nav-left">🎓 Olympiad Portal</div>
+    <div class="nav-right">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="index.html">Logout</a>
+    </div>
+</div>
+
+<div class="dashboard-wrapper">
+
+    <h1>Welcome Back 👋</h1>
+    <p>Select your Class and Subject to begin the Olympiad Quiz.</p>
+
+    <select id="classSelect">
+        <option value="class4">Class 4</option>
+        <option value="class5">Class 5</option>
+        <option value="class6">Class 6</option>
+        <option value="class7">Class 7</option>
+        <option value="class8">Class 8</option>
+        <option value="class9">Class 9</option>
+        <option value="class10">Class 10</option>
+    </select>
+
+    <div class="card-container">
+
+        <div class="dashboard-card" onclick="startQuiz('maths')">
+            <h3>📐 Mathematics</h3>
+            <p>Logical reasoning, arithmetic & problem solving</p>
+        </div>
+
+        <div class="dashboard-card" onclick="startQuiz('english')">
+            <h3>📘 English</h3>
+            <p>Grammar, vocabulary & comprehension</p>
+        </div>
+
+        <div class="dashboard-card" onclick="startQuiz('science')">
+            <h3>🔬 Science</h3>
+            <p>Conceptual & application based questions</p>
+        </div>
+
+    </div>
+
+    <button class="leaderboard-btn" onclick="window.location.href='leaderboard.html'">
+        🏆 View Leaderboard
+    </button>
+
+</div>
+
+<script>
+function startQuiz(subject) {
+
+    const selectedClass = document.getElementById("classSelect").value;
+
+    if (selectedClass === "class4" || selectedClass === "class5") {
+
+        localStorage.setItem("selectedClass", selectedClass);
+        localStorage.setItem("selectedSubject", subject);
+
+        window.location.href = "quiz.html";
+
+    } else {
+        alert("🚀 Quiz for this class is coming soon!");
+    }
+}
+</script>
+
+</body>
+</html>
