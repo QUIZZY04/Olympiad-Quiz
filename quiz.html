@@ -142,7 +142,7 @@
     <div class="quiz-buttons">
         <button onclick="prevQuestion()">Previous</button>
         <button onclick="nextQuestion()">Next</button>
-        <button onclick="submitQuiz()">Submit</button>
+        <button onclick="confirmSubmit()">Submit</button>
     </div>
 
 </div>
@@ -265,7 +265,20 @@ function updateProgress(){
 }
 
 /* SUBMIT */
+function confirmSubmit(){
 
+    let answered = selectedAnswers.filter(a => a !== null).length;
+
+    let confirmBox = confirm(
+        "You have answered " + answered + 
+        " out of " + questions.length + 
+        " questions.\n\nAre you sure you want to submit?"
+    );
+
+    if(confirmBox){
+        submitQuiz();
+    }
+}
 function submitQuiz() {
 
     score = 0;
@@ -342,4 +355,5 @@ loadQuestion();
 </script>
 
 </body>
+
 </html>
