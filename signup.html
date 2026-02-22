@@ -2,32 +2,163 @@
 <html>
 <head>
 <title>Create Account</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+    color:white;
+}
+
+nav h2{
+    font-weight:600;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#ffb703;
+}
+
+/* ===== CENTER CONTAINER ===== */
+.signup-container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.signup-card{
+    background:#1e2a38;
+    padding:40px;
+    border-radius:20px;
+    width:400px;
+    max-width:95%;
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+    text-align:center;
+}
+
+.signup-card h1{
+    color:white;
+    margin-bottom:25px;
+}
+
+/* INPUTS */
+.signup-card input,
+.signup-card select{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    border:none;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+}
+
+/* BUTTON */
+.signup-card button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#ffb703;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.signup-card button:hover{
+    background:#f59e0b;
+}
+
+/* LOGIN LINK */
+.signup-card p{
+    margin-top:15px;
+    color:white;
+}
+
+.signup-card a{
+    color:#ffb703;
+    text-decoration:none;
+    font-weight:500;
+}
+.signup-card a:hover{
+    text-decoration:underline;
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="signup-wrapper">
-<div class="signup-box">
-<h2>Create Account</h2>
+<!-- ===== NAVIGATION ===== -->
+<nav>
+    <h2>🎓 Olympiad Portal</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </div>
+</nav>
 
-<form id="signupForm">
-<input type="text" id="name" placeholder="Full Name" required>
-<input type="email" id="email" placeholder="Email Address" required>
-<input type="password" id="password" placeholder="Password" required>
-<select id="classSelect" required>
-<option value="class4">Class 4</option>
-<option value="class5">Class 5</option>
-<option value="class6">Class 6</option>
-<option value="class7">Class 7</option>
-<option value="class8">Class 8</option>
-<option value="class9">Class 9</option>
-<option value="class10">Class 10</option>
-</select>
-<button type="submit">Register</button>
-</form>
+<!-- ===== SIGNUP FORM ===== -->
+<div class="signup-container">
+    <div class="signup-card">
+        <h1>Create Account</h1>
 
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Password" required>
+
+            <select id="classSelect" required>
+                <option value="">Select Class</option>
+                <option value="class4">Class 4</option>
+                <option value="class5">Class 5</option>
+                <option value="class6">Class 6</option>
+                <option value="class7">Class 7</option>
+                <option value="class8">Class 8</option>
+                <option value="class9">Class 9</option>
+                <option value="class10">Class 10</option>
+            </select>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="login.html">Login Here</a>
+        </p>
+
+    </div>
 </div>
-</div>
+
+<!-- ===== FIREBASE SCRIPT (Keep Your Existing Working Version Here) ===== -->
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -48,30 +179,30 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 document.getElementById("signupForm").addEventListener("submit", async (e)=>{
-e.preventDefault();
+    e.preventDefault();
 
-const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-const classSelect = document.getElementById("classSelect").value;
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const classSelect = document.getElementById("classSelect").value;
 
-try {
-const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-const user = userCredential.user;
+    try{
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
-await setDoc(doc(db, "users", user.uid), {
-name,
-email,
-class: classSelect,
-createdAt: new Date()
-});
+        await setDoc(doc(db, "users", user.uid), {
+            name,
+            email,
+            class: classSelect,
+            createdAt: new Date()
+        });
 
-alert("Signup Successful!");
-window.location.href = "login.html";
+        alert("Signup Successful!");
+        window.location.href = "login.html";
 
-} catch(error){
-alert(error.message);
-}
+    }catch(error){
+        alert(error.message);
+    }
 });
 </script>
 
