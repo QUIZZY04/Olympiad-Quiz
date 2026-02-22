@@ -75,6 +75,7 @@ h1{
 </div>
 
 <script>
+// ===== DISPLAY RESULT FROM LOCAL STORAGE =====
 document.addEventListener("DOMContentLoaded", function(){
 
     const data = localStorage.getItem("quizResult");
@@ -115,18 +116,16 @@ document.addEventListener("DOMContentLoaded", function(){
                 <p><strong>Correct Answer:</strong> ${q.o[q.a]}</p>
             `;
 
-            // Show hint & solution only if answer is wrong
             if(!isCorrect){
-
                 html += `
                 <div class="hint">
                     <strong>Hint:</strong><br>
-                    ${q.hint || "Review the related concept carefully."}
+                    ${q.hint || "Review related concept."}
                 </div>
 
                 <div class="solution">
                     <strong>Solution:</strong><br>
-                    ${q.sol || "Refer to textbook explanation for detailed solution."}
+                    ${q.sol || "Refer textbook explanation."}
                 </div>
                 `;
             }
@@ -138,6 +137,53 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
 });
+</script>
+
+<!-- ===== FIREBASE SAVE RESULT ===== -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const resultData = JSON.parse(localStorage.getItem("quizResult"));
+
+if(resultData){
+
+    const score = resultData.score;
+    const total = resultData.total;
+    const accuracy = ((score/total)*100).toFixed(2);
+
+    onAuthStateChanged(auth, async (user)=>{
+        if(user){
+            try{
+                await addDoc(collection(db, "users", user.uid, "results"), {
+                    subject: resultData.subject,
+                    class: resultData.class,
+                    score: score,
+                    total: total,
+                    accuracy: accuracy,
+                    date: new Date()
+                });
+                console.log("Result saved successfully!");
+            } catch(error){
+                console.log("Error saving result:", error.message);
+            }
+        }
+    });
+}
 </script>
 
 </body>
