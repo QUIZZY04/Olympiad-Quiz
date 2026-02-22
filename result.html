@@ -2,147 +2,196 @@
 <html>
 <head>
 <title>Olympiad Performance Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
+*{
     margin:0;
-    padding:40px;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
     background:#0f0f1b;
-    font-family:Arial, sans-serif;
     color:white;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
+/* ===== NAVBAR ===== */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#1e1e2f;
 }
 
-h1{
-    text-align:center;
-    margin-bottom:30px;
+nav h2{
+    color:#ffb703;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:500;
+}
+
+nav a:hover{
+    color:#ffb703;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:20px;
 }
 
 .summary-card{
     background:#1e1e2f;
     padding:20px;
     border-radius:12px;
-    margin-bottom:30px;
     text-align:center;
+    margin-bottom:30px;
 }
 
-.analysis-box{
-    background:#1e1e2f;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:20px;
+button.action-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    margin:10px 5px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.correct{
-    border-left:5px solid #4caf50;
+.quiz-btn{
+    background:#ffb703;
 }
 
-.wrong{
-    border-left:5px solid #ff4d4d;
+.logout-btn{
+    background:#dc3545;
+    color:white;
 }
 
-.hint{
-    background:#3a3a6a;
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th, td{
     padding:10px;
-    margin-top:10px;
-    border-radius:8px;
+    text-align:left;
+    border:1px solid #333;
 }
 
-.solution{
+th{
     background:#2f2f55;
-    padding:12px;
-    margin-top:10px;
-    border-radius:8px;
-    border-left:4px solid #6c63ff;
+}
+
+.correct-row{
+    background:#1e3a2f;
+}
+
+.wrong-row{
+    background:#3a1f1f;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ===== NAVIGATION BAR ===== -->
+<nav>
+    <h2>🎓 Olympiad Portal</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="quiz.html">Take Quiz</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+</nav>
+
 <div class="container">
 
-<h1>🏆 Olympiad Performance Report</h1>
+<h1 style="text-align:center;margin-bottom:30px;">
+🏆 Performance Report
+</h1>
 
 <div class="summary-card" id="summary"></div>
+
+<div style="text-align:center;">
+    <button class="action-btn quiz-btn" onclick="location.href='quiz.html'">
+        Take Another Quiz
+    </button>
+</div>
 
 <div id="details"></div>
 
 </div>
 
+<!-- ===== RESULT DISPLAY SCRIPT ===== -->
 <script>
-// ===== DISPLAY RESULT FROM LOCAL STORAGE =====
 document.addEventListener("DOMContentLoaded", function(){
 
     const data = localStorage.getItem("quizResult");
 
     if(!data){
         document.getElementById("summary").innerHTML =
-        "<h2 style='color:red'>No quiz data found. Please attempt quiz again.</h2>";
+        "<h2>No quiz data found.</h2>";
         return;
     }
 
     const resultData = JSON.parse(data);
-
-    const score = resultData.score || 0;
-    const total = resultData.total || 0;
-
-    let accuracy = total ? ((score/total)*100).toFixed(2) : 0;
+    const score = resultData.score;
+    const total = resultData.total;
+    const accuracy = ((score/total)*100).toFixed(2);
 
     document.getElementById("summary").innerHTML =
-        `<h2>Score: ${score} / ${total}</h2>
-         <h3>Accuracy: ${accuracy}%</h3>`;
+    `<h2>Score: ${score} / ${total}</h2>
+     <h3>Accuracy: ${accuracy}%</h3>`;
 
-    if(resultData.questions && resultData.answers){
+    let html = `
+    <h2 style="margin-top:30px;">Detailed Analysis</h2>
+    <table>
+    <thead>
+    <tr>
+    <th>Q.No</th>
+    <th>Your Answer</th>
+    <th>Correct Answer</th>
+    <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    `;
 
-        let html = "<h2>📘 Detailed Question Analysis</h2>";
+    resultData.questions.forEach((q,i)=>{
 
-        resultData.questions.forEach((q,i)=>{
+        const userAns = resultData.answers[i];
+        const isCorrect = userAns == q.a;
 
-            const userAns = resultData.answers[i];
-            const isCorrect = userAns == q.a;
+        html += `
+        <tr class="${isCorrect ? "correct-row" : "wrong-row"}">
+        <td>${i+1}</td>
+        <td>${userAns !== null ? q.o[userAns] : "Not Attempted"}</td>
+        <td>${q.o[q.a]}</td>
+        <td>${isCorrect ? "✅ Correct" : "❌ Wrong"}</td>
+        </tr>
+        `;
+    });
 
-            html += `
-            <div class="analysis-box ${isCorrect ? "correct" : "wrong"}">
-                <h4>Q${i+1}. ${q.q}</h4>
+    html += "</tbody></table>";
 
-                <p><strong>Your Answer:</strong> 
-                ${userAns !== null && userAns !== undefined ? q.o[userAns] : "Not Attempted"}</p>
-
-                <p><strong>Correct Answer:</strong> ${q.o[q.a]}</p>
-            `;
-
-            if(!isCorrect){
-                html += `
-                <div class="hint">
-                    <strong>Hint:</strong><br>
-                    ${q.hint || "Review related concept."}
-                </div>
-
-                <div class="solution">
-                    <strong>Solution:</strong><br>
-                    ${q.sol || "Refer textbook explanation."}
-                </div>
-                `;
-            }
-
-            html += `</div>`;
-        });
-
-        document.getElementById("details").innerHTML = html;
-    }
+    document.getElementById("details").innerHTML = html;
 
 });
 </script>
 
-<!-- ===== FIREBASE SAVE RESULT ===== -->
+<!-- ===== FIREBASE SCRIPT ===== -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -168,22 +217,23 @@ if(resultData){
 
     onAuthStateChanged(auth, async (user)=>{
         if(user){
-            try{
-                await addDoc(collection(db, "users", user.uid, "results"), {
-                    subject: resultData.subject,
-                    class: resultData.class,
-                    score: score,
-                    total: total,
-                    accuracy: accuracy,
-                    date: new Date()
-                });
-                console.log("Result saved successfully!");
-            } catch(error){
-                console.log("Error saving result:", error.message);
-            }
+            await addDoc(collection(db, "users", user.uid, "results"), {
+                subject: resultData.subject,
+                class: resultData.class,
+                score,
+                total,
+                accuracy,
+                date: new Date()
+            });
         }
     });
 }
+
+window.logout = function(){
+    signOut(auth).then(()=>{
+        window.location.href = "login.html";
+    });
+};
 </script>
 
 </body>
