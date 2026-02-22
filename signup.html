@@ -44,6 +44,7 @@ a{color:#ffb703;text-decoration:none;}
 
 <div class="signup-box">
 <h2>Create Account</h2>
+
 <form id="signupForm">
 <input type="text" id="name" placeholder="Full Name" required>
 <input type="email" id="email" placeholder="Email" required>
@@ -68,7 +69,7 @@ a{color:#ffb703;text-decoration:none;}
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -84,33 +85,28 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// If already logged in → go dashboard
-onAuthStateChanged(auth,user=>{
-    if(user){
-        window.location.href="dashboard.html";
-    }
-});
-
-document.getElementById("signupForm").addEventListener("submit",async(e)=>{
+document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
 
-    const name=document.getElementById("name").value.trim();
-    const email=document.getElementById("email").value.trim();
-    const password=document.getElementById("password").value;
-    const classSelect=document.getElementById("classSelect").value;
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const classSelect = document.getElementById("classSelect").value;
 
     try{
-        const userCredential=await createUserWithEmailAndPassword(auth,email,password);
-        const user=userCredential.user;
+        const userCredential = await createUserWithEmailAndPassword(auth,email,password);
+        const user = userCredential.user;
 
         await setDoc(doc(db,"users",user.uid),{
-            name,
-            email,
+            name:name,
+            email:email,
             class:classSelect,
             createdAt:new Date()
         });
 
-        window.location.href="dashboard.html";
+        alert("Signup Successful!");
+        window.location.href="login.html";
+
     }catch(error){
         alert(error.message);
     }
