@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Top Navigation ===== -->
+<div class="top-nav">
+    <div class="nav-left">🎓 Olympiad Portal</div>
+    <div class="nav-right">
+        <a href="index.html">Home</a>
+        <a href="signup.html">Signup</a>
+    </div>
+</div>
+
+<!-- ===== Centered Login Box ===== -->
+<div class="signup-wrapper">
+    <div class="signup-box">
+
+        <h2>Student Login</h2>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+                <input type="email" id="loginEmail" placeholder="Enter Email" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="loginPassword" placeholder="Enter Password" required>
+            </div>
+
+            <button type="submit" class="signup-btn">Login</button>
+
+        </form>
+
+        <p style="text-align:center;margin-top:15px;">
+            Don't have an account?
+            <a href="signup.html" style="color:#ffb703;">Sign Up</a>
+        </p>
+
+    </div>
+</div>
+
+<!-- ===== Firebase Login Script ===== -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+document.getElementById("loginForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login Successful!");
+        window.location.href = "dashboard.html";
+    } catch(error){
+    console.log("Error Code:", error.code);
+    console.log("Error Message:", error.message);
+    alert(error.message);
+    }
+});
+</script>
+
+</body>
+</html>
