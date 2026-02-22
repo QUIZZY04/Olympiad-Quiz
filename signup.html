@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Account</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="signup-wrapper">
+<div class="signup-box">
+<h2>Create Account</h2>
+
+<form id="signupForm">
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email Address" required>
+<input type="password" id="password" placeholder="Password" required>
+<select id="classSelect" required>
+<option value="class4">Class 4</option>
+<option value="class5">Class 5</option>
+<option value="class6">Class 6</option>
+<option value="class7">Class 7</option>
+<option value="class8">Class 8</option>
+<option value="class9">Class 9</option>
+<option value="class10">Class 10</option>
+</select>
+<button type="submit">Register</button>
+</form>
+
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+document.getElementById("signupForm").addEventListener("submit", async (e)=>{
+e.preventDefault();
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+const classSelect = document.getElementById("classSelect").value;
+
+try {
+const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+const user = userCredential.user;
+
+await setDoc(doc(db, "users", user.uid), {
+name,
+email,
+class: classSelect,
+createdAt: new Date()
+});
+
+alert("Signup Successful!");
+window.location.href = "login.html";
+
+} catch(error){
+alert(error.message);
+}
+});
+</script>
+
+</body>
+</html>
