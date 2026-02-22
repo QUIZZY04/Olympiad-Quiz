@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Olympiad Performance Report</title>
+
+<style>
+body{
+    margin:0;
+    padding:40px;
+    background:#0f0f1b;
+    font-family:Arial, sans-serif;
+    color:white;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.summary-card{
+    background:#1e1e2f;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.analysis-box{
+    background:#1e1e2f;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.correct{
+    border-left:5px solid #4caf50;
+}
+
+.wrong{
+    border-left:5px solid #ff4d4d;
+}
+
+.hint{
+    background:#3a3a6a;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+}
+
+.solution{
+    background:#2f2f55;
+    padding:12px;
+    margin-top:10px;
+    border-radius:8px;
+    border-left:4px solid #6c63ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏆 Olympiad Performance Report</h1>
+
+<div class="summary-card" id="summary"></div>
+
+<div id="details"></div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const data = localStorage.getItem("quizResult");
+
+    if(!data){
+        document.getElementById("summary").innerHTML =
+        "<h2 style='color:red'>No quiz data found. Please attempt quiz again.</h2>";
+        return;
+    }
+
+    const resultData = JSON.parse(data);
+
+    const score = resultData.score || 0;
+    const total = resultData.total || 0;
+
+    let accuracy = total ? ((score/total)*100).toFixed(2) : 0;
+
+    document.getElementById("summary").innerHTML =
+        `<h2>Score: ${score} / ${total}</h2>
+         <h3>Accuracy: ${accuracy}%</h3>`;
+
+    if(resultData.questions && resultData.answers){
+
+        let html = "<h2>📘 Detailed Question Analysis</h2>";
+
+        resultData.questions.forEach((q,i)=>{
+
+            const userAns = resultData.answers[i];
+            const isCorrect = userAns == q.a;
+
+            html += `
+            <div class="analysis-box ${isCorrect ? "correct" : "wrong"}">
+                <h4>Q${i+1}. ${q.q}</h4>
+
+                <p><strong>Your Answer:</strong> 
+                ${userAns !== null && userAns !== undefined ? q.o[userAns] : "Not Attempted"}</p>
+
+                <p><strong>Correct Answer:</strong> ${q.o[q.a]}</p>
+            `;
+
+            // Show hint & solution only if answer is wrong
+            if(!isCorrect){
+
+                html += `
+                <div class="hint">
+                    <strong>Hint:</strong><br>
+                    ${q.hint || "Review the related concept carefully."}
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong><br>
+                    ${q.sol || "Refer to textbook explanation for detailed solution."}
+                </div>
+                `;
+            }
+
+            html += `</div>`;
+        });
+
+        document.getElementById("details").innerHTML = html;
+    }
+
+});
+</script>
+
+</body>
+</html>
