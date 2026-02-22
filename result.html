@@ -43,7 +43,7 @@ nav a:hover{
 
 /* ===== CONTAINER ===== */
 .container{
-    max-width:1100px;
+    max-width:1200px;
     margin:40px auto;
     padding:20px;
 }
@@ -56,34 +56,17 @@ nav a:hover{
     margin-bottom:30px;
 }
 
-button.action-btn{
-    padding:10px 18px;
-    border:none;
-    border-radius:8px;
-    margin:10px 5px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.quiz-btn{
-    background:#ffb703;
-}
-
-.logout-btn{
-    background:#dc3545;
-    color:white;
-}
-
 table{
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
+    font-size:14px;
 }
 
 th, td{
     padding:10px;
-    text-align:left;
     border:1px solid #333;
+    vertical-align:top;
 }
 
 th{
@@ -97,12 +80,30 @@ th{
 .wrong-row{
     background:#3a1f1f;
 }
+
+.action-btn{
+    padding:10px 15px;
+    border:none;
+    border-radius:6px;
+    margin:10px 5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.quiz-btn{
+    background:#ffb703;
+}
+
+.logout-btn{
+    background:#dc3545;
+    color:white;
+}
 </style>
 </head>
 
 <body>
 
-<!-- ===== NAVIGATION BAR ===== -->
+<!-- ===== NAVIGATION ===== -->
 <nav>
     <h2>🎓 Olympiad Portal</h2>
     <div>
@@ -157,10 +158,13 @@ document.addEventListener("DOMContentLoaded", function(){
     <table>
     <thead>
     <tr>
-    <th>Q.No</th>
-    <th>Your Answer</th>
-    <th>Correct Answer</th>
-    <th>Status</th>
+        <th>Q.No</th>
+        <th>Question</th>
+        <th>Your Answer</th>
+        <th>Correct Answer</th>
+        <th>Status</th>
+        <th>Hint</th>
+        <th>Solution</th>
     </tr>
     </thead>
     <tbody>
@@ -173,10 +177,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
         html += `
         <tr class="${isCorrect ? "correct-row" : "wrong-row"}">
-        <td>${i+1}</td>
-        <td>${userAns !== null ? q.o[userAns] : "Not Attempted"}</td>
-        <td>${q.o[q.a]}</td>
-        <td>${isCorrect ? "✅ Correct" : "❌ Wrong"}</td>
+            <td>${i+1}</td>
+            <td>${q.q}</td>
+            <td>${userAns !== null ? q.o[userAns] : "Not Attempted"}</td>
+            <td>${q.o[q.a]}</td>
+            <td>${isCorrect ? "✅ Correct" : "❌ Wrong"}</td>
+            <td>${!isCorrect ? (q.hint || "-") : "-"}</td>
+            <td>${!isCorrect ? (q.sol || "-") : "-"}</td>
         </tr>
         `;
     });
@@ -188,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 
-<!-- ===== FIREBASE SCRIPT ===== -->
+<!-- ===== FIREBASE SAVE RESULT ===== -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
