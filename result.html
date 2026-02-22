@@ -9,11 +9,42 @@
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-</head>
 
+<style>
+.result-container{
+    padding:40px;
+}
+.result-summary{
+    background:#111;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:30px;
+}
+.correct{ color:#28a745; }
+.wrong{ color:#dc3545; }
+.neutral{ color:#ffc107; }
+.question-block{
+    background:rgba(255,255,255,0.05);
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:8px;
+}
+button{
+    padding:10px 15px;
+    margin:10px 5px 0 0;
+    background:#ffb703;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#f59e0b;
+}
+</style>
+</head>
 <body>
 
-<!-- 🔐 Force Reload If Back Button Used -->
+<!-- 🔐 Force Reload if Back Button Used -->
 <script>
 window.addEventListener("pageshow", function (event) {
     if (event.persisted) {
@@ -46,10 +77,76 @@ onAuthStateChanged(auth, (user)=>{
 });
 </script>
 
-<!-- ===== YOUR ORIGINAL RESULT PAGE CONTENT BELOW (UNCHANGED) ===== -->
+<div class="result-container">
+
+<h2>Quiz Result</h2>
+
+<div class="result-summary">
+    <p><strong>Score:</strong> <span id="score"></span></p>
+    <p><strong>Accuracy:</strong> <span id="accuracy"></span></p>
+    <p><strong>Date:</strong> <span id="date"></span></p>
+</div>
+
+<div id="detailedResult"></div>
+
+<button onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+
+</div>
 
 <script>
-/* YOUR ORIGINAL RESULT SCRIPT REMAINS EXACTLY SAME */
+
+/* ===== LOAD RESULT DATA ===== */
+
+const resultData = JSON.parse(localStorage.getItem("quizResult"));
+
+if(!resultData){
+    document.body.innerHTML = "<h2>No result found.</h2>";
+}else{
+
+document.getElementById("score").innerText =
+resultData.score + " / " + resultData.total;
+
+let accuracy = ((resultData.score / resultData.total) * 100).toFixed(2);
+document.getElementById("accuracy").innerText = accuracy + "%";
+
+document.getElementById("date").innerText = resultData.date;
+
+let detailedHTML = "";
+
+for(let i=0; i<resultData.questions.length; i++){
+
+    let question = resultData.questions[i];
+    let userAnswer = resultData.answers[i];
+    let correctAnswer = question.a;
+
+    let statusClass = "neutral";
+    if(userAnswer === correctAnswer) statusClass = "correct";
+    else if(userAnswer !== null) statusClass = "wrong";
+
+    detailedHTML += `
+    <div class="question-block">
+        <p><strong>Q${i+1}:</strong> ${question.q}</p>
+        <p>Your Answer: 
+            <span class="${statusClass}">
+            ${userAnswer !== null ? question.o[userAnswer] : "Not Answered"}
+            </span>
+        </p>
+        <p>Correct Answer: <span class="correct">${question.o[correctAnswer]}</span></p>
+        <p><strong>Hint:</strong> ${question.h || "N/A"}</p>
+        <p><strong>Solution:</strong> ${question.s || "N/A"}</p>
+    </div>`;
+}
+
+document.getElementById("detailedResult").innerHTML = detailedHTML;
+
+}
+
+/* 🔐 Block Back Button */
+window.history.pushState(null, null, window.location.href);
+window.onpopstate = function () {
+    window.location.replace("login.html");
+};
+
 </script>
 
 </body>
