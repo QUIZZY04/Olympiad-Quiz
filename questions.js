@@ -6,65 +6,218 @@ class4:{
 
 maths:[
 
-{q:"What is 25% of 200?",o:["50","25","40","75"],a:0,hint:"25% means 25/100.",sol:"25% = 25/100 × 200 = 50."},
 
-{q:"LCM of 12 and 18?",o:["36","24","18","48"],a:0,hint:"Use prime factorization.",sol:"12=2²×3, 18=2×3² → LCM=2²×3²=36."},
+{
+q: "Find the smallest number which when divided by 6, 8 and 12 leaves remainder 3 in each case.",
+o: ["27","51","75","99"],
+a: 1,
+hint: "Find LCM first, then add remainder.",
+sol: "LCM(6,8,12)=24. Required number = 24k + 3. Smallest = 24×2 +3 = 51."
+},
+{
+q: "The difference between two numbers is 48. Their ratio is 5:3. Find the larger number.",
+o: ["120","96","144","80"],
+a: 0,
+hint: "Let numbers be 5x and 3x.",
+sol: "5x - 3x = 48 → 2x=48 → x=24 → larger=5×24=120."
+},
+{
+q: "Find the value of 999 × 999.",
+o: ["998001","999001","997001","1000000"],
+a: 0,
+hint: "Use (1000-1)² formula.",
+sol: "(1000-1)² = 1000000 - 2000 +1 = 998001."
+},
+{
+q: "How many numbers between 1 and 100 are divisible by both 3 and 5?",
+o: ["5","6","7","8"],
+a: 1,
+hint: "Divisible by LCM of 3 and 5.",
+sol: "LCM=15. 100÷15=6 numbers."
+},
+{
+q: "The sum of first 10 natural numbers is?",
+o: ["45","50","55","60"],
+a: 2,
+hint: "Use formula n(n+1)/2.",
+sol: "10×11/2=55."
+},
+{
+q: "If 4 men can build a wall in 9 days, how many days will 6 men take?",
+o: ["6","8","7","9"],
+a: 0,
+hint: "Work = men × days constant.",
+sol: "4×9=36 total work → 36÷6=6 days."
+},
+{
+q: "Find the missing number: 2, 6, 12, 20, 30, ?",
+o: ["36","40","42","56"],
+a: 2,
+hint: "Look at pattern n(n+1).",
+sol: "5×6=30, next 6×7=42."
+},
+{
+q: "A number when multiplied by 8 gives 504. Find the number.",
+o: ["63","72","84","56"],
+a: 0,
+hint: "Divide 504 by 8.",
+sol: "504 ÷ 8 = 63."
+},
+{
+q: "Find HCF of 144 and 180.",
+o: ["36","12","24","18"],
+a: 0,
+hint: "Prime factorization.",
+sol: "HCF=36."
+},
+{
+q: "If the perimeter of a rectangle is 100 cm and length is 30 cm, find breadth.",
+o: ["20","25","30","35"],
+a: 0,
+hint: "2(l+b)=100.",
+sol: "l+b=50 → b=20."
+},
+{
+q: "Find the value of 25² − 24².",
+o: ["49","1","50","625"],
+a: 0,
+hint: "Use (a² − b²) formula.",
+sol: "(25−24)(25+24)=1×49=49."
+},
+{
+q: "The average of 5 numbers is 18. Find their total.",
+o: ["80","85","90","95"],
+a: 2,
+hint: "Average × number of items.",
+sol: "18×5=90."
+},
+{
+q: "How many factors does 60 have?",
+o: ["10","12","14","8"],
+a: 1,
+hint: "Prime factorization 60=2²×3×5.",
+sol: "(2+1)(1+1)(1+1)=3×2×2=12 factors."
+},
+{
+q: "Find the next number: 1, 4, 9, 16, 25, ?",
+o: ["30","36","49","64"],
+a: 1,
+hint: "Perfect squares.",
+sol: "6²=36."
+},
+{
+q: "A number leaves remainder 4 when divided by 7. What remainder when squared?",
+o: ["2","4","6","1"],
+a: 2,
+hint: "Square the remainder.",
+sol: "4²=16 → 16÷7 leaves remainder 2."
+},
+{
+q: "Find LCM of 18 and 24.",
+o: ["72","36","48","96"],
+a: 0,
+hint: "Prime factorization.",
+sol: "LCM=72."
+},
+{
+q: "The product of three consecutive numbers is 210. Find the middle number.",
+o: ["5","6","7","8"],
+a: 1,
+hint: "Try consecutive numbers.",
+sol: "5×6×7=210."
+},
+{
+q: "If 20% of a number is 80, find the number.",
+o: ["300","400","500","600"],
+a: 1,
+hint: "20% = 1/5.",
+sol: "80×5=400."
+},
+{
+q: "Find 125 × 16.",
+o: ["2000","1800","1600","1500"],
+a: 0,
+hint: "125×8=1000.",
+sol: "125×16 = 2000."
+},
+{
+q: "How many multiples of 7 are there between 1 and 200?",
+o: ["28","29","30","27"],
+a: 0,
+hint: "200÷7.",
+sol: "200÷7=28 multiples."
+},
+{
+q: "Find the value of (48 ÷ 6) × (72 ÷ 9).",
+o: ["64","72","48","96"],
+a: 0,
+hint: "Solve separately.",
+sol: "8×8=64."
+},
+{
+q: "The sum of two numbers is 72 and their difference is 8. Find larger number.",
+o: ["40","36","38","42"],
+a: 0,
+hint: "Use simple system.",
+sol: "(72+8)/2=40."
+},
+{
+q: "Find the next term: 3, 7, 15, 31, ?",
+o: ["63","62","60","64"],
+a: 0,
+hint: "×2 +1 pattern.",
+sol: "31×2+1=63."
+},
+{
+q: "Find area of square whose perimeter is 64 cm.",
+o: ["256","144","196","128"],
+a: 0,
+hint: "Find side first.",
+sol: "Side=16 → Area=256."
+},
+{
+q: "How many diagonals does a pentagon have?",
+o: ["5","7","10","8"],
+a: 0,
+hint: "Formula n(n-3)/2.",
+sol: "5(2)/2=5 diagonals."
+},
+{
+q: "If 3/8 of a number is 24, find the number.",
+o: ["64","72","80","96"],
+a: 0,
+hint: "Multiply 24 by 8/3.",
+sol: "24×8÷3=64."
+},
+{
+q: "Find 1001 × 1001.",
+o: ["1002001","1001001","1000001","1010001"],
+a: 0,
+hint: "Use (1000+1)².",
+sol: "1000000+2000+1=1002001."
+},
+{
+q: "Find the greatest 4-digit number divisible by 9.",
+o: ["9999","9990","9981","9972"],
+a: 0,
+hint: "Sum of digits rule.",
+sol: "9999 divisible by 9."
+},
+{
+q: "If a number is divisible by 11, what is sum rule?",
+o: ["Sum even places - odd places = multiple of 11","Sum digits divisible by 11","Ends with 1","None"],
+a: 0,
+hint: "Divisibility rule of 11.",
+sol: "Difference of sums of alternate digits must be multiple of 11."
+},
+{
+q: "Find the next number: 2, 3, 5, 9, 17, ?",
+o: ["33","34","35","36"],
+a: 0,
+hint: "Double previous and subtract 1.",
+sol: "17×2 -1=33."
+}
 
-{q:"HCF of 24 and 36?",o:["12","6","18","24"],a:0,hint:"Find common factors.",sol:"Common factors highest = 12."},
-
-{q:"Square of 17?",o:["289","279","299","269"],a:0,hint:"Multiply 17×17.",sol:"17×17=289."},
-
-{q:"Find next: 5, 11, 19, 29, ?",o:["41","39","45","35"],a:0,hint:"Differences increase by 2.",sol:"+6,+8,+10,+12 → Next=41."},
-
-{q:"3/4 + 1/4 =",o:["1","2/4","3/8","4/8"],a:0,hint:"Same denominator.",sol:"3/4+1/4=4/4=1."},
-
-{q:"Mean of 6, 9, 12?",o:["9","8","10","7"],a:0,hint:"Add then divide by 3.",sol:"(6+9+12)/3=9."},
-
-{q:"Smallest prime number?",o:["2","1","3","5"],a:0,hint:"Prime starts from 2.",sol:"2 is smallest prime."},
-
-{q:"Volume of cube side 5cm?",o:["125","100","150","120"],a:0,hint:"Side³.",sol:"5³=125."},
-
-{q:"Area of rectangle 15×9?",o:["135","120","150","145"],a:0,hint:"Length×Breadth.",sol:"15×9=135."},
-
-{q:"Roman numeral of 90?",o:["XC","LC","XL","IC"],a:0,hint:"100-10.",sol:"90=XC."},
-
-{q:"1/8 of 400?",o:["50","40","60","70"],a:0,hint:"Divide by 8.",sol:"400÷8=50."},
-
-{q:"Convert 3.5 km into meters.",o:["3500","3000","2500","4000"],a:0,hint:"1 km=1000m.",sol:"3.5×1000=3500."},
-
-{q:"Place value of 7 in 4,782?",o:["700","70","7","7000"],a:0,hint:"Check hundreds place.",sol:"7 in hundreds place = 700."},
-
-{q:"Perimeter of square side 18?",o:["72","64","70","68"],a:0,hint:"4×side.",sol:"4×18=72."},
-
-{q:"Convert 2500g to kg.",o:["2.5","25","0.25","5"],a:0,hint:"1000g=1kg.",sol:"2500÷1000=2.5kg."},
-
-{q:"How many diagonals in square?",o:["2","4","1","3"],a:0,hint:"Draw square.",sol:"Square has 2 diagonals."},
-
-{q:"3² + 4² =",o:["25","49","12","18"],a:0,hint:"Calculate separately.",sol:"9+16=25."},
-
-{q:"Probability of red ball (5 red,3 blue)?",o:["5/8","3/8","1/2","1/3"],a:0,hint:"Favourable/Total.",sol:"5 red out of 8 total=5/8."},
-
-{q:"999+1?",o:["1000","1001","9999","100"],a:0,hint:"Next number.",sol:"999+1=1000."},
-
-{q:"Number divisible by both 2 and 3?",o:["18","20","22","25"],a:0,hint:"Divisible by 6.",sol:"18 divisible by 6."},
-
-{q:"Square root of 144?",o:["12","10","14","16"],a:0,hint:"Find number whose square is 144.",sol:"12×12=144."},
-
-{q:"Largest 3-digit number?",o:["999","998","1000","900"],a:0,hint:"Before 1000.",sol:"999."},
-
-{q:"Half of 5/6?",o:["5/12","5/3","1/3","2/3"],a:0,hint:"Multiply by 1/2.",sol:"(5/6)×1/2=5/12."},
-
-{q:"If 8 workers take 6 days, 4 workers take?",o:["12 days","10 days","8 days","6 days"],a:0,hint:"Inverse proportion.",sol:"Half workers → double time =12 days."},
-
-{q:"12.5% of 160?",o:["20","25","30","40"],a:0,hint:"12.5%=1/8.",sol:"160÷8=20."},
-
-{q:"Number of factors of 36?",o:["9","8","6","7"],a:0,hint:"List divisors.",sol:"1,2,3,4,6,9,12,18,36=9 factors."},
-
-{q:"Smallest 4-digit number divisible by 9?",o:["1008","1009","1017","1026"],a:0,hint:"Sum digits divisible by 9.",sol:"1+0+0+8=9 → divisible."},
-
-{q:"LCM of 15 and 20?",o:["60","30","45","75"],a:0,hint:"Prime factors.",sol:"15=3×5, 20=2²×5 → LCM=60."},
-
-{q:"Which is prime?",o:["43","45","51","39"],a:0,hint:"Check divisibility.",sol:"43 is prime."}
 
 ],
 
@@ -396,6 +549,7 @@ science:[
 
 
 }
+
 
 
 };
