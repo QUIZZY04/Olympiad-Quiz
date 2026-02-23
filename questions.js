@@ -690,6 +690,29 @@ a: 2,
 hint: "25%=1/4.",
 sol: "125×4=500."
 },
+      {
+q: `
+<p><b>Observe the figure below:</b></p>
+
+<svg width="260" height="200">
+  <polygon points="60,150 200,150 130,40"
+           stroke="white"
+           stroke-width="2"
+           fill="none" />
+  <text x="115" y="170" fill="white">12 cm</text>
+  <line x1="130" y1="40" x2="130" y2="150"
+        stroke="white"
+        stroke-dasharray="4"/>
+  <text x="140" y="95" fill="white">8 cm</text>
+</svg>
+
+<p>Find the area of the triangle.</p>
+`,
+o: ["48 cm²","96 cm²","40 cm²","64 cm²"],
+a: 0,
+hint: "Area of triangle = 1/2 × base × height.",
+sol: "Area = 1/2 × 12 × 8 = 48 cm²."
+},
 {
 q: "Find 125 × 64.",
 o: ["7000","8000","7500","8200"],
@@ -1228,6 +1251,7 @@ sol: "Chemical energy."
 
 
 };
+
 
 
 
