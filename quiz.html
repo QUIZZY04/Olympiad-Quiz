@@ -101,8 +101,8 @@ const firebaseConfig = {
 };
 
 window.app = initializeApp(firebaseConfig);
-window.auth = getAuth(app);
-window.db = getFirestore(app);
+window.auth = getAuth(window.app);
+window.db = getFirestore(window.app);
 
 onAuthStateChanged(window.auth, (user)=>{
     if(!user){
@@ -249,5 +249,4 @@ function submitQuiz() {
 
     localStorage.setItem("quizResult", JSON.stringify(resultData));
 
-    // 🔑 Save to Firestore leaderboard
-    if (window.auth && window
+    //
