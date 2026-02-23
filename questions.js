@@ -867,67 +867,146 @@ sol: "(4+1)=5 factors."
 }
 ],
 english:[
-
-{q:"Choose the word closest in meaning to 'Reluctant'.",o:["Unwilling","Eager","Happy","Quick"],a:0,hint:"Think: not ready to do something.",sol:"Reluctant means unwilling or hesitant."},
-
-{q:"Choose the antonym of 'Scarce'.",o:["Abundant","Rare","Few","Little"],a:0,hint:"Opposite of limited.",sol:"Scarce means limited; opposite is abundant."},
-
-{q:"Identify the correctly punctuated sentence.",o:["Its raining heavily.","It's raining heavily.","Its' raining heavily.","Its raining, heavily."],a:1,hint:"Short form of 'it is'.",sol:"It's = it is. So 'It's raining heavily.' is correct."},
-
-{q:"Choose the correct passive voice: 'They completed the task.'",o:["The task was completed.","The task is completed.","Task was complete.","The task completed was."],a:0,hint:"Object becomes subject.",sol:"Passive form: The task was completed."},
-
-{q:"Choose the correct preposition: She is afraid ___ snakes.",o:["of","from","with","by"],a:0,hint:"Common usage.",sol:"We say afraid of something."},
-
-{q:"Select the synonym of 'Fragile'.",o:["Delicate","Strong","Hard","Heavy"],a:0,hint:"Easily broken.",sol:"Fragile means delicate."},
-
-{q:"Identify the adjective: The sky looks beautiful today.",o:["beautiful","sky","today","looks"],a:0,hint:"Describes noun.",sol:"Beautiful describes sky."},
-
-{q:"Choose the correct homophone: ___ book is on the table.",o:["Their","There","They're","Them"],a:0,hint:"Possession.",sol:"Their shows possession."},
-
-{q:"Select the correctly spelled word.",o:["Occasion","Ocasion","Occassion","Occation"],a:0,hint:"Double c, single s.",sol:"Correct spelling is Occasion."},
-
-{q:"Choose correct comparative: This puzzle is ___ than that one.",o:["harder","hardest","more hard","hard"],a:0,hint:"Comparative of hard.",sol:"Hard → harder."},
-
-{q:"Select the correct indirect speech: He said, 'I will win.'",o:["He said that he would win.","He said that he will win.","He says he would win.","He said he wins."],a:0,hint:"Will changes to would.",sol:"Future changes to would in indirect speech."},
-
-{q:"Choose the conjunction: I was tired ___ I continued working.",o:["but","and","so","because"],a:0,hint:"Shows contrast.",sol:"But shows contrast."},
-
-{q:"Select the antonym of 'Expand'.",o:["Contract","Increase","Grow","Stretch"],a:0,hint:"Opposite of grow.",sol:"Expand opposite is contract."},
-
-{q:"Choose the correct article: ___ umbrella.",o:["An","A","The","No"],a:0,hint:"Starts with vowel sound.",sol:"An umbrella."},
-
-{q:"Identify the adverb: He spoke softly.",o:["softly","spoke","he","soft"],a:0,hint:"Describes verb.",sol:"Softly describes how he spoke."},
-
-{q:"Choose the plural of 'Analysis'.",o:["Analyses","Analysis","Analysises","Analys"],a:0,hint:"Ends with -is.",sol:"Analysis → Analyses."},
-
-{q:"Select synonym of 'Courageous'.",o:["Brave","Fearful","Lazy","Weak"],a:0,hint:"Not afraid.",sol:"Courageous means brave."},
-
-{q:"Choose correct sentence.",o:["Each of the players has a medal.","Each of the players have medals.","Each players has medal.","Each player have medal."],a:0,hint:"Each takes singular verb.",sol:"Correct form uses has."},
-
-{q:"Identify pronoun: Everyone should bring ___ book.",o:["his","their","our","your"],a:0,hint:"Traditional singular usage.",sol:"Correct answer: his."},
-
-{q:"Choose antonym of 'Ancient'.",o:["Modern","Old","Past","Historic"],a:0,hint:"Opposite of very old.",sol:"Ancient opposite is modern."},
-
-{q:"Select the correct tense: She ___ playing when I arrived.",o:["was","is","are","be"],a:0,hint:"Past continuous.",sol:"She was playing."},
-
-{q:"Choose correct preposition: He insisted ___ paying.",o:["on","at","for","to"],a:0,hint:"Common phrase.",sol:"We say insist on."},
-
-{q:"Identify noun: Honesty is valued.",o:["Honesty","valued","is","none"],a:0,hint:"Name of quality.",sol:"Honesty is noun."},
-
-{q:"Choose synonym of 'Swift'.",o:["Fast","Slow","Weak","Late"],a:0,hint:"Speed related.",sol:"Swift means fast."},
-
-{q:"Select correct question tag: You are ready, ___?",o:["aren't you","are you","do you","did you"],a:0,hint:"Positive → negative tag.",sol:"Correct tag is aren't you?"},
-
-{q:"Choose correct form: Neither of the boys ___ present.",o:["is","are","were","have"],a:0,hint:"Neither is singular.",sol:"Neither takes singular verb."},
-
-{q:"Select antonym of 'Victory'.",o:["Defeat","Success","Win","Triumph"],a:0,hint:"Opposite of win.",sol:"Victory opposite is defeat."},
-
-{q:"Choose correct spelling.",o:["Knowledge","Knowlege","Knowldge","Knowladge"],a:0,hint:"Silent 'w'.",sol:"Correct spelling is Knowledge."},
-
-{q:"Identify verb: Birds fly high.",o:["fly","birds","high","none"],a:0,hint:"Action word.",sol:"Fly is verb."},
-
-{q:"Choose synonym of 'Enormous'.",o:["Huge","Tiny","Short","Little"],a:0,hint:"Very big.",sol:"Enormous means huge."}
-
+{
+q: "Choose synonym of 'Reluctant'.",
+o: ["Willing","Unwilling","Happy","Brave"],
+a: 1,
+hint: "Means not ready.",
+sol: "Reluctant means unwilling."
+},
+{
+q: "Choose antonym of 'Scarce'.",
+o: ["Rare","Plenty","Few","Limited"],
+a: 1,
+hint: "Opposite of less.",
+sol: "Plenty."
+},
+{
+q: "Fill in the blank: She insisted ___ coming early.",
+o: ["on","in","at","for"],
+a: 0,
+hint: "Correct preposition.",
+sol: "Insisted on."
+},
+{
+q: "Identify error: Each of the players have arrived.",
+o: ["Each","players","have","arrived"],
+a: 2,
+hint: "'Each' is singular.",
+sol: "Should be 'has'."
+},
+{
+q: "Choose correct sentence.",
+o: ["He is good in maths.","He is good at maths.","He is good on maths.","He is good for maths."],
+a: 1,
+hint: "Correct preposition.",
+sol: "Good at maths."
+},
+{
+q: "Choose correct tense: She ___ completed her work.",
+o: ["has","have","had","having"],
+a: 0,
+hint: "Present perfect.",
+sol: "She has completed."
+},
+{
+q: "Choose meaning of idiom 'Break the ice'.",
+o: ["Start conversation","Break something","Fight","Cold weather"],
+a: 0,
+hint: "Begin interaction.",
+sol: "Start conversation."
+},
+{
+q: "Choose correct indirect speech: He said, 'I am tired.'",
+o: ["He said he was tired.","He said he is tired.","He says he was tired.","He says he is tired."],
+a: 0,
+hint: "Tense changes.",
+sol: "Am → was."
+},
+{
+q: "Choose correct plural of 'Analysis'.",
+o: ["Analysises","Analyses","Analysis","Analyssis"],
+a: 1,
+hint: "Irregular plural.",
+sol: "Analyses."
+},
+{
+q: "Fill in blank: The train arrived ___ time.",
+o: ["in","on","at","by"],
+a: 1,
+hint: "Correct phrase.",
+sol: "On time."
+},
+{
+q: "Choose synonym of 'Cautious'.",
+o: ["Careless","Careful","Fast","Lazy"],
+a: 1,
+hint: "Means careful.",
+sol: "Cautious = careful."
+},
+{
+q: "Choose correct article: He is ___ European citizen.",
+o: ["a","an","the","no article"],
+a: 0,
+hint: "European starts with consonant sound.",
+sol: "A European."
+},
+{
+q: "Choose antonym of 'Permanent'.",
+o: ["Temporary","Fixed","Stable","Lasting"],
+a: 0,
+hint: "Opposite meaning.",
+sol: "Temporary."
+},
+{
+q: "Identify adjective: The bright sun shone.",
+o: ["bright","sun","shone","the"],
+a: 0,
+hint: "Describes noun.",
+sol: "Bright."
+},
+{
+q: "Choose correct pronoun: This book is ___ .",
+o: ["my","mine","me","I"],
+a: 1,
+hint: "Possessive pronoun.",
+sol: "Mine."
+},
+{
+q: "Choose correct conjunction: I was tired ___ I kept working.",
+o: ["but","and","so","because"],
+a: 0,
+hint: "Contrast.",
+sol: "But."
+},
+{
+q: "Choose correct word: She sings very ___.",
+o: ["good","well","best","better"],
+a: 1,
+hint: "Adverb needed.",
+sol: "Well."
+},
+{
+q: "Choose correct prefix of 'legal'.",
+o: ["illegal","unlegal","dislegal","nonlegal"],
+a: 0,
+hint: "Common prefix.",
+sol: "Illegal."
+},
+{
+q: "Choose correct sentence.",
+o: ["Neither of them are ready.","Neither of them is ready.","Neither of them were ready.","Neither of them have ready."],
+a: 1,
+hint: "'Neither' is singular.",
+sol: "Is ready."
+},
+{
+q: "Choose synonym of 'Vast'.",
+o: ["Tiny","Huge","Narrow","Thin"],
+a: 1,
+hint: "Means very large.",
+sol: "Huge."
+}
 ],
 
 science:[
@@ -1149,6 +1228,7 @@ sol: "Chemical energy."
 
 
 };
+
 
 
 
