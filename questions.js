@@ -225,67 +225,216 @@ sol: "17×2 -1=33."
 /* ================= ENGLISH ================= */
 
 english:[
-
-{q:"Synonym of 'Ancient'?",o:["Old","Modern","New","Recent"],a:0,hint:"Very old.",sol:"Ancient means very old."},
-
-{q:"Antonym of 'Generous'?",o:["Selfish","Kind","Helpful","Polite"],a:0,hint:"Opposite of giving.",sol:"Generous opposite is selfish."},
-
-{q:"Plural of 'Crisis'?",o:["Crises","Crisises","Crisis","Crisi"],a:0,hint:"Ends with -is.",sol:"Crisis → Crises."},
-
-{q:"Correct article: ___ honest man.",o:["An","A","The","No"],a:0,hint:"Honest has silent h.",sol:"An honest man."},
-
-{q:"Synonym of 'Swift'?",o:["Fast","Slow","Late","Weak"],a:0,hint:"Speed related.",sol:"Swift means fast."},
-
-{q:"Opposite of 'Victory'?",o:["Defeat","Win","Success","Triumph"],a:0,hint:"Opposite of win.",sol:"Victory opposite is defeat."},
-
-{q:"Correct comparative of good?",o:["better","best","good","more good"],a:0,hint:"Irregular form.",sol:"Good → better."},
-
-{q:"Plural of 'Mouse'?",o:["Mice","Mouses","Mouse","Mous"],a:0,hint:"Irregular plural.",sol:"Mouse → Mice."},
-
-{q:"Choose correct tense: He ___ finished.",o:["has","have","had","having"],a:0,hint:"Singular subject.",sol:"He has finished."},
-
-{q:"Identify adjective: A tall tree.",o:["tall","tree","a","none"],a:0,hint:"Describes noun.",sol:"Tall describes tree."},
-
-{q:"Synonym of 'Huge'?",o:["Enormous","Tiny","Small","Little"],a:0,hint:"Very big.",sol:"Huge means enormous."},
-
-{q:"Opposite of 'Permanent'?",o:["Temporary","Fixed","Stable","Lasting"],a:0,hint:"Short term.",sol:"Permanent opposite is temporary."},
-
-{q:"Correct question tag: She is coming, ___?",o:["isn't she","is she","does she","did she"],a:0,hint:"Positive statement.",sol:"She is coming, isn't she?"},
-
-{q:"Plural of Child?",o:["Children","Childs","Childrens","Childer"],a:0,hint:"Irregular plural.",sol:"Child → Children."},
-
-{q:"Choose correct preposition: Good ___ maths.",o:["at","in","on","for"],a:0,hint:"Common phrase.",sol:"Good at maths."},
-
-{q:"Synonym of 'Brilliant'?",o:["Intelligent","Dull","Lazy","Slow"],a:0,hint:"Very smart.",sol:"Brilliant means intelligent."},
-
-{q:"Opposite of 'Accept'?",o:["Reject","Take","Receive","Agree"],a:0,hint:"Opposite of receive.",sol:"Accept opposite is reject."},
-
-{q:"Plural of Phenomenon?",o:["Phenomena","Phenomenons","Phenomenas","Phenomen"],a:0,hint:"Greek origin.",sol:"Phenomenon → Phenomena."},
-
-{q:"Correct spelling?",o:["Environment","Enviroment","Environmant","Enviornment"],a:0,hint:"Double n.",sol:"Correct spelling is Environment."},
-
-{q:"Identify conjunction in: I stayed because it rained.",o:["because","stayed","rained","I"],a:0,hint:"Connects clauses.",sol:"Because joins two clauses."},
-
-{q:"Synonym of Courageous?",o:["Brave","Weak","Fearful","Lazy"],a:0,hint:"Not afraid.",sol:"Courageous means brave."},
-
-{q:"Opposite of Expand?",o:["Contract","Grow","Increase","Spread"],a:0,hint:"Opposite of increase.",sol:"Expand opposite is contract."},
-
-{q:"Plural of Crisis?",o:["Crises","Crisis","Crisises","Crisi"],a:0,hint:"Ends -is.",sol:"Crisis → Crises."},
-
-{q:"Correct article: ___ apple.",o:["An","A","The","No"],a:0,hint:"Starts with vowel sound.",sol:"An apple."},
-
-{q:"Choose correct sentence:",o:["Each boy has a book.","Each boys have book.","Each boy have book.","Each boys has book."],a:0,hint:"Singular verb.",sol:"Each boy has a book."},
-
-{q:"Identify pronoun: Everyone must do ___ duty.",o:["his","their","your","our"],a:0,hint:"Traditional usage.",sol:"Correct answer: his."},
-
-{q:"Synonym of Swift?",o:["Fast","Slow","Weak","Late"],a:0,hint:"Speed related.",sol:"Swift means fast."},
-
-{q:"Opposite of Scarce?",o:["Abundant","Rare","Few","Less"],a:0,hint:"Plenty.",sol:"Scarce opposite is abundant."},
-
-{q:"Plural of Mouse?",o:["Mice","Mouses","Mouse","Mous"],a:0,hint:"Irregular.",sol:"Mouse → Mice."},
-
-{q:"Correct tense: They ___ playing.",o:["are","is","was","be"],a:0,hint:"Plural subject.",sol:"They are playing."}
-
+{
+q: "Choose the correct synonym of 'Brave'.",
+o: ["Cowardly","Fearless","Weak","Lazy"],
+a: 1,
+hint: "Opposite of afraid.",
+sol: "Brave means fearless."
+},
+{
+q: "Choose the correct antonym of 'Ancient'.",
+o: ["Old","Modern","Historic","Traditional"],
+a: 1,
+hint: "Opposite of old.",
+sol: "Modern is opposite of ancient."
+},
+{
+q: "Fill in the blank: She has been waiting ___ two hours.",
+o: ["since","for","from","by"],
+a: 1,
+hint: "Used with duration of time.",
+sol: "'For' is used with a period of time."
+},
+{
+q: "Identify the correct sentence.",
+o: ["He go to school daily.","He goes to school daily.","He going to school daily.","He gone to school daily."],
+a: 1,
+hint: "Singular subject + verb rule.",
+sol: "He goes to school daily."
+},
+{
+q: "Choose the correctly spelled word.",
+o: ["Recieve","Receive","Receeve","Receve"],
+a: 1,
+hint: "i before e rule.",
+sol: "Correct spelling is Receive."
+},
+{
+q: "Fill in the blank: The cat jumped ___ the wall.",
+o: ["in","on","over","at"],
+a: 2,
+hint: "Movement from one side to another.",
+sol: "Jumped over the wall."
+},
+{
+q: "Identify the noun in the sentence: The little boy kicked the ball.",
+o: ["kicked","little","boy","the"],
+a: 2,
+hint: "Naming word.",
+sol: "Boy is a noun."
+},
+{
+q: "Choose the correct plural form of 'Child'.",
+o: ["Childs","Childes","Children","Childrens"],
+a: 2,
+hint: "Irregular plural.",
+sol: "Plural of child is children."
+},
+{
+q: "Fill in the blank: She is taller ___ her sister.",
+o: ["than","then","that","as"],
+a: 0,
+hint: "Used in comparison.",
+sol: "Comparative uses 'than'."
+},
+{
+q: "Choose the correct meaning of the idiom: 'A piece of cake'.",
+o: ["Very difficult","Very easy","Very sweet","Very big"],
+a: 1,
+hint: "Something simple.",
+sol: "'A piece of cake' means very easy."
+},
+{
+q: "Identify the verb in the sentence: Birds fly in the sky.",
+o: ["Birds","fly","sky","in"],
+a: 1,
+hint: "Action word.",
+sol: "Fly is the verb."
+},
+{
+q: "Choose the correct tense: She ___ finished her homework.",
+o: ["has","have","had","having"],
+a: 0,
+hint: "Present perfect tense.",
+sol: "She has finished her homework."
+},
+{
+q: "Select the correct question form: ___ are you going?",
+o: ["Where","Were","Wear","What"],
+a: 0,
+hint: "Asking about place.",
+sol: "Where are you going?"
+},
+{
+q: "Choose the correct article: He is ___ honest man.",
+o: ["a","an","the","no article"],
+a: 1,
+hint: "Honest starts with vowel sound.",
+sol: "An honest man."
+},
+{
+q: "Find the error: She do not like apples.",
+o: ["She","do","not","like"],
+a: 1,
+hint: "Singular subject rule.",
+sol: "'Do' should be 'does'."
+},
+{
+q: "Choose the correct pronoun: This book belongs to Riya. It is ___ book.",
+o: ["her","hers","she","him"],
+a: 0,
+hint: "Possessive adjective.",
+sol: "It is her book."
+},
+{
+q: "Select the correct meaning of 'Generous'.",
+o: ["Selfish","Kind","Angry","Cruel"],
+a: 1,
+hint: "Opposite of selfish.",
+sol: "Generous means kind and giving."
+},
+{
+q: "Choose the correct conjunction: I was tired ___ I finished my work.",
+o: ["and","but","so","because"],
+a: 2,
+hint: "Shows result.",
+sol: "I was tired, so I finished my work."
+},
+{
+q: "Identify the adjective: The blue sky looked beautiful.",
+o: ["blue","sky","looked","beautiful"],
+a: 0,
+hint: "Describing word.",
+sol: "Blue describes sky."
+},
+{
+q: "Choose the correct form: She sings very ___.",
+o: ["good","well","best","better"],
+a: 1,
+hint: "Adverb needed.",
+sol: "She sings very well."
+},
+{
+q: "Select the correct sentence.",
+o: ["Each of the boys are present.","Each of the boys is present.","Each of the boys were present.","Each of the boys have present."],
+a: 1,
+hint: "'Each' is singular.",
+sol: "Each of the boys is present."
+},
+{
+q: "Fill in the blank: He arrived ___ the airport early.",
+o: ["at","in","on","by"],
+a: 0,
+hint: "Used for specific place.",
+sol: "Arrived at the airport."
+},
+{
+q: "Choose the antonym of 'Expand'.",
+o: ["Increase","Grow","Shrink","Stretch"],
+a: 2,
+hint: "Opposite meaning.",
+sol: "Shrink is opposite of expand."
+},
+{
+q: "Identify the correct punctuation: What a beautiful day___",
+o: ["?","!",";",","],
+a: 1,
+hint: "Exclamation sentence.",
+sol: "What a beautiful day!"
+},
+{
+q: "Choose the correct possessive form: This is ___ house.",
+o: ["Ravi","Ravis","Ravi's","Ravi is"],
+a: 2,
+hint: "Showing ownership.",
+sol: "Ravi's house."
+},
+{
+q: "Find the synonym of 'Rapid'.",
+o: ["Slow","Quick","Late","Silent"],
+a: 1,
+hint: "Means fast.",
+sol: "Rapid means quick."
+},
+{
+q: "Choose the correct word: She has ___ her homework.",
+o: ["did","done","do","doing"],
+a: 1,
+hint: "Past participle needed.",
+sol: "She has done her homework."
+},
+{
+q: "Select the correct indirect speech: She said, 'I am happy.'",
+o: ["She said she was happy.","She said she is happy.","She says she was happy.","She says she is happy."],
+a: 0,
+hint: "Tense changes in indirect speech.",
+sol: "Present becomes past."
+},
+{
+q: "Choose the correct prefix for 'possible'.",
+o: ["impossible","unpossible","dispossible","nonpossible"],
+a: 0,
+hint: "Common prefix.",
+sol: "Impossible is correct."
+},
+{
+q: "Identify the correct sentence.",
+o: ["Neither of the girls have arrived.","Neither of the girls has arrived.","Neither of the girls were arrived.","Neither of the girls are arrived."],
+a: 1,
+hint: "'Neither' is singular.",
+sol: "Neither of the girls has arrived."
+}
 ],
 
 
@@ -851,5 +1000,6 @@ science:[
 
 
 };
+
 
 
