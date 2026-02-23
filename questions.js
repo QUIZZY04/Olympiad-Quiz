@@ -357,67 +357,216 @@ science:[
 },
 class5:{
    maths:[
-
-{q:"If 4x + 7 = 31, find x.",o:["6","5","4","7"],a:0,hint:"Solve linear equation.",sol:"4x = 24 → x = 6."},
-
-{q:"A number when multiplied by 15 gives 945. What is the number?",o:["63","65","60","70"],a:0,hint:"Divide 945 by 15.",sol:"945 ÷ 15 = 63."},
-
-{q:"The difference between two numbers is 48. If the smaller is 26, find larger.",o:["74","72","78","70"],a:0,hint:"Add difference.",sol:"26 + 48 = 74."},
-
-{q:"LCM of 24 and 36?",o:["72","108","144","96"],a:0,hint:"Prime factorization.",sol:"24=2³×3, 36=2²×3² → LCM=2³×3²=72."},
-
-{q:"HCF of 84 and 126?",o:["42","21","14","28"],a:0,hint:"Common highest factor.",sol:"HCF = 42."},
-
-{q:"If 12 workers complete work in 8 days, 6 workers will complete in?",o:["16 days","12 days","14 days","10 days"],a:0,hint:"Inverse proportion.",sol:"Half workers → double time → 16 days."},
-
-{q:"Find the next term: 2, 6, 7, 21, 22, ?",o:["66","44","67","60"],a:0,hint:"Alternate ×3 and +1.",sol:"2×3=6, +1=7, ×3=21, +1=22, ×3=66."},
-
-{q:"What is 18% of 450?",o:["81","90","75","85"],a:0,hint:"(18/100)×450.",sol:"18% of 450 = 81."},
-
-{q:"Find square root of 529.",o:["23","22","24","21"],a:0,hint:"23×23.",sol:"23² = 529."},
-
-{q:"If a number is divisible by 9, its digit sum must be?",o:["Multiple of 9","Even","Odd","Prime"],a:0,hint:"Divisibility rule of 9.",sol:"Digit sum must be multiple of 9."},
-
-{q:"A car travels 60 km/hr. Distance in 2.5 hours?",o:["150 km","120 km","180 km","130 km"],a:0,hint:"Speed × time.",sol:"60 × 2.5 = 150 km."},
-
-{q:"Area of triangle (base=12cm, height=8cm)?",o:["48","96","72","60"],a:0,hint:"1/2 × base × height.",sol:"½×12×8 = 48."},
-
-{q:"Convert 3/5 into percentage.",o:["60%","30%","50%","75%"],a:0,hint:"Multiply by 100.",sol:"3/5 ×100 = 60%."},
-
-{q:"If 20% of a number is 50, find number.",o:["250","200","300","225"],a:0,hint:"Let number be x.",sol:"0.2x=50 → x=250."},
-
-{q:"Mean of first 5 natural numbers?",o:["3","4","2","5"],a:0,hint:"(1+2+3+4+5)/5.",sol:"15/5 = 3."},
-
-{q:"Number of factors of 48?",o:["10","8","12","9"],a:0,hint:"Prime factor method.",sol:"48=2⁴×3 → (4+1)(1+1)=10."},
-
-{q:"The smallest multiple of 11 greater than 100?",o:["110","121","111","105"],a:0,hint:"Check 11×10.",sol:"11×10=110."},
-
-{q:"Find value: 3² + 4³.",o:["73","81","64","91"],a:0,hint:"Calculate separately.",sol:"9 + 64 = 73."},
-
-{q:"Convert 0.625 into fraction.",o:["5/8","3/5","1/2","7/8"],a:0,hint:"625/1000 simplify.",sol:"0.625=5/8."},
-
-{q:"Perimeter of rectangle 18cm × 12cm?",o:["60","72","54","48"],a:0,hint:"2(l+b).",sol:"2(18+12)=60."},
-
-{q:"Find missing number: 5, 9, 17, 33, ?",o:["65","49","57","61"],a:0,hint:"Pattern ×2 −1.",sol:"5×2−1=9, 9×2−1=17, 17×2−1=33, 33×2−1=65."},
-
-{q:"Value of 125 ÷ (5×5)?",o:["5","10","25","15"],a:0,hint:"5×5=25.",sol:"125÷25=5."},
-
-{q:"A train 150m long crosses pole in 10 sec. Speed?",o:["15 m/s","10 m/s","20 m/s","25 m/s"],a:0,hint:"Distance/time.",sol:"150÷10=15 m/s."},
-
-{q:"Cube of 7?",o:["343","240","300","350"],a:0,hint:"7×7×7.",sol:"343."},
-
-{q:"A bag has 4 red, 6 blue balls. Probability of blue?",o:["3/5","2/5","1/2","4/5"],a:0,hint:"6/10 simplify.",sol:"6/10=3/5."},
-
-{q:"Convert 2.75 km to meters.",o:["2750","2500","2700","3000"],a:0,hint:"1km=1000m.",sol:"2.75×1000=2750."},
-
-{q:"Find HCF of 45 and 75.",o:["15","25","5","30"],a:0,hint:"Common factors.",sol:"HCF=15."},
-
-{q:"What is 5/6 of 180?",o:["150","140","160","120"],a:0,hint:"Multiply 180×5/6.",sol:"=150."},
-
-{q:"A number when divided by 12 leaves remainder 5. What remainder when divided by 3?",o:["2","1","0","5"],a:2,hint:"12 is multiple of 3.",sol:"If divided by 12 remainder 5 → same number mod 3 = 5 mod 3 = 2? Actually correct answer = 2. (Correction: remainder 2)"},
-
-{q:"Number of diagonals in pentagon?",o:["5","4","3","6"],a:0,hint:"n(n-3)/2.",sol:"5(2)/2=5 diagonals."}
-
+{
+q: "Find the smallest number which when divided by 9 and 12 leaves remainder 5 in each case.",
+o: ["41","77","113","149"],
+a: 2,
+hint: "Find LCM of 9 and 12, then add 5.",
+sol: "LCM(9,12)=36. Required number=36k+5. Smallest suitable=36×3+5=113."
+},
+{
+q: "The ratio of two numbers is 7:5 and their difference is 36. Find the larger number.",
+o: ["126","84","140","112"],
+a: 0,
+hint: "Let numbers be 7x and 5x.",
+sol: "7x−5x=36 → 2x=36 → x=18 → larger=7×18=126."
+},
+{
+q: "Find HCF of 168 and 252.",
+o: ["84","42","36","28"],
+a: 0,
+hint: "Prime factorization.",
+sol: "HCF=84."
+},
+{
+q: "Find LCM of 24, 36 and 60.",
+o: ["360","180","240","720"],
+a: 0,
+hint: "Prime factors.",
+sol: "LCM=360."
+},
+{
+q: "If 3/5 of a number is 54, find the number.",
+o: ["90","80","85","75"],
+a: 0,
+hint: "Multiply 54 by 5/3.",
+sol: "54×5÷3=90."
+},
+{
+q: "Find the value of 999 × 125.",
+o: ["124875","125000","124000","123875"],
+a: 0,
+hint: "Use (1000−1)×125.",
+sol: "1000×125=125000 → subtract 125 → 124875."
+},
+{
+q: "The average of 7 numbers is 28. If one number is removed, average becomes 26. Find the removed number.",
+o: ["40","42","44","38"],
+a: 1,
+hint: "Find total first.",
+sol: "Total=7×28=196. New total=6×26=156. Removed=196−156=40."
+},
+{
+q: "Find next term: 2, 5, 11, 23, 47, ?",
+o: ["95","96","97","94"],
+a: 0,
+hint: "×2 +1 pattern.",
+sol: "47×2+1=95."
+},
+{
+q: "A train covers 540 km in 6 hours. Find speed.",
+o: ["80","85","90","95"],
+a: 2,
+hint: "Speed=distance/time.",
+sol: "540÷6=90 km/h."
+},
+{
+q: "Find number of factors of 72.",
+o: ["10","12","14","8"],
+a: 1,
+hint: "72=2³×3².",
+sol: "(3+1)(2+1)=4×3=12 factors."
+},
+{
+q: "Find the value of 25² − 15².",
+o: ["400","350","300","450"],
+a: 0,
+hint: "Use (a²−b²).",
+sol: "(25−15)(25+15)=10×40=400."
+},
+{
+q: "The product of three consecutive integers is 336. Find the smallest.",
+o: ["6","7","8","5"],
+a: 0,
+hint: "Try consecutive numbers.",
+sol: "6×7×8=336."
+},
+{
+q: "Find the smallest 4-digit number divisible by 18.",
+o: ["1008","1014","1026","1080"],
+a: 0,
+hint: "18×56=1008.",
+sol: "Smallest 4-digit multiple=1008."
+},
+{
+q: "If 8 men can finish work in 15 days, how many days will 12 men take?",
+o: ["10","12","8","15"],
+a: 0,
+hint: "Men×Days constant.",
+sol: "8×15=120 → 120÷12=10 days."
+},
+{
+q: "Find 125 × 32.",
+o: ["4000","4500","4200","4800"],
+a: 0,
+hint: "125×8=1000.",
+sol: "125×32=125×(8×4)=1000×4=4000."
+},
+{
+q: "The sum of first 20 natural numbers is?",
+o: ["200","210","220","190"],
+a: 1,
+hint: "Use formula n(n+1)/2.",
+sol: "20×21÷2=210."
+},
+{
+q: "Find the value of (48 ÷ 8) × (96 ÷ 12).",
+o: ["48","36","60","40"],
+a: 0,
+hint: "Solve separately.",
+sol: "6×8=48."
+},
+{
+q: "Find the greatest 3-digit number divisible by 7.",
+o: ["994","997","999","991"],
+a: 1,
+hint: "Check nearest multiple below 1000.",
+sol: "7×142=994, 7×143=1001. So 994."
+},
+{
+q: "If a number leaves remainder 3 when divided by 5, what remainder when squared?",
+o: ["4","3","1","2"],
+a: 0,
+hint: "Square remainder.",
+sol: "3²=9 → remainder 4."
+},
+{
+q: "Find area of square whose diagonal is 14 cm. (Approx)",
+o: ["98","100","96","90"],
+a: 0,
+hint: "Side=diagonal/√2 ≈ 10.",
+sol: "Side≈10 → Area≈100 (approx 98 actual)."
+},
+{
+q: "Find LCM of 45 and 60.",
+o: ["180","120","240","360"],
+a: 0,
+hint: "Prime factors.",
+sol: "LCM=180."
+},
+{
+q: "Find the value of 0.125 × 0.8.",
+o: ["0.1","0.01","0.08","1"],
+a: 0,
+hint: "Convert to fraction.",
+sol: "1/8×0.8=0.1."
+},
+{
+q: "If 40% of a number is 120, find number.",
+o: ["250","300","350","400"],
+a: 1,
+hint: "40%=2/5.",
+sol: "120×5÷2=300."
+},
+{
+q: "How many diagonals does a hexagon have?",
+o: ["6","9","12","15"],
+a: 1,
+hint: "Use formula n(n−3)/2.",
+sol: "6×3÷2=9 diagonals."
+},
+{
+q: "Find next term: 1, 4, 10, 20, 35, ?",
+o: ["50","56","60","70"],
+a: 1,
+hint: "Difference increasing.",
+sol: "Differences:3,6,10,15 → next 21 → 35+21=56."
+},
+{
+q: "Find the smallest number divisible by 11 and 13.",
+o: ["143","121","154","169"],
+a: 0,
+hint: "LCM of 11 and 13.",
+sol: "11×13=143."
+},
+{
+q: "Find the average of first 15 even numbers.",
+o: ["16","14","15","18"],
+a: 0,
+hint: "Average = middle term.",
+sol: "First 15 evens end at 30. Middle=16."
+},
+{
+q: "Find the value of (1001 × 999).",
+o: ["999999","1000999","998999","1000000"],
+a: 0,
+hint: "(1000+1)(1000−1).",
+sol: "1000000−1=999999."
+},
+{
+q: "The difference of squares of two consecutive numbers is?",
+o: ["1","2n+1","2n","2"],
+a: 1,
+hint: "Use identity.",
+sol: "(n+1)² − n² = 2n+1."
+},
+{
+q: "Find number of multiples of 12 between 1 and 500.",
+o: ["41","42","43","40"],
+a: 1,
+hint: "500÷12.",
+sol: "500÷12=41 remainder → 41 multiples."
+}
 ],
 english:[
 
@@ -553,3 +702,4 @@ science:[
 
 
 };
+
