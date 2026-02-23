@@ -699,10 +699,13 @@ q: `
            stroke="white"
            stroke-width="2"
            fill="none" />
+
   <text x="115" y="170" fill="white">12 cm</text>
+
   <line x1="130" y1="40" x2="130" y2="150"
         stroke="white"
         stroke-dasharray="4"/>
+
   <text x="140" y="95" fill="white">8 cm</text>
 </svg>
 
@@ -1251,6 +1254,7 @@ sol: "Chemical energy."
 
 
 };
+
 
 
 
