@@ -292,67 +292,216 @@ english:[
 /* ================= SCIENCE ================= */
 
 science:[
-
-{q:"Which vitamin deficiency causes rickets?",o:["Vitamin D","Vitamin C","Vitamin A","Vitamin B"],a:0,hint:"Related to bones.",sol:"Vitamin D deficiency causes rickets."},
-
-{q:"SI unit of force?",o:["Newton","Joule","Watt","Pascal"],a:0,hint:"Named after scientist.",sol:"SI unit of force is Newton."},
-
-{q:"Earth completes one revolution in?",o:["365 days","24 hours","30 days","100 days"],a:0,hint:"1 year.",sol:"Earth takes 365 days."},
-
-{q:"Which gas supports combustion?",o:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],a:0,hint:"Fire needs it.",sol:"Oxygen supports burning."},
-
-{q:"Which planet is closest to Sun?",o:["Mercury","Venus","Earth","Mars"],a:0,hint:"Smallest planet.",sol:"Mercury is closest."},
-
-{q:"Largest planet?",o:["Jupiter","Earth","Mars","Venus"],a:0,hint:"Gas giant.",sol:"Jupiter is largest."},
-
-{q:"Which metal is liquid at room temperature?",o:["Mercury","Iron","Copper","Gold"],a:0,hint:"Used in thermometer.",sol:"Mercury is liquid metal."},
-
-{q:"Plants prepare food by?",o:["Photosynthesis","Respiration","Digestion","Evaporation"],a:0,hint:"Uses sunlight.",sol:"Photosynthesis is food-making process."},
-
-{q:"Force that opposes motion?",o:["Friction","Gravity","Magnetism","Pressure"],a:0,hint:"Opposite to movement.",sol:"Friction resists motion."},
-
-{q:"Which blood cells fight infection?",o:["White blood cells","Red blood cells","Platelets","Plasma"],a:0,hint:"Defense cells.",sol:"WBC fight infections."},
-
-{q:"Boiling point of water?",o:["100°C","0°C","50°C","90°C"],a:0,hint:"Standard pressure.",sol:"Water boils at 100°C."},
-
-{q:"Which animal breathes through skin?",o:["Frog","Dog","Cow","Lion"],a:0,hint:"Amphibian.",sol:"Frog breathes through skin."},
-
-{q:"Energy stored in food?",o:["Chemical","Solar","Wind","Nuclear"],a:0,hint:"Energy in nutrients.",sol:"Food stores chemical energy."},
-
-{q:"Which planet has rings?",o:["Saturn","Earth","Mars","Venus"],a:0,hint:"Famous rings.",sol:"Saturn has rings."},
-
-{q:"Which gas is most abundant in atmosphere?",o:["Nitrogen","Oxygen","Carbon dioxide","Helium"],a:0,hint:"78% of air.",sol:"Nitrogen is most abundant."},
-
-{q:"Which instrument measures temperature?",o:["Thermometer","Barometer","Anemometer","Hygrometer"],a:0,hint:"Used in fever.",sol:"Thermometer measures temperature."},
-
-{q:"Which organ pumps blood?",o:["Heart","Brain","Kidney","Lungs"],a:0,hint:"Circulatory system.",sol:"Heart pumps blood."},
-
-{q:"Which joint is elbow?",o:["Hinge","Ball & socket","Pivot","Fixed"],a:0,hint:"Door movement.",sol:"Elbow is hinge joint."},
-
-{q:"Sound travels fastest in?",o:["Solids","Liquids","Gases","Vacuum"],a:0,hint:"Particles close.",sol:"Sound travels fastest in solids."},
-
-{q:"Renewable source?",o:["Solar energy","Coal","Petrol","Diesel"],a:0,hint:"Sun based.",sol:"Solar energy is renewable."},
-
-{q:"Earth rotates in?",o:["24 hours","12 hours","48 hours","30 hours"],a:0,hint:"One day.",sol:"Earth rotates in 24 hours."},
-
-{q:"Which gas do plants release?",o:["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],a:0,hint:"Photosynthesis output.",sol:"Plants release oxygen."},
-
-{q:"Which vitamin is good for eyesight?",o:["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],a:0,hint:"Night vision.",sol:"Vitamin A supports vision."},
-
-{q:"Which layer protects Earth from UV rays?",o:["Ozone","Troposphere","Mesosphere","Thermosphere"],a:0,hint:"Gas layer.",sol:"Ozone layer absorbs UV rays."},
-
-{q:"Which organ purifies blood?",o:["Kidney","Heart","Lungs","Brain"],a:0,hint:"Removes waste.",sol:"Kidneys filter blood."},
-
-{q:"Unit of electricity?",o:["Watt","Newton","Meter","Gram"],a:0,hint:"Power unit.",sol:"Watt is unit of power."},
-
-{q:"Change of solid directly to gas?",o:["Sublimation","Melting","Freezing","Evaporation"],a:0,hint:"Example camphor.",sol:"Solid to gas directly is sublimation."},
-
-{q:"Which part of plant absorbs water?",o:["Root","Leaf","Stem","Flower"],a:0,hint:"Underground part.",sol:"Roots absorb water."},
-
-{q:"Largest organ of human body?",o:["Skin","Heart","Brain","Liver"],a:0,hint:"Outer covering.",sol:"Skin is largest organ."},
-
-{q:"Which gas is essential for photosynthesis?",o:["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],a:0,hint:"Plants take from air.",sol:"Plants absorb carbon dioxide."}
-
+{
+q: "Which of the following materials will allow both light and air to pass through it?",
+o: ["Wood","Glass sheet","Cotton cloth","Plastic bottle"],
+a: 2,
+hint: "Think about transparency and permeability.",
+sol: "Cotton cloth allows air and some light to pass."
+},
+{
+q: "Which part of a plant prepares food but also helps in transpiration?",
+o: ["Stem","Root","Leaf","Flower"],
+a: 2,
+hint: "Stomata are present in this part.",
+sol: "Leaves prepare food and allow transpiration through stomata."
+},
+{
+q: "Which soil type is best suited for growing cotton?",
+o: ["Sandy soil","Clay soil","Black soil","Loamy soil"],
+a: 2,
+hint: "Cotton needs moisture retention.",
+sol: "Black soil retains moisture and is best for cotton."
+},
+{
+q: "Which organ filters blood and produces urine?",
+o: ["Lungs","Liver","Kidney","Heart"],
+a: 2,
+hint: "It removes waste from blood.",
+sol: "Kidneys filter blood and form urine."
+},
+{
+q: "Which planet is known as the 'Red Planet'?",
+o: ["Venus","Mars","Jupiter","Mercury"],
+a: 1,
+hint: "It appears reddish due to iron oxide.",
+sol: "Mars is called the Red Planet."
+},
+{
+q: "Which of these is NOT a conductor of electricity?",
+o: ["Copper","Iron","Aluminium","Rubber"],
+a: 3,
+hint: "Think about insulating materials.",
+sol: "Rubber is an insulator."
+},
+{
+q: "Which force helps a magnet attract iron nails?",
+o: ["Gravitational force","Frictional force","Magnetic force","Electrostatic force"],
+a: 2,
+hint: "Force related to magnetism.",
+sol: "Magnetic force attracts iron objects."
+},
+{
+q: "Which organ helps us to maintain balance?",
+o: ["Eyes","Ears","Brain","Nose"],
+a: 1,
+hint: "Inner ear controls balance.",
+sol: "The inner ear helps maintain balance."
+},
+{
+q: "Which change is irreversible?",
+o: ["Melting ice","Burning paper","Freezing water","Dissolving sugar"],
+a: 1,
+hint: "Can we reverse it?",
+sol: "Burning paper cannot be reversed."
+},
+{
+q: "Which of these animals breathes through its skin?",
+o: ["Frog","Dog","Fish","Bird"],
+a: 0,
+hint: "Think about amphibians.",
+sol: "Frogs breathe through skin and lungs."
+},
+{
+q: "Which gas is necessary for burning?",
+o: ["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"],
+a: 2,
+hint: "Supports combustion.",
+sol: "Oxygen supports burning."
+},
+{
+q: "Which of the following is an example of a lever?",
+o: ["Wheel","Pulley","Seesaw","Axle"],
+a: 2,
+hint: "Think of playground equipment.",
+sol: "A seesaw is a lever."
+},
+{
+q: "Which of these materials will float on water?",
+o: ["Iron nail","Stone","Wood","Glass marble"],
+a: 2,
+hint: "Think about density.",
+sol: "Wood floats because it is less dense than water."
+},
+{
+q: "Which organ pumps blood throughout the body?",
+o: ["Brain","Lungs","Heart","Kidney"],
+a: 2,
+hint: "Main organ of circulatory system.",
+sol: "Heart pumps blood."
+},
+{
+q: "Which of these is a renewable source of energy?",
+o: ["Coal","Petroleum","Solar energy","Natural gas"],
+a: 2,
+hint: "Can be replenished naturally.",
+sol: "Solar energy is renewable."
+},
+{
+q: "Which of the following animals is cold-blooded?",
+o: ["Dog","Snake","Cow","Lion"],
+a: 1,
+hint: "Reptiles are cold-blooded.",
+sol: "Snake is cold-blooded."
+},
+{
+q: "Which part of the tooth is hardest?",
+o: ["Pulp","Enamel","Dentin","Root"],
+a: 1,
+hint: "Outer layer of tooth.",
+sol: "Enamel is hardest."
+},
+{
+q: "Which nutrient gives us energy?",
+o: ["Proteins","Vitamins","Carbohydrates","Minerals"],
+a: 2,
+hint: "Main energy source.",
+sol: "Carbohydrates give energy."
+},
+{
+q: "Which process helps plants lose excess water?",
+o: ["Respiration","Photosynthesis","Transpiration","Digestion"],
+a: 2,
+hint: "Water vapor release.",
+sol: "Transpiration removes excess water."
+},
+{
+q: "Which instrument measures temperature?",
+o: ["Barometer","Thermometer","Hygrometer","Anemometer"],
+a: 1,
+hint: "Used in fever check.",
+sol: "Thermometer measures temperature."
+},
+{
+q: "Which of the following is a vertebrate?",
+o: ["Earthworm","Snail","Frog","Starfish"],
+a: 2,
+hint: "Has backbone.",
+sol: "Frog has a backbone."
+},
+{
+q: "Which organ helps in digestion of fats?",
+o: ["Stomach","Liver","Kidney","Heart"],
+a: 1,
+hint: "Produces bile.",
+sol: "Liver produces bile for fat digestion."
+},
+{
+q: "Which layer of air protects us from harmful UV rays?",
+o: ["Troposphere","Stratosphere","Ozone layer","Mesosphere"],
+a: 2,
+hint: "Contains ozone gas.",
+sol: "Ozone layer absorbs UV rays."
+},
+{
+q: "Which of these is a physical change?",
+o: ["Rusting iron","Burning candle","Cutting paper","Cooking rice"],
+a: 2,
+hint: "No new substance formed.",
+sol: "Cutting paper is physical change."
+},
+{
+q: "Which of these animals lays eggs?",
+o: ["Bat","Whale","Hen","Dog"],
+a: 2,
+hint: "Birds lay eggs.",
+sol: "Hen lays eggs."
+},
+{
+q: "Which type of energy is stored in food?",
+o: ["Heat energy","Chemical energy","Light energy","Sound energy"],
+a: 1,
+hint: "Energy stored in molecules.",
+sol: "Food stores chemical energy."
+},
+{
+q: "Which organ controls all body activities?",
+o: ["Heart","Brain","Lungs","Stomach"],
+a: 1,
+hint: "Control center of body.",
+sol: "Brain controls body."
+},
+{
+q: "Which of these is an example of friction?",
+o: ["Rolling ball slowing down","Magnet attracting nail","Light from bulb","Rain falling"],
+a: 0,
+hint: "Opposes motion.",
+sol: "Friction slows rolling ball."
+},
+{
+q: "Which plant part develops into fruit?",
+o: ["Stem","Root","Flower","Leaf"],
+a: 2,
+hint: "After pollination.",
+sol: "Flower develops into fruit."
+},
+{
+q: "Which of these is NOT a property of air?",
+o: ["Has weight","Occupies space","Has color","Exerts pressure"],
+a: 2,
+hint: "Can we see air?",
+sol: "Air has no color."
+}
 ]
 },
 class5:{
@@ -702,4 +851,5 @@ science:[
 
 
 };
+
 
