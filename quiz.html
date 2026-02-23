@@ -197,7 +197,7 @@ function loadQuestion(){
     document.getElementById("questionNumber").innerText =
     "Question " + (current+1) + " of " + questions.length;
 
-    document.getElementById("questionText").innerText = q.q;
+    document.getElementById("questionText").innerHTML = q.q;
 
     let optionsHTML = "";
     q.o.forEach((opt,i)=>{
@@ -323,3 +323,4 @@ window.onpopstate = function () {
 
 </body>
 </html>
+
