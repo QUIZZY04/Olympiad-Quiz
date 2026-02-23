@@ -669,13 +669,7 @@ a: 0,
 hint: "Let numbers be 7x and 3x.",
 sol: "10x=200 → x=20 → larger=140."
 },
-{
-q: "Find HCF of 126 and 210.",
-o: ["42","36","21","18"],
-a: 0,
-hint: "Prime factorization.",
-sol: "HCF=42."
-},
+
 {
 q: "Find LCM of 18 and 24.",
 o: ["72","36","48","96"],
@@ -1254,6 +1248,7 @@ sol: "Chemical energy."
 
 
 };
+
 
 
 
