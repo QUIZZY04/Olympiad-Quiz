@@ -2,36 +2,201 @@
 <html>
 <head>
 <title>Leaderboard</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:#0f0f1b;
+    color:white;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#1e1e2f;
+}
+
+nav h2{
+    color:#ffb703;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:500;
+}
+
+nav a:hover{
+    color:#ffb703;
+}
+
+.active{
+    color:#ffb703;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th, td{
+    padding:12px;
+    border:1px solid #333;
+    text-align:center;
+}
+
+th{
+    background:#2f2f55;
+}
+
+tr:nth-child(even){
+    background:#1e1e2f;
+}
+
+.rank-1{
+    background:#3a2f00 !important;
+}
+.rank-2{
+    background:#2f2f2f !important;
+}
+.rank-3{
+    background:#2a2a2a !important;
+}
+</style>
 </head>
+
 <body>
 
-<div class="navbar">
-<span>Leaderboard</span>
-<a href="dashboard.html" class="btn">Back</a>
-</div>
+<!-- ===== NAVIGATION ===== -->
+<nav>
+    <h2>🎓 Olympiad Portal</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="quiz.html">Take Quiz</a>
+        <a href="leaderboard.html" class="active">Leaderboard</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+</nav>
 
 <div class="container">
-<div class="card">
 
-<h3>Top Scores (Demo)</h3>
+<h1>🏆 Leaderboard</h1>
 
-<table border="1" width="100%" cellpadding="8">
+<table>
+<thead>
 <tr>
-<th>Rank</th>
-<th>Name</th>
-<th>Class</th>
-<th>Subject</th>
-<th>Score</th>
+    <th>Rank</th>
+    <th>Email</th>
+    <th>Class</th>
+    <th>Subject</th>
+    <th>Score</th>
+    <th>Accuracy</th>
+    <th>Date</th>
 </tr>
-
-<tr><td>1</td><td>Aman</td><td>4</td><td>Maths</td><td>29</td></tr>
-<tr><td>2</td><td>Riya</td><td>4</td><td>Science</td><td>27</td></tr>
-
+</thead>
+<tbody id="leaderboardBody">
+</tbody>
 </table>
 
 </div>
-</div>
+
+<!-- ===== FIREBASE SCRIPT ===== -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+/* ===== LOGIN PROTECTION ===== */
+onAuthStateChanged(auth, async (user)=>{
+    if(!user){
+        window.location.href = "login.html";
+    } else {
+        loadLeaderboard();
+    }
+});
+
+/* ===== LOAD LEADERBOARD ===== */
+async function loadLeaderboard(){
+
+    const leaderboardBody = document.getElementById("leaderboardBody");
+    leaderboardBody.innerHTML = "";
+
+    const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
+    const querySnapshot = await getDocs(q);
+
+    let rank = 1;
+
+    querySnapshot.forEach((doc)=>{
+        const data = doc.data();
+
+        let rowClass = "";
+        if(rank === 1) rowClass = "rank-1";
+        if(rank === 2) rowClass = "rank-2";
+        if(rank === 3) rowClass = "rank-3";
+
+        leaderboardBody.innerHTML += `
+        <tr class="${rowClass}">
+            <td>${rank}</td>
+            <td>${data.name}</td>
+            <td>${data.class}</td>
+            <td>${data.subject}</td>
+            <td>${data.score}/${data.total}</td>
+            <td>${data.accuracy}%</td>
+            <td>${new Date(data.date.seconds * 1000).toLocaleDateString()}</td>
+        </tr>
+        `;
+
+        rank++;
+    });
+}
+
+/* ===== LOGOUT ===== */
+window.logout = function(){
+    signOut(auth).then(()=>{
+        window.location.href = "login.html";
+    });
+};
+
+</script>
 
 </body>
 </html>
