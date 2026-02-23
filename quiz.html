@@ -11,7 +11,6 @@
 <meta http-equiv="Expires" content="0">
 
 <style>
-
 /* ===== TOP BAR ===== */
 .top-bar{
     background:#111;
@@ -74,12 +73,10 @@
     font-size:14px;
     transition:0.2s;
 }
-
 </style>
 </head>
 <body>
 
-<!-- 🔐 Force Reload if Back Button Used -->
 <script>
 window.addEventListener("pageshow", function (event) {
     if (event.persisted) {
@@ -88,28 +85,48 @@ window.addEventListener("pageshow", function (event) {
 });
 </script>
 
-<!-- 🔐 Firebase Auth Protection -->
+<!-- 🔐 Firebase Setup -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
   authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
   projectId: "olympiad-portal-d2a5e",
-  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  storageBucket: "olympiad-portal-d2a5e.appspot.com",  // ✅ corrected
   messagingSenderId: "341855557503",
   appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+window.app = initializeApp(firebaseConfig);
+window.auth = getAuth(app);
+window.db = getFirestore(app);
 
-onAuthStateChanged(auth, (user)=>{
+onAuthStateChanged(window.auth, (user)=>{
     if(!user){
         window.location.replace("login.html");
     }
 });
+
+// 🔑 Save results to Firestore
+window.saveResult = async function(userEmail, studentClass, subject, score, total) {
+  try {
+    await addDoc(collection(window.db, "leaderboard"), {
+      email: userEmail,
+      studentClass: studentClass,
+      subject: subject,
+      score: score,
+      total: total,
+      accuracy: Math.round((score / total) * 100),
+      date: Timestamp.now()
+    });
+    console.log("Result saved to leaderboard!");
+  } catch (error) {
+    console.error("Error saving result:", error);
+  }
+}
 </script>
 
 <div class="top-bar">
@@ -118,42 +135,30 @@ onAuthStateChanged(auth, (user)=>{
 </div>
 
 <div class="quiz-container">
-
 <div class="question-section">
-
     <div class="progress-wrapper">
         Answered: <span id="answeredCount">0</span> / <span id="totalCount"></span>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     </div>
-
     <h3 id="questionNumber"></h3>
     <p id="questionText"></p>
-
     <div class="options" id="options"></div>
-
     <div class="quiz-buttons">
         <button onclick="prevQuestion()">Previous</button>
         <button onclick="nextQuestion()">Next</button>
         <button onclick="confirmSubmit()">Submit</button>
     </div>
-
 </div>
-
 <div class="navigation-section">
     <h3>Question Palette</h3>
     <div class="grid" id="questionGrid"></div>
 </div>
-
 </div>
 
 <script src="questions.js"></script>
 
 <script>
-
-/* ================= ORIGINAL QUIZ LOGIC ================= */
-
+/* ================= QUIZ LOGIC ================= */
 let current = 0;
 let score = 0;
 
@@ -170,18 +175,13 @@ let selectedAnswers = new Array(questions.length).fill(null);
 let visitedQuestions = new Array(questions.length).fill(false);
 
 /* TIMER */
-
 let totalTime = 1800;
-
 const timerInterval = setInterval(function(){
     let minutes = Math.floor(totalTime/60);
     let seconds = totalTime % 60;
-
     document.getElementById("timer").innerText =
     minutes + ":" + (seconds<10?"0":"") + seconds;
-
     totalTime--;
-
     if(totalTime < 0){
         clearInterval(timerInterval);
         submitQuiz();
@@ -189,16 +189,12 @@ const timerInterval = setInterval(function(){
 },1000);
 
 /* LOAD QUESTION */
-
 function loadQuestion(){
     visitedQuestions[current] = true;
     const q = questions[current];
-
     document.getElementById("questionNumber").innerText =
     "Question " + (current+1) + " of " + questions.length;
-
     document.getElementById("questionText").innerHTML = q.q;
-
     let optionsHTML = "";
     q.o.forEach((opt,i)=>{
         optionsHTML += `
@@ -209,30 +205,14 @@ function loadQuestion(){
         ${opt}
         </label>`;
     });
-
     document.getElementById("options").innerHTML = optionsHTML;
-
     updateGrid();
     updateProgress();
 }
 
-function saveAnswer(value){
-    selectedAnswers[current] = value;
-}
-
-function nextQuestion(){
-    if(current < questions.length-1){
-        current++;
-        loadQuestion();
-    }
-}
-
-function prevQuestion(){
-    if(current > 0){
-        current--;
-        loadQuestion();
-    }
-}
+function saveAnswer(value){ selectedAnswers[current] = value; }
+function nextQuestion(){ if(current < questions.length-1){ current++; loadQuestion(); } }
+function prevQuestion(){ if(current > 0){ current--; loadQuestion(); } }
 
 function updateProgress(){
     let answered = selectedAnswers.filter(a => a !== null).length;
@@ -248,17 +228,13 @@ function confirmSubmit(){
         " out of " + questions.length +
         " questions.\n\nAre you sure you want to submit?"
     );
-    if(confirmBox){
-        submitQuiz();
-    }
+    if(confirmBox){ submitQuiz(); }
 }
 
 function submitQuiz() {
     score = 0;
     for (let i = 0; i < questions.length; i++) {
-        if (selectedAnswers[i] === questions[i].a) {
-            score++;
-        }
+        if (selectedAnswers[i] === questions[i].a) { score++; }
     }
 
     let resultData = {
@@ -272,54 +248,6 @@ function submitQuiz() {
     };
 
     localStorage.setItem("quizResult", JSON.stringify(resultData));
-    window.location.href = "result.html";
-}
 
-function generateGrid(){
-    let gridHTML = "";
-    for(let i=0;i<questions.length;i++){
-        gridHTML += `<div onclick="jumpTo(${i})" id="q${i}">${i+1}</div>`;
-    }
-    document.getElementById("questionGrid").innerHTML = gridHTML;
-}
-
-function jumpTo(index){
-    current = index;
-    loadQuestion();
-}
-
-function updateGrid(){
-    for(let i=0;i<questions.length;i++){
-        let cell = document.getElementById("q"+i);
-        if(i === current){
-            cell.style.background = "#ffb703";
-            cell.style.color = "black";
-        }
-        else if(selectedAnswers[i] !== null){
-            cell.style.background = "#28a745";
-            cell.style.color = "white";
-        }
-        else if(visitedQuestions[i]){
-            cell.style.background = "#dc3545";
-            cell.style.color = "white";
-        }
-        else{
-            cell.style.background = "#555";
-            cell.style.color = "white";
-        }
-    }
-}
-
-generateGrid();
-loadQuestion();
-
-/* 🔐 Block Back Button */
-window.history.pushState(null, null, window.location.href);
-window.onpopstate = function () {
-    window.location.replace("login.html");
-};
-
-</script>
-
-</body>
-</html>
+    // 🔑 Save to Firestore leaderboard
+    if (window.auth && window
