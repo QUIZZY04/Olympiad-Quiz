@@ -656,214 +656,214 @@ sol: "Air has no color."
 class5:{
    maths:[
 {
-q: "Find the smallest number which when divided by 9 and 12 leaves remainder 5 in each case.",
-o: ["41","77","113","149"],
-a: 2,
-hint: "Find LCM of 9 and 12, then add 5.",
-sol: "LCM(9,12)=36. Required number=36k+5. Smallest suitable=36×3+5=113."
+q: "Find the smallest number which when divided by 12 and 15 leaves remainder 5.",
+o: ["50","55","65","95"],
+a: 3,
+hint: "Find LCM first.",
+sol: "LCM(12,15)=60. Required number=60k+5. Smallest=60+5=65."
 },
 {
-q: "The ratio of two numbers is 7:5 and their difference is 36. Find the larger number.",
-o: ["126","84","140","112"],
+q: "If ratio of two numbers is 7:3 and their sum is 200, find larger number.",
+o: ["140","120","150","160"],
 a: 0,
-hint: "Let numbers be 7x and 5x.",
-sol: "7x−5x=36 → 2x=36 → x=18 → larger=7×18=126."
+hint: "Let numbers be 7x and 3x.",
+sol: "10x=200 → x=20 → larger=140."
 },
 {
-q: "Find HCF of 168 and 252.",
-o: ["84","42","36","28"],
+q: "Find HCF of 126 and 210.",
+o: ["42","36","21","18"],
 a: 0,
 hint: "Prime factorization.",
-sol: "HCF=84."
+sol: "HCF=42."
 },
 {
-q: "Find LCM of 24, 36 and 60.",
-o: ["360","180","240","720"],
+q: "Find LCM of 18 and 24.",
+o: ["72","36","48","96"],
 a: 0,
 hint: "Prime factors.",
-sol: "LCM=360."
+sol: "LCM=72."
 },
 {
-q: "If 3/5 of a number is 54, find the number.",
-o: ["90","80","85","75"],
-a: 0,
-hint: "Multiply 54 by 5/3.",
-sol: "54×5÷3=90."
+q: "If 25% of a number is 125, find number.",
+o: ["400","450","500","375"],
+a: 2,
+hint: "25%=1/4.",
+sol: "125×4=500."
 },
 {
-q: "Find the value of 999 × 125.",
-o: ["124875","125000","124000","123875"],
-a: 0,
-hint: "Use (1000−1)×125.",
-sol: "1000×125=125000 → subtract 125 → 124875."
-},
-{
-q: "The average of 7 numbers is 28. If one number is removed, average becomes 26. Find the removed number.",
-o: ["40","42","44","38"],
+q: "Find 125 × 64.",
+o: ["7000","8000","7500","8200"],
 a: 1,
-hint: "Find total first.",
-sol: "Total=7×28=196. New total=6×26=156. Removed=196−156=40."
+hint: "125×8=1000.",
+sol: "125×64=125×(8×8)=1000×8=8000."
+},
+{
+q: "The sum of three consecutive even numbers is 114. Find middle number.",
+o: ["36","38","40","42"],
+a: 1,
+hint: "Let numbers be x,x+2,x+4.",
+sol: "3x+6=114 → x=36 → middle=38."
 },
 {
 q: "Find next term: 2, 5, 11, 23, 47, ?",
-o: ["95","96","97","94"],
-a: 0,
+o: ["90","95","96","97"],
+a: 1,
 hint: "×2 +1 pattern.",
 sol: "47×2+1=95."
 },
 {
-q: "A train covers 540 km in 6 hours. Find speed.",
-o: ["80","85","90","95"],
-a: 2,
-hint: "Speed=distance/time.",
-sol: "540÷6=90 km/h."
-},
-{
-q: "Find number of factors of 72.",
-o: ["10","12","14","8"],
+q: "Find number of factors of 144.",
+o: ["12","15","18","20"],
 a: 1,
-hint: "72=2³×3².",
-sol: "(3+1)(2+1)=4×3=12 factors."
+hint: "144=2⁴×3².",
+sol: "(4+1)(2+1)=15 factors."
 },
 {
-q: "Find the value of 25² − 15².",
-o: ["400","350","300","450"],
+q: "Find value of (1001 × 999).",
+o: ["999999","1000001","998999","1000999"],
 a: 0,
-hint: "Use (a²−b²).",
-sol: "(25−15)(25+15)=10×40=400."
+hint: "Use (a+b)(a−b).",
+sol: "1000²−1=999999."
 },
 {
-q: "The product of three consecutive integers is 336. Find the smallest.",
-o: ["6","7","8","5"],
-a: 0,
-hint: "Try consecutive numbers.",
-sol: "6×7×8=336."
-},
-{
-q: "Find the smallest 4-digit number divisible by 18.",
-o: ["1008","1014","1026","1080"],
-a: 0,
-hint: "18×56=1008.",
-sol: "Smallest 4-digit multiple=1008."
-},
-{
-q: "If 8 men can finish work in 15 days, how many days will 12 men take?",
-o: ["10","12","8","15"],
-a: 0,
+q: "If 6 men finish work in 12 days, how many days for 9 men?",
+o: ["6","8","9","10"],
+a: 1,
 hint: "Men×Days constant.",
-sol: "8×15=120 → 120÷12=10 days."
+sol: "6×12=72 → 72÷9=8."
 },
 {
-q: "Find 125 × 32.",
-o: ["4000","4500","4200","4800"],
-a: 0,
-hint: "125×8=1000.",
-sol: "125×32=125×(8×4)=1000×4=4000."
-},
-{
-q: "The sum of first 20 natural numbers is?",
-o: ["200","210","220","190"],
+q: "Find average of first 20 natural numbers.",
+o: ["10","10.5","11","9.5"],
 a: 1,
-hint: "Use formula n(n+1)/2.",
-sol: "20×21÷2=210."
+hint: "Average of 1 to n is (n+1)/2.",
+sol: "(20+1)/2=10.5."
 },
 {
-q: "Find the value of (48 ÷ 8) × (96 ÷ 12).",
-o: ["48","36","60","40"],
+q: "Find 999 × 125.",
+o: ["124875","125000","124000","123875"],
 a: 0,
-hint: "Solve separately.",
-sol: "6×8=48."
-},
-{
-q: "Find the greatest 3-digit number divisible by 7.",
-o: ["994","997","999","991"],
-a: 1,
-hint: "Check nearest multiple below 1000.",
-sol: "7×142=994, 7×143=1001. So 994."
-},
-{
-q: "If a number leaves remainder 3 when divided by 5, what remainder when squared?",
-o: ["4","3","1","2"],
-a: 0,
-hint: "Square remainder.",
-sol: "3²=9 → remainder 4."
-},
-{
-q: "Find area of square whose diagonal is 14 cm. (Approx)",
-o: ["98","100","96","90"],
-a: 0,
-hint: "Side=diagonal/√2 ≈ 10.",
-sol: "Side≈10 → Area≈100 (approx 98 actual)."
-},
-{
-q: "Find LCM of 45 and 60.",
-o: ["180","120","240","360"],
-a: 0,
-hint: "Prime factors.",
-sol: "LCM=180."
-},
-{
-q: "Find the value of 0.125 × 0.8.",
-o: ["0.1","0.01","0.08","1"],
-a: 0,
-hint: "Convert to fraction.",
-sol: "1/8×0.8=0.1."
-},
-{
-q: "If 40% of a number is 120, find number.",
-o: ["250","300","350","400"],
-a: 1,
-hint: "40%=2/5.",
-sol: "120×5÷2=300."
-},
-{
-q: "How many diagonals does a hexagon have?",
-o: ["6","9","12","15"],
-a: 1,
-hint: "Use formula n(n−3)/2.",
-sol: "6×3÷2=9 diagonals."
+hint: "(1000−1)×125.",
+sol: "125000−125=124875."
 },
 {
 q: "Find next term: 1, 4, 10, 20, 35, ?",
-o: ["50","56","60","70"],
+o: ["50","56","60","65"],
 a: 1,
-hint: "Difference increasing.",
-sol: "Differences:3,6,10,15 → next 21 → 35+21=56."
+hint: "Differences increase by 3,6,10,15.",
+sol: "Next diff=21 → 35+21=56."
 },
 {
-q: "Find the smallest number divisible by 11 and 13.",
-o: ["143","121","154","169"],
+q: "Find smallest 4-digit number divisible by 24.",
+o: ["1008","1016","1024","1040"],
 a: 0,
-hint: "LCM of 11 and 13.",
-sol: "11×13=143."
+hint: "24×42=1008.",
+sol: "Smallest 4-digit multiple=1008."
 },
 {
-q: "Find the average of first 15 even numbers.",
-o: ["16","14","15","18"],
+q: "Find area of square with perimeter 80 cm.",
+o: ["400","450","500","420"],
 a: 0,
-hint: "Average = middle term.",
-sol: "First 15 evens end at 30. Middle=16."
+hint: "Side=perimeter/4.",
+sol: "Side=20 → Area=400."
 },
 {
-q: "Find the value of (1001 × 999).",
-o: ["999999","1000999","998999","1000000"],
+q: "Find LCM of 45 and 75.",
+o: ["225","150","300","450"],
 a: 0,
-hint: "(1000+1)(1000−1).",
-sol: "1000000−1=999999."
+hint: "Prime factorization.",
+sol: "LCM=225."
 },
 {
-q: "The difference of squares of two consecutive numbers is?",
-o: ["1","2n+1","2n","2"],
+q: "How many multiples of 9 between 1 and 500?",
+o: ["55","56","54","57"],
 a: 1,
-hint: "Use identity.",
-sol: "(n+1)² − n² = 2n+1."
+hint: "500÷9.",
+sol: "500÷9=55 remainder → 55 multiples."
 },
 {
-q: "Find number of multiples of 12 between 1 and 500.",
-o: ["41","42","43","40"],
+q: "Find value of 5³ + 4³.",
+o: ["189","225","125","200"],
+a: 0,
+hint: "125+64.",
+sol: "189."
+},
+{
+q: "If 3/4 of a number is 96, find number.",
+o: ["120","128","132","140"],
 a: 1,
-hint: "500÷12.",
-sol: "500÷12=41 remainder → 41 multiples."
+hint: "Multiply by 4/3.",
+sol: "96×4÷3=128."
+},
+{
+q: "Difference of squares of 21 and 20 is?",
+o: ["41","1","400","21"],
+a: 0,
+hint: "(a²−b²)=(a−b)(a+b).",
+sol: "(1×41)=41."
+},
+{
+q: "Find HCF of 84 and 126.",
+o: ["42","21","28","14"],
+a: 0,
+hint: "Prime factors.",
+sol: "HCF=42."
+},
+{
+q: "If 12% of number is 48, find number.",
+o: ["300","400","500","600"],
+a: 1,
+hint: "12%=12/100.",
+sol: "48×100÷12=400."
+},
+{
+q: "Find next term: 3, 7, 15, 31, ?",
+o: ["60","62","63","64"],
+a: 2,
+hint: "×2 +1.",
+sol: "31×2+1=63."
+},
+{
+q: "Number of diagonals in hexagon?",
+o: ["6","9","12","15"],
+a: 1,
+hint: "n(n−3)/2.",
+sol: "6×3÷2=9."
+},
+{
+q: "Find value of (48 ÷ 6) × (84 ÷ 7).",
+o: ["96","112","64","84"],
+a: 0,
+hint: "8×12.",
+sol: "96."
+},
+{
+q: "Find smallest number divisible by 13 and 17.",
+o: ["221","187","204","260"],
+a: 0,
+hint: "LCM.",
+sol: "13×17=221."
+},
+{
+q: "If perimeter of rectangle is 60 and length is 18, find breadth.",
+o: ["12","14","15","16"],
+a: 0,
+hint: "2(l+b)=60.",
+sol: "l+b=30 → b=12."
+},
+{
+q: "Find 250 × 48.",
+o: ["12000","12500","13000","11500"],
+a: 0,
+hint: "250×4=1000.",
+sol: "250×48=12000."
+},
+{
+q: "Find number of factors of 81.",
+o: ["4","5","6","7"],
+a: 1,
+hint: "81=3⁴.",
+sol: "(4+1)=5 factors."
 }
 ],
 english:[
@@ -931,67 +931,216 @@ english:[
 ],
 
 science:[
-
-{q:"Which part of plant transports water?",o:["Xylem","Phloem","Root hair","Leaf"],a:0,hint:"Carries water upward.",sol:"Xylem transports water."},
-
-{q:"Which vitamin helps blood clotting?",o:["Vitamin K","Vitamin C","Vitamin D","Vitamin B"],a:0,hint:"Injury healing.",sol:"Vitamin K helps clotting."},
-
-{q:"Which planet rotates fastest?",o:["Jupiter","Earth","Mars","Venus"],a:0,hint:"Largest planet.",sol:"Jupiter rotates fastest."},
-
-{q:"Which gas is responsible for global warming?",o:["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],a:0,hint:"Greenhouse gas.",sol:"CO₂ causes global warming."},
-
-{q:"Force due to Earth's pull?",o:["Gravity","Magnetism","Friction","Pressure"],a:0,hint:"Pull towards earth.",sol:"Gravity pulls objects."},
-
-{q:"Which organ controls body activities?",o:["Brain","Heart","Kidney","Lungs"],a:0,hint:"Control center.",sol:"Brain controls body."},
-
-{q:"Unit of electrical power?",o:["Watt","Volt","Ampere","Ohm"],a:0,hint:"Named after scientist.",sol:"Watt measures power."},
-
-{q:"Which metal is best conductor?",o:["Silver","Iron","Copper","Aluminium"],a:0,hint:"Highest conductivity.",sol:"Silver is best conductor."},
-
-{q:"Which blood cells carry oxygen?",o:["Red blood cells","White blood cells","Platelets","Plasma"],a:0,hint:"Contain hemoglobin.",sol:"RBC carry oxygen."},
-
-{q:"Which energy is stored in stretched spring?",o:["Potential energy","Kinetic energy","Thermal","Light"],a:0,hint:"Stored energy.",sol:"Stretching stores potential energy."},
-
-{q:"Which planet has maximum moons?",o:["Jupiter","Earth","Mars","Mercury"],a:0,hint:"Gas giant.",sol:"Jupiter has most moons."},
-
-{q:"Which process converts liquid to gas?",o:["Evaporation","Condensation","Freezing","Melting"],a:0,hint:"Heat causes it.",sol:"Evaporation converts liquid to gas."},
-
-{q:"Which organ purifies blood?",o:["Kidney","Liver","Heart","Brain"],a:0,hint:"Removes waste.",sol:"Kidney filters blood."},
-
-{q:"Which part of ear maintains balance?",o:["Semicircular canals","Eardrum","Cochlea","Pinna"],a:0,hint:"Inner ear.",sol:"Semicircular canals control balance."},
-
-{q:"Which gas do plants absorb?",o:["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],a:0,hint:"Photosynthesis input.",sol:"Plants absorb CO₂."},
-
-{q:"Which animal is cold-blooded?",o:["Snake","Dog","Cow","Lion"],a:0,hint:"Reptile.",sol:"Snake is cold-blooded."},
-
-{q:"Which nutrient gives energy?",o:["Carbohydrates","Vitamins","Minerals","Water"],a:0,hint:"Main energy source.",sol:"Carbohydrates give energy."},
-
-{q:"Which layer of earth is hottest?",o:["Core","Crust","Mantle","Surface"],a:0,hint:"Innermost layer.",sol:"Core is hottest."},
-
-{q:"Which instrument measures air pressure?",o:["Barometer","Thermometer","Hygrometer","Anemometer"],a:0,hint:"Weather tool.",sol:"Barometer measures pressure."},
-
-{q:"Which part of plant makes food?",o:["Leaf","Root","Stem","Flower"],a:0,hint:"Contains chlorophyll.",sol:"Leaf performs photosynthesis."},
-
-{q:"Which gas supports breathing?",o:["Oxygen","Nitrogen","Carbon dioxide","Helium"],a:0,hint:"Essential for life.",sol:"Oxygen supports respiration."},
-
-{q:"Which energy comes from sun?",o:["Solar energy","Wind energy","Thermal","Nuclear"],a:0,hint:"Sunlight.",sol:"Solar energy comes from sun."},
-
-{q:"Which joint allows rotation of neck?",o:["Pivot joint","Hinge joint","Ball & socket","Fixed"],a:0,hint:"Allows turning.",sol:"Neck has pivot joint."},
-
-{q:"Which metal is used in electric wires?",o:["Copper","Iron","Gold","Lead"],a:0,hint:"Good conductor.",sol:"Copper used in wiring."},
-
-{q:"Which gas extinguishes fire?",o:["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],a:0,hint:"Fire extinguisher.",sol:"CO₂ extinguishes fire."},
-
-{q:"Which part of digestive system absorbs nutrients?",o:["Small intestine","Stomach","Liver","Kidney"],a:0,hint:"Long tube.",sol:"Small intestine absorbs nutrients."},
-
-{q:"Which planet is known as Red Planet?",o:["Mars","Earth","Jupiter","Venus"],a:0,hint:"Iron oxide surface.",sol:"Mars is Red Planet."},
-
-{q:"Which blood group is universal donor?",o:["O negative","A","B","AB"],a:0,hint:"Compatible with all.",sol:"O negative is universal donor."},
-
-{q:"Which force slows moving objects?",o:["Friction","Gravity","Magnetism","Electric"],a:0,hint:"Opposes motion.",sol:"Friction slows objects."},
-
-{q:"Which change is reversible?",o:["Melting ice","Burning paper","Rusting iron","Cooking food"],a:0,hint:"Can return to original state.",sol:"Melting ice is reversible."}
-
+{
+q: "Which vitamin helps in clotting of blood?",
+o: ["Vitamin A","Vitamin B","Vitamin C","Vitamin K"],
+a: 3,
+hint: "Important for blood clotting.",
+sol: "Vitamin K helps in clotting of blood."
+},
+{
+q: "Which layer of Earth is responsible for tectonic activities?",
+o: ["Crust","Mantle","Core","Inner core"],
+a: 1,
+hint: "Semi-molten layer beneath crust.",
+sol: "Mantle movements cause tectonic activity."
+},
+{
+q: "Which organ in human body controls involuntary actions like heartbeat?",
+o: ["Cerebrum","Cerebellum","Medulla","Spinal cord"],
+a: 2,
+hint: "Part of brain stem.",
+sol: "Medulla controls involuntary actions."
+},
+{
+q: "Which gas is mainly responsible for acid rain?",
+o: ["Oxygen","Nitrogen","Sulphur dioxide","Hydrogen"],
+a: 2,
+hint: "Released from burning fuels.",
+sol: "Sulphur dioxide causes acid rain."
+},
+{
+q: "Which type of soil retains maximum water?",
+o: ["Sandy soil","Clay soil","Loamy soil","Gravel"],
+a: 1,
+hint: "Very fine particles.",
+sol: "Clay soil retains most water."
+},
+{
+q: "Which part of the eye controls amount of light entering?",
+o: ["Lens","Retina","Iris","Cornea"],
+a: 2,
+hint: "Colored part of eye.",
+sol: "Iris controls light."
+},
+{
+q: "Which planet rotates on its side?",
+o: ["Mars","Earth","Uranus","Venus"],
+a: 2,
+hint: "Axis tilted 98 degrees.",
+sol: "Uranus rotates on its side."
+},
+{
+q: "Which force keeps planets in orbit around Sun?",
+o: ["Magnetic force","Friction","Gravitational force","Electrostatic force"],
+a: 2,
+hint: "Force of attraction.",
+sol: "Gravitational force."
+},
+{
+q: "Which part of plant transports water?",
+o: ["Phloem","Xylem","Stomata","Leaf"],
+a: 1,
+hint: "Water-conducting tissue.",
+sol: "Xylem transports water."
+},
+{
+q: "Which instrument measures air pressure?",
+o: ["Thermometer","Barometer","Hygrometer","Anemometer"],
+a: 1,
+hint: "Used in weather prediction.",
+sol: "Barometer measures air pressure."
+},
+{
+q: "Which metal is liquid at room temperature?",
+o: ["Iron","Mercury","Copper","Aluminium"],
+a: 1,
+hint: "Used in thermometers.",
+sol: "Mercury is liquid metal."
+},
+{
+q: "Which organ produces insulin?",
+o: ["Liver","Kidney","Pancreas","Heart"],
+a: 2,
+hint: "Controls blood sugar.",
+sol: "Pancreas produces insulin."
+},
+{
+q: "Which process converts sugar into alcohol?",
+o: ["Respiration","Fermentation","Photosynthesis","Digestion"],
+a: 1,
+hint: "Used in yeast.",
+sol: "Fermentation."
+},
+{
+q: "Which gas is most abundant in air?",
+o: ["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+a: 1,
+hint: "78% of air.",
+sol: "Nitrogen."
+},
+{
+q: "Which planet is called Morning Star?",
+o: ["Mars","Venus","Mercury","Saturn"],
+a: 1,
+hint: "Brightest planet.",
+sol: "Venus."
+},
+{
+q: "Which organ helps in purification of blood?",
+o: ["Heart","Kidney","Liver","Lungs"],
+a: 1,
+hint: "Filters waste.",
+sol: "Kidney purifies blood."
+},
+{
+q: "Which part of brain controls balance?",
+o: ["Cerebrum","Medulla","Cerebellum","Spinal cord"],
+a: 2,
+hint: "Controls body coordination.",
+sol: "Cerebellum."
+},
+{
+q: "Which is non-renewable resource?",
+o: ["Solar energy","Wind energy","Coal","Hydropower"],
+a: 2,
+hint: "Fossil fuel.",
+sol: "Coal."
+},
+{
+q: "Which blood cells fight infections?",
+o: ["RBC","WBC","Platelets","Plasma"],
+a: 1,
+hint: "White cells.",
+sol: "WBC fight infections."
+},
+{
+q: "Which vitamin deficiency causes rickets?",
+o: ["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],
+a: 3,
+hint: "Sunlight vitamin.",
+sol: "Vitamin D deficiency."
+},
+{
+q: "Which process plants use to make food?",
+o: ["Respiration","Transpiration","Photosynthesis","Germination"],
+a: 2,
+hint: "Uses sunlight.",
+sol: "Photosynthesis."
+},
+{
+q: "Which layer protects Earth from meteors?",
+o: ["Troposphere","Stratosphere","Mesosphere","Thermosphere"],
+a: 2,
+hint: "Meteors burn here.",
+sol: "Mesosphere."
+},
+{
+q: "Which animal is warm-blooded?",
+o: ["Lizard","Frog","Snake","Dog"],
+a: 3,
+hint: "Mammal.",
+sol: "Dog."
+},
+{
+q: "Which gas helps in respiration?",
+o: ["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"],
+a: 2,
+hint: "Breathing gas.",
+sol: "Oxygen."
+},
+{
+q: "Which force opposes motion?",
+o: ["Gravity","Friction","Magnetism","Tension"],
+a: 1,
+hint: "Slows objects.",
+sol: "Friction."
+},
+{
+q: "Which part of tooth contains nerves?",
+o: ["Enamel","Dentin","Pulp","Root"],
+a: 2,
+hint: "Sensitive inner part.",
+sol: "Pulp."
+},
+{
+q: "Which is a chemical change?",
+o: ["Melting ice","Burning paper","Breaking glass","Boiling water"],
+a: 1,
+hint: "New substance formed.",
+sol: "Burning paper."
+},
+{
+q: "Which organ stores urine?",
+o: ["Kidney","Bladder","Liver","Stomach"],
+a: 1,
+hint: "Temporary storage.",
+sol: "Bladder."
+},
+{
+q: "Which planet has rings?",
+o: ["Mars","Venus","Saturn","Mercury"],
+a: 2,
+hint: "Famous ring planet.",
+sol: "Saturn."
+},
+{
+q: "Which energy is stored in battery?",
+o: ["Mechanical","Chemical","Heat","Light"],
+a: 1,
+hint: "Stored form.",
+sol: "Chemical energy."
+}
 ]
 
 
@@ -1000,6 +1149,7 @@ science:[
 
 
 };
+
 
 
 
