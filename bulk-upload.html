@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bulk Upload Questions</title>
+<meta charset="UTF-8">
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    background:#0f0f1b;
+    color:white;
+    padding:30px;
+}
+h2{
+    color:#ffb703;
+}
+textarea{
+    width:100%;
+    height:300px;
+    padding:10px;
+    font-size:14px;
+}
+button{
+    padding:10px 20px;
+    background:#ffb703;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#e6a800;
+}
+#status{
+    margin-top:15px;
+}
+.success{ color:#28a745; }
+.error{ color:#dc3545; }
+.progress{ color:#17a2b8; }
+</style>
+</head>
+<body>
+
+<h2>📦 Bulk Upload Questions (Firestore Batch Upload)</h2>
+
+<p>Paste JSON array of questions below:</p>
+
+<textarea id="jsonInput" placeholder='[
+{
+  "class": "class4",
+  "subject": "maths",
+  "level": "moderate",
+  "q": "What is 25 + 30?",
+  "o": ["50","55","60","65"],
+  "a": 1,
+  "hint": "Add carefully",
+  "sol": "25 + 30 = 55"
+}
+]'></textarea>
+
+<br><br>
+<button onclick="uploadBulk()">Upload Questions</button>
+
+<div id="status"></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, writeBatch, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.uploadBulk = async function(){
+
+    const statusDiv = document.getElementById("status");
+    statusDiv.innerHTML = "";
+    
+    let questions;
+
+    try{
+        questions = JSON.parse(document.getElementById("jsonInput").value);
+    }catch(error){
+        statusDiv.innerHTML = "<p class='error'>❌ Invalid JSON format.</p>";
+        return;
+    }
+
+    if(!Array.isArray(questions)){
+        statusDiv.innerHTML = "<p class='error'>❌ JSON must be an array of questions.</p>";
+        return;
+    }
+
+    if(questions.length === 0){
+        statusDiv.innerHTML = "<p class='error'>❌ No questions found.</p>";
+        return;
+    }
+
+    if(questions.length > 500){
+        statusDiv.innerHTML = "<p class='error'>❌ Maximum 500 questions per upload.</p>";
+        return;
+    }
+
+    statusDiv.innerHTML = "<p class='progress'>Uploading...</p>";
+
+    try{
+
+        const batch = writeBatch(db);
+
+        questions.forEach(q => {
+
+            const newDocRef = doc(collection(db, "questions"));
+            batch.set(newDocRef, q);
+
+        });
+
+        await batch.commit();
+
+        statusDiv.innerHTML = 
+        "<p class='success'>✅ Successfully uploaded " 
+        + questions.length + 
+        " questions!</p>";
+
+    }catch(error){
+        statusDiv.innerHTML = "<p class='error'>❌ Upload failed: " + error.message + "</p>";
+    }
+};
+
+</script>
+
+</body>
+</html>
