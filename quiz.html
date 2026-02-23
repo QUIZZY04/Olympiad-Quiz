@@ -5,12 +5,74 @@
 <title>Quiz</title>
 <link rel="stylesheet" href="style.css">
 
+<!-- 🔐 Disable Cache -->
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
 <style>
-/* (your CSS unchanged) */
+/* ===== TOP BAR ===== */
+.top-bar{
+    background:#111;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:18px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+#timer{ color:#ffb703; font-weight:bold; }
+
+/* ===== LAYOUT ===== */
+.quiz-container{ display:flex; height:calc(100vh - 60px); }
+.question-section{ flex:3; padding:40px; overflow-y:auto; }
+.navigation-section{ flex:1; background:rgba(255,255,255,0.05); padding:25px; border-left:1px solid rgba(255,255,255,0.1); overflow-y:auto; }
+
+/* ===== PROGRESS BAR ===== */
+.progress-wrapper{ margin-bottom:20px; }
+.progress-bar{ width:100%; height:12px; background:#333; border-radius:10px; overflow:hidden; }
+.progress-fill{ height:100%; width:0%; background:#28a745; transition:width 0.3s ease; }
+
+/* OPTIONS */
+.options label{
+    display:block;
+    padding:12px;
+    margin:10px 0;
+    font-size:18px;
+    background:rgba(255,255,255,0.08);
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.2s;
+}
+.options label:hover{ background:rgba(255,183,3,0.15); }
+
+.quiz-buttons{ margin-top:25px; }
+.quiz-buttons button{
+    width:130px;
+    margin-right:10px;
+    background:#ffb703;
+    color:black;
+    border:none;
+    padding:10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+.quiz-buttons button:hover{ background:#f59e0b; }
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+.grid div{
+    padding:10px;
+    text-align:center;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.2s;
+}
 </style>
 </head>
 <body>
@@ -23,7 +85,7 @@ window.addEventListener("pageshow", function (event) {
 });
 </script>
 
-<!-- 🔐 Firebase + Firestore -->
+<!-- 🔐 Firebase Setup -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -38,9 +100,9 @@ const firebaseConfig = {
   appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 };
 
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+window.app = initializeApp(firebaseConfig);
+window.auth = getAuth(app);
+window.db = getFirestore(app);
 
 onAuthStateChanged(auth, (user)=>{
     if(!user){
@@ -49,7 +111,7 @@ onAuthStateChanged(auth, (user)=>{
 });
 
 // 🔑 Save results to Firestore
-export async function saveResult(userEmail, studentClass, subject, score, total) {
+window.saveResult = async function(userEmail, studentClass, subject, score, total) {
   try {
     await addDoc(collection(db, "leaderboard"), {
       email: userEmail,
@@ -189,49 +251,4 @@ function submitQuiz() {
 
     // 🔑 Save to Firestore leaderboard
     if (window.auth && window.auth.currentUser) {
-        saveResult(window.auth.currentUser.email, selectedClass, selectedSubject, score, questions.length);
-    }
-
-    window.location.href = "result.html";
-}
-
-function generateGrid(){
-    let gridHTML = "";
-    for(let i=0;i<questions.length;i++){
-        gridHTML += `<div onclick="jumpTo(${i})" id="q${i}">${i+1}</div>`;
-    }
-    document.getElementById("questionGrid").innerHTML = gridHTML;
-}
-
-function jumpTo(index){ current = index; loadQuestion(); }
-
-function updateGrid(){
-    for(let i=0;i<questions.length;i++){
-        let cell = document.getElementById("q"+i);
-        if(i === current){
-            cell.style.background = "#ffb703"; cell.style.color = "black";
-        }
-        else if(selectedAnswers[i] !== null){
-            cell.style.background = "#28a745"; cell.style.color = "white";
-        }
-        else if(visitedQuestions[i]){
-            cell.style.background = "#dc3545"; cell.style.color = "white";
-        }
-        else{
-            cell.style.background = "#555"; cell.style.color = "white";
-        }
-    }
-}
-
-generateGrid();
-loadQuestion();
-
-/* 🔐 Block Back Button */
-window.history.pushState(null, null, window.location.href);
-window.onpopstate = function () {
-    window.location.replace("login.html");
-};
-</script>
-
-</body>
-</html>
+        window.saveResult(window.auth
