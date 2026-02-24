@@ -77,7 +77,6 @@
 <div class="quiz-container">
 
 <div class="question-section">
-
     <div class="progress-wrapper">
         Answered: <span id="answeredCount">0</span> /
         <span id="totalCount"></span>
@@ -95,7 +94,6 @@
         <button onclick="nextQuestion()">Next</button>
         <button onclick="confirmSubmit()">Submit</button>
     </div>
-
 </div>
 
 <div class="navigation-section">
@@ -127,8 +125,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/* ================= QUIZ STATE ================= */
-
 let current = 0;
 let score = 0;
 let questions = [];
@@ -142,11 +138,12 @@ selectedClass.toUpperCase() + " - " + selectedSubject.toUpperCase();
 let selectedAnswers = [];
 let visitedQuestions = [];
 
-/* ================= LOAD QUESTIONS ================= */
+/* ================= LOAD QUESTIONS (Random + Max 30) ================= */
 
 async function loadQuestionsHybrid() {
 
     try {
+
         const q = query(
             collection(db, "questions"),
             where("class", "==", selectedClass),
@@ -156,16 +153,33 @@ async function loadQuestionsHybrid() {
         const snapshot = await getDocs(q);
 
         if (!snapshot.empty) {
-            questions = snapshot.docs.map(doc => doc.data());
+
+            let allQuestions = snapshot.docs.map(doc => doc.data());
+
+            // Shuffle questions
+            allQuestions.sort(() => Math.random() - 0.5);
+
+            // Pick maximum 30
+            questions = allQuestions.slice(0, 30);
+
             console.log("Loaded from Firebase:", questions.length);
+
         } else {
+
             questions = questionsData[selectedClass][selectedSubject];
+            questions.sort(() => Math.random() - 0.5);
+
             console.log("Loaded from questions.js fallback");
+
         }
 
     } catch (error) {
+
         questions = questionsData[selectedClass][selectedSubject];
+        questions.sort(() => Math.random() - 0.5);
+
         console.log("Firebase failed, fallback used");
+
     }
 
     selectedAnswers = new Array(questions.length).fill(null);
@@ -177,17 +191,14 @@ async function loadQuestionsHybrid() {
     loadQuestion();
 }
 
-/* ================= AUTH + SAFE LOAD ================= */
+/* ================= AUTH ================= */
 
 onAuthStateChanged(auth, async (user)=>{
-
     if(!user){
         window.location.replace("login.html");
         return;
     }
-
     await loadQuestionsHybrid();
-
 });
 
 /* ================= TIMER ================= */
@@ -255,13 +266,6 @@ window.prevQuestion = function(){
     }
 }
 
-function updateProgress(){
-    let answered = selectedAnswers.filter(a => a !== null).length;
-    document.getElementById("answeredCount").innerText = answered;
-    let percentage = (answered / questions.length) * 100;
-    document.getElementById("progressFill").style.width = percentage + "%";
-}
-
 window.confirmSubmit = function(){
     if(confirm("Are you sure you want to submit?")){
         submitQuiz();
@@ -301,6 +305,13 @@ function generateGrid(){
 window.jumpTo = function(index){
     current = index;
     loadQuestion();
+}
+
+function updateProgress(){
+    let answered = selectedAnswers.filter(a => a !== null).length;
+    document.getElementById("answeredCount").innerText = answered;
+    let percentage = (answered / questions.length) * 100;
+    document.getElementById("progressFill").style.width = percentage + "%";
 }
 
 function updateGrid(){
