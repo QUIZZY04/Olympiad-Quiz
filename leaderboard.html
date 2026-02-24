@@ -17,7 +17,6 @@ body{
     color:white;
 }
 
-/* ===== NAVBAR ===== */
 nav{
     display:flex;
     justify-content:space-between;
@@ -45,7 +44,6 @@ nav a:hover{
     color:#ffb703;
 }
 
-/* ===== CONTAINER ===== */
 .container{
     max-width:1100px;
     margin:40px auto;
@@ -143,16 +141,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-/* ===== LOGIN PROTECTION ===== */
-onAuthStateChanged(auth, (user)=>{
+onAuthStateChanged(auth, async (user)=>{
     if(!user){
-        window.location.replace("login.html");
+        window.location.href = "login.html";
     } else {
         loadLeaderboard();
     }
 });
 
-/* ===== LOAD LEADERBOARD ===== */
 async function loadLeaderboard() {
 
     const leaderboardBody = document.getElementById("leaderboardBody");
@@ -160,66 +156,56 @@ async function loadLeaderboard() {
 
     try {
 
-        const q = query(
-            collection(db, "leaderboard"),
-            orderBy("score", "desc")
-        );
-
-        const snapshot = await getDocs(q);
-
-        if(snapshot.empty){
-            leaderboardBody.innerHTML =
-            `<tr><td colspan="7">No leaderboard data available</td></tr>`;
-            return;
-        }
+        const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
+        const querySnapshot = await getDocs(q);
 
         let rank = 1;
 
-        snapshot.forEach(doc => {
+        querySnapshot.forEach((doc) => {
 
             const data = doc.data();
 
             let rowClass = "";
-            if(rank === 1) rowClass = "rank-1";
-            if(rank === 2) rowClass = "rank-2";
-            if(rank === 3) rowClass = "rank-3";
-
-            let formattedDate = "";
-
-            if(data.date){
-                if(data.date.seconds){
-                    formattedDate = new Date(data.date.seconds * 1000).toLocaleDateString();
-                } else {
-                    formattedDate = new Date(data.date).toLocaleDateString();
-                }
-            }
+            if (rank === 1) rowClass = "rank-1";
+            if (rank === 2) rowClass = "rank-2";
+            if (rank === 3) rowClass = "rank-3";
 
             leaderboardBody.innerHTML += `
             <tr class="${rowClass}">
                 <td>${rank}</td>
-                <td>${data.email || data.name || ""}</td>
-                <td>${data.class || ""}</td>
-                <td>${data.subject || ""}</td>
+                <td>${data.email || "-"}</td>
+                <td>${data.studentClass || data.class || "-"}</td>
+                <td>${data.subject || "-"}</td>
                 <td>${data.score}/${data.total}</td>
                 <td>${data.accuracy}%</td>
-                <td>${formattedDate}</td>
+                <td>${data.date ? data.date.toDate().toLocaleDateString() : "-"}</td>
             </tr>
             `;
 
             rank++;
         });
 
+        if (rank === 1) {
+            leaderboardBody.innerHTML = `
+            <tr>
+                <td colspan="7">No leaderboard data available</td>
+            </tr>`;
+        }
+
     } catch (error) {
+
         console.error("Leaderboard error:", error);
-        leaderboardBody.innerHTML =
-        `<tr><td colspan="7">Error loading leaderboard data</td></tr>`;
+
+        leaderboardBody.innerHTML = `
+        <tr>
+            <td colspan="7">Error loading leaderboard data</td>
+        </tr>`;
     }
 }
 
-/* ===== LOGOUT ===== */
 window.logout = function(){
     signOut(auth).then(()=>{
-        window.location.replace("login.html");
+        window.location.href = "login.html";
     });
 };
 
@@ -227,4 +213,3 @@ window.logout = function(){
 
 </body>
 </html>
-
