@@ -5,13 +5,11 @@
 <title>Quiz</title>
 <link rel="stylesheet" href="style.css">
 
-<!-- Disable Cache -->
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
 <style>
-
 /* ===== TOP BAR ===== */
 .top-bar{
     background:#111;
@@ -34,6 +32,7 @@
 .progress-bar{ width:100%; height:12px; background:#333; border-radius:10px; overflow:hidden; }
 .progress-fill{ height:100%; width:0%; background:#28a745; transition:width 0.3s ease; }
 
+/* OPTIONS */
 .options label{
     display:block;
     padding:12px;
@@ -75,32 +74,7 @@
 }
 </style>
 </head>
-
 <body>
-
-<!-- Firebase Auth Protection -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-  projectId: "olympiad-portal-d2a5e",
-  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
-  messagingSenderId: "341855557503",
-  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-onAuthStateChanged(auth, (user)=>{
-    if(!user){
-        window.location.replace("login.html");
-    }
-});
-</script>
 
 <div class="top-bar">
     <div id="subjectTitle"></div>
@@ -140,12 +114,36 @@ onAuthStateChanged(auth, (user)=>{
 
 <script src="questions.js"></script>
 
-<script>
+<script type="module">
 
-/* ================= ORIGINAL QUIZ LOGIC ================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+onAuthStateChanged(auth, (user)=>{
+    if(!user){
+        window.location.replace("login.html");
+    }
+});
+
+/* ================= QUIZ STATE ================= */
 
 let current = 0;
 let score = 0;
+let questions = [];
 
 const selectedClass = localStorage.getItem("selectedClass") || "class4";
 const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
@@ -153,30 +151,70 @@ const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
 document.getElementById("subjectTitle").innerText =
 selectedClass.toUpperCase() + " - " + selectedSubject.toUpperCase();
 
-const questions = questionsData[selectedClass][selectedSubject];
-document.getElementById("totalCount").innerText = questions.length;
+let selectedAnswers = [];
+let visitedQuestions = [];
 
-let selectedAnswers = new Array(questions.length).fill(null);
-let visitedQuestions = new Array(questions.length).fill(false);
+/* ================= LOAD QUESTIONS HYBRID ================= */
 
-/* TIMER */
+async function loadQuestionsHybrid() {
+
+    try {
+
+        const q = query(
+            collection(db, "questions"),
+            where("class", "==", selectedClass),
+            where("subject", "==", selectedSubject)
+        );
+
+        const snapshot = await getDocs(q);
+
+        if (!snapshot.empty) {
+            questions = snapshot.docs.map(doc => doc.data());
+            console.log("Loaded from Firebase:", questions.length);
+        } else {
+            questions = questionsData[selectedClass][selectedSubject];
+            console.log("Loaded from questions.js fallback");
+        }
+
+    } catch (error) {
+        questions = questionsData[selectedClass][selectedSubject];
+        console.log("Firebase failed, fallback used");
+    }
+
+    selectedAnswers = new Array(questions.length).fill(null);
+    visitedQuestions = new Array(questions.length).fill(false);
+
+    document.getElementById("totalCount").innerText = questions.length;
+
+    generateGrid();
+    loadQuestion();
+}
+
+/* ================= TIMER ================= */
+
 let totalTime = 1800;
 
 const timerInterval = setInterval(function(){
     let minutes = Math.floor(totalTime/60);
     let seconds = totalTime % 60;
+
     document.getElementById("timer").innerText =
     minutes + ":" + (seconds<10?"0":"") + seconds;
+
     totalTime--;
+
     if(totalTime < 0){
         clearInterval(timerInterval);
         submitQuiz();
     }
 },1000);
 
-/* LOAD QUESTION */
+/* ================= LOAD QUESTION ================= */
+
 function loadQuestion(){
+
     visitedQuestions[current] = true;
+
     const q = questions[current];
 
     document.getElementById("questionNumber").innerText =
@@ -185,6 +223,7 @@ function loadQuestion(){
     document.getElementById("questionText").innerHTML = q.q;
 
     let optionsHTML = "";
+
     q.o.forEach((opt,i)=>{
         optionsHTML += `
         <label>
@@ -201,18 +240,18 @@ function loadQuestion(){
     updateProgress();
 }
 
-function saveAnswer(value){
+window.saveAnswer = function(value){
     selectedAnswers[current] = value;
 }
 
-function nextQuestion(){
+window.nextQuestion = function(){
     if(current < questions.length-1){
         current++;
         loadQuestion();
     }
 }
 
-function prevQuestion(){
+window.prevQuestion = function(){
     if(current > 0){
         current--;
         loadQuestion();
@@ -226,7 +265,7 @@ function updateProgress(){
     document.getElementById("progressFill").style.width = percentage + "%";
 }
 
-function confirmSubmit(){
+window.confirmSubmit = function(){
     let answered = selectedAnswers.filter(a => a !== null).length;
     let confirmBox = confirm(
         "You have answered " + answered +
@@ -239,7 +278,9 @@ function confirmSubmit(){
 }
 
 function submitQuiz() {
+
     score = 0;
+
     for (let i = 0; i < questions.length; i++) {
         if (selectedAnswers[i] === questions[i].a) {
             score++;
@@ -257,7 +298,7 @@ function submitQuiz() {
     };
 
     localStorage.setItem("quizResult", JSON.stringify(resultData));
-    sessionStorage.removeItem("saved");
+
     window.location.href = "result.html";
 }
 
@@ -269,7 +310,7 @@ function generateGrid(){
     document.getElementById("questionGrid").innerHTML = gridHTML;
 }
 
-function jumpTo(index){
+window.jumpTo = function(index){
     current = index;
     loadQuestion();
 }
@@ -296,14 +337,7 @@ function updateGrid(){
     }
 }
 
-generateGrid();
-loadQuestion();
-
-/* Block Back Button */
-window.history.pushState(null, null, window.location.href);
-window.onpopstate = function () {
-    window.location.replace("login.html");
-};
+loadQuestionsHybrid();
 
 </script>
 
