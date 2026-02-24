@@ -150,13 +150,15 @@ const accuracy = ((score/total)*100).toFixed(2);
 
 try{
 
-await addDoc(collection(db,"users",user.uid,"results"),{
-subject:resultData.subject,
-class:resultData.class,
-score,total,accuracy,
-date:new Date()
+await addDoc(collection(db,"leaderboard"),{
+email: user.email,   // 👈 change name → email
+class: resultData.class,
+subject: resultData.subject,
+score: score,
+total: total,
+accuracy: accuracy,
+date: new Date()
 });
-
 await addDoc(collection(db,"leaderboard"),{
 name:user.email,
 class:resultData.class,
@@ -184,3 +186,4 @@ window.location.replace("login.html");
 
 </body>
 </html>
+
