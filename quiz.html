@@ -10,7 +10,6 @@
 <meta http-equiv="Expires" content="0">
 
 <style>
-/* ===== TOP BAR ===== */
 .top-bar{
     background:#111;
     padding:15px 30px;
@@ -22,17 +21,14 @@
 }
 #timer{ color:#ffb703; font-weight:bold; }
 
-/* ===== LAYOUT ===== */
 .quiz-container{ display:flex; height:calc(100vh - 60px); }
 .question-section{ flex:3; padding:40px; overflow-y:auto; }
 .navigation-section{ flex:1; background:rgba(255,255,255,0.05); padding:25px; border-left:1px solid rgba(255,255,255,0.1); overflow-y:auto; }
 
-/* ===== PROGRESS BAR ===== */
 .progress-wrapper{ margin-bottom:20px; }
 .progress-bar{ width:100%; height:12px; background:#333; border-radius:10px; overflow:hidden; }
 .progress-fill{ height:100%; width:0%; background:#28a745; transition:width 0.3s ease; }
 
-/* OPTIONS */
 .options label{
     display:block;
     padding:12px;
@@ -41,7 +37,6 @@
     background:rgba(255,255,255,0.08);
     border-radius:8px;
     cursor:pointer;
-    transition:0.2s;
 }
 .options label:hover{ background:rgba(255,183,3,0.15); }
 
@@ -56,7 +51,6 @@
     border-radius:6px;
     cursor:pointer;
 }
-.quiz-buttons button:hover{ background:#f59e0b; }
 
 .grid{
     display:grid;
@@ -70,7 +64,6 @@
     border-radius:6px;
     cursor:pointer;
     font-size:14px;
-    transition:0.2s;
 }
 </style>
 </head>
@@ -86,7 +79,8 @@
 <div class="question-section">
 
     <div class="progress-wrapper">
-        Answered: <span id="answeredCount">0</span> / <span id="totalCount"></span>
+        Answered: <span id="answeredCount">0</span> /
+        <span id="totalCount"></span>
         <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
         </div>
@@ -94,7 +88,6 @@
 
     <h3 id="questionNumber"></h3>
     <p id="questionText"></p>
-
     <div class="options" id="options"></div>
 
     <div class="quiz-buttons">
@@ -118,7 +111,8 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, query, where, getDocs } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -132,12 +126,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
-onAuthStateChanged(auth, (user)=>{
-    if(!user){
-        window.location.replace("login.html");
-    }
-});
 
 /* ================= QUIZ STATE ================= */
 
@@ -154,12 +142,11 @@ selectedClass.toUpperCase() + " - " + selectedSubject.toUpperCase();
 let selectedAnswers = [];
 let visitedQuestions = [];
 
-/* ================= LOAD QUESTIONS HYBRID ================= */
+/* ================= LOAD QUESTIONS ================= */
 
 async function loadQuestionsHybrid() {
 
     try {
-
         const q = query(
             collection(db, "questions"),
             where("class", "==", selectedClass),
@@ -190,6 +177,19 @@ async function loadQuestionsHybrid() {
     loadQuestion();
 }
 
+/* ================= AUTH + SAFE LOAD ================= */
+
+onAuthStateChanged(auth, async (user)=>{
+
+    if(!user){
+        window.location.replace("login.html");
+        return;
+    }
+
+    await loadQuestionsHybrid();
+
+});
+
 /* ================= TIMER ================= */
 
 let totalTime = 1800;
@@ -209,12 +209,10 @@ const timerInterval = setInterval(function(){
     }
 },1000);
 
-/* ================= LOAD QUESTION ================= */
+/* ================= QUIZ LOGIC ================= */
 
 function loadQuestion(){
-
     visitedQuestions[current] = true;
-
     const q = questions[current];
 
     document.getElementById("questionNumber").innerText =
@@ -223,7 +221,6 @@ function loadQuestion(){
     document.getElementById("questionText").innerHTML = q.q;
 
     let optionsHTML = "";
-
     q.o.forEach((opt,i)=>{
         optionsHTML += `
         <label>
@@ -266,21 +263,13 @@ function updateProgress(){
 }
 
 window.confirmSubmit = function(){
-    let answered = selectedAnswers.filter(a => a !== null).length;
-    let confirmBox = confirm(
-        "You have answered " + answered +
-        " out of " + questions.length +
-        " questions.\n\nAre you sure you want to submit?"
-    );
-    if(confirmBox){
+    if(confirm("Are you sure you want to submit?")){
         submitQuiz();
     }
 }
 
 function submitQuiz() {
-
     score = 0;
-
     for (let i = 0; i < questions.length; i++) {
         if (selectedAnswers[i] === questions[i].a) {
             score++;
@@ -298,7 +287,6 @@ function submitQuiz() {
     };
 
     localStorage.setItem("quizResult", JSON.stringify(resultData));
-
     window.location.href = "result.html";
 }
 
@@ -336,8 +324,6 @@ function updateGrid(){
         }
     }
 }
-
-loadQuestionsHybrid();
 
 </script>
 
