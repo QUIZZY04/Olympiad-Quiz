@@ -173,7 +173,7 @@ async function loadLeaderboard() {
             leaderboardBody.innerHTML += `
             <tr class="${rowClass}">
                 <td>${rank}</td>
-                <td>${data.email || "-"}</td>
+                <td>${data.email || data.name || "-"}</td>
                 <td>${data.studentClass || data.class || "-"}</td>
                 <td>${data.subject || "-"}</td>
                 <td>${data.score}/${data.total}</td>
@@ -213,3 +213,4 @@ window.logout = function(){
 
 </body>
 </html>
+
