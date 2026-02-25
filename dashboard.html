@@ -105,16 +105,11 @@ function startQuiz(subject) {
 
     const selectedClass = document.getElementById("classSelect").value;
 
-    if (selectedClass === "class4" || selectedClass === "class5") {
+    // ✅ Allow quiz for all classes
+    localStorage.setItem("selectedClass", selectedClass);
+    localStorage.setItem("selectedSubject", subject);
 
-        localStorage.setItem("selectedClass", selectedClass);
-        localStorage.setItem("selectedSubject", subject);
-
-        window.location.href = "quiz.html";
-
-    } else {
-        alert("🚀 Quiz for this class is coming soon!");
-    }
+    window.location.href = "quiz.html";
 }
 
 // 🔐 Block Back Button
