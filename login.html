@@ -1,44 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Login - Olympiad Portal</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-/* ... Your existing CSS ... */
-:root {
-    --amber: #ffb703;
-    --danger: #dc3545;
-    --muted: #94a3b8;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Olympiad Portal</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, sans-serif;}
-body{background:linear-gradient(to right,#0f2027,#203a43,#2c5364);min-height:100vh;color:white;}
+  <style>
+    :root {
+      --bg: #0f172a;                 
+      --surface: #1e293b;            
+      --text: #f8fafc;               
+      --muted: #94a3b8;              
+      --border: #334155;             
+      --brand: #38bdf8;              
+      --amber: #f59e0b;              
+      --danger: #ef4444;
+      --success: #22c55e;
+    }
 
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:#1e2a38;}
-nav h2{color:var(--amber);}
-nav a{color:white;text-decoration:none;margin-left:20px;}
-nav a:hover{color:var(--amber);}
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    
+    body { 
+      background-color: var(--bg); 
+      min-height: 100vh; 
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
 
-.container{display:flex;justify-content:center;align-items:center;padding:40px 0;}
-.login-box{background:#1e2a38;padding:40px;border-radius:15px;width:380px;text-align:center;box-shadow: 0 10px 25px rgba(0,0,0,0.3);}
+    /* MATCHED TOP NAV */
+    nav {
+      background: #1e293b; 
+      border-bottom: 2px solid var(--border);
+      padding: 15px 40px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    
+    nav div a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 25px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: 0.2s;
+    }
+    nav div a:hover { color: var(--amber); }
 
-input{width:100%;padding:12px;margin:10px 0;border:none;border-radius:8px;outline:none;}
-button{width:100%;padding:12px;background:var(--amber);border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:10px;}
-button:hover{background:#f59e0b;}
+    /* CENTERED LOGIN BOX */
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-/* NEW STYLES */
-.link-btn{background:none;color:var(--muted);font-size:13px;padding:0;margin:5px 0;width:auto;font-weight:normal;display:inline-block;}
-.link-btn:hover{text-decoration:underline;color:var(--amber);}
-.hidden{display:none;}
-.status-msg{font-size:12px;margin-top:10px;padding:8px;border-radius:5px;}
-.success{background:rgba(34,197,94,0.1);color:#22c55e;}
-</style>
+    .login-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 45px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    h2 { font-size: 28px; font-weight: 800; margin-bottom: 30px; color: var(--text); }
+    p.desc { color: var(--muted); font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+
+    /* FORM STYLES */
+    input {
+      width: 100%;
+      padding: 14px 18px;
+      margin-bottom: 15px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+    input:focus { border-color: var(--brand); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.1); }
+
+    button.main-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--amber);
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 15px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 10px;
+    }
+    button.main-btn:hover { background: #f59e0b; transform: translateY(-1px); }
+    button.main-btn:active { transform: translateY(0); }
+
+    /* LINK BUTTONS */
+    .link-group { margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
+    .link-btn {
+      background: none;
+      border: none;
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .link-btn:hover { text-decoration: underline; }
+
+    .divider { color: var(--border); }
+
+    .signup-text {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .signup-text a { color: var(--amber); text-decoration: none; font-weight: 700; }
+
+    .hidden { display: none; }
+    
+    .status-msg {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .success { background: rgba(34, 197, 94, 0.1); color: var(--success); border: 1px solid rgba(34, 197, 94, 0.2); }
+  </style>
 </head>
 
 <body>
 
 <nav>
-    <h2>🎓 Olympiad Portal</h2>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
     <div>
         <a href="index.html">Home</a>
         <a href="signup.html">Signup</a>
@@ -47,44 +159,46 @@ button:hover{background:#f59e0b;}
 
 <div class="container">
     <div class="login-box">
+        
         <div id="loginSection">
-            <h2 style="margin-bottom:20px;">Login</h2>
+            <h2>Welcome Back</h2>
             <form id="loginForm">
-                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="email" id="loginEmail" placeholder="Email Address" required>
                 <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <button type="submit" class="main-btn">Sign In</button>
             </form>
-            <div style="margin-top:10px;">
-                <button class="link-btn" onclick="toggleView('forgotSection')">Forgot Password?</button> | 
+            <div class="link-group">
+                <button class="link-btn" onclick="toggleView('forgotSection')">Forgot Password?</button>
+                <span class="divider">|</span>
                 <button class="link-btn" onclick="toggleView('changeSection')">Change Password</button>
             </div>
         </div>
 
         <div id="forgotSection" class="hidden">
-            <h2 style="margin-bottom:10px;">Reset Password</h2>
-            <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">Enter your email to receive a reset link.</p>
+            <h2>Reset Access</h2>
+            <p class="desc">Enter your registered email address to receive a password reset link.</p>
             <form id="forgotForm">
-                <input type="email" id="resetEmail" placeholder="Your Email" required>
-                <button type="submit">Send Reset Link</button>
+                <input type="email" id="resetEmail" placeholder="Email Address" required>
+                <button type="submit" class="main-btn">Send Link</button>
             </form>
-            <button class="link-btn" onclick="toggleView('loginSection')" style="margin-top:15px;">Back to Login</button>
+            <button class="link-btn" onclick="toggleView('loginSection')" style="margin-top: 20px;">Return to Login</button>
         </div>
 
         <div id="changeSection" class="hidden">
-            <h2 style="margin-bottom:10px;">Change Password</h2>
-            <p style="font-size:12px; color:var(--muted); margin-bottom:15px;">You must be logged in to use this feature.</p>
+            <h2>Update Security</h2>
+            <p class="desc">Please confirm your current credentials to set a new password.</p>
             <form id="changeForm">
                 <input type="password" id="currentPassword" placeholder="Current Password" required>
                 <input type="password" id="newPassword" placeholder="New Password" required>
-                <button type="submit">Update Password</button>
+                <button type="submit" class="main-btn">Update Password</button>
             </form>
-            <button class="link-btn" onclick="toggleView('loginSection')" style="margin-top:15px;">Back to Login</button>
+            <button class="link-btn" onclick="toggleView('loginSection')" style="margin-top: 20px;">Return to Login</button>
         </div>
 
         <div id="msgBox" class="status-msg hidden"></div>
 
-        <p style="margin-top:20px; border-top:1px solid #334155; padding-top:20px;">
-            Don't have an account? <a href="signup.html" style="color:var(--amber); text-decoration:none; font-weight:bold;">Signup</a>
+        <p class="signup-text">
+            New to the portal? <a href="signup.html">Create an Account</a>
         </p>
     </div>
 </div>
@@ -105,7 +219,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// View Toggler
+// Logic remains identical to your working version
 window.toggleView = (sectionId) => {
     ['loginSection', 'forgotSection', 'changeSection'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
@@ -114,39 +228,31 @@ window.toggleView = (sectionId) => {
     document.getElementById('msgBox').classList.add('hidden');
 };
 
-// 1. Handling Login
 document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
-    try{
+    try {
         await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
         window.location.href="dashboard.html";
     } catch(err) { alert(err.message); }
 });
 
-// 2. Handling Forgot Password
 document.getElementById("forgotForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
-    const email = document.getElementById("resetEmail").value;
     try {
-        await sendPasswordResetEmail(auth, email);
-        showMsg("Reset link sent! Please check your email.", "success");
+        await sendPasswordResetEmail(auth, document.getElementById("resetEmail").value);
+        showMsg("Success! Check your email for the reset link.", "success");
     } catch(err) { alert(err.message); }
 });
 
-// 3. Handling Change Password
 document.getElementById("changeForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     const user = auth.currentUser;
-    if(!user) { alert("Please login first to change your password."); return; }
-
-    const curPwd = document.getElementById("currentPassword").value;
-    const newPwd = document.getElementById("newPassword").value;
-    const credential = EmailAuthProvider.credential(user.email, curPwd);
-
+    if(!user) { alert("Please sign in first to change your password."); return; }
+    
+    const credential = EmailAuthProvider.credential(user.email, document.getElementById("currentPassword").value);
     try {
-        // Re-authenticate user before sensitive operation
         await reauthenticateWithCredential(user, credential);
-        await updatePassword(user, newPwd);
+        await updatePassword(user, document.getElementById("newPassword").value);
         showMsg("Password updated successfully!", "success");
         document.getElementById("changeForm").reset();
     } catch(err) { alert(err.message); }
