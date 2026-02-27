@@ -17,13 +17,14 @@
       --brand: #38bdf8;              
       --accent: #22c55e;             
       --amber: #f59e0b;              
-      --danger: #ef4444;             
+      --danger: #ef4444;
+      --unseen-grey: #cbd5e1; /* Basic Light Grey */
     }
 
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
 
-    /* TOP UTILITY NAV - ABOVE THE BAR */
+    /* TOP UTILITY NAV */
     .utility-nav {
       background: #020617; 
       padding: 12px 40px;
@@ -66,50 +67,40 @@
     .question-section { flex: 3; }
     .navigation-section { flex: 1; padding: 25px; height: fit-content; }
 
-    /* OPTIONS - RIGID LEFT ALIGNMENT */
+    /* OPTIONS - LEFT ALIGNMENT */
     .options { display: grid; gap: 15px; margin-top: 25px; }
     .opt {
-      display: flex; 
-      align-items: center; 
-      justify-content: flex-start; 
-      gap: 15px; 
-      padding: 18px 25px; 
+      display: flex; align-items: center; justify-content: flex-start; 
+      gap: 15px; padding: 18px 25px; 
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid var(--border); border-radius: 12px;
-      cursor: pointer; 
-      transition: 0.2s;
+      cursor: pointer; transition: 0.2s;
     }
-    .opt:hover { border-color: var(--amber); }
-    .opt input { 
-      accent-color: var(--amber); 
-      width: 24px; 
-      height: 24px; 
-      flex-shrink: 0; 
-    }
+    .opt input { accent-color: var(--amber); width: 24px; height: 24px; flex-shrink: 0; }
     .opt span { font-size: 18px; color: #ffffff; text-align: left; }
 
-    /* ACTION BUTTONS */
+    /* BUTTONS */
     .quiz-buttons { margin-top: 40px; display: flex; gap: 20px; }
     .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 16px; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE GRID & BASIC COLOR LEGEND */
+    /* PALETTE & LEGEND COLORS */
     .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
     .grid .cell { 
       padding: 12px 0; text-align: center; border-radius: 8px; border: 1px solid var(--border); 
-      cursor: pointer; color: #0f172a; background: #f8fafc; font-weight: 700;
+      cursor: pointer; font-weight: 700;
     }
 
-    /* BASIC SOLID COLORS FOR PALETTE AND LEGEND */
-    .cell.current, .legend-current { background: #c7d2fe !important; color: #1e3a8a !important; border-color: #a5b4fc !important; }
-    .cell.answered, .legend-answered { background: #bbf7d0 !important; color: #065f46 !important; border-color: #86efac !important; }
-    .cell.visited, .legend-visited { background: #fecaca !important; color: #7f1d1d !important; border-color: #fca5a5 !important; }
-    .cell.unseen, .legend-unseen { background: #f8fafc !important; color: #0f172a !important; border: 1px solid var(--border); }
+    /* SOLID BASIC COLORS */
+    .cell.current, .legend-current { background: #2563eb !important; color: #ffffff !important; border-color: #1e40af !important; }
+    .cell.answered, .legend-answered { background: #16a34a !important; color: #ffffff !important; border-color: #15803d !important; }
+    .cell.visited, .legend-visited { background: #dc2626 !important; color: #ffffff !important; border-color: #991b1b !important; }
+    .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; border: 1px solid #94a3b8; }
 
     .legend-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 14px; font-weight: 600; }
-    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
   </style>
 </head>
 <body>
@@ -130,9 +121,7 @@
     <section class="question-section section">
       <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px;">QUESTION 1</div>
       <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500;">Loading...</div>
-      
       <div class="options" id="options"></div>
-
       <div class="quiz-buttons">
         <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
         <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
@@ -142,14 +131,12 @@
 
     <aside class="navigation-section section">
       <h3 style="margin:0 0 15px 0;">Question Palette</h3>
-      
       <div class="palette-legend" style="margin-bottom: 25px;">
         <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
         <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
         <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
         <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
       </div>
-
       <div class="grid" id="questionGrid"></div>
     </aside>
   </main>
@@ -182,7 +169,7 @@
     });
 
     window.logout = async function() {
-      if(confirm("Are you sure? Quiz progress will be lost.")){
+      if(confirm("Are you sure? Quiz progress will be lost.")) {
           quizSubmitted = true;
           await signOut(auth);
           window.location.replace("login.html");
