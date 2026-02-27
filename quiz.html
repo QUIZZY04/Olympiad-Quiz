@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Live Quiz - Olympiad Portal</title>
 
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 
   <style>
     :root {
@@ -24,7 +27,7 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
 
-    /* TOP UTILITY NAV - ABOVE THE BAR */
+    /* 1. TOP UTILITY NAV - ABOVE THE BAR */
     .utility-nav {
       background: #020617; 
       padding: 12px 40px;
@@ -34,17 +37,18 @@
       border-bottom: 1px solid var(--border);
     }
     .utility-nav a {
-      color: var(--amber);
+      color: var(--amber); /* Yellow color matching Save & Next */
       text-decoration: none;
-      font-size: 16px; 
+      font-size: 16px; /* Larger font as requested */
       font-weight: 800; 
       text-transform: uppercase;
       letter-spacing: 0.8px;
+      cursor: pointer;
     }
     .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
-    .utility-nav .logout-link { color: var(--danger) !important; cursor: pointer; }
+    .utility-nav .logout-link { color: var(--danger) !important; }
 
-    /* MAIN HEADER BAR */
+    /* 2. MAIN HEADER BAR */
     header.top-bar {
       position: sticky; top: 0; z-index: 1000;
       background: #1e293b; 
@@ -61,18 +65,18 @@
       border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* QUIZ LAYOUT */
+    /* 3. QUIZ LAYOUT */
     .quiz-container { display: flex; gap: 24px; padding: 30px; max-width: 1500px; margin: 0 auto; }
     .section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
     .question-section { flex: 3; }
     .navigation-section { flex: 1; padding: 25px; height: fit-content; }
 
-    /* OPTIONS - FIXED LEFT ALIGNMENT */
+    /* 4. OPTIONS - RIGID LEFT ALIGNMENT */
     .options { display: grid; gap: 15px; margin-top: 25px; }
     .opt {
       display: flex; 
       align-items: center; 
-      justify-content: flex-start; /* Forces alignment to the left */
+      justify-content: flex-start; /* Forces content to the left */
       gap: 15px; 
       padding: 18px 25px; 
       background: rgba(15, 23, 42, 0.6);
@@ -93,31 +97,38 @@
       text-align: left; /* Ensures text starts immediately after the radio */
     }
 
-    /* ACTION BUTTONS */
+    /* 5. ACTION BUTTONS */
     .quiz-buttons { margin-top: 40px; display: flex; gap: 20px; }
     .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 16px; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE GRID */
+    /* 6. PALETTE GRID & LEGEND */
     .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
-    .grid .cell { padding: 12px 0; text-align: center; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; color: var(--muted); }
-    .cell.current { border-color: var(--amber); color: var(--amber); font-weight: bold; }
-    .cell.answered { background: var(--accent) !important; color: #000 !important; border: none; font-weight: bold; }
+    .grid .cell { 
+      padding: 12px 0; text-align: center; border-radius: 8px; border: 1px solid var(--border); 
+      cursor: pointer; color: #0f172a; background: #f8fafc; font-weight: 600;
+    }
+    .cell.current { background: #c7d2fe !important; color: #1e3a8a !important; border-color: #a5b4fc !important; }
+    .cell.answered { background: #bbf7d0 !important; color: #065f46 !important; border-color: #86efac !important; }
+    .cell.visited { background: #fecaca !important; color: #7f1d1d !important; border-color: #fca5a5 !important; }
+
+    .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+    .legend-box { width: 20px; height: 20px; border-radius: 4px; border: 1px solid var(--border); }
   </style>
 </head>
 <body>
 
   <div class="utility-nav">
-      <a href="index.html">Home</a>
+      <a href="home.html">Home</a>
       <a href="dashboard.html">Dashboard</a>
       <a href="leaderboard.html">Leaderboard</a>
       <a onclick="logout()" class="logout-link">Logout</a>
   </div>
 
   <header class="top-bar">
-    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
   </header>
 
@@ -136,7 +147,15 @@
     </section>
 
     <aside class="navigation-section section">
-      <h3 style="margin:0 0 20px 0;">Question Palette</h3>
+      <h3 style="margin:0 0 15px 0;">Question Palette</h3>
+      
+      <div class="palette-legend" style="margin-bottom: 20px;">
+        <div class="legend-item"><div class="legend-box" style="background:#c7d2fe;"></div> Current</div>
+        <div class="legend-item"><div class="legend-box" style="background:#bbf7d0;"></div> Answered</div>
+        <div class="legend-item"><div class="legend-box" style="background:#fecaca;"></div> Visited</div>
+        <div class="legend-item"><div class="legend-box" style="background:#f8fafc;"></div> Unseen</div>
+      </div>
+
       <div class="grid" id="questionGrid"></div>
     </aside>
   </main>
@@ -160,6 +179,7 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
+    // --- LEAVING QUIZ WARNING ---
     let quizSubmitted = false;
     window.addEventListener('beforeunload', (e) => {
       if (!quizSubmitted) {
@@ -169,16 +189,18 @@
     });
 
     window.logout = async function() {
-      if(confirm("Are you sure? Quiz progress will be lost.")){
+      if(confirm("Are you sure you want to logout? Your quiz progress will be lost.")){
           quizSubmitted = true;
           await signOut(auth);
           window.location.replace("login.html");
       }
     };
 
+    // --- QUIZ LOGIC ---
     let current = 0;
     let questions = [];
     let selectedAnswers = [];
+    let visitedQuestions = [];
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
 
@@ -195,6 +217,7 @@
         questions = questionsData[selectedClass][selectedSubject].sort(() => Math.random() - 0.5);
       }
       selectedAnswers = new Array(questions.length).fill(null);
+      visitedQuestions = new Array(questions.length).fill(false);
       generateGrid();
       loadQuestion();
     }
@@ -205,11 +228,13 @@
     });
 
     window.loadQuestion = function() {
+      visitedQuestions[current] = true;
       const q = questions[current];
       document.getElementById("questionNumber").innerText = `QUESTION ${current + 1}`;
       document.getElementById("questionText").innerHTML = q.q;
       let html = '';
       q.o.forEach((opt, i) => {
+        // Correct structure: label -> input -> span for left alignment
         html += `<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current] === i ? "checked" : ""} onchange="saveAnswer(${i})" /><span>${opt}</span></label>`;
       });
       document.getElementById("options").innerHTML = html;
@@ -233,6 +258,7 @@
         el.className = 'cell';
         if (i === current) el.classList.add('current');
         else if (selectedAnswers[i] !== null) el.classList.add('answered');
+        else if (visitedQuestions[i]) el.classList.add('visited');
       }
     }
 
@@ -243,7 +269,7 @@
       if (--totalTime < 0) { clearInterval(timer); submitQuiz(); }
     }, 1000);
 
-    window.confirmSubmit = () => { if (confirm("Submit quiz?")) submitQuiz(); };
+    window.confirmSubmit = () => { if (confirm("Are you sure you want to submit the quiz?")) submitQuiz(); };
     function submitQuiz() {
       quizSubmitted = true;
       let score = 0;
