@@ -22,7 +22,7 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
+    html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg); display: flex; flex-direction: column;}
 
     /* TOP UTILITY NAV */
     .utility-nav {
@@ -45,14 +45,15 @@
       color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* QUIZ LAYOUT - MATCHED HEIGHT LOGIC */
+    /* QUIZ LAYOUT */
     .quiz-container { 
       display: flex; 
-      align-items: stretch; /* Forces both boxes to have same height */
+      align-items: stretch;
       gap: 24px; 
       padding: 30px; 
       max-width: 1500px; 
       margin: 0 auto; 
+      flex: 1; /* Pushes footer down */
     }
 
     .section { 
@@ -60,18 +61,11 @@
       border: 1px solid var(--border); 
       border-radius: 20px; 
       padding: 40px;
-      min-height: 500px; /* Ensures a consistent base height */
+      min-height: 500px;
     }
 
     .question-section { flex: 3; display: flex; flex-direction: column; }
-
-    /* Palette Section - No grid stretching */
-    .navigation-section { 
-      flex: 1; 
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start; /* Keeps content at the top */
-    }
+    .navigation-section { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
 
     /* MINI QUIZ INFO */
     .quiz-meta-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
@@ -101,33 +95,31 @@
     .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE GRID - FIXED SIZE */
-    .grid { 
-        display: grid; 
-        grid-template-columns: repeat(5, 1fr); 
-        gap: 8px; 
-        margin-top: 10px;
-        width: 100%;
-    }
+    /* PALETTE GRID */
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; width: 100%; }
     .grid .cell { 
-      height: 40px; /* Fixed height for cells */
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      border-radius: 8px; 
-      border: 1px solid var(--border); 
-      cursor: pointer; 
-      font-weight: 700; 
-      font-size: 14px;
+      height: 40px; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 14px;
     }
 
-    .cell.current, .legend-current { background: #2563eb !important; color: #fff; }
-    .cell.answered, .legend-answered { background: #16a34a !important; color: #fff; }
-    .cell.visited, .legend-visited { background: #dc2626 !important; color: #fff; }
-    .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a; }
+    .cell.current { background: #2563eb !important; color: #fff; }
+    .cell.answered { background: #16a34a !important; color: #fff; }
+    .cell.visited { background: #dc2626 !important; color: #fff; }
+    .cell.unseen { background: var(--unseen-grey) !important; color: #0f172a; }
 
     .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
     .legend-box { width: 20px; height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -172,14 +164,18 @@
     <aside class="navigation-section section">
       <h3 style="margin:0 0 15px 0; font-size: 18px;">Question Palette</h3>
       <div class="palette-legend">
-        <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
-        <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
-        <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
-        <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
+        <div class="legend-item"><div class="legend-box current">1</div> Current</div>
+        <div class="legend-item"><div class="legend-box answered">1</div> Answered</div>
+        <div class="legend-item"><div class="legend-box visited">1</div> Visited</div>
+        <div class="legend-item"><div class="legend-box unseen">1</div> Unseen</div>
       </div>
       <div class="grid" id="questionGrid"></div>
-      </aside>
+    </aside>
   </main>
+
+  <footer>
+    &copy; 2026 Olympiad Portal. All rights reserved.
+  </footer>
 
   <script src="questions.js"></script>
   <script type="module">
