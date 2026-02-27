@@ -30,7 +30,7 @@
       padding: 12px 60px; 
       display: flex;
       justify-content: flex-end; 
-      gap: 75px; 
+      gap: 45px; 
       border-bottom: 1px solid var(--border);
     }
     .utility-nav a {
@@ -43,14 +43,13 @@
       cursor: pointer;
     }
     .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
-    .utility-nav .logout-link { color: var(--danger) !important; }
 
-    /* MAIN HEADER BAR - WITH ADDED SPACING */
+    /* MAIN HEADER BAR - ENHANCED SPACING */
     header.top-bar {
       z-index: 1000; 
       background: #1e293b; 
       border-bottom: 2px solid var(--border); 
-      padding: 15px 40px; /* Increased padding for better separation from utility-nav */
+      padding: 20px 40px; /* Increased vertical padding to push timer down */
       display: flex; 
       align-items: center; 
       justify-content: space-between;
@@ -58,21 +57,21 @@
     .brand { font-size: 18px; font-weight: 800; color: var(--amber); text-decoration: none; }
     
     #timerWrap {
-      margin-top: 5px; /* Pushes the timer slightly further down from the utility tabs */
-      padding: 4px 12px; 
-      border-radius: 6px; 
+      margin-top: 10px; /* Explicit gap between utility nav and timer bar */
+      padding: 6px 15px; 
+      border-radius: 8px; 
       background: rgba(245, 158, 11, 0.1); 
       color: var(--amber); 
       border: 1px solid var(--amber); 
       font-weight: 800; 
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     /* COMPACT LAPTOP LAYOUT */
     .quiz-container { 
       display: flex; gap: 15px; padding: 15px; 
       max-width: 1400px; width: 100%; margin: 0 auto; 
-      height: calc(100vh - 125px); /* Adjusted for taller header */
+      height: calc(100vh - 140px); /* Adjusted for taller header */
     }
 
     .section { 
@@ -84,12 +83,10 @@
     .navigation-section { flex: 0 0 320px; height: fit-content; }
 
     /* SUBJECT & GRADE INFO */
-    .progress-wrapper { margin-bottom: 15px; }
-    .progress-info { display: flex; justify-content: space-between; margin-bottom: 5px; color: var(--muted); }
     #displaySubject { font-size: 16px; font-weight: 800; color: var(--brand); text-transform: uppercase; }
     #progressPercent { font-size: 14px; font-weight: 700; }
 
-    .progress-container { background: var(--border); border-radius: 10px; height: 6px; overflow: hidden; }
+    .progress-container { background: var(--border); border-radius: 10px; height: 6px; overflow: hidden; margin-top: 5px;}
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
     /* OPTIONS & BUTTONS */
@@ -140,7 +137,7 @@
       <a href="home.html">Home</a>
       <a href="dashboard.html">Dashboard</a>
       <a href="leaderboard.html">Leaderboard</a>
-      <a onclick="logout()" class="logout-link">Logout</a>
+      <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
   </div>
 
   <header class="top-bar">
@@ -151,7 +148,7 @@
   <main class="quiz-container">
     <section class="question-section section">
       <div class="progress-wrapper">
-        <div class="progress-info">
+        <div class="progress-info" style="display: flex; justify-content: space-between;">
           <span id="displaySubject">Progress</span>
           <span id="progressPercent">0%</span>
         </div>
@@ -305,4 +302,3 @@
   </script>
 </body>
 </html>
-
