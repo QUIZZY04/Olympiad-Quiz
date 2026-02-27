@@ -61,10 +61,25 @@
       border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
+    /* QUIZ INFO HEADER (New) */
+    .quiz-info-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(56, 189, 248, 0.05);
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        margin-bottom: 20px;
+    }
+    .info-item { display: flex; flex-direction: column; }
+    .info-label { font-size: 11px; text-transform: uppercase; color: var(--brand); font-weight: 800; letter-spacing: 1px; }
+    .info-value { font-size: 16px; font-weight: 700; color: #fff; text-transform: capitalize; }
+
     /* PROGRESS BAR */
-    .progress-wrapper { margin-bottom: 25px; }
-    .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--muted); }
-    .progress-container { background: var(--border); border-radius: 20px; height: 10px; width: 100%; overflow: hidden; }
+    .progress-wrapper { margin-bottom: 20px; }
+    .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px; font-weight: 600; color: var(--muted); }
+    .progress-container { background: var(--border); border-radius: 20px; height: 8px; width: 100%; overflow: hidden; }
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
     /* QUIZ LAYOUT */
@@ -126,6 +141,7 @@
 
   <main class="quiz-container">
     <section class="question-section section">
+      
       <div class="progress-wrapper">
         <div class="progress-info">
           <span>Quiz Progress</span>
@@ -134,6 +150,17 @@
         <div class="progress-container">
           <div class="progress-fill" id="progressBar"></div>
         </div>
+      </div>
+
+      <div class="quiz-info-header">
+          <div class="info-item">
+              <span class="info-label">Current Subject</span>
+              <span id="displaySubject" class="info-value">Loading...</span>
+          </div>
+          <div class="info-item" style="text-align: right;">
+              <span class="info-label">Target Class</span>
+              <span id="displayClass" class="info-value">Loading...</span>
+          </div>
       </div>
 
       <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px; letter-spacing: 1px;">QUESTION 1</div>
@@ -179,28 +206,19 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    let quizSubmitted = false;
-    window.addEventListener('beforeunload', (e) => {
-      if (!quizSubmitted) {
-        e.preventDefault();
-        e.returnValue = ''; 
-      }
-    });
-
-    window.logout = async function() {
-      if(confirm("Are you sure? Quiz progress will be lost.")) {
-          quizSubmitted = true;
-          await signOut(auth);
-          window.location.replace("login.html");
-      }
-    };
-
     let current = 0;
     let questions = [];
     let selectedAnswers = [];
     let visitedQuestions = [];
+    let quizSubmitted = false;
+
+    // Load identifiers from LocalStorage
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
+
+    // Update the UI Header with Class/Subject names
+    document.getElementById("displaySubject").innerText = selectedSubject;
+    document.getElementById("displayClass").innerText = selectedClass.replace("class", "Grade ");
 
     async function loadQuestionsHybrid() {
       try {
@@ -240,7 +258,7 @@
 
     window.saveAnswer = (v) => { 
         selectedAnswers[current] = v; 
-        updateGrid(); // Trigger progress bar update immediately on selection
+        updateGrid(); 
     };
     
     window.nextQuestion = () => { if (current < questions.length - 1) { current++; loadQuestion(); } };
@@ -266,7 +284,6 @@
         if(selectedAnswers[i] !== null) answeredCount++;
       }
 
-      // Update Progress Bar logic
       const progressPercent = Math.round((answeredCount / questions.length) * 100);
       document.getElementById("progressBar").style.width = progressPercent + "%";
       document.getElementById("progressPercent").innerText = progressPercent + "%";
@@ -287,6 +304,14 @@
       localStorage.setItem("quizResult", JSON.stringify({ score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions }));
       window.location.href = "result.html";
     }
+
+    window.logout = async function() {
+      if(confirm("Are you sure? Quiz progress will be lost.")) {
+          quizSubmitted = true;
+          await signOut(auth);
+          window.location.replace("login.html");
+      }
+    };
   </script>
 </body>
 </html>
