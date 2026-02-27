@@ -45,61 +45,64 @@
       color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* QUIZ LAYOUT */
+    /* QUIZ LAYOUT - WIDER DIMENSIONS */
     .quiz-container { 
       display: flex; 
       align-items: stretch;
-      gap: 24px; 
-      padding: 30px; 
-      max-width: 1500px; 
+      gap: 30px; 
+      padding: 40px; 
+      max-width: 1700px; /* Increased from 1500px */
+      width: 95%;        /* Ensures it uses available width */
       margin: 0 auto; 
-      flex: 1; /* Pushes footer down */
+      flex: 1; 
     }
 
     .section { 
       background: var(--surface); 
       border: 1px solid var(--border); 
       border-radius: 20px; 
-      padding: 40px;
-      min-height: 500px;
+      padding: 45px;
+      min-height: 600px;
     }
 
-    .question-section { flex: 3; display: flex; flex-direction: column; }
-    .navigation-section { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
+    /* Adjusted Ratios for wider look */
+    .question-section { flex: 3.5; display: flex; flex-direction: column; }
+    .navigation-section { flex: 1.2; display: flex; flex-direction: column; justify-content: flex-start; }
 
     /* MINI QUIZ INFO */
-    .quiz-meta-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
+    .quiz-meta-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; font-weight: 700; }
     .meta-subject { color: var(--brand); text-transform: uppercase; }
     .meta-class { color: var(--amber); text-transform: uppercase; }
 
     /* PROGRESS BAR */
-    .progress-wrapper { margin-bottom: 30px; }
-    .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
-    .progress-container { background: var(--border); border-radius: 20px; height: 6px; width: 100%; overflow: hidden; }
+    .progress-wrapper { margin-bottom: 35px; }
+    .progress-info { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+    .progress-container { background: var(--border); border-radius: 20px; height: 8px; width: 100%; overflow: hidden; }
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
     /* OPTIONS */
-    .options { display: grid; gap: 12px; margin-top: 20px; margin-bottom: 30px; }
+    .options { display: grid; gap: 15px; margin-top: 25px; margin-bottom: 40px; }
     .opt {
-      display: flex; align-items: center; gap: 15px; padding: 15px 25px; 
+      display: flex; align-items: center; gap: 18px; padding: 18px 30px; 
       background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
       border-radius: 12px; cursor: pointer; transition: 0.2s;
     }
     .opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
-    .opt span { font-size: 17px; color: #ffffff; }
+    .opt span { font-size: 19px; color: #ffffff; }
 
     /* BUTTONS */
-    .quiz-buttons { margin-top: auto; display: flex; gap: 20px; padding-top: 20px; }
-    .btn { padding: 14px 28px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 13px; }
+    .quiz-buttons { margin-top: auto; display: flex; gap: 20px; padding-top: 25px; }
+    .btn { padding: 16px 35px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 14px; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
     /* PALETTE GRID */
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; width: 100%; }
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px; width: 100%; }
     .grid .cell { 
-      height: 40px; display: flex; align-items: center; justify-content: center;
-      border-radius: 8px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 14px;
+      height: 50px; /* Slightly larger cells for wider layout */
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 16px;
     }
 
     .cell.current { background: #2563eb !important; color: #fff; }
@@ -107,13 +110,13 @@
     .cell.visited { background: #dc2626 !important; color: #fff; }
     .cell.unseen { background: var(--unseen-grey) !important; color: #0f172a; }
 
-    .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
-    .legend-box { width: 20px; height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+    .legend-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 14px; font-weight: 600; }
+    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
 
     /* FOOTER */
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       background: #020617;
       border-top: 1px solid var(--border);
       color: var(--muted);
@@ -143,14 +146,14 @@
 
       <div class="progress-wrapper">
         <div class="progress-info">
-          <span>Progress</span>
+          <span>Quiz Progress</span>
           <span id="progressPercent">0%</span>
         </div>
         <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
       </div>
 
-      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:5px;">QUESTION 1</div>
-      <div id="questionText" style="font-size: 22px; margin-bottom: 20px; font-weight:500;">Loading...</div>
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:8px;">QUESTION 1</div>
+      <div id="questionText" style="font-size: 26px; margin-bottom: 25px; font-weight:500; line-height: 1.4;">Loading...</div>
       
       <div class="options" id="options"></div>
 
@@ -162,7 +165,7 @@
     </section>
 
     <aside class="navigation-section section">
-      <h3 style="margin:0 0 15px 0; font-size: 18px;">Question Palette</h3>
+      <h3 style="margin:0 0 20px 0; font-size: 20px; font-weight: 700;">Question Palette</h3>
       <div class="palette-legend">
         <div class="legend-item"><div class="legend-box current">1</div> Current</div>
         <div class="legend-item"><div class="legend-box answered">1</div> Answered</div>
