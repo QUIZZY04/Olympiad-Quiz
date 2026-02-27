@@ -27,24 +27,49 @@
     }
     .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
 
-    .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
-    h1 { font-size: 32px; margin-bottom: 10px; }
-    p.subtitle { color: var(--muted); margin-bottom: 40px; }
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    h1 { font-size: 32px; margin-bottom: 5px; }
+    p.subtitle { color: var(--muted); margin-bottom: 30px; }
+
+    /* CLASS SELECTOR BOX */
+    .class-selector-wrap {
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px dashed var(--brand);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    label { font-weight: 700; color: var(--brand); text-transform: uppercase; font-size: 14px; }
+    select {
+      background: var(--bg);
+      color: white;
+      border: 1px solid var(--border);
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      cursor: pointer;
+      min-width: 200px;
+    }
+    select:focus { border-color: var(--brand); }
 
     /* SUBJECT GRID */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 20px; padding: 30px; cursor: pointer;
-      transition: all 0.3s ease; position: relative; overflow: hidden;
+      transition: all 0.3s ease;
     }
     .card:hover { border-color: var(--brand); transform: translateY(-5px); background: #243147; }
     .card h3 { font-size: 22px; margin: 0 0 10px 0; color: var(--brand); }
-    .card p { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+    .card p { color: var(--muted); font-size: 15px; margin-bottom: 20px; height: 40px; }
     .btn-start {
       background: var(--brand); color: #000; border: none;
       padding: 12px 24px; border-radius: 8px; font-weight: 700;
-      text-transform: uppercase; cursor: pointer;
+      text-transform: uppercase; cursor: pointer; width: 100%;
     }
   </style>
 </head>
@@ -60,7 +85,23 @@
 
   <main class="container">
     <h1>Student Dashboard</h1>
-    <p class="subtitle">Select a subject to begin your practice session.</p>
+    <p class="subtitle">First, select your class, then choose a subject.</p>
+
+    <div class="class-selector-wrap">
+      <label for="classSelect">Select Your Grade:</label>
+      <select id="classSelect">
+        <option value="class1">Grade 1</option>
+        <option value="class2">Grade 2</option>
+        <option value="class3">Grade 3</option>
+        <option value="class4" selected>Grade 4</option>
+        <option value="class5">Grade 5</option>
+        <option value="class6">Grade 6</option>
+        <option value="class7">Grade 7</option>
+        <option value="class8">Grade 8</option>
+        <option value="class9">Grade 9</option>
+        <option value="class10">Grade 10</option>
+      </select>
+    </div>
 
     <div class="grid">
       <div class="card" onclick="startQuiz('maths')">
@@ -83,9 +124,22 @@
 
   <script>
     function startQuiz(subject) {
+      const selectedClass = document.getElementById("classSelect").value;
+      
+      // Save both to local storage so quiz.html can read them
+      localStorage.setItem("selectedClass", selectedClass);
       localStorage.setItem("selectedSubject", subject);
+      
       window.location.href = "quiz.html";
     }
+
+    // Set dropdown to last selected class if it exists
+    window.onload = () => {
+      const lastClass = localStorage.getItem("selectedClass");
+      if(lastClass) {
+        document.getElementById("classSelect").value = lastClass;
+      }
+    };
   </script>
 </body>
 </html>
