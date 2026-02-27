@@ -1,91 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Create Account</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Olympiad Portal</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
-}
+  <style>
+    :root {
+      --bg: #0f172a;                 
+      --surface: #1e293b;            
+      --text: #f8fafc;               
+      --muted: #94a3b8;              
+      --border: #334155;             
+      --brand: #38bdf8;              
+      --amber: #f59e0b;              
+      --danger: #ef4444;
+    }
 
-body{
-    background:linear-gradient(to right,#0f2027,#203a43,#2c5364);
-    min-height:100vh;
-    color:white;
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    
+    body { 
+      background-color: var(--bg); 
+      min-height: 100vh; 
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
 
-/* ===== NAVBAR ===== */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 40px;
-    background:#1e2a38;
-}
+    /* MATCHED TOP NAV */
+    nav {
+      background: #1e293b; 
+      border-bottom: 2px solid var(--border);
+      padding: 15px 40px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    
+    nav div a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 25px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: 0.2s;
+    }
+    nav div a:hover { color: var(--amber); }
 
-nav h2{
-    color:#ffb703;
-}
+    /* CENTERED SIGNUP BOX */
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-}
+    .signup-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 45px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
 
-nav a:hover{
-    color:#ffb703;
-}
+    h2 { font-size: 28px; font-weight: 800; margin-bottom: 30px; color: var(--text); }
 
-/* ===== CENTER BOX ===== */
-.container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:calc(100vh - 80px);
-}
+    /* FORM STYLES */
+    input, select {
+      width: 100%;
+      padding: 14px 18px;
+      margin-bottom: 15px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+    }
+    
+    /* Style for select dropdown arrow */
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1em;
+    }
 
-.signup-box{
-    background:#1e2a38;
-    padding:40px;
-    border-radius:15px;
-    width:350px;
-    text-align:center;
-}
+    input:focus, select:focus { border-color: var(--brand); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.1); }
 
-input, select{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    border-radius:8px;
-}
+    button {
+      width: 100%;
+      padding: 14px;
+      background: var(--amber);
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 15px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 10px;
+    }
+    button:hover { background: #f59e0b; transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
 
-button{
-    width:100%;
-    padding:12px;
-    background:#ffb703;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#f59e0b;
-}
-</style>
+    .login-text {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .login-text a { color: var(--amber); text-decoration: none; font-weight: 700; }
+  </style>
 </head>
 
 <body>
 
-<!-- ===== NAVIGATION ===== -->
 <nav>
-    <h2>🎓 Olympiad Portal</h2>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
     <div>
         <a href="index.html">Home</a>
         <a href="login.html">Login</a>
@@ -93,34 +141,32 @@ button:hover{
 </nav>
 
 <div class="container">
-<div class="signup-box">
-<h2>Create Account</h2>
+    <div class="signup-box">
+        <h2>Create Account</h2>
 
-<form id="signupForm">
-<input type="text" id="name" placeholder="Full Name" required>
-<input type="email" id="email" placeholder="Email" required>
-<input type="password" id="password" placeholder="Password" required>
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Create Password" required>
 
-<select id="classSelect" required>
-<option value="">Select Class</option>
-<option value="class4">Class 4</option>
-<option value="class5">Class 5</option>
-<option value="class6">Class 6</option>
-<option value="class7">Class 7</option>
-<option value="class8">Class 8</option>
-<option value="class9">Class 9</option>
-<option value="class10">Class 10</option>
-</select>
+            <select id="classSelect" required>
+                <option value="" disabled selected>Select Your Grade</option>
+                <option value="class4">Grade 4</option>
+                <option value="class5">Grade 5</option>
+                <option value="class6">Grade 6</option>
+                <option value="class7">Grade 7</option>
+                <option value="class8">Grade 8</option>
+                <option value="class9">Grade 9</option>
+                <option value="class10">Grade 10</option>
+            </select>
 
-<button type="submit">Register</button>
-</form>
+            <button type="submit">Register Now</button>
+        </form>
 
-<p style="margin-top:15px;">
-Already have account?
-<a href="login.html" style="color:#ffb703;">Login</a>
-</p>
-
-</div>
+        <p class="login-text">
+            Already have an account? <a href="login.html">Sign In</a>
+        </p>
+    </div>
 </div>
 
 <script type="module">
@@ -149,7 +195,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     const password=document.getElementById("password").value;
     const classSelect=document.getElementById("classSelect").value;
 
-    try{
+    try {
         const userCredential=await createUserWithEmailAndPassword(auth,email,password);
         const user=userCredential.user;
 
@@ -160,9 +206,9 @@ document.getElementById("signupForm").addEventListener("submit", async (e)=>{
             createdAt:new Date()
         });
 
-        alert("Signup Successful!");
+        alert("Welcome to the Olympiad Portal! Signup Successful.");
         window.location.href="login.html";
-    }catch(error){
+    } catch(error) {
         alert(error.message);
     }
 });
