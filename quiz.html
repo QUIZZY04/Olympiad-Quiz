@@ -18,6 +18,7 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg); overflow: hidden;}
 
+    /* WIDE-SPACED TOP UTILITY NAV */
     .utility-nav {
       background: #020617; padding: 12px 60px; display: flex;
       justify-content: flex-end; gap: 45px; border-bottom: 1px solid var(--border);
@@ -28,6 +29,7 @@
     }
     .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
 
+    /* MAIN HEADER BAR */
     header.top-bar {
       z-index: 1000; background: #1e293b; 
       border-bottom: 2px solid var(--border); padding: 15px 40px; 
@@ -41,6 +43,7 @@
       border: 1px solid var(--amber); font-weight: 800; font-size: 1rem;
     }
 
+    /* COMPACT LAPTOP LAYOUT */
     .quiz-container { 
       display: flex; gap: 15px; padding: 15px; 
       max-width: 1400px; width: 100%; margin: 0 auto; 
@@ -78,6 +81,7 @@
     .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
+    /* SMALL SQUARE GRID */
     .grid { 
       display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; 
       margin-top: 8px; margin-bottom: 15px; width: 220px; 
@@ -88,6 +92,7 @@
       font-weight: 700; font-size: 11px;
     }
 
+    /* HORIZONTAL LEGEND */
     .palette-legend {
       display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; 
       padding-top: 12px; border-top: 1px solid var(--border); width: 100%;
@@ -95,6 +100,7 @@
     .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #ffffff; }
     .legend-box { width: 14px; height: 14px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: white; }
 
+    /* COLORS */
     .cell.current, .legend-current { background: #2563eb !important; border-color: #1e40af; color: white !important; }
     .cell.answered, .legend-answered { background: #16a34a !important; border-color: #15803d; color: white !important; }
     .cell.visited, .legend-visited { background: #dc2626 !important; border-color: #991b1b; color: white !important; }
@@ -178,13 +184,12 @@
     let visitedQuestions = [];
     let quizSubmitted = false;
 
-    // --- EXIT WARNING LOGIC ---
-    window.addEventListener('beforeunload', (event) => {
+    // --- ENHANCED EXIT WARNING ---
+    window.onbeforeunload = function(e) {
       if (!quizSubmitted) {
-        event.preventDefault();
-        event.returnValue = ''; // Standard browser behavior for unsaved changes warning
+        return "Your quiz progress will be lost. Are you sure you want to leave?";
       }
-    });
+    };
 
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
@@ -266,7 +271,7 @@
     window.confirmSubmit = () => { if (confirm("Submit quiz?")) submitQuiz(); };
     
     function submitQuiz() {
-      quizSubmitted = true; // This disables the exit warning
+      quizSubmitted = true;
       let score = 0;
       questions.forEach((q, i) => { if (selectedAnswers[i] === q.a) score++; });
       localStorage.setItem("quizResult", JSON.stringify({ score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions }));
@@ -275,7 +280,7 @@
 
     window.logout = async function() {
       if(confirm("Are you sure? Quiz progress will be lost.")) {
-          quizSubmitted = true; // Standard browser alerts will still trigger without this
+          quizSubmitted = true;
           await signOut(auth);
           window.location.replace("login.html");
       }
