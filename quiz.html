@@ -22,96 +22,88 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg); display: flex; flex-direction: column;}
+    html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg); overflow: hidden;}
 
     /* TOP UTILITY NAV */
     .utility-nav {
-      background: #020617; padding: 12px 40px; display: flex;
+      background: #020617; padding: 10px 40px; display: flex;
       justify-content: flex-end; gap: 30px; border-bottom: 1px solid var(--border);
     }
     .utility-nav a {
-      color: var(--amber); text-decoration: none; font-size: 16px; 
+      color: var(--amber); text-decoration: none; font-size: 14px; 
       font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px;
     }
 
     header.top-bar {
-      position: sticky; top: 0; z-index: 1000; background: #1e293b; 
-      border-bottom: 2px solid var(--border); padding: 12px 40px; 
+      z-index: 1000; background: #1e293b; 
+      border-bottom: 2px solid var(--border); padding: 10px 40px; 
       display: flex; align-items: center; justify-content: space-between;
     }
-    .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
     #timerWrap {
-      padding: 8px 18px; border-radius: 10px; background: rgba(245, 158, 11, 0.1); 
-      color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
+      padding: 6px 15px; border-radius: 10px; background: rgba(245, 158, 11, 0.1); 
+      color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.1rem;
     }
 
-    /* QUIZ LAYOUT - WIDER & EQUAL HEIGHT */
+    /* QUIZ LAYOUT - RESPONSIVE FOR LAPTOPS */
     .quiz-container { 
       display: flex; 
-      align-items: stretch;
-      gap: 30px; 
-      padding: 40px; 
-      max-width: 1700px; 
-      width: 95%;        
+      gap: 20px; 
+      padding: 20px; 
+      max-width: 1600px; 
+      width: 100%;        
       margin: 0 auto; 
-      flex: 1; 
+      height: calc(100vh - 150px); /* Adjusts height to fit laptop screens */
     }
 
     .section { 
       background: var(--surface); 
       border: 1px solid var(--border); 
       border-radius: 20px; 
-      padding: 45px;
+      padding: 30px;
+      overflow-y: auto; /* Adds scroll only inside sections if content overflows */
     }
 
-    .question-section { flex: 3.5; display: flex; flex-direction: column; }
-    .navigation-section { flex: 1.2; display: flex; flex-direction: column; justify-content: flex-start; }
+    .question-section { flex: 3; display: flex; flex-direction: column; }
+    .navigation-section { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; min-width: 300px; }
 
     /* MINI QUIZ INFO */
-    .quiz-meta-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; font-weight: 700; }
+    .quiz-meta-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
     .meta-subject { color: var(--brand); text-transform: uppercase; }
     .meta-class { color: var(--amber); text-transform: uppercase; }
 
     /* PROGRESS BAR */
-    .progress-wrapper { margin-bottom: 35px; }
-    .progress-info { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
-    .progress-container { background: var(--border); border-radius: 20px; height: 8px; width: 100%; overflow: hidden; }
+    .progress-wrapper { margin-bottom: 25px; }
+    .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+    .progress-container { background: var(--border); border-radius: 20px; height: 6px; width: 100%; overflow: hidden; }
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
     /* OPTIONS */
-    .options { display: grid; gap: 15px; margin-top: 25px; margin-bottom: 40px; }
+    .options { display: grid; gap: 12px; margin-top: 20px; margin-bottom: 20px; }
     .opt {
-      display: flex; align-items: center; gap: 18px; padding: 18px 30px; 
+      display: flex; align-items: center; gap: 15px; padding: 15px 25px; 
       background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
       border-radius: 12px; cursor: pointer; transition: 0.2s;
     }
     .opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
-    .opt span { font-size: 19px; color: #ffffff; }
+    .opt span { font-size: 17px; color: #ffffff; }
 
     /* BUTTONS */
-    .quiz-buttons { margin-top: auto; display: flex; gap: 20px; padding-top: 25px; }
-    .btn { padding: 16px 35px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 14px; }
+    .quiz-buttons { margin-top: auto; display: flex; gap: 15px; padding-top: 20px; }
+    .btn { padding: 14px 28px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 13px; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE & LEGEND (Visibility Fixed) */
-    .legend-item { 
-      display: flex; 
-      align-items: center; 
-      gap: 12px; 
-      margin-bottom: 12px; 
-      font-size: 14px; 
-      font-weight: 600; 
-      color: #ffffff; /* Explicitly set to white for visibility */
-    }
-    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; }
+    /* PALETTE & LEGEND */
+    .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; font-weight: 600; color: #ffffff; }
+    .legend-box { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
 
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px; width: 100%; }
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 15px; width: 100%; }
     .grid .cell { 
-      height: 50px; 
+      height: 40px; 
       display: flex; align-items: center; justify-content: center;
-      border-radius: 10px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 16px;
+      border-radius: 10px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 14px;
     }
 
     .cell.current, .legend-current { background: #2563eb !important; border-color: #1e40af; }
@@ -122,12 +114,23 @@
     /* FOOTER */
     footer {
       text-align: center;
-      padding: 25px;
+      padding: 15px;
       background: #020617;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 13px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* MEDIA QUERIES FOR SMALLER LAPTOPS */
+    @media (max-height: 800px) {
+      .quiz-container { height: calc(100vh - 130px); padding: 10px; gap: 15px; }
+      .section { padding: 20px; }
+      .opt { padding: 12px 20px; }
+      #questionText { font-size: 22px !important; }
+      .grid .cell { height: 35px; }
     }
   </style>
 </head>
@@ -171,7 +174,7 @@
     </section>
 
     <aside class="navigation-section section">
-      <h3 style="margin:0 0 20px 0; font-size: 20px; font-weight: 700; color: white;">Question Palette</h3>
+      <h3 style="margin:0 0 20px 0; font-size: 18px; font-weight: 700; color: white;">Question Palette</h3>
       <div class="palette-legend">
         <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
         <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
