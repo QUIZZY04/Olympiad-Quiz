@@ -6,7 +6,7 @@
   <title>Live Quiz - Olympiad Portal</title>
 
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -24,26 +24,25 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
 
-    /* TOP NAVIGATION LAYER (Above the bar) */
+    /* TOP UTILITY NAV - ABOVE THE BAR */
     .utility-nav {
-      background: #020617; /* Darker than main bar for contrast */
-      padding: 8px 40px;
+      background: #020617; 
+      padding: 12px 40px;
       display: flex;
       justify-content: flex-end;
-      gap: 20px;
+      gap: 30px;
       border-bottom: 1px solid var(--border);
     }
     .utility-nav a {
       color: var(--amber);
       text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 16px; /* Larger Font */
+      font-weight: 800; /* Bolder Font */
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: 0.2s;
+      letter-spacing: 0.8px;
     }
-    .utility-nav a:hover { filter: brightness(1.2); text-decoration: underline; }
-    .utility-nav .logout-link { color: var(--danger); cursor: pointer; }
+    .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
+    .utility-nav .logout-link { color: var(--danger) !important; cursor: pointer; }
 
     /* MAIN HEADER BAR */
     header.top-bar {
@@ -54,12 +53,12 @@
       display: flex; align-items: center; justify-content: space-between;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
-    .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
 
     #timerWrap {
-      padding: 6px 15px; border-radius: 8px;
+      padding: 8px 18px; border-radius: 10px;
       background: rgba(245, 158, 11, 0.1); color: var(--amber); 
-      border: 1px solid var(--amber); font-weight: 800; font-size: 1.1rem;
+      border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
     /* QUIZ LAYOUT */
@@ -68,23 +67,36 @@
     .question-section { flex: 3; }
     .navigation-section { flex: 1; padding: 25px; height: fit-content; }
 
-    /* OPTIONS - RIGID LEFT ALIGNMENT */
+    /* OPTIONS - FIXED LEFT ALIGNMENT */
     .options { display: grid; gap: 15px; margin-top: 25px; }
     .opt {
-      display: flex; align-items: center; justify-content: flex-start;
-      gap: 15px; padding: 18px 25px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: flex-start; /* Forces alignment to the left */
+      gap: 15px; 
+      padding: 18px 25px; 
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid var(--border); border-radius: 12px;
-      cursor: pointer; transition: 0.2s;
+      cursor: pointer; 
+      transition: 0.2s;
     }
     .opt:hover { border-color: var(--amber); background: rgba(245, 158, 11, 0.05); }
-    .opt input { accent-color: var(--amber); width: 22px; height: 22px; flex-shrink: 0; }
-    .opt span { font-size: 17px; color: #ffffff; text-align: left; }
+    .opt input { 
+      accent-color: var(--amber); 
+      width: 24px; 
+      height: 24px; 
+      flex-shrink: 0; 
+    }
+    .opt span { 
+      font-size: 18px; 
+      color: #ffffff; 
+      text-align: left; /* Ensures text starts immediately after the radio */
+    }
 
     /* ACTION BUTTONS */
-    .quiz-buttons { margin-top: 40px; display: flex; gap: 15px; }
-    .btn { padding: 15px 30px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; }
-    .btn-save { background: var(--amber); color: #000; font-size: 16px; }
+    .quiz-buttons { margin-top: 40px; display: flex; gap: 20px; }
+    .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 16px; }
+    .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
@@ -111,8 +123,8 @@
 
   <main class="quiz-container">
     <section class="question-section section">
-      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px;">QUESTION 1</div>
-      <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500;">Loading...</div>
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px; letter-spacing: 1px;">QUESTION 1</div>
+      <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500; line-height: 1.5;">Loading...</div>
       
       <div class="options" id="options"></div>
 
@@ -148,7 +160,6 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // EXIT WARNING
     let quizSubmitted = false;
     window.addEventListener('beforeunload', (e) => {
       if (!quizSubmitted) {
@@ -165,7 +176,6 @@
       }
     };
 
-    // QUIZ LOGIC
     let current = 0;
     let questions = [];
     let selectedAnswers = [];
