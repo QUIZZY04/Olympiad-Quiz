@@ -25,19 +25,24 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
 
-    /* Header Navigation */
+    /* Header Navigation - FIXED VISIBILITY */
     header.top-bar {
-      position:sticky; top:0; z-index:100;
-      background: rgba(30, 41, 59, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 15px 30px; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; 
+      top: 0; 
+      z-index: 1000;
+      background: #1e293b; /* Solid background for visibility */
+      border-bottom: 2px solid var(--border);
+      padding: 15px 40px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
-    .brand { font-size: 20px; font-weight: 800; color: var(--amber); }
+    .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
     #timerWrap {
-      padding: 10px 18px; border-radius: 10px;
+      padding: 10px 20px; border-radius: 12px;
       background: rgba(245, 158, 11, 0.15); color: var(--amber); 
-      border: 1px solid var(--amber); font-weight: 800; font-size: 1.1rem;
+      border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
     /* Main Layout */
@@ -50,23 +55,40 @@
     .progress-bar { width: 100%; height: 10px; background: var(--bg); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); margin: 15px 0 30px 0; }
     .progress-fill { height: 100%; width: 0%; background: var(--amber); transition: width .35s ease; }
     #questionNumber { color: var(--brand); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
-    #questionText { font-size: 22px; line-height: 1.6; font-weight: 500; margin-bottom: 30px; color: #ffffff; }
+    #questionText { font-size: 24px; line-height: 1.6; font-weight: 500; margin-bottom: 35px; color: #ffffff; }
 
-    /* Answer Options - FIXED VISIBILITY */
-    .options { display: grid; gap: 14px; }
+    /* Answer Options - FIXED LEFT ALIGNMENT */
+    .options { display: grid; gap: 15px; }
     .opt {
-      display: flex; align-items: center; gap: 15px;
-      padding: 18px 22px; background: rgba(15, 23, 42, 0.6);
-      border: 1px solid var(--border); border-radius: 14px;
-      cursor: pointer; transition: 0.2s;
+      display: flex; 
+      align-items: center; 
+      justify-content: flex-start; /* Ensure left alignment */
+      gap: 15px;
+      padding: 20px 25px; 
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border); 
+      border-radius: 15px;
+      cursor: pointer; 
+      transition: 0.2s;
     }
     .opt:hover { border-color: var(--amber); background: rgba(245, 158, 11, 0.1); }
-    .opt input { accent-color: var(--amber); width: 22px; height: 22px; flex: 0 0 auto; }
-    .opt span { font-size: 17px; color: #ffffff; font-weight: 400; } /* Forced white text */
+    .opt input { 
+      accent-color: var(--amber); 
+      width: 24px; 
+      height: 24px; 
+      flex-shrink: 0; /* Prevents radio from shrinking */
+      cursor: pointer;
+    }
+    .opt span { 
+      font-size: 18px; 
+      color: #ffffff; 
+      text-align: left; /* Forces text to the left */
+      flex-grow: 1;
+    }
 
     /* Footer Buttons */
-    .quiz-buttons { margin-top: 40px; display: flex; gap: 15px; align-items: center; }
-    .btn { padding: 16px 32px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 15px; border: none; transition: 0.3s; text-transform: uppercase; }
+    .quiz-buttons { margin-top: 50px; display: flex; gap: 20px; align-items: center; }
+    .btn { padding: 16px 35px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 16px; border: none; transition: 0.3s; text-transform: uppercase; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-save:hover { transform: translateY(-3px); filter: brightness(1.1); }
     .btn-prev { background: #334155; color: #ffffff; border: 1px solid var(--border); }
@@ -74,8 +96,8 @@
     .btn-finish { background: var(--danger); color: #ffffff; margin-left: auto; }
 
     /* Palette Grid */
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
-    .grid .cell { padding: 14px 0; text-align: center; border-radius: 10px; font-size: 15px; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 20px; }
+    .grid .cell { padding: 15px 0; text-align: center; border-radius: 10px; font-size: 16px; cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--muted); }
     .cell.current { border-color: var(--amber); color: var(--amber); font-weight: 800; background: rgba(245, 158, 11, 0.1); }
     .cell.answered { background: var(--accent) !important; color: #000 !important; border: none; font-weight: 800; }
     .cell.visited { border-color: var(--danger); color: var(--danger); }
@@ -86,20 +108,20 @@
 <body>
 
   <header class="top-bar">
-    <div class="brand">🎓 Olympiad Portal</div>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
   </header>
 
   <main class="quiz-container">
     <section class="question-section section">
       <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span style="color:var(--muted); font-weight:600;">Progress: <span id="answeredCount" style="color:var(--accent)">0</span> / <span id="totalCount">30</span></span>
+          <span style="color:var(--muted); font-weight:600;">Overall Progress: <span id="answeredCount" style="color:var(--accent)">0</span> / <span id="totalCount">30</span></span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
       <div id="questionArea">
         <div id="questionNumber">Question 1</div>
-        <div id="questionText">Loading...</div>
+        <div id="questionText">Loading Question...</div>
         <div class="options" id="options"></div>
       </div>
 
@@ -113,10 +135,10 @@
     <aside class="navigation-section section">
       <h3 style="margin:0 0 20px 0;">Question Palette</h3>
       <div class="grid" id="questionGrid"></div>
-      <div style="margin-top: 25px; font-size: 13px; color: var(--muted); display: grid; gap: 8px;">
-          <div style="display:flex; align-items:center; gap:10px;"><span style="width:12px; height:12px; border:1px solid var(--amber); background:rgba(245,158,11,0.1); border-radius:3px;"></span> Current Question</div>
-          <div style="display:flex; align-items:center; gap:10px;"><span style="width:12px; height:12px; background:var(--accent); border-radius:3px;"></span> Answered</div>
-          <div style="display:flex; align-items:center; gap:10px;"><span style="width:12px; height:12px; border:1px solid var(--danger); border-radius:3px;"></span> Visited / Unanswered</div>
+      <div style="margin-top: 30px; font-size: 14px; color: var(--muted); display: grid; gap: 10px;">
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:14px; height:14px; border:1px solid var(--amber); background:rgba(245,158,11,0.1); border-radius:4px;"></span> Current Question</div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:14px; height:14px; background:var(--accent); border-radius:4px;"></span> Answered</div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:14px; height:14px; border:1px solid var(--danger); border-radius:4px;"></span> Visited / Unanswered</div>
       </div>
     </aside>
   </main>
