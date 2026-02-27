@@ -61,25 +61,22 @@
       border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* QUIZ INFO HEADER (New) */
-    .quiz-info-header {
+    /* MINI QUIZ INFO (Above Progress Bar) */
+    .quiz-meta-info {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        background: rgba(56, 189, 248, 0.05);
-        padding: 12px 20px;
-        border-radius: 12px;
-        border: 1px solid rgba(56, 189, 248, 0.2);
-        margin-bottom: 20px;
+        margin-bottom: 6px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
     }
-    .info-item { display: flex; flex-direction: column; }
-    .info-label { font-size: 11px; text-transform: uppercase; color: var(--brand); font-weight: 800; letter-spacing: 1px; }
-    .info-value { font-size: 16px; font-weight: 700; color: #fff; text-transform: capitalize; }
+    .meta-subject { color: var(--brand); text-transform: uppercase; }
+    .meta-class { color: var(--amber); text-transform: uppercase; }
 
     /* PROGRESS BAR */
-    .progress-wrapper { margin-bottom: 20px; }
-    .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px; font-weight: 600; color: var(--muted); }
-    .progress-container { background: var(--border); border-radius: 20px; height: 8px; width: 100%; overflow: hidden; }
+    .progress-wrapper { margin-bottom: 30px; }
+    .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+    .progress-container { background: var(--border); border-radius: 20px; height: 6px; width: 100%; overflow: hidden; }
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
     /* QUIZ LAYOUT */
@@ -104,7 +101,6 @@
     /* BUTTONS */
     .quiz-buttons { margin-top: 40px; display: flex; gap: 20px; }
     .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 14px; transition: 0.2s; }
-    .btn:active { transform: scale(0.98); }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
@@ -142,6 +138,11 @@
   <main class="quiz-container">
     <section class="question-section section">
       
+      <div class="quiz-meta-info">
+        <span id="displaySubject" class="meta-subject">SUBJECT</span>
+        <span id="displayClass" class="meta-class">CLASS</span>
+      </div>
+
       <div class="progress-wrapper">
         <div class="progress-info">
           <span>Quiz Progress</span>
@@ -150,17 +151,6 @@
         <div class="progress-container">
           <div class="progress-fill" id="progressBar"></div>
         </div>
-      </div>
-
-      <div class="quiz-info-header">
-          <div class="info-item">
-              <span class="info-label">Current Subject</span>
-              <span id="displaySubject" class="info-value">Loading...</span>
-          </div>
-          <div class="info-item" style="text-align: right;">
-              <span class="info-label">Target Class</span>
-              <span id="displayClass" class="info-value">Loading...</span>
-          </div>
       </div>
 
       <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px; letter-spacing: 1px;">QUESTION 1</div>
@@ -212,11 +202,10 @@
     let visitedQuestions = [];
     let quizSubmitted = false;
 
-    // Load identifiers from LocalStorage
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
 
-    // Update the UI Header with Class/Subject names
+    // Set Meta labels
     document.getElementById("displaySubject").innerText = selectedSubject;
     document.getElementById("displayClass").innerText = selectedClass.replace("class", "Grade ");
 
