@@ -63,7 +63,7 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
-      overflow-y: auto; /* Internal scroll only */
+      overflow-y: auto;
     }
 
     .question-section { flex: 2.8; }
@@ -75,7 +75,7 @@
     .progress-container { background: var(--border); border-radius: 10px; height: 6px; overflow: hidden; }
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
-    /* OPTIONS */
+    /* OPTIONS & BUTTONS */
     .options { display: grid; gap: 8px; margin-top: 10px; margin-bottom: 10px; }
     .opt {
       display: flex; align-items: center; gap: 12px; padding: 10px 18px; 
@@ -86,12 +86,11 @@
     .opt span { font-size: 15px; color: #ffffff; text-align: left; }
     .opt input { accent-color: var(--amber); width: 18px; height: 18px; flex-shrink: 0; }
 
-    /* BUTTONS - LOCKED TO OPTIONS */
     .quiz-buttons { 
       display: flex; 
       gap: 10px; 
       padding-top: 15px;
-      margin-top: 20px; /* REMOVED AUTO: This keeps them near the options */
+      margin-top: 20px; 
       border-top: 1px solid var(--border);
     }
     .btn { padding: 10px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 11px; }
@@ -99,15 +98,24 @@
     .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE & LEGEND */
-    .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; font-weight: 600; color: #ffffff; }
-    .legend-box { width: 18px; height: 18px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
-
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 8px; }
+    /* PALETTE GRID */
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 8px; margin-bottom: 15px; }
     .grid .cell { 
       height: 34px; display: flex; align-items: center; justify-content: center;
       border-radius: 6px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 12px;
     }
+
+    /* HORIZONTAL LEGEND BELOW GRID */
+    .palette-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 600; color: #ffffff; }
+    .legend-box { width: 14px; height: 14px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: white; }
 
     /* SOLID COLORS */
     .cell.current, .legend-current { background: #2563eb !important; border-color: #1e40af; }
@@ -154,13 +162,15 @@
 
     <aside class="navigation-section section">
       <h3 style="margin:0 0 10px 0; font-size: 15px; color: white;">Question Palette</h3>
-      <div class="palette-legend">
-        <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
-        <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
-        <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
-        <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
-      </div>
+      
       <div class="grid" id="questionGrid"></div>
+
+      <div class="palette-legend">
+        <div class="legend-item"><div class="legend-box legend-current">1</div> Cur</div>
+        <div class="legend-item"><div class="legend-box legend-answered">1</div> Ans</div>
+        <div class="legend-item"><div class="legend-box legend-visited">1</div> Vis</div>
+        <div class="legend-item"><div class="legend-box legend-unseen">1</div> Uns</div>
+      </div>
     </aside>
   </main>
 
