@@ -18,7 +18,7 @@
       --accent: #22c55e;             
       --amber: #f59e0b;              
       --danger: #ef4444;
-      --unseen-grey: #cbd5e1; /* Basic Light Grey */
+      --unseen-grey: #cbd5e1;
     }
 
     *{box-sizing:border-box}
@@ -61,13 +61,19 @@
       border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
+    /* PROGRESS BAR */
+    .progress-wrapper { margin-bottom: 25px; }
+    .progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--muted); }
+    .progress-container { background: var(--border); border-radius: 20px; height: 10px; width: 100%; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
+
     /* QUIZ LAYOUT */
     .quiz-container { display: flex; gap: 24px; padding: 30px; max-width: 1500px; margin: 0 auto; }
     .section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
     .question-section { flex: 3; }
     .navigation-section { flex: 1; padding: 25px; height: fit-content; }
 
-    /* OPTIONS - LEFT ALIGNMENT */
+    /* OPTIONS */
     .options { display: grid; gap: 15px; margin-top: 25px; }
     .opt {
       display: flex; align-items: center; justify-content: flex-start; 
@@ -76,24 +82,25 @@
       border: 1px solid var(--border); border-radius: 12px;
       cursor: pointer; transition: 0.2s;
     }
-    .opt input { accent-color: var(--amber); width: 24px; height: 24px; flex-shrink: 0; }
-    .opt span { font-size: 18px; color: #ffffff; text-align: left; }
+    .opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
+    .opt input { accent-color: var(--amber); width: 22px; height: 22px; flex-shrink: 0; cursor: pointer; }
+    .opt span { font-size: 18px; color: #ffffff; }
 
     /* BUTTONS */
     .quiz-buttons { margin-top: 40px; display: flex; gap: 20px; }
-    .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 16px; }
+    .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 14px; transition: 0.2s; }
+    .btn:active { transform: scale(0.98); }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE & LEGEND COLORS */
+    /* PALETTE */
     .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
     .grid .cell { 
       padding: 12px 0; text-align: center; border-radius: 8px; border: 1px solid var(--border); 
-      cursor: pointer; font-weight: 700;
+      cursor: pointer; font-weight: 700; transition: 0.2s;
     }
 
-    /* SOLID BASIC COLORS */
     .cell.current, .legend-current { background: #2563eb !important; color: #ffffff !important; border-color: #1e40af !important; }
     .cell.answered, .legend-answered { background: #16a34a !important; color: #ffffff !important; border-color: #15803d !important; }
     .cell.visited, .legend-visited { background: #dc2626 !important; color: #ffffff !important; border-color: #991b1b !important; }
@@ -119,9 +126,21 @@
 
   <main class="quiz-container">
     <section class="question-section section">
-      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px;">QUESTION 1</div>
-      <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500;">Loading...</div>
+      <div class="progress-wrapper">
+        <div class="progress-info">
+          <span>Quiz Progress</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px; letter-spacing: 1px;">QUESTION 1</div>
+      <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500; line-height: 1.4;">Loading...</div>
+      
       <div class="options" id="options"></div>
+
       <div class="quiz-buttons">
         <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
         <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
@@ -219,7 +238,11 @@
       updateGrid();
     };
 
-    window.saveAnswer = (v) => { selectedAnswers[current] = v; };
+    window.saveAnswer = (v) => { 
+        selectedAnswers[current] = v; 
+        updateGrid(); // Trigger progress bar update immediately on selection
+    };
+    
     window.nextQuestion = () => { if (current < questions.length - 1) { current++; loadQuestion(); } };
     window.prevQuestion = () => { if (current > 0) { current--; loadQuestion(); } };
     window.jumpTo = (i) => { current = i; loadQuestion(); };
@@ -231,6 +254,7 @@
     }
 
     function updateGrid() {
+      let answeredCount = 0;
       for (let i = 0; i < questions.length; i++) {
         const el = document.getElementById("q" + i);
         el.className = 'cell';
@@ -238,7 +262,14 @@
         else if (selectedAnswers[i] !== null) el.classList.add('answered');
         else if (visitedQuestions[i]) el.classList.add('visited');
         else el.classList.add('unseen');
+
+        if(selectedAnswers[i] !== null) answeredCount++;
       }
+
+      // Update Progress Bar logic
+      const progressPercent = Math.round((answeredCount / questions.length) * 100);
+      document.getElementById("progressBar").style.width = progressPercent + "%";
+      document.getElementById("progressPercent").innerText = progressPercent + "%";
     }
 
     let totalTime = 1800;
