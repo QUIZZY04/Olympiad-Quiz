@@ -4,89 +4,147 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quiz</title>
+
+  <!-- (Optional) keep if you already have a global stylesheet -->
   <link rel="stylesheet" href="style.css" />
+  <!-- Clean, readable font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
   <style>
     :root{
-      --bg:#f7f9fc;                 /* page background */
-      --surface:#ffffff;             /* card */
-      --text:#101828;                /* primary text (slate-900) */
-      --muted:#667085;               /* secondary text */
-      --border:#e4e7ec;              /* soft border */
-      --brand:#2563eb;               /* blue-600 */
-      --brand-700:#1d4ed8;
-      --accent:#16a34a;              /* green-600 */
-      --amber:#f59e0b;               /* amber-500 */
-      --danger:#dc2626;              /* red-600 */
-      --chip:#eef2ff;                /* indigo-50 */
-      --shadow:0 8px 24px rgba(16,24,40,.08);
+      /* Darker, high-contrast light theme */
+      --bg:#eef1f6;                 /* page background (darker than before) */
+      --surface:#ffffff;            /* card */
+      --text:#0f172a;               /* primary text (deep slate) */
+      --muted:#475569;              /* secondary text (slate-600) */
+      --border:#cbd5e1;             /* stronger border for contrast */
+      --brand:#1e40af;              /* blue-800 */
+      --brand-700:#1d4ed8;          /* blue-700 (hover) */
+      --accent:#15803d;             /* green-700 */
+      --amber:#d97706;              /* amber-600 */
+      --danger:#b91c1c;             /* red-700 */
+      --chip:#e2e8f0;               /* slate-200 */
+      --shadow:0 10px 28px rgba(15, 23, 42, 0.12);
+      --chip-text:#0f172a;
+      --soft-hover:#e7edf7;         /* subtle hover bg for nav & options */
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{ margin:0; font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--text); background:var(--bg); }
+    body{
+      margin:0; font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text); background:var(--bg);
+    }
 
     /* Header */
     header.top-bar{
-      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.9);
-      backdrop-filter:saturate(180%) blur(6px); border-bottom:1px solid var(--border);
-      padding:10px 20px; display:flex; align-items:center; gap:16px;
+      position:sticky; top:0; z-index:20;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(6px);
+      border-bottom:1px solid var(--border);
+      padding:12px 20px; display:flex; align-items:center; gap:16px;
     }
     .brand{ display:flex; align-items:center; gap:10px; font-weight:700; color:var(--text); }
-    .brand .badge{ font-size:12px; padding:4px 8px; border-radius:999px; background:var(--chip); color:#3730a3; border:1px solid #e0e7ff }
+    .brand .badge{
+      font-size:12px; padding:4px 8px; border-radius:999px;
+      background:var(--chip); color:var(--chip-text); border:1px solid var(--border);
+    }
     nav.nav{ margin-left:auto; display:flex; align-items:center; gap:6px }
     .nav a, .nav button{
-      appearance:none; background:transparent; color:var(--text); border:1px solid transparent;
-      padding:8px 12px; border-radius:8px; cursor:pointer; text-decoration:none; font-weight:500;
+      appearance:none; background:transparent; color:var(--text);
+      border:1px solid transparent; padding:8px 12px; border-radius:8px;
+      cursor:pointer; text-decoration:none; font-weight:500;
     }
-    .nav a:hover{ background:#eff2f7; border-color:var(--border) }
-    .nav .logout-btn:hover{ background:#ffecec; border-color:#ffd1d1 }
-    #timerWrap{ margin-left:8px; padding:6px 10px; border-radius:8px; background:#fff7ed; color:#9a3412; border:1px solid #ffedd5; font-weight:700 }
+    .nav a:hover{ background:var(--soft-hover); border-color:var(--border) }
+    .nav .logout-btn:hover{ background:#fde2e2; border-color:#fecaca }
+    #timerWrap{
+      margin-left:8px; padding:6px 10px; border-radius:8px;
+      background:#fff7ed; color:#9a3412; border:1px solid #fed7aa; font-weight:700;
+    }
 
     /* Layout */
-    .quiz-container{ display:flex; gap:16px; padding:20px; height:calc(100vh - 60px); }
-    .section{ background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); }
+    .quiz-container{ display:flex; gap:16px; padding:20px; height:calc(100vh - 64px); }
+    .section{
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:14px; box-shadow:var(--shadow);
+    }
     .question-section{ flex:3; padding:28px; overflow:auto }
     .navigation-section{ flex:1; padding:20px; overflow:auto }
 
-    .progress-wrapper{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px; margin-bottom:18px; }
+    .progress-wrapper{
+      display:grid; grid-template-columns:1fr auto; align-items:center;
+      gap:12px; margin-bottom:18px;
+    }
     .progress-info{ font-size:14px; color:var(--muted) }
-    .progress-bar{ width:100%; height:10px; background:#f2f4f7; border-radius:999px; overflow:hidden; border:1px solid var(--border); }
-    .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--brand),#22c55e); transition:width .35s ease; }
+    .progress-bar{
+      width:100%; height:10px; background:#e2e8f0; border-radius:999px;
+      overflow:hidden; border:1px solid var(--border);
+    }
+    .progress-fill{
+      height:100%; width:0%;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      transition:width .35s ease;
+    }
 
-    #questionNumber{ margin:0 0 6px 0; font-size:18px; color:#344054 }
+    #questionNumber{ margin:0 0 6px 0; font-size:18px; color:#1f2937 }
     #questionText{ margin:0 0 12px 0; font-size:20px; line-height:1.55 }
 
+    /* Options – radio left + left-aligned answer text */
     .options{ display:grid; gap:10px; margin-top:12px }
     .opt{
-      display:flex; align-items:center; gap:12px; padding:12px 14px; background:#ffffff;
-      border:1px solid var(--border); border-radius:10px; cursor:pointer; transition:.2s;
+      display:flex; align-items:center; gap:12px;
+      padding:12px 14px; background:#ffffff;
+      border:1px solid var(--border); border-radius:10px;
+      cursor:pointer; transition:.2s;
     }
-    .opt:hover{ background:#f8fafc; border-color:#d0d5dd }
-    .opt input{ accent-color:var(--brand); width:18px; height:18px }
+    .opt:hover{ background:var(--soft-hover); border-color:#b6c2d1 }
+    .opt input{
+      accent-color:var(--brand);
+      width:18px; height:18px; margin:0;
+      flex:0 0 auto; /* keep radio fixed on the left */
+    }
+    .opt span{
+      flex:1 1 auto;           /* text takes the remaining width */
+      text-align:left;         /* ensure left alignment */
+      color:var(--text);
+      line-height:1.45;
+      word-break:break-word;   /* wrap long options nicely */
+    }
 
+    /* Action buttons */
     .quiz-buttons{ margin-top:20px; display:flex; flex-wrap:wrap; gap:10px }
     .btn{ appearance:none; border:none; padding:10px 16px; border-radius:10px; font-weight:600; cursor:pointer }
     .btn-primary{ background:var(--brand); color:#fff }
     .btn-primary:hover{ background:var(--brand-700) }
     .btn-secondary{ background:#ffffff; color:var(--text); border:1px solid var(--border) }
-    .btn-secondary:hover{ background:#f8fafc }
-    .btn-submit{ background:linear-gradient(135deg,#facc15,#f59e0b); color:#111; border:1px solid #f5d565 }
-    .btn-submit:hover{ filter:brightness(1.05) }
+    .btn-secondary:hover{ background:#f1f5f9 }
+    .btn-submit{
+      background:linear-gradient(135deg,#f59e0b,#d97706);
+      color:#111; border:1px solid #f2b857
+    }
+    .btn-submit:hover{ filter:brightness(1.03) }
 
-    .navigation-section h3{ margin:0 0 10px 0; font-size:16px; color:#344054 }
+    /* Right palette */
+    .navigation-section h3{ margin:0 0 10px 0; font-size:16px; color:#1f2937 }
     .legend{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; font-size:12px; color:var(--muted) }
-    .chip{ padding:4px 8px; border-radius:999px; background:#f2f4f7; border:1px solid var(--border)}
+    .chip{
+      padding:4px 8px; border-radius:999px; background:#e2e8f0; border:1px solid var(--border);
+      color:#0f172a;
+    }
 
     .grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:12px }
-    .grid .cell{ padding:10px 0; text-align:center; border-radius:8px; font-size:14px; cursor:pointer; border:1px solid var(--border); transition:.2s }
-    .cell.current{ background:#dbeafe; color:#1e40af; border-color:#bfdbfe; font-weight:700 }
-    .cell.answered{ background:#dcfce7; color:#065f46; border-color:#bbf7d0; font-weight:700 }
-    .cell.visited{ background:#fee2e2; color:#991b1b; border-color:#fecaca }
-    .cell.unseen{ background:#f8fafc; color:#344054 }
+    .grid .cell{
+      padding:10px 0; text-align:center; border-radius:8px; font-size:14px; cursor:pointer;
+      border:1px solid var(--border); transition:.2s
+    }
+    .cell.current{  background:#c7d2fe; color:#1e3a8a; border-color:#a5b4fc; font-weight:700 }
+    .cell.answered{ background:#bbf7d0; color:#065f46; border-color:#86efac; font-weight:700 }
+    .cell.visited{  background:#fecaca; color:#7f1d1d; border-color:#fca5a5 }
+    .cell.unseen{   background:#f8fafc; color:#0f172a }
 
     @media (max-width: 1024px){
       .quiz-container{ flex-direction:column; height:auto }
@@ -164,6 +222,7 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
+    // --- State ---
     let current = 0;
     let score = 0;
     let questions = [];
@@ -178,6 +237,7 @@
     let selectedAnswers = [];
     let visitedQuestions = [];
 
+    /* ================= LOAD QUESTIONS (Random + Max 30) ================= */
     async function loadQuestionsHybrid() {
       try {
         const q = query(
@@ -205,26 +265,37 @@
       loadQuestion();
     }
 
+    /* ================= AUTH ================= */
     onAuthStateChanged(auth, async (user)=>{
-      if(!user){ window.location.replace("login.html"); return; }
+      if(!user){
+        window.location.replace("login.html");
+        return;
+      }
       await loadQuestionsHybrid();
     });
 
+    /* ================= TIMER ================= */
     let totalTime = 1800;
     const timerInterval = setInterval(function(){
       const minutes = Math.floor(totalTime/60);
       const seconds = totalTime % 60;
       document.getElementById("timer").innerText = `${minutes}:${seconds<10?"0":""}${seconds}`;
       totalTime--;
-      if(totalTime < 0){ clearInterval(timerInterval); submitQuiz(); }
+      if(totalTime < 0){
+        clearInterval(timerInterval);
+        submitQuiz();
+      }
     },1000);
 
-    // Warn before leaving during quiz
+    /* ================= LEAVE WARNING ================= */
     window.addEventListener('beforeunload', (e) => {
-      if (!quizSubmitted) { e.preventDefault(); e.returnValue = ''; }
+      if (!quizSubmitted) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
     });
 
-    // Guard nav links & logout
+    // Guard navigation links & logout
     const nav = document.getElementById('mainNav');
     nav.addEventListener('click', (e) => {
       const target = e.target.closest('a,button');
@@ -248,6 +319,7 @@
       }
     });
 
+    /* ================= QUIZ LOGIC ================= */
     function loadQuestion(){
       visitedQuestions[current] = true;
       const q = questions[current];
@@ -270,13 +342,27 @@
     window.nextQuestion = function(){ if(current < questions.length-1){ current++; loadQuestion(); } }
     window.prevQuestion = function(){ if(current > 0){ current--; loadQuestion(); } }
 
-    window.confirmSubmit = function(){ if(confirm("Are you sure you want to submit?")){ submitQuiz(); } }
+    window.confirmSubmit = function(){
+      if(confirm("Are you sure you want to submit?")){
+        submitQuiz();
+      }
+    }
 
     function submitQuiz() {
       quizSubmitted = true;
       score = 0;
-      for (let i = 0; i < questions.length; i++) { if (selectedAnswers[i] === questions[i].a) { score++; } }
-      const resultData = { score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions, date: new Date().toLocaleString() };
+      for (let i = 0; i < questions.length; i++) {
+        if (selectedAnswers[i] === questions[i].a) { score++; }
+      }
+      const resultData = {
+        score,
+        total: questions.length,
+        subject: selectedSubject,
+        class: selectedClass,
+        answers: selectedAnswers,
+        questions,
+        date: new Date().toLocaleString()
+      };
       localStorage.setItem("quizResult", JSON.stringify(resultData));
       window.location.href = "result.html";
     }
