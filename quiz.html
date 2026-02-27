@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <style>
+    :root{
+      --bg:#f7f9fc;                 /* page background */
+      --surface:#ffffff;             /* card */
+      --text:#101828;                /* primary text (slate-900) */
+      --muted:#667085;               /* secondary text */
+      --border:#e4e7ec;              /* soft border */
+      --brand:#2563eb;               /* blue-600 */
+      --brand-700:#1d4ed8;
+      --accent:#16a34a;              /* green-600 */
+      --amber:#f59e0b;               /* amber-500 */
+      --danger:#dc2626;              /* red-600 */
+      --chip:#eef2ff;                /* indigo-50 */
+      --shadow:0 8px 24px rgba(16,24,40,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{ margin:0; font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--text); background:var(--bg); }
+
+    /* Header */
+    header.top-bar{
+      position:sticky; top:0; z-index:20; background:rgba(255,255,255,.9);
+      backdrop-filter:saturate(180%) blur(6px); border-bottom:1px solid var(--border);
+      padding:10px 20px; display:flex; align-items:center; gap:16px;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:700; color:var(--text); }
+    .brand .badge{ font-size:12px; padding:4px 8px; border-radius:999px; background:var(--chip); color:#3730a3; border:1px solid #e0e7ff }
+    nav.nav{ margin-left:auto; display:flex; align-items:center; gap:6px }
+    .nav a, .nav button{
+      appearance:none; background:transparent; color:var(--text); border:1px solid transparent;
+      padding:8px 12px; border-radius:8px; cursor:pointer; text-decoration:none; font-weight:500;
+    }
+    .nav a:hover{ background:#eff2f7; border-color:var(--border) }
+    .nav .logout-btn:hover{ background:#ffecec; border-color:#ffd1d1 }
+    #timerWrap{ margin-left:8px; padding:6px 10px; border-radius:8px; background:#fff7ed; color:#9a3412; border:1px solid #ffedd5; font-weight:700 }
+
+    /* Layout */
+    .quiz-container{ display:flex; gap:16px; padding:20px; height:calc(100vh - 60px); }
+    .section{ background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); }
+    .question-section{ flex:3; padding:28px; overflow:auto }
+    .navigation-section{ flex:1; padding:20px; overflow:auto }
+
+    .progress-wrapper{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px; margin-bottom:18px; }
+    .progress-info{ font-size:14px; color:var(--muted) }
+    .progress-bar{ width:100%; height:10px; background:#f2f4f7; border-radius:999px; overflow:hidden; border:1px solid var(--border); }
+    .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--brand),#22c55e); transition:width .35s ease; }
+
+    #questionNumber{ margin:0 0 6px 0; font-size:18px; color:#344054 }
+    #questionText{ margin:0 0 12px 0; font-size:20px; line-height:1.55 }
+
+    .options{ display:grid; gap:10px; margin-top:12px }
+    .opt{
+      display:flex; align-items:center; gap:12px; padding:12px 14px; background:#ffffff;
+      border:1px solid var(--border); border-radius:10px; cursor:pointer; transition:.2s;
+    }
+    .opt:hover{ background:#f8fafc; border-color:#d0d5dd }
+    .opt input{ accent-color:var(--brand); width:18px; height:18px }
+
+    .quiz-buttons{ margin-top:20px; display:flex; flex-wrap:wrap; gap:10px }
+    .btn{ appearance:none; border:none; padding:10px 16px; border-radius:10px; font-weight:600; cursor:pointer }
+    .btn-primary{ background:var(--brand); color:#fff }
+    .btn-primary:hover{ background:var(--brand-700) }
+    .btn-secondary{ background:#ffffff; color:var(--text); border:1px solid var(--border) }
+    .btn-secondary:hover{ background:#f8fafc }
+    .btn-submit{ background:linear-gradient(135deg,#facc15,#f59e0b); color:#111; border:1px solid #f5d565 }
+    .btn-submit:hover{ filter:brightness(1.05) }
+
+    .navigation-section h3{ margin:0 0 10px 0; font-size:16px; color:#344054 }
+    .legend{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; font-size:12px; color:var(--muted) }
+    .chip{ padding:4px 8px; border-radius:999px; background:#f2f4f7; border:1px solid var(--border)}
+
+    .grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:12px }
+    .grid .cell{ padding:10px 0; text-align:center; border-radius:8px; font-size:14px; cursor:pointer; border:1px solid var(--border); transition:.2s }
+    .cell.current{ background:#dbeafe; color:#1e40af; border-color:#bfdbfe; font-weight:700 }
+    .cell.answered{ background:#dcfce7; color:#065f46; border-color:#bbf7d0; font-weight:700 }
+    .cell.visited{ background:#fee2e2; color:#991b1b; border-color:#fecaca }
+    .cell.unseen{ background:#f8fafc; color:#344054 }
+
+    @media (max-width: 1024px){
+      .quiz-container{ flex-direction:column; height:auto }
+      .navigation-section{ order:-1 }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand">
+      <span>Olympiad Portal</span>
+      <span class="badge" id="subjectTitle"></span>
+    </div>
+    <nav class="nav" id="mainNav">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+      <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+      <button class="logout-btn nav-link" id="logoutBtn" title="Logout">Logout</button>
+      <div id="timerWrap">Time Left: <span id="timer">30:00</span></div>
+    </nav>
+  </header>
+
+  <main class="quiz-container">
+    <section class="question-section section">
+      <div class="progress-wrapper">
+        <div class="progress-info">
+          Answered: <span id="answeredCount">0</span> / <span id="totalCount"></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <h3 id="questionNumber"></h3>
+      <p id="questionText"></p>
+
+      <div class="options" id="options"></div>
+
+      <div class="quiz-buttons">
+        <button class="btn btn-secondary" onclick="prevQuestion()">Previous</button>
+        <button class="btn btn-primary" onclick="nextQuestion()">Next</button>
+        <button class="btn btn-submit" onclick="confirmSubmit()">Submit</button>
+      </div>
+    </section>
+
+    <aside class="navigation-section section">
+      <h3>Question Palette</h3>
+      <div class="legend">
+        <span class="chip">Current</span>
+        <span class="chip">Answered</span>
+        <span class="chip">Visited</span>
+        <span class="chip">Unseen</span>
+      </div>
+      <div class="grid" id="questionGrid"></div>
+    </aside>
+  </main>
+
+  <script src="questions.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+      authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+      projectId: "olympiad-portal-d2a5e",
+      storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+      messagingSenderId: "341855557503",
+      appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    let current = 0;
+    let score = 0;
+    let questions = [];
+    let quizSubmitted = false;
+
+    const selectedClass = localStorage.getItem("selectedClass") || "class4";
+    const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
+
+    const subjectTitleEl = document.getElementById("subjectTitle");
+    subjectTitleEl.textContent = `${selectedClass.toUpperCase()} • ${selectedSubject.toUpperCase()}`;
+
+    let selectedAnswers = [];
+    let visitedQuestions = [];
+
+    async function loadQuestionsHybrid() {
+      try {
+        const q = query(
+          collection(db, "questions"),
+          where("class", "==", selectedClass),
+          where("subject", "==", selectedSubject)
+        );
+        const snapshot = await getDocs(q);
+        if (!snapshot.empty) {
+          let allQuestions = snapshot.docs.map(doc => doc.data());
+          allQuestions.sort(() => Math.random() - 0.5);
+          questions = allQuestions.slice(0, 30);
+        } else {
+          questions = questionsData[selectedClass][selectedSubject];
+          questions.sort(() => Math.random() - 0.5);
+        }
+      } catch (error) {
+        questions = questionsData[selectedClass][selectedSubject];
+        questions.sort(() => Math.random() - 0.5);
+      }
+      selectedAnswers = new Array(questions.length).fill(null);
+      visitedQuestions = new Array(questions.length).fill(false);
+      document.getElementById("totalCount").innerText = questions.length;
+      generateGrid();
+      loadQuestion();
+    }
+
+    onAuthStateChanged(auth, async (user)=>{
+      if(!user){ window.location.replace("login.html"); return; }
+      await loadQuestionsHybrid();
+    });
+
+    let totalTime = 1800;
+    const timerInterval = setInterval(function(){
+      const minutes = Math.floor(totalTime/60);
+      const seconds = totalTime % 60;
+      document.getElementById("timer").innerText = `${minutes}:${seconds<10?"0":""}${seconds}`;
+      totalTime--;
+      if(totalTime < 0){ clearInterval(timerInterval); submitQuiz(); }
+    },1000);
+
+    // Warn before leaving during quiz
+    window.addEventListener('beforeunload', (e) => {
+      if (!quizSubmitted) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    // Guard nav links & logout
+    const nav = document.getElementById('mainNav');
+    nav.addEventListener('click', (e) => {
+      const target = e.target.closest('a,button');
+      if(!target) return;
+
+      if (target.id === 'logoutBtn') {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout? Your current quiz progress may be lost.')) {
+          signOut(auth).then(()=>{ window.location.replace('login.html'); }).catch(console.error);
+        }
+        return;
+      }
+      if (target.tagName === 'A') {
+        const href = target.getAttribute('href');
+        if (href && !quizSubmitted) {
+          e.preventDefault();
+          if (confirm('Leave this quiz and go to another page? Your current progress may be lost.')) {
+            window.location.href = href;
+          }
+        }
+      }
+    });
+
+    function loadQuestion(){
+      visitedQuestions[current] = true;
+      const q = questions[current];
+      document.getElementById("questionNumber").innerText = `Question ${current+1} of ${questions.length}`;
+      document.getElementById("questionText").innerHTML = q.q;
+
+      let optionsHTML = '';
+      q.o.forEach((opt,i)=>{
+        optionsHTML += `
+          <label class="opt">
+            <input type="radio" name="option" value="${i}" ${selectedAnswers[current]===i ? "checked":""} onchange="saveAnswer(${i})" />
+            <span>${opt}</span>
+          </label>`;
+      });
+      document.getElementById("options").innerHTML = optionsHTML;
+      updateGrid();
+      updateProgress();
+    }
+    window.saveAnswer = function(value){ selectedAnswers[current] = value; }
+    window.nextQuestion = function(){ if(current < questions.length-1){ current++; loadQuestion(); } }
+    window.prevQuestion = function(){ if(current > 0){ current--; loadQuestion(); } }
+
+    window.confirmSubmit = function(){ if(confirm("Are you sure you want to submit?")){ submitQuiz(); } }
+
+    function submitQuiz() {
+      quizSubmitted = true;
+      score = 0;
+      for (let i = 0; i < questions.length; i++) { if (selectedAnswers[i] === questions[i].a) { score++; } }
+      const resultData = { score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions, date: new Date().toLocaleString() };
+      localStorage.setItem("quizResult", JSON.stringify(resultData));
+      window.location.href = "result.html";
+    }
+
+    function generateGrid(){
+      let gridHTML = '';
+      for(let i=0;i<questions.length;i++){
+        gridHTML += `<div class="cell unseen" onclick="jumpTo(${i})" id="q${i}">${i+1}</div>`;
+      }
+      document.getElementById("questionGrid").innerHTML = gridHTML;
+    }
+    window.jumpTo = function(index){ current = index; loadQuestion(); }
+
+    function updateProgress(){
+      const answered = selectedAnswers.filter(a => a !== null).length;
+      document.getElementById("answeredCount").innerText = answered;
+      const percentage = (answered / questions.length) * 100;
+      document.getElementById("progressFill").style.width = percentage + "%";
+    }
+
+    function updateGrid(){
+      for(let i=0;i<questions.length;i++){
+        const cell = document.getElementById("q"+i);
+        cell.classList.remove('current','answered','visited','unseen');
+        if(i === current){ cell.classList.add('current'); }
+        else if(selectedAnswers[i] !== null){ cell.classList.add('answered'); }
+        else if(visitedQuestions[i]){ cell.classList.add('visited'); }
+        else{ cell.classList.add('unseen'); }
+      }
+    }
+  </script>
+</body>
+</html>
