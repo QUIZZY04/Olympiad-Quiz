@@ -24,7 +24,7 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
 
-    /* FIXED NAVIGATION BAR */
+    /* HEADER NAVIGATION */
     header.top-bar {
       position: sticky; top: 0; z-index: 1000;
       background: #1e293b; 
@@ -32,35 +32,62 @@
       padding: 10px 40px; 
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
-    .nav-links a { color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 600; }
-    .nav-links a:hover { color: var(--amber); }
+    .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
 
-    .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    /* RIGHT SIDE HEADER CONTAINER */
+    .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    
+    /* NAVIGATION LINKS - AMBER COLOR */
+    .nav-links { display: flex; gap: 15px; }
+    .nav-links a { 
+        color: var(--amber); 
+        text-decoration: none; 
+        font-size: 13px; 
+        font-weight: 700; 
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .nav-links a:hover { filter: brightness(1.2); text-decoration: underline; }
+    .logout-link { color: var(--danger) !important; cursor: pointer; }
+
     #timerWrap {
-      padding: 8px 15px; border-radius: 10px;
-      background: rgba(245, 158, 11, 0.15); color: var(--amber); 
-      border: 1px solid var(--amber); font-weight: 800;
+      padding: 6px 15px; border-radius: 8px;
+      background: rgba(245, 158, 11, 0.1); color: var(--amber); 
+      border: 1px solid var(--amber); font-weight: 800; font-size: 1rem;
     }
 
     /* QUIZ LAYOUT */
     .quiz-container { display: flex; gap: 24px; padding: 30px; max-width: 1500px; margin: 0 auto; }
     .section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
     .question-section { flex: 3; }
-    .navigation-section { flex: 1; padding: 25px; }
+    .navigation-section { flex: 1; padding: 25px; height: fit-content; }
 
-    /* OPTIONS - ALIGNED LEFT */
+    /* OPTIONS - RIGID LEFT ALIGNMENT */
     .options { display: grid; gap: 15px; margin-top: 25px; }
     .opt {
-      display: flex; align-items: center; justify-content: flex-start;
-      gap: 15px; padding: 18px 25px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: flex-start; /* Keeps items at the start of the container */
+      text-align: left; /* Ensures text starts from the left */
+      gap: 15px; 
+      padding: 18px 25px; 
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid var(--border); border-radius: 12px;
-      cursor: pointer; transition: 0.2s;
+      cursor: pointer; 
+      transition: 0.2s;
     }
-    .opt:hover { border-color: var(--amber); }
-    .opt input { accent-color: var(--amber); width: 22px; height: 22px; flex-shrink: 0; }
-    .opt span { font-size: 17px; color: #ffffff; text-align: left; }
+    .opt:hover { border-color: var(--amber); background: rgba(245, 158, 11, 0.05); }
+    .opt input { 
+      accent-color: var(--amber); 
+      width: 22px; 
+      height: 22px; 
+      flex-shrink: 0; /* Prevents radio button from squeezing */
+    }
+    .opt span { 
+      font-size: 17px; 
+      color: #ffffff; 
+      width: 100%; /* Allows text to occupy available space */
+    }
 
     /* ACTION BUTTONS */
     .quiz-buttons { margin-top: 40px; display: flex; gap: 15px; }
@@ -81,14 +108,15 @@
   <header class="top-bar">
     <a href="index.html" class="brand">🎓 Olympiad Portal</a>
     
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="leaderboard.html">Leaderboard</a>
-        <button onclick="logout()" style="background:var(--danger); color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; font-weight:bold;">Logout</button>
+    <div class="header-right">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a onclick="logout()" class="logout-link">Logout</a>
+        </div>
+        <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
     </div>
-
-    <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
   </header>
 
   <main class="quiz-container">
@@ -117,7 +145,6 @@
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // --- FIREBASE CONFIG (RESTORED) ---
     const firebaseConfig = {
       apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
       authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
@@ -131,12 +158,11 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // --- LEAVING QUIZ WARNING ---
     let quizSubmitted = false;
     window.addEventListener('beforeunload', (e) => {
       if (!quizSubmitted) {
         e.preventDefault();
-        e.returnValue = ''; // Standard browser prompt
+        e.returnValue = ''; 
       }
     });
 
@@ -148,11 +174,9 @@
       }
     };
 
-    // --- QUIZ LOGIC (UNCHANGED) ---
     let current = 0;
     let questions = [];
     let selectedAnswers = [];
-    let visitedQuestions = [];
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
 
@@ -169,7 +193,6 @@
         questions = questionsData[selectedClass][selectedSubject].sort(() => Math.random() - 0.5);
       }
       selectedAnswers = new Array(questions.length).fill(null);
-      visitedQuestions = new Array(questions.length).fill(false);
       generateGrid();
       loadQuestion();
     }
@@ -180,7 +203,6 @@
     });
 
     window.loadQuestion = function() {
-      visitedQuestions[current] = true;
       const q = questions[current];
       document.getElementById("questionNumber").innerText = `QUESTION ${current + 1}`;
       document.getElementById("questionText").innerHTML = q.q;
