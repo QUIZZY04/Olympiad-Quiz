@@ -45,23 +45,32 @@
       color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* QUIZ LAYOUT - EQUAL HEIGHT LOGIC */
+    /* QUIZ LAYOUT - MATCHED HEIGHT LOGIC */
     .quiz-container { 
-      display: flex; align-items: stretch; /* Forces equal height */
-      gap: 24px; padding: 30px; max-width: 1500px; margin: 0 auto; 
+      display: flex; 
+      align-items: stretch; /* Forces both boxes to have same height */
+      gap: 24px; 
+      padding: 30px; 
+      max-width: 1500px; 
+      margin: 0 auto; 
     }
 
     .section { 
-      background: var(--surface); border: 1px solid var(--border); 
-      border-radius: 20px; padding: 40px; display: flex; flex-direction: column;
+      background: var(--surface); 
+      border: 1px solid var(--border); 
+      border-radius: 20px; 
+      padding: 40px;
+      min-height: 500px; /* Ensures a consistent base height */
     }
 
-    .question-section { flex: 3; }
+    .question-section { flex: 3; display: flex; flex-direction: column; }
 
-    /* Aside/Palette Section */
+    /* Palette Section - No grid stretching */
     .navigation-section { 
-      flex: 1; padding: 25px; 
-      max-height: 100%; /* Constraints it to container */
+      flex: 1; 
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Keeps content at the top */
     }
 
     /* MINI QUIZ INFO */
@@ -76,7 +85,7 @@
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
     /* OPTIONS */
-    .options { display: grid; gap: 12px; margin-top: 20px; flex-grow: 1; }
+    .options { display: grid; gap: 12px; margin-top: 20px; margin-bottom: 30px; }
     .opt {
       display: flex; align-items: center; gap: 15px; padding: 15px 25px; 
       background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
@@ -86,18 +95,30 @@
     .opt span { font-size: 17px; color: #ffffff; }
 
     /* BUTTONS */
-    .quiz-buttons { margin-top: 30px; display: flex; gap: 20px; }
+    .quiz-buttons { margin-top: auto; display: flex; gap: 20px; padding-top: 20px; }
     .btn { padding: 14px 28px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 13px; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE GRID */
-    .grid-container { flex-grow: 1; overflow-y: auto; margin-top: 10px; }
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    /* PALETTE GRID - FIXED SIZE */
+    .grid { 
+        display: grid; 
+        grid-template-columns: repeat(5, 1fr); 
+        gap: 8px; 
+        margin-top: 10px;
+        width: 100%;
+    }
     .grid .cell { 
-      aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;
-      border-radius: 8px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 14px;
+      height: 40px; /* Fixed height for cells */
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      border-radius: 8px; 
+      border: 1px solid var(--border); 
+      cursor: pointer; 
+      font-weight: 700; 
+      font-size: 14px;
     }
 
     .cell.current, .legend-current { background: #2563eb !important; color: #fff; }
@@ -156,10 +177,8 @@
         <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
         <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
       </div>
-      <div class="grid-container">
-        <div class="grid" id="questionGrid"></div>
-      </div>
-    </aside>
+      <div class="grid" id="questionGrid"></div>
+      </aside>
   </main>
 
   <script src="questions.js"></script>
