@@ -45,7 +45,7 @@
       color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.1rem;
     }
 
-    /* QUIZ LAYOUT - RESPONSIVE FOR LAPTOPS */
+    /* QUIZ LAYOUT */
     .quiz-container { 
       display: flex; 
       gap: 20px; 
@@ -53,7 +53,7 @@
       max-width: 1600px; 
       width: 100%;        
       margin: 0 auto; 
-      height: calc(100vh - 150px); /* Adjusts height to fit laptop screens */
+      height: calc(100vh - 130px);
     }
 
     .section { 
@@ -61,16 +61,11 @@
       border: 1px solid var(--border); 
       border-radius: 20px; 
       padding: 30px;
-      overflow-y: auto; /* Adds scroll only inside sections if content overflows */
+      overflow-y: auto;
     }
 
-    .question-section { flex: 3; display: flex; flex-direction: column; }
-    .navigation-section { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; min-width: 300px; }
-
-    /* MINI QUIZ INFO */
-    .quiz-meta-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
-    .meta-subject { color: var(--brand); text-transform: uppercase; }
-    .meta-class { color: var(--amber); text-transform: uppercase; }
+    .question-section { flex: 3.5; }
+    .navigation-section { flex: 1.2; min-width: 320px; }
 
     /* PROGRESS BAR */
     .progress-wrapper { margin-bottom: 25px; }
@@ -79,7 +74,7 @@
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
     /* OPTIONS */
-    .options { display: grid; gap: 12px; margin-top: 20px; margin-bottom: 20px; }
+    .options { display: grid; gap: 12px; margin-top: 20px; margin-bottom: 25px; }
     .opt {
       display: flex; align-items: center; gap: 15px; padding: 15px 25px; 
       background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
@@ -88,8 +83,13 @@
     .opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
     .opt span { font-size: 17px; color: #ffffff; }
 
-    /* BUTTONS */
-    .quiz-buttons { margin-top: auto; display: flex; gap: 15px; padding-top: 20px; }
+    /* BUTTONS - FIXED POSITION BELOW OPTIONS */
+    .quiz-buttons { 
+      display: flex; 
+      gap: 15px; 
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
     .btn { padding: 14px 28px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 13px; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; }
@@ -97,11 +97,11 @@
 
     /* PALETTE & LEGEND */
     .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; font-weight: 600; color: #ffffff; }
-    .legend-box { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
+    .legend-box { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
 
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 15px; width: 100%; }
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px; }
     .grid .cell { 
-      height: 40px; 
+      height: 45px; 
       display: flex; align-items: center; justify-content: center;
       border-radius: 10px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 14px;
     }
@@ -111,26 +111,23 @@
     .cell.visited, .legend-visited { background: #dc2626 !important; border-color: #991b1b; }
     .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; }
 
-    /* FOOTER */
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 12px;
       background: #020617;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
       position: absolute;
       bottom: 0;
       width: 100%;
     }
 
-    /* MEDIA QUERIES FOR SMALLER LAPTOPS */
     @media (max-height: 800px) {
-      .quiz-container { height: calc(100vh - 130px); padding: 10px; gap: 15px; }
+      .quiz-container { height: calc(100vh - 120px); padding: 10px; gap: 15px; }
       .section { padding: 20px; }
-      .opt { padding: 12px 20px; }
-      #questionText { font-size: 22px !important; }
-      .grid .cell { height: 35px; }
+      #questionText { font-size: 20px !important; }
+      .opt { padding: 10px 20px; }
     }
   </style>
 </head>
@@ -148,21 +145,16 @@
 
   <main class="quiz-container">
     <section class="question-section section">
-      <div class="quiz-meta-info">
-        <span id="displaySubject" class="meta-subject">Subject</span>
-        <span id="displayClass" class="meta-class">Class</span>
-      </div>
-
       <div class="progress-wrapper">
         <div class="progress-info">
-          <span>Quiz Progress</span>
+          <span>Quiz Progress: <span id="displaySubject"></span></span>
           <span id="progressPercent">0%</span>
         </div>
         <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
       </div>
 
-      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:8px;">QUESTION 1</div>
-      <div id="questionText" style="font-size: 26px; margin-bottom: 25px; font-weight:500; line-height: 1.4;">Loading...</div>
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:6px; font-size: 14px;">QUESTION 1</div>
+      <div id="questionText" style="font-size: 24px; margin-bottom: 20px; font-weight:500; line-height: 1.4;">Loading...</div>
       
       <div class="options" id="options"></div>
 
@@ -174,7 +166,7 @@
     </section>
 
     <aside class="navigation-section section">
-      <h3 style="margin:0 0 20px 0; font-size: 18px; font-weight: 700; color: white;">Question Palette</h3>
+      <h3 style="margin:0 0 15px 0; font-size: 18px; color: white;">Question Palette</h3>
       <div class="palette-legend">
         <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
         <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
@@ -182,7 +174,7 @@
         <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
       </div>
       <div class="grid" id="questionGrid"></div>
-      </aside>
+    </aside>
   </main>
 
   <footer>
@@ -216,9 +208,7 @@
 
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
-
-    document.getElementById("displaySubject").innerText = selectedSubject;
-    document.getElementById("displayClass").innerText = selectedClass.replace("class", "Grade ");
+    document.getElementById("displaySubject").innerText = `${selectedSubject.toUpperCase()} (Grade ${selectedClass.replace("class", "")})`;
 
     async function loadQuestionsHybrid() {
       try {
