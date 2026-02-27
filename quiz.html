@@ -3,220 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOF Olympiad Practice - Quiz</title>
+    <title>SOF Olympiad Practice</title>
     <style>
         :root {
-            --primary-color: #2563eb;
-            --success-color: #16a34a;
-            --warn-color: #ca8a04;
-            --bg-color: #f1f5f9;
-            --text-main: #1e293b;
+            --primary: #2563eb;
+            --success: #16a34a;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
             margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #f8fafc;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full viewport height */
-            overflow: hidden; /* Prevents body scroll */
+            overflow: hidden; /* Lock the screen */
         }
 
-        .quiz-wrapper {
-            display: flex;
-            width: 95%;
-            max-width: 1300px;
-            height: 85vh; /* Laptop-friendly height */
-            gap: 20px;
-            padding: 10px;
-        }
-
-        /* --- Question Container (Left) --- */
-        .question-section {
-            flex: 3;
-            background: #ffffff;
+        /* Main Grid Container */
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 320px; /* Question | Palette */
+            grid-template-rows: 60px 1fr 70px; /* Header | Body | Footer */
+            width: 98vw;
+            height: 95vh;
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
         }
 
-        .section-header {
-            padding: 15px 25px;
-            background: #f8fafc;
-            border-bottom: 1px solid #e2e8f0;
+        /* Header Area */
+        .header {
+            grid-column: 1 / -1;
+            border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 20px;
+            background: #fff;
+            border-radius: 12px 12px 0 0;
         }
 
-        .question-body {
-            padding: 25px;
-            overflow-y: auto; /* Scrollable internal area */
-            flex-grow: 1;
+        /* Question Area */
+        .question-area {
+            grid-column: 1 / 2;
+            padding: 20px 40px;
+            overflow-y: auto;
+            border-right: 1px solid var(--border);
         }
 
         .question-text {
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 1.5;
+            color: #1e293b;
             margin-bottom: 20px;
-            font-weight: 500;
         }
 
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        .options-container {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
         }
 
-        .option-label {
-            padding: 12px 20px;
-            border: 2px solid #e2e8f0;
+        .option-card {
+            padding: 12px 15px;
+            border: 2px solid var(--border);
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
             display: flex;
             align-items: center;
+            transition: 0.2s;
         }
 
-        .option-label:hover {
-            background-color: #f0f9ff;
-            border-color: var(--primary-color);
-        }
+        .option-card:hover { border-color: var(--primary); background: #eff6ff; }
+        .option-card input { margin-right: 15px; }
 
-        .option-label input {
-            margin-right: 15px;
-            transform: scale(1.2);
-        }
-
-        .section-footer {
-            padding: 15px 25px;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            background: #f8fafc;
-        }
-
-        /* --- Palette Section (Right) --- */
-        .palette-section {
-            flex: 1;
-            min-width: 300px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        /* Palette Sidebar */
+        .sidebar {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            background: #fdfdfd;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            padding: 20px;
-        }
-
-        .palette-title {
-            margin: 0 0 15px 0;
-            font-size: 1rem;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
         }
 
         .palette-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
+            gap: 8px;
             overflow-y: auto;
-            flex-grow: 1;
-            padding-right: 5px;
+            max-height: 60vh; /* Limits palette height */
         }
 
-        .q-num {
+        .q-btn {
             aspect-ratio: 1;
             border: 1px solid #cbd5e1;
-            background: #fff;
-            border-radius: 6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
             font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .q-btn.active { border: 2px solid var(--primary); color: var(--primary); }
+        .q-btn.done { background: var(--success); color: white; border: none; }
+        .q-btn.review { background: var(--warning); color: white; border: none; }
+
+        /* Footer / Navigation */
+        .footer {
+            grid-column: 1 / -1;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background: #f8fafc;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
             cursor: pointer;
             font-size: 0.9rem;
         }
 
-        .q-num.active { border: 2px solid var(--primary-color); color: var(--primary-color); }
-        .q-num.answered { background: var(--success-color); color: white; border: none; }
-        .q-num.flagged { background: var(--warn-color); color: white; border: none; }
+        .btn-next { background: var(--primary); color: white; }
+        .btn-prev { background: #64748b; color: white; }
+        .btn-submit { background: #0f172a; color: white; width: 100%; margin-top: 15px; }
 
-        .palette-legend {
-            margin-top: 15px;
-            font-size: 0.8rem;
+        .legend {
+            margin-top: auto;
+            font-size: 0.75rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5px;
+            padding-top: 10px;
         }
-
-        .legend-item { display: flex; align-items: center; gap: 5px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
-
-        /* Buttons */
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .btn-blue { background: var(--primary-color); color: white; }
-        .btn-gray { background: #e2e8f0; color: #475569; }
-        .btn:hover { opacity: 0.9; }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="quiz-wrapper">
-        <main class="question-section">
-            <div class="section-header">
-                <div><b>Subject:</b> <span id="subject-name">Mathematics</span></div>
-                <div id="timer" style="color: #ef4444; font-weight: bold;">00:00</div>
-            </div>
+    <div class="main-container">
+        <header class="header">
+            <div style="font-weight: bold;">IMO CLASS 10 | Section: Achievers</div>
+            <div id="timer" style="font-family: monospace; font-size: 1.2rem; color: var(--danger);">Time Left: 59:59</div>
+        </header>
 
-            <div class="question-body">
-                <div class="question-text" id="q-text">
-                    Please wait, loading questions...
-                </div>
-                <div class="options-grid" id="options-container">
-                    </div>
+        <main class="question-area">
+            <div class="question-text">
+                <p id="q-content">If x² + 1/x² = 14, find the value of x³ + 1/x³ for positive values of x.</p>
             </div>
-
-            <div class="section-footer">
-                <button class="btn btn-gray" onclick="prevQuestion()">Previous</button>
-                <div>
-                    <button class="btn btn-gray" style="background: #fef08a;" onclick="flagQuestion()">Flag</button>
-                    <button class="btn btn-blue" onclick="saveAndNext()">Save & Next</button>
-                </div>
+            <div class="options-container">
+                <label class="option-card"><input type="radio" name="opt"> 52</label>
+                <label class="option-card"><input type="radio" name="opt"> 48</label>
+                <label class="option-card"><input type="radio" name="opt"> 54</label>
+                <label class="option-card"><input type="radio" name="opt"> 60</label>
             </div>
         </main>
 
-        <aside class="palette-section">
-            <h3 class="palette-title">Question Palette</h3>
-            <div class="palette-grid" id="question-palette">
-                </div>
-            
-            <div class="palette-legend">
-                <div class="legend-item"><span class="dot" style="background: var(--success-color);"></span> Answered</div>
-                <div class="legend-item"><span class="dot" style="background: #fff; border: 1px solid #ccc;"></span> Not Visited</div>
-                <div class="legend-item"><span class="dot" style="background: var(--warn-color);"></span> Flagged</div>
-                <div class="legend-item"><span class="dot" style="background: #fff; border: 2px solid var(--primary-color);"></span> Current</div>
+        <aside class="sidebar">
+            <div style="font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; color: #64748b;">QUESTION PALETTE</div>
+            <div class="palette-grid" id="palette">
+                <script>
+                    const palette = document.getElementById('palette');
+                    for(let i=1; i<=50; i++) {
+                        palette.innerHTML += `<button class="q-btn ${i===1?'active':''}">${i}</button>`;
+                    }
+                </script>
             </div>
-            <button class="btn btn-blue" style="margin-top: 20px; width: 100%; background: #0f172a;" onclick="submitQuiz()">Submit Quiz</button>
+            
+            <div class="legend">
+                <div style="display:flex; align-items:center; gap:5px;"><span style="width:10px; height:10px; background:var(--success); border-radius:2px;"></span> Answered</div>
+                <div style="display:flex; align-items:center; gap:5px;"><span style="width:10px; height:10px; background:var(--warning); border-radius:2px;"></span> Review</div>
+                <div style="display:flex; align-items:center; gap:5px;"><span style="width:10px; height:10px; border:1px solid #ccc; border-radius:2px;"></span> Not Visited</div>
+            </div>
+            <button class="btn btn-submit">SUBMIT TEST</button>
         </aside>
+
+        <footer class="footer">
+            <button class="btn btn-prev">← Previous</button>
+            <div style="display:flex; gap:10px;">
+                <button class="btn" style="background: #e2e8f0;">Mark for Review</button>
+                <button class="btn btn-next">Save & Next →</button>
+            </div>
+        </footer>
     </div>
 
 </body>
