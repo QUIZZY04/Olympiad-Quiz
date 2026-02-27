@@ -12,11 +12,11 @@
       --amber: #f59e0b; --danger: #ef4444;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; height: 100%; min-height: 100vh; overflow-x: hidden; }
 
     /* COMPACT UTILITY NAV */
     .utility-nav {
-      background: #020617; padding: 8px 40px; display: flex;
+      background: #020617; padding: 10px 40px; display: flex;
       justify-content: flex-end; gap: 30px; border-bottom: 1px solid var(--border);
     }
     .utility-nav a { 
@@ -30,23 +30,23 @@
     header.top-bar {
       background: var(--surface); border-bottom: 2px solid var(--border);
       padding: 10px 40px; display: flex; align-items: center; justify-content: space-between;
-      z-index: 1000;
+      position: sticky; top: 0; z-index: 1000;
     }
     .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
     #userWelcome { font-size: 14px; font-weight: 600; color: var(--brand); }
 
-    /* MAIN CONTAINER - SCROLLABLE */
+    /* MAIN CONTAINER */
     .container { 
-        max-width: 1300px; width: 95%; margin: 0 auto; padding: 20px; 
-        flex: 1; overflow-y: auto; 
+        max-width: 1200px; width: 95%; margin: 20px auto; padding: 0 20px; 
+        flex: 1; 
     }
-    h1 { font-size: 24px; margin: 0 0 5px 0; }
-    p.subtitle { color: var(--muted); margin: 0 0 20px 0; font-size: 14px; }
+    h1 { font-size: 26px; margin: 0 0 5px 0; }
+    p.subtitle { color: var(--muted); margin: 0 0 25px 0; font-size: 14px; }
 
     /* CLASS SELECTOR BOX */
     .class-selector-wrap {
       background: rgba(56, 189, 248, 0.05); border: 1px dashed var(--brand);
-      padding: 15px 20px; border-radius: 12px; margin-bottom: 25px;
+      padding: 15px 20px; border-radius: 12px; margin-bottom: 30px;
       display: flex; align-items: center; gap: 15px;
     }
     label { font-weight: 700; color: var(--brand); text-transform: uppercase; font-size: 12px; }
@@ -56,10 +56,10 @@
     }
 
     /* SUBJECT GRID */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 20px; cursor: pointer; transition: 0.2s;
+      border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.2s;
     }
     .card:hover { border-color: var(--brand); transform: translateY(-3px); background: #243147; }
     .card h3 { font-size: 18px; margin: 0 0 8px 0; color: var(--brand); }
@@ -72,25 +72,25 @@
     /* INSTRUCTIONS SECTION */
     .instructions-section { 
         background: var(--surface); border: 1px solid var(--border); border-radius: 16px; 
-        padding: 25px; margin-top: 30px; 
+        padding: 25px; margin-top: 40px; 
     }
-    .instructions-section h2 { color: var(--amber); margin-bottom: 15px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .instructions-section h2 { color: var(--amber); margin-bottom: 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
     .ins-item { display: flex; gap: 12px; align-items: flex-start; }
     .ins-icon { 
-        background: rgba(56, 189, 248, 0.1); color: var(--brand); width: 28px; height: 28px; 
-        display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-size: 13px; font-weight: 800; 
+        background: rgba(56, 189, 248, 0.1); color: var(--brand); width: 30px; height: 30px; 
+        display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-size: 14px; font-weight: 800; 
     }
     .ins-text { font-size: 13px; line-height: 1.5; color: var(--muted); }
     .ins-text strong { color: var(--text); display: block; margin-bottom: 2px; }
 
-    footer { text-align: center; padding: 15px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; }
+    footer { text-align: center; padding: 20px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; }
   </style>
 </head>
 <body>
 
   <div class="utility-nav">
-    <a href="dashboard.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="leaderboard.html">Leaderboard</a>
     <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
   </div>
