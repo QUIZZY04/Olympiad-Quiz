@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Account - Olympiad Portal</title>
+  <title>Join the Portal - Olympiad Portal</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
@@ -16,6 +16,7 @@
       --border: #334155;             
       --brand: #38bdf8;              
       --amber: #f59e0b;              
+      --success: #22c55e;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -28,7 +29,7 @@
       flex-direction: column;
     }
 
-    /* MATCHED TOP NAV */
+    /* NAVBAR */
     nav {
       background: #1e293b; 
       border-bottom: 2px solid var(--border);
@@ -36,11 +37,10 @@
       display: flex; 
       align-items: center; 
       justify-content: space-between;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
     
     .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
-    
     nav div a {
       color: var(--text);
       text-decoration: none;
@@ -48,33 +48,78 @@
       margin-left: 25px;
       font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
-    nav div a:hover { color: var(--amber); }
 
-    /* CENTERED SIGNUP BOX */
-    .container {
+    /* RESPONSIVE SPLIT CONTAINER */
+    .main-wrapper {
       flex: 1;
       display: flex;
-      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
       align-items: center;
       padding: 40px 20px;
+      gap: 60px;
+    }
+
+    /* LEFT SIDE: INTRO & SPECIALTIES */
+    .intro-section {
+      flex: 1;
+      text-align: left;
+    }
+
+    .intro-section h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .intro-section h1 span { color: var(--amber); }
+
+    .intro-section p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .spec-list { list-style: none; }
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .spec-icon {
+      color: var(--brand);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .spec-text b { color: var(--text); display: block; margin-bottom: 2px; }
+    .spec-text span { color: var(--muted); font-size: 14px; }
+
+    /* RIGHT SIDE: SIGNUP BOX */
+    .signup-container {
+      flex: 0 0 420px;
     }
 
     .signup-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 45px;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 420px;
+      padding: 40px;
+      border-radius: 24px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
-    h2 { font-size: 28px; font-weight: 800; margin-bottom: 30px; color: var(--text); }
+    .signup-box h2 { font-size: 24px; margin-bottom: 25px; }
 
-    /* FORM STYLES */
     input, select {
       width: 100%;
       padding: 14px 18px;
@@ -85,9 +130,8 @@
       color: white;
       font-size: 15px;
       outline: none;
-      transition: 0.2s;
     }
-    
+
     select {
       cursor: pointer;
       appearance: none;
@@ -96,8 +140,6 @@
       background-position: right 1rem center;
       background-size: 1em;
     }
-
-    input:focus, select:focus { border-color: var(--brand); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.1); }
 
     button {
       width: 100%;
@@ -113,16 +155,25 @@
       transition: 0.2s;
       margin-top: 10px;
     }
-    button:hover { background: #fbbf24; transform: translateY(-1px); }
 
-    .login-text {
-      margin-top: 30px;
-      padding-top: 25px;
+    button:hover { background: #fbbf24; transform: translateY(-2px); }
+
+    .login-link {
+      margin-top: 25px;
+      padding-top: 20px;
       border-top: 1px solid var(--border);
       font-size: 14px;
       color: var(--muted);
     }
-    .login-text a { color: var(--amber); text-decoration: none; font-weight: 700; }
+    .login-link a { color: var(--amber); text-decoration: none; font-weight: 700; }
+
+    /* MOBILE VIEW */
+    @media (max-width: 968px) {
+      .main-wrapper { flex-direction: column; text-align: center; padding-top: 20px; }
+      .intro-section { text-align: center; }
+      .spec-item { text-align: left; }
+      .signup-container { width: 100%; max-width: 420px; }
+    }
   </style>
 </head>
 
@@ -130,40 +181,65 @@
 
 <nav>
     <a href="index.html" class="brand">🎓 Olympiad Portal</a>
-    <div>
-        <a href="login.html">Login</a>
-    </div>
+    <div><a href="login.html">Login</a></div>
 </nav>
 
-<div class="container">
-    <div class="signup-box">
-        <h2>Join the Portal</h2>
+<div class="main-wrapper">
+    <div class="intro-section">
+        <h1>Start Your <span>Excellence</span> Today</h1>
+        <p>Join thousands of students globally in the most advanced practice arena for competitive Olympiads.</p>
+        
+        <div class="spec-list">
+            <div class="spec-item">
+                <div class="spec-icon">✓</div>
+                <div class="spec-text">
+                    <b>High-Difficulty Question Bank</b>
+                    <span>Curated problems matching SOF and international standards.</span>
+                </div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon">✓</div>
+                <div class="spec-text">
+                    <b>Real-Exam Environment</b>
+                    <span>Interactive palette, time tracking, and progress indicators.</span>
+                </div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon">✓</div>
+                <div class="spec-text">
+                    <b>Global Leaderboards</b>
+                    <span>Compete with peers and track your standing across subjects.</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <form id="signupForm">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="email" id="email" placeholder="Email Address" required>
-            <input type="password" id="password" placeholder="Create Password" required>
+    <div class="signup-container">
+        <div class="signup-box">
+            <h2>Create Account</h2>
+            <form id="signupForm">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="password" id="password" placeholder="Create Password" required>
 
-            <select id="classSelect" required>
-                <option value="" disabled selected>Select Your Grade</option>
-                <option value="class1">Grade 1</option>
-                <option value="class2">Grade 2</option>
-                <option value="class3">Grade 3</option>
-                <option value="class4">Grade 4</option>
-                <option value="class5">Grade 5</option>
-                <option value="class6">Grade 6</option>
-                <option value="class7">Grade 7</option>
-                <option value="class8">Grade 8</option>
-                <option value="class9">Grade 9</option>
-                <option value="class10">Grade 10</option>
-            </select>
+                <select id="classSelect" required>
+                    <option value="" disabled selected>Select Your Grade</option>
+                    <option value="class1">Grade 1</option>
+                    <option value="class2">Grade 2</option>
+                    <option value="class3">Grade 3</option>
+                    <option value="class4">Grade 4</option>
+                    <option value="class5">Grade 5</option>
+                    <option value="class6">Grade 6</option>
+                    <option value="class7">Grade 7</option>
+                    <option value="class8">Grade 8</option>
+                    <option value="class9">Grade 9</option>
+                    <option value="class10">Grade 10</option>
+                </select>
 
-            <button type="submit">Create Account</button>
-        </form>
-
-        <p class="login-text">
-            Already have an account? <a href="login.html">Sign In</a>
-        </p>
+                <button type="submit">Join Now</button>
+            </form>
+            <p class="login-link">Already a member? <a href="login.html">Sign In</a></p>
+        </div>
     </div>
 </div>
 
@@ -187,7 +263,6 @@ const db = getFirestore(app);
 
 document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
-
     const name=document.getElementById("name").value.trim();
     const email=document.getElementById("email").value.trim();
     const password=document.getElementById("password").value;
@@ -195,20 +270,12 @@ document.getElementById("signupForm").addEventListener("submit", async (e)=>{
 
     try {
         const userCredential=await createUserWithEmailAndPassword(auth,email,password);
-        const user=userCredential.user;
-
-        await setDoc(doc(db,"users",user.uid),{
-            name,
-            email,
-            class:classSelect,
-            createdAt:new Date()
+        await setDoc(doc(db,"users",userCredential.user.uid),{
+            name, email, class:classSelect, createdAt:new Date()
         });
-
-        alert("Signup Successful! Welcome aboard.");
+        alert("Account Created Successfully!");
         window.location.href="login.html";
-    } catch(error) {
-        alert(error.message);
-    }
+    } catch(error) { alert(error.message); }
 });
 </script>
 
