@@ -45,14 +45,14 @@
       color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* QUIZ LAYOUT - WIDER DIMENSIONS */
+    /* QUIZ LAYOUT - WIDER & EQUAL HEIGHT */
     .quiz-container { 
       display: flex; 
       align-items: stretch;
       gap: 30px; 
       padding: 40px; 
-      max-width: 1700px; /* Increased from 1500px */
-      width: 95%;        /* Ensures it uses available width */
+      max-width: 1700px; 
+      width: 95%;        
       margin: 0 auto; 
       flex: 1; 
     }
@@ -62,10 +62,8 @@
       border: 1px solid var(--border); 
       border-radius: 20px; 
       padding: 45px;
-      min-height: 600px;
     }
 
-    /* Adjusted Ratios for wider look */
     .question-section { flex: 3.5; display: flex; flex-direction: column; }
     .navigation-section { flex: 1.2; display: flex; flex-direction: column; justify-content: flex-start; }
 
@@ -97,21 +95,29 @@
     .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE GRID */
+    /* PALETTE & LEGEND (Visibility Fixed) */
+    .legend-item { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+      margin-bottom: 12px; 
+      font-size: 14px; 
+      font-weight: 600; 
+      color: #ffffff; /* Explicitly set to white for visibility */
+    }
+    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; }
+
     .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px; width: 100%; }
     .grid .cell { 
-      height: 50px; /* Slightly larger cells for wider layout */
+      height: 50px; 
       display: flex; align-items: center; justify-content: center;
       border-radius: 10px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 16px;
     }
 
-    .cell.current { background: #2563eb !important; color: #fff; }
-    .cell.answered { background: #16a34a !important; color: #fff; }
-    .cell.visited { background: #dc2626 !important; color: #fff; }
-    .cell.unseen { background: var(--unseen-grey) !important; color: #0f172a; }
-
-    .legend-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 14px; font-weight: 600; }
-    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+    .cell.current, .legend-current { background: #2563eb !important; border-color: #1e40af; }
+    .cell.answered, .legend-answered { background: #16a34a !important; border-color: #15803d; }
+    .cell.visited, .legend-visited { background: #dc2626 !important; border-color: #991b1b; }
+    .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; }
 
     /* FOOTER */
     footer {
@@ -165,15 +171,15 @@
     </section>
 
     <aside class="navigation-section section">
-      <h3 style="margin:0 0 20px 0; font-size: 20px; font-weight: 700;">Question Palette</h3>
+      <h3 style="margin:0 0 20px 0; font-size: 20px; font-weight: 700; color: white;">Question Palette</h3>
       <div class="palette-legend">
-        <div class="legend-item"><div class="legend-box current">1</div> Current</div>
-        <div class="legend-item"><div class="legend-box answered">1</div> Answered</div>
-        <div class="legend-item"><div class="legend-box visited">1</div> Visited</div>
-        <div class="legend-item"><div class="legend-box unseen">1</div> Unseen</div>
+        <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
+        <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
+        <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
+        <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
       </div>
       <div class="grid" id="questionGrid"></div>
-    </aside>
+      </aside>
   </main>
 
   <footer>
