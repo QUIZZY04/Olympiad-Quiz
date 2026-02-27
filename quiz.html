@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quiz</title>
+<link rel="stylesheet" href="style.css">
+
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<style>
+.top-bar{
+    background:#111;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:18px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+#timer{ color:#ffb703; font-weight:bold; }
+
+.quiz-container{ display:flex; height:calc(100vh - 60px); }
+.question-section{ flex:3; padding:40px; overflow-y:auto; }
+.navigation-section{ flex:1; background:rgba(255,255,255,0.05); padding:25px; border-left:1px solid rgba(255,255,255,0.1); overflow-y:auto; }
+
+.progress-wrapper{ margin-bottom:20px; }
+.progress-bar{ width:100%; height:12px; background:#333; border-radius:10px; overflow:hidden; }
+.progress-fill{ height:100%; width:0%; background:#28a745; transition:width 0.3s ease; }
+
+.options label{
+    display:block;
+    padding:12px;
+    margin:10px 0;
+    font-size:18px;
+    background:rgba(255,255,255,0.08);
+    border-radius:8px;
+    cursor:pointer;
+}
+.options label:hover{ background:rgba(255,183,3,0.15); }
+
+.quiz-buttons{ margin-top:25px; }
+.quiz-buttons button{
+    width:130px;
+    margin-right:10px;
+    background:#ffb703;
+    color:black;
+    border:none;
+    padding:10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+.grid div{
+    padding:10px;
+    text-align:center;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div id="subjectTitle"></div>
+    <div>Time Left: <span id="timer">30:00</span></div>
+</div>
+
+<div class="quiz-container">
+
+<div class="question-section">
+    <div class="progress-wrapper">
+        Answered: <span id="answeredCount">0</span> /
+        <span id="totalCount"></span>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <h3 id="questionNumber"></h3>
+    <p id="questionText"></p>
+    <div class="options" id="options"></div>
+
+    <div class="quiz-buttons">
+        <button onclick="prevQuestion()">Previous</button>
+        <button onclick="nextQuestion()">Next</button>
+        <button onclick="confirmSubmit()">Submit</button>
+    </div>
+</div>
+
+<div class="navigation-section">
+    <h3>Question Palette</h3>
+    <div class="grid" id="questionGrid"></div>
+</div>
+
+</div>
+
+<script src="questions.js"></script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, query, where, getDocs } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let current = 0;
+let score = 0;
+let questions = [];
+
+const selectedClass = localStorage.getItem("selectedClass") || "class4";
+const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
+
+document.getElementById("subjectTitle").innerText =
+selectedClass.toUpperCase() + " - " + selectedSubject.toUpperCase();
+
+let selectedAnswers = [];
+let visitedQuestions = [];
+
+/* ================= LOAD QUESTIONS (Random + Max 30) ================= */
+
+async function loadQuestionsHybrid() {
+
+    try {
+
+        const q = query(
+            collection(db, "questions"),
+            where("class", "==", selectedClass),
+            where("subject", "==", selectedSubject)
+        );
+
+        const snapshot = await getDocs(q);
+
+        if (!snapshot.empty) {
+
+            let allQuestions = snapshot.docs.map(doc => doc.data());
+
+            // Shuffle questions
+            allQuestions.sort(() => Math.random() - 0.5);
+
+            // Pick maximum 30
+            questions = allQuestions.slice(0, 30);
+
+            console.log("Loaded from Firebase:", questions.length);
+
+        } else {
+
+            questions = questionsData[selectedClass][selectedSubject];
+            questions.sort(() => Math.random() - 0.5);
+
+            console.log("Loaded from questions.js fallback");
+
+        }
+
+    } catch (error) {
+
+        questions = questionsData[selectedClass][selectedSubject];
+        questions.sort(() => Math.random() - 0.5);
+
+        console.log("Firebase failed, fallback used");
+
+    }
+
+    selectedAnswers = new Array(questions.length).fill(null);
+    visitedQuestions = new Array(questions.length).fill(false);
+
+    document.getElementById("totalCount").innerText = questions.length;
+
+    generateGrid();
+    loadQuestion();
+}
+
+/* ================= AUTH ================= */
+
+onAuthStateChanged(auth, async (user)=>{
+    if(!user){
+        window.location.replace("login.html");
+        return;
+    }
+    await loadQuestionsHybrid();
+});
+
+/* ================= TIMER ================= */
+
+let totalTime = 1800;
+
+const timerInterval = setInterval(function(){
+    let minutes = Math.floor(totalTime/60);
+    let seconds = totalTime % 60;
+
+    document.getElementById("timer").innerText =
+    minutes + ":" + (seconds<10?"0":"") + seconds;
+
+    totalTime--;
+
+    if(totalTime < 0){
+        clearInterval(timerInterval);
+        submitQuiz();
+    }
+},1000);
+
+/* ================= QUIZ LOGIC ================= */
+
+function loadQuestion(){
+    visitedQuestions[current] = true;
+    const q = questions[current];
+
+    document.getElementById("questionNumber").innerText =
+    "Question " + (current+1) + " of " + questions.length;
+
+    document.getElementById("questionText").innerHTML = q.q;
+
+    let optionsHTML = "";
+    q.o.forEach((opt,i)=>{
+        optionsHTML += `
+        <label>
+        <input type="radio" name="option" value="${i}"
+        ${selectedAnswers[current]===i ? "checked":""}
+        onchange="saveAnswer(${i})">
+        ${opt}
+        </label>`;
+    });
+
+    document.getElementById("options").innerHTML = optionsHTML;
+
+    updateGrid();
+    updateProgress();
+}
+
+window.saveAnswer = function(value){
+    selectedAnswers[current] = value;
+}
+
+window.nextQuestion = function(){
+    if(current < questions.length-1){
+        current++;
+        loadQuestion();
+    }
+}
+
+window.prevQuestion = function(){
+    if(current > 0){
+        current--;
+        loadQuestion();
+    }
+}
+
+window.confirmSubmit = function(){
+    if(confirm("Are you sure you want to submit?")){
+        submitQuiz();
+    }
+}
+
+function submitQuiz() {
+    score = 0;
+    for (let i = 0; i < questions.length; i++) {
+        if (selectedAnswers[i] === questions[i].a) {
+            score++;
+        }
+    }
+
+    let resultData = {
+        score: score,
+        total: questions.length,
+        subject: selectedSubject,
+        class: selectedClass,
+        answers: selectedAnswers,
+        questions: questions,
+        date: new Date().toLocaleString()
+    };
+
+    localStorage.setItem("quizResult", JSON.stringify(resultData));
+    window.location.href = "result.html";
+}
+
+function generateGrid(){
+    let gridHTML = "";
+    for(let i=0;i<questions.length;i++){
+        gridHTML += `<div onclick="jumpTo(${i})" id="q${i}">${i+1}</div>`;
+    }
+    document.getElementById("questionGrid").innerHTML = gridHTML;
+}
+
+window.jumpTo = function(index){
+    current = index;
+    loadQuestion();
+}
+
+function updateProgress(){
+    let answered = selectedAnswers.filter(a => a !== null).length;
+    document.getElementById("answeredCount").innerText = answered;
+    let percentage = (answered / questions.length) * 100;
+    document.getElementById("progressFill").style.width = percentage + "%";
+}
+
+function updateGrid(){
+    for(let i=0;i<questions.length;i++){
+        let cell = document.getElementById("q"+i);
+        if(i === current){
+            cell.style.background = "#ffb703";
+            cell.style.color = "black";
+        }
+        else if(selectedAnswers[i] !== null){
+            cell.style.background = "#28a745";
+            cell.style.color = "white";
+        }
+        else if(visitedQuestions[i]){
+            cell.style.background = "#dc3545";
+            cell.style.color = "white";
+        }
+        else{
+            cell.style.background = "#555";
+            cell.style.color = "white";
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>
