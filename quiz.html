@@ -24,36 +24,42 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
 
-    /* HEADER NAVIGATION */
+    /* TOP NAVIGATION LAYER (Above the bar) */
+    .utility-nav {
+      background: #020617; /* Darker than main bar for contrast */
+      padding: 8px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .utility-nav a {
+      color: var(--amber);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: 0.2s;
+    }
+    .utility-nav a:hover { filter: brightness(1.2); text-decoration: underline; }
+    .utility-nav .logout-link { color: var(--danger); cursor: pointer; }
+
+    /* MAIN HEADER BAR */
     header.top-bar {
       position: sticky; top: 0; z-index: 1000;
       background: #1e293b; 
       border-bottom: 2px solid var(--border);
-      padding: 10px 40px; 
+      padding: 12px 40px; 
       display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
-
-    /* RIGHT SIDE HEADER CONTAINER */
-    .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-    
-    /* NAVIGATION LINKS - AMBER COLOR */
-    .nav-links { display: flex; gap: 15px; }
-    .nav-links a { 
-        color: var(--amber); 
-        text-decoration: none; 
-        font-size: 13px; 
-        font-weight: 700; 
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .nav-links a:hover { filter: brightness(1.2); text-decoration: underline; }
-    .logout-link { color: var(--danger) !important; cursor: pointer; }
 
     #timerWrap {
       padding: 6px 15px; border-radius: 8px;
       background: rgba(245, 158, 11, 0.1); color: var(--amber); 
-      border: 1px solid var(--amber); font-weight: 800; font-size: 1rem;
+      border: 1px solid var(--amber); font-weight: 800; font-size: 1.1rem;
     }
 
     /* QUIZ LAYOUT */
@@ -65,29 +71,15 @@
     /* OPTIONS - RIGID LEFT ALIGNMENT */
     .options { display: grid; gap: 15px; margin-top: 25px; }
     .opt {
-      display: flex; 
-      align-items: center; 
-      justify-content: flex-start; /* Keeps items at the start of the container */
-      text-align: left; /* Ensures text starts from the left */
-      gap: 15px; 
-      padding: 18px 25px; 
+      display: flex; align-items: center; justify-content: flex-start;
+      gap: 15px; padding: 18px 25px; 
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid var(--border); border-radius: 12px;
-      cursor: pointer; 
-      transition: 0.2s;
+      cursor: pointer; transition: 0.2s;
     }
     .opt:hover { border-color: var(--amber); background: rgba(245, 158, 11, 0.05); }
-    .opt input { 
-      accent-color: var(--amber); 
-      width: 22px; 
-      height: 22px; 
-      flex-shrink: 0; /* Prevents radio button from squeezing */
-    }
-    .opt span { 
-      font-size: 17px; 
-      color: #ffffff; 
-      width: 100%; /* Allows text to occupy available space */
-    }
+    .opt input { accent-color: var(--amber); width: 22px; height: 22px; flex-shrink: 0; }
+    .opt span { font-size: 17px; color: #ffffff; text-align: left; }
 
     /* ACTION BUTTONS */
     .quiz-buttons { margin-top: 40px; display: flex; gap: 15px; }
@@ -96,7 +88,7 @@
     .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE */
+    /* PALETTE GRID */
     .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
     .grid .cell { padding: 12px 0; text-align: center; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; color: var(--muted); }
     .cell.current { border-color: var(--amber); color: var(--amber); font-weight: bold; }
@@ -105,18 +97,16 @@
 </head>
 <body>
 
+  <div class="utility-nav">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a onclick="logout()" class="logout-link">Logout</a>
+  </div>
+
   <header class="top-bar">
     <a href="index.html" class="brand">🎓 Olympiad Portal</a>
-    
-    <div class="header-right">
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a onclick="logout()" class="logout-link">Logout</a>
-        </div>
-        <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
-    </div>
+    <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
   </header>
 
   <main class="quiz-container">
@@ -158,6 +148,7 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
+    // EXIT WARNING
     let quizSubmitted = false;
     window.addEventListener('beforeunload', (e) => {
       if (!quizSubmitted) {
@@ -174,6 +165,7 @@
       }
     };
 
+    // QUIZ LOGIC
     let current = 0;
     let questions = [];
     let selectedAnswers = [];
