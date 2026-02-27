@@ -1,130 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Olympiad Performance Report</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olympiad Performance Report</title>
 
-<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
-body{background:#0f0f1b;color:white;}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:#1e1e2f;}
-nav h2{color:#ffb703;}
-nav a{color:white;text-decoration:none;margin-left:20px;font-weight:500;}
-nav a:hover{color:#ffb703;}
-.container{max-width:1200px;margin:40px auto;padding:20px;}
-.summary-card{background:#1e1e2f;padding:20px;border-radius:12px;text-align:center;margin-bottom:30px;}
-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
-th,td{padding:10px;border:1px solid #333;vertical-align:top;}
-th{background:#2f2f55;}
-.correct-row{background:#1e3a2f;}
-.wrong-row{background:#3a1f1f;}
-.action-btn{padding:10px 15px;border:none;border-radius:6px;margin:10px 5px;cursor:pointer;font-weight:bold;}
-.quiz-btn{background:#ffb703;}
-.logout-btn{background:#dc3545;color:white;}
-</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0f172a;                 
+      --surface: #1e293b;            
+      --text: #f8fafc;               
+      --muted: #94a3b8;              
+      --border: #334155;             
+      --brand: #38bdf8;              
+      --accent: #22c55e;             
+      --amber: #f59e0b;              
+      --danger: #ef4444;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: var(--bg); color: var(--text); }
+
+    /* MATCHED UTILITY NAV */
+    .utility-nav {
+      background: #020617; 
+      padding: 12px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      border-bottom: 1px solid var(--border);
+    }
+    .utility-nav a {
+      color: var(--amber); 
+      text-decoration: none;
+      font-size: 16px; 
+      font-weight: 800; 
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+    }
+    .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
+
+    /* MATCHED TOP BAR */
+    header.top-bar {
+      position: sticky; top: 0; z-index: 1000;
+      background: #1e293b; 
+      border-bottom: 2px solid var(--border);
+      padding: 12px 40px; 
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
+
+    .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
+    
+    .summary-card { 
+      background: var(--surface); 
+      padding: 30px; 
+      border-radius: 20px; 
+      text-align: center; 
+      margin-bottom: 30px;
+      border: 1px solid var(--border);
+    }
+
+    h1 { color: var(--text); font-weight: 800; }
+    h2 { color: var(--brand); }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 25px; font-size: 14px; background: var(--surface); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 15px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: rgba(0,0,0,0.2); color: var(--muted); text-transform: uppercase; font-weight: 700; font-size: 12px; }
+    
+    .correct-row { background: rgba(34, 197, 94, 0.1); }
+    .wrong-row { background: rgba(239, 68, 68, 0.1); }
+    
+    .status-badge { font-weight: 800; text-transform: uppercase; font-size: 11px; padding: 4px 8px; border-radius: 4px; }
+    .status-correct { color: var(--accent); }
+    .status-wrong { color: var(--danger); }
+
+    .action-btn { 
+      padding: 16px 32px; 
+      border: none; 
+      border-radius: 10px; 
+      margin: 20px 5px; 
+      cursor: pointer; 
+      font-weight: 800; 
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+    .quiz-btn { background: var(--amber); color: #000; }
+    .quiz-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+  </style>
 </head>
 
 <body>
 
-<nav>
-<h2>🎓 Olympiad Portal</h2>
-<div>
-<a href="index.html">Home</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="quiz.html">Take Quiz</a>
-<a href="#" onclick="logout()">Logout</a>
+<div class="utility-nav">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="#" onclick="logout()" style="color:var(--danger)">Logout</a>
 </div>
-</nav>
+
+<header class="top-bar">
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div style="font-weight:600; color: var(--muted);">Performance Report</div>
+</header>
 
 <div class="container">
 
-<h1 style="text-align:center;margin-bottom:30px;">🏆 Performance Report</h1>
+    <h1 style="text-align:center; margin-bottom:30px;">🏆 Performance Summary</h1>
 
-<div class="summary-card" id="summary"></div>
+    <div class="summary-card" id="summary"></div>
 
-<div style="text-align:center;">
-<button class="action-btn quiz-btn" onclick="location.href='quiz.html'">
-Take Another Quiz
-</button>
+    <div style="text-align:center;">
+        <button class="action-btn quiz-btn" onclick="location.href='quiz.html'">
+            Take Another Quiz
+        </button>
+    </div>
+
+    <div id="details"></div>
+
 </div>
 
-<div id="details"></div>
-
-</div>
-
-<!-- RESULT DISPLAY (UNCHANGED) -->
 <script>
 document.addEventListener("DOMContentLoaded", function(){
+    const data = localStorage.getItem("quizResult");
 
-const data = localStorage.getItem("quizResult");
+    if(!data){
+        document.getElementById("summary").innerHTML="<h2>No quiz data found.</h2>";
+        return;
+    }
 
-if(!data){
-document.getElementById("summary").innerHTML="<h2>No quiz data found.</h2>";
-return;
-}
+    const resultData = JSON.parse(data);
+    const score = resultData.score;
+    const total = resultData.total;
+    const accuracy = ((score/total)*100).toFixed(2);
 
-const resultData = JSON.parse(data);
-const score = resultData.score;
-const total = resultData.total;
-const accuracy = ((score/total)*100).toFixed(2);
+    document.getElementById("summary").innerHTML=
+    `<h2 style="font-size: 36px; color: var(--amber);">${score} / ${total}</h2>
+     <h3 style="color: var(--muted);">Accuracy: ${accuracy}%</h3>`;
 
-document.getElementById("summary").innerHTML=
-`<h2>Score: ${score} / ${total}</h2>
-<h3>Accuracy: ${accuracy}%</h3>`;
+    let html=`<h2 style="margin: 40px 0 20px 0; font-weight: 800; letter-spacing: 1px;">DETAILED ANALYSIS</h2>
+    <table>
+    <thead>
+    <tr>
+    <th>#</th>
+    <th>Question</th>
+    <th>Your Answer</th>
+    <th>Correct Answer</th>
+    <th>Status</th>
+    <th>Solution</th>
+    </tr>
+    </thead><tbody>`;
 
-let html=`<h2 style="margin-top:30px;">Detailed Analysis</h2>
-<table>
-<thead>
-<tr>
-<th>Q.No</th>
-<th>Question</th>
-<th>Your Answer</th>
-<th>Correct Answer</th>
-<th>Status</th>
-<th>Hint</th>
-<th>Solution</th>
-</tr>
-</thead><tbody>`;
+    resultData.questions.forEach((q,i)=>{
+        const userAns=resultData.answers[i];
+        const isCorrect=userAns==q.a;
 
-resultData.questions.forEach((q,i)=>{
-const userAns=resultData.answers[i];
-const isCorrect=userAns==q.a;
+        html+=`
+        <tr class="${isCorrect?"correct-row":"wrong-row"}">
+        <td style="font-weight:800; color: var(--brand);">${i+1}</td>
+        <td style="min-width: 250px;">${q.q}</td>
+        <td>${userAns!==null?q.o[userAns]:"<span style='color:var(--muted)'>Not Attempted</span>"}</td>
+        <td style="color: var(--accent); font-weight:600;">${q.o[q.a]}</td>
+        <td>
+            <span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">
+                ${isCorrect?"✅ Correct":"❌ Wrong"}
+            </span>
+        </td>
+        <td style="font-size: 13px; color: var(--muted); max-width: 300px;">
+            ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
+        </td>
+        </tr>`;
+    });
 
-html+=`
-<tr class="${isCorrect?"correct-row":"wrong-row"}">
-<td>${i+1}</td>
-<td>${q.q}</td>
-<td>${userAns!==null?q.o[userAns]:"Not Attempted"}</td>
-<td>${q.o[q.a]}</td>
-<td>${isCorrect?"✅ Correct":"❌ Wrong"}</td>
-<td>${!isCorrect?(q.hint||"-"):"-"}</td>
-<td>${!isCorrect?(q.sol||"-"):"-"}</td>
-</tr>`;
-});
-
-html+="</tbody></table>";
-document.getElementById("details").innerHTML=html;
-
+    html+="</tbody></table>";
+    document.getElementById("details").innerHTML=html;
 });
 </script>
 
-<!-- FIREBASE SAVE (FIXED & PROFESSIONAL) -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-  projectId: "olympiad-portal-d2a5e",
-  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
-  messagingSenderId: "341855557503",
-  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+    projectId: "olympiad-portal-d2a5e",
+    storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+    messagingSenderId: "341855557503",
+    appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -132,51 +205,42 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 onAuthStateChanged(auth, async (user) => {
+    if(!user){
+        window.location.replace("login.html");
+        return;
+    }
 
-if(!user){
-window.location.replace("login.html");
-return;
-}
+    const resultData = JSON.parse(localStorage.getItem("quizResult"));
+    if(!resultData) return;
+    if(sessionStorage.getItem("resultSaved")) return;
 
-const resultData = JSON.parse(localStorage.getItem("quizResult"));
-if(!resultData) return;
+    const score = resultData.score;
+    const total = resultData.total;
+    const accuracy = ((score/total)*100).toFixed(2);
 
-// Prevent duplicate save
-if(sessionStorage.getItem("resultSaved")) return;
-
-const score = resultData.score;
-const total = resultData.total;
-const accuracy = ((score/total)*100).toFixed(2);
-
-try{
-
-await addDoc(collection(db,"leaderboard"),{
-email: user.email,
-uid: user.uid,
-studentClass: resultData.class,
-subject: resultData.subject,
-score: score,
-total: total,
-accuracy: accuracy,
-date: new Date()
-});
-
-console.log("Leaderboard saved for:", user.email);
-
-sessionStorage.setItem("resultSaved","true");
-
-}catch(error){
-console.error("Firebase Save Error:", error);
-}
-
+    try{
+        await addDoc(collection(db,"leaderboard"),{
+            email: user.email,
+            uid: user.uid,
+            studentClass: resultData.class,
+            subject: resultData.subject,
+            score: score,
+            total: total,
+            accuracy: accuracy,
+            date: new Date()
+        });
+        sessionStorage.setItem("resultSaved","true");
+    }catch(error){
+        console.error("Firebase Save Error:", error);
+    }
 });
 
 window.logout=function(){
-signOut(auth).then(()=>{
-localStorage.clear();
-sessionStorage.clear();
-window.location.replace("login.html");
-});
+    signOut(auth).then(()=>{
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.replace("login.html");
+    });
 };
 </script>
 
