@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#0f2027,#203a43,#2c5364);
+    min-height:100vh;
+    color:white;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#1e2a38;
+}
+
+nav h2{
+    color:#ffb703;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+nav a:hover{
+    color:#ffb703;
+}
+
+/* ===== CENTER BOX ===== */
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:calc(100vh - 80px);
+}
+
+.signup-box{
+    background:#1e2a38;
+    padding:40px;
+    border-radius:15px;
+    width:350px;
+    text-align:center;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#ffb703;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#f59e0b;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+    <h2>🎓 Olympiad Portal</h2>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </div>
+</nav>
+
+<div class="container">
+<div class="signup-box">
+<h2>Create Account</h2>
+
+<form id="signupForm">
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="password" id="password" placeholder="Password" required>
+
+<select id="classSelect" required>
+<option value="">Select Class</option>
+<option value="class4">Class 4</option>
+<option value="class5">Class 5</option>
+<option value="class6">Class 6</option>
+<option value="class7">Class 7</option>
+<option value="class8">Class 8</option>
+<option value="class9">Class 9</option>
+<option value="class10">Class 10</option>
+</select>
+
+<button type="submit">Register</button>
+</form>
+
+<p style="margin-top:15px;">
+Already have account?
+<a href="login.html" style="color:#ffb703;">Login</a>
+</p>
+
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+document.getElementById("signupForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    const name=document.getElementById("name").value.trim();
+    const email=document.getElementById("email").value.trim();
+    const password=document.getElementById("password").value;
+    const classSelect=document.getElementById("classSelect").value;
+
+    try{
+        const userCredential=await createUserWithEmailAndPassword(auth,email,password);
+        const user=userCredential.user;
+
+        await setDoc(doc(db,"users",user.uid),{
+            name,
+            email,
+            class:classSelect,
+            createdAt:new Date()
+        });
+
+        alert("Signup Successful!");
+        window.location.href="login.html";
+    }catch(error){
+        alert(error.message);
+    }
+});
+</script>
+
+</body>
+</html>

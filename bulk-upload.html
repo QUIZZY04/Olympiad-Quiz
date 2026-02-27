@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bulk Upload Questions</title>
+<style>
+body{background:#0f0f1b;color:white;font-family:Segoe UI;padding:30px;}
+textarea{width:100%;height:300px;padding:10px;}
+button{padding:10px 20px;background:#ffb703;border:none;margin-top:10px;margin-right:10px;}
+#status{margin-top:15px;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<h2>📦 Bulk Upload Questions (Admin Only)</h2>
+
+<p id="userInfo"></p>
+
+<textarea id="jsonInput" placeholder="Paste JSON array here"></textarea>
+<br>
+<button onclick="uploadBulk()">Upload Questions</button>
+<button onclick="clearInput()">Clear</button>
+<button onclick="pasteFromClipboard()">Paste</button>
+<div id="status"></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.replace("login.html");
+  } else {
+    currentUser = user;
+    document.getElementById("userInfo").innerText =
+      "Logged in as: " + user.email;
+
+    if(user.email !== "madhhu52@gmail.com"){
+        document.getElementById("status").innerText =
+        "❌ Access denied. Admin only.";
+    }
+  }
+});
+
+window.uploadBulk = async function () {
+  if(!currentUser){
+      document.getElementById("status").innerText =
+      "Please wait. Auth not ready.";
+      return;
+  }
+
+  if(currentUser.email !== "madhhu52@gmail.com"){
+      document.getElementById("status").innerText =
+      "❌ Only admin can upload.";
+      return;
+  }
+
+  try {
+    const data = JSON.parse(document.getElementById("jsonInput").value);
+
+    for (let item of data) {
+      await addDoc(collection(db, "questions"), item);
+    }
+
+    document.getElementById("status").innerText =
+      "✅ Successfully uploaded " + data.length + " questions.";
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById("status").innerText =
+      "❌ Upload failed: " + error.message;
+  }
+};
+
+// Clear textarea
+window.clearInput = function () {
+  document.getElementById("jsonInput").value = "";
+  document.getElementById("status").innerText = "🧹 Cleared input.";
+};
+
+// Paste from clipboard
+window.pasteFromClipboard = async function () {
+  try {
+    const text = await navigator.clipboard.readText();
+    document.getElementById("jsonInput").value = text;
+    document.getElementById("status").innerText = "📋 Pasted from clipboard.";
+  } catch (error) {
+    document.getElementById("status").innerText =
+      "❌ Failed to paste: " + error.message;
+  }
+};
+
+</script>
+
+</body>
+</html>
