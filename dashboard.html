@@ -12,9 +12,9 @@
       --amber: #f59e0b; --danger: #ef4444;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
 
-    /* MATCHED NAV STYLES */
+    /* NAVBAR STYLES */
     .utility-nav {
       background: #020617; padding: 12px 40px; display: flex;
       justify-content: flex-end; gap: 30px; border-bottom: 1px solid var(--border);
@@ -25,10 +25,11 @@
       background: var(--surface); border-bottom: 2px solid var(--border);
       padding: 20px 40px; display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
 
-    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; flex: 1; }
     h1 { font-size: 32px; margin-bottom: 5px; }
     p.subtitle { color: var(--muted); margin-bottom: 30px; }
 
@@ -58,16 +59,22 @@
       border-radius: 8px; font-weight: 700; text-transform: uppercase; cursor: pointer; width: 100%;
     }
 
-    /* INSTRUCTIONS */
-    .instructions-section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
-    .instructions-section h2 { color: var(--amber); margin-bottom: 20px; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .ins-item { display: flex; gap: 15px; }
-    .ins-icon { background: rgba(56, 189, 248, 0.1); color: var(--brand); width: 32px; height: 32px; 
-                display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-weight: 800; }
-    .ins-text { font-size: 14px; line-height: 1.6; color: var(--muted); }
+    /* UPDATED INSTRUCTIONS SECTION */
+    .instructions-section { 
+        background: var(--surface); border: 1px solid var(--border); border-radius: 20px; 
+        padding: 40px; margin-top: 50px; width: 100%; height: auto; 
+    }
+    .instructions-section h2 { color: var(--amber); margin-bottom: 25px; font-size: 24px; display: flex; align-items: center; gap: 12px; }
+    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+    .ins-item { display: flex; gap: 15px; align-items: flex-start; }
+    .ins-icon { 
+        background: rgba(56, 189, 248, 0.1); color: var(--brand); width: 36px; height: 36px; 
+        display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-weight: 800; 
+    }
+    .ins-text { font-size: 15px; line-height: 1.6; color: var(--muted); }
+    .ins-text strong { color: var(--text); display: block; margin-bottom: 4px; }
 
-    footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; margin-top: 50px; }
+    footer { text-align: center; padding: 25px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; font-weight: 500; }
   </style>
 </head>
 <body>
@@ -91,9 +98,9 @@
         <option value="class1">Grade 1</option>
         <option value="class2">Grade 2</option>
         <option value="class3">Grade 3</option>
-        <option value="class4" selected>Grade 4</option>
+        <option value="class4">Grade 4</option>
         <option value="class5">Grade 5</option>
-        <option value="class6">Grade 6</option>
+        <option value="class6" selected>Grade 6</option>
         <option value="class7">Grade 7</option>
         <option value="class8">Grade 8</option>
         <option value="class9">Grade 9</option>
@@ -124,11 +131,31 @@
       <div class="ins-grid">
         <div class="ins-item">
           <div class="ins-icon">1</div>
-          <div class="ins-text"><strong>Time Limit:</strong> Each quiz lasts 30 minutes.</div>
+          <div class="ins-text">
+            <strong>Time Limit</strong>
+            Each quiz lasts exactly 30 minutes. The timer starts as soon as the questions load and will auto-submit when the time expires.
+          </div>
         </div>
         <div class="ins-item">
           <div class="ins-icon">2</div>
-          <div class="ins-text"><strong>Navigation:</strong> Use the palette to skip between questions.</div>
+          <div class="ins-text">
+            <strong>Navigation & Palette</strong>
+            Use the numbered grid to track progress. Green indicates an answered question, Blue is current, Red is visited, and Grey is unseen.
+          </div>
+        </div>
+        <div class="ins-item">
+          <div class="ins-icon">3</div>
+          <div class="ins-text">
+            <strong>Saving Answers</strong>
+            Always click "Save & Next" to record your selection. You can revisit and change your answers anytime before finishing.
+          </div>
+        </div>
+        <div class="ins-item">
+          <div class="ins-icon">4</div>
+          <div class="ins-text">
+            <strong>Performance Report</strong>
+            After finishing, you will receive a detailed analysis including your score, accuracy, and correct solutions for all questions.
+          </div>
         </div>
       </div>
     </section>
