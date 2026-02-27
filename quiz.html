@@ -10,37 +10,128 @@
 <meta http-equiv="Expires" content="0">
 
 <style>
+
+/* ===== BODY ===== */
+body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
+    background:#0f0f1b;
+    color:white;
+}
+
+/* ===== NAVIGATION ===== */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#1e1e2f;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.nav-left img{
+    width:35px;
+    height:35px;
+}
+
+.nav-left h2{
+    margin:0;
+    color:#ffb703;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:500;
+    cursor:pointer;
+}
+
+nav a:hover{
+    color:#ffb703;
+}
+
+/* ===== TOP BAR ===== */
 .top-bar{
-    background:#111;
-    padding:15px 30px;
+    background:#141424;
+    padding:15px 40px;
     display:flex;
     justify-content:space-between;
     align-items:center;
     font-size:18px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
+    border-bottom:1px solid rgba(255,255,255,0.08);
 }
-#timer{ color:#ffb703; font-weight:bold; }
 
-.quiz-container{ display:flex; height:calc(100vh - 60px); }
-.question-section{ flex:3; padding:40px; overflow-y:auto; }
-.navigation-section{ flex:1; background:rgba(255,255,255,0.05); padding:25px; border-left:1px solid rgba(255,255,255,0.1); overflow-y:auto; }
+#timer{
+    color:#ffb703;
+    font-weight:bold;
+}
 
+/* ===== LAYOUT ===== */
+.quiz-container{
+    display:flex;
+    height:calc(100vh - 120px);
+}
+
+.question-section{
+    flex:3;
+    padding:40px;
+    overflow-y:auto;
+}
+
+.navigation-section{
+    flex:1;
+    background:#1a1a2e;
+    padding:25px;
+    border-left:1px solid rgba(255,255,255,0.08);
+    overflow-y:auto;
+}
+
+/* ===== PROGRESS ===== */
 .progress-wrapper{ margin-bottom:20px; }
-.progress-bar{ width:100%; height:12px; background:#333; border-radius:10px; overflow:hidden; }
-.progress-fill{ height:100%; width:0%; background:#28a745; transition:width 0.3s ease; }
 
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:#333;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:#28a745;
+    transition:width 0.3s ease;
+}
+
+/* ===== OPTIONS ===== */
 .options label{
     display:block;
-    padding:12px;
+    padding:14px;
     margin:10px 0;
-    font-size:18px;
-    background:rgba(255,255,255,0.08);
+    font-size:17px;
+    background:#1f1f35;
     border-radius:8px;
     cursor:pointer;
+    transition:0.2s;
 }
-.options label:hover{ background:rgba(255,183,3,0.15); }
 
-.quiz-buttons{ margin-top:25px; }
+.options label:hover{
+    background:#29294d;
+}
+
+/* ===== BUTTONS ===== */
+.quiz-buttons{
+    margin-top:25px;
+}
+
 .quiz-buttons button{
     width:130px;
     margin-right:10px;
@@ -50,24 +141,54 @@
     padding:10px;
     border-radius:6px;
     cursor:pointer;
+    font-weight:bold;
+    transition:0.2s;
 }
 
+.quiz-buttons button:hover{
+    background:#f59e0b;
+}
+
+/* ===== PALETTE ===== */
 .grid{
     display:grid;
     grid-template-columns:repeat(5,1fr);
     gap:10px;
     margin-top:20px;
 }
+
 .grid div{
     padding:10px;
     text-align:center;
     border-radius:6px;
     cursor:pointer;
     font-size:14px;
+    background:#555;
 }
+
+.navigation-section h3{
+    margin-top:0;
+    color:#ffb703;
+}
+
 </style>
 </head>
+
 <body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+    <div class="nav-left">
+        <img src="logo.png" alt="Logo">
+        <h2>Olympiad Portal</h2>
+    </div>
+    <div>
+        <a onclick="confirmLeave('index.html')">Home</a>
+        <a onclick="confirmLeave('dashboard.html')">Dashboard</a>
+        <a onclick="confirmLeave('leaderboard.html')">Leaderboard</a>
+        <a onclick="logout()">Logout</a>
+    </div>
+</nav>
 
 <div class="top-bar">
     <div id="subjectTitle"></div>
@@ -77,6 +198,7 @@
 <div class="quiz-container">
 
 <div class="question-section">
+
     <div class="progress-wrapper">
         Answered: <span id="answeredCount">0</span> /
         <span id="totalCount"></span>
@@ -94,6 +216,7 @@
         <button onclick="nextQuestion()">Next</button>
         <button onclick="confirmSubmit()">Submit</button>
     </div>
+
 </div>
 
 <div class="navigation-section">
@@ -108,7 +231,7 @@
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, query, where, getDocs } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -138,203 +261,37 @@ selectedClass.toUpperCase() + " - " + selectedSubject.toUpperCase();
 let selectedAnswers = [];
 let visitedQuestions = [];
 
-/* ================= LOAD QUESTIONS (Random + Max 30) ================= */
+/* ===== LEAVE WARNING ===== */
 
-async function loadQuestionsHybrid() {
+let quizSubmitted = false;
 
-    try {
-
-        const q = query(
-            collection(db, "questions"),
-            where("class", "==", selectedClass),
-            where("subject", "==", selectedSubject)
-        );
-
-        const snapshot = await getDocs(q);
-
-        if (!snapshot.empty) {
-
-            let allQuestions = snapshot.docs.map(doc => doc.data());
-
-            // Shuffle questions
-            allQuestions.sort(() => Math.random() - 0.5);
-
-            // Pick maximum 30
-            questions = allQuestions.slice(0, 30);
-
-            console.log("Loaded from Firebase:", questions.length);
-
-        } else {
-
-            questions = questionsData[selectedClass][selectedSubject];
-            questions.sort(() => Math.random() - 0.5);
-
-            console.log("Loaded from questions.js fallback");
-
+window.confirmLeave = function(url){
+    if(!quizSubmitted){
+        if(confirm("⚠️ Your quiz progress will be lost. Are you sure you want to leave?")){
+            window.location.href = url;
         }
-
-    } catch (error) {
-
-        questions = questionsData[selectedClass][selectedSubject];
-        questions.sort(() => Math.random() - 0.5);
-
-        console.log("Firebase failed, fallback used");
-
+    } else {
+        window.location.href = url;
     }
+};
 
-    selectedAnswers = new Array(questions.length).fill(null);
-    visitedQuestions = new Array(questions.length).fill(false);
-
-    document.getElementById("totalCount").innerText = questions.length;
-
-    generateGrid();
-    loadQuestion();
-}
-
-/* ================= AUTH ================= */
-
-onAuthStateChanged(auth, async (user)=>{
-    if(!user){
-        window.location.replace("login.html");
-        return;
+window.addEventListener("beforeunload", function (e) {
+    if(!quizSubmitted){
+        e.preventDefault();
+        e.returnValue = "";
     }
-    await loadQuestionsHybrid();
 });
 
-/* ================= TIMER ================= */
-
-let totalTime = 1800;
-
-const timerInterval = setInterval(function(){
-    let minutes = Math.floor(totalTime/60);
-    let seconds = totalTime % 60;
-
-    document.getElementById("timer").innerText =
-    minutes + ":" + (seconds<10?"0":"") + seconds;
-
-    totalTime--;
-
-    if(totalTime < 0){
-        clearInterval(timerInterval);
-        submitQuiz();
+/* ===== LOGOUT ===== */
+window.logout = function(){
+    if(confirm("⚠️ Are you sure you want to logout? Quiz progress will be lost.")){
+        signOut(auth).then(()=>{
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html");
+        });
     }
-},1000);
-
-/* ================= QUIZ LOGIC ================= */
-
-function loadQuestion(){
-    visitedQuestions[current] = true;
-    const q = questions[current];
-
-    document.getElementById("questionNumber").innerText =
-    "Question " + (current+1) + " of " + questions.length;
-
-    document.getElementById("questionText").innerHTML = q.q;
-
-    let optionsHTML = "";
-    q.o.forEach((opt,i)=>{
-        optionsHTML += `
-        <label>
-        <input type="radio" name="option" value="${i}"
-        ${selectedAnswers[current]===i ? "checked":""}
-        onchange="saveAnswer(${i})">
-        ${opt}
-        </label>`;
-    });
-
-    document.getElementById("options").innerHTML = optionsHTML;
-
-    updateGrid();
-    updateProgress();
-}
-
-window.saveAnswer = function(value){
-    selectedAnswers[current] = value;
-}
-
-window.nextQuestion = function(){
-    if(current < questions.length-1){
-        current++;
-        loadQuestion();
-    }
-}
-
-window.prevQuestion = function(){
-    if(current > 0){
-        current--;
-        loadQuestion();
-    }
-}
-
-window.confirmSubmit = function(){
-    if(confirm("Are you sure you want to submit?")){
-        submitQuiz();
-    }
-}
-
-function submitQuiz() {
-    score = 0;
-    for (let i = 0; i < questions.length; i++) {
-        if (selectedAnswers[i] === questions[i].a) {
-            score++;
-        }
-    }
-
-    let resultData = {
-        score: score,
-        total: questions.length,
-        subject: selectedSubject,
-        class: selectedClass,
-        answers: selectedAnswers,
-        questions: questions,
-        date: new Date().toLocaleString()
-    };
-
-    localStorage.setItem("quizResult", JSON.stringify(resultData));
-    window.location.href = "result.html";
-}
-
-function generateGrid(){
-    let gridHTML = "";
-    for(let i=0;i<questions.length;i++){
-        gridHTML += `<div onclick="jumpTo(${i})" id="q${i}">${i+1}</div>`;
-    }
-    document.getElementById("questionGrid").innerHTML = gridHTML;
-}
-
-window.jumpTo = function(index){
-    current = index;
-    loadQuestion();
-}
-
-function updateProgress(){
-    let answered = selectedAnswers.filter(a => a !== null).length;
-    document.getElementById("answeredCount").innerText = answered;
-    let percentage = (answered / questions.length) * 100;
-    document.getElementById("progressFill").style.width = percentage + "%";
-}
-
-function updateGrid(){
-    for(let i=0;i<questions.length;i++){
-        let cell = document.getElementById("q"+i);
-        if(i === current){
-            cell.style.background = "#ffb703";
-            cell.style.color = "black";
-        }
-        else if(selectedAnswers[i] !== null){
-            cell.style.background = "#28a745";
-            cell.style.color = "white";
-        }
-        else if(visitedQuestions[i]){
-            cell.style.background = "#dc3545";
-            cell.style.color = "white";
-        }
-        else{
-            cell.style.background = "#555";
-            cell.style.color = "white";
-        }
-    }
-}
+};
 
 </script>
 
