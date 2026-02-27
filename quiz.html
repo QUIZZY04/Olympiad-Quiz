@@ -7,10 +7,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
   <style>
     :root {
       --bg: #0f172a;                 
@@ -27,7 +23,7 @@
     *{box-sizing:border-box}
     html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg);}
 
-    /* 1. TOP UTILITY NAV - ABOVE THE BAR */
+    /* TOP UTILITY NAV - ABOVE THE BAR */
     .utility-nav {
       background: #020617; 
       padding: 12px 40px;
@@ -37,18 +33,17 @@
       border-bottom: 1px solid var(--border);
     }
     .utility-nav a {
-      color: var(--amber); /* Yellow color matching Save & Next */
+      color: var(--amber); 
       text-decoration: none;
-      font-size: 16px; /* Larger font as requested */
+      font-size: 16px; 
       font-weight: 800; 
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      cursor: pointer;
     }
     .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
-    .utility-nav .logout-link { color: var(--danger) !important; }
+    .utility-nav .logout-link { color: var(--danger) !important; cursor: pointer; }
 
-    /* 2. MAIN HEADER BAR */
+    /* MAIN HEADER BAR */
     header.top-bar {
       position: sticky; top: 0; z-index: 1000;
       background: #1e293b; 
@@ -65,18 +60,18 @@
       border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* 3. QUIZ LAYOUT */
+    /* QUIZ LAYOUT */
     .quiz-container { display: flex; gap: 24px; padding: 30px; max-width: 1500px; margin: 0 auto; }
     .section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
     .question-section { flex: 3; }
     .navigation-section { flex: 1; padding: 25px; height: fit-content; }
 
-    /* 4. OPTIONS - RIGID LEFT ALIGNMENT */
+    /* OPTIONS - RIGID LEFT ALIGNMENT */
     .options { display: grid; gap: 15px; margin-top: 25px; }
     .opt {
       display: flex; 
       align-items: center; 
-      justify-content: flex-start; /* Forces content to the left */
+      justify-content: flex-start; 
       gap: 15px; 
       padding: 18px 25px; 
       background: rgba(15, 23, 42, 0.6);
@@ -84,38 +79,37 @@
       cursor: pointer; 
       transition: 0.2s;
     }
-    .opt:hover { border-color: var(--amber); background: rgba(245, 158, 11, 0.05); }
+    .opt:hover { border-color: var(--amber); }
     .opt input { 
       accent-color: var(--amber); 
       width: 24px; 
       height: 24px; 
       flex-shrink: 0; 
     }
-    .opt span { 
-      font-size: 18px; 
-      color: #ffffff; 
-      text-align: left; /* Ensures text starts immediately after the radio */
-    }
+    .opt span { font-size: 18px; color: #ffffff; text-align: left; }
 
-    /* 5. ACTION BUTTONS */
+    /* ACTION BUTTONS */
     .quiz-buttons { margin-top: 40px; display: flex; gap: 20px; }
     .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 16px; }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* 6. PALETTE GRID & LEGEND */
+    /* PALETTE GRID & BASIC COLOR LEGEND */
     .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
     .grid .cell { 
       padding: 12px 0; text-align: center; border-radius: 8px; border: 1px solid var(--border); 
-      cursor: pointer; color: #0f172a; background: #f8fafc; font-weight: 600;
+      cursor: pointer; color: #0f172a; background: #f8fafc; font-weight: 700;
     }
-    .cell.current { background: #c7d2fe !important; color: #1e3a8a !important; border-color: #a5b4fc !important; }
-    .cell.answered { background: #bbf7d0 !important; color: #065f46 !important; border-color: #86efac !important; }
-    .cell.visited { background: #fecaca !important; color: #7f1d1d !important; border-color: #fca5a5 !important; }
 
-    .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 14px; }
-    .legend-box { width: 20px; height: 20px; border-radius: 4px; border: 1px solid var(--border); }
+    /* BASIC SOLID COLORS FOR PALETTE AND LEGEND */
+    .cell.current, .legend-current { background: #c7d2fe !important; color: #1e3a8a !important; border-color: #a5b4fc !important; }
+    .cell.answered, .legend-answered { background: #bbf7d0 !important; color: #065f46 !important; border-color: #86efac !important; }
+    .cell.visited, .legend-visited { background: #fecaca !important; color: #7f1d1d !important; border-color: #fca5a5 !important; }
+    .cell.unseen, .legend-unseen { background: #f8fafc !important; color: #0f172a !important; border: 1px solid var(--border); }
+
+    .legend-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 14px; font-weight: 600; }
+    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
   </style>
 </head>
 <body>
@@ -134,8 +128,8 @@
 
   <main class="quiz-container">
     <section class="question-section section">
-      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px; letter-spacing: 1px;">QUESTION 1</div>
-      <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500; line-height: 1.5;">Loading...</div>
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px;">QUESTION 1</div>
+      <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500;">Loading...</div>
       
       <div class="options" id="options"></div>
 
@@ -149,11 +143,11 @@
     <aside class="navigation-section section">
       <h3 style="margin:0 0 15px 0;">Question Palette</h3>
       
-      <div class="palette-legend" style="margin-bottom: 20px;">
-        <div class="legend-item"><div class="legend-box" style="background:#c7d2fe;"></div> Current</div>
-        <div class="legend-item"><div class="legend-box" style="background:#bbf7d0;"></div> Answered</div>
-        <div class="legend-item"><div class="legend-box" style="background:#fecaca;"></div> Visited</div>
-        <div class="legend-item"><div class="legend-box" style="background:#f8fafc;"></div> Unseen</div>
+      <div class="palette-legend" style="margin-bottom: 25px;">
+        <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
+        <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
+        <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
+        <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
       </div>
 
       <div class="grid" id="questionGrid"></div>
@@ -179,7 +173,6 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // --- LEAVING QUIZ WARNING ---
     let quizSubmitted = false;
     window.addEventListener('beforeunload', (e) => {
       if (!quizSubmitted) {
@@ -189,14 +182,13 @@
     });
 
     window.logout = async function() {
-      if(confirm("Are you sure you want to logout? Your quiz progress will be lost.")){
+      if(confirm("Are you sure? Quiz progress will be lost.")){
           quizSubmitted = true;
           await signOut(auth);
           window.location.replace("login.html");
       }
     };
 
-    // --- QUIZ LOGIC ---
     let current = 0;
     let questions = [];
     let selectedAnswers = [];
@@ -234,7 +226,6 @@
       document.getElementById("questionText").innerHTML = q.q;
       let html = '';
       q.o.forEach((opt, i) => {
-        // Correct structure: label -> input -> span for left alignment
         html += `<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current] === i ? "checked" : ""} onchange="saveAnswer(${i})" /><span>${opt}</span></label>`;
       });
       document.getElementById("options").innerHTML = html;
@@ -259,6 +250,7 @@
         if (i === current) el.classList.add('current');
         else if (selectedAnswers[i] !== null) el.classList.add('answered');
         else if (visitedQuestions[i]) el.classList.add('visited');
+        else el.classList.add('unseen');
       }
     }
 
@@ -269,7 +261,7 @@
       if (--totalTime < 0) { clearInterval(timer); submitQuiz(); }
     }, 1000);
 
-    window.confirmSubmit = () => { if (confirm("Are you sure you want to submit the quiz?")) submitQuiz(); };
+    window.confirmSubmit = () => { if (confirm("Submit quiz?")) submitQuiz(); };
     function submitQuiz() {
       quizSubmitted = true;
       let score = 0;
