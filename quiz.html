@@ -10,97 +10,300 @@
 <meta http-equiv="Expires" content="0">
 
 <style>
-.top-bar{
-    background:#111;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:18px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-}
-#timer{ color:#ffb703; font-weight:bold; }
 
-.quiz-container{ display:flex; height:calc(100vh - 60px); }
-.question-section{ flex:3; padding:40px; overflow-y:auto; }
-.navigation-section{ flex:1; background:rgba(255,255,255,0.05); padding:25px; border-left:1px solid rgba(255,255,255,0.1); overflow-y:auto; }
+/* ================= NAVBAR ================= */
 
-.progress-wrapper{ margin-bottom:20px; }
-.progress-bar{ width:100%; height:12px; background:#333; border-radius:10px; overflow:hidden; }
-.progress-fill{ height:100%; width:0%; background:#28a745; transition:width 0.3s ease; }
-
-.options label{
-    display:block;
-    padding:12px;
-    margin:10px 0;
-    font-size:18px;
-    background:rgba(255,255,255,0.08);
-    border-radius:8px;
-    cursor:pointer;
-}
-.options label:hover{ background:rgba(255,183,3,0.15); }
-
-.quiz-buttons{ margin-top:25px; }
-.quiz-buttons button{
-    width:130px;
-    margin-right:10px;
-    background:#ffb703;
-    color:black;
-    border:none;
-    padding:10px;
-    border-radius:6px;
-    cursor:pointer;
+.top-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(90deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 9999;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin-top:20px;
+.nav-brand {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffb703;
+    letter-spacing: 1px;
 }
-.grid div{
-    padding:10px;
-    text-align:center;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:14px;
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
+
+.nav-links a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,183,3,0.15);
+    color: #ffb703;
+}
+
+.nav-links a.active {
+    background: rgba(255,183,3,0.2);
+    color: #ffb703;
+    border: 1px solid rgba(255,183,3,0.3);
+}
+
+.nav-links a svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.nav-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.12);
+    margin: 0 6px;
+}
+
+.logout-btn {
+    text-decoration: none;
+    color: #f87171 !important;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: 0.25s;
+    border: none;
+    background: none;
+}
+
+.logout-btn:hover {
+    background: rgba(248,113,113,0.15) !important;
+    color: #f87171 !important;
+}
+
+/* Quiz timer bar */
+.quiz-timer-bar {
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    background: #111;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 998;
+}
+
+#timer { color: #ffb703; font-weight: bold; font-size: 18px; }
+
+.quiz-container {
+    display: flex;
+    height: calc(100vh - 104px);
+    margin-top: 104px;
+}
+
+.question-section { flex: 3; padding: 40px; overflow-y: auto; }
+.navigation-section {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    overflow-y: auto;
+}
+
+.progress-wrapper { margin-bottom: 20px; }
+.progress-bar { width: 100%; height: 12px; background: #333; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: #28a745; transition: width 0.3s ease; }
+
+.options label {
+    display: block;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 18px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    cursor: pointer;
+}
+.options label:hover { background: rgba(255,183,3,0.15); }
+
+.quiz-buttons { margin-top: 25px; }
+.quiz-buttons button {
+    width: 130px;
+    margin-right: 10px;
+    background: #ffb703;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+.grid div {
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Confirm exit modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 35px 40px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.modal-box h3 { font-size: 20px; margin-bottom: 12px; color: #f8fafc; }
+.modal-box p { color: #94a3b8; margin-bottom: 25px; font-size: 15px; }
+.modal-actions { display: flex; gap: 12px; justify-content: center; }
+.modal-actions button {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+}
+.btn-stay { background: rgba(255,255,255,0.1); color: white; }
+.btn-stay:hover { background: rgba(255,255,255,0.18); }
+.btn-leave { background: #f87171; color: white; }
+.btn-leave:hover { background: #ef4444; }
+
 </style>
 </head>
 <body>
 
-<div class="top-bar">
-    <div id="subjectTitle"></div>
-    <div>Time Left: <span id="timer">30:00</span></div>
+<!-- ================= TOP NAVBAR ================= -->
+<nav class="top-nav">
+    <div class="nav-brand">🏆 OlympiadPortal</div>
+    <div class="nav-links">
+
+        <a href="index.html">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M4 10v10h5v-6h6v6h5V10"/>
+            </svg>
+            Home
+        </a>
+
+        <a href="dashboard.html">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+            Dashboard
+        </a>
+
+        <a href="leaderboard.html">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 17H5a2 2 0 00-2 2v1h18v-1a2 2 0 00-2-2h-3M12 3v10m0 0l-3-3m3 3l3-3"/>
+            </svg>
+            Leaderboard
+        </a>
+
+        <div class="nav-divider"></div>
+
+        <button class="logout-btn" onclick="handleLogout()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1"/>
+            </svg>
+            Logout
+        </button>
+
+    </div>
+</nav>
+
+<!-- ================= TIMER BAR ================= -->
+<div class="quiz-timer-bar">
+    <div id="subjectTitle" style="font-weight:600;"></div>
+    <div>⏱ Time Left: <span id="timer">30:00</span></div>
 </div>
 
+<!-- ================= QUIZ BODY ================= -->
 <div class="quiz-container">
 
-<div class="question-section">
-    <div class="progress-wrapper">
-        Answered: <span id="answeredCount">0</span> /
-        <span id="totalCount"></span>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+    <div class="question-section">
+        <div class="progress-wrapper">
+            Answered: <span id="answeredCount">0</span> /
+            <span id="totalCount"></span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <h3 id="questionNumber"></h3>
+        <p id="questionText"></p>
+        <div class="options" id="options"></div>
+
+        <div class="quiz-buttons">
+            <button onclick="prevQuestion()">⬅ Previous</button>
+            <button onclick="nextQuestion()">Next ➡</button>
+            <button onclick="confirmSubmit()">✅ Submit</button>
         </div>
     </div>
 
-    <h3 id="questionNumber"></h3>
-    <p id="questionText"></p>
-    <div class="options" id="options"></div>
-
-    <div class="quiz-buttons">
-        <button onclick="prevQuestion()">Previous</button>
-        <button onclick="nextQuestion()">Next</button>
-        <button onclick="confirmSubmit()">Submit</button>
+    <div class="navigation-section">
+        <h3>Question Palette</h3>
+        <div style="margin-top:10px; font-size:12px; color:#94a3b8;">
+            <span style="display:inline-block;width:12px;height:12px;background:#ffb703;border-radius:3px;margin-right:5px;"></span>Current
+            <span style="display:inline-block;width:12px;height:12px;background:#28a745;border-radius:3px;margin:0 5px 0 12px;"></span>Answered
+            <span style="display:inline-block;width:12px;height:12px;background:#dc3545;border-radius:3px;margin:0 5px 0 12px;"></span>Skipped
+        </div>
+        <div class="grid" id="questionGrid"></div>
     </div>
+
 </div>
 
-<div class="navigation-section">
-    <h3>Question Palette</h3>
-    <div class="grid" id="questionGrid"></div>
-</div>
-
+<!-- ================= EXIT CONFIRM MODAL ================= -->
+<div class="modal-overlay" id="exitModal">
+    <div class="modal-box">
+        <h3>⚠️ Leave Quiz?</h3>
+        <p>Your progress will be lost if you leave now. Are you sure you want to go?</p>
+        <div class="modal-actions">
+            <button class="btn-stay" onclick="closeModal()">Stay in Quiz</button>
+            <button class="btn-leave" id="modalLeaveBtn">Leave</button>
+        </div>
+    </div>
 </div>
 
 <script src="questions.js"></script>
@@ -108,8 +311,8 @@
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs } 
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, query, where, getDocs }
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -128,215 +331,175 @@ const db = getFirestore(app);
 let current = 0;
 let score = 0;
 let questions = [];
+let pendingNavUrl = null;
 
 const selectedClass = localStorage.getItem("selectedClass") || "class4";
 const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
 
 document.getElementById("subjectTitle").innerText =
-selectedClass.toUpperCase() + " - " + selectedSubject.toUpperCase();
+    selectedClass.toUpperCase() + " — " + selectedSubject.toUpperCase();
 
 let selectedAnswers = [];
 let visitedQuestions = [];
 
-/* ================= LOAD QUESTIONS (Random + Max 30) ================= */
+/* ===== NAV LINK INTERCEPT (show confirm modal) ===== */
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        pendingNavUrl = this.href;
+        document.getElementById("exitModal").classList.add("show");
+        document.getElementById("modalLeaveBtn").onclick = () => {
+            window.location.href = pendingNavUrl;
+        };
+    });
+});
 
+window.closeModal = function() {
+    document.getElementById("exitModal").classList.remove("show");
+    pendingNavUrl = null;
+}
+
+/* ===== LOGOUT ===== */
+window.handleLogout = function() {
+    pendingNavUrl = "login.html";
+    document.getElementById("exitModal").classList.add("show");
+    document.getElementById("exitModal").querySelector("h3").innerText = "⚠️ Logout?";
+    document.getElementById("exitModal").querySelector("p").innerText =
+        "Your quiz progress will be lost. Do you want to logout?";
+    document.getElementById("modalLeaveBtn").innerText = "Logout";
+    document.getElementById("modalLeaveBtn").onclick = async () => {
+        await signOut(auth);
+        window.location.href = "login.html";
+    };
+}
+
+/* ===== LOAD QUESTIONS ===== */
 async function loadQuestionsHybrid() {
-
     try {
-
         const q = query(
             collection(db, "questions"),
             where("class", "==", selectedClass),
             where("subject", "==", selectedSubject)
         );
-
         const snapshot = await getDocs(q);
-
         if (!snapshot.empty) {
-
             let allQuestions = snapshot.docs.map(doc => doc.data());
-
-            // Shuffle questions
             allQuestions.sort(() => Math.random() - 0.5);
-
-            // Pick maximum 30
             questions = allQuestions.slice(0, 30);
-
-            console.log("Loaded from Firebase:", questions.length);
-
         } else {
-
             questions = questionsData[selectedClass][selectedSubject];
             questions.sort(() => Math.random() - 0.5);
-
-            console.log("Loaded from questions.js fallback");
-
         }
-
     } catch (error) {
-
         questions = questionsData[selectedClass][selectedSubject];
         questions.sort(() => Math.random() - 0.5);
-
-        console.log("Firebase failed, fallback used");
-
     }
 
     selectedAnswers = new Array(questions.length).fill(null);
     visitedQuestions = new Array(questions.length).fill(false);
-
     document.getElementById("totalCount").innerText = questions.length;
-
     generateGrid();
     loadQuestion();
 }
 
-/* ================= AUTH ================= */
-
-onAuthStateChanged(auth, async (user)=>{
-    if(!user){
-        window.location.replace("login.html");
-        return;
-    }
+/* ===== AUTH ===== */
+onAuthStateChanged(auth, async (user) => {
+    if (!user) { window.location.replace("login.html"); return; }
     await loadQuestionsHybrid();
 });
 
-/* ================= TIMER ================= */
-
+/* ===== TIMER ===== */
 let totalTime = 1800;
-
-const timerInterval = setInterval(function(){
-    let minutes = Math.floor(totalTime/60);
+const timerInterval = setInterval(function() {
+    let minutes = Math.floor(totalTime / 60);
     let seconds = totalTime % 60;
-
     document.getElementById("timer").innerText =
-    minutes + ":" + (seconds<10?"0":"") + seconds;
-
+        minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    if (totalTime <= 60) document.getElementById("timer").style.color = "#f87171";
     totalTime--;
+    if (totalTime < 0) { clearInterval(timerInterval); submitQuiz(); }
+}, 1000);
 
-    if(totalTime < 0){
-        clearInterval(timerInterval);
-        submitQuiz();
-    }
-},1000);
-
-/* ================= QUIZ LOGIC ================= */
-
-function loadQuestion(){
+/* ===== QUIZ LOGIC ===== */
+function loadQuestion() {
     visitedQuestions[current] = true;
     const q = questions[current];
-
     document.getElementById("questionNumber").innerText =
-    "Question " + (current+1) + " of " + questions.length;
-
+        "Question " + (current + 1) + " of " + questions.length;
     document.getElementById("questionText").innerHTML = q.q;
 
     let optionsHTML = "";
-    q.o.forEach((opt,i)=>{
+    q.o.forEach((opt, i) => {
         optionsHTML += `
         <label>
         <input type="radio" name="option" value="${i}"
-        ${selectedAnswers[current]===i ? "checked":""}
+        ${selectedAnswers[current] === i ? "checked" : ""}
         onchange="saveAnswer(${i})">
         ${opt}
         </label>`;
     });
-
     document.getElementById("options").innerHTML = optionsHTML;
-
     updateGrid();
     updateProgress();
 }
 
-window.saveAnswer = function(value){
-    selectedAnswers[current] = value;
+window.saveAnswer = function(value) { selectedAnswers[current] = value; }
+
+window.nextQuestion = function() {
+    if (current < questions.length - 1) { current++; loadQuestion(); }
 }
 
-window.nextQuestion = function(){
-    if(current < questions.length-1){
-        current++;
-        loadQuestion();
-    }
+window.prevQuestion = function() {
+    if (current > 0) { current--; loadQuestion(); }
 }
 
-window.prevQuestion = function(){
-    if(current > 0){
-        current--;
-        loadQuestion();
-    }
-}
-
-window.confirmSubmit = function(){
-    if(confirm("Are you sure you want to submit?")){
-        submitQuiz();
-    }
+window.confirmSubmit = function() {
+    if (confirm("Are you sure you want to submit?")) { submitQuiz(); }
 }
 
 function submitQuiz() {
     score = 0;
     for (let i = 0; i < questions.length; i++) {
-        if (selectedAnswers[i] === questions[i].a) {
-            score++;
-        }
+        if (selectedAnswers[i] === questions[i].a) score++;
     }
-
     let resultData = {
-        score: score,
-        total: questions.length,
+        score, total: questions.length,
         subject: selectedSubject,
         class: selectedClass,
         answers: selectedAnswers,
-        questions: questions,
-        date: new Date().toLocaleString()
+        questions, date: new Date().toLocaleString()
     };
-
     localStorage.setItem("quizResult", JSON.stringify(resultData));
     window.location.href = "result.html";
 }
 
-function generateGrid(){
+function generateGrid() {
     let gridHTML = "";
-    for(let i=0;i<questions.length;i++){
-        gridHTML += `<div onclick="jumpTo(${i})" id="q${i}">${i+1}</div>`;
+    for (let i = 0; i < questions.length; i++) {
+        gridHTML += `<div onclick="jumpTo(${i})" id="q${i}">${i + 1}</div>`;
     }
     document.getElementById("questionGrid").innerHTML = gridHTML;
 }
 
-window.jumpTo = function(index){
-    current = index;
-    loadQuestion();
-}
+window.jumpTo = function(index) { current = index; loadQuestion(); }
 
-function updateProgress(){
+function updateProgress() {
     let answered = selectedAnswers.filter(a => a !== null).length;
     document.getElementById("answeredCount").innerText = answered;
-    let percentage = (answered / questions.length) * 100;
-    document.getElementById("progressFill").style.width = percentage + "%";
+    document.getElementById("progressFill").style.width =
+        (answered / questions.length * 100) + "%";
 }
 
-function updateGrid(){
-    for(let i=0;i<questions.length;i++){
-        let cell = document.getElementById("q"+i);
-        if(i === current){
-            cell.style.background = "#ffb703";
-            cell.style.color = "black";
-        }
-        else if(selectedAnswers[i] !== null){
-            cell.style.background = "#28a745";
-            cell.style.color = "white";
-        }
-        else if(visitedQuestions[i]){
-            cell.style.background = "#dc3545";
-            cell.style.color = "white";
-        }
-        else{
-            cell.style.background = "#555";
-            cell.style.color = "white";
-        }
+function updateGrid() {
+    for (let i = 0; i < questions.length; i++) {
+        let cell = document.getElementById("q" + i);
+        if (i === current) { cell.style.background = "#ffb703"; cell.style.color = "black"; }
+        else if (selectedAnswers[i] !== null) { cell.style.background = "#28a745"; cell.style.color = "white"; }
+        else if (visitedQuestions[i]) { cell.style.background = "#dc3545"; cell.style.color = "white"; }
+        else { cell.style.background = "#555"; cell.style.color = "white"; }
     }
 }
 
 </script>
-
 </body>
 </html>
