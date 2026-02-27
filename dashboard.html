@@ -12,80 +12,92 @@
       --amber: #f59e0b; --danger: #ef4444;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
+    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
 
-    /* NAVBAR STYLES */
+    /* COMPACT UTILITY NAV */
     .utility-nav {
-      background: #020617; padding: 12px 40px; display: flex;
+      background: #020617; padding: 8px 40px; display: flex;
       justify-content: flex-end; gap: 30px; border-bottom: 1px solid var(--border);
     }
-    .utility-nav a { color: var(--amber); text-decoration: none; font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; }
-    
+    .utility-nav a { 
+        color: var(--amber); text-decoration: none; font-size: 13px; 
+        font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; 
+        cursor: pointer;
+    }
+    .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
+
+    /* HEADER */
     header.top-bar {
       background: var(--surface); border-bottom: 2px solid var(--border);
-      padding: 20px 40px; display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      padding: 10px 40px; display: flex; align-items: center; justify-content: space-between;
+      z-index: 1000;
     }
-    .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    #userWelcome { font-size: 14px; font-weight: 600; color: var(--brand); }
 
-    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; flex: 1; }
-    h1 { font-size: 32px; margin-bottom: 5px; }
-    p.subtitle { color: var(--muted); margin-bottom: 30px; }
+    /* MAIN CONTAINER - SCROLLABLE */
+    .container { 
+        max-width: 1300px; width: 95%; margin: 0 auto; padding: 20px; 
+        flex: 1; overflow-y: auto; 
+    }
+    h1 { font-size: 24px; margin: 0 0 5px 0; }
+    p.subtitle { color: var(--muted); margin: 0 0 20px 0; font-size: 14px; }
 
     /* CLASS SELECTOR BOX */
     .class-selector-wrap {
       background: rgba(56, 189, 248, 0.05); border: 1px dashed var(--brand);
-      padding: 20px; border-radius: 15px; margin-bottom: 40px;
-      display: flex; align-items: center; gap: 20px;
+      padding: 15px 20px; border-radius: 12px; margin-bottom: 25px;
+      display: flex; align-items: center; gap: 15px;
     }
-    label { font-weight: 700; color: var(--brand); text-transform: uppercase; font-size: 14px; }
+    label { font-weight: 700; color: var(--brand); text-transform: uppercase; font-size: 12px; }
     select {
       background: var(--bg); color: white; border: 1px solid var(--border);
-      padding: 10px 15px; border-radius: 8px; font-size: 16px; outline: none; cursor: pointer; min-width: 220px;
+      padding: 8px 12px; border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; min-width: 200px;
     }
 
     /* SUBJECT GRID */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 30px; cursor: pointer; transition: 0.3s;
+      border-radius: 16px; padding: 20px; cursor: pointer; transition: 0.2s;
     }
-    .card:hover { border-color: var(--brand); transform: translateY(-5px); background: #243147; }
-    .card h3 { font-size: 22px; margin: 0 0 10px 0; color: var(--brand); }
-    .card p { color: var(--muted); font-size: 15px; margin-bottom: 25px; height: 40px; }
+    .card:hover { border-color: var(--brand); transform: translateY(-3px); background: #243147; }
+    .card h3 { font-size: 18px; margin: 0 0 8px 0; color: var(--brand); }
+    .card p { color: var(--muted); font-size: 13px; margin-bottom: 20px; height: 32px; line-height: 1.4; }
     .btn-start {
-      background: var(--brand); color: #000; border: none; padding: 12px 24px;
-      border-radius: 8px; font-weight: 700; text-transform: uppercase; cursor: pointer; width: 100%;
+      background: var(--brand); color: #000; border: none; padding: 10px 20px;
+      border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 12px;
     }
 
-    /* UPDATED INSTRUCTIONS SECTION */
+    /* INSTRUCTIONS SECTION */
     .instructions-section { 
-        background: var(--surface); border: 1px solid var(--border); border-radius: 20px; 
-        padding: 40px; margin-top: 50px; width: 100%; height: auto; 
+        background: var(--surface); border: 1px solid var(--border); border-radius: 16px; 
+        padding: 25px; margin-top: 30px; 
     }
-    .instructions-section h2 { color: var(--amber); margin-bottom: 25px; font-size: 24px; display: flex; align-items: center; gap: 12px; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
-    .ins-item { display: flex; gap: 15px; align-items: flex-start; }
+    .instructions-section h2 { color: var(--amber); margin-bottom: 15px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .ins-item { display: flex; gap: 12px; align-items: flex-start; }
     .ins-icon { 
-        background: rgba(56, 189, 248, 0.1); color: var(--brand); width: 36px; height: 36px; 
-        display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-weight: 800; 
+        background: rgba(56, 189, 248, 0.1); color: var(--brand); width: 28px; height: 28px; 
+        display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-size: 13px; font-weight: 800; 
     }
-    .ins-text { font-size: 15px; line-height: 1.6; color: var(--muted); }
-    .ins-text strong { color: var(--text); display: block; margin-bottom: 4px; }
+    .ins-text { font-size: 13px; line-height: 1.5; color: var(--muted); }
+    .ins-text strong { color: var(--text); display: block; margin-bottom: 2px; }
 
-    footer { text-align: center; padding: 25px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; font-weight: 500; }
+    footer { text-align: center; padding: 15px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; }
   </style>
 </head>
 <body>
+
   <div class="utility-nav">
+    <a href="dashboard.html">Home</a>
     <a href="leaderboard.html">Leaderboard</a>
-    <a href="login.html" style="color:var(--danger)">Logout</a>
+    <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
   </div>
   
   <header class="top-bar">
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-    <div id="userWelcome" style="font-weight:600;">Welcome, Student</div>
+    <div id="userWelcome">Welcome, Student</div>
   </header>
 
   <main class="container">
@@ -133,35 +145,35 @@
           <div class="ins-icon">1</div>
           <div class="ins-text">
             <strong>Time Limit</strong>
-            Each quiz lasts exactly 30 minutes. The timer starts as soon as the questions load and will auto-submit when the time expires.
+            Each quiz lasts exactly 30 minutes and will auto-submit when the timer expires.
           </div>
         </div>
         <div class="ins-item">
           <div class="ins-icon">2</div>
           <div class="ins-text">
-            <strong>Navigation & Palette</strong>
-            Use the numbered grid to track progress. Green indicates an answered question, Blue is current, Red is visited, and Grey is unseen.
+            <strong>Palette Status</strong>
+            Green: Answered, Blue: Current, Red: Visited, Grey: Unseen.
           </div>
         </div>
         <div class="ins-item">
           <div class="ins-icon">3</div>
           <div class="ins-text">
-            <strong>Saving Answers</strong>
-            Always click "Save & Next" to record your selection. You can revisit and change your answers anytime before finishing.
+            <strong>Saving Progress</strong>
+            Always click "Save & Next" to record your choice. You can revisit questions anytime.
           </div>
         </div>
         <div class="ins-item">
           <div class="ins-icon">4</div>
           <div class="ins-text">
-            <strong>Performance Report</strong>
-            After finishing, you will receive a detailed analysis including your score, accuracy, and correct solutions for all questions.
+            <strong>Final Report</strong>
+            Receive a detailed accuracy analysis and correct solutions after finishing.
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>&copy; 2026 Olympiad Portal. All rights reserved.</footer>
+  <footer>&copy; 2026 Olympiad Portal</footer>
 
   <script>
     function startQuiz(subject) {
@@ -169,6 +181,12 @@
       localStorage.setItem("selectedClass", selectedClass);
       localStorage.setItem("selectedSubject", subject);
       window.location.href = "quiz.html";
+    }
+
+    function logout() {
+      if(confirm("Are you sure you want to logout?")) {
+        window.location.href = "login.html";
+      }
     }
 
     window.onload = () => {
