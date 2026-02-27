@@ -26,50 +26,46 @@
 
     /* TOP UTILITY NAV */
     .utility-nav {
-      background: #020617; 
-      padding: 12px 40px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 30px;
-      border-bottom: 1px solid var(--border);
+      background: #020617; padding: 12px 40px; display: flex;
+      justify-content: flex-end; gap: 30px; border-bottom: 1px solid var(--border);
     }
     .utility-nav a {
-      color: var(--amber); 
-      text-decoration: none;
-      font-size: 16px; 
-      font-weight: 800; 
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
+      color: var(--amber); text-decoration: none; font-size: 16px; 
+      font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px;
     }
-    .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
-    .utility-nav .logout-link { color: var(--danger) !important; cursor: pointer; }
 
-    /* MAIN HEADER BAR */
     header.top-bar {
-      position: sticky; top: 0; z-index: 1000;
-      background: #1e293b; 
-      border-bottom: 2px solid var(--border);
-      padding: 12px 40px; 
+      position: sticky; top: 0; z-index: 1000; background: #1e293b; 
+      border-bottom: 2px solid var(--border); padding: 12px 40px; 
       display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
-
     #timerWrap {
-      padding: 8px 18px; border-radius: 10px;
-      background: rgba(245, 158, 11, 0.1); color: var(--amber); 
-      border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
+      padding: 8px 18px; border-radius: 10px; background: rgba(245, 158, 11, 0.1); 
+      color: var(--amber); border: 1px solid var(--amber); font-weight: 800; font-size: 1.2rem;
     }
 
-    /* MINI QUIZ INFO (Above Progress Bar) */
-    .quiz-meta-info {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 6px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
+    /* QUIZ LAYOUT - EQUAL HEIGHT LOGIC */
+    .quiz-container { 
+      display: flex; align-items: stretch; /* Forces equal height */
+      gap: 24px; padding: 30px; max-width: 1500px; margin: 0 auto; 
     }
+
+    .section { 
+      background: var(--surface); border: 1px solid var(--border); 
+      border-radius: 20px; padding: 40px; display: flex; flex-direction: column;
+    }
+
+    .question-section { flex: 3; }
+
+    /* Aside/Palette Section */
+    .navigation-section { 
+      flex: 1; padding: 25px; 
+      max-height: 100%; /* Constraints it to container */
+    }
+
+    /* MINI QUIZ INFO */
+    .quiz-meta-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
     .meta-subject { color: var(--brand); text-transform: uppercase; }
     .meta-class { color: var(--amber); text-transform: uppercase; }
 
@@ -79,55 +75,45 @@
     .progress-container { background: var(--border); border-radius: 20px; height: 6px; width: 100%; overflow: hidden; }
     .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
 
-    /* QUIZ LAYOUT */
-    .quiz-container { display: flex; gap: 24px; padding: 30px; max-width: 1500px; margin: 0 auto; }
-    .section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
-    .question-section { flex: 3; }
-    .navigation-section { flex: 1; padding: 25px; height: fit-content; }
-
     /* OPTIONS */
-    .options { display: grid; gap: 15px; margin-top: 25px; }
+    .options { display: grid; gap: 12px; margin-top: 20px; flex-grow: 1; }
     .opt {
-      display: flex; align-items: center; justify-content: flex-start; 
-      gap: 15px; padding: 18px 25px; 
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid var(--border); border-radius: 12px;
-      cursor: pointer; transition: 0.2s;
+      display: flex; align-items: center; gap: 15px; padding: 15px 25px; 
+      background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
+      border-radius: 12px; cursor: pointer; transition: 0.2s;
     }
     .opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
-    .opt input { accent-color: var(--amber); width: 22px; height: 22px; flex-shrink: 0; cursor: pointer; }
-    .opt span { font-size: 18px; color: #ffffff; }
+    .opt span { font-size: 17px; color: #ffffff; }
 
     /* BUTTONS */
-    .quiz-buttons { margin-top: 40px; display: flex; gap: 20px; }
-    .btn { padding: 16px 32px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 14px; transition: 0.2s; }
+    .quiz-buttons { margin-top: 30px; display: flex; gap: 20px; }
+    .btn { padding: 14px 28px; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 13px; }
     .btn-save { background: var(--amber); color: #000; }
-    .btn-prev { background: #334155; color: #fff; border: 1px solid var(--border); }
+    .btn-prev { background: #334155; color: #fff; }
     .btn-finish { background: var(--danger); color: #fff; margin-left: auto; }
 
-    /* PALETTE */
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
+    /* PALETTE GRID */
+    .grid-container { flex-grow: 1; overflow-y: auto; margin-top: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
     .grid .cell { 
-      padding: 12px 0; text-align: center; border-radius: 8px; border: 1px solid var(--border); 
-      cursor: pointer; font-weight: 700; transition: 0.2s;
+      aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 14px;
     }
 
-    .cell.current, .legend-current { background: #2563eb !important; color: #ffffff !important; border-color: #1e40af !important; }
-    .cell.answered, .legend-answered { background: #16a34a !important; color: #ffffff !important; border-color: #15803d !important; }
-    .cell.visited, .legend-visited { background: #dc2626 !important; color: #ffffff !important; border-color: #991b1b !important; }
-    .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; border: 1px solid #94a3b8; }
+    .cell.current, .legend-current { background: #2563eb !important; color: #fff; }
+    .cell.answered, .legend-answered { background: #16a34a !important; color: #fff; }
+    .cell.visited, .legend-visited { background: #dc2626 !important; color: #fff; }
+    .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a; }
 
-    .legend-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 14px; font-weight: 600; }
-    .legend-box { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+    .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
+    .legend-box { width: 20px; height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
   </style>
 </head>
 <body>
 
   <div class="utility-nav">
-      <a href="home.html">Home</a>
       <a href="dashboard.html">Dashboard</a>
-      <a href="leaderboard.html">Leaderboard</a>
-      <a onclick="logout()" class="logout-link">Logout</a>
+      <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
   </div>
 
   <header class="top-bar">
@@ -137,24 +123,21 @@
 
   <main class="quiz-container">
     <section class="question-section section">
-      
       <div class="quiz-meta-info">
-        <span id="displaySubject" class="meta-subject">SUBJECT</span>
-        <span id="displayClass" class="meta-class">CLASS</span>
+        <span id="displaySubject" class="meta-subject">Subject</span>
+        <span id="displayClass" class="meta-class">Class</span>
       </div>
 
       <div class="progress-wrapper">
         <div class="progress-info">
-          <span>Quiz Progress</span>
+          <span>Progress</span>
           <span id="progressPercent">0%</span>
         </div>
-        <div class="progress-container">
-          <div class="progress-fill" id="progressBar"></div>
-        </div>
+        <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
       </div>
 
-      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:10px; letter-spacing: 1px;">QUESTION 1</div>
-      <div id="questionText" style="font-size: 24px; margin-bottom: 30px; font-weight:500; line-height: 1.4;">Loading...</div>
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:5px;">QUESTION 1</div>
+      <div id="questionText" style="font-size: 22px; margin-bottom: 20px; font-weight:500;">Loading...</div>
       
       <div class="options" id="options"></div>
 
@@ -166,14 +149,16 @@
     </section>
 
     <aside class="navigation-section section">
-      <h3 style="margin:0 0 15px 0;">Question Palette</h3>
-      <div class="palette-legend" style="margin-bottom: 25px;">
+      <h3 style="margin:0 0 15px 0; font-size: 18px;">Question Palette</h3>
+      <div class="palette-legend">
         <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
         <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
         <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
         <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
       </div>
-      <div class="grid" id="questionGrid"></div>
+      <div class="grid-container">
+        <div class="grid" id="questionGrid"></div>
+      </div>
     </aside>
   </main>
 
@@ -205,7 +190,6 @@
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
 
-    // Set Meta labels
     document.getElementById("displaySubject").innerText = selectedSubject;
     document.getElementById("displayClass").innerText = selectedClass.replace("class", "Grade ");
 
@@ -245,11 +229,7 @@
       updateGrid();
     };
 
-    window.saveAnswer = (v) => { 
-        selectedAnswers[current] = v; 
-        updateGrid(); 
-    };
-    
+    window.saveAnswer = (v) => { selectedAnswers[current] = v; updateGrid(); };
     window.nextQuestion = () => { if (current < questions.length - 1) { current++; loadQuestion(); } };
     window.prevQuestion = () => { if (current > 0) { current--; loadQuestion(); } };
     window.jumpTo = (i) => { current = i; loadQuestion(); };
@@ -269,10 +249,8 @@
         else if (selectedAnswers[i] !== null) el.classList.add('answered');
         else if (visitedQuestions[i]) el.classList.add('visited');
         else el.classList.add('unseen');
-
         if(selectedAnswers[i] !== null) answeredCount++;
       }
-
       const progressPercent = Math.round((answeredCount / questions.length) * 100);
       document.getElementById("progressBar").style.width = progressPercent + "%";
       document.getElementById("progressPercent").innerText = progressPercent + "%";
