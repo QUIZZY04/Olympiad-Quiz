@@ -1,112 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Login</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
-}
-
-body{
-    background:linear-gradient(to right,#0f2027,#203a43,#2c5364);
-    min-height:100vh;
-    color:white;
-}
-
-/* ===== NAVBAR ===== */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 40px;
-    background:#1e2a38;
-}
-
-nav h2{
-    color:#ffb703;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-}
-
-nav a:hover{
-    color:#ffb703;
-}
-
-/* ===== CENTER LOGIN BOX ===== */
-.container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:calc(100vh - 80px);
-}
-
-.login-box{
-    background:#1e2a38;
-    padding:40px;
-    border-radius:15px;
-    width:350px;
-    text-align:center;
-}
-
-input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    border-radius:8px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    background:#ffb703;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#f59e0b;
-}
-</style>
+    <title>Login - Olympiad Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container { display: flex; justify-content: center; align-items: center; height: calc(100vh - 80px); padding: 20px; }
+        .auth-box { background: var(--bg-card); padding: 40px; border-radius: 16px; width: 100%; max-width: 400px; border: 1px solid var(--border); text-align: center; box-shadow: var(--shadow); }
+        input { width: 100%; padding: 14px; margin: 12px 0; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; color: white; font-size: 1rem; }
+    </style>
 </head>
-
 <body>
 
-<nav>
-    <h2>🎓 Olympiad Portal</h2>
-    <div>
+<nav class="top-nav">
+    <div class="nav-logo">🎓 Olympiad Portal</div>
+    <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="signup.html">Signup</a>
     </div>
 </nav>
 
-<div class="container">
-<div class="login-box">
-<h2>Login</h2>
-
-<form id="loginForm">
-<input type="email" id="loginEmail" placeholder="Email" required>
-<input type="password" id="loginPassword" placeholder="Password" required>
-<button type="submit">Login</button>
-</form>
-
-<p style="margin-top:15px;">
-Don't have account?
-<a href="signup.html" style="color:#ffb703;">Signup</a>
-</p>
-
-</div>
+<div class="auth-container">
+    <div class="auth-box">
+        <h2 style="font-size: 2rem; margin-bottom: 10px;">Login</h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email Address" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit" class="btn-gold" style="width: 100%; margin-top: 10px;">Login</button>
+        </form>
+        <p style="margin-top: 25px; color: var(--text-muted);">Don't have an account? <a href="signup.html" style="color: var(--primary); text-decoration: none;">Sign Up</a></p>
+    </div>
 </div>
 
 <script type="module">
@@ -129,15 +52,11 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     const email=document.getElementById("loginEmail").value.trim();
     const password=document.getElementById("loginPassword").value;
-
     try{
         await signInWithEmailAndPassword(auth,email,password);
         window.location.href="dashboard.html";
-    }catch(error){
-        alert(error.message);
-    }
+    }catch(error){ alert(error.message); }
 });
 </script>
-
 </body>
 </html>
