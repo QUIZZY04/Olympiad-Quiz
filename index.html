@@ -1,200 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olympiad Practice Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympiad Practice Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-accent: #1e293b;
+            --gold: #fbbf24;
+            --text-white: #f8fafc;
+            --text-gray: #94a3b8;
+        }
 
-<style>
-:root {
-    --bg-dark: #0f172a;
-    --bg-accent: #1e293b;
-    --gold: #fbbf24;
-    --text-white: #f8fafc;
-    --text-gray: #94a3b8;
-}
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
+        body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-accent) 100%);
+            color: var(--text-white);
+            overflow-x:hidden;
+        }
 
-body{
-    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-accent) 100%);
-    color: var(--text-white);
-    overflow-x:hidden;
-}
+        #particles-js { position:fixed; width:100%; height:100%; top:0; left:0; z-index:-1; }
 
-/* PARTICLES BACKGROUND */
-#particles-js{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:-1;
-}
+        /* NAVBAR WITH BRAND LOGO */
+        nav {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 8%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* NAVBAR */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-.logo{
-    font-size:26px;
-    font-weight:700;
-    color: var(--gold);
-}
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(251, 191, 36, 0.3);
+        }
 
-.nav-buttons button{
-    padding:10px 22px;
-    border:none;
-    border-radius:8px;
-    font-weight:600;
-    cursor:pointer;
-    margin-left:12px;
-    transition:0.3s;
-}
+        .brand-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-white);
+            letter-spacing: 0.5px;
+        }
 
-.login-btn{
-    background:transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3) !important;
-}
+        .brand-name span { color: var(--gold); }
 
-.signup-btn{
-    background: var(--gold);
-    color: var(--bg-dark);
-}
+        .nav-buttons button {
+            padding:10px 22px;
+            border:none;
+            border-radius:8px;
+            font-weight:600;
+            cursor:pointer;
+            margin-left:12px;
+            transition:0.3s;
+        }
 
-.nav-buttons button:hover{
-    transform:translateY(-2px);
-    box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
-}
+        .login-btn {
+            background:transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+        }
 
-/* HERO SECTION */
-.hero{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:85vh;
-    padding:40px 8%;
-}
+        .signup-btn { background: var(--gold); color: var(--bg-dark); }
+        .nav-buttons button:hover { transform:translateY(-2px); box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3); }
 
-.hero-container {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    max-width: 1200px;
-}
+        /* HERO SECTION */
+        .hero { display:flex; align-items:center; justify-content:center; min-height:85vh; padding:40px 8%; }
+        .hero-container { display: flex; align-items: center; gap: 60px; max-width: 1200px; }
+        .hero-content { flex: 1.2; animation:fadeInLeft 1.2s ease-out; }
+        .hero h1 { font-size: 52px; line-height: 1.1; margin-bottom: 25px; font-weight: 700; }
+        .hero p { font-size:18px; margin-bottom:35px; line-height:1.7; color: var(--text-gray); }
+        .hero-image { flex: 0.8; animation:fadeInRight 1.2s ease-out; }
+        .hero-image img { width: 100%; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
 
-.hero-content{
-    flex: 1;
-    animation:fadeInLeft 1.2s ease-out;
-}
+        .start-btn { padding:18px 40px; font-size:18px; font-weight:700; border:none; border-radius:12px; background: var(--gold); color: var(--bg-dark); cursor:pointer; transition:0.3s; }
+        .start-btn:hover { transform:scale(1.05); box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4); }
 
-.hero h1{
-    font-size: 52px;
-    line-height: 1.1;
-    margin-bottom: 25px;
-}
+        /* FEATURES */
+        .features { background: #f8fafc; color: #1e293b; padding: 100px 20px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .feature-card { background: white; padding: 45px 35px; border-radius: 20px; width: 320px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #e2e8f0; }
+        .feature-card:hover { transform:translateY(-10px); }
+        .feature-card h3 { margin-bottom:15px; color: #0f172a; font-size: 22px; }
+        .feature-card p { color: #64748b; line-height: 1.6; }
 
-.hero p{
-    font-size:18px;
-    margin-bottom:35px;
-    line-height:1.7;
-    color: var(--text-gray);
-}
+        footer { background: #0f172a; text-align:center; padding:30px; font-size:14px; color: var(--text-gray); border-top: 1px solid rgba(255,255,255,0.05); }
 
-.hero-image {
-    flex: 1;
-    animation:fadeInRight 1.2s ease-out;
-}
+        @keyframes fadeInLeft{ from{opacity:0; transform:translateX(-30px);} to{opacity:1; transform:translateX(0);} }
+        @keyframes fadeInRight{ from{opacity:0; transform:translateX(30px);} to{opacity:1; transform:translateX(0);} }
 
-.hero-image img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.start-btn{
-    padding:16px 35px;
-    font-size:18px;
-    font-weight:600;
-    border:none;
-    border-radius:12px;
-    background: var(--gold);
-    color: var(--bg-dark);
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.start-btn:hover{
-    transform:scale(1.05);
-}
-
-/* FEATURES */
-.features{
-    background: white;
-    color: #1e293b;
-    padding: 80px 20px;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.feature-card{
-    background: #f8fafc;
-    padding: 40px 30px;
-    border-radius: 15px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: 0.3s;
-    border: 1px solid #e2e8f0;
-}
-
-.feature-card:hover{
-    transform:translateY(-8px);
-}
-
-.feature-card h3{
-    margin-bottom:15px;
-    color: #0f172a;
-}
-
-footer{
-    background: #0f172a;
-    text-align:center;
-    padding:25px;
-    font-size:14px;
-    color: var(--text-gray);
-}
-
-/* Animations */
-@keyframes fadeInLeft{
-    from{opacity:0; transform:translateX(-30px);}
-    to{opacity:1; transform:translateX(0);}
-}
-@keyframes fadeInRight{
-    from{opacity:0; transform:translateX(30px);}
-    to{opacity:1; transform:translateX(0);}
-}
-
-@media(max-width:992px){
-    .hero-container { flex-direction: column; text-align: center; }
-    .hero h1{ font-size: 38px; }
-}
-</style>
+        @media(max-width:992px){
+            .hero-container { flex-direction: column; text-align: center; }
+            .hero h1{ font-size: 38px; }
+            .hero-image { order: -1; width: 80%; }
+        }
+    </style>
 </head>
 
 <body>
@@ -202,7 +123,12 @@ footer{
 <div id="particles-js"></div>
 
 <nav>
-    <div class="logo">Olympiad Portal</div>
+    <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        </div>
+        <div class="brand-name">Olympiad<span>Portal</span></div>
+    </a>
     <div class="nav-buttons">
         <button class="login-btn" onclick="location.href='login.html'">Login</button>
         <button class="signup-btn" onclick="location.href='signup.html'">Sign Up</button>
@@ -212,47 +138,46 @@ footer{
 <section class="hero">
     <div class="hero-container">
         <div class="hero-content">
-            <h1>Master Every Concept. <br>Win Every Contest.</h1>
+            <h1>Ignite Your Intellect. <br>Claim Your <span>Victory</span>.</h1>
             <p>
-                Step into the ultimate preparation arena for <b>Classes 4–10</b>. 
-                Our platform delivers expert-crafted challenges in <b>Maths, Science, and English</b>. 
-                Practice under pressure with timed simulations and sharpen your skills 
-                against the best minds in the country.
+                The premium preparation destination for <b>Classes 4–10</b>. 
+                Master the nuances of <b>Mathematics, Science, and English</b> through 
+                industry-standard simulations. Test your limits with real-time analytics 
+                and join a community of high-achievers today.
             </p>
             <button class="start-btn" onclick="location.href='signup.html'">
-                Start Your Free Trial
+                Create Free Account
             </button>
         </div>
         
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80" alt="Learning Excellence">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Students Learning">
         </div>
     </div>
 </section>
 
 <section class="features">
     <div class="feature-card">
-        <h3>📘 30 Questions</h3>
-        <p>Dynamic question sets designed to test logic, speed, and conceptual depth.</p>
+        <h3>🎯 Adaptive Content</h3>
+        <p>Expertly curated question sets that evolve with your grade level and difficulty preference.</p>
     </div>
 
     <div class="feature-card">
-        <h3>⏳ 30 Minute Timer</h3>
-        <p>Real exam simulation with automated timing to improve your efficiency.</p>
+        <h3>⚡ Blitz Rounds</h3>
+        <p>A high-intensity 30-minute timer designed to sharpen your cognitive speed and accuracy.</p>
     </div>
 
     <div class="feature-card">
-        <h3>🏆 Live Leaderboard</h3>
-        <p>Track your growth and compare your ranking on our national dashboard.</p>
+        <h3>📈 Growth Analytics</h3>
+        <p>Deep-dive into your performance with instant results and national leaderboard rankings.</p>
     </div>
 </section>
 
 <footer>
-    © 2026 Olympiad Practice Portal | Elevating Student Excellence
+    © 2026 Olympiad Practice Portal | Empowering Future Global Leaders
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
 <script>
 particlesJS("particles-js", {
   particles: {
@@ -261,18 +186,10 @@ particlesJS("particles-js", {
     shape: { type: "circle" },
     opacity: { value: 0.3 },
     size: { value: 2 },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#fbbf24",
-      opacity: 0.2,
-      width: 1
-    },
-    move: { enable: true, speed: 1.5 }
+    line_linked: { enable: true, distance: 150, color: "#fbbf24", opacity: 0.15, width: 1 },
+    move: { enable: true, speed: 1.2 }
   },
-  interactivity: {
-    events: { onhover: { enable: true, mode: "grab" } }
-  }
+  interactivity: { events: { onhover: { enable: true, mode: "grab" } } }
 });
 </script>
 
