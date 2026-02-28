@@ -1,162 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olympiad Practice Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympiad Practice Portal</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
+    <style>
+        :root {
+            --primary-dark: #0f172a;
+            --accent-gold: #fbbf24;
+            --text-main: #f8fafc;
+            --card-bg: #ffffff;
+        }
 
-body{
-    background:linear-gradient(to right, #0f2027, #203a43, #2c5364);
-    color:white;
-    overflow-x:hidden;
-}
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
 
-/* PARTICLES BACKGROUND */
-#particles-js{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:-1;
-}
+        body{
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text-main);
+            overflow-x:hidden;
+        }
 
-/* NAVBAR */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 60px;
-}
+        /* PARTICLES BACKGROUND */
+        #particles-js{
+            position:fixed;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+            z-index:-1;
+        }
 
-.logo{
-    font-size:26px;
-    font-weight:700;
-}
+        /* NAVBAR */
+        nav{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 8%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-.nav-buttons button{
-    padding:10px 22px;
-    border:none;
-    border-radius:25px;
-    font-weight:600;
-    cursor:pointer;
-    margin-left:12px;
-    transition:0.3s;
-}
+        .logo{
+            font-size:24px;
+            font-weight:700;
+            color: var(--accent-gold);
+        }
 
-.login-btn{
-    background:white;
-    color:#203a43;
-}
+        .nav-buttons button{
+            padding:10px 22px;
+            border:none;
+            border-radius:8px;
+            font-weight:600;
+            cursor:pointer;
+            margin-left:12px;
+            transition:0.3s;
+        }
 
-.signup-btn{
-    background:#ffb703;
-    color:black;
-}
+        .login-btn{
+            background:transparent;
+            color:white;
+            border: 1px solid rgba(255,255,255,0.4) !important;
+        }
 
-.nav-buttons button:hover{
-    transform:scale(1.05);
-}
+        .signup-btn{
+            background: var(--accent-gold);
+            color: #0f172a;
+        }
 
-/* HERO */
-.hero{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    height:80vh;
-    padding:20px;
-}
+        .nav-buttons button:hover{
+            transform:translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+        }
 
-.hero-content{
-    max-width:750px;
-    animation:fadeIn 2s ease-in-out;
-}
+        /* HERO */
+        .hero{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            min-height:75vh;
+            padding:40px 20px;
+        }
 
-.hero h1{
-    font-size:50px;
-    margin-bottom:20px;
-}
+        .hero-content{
+            max-width:800px;
+            animation:fadeIn 1.5s ease-in-out;
+        }
 
-.hero p{
-    font-size:18px;
-    margin-bottom:35px;
-    line-height:1.7;
-}
+        .hero h1{
+            font-size: clamp(32px, 5vw, 56px);
+            margin-bottom:20px;
+            line-height: 1.2;
+        }
 
-.start-btn{
-    padding:14px 35px;
-    font-size:17px;
-    font-weight:600;
-    border:none;
-    border-radius:30px;
-    background:#ffb703;
-    cursor:pointer;
-    transition:0.3s;
-}
+        .hero p{
+            font-size:18px;
+            margin-bottom:35px;
+            line-height:1.7;
+            color: #94a3b8;
+        }
 
-.start-btn:hover{
-    transform:scale(1.08);
-}
+        .start-btn{
+            padding:16px 40px;
+            font-size:18px;
+            font-weight:600;
+            border:none;
+            border-radius:12px;
+            background: var(--accent-gold);
+            color: #0f172a;
+            cursor:pointer;
+            transition:0.3s;
+        }
 
-/* FEATURES */
-.features{
-    background:white;
-    color:black;
-    padding:60px 20px;
-    display:flex;
-    justify-content:center;
-    gap:50px;
-    flex-wrap:wrap;
-}
+        .start-btn:hover{
+            transform:scale(1.05);
+            box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+        }
 
-.feature-card{
-    background:#f8f9fa;
-    padding:30px;
-    border-radius:15px;
-    width:280px;
-    text-align:center;
-    box-shadow:0 8px 20px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
+        /* FEATURES */
+        .features{
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 80px 8%;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-.feature-card:hover{
-    transform:translateY(-8px);
-}
+        .feature-card{
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+        }
 
-.feature-card h3{
-    margin-bottom:15px;
-    color:#2c5364;
-}
+        .feature-card:hover{
+            transform:translateY(-10px);
+        }
 
-footer{
-    background:#111;
-    text-align:center;
-    padding:15px;
-    font-size:14px;
-}
+        .feature-card h3{
+            margin-bottom:15px;
+            color: #0f172a;
+            font-size: 22px;
+        }
 
-/* Animation */
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
+        .feature-card p {
+            color: #64748b;
+            font-size: 15px;
+        }
 
-@media(max-width:768px){
-    nav{padding:20px;}
-    .hero h1{font-size:32px;}
-}
-</style>
+        footer{
+            background: #0f172a;
+            text-align:center;
+            padding:30px;
+            font-size:14px;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Animation */
+        @keyframes fadeIn{
+            from{opacity:0; transform:translateY(20px);}
+            to{opacity:1; transform:translateY(0);}
+        }
+
+        @media(max-width:768px){
+            nav{padding:20px 5%;}
+            .hero h1{font-size:36px;}
+            .feature-card{width: 100%;}
+        }
+    </style>
 </head>
 
 <body>
@@ -164,7 +189,7 @@ footer{
 <div id="particles-js"></div>
 
 <nav>
-    <div class="logo">Olympiad Practice Portal</div>
+    <div class="logo">Olympiad Portal</div>
     <div class="nav-buttons">
         <button class="login-btn" onclick="location.href='login.html'">Login</button>
         <button class="signup-btn" onclick="location.href='signup.html'">Sign Up</button>
@@ -173,55 +198,53 @@ footer{
 
 <section class="hero">
     <div class="hero-content">
-        <h1>Compete. Practice. Excel.</h1>
+        <h1>Master Your Skills. <br>Ace the Olympiad.</h1>
         <p>
-            Welcome to the Olympiad Practice Portal for Classes 4–10.
-            Attempt 30-question timed quizzes in Maths, English, and Science.
-            Get instant results and compete on the live leaderboard.
+            Join thousands of students in Classes 4–10. Challenge yourself with expert-level 
+            quizzes in Maths, Science, and English in a real-time competitive environment.
         </p>
         <button class="start-btn" onclick="location.href='signup.html'">
-            Start Your Olympiad Journey
+            Start Free Practice
         </button>
     </div>
 </section>
 
 <section class="features">
     <div class="feature-card">
-        <h3>📘 30 Questions</h3>
-        <p>Carefully curated Olympiad-level questions for real competition practice.</p>
+        <h3>🎯 Expert Content</h3>
+        <p>30 high-quality questions per test, curated to match national Olympiad standards.</p>
     </div>
 
     <div class="feature-card">
-        <h3>⏳ 30 Minute Timer</h3>
-        <p>Real exam environment with automatic submission.</p>
+        <h3>⚡ Timed Precision</h3>
+        <p>30-minute high-pressure rounds to help you master speed and accuracy.</p>
     </div>
 
     <div class="feature-card">
-        <h3>🏆 Live Leaderboard</h3>
-        <p>Track your rank and compete with students.</p>
+        <h3>📊 Performance Tracking</h3>
+        <p>Instant results and a live leaderboard to see where you rank globally.</p>
     </div>
 </section>
 
 <footer>
-    © 2026 Olympiad Examination Portal | All Rights Reserved
+    © 2026 Olympiad Practice Portal | Elevating Young Minds
 </footer>
 
-<!-- PARTICLES JS LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <script>
 particlesJS("particles-js", {
   particles: {
-    number: { value: 100 },
-    color: { value: "#ffffff" },
+    number: { value: 80, density: { enable: true, value_area: 800 } },
+    color: { value: "#fbbf24" },
     shape: { type: "circle" },
-    opacity: { value: 0.5 },
+    opacity: { value: 0.3 },
     size: { value: 3 },
     line_linked: {
       enable: true,
       distance: 150,
-      color: "#ffffff",
-      opacity: 0.4,
+      color: "#fbbf24",
+      opacity: 0.2,
       width: 1
     },
     move: {
@@ -231,7 +254,7 @@ particlesJS("particles-js", {
   },
   interactivity: {
     events: {
-      onhover: { enable: true, mode: "repulse" }
+      onhover: { enable: true, mode: "grab" }
     }
   }
 });
