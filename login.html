@@ -3,235 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Olympiad Practice Portal</title>
+    <title>Login | Olympiad Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --bg-accent: #1e293b;
-            --gold: #fbbf24;
-            --text-white: #f8fafc;
-            --text-gray: #94a3b8;
+            --bg-dark: #0f172a; --bg-accent: #1e293b; --gold: #fbbf24;
+            --text-white: #f8fafc; --text-gray: #94a3b8;
         }
-
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-
         body {
             background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-accent) 100%);
-            color: var(--text-white);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            color: var(--text-white); height: 100vh; display: flex; flex-direction: column; overflow: hidden;
         }
-
         #particles-js { position:fixed; width:100%; height:100%; top:0; left:0; z-index:-1; }
-
-        nav {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:20px 8%;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-        }
-
+        nav { display:flex; padding:20px 8%; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(10px); }
         .logo { font-size: 26px; font-weight: 700; color: var(--text-white); text-decoration: none; }
         .logo span { color: var(--gold); }
-
-        .nav-right { display: flex; align-items: center; gap: 30px; }
-        .nav-links { display: flex; gap: 25px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-gray); font-size: 14px; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
-
-        .signup-btn-nav {
-            text-decoration: none;
-            color: var(--bg-dark);
-            background: var(--gold);
-            padding: 8px 22px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.3s;
+        .wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .card {
+            background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(15px);
+            padding: 40px; border-radius: 20px; width: 100%; max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            text-align: center;
         }
-
-        .login-wrapper {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .login-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 10;
-        }
-
-        .login-card h2 { font-size: 28px; margin-bottom: 10px; text-align: center; }
-        .login-card p { color: var(--text-gray); text-align: center; margin-bottom: 30px; font-size: 14px; }
-
-        .form-group { margin-bottom: 20px; }
-        .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .form-group label { font-size: 14px; color: var(--text-gray); }
-        .forgot-link { font-size: 12px; color: var(--gold); text-decoration: none; }
-
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-gray); }
         .form-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: var(--bg-dark);
-            color: white;
-            outline: none;
+            width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
+            background: var(--bg-dark); color: white; outline: none;
         }
-
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--gold);
-            color: var(--bg-dark);
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
+        .btn {
+            width: 100%; padding: 14px; background: var(--gold); color: var(--bg-dark);
+            border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
-
-        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4); }
-
-        .divider {
-            display: flex; align-items: center; text-align: center; margin: 20px 0; color: var(--text-gray); font-size: 12px;
+        .google-btn {
+            background: white; color: #444; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .divider:not(:empty)::before { margin-right: 1em; }
-        .divider:not(:empty)::after { margin-left: 1em; }
-
-        .google-btn-container { display: flex; justify-content: center; position: relative; z-index: 20; }
-
-        .bottom-links {
-            text-align: center; margin-top: 25px; font-size: 14px; color: var(--text-gray); display: flex; flex-direction: column; gap: 12px;
-        }
-        .bottom-links a { color: var(--gold); text-decoration: none; font-weight: 600; }
-
-        @media (max-width: 768px) {
-            nav { padding: 15px 5%; }
-            .nav-links { display: none; }
-        }
+        .links { margin-top: 20px; font-size: 13px; color: var(--text-gray); }
+        .links a { color: var(--gold); text-decoration: none; }
     </style>
 </head>
-
 <body>
 
 <div id="particles-js"></div>
+<nav><a href="index.html" class="logo">Olympiad<span>Portal</span></a></nav>
 
-<nav>
-    <a href="index.html" class="logo">Olympiad<span>Portal</span></a>
-    <div class="nav-right">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="leaderboard.html">Leaderboard</a></li>
-        </ul>
-        <a href="signup.html" class="signup-btn-nav">Sign Up</a>
-    </div>
-</nav>
-
-<div class="login-wrapper">
-    <div class="login-card">
+<div class="wrapper">
+    <div class="card">
         <h2>Welcome Back</h2>
-        <p>Login to continue your journey</p>
-
+        <p style="color: var(--text-gray); font-size: 14px; margin-bottom: 25px;">Sign in to continue your practice.</p>
+        
         <form id="loginForm">
             <div class="form-group">
                 <label>Email Address</label>
-                <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                <input type="email" id="email" placeholder="name@example.com" required>
             </div>
             <div class="form-group">
-                <div class="label-row">
-                    <label>Password</label>
-                    <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
-                </div>
-                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="login-btn">Sign In</button>
+            <button type="submit" id="loginBtn" class="btn">Sign In</button>
         </form>
 
-        <div class="divider">OR</div>
+        <button id="googleBtn" class="btn google-btn">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" width="18">
+            Sign in with Google
+        </button>
 
-        <div class="google-btn-container">
-            <div id="g_id_onload"
-                 data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-                 data-context="signin"
-                 data-ux_mode="popup"
-                 data-callback="handleCredentialResponse"
-                 data-auto_prompt="false">
-            </div>
-
-            <div class="g_id_signin"
-                 data-type="standard"
-                 data-shape="rectangular"
-                 data-theme="outline"
-                 data-text="signin_with"
-                 data-size="large"
-                 data-logo_alignment="left"
-                 data-width="320">
-            </div>
-        </div>
-
-        <div class="bottom-links">
-            <div>Don't have an account? <a href="signup.html">Sign Up</a></div>
-            <a href="change-password.html" style="font-size: 13px; opacity: 0.8; font-weight: 400;">Change Password?</a>
+        <div class="links">
+            <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+            <p style="margin-top: 10px;"><a href="forgot-password.html">Forgot Password?</a></p>
         </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Your specific Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+        projectId: "olympiad-portal-d2a5e",
+        storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+        messagingSenderId: "341855557503",
+        appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const adminEmail = "madhhu52@gmail.com";
+
+    // Shared redirection logic
+    const handleRedirection = (user) => {
+        if (user.email.toLowerCase() === adminEmail.toLowerCase()) {
+            alert("Admin Login Successful!");
+            window.location.href = "bulk-upload.html";
+        } else {
+            alert("Login Successful! Welcome back.");
+            window.location.href = "index.html";
+        }
+    };
+
+    // Email/Password Login
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((res) => handleRedirection(res.user))
+            .catch((err) => alert("Login Error: " + err.message));
+    });
+
+    // Google Sign-In
+    document.getElementById('googleBtn').addEventListener('click', () => {
+        signInWithPopup(auth, provider)
+            .then((res) => handleRedirection(res.user))
+            .catch((err) => alert("Google Sign-In Error: " + err.message));
+    });
+
+    // Particle background
     particlesJS("particles-js", {
         particles: {
-            number: { value: 60 },
-            color: { value: "#fbbf24" },
-            shape: { type: "circle" },
-            opacity: { value: 0.3 },
-            size: { value: 2 },
+            number: { value: 60 }, color: { value: "#fbbf24" },
+            opacity: { value: 0.3 }, size: { value: 2 },
             line_linked: { enable: true, distance: 150, color: "#fbbf24", opacity: 0.15, width: 1 },
             move: { enable: true, speed: 1.2 }
         }
     });
-
-    // 1. NORMAL SIGN IN HANDLER
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-
-        // Perform your login logic here
-        console.log("Normal Login attempt for:", email);
-        alert("Normal Login Successful!");
-        window.location.href = "dashboard.html";
-    });
-
-    // 2. GOOGLE SIGN IN CALLBACK
-    function handleCredentialResponse(response) {
-        console.log("Encoded JWT ID token: " + response.credential);
-        alert("Google Login Successful!");
-        window.location.href = "dashboard.html";
-    }
 </script>
-
 </body>
 </html>
