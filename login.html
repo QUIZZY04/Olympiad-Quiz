@@ -51,7 +51,7 @@
 <div class="wrapper">
     <div class="card">
         <h2>Welcome Back</h2>
-        <p style="color: var(--text-gray); font-size: 14px; margin-bottom: 25px;">Sign in to continue your practice.</p>
+        <p style="color: var(--text-gray); font-size: 14px; margin-bottom: 25px;">Sign in as Admin or Student.</p>
         
         <form id="loginForm">
             <div class="form-group">
@@ -80,9 +80,8 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Your specific Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
         authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
@@ -98,18 +97,20 @@
 
     const adminEmail = "madhhu52@gmail.com";
 
-    // Shared redirection logic
+    // Ensures the session stays active even after closing the tab
+    setPersistence(auth, browserLocalPersistence);
+
     const handleRedirection = (user) => {
+        // Use toLowerCase to prevent case-sensitive mismatches
         if (user.email.toLowerCase() === adminEmail.toLowerCase()) {
-            alert("Admin Login Successful!");
+            alert("Admin Access Granted.");
             window.location.href = "bulk-upload.html";
         } else {
-            alert("Login Successful! Welcome back.");
+            alert("Login Successful.");
             window.location.href = "index.html";
         }
     };
 
-    // Email/Password Login
     document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.getElementById('email').value;
@@ -117,17 +118,15 @@
 
         signInWithEmailAndPassword(auth, email, password)
             .then((res) => handleRedirection(res.user))
-            .catch((err) => alert("Login Error: " + err.message));
+            .catch((err) => alert("Error: " + err.message));
     });
 
-    // Google Sign-In
     document.getElementById('googleBtn').addEventListener('click', () => {
         signInWithPopup(auth, provider)
             .then((res) => handleRedirection(res.user))
-            .catch((err) => alert("Google Sign-In Error: " + err.message));
+            .catch((err) => alert("Error: " + err.message));
     });
 
-    // Particle background
     particlesJS("particles-js", {
         particles: {
             number: { value: 60 }, color: { value: "#fbbf24" },
