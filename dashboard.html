@@ -56,12 +56,18 @@
     }
 
     /* SUBJECT GRID */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.2s;
     }
     .card:hover { border-color: var(--brand); transform: translateY(-3px); background: #243147; }
+    
+    /* Unique styling for Reasoning Card */
+    .card.reasoning-card h3 { color: var(--amber); }
+    .card.reasoning-card:hover { border-color: var(--amber); }
+    .card.reasoning-card .btn-start { background: var(--amber); }
+
     .card h3 { font-size: 18px; margin: 0 0 8px 0; color: var(--brand); }
     .card p { color: var(--muted); font-size: 13px; margin-bottom: 20px; height: 32px; line-height: 1.4; }
     .btn-start {
@@ -134,6 +140,11 @@
       <div class="card" onclick="startQuiz('english')">
         <h3>English</h3>
         <p>Vocabulary and Grammar excellence.</p>
+        <button class="btn-start">Start Quiz</button>
+      </div>
+      <div class="card reasoning-card" onclick="startQuiz('reasoning')">
+        <h3>Logical Reasoning</h3>
+        <p>Mental Ability, Patterns, and Analytical puzzles.</p>
         <button class="btn-start">Start Quiz</button>
       </div>
     </div>
