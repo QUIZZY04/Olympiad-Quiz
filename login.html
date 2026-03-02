@@ -51,7 +51,7 @@
 <div class="wrapper">
     <div class="card">
         <h2>Welcome Back</h2>
-        <p style="color: var(--text-gray); font-size: 14px; margin-bottom: 25px;">Sign in as Admin or Student.</p>
+        <p style="color: var(--text-gray); font-size: 14px; margin-bottom: 25px;">Sign in to access your dashboard.</p>
         
         <form id="loginForm">
             <div class="form-group">
@@ -95,20 +95,13 @@
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
-    const adminEmail = "madhhu52@gmail.com";
-
-    // Ensures the session stays active even after closing the tab
+    // Ensures session stays active on refresh
     setPersistence(auth, browserLocalPersistence);
 
-    const handleRedirection = (user) => {
-        // Use toLowerCase to prevent case-sensitive mismatches
-        if (user.email.toLowerCase() === adminEmail.toLowerCase()) {
-            alert("Admin Access Granted.");
-            window.location.href = "bulk-upload.html";
-        } else {
-            alert("Login Successful.");
-            window.location.href = "index.html";
-        }
+    // NORMAL REDIRECTION: Everyone goes to index.html
+    const handleRedirection = () => {
+        alert("Login Successful! Redirecting to Dashboard...");
+        window.location.href = "index.html";
     };
 
     document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -117,14 +110,14 @@
         const password = document.getElementById('password').value;
 
         signInWithEmailAndPassword(auth, email, password)
-            .then((res) => handleRedirection(res.user))
-            .catch((err) => alert("Error: " + err.message));
+            .then(() => handleRedirection())
+            .catch((err) => alert("Login Error: " + err.message));
     });
 
     document.getElementById('googleBtn').addEventListener('click', () => {
         signInWithPopup(auth, provider)
-            .then((res) => handleRedirection(res.user))
-            .catch((err) => alert("Error: " + err.message));
+            .then(() => handleRedirection())
+            .catch((err) => alert("Google Sign-In Error: " + err.message));
     });
 
     particlesJS("particles-js", {
