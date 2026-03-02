@@ -106,6 +106,11 @@
     .cell.visited, .legend-visited { background: #dc2626 !important; border-color: #991b1b; color: white !important; }
     .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; }
 
+    /* IMAGE STYLING */
+    #questionImageWrap { margin-top: 10px; margin-bottom: 15px; text-align: center; }
+    #questionImage { max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid var(--border); object-fit: contain; }
+    #imgDescText { display: block; font-size: 12px; color: var(--muted); margin-top: 5px; font-style: italic; }
+
     footer { text-align: center; padding: 6px; background: #020617; color: var(--muted); font-size: 10px; }
   </style>
 </head>
@@ -133,9 +138,14 @@
         <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
       </div>
 
-      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:4px; font-size: 12px;">QUESTION 1</div>
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:4px; font-size: 12px; margin-top:15px;">QUESTION 1</div>
       <div id="questionText" style="font-size: 18px; margin-bottom: 12px; font-weight:500; line-height: 1.3;">Loading...</div>
       
+      <div id="questionImageWrap" style="display: none;">
+        <img id="questionImage" src="" alt="Question Image" />
+        <span id="imgDescText"></span>
+      </div>
+
       <div class="options" id="options"></div>
 
       <div class="quiz-buttons">
@@ -184,7 +194,6 @@
     let visitedQuestions = [];
     let quizSubmitted = false;
 
-    // --- ENHANCED EXIT WARNING ---
     window.onbeforeunload = function(e) {
       if (!quizSubmitted) {
         return "Your quiz progress will be lost. Are you sure you want to leave?";
@@ -224,6 +233,27 @@
       const q = questions[current];
       document.getElementById("questionNumber").innerText = `QUESTION ${current + 1}`;
       document.getElementById("questionText").innerHTML = q.q;
+
+      // --- IMAGE LOADING LOGIC ---
+      const imgWrap = document.getElementById("questionImageWrap");
+      const imgTag = document.getElementById("questionImage");
+      const imgDesc = document.getElementById("imgDescText");
+
+      // Check if image_url exists OR img_desc exists
+      if (q.image_url && q.image_url.trim() !== "") {
+          imgWrap.style.display = "block";
+          imgTag.src = q.image_url;
+          imgTag.style.display = "inline-block";
+          imgDesc.innerText = q.img_desc || ""; // Optional description
+      } else if (q.img_desc && q.img_desc.trim() !== "") {
+          // If only description exists, we show a placeholder icon/text
+          imgWrap.style.display = "block";
+          imgTag.style.display = "none"; 
+          imgDesc.innerText = "[DIAGRAM]: " + q.img_desc;
+      } else {
+          imgWrap.style.display = "none";
+      }
+
       let html = '';
       q.o.forEach((opt, i) => {
         html += `<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current] === i ? "checked" : ""} onchange="saveAnswer(${i})" /><span>${opt}</span></label>`;
