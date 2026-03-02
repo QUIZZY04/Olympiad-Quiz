@@ -106,11 +106,9 @@
     .cell.visited, .legend-visited { background: #dc2626 !important; border-color: #991b1b; color: white !important; }
     .cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; }
 
-    /* IMAGE STYLING */
     #questionImageWrap { margin-top: 10px; margin-bottom: 15px; text-align: center; }
     #questionImage { max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid var(--border); object-fit: contain; }
-    #imgDescText { display: block; font-size: 12px; color: var(--muted); margin-top: 5px; font-style: italic; }
-
+    
     footer { text-align: center; padding: 6px; background: #020617; color: var(--muted); font-size: 10px; }
   </style>
 </head>
@@ -139,11 +137,10 @@
       </div>
 
       <div id="questionNumber" style="color:var(--brand); font-weight:700; margin-bottom:4px; font-size: 12px; margin-top:15px;">QUESTION 1</div>
-      <div id="questionText" style="font-size: 18px; margin-bottom: 12px; font-weight:500; line-height: 1.3;">Loading...</div>
+      <div id="questionText" style="font-size: 18px; margin-bottom: 12px; font-weight:500; line-height: 1.3;">Loading Questions...</div>
       
       <div id="questionImageWrap" style="display: none;">
         <img id="questionImage" src="" alt="Question Image" />
-        <span id="imgDescText"></span>
       </div>
 
       <div class="options" id="options"></div>
@@ -195,9 +192,7 @@
     let quizSubmitted = false;
 
     window.onbeforeunload = function(e) {
-      if (!quizSubmitted) {
-        return "Your quiz progress will be lost. Are you sure you want to leave?";
-      }
+      if (!quizSubmitted) return "Progress will be lost!";
     };
 
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
@@ -205,51 +200,53 @@
     
     document.getElementById("displaySubject").innerText = `${selectedSubject.toUpperCase()} - GRADE ${selectedClass.replace("class", "")}`;
 
-    async function loadQuestionsHybrid() {
+    async function loadQuestions() {
       try {
+        // 1. Try Firebase First
         const q = query(collection(db, "questions"), where("class", "==", selectedClass), where("subject", "==", selectedSubject));
         const snapshot = await getDocs(q);
+        
         if (!snapshot.empty) {
-          questions = snapshot.docs.map(doc => doc.data()).sort(() => Math.random() - 0.5).slice(0, 30);
-        } else {
+          questions = snapshot.docs.map(doc => doc.data()).sort(() => Math.random() - 0.5);
+          if (questions.length > 30) questions = questions.slice(0, 30);
+        } 
+        // 2. Fallback to Local questionsData
+        else if (typeof questionsData !== 'undefined' && questionsData[selectedClass] && questionsData[selectedClass][selectedSubject]) {
           questions = questionsData[selectedClass][selectedSubject].sort(() => Math.random() - 0.5);
+        } 
+        else {
+          alert("No questions available for this subject yet!");
+          window.location.href = "dashboard.html";
+          return;
         }
+
+        selectedAnswers = new Array(questions.length).fill(null);
+        visitedQuestions = new Array(questions.length).fill(false);
+        generateGrid();
+        loadQuestion();
       } catch (error) {
-        questions = questionsData[selectedClass][selectedSubject].sort(() => Math.random() - 0.5);
+        console.error("Error loading questions:", error);
       }
-      selectedAnswers = new Array(questions.length).fill(null);
-      visitedQuestions = new Array(questions.length).fill(false);
-      generateGrid();
-      loadQuestion();
     }
 
     onAuthStateChanged(auth, (user) => {
       if (!user) window.location.replace("login.html");
-      else loadQuestionsHybrid();
+      else loadQuestions();
     });
 
     window.loadQuestion = function() {
+      if (!questions[current]) return;
       visitedQuestions[current] = true;
       const q = questions[current];
+      
       document.getElementById("questionNumber").innerText = `QUESTION ${current + 1}`;
       document.getElementById("questionText").innerHTML = q.q;
 
-      // --- IMAGE LOADING LOGIC ---
       const imgWrap = document.getElementById("questionImageWrap");
       const imgTag = document.getElementById("questionImage");
-      const imgDesc = document.getElementById("imgDescText");
-
-      // Check if image_url exists OR img_desc exists
       if (q.image_url && q.image_url.trim() !== "") {
           imgWrap.style.display = "block";
           imgTag.src = q.image_url;
-          imgTag.style.display = "inline-block";
-          imgDesc.innerText = q.img_desc || ""; // Optional description
-      } else if (q.img_desc && q.img_desc.trim() !== "") {
-          // If only description exists, we show a placeholder icon/text
-          imgWrap.style.display = "block";
-          imgTag.style.display = "none"; 
-          imgDesc.innerText = "[DIAGRAM]: " + q.img_desc;
       } else {
           imgWrap.style.display = "none";
       }
@@ -303,13 +300,13 @@
     function submitQuiz() {
       quizSubmitted = true;
       let score = 0;
-      questions.forEach((q, i) => { if (selectedAnswers[i] === q.a) score++; });
+      questions.forEach((q, i) => { if (selectedAnswers[i] == q.a) score++; });
       localStorage.setItem("quizResult", JSON.stringify({ score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions }));
       window.location.href = "result.html";
     }
 
     window.logout = async function() {
-      if(confirm("Are you sure? Quiz progress will be lost.")) {
+      if(confirm("Logout? Progress will be lost.")) {
           quizSubmitted = true;
           await signOut(auth);
           window.location.replace("login.html");
