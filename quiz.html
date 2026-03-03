@@ -1,4 +1,172 @@
-<script src="questions.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Quiz - Olympiad Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0f172a; --surface: #1e293b; --text: #f8fafc;
+      --muted: #94a3b8; --border: #334155; --brand: #38bdf8;
+      --accent: #22c55e; --amber: #f59e0b; --danger: #ef4444;
+      --unseen-grey: #cbd5e1;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg); height: 100%; }
+
+    /* UTILITY NAV */
+    .utility-nav {
+      background: #020617; padding: 12px 20px; display: flex;
+      justify-content: flex-end; gap: 20px; border-bottom: 1px solid var(--border);
+    }
+    .utility-nav a {
+      color: var(--amber); text-decoration: none; font-size: 11px; 
+      font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+    }
+
+    /* HEADER */
+    header.top-bar {
+      z-index: 1000; background: #1e293b; 
+      border-bottom: 2px solid var(--border); padding: 15px 20px; 
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { font-size: 16px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    
+    #timerWrap {
+      padding: 6px 12px; border-radius: 8px; 
+      background: rgba(245, 158, 11, 0.1); color: var(--amber); 
+      border: 1px solid var(--amber); font-weight: 800; font-size: 0.9rem;
+    }
+
+    /* CONTAINER LAYOUT */
+    .quiz-container { 
+      display: flex; gap: 20px; padding: 20px; 
+      max-width: 1400px; width: 100%; margin: 0 auto; 
+      min-height: calc(100vh - 160px);
+    }
+
+    .section { 
+      background: var(--surface); border: 1px solid var(--border); 
+      border-radius: 12px; padding: 24px; display: flex; flex-direction: column;
+    }
+
+    .question-section { flex: 3; }
+    .navigation-section { flex: 1; min-width: 280px; height: fit-content; position: sticky; top: 20px; }
+
+    /* PROGRESS BAR */
+    #displaySubject { font-size: 14px; font-weight: 800; color: var(--brand); text-transform: uppercase; }
+    .progress-container { background: var(--border); border-radius: 10px; height: 8px; overflow: hidden; margin: 10px 0 20px; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
+
+    #questionText { font-size: 1.2rem; line-height: 1.5; margin-bottom: 20px; }
+    
+    #questionImageWrap { margin: 15px 0; text-align: center; width: 100%; }
+    #questionImageWrap img, #questionImageWrap svg { 
+      max-width: 100%; height: auto; border-radius: 8px; 
+    }
+
+    /* OPTIONS */
+    .options { display: grid; gap: 12px; }
+    .opt {
+      display: flex; align-items: center; gap: 12px; padding: 14px 20px; 
+      background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
+      border-radius: 10px; cursor: pointer; transition: 0.2s;
+    }
+    .opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.1); }
+    .opt input { accent-color: var(--amber); width: 20px; height: 20px; }
+
+    /* BUTTONS */
+    .quiz-buttons { 
+      display: flex; gap: 12px; padding-top: 25px; margin-top: 30px; border-top: 1px solid var(--border);
+    }
+    .btn { padding: 12px 24px; border-radius: 8px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; font-size: 12px; }
+    .btn-save { background: var(--amber); color: #000; flex: 1; }
+    .btn-prev { background: #334155; color: #fff; }
+    .btn-finish { background: var(--danger); color: #fff; }
+
+    /* PALETTE GRID */
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 15px; }
+    .grid .cell { 
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; border: 1px solid var(--border); cursor: pointer; 
+      font-weight: 700; font-size: 12px;
+    }
+
+    .cell.current { background: var(--brand) !important; color: #000 !important; border-color: white; }
+    .cell.answered { background: var(--accent) !important; color: #000 !important; }
+    .cell.visited { background: var(--danger) !important; color: #fff !important; }
+    .cell.unseen { background: var(--border); color: var(--muted); }
+
+    /* MOBILE RESPONSIVE STYLE */
+    @media (max-width: 850px) {
+      body { overflow-y: auto; }
+      .quiz-container { flex-direction: column; padding: 10px; }
+      .navigation-section { position: static; width: 100%; order: 2; }
+      .question-section { width: 100%; order: 1; }
+      .grid { grid-template-columns: repeat(6, 1fr); }
+      .btn-save { width: 100%; flex: none; order: 1; }
+      .btn-prev { order: 2; flex: 1; }
+      .btn-finish { order: 3; width: 100%; margin-top: 10px; }
+    }
+
+    footer { text-align: center; padding: 15px; background: #020617; color: var(--muted); font-size: 11px; }
+  </style>
+</head>
+<body>
+
+  <div class="utility-nav">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a onclick="logout()" style="color:var(--danger)">Logout</a>
+  </div>
+
+  <header class="top-bar">
+    <div class="brand">🎓 OLYMPIAD PORTAL</div>
+    <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
+  </header>
+
+  <main class="quiz-container">
+    <section class="question-section section">
+      <div class="progress-wrapper">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span id="displaySubject">Loading...</span>
+          <span id="progressPercent" style="font-weight: 800; color: var(--accent);">0%</span>
+        </div>
+        <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
+      </div>
+
+      <div id="questionNumber" style="color:var(--brand); font-weight:800; margin-bottom:8px; font-size: 14px;">QUESTION 1</div>
+      <div id="questionText">Please wait, loading questions...</div>
+      
+      <div id="questionImageWrap" style="display:none;"></div>
+
+      <div class="options" id="options"></div>
+
+      <div class="quiz-buttons">
+        <button class="btn btn-prev" onclick="prevQuestion()">Back</button>
+        <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
+        <button class="btn btn-finish" onclick="confirmSubmit()">Finish</button>
+      </div>
+    </section>
+
+    <aside class="navigation-section section">
+      <h3 style="margin:0 0 15px 0; font-size: 16px;">Question Palette</h3>
+      <div class="grid" id="questionGrid"></div>
+      <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
+        <div style="display:flex; gap:5px;"><div style="width:12px;height:12px;background:var(--brand);border-radius:3px;"></div> Current</div>
+        <div style="display:flex; gap:5px;"><div style="width:12px;height:12px;background:var(--accent);border-radius:3px;"></div> Answered</div>
+        <div style="display:flex; gap:5px;"><div style="width:12px;height:12px;background:var(--danger);border-radius:3px;"></div> Visited</div>
+        <div style="display:flex; gap:5px;"><div style="width:12px;height:12px;background:var(--border);border-radius:3px;"></div> Unseen</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>&copy; 2026 Olympiad Portal</footer>
+
+  <script src="questions.js"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -26,39 +194,38 @@
     const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
     
-    // UI Setup
     document.getElementById("displaySubject").innerText = `${selectedSubject.toUpperCase()} - GRADE ${selectedClass.replace("class", "")}`;
 
     async function startQuiz() {
       try {
-        // 1. Check Local questionsData first for speed
+        let fetched = [];
+
+        // Check local first
         if (typeof questionsData !== 'undefined' && questionsData[selectedClass]?.[selectedSubject]) {
-          console.log("Found local data, loading...");
-          questions = [...questionsData[selectedClass][selectedSubject]];
-        } 
-        
-        // 2. Try to Fetch from Firebase to see if there's newer data
-        const q = query(collection(db, "questions"), where("class", "==", selectedClass), where("subject", "==", selectedSubject));
-        const snapshot = await getDocs(q);
-        if (!snapshot.empty) {
-          questions = snapshot.docs.map(doc => doc.data());
+          fetched = [...questionsData[selectedClass][selectedSubject]];
         }
 
-        if (questions.length === 0) {
-          document.getElementById("questionText").innerHTML = "⚠️ No questions found for this category.";
+        // Check Firebase
+        try {
+          const q = query(collection(db, "questions"), where("class", "==", selectedClass), where("subject", "==", selectedSubject));
+          const snapshot = await getDocs(q);
+          if (!snapshot.empty) fetched = snapshot.docs.map(doc => doc.data());
+        } catch (fbErr) { console.warn("Firebase load failed."); }
+
+        if (fetched.length === 0) {
+          document.getElementById("questionText").innerHTML = "⚠️ No questions found. Check questions.js!";
           return;
         }
 
-        // Shuffle and limit
-        questions = questions.sort(() => Math.random() - 0.5).slice(0, 30);
+        questions = fetched.sort(() => Math.random() - 0.5).slice(0, 30);
         selectedAnswers = new Array(questions.length).fill(null);
         visitedQuestions = new Array(questions.length).fill(false);
         
         generateGrid();
         loadQuestion();
-      } catch (e) {
-        console.error("Quiz load error:", e);
-        document.getElementById("questionText").innerHTML = "Error loading quiz. Please check console.";
+        startTimer();
+      } catch (err) {
+        document.getElementById("questionText").innerHTML = "Error initializing quiz.";
       }
     }
 
@@ -68,18 +235,20 @@
     });
 
     window.loadQuestion = function() {
-      if (questions.length === 0) return;
+      if (!questions[current]) return;
       visitedQuestions[current] = true;
       const q = questions[current];
       
       document.getElementById("questionNumber").innerText = `QUESTION ${current + 1}`;
       document.getElementById("questionText").innerHTML = q.q;
 
-      // Logic to handle SVG code inside the question or an Image URL
       const imgWrap = document.getElementById("questionImageWrap");
       if (q.img_desc) {
           imgWrap.style.display = "block";
-          imgWrap.innerHTML = `<p style='font-size:10px; color:gray;'>${q.img_desc}</p>`; 
+          imgWrap.innerHTML = `<div style="padding:10px; border:1px dashed #444; color:#aaa; font-size:12px;">${q.img_desc}</div>`;
+      } else if (q.image_url) {
+          imgWrap.style.display = "block";
+          imgWrap.innerHTML = `<img src="${q.image_url}" style="max-height:200px;">`;
       } else {
           imgWrap.style.display = "none";
       }
@@ -120,6 +289,25 @@
       document.getElementById("progressPercent").innerText = progressPercent + "%";
     }
 
-    // Timer and Submit Logic (Remain the same as before)
-    // ... 
+    function startTimer() {
+      let totalTime = 1800;
+      const timerInt = setInterval(() => {
+        const m = Math.floor(totalTime / 60); const s = totalTime % 60;
+        document.getElementById("timer").innerText = `${m}:${s < 10 ? "0" : ""}${s}`;
+        if (--totalTime < 0) { clearInterval(timerInt); submitQuiz(); }
+      }, 1000);
+    }
+
+    window.confirmSubmit = () => { if (confirm("Submit quiz?")) submitQuiz(); };
+    function submitQuiz() {
+      quizSubmitted = true;
+      let score = 0;
+      questions.forEach((q, i) => { if (selectedAnswers[i] == q.a) score++; });
+      localStorage.setItem("quizResult", JSON.stringify({ score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions }));
+      window.location.href = "result.html";
+    }
+
+    window.logout = async () => { if(confirm("Logout?")) { await signOut(auth); window.location.replace("login.html"); } };
   </script>
+</body>
+</html>
