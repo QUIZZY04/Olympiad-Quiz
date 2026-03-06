@@ -1,166 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Olympiad Portal - Master Your Future</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0f172a; 
-      --surface: #1e293b; 
-      --text: #f8fafc;
-      --muted: #94a3b8; 
-      --border: #334155; 
-      --amber: #f59e0b; 
-      --danger: #ef4444;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background: var(--bg); 
-      color: var(--text); 
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* --- MOBILE-FRIENDLY NAVIGATION (Matched to Dashboard/Leaderboard) --- */
-    nav {
-      background: var(--surface); 
-      border-bottom: 2px solid var(--border);
-      padding: 15px 5%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap; 
-    }
-
-    .brand { 
-      font-size: 22px; 
-      font-weight: 800; 
-      color: var(--amber); 
-      text-decoration: none; 
-      white-space: nowrap;
-    }
-    
-    .nav-links { display: flex; gap: 15px; align-items: center; }
-    .nav-links a {
-      color: #ffffff; 
-      text-decoration: none; 
-      font-size: 11px; 
-      font-weight: 800; 
-      text-transform: uppercase; 
-      letter-spacing: 0.5px; 
-      transition: 0.2s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--amber) !important; }
-
-    /* --- HERO SECTION --- */
-    .hero {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px;
-      background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.2rem, 8vw, 4rem);
-      font-weight: 800;
-      margin-bottom: 20px;
-      line-height: 1.1;
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span { color: var(--amber); }
-
-    .hero p {
-      max-width: 650px;
-      color: var(--muted);
-      font-size: clamp(1rem, 4vw, 1.25rem);
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-
-    .cta-group {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-      max-width: 500px;
-    }
-
-    .btn {
-      padding: 16px 32px;
-      border-radius: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .btn-primary {
-      background: var(--amber);
-      color: #000;
-      border: none;
-      width: auto;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
-      filter: brightness(1.1);
-    }
-
-    .btn-secondary {
-      border: 2px solid var(--border);
-      color: #fff;
-      width: auto;
-    }
-
-    .btn-secondary:hover {
-      background: var(--border);
-      border-color: var(--muted);
-    }
-
-    /* --- MOBILE BREAKPOINTS --- */
-    @media (max-width: 768px) {
-      nav { padding: 15px; justify-content: center; gap: 12px; }
-      .brand { width: 100%; text-align: center; margin-bottom: 5px; }
-      .nav-links { justify-content: center; width: 100%; flex-wrap: wrap; gap: 10px; }
-      
-      .hero { padding: 80px 15px; justify-content: flex-start; }
-      .hero h1 { margin-top: 20px; }
-      
-      .cta-group { flex-direction: column; }
-      .btn { width: 100%; } /* Full-width buttons on mobile for easy clicking */
-    }
-
-    footer { 
-      text-align: center; 
-      padding: 25px; 
-      background: #020617; 
-      border-top: 1px solid var(--border); 
-      color: var(--muted); 
-      font-size: 12px; 
-      font-weight: 500;
-    }
-  </style>
-</head>
 <body>
 
   <nav>
@@ -169,21 +6,66 @@
         <a href="index.html" class="active">Home</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="leaderboard.html">Leaderboard</a>
-        <a href="login.html" style="color: var(--amber);">Login</a>
-    </div>
+        <span id="authLink"></span> </div>
   </nav>
 
   <main class="hero">
     <h1>Level Up Your <span>Olympiad Skills</span></h1>
-    <p>The ultimate preparation platform for students. Take subject-wise quizzes, track your accuracy, and compete on the global leaderboard.</p>
+    <p>The ultimate preparation platform for students. Practice with real-time quizzes and track your global ranking.</p>
     
     <div class="cta-group">
-        <a href="dashboard.html" class="btn btn-primary">Start Practicing</a>
+        <button onclick="handleStart()" class="btn btn-primary">Start Practicing</button>
         <a href="leaderboard.html" class="btn btn-secondary">Check Rankings</a>
     </div>
   </main>
 
-  <footer>&copy; 2026 Olympiad Portal • Preparation Made Simple</footer>
+  <footer>&copy; 2026 Olympiad Portal</footer>
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+      authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+      projectId: "olympiad-portal-d2a5e",
+      storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+      messagingSenderId: "341855557503",
+      appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Global variable to track login status
+    let isLoggedIn = false;
+
+    onAuthStateChanged(auth, (user) => {
+      const authLink = document.getElementById("authLink");
+      if (user) {
+        isLoggedIn = true;
+        authLink.innerHTML = `<a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>`;
+      } else {
+        isLoggedIn = false;
+        authLink.innerHTML = `<a href="login.html" style="color:var(--amber);">Login</a>`;
+      }
+    });
+
+    // Function to handle the "Get Started" button
+    window.handleStart = function() {
+      if (isLoggedIn) {
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Please login first to access the dashboard.");
+        window.location.href = "login.html";
+      }
+    };
+
+    window.logout = function() {
+      if(confirm("Logout?")) {
+        signOut(auth).then(() => { window.location.href = "login.html"; });
+      }
+    };
+  </script>
 </body>
 </html>
