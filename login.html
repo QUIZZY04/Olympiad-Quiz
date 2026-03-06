@@ -30,30 +30,42 @@
       flex-direction: column;
     }
 
-    /* MATCHED TOP NAV */
-    nav {
-      background: #1e293b; 
+    /* UNIFIED TWO-TIER NAVIGATION */
+    .utility-nav {
+      background: #020617; 
+      padding: 12px 60px; 
+      display: flex;
+      justify-content: flex-end; 
+      gap: 40px; 
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .utility-nav a { 
+      color: #ffffff; 
+      text-decoration: none; 
+      font-size: 13px; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    
+    .utility-nav a:hover { color: var(--amber); }
+
+    header.top-bar {
+      background: var(--surface); 
       border-bottom: 2px solid var(--border);
-      padding: 15px 40px; 
+      padding: 15px 60px; 
       display: flex; 
       align-items: center; 
-      justify-content: space-between;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      justify-content: center; /* Centered for Login Focus */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     
     .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
-    
-    nav div a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      margin-left: 25px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: 0.2s;
-    }
-    nav div a:hover { color: var(--amber); }
 
     /* CENTERED LOGIN BOX */
     .container {
@@ -107,10 +119,8 @@
       transition: 0.2s;
       margin-top: 10px;
     }
-    button.main-btn:hover { background: #f59e0b; transform: translateY(-1px); }
-    button.main-btn:active { transform: translateY(0); }
+    button.main-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-    /* GOOGLE BUTTON ADDED */
     button.google-btn {
       width: 100%;
       padding: 12px;
@@ -128,9 +138,7 @@
       margin-top: 15px;
       transition: 0.2s;
     }
-    button.google-btn:hover { background: #f8f9fa; border-color: #ccc; }
 
-    /* LINK BUTTONS */
     .link-group { margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
     .link-btn {
       background: none;
@@ -164,18 +172,28 @@
       font-weight: 500;
     }
     .success { background: rgba(34, 197, 94, 0.1); color: var(--success); border: 1px solid rgba(34, 197, 94, 0.2); }
+    
+    footer { 
+      text-align: center; 
+      padding: 20px; 
+      background: #020617; 
+      border-top: 1px solid var(--border); 
+      color: var(--muted); 
+      font-size: 12px; 
+    }
   </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
-    <div>
-        <a href="index.html">Home</a>
-        <a href="signup.html">Signup</a>
-    </div>
+<nav class="utility-nav">
+    <a href="index.html">Home</a>
+    <a href="signup.html">Signup</a>
 </nav>
+
+<header class="top-bar">
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+</header>
 
 <div class="container">
     <div class="login-box">
@@ -202,7 +220,7 @@
 
         <div id="forgotSection" class="hidden">
             <h2>Reset Access</h2>
-            <p class="desc">Enter your registered email address to receive a password reset link.</p>
+            <p class="desc">Enter your email to receive a reset link.</p>
             <form id="forgotForm">
                 <input type="email" id="resetEmail" placeholder="Email Address" required>
                 <button type="submit" class="main-btn">Send Link</button>
@@ -212,7 +230,7 @@
 
         <div id="changeSection" class="hidden">
             <h2>Update Security</h2>
-            <p class="desc">Please confirm your current credentials to set a new password.</p>
+            <p class="desc">Confirm credentials to set a new password.</p>
             <form id="changeForm">
                 <input type="password" id="currentPassword" placeholder="Current Password" required>
                 <input type="password" id="newPassword" placeholder="New Password" required>
@@ -228,6 +246,8 @@
         </p>
     </div>
 </div>
+
+<footer>&copy; 2026 Olympiad Portal</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -262,7 +282,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     } catch(err) { alert(err.message); }
 });
 
-// ADDED GOOGLE SIGN IN LOGIC
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
     try {
         await signInWithPopup(auth, provider);
