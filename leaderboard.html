@@ -1,129 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Leaderboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - Olympiad Portal</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
-}
+  <style>
+    :root {
+      --bg: #0f172a;                 
+      --surface: #1e293b;            
+      --text: #f8fafc;               
+      --muted: #94a3b8;              
+      --border: #334155;             
+      --brand: #38bdf8;              
+      --amber: #f59e0b;              
+      --danger: #ef4444;
+    }
 
-body{
-    background:#0f0f1b;
-    color:white;
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    
+    body { 
+      background-color: var(--bg); 
+      min-height: 100vh; 
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
 
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 40px;
-    background:#1e1e2f;
-}
+    /* --- UNIFIED NAVIGATION (Matches Dashboard & Quiz) --- */
+    .utility-nav {
+      background: #020617; 
+      padding: 12px 60px; 
+      display: flex;
+      justify-content: flex-end; 
+      gap: 45px; 
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .utility-nav a { 
+      color: #ffffff; 
+      text-decoration: none; 
+      font-size: 13px; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    
+    .utility-nav a:hover { color: var(--amber); }
 
-nav h2{
-    color:#ffb703;
-}
+    /* Highlights current page as per Dashboard style */
+    .utility-nav a.active { color: var(--amber) !important; }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:500;
-}
+    header.top-bar {
+      background: var(--surface); 
+      border-bottom: 2px solid var(--border);
+      padding: 15px 40px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
 
-nav a:hover{
-    color:#ffb703;
-}
+    /* --- LEADERBOARD TABLE CONTENT --- */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      flex: 1;
+    }
 
-.active{
-    color:#ffb703;
-}
+    h1 { 
+      text-align: center; 
+      margin-bottom: 30px; 
+      font-weight: 800; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 15px; 
+    }
 
-.container{
-    max-width:1100px;
-    margin:40px auto;
-    padding:20px;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
 
-h1{
-    text-align:center;
-    margin-bottom:30px;
-}
+    th {
+      background: #020617;
+      color: var(--amber);
+      padding: 18px;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      border-bottom: 2px solid var(--border);
+    }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-}
+    td {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
 
-th, td{
-    padding:12px;
-    border:1px solid #333;
-    text-align:center;
-}
+    tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+    tr:hover { background: rgba(56, 189, 248, 0.05); }
 
-th{
-    background:#2f2f55;
-}
+    /* Rank Highlighting */
+    .rank-cell { font-weight: 800; }
+    .rank-1 { background: rgba(245, 158, 11, 0.1) !important; }
 
-tr:nth-child(even){
-    background:#1e1e2f;
-}
-
-.rank-1{
-    background:#3a2f00 !important;
-}
-.rank-2{
-    background:#2f2f2f !important;
-}
-.rank-3{
-    background:#2a2a2a !important;
-}
-</style>
+    footer { 
+      text-align: center; 
+      padding: 20px; 
+      background: #020617; 
+      border-top: 1px solid var(--border); 
+      color: var(--muted); 
+      font-size: 12px; 
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
-    <h2>🎓 Olympiad Portal</h2>
-    <div>
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="quiz.html">Take Quiz</a>
-        <a href="leaderboard.html" class="active">Leaderboard</a>
-        <a href="#" onclick="logout()">Logout</a>
-    </div>
+<nav class="utility-nav">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="quiz.html">Take Quiz</a>
+    <a href="leaderboard.html" class="active">Leaderboard</a>
+    <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
 </nav>
 
+<header class="top-bar">
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+</header>
+
 <div class="container">
+    <h1>🏆 Global Leaderboard</h1>
 
-<h1>🏆 Leaderboard</h1>
-
-<table>
-<thead>
-<tr>
-    <th>Rank</th>
-    <th>Email</th>
-    <th>Class</th>
-    <th>Subject</th>
-    <th>Score</th>
-    <th>Accuracy</th>
-    <th>Date</th>
-</tr>
-</thead>
-<tbody id="leaderboardBody">
-</tbody>
-</table>
-
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Participant</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Accuracy</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+            </tbody>
+    </table>
 </div>
 
-<script type="module">
+<footer>&copy; 2026 Olympiad Portal</footer>
 
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -141,76 +187,54 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-onAuthStateChanged(auth, async (user)=>{
-    if(!user){
-        window.location.href = "login.html";
-    } else {
-        loadLeaderboard();
-    }
+onAuthStateChanged(auth, (user) => {
+  if (!user) window.location.href = "login.html";
+  else loadLeaderboard();
 });
 
 async function loadLeaderboard() {
-
     const leaderboardBody = document.getElementById("leaderboardBody");
-    leaderboardBody.innerHTML = "";
-
     try {
-
         const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
         const querySnapshot = await getDocs(q);
-
+        leaderboardBody.innerHTML = "";
         let rank = 1;
 
         querySnapshot.forEach((doc) => {
-
             const data = doc.data();
-
-            let rowClass = "";
-            if (rank === 1) rowClass = "rank-1";
-            if (rank === 2) rowClass = "rank-2";
-            if (rank === 3) rowClass = "rank-3";
-
+            const rowClass = rank === 1 ? 'rank-1' : '';
+            
             leaderboardBody.innerHTML += `
-            <tr class="${rowClass}">
-                <td>${rank}</td>
-                <td>${data.email || data.name || "-"}</td>
-                <td>${data.studentClass || data.class || "-"}</td>
-                <td>${data.subject || "-"}</td>
-                <td>${data.score}/${data.total}</td>
-                <td>${data.accuracy}%</td>
-                <td>${data.date ? data.date.toDate().toLocaleDateString() : "-"}</td>
-            </tr>
+                <tr class="${rowClass}">
+                    <td class="rank-cell">${rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : rank}</td>
+                    <td style="font-weight:700">${data.email || data.name || "-"}</td>
+                    <td>${data.studentClass || data.class || "-"}</td>
+                    <td>${data.subject || "-"}</td>
+                    <td>${data.score}/${data.total}</td>
+                    <td>${data.accuracy}%</td>
+                    <td>${data.date ? data.date.toDate().toLocaleDateString() : "-"}</td>
+                </tr>
             `;
-
             rank++;
         });
 
         if (rank === 1) {
-            leaderboardBody.innerHTML = `
-            <tr>
-                <td colspan="7">No leaderboard data available</td>
-            </tr>`;
+            leaderboardBody.innerHTML = "<tr><td colspan='7'>No rankings available yet.</td></tr>";
         }
-
-    } catch (error) {
-
-        console.error("Leaderboard error:", error);
-
-        leaderboardBody.innerHTML = `
-        <tr>
-            <td colspan="7">Error loading leaderboard data</td>
-        </tr>`;
+    } catch (err) {
+        console.error("Error:", err);
+        leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading leaderboard.</td></tr>";
     }
 }
 
-window.logout = function(){
-    signOut(auth).then(()=>{
-        window.location.href = "login.html";
-    });
+window.logout = function() {
+    if(confirm("Are you sure you want to logout?")) {
+        signOut(auth).then(() => {
+            window.location.href = "login.html";
+        });
+    }
 };
-
 </script>
 
 </body>
 </html>
-
