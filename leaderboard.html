@@ -1,188 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Leaderboard</title>
+<title>Leaderboard - Olympiad Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    :root { --bg: #0f172a; --surface: #1e293b; --text: #f8fafc; --muted: #94a3b8; --border: #334155; --amber: #f59e0b; --danger: #ef4444; --brand: #38bdf8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
 
-body {
-    background: #0f111a;
-    color: white;
-}
+    /* UNIFIED NAVIGATION */
+    .utility-nav { background: #020617; padding: 12px 60px; display: flex; justify-content: flex-end; gap: 40px; border-bottom: 1px solid var(--border); }
+    .utility-nav a { color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+    .utility-nav a.active { color: var(--amber); }
+    header.top-bar { background: var(--surface); border-bottom: 2px solid var(--border); padding: 15px 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; }
+    .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
 
-/* NAVIGATION - UNIFIED COLORS */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: #1e1e2f;
-    border-bottom: 1px solid #2d2d44;
-}
-
-nav h2 {
-    color: #ffb703; /* Brand Yellow-Orange */
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-nav div {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    /* All nav links now share the Leaderboard's orange-yellow color */
-    color: #ffb703; 
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    text-transform: uppercase;
-    transition: opacity 0.2s;
-}
-
-nav a:hover {
-    opacity: 0.8; /* Subtle visual feedback on hover */
-}
-
-/* Logout remains red-orange for contrast as per dashboard design */
-.logout-link {
-    color: #ff4d4d !important;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #161b22;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 15px;
-    border: 1px solid #2d2d44;
-    text-align: center;
-}
-
-th {
-    background: #2f2f55;
-    color: #ffb703;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-}
-
-tr:nth-child(even) {
-    background: #1e1e2f;
-}
+    /* TABLE CONTENT */
+    .container { max-width: 1100px; margin: 40px auto; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 30px; font-weight: 800; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: var(--surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: #020617; color: var(--amber); padding: 15px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+    td { padding: 15px; border-bottom: 1px solid var(--border); text-align: center; font-size: 14px; }
+    tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+    .rank-cell { font-weight: 800; }
 </style>
 </head>
-
 <body>
-
-<nav>
-    <h2>🎓 Olympiad Portal</h2>
-    <div>
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="quiz.html">Take Quiz</a>
-        <a href="leaderboard.html">Leaderboard</a>
-        <a href="#" onclick="logout()" class="logout-link">Logout</a>
-    </div>
+<nav class="utility-nav">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="leaderboard.html" class="active">Leaderboard</a>
+    <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
 </nav>
-
+<header class="top-bar"><a href="dashboard.html" class="brand">🎓 Olympiad Portal</a></header>
 <div class="container">
     <h1>🏆 Global Leaderboard</h1>
     <table>
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Participant</th>
-                <th>Class</th>
-                <th>Subject</th>
-                <th>Score</th>
-                <th>Accuracy</th>
-                <th>Date</th>
-            </tr>
-        </thead>
+        <thead><tr><th>Rank</th><th>Participant</th><th>Class</th><th>Subject</th><th>Score</th><th>Accuracy</th><th>Date</th></tr></thead>
         <tbody id="leaderboardBody"></tbody>
     </table>
 </div>
-
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-        projectId: "olympiad-portal-d2a5e",
-        storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
-        messagingSenderId: "341855557503",
-        appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-            window.location.href = "login.html";
-        } else {
-            loadLeaderboard();
-        }
-    });
-
-    async function loadLeaderboard() {
-        const leaderboardBody = document.getElementById("leaderboardBody");
-        try {
-            const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
-            const querySnapshot = await getDocs(q);
-            leaderboardBody.innerHTML = "";
-            let rank = 1;
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                leaderboardBody.innerHTML += `
-                    <tr>
-                        <td>${rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : rank}</td>
-                        <td style="font-weight:700">${data.email || data.name || "-"}</td>
-                        <td>${data.studentClass || data.class || "-"}</td>
-                        <td>${data.subject || "-"}</td>
-                        <td>${data.score}/${data.total}</td>
-                        <td>${data.accuracy}%</td>
-                        <td>${data.date ? data.date.toDate().toLocaleDateString() : "-"}</td>
-                    </tr>
-                `;
-                rank++;
-            });
-        } catch (error) {
-            leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading data</td></tr>";
-        }
+    const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+    const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app);
+    async function load(){
+        const b = document.getElementById("leaderboardBody");
+        const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
+        const s = await getDocs(q); let r = 1;
+        s.forEach(d => {
+            const data = d.data();
+            b.innerHTML += `<tr><td class="rank-cell">${r <= 3 ? ['🥇','🥈','🥉'][r-1] : r}</td><td style="font-weight:700">${data.email || "-"}</td><td>${data.class || "-"}</td><td>${data.subject || "-"}</td><td>${data.score}/${data.total}</td><td>${data.accuracy}%</td><td>${data.date ? data.date.toDate().toLocaleDateString() : "-"}</td></tr>`;
+            r++;
+        });
     }
-
-    window.logout = function() {
-        signOut(auth).then(() => { window.location.href = "login.html"; });
-    };
+    load(); window.logout = () => signOut(auth).then(()=>window.location.href="login.html");
 </script>
-
 </body>
 </html>
