@@ -12,19 +12,17 @@
       --amber: #f59e0b; --danger: #ef4444;
     }
     * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; height: 100%; min-height: 100vh; overflow-x: hidden; }
+    /* Fix: Remove height: 100% to allow natural scrolling */
+    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    /* UNIFIED NAVIGATION STYLE */
     .utility-nav {
       background: #020617; padding: 12px 60px; display: flex;
       justify-content: flex-end; gap: 40px; border-bottom: 1px solid var(--border);
     }
     .utility-nav a { 
         color: #ffffff; text-decoration: none; font-size: 13px; 
-        font-weight: 800; text-transform: uppercase; letter-spacing: 1px; 
-        cursor: pointer; transition: 0.2s;
+        font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
     }
-    .utility-nav a:hover { color: var(--amber); }
     .utility-nav a.active { color: var(--amber) !important; }
 
     header.top-bar {
@@ -35,27 +33,19 @@
     .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
     #userWelcome { font-size: 14px; font-weight: 700; color: var(--brand); }
 
-    /* PAGE CONTENT */
-    .container { max-width: 1200px; width: 95%; margin: 20px auto; padding: 0 20px; flex: 1; }
-    h1 { font-size: 26px; margin: 0 0 5px 0; }
-    p.subtitle { color: var(--muted); margin: 0 0 25px 0; font-size: 14px; }
+    /* Fix: Ensure container doesn't get squashed */
+    .container { max-width: 1200px; width: 95%; margin: 30px auto; padding: 0 20px; }
+    
     .class-selector-wrap { background: rgba(56, 189, 248, 0.05); border: 1px dashed var(--brand); padding: 15px 20px; border-radius: 12px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
-    label { font-weight: 700; color: var(--brand); text-transform: uppercase; font-size: 12px; }
-    select { background: var(--bg); color: white; border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; min-width: 200px; }
+    select { background: var(--bg); color: white; border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; }
+    
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.2s; }
-    .card:hover { border-color: var(--brand); transform: translateY(-3px); background: #243147; }
-    .card h3 { font-size: 18px; margin: 0 0 8px 0; color: var(--brand); }
-    .card p { color: var(--muted); font-size: 13px; margin-bottom: 20px; height: 32px; line-height: 1.4; }
-    .btn-start { background: var(--brand); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 12px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; transition: 0.2s; cursor: pointer; }
+    .card:hover { border-color: var(--brand); transform: translateY(-3px); }
+    .btn-start { background: var(--brand); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 800; text-transform: uppercase; width: 100%; cursor: pointer; }
+
     .instructions-section { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; margin-top: 40px; }
-    .instructions-section h2 { color: var(--amber); margin-bottom: 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-    .ins-item { display: flex; gap: 12px; align-items: flex-start; }
-    .ins-icon { background: rgba(56, 189, 248, 0.1); color: var(--brand); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-size: 14px; font-weight: 800; }
-    .ins-text { font-size: 13px; line-height: 1.5; color: var(--muted); }
-    .ins-text strong { color: var(--text); display: block; margin-bottom: 2px; }
-    footer { text-align: center; padding: 20px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; }
+    footer { text-align: center; padding: 20px; background: #020617; color: var(--muted); font-size: 12px; }
   </style>
 </head>
 <body>
@@ -71,27 +61,21 @@
   </header>
   <main class="container">
     <h1>Student Dashboard</h1>
-    <p class="subtitle">Select your grade level and subject to begin.</p>
     <div class="class-selector-wrap">
-      <label for="classSelect">Select Grade:</label>
+      <label style="font-weight:700; color:var(--brand);">SELECT GRADE:</label>
       <select id="classSelect">
-        <option value="class1">Grade 1</option>
-        <option value="class4">Grade 4</option>
-        <option value="class6" selected>Grade 6</option>
+        <option value="class6">Grade 6</option>
         <option value="class8">Grade 8</option>
-        <option value="class10">Grade 10</option>
       </select>
     </div>
     <div class="grid">
-      <div class="card" onclick="startQuiz('maths')"><h3>Mathematics</h3><p>Advanced Logic and Arithmetic problems.</p><button class="btn-start">Start Quiz</button></div>
-      <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p>Physics, Chemistry, and Biology analysis.</p><button class="btn-start">Start Quiz</button></div>
+      <div class="card" onclick="startQuiz('maths')"><h3>Mathematics</h3><p style="color:var(--muted); font-size:13px; margin: 10px 0;">Advanced logic problems.</p><button class="btn-start">Start Quiz</button></div>
+      <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p style="color:var(--muted); font-size:13px; margin: 10px 0;">Physics and Biology.</p><button class="btn-start">Start Quiz</button></div>
     </div>
-    <section class="instructions-section">
-      <h2>📝 Quiz Instructions</h2>
-      <div class="ins-grid">
-        <div class="ins-item"><div class="ins-icon">1</div><div class="ins-text"><strong>Time Limit</strong>30 minutes per quiz.</div></div>
-      </div>
-    </section>
+    <div class="instructions-section">
+        <h2 style="color:var(--amber);">📝 Quiz Instructions</h2>
+        <p style="color:var(--muted); font-size:14px; margin-top:10px;">Each quiz lasts 30 minutes and auto-submits. Use "Save & Next" to record answers.</p>
+    </div>
   </main>
   <footer>&copy; 2026 Olympiad Portal</footer>
   <script>
