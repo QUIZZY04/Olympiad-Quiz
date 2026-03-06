@@ -11,10 +11,9 @@
       --muted: #94a3b8; --border: #334155; --brand: #38bdf8;
       --amber: #f59e0b; --danger: #ef4444;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body { 
-      margin: 0; 
       font-family: 'Inter', sans-serif; 
       background: var(--bg); 
       color: var(--text); 
@@ -24,17 +23,18 @@
       overflow-x: hidden; 
     }
 
-    /* --- SINGLE TIER NAVIGATION --- */
+    /* --- MOBILE-FRIENDLY NAVIGATION (Matched to Leaderboard) --- */
     nav {
       background: var(--surface); 
       border-bottom: 2px solid var(--border);
-      padding: 15px 60px; 
+      padding: 15px 5%; 
       display: flex; 
       align-items: center; 
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 1000;
+      flex-wrap: wrap; /* Vital for mobile tab visibility */
     }
 
     .brand { 
@@ -42,18 +42,19 @@
       font-weight: 800; 
       color: var(--amber); 
       text-decoration: none; 
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 15px; 
       align-items: center;
     }
 
     .nav-links a {
       color: #ffffff;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 11px; 
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -70,9 +71,8 @@
       font-weight: 800;
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 13px;
+      font-size: 11px;
       cursor: pointer;
-      margin-left: 10px;
     }
 
     /* --- MAIN CONTAINER --- */
@@ -80,10 +80,10 @@
         max-width: 1200px; width: 95%; margin: 30px auto; padding: 0 20px; 
         flex: 1; 
     }
-    h1 { font-size: 26px; margin: 0 0 5px 0; font-weight: 800; }
-    p.subtitle { color: var(--muted); margin: 0 0 25px 0; font-size: 14px; }
+    h1 { font-size: 26px; margin-bottom: 5px; font-weight: 800; }
+    p.subtitle { color: var(--muted); margin-bottom: 25px; font-size: 14px; }
 
-    /* CLASS SELECTOR BOX */
+    /* CLASS SELECTOR */
     .class-selector-wrap {
       background: rgba(245, 158, 11, 0.05); border: 1px dashed var(--amber);
       padding: 15px 20px; border-radius: 12px; margin-bottom: 30px;
@@ -92,10 +92,10 @@
     label { font-weight: 700; color: var(--amber); text-transform: uppercase; font-size: 12px; }
     select {
       background: var(--bg); color: white; border: 1px solid var(--border);
-      padding: 8px 12px; border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; min-width: 200px;
+      padding: 8px 12px; border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; min-width: 180px;
     }
 
-    /* --- SUBJECT CARDS (MATCHED TO NAV COLOR) --- */
+    /* --- SUBJECT CARDS --- */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
     
     .card {
@@ -111,12 +111,12 @@
     }
     
     .card h3 { 
-      font-size: 18px; margin: 0 0 8px 0; 
+      font-size: 18px; margin-bottom: 8px; 
       color: var(--amber); 
       font-weight: 700; 
     }
     
-    .card p { color: var(--muted); font-size: 13px; margin-bottom: 20px; height: 32px; line-height: 1.4; }
+    .card p { color: var(--muted); font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
     
     .btn-start {
       background: var(--amber); 
@@ -124,22 +124,33 @@
       border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 12px;
     }
 
-    /* --- INSTRUCTIONS SECTION --- */
-    .instructions-section { 
-        background: var(--surface); border: 1px solid var(--border); border-radius: 16px; 
-        padding: 25px; margin-top: 40px; margin-bottom: 40px;
+    /* --- MOBILE BREAKPOINTS --- */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px;
+        justify-content: center;
+        gap: 12px;
+      }
+      .brand {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      .nav-links {
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap; /* Ensures tabs wrap and don't vanish */
+      }
+      .nav-links a, .logout-link {
+        font-size: 10px;
+      }
+      h1 { font-size: 22px; text-align: center; }
+      p.subtitle { text-align: center; }
+      .class-selector-wrap { flex-direction: column; text-align: center; }
     }
-    .instructions-section h2 { color: var(--amber); margin-bottom: 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .ins-item { display: flex; gap: 12px; align-items: flex-start; }
-    .ins-icon { 
-        background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 30px; height: 30px; 
-        display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-size: 14px; font-weight: 800; 
-    }
-    .ins-text { font-size: 13px; line-height: 1.5; color: var(--muted); }
-    .ins-text strong { color: var(--text); display: block; margin-bottom: 2px; }
 
-    footer { text-align: center; padding: 20px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; }
+    footer { text-align: center; padding: 20px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
   </style>
 </head>
 <body>
@@ -149,6 +160,7 @@
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="quiz.html">Take Quiz</a>
         <a href="leaderboard.html">Leaderboard</a>
         <a onclick="logout()" class="logout-link">Logout</a>
     </div>
@@ -192,44 +204,10 @@
       </div>
       <div class="card" onclick="startQuiz('reasoning')">
         <h3>Logical Reasoning</h3>
-        <p>Mental Ability, Patterns, and Analytical puzzles.</p>
+        <p>Mental Ability and Analytical puzzles.</p>
         <button class="btn-start">Start Quiz</button>
       </div>
     </div>
-
-    <section class="instructions-section">
-      <h2>📝 Quiz Instructions</h2>
-      <div class="ins-grid">
-        <div class="ins-item">
-          <div class="ins-icon">1</div>
-          <div class="ins-text">
-            <strong>Time Limit</strong>
-            Each quiz lasts exactly 30 minutes and will auto-submit when the timer expires.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">2</div>
-          <div class="ins-text">
-            <strong>Palette Status</strong>
-            Green: Answered, Blue: Current, Red: Visited, Grey: Unseen.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">3</div>
-          <div class="ins-text">
-            <strong>Saving Progress</strong>
-            Always click "Save & Next" to record your choice. You can revisit questions anytime.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">4</div>
-          <div class="ins-text">
-            <strong>Final Report</strong>
-            Receive a detailed accuracy analysis and correct solutions after finishing.
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>&copy; 2026 Olympiad Portal</footer>
@@ -250,9 +228,7 @@
 
     window.onload = () => {
       const lastClass = localStorage.getItem("selectedClass");
-      if(lastClass) {
-        document.getElementById("classSelect").value = lastClass;
-      }
+      if(lastClass) { document.getElementById("classSelect").value = lastClass; }
     };
   </script>
 </body>
