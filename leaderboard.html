@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leaderboard - Olympiad Portal</title>
-  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
@@ -27,7 +26,7 @@
       color: var(--text);
     }
 
-    /* --- SINGLE TIER NAVIGATION (Matches Dashboard Layout) --- */
+    /* --- NAVIGATION --- */
     nav {
       background: var(--surface); 
       border-bottom: 2px solid var(--border);
@@ -40,95 +39,81 @@
       z-index: 1000;
     }
 
-    .brand { 
-      font-size: 22px; 
-      font-weight: 800; 
-      color: var(--amber); 
-      text-decoration: none; 
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
+    .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
 
     .nav-links a {
-      color: #ffffff; /* Default text color */
+      color: #ffffff;
       text-decoration: none;
       font-size: 13px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       transition: 0.2s;
-      cursor: pointer;
     }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber) !important; }
 
-    .nav-links a:hover {
-      color: var(--amber);
-    }
-
-    /* Active tab style: Just text color, no background box */
-    .nav-links a.active {
-      color: var(--amber) !important;
-    }
-
-    .logout-link {
-      color: var(--danger) !important;
-    }
-
-    /* --- TABLE CONTENT --- */
+    /* --- TABLE CONTAINER --- */
     .container {
       max-width: 1100px;
       margin: 40px auto;
-      padding: 20px;
+      padding: 0 20px;
     }
 
-    h1 { 
-      text-align: center; 
-      margin-bottom: 30px; 
-      font-weight: 800; 
-      color: var(--text);
+    h1 { text-align: center; margin-bottom: 30px; font-weight: 800; }
+
+    /* Fix: Mobile responsiveness wrapper */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto; /* Allows horizontal swipe on small screens */
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      background: var(--surface);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
+      min-width: 600px; /* Ensures table doesn't squash too much */
     }
 
     th {
       background: #020617;
       color: var(--amber);
-      padding: 18px;
+      padding: 15px;
       text-transform: uppercase;
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 1px;
+      text-align: center;
     }
 
     td {
-      padding: 16px;
+      padding: 14px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       font-size: 14px;
+      white-space: nowrap; /* Prevents text from wrapping into multiple lines */
     }
 
+    tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: rgba(255,255,255,0.02); }
     tr:hover { background: rgba(56, 189, 248, 0.05); }
 
     .rank-cell { font-weight: 800; }
 
-    footer { 
-      text-align: center; 
-      padding: 20px; 
-      background: #020617; 
-      border-top: 1px solid var(--border); 
-      color: var(--muted); 
-      font-size: 12px; 
+    /* --- MOBILE ADJUSTMENTS (Max-width 768px) --- */
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
+      .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+      .nav-links a { font-size: 11px; }
+      
+      .container { margin: 20px auto; }
+      h1 { font-size: 22px; }
+      
+      /* Optional: Hide less important columns on mobile to save space */
+      .hide-mobile { display: none; }
     }
+
+    footer { text-align: center; padding: 20px; background: #020617; color: var(--muted); font-size: 12px; margin-top: 40px; }
   </style>
 </head>
 
@@ -141,28 +126,30 @@
         <a href="dashboard.html">Dashboard</a>
         <a href="quiz.html">Take Quiz</a>
         <a href="leaderboard.html" class="active">Leaderboard</a>
-        <a onclick="logout()" class="logout-link">Logout</a>
+        <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
     </div>
 </nav>
 
 <div class="container">
     <h1>🏆 Global Leaderboard</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Participant</th>
-                <th>Class</th>
-                <th>Subject</th>
-                <th>Score</th>
-                <th>Accuracy</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody id="leaderboardBody">
-            </tbody>
-    </table>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Participant</th>
+                    <th class="hide-mobile">Class</th>
+                    <th>Subject</th>
+                    <th>Score</th>
+                    <th class="hide-mobile">Accuracy</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+                </tbody>
+        </table>
+    </div>
 </div>
 
 <footer>&copy; 2026 Olympiad Portal</footer>
@@ -204,10 +191,10 @@ async function loadLeaderboard() {
                 <tr>
                     <td class="rank-cell">${rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : rank}</td>
                     <td style="font-weight:700">${data.email || "-"}</td>
-                    <td>${data.class || "-"}</td>
+                    <td class="hide-mobile">${data.class || "-"}</td>
                     <td>${data.subject || "-"}</td>
                     <td>${data.score}/${data.total}</td>
-                    <td>${data.accuracy}%</td>
+                    <td class="hide-mobile">${data.accuracy}%</td>
                     <td>${data.date ? data.date.toDate().toLocaleDateString() : "-"}</td>
                 </tr>
             `;
