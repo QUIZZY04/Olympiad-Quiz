@@ -12,9 +12,9 @@
       --amber: #f59e0b; --danger: #ef4444;
     }
     * { box-sizing: border-box; }
-    /* Fix: Remove height: 100% to allow natural scrolling */
     body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
+    /* UNIFIED NAVIGATION */
     .utility-nav {
       background: #020617; padding: 12px 60px; display: flex;
       justify-content: flex-end; gap: 40px; border-bottom: 1px solid var(--border);
@@ -33,19 +33,22 @@
     .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
     #userWelcome { font-size: 14px; font-weight: 700; color: var(--brand); }
 
-    /* Fix: Ensure container doesn't get squashed */
+    /* MAIN CONTAINER */
     .container { max-width: 1200px; width: 95%; margin: 30px auto; padding: 0 20px; }
-    
+    h1 { font-size: 26px; margin-bottom: 5px; }
+    p.subtitle { color: var(--muted); margin-bottom: 25px; font-size: 14px; }
+
     .class-selector-wrap { background: rgba(56, 189, 248, 0.05); border: 1px dashed var(--brand); padding: 15px 20px; border-radius: 12px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
-    select { background: var(--bg); color: white; border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; }
-    
+    select { background: var(--bg); color: white; border: 1px solid var(--border); padding: 8px 12px; border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; min-width: 200px; }
+
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; transition: 0.2s; cursor: pointer; }
-    .card:hover { border-color: var(--brand); transform: translateY(-3px); }
-    .btn-start { background: var(--brand); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 800; text-transform: uppercase; width: 100%; cursor: pointer; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.2s; }
+    .card:hover { border-color: var(--brand); transform: translateY(-3px); background: #243147; }
+    .card h3 { font-size: 18px; margin-bottom: 8px; color: var(--brand); }
+    .btn-start { background: var(--brand); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 12px; }
 
     .instructions-section { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; margin-top: 40px; }
-    footer { text-align: center; padding: 20px; background: #020617; color: var(--muted); font-size: 12px; }
+    footer { text-align: center; padding: 20px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
   </style>
 </head>
 <body>
@@ -61,26 +64,29 @@
   </header>
   <main class="container">
     <h1>Student Dashboard</h1>
+    <p class="subtitle">Select your grade level and subject to begin.</p>
     <div class="class-selector-wrap">
-      <label style="font-weight:700; color:var(--brand);">SELECT GRADE:</label>
+      <label style="font-weight:700; color:var(--brand); font-size: 12px;">SELECT GRADE:</label>
       <select id="classSelect">
-        <option value="class6">Grade 6</option>
+        <option value="class4">Grade 4</option>
+        <option value="class6" selected>Grade 6</option>
         <option value="class8">Grade 8</option>
+        <option value="class10">Grade 10</option>
       </select>
     </div>
     <div class="grid">
-      <div class="card" onclick="startQuiz('maths')"><h3>Mathematics</h3><p style="color:var(--muted); font-size:13px; margin: 10px 0;">Advanced logic problems.</p><button class="btn-start">Start Quiz</button></div>
-      <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p style="color:var(--muted); font-size:13px; margin: 10px 0;">Physics and Biology.</p><button class="btn-start">Start Quiz</button></div>
+      <div class="card" onclick="startQuiz('maths')"><h3>Mathematics</h3><p style="color:var(--muted); font-size:13px; margin: 10px 0;">Advanced logic and arithmetic.</p><button class="btn-start">Start Quiz</button></div>
+      <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p style="color:var(--muted); font-size:13px; margin: 10px 0;">Physics, Chemistry, and Biology.</p><button class="btn-start">Start Quiz</button></div>
     </div>
-    <div class="instructions-section">
-        <h2 style="color:var(--amber);">📝 Quiz Instructions</h2>
-        <p style="color:var(--muted); font-size:14px; margin-top:10px;">Each quiz lasts 30 minutes and auto-submits. Use "Save & Next" to record answers.</p>
-    </div>
+    <section class="instructions-section">
+      <h2 style="color:var(--amber); font-size: 20px;">📝 Quiz Instructions</h2>
+      <p style="color:var(--muted); font-size: 14px; margin-top: 10px;">Each quiz lasts 30 minutes. Use "Save & Next" to record your progress.</p>
+    </section>
   </main>
   <footer>&copy; 2026 Olympiad Portal</footer>
   <script>
     function startQuiz(s){localStorage.setItem("selectedClass",document.getElementById("classSelect").value);localStorage.setItem("selectedSubject",s);window.location.href="quiz.html"}
-    function logout(){if(confirm("Logout?"))window.location.href="login.html"}
+    function logout(){if(confirm("Are you sure you want to logout?"))window.location.href="login.html"}
   </script>
 </body>
 </html>
