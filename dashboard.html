@@ -24,7 +24,7 @@
       overflow-x: hidden; 
     }
 
-    /* --- NAVIGATION (Single Tier) --- */
+    /* --- SINGLE TIER NAVIGATION --- */
     nav {
       background: var(--surface); 
       border-bottom: 2px solid var(--border);
@@ -67,6 +67,12 @@
 
     .logout-link {
       color: var(--danger) !important;
+      font-weight: 800;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 13px;
+      cursor: pointer;
+      margin-left: 10px;
     }
 
     /* --- MAIN CONTAINER --- */
@@ -77,6 +83,7 @@
     h1 { font-size: 26px; margin: 0 0 5px 0; font-weight: 800; }
     p.subtitle { color: var(--muted); margin: 0 0 25px 0; font-size: 14px; }
 
+    /* CLASS SELECTOR BOX */
     .class-selector-wrap {
       background: rgba(245, 158, 11, 0.05); border: 1px dashed var(--amber);
       padding: 15px 20px; border-radius: 12px; margin-bottom: 30px;
@@ -88,47 +95,48 @@
       padding: 8px 12px; border-radius: 8px; font-size: 14px; outline: none; cursor: pointer; min-width: 200px;
     }
 
-    /* --- UPDATED SUBJECT CARDS --- */
+    /* --- SUBJECT CARDS (MATCHED TO NAV COLOR) --- */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
     
     .card {
-      background: var(--surface); /* Same as nav background */
+      background: var(--surface); 
       border: 1px solid var(--border);
       border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.2s;
     }
     
     .card:hover { 
-      border-color: var(--amber); /* Hover matches nav amber */
+      border-color: var(--amber);
       transform: translateY(-3px); 
       background: #243147; 
     }
     
     .card h3 { 
       font-size: 18px; margin: 0 0 8px 0; 
-      color: var(--amber); /* Changed from brand blue to nav amber */
+      color: var(--amber); 
       font-weight: 700; 
     }
     
     .card p { color: var(--muted); font-size: 13px; margin-bottom: 20px; height: 32px; line-height: 1.4; }
     
     .btn-start {
-      background: var(--amber); /* Changed from brand blue to nav amber */
+      background: var(--amber); 
       color: #000; border: none; padding: 10px 20px;
       border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer; width: 100%; font-size: 12px;
     }
 
-    /* --- INSTRUCTIONS --- */
+    /* --- INSTRUCTIONS SECTION --- */
     .instructions-section { 
         background: var(--surface); border: 1px solid var(--border); border-radius: 16px; 
         padding: 25px; margin-top: 40px; margin-bottom: 40px;
     }
     .instructions-section h2 { color: var(--amber); margin-bottom: 20px; font-size: 20px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .ins-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 15px; }
+    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .ins-item { display: flex; gap: 12px; align-items: flex-start; }
     .ins-icon { 
         background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 30px; height: 30px; 
         display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-size: 14px; font-weight: 800; 
     }
-    .ins-text { font-size: 13px; color: var(--muted); }
+    .ins-text { font-size: 13px; line-height: 1.5; color: var(--muted); }
     .ins-text strong { color: var(--text); display: block; margin-bottom: 2px; }
 
     footer { text-align: center; padding: 20px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 500; }
@@ -153,9 +161,16 @@
     <div class="class-selector-wrap">
       <label for="classSelect">Select Grade:</label>
       <select id="classSelect">
+        <option value="class1">Grade 1</option>
+        <option value="class2">Grade 2</option>
+        <option value="class3">Grade 3</option>
+        <option value="class4">Grade 4</option>
+        <option value="class5">Grade 5</option>
         <option value="class6" selected>Grade 6</option>
         <option value="class7">Grade 7</option>
         <option value="class8">Grade 8</option>
+        <option value="class9">Grade 9</option>
+        <option value="class10">Grade 10</option>
       </select>
     </div>
 
@@ -184,13 +199,35 @@
 
     <section class="instructions-section">
       <h2>📝 Quiz Instructions</h2>
-      <div class="ins-item">
-        <div class="ins-icon">1</div>
-        <div class="ins-text"><strong>Time Limit</strong>30 minutes per quiz. Auto-submits on expiry.</div>
-      </div>
-      <div class="ins-item">
-        <div class="ins-icon">2</div>
-        <div class="ins-text"><strong>Saving Progress</strong>Always click "Save & Next" to record your choice.</div>
+      <div class="ins-grid">
+        <div class="ins-item">
+          <div class="ins-icon">1</div>
+          <div class="ins-text">
+            <strong>Time Limit</strong>
+            Each quiz lasts exactly 30 minutes and will auto-submit when the timer expires.
+          </div>
+        </div>
+        <div class="ins-item">
+          <div class="ins-icon">2</div>
+          <div class="ins-text">
+            <strong>Palette Status</strong>
+            Green: Answered, Blue: Current, Red: Visited, Grey: Unseen.
+          </div>
+        </div>
+        <div class="ins-item">
+          <div class="ins-icon">3</div>
+          <div class="ins-text">
+            <strong>Saving Progress</strong>
+            Always click "Save & Next" to record your choice. You can revisit questions anytime.
+          </div>
+        </div>
+        <div class="ins-item">
+          <div class="ins-icon">4</div>
+          <div class="ins-text">
+            <strong>Final Report</strong>
+            Receive a detailed accuracy analysis and correct solutions after finishing.
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -210,6 +247,13 @@
         window.location.href = "login.html";
       }
     }
+
+    window.onload = () => {
+      const lastClass = localStorage.getItem("selectedClass");
+      if(lastClass) {
+        document.getElementById("classSelect").value = lastClass;
+      }
+    };
   </script>
 </body>
 </html>
