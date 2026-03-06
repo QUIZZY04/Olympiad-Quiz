@@ -5,70 +5,296 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Live Quiz - Olympiad Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root { --bg: #0f172a; --surface: #1e293b; --text: #f8fafc; --muted: #94a3b8; --border: #334155; --brand: #38bdf8; --amber: #f59e0b; --danger: #ef4444; }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg); overflow: hidden;}
 
-    /* UNIFIED NAVIGATION */
-    .utility-nav { background: #020617; padding: 12px 60px; display: flex; justify-content: flex-end; gap: 40px; border-bottom: 1px solid var(--border); }
-    .utility-nav a { color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+  <style>
+    :root {
+      --bg: #0f172a; --surface: #1e293b; --text: #f8fafc;
+      --muted: #94a3b8; --border: #334155; --brand: #38bdf8;
+      --accent: #22c55e; --amber: #f59e0b; --danger: #ef4444;
+      --unseen-grey: #cbd5e1;
+    }
+
+    * { box-sizing: border-box; }
+    
+    /* Fixed: Prevents entire page from scrolling to keep UI stable */
+    body { 
+      height: 100vh; 
+      margin: 0; 
+      font-family: 'Inter', sans-serif; 
+      color: var(--text); 
+      background: var(--bg); 
+      overflow: hidden; 
+      display: flex; 
+      flex-direction: column; 
+    }
+
+    /* UNIFIED NAVIGATION - Tier 1 */
+    .utility-nav {
+      background: #020617; padding: 10px 60px; display: flex;
+      justify-content: flex-end; gap: 40px; border-bottom: 1px solid var(--border);
+    }
+    .utility-nav a {
+      color: #ffffff; text-decoration: none; font-size: 12px; 
+      font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+    }
     .utility-nav a:hover { color: var(--amber); }
 
-    header.top-bar { background: var(--surface); border-bottom: 2px solid var(--border); padding: 15px 60px; display: flex; align-items: center; justify-content: space-between; }
+    /* UNIFIED HEADER - Tier 2 */
+    header.top-bar {
+      z-index: 1000; background: var(--surface); 
+      border-bottom: 2px solid var(--border); padding: 10px 60px; 
+      display: flex; align-items: center; justify-content: space-between;
+    }
     .brand { font-size: 18px; font-weight: 800; color: var(--amber); text-decoration: none; }
-    #timerWrap { padding: 6px 15px; border-radius: 8px; background: rgba(245, 158, 11, 0.1); color: var(--amber); border: 1px solid var(--amber); font-weight: 800; }
+    
+    #timerWrap {
+      padding: 5px 15px; border-radius: 8px; 
+      background: rgba(245, 158, 11, 0.1); color: var(--amber); 
+      border: 1px solid var(--amber); font-weight: 800; font-size: 1rem;
+    }
 
-    /* QUIZ LAYOUT */
-    .quiz-container { display: flex; gap: 15px; padding: 15px; max-width: 1400px; margin: 0 auto; height: calc(100vh - 140px); }
-    .section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; overflow-y: auto; }
+    /* Precise height calculation to prevent bottom overlap */
+    .quiz-container { 
+      display: flex; gap: 15px; padding: 15px; 
+      max-width: 1400px; width: 100%; margin: 0 auto; 
+      height: calc(100vh - 125px);
+    }
+
+    .section { 
+      background: var(--surface); border: 1px solid var(--border); 
+      border-radius: 12px; padding: 20px; display: flex; flex-direction: column; overflow-y: auto;
+    }
+
     .question-section { flex: 2.8; }
-    .navigation-section { flex: 0 0 300px; }
-    .options { display: grid; gap: 8px; margin: 15px 0; }
-    .opt { display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; }
-    .btn { flex: 1; padding: 12px; border-radius: 6px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; }
+    .navigation-section { flex: 0 0 300px; height: auto; }
+
+    #displaySubject { font-size: 14px; font-weight: 800; color: var(--brand); text-transform: uppercase; }
+    .progress-container { background: var(--border); border-radius: 10px; height: 6px; overflow: hidden; margin-top: 5px;}
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
+
+    .options { display: grid; gap: 8px; margin-top: 15px; }
+    .opt {
+      display: flex; align-items: center; gap: 12px; padding: 12px 18px; 
+      background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
+      border-radius: 8px; cursor: pointer; transition: 0.1s;
+    }
+    .opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
+    .opt span { font-size: 15px; color: #ffffff; }
+    .opt input { accent-color: var(--amber); width: 18px; height: 18px; flex-shrink: 0; }
+
+    .quiz-buttons { 
+      display: flex; gap: 10px; padding-top: 15px; margin-top: auto; 
+    }
+    .btn { 
+      flex: 1; padding: 12px; border-radius: 6px; font-weight: 800; cursor: pointer; border: none; 
+      text-transform: uppercase; font-size: 14px; text-align: center;
+    }
     .btn-save { background: var(--amber); color: #000; }
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
-    .grid .cell { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; font-weight: 700; font-size: 11px; }
-    .cell.current { background: #2563eb !important; color: white; }
-    .cell.answered { background: #16a34a !important; color: white; }
+    .btn-prev { background: #334155; color: #fff; }
+    .btn-finish { background: var(--danger); color: #fff; }
+
+    .grid { 
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; 
+      margin-top: 10px; width: 100%; 
+    }
+    .grid .cell { 
+      aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; border: 1px solid var(--border); cursor: pointer; 
+      font-weight: 700; font-size: 11px;
+    }
+
+    .cell.current { background: #2563eb !important; border-color: #1e40af; color: white !important; }
+    .cell.answered { background: #16a34a !important; border-color: #15803d; color: white !important; }
+    .cell.visited { background: #dc2626 !important; border-color: #991b1b; color: white !important; }
+    .cell.unseen { background: var(--unseen-grey) !important; color: #0f172a !important; }
+
+    #questionImageWrap { margin-top: 10px; margin-bottom: 15px; text-align: center; }
+    #questionImage { max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid var(--border); object-fit: contain; }
+    
+    footer { text-align: center; padding: 6px; background: #020617; color: var(--muted); font-size: 10px; }
+
+    @media (max-width: 850px) {
+      body { overflow: auto; height: auto; }
+      .quiz-container { flex-direction: column; height: auto; }
+      .navigation-section { order: 2; }
+      .question-section { order: 1; }
+    }
   </style>
 </head>
 <body>
-  <div class="utility-nav">
+  <nav class="utility-nav">
       <a href="index.html">Home</a> 
       <a href="dashboard.html">Dashboard</a>
       <a href="leaderboard.html">Leaderboard</a>
       <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
-  </div>
+  </nav>
+
   <header class="top-bar">
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
   </header>
+
   <main class="quiz-container">
     <section class="question-section section">
-      <div id="displaySubject" style="color:var(--brand); font-weight:800; text-transform:uppercase;">Loading...</div>
-      <div id="questionNumber" style="margin: 10px 0; font-size: 12px; color: var(--muted);">QUESTION 1</div>
-      <div id="questionText" style="font-size: 18px; line-height: 1.4;">Please wait while questions load...</div>
+      <div class="progress-wrapper">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span id="displaySubject">Loading Subject...</span>
+          <span id="progressPercent" style="font-size: 12px; font-weight: 700;">0%</span>
+        </div>
+        <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
+      </div>
+
+      <div id="questionNumber" style="color:var(--brand); font-weight:700; margin: 15px 0 5px 0; font-size: 12px;">QUESTION 1</div>
+      <div id="questionText" style="font-size: 18px; margin-bottom: 12px; font-weight:500; line-height: 1.3;">Loading Questions...</div>
+      
+      <div id="questionImageWrap" style="display: none;">
+        <img id="questionImage" src="" alt="Question Image" />
+      </div>
+
       <div class="options" id="options"></div>
-      <div style="display:flex; gap:10px;">
-        <button class="btn" style="background:#334155; color:white" onclick="prevQuestion()">Previous</button>
+
+      <div class="quiz-buttons">
+        <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
         <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
-        <button class="btn" style="background:var(--danger); color:white" onclick="confirmSubmit()">Finish Quiz</button>
+        <button class="btn btn-finish" onclick="confirmSubmit()">Finish</button>
       </div>
     </section>
+
     <aside class="navigation-section section">
-      <h3 style="font-size: 15px; margin-bottom: 10px;">Question Palette</h3>
+      <h3 style="margin:0 0 10px 0; font-size: 14px; color: white; font-weight: 800; text-transform: uppercase;">Question Palette</h3>
       <div class="grid" id="questionGrid"></div>
     </aside>
   </main>
+
+  <footer>&copy; 2026 Olympiad Portal</footer>
+
+  <script src="questions.js"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    const app = initializeApp({ apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", projectId: "olympiad-portal-d2a5e" });
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+      authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+      projectId: "olympiad-portal-d2a5e",
+      storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+      messagingSenderId: "341855557503",
+      appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    window.logout = () => { if(confirm("Logout?")) signOut(auth).then(()=>window.location.replace("login.html")); };
-    // Logic from your provided quiz.html remains active here...
+    const db = getFirestore(app);
+
+    let current = 0;
+    let questions = [];
+    let selectedAnswers = [];
+    let visitedQuestions = [];
+    let quizSubmitted = false;
+
+    window.onbeforeunload = function() { if (!quizSubmitted) return "Progress will be lost!"; };
+
+    const selectedClass = localStorage.getItem("selectedClass") || "class4";
+    const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
+    
+    document.getElementById("displaySubject").innerText = `${selectedSubject.toUpperCase()} - GRADE ${selectedClass.replace("class", "")}`;
+
+    async function loadQuestions() {
+      try {
+        const q = query(collection(db, "questions"), where("class", "==", selectedClass), where("subject", "==", selectedSubject));
+        const snapshot = await getDocs(q);
+        
+        if (!snapshot.empty) {
+          questions = snapshot.docs.map(doc => doc.data()).sort(() => Math.random() - 0.5);
+        } else if (typeof questionsData !== 'undefined') {
+          questions = questionsData[selectedClass][selectedSubject].sort(() => Math.random() - 0.5);
+        }
+
+        selectedAnswers = new Array(questions.length).fill(null);
+        visitedQuestions = new Array(questions.length).fill(false);
+        generateGrid();
+        loadQuestion();
+      } catch (error) { console.error("Error:", error); }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) window.location.replace("login.html");
+      else loadQuestions();
+    });
+
+    window.loadQuestion = function() {
+      if (!questions[current]) return;
+      visitedQuestions[current] = true;
+      const q = questions[current];
+      
+      document.getElementById("questionNumber").innerText = `QUESTION ${current + 1}`;
+      document.getElementById("questionText").innerHTML = q.q;
+
+      const imgWrap = document.getElementById("questionImageWrap");
+      const imgTag = document.getElementById("questionImage");
+      if (q.image_url) { imgWrap.style.display = "block"; imgTag.src = q.image_url; } 
+      else { imgWrap.style.display = "none"; }
+
+      let html = '';
+      q.o.forEach((opt, i) => {
+        html += `<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current] === i ? "checked" : ""} onchange="saveAnswer(${i})" /><span>${opt}</span></label>`;
+      });
+      document.getElementById("options").innerHTML = html;
+      updateGrid();
+    };
+
+    window.saveAnswer = (v) => { selectedAnswers[current] = v; updateGrid(); };
+    window.nextQuestion = () => { if (current < questions.length - 1) { current++; loadQuestion(); } };
+    window.prevQuestion = () => { if (current > 0) { current--; loadQuestion(); } };
+    window.jumpTo = (i) => { current = i; loadQuestion(); };
+
+    function generateGrid() {
+      let html = '';
+      for (let i = 0; i < questions.length; i++) html += `<div class="cell" onclick="jumpTo(${i})" id="q${i}">${i + 1}</div>`;
+      document.getElementById("questionGrid").innerHTML = html;
+    }
+
+    function updateGrid() {
+      let answeredCount = 0;
+      for (let i = 0; i < questions.length; i++) {
+        const el = document.getElementById("q" + i);
+        if(!el) continue;
+        el.className = 'cell';
+        if (i === current) el.classList.add('current');
+        else if (selectedAnswers[i] !== null) { el.classList.add('answered'); answeredCount++; }
+        else if (visitedQuestions[i]) el.classList.add('visited');
+        else el.classList.add('unseen');
+      }
+      const progressPercent = Math.round((answeredCount / questions.length) * 100);
+      document.getElementById("progressBar").style.width = progressPercent + "%";
+      document.getElementById("progressPercent").innerText = progressPercent + "%";
+    }
+
+    let totalTime = 1800;
+    const timer = setInterval(() => {
+      const m = Math.floor(totalTime / 60); const s = totalTime % 60;
+      document.getElementById("timer").innerText = `${m}:${s < 10 ? "0" : ""}${s}`;
+      if (--totalTime < 0) { clearInterval(timer); submitQuiz(); }
+    }, 1000);
+
+    window.confirmSubmit = () => { if (confirm("Submit quiz?")) submitQuiz(); };
+    
+    function submitQuiz() {
+      quizSubmitted = true;
+      let score = 0;
+      questions.forEach((q, i) => { if (selectedAnswers[i] == q.a) score++; });
+      localStorage.setItem("quizResult", JSON.stringify({ score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions }));
+      window.location.href = "result.html";
+    }
+
+    window.logout = async function() {
+      if(confirm("Logout? Progress will be lost.")) {
+          quizSubmitted = true;
+          await signOut(auth);
+          window.location.replace("login.html");
+      }
+    };
   </script>
 </body>
 </html>
