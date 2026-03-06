@@ -24,9 +24,11 @@
       background-color: var(--bg); 
       min-height: 100vh; 
       color: var(--text);
+      display: flex;
+      flex-direction: column;
     }
 
-    /* --- MOBILE RESPONSIVE NAV --- */
+    /* --- MOBILE-FRIENDLY NAVIGATION --- */
     nav {
       background: var(--surface); 
       border-bottom: 2px solid var(--border);
@@ -37,36 +39,37 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      flex-wrap: wrap; /* Allows wrapping on small screens */
     }
 
-    .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
 
-    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links { display: flex; gap: 15px; align-items: center; }
     .nav-links a {
       color: #ffffff;
       text-decoration: none;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       transition: 0.2s;
     }
-    .nav-links a.active { color: var(--amber) !important; }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber) !important; }
 
     /* --- RESPONSIVE CONTAINER --- */
     .container {
       width: 95%;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 30px auto;
-      padding-bottom: 50px;
+      flex: 1;
     }
 
-    h1 { text-align: center; margin-bottom: 30px; font-weight: 800; font-size: 2rem; }
+    h1 { text-align: center; margin-bottom: 25px; font-weight: 800; font-size: 24px; }
 
-    /* --- SCROLLABLE TABLE WRAPPER --- */
+    /* --- THE FIX: MOBILE SCROLLABLE TABLE --- */
     .table-responsive {
       width: 100%;
-      overflow-x: auto; /* Vital for Mobile */
+      overflow-x: auto; /* Vital for Mobile swiping */
+      -webkit-overflow-scrolling: touch;
       background: var(--surface);
       border-radius: 12px;
       border: 1px solid var(--border);
@@ -76,13 +79,13 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 700px; /* Prevents columns from squashing too much */
+      min-width: 750px; /* Prevents columns from squashing on laptop/mobile */
     }
 
     th {
       background: #020617;
       color: var(--amber);
-      padding: 18px 12px;
+      padding: 18px 10px;
       text-transform: uppercase;
       font-size: 11px;
       letter-spacing: 1px;
@@ -90,29 +93,27 @@
     }
 
     td {
-      padding: 16px 12px;
+      padding: 16px 10px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       font-size: 14px;
-      white-space: nowrap; /* Keeps email on one line */
+      white-space: nowrap; /* Keeps data clean on one line */
     }
 
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+    tr:hover { background: rgba(56, 189, 248, 0.05); }
 
-    /* RANK ICONS */
-    .rank-cell { font-weight: 800; width: 80px; }
-    .top-rank { background: rgba(245, 158, 11, 0.08); }
+    .top-rank { background: rgba(245, 158, 11, 0.08) !important; }
 
-    /* MOBILE TWEAKS */
-    @media (max-width: 600px) {
-      nav { padding: 15px; justify-content: center; gap: 10px; }
-      .brand { font-size: 18px; width: 100%; text-align: center; }
-      .nav-links { gap: 10px; }
-      h1 { font-size: 1.5rem; }
+    /* --- SMALL SCREEN TWEAKS --- */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 12px; padding: 15px; }
+      .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+      h1 { font-size: 20px; }
     }
     
-    footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px; }
+    footer { text-align: center; padding: 20px; color: var(--muted); font-size: 11px; background: #020617; }
   </style>
 </head>
 
@@ -146,7 +147,7 @@
                 </tr>
             </thead>
             <tbody id="leaderboardBody">
-                <tr><td colspan="7">Fetching rankings...</td></tr>
+                <tr><td colspan="7">Loading rankings...</td></tr>
             </tbody>
         </table>
     </div>
@@ -188,17 +189,17 @@ async function loadLeaderboard() {
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             
-            // FIX: Check for multiple field names in case they vary in your DB
-            const email = data.email || data.userEmail || data.userName || "-";
-            const studentClass = data.class || data.studentClass || data.grade || "-";
+            /* --- THE FIX: HANDLE MISSING DATA BY CHECKING ALL KEYS --- */
+            const participant = data.email || data.userEmail || data.userName || data.id || "Participant";
+            const studentClass = data.class || data.studentClass || data.grade || "N/A";
             
             const isTop3 = rank <= 3;
             const rankSymbol = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
 
             leaderboardBody.innerHTML += `
                 <tr class="${isTop3 ? 'top-rank' : ''}">
-                    <td class="rank-cell">${rankSymbol}</td>
-                    <td style="font-weight:600; text-align:left;">${email}</td>
+                    <td style="font-weight:800;">${rankSymbol}</td>
+                    <td style="font-weight:600; text-align:left;">${participant}</td>
                     <td>${studentClass}</td>
                     <td style="text-transform:capitalize;">${data.subject || "-"}</td>
                     <td>${data.score || 0}/${data.total || 30}</td>
@@ -209,15 +210,17 @@ async function loadLeaderboard() {
             rank++;
         });
 
-        if (rank === 1) leaderboardBody.innerHTML = "<tr><td colspan='7'>No results found.</td></tr>";
+        if (rank === 1) leaderboardBody.innerHTML = "<tr><td colspan='7'>No records found.</td></tr>";
     } catch (err) {
         console.error(err);
-        leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading rankings.</td></tr>";
+        leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading table.</td></tr>";
     }
 }
 
 window.logout = function() {
-    if(confirm("Logout?")) signOut(auth).then(() => window.location.href = "login.html");
+    if(confirm("Are you sure you want to logout?")) {
+        signOut(auth).then(() => { window.location.href = "login.html"; });
+    }
 };
 </script>
 
