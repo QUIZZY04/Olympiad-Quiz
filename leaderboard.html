@@ -26,60 +26,63 @@
       color: var(--text);
     }
 
-    /* --- NAVIGATION --- */
+    /* --- MOBILE RESPONSIVE NAV --- */
     nav {
       background: var(--surface); 
       border-bottom: 2px solid var(--border);
-      padding: 15px 60px; 
+      padding: 15px 5%; 
       display: flex; 
       align-items: center; 
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 1000;
+      flex-wrap: wrap; /* Allows wrapping on small screens */
     }
 
     .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
 
+    .nav-links { display: flex; gap: 20px; align-items: center; }
     .nav-links a {
       color: #ffffff;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       text-transform: uppercase;
       transition: 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--amber) !important; }
+    .nav-links a.active { color: var(--amber) !important; }
 
-    /* --- TABLE CONTAINER --- */
+    /* --- RESPONSIVE CONTAINER --- */
     .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
+      width: 95%;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding-bottom: 50px;
     }
 
-    h1 { text-align: center; margin-bottom: 30px; font-weight: 800; }
+    h1 { text-align: center; margin-bottom: 30px; font-weight: 800; font-size: 2rem; }
 
-    /* Fix: Mobile responsiveness wrapper */
-    .table-wrapper {
+    /* --- SCROLLABLE TABLE WRAPPER --- */
+    .table-responsive {
       width: 100%;
-      overflow-x: auto; /* Allows horizontal swipe on small screens */
+      overflow-x: auto; /* Vital for Mobile */
       background: var(--surface);
       border-radius: 12px;
       border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 600px; /* Ensures table doesn't squash too much */
+      min-width: 700px; /* Prevents columns from squashing too much */
     }
 
     th {
       background: #020617;
       color: var(--amber);
-      padding: 15px;
+      padding: 18px 12px;
       text-transform: uppercase;
       font-size: 11px;
       letter-spacing: 1px;
@@ -87,33 +90,29 @@
     }
 
     td {
-      padding: 14px;
+      padding: 16px 12px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       font-size: 14px;
-      white-space: nowrap; /* Prevents text from wrapping into multiple lines */
+      white-space: nowrap; /* Keeps email on one line */
     }
 
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-    tr:hover { background: rgba(56, 189, 248, 0.05); }
 
-    .rank-cell { font-weight: 800; }
+    /* RANK ICONS */
+    .rank-cell { font-weight: 800; width: 80px; }
+    .top-rank { background: rgba(245, 158, 11, 0.08); }
 
-    /* --- MOBILE ADJUSTMENTS (Max-width 768px) --- */
-    @media (max-width: 768px) {
-      nav { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
-      .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
-      .nav-links a { font-size: 11px; }
-      
-      .container { margin: 20px auto; }
-      h1 { font-size: 22px; }
-      
-      /* Optional: Hide less important columns on mobile to save space */
-      .hide-mobile { display: none; }
+    /* MOBILE TWEAKS */
+    @media (max-width: 600px) {
+      nav { padding: 15px; justify-content: center; gap: 10px; }
+      .brand { font-size: 18px; width: 100%; text-align: center; }
+      .nav-links { gap: 10px; }
+      h1 { font-size: 1.5rem; }
     }
-
-    footer { text-align: center; padding: 20px; background: #020617; color: var(--muted); font-size: 12px; margin-top: 40px; }
+    
+    footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px; }
   </style>
 </head>
 
@@ -133,21 +132,22 @@
 <div class="container">
     <h1>🏆 Global Leaderboard</h1>
 
-    <div class="table-wrapper">
+    <div class="table-responsive">
         <table>
             <thead>
                 <tr>
                     <th>Rank</th>
                     <th>Participant</th>
-                    <th class="hide-mobile">Class</th>
+                    <th>Class</th>
                     <th>Subject</th>
                     <th>Score</th>
-                    <th class="hide-mobile">Accuracy</th>
+                    <th>Accuracy</th>
                     <th>Date</th>
                 </tr>
             </thead>
             <tbody id="leaderboardBody">
-                </tbody>
+                <tr><td colspan="7">Fetching rankings...</td></tr>
+            </tbody>
         </table>
     </div>
 </div>
@@ -187,28 +187,37 @@ async function loadLeaderboard() {
 
         querySnapshot.forEach((doc) => {
             const data = doc.data();
+            
+            // FIX: Check for multiple field names in case they vary in your DB
+            const email = data.email || data.userEmail || data.userName || "-";
+            const studentClass = data.class || data.studentClass || data.grade || "-";
+            
+            const isTop3 = rank <= 3;
+            const rankSymbol = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
+
             leaderboardBody.innerHTML += `
-                <tr>
-                    <td class="rank-cell">${rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : rank}</td>
-                    <td style="font-weight:700">${data.email || "-"}</td>
-                    <td class="hide-mobile">${data.class || "-"}</td>
-                    <td>${data.subject || "-"}</td>
-                    <td>${data.score}/${data.total}</td>
-                    <td class="hide-mobile">${data.accuracy}%</td>
-                    <td>${data.date ? data.date.toDate().toLocaleDateString() : "-"}</td>
+                <tr class="${isTop3 ? 'top-rank' : ''}">
+                    <td class="rank-cell">${rankSymbol}</td>
+                    <td style="font-weight:600; text-align:left;">${email}</td>
+                    <td>${studentClass}</td>
+                    <td style="text-transform:capitalize;">${data.subject || "-"}</td>
+                    <td>${data.score || 0}/${data.total || 30}</td>
+                    <td style="color:var(--brand); font-weight:700;">${data.accuracy || 0}%</td>
+                    <td>${data.date ? (data.date.toDate ? data.date.toDate().toLocaleDateString() : data.date) : "-"}</td>
                 </tr>
             `;
             rank++;
         });
+
+        if (rank === 1) leaderboardBody.innerHTML = "<tr><td colspan='7'>No results found.</td></tr>";
     } catch (err) {
+        console.error(err);
         leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading rankings.</td></tr>";
     }
 }
 
 window.logout = function() {
-    if(confirm("Are you sure you want to logout?")) {
-        signOut(auth).then(() => { window.location.href = "login.html"; });
-    }
+    if(confirm("Logout?")) signOut(auth).then(() => window.location.href = "login.html");
 };
 </script>
 
