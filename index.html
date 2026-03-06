@@ -1,303 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olympiad Practice Portal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Olympiad Portal - Master Your Future</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f172a; 
+      --surface: #1e293b; 
+      --text: #f8fafc;
+      --muted: #94a3b8; 
+      --border: #334155; 
+      --amber: #f59e0b; 
+      --danger: #ef4444;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-:root {
-    --bg-dark: #0f172a;
-    --bg-accent: #1e293b;
-    --gold: #fbbf24;
-    --text-white: #f8fafc;
-    --text-gray: #94a3b8;
-}
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
+    /* --- MOBILE-FRIENDLY NAVIGATION (Matched to Dashboard/Leaderboard) --- */
+    nav {
+      background: var(--surface); 
+      border-bottom: 2px solid var(--border);
+      padding: 15px 5%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap; 
+    }
 
-body{
-    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-accent) 100%);
-    color: var(--text-white);
-    overflow-x:hidden;
-}
+    .brand { 
+      font-size: 22px; 
+      font-weight: 800; 
+      color: var(--amber); 
+      text-decoration: none; 
+      white-space: nowrap;
+    }
+    
+    .nav-links { display: flex; gap: 15px; align-items: center; }
+    .nav-links a {
+      color: #ffffff; 
+      text-decoration: none; 
+      font-size: 11px; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      letter-spacing: 0.5px; 
+      transition: 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber) !important; }
 
-/* PARTICLES BACKGROUND */
-#particles-js{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:-1;
-}
+    /* --- HERO SECTION --- */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+    }
 
-/* NAVBAR - Styled to match Signup/Login Pages */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    background: rgba(15, 23, 42, 0.5);
-    backdrop-filter: blur(10px);
-}
+    .hero h1 {
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
 
-.logo{
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text-white);
-    text-decoration: none;
-}
+    .hero h1 span { color: var(--amber); }
 
-.logo span {
-    color: var(--gold);
-}
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(1rem, 4vw, 1.25rem);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
 
-.nav-buttons button{
-    padding:10px 22px;
-    border:none;
-    border-radius:8px;
-    font-weight:600;
-    cursor:pointer;
-    margin-left:12px;
-    transition:0.3s;
-}
+    .cta-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 500px;
+    }
 
-.login-btn{
-    background:transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3) !important;
-}
+    .btn {
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-align: center;
+    }
 
-.signup-btn{
-    background: var(--gold);
-    color: var(--bg-dark);
-}
+    .btn-primary {
+      background: var(--amber);
+      color: #000;
+      border: none;
+      width: auto;
+    }
 
-.nav-buttons button:hover{
-    transform:translateY(-2px);
-    box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
-}
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+      filter: brightness(1.1);
+    }
 
-/* HERO SECTION */
-.hero{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:85vh;
-    padding:40px 8%;
-}
+    .btn-secondary {
+      border: 2px solid var(--border);
+      color: #fff;
+      width: auto;
+    }
 
-.hero-container {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    max-width: 1200px;
-}
+    .btn-secondary:hover {
+      background: var(--border);
+      border-color: var(--muted);
+    }
 
-.hero-content{
-    flex: 1.2;
-    animation:fadeInLeft 1.2s ease-out;
-}
+    /* --- MOBILE BREAKPOINTS --- */
+    @media (max-width: 768px) {
+      nav { padding: 15px; justify-content: center; gap: 12px; }
+      .brand { width: 100%; text-align: center; margin-bottom: 5px; }
+      .nav-links { justify-content: center; width: 100%; flex-wrap: wrap; gap: 10px; }
+      
+      .hero { padding: 80px 15px; justify-content: flex-start; }
+      .hero h1 { margin-top: 20px; }
+      
+      .cta-group { flex-direction: column; }
+      .btn { width: 100%; } /* Full-width buttons on mobile for easy clicking */
+    }
 
-.hero h1{
-    font-size: 52px;
-    line-height: 1.1;
-    margin-bottom: 25px;
-    font-weight: 700;
-}
-
-.hero h1 span {
-    color: var(--gold);
-}
-
-.hero p{
-    font-size:18px;
-    margin-bottom:35px;
-    line-height:1.7;
-    color: var(--text-gray);
-}
-
-.hero-image {
-    flex: 0.8;
-    animation:fadeInRight 1.2s ease-out;
-}
-
-.hero-image img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.start-btn{
-    padding:16px 40px;
-    font-size:18px;
-    font-weight:700;
-    border:none;
-    border-radius:12px;
-    background: var(--gold);
-    color: var(--bg-dark);
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.start-btn:hover{
-    transform:scale(1.05);
-    box-shadow: 0 10px 20px rgba(251, 191, 36, 0.4);
-}
-
-/* FEATURES */
-.features{
-    background: #f8fafc;
-    color: #1e293b;
-    padding: 100px 20px;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.feature-card{
-    background: white;
-    padding: 45px 35px;
-    border-radius: 20px;
-    width: 320px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    transition: 0.3s;
-    border: 1px solid #e2e8f0;
-}
-
-.feature-card:hover{
-    transform:translateY(-10px);
-}
-
-.feature-card h3{
-    margin-bottom:15px;
-    color: #0f172a;
-    font-size: 22px;
-}
-
-.feature-card p {
-    color: #64748b;
-    line-height: 1.6;
-}
-
-footer{
-    background: #0f172a;
-    text-align:center;
-    padding:30px;
-    font-size:14px;
-    color: var(--text-gray);
-    border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-/* Animations */
-@keyframes fadeInLeft{
-    from{opacity:0; transform:translateX(-30px);}
-    to{opacity:1; transform:translateX(0);}
-}
-@keyframes fadeInRight{
-    from{opacity:0; transform:translateX(30px);}
-    to{opacity:1; transform:translateX(0);}
-}
-
-@media(max-width:992px){
-    .hero-container { flex-direction: column; text-align: center; }
-    .hero h1{ font-size: 38px; }
-    .hero-image { order: -1; width: 80%; }
-}
-</style>
+    footer { 
+      text-align: center; 
+      padding: 25px; 
+      background: #020617; 
+      border-top: 1px solid var(--border); 
+      color: var(--muted); 
+      font-size: 12px; 
+      font-weight: 500;
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="particles-js"></div>
-
-<nav>
-    <a href="index.html" class="logo">Olympiad<span>Portal</span></a>
-    <div class="nav-buttons">
-        <button class="login-btn" onclick="location.href='login.html'">Login</button>
-        <button class="signup-btn" onclick="location.href='signup.html'">Sign Up</button>
+  <nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="login.html" style="color: var(--amber);">Login</a>
     </div>
-</nav>
+  </nav>
 
-<section class="hero">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1>Compete. Practice. <span>Excel.</span></h1>
-            <p>
-                Welcome to the definitive preparation arena for students in <b>Classes 4–10</b>. 
-                Master <b>Maths, Science, and English</b> through 30-question timed simulations. 
-                Get instant results, track your growth, and benchmark your progress against the 
-                brightest minds on our live leaderboard.
-            </p>
-            <button class="start-btn" onclick="location.href='signup.html'">
-                Start Your Journey
-            </button>
-        </div>
-        
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80" alt="Learning Excellence">
-        </div>
+  <main class="hero">
+    <h1>Level Up Your <span>Olympiad Skills</span></h1>
+    <p>The ultimate preparation platform for students. Take subject-wise quizzes, track your accuracy, and compete on the global leaderboard.</p>
+    
+    <div class="cta-group">
+        <a href="dashboard.html" class="btn btn-primary">Start Practicing</a>
+        <a href="leaderboard.html" class="btn btn-secondary">Check Rankings</a>
     </div>
-</section>
+  </main>
 
-<section class="features">
-    <div class="feature-card">
-        <h3>🎯 Expert Content</h3>
-        <p>Curated Olympiad-level questions designed to test logic and conceptual depth.</p>
-    </div>
-
-    <div class="feature-card">
-        <h3>⏳ Timed Simulations</h3>
-        <p>A strict 30-minute environment to master speed and high-pressure accuracy.</p>
-    </div>
-
-    <div class="feature-card">
-        <h3>🏆 Live Leaderboard</h3>
-        <p>Instant performance analytics and national rankings for every student.</p>
-    </div>
-</section>
-
-<footer>
-    © 2026 Olympiad Practice Portal | All Rights Reserved
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-<script>
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 80 },
-    color: { value: "#fbbf24" },
-    shape: { type: "circle" },
-    opacity: { value: 0.3 },
-    size: { value: 2 },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#fbbf24",
-      opacity: 0.2,
-      width: 1
-    },
-    move: { enable: true, speed: 1.5 }
-  },
-  interactivity: {
-    events: { onhover: { enable: true, mode: "grab" } }
-  }
-});
-</script>
+  <footer>&copy; 2026 Olympiad Portal • Preparation Made Simple</footer>
 
 </body>
 </html>
