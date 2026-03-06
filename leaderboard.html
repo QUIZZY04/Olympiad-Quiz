@@ -9,115 +9,128 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    background: #0f0f1b;
+    background: #0f111a; /* Matches the deep dark blue of the dashboard */
     color: white;
 }
 
-/* Updated Navigation to match Dashboard Image */
+/* NAVIGATION - MATCHED TO DASHBOARD IMAGE */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    background: #1e1e2f;
-    border-bottom: 1px solid #2d2d44;
+    padding: 15px 60px;
+    background: #161b22; /* Dashboard navbar background color */
+    border-bottom: 1px solid #30363d;
 }
 
 nav h2 {
-    color: #ffb703;
-    font-size: 1.4rem;
-    font-weight: 700;
+    color: #f39c12; /* Brand orange-yellow */
+    font-size: 1.3rem;
+    font-weight: 800;
 }
 
 nav div {
     display: flex;
-    gap: 30px; /* Adjust spacing between links */
+    gap: 35px; /* Spacing between menu items */
 }
 
 nav a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 800; /* Extra bold like the dashboard */
     font-size: 13px;
-    text-transform: uppercase; /* Matches Dashboard uppercase style */
-    transition: 0.3s;
-    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
 }
 
+/* Hover effect */
 nav a:hover {
-    color: #ffb703;
+    color: #f39c12;
 }
 
-/* Active tab: Text color only, no background box */
+/* THE ACTIVE TAB - Exact color from dashboard image */
 .active {
-    color: #ffb703 !important;
-    background: transparent !important;
+    color: #f39c12 !important; 
+    background: transparent !important; /* No box, just text color */
 }
 
-/* Leaderboard Table Styles */
+/* LOGOUT BUTTON - Matches the specific red-orange in the image */
+.logout-btn {
+    color: #e74c3c !important;
+}
+
+/* LEADERBOARD TABLE STYLING */
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 2rem;
+    margin-bottom: 40px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background: #161625;
-    border-radius: 8px;
+    background: #161b22;
+    border-radius: 10px;
     overflow: hidden;
-}
-
-th, td {
-    padding: 15px;
-    border: 1px solid #2d2d44;
-    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 th {
-    background: #2f2f55;
-    color: #ffb703;
+    background: #21262d;
+    color: #f39c12;
+    padding: 18px;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 12px;
     letter-spacing: 1px;
+    border-bottom: 2px solid #30363d;
 }
 
-tr:nth-child(even) {
-    background: #1e1e2f;
+td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid #30363d;
+    font-size: 14px;
 }
 
-/* Rank Styling */
-.rank-1 { background: rgba(255, 183, 3, 0.05) !important; }
+tr:hover {
+    background: #1c2128;
+}
+
+/* Top 3 Row Styling */
+.rank-1 { background: rgba(243, 156, 18, 0.1) !important; }
+.rank-2 { background: rgba(255, 255, 255, 0.03) !important; }
+
 </style>
 </head>
 
 <body>
 
 <nav>
-    <h2>🎓 Olympiad Portal</h2>
+    <h2>Olympiad Portal</h2>
     <div>
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="quiz.html">Take Quiz</a>
         <a href="leaderboard.html" class="active">Leaderboard</a>
-        <a href="#" onclick="logout()">Logout</a>
+        <a href="#" onclick="logout()" class="logout-btn">Logout</a>
     </div>
 </nav>
 
 <div class="container">
-
     <h1>🏆 Global Leaderboard</h1>
 
     <table>
@@ -135,7 +148,6 @@ tr:nth-child(even) {
         <tbody id="leaderboardBody">
             </tbody>
     </table>
-
 </div>
 
 <script type="module">
@@ -169,16 +181,17 @@ tr:nth-child(even) {
         try {
             const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
             const querySnapshot = await getDocs(q);
-
             leaderboardBody.innerHTML = "";
             let rank = 1;
 
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
+                const rowClass = rank === 1 ? 'rank-1' : (rank === 2 ? 'rank-2' : '');
+                
                 leaderboardBody.innerHTML += `
-                    <tr>
-                        <td>${rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank}</td>
-                        <td style="font-weight:600">${data.email || data.name || "-"}</td>
+                    <tr class="${rowClass}">
+                        <td style="font-weight:bold">${rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank}</td>
+                        <td style="font-weight:700">${data.email || data.name || "-"}</td>
                         <td>${data.studentClass || data.class || "-"}</td>
                         <td>${data.subject || "-"}</td>
                         <td>${data.score}/${data.total}</td>
@@ -188,19 +201,13 @@ tr:nth-child(even) {
                 `;
                 rank++;
             });
-
-            if (rank === 1) {
-                leaderboardBody.innerHTML = "<tr><td colspan='7'>No data available</td></tr>";
-            }
-        } catch (error) {
-            leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading data</td></tr>";
+        } catch (e) {
+            leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading scores.</td></tr>";
         }
     }
 
     window.logout = function() {
-        signOut(auth).then(() => {
-            window.location.href = "login.html";
-        });
+        signOut(auth).then(() => { window.location.href = "login.html"; });
     };
 </script>
 
