@@ -157,6 +157,7 @@ color:#94a3b8;
 
 </nav>
 
+
 <div class="container">
 
 <div class="panel">
@@ -167,6 +168,7 @@ color:#94a3b8;
 <button class="upload" onclick="uploadFile()">Upload File</button>
 
 </div>
+
 
 <div class="panel">
 
@@ -179,6 +181,7 @@ color:#94a3b8;
 <button class="delete" onclick="clearPaste()">Clear</button>
 
 </div>
+
 
 <div class="panel">
 
@@ -210,6 +213,7 @@ color:#94a3b8;
 
 </div>
 
+
 <div class="panel">
 
 <h2>Delete Questions</h2>
@@ -228,9 +232,12 @@ color:#94a3b8;
 
 </div>
 
+
 <div class="panel">
 
 <h2>Total Questions: <span id="count">0</span></h2>
+
+<button class="upload" onclick="loadQuestions()">Load Questions</button>
 
 <table>
 
@@ -252,9 +259,11 @@ color:#94a3b8;
 
 </div>
 
+
 <footer>
 © 2026 Olympiad Portal
 </footer>
+
 
 <script type="module">
 
@@ -273,7 +282,8 @@ const db=getFirestore(app);
 
 const questionsRef=collection(db,"questions");
 
-window.loadQuestions=async function(){
+
+window.loadQuestions = async function(){
 
 let classFilter=document.getElementById("filterClass").value;
 let subjectFilter=document.getElementById("filterSubject").value;
@@ -313,6 +323,7 @@ document.getElementById("count").innerText=snapshot.size;
 
 }
 
+
 window.deleteQuestion=async function(id){
 
 if(!confirm("Delete this question?")) return;
@@ -322,6 +333,7 @@ await deleteDoc(doc(db,"questions",id));
 loadQuestions();
 
 }
+
 
 window.deleteByClass=async function(){
 
@@ -341,6 +353,7 @@ loadQuestions();
 
 }
 
+
 window.deleteBySubject=async function(){
 
 const s=document.getElementById("deleteSubject").value;
@@ -359,6 +372,7 @@ loadQuestions();
 
 }
 
+
 window.deleteAll=async function(){
 
 if(!confirm("Delete ALL questions?")) return;
@@ -374,6 +388,7 @@ alert("All questions deleted");
 loadQuestions();
 
 }
+
 
 window.uploadPaste=async function(){
 
@@ -392,9 +407,8 @@ alert("Successfully uploaded "+data.length+" questions");
 
 document.getElementById("jsonPaste").value="";
 
-loadQuestions();
-
 }
+
 
 window.uploadFile=async function(){
 
@@ -412,9 +426,8 @@ await Promise.all(data.map(q=>addDoc(questionsRef,q)));
 
 alert("Successfully uploaded "+data.length+" questions");
 
-loadQuestions();
-
 }
+
 
 window.pasteClipboard=async function(){
 
@@ -434,8 +447,6 @@ document.getElementById("jsonPaste").value="";
 }
 
 }
-
-window.onload=loadQuestions;
 
 window.logout=function(){
 if(confirm("Logout?")){
