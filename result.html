@@ -102,6 +102,31 @@ window.onpopstate = function () {
     .quiz-btn { background: var(--amber); color: #000; }
     .quiz-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
+    /* REPORT STYLES */
+    .report-link { 
+        color: var(--muted); 
+        font-size: 11px; 
+        cursor: pointer; 
+        text-decoration: underline; 
+        display: block; 
+        margin-top: 5px; 
+    }
+    .report-link:hover { color: var(--danger); }
+
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000;
+    }
+    .report-modal {
+      background: var(--surface); padding: 30px; border-radius: 15px; width: 400px;
+      border: 1px solid var(--border); text-align: left;
+    }
+    .report-modal textarea {
+      width: 100%; height: 100px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: white; padding: 10px; margin: 15px 0; outline: none; resize: none;
+    }
+    .submit-report { background: var(--danger); color: white; width: 100%; padding: 10px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; }
+
   </style>
 </head>
 
@@ -135,7 +160,29 @@ window.onpopstate = function () {
 
 </div>
 
+<div id="modalOverlay" class="modal-overlay">
+    <div class="report-modal">
+        <h3 style="color: var(--danger);">Report Error</h3>
+        <p style="font-size: 13px; color: var(--muted); margin-top: 5px;">Describe the mistake in this question or answer.</p>
+        <textarea id="reportMessage" placeholder="Type details here..."></textarea>
+        <button class="submit-report" id="confirmReport">Submit Report</button>
+        <button class="action-btn" style="background:none; color:var(--muted); width:100%; font-size:12px;" onclick="closeReport()">Cancel</button>
+    </div>
+</div>
+
 <script>
+let activeQuestionId = null;
+
+function openReport(qId) {
+    activeQuestionId = qId;
+    document.getElementById("modalOverlay").style.display = "flex";
+}
+
+function closeReport() {
+    document.getElementById("modalOverlay").style.display = "none";
+    document.getElementById("reportMessage").value = "";
+}
+
 document.addEventListener("DOMContentLoaded", function(){
     const data = localStorage.getItem("quizResult");
 
@@ -163,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <th>Correct Answer</th>
     <th>Status</th>
     <th>Solution</th>
+    <th>Report</th>
     </tr>
     </thead><tbody>`;
 
@@ -184,6 +232,9 @@ document.addEventListener("DOMContentLoaded", function(){
         <td style="font-size: 13px; color: var(--muted); max-width: 300px;">
             ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
         </td>
+        <td>
+            <span class="report-link" onclick="openReport('${q.id || 'q_'+(i+1)}')">Report</span>
+        </td>
         </tr>`;
     });
 
@@ -195,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -210,11 +261,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+let currentUser = null;
+
 onAuthStateChanged(auth, async (user) => {
     if(!user){
         window.location.replace("login.html");
         return;
     }
+    currentUser = user;
 
     const resultData = JSON.parse(localStorage.getItem("quizResult"));
     if(!resultData) return;
@@ -241,6 +295,32 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
+// SUBMIT FEEDBACK LOGIC
+document.getElementById("confirmReport").addEventListener("click", async () => {
+    const msg = document.getElementById("reportMessage").value.trim();
+    if(!msg) { alert("Please enter details."); return; }
+    if(!currentUser) return;
+
+    const quizData = JSON.parse(localStorage.getItem("quizResult"));
+
+    try {
+        await addDoc(collection(db, "feedback"), {
+            uid: currentUser.uid,
+            email: currentUser.email,
+            questionId: activeQuestionId,
+            message: msg,
+            subject: quizData?.subject || "N/A",
+            class: quizData?.class || "N/A",
+            timestamp: serverTimestamp(),
+            status: "unread"
+        });
+        alert("Report submitted successfully.");
+        closeReport();
+    } catch(e) {
+        alert("Error: " + e.message);
+    }
+});
+
 window.logout=function(){
     signOut(auth).then(()=>{
         localStorage.clear();
@@ -252,4 +332,3 @@ window.logout=function(){
 
 </body>
 </html>
-
