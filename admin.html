@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+  history.go(1);
+};
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Panel - Olympiad Portal</title>
@@ -350,3 +356,4 @@ window.logout=async function(){
 </script>
 </body>
 </html>
+
