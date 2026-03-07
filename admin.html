@@ -228,6 +228,25 @@ color:#94a3b8;
 
 <div class="panel">
 
+<h2>Delete Questions</h2>
+
+<input id="deleteClass" placeholder="example: class2">
+<button class="delete" onclick="deleteByClass()">Delete by Class</button>
+
+<br><br>
+
+<input id="deleteSubject" placeholder="example: maths">
+<button class="delete" onclick="deleteBySubject()">Delete by Subject</button>
+
+<br><br>
+
+<button class="delete" onclick="deleteAll()">Delete ALL Questions</button>
+
+</div>
+
+
+<div class="panel">
+
 <h2>Total Questions: <span id="count">0</span></h2>
 
 <table>
@@ -320,106 +339,72 @@ document.getElementById("count").innerText=snapshot.size;
 }
 
 
-window.uploadPaste=async function(){
+window.deleteByClass = async function(){
 
-try{
+const className=document.getElementById("deleteClass").value;
 
-const text=document.getElementById("jsonPaste").value.trim();
-
-if(!text){
-alert("Paste JSON questions first");
+if(!className){
+alert("Enter class name");
 return;
 }
 
-const data=JSON.parse(text);
+const q=query(questionsRef,where("class","==",className));
 
-await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+const snapshot=await getDocs(q);
 
-alert("Successfully uploaded "+data.length+" questions");
+snapshot.forEach(async(d)=>{
+await deleteDoc(doc(db,"questions",d.id));
+});
 
-document.getElementById("jsonPaste").value="";
+alert("Questions deleted");
 
 loadQuestions();
 
-}catch{
-
-alert("Invalid JSON format");
-
-}
-
 }
 
 
-window.uploadFile=async function(){
+window.deleteBySubject = async function(){
 
-try{
+const subjectName=document.getElementById("deleteSubject").value;
 
-const file=document.getElementById("jsonFile").files[0];
-
-if(!file){
-alert("Select JSON file");
+if(!subjectName){
+alert("Enter subject name");
 return;
 }
 
-const text=await file.text();
-const data=JSON.parse(text);
+const q=query(questionsRef,where("subject","==",subjectName));
 
-await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+const snapshot=await getDocs(q);
 
-alert("Successfully uploaded "+data.length+" questions");
+snapshot.forEach(async(d)=>{
+await deleteDoc(doc(db,"questions",d.id));
+});
 
-loadQuestions();
-
-}catch{
-
-alert("Invalid JSON file");
-
-}
-
-}
-
-
-window.deleteQuestion=async function(id){
-
-if(!confirm("Delete this question?")) return;
-
-await deleteDoc(doc(db,"questions",id));
+alert("Questions deleted");
 
 loadQuestions();
 
 }
 
 
-window.pasteClipboard=async function(){
+window.deleteAll = async function(){
 
-try{
-const text=await navigator.clipboard.readText();
-document.getElementById("jsonPaste").value=text;
-}catch{
-alert("Clipboard not allowed");
-}
+if(!confirm("Delete ALL questions?")) return;
 
-}
+const snapshot=await getDocs(questionsRef);
 
-window.clearPaste=function(){
+snapshot.forEach(async(d)=>{
+await deleteDoc(doc(db,"questions",d.id));
+});
 
-if(confirm("Clear pasted text?")){
-document.getElementById("jsonPaste").value="";
-}
+alert("All questions deleted");
+
+loadQuestions();
 
 }
 
 
 window.onload=loadQuestions;
-
-
-window.logout=function(){
-
-if(confirm("Logout?")){
-window.location.href="login.html";
-}
-
-}
 
 </script>
 
