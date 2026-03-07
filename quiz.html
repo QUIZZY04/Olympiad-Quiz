@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 
-<!-- LOGIN PROTECTION -->
 <script>
 if(sessionStorage.getItem("loggedIn") !== "true"){
 window.location.href="login.html";
@@ -12,7 +11,6 @@ window.location.href="login.html";
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- PREVENT BACK BUTTON CACHE -->
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -22,256 +20,104 @@ window.location.href="login.html";
 
 <style>
 :root {
---bg:#0f172a;
---surface:#1e293b;
---text:#f8fafc;
---muted:#94a3b8;
---border:#334155;
---brand:#38bdf8;
---accent:#22c55e;
---amber:#f59e0b;
---danger:#ef4444;
---unseen-grey:#cbd5e1;
+  --bg: #0f172a; --surface: #1e293b; --text: #f8fafc;
+  --muted: #94a3b8; --border: #334155; --brand: #38bdf8;
+  --accent: #22c55e; --amber: #f59e0b; --danger: #ef4444;
+  --unseen-grey: #cbd5e1;
 }
 
 *{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family:'Inter', sans-serif; color:var(--text); background:var(--bg); overflow: hidden;}
 
-html,body{
-height:100%;
-margin:0;
-font-family:'Inter',sans-serif;
-color:var(--text);
-background:var(--bg);
-overflow:hidden;
+.utility-nav {
+  background: #020617; padding: 12px 60px; display: flex;
+  justify-content: flex-end; gap: 45px; border-bottom: 1px solid var(--border);
+}
+.utility-nav a {
+  color: var(--amber); text-decoration: none; font-size: 13px; 
+  font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+}
+.utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
+
+header.top-bar {
+  z-index: 1000; background: #1e293b; 
+  border-bottom: 2px solid var(--border); padding: 15px 40px; 
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { font-size: 18px; font-weight: 800; color: var(--amber); text-decoration: none; }
+
+#timerWrap {
+  margin-top: 10px; padding: 6px 15px; border-radius: 8px; 
+  background: rgba(245, 158, 11, 0.1); color: var(--amber); 
+  border: 1px solid var(--amber); font-weight: 800; font-size: 1rem;
 }
 
-.utility-nav{
-background:#020617;
-padding:12px 60px;
-display:flex;
-justify-content:flex-end;
-gap:45px;
-border-bottom:1px solid var(--border);
+.quiz-container { 
+  display: flex; gap: 15px; padding: 15px; 
+  max-width: 1400px; width: 100%; margin: 0 auto; 
+  height: calc(100vh - 140px);
 }
 
-.utility-nav a{
-color:var(--amber);
-text-decoration:none;
-font-size:13px;
-font-weight:800;
-text-transform:uppercase;
-letter-spacing:1px;
-cursor:pointer;
+.section { 
+  background: var(--surface); border: 1px solid var(--border); 
+  border-radius: 12px; padding: 20px; display: flex; flex-direction: column; overflow-y: auto;
 }
 
-.utility-nav a:hover{
-text-decoration:underline;
-filter:brightness(1.2);
+.question-section { flex: 2.8; }
+.navigation-section { flex: 0 0 300px; height: fit-content; }
+
+#displaySubject { font-size: 16px; font-weight: 800; color: var(--brand); text-transform: uppercase; }
+#progressPercent { font-size: 14px; font-weight: 700; }
+.progress-container { background: var(--border); border-radius: 10px; height: 6px; overflow: hidden; margin-top: 5px;}
+.progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--brand), var(--accent)); transition: width 0.4s ease; }
+
+.options { display: grid; gap: 8px; margin-top: 10px; margin-bottom: 10px; }
+.opt {
+  display: flex; align-items: center; gap: 12px; padding: 10px 18px; 
+  background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border); 
+  border-radius: 8px; cursor: pointer; transition: 0.1s;
+}
+.opt:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
+.opt span { font-size: 15px; color: #ffffff; text-align: left; }
+.opt input { accent-color: var(--amber); width: 18px; height: 18px; flex-shrink: 0; }
+
+.quiz-buttons { 
+  display: flex; gap: 10px; padding-top: 15px; margin-top: 20px; border-top: 1px solid var(--border);
+}
+.btn { 
+  flex: 1; padding: 12px 5px; border-radius: 6px; font-weight: 800; cursor: pointer; border: none; 
+  text-transform: uppercase; font-size: 15px !important; text-align: center; min-width: 0;
+}
+.btn-save { background: var(--amber); color: #000; }
+.btn-prev { background: #334155; color: #fff; }
+.btn-finish { background: var(--danger); color: #fff; }
+
+.grid { 
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; 
+  margin-top: 8px; margin-bottom: 15px; width: 220px; 
+}
+.grid .cell { 
+  aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; border: 1px solid var(--border); cursor: pointer; 
+  font-weight: 700; font-size: 11px;
 }
 
-header.top-bar{
-z-index:1000;
-background:#1e293b;
-border-bottom:2px solid var(--border);
-padding:15px 40px;
-display:flex;
-align-items:center;
-justify-content:space-between;
+.palette-legend {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; 
+  padding-top: 12px; border-top: 1px solid var(--border); width: 100%;
 }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #ffffff; }
+.legend-box { width: 14px; height: 14px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: white; }
 
-.brand{
-font-size:18px;
-font-weight:800;
-color:var(--amber);
-text-decoration:none;
-}
+.cell.current, .legend-current { background: #2563eb !important; border-color: #1e40af; color: white !important; }
+.cell.answered, .legend-answered { background: #16a34a !important; border-color: #15803d; color: white !important; }
+.cell.visited, .legend-visited { background: #dc2626 !important; border-color: #991b1b; color: white !important; }
+.cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; }
 
-#timerWrap{
-margin-top:10px;
-padding:6px 15px;
-border-radius:8px;
-background:rgba(245,158,11,0.1);
-color:var(--amber);
-border:1px solid var(--amber);
-font-weight:800;
-font-size:1rem;
-}
+#questionImageWrap { margin-top: 10px; margin-bottom: 15px; text-align: center; }
+#questionImage { max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid var(--border); object-fit: contain; }
 
-.quiz-container{
-display:flex;
-gap:15px;
-padding:15px;
-max-width:1400px;
-width:100%;
-margin:0 auto;
-height:calc(100vh - 140px);
-}
-
-.section{
-background:var(--surface);
-border:1px solid var(--border);
-border-radius:12px;
-padding:20px;
-display:flex;
-flex-direction:column;
-overflow-y:auto;
-}
-
-.question-section{flex:2.8;}
-.navigation-section{flex:0 0 300px;height:fit-content;}
-
-#displaySubject{
-font-size:16px;
-font-weight:800;
-color:var(--brand);
-text-transform:uppercase;
-}
-
-#progressPercent{
-font-size:14px;
-font-weight:700;
-}
-
-.progress-container{
-background:var(--border);
-border-radius:10px;
-height:6px;
-overflow:hidden;
-margin-top:5px;
-}
-
-.progress-fill{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,var(--brand),var(--accent));
-transition:width 0.4s ease;
-}
-
-.options{
-display:grid;
-gap:8px;
-margin-top:10px;
-margin-bottom:10px;
-}
-
-.opt{
-display:flex;
-align-items:center;
-gap:12px;
-padding:10px 18px;
-background:rgba(15,23,42,0.6);
-border:1px solid var(--border);
-border-radius:8px;
-cursor:pointer;
-transition:0.1s;
-}
-
-.opt:hover{
-border-color:var(--brand);
-background:rgba(56,189,248,0.05);
-}
-
-.opt span{
-font-size:15px;
-color:#ffffff;
-text-align:left;
-}
-
-.opt input{
-accent-color:var(--amber);
-width:18px;
-height:18px;
-flex-shrink:0;
-}
-
-.quiz-buttons{
-display:flex;
-gap:10px;
-padding-top:15px;
-margin-top:20px;
-border-top:1px solid var(--border);
-}
-
-.btn{
-flex:1;
-padding:12px 5px;
-border-radius:6px;
-font-weight:800;
-cursor:pointer;
-border:none;
-text-transform:uppercase;
-font-size:15px !important;
-text-align:center;
-min-width:0;
-}
-
-.btn-save{background:var(--amber);color:#000;}
-.btn-prev{background:#334155;color:#fff;}
-.btn-finish{background:var(--danger);color:#fff;}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:6px;
-margin-top:8px;
-margin-bottom:15px;
-width:220px;
-}
-
-.grid .cell{
-aspect-ratio:1/1;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:6px;
-border:1px solid var(--border);
-cursor:pointer;
-font-weight:700;
-font-size:11px;
-}
-
-.palette-legend{
-display:flex;
-flex-wrap:wrap;
-justify-content:space-between;
-gap:10px;
-padding-top:12px;
-border-top:1px solid var(--border);
-width:100%;
-}
-
-.legend-item{
-display:flex;
-align-items:center;
-gap:6px;
-font-size:11px;
-font-weight:700;
-color:#ffffff;
-}
-
-.legend-box{
-width:14px;
-height:14px;
-border-radius:4px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:8px;
-color:white;
-}
-
-.cell.current{background:#2563eb;border-color:#1e40af;color:white;}
-.cell.answered{background:#16a34a;border-color:#15803d;color:white;}
-.cell.visited{background:#dc2626;border-color:#991b1b;color:white;}
-.cell.unseen{background:var(--unseen-grey);color:#0f172a;}
-
-footer{
-text-align:center;
-padding:6px;
-background:#020617;
-color:var(--muted);
-font-size:10px;
-}
+footer { text-align: center; padding: 6px; background: #020617; color: var(--muted); font-size: 10px; }
 </style>
 </head>
 
@@ -281,7 +127,7 @@ font-size:10px;
 <a href="index.html">Home</a>
 <a href="dashboard.html">Dashboard</a>
 <a href="leaderboard.html">Leaderboard</a>
-<a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+<a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
 </div>
 
 <header class="top-bar">
@@ -289,21 +135,16 @@ font-size:10px;
 <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
 </header>
 
-<!-- YOUR ENTIRE ORIGINAL QUIZ CONTENT REMAINS HERE -->
-
-<footer>© 2026 Olympiad Portal</footer>
+<!-- QUIZ CONTENT REMAINS SAME -->
 
 <script src="questions.js"></script>
 
 <script type="module">
 
-/* YOUR ENTIRE ORIGINAL QUIZ LOGIC REMAINS SAME */
-
-/* ONLY LOGOUT SECURITY ADDED */
+// ALL YOUR ORIGINAL FIREBASE + QUIZ LOGIC IS SAME
 
 window.logout = async function() {
-
-if(confirm("Logout? Progress will be lost.")){
+if(confirm("Logout? Progress will be lost.")) {
 
 quizSubmitted = true;
 
@@ -314,7 +155,6 @@ await signOut(auth);
 window.location.replace("login.html");
 
 }
-
 };
 
 </script>
