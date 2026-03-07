@@ -64,7 +64,7 @@ text-transform:uppercase;
 color:var(--green);
 }
 
-/* ADMIN CONTAINER */
+/* MAIN */
 
 .container{
 width:95%;
@@ -72,7 +72,7 @@ max-width:1200px;
 margin:30px auto;
 }
 
-/* PANELS */
+/* PANEL */
 
 .panel{
 background:var(--surface);
@@ -87,7 +87,7 @@ margin-top:0;
 color:var(--amber);
 }
 
-/* INPUTS */
+/* INPUT */
 
 input,select,textarea{
 width:100%;
@@ -103,7 +103,7 @@ textarea{
 height:200px;
 }
 
-/* BUTTONS */
+/* BUTTON */
 
 button{
 padding:10px 16px;
@@ -177,8 +177,6 @@ color:#94a3b8;
 
 <div class="container">
 
-<!-- Upload JSON -->
-
 <div class="panel">
 
 <h2>Upload JSON File</h2>
@@ -190,8 +188,6 @@ color:#94a3b8;
 </div>
 
 
-<!-- Paste JSON -->
-
 <div class="panel">
 
 <h2>Paste JSON Questions</h2>
@@ -202,8 +198,6 @@ color:#94a3b8;
 
 </div>
 
-
-<!-- Filters -->
 
 <div class="panel">
 
@@ -236,8 +230,6 @@ color:#94a3b8;
 </div>
 
 
-<!-- Delete -->
-
 <div class="panel">
 
 <h2>Delete Questions</h2>
@@ -256,8 +248,6 @@ color:#94a3b8;
 
 </div>
 
-
-<!-- Table -->
 
 <div class="panel">
 
@@ -293,12 +283,180 @@ color:#94a3b8;
 </footer>
 
 
-<script>
+<script type="module">
 
-function logout(){
-if(confirm("Are you sure you want to logout?")){
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
+projectId:"olympiad-portal-d2a5e",
+storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+messagingSenderId:"341855557503",
+appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+
+const questionsRef=collection(db,"questions");
+
+/* LOAD QUESTIONS */
+
+window.loadQuestions=async function(){
+
+const classFilter=document.getElementById("filterClass").value;
+const subjectFilter=document.getElementById("filterSubject").value;
+
+let q=questionsRef;
+
+if(classFilter){
+q=query(q,where("class","==",classFilter));
+}
+
+if(subjectFilter){
+q=query(q,where("subject","==",subjectFilter));
+}
+
+const snapshot=await getDocs(q);
+
+let html="";
+
+snapshot.forEach((d)=>{
+
+const data=d.data();
+
+html+=`
+<tr>
+<td>${data.class}</td>
+<td>${data.subject}</td>
+<td>${data.q.substring(0,60)}...</td>
+<td>${data.image_url?`<img src="${data.image_url}">`:"-"}</td>
+<td><button class="delete" onclick="deleteQuestion('${d.id}')">Delete</button></td>
+</tr>
+`;
+
+});
+
+document.getElementById("questionsTable").innerHTML=html;
+document.getElementById("count").innerText=snapshot.size;
+
+}
+
+/* DELETE */
+
+window.deleteQuestion=async function(id){
+
+if(!confirm("Delete this question?")) return;
+
+await deleteDoc(doc(db,"questions",id));
+
+loadQuestions();
+
+}
+
+window.deleteByClass=async function(){
+
+const c=document.getElementById("deleteClass").value;
+
+const q=query(questionsRef,where("class","==",c));
+
+const snapshot=await getDocs(q);
+
+snapshot.forEach(async(d)=>{
+await deleteDoc(doc(db,"questions",d.id));
+});
+
+loadQuestions();
+
+}
+
+window.deleteBySubject=async function(){
+
+const s=document.getElementById("deleteSubject").value;
+
+const q=query(questionsRef,where("subject","==",s));
+
+const snapshot=await getDocs(q);
+
+snapshot.forEach(async(d)=>{
+await deleteDoc(doc(db,"questions",d.id));
+});
+
+loadQuestions();
+
+}
+
+window.deleteAll=async function(){
+
+if(!confirm("Delete ALL questions?")) return;
+
+const snapshot=await getDocs(questionsRef);
+
+snapshot.forEach(async(d)=>{
+await deleteDoc(doc(db,"questions",d.id));
+});
+
+loadQuestions();
+
+}
+
+/* UPLOAD */
+
+window.uploadFile=async function(){
+
+const file=document.getElementById("jsonFile").files[0];
+
+if(!file){
+alert("Select JSON file");
+return;
+}
+
+const text=await file.text();
+const data=JSON.parse(text);
+
+for(const q of data){
+await addDoc(questionsRef,q);
+}
+
+alert("Upload successful");
+
+loadQuestions();
+
+}
+
+window.uploadPaste=async function(){
+
+const text=document.getElementById("jsonPaste").value;
+
+if(!text){
+alert("Paste JSON questions");
+return;
+}
+
+const data=JSON.parse(text);
+
+for(const q of data){
+await addDoc(questionsRef,q);
+}
+
+alert("Questions uploaded");
+
+document.getElementById("jsonPaste").value="";
+
+loadQuestions();
+
+}
+
+window.onload=loadQuestions;
+
+window.logout=function(){
+
+if(confirm("Logout?")){
 window.location.href="login.html";
 }
+
 }
 
 </script>
