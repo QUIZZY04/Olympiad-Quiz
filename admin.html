@@ -162,6 +162,7 @@ color:#94a3b8;
 
 </nav>
 
+
 <div class="container">
 
 <div class="panel">
@@ -227,25 +228,6 @@ color:#94a3b8;
 
 <div class="panel">
 
-<h2>Delete Questions</h2>
-
-<input placeholder="class1 - class10" id="deleteClass">
-<button class="delete" onclick="deleteByClass()">Delete by Class</button>
-
-<br><br>
-
-<input placeholder="maths / science / english / reasoning" id="deleteSubject">
-<button class="delete" onclick="deleteBySubject()">Delete by Subject</button>
-
-<br><br>
-
-<button class="delete" onclick="deleteAll()">Delete ALL Questions</button>
-
-</div>
-
-
-<div class="panel">
-
 <h2>Total Questions: <span id="count">0</span></h2>
 
 <table>
@@ -279,7 +261,8 @@ color:#94a3b8;
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -295,9 +278,23 @@ const db=getFirestore(app);
 
 const questionsRef=collection(db,"questions");
 
-window.loadQuestions=async function(){
 
-const snapshot=await getDocs(questionsRef);
+window.loadQuestions = async function(){
+
+let classFilter=document.getElementById("filterClass").value;
+let subjectFilter=document.getElementById("filterSubject").value;
+
+let q=questionsRef;
+
+if(classFilter){
+q=query(q,where("class","==",classFilter));
+}
+
+if(subjectFilter){
+q=query(q,where("subject","==",subjectFilter));
+}
+
+const snapshot=await getDocs(q);
 
 let html="";
 
@@ -322,33 +319,6 @@ document.getElementById("count").innerText=snapshot.size;
 
 }
 
-window.uploadFile=async function(){
-
-try{
-
-const file=document.getElementById("jsonFile").files[0];
-
-if(!file){
-alert("Select JSON file");
-return;
-}
-
-const text=await file.text();
-const data=JSON.parse(text);
-
-await Promise.all(data.map(q=>addDoc(questionsRef,q)));
-
-alert("✅ Successfully uploaded "+data.length+" questions");
-
-loadQuestions();
-
-}catch(e){
-
-alert("❌ Upload failed. Check JSON format.");
-
-}
-
-}
 
 window.uploadPaste=async function(){
 
@@ -365,31 +335,68 @@ const data=JSON.parse(text);
 
 await Promise.all(data.map(q=>addDoc(questionsRef,q)));
 
-alert("✅ Successfully uploaded "+data.length+" questions");
+alert("Successfully uploaded "+data.length+" questions");
 
 document.getElementById("jsonPaste").value="";
 
 loadQuestions();
 
-}catch(e){
+}catch{
 
-alert("❌ Upload failed. Invalid JSON format");
+alert("Invalid JSON format");
+
+}
+
+}
+
+
+window.uploadFile=async function(){
+
+try{
+
+const file=document.getElementById("jsonFile").files[0];
+
+if(!file){
+alert("Select JSON file");
+return;
+}
+
+const text=await file.text();
+const data=JSON.parse(text);
+
+await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+
+alert("Successfully uploaded "+data.length+" questions");
+
+loadQuestions();
+
+}catch{
+
+alert("Invalid JSON file");
 
 }
 
 }
+
+
+window.deleteQuestion=async function(id){
+
+if(!confirm("Delete this question?")) return;
+
+await deleteDoc(doc(db,"questions",id));
+
+loadQuestions();
+
+}
+
 
 window.pasteClipboard=async function(){
 
 try{
-
 const text=await navigator.clipboard.readText();
 document.getElementById("jsonPaste").value=text;
-
 }catch{
-
-alert("Clipboard not allowed. Use CTRL+V");
-
+alert("Clipboard not allowed");
 }
 
 }
@@ -402,31 +409,9 @@ document.getElementById("jsonPaste").value="";
 
 }
 
-window.deleteQuestion=async function(id){
-
-if(!confirm("Delete this question?")) return;
-
-await deleteDoc(doc(db,"questions",id));
-
-loadQuestions();
-
-}
-
-window.deleteAll=async function(){
-
-if(!confirm("Delete ALL questions?")) return;
-
-const snapshot=await getDocs(questionsRef);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-loadQuestions();
-
-}
 
 window.onload=loadQuestions;
+
 
 window.logout=function(){
 
