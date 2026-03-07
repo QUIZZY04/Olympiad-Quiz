@@ -91,7 +91,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const questionsRef = collection(db,"questions");
 
-
 /* Upload JSON File */
 
 window.uploadFile = async function(){
@@ -114,7 +113,6 @@ alert("Upload successful");
 
 loadQuestions();
 }
-
 
 /* Upload Pasted JSON */
 
@@ -139,7 +137,6 @@ document.getElementById("jsonPaste").value="";
 
 loadQuestions();
 }
-
 
 /* Load Questions */
 
@@ -185,7 +182,6 @@ document.getElementById("count").innerText=snapshot.size;
 
 }
 
-
 /* Delete Single Question */
 
 window.deleteQuestion = async function(id){
@@ -200,7 +196,6 @@ alert("Question deleted");
 
 loadQuestions();
 }
-
 
 /* Delete by Class */
 
@@ -230,7 +225,6 @@ alert("Questions deleted");
 loadQuestions();
 }
 
-
 /* Delete by Subject */
 
 window.deleteBySubject = async function(){
@@ -258,7 +252,6 @@ alert("Questions deleted");
 
 loadQuestions();
 }
-
 
 /* Delete All Questions */
 
@@ -293,7 +286,6 @@ window.onload=loadQuestions;
 
 <h1>🎓 Olympiad Admin Dashboard</h1>
 
-
 <div class="panel">
 
 <h3>Upload JSON File</h3>
@@ -302,7 +294,6 @@ window.onload=loadQuestions;
 <button onclick="uploadFile()" class="upload">Upload File</button>
 
 </div>
-
 
 <div class="panel">
 
@@ -313,7 +304,6 @@ window.onload=loadQuestions;
 <button onclick="uploadPaste()" class="upload">Upload Pasted Questions</button>
 
 </div>
-
 
 <div class="panel">
 
@@ -328,6 +318,11 @@ window.onload=loadQuestions;
 <option value="class3">Class 3</option>
 <option value="class4">Class 4</option>
 <option value="class5">Class 5</option>
+<option value="class6">Class 6</option>
+<option value="class7">Class 7</option>
+<option value="class8">Class 8</option>
+<option value="class9">Class 9</option>
+<option value="class10">Class 10</option>
 </select>
 
 <select id="filterSubject">
@@ -343,17 +338,16 @@ window.onload=loadQuestions;
 
 </div>
 
-
 <div class="panel">
 
 <h3>Delete Questions</h3>
 
-<input placeholder="class2" id="deleteClass">
+<input placeholder="class1 - class10" id="deleteClass">
 <button onclick="deleteByClass()" class="delete">Delete by Class</button>
 
 <br><br>
 
-<input placeholder="maths" id="deleteSubject">
+<input placeholder="maths / science / english" id="deleteSubject">
 <button onclick="deleteBySubject()" class="delete">Delete by Subject</button>
 
 <br><br>
@@ -361,7 +355,6 @@ window.onload=loadQuestions;
 <button onclick="deleteAll()" class="delete">Delete ALL Questions</button>
 
 </div>
-
 
 <div class="panel">
 
