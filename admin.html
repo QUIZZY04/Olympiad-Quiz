@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Panel - Olympiad Portal</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
 --bg:#0f172a;
 --surface:#1e293b;
@@ -19,14 +16,12 @@
 --danger:#ef4444;
 --green:#22c55e;
 }
-
 body{
 font-family:'Inter',sans-serif;
 background:var(--bg);
 color:var(--text);
 margin:0;
 }
-
 nav{
 background:var(--surface);
 border-bottom:2px solid var(--border);
@@ -35,19 +30,16 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 }
-
 .brand{
 font-size:22px;
 font-weight:800;
 color:var(--amber);
 text-decoration:none;
 }
-
 .nav-links{
 display:flex;
 gap:12px;
 }
-
 .nav-links a{
 color:white;
 text-decoration:none;
@@ -55,17 +47,14 @@ font-size:11px;
 font-weight:800;
 text-transform:uppercase;
 }
-
 .nav-links a.active{
 color:var(--green);
 }
-
 .container{
 width:95%;
 max-width:1200px;
 margin:30px auto;
 }
-
 .panel{
 background:var(--surface);
 padding:20px;
@@ -73,12 +62,10 @@ border-radius:12px;
 margin-bottom:25px;
 border:1px solid var(--border);
 }
-
 h2{
 color:var(--amber);
 margin-top:0;
 }
-
 input,select,textarea{
 width:100%;
 padding:10px;
@@ -88,11 +75,9 @@ border:none;
 background:#020617;
 color:white;
 }
-
 textarea{
 height:200px;
 }
-
 button{
 padding:10px 16px;
 border:none;
@@ -101,50 +86,40 @@ cursor:pointer;
 margin-top:10px;
 font-weight:700;
 }
-
 .upload{
 background:var(--green);
 color:white;
 }
-
 .delete{
 background:var(--danger);
 color:white;
 }
-
 table{
 width:100%;
 border-collapse:collapse;
 margin-top:20px;
 }
-
 th,td{
 padding:10px;
 border-bottom:1px solid var(--border);
 text-align:left;
 }
-
 img{
 max-width:80px;
 border-radius:6px;
 }
-
 footer{
 text-align:center;
 padding:20px;
 background:#020617;
 color:#94a3b8;
 }
-
 </style>
 </head>
-
 <body>
 
 <nav>
-
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-
 <div class="nav-links">
 <a href="index.html">Home</a>
 <a href="dashboard.html">Dashboard</a>
@@ -153,39 +128,25 @@ color:#94a3b8;
 <a href="admin.html" class="active">Admin</a>
 <a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
 </div>
-
 </nav>
 
-
 <div class="container">
-
 <div class="panel">
-
 <h2>Upload JSON File</h2>
-
 <input type="file" id="jsonFile">
 <button class="upload" onclick="uploadFile()">Upload File</button>
-
 </div>
 
-
 <div class="panel">
-
 <h2>Paste JSON Questions</h2>
-
 <textarea id="jsonPaste"></textarea>
-
 <button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
 <button class="upload" onclick="pasteClipboard()">Paste</button>
 <button class="delete" onclick="clearPaste()">Clear</button>
-
 </div>
 
-
 <div class="panel">
-
 <h2>Filter Questions</h2>
-
 <select id="filterClass">
 <option value="">All Classes</option>
 <option value="class1">Class 1</option>
@@ -199,7 +160,6 @@ color:#94a3b8;
 <option value="class9">Class 9</option>
 <option value="class10">Class 10</option>
 </select>
-
 <select id="filterSubject">
 <option value="">All Subjects</option>
 <option value="maths">Maths</option>
@@ -207,39 +167,24 @@ color:#94a3b8;
 <option value="english">English</option>
 <option value="reasoning">Reasoning</option>
 </select>
-
 <button class="upload" onclick="loadQuestions()">Apply Filter</button>
-
 </div>
 
-
 <div class="panel">
-
 <h2>Delete Questions</h2>
-
 <input id="deleteClass" placeholder="example: class2">
 <button class="delete" onclick="deleteByClass()">Delete by Class</button>
-
 <br><br>
-
 <input id="deleteSubject" placeholder="example: maths">
 <button class="delete" onclick="deleteBySubject()">Delete by Subject</button>
-
 <br><br>
-
 <button class="delete" onclick="deleteAll()">Delete ALL Questions</button>
-
 </div>
 
-
 <div class="panel">
-
 <h2>Total Questions: <span id="count">0</span></h2>
-
 <button class="upload" onclick="loadQuestions()">Load Questions</button>
-
 <table>
-
 <thead>
 <tr>
 <th>Class</th>
@@ -249,25 +194,19 @@ color:#94a3b8;
 <th>Action</th>
 </tr>
 </thead>
-
 <tbody id="questionsTable"></tbody>
-
 </table>
-
 </div>
-
 </div>
-
 
 <footer>
 © 2026 Olympiad Portal
 </footer>
 
-
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc }
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
@@ -278,221 +217,136 @@ projectId:"olympiad-portal-d2a5e"
 
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
+const auth=getAuth(app);
 
 const questionsRef=collection(db,"questions");
 
+// Ensure user is admin before allowing actions
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        if (user.email !== "madhhu52@gmail.com") {
+            alert("Unauthorized access!");
+            signOut(auth).then(() => { window.location.href = "login.html"; });
+        } else {
+            console.log("Admin Verified:", user.email);
+            loadQuestions();
+        }
+    } else {
+        window.location.href = "login.html";
+    }
+});
 
 function validateQuestion(q,i){
-
-if(!q.class) throw new Error("Question "+(i+1)+" missing class");
-if(!q.subject) throw new Error("Question "+(i+1)+" missing subject");
-if(!q.q) throw new Error("Question "+(i+1)+" missing question text");
-if(!q.o || !Array.isArray(q.o) || q.o.length!=4) throw new Error("Question "+(i+1)+" must have 4 options");
-if(q.a===undefined) throw new Error("Question "+(i+1)+" missing correct answer");
-
+    if(!q.class) throw new Error("Question "+(i+1)+" missing class");
+    if(!q.subject) throw new Error("Question "+(i+1)+" missing subject");
+    if(!q.q) throw new Error("Question "+(i+1)+" missing question text");
+    if(!q.o || !Array.isArray(q.o) || q.o.length!=4) throw new Error("Question "+(i+1)+" must have 4 options");
+    if(q.a===undefined) throw new Error("Question "+(i+1)+" missing correct answer");
 }
-
 
 window.uploadPaste=async function(){
-
-try{
-
-const text=document.getElementById("jsonPaste").value.trim();
-
-if(!text){
-alert("Paste JSON questions first");
-return;
+    try{
+        const text=document.getElementById("jsonPaste").value.trim();
+        if(!text){ alert("Paste JSON questions first"); return; }
+        const data=JSON.parse(text);
+        if(!Array.isArray(data)){ alert("JSON must be an array"); return; }
+        for(let i=0;i<data.length;i++){ validateQuestion(data[i],i); }
+        await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+        alert("✅ Successfully uploaded "+data.length+" questions");
+        document.getElementById("jsonPaste").value="";
+        loadQuestions();
+    }catch(e){ alert("❌ "+e.message); }
 }
-
-const data=JSON.parse(text);
-
-if(!Array.isArray(data)){
-alert("JSON must be an array");
-return;
-}
-
-for(let i=0;i<data.length;i++){
-validateQuestion(data[i],i);
-}
-
-await Promise.all(data.map(q=>addDoc(questionsRef,q)));
-
-alert("✅ Successfully uploaded "+data.length+" questions");
-
-document.getElementById("jsonPaste").value="";
-
-}catch(e){
-
-alert("❌ "+e.message);
-
-}
-
-}
-
 
 window.uploadFile=async function(){
-
-try{
-
-const file=document.getElementById("jsonFile").files[0];
-
-if(!file){
-alert("Select JSON file");
-return;
+    try{
+        const file=document.getElementById("jsonFile").files[0];
+        if(!file){ alert("Select JSON file"); return; }
+        const text=await file.text();
+        const data=JSON.parse(text);
+        if(!Array.isArray(data)){ alert("JSON must be an array"); return; }
+        for(let i=0;i<data.length;i++){ validateQuestion(data[i],i); }
+        await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+        alert("✅ Successfully uploaded "+data.length+" questions");
+        loadQuestions();
+    }catch(e){ alert("❌ "+e.message); }
 }
-
-const text=await file.text();
-const data=JSON.parse(text);
-
-if(!Array.isArray(data)){
-alert("JSON must be an array");
-return;
-}
-
-for(let i=0;i<data.length;i++){
-validateQuestion(data[i],i);
-}
-
-await Promise.all(data.map(q=>addDoc(questionsRef,q)));
-
-alert("✅ Successfully uploaded "+data.length+" questions");
-
-}catch(e){
-
-alert("❌ "+e.message);
-
-}
-
-}
-
 
 window.loadQuestions=async function(){
-
-let classFilter=document.getElementById("filterClass").value;
-let subjectFilter=document.getElementById("filterSubject").value;
-
-let q=questionsRef;
-
-if(classFilter){
-q=query(q,where("class","==",classFilter));
+    let classFilter=document.getElementById("filterClass").value;
+    let subjectFilter=document.getElementById("filterSubject").value;
+    let q=questionsRef;
+    if(classFilter){ q=query(q,where("class","==",classFilter)); }
+    if(subjectFilter){ q=query(q,where("subject","==",subjectFilter)); }
+    const snapshot=await getDocs(q);
+    let html="";
+    snapshot.forEach((d)=>{
+        const data=d.data();
+        html+=`
+        <tr>
+        <td>${data.class}</td>
+        <td>${data.subject}</td>
+        <td>${data.q.substring(0,60)}...</td>
+        <td>${data.image_url?`<img src="${data.image_url}">`:"-"}</td>
+        <td><button class="delete" onclick="deleteQuestion('${d.id}')">Delete</button></td>
+        </tr>`;
+    });
+    document.getElementById("questionsTable").innerHTML=html;
+    document.getElementById("count").innerText=snapshot.size;
 }
-
-if(subjectFilter){
-q=query(q,where("subject","==",subjectFilter));
-}
-
-const snapshot=await getDocs(q);
-
-let html="";
-
-snapshot.forEach((d)=>{
-
-const data=d.data();
-
-html+=`
-<tr>
-<td>${data.class}</td>
-<td>${data.subject}</td>
-<td>${data.q.substring(0,60)}...</td>
-<td>${data.image_url?`<img src="${data.image_url}">`:"-"}</td>
-<td><button class="delete" onclick="deleteQuestion('${d.id}')">Delete</button></td>
-</tr>
-`;
-
-});
-
-document.getElementById("questionsTable").innerHTML=html;
-document.getElementById("count").innerText=snapshot.size;
-
-}
-
 
 window.deleteQuestion=async function(id){
-
-if(!confirm("Delete this question?")) return;
-
-await deleteDoc(doc(db,"questions",id));
-
-loadQuestions();
-
+    if(!confirm("Delete this question?")) return;
+    await deleteDoc(doc(db,"questions",id));
+    loadQuestions();
 }
-
 
 window.deleteByClass=async function(){
-
-const c=document.getElementById("deleteClass").value;
-
-const q=query(questionsRef,where("class","==",c));
-
-const snapshot=await getDocs(q);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-alert("Questions deleted");
-
+    const c=document.getElementById("deleteClass").value;
+    const q=query(questionsRef,where("class","==",c));
+    const snapshot=await getDocs(q);
+    const deletePromises = snapshot.docs.map(d => deleteDoc(doc(db, "questions", d.id)));
+    await Promise.all(deletePromises);
+    alert("Questions deleted for class: " + c);
+    loadQuestions();
 }
-
 
 window.deleteBySubject=async function(){
-
-const s=document.getElementById("deleteSubject").value;
-
-const q=query(questionsRef,where("subject","==",s));
-
-const snapshot=await getDocs(q);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-alert("Questions deleted");
-
+    const s=document.getElementById("deleteSubject").value;
+    const q=query(questionsRef,where("subject","==",s));
+    const snapshot=await getDocs(q);
+    const deletePromises = snapshot.docs.map(d => deleteDoc(doc(db, "questions", d.id)));
+    await Promise.all(deletePromises);
+    alert("Questions deleted for subject: " + s);
+    loadQuestions();
 }
-
 
 window.deleteAll=async function(){
-
-if(!confirm("Delete ALL questions?")) return;
-
-const snapshot=await getDocs(questionsRef);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-alert("All questions deleted");
-
+    if(!confirm("Delete ALL questions?")) return;
+    const snapshot=await getDocs(questionsRef);
+    const deletePromises = snapshot.docs.map(d => deleteDoc(doc(db, "questions", d.id)));
+    await Promise.all(deletePromises);
+    alert("All questions deleted");
+    loadQuestions();
 }
-
 
 window.pasteClipboard=async function(){
-
-try{
-const text=await navigator.clipboard.readText();
-document.getElementById("jsonPaste").value=text;
-}catch{
-alert("Clipboard permission denied");
-}
-
+    try{
+        const text=await navigator.clipboard.readText();
+        document.getElementById("jsonPaste").value=text;
+    }catch{ alert("Clipboard permission denied"); }
 }
 
 window.clearPaste=function(){
-
-if(confirm("Clear pasted JSON?")){
-document.getElementById("jsonPaste").value="";
+    if(confirm("Clear pasted JSON?")){ document.getElementById("jsonPaste").value=""; }
 }
 
+window.logout=async function(){
+    if(confirm("Logout?")){
+        await signOut(auth);
+        window.location.href="login.html";
+    }
 }
-
-window.logout=function(){
-if(confirm("Logout?")){
-window.location.href="login.html";
-}
-}
-
 </script>
-
 </body>
 </html>
