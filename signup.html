@@ -50,7 +50,7 @@
       text-transform: uppercase;
     }
 
-    /* RESPONSIVE SPLIT CONTAINER */
+    /* MAIN LAYOUT */
     .main-wrapper {
       flex: 1;
       display: flex;
@@ -61,27 +61,10 @@
       gap: 60px;
     }
 
-    /* LEFT SIDE: INTRO & SPECIALTIES */
-    .intro-section {
-      flex: 1;
-      text-align: left;
-    }
-
-    .intro-section h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
+    .intro-section { flex: 1; text-align: left; }
+    .intro-section h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
     .intro-section h1 span { color: var(--amber); }
-
-    .intro-section p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
+    .intro-section p { color: var(--muted); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; }
 
     .spec-list { list-style: none; }
     .spec-item {
@@ -95,20 +78,12 @@
       border: 1px solid var(--border);
     }
 
-    .spec-icon {
-      color: var(--brand);
-      font-size: 20px;
-      font-weight: 800;
-    }
-
+    .spec-icon { color: var(--brand); font-size: 20px; font-weight: 800; }
     .spec-text b { color: var(--text); display: block; margin-bottom: 2px; }
     .spec-text span { color: var(--muted); font-size: 14px; }
 
-    /* RIGHT SIDE: SIGNUP BOX */
-    .signup-container {
-      flex: 0 0 420px;
-    }
-
+    /* SIGNUP BOX */
+    .signup-container { flex: 0 0 420px; }
     .signup-box {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -158,19 +133,20 @@
 
     button:hover { background: #fbbf24; transform: translateY(-2px); }
 
-    /* GOOGLE BUTTON STYLES */
+    /* GOOGLE BUTTON FIX */
     .google-btn {
-      background: white;
-      color: #1e293b;
+      background: white !important;
+      color: #1e293b !important;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       margin-top: 15px;
-      text-transform: none; 
+      text-transform: none;
+      border: 1px solid #e2e8f0;
     }
-    .google-btn:hover { background: #f1f5f9; }
-    .google-btn img { width: 18px; }
+    .google-btn:hover { background: #f8fafc !important; }
+    .google-btn img { width: 20px; height: 20px; display: block; }
 
     .divider {
       margin: 20px 0;
@@ -196,7 +172,6 @@
     }
     .login-link a { color: var(--amber); text-decoration: none; font-weight: 700; }
 
-    /* MOBILE VIEW */
     @media (max-width: 968px) {
       .main-wrapper { flex-direction: column; text-align: center; padding-top: 20px; }
       .intro-section { text-align: center; }
@@ -271,8 +246,8 @@
             <div class="divider">OR</div>
 
             <button type="button" class="google-btn" id="googleBtn">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/navigation/google_hl.svg" alt="Google icon">
-                Continue with Google
+                <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
+                Sign in with Google
             </button>
 
             <p class="login-link">Already a member? <a href="login.html">Sign In</a></p>
@@ -299,7 +274,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// Email Signup
+// Standard Email Signup
 document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     const name=document.getElementById("name").value.trim();
@@ -317,7 +292,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     } catch(error) { alert(error.message); }
 });
 
-// Google Sign-In
+// Google Sign-In Logic
 document.getElementById("googleBtn").addEventListener("click", async () => {
     try {
         const result = await signInWithPopup(auth, provider);
