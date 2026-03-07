@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Popular Olympiad | Ignite Your Potential</title>
+<title>Olympiad Portal - Ignite Your Potential</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -25,12 +25,12 @@ color:white;
 overflow-x:hidden;
 }
 
+/* PARTICLES */
+
 #particles-js{
 position:fixed;
 width:100%;
 height:100%;
-top:0;
-left:0;
 z-index:-1;
 }
 
@@ -41,11 +41,10 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:18px 8%;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,0.45);
 backdrop-filter:blur(10px);
 position:sticky;
 top:0;
-z-index:1000;
 }
 
 .logo{
@@ -54,12 +53,8 @@ font-weight:800;
 color:#f59e0b;
 }
 
-.nav-links{
-display:flex;
-gap:25px;
-}
-
 .nav-links a{
+margin-left:25px;
 text-decoration:none;
 color:white;
 font-weight:500;
@@ -72,19 +67,18 @@ color:#f59e0b;
 /* HERO */
 
 .hero{
-min-height:90vh;
+min-height:65vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:40px;
+padding-top:40px;
 }
 
 .hero h1{
 font-size:clamp(2.5rem,6vw,4rem);
-font-weight:800;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 .hero span{
@@ -92,11 +86,10 @@ color:#f59e0b;
 }
 
 .hero p{
-max-width:720px;
+max-width:700px;
 font-size:18px;
 color:#cbd5f5;
-line-height:1.6;
-margin-bottom:40px;
+margin-bottom:35px;
 }
 
 /* BUTTONS */
@@ -104,27 +97,19 @@ margin-bottom:40px;
 .btn-group{
 display:flex;
 gap:20px;
-flex-wrap:wrap;
-justify-content:center;
 }
 
 .btn{
-padding:16px 34px;
-border-radius:10px;
-font-weight:600;
+padding:14px 30px;
+border-radius:8px;
 text-decoration:none;
+font-weight:600;
 transition:.3s;
-font-size:15px;
 }
 
 .btn-primary{
 background:#f59e0b;
 color:black;
-}
-
-.btn-primary:hover{
-transform:translateY(-4px);
-box-shadow:0 10px 30px rgba(245,158,11,.5);
 }
 
 .btn-secondary{
@@ -133,41 +118,34 @@ border:1px solid #334155;
 color:white;
 }
 
-/* ORGANISATIONS */
+.btn:hover{
+transform:translateY(-3px);
+}
 
-.org{
-padding:80px 10%;
+/* OLYMPIAD LOGOS */
+
+.olympiads{
+padding:60px 10%;
 text-align:center;
 }
 
-.org h2{
+.olympiads h2{
+margin-bottom:40px;
 font-size:32px;
-margin-bottom:50px;
 }
 
-.org-grid{
+.logo-row{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:30px;
+gap:40px;
 }
 
-.org-card{
-background:#1e293b;
-padding:30px;
-border-radius:14px;
-width:220px;
-border:1px solid #334155;
-transition:.3s;
-}
-
-.org-card:hover{
-transform:translateY(-6px);
-}
-
-.org-card img{
+.logo-row img{
 height:60px;
-margin-bottom:15px;
+background:white;
+padding:10px;
+border-radius:8px;
 }
 
 /* FEATURES */
@@ -186,10 +164,9 @@ gap:30px;
 
 .feature{
 background:#1e293b;
-padding:30px;
-border-radius:14px;
+padding:25px;
+border-radius:12px;
 width:260px;
-border:1px solid #334155;
 }
 
 .feature h3{
@@ -200,10 +177,9 @@ margin-bottom:10px;
 /* FOOTER */
 
 footer{
-padding:30px;
 text-align:center;
+padding:25px;
 border-top:1px solid #334155;
-font-size:14px;
 color:#94a3b8;
 }
 
@@ -216,29 +192,30 @@ color:#94a3b8;
 
 <nav>
 
-<div class="logo">🏆 Popular Olympiad</div>
+<div class="logo">🎓 Olympiad Portal</div>
 
 <div class="nav-links">
-<a href="index.html">Home</a>
 <a href="login.html">Login</a>
-<a href="signup.html">Register</a>
+<a href="signup.html">Start Free Trial</a>
 </div>
 
 </nav>
 
+
 <section class="hero">
 
-<h1>Prepare for <span>Olympiad Excellence</span></h1>
+<h1>Master Your <span>Olympiad Skills</span></h1>
 
 <p>
-Master Mathematics, Science and Logical Reasoning with our Olympiad preparation platform.
-Practice challenging problems, track your progress and compete with thousands of students.
+Prepare for SOF Olympiads, SilverZone Olympiads, NSTSE and other national
+competitions. Practice advanced questions, track your performance and
+compete with students across the country.
 </p>
 
 <div class="btn-group">
 
 <a href="signup.html" class="btn btn-primary">
-Start Your Free Trial
+Start Free Trial
 </a>
 
 <a href="login.html" class="btn btn-secondary">
@@ -249,39 +226,31 @@ Login
 
 </section>
 
-<section class="org">
+
+<section class="olympiads">
 
 <h2>Popular Olympiad Organisations</h2>
 
-<div class="org-grid">
+<div class="logo-row">
 
-<div class="org-card">
+<img src="https://dummyimage.com/200x80/ffffff/000000&text=SOF+Olympiads">
+
+<img src="https://dummyimage.com/200x80/ffffff/000000&text=SilverZone">
+
+<img src="https://dummyimage.com/200x80/ffffff/000000&text=NSTSE">
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/International_Mathematical_Olympiad_logo.svg">
-<h3>IMO</h3>
-</div>
 
-<div class="org-card">
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/International_Physics_Olympiad_logo.svg">
-<h3>Physics Olympiad</h3>
-</div>
-
-<div class="org-card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/International_Chemistry_Olympiad_logo.svg">
-<h3>Chemistry Olympiad</h3>
-</div>
-
-<div class="org-card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/International_Biology_Olympiad_logo.svg">
-<h3>Biology Olympiad</h3>
-</div>
 
 </div>
 
 </section>
 
+
 <section class="features">
 
-<h2>Why Choose Our Platform</h2>
+<h2>Why Choose Olympiad Portal</h2>
 
 <div class="feature-grid">
 
@@ -292,41 +261,43 @@ Login
 
 <div class="feature">
 <h3>Performance Analytics</h3>
-<p>Detailed reports to analyze strengths and improve weak areas.</p>
+<p>Track strengths and improve weak areas with detailed reports.</p>
 </div>
 
 <div class="feature">
 <h3>National Ranking</h3>
-<p>Compare your performance with students across the country.</p>
+<p>Compare your performance with students across India.</p>
 </div>
 
 <div class="feature">
 <h3>Smart Learning</h3>
-<p>Adaptive practice tests that adjust difficulty automatically.</p>
+<p>Adaptive quizzes that adjust difficulty automatically.</p>
 </div>
 
 </div>
 
 </section>
 
+
 <footer>
 
-© 2026 Popular Olympiad Portal • Empowering Young Minds
+© 2026 Olympiad Portal • Preparation Redefined
 
 </footer>
+
 
 <script>
 
 particlesJS("particles-js",{
 particles:{
-number:{value:80},
+number:{value:70},
 size:{value:3},
 color:{value:"#f59e0b"},
 line_linked:{
 enable:true,
 distance:150,
 color:"#f59e0b",
-opacity:0.4,
+opacity:0.3,
 width:1
 },
 move:{
