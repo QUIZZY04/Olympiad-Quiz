@@ -1,58 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Olympiad Admin Dashboard</title>
+
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Panel - Olympiad Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
-body{
-font-family:Arial;
-background:#0f172a;
-color:white;
-padding:30px;
+:root{
+--bg:#0f172a;
+--surface:#1e293b;
+--text:#f8fafc;
+--border:#334155;
+--amber:#f59e0b;
+--danger:#ef4444;
+--green:#22c55e;
 }
 
-h1{color:#38bdf8;}
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+margin:0;
+}
+
+/* NAVIGATION */
+
+nav{
+background:var(--surface);
+border-bottom:2px solid var(--border);
+padding:15px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-wrap:wrap;
+}
+
+.brand{
+font-size:22px;
+font-weight:800;
+color:var(--amber);
+text-decoration:none;
+}
+
+.nav-links{
+display:flex;
+gap:12px;
+align-items:center;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-size:11px;
+font-weight:800;
+text-transform:uppercase;
+}
+
+.nav-links a.active{
+color:var(--green);
+}
+
+/* ADMIN CONTAINER */
+
+.container{
+width:95%;
+max-width:1200px;
+margin:30px auto;
+}
+
+/* PANELS */
 
 .panel{
-background:#1e293b;
+background:var(--surface);
 padding:20px;
-border-radius:10px;
-margin-bottom:20px;
+border-radius:12px;
+margin-bottom:25px;
+border:1px solid var(--border);
 }
+
+h2{
+margin-top:0;
+color:var(--amber);
+}
+
+/* INPUTS */
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:none;
+background:#020617;
+color:white;
+}
+
+textarea{
+height:200px;
+}
+
+/* BUTTONS */
 
 button{
 padding:10px 16px;
 border:none;
-border-radius:6px;
+border-radius:8px;
 cursor:pointer;
-font-weight:bold;
 margin-top:10px;
+font-weight:700;
 }
 
-.upload{background:#22c55e;color:white;}
-.delete{background:#ef4444;color:white;}
-
-input,textarea,select{
-padding:10px;
-margin-top:10px;
-border-radius:6px;
-border:none;
-width:100%;
+.upload{
+background:var(--green);
+color:white;
 }
 
-textarea{height:200px;}
+.delete{
+background:var(--danger);
+color:white;
+}
+
+/* TABLE */
 
 table{
 width:100%;
-margin-top:20px;
 border-collapse:collapse;
+margin-top:20px;
 }
 
 th,td{
 padding:10px;
-border-bottom:1px solid #334155;
+border-bottom:1px solid var(--border);
 text-align:left;
 }
 
@@ -61,255 +143,71 @@ max-width:80px;
 border-radius:6px;
 }
 
-.filter{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-}
-
-.filter select{
-width:200px;
+footer{
+text-align:center;
+padding:20px;
+background:#020617;
+color:#94a3b8;
 }
 
 </style>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-projectId: "olympiad-portal-d2a5e",
-storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
-messagingSenderId: "341855557503",
-appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const questionsRef = collection(db,"questions");
-
-/* Upload JSON File */
-
-window.uploadFile = async function(){
-
-const file = document.getElementById("jsonFile").files[0];
-
-if(!file){
-alert("Select JSON file");
-return;
-}
-
-const text = await file.text();
-const data = JSON.parse(text);
-
-for(const q of data){
-await addDoc(questionsRef,q);
-}
-
-alert("Upload successful");
-
-loadQuestions();
-}
-
-/* Upload Pasted JSON */
-
-window.uploadPaste = async function(){
-
-const text = document.getElementById("jsonPaste").value;
-
-if(!text){
-alert("Paste JSON questions");
-return;
-}
-
-const data = JSON.parse(text);
-
-for(const q of data){
-await addDoc(questionsRef,q);
-}
-
-alert("Questions uploaded");
-
-document.getElementById("jsonPaste").value="";
-
-loadQuestions();
-}
-
-/* Load Questions */
-
-window.loadQuestions = async function(){
-
-const classFilter=document.getElementById("filterClass").value;
-const subjectFilter=document.getElementById("filterSubject").value;
-
-let q=questionsRef;
-
-if(classFilter){
-q=query(q,where("class","==",classFilter));
-}
-
-if(subjectFilter){
-q=query(q,where("subject","==",subjectFilter));
-}
-
-const snapshot=await getDocs(q);
-
-let html="";
-
-snapshot.forEach((d)=>{
-
-const q=d.data();
-
-html+=`
-<tr>
-<td>${q.class}</td>
-<td>${q.subject}</td>
-<td>${q.q.substring(0,70)}...</td>
-<td>${q.image_url?`<img src="${q.image_url}">`:"-"}</td>
-<td>
-<button onclick="deleteQuestion('${d.id}')" class="delete">Delete</button>
-</td>
-</tr>
-`;
-
-});
-
-document.getElementById("questionsTable").innerHTML=html;
-document.getElementById("count").innerText=snapshot.size;
-
-}
-
-/* Delete Single Question */
-
-window.deleteQuestion = async function(id){
-
-const confirmDelete = confirm("⚠️ WARNING!\n\nDelete this question?\nThis action cannot be undone.");
-
-if(!confirmDelete) return;
-
-await deleteDoc(doc(db,"questions",id));
-
-alert("Question deleted");
-
-loadQuestions();
-}
-
-/* Delete by Class */
-
-window.deleteByClass = async function(){
-
-const c=document.getElementById("deleteClass").value;
-
-if(!c){
-alert("Enter class");
-return;
-}
-
-const confirmDelete = confirm("⚠️ WARNING!\n\nDelete ALL questions of "+c+" ?");
-
-if(!confirmDelete) return;
-
-const q=query(questionsRef,where("class","==",c));
-
-const snapshot=await getDocs(q);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-alert("Questions deleted");
-
-loadQuestions();
-}
-
-/* Delete by Subject */
-
-window.deleteBySubject = async function(){
-
-const s=document.getElementById("deleteSubject").value;
-
-if(!s){
-alert("Enter subject");
-return;
-}
-
-const confirmDelete = confirm("⚠️ WARNING!\n\nDelete ALL "+s+" questions ?");
-
-if(!confirmDelete) return;
-
-const q=query(questionsRef,where("subject","==",s));
-
-const snapshot=await getDocs(q);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-alert("Questions deleted");
-
-loadQuestions();
-}
-
-/* Delete All Questions */
-
-window.deleteAll = async function(){
-
-const confirmDelete = confirm("🚨 DANGER!\n\nYou are about to delete ALL questions.\nThis cannot be undone.\n\nContinue?");
-
-if(!confirmDelete) return;
-
-const confirmFinal = confirm("FINAL CONFIRMATION\n\nAre you absolutely sure?");
-
-if(!confirmFinal) return;
-
-const snapshot=await getDocs(questionsRef);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-alert("All questions deleted");
-
-loadQuestions();
-}
-
-window.onload=loadQuestions;
-
-</script>
-
 </head>
 
 <body>
 
-<h1>🎓 Olympiad Admin Dashboard</h1>
+<nav>
 
-<div class="panel">
+<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 
-<h3>Upload JSON File</h3>
+<div class="nav-links">
 
-<input type="file" id="jsonFile">
-<button onclick="uploadFile()" class="upload">Upload File</button>
+<a href="index.html">Home</a>
+<a href="dashboard.html">Dashboard</a>
+<a href="quiz.html">Take Quiz</a>
+<a href="leaderboard.html">Leaderboard</a>
+
+<a href="admin.html" class="active">Admin</a>
+
+<a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
 
 </div>
 
+</nav>
+
+
+<div class="container">
+
+<!-- Upload JSON -->
+
 <div class="panel">
 
-<h3>Paste JSON Questions</h3>
+<h2>Upload JSON File</h2>
+
+<input type="file" id="jsonFile">
+
+<button class="upload" onclick="uploadFile()">Upload File</button>
+
+</div>
+
+
+<!-- Paste JSON -->
+
+<div class="panel">
+
+<h2>Paste JSON Questions</h2>
 
 <textarea id="jsonPaste" placeholder="Paste JSON questions here"></textarea>
 
-<button onclick="uploadPaste()" class="upload">Upload Pasted Questions</button>
+<button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
 
 </div>
 
+
+<!-- Filters -->
+
 <div class="panel">
 
-<h3>Filter Questions</h3>
-
-<div class="filter">
+<h2>Filter Questions</h2>
 
 <select id="filterClass">
 <option value="">All Classes</option>
@@ -330,39 +228,45 @@ window.onload=loadQuestions;
 <option value="maths">Maths</option>
 <option value="science">Science</option>
 <option value="english">English</option>
+<option value="reasoning">Reasoning</option>
 </select>
 
-<button onclick="loadQuestions()" class="upload">Apply Filter</button>
+<button class="upload" onclick="loadQuestions()">Apply Filter</button>
 
 </div>
 
-</div>
+
+<!-- Delete -->
 
 <div class="panel">
 
-<h3>Delete Questions</h3>
+<h2>Delete Questions</h2>
 
 <input placeholder="class1 - class10" id="deleteClass">
-<button onclick="deleteByClass()" class="delete">Delete by Class</button>
+<button class="delete" onclick="deleteByClass()">Delete by Class</button>
 
 <br><br>
 
-<input placeholder="maths / science / english" id="deleteSubject">
-<button onclick="deleteBySubject()" class="delete">Delete by Subject</button>
+<input placeholder="maths / science / english / reasoning" id="deleteSubject">
+<button class="delete" onclick="deleteBySubject()">Delete by Subject</button>
 
 <br><br>
 
-<button onclick="deleteAll()" class="delete">Delete ALL Questions</button>
+<button class="delete" onclick="deleteAll()">Delete ALL Questions</button>
 
 </div>
 
+
+<!-- Table -->
+
 <div class="panel">
 
-<h3>Total Questions: <span id="count">0</span></h3>
+<h2>Total Questions: <span id="count">0</span></h2>
 
 <table>
 
 <thead>
+
 <tr>
 <th>Class</th>
 <th>Subject</th>
@@ -370,6 +274,7 @@ window.onload=loadQuestions;
 <th>Image</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="questionsTable"></tbody>
@@ -377,6 +282,26 @@ window.onload=loadQuestions;
 </table>
 
 </div>
+
+</div>
+
+
+<footer>
+
+© 2026 Olympiad Portal
+
+</footer>
+
+
+<script>
+
+function logout(){
+if(confirm("Are you sure you want to logout?")){
+window.location.href="login.html";
+}
+}
+
+</script>
 
 </body>
 </html>
