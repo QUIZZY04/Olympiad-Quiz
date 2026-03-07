@@ -8,6 +8,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
 <style>
 
 *{
@@ -23,6 +25,15 @@ color:white;
 overflow-x:hidden;
 }
 
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
 /* NAVBAR */
 
 nav{
@@ -30,7 +41,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:18px 8%;
-background:rgba(255,255,255,0.05);
+background:rgba(0,0,0,0.4);
 backdrop-filter:blur(10px);
 position:sticky;
 top:0;
@@ -45,7 +56,6 @@ color:#f59e0b;
 
 .nav-links{
 display:flex;
-align-items:center;
 gap:25px;
 }
 
@@ -53,7 +63,6 @@ gap:25px;
 text-decoration:none;
 color:white;
 font-weight:500;
-transition:.3s;
 }
 
 .nav-links a:hover{
@@ -70,7 +79,6 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:40px;
-background:radial-gradient(circle at top,#1e293b,#020617);
 }
 
 .hero h1{
@@ -125,16 +133,11 @@ border:1px solid #334155;
 color:white;
 }
 
-.btn-secondary:hover{
-background:#334155;
-}
-
-/* OLYMPIAD SECTION */
+/* ORGANISATIONS */
 
 .org{
 padding:80px 10%;
 text-align:center;
-background:#020617;
 }
 
 .org h2{
@@ -154,8 +157,8 @@ background:#1e293b;
 padding:30px;
 border-radius:14px;
 width:220px;
-transition:.3s;
 border:1px solid #334155;
+transition:.3s;
 }
 
 .org-card:hover{
@@ -167,20 +170,11 @@ height:60px;
 margin-bottom:15px;
 }
 
-.org-card h3{
-font-size:18px;
-}
-
 /* FEATURES */
 
 .features{
 padding:80px 10%;
 text-align:center;
-}
-
-.features h2{
-font-size:32px;
-margin-bottom:50px;
 }
 
 .feature-grid{
@@ -196,11 +190,6 @@ padding:30px;
 border-radius:14px;
 width:260px;
 border:1px solid #334155;
-transition:.3s;
-}
-
-.feature:hover{
-transform:translateY(-6px);
 }
 
 .feature h3{
@@ -208,63 +197,22 @@ color:#f59e0b;
 margin-bottom:10px;
 }
 
-/* FREE TRIAL SECTION */
-
-.trial{
-background:#f59e0b;
-color:black;
-text-align:center;
-padding:70px 20px;
-}
-
-.trial h2{
-font-size:36px;
-margin-bottom:20px;
-}
-
-.trial p{
-max-width:700px;
-margin:auto;
-margin-bottom:30px;
-font-size:18px;
-}
-
-.trial .btn{
-background:black;
-color:white;
-}
-
 /* FOOTER */
 
 footer{
 padding:30px;
 text-align:center;
-background:#020617;
 border-top:1px solid #334155;
 font-size:14px;
 color:#94a3b8;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-nav{
-flex-direction:column;
-gap:10px;
-}
-
-.hero{
-padding-top:60px;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
+
+<div id="particles-js"></div>
 
 <nav>
 
@@ -278,14 +226,13 @@ padding-top:60px;
 
 </nav>
 
-
 <section class="hero">
 
-<h1>Prepare for <span>Olympiad Success</span></h1>
+<h1>Prepare for <span>Olympiad Excellence</span></h1>
 
 <p>
-Master Mathematics, Science and Logical Reasoning with our advanced Olympiad preparation platform.
-Practice challenging questions, track your performance and compete with students nationwide.
+Master Mathematics, Science and Logical Reasoning with our Olympiad preparation platform.
+Practice challenging problems, track your progress and compete with thousands of students.
 </p>
 
 <div class="btn-group">
@@ -302,16 +249,15 @@ Login
 
 </section>
 
-
 <section class="org">
 
-<h2>Major Olympiad Domains</h2>
+<h2>Popular Olympiad Organisations</h2>
 
 <div class="org-grid">
 
 <div class="org-card">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/International_Mathematical_Olympiad_logo.svg">
-<h3>Mathematics Olympiad</h3>
+<h3>IMO</h3>
 </div>
 
 <div class="org-card">
@@ -332,7 +278,6 @@ Login
 </div>
 
 </section>
-
 
 <section class="features">
 
@@ -364,27 +309,39 @@ Login
 
 </section>
 
-
-<section class="trial">
-
-<h2>Start Your Free Olympiad Trial</h2>
-
-<p>
-Join thousands of students preparing for Olympiad exams and start improving today.
-</p>
-
-<a href="signup.html" class="btn">
-Start Free Trial
-</a>
-
-</section>
-
-
 <footer>
 
 © 2026 Popular Olympiad Portal • Empowering Young Minds
 
 </footer>
+
+<script>
+
+particlesJS("particles-js",{
+particles:{
+number:{value:80},
+size:{value:3},
+color:{value:"#f59e0b"},
+line_linked:{
+enable:true,
+distance:150,
+color:"#f59e0b",
+opacity:0.4,
+width:1
+},
+move:{
+enable:true,
+speed:2
+}
+},
+interactivity:{
+events:{
+onhover:{enable:true,mode:"grab"}
+}
+}
+});
+
+</script>
 
 </body>
 </html>
