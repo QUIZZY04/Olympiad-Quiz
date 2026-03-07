@@ -34,6 +34,7 @@ padding:15px 5%;
 display:flex;
 align-items:center;
 justify-content:space-between;
+flex-wrap:wrap;
 }
 
 .brand{
@@ -46,6 +47,7 @@ text-decoration:none;
 .nav-links{
 display:flex;
 gap:12px;
+align-items:center;
 }
 
 .nav-links a{
@@ -75,8 +77,8 @@ border:1px solid var(--border);
 }
 
 h2{
-color:var(--amber);
 margin-top:0;
+color:var(--amber);
 }
 
 input,select,textarea{
@@ -146,15 +148,20 @@ color:#94a3b8;
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 
 <div class="nav-links">
+
 <a href="index.html">Home</a>
 <a href="dashboard.html">Dashboard</a>
 <a href="quiz.html">Take Quiz</a>
 <a href="leaderboard.html">Leaderboard</a>
+
 <a href="admin.html" class="active">Admin</a>
+
 <a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
+
 </div>
 
 </nav>
+
 
 <div class="container">
 
@@ -173,11 +180,17 @@ color:#94a3b8;
 
 <h2>Paste JSON Questions</h2>
 
-<textarea id="jsonPaste"></textarea>
+<textarea id="jsonPaste" placeholder="Paste JSON questions here"></textarea>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
 
 <button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
+
 <button class="upload" onclick="pasteClipboard()">Paste</button>
+
 <button class="delete" onclick="clearPaste()">Clear</button>
+
+</div>
 
 </div>
 
@@ -215,30 +228,12 @@ color:#94a3b8;
 
 <div class="panel">
 
-<h2>Delete Questions</h2>
-
-<input id="deleteClass" placeholder="example: class2">
-<button class="delete" onclick="deleteByClass()">Delete by Class</button>
-
-<br><br>
-
-<input id="deleteSubject" placeholder="example: maths">
-<button class="delete" onclick="deleteBySubject()">Delete by Subject</button>
-
-<br><br>
-
-<button class="delete" onclick="deleteAll()">Delete ALL Questions</button>
-
-</div>
-
-
-<div class="panel">
-
 <h2>Total Questions: <span id="count">0</span></h2>
 
 <table>
 
 <thead>
+
 <tr>
 <th>Class</th>
 <th>Subject</th>
@@ -246,6 +241,7 @@ color:#94a3b8;
 <th>Image</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="questionsTable"></tbody>
@@ -271,7 +267,10 @@ from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
 authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
-projectId:"olympiad-portal-d2a5e"
+projectId:"olympiad-portal-d2a5e",
+storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+messagingSenderId:"341855557503",
+appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 };
 
 const app=initializeApp(firebaseConfig);
@@ -287,21 +286,12 @@ let subjectFilter=document.getElementById("filterSubject").value;
 
 let q=questionsRef;
 
-if(classFilter && subjectFilter){
-q=query(questionsRef,
-where("class","==",classFilter),
-where("subject","==",subjectFilter)
-);
+if(classFilter){
+q=query(q,where("class","==",classFilter));
 }
-else if(classFilter){
-q=query(questionsRef,
-where("class","==",classFilter)
-);
-}
-else if(subjectFilter){
-q=query(questionsRef,
-where("subject","==",subjectFilter)
-);
+
+if(subjectFilter){
+q=query(q,where("subject","==",subjectFilter));
 }
 
 const snapshot=await getDocs(q);
@@ -330,7 +320,106 @@ document.getElementById("count").innerText=snapshot.size;
 }
 
 
+window.uploadPaste=async function(){
+
+try{
+
+const text=document.getElementById("jsonPaste").value.trim();
+
+if(!text){
+alert("Paste JSON questions first");
+return;
+}
+
+const data=JSON.parse(text);
+
+await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+
+alert("Successfully uploaded "+data.length+" questions");
+
+document.getElementById("jsonPaste").value="";
+
+loadQuestions();
+
+}catch{
+
+alert("Invalid JSON format");
+
+}
+
+}
+
+
+window.uploadFile=async function(){
+
+try{
+
+const file=document.getElementById("jsonFile").files[0];
+
+if(!file){
+alert("Select JSON file");
+return;
+}
+
+const text=await file.text();
+const data=JSON.parse(text);
+
+await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+
+alert("Successfully uploaded "+data.length+" questions");
+
+loadQuestions();
+
+}catch{
+
+alert("Invalid JSON file");
+
+}
+
+}
+
+
+window.deleteQuestion=async function(id){
+
+if(!confirm("Delete this question?")) return;
+
+await deleteDoc(doc(db,"questions",id));
+
+loadQuestions();
+
+}
+
+
+window.pasteClipboard=async function(){
+
+try{
+const text=await navigator.clipboard.readText();
+document.getElementById("jsonPaste").value=text;
+}catch{
+alert("Clipboard not allowed");
+}
+
+}
+
+window.clearPaste=function(){
+
+if(confirm("Clear pasted text?")){
+document.getElementById("jsonPaste").value="";
+}
+
+}
+
+
 window.onload=loadQuestions;
+
+
+window.logout=function(){
+
+if(confirm("Logout?")){
+window.location.href="login.html";
+}
+
+}
 
 </script>
 
