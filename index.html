@@ -69,8 +69,6 @@ font-weight:500;
 color:#f59e0b;
 }
 
-/* MOBILE MENU ICON */
-
 .menu-icon{
 display:none;
 font-size:28px;
@@ -81,18 +79,17 @@ color:white;
 /* HERO */
 
 .hero{
-min-height:65vh;
+padding-top:20px;
+padding-bottom:20px;
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
 text-align:center;
-padding-top:40px;
 }
 
 .hero h1{
 font-size:clamp(2.5rem,6vw,4rem);
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
 .hero span{
@@ -103,7 +100,7 @@ color:#f59e0b;
 max-width:700px;
 font-size:18px;
 color:#cbd5f5;
-margin-bottom:35px;
+margin-bottom:25px;
 }
 
 /* BUTTONS */
@@ -139,13 +136,13 @@ transform:translateY(-3px);
 /* PREPARE FOR */
 
 .prepare{
-padding:60px 10%;
+padding:30px 10%;
 text-align:center;
 }
 
 .prepare h2{
-font-size:32px;
-margin-bottom:40px;
+font-size:30px;
+margin-bottom:30px;
 }
 
 .logo-row{
@@ -157,7 +154,7 @@ align-items:center;
 }
 
 .logo-row img{
-height:70px;
+height:65px;
 background:white;
 padding:10px;
 border-radius:8px;
@@ -166,7 +163,7 @@ border-radius:8px;
 /* FEATURES */
 
 .features{
-padding:80px 10%;
+padding:60px 10%;
 text-align:center;
 }
 
@@ -245,7 +242,6 @@ padding:10px;
 
 </nav>
 
-
 <section class="hero">
 
 <h1>Master Your <span>Olympiad Skills</span></h1>
@@ -277,11 +273,8 @@ Login
 <div class="logo-row">
 
 <img src="images/sof.png" alt="SOF Olympiad">
-
 <img src="images/silverzone.png" alt="SilverZone Olympiad">
-
 <img src="images/nstse.png" alt="NSTSE Olympiad">
-
 <img src="images/unified.png" alt="Unified Council">
 
 </div>
@@ -329,7 +322,6 @@ Login
 <script>
 
 function toggleMenu(){
-
 var menu = document.getElementById("navLinks");
 
 if(menu.style.display === "block"){
@@ -337,10 +329,7 @@ menu.style.display = "none";
 }else{
 menu.style.display = "block";
 }
-
 }
-
-/* PARTICLES */
 
 particlesJS("particles-js",{
 particles:{
