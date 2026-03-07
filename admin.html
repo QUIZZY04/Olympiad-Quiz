@@ -34,7 +34,6 @@ padding:15px 5%;
 display:flex;
 align-items:center;
 justify-content:space-between;
-flex-wrap:wrap;
 }
 
 .brand{
@@ -283,7 +282,91 @@ const db=getFirestore(app);
 const questionsRef=collection(db,"questions");
 
 
-window.loadQuestions = async function(){
+function validateQuestion(q,i){
+
+if(!q.class) throw new Error("Question "+(i+1)+" missing class");
+if(!q.subject) throw new Error("Question "+(i+1)+" missing subject");
+if(!q.q) throw new Error("Question "+(i+1)+" missing question text");
+if(!q.o || !Array.isArray(q.o) || q.o.length!=4) throw new Error("Question "+(i+1)+" must have 4 options");
+if(q.a===undefined) throw new Error("Question "+(i+1)+" missing correct answer");
+
+}
+
+
+window.uploadPaste=async function(){
+
+try{
+
+const text=document.getElementById("jsonPaste").value.trim();
+
+if(!text){
+alert("Paste JSON questions first");
+return;
+}
+
+const data=JSON.parse(text);
+
+if(!Array.isArray(data)){
+alert("JSON must be an array");
+return;
+}
+
+for(let i=0;i<data.length;i++){
+validateQuestion(data[i],i);
+}
+
+await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+
+alert("✅ Successfully uploaded "+data.length+" questions");
+
+document.getElementById("jsonPaste").value="";
+
+}catch(e){
+
+alert("❌ "+e.message);
+
+}
+
+}
+
+
+window.uploadFile=async function(){
+
+try{
+
+const file=document.getElementById("jsonFile").files[0];
+
+if(!file){
+alert("Select JSON file");
+return;
+}
+
+const text=await file.text();
+const data=JSON.parse(text);
+
+if(!Array.isArray(data)){
+alert("JSON must be an array");
+return;
+}
+
+for(let i=0;i<data.length;i++){
+validateQuestion(data[i],i);
+}
+
+await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+
+alert("✅ Successfully uploaded "+data.length+" questions");
+
+}catch(e){
+
+alert("❌ "+e.message);
+
+}
+
+}
+
+
+window.loadQuestions=async function(){
 
 let classFilter=document.getElementById("filterClass").value;
 let subjectFilter=document.getElementById("filterSubject").value;
@@ -349,8 +432,6 @@ await deleteDoc(doc(db,"questions",d.id));
 
 alert("Questions deleted");
 
-loadQuestions();
-
 }
 
 
@@ -368,8 +449,6 @@ await deleteDoc(doc(db,"questions",d.id));
 
 alert("Questions deleted");
 
-loadQuestions();
-
 }
 
 
@@ -384,47 +463,6 @@ await deleteDoc(doc(db,"questions",d.id));
 });
 
 alert("All questions deleted");
-
-loadQuestions();
-
-}
-
-
-window.uploadPaste=async function(){
-
-const text=document.getElementById("jsonPaste").value.trim();
-
-if(!text){
-alert("Paste JSON questions first");
-return;
-}
-
-const data=JSON.parse(text);
-
-await Promise.all(data.map(q=>addDoc(questionsRef,q)));
-
-alert("Successfully uploaded "+data.length+" questions");
-
-document.getElementById("jsonPaste").value="";
-
-}
-
-
-window.uploadFile=async function(){
-
-const file=document.getElementById("jsonFile").files[0];
-
-if(!file){
-alert("Select JSON file");
-return;
-}
-
-const text=await file.text();
-const data=JSON.parse(text);
-
-await Promise.all(data.map(q=>addDoc(questionsRef,q)));
-
-alert("Successfully uploaded "+data.length+" questions");
 
 }
 
