@@ -2,163 +2,226 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Popular Olympiad</title>
+<title>Olympiad Portal | Prepare for SOF, SilverZone & Global Olympiads</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
+
+:root{
+--bg:#0f172a;
+--surface:#1e293b;
+--text:#f8fafc;
+--muted:#94a3b8;
+--border:#334155;
+--accent:#f59e0b;
+}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:Inter,sans-serif;
 }
 
 body{
-background:#f5f7fb;
-color:#333;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
 }
 
-/* HEADER */
+/* PARTICLES */
 
-header{
-background:linear-gradient(135deg,#002855,#0057b8);
-color:white;
-padding:20px 60px;
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:1;
+}
+
+/* WRAPPER */
+
+.wrapper{
+position:relative;
+z-index:10;
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+/* NAVBAR */
+
+nav{
+background:rgba(30,41,59,.85);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--border);
+padding:16px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
+.brand{
+font-weight:800;
 font-size:22px;
-font-weight:700;
+color:var(--accent);
+text-decoration:none;
 }
 
-.logo img{
-height:45px;
+.nav-links{
+display:flex;
+gap:20px;
 }
 
-nav a{
+.nav-links a{
 color:white;
 text-decoration:none;
-margin-left:25px;
-font-weight:500;
-transition:0.3s;
+font-size:13px;
+font-weight:700;
+letter-spacing:.5px;
 }
 
-nav a:hover{
-opacity:0.7;
+.nav-links a:hover{
+color:var(--accent);
 }
 
 /* HERO */
 
 .hero{
-height:80vh;
+flex:1;
 display:flex;
+flex-direction:column;
 align-items:center;
 justify-content:center;
 text-align:center;
-padding:40px;
-background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b');
-background-size:cover;
-background-position:center;
-color:white;
+padding:70px 20px;
 }
 
 .hero h1{
-font-size:48px;
+font-size:clamp(2.2rem,6vw,4rem);
+font-weight:800;
 margin-bottom:20px;
+}
+
+.hero h1 span{
+color:var(--accent);
 }
 
 .hero p{
-font-size:20px;
-margin-bottom:30px;
-}
-
-.hero button{
-padding:14px 32px;
-border:none;
-background:#ffb703;
-color:#000;
-font-size:16px;
-font-weight:600;
-border-radius:30px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.hero button:hover{
-background:#ffd166;
-}
-
-/* ABOUT */
-
-.about{
-padding:80px 15%;
-text-align:center;
-}
-
-.about h2{
-font-size:34px;
-margin-bottom:20px;
-color:#002855;
-}
-
-.about p{
+max-width:750px;
+color:var(--muted);
 font-size:18px;
 line-height:1.6;
-color:#555;
+margin-bottom:40px;
+}
+
+/* BUTTONS */
+
+.cta{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.btn{
+padding:16px 34px;
+border-radius:12px;
+font-weight:800;
+font-size:14px;
+text-decoration:none;
+transition:.3s;
+}
+
+.btn-primary{
+background:var(--accent);
+color:black;
+}
+
+.btn-primary:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(245,158,11,.4);
+}
+
+.btn-secondary{
+background:var(--surface);
+border:1px solid var(--border);
+color:white;
+}
+
+/* OLYMPIAD LOGO STRIP */
+
+.olympiads{
+background:#020617;
+padding:35px 0;
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+overflow:hidden;
+}
+
+.logo-track{
+display:flex;
+gap:60px;
+animation:scroll 18s linear infinite;
+align-items:center;
+}
+
+.logo-track img{
+height:50px;
+opacity:.85;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
 }
 
 /* FEATURES */
 
 .features{
+padding:80px 10%;
 display:flex;
-justify-content:center;
-gap:40px;
-padding:60px 10%;
+gap:30px;
 flex-wrap:wrap;
+justify-content:center;
 }
 
-.feature-card{
-background:white;
+.card{
+background:var(--surface);
 padding:30px;
+border-radius:14px;
 width:260px;
-border-radius:12px;
-box-shadow:0 6px 20px rgba(0,0,0,0.1);
-transition:0.3s;
+border:1px solid var(--border);
+text-align:center;
+transition:.3s;
 }
 
-.feature-card:hover{
+.card:hover{
 transform:translateY(-8px);
 }
 
-.feature-card h3{
-color:#0057b8;
+.card h3{
 margin-bottom:10px;
+color:var(--accent);
 }
 
-.feature-card p{
+.card p{
+color:var(--muted);
 font-size:14px;
-color:#666;
 }
 
 /* FOOTER */
 
 footer{
-background:#002855;
-color:white;
 text-align:center;
-padding:20px;
-margin-top:40px;
+padding:30px;
+color:var(--muted);
+border-top:1px solid var(--border);
+font-size:13px;
 }
 
 </style>
@@ -166,80 +229,129 @@ margin-top:40px;
 
 <body>
 
-<header>
+<div id="particles-js"></div>
 
-<div class="logo">
-<img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
-Popular Olympiad
-</div>
+<div class="wrapper">
 
 <nav>
-<a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Register</a>
-<a href="#">Results</a>
-<a href="#">Contact</a>
-</nav>
 
-</header>
+<a href="#" class="brand">🎓 Olympiad Portal</a>
+
+<div class="nav-links">
+<a href="login.html">Login</a>
+<a href="signup.html">Sign Up</a>
+</div>
+
+</nav>
 
 
 <section class="hero">
 
-<div>
-<h1>Welcome to Popular Olympiad</h1>
-<p>Empowering students with knowledge, innovation and competitive spirit.</p>
+<h1>Prepare for <span>World Olympiads</span></h1>
 
-<button onclick="location.href='quiz.html'">Start Olympiad</button>
+<p>
+Your ultimate preparation platform for international and national Olympiads.
+Practice for **SOF, SilverZone, NSTSE, IMO, NSO and many more** through
+advanced quizzes, analytics, and real-time rankings.
+</p>
+
+<div class="cta">
+
+<a href="signup.html" class="btn btn-primary">
+Start Learning Free
+</a>
+
+<a href="login.html" class="btn btn-secondary">
+Continue Practice
+</a>
+
 </div>
 
 </section>
 
 
-<section class="about">
+<section class="olympiads">
 
-<h2>About Popular Olympiad</h2>
+<div class="logo-track">
 
-<p>
-Popular Olympiad is a national level academic competition designed to inspire
-students to excel in Science, Mathematics, Logical Reasoning and Technology.
-Our mission is to nurture young minds and promote analytical thinking through
-engaging and challenging quizzes.
-</p>
+<img src="https://upload.wikimedia.org/wikipedia/en/7/7b/Science_Olympiad_Foundation_logo.png">
+
+<img src="https://silverzone.org/wp-content/uploads/2020/02/logo.png">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/International_Mathematical_Olympiad_logo.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/International_Physics_Olympiad_logo.png">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/e/e2/NSTSE_logo.png">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/7/7b/Science_Olympiad_Foundation_logo.png">
+
+<img src="https://silverzone.org/wp-content/uploads/2020/02/logo.png">
+
+</div>
 
 </section>
 
 
 <section class="features">
 
-<div class="feature-card">
-<h3>National Competition</h3>
-<p>Students from different schools compete and showcase their academic excellence.</p>
+<div class="card">
+<h3>Olympiad Practice Tests</h3>
+<p>Thousands of Olympiad level questions for Mathematics, Science and Logical Reasoning.</p>
 </div>
 
-<div class="feature-card">
-<h3>Instant Results</h3>
-<p>Participants get real-time results and performance analysis.</p>
+<div class="card">
+<h3>Global Rankings</h3>
+<p>Compete with students nationwide and track your rank instantly.</p>
 </div>
 
-<div class="feature-card">
-<h3>Scholarships</h3>
-<p>Top performers receive certificates, medals and scholarship opportunities.</p>
+<div class="card">
+<h3>Performance Analytics</h3>
+<p>Detailed analysis of your strengths and weaknesses to improve faster.</p>
 </div>
 
-<div class="feature-card">
-<h3>Skill Development</h3>
-<p>Improves logical reasoning, problem solving and academic confidence.</p>
+<div class="card">
+<h3>AI Based Practice</h3>
+<p>Adaptive quizzes that adjust difficulty based on your performance.</p>
 </div>
 
 </section>
 
-
 <footer>
 
-<p>© 2026 Popular Olympiad | All Rights Reserved</p>
+© 2026 Olympiad Portal • Built for Future Champions
 
 </footer>
+
+</div>
+
+
+<script>
+
+particlesJS("particles-js",{
+particles:{
+number:{value:60,density:{enable:true,value_area:800}},
+color:{value:"#f59e0b"},
+shape:{type:"circle"},
+opacity:{value:.3},
+size:{value:3,random:true},
+line_linked:{enable:true,distance:150,color:"#f59e0b",opacity:.15,width:1},
+move:{enable:true,speed:1.5}
+},
+interactivity:{
+detect_on:"canvas",
+events:{
+onhover:{enable:true,mode:"grab"},
+onclick:{enable:true,mode:"push"}
+},
+modes:{
+grab:{distance:140,line_linked:{opacity:1}}
+}
+},
+retina_detect:true
+});
+
+</script>
 
 </body>
 </html>
