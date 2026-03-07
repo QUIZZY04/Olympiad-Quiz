@@ -9,9 +9,9 @@
 
   <style>
     :root {
-      --bg: #0f172a;                 
+      --bg: #0f172a;                  
       --surface: #1e293b;            
-      --text: #f8fafc;               
+      --text: #f8fafc;                
       --muted: #94a3b8;              
       --border: #334155;             
       --brand: #38bdf8;              
@@ -158,6 +158,35 @@
 
     button:hover { background: #fbbf24; transform: translateY(-2px); }
 
+    /* GOOGLE BUTTON STYLES */
+    .google-btn {
+      background: white;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      text-transform: none; /* Keep Google branding standard */
+    }
+    .google-btn:hover { background: #f1f5f9; }
+    .google-btn img { width: 18px; }
+
+    .divider {
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      margin: 0 10px;
+    }
+
     .login-link {
       margin-top: 25px;
       padding-top: 20px;
@@ -238,6 +267,14 @@
 
                 <button type="submit">Join Now</button>
             </form>
+
+            <div class="divider">OR</div>
+
+            <button type="button" class="google-btn" id="googleBtn">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/navigation/google_hl.svg" alt="Google icon">
+                Sign in with Google
+            </button>
+
             <p class="login-link">Already a member? <a href="login.html">Sign In</a></p>
         </div>
     </div>
@@ -245,8 +282,8 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -260,7 +297,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
+// Standard Email Signup
 document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     const name=document.getElementById("name").value.trim();
@@ -276,6 +315,34 @@ document.getElementById("signupForm").addEventListener("submit", async (e)=>{
         alert("Account Created Successfully!");
         window.location.href="login.html";
     } catch(error) { alert(error.message); }
+});
+
+// Google Sign-In Logic
+document.getElementById("googleBtn").addEventListener("click", async () => {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // Verify if user already exists in Firestore to prevent data loss
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        
+        if (!userDoc.exists()) {
+            // New user via Google: Prompt for mandatory Class selection
+            const userClass = prompt("Welcome! Please enter your grade (e.g., class5):") || "class1";
+            
+            await setDoc(doc(db, "users", user.uid), {
+                name: user.displayName,
+                email: user.email,
+                class: userClass,
+                createdAt: new Date()
+            });
+        }
+        
+        alert("Signed in with Google!");
+        window.location.href = "dashboard.html";
+    } catch (error) {
+        alert("Authentication failed: " + error.message);
+    }
 });
 </script>
 
