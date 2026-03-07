@@ -1,176 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Olympiad Portal | Secure Excellence</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --primary: #f59e0b;
-      --bg-dark: #020617;
-      --bg-card: rgba(15, 23, 42, 0.8);
-      --border: rgba(255, 255, 255, 0.08);
-      --text-white: #ffffff;
-      --text-gray: #94a3b8;
-    }
+<title>Popular Olympiad | Ignite Your Potential</title>
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    body { background: var(--bg-dark); color: var(--text-white); overflow-x: hidden; height: 100vh; }
+<style>
 
-    /* --- Background FX --- */
-    #particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-    
-    .glow-blob {
-      position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
-      top: -100px; right: -100px; z-index: 2; border-radius: 50%;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-    .main-wrapper { position: relative; z-index: 10; display: flex; flex-direction: column; min-height: 100vh; }
+body{
+background:#0f172a;
+color:white;
+overflow-x:hidden;
+}
 
-    /* --- Secure Navigation --- */
-    nav {
-      padding: 25px 8%; display: flex; justify-content: space-between; align-items: center;
-      background: linear-gradient(to bottom, #020617, transparent);
-    }
+/* NAVBAR */
 
-    .brand { font-size: 26px; font-weight: 800; letter-spacing: -1.5px; display: flex; align-items: center; gap: 10px; }
-    .brand span { color: var(--primary); }
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:1000;
+}
 
-    .nav-auth { display: flex; gap: 30px; align-items: center; }
-    .nav-auth a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 14px; transition: 0.3s; }
-    .nav-auth a:hover { color: var(--text-white); }
+.logo{
+font-size:24px;
+font-weight:800;
+color:#f59e0b;
+}
 
-    .btn-login-outline {
-      padding: 10px 24px; border: 1.5px solid var(--primary); border-radius: 50px;
-      color: var(--primary) !important; transition: 0.3s ease;
-    }
-    .btn-login-outline:hover { background: var(--primary); color: #000 !important; }
+.nav-links{
+display:flex;
+align-items:center;
+gap:25px;
+}
 
-    /* --- Professional Hero --- */
-    .hero-container {
-      flex: 1; display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; padding: 0 8%; gap: 50px;
-    }
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
 
-    .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1; font-weight: 800; margin-bottom: 25px; }
-    .hero-content p { font-size: 19px; color: var(--text-gray); line-height: 1.7; margin-bottom: 40px; max-width: 520px; font-weight: 300; }
+.nav-links a:hover{
+color:#f59e0b;
+}
 
-    .secure-badge {
-      display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
-      background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2);
-      border-radius: 50px; color: #22c55e; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px;
-    }
+/* HERO */
 
-    /* --- Access Control Visual --- */
-    .access-locker {
-      position: relative; background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 30px; height: 500px; padding: 40px;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      overflow: hidden; backdrop-filter: blur(5px);
-    }
+.hero{
+min-height:90vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
+background:radial-gradient(circle at top,#1e293b,#020617);
+}
 
-    .blurred-ui {
-      width: 100%; height: 100%; position: absolute; top: 0; left: 0;
-      opacity: 0.2; filter: blur(15px); pointer-events: none;
-      background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px);
-    }
+.hero h1{
+font-size:clamp(2.5rem,6vw,4rem);
+font-weight:800;
+margin-bottom:20px;
+}
 
-    .lock-ui {
-      z-index: 5; text-align: center;
-    }
+.hero span{
+color:#f59e0b;
+}
 
-    .lock-icon { font-size: 50px; margin-bottom: 20px; display: block; }
+.hero p{
+max-width:720px;
+font-size:18px;
+color:#cbd5f5;
+line-height:1.6;
+margin-bottom:40px;
+}
 
-    .btn-portal {
-      background: var(--primary); color: #000; text-decoration: none; padding: 18px 45px;
-      border-radius: 12px; font-weight: 800; display: inline-block; margin-top: 25px;
-      box-shadow: 0 20px 40px rgba(245, 158, 11, 0.2); transition: 0.3s;
-    }
-    .btn-portal:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(245, 158, 11, 0.3); }
+/* BUTTONS */
 
-    /* --- Logo Bar --- */
-    .logo-footer {
-      padding: 50px 0; border-top: 1px solid var(--border); background: #01040a;
-    }
-    .logo-footer p { text-align: center; color: var(--text-gray); font-size: 12px; letter-spacing: 2px; margin-bottom: 30px; font-weight: 600; }
-    .logos-row { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; opacity: 0.5; }
-    .logos-row img { height: 35px; filter: grayscale(1) invert(1); }
+.btn-group{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
 
-    @media (max-width: 1024px) {
-      .hero-container { grid-template-columns: 1fr; text-align: center; padding-top: 50px; }
-      .hero-content p { margin: 0 auto 40px; }
-      .nav-auth { display: none; }
-      .access-locker { height: 400px; }
-    }
-  </style>
+.btn{
+padding:16px 34px;
+border-radius:10px;
+font-weight:600;
+text-decoration:none;
+transition:.3s;
+font-size:15px;
+}
+
+.btn-primary{
+background:#f59e0b;
+color:black;
+}
+
+.btn-primary:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 30px rgba(245,158,11,.5);
+}
+
+.btn-secondary{
+background:#1e293b;
+border:1px solid #334155;
+color:white;
+}
+
+.btn-secondary:hover{
+background:#334155;
+}
+
+/* OLYMPIAD SECTION */
+
+.org{
+padding:80px 10%;
+text-align:center;
+background:#020617;
+}
+
+.org h2{
+font-size:32px;
+margin-bottom:50px;
+}
+
+.org-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+}
+
+.org-card{
+background:#1e293b;
+padding:30px;
+border-radius:14px;
+width:220px;
+transition:.3s;
+border:1px solid #334155;
+}
+
+.org-card:hover{
+transform:translateY(-6px);
+}
+
+.org-card img{
+height:60px;
+margin-bottom:15px;
+}
+
+.org-card h3{
+font-size:18px;
+}
+
+/* FEATURES */
+
+.features{
+padding:80px 10%;
+text-align:center;
+}
+
+.features h2{
+font-size:32px;
+margin-bottom:50px;
+}
+
+.feature-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+}
+
+.feature{
+background:#1e293b;
+padding:30px;
+border-radius:14px;
+width:260px;
+border:1px solid #334155;
+transition:.3s;
+}
+
+.feature:hover{
+transform:translateY(-6px);
+}
+
+.feature h3{
+color:#f59e0b;
+margin-bottom:10px;
+}
+
+/* FREE TRIAL SECTION */
+
+.trial{
+background:#f59e0b;
+color:black;
+text-align:center;
+padding:70px 20px;
+}
+
+.trial h2{
+font-size:36px;
+margin-bottom:20px;
+}
+
+.trial p{
+max-width:700px;
+margin:auto;
+margin-bottom:30px;
+font-size:18px;
+}
+
+.trial .btn{
+background:black;
+color:white;
+}
+
+/* FOOTER */
+
+footer{
+padding:30px;
+text-align:center;
+background:#020617;
+border-top:1px solid #334155;
+font-size:14px;
+color:#94a3b8;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+gap:10px;
+}
+
+.hero{
+padding-top:60px;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="glow-blob"></div>
-<div id="particles-js"></div>
+<nav>
 
-<div class="main-wrapper">
-  <nav>
-    <div class="brand">🎓 Olympiad<span>Portal</span></div>
-    <div class="nav-auth">
-      <a href="signup.html">Create Account</a>
-      <a href="login.html" class="btn-login-outline">Administrator Login</a>
-    </div>
-  </nav>
+<div class="logo">🏆 Popular Olympiad</div>
 
-  <main class="hero-container">
-    <div class="hero-content">
-      <div class="secure-badge">● End-to-End Encrypted Prep</div>
-      <h1>Unlock Your <span>Academic Apex.</span></h1>
-      <p>A secure, high-difficulty training environment for students chasing global rankings in IMO, NSO, and specialized science streams.</p>
-      <div style="display: flex; gap: 20px;">
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Science_Olympiad_Foundation_Logo.png/220px-Science_Olympiad_Foundation_Logo.png" style="height: 40px; opacity: 0.8; filter: invert(1);">
-        <img src="https://www.silverzone.org/Content/img/logo.png" style="height: 40px; opacity: 0.8; filter: invert(1);">
-      </div>
-    </div>
-
-    <div class="access-locker">
-      <div class="blurred-ui"></div>
-      <div class="lock-ui">
-        <span class="lock-icon">🔒</span>
-        <h2 style="font-weight: 800; margin-bottom: 10px;">Portal Locked</h2>
-        <p style="color: var(--text-gray); font-size: 15px;">Login required to access training modules, analytics, and global leaderboards.</p>
-        <a href="login.html" class="btn-portal">Sign In to Dashboard</a>
-        <br>
-        <a href="signup.html" style="color: var(--text-gray); font-size: 12px; margin-top: 20px; display: block;">Don't have an account? Join Free</a>
-      </div>
-    </div>
-  </main>
-
-  <section class="logo-footer">
-    <p>OFFICIAL PREPARATION PARTNER CONTENT</p>
-    <div class="logos-row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Science_Olympiad_Foundation_Logo.png/220px-Science_Olympiad_Foundation_Logo.png" alt="SOF">
-      <img src="https://www.silverzone.org/Content/img/logo.png" alt="SilverZone">
-      <img src="https://crestolympiads.com/assets/images/crest-logo.png" alt="CREST">
-      <img src="https://www.unifiedcouncil.com/images/logo.png" alt="Unified Council">
-      <img src="https://asmo2u.com/wp-content/uploads/2018/01/logo-asmo.png" alt="ASMO">
-    </div>
-  </section>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="login.html">Login</a>
+<a href="signup.html">Register</a>
 </div>
 
-<script>
-  particlesJS("particles-js", {
-    "particles": {
-      "number": { "value": 35, "density": { "enable": true, "value_area": 800 } },
-      "color": { "value": "#ffffff" },
-      "opacity": { "value": 0.1 },
-      "size": { "value": 2 },
-      "line_linked": { "enable": true, "distance": 180, "color": "#ffffff", "opacity": 0.05, "width": 1 },
-      "move": { "enable": true, "speed": 0.6 }
-    },
-    "retina_detect": true
-  });
-</script>
+</nav>
+
+
+<section class="hero">
+
+<h1>Prepare for <span>Olympiad Success</span></h1>
+
+<p>
+Master Mathematics, Science and Logical Reasoning with our advanced Olympiad preparation platform.
+Practice challenging questions, track your performance and compete with students nationwide.
+</p>
+
+<div class="btn-group">
+
+<a href="signup.html" class="btn btn-primary">
+Start Your Free Trial
+</a>
+
+<a href="login.html" class="btn btn-secondary">
+Login
+</a>
+
+</div>
+
+</section>
+
+
+<section class="org">
+
+<h2>Major Olympiad Domains</h2>
+
+<div class="org-grid">
+
+<div class="org-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/International_Mathematical_Olympiad_logo.svg">
+<h3>Mathematics Olympiad</h3>
+</div>
+
+<div class="org-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/International_Physics_Olympiad_logo.svg">
+<h3>Physics Olympiad</h3>
+</div>
+
+<div class="org-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/International_Chemistry_Olympiad_logo.svg">
+<h3>Chemistry Olympiad</h3>
+</div>
+
+<div class="org-card">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/International_Biology_Olympiad_logo.svg">
+<h3>Biology Olympiad</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="features">
+
+<h2>Why Choose Our Platform</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+<h3>Olympiad Level Questions</h3>
+<p>Practice thousands of challenging questions designed for Olympiad exams.</p>
+</div>
+
+<div class="feature">
+<h3>Performance Analytics</h3>
+<p>Detailed reports to analyze strengths and improve weak areas.</p>
+</div>
+
+<div class="feature">
+<h3>National Ranking</h3>
+<p>Compare your performance with students across the country.</p>
+</div>
+
+<div class="feature">
+<h3>Smart Learning</h3>
+<p>Adaptive practice tests that adjust difficulty automatically.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="trial">
+
+<h2>Start Your Free Olympiad Trial</h2>
+
+<p>
+Join thousands of students preparing for Olympiad exams and start improving today.
+</p>
+
+<a href="signup.html" class="btn">
+Start Free Trial
+</a>
+
+</section>
+
+
+<footer>
+
+© 2026 Popular Olympiad Portal • Empowering Young Minds
+
+</footer>
 
 </body>
 </html>
