@@ -9,11 +9,11 @@
 
   <style>
     :root {
-      --bg: #0f172a;                 
+      --bg: #0f172a;                  
       --surface: #1e293b;            
-      --text: #f8fafc;               
+      --text: #f8fafc;                
       --muted: #94a3b8;              
-      --border: #334155;             
+      --border: #334155;              
       --brand: #38bdf8;              
       --amber: #f59e0b;              
       --danger: #ef4444;
@@ -74,8 +74,7 @@
     }
 
     h2 { font-size: 28px; font-weight: 800; margin-bottom: 30px; color: var(--text); }
-    p.desc { color: var(--muted); font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
-
+    
     input {
       width: 100%;
       padding: 14px 18px;
@@ -142,7 +141,6 @@
     }
 
     .hidden { display: none; }
-
   </style>
 </head>
 
@@ -184,6 +182,7 @@
             <form id="forgotForm">
                 <input type="email" id="resetEmail" placeholder="Email Address" required>
                 <button type="submit" class="main-btn">Send Link</button>
+                <button type="button" class="link-btn" style="margin-top:15px;" onclick="toggleView('loginSection')">Back to Login</button>
             </form>
         </div>
 
@@ -193,19 +192,28 @@
                 <input type="password" id="currentPassword" placeholder="Current Password" required>
                 <input type="password" id="newPassword" placeholder="New Password" required>
                 <button type="submit" class="main-btn">Update Password</button>
+                <button type="button" class="link-btn" style="margin-top:15px;" onclick="toggleView('loginSection')">Back to Login</button>
             </form>
         </div>
 
         <p class="signup-text">
-            New to the portal? <a href="signup.html">Create an Account</a>
+            New to the portal? <a href="signup.html" style="color: var(--amber); text-decoration: none;">Create an Account</a>
         </p>
     </div>
 </div>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, updatePassword, reauthenticateWithCredential, EmailAuthProvider, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    sendPasswordResetEmail, 
+    updatePassword, 
+    reauthenticateWithCredential, 
+    EmailAuthProvider, 
+    signInWithPopup, 
+    GoogleAuthProvider 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -220,27 +228,65 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+// Logic to switch between Login, Forgot, and Change views
+window.toggleView = function(sectionId) {
+    document.getElementById('loginSection').classList.add('hidden');
+    document.getElementById('forgotSection').classList.add('hidden');
+    document.getElementById('changeSection').classList.add('hidden');
+    document.getElementById(sectionId).classList.remove('hidden');
+};
+
+// Login Logic
 document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     try {
         await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
-
-        sessionStorage.setItem("loggedIn","true");   // added for page protection
-
+        sessionStorage.setItem("loggedIn","true");
         window.location.href="dashboard.html";
     } catch(err) { alert(err.message); }
 });
 
+// Google Sign-In Logic
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
     try {
         await signInWithPopup(auth, provider);
-
-        sessionStorage.setItem("loggedIn","true");   // added for page protection
-
+        sessionStorage.setItem("loggedIn","true");
         window.location.href = "dashboard.html";
     } catch (err) { alert(err.message); }
 });
 
+// Forgot Password Logic
+document.getElementById("forgotForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("resetEmail").value;
+    try {
+        await sendPasswordResetEmail(auth, email);
+        alert("Password reset email sent!");
+        toggleView('loginSection');
+    } catch (err) { alert(err.message); }
+});
+
+// Change Password Logic (Requires being logged in)
+document.getElementById("changeForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const user = auth.currentUser;
+    const currentPass = document.getElementById("currentPassword").value;
+    const newPass = document.getElementById("newPassword").value;
+
+    if (!user) {
+        alert("Please log in first to change your password.");
+        toggleView('loginSection');
+        return;
+    }
+
+    try {
+        const credential = EmailAuthProvider.credential(user.email, currentPass);
+        await reauthenticateWithCredential(user, credential);
+        await updatePassword(user, newPass);
+        alert("Password updated successfully!");
+        toggleView('loginSection');
+    } catch (err) { alert(err.message); }
+});
 </script>
 
 </body>
