@@ -282,7 +282,91 @@ font-size:12px;
 </select>
 </div>
 
-<!-- YOUR ORIGINAL PAGE CONTENT REMAINS SAME -->
+<div class="grid">
+
+<div class="card" onclick="startQuiz('maths')">
+<h3>Mathematics</h3>
+<p>Challenge your logic with Algebra, Geometry, and Arithmetic.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+<div class="card" onclick="startQuiz('science')">
+<h3>Science</h3>
+<p>Explore Physics, Chemistry, and Biology.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+<div class="card" onclick="startQuiz('english')">
+<h3>English</h3>
+<p>Master Vocabulary, Grammar, and Reading skills.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+<div class="card" onclick="startQuiz('reasoning')">
+<h3>Logical Reasoning</h3>
+<p>Sharpen your mind with patterns and puzzles.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+</div>
+
+<section class="instructions-section">
+
+<h2>📝 Quiz Rules & Instructions</h2>
+
+<div class="ins-grid">
+
+<div class="ins-item">
+<div class="ins-icon">1</div>
+<div class="ins-text">
+<strong>Duration & Submission</strong>
+You have 30 minutes. The system auto-submits when time ends.
+</div>
+</div>
+
+<div class="ins-item">
+<div class="ins-icon">2</div>
+<div class="ins-text">
+<strong>Navigation Palette</strong>
+Green = Answered, Red = Visited, Grey = Unseen.
+</div>
+</div>
+
+<div class="ins-item">
+<div class="ins-icon">3</div>
+<div class="ins-text">
+<strong>Save & Next</strong>
+Click "Save & Next" to store your answer.
+</div>
+</div>
+
+<div class="ins-item">
+<div class="ins-icon">4</div>
+<div class="ins-text">
+<strong>Mark for Review</strong>
+Use if you want to revisit a question later.
+</div>
+</div>
+
+<div class="ins-item">
+<div class="ins-icon">5</div>
+<div class="ins-text">
+<strong>Internet Stability</strong>
+Maintain a stable internet connection.
+</div>
+</div>
+
+<div class="ins-item">
+<div class="ins-icon">6</div>
+<div class="ins-text">
+<strong>Results & Feedback</strong>
+Score and analysis appear after submission.
+</div>
+</div>
+
+</div>
+
+</section>
 
 </main>
 
@@ -305,19 +389,43 @@ appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 
-/* LOGOUT SECURITY ADDED */
+function startQuiz(subject){
+localStorage.setItem("selectedClass",document.getElementById("classSelect").value);
+localStorage.setItem("selectedSubject",subject);
+window.location.href="quiz.html";
+}
+
+window.startQuiz=startQuiz;
 
 window.logout=function(){
-
 if(confirm("Are you sure you want to logout?")){
-
 sessionStorage.removeItem("loggedIn");
-
 window.location.replace("login.html");
+}
+};
+
+window.onload=()=>{
+const lastClass=localStorage.getItem("selectedClass");
+if(lastClass){
+document.getElementById("classSelect").value=lastClass;
+}
+};
+
+onAuthStateChanged(auth,(user)=>{
+
+const adminEmail="madhhu52@gmail.com";
+
+if(user && user.email===adminEmail){
+
+const adminTab=document.getElementById("adminTab");
+
+if(adminTab){
+adminTab.style.display="inline";
+}
 
 }
 
-};
+});
 
 </script>
 
