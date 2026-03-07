@@ -5,9 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Olympiad Portal | Prepare for SOF, SilverZone & Global Olympiads</title>
+<title>Olympiad Portal | Prepare for Global Olympiads</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
@@ -34,12 +35,16 @@ color:var(--text);
 overflow-x:hidden;
 }
 
+/* PARTICLES BACKGROUND */
+
 #particles-js{
 position:fixed;
 width:100%;
 height:100%;
 z-index:1;
 }
+
+/* WRAPPER */
 
 .wrapper{
 position:relative;
@@ -59,8 +64,6 @@ padding:16px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-position:sticky;
-top:0;
 }
 
 .brand{
@@ -80,7 +83,6 @@ color:white;
 text-decoration:none;
 font-size:13px;
 font-weight:700;
-letter-spacing:.5px;
 }
 
 .nav-links a:hover{
@@ -100,7 +102,7 @@ padding:80px 20px;
 }
 
 .hero h1{
-font-size:clamp(2.2rem,6vw,4rem);
+font-size:clamp(2.5rem,6vw,4rem);
 font-weight:800;
 margin-bottom:20px;
 }
@@ -158,24 +160,24 @@ background:#020617;
 padding:40px 0;
 border-top:1px solid var(--border);
 border-bottom:1px solid var(--border);
-overflow:hidden;
 }
 
-.logo-track{
+.logo-container{
 display:flex;
+justify-content:center;
 gap:60px;
-animation:scroll 20s linear infinite;
+flex-wrap:wrap;
 align-items:center;
 }
 
-.logo-track img{
-height:50px;
+.logo-container img{
+height:60px;
 opacity:.9;
+transition:.3s;
 }
 
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
+.logo-container img:hover{
+transform:scale(1.1);
 }
 
 /* FEATURES */
@@ -222,19 +224,6 @@ border-top:1px solid var(--border);
 font-size:13px;
 }
 
-@media(max-width:768px){
-
-nav{
-flex-direction:column;
-gap:10px;
-}
-
-.logo-track{
-gap:35px;
-}
-
-}
-
 </style>
 </head>
 
@@ -258,23 +247,22 @@ gap:35px;
 
 <section class="hero">
 
-<h1>Master Your <span>Olympiad Skills</span></h1>
+<h1>Crack the <span>Olympiad Exams</span></h1>
 
 <p>
-Prepare for the world's most prestigious Olympiad exams including
-SOF Olympiads, SilverZone, NSTSE, IMO and more.  
-Practice advanced questions, analyze performance and compete with
-students across the country.
+Prepare for prestigious Olympiads like Mathematics, Physics,
+Chemistry and Science Olympiads. Practice challenging problems,
+track your progress and compete with the best students.
 </p>
 
 <div class="cta">
 
 <a href="signup.html" class="btn btn-primary">
-Start Preparation
+Start Learning
 </a>
 
 <a href="login.html" class="btn btn-secondary">
-Continue Learning
+Continue Practice
 </a>
 
 </div>
@@ -284,7 +272,7 @@ Continue Learning
 
 <section class="olympiads">
 
-<div class="logo-track">
+<div class="logo-container">
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/International_Mathematical_Olympiad_logo.svg">
 
@@ -294,10 +282,6 @@ Continue Learning
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/International_Biology_Olympiad_logo.svg">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/International_Mathematical_Olympiad_logo.svg">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/International_Physics_Olympiad_logo.svg">
-
 </div>
 
 </section>
@@ -306,68 +290,21 @@ Continue Learning
 <section class="features">
 
 <div class="card">
-<h3>Olympiad Practice Tests</h3>
-<p>Thousands of Olympiad-level questions for Maths, Science and Logical Reasoning.</p>
+<h3>Olympiad Practice</h3>
+<p>Practice thousands of Olympiad-level questions in Maths, Science and Reasoning.</p>
 </div>
 
 <div class="card">
 <h3>National Ranking</h3>
-<p>Compete with students across India and track your rank instantly.</p>
+<p>See your ranking among thousands of students across the country.</p>
 </div>
 
 <div class="card">
-<h3>Performance Analytics</h3>
-<p>Get detailed reports showing your strengths and areas to improve.</p>
+<h3>Performance Reports</h3>
+<p>Detailed analytics to understand your strengths and improve weak areas.</p>
 </div>
 
 <div class="card">
 <h3>Smart Learning</h3>
-<p>Adaptive quizzes designed to improve problem-solving skills.</p>
-</div>
-
-</section>
-
-
-<footer>
-
-© 2026 Olympiad Portal • Ignite Your Potential
-
-</footer>
-
-</div>
-
-
-<script>
-
-particlesJS("particles-js",{
-
-particles:{
-number:{value:60,density:{enable:true,value_area:800}},
-color:{value:"#f59e0b"},
-shape:{type:"circle"},
-opacity:{value:.3},
-size:{value:3,random:true},
-line_linked:{enable:true,distance:150,color:"#f59e0b",opacity:.15,width:1},
-move:{enable:true,speed:1.5}
-},
-
-interactivity:{
-detect_on:"canvas",
-events:{
-onhover:{enable:true,mode:"grab"},
-onclick:{enable:true,mode:"push"}
-},
-modes:{
-grab:{distance:140,line_linked:{opacity:1}}
-}
-},
-
-retina_detect:true
-
-});
-
-</script>
-
-</body>
-</html>
+<p>Adaptive quizzes that adjust difficulty ba
 ```
