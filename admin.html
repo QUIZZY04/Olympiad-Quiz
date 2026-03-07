@@ -30,14 +30,22 @@ border:none;
 border-radius:6px;
 cursor:pointer;
 font-weight:bold;
+margin-top:10px;
 }
 
 .upload{background:#22c55e;color:white;}
 .delete{background:#ef4444;color:white;}
 
-input{
-padding:8px;
-margin-right:10px;
+input,textarea{
+padding:10px;
+margin-top:10px;
+width:100%;
+border-radius:6px;
+border:none;
+}
+
+textarea{
+height:200px;
 }
 
 table{
@@ -78,6 +86,9 @@ const db = getFirestore(app);
 
 const questionsRef = collection(db,"questions");
 
+
+/* FILE UPLOAD */
+
 window.uploadJSON = async function(){
 
 const file = document.getElementById("jsonFile").files[0];
@@ -94,11 +105,40 @@ for(const q of data){
 await addDoc(questionsRef,q);
 }
 
-alert("Upload complete");
+alert("Questions uploaded successfully");
 
 loadQuestions();
 
 }
+
+
+/* PASTE JSON */
+
+window.uploadPaste = async function(){
+
+const text = document.getElementById("jsonPaste").value;
+
+if(!text){
+alert("Paste JSON questions");
+return;
+}
+
+const data = JSON.parse(text);
+
+for(const q of data){
+await addDoc(questionsRef,q);
+}
+
+alert("Questions uploaded");
+
+document.getElementById("jsonPaste").value="";
+
+loadQuestions();
+
+}
+
+
+/* LOAD QUESTIONS */
 
 window.loadQuestions = async function(){
 
@@ -128,6 +168,9 @@ document.getElementById("count").innerText=snapshot.size;
 
 }
 
+
+/* DELETE SINGLE */
+
 window.deleteQuestion = async function(id){
 
 if(!confirm("Delete this question?")) return;
@@ -137,6 +180,9 @@ await deleteDoc(doc(db,"questions",id));
 loadQuestions();
 
 }
+
+
+/* DELETE BY CLASS */
 
 window.deleteByClass = async function(){
 
@@ -156,6 +202,9 @@ loadQuestions();
 
 }
 
+
+/* DELETE BY SUBJECT */
+
 window.deleteBySubject = async function(){
 
 const s=document.getElementById("subjectDelete").value;
@@ -173,6 +222,9 @@ alert("Deleted");
 loadQuestions();
 
 }
+
+
+/* DELETE ALL */
 
 window.deleteAll = async function(){
 
@@ -198,14 +250,27 @@ window.onload=loadQuestions;
 
 <h1>🎓 Olympiad Admin Dashboard</h1>
 
+
 <div class="panel">
 
-<h3>Upload Questions JSON</h3>
+<h3>Upload Questions (JSON File)</h3>
 
 <input type="file" id="jsonFile">
-<button onclick="uploadJSON()" class="upload">Upload</button>
+<button onclick="uploadJSON()" class="upload">Upload File</button>
 
 </div>
+
+
+<div class="panel">
+
+<h3>Paste JSON Questions</h3>
+
+<textarea id="jsonPaste" placeholder="Paste JSON questions here..."></textarea>
+
+<button onclick="uploadPaste()" class="upload">Upload Pasted Questions</button>
+
+</div>
+
 
 <div class="panel">
 
@@ -224,6 +289,7 @@ window.onload=loadQuestions;
 <button onclick="deleteAll()" class="delete">Delete ALL Questions</button>
 
 </div>
+
 
 <div class="panel">
 
