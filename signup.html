@@ -167,7 +167,7 @@
       justify-content: center;
       gap: 10px;
       margin-top: 15px;
-      text-transform: none; /* Keep Google branding standard */
+      text-transform: none; 
     }
     .google-btn:hover { background: #f1f5f9; }
     .google-btn img { width: 18px; }
@@ -272,7 +272,7 @@
 
             <button type="button" class="google-btn" id="googleBtn">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/navigation/google_hl.svg" alt="Google icon">
-                Sign in with Google
+                Continue with Google
             </button>
 
             <p class="login-link">Already a member? <a href="login.html">Sign In</a></p>
@@ -299,7 +299,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// Standard Email Signup
+// Email Signup
 document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     const name=document.getElementById("name").value.trim();
@@ -317,17 +317,17 @@ document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     } catch(error) { alert(error.message); }
 });
 
-// Google Sign-In Logic
+// Google Sign-In
 document.getElementById("googleBtn").addEventListener("click", async () => {
     try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
 
-        // Verify if user already exists in Firestore to prevent data loss
+        // Verify if user data exists to avoid data loss
         const userDoc = await getDoc(doc(db, "users", user.uid));
         
         if (!userDoc.exists()) {
-            // New user via Google: Prompt for mandatory Class selection
+            // New Google user: Prompt for Grade
             const userClass = prompt("Welcome! Please enter your grade (e.g., class5):") || "class1";
             
             await setDoc(doc(db, "users", user.uid), {
@@ -338,7 +338,7 @@ document.getElementById("googleBtn").addEventListener("click", async () => {
             });
         }
         
-        alert("Signed in with Google!");
+        alert("Signed in successfully!");
         window.location.href = "dashboard.html";
     } catch (error) {
         alert("Authentication failed: " + error.message);
