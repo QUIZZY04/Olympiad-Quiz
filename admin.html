@@ -194,7 +194,15 @@ color:#94a3b8;
 
 <textarea id="jsonPaste" placeholder="Paste JSON questions here"></textarea>
 
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+
 <button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
+
+<button class="upload" onclick="pasteClipboard()">Paste</button>
+
+<button class="delete" onclick="clearPaste()">Clear</button>
+
+</div>
 
 </div>
 
@@ -402,7 +410,7 @@ loadQuestions();
 
 }
 
-/* UPLOAD */
+/* UPLOAD FILE */
 
 window.uploadFile=async function(){
 
@@ -426,6 +434,8 @@ loadQuestions();
 
 }
 
+/* UPLOAD PASTE */
+
 window.uploadPaste=async function(){
 
 const text=document.getElementById("jsonPaste").value;
@@ -446,6 +456,29 @@ alert("Questions uploaded");
 document.getElementById("jsonPaste").value="";
 
 loadQuestions();
+
+}
+
+/* PASTE FROM CLIPBOARD */
+
+window.pasteClipboard=async function(){
+
+try{
+const text=await navigator.clipboard.readText();
+document.getElementById("jsonPaste").value=text;
+}catch{
+alert("Clipboard access denied. Use CTRL+V.");
+}
+
+}
+
+/* CLEAR */
+
+window.clearPaste=function(){
+
+if(confirm("Clear pasted text?")){
+document.getElementById("jsonPaste").value="";
+}
 
 }
 
