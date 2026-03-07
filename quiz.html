@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script>
+if(sessionStorage.getItem("loggedIn") !== "true"){
+  window.location.href="login.html";
+}
+</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+  <title>Live Quiz - Olympiad Portal</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Live Quiz - Olympiad Portal</title>
@@ -322,6 +338,7 @@
     window.logout = async function() {
       if(confirm("Logout? Progress will be lost.")) {
           quizSubmitted = true;
+        sessionStorage.removeItem("loggedIn");
           await signOut(auth);
           window.location.replace("login.html");
       }
@@ -329,3 +346,4 @@
   </script>
 </body>
 </html>
+
