@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,7 @@
 
 <title>Olympiad Portal | Prepare for SOF, SilverZone & Global Olympiads</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
@@ -25,7 +25,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Inter,sans-serif;
+font-family:'Inter',sans-serif;
 }
 
 body{
@@ -34,16 +34,12 @@ color:var(--text);
 overflow-x:hidden;
 }
 
-/* PARTICLES */
-
 #particles-js{
 position:fixed;
 width:100%;
 height:100%;
 z-index:1;
 }
-
-/* WRAPPER */
 
 .wrapper{
 position:relative;
@@ -56,13 +52,15 @@ min-height:100vh;
 /* NAVBAR */
 
 nav{
-background:rgba(30,41,59,.85);
+background:rgba(30,41,59,0.85);
 backdrop-filter:blur(10px);
 border-bottom:1px solid var(--border);
 padding:16px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
+position:sticky;
+top:0;
 }
 
 .brand{
@@ -98,7 +96,7 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 text-align:center;
-padding:70px 20px;
+padding:80px 20px;
 }
 
 .hero h1{
@@ -112,7 +110,7 @@ color:var(--accent);
 }
 
 .hero p{
-max-width:750px;
+max-width:720px;
 color:var(--muted);
 font-size:18px;
 line-height:1.6;
@@ -153,11 +151,11 @@ border:1px solid var(--border);
 color:white;
 }
 
-/* OLYMPIAD LOGO STRIP */
+/* OLYMPIAD LOGOS */
 
 .olympiads{
 background:#020617;
-padding:35px 0;
+padding:40px 0;
 border-top:1px solid var(--border);
 border-bottom:1px solid var(--border);
 overflow:hidden;
@@ -166,13 +164,13 @@ overflow:hidden;
 .logo-track{
 display:flex;
 gap:60px;
-animation:scroll 18s linear infinite;
+animation:scroll 20s linear infinite;
 align-items:center;
 }
 
 .logo-track img{
 height:50px;
-opacity:.85;
+opacity:.9;
 }
 
 @keyframes scroll{
@@ -224,6 +222,19 @@ border-top:1px solid var(--border);
 font-size:13px;
 }
 
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+gap:10px;
+}
+
+.logo-track{
+gap:35px;
+}
+
+}
+
 </style>
 </head>
 
@@ -235,7 +246,7 @@ font-size:13px;
 
 <nav>
 
-<a href="#" class="brand">🎓 Olympiad Portal</a>
+<a href="index.html" class="brand">🎓 Olympiad Portal</a>
 
 <div class="nav-links">
 <a href="login.html">Login</a>
@@ -247,22 +258,23 @@ font-size:13px;
 
 <section class="hero">
 
-<h1>Prepare for <span>World Olympiads</span></h1>
+<h1>Master Your <span>Olympiad Skills</span></h1>
 
 <p>
-Your ultimate preparation platform for international and national Olympiads.
-Practice for **SOF, SilverZone, NSTSE, IMO, NSO and many more** through
-advanced quizzes, analytics, and real-time rankings.
+Prepare for the world's most prestigious Olympiad exams including
+SOF Olympiads, SilverZone, NSTSE, IMO and more.  
+Practice advanced questions, analyze performance and compete with
+students across the country.
 </p>
 
 <div class="cta">
 
 <a href="signup.html" class="btn btn-primary">
-Start Learning Free
+Start Preparation
 </a>
 
 <a href="login.html" class="btn btn-secondary">
-Continue Practice
+Continue Learning
 </a>
 
 </div>
@@ -274,19 +286,17 @@ Continue Practice
 
 <div class="logo-track">
 
-<img src="https://upload.wikimedia.org/wikipedia/en/7/7b/Science_Olympiad_Foundation_logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/International_Mathematical_Olympiad_logo.svg">
 
-<img src="https://silverzone.org/wp-content/uploads/2020/02/logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/International_Physics_Olympiad_logo.svg">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/International_Mathematical_Olympiad_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/International_Chemistry_Olympiad_logo.svg">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/International_Physics_Olympiad_logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/International_Biology_Olympiad_logo.svg">
 
-<img src="https://upload.wikimedia.org/wikipedia/en/e/e2/NSTSE_logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/International_Mathematical_Olympiad_logo.svg">
 
-<img src="https://upload.wikimedia.org/wikipedia/en/7/7b/Science_Olympiad_Foundation_logo.png">
-
-<img src="https://silverzone.org/wp-content/uploads/2020/02/logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/International_Physics_Olympiad_logo.svg">
 
 </div>
 
@@ -297,29 +307,30 @@ Continue Practice
 
 <div class="card">
 <h3>Olympiad Practice Tests</h3>
-<p>Thousands of Olympiad level questions for Mathematics, Science and Logical Reasoning.</p>
+<p>Thousands of Olympiad-level questions for Maths, Science and Logical Reasoning.</p>
 </div>
 
 <div class="card">
-<h3>Global Rankings</h3>
-<p>Compete with students nationwide and track your rank instantly.</p>
+<h3>National Ranking</h3>
+<p>Compete with students across India and track your rank instantly.</p>
 </div>
 
 <div class="card">
 <h3>Performance Analytics</h3>
-<p>Detailed analysis of your strengths and weaknesses to improve faster.</p>
+<p>Get detailed reports showing your strengths and areas to improve.</p>
 </div>
 
 <div class="card">
-<h3>AI Based Practice</h3>
-<p>Adaptive quizzes that adjust difficulty based on your performance.</p>
+<h3>Smart Learning</h3>
+<p>Adaptive quizzes designed to improve problem-solving skills.</p>
 </div>
 
 </section>
 
+
 <footer>
 
-© 2026 Olympiad Portal • Built for Future Champions
+© 2026 Olympiad Portal • Ignite Your Potential
 
 </footer>
 
@@ -329,6 +340,7 @@ Continue Practice
 <script>
 
 particlesJS("particles-js",{
+
 particles:{
 number:{value:60,density:{enable:true,value_area:800}},
 color:{value:"#f59e0b"},
@@ -338,6 +350,7 @@ size:{value:3,random:true},
 line_linked:{enable:true,distance:150,color:"#f59e0b",opacity:.15,width:1},
 move:{enable:true,speed:1.5}
 },
+
 interactivity:{
 detect_on:"canvas",
 events:{
@@ -348,10 +361,13 @@ modes:{
 grab:{distance:140,line_linked:{opacity:1}}
 }
 },
+
 retina_detect:true
+
 });
 
 </script>
 
 </body>
 </html>
+```
