@@ -13,9 +13,7 @@ color:white;
 padding:30px;
 }
 
-h1{
-color:#38bdf8;
-}
+h1{color:#38bdf8;}
 
 .panel{
 background:#1e293b;
@@ -25,7 +23,7 @@ margin-bottom:20px;
 }
 
 button{
-padding:10px 18px;
+padding:10px 16px;
 border:none;
 border-radius:6px;
 cursor:pointer;
@@ -36,17 +34,15 @@ margin-top:10px;
 .upload{background:#22c55e;color:white;}
 .delete{background:#ef4444;color:white;}
 
-input,textarea{
+input,textarea,select{
 padding:10px;
 margin-top:10px;
-width:100%;
 border-radius:6px;
 border:none;
+width:100%;
 }
 
-textarea{
-height:200px;
-}
+textarea{height:200px;}
 
 table{
 width:100%;
@@ -63,6 +59,16 @@ text-align:left;
 img{
 max-width:80px;
 border-radius:6px;
+}
+
+.filter{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.filter select{
+width:200px;
 }
 
 </style>
@@ -83,13 +89,12 @@ appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const questionsRef = collection(db,"questions");
 
 
-/* FILE UPLOAD */
+/* Upload JSON File */
 
-window.uploadJSON = async function(){
+window.uploadFile = async function(){
 
 const file = document.getElementById("jsonFile").files[0];
 
@@ -105,14 +110,13 @@ for(const q of data){
 await addDoc(questionsRef,q);
 }
 
-alert("Questions uploaded successfully");
+alert("Upload successful");
 
 loadQuestions();
-
 }
 
 
-/* PASTE JSON */
+/* Upload Pasted JSON */
 
 window.uploadPaste = async function(){
 
@@ -134,15 +138,27 @@ alert("Questions uploaded");
 document.getElementById("jsonPaste").value="";
 
 loadQuestions();
-
 }
 
 
-/* LOAD QUESTIONS */
+/* Load Questions */
 
 window.loadQuestions = async function(){
 
-const snapshot = await getDocs(questionsRef);
+const classFilter=document.getElementById("filterClass").value;
+const subjectFilter=document.getElementById("filterSubject").value;
+
+let q=questionsRef;
+
+if(classFilter){
+q=query(q,where("class","==",classFilter));
+}
+
+if(subjectFilter){
+q=query(q,where("subject","==",subjectFilter));
+}
+
+const snapshot=await getDocs(q);
 
 let html="";
 
@@ -154,90 +170,117 @@ html+=`
 <tr>
 <td>${q.class}</td>
 <td>${q.subject}</td>
-<td>${q.q.substring(0,60)}...</td>
+<td>${q.q.substring(0,70)}...</td>
 <td>${q.image_url?`<img src="${q.image_url}">`:"-"}</td>
-<td><button onclick="deleteQuestion('${d.id}')" class="delete">Delete</button></td>
+<td>
+<button onclick="deleteQuestion('${d.id}')" class="delete">Delete</button>
+</td>
 </tr>
 `;
 
 });
 
 document.getElementById("questionsTable").innerHTML=html;
-
 document.getElementById("count").innerText=snapshot.size;
 
 }
 
 
-/* DELETE SINGLE */
+/* Delete Single Question */
 
 window.deleteQuestion = async function(id){
 
-if(!confirm("Delete this question?")) return;
+const confirmDelete = confirm("⚠️ WARNING!\n\nDelete this question?\nThis action cannot be undone.");
+
+if(!confirmDelete) return;
 
 await deleteDoc(doc(db,"questions",id));
 
-loadQuestions();
+alert("Question deleted");
 
+loadQuestions();
 }
 
 
-/* DELETE BY CLASS */
+/* Delete by Class */
 
 window.deleteByClass = async function(){
 
-const c=document.getElementById("classDelete").value;
+const c=document.getElementById("deleteClass").value;
+
+if(!c){
+alert("Enter class");
+return;
+}
+
+const confirmDelete = confirm("⚠️ WARNING!\n\nDelete ALL questions of "+c+" ?");
+
+if(!confirmDelete) return;
 
 const q=query(questionsRef,where("class","==",c));
 
 const snapshot=await getDocs(q);
 
-snapshot.forEach(async (d)=>{
+snapshot.forEach(async(d)=>{
 await deleteDoc(doc(db,"questions",d.id));
 });
 
-alert("Deleted");
+alert("Questions deleted");
 
 loadQuestions();
-
 }
 
 
-/* DELETE BY SUBJECT */
+/* Delete by Subject */
 
 window.deleteBySubject = async function(){
 
-const s=document.getElementById("subjectDelete").value;
+const s=document.getElementById("deleteSubject").value;
+
+if(!s){
+alert("Enter subject");
+return;
+}
+
+const confirmDelete = confirm("⚠️ WARNING!\n\nDelete ALL "+s+" questions ?");
+
+if(!confirmDelete) return;
 
 const q=query(questionsRef,where("subject","==",s));
 
 const snapshot=await getDocs(q);
 
-snapshot.forEach(async (d)=>{
+snapshot.forEach(async(d)=>{
 await deleteDoc(doc(db,"questions",d.id));
 });
 
-alert("Deleted");
+alert("Questions deleted");
 
 loadQuestions();
-
 }
 
 
-/* DELETE ALL */
+/* Delete All Questions */
 
 window.deleteAll = async function(){
 
-if(!confirm("Delete ALL questions?")) return;
+const confirmDelete = confirm("🚨 DANGER!\n\nYou are about to delete ALL questions.\nThis cannot be undone.\n\nContinue?");
+
+if(!confirmDelete) return;
+
+const confirmFinal = confirm("FINAL CONFIRMATION\n\nAre you absolutely sure?");
+
+if(!confirmFinal) return;
 
 const snapshot=await getDocs(questionsRef);
 
-snapshot.forEach(async (d)=>{
+snapshot.forEach(async(d)=>{
 await deleteDoc(doc(db,"questions",d.id));
 });
 
-loadQuestions();
+alert("All questions deleted");
 
+loadQuestions();
 }
 
 window.onload=loadQuestions;
@@ -253,10 +296,10 @@ window.onload=loadQuestions;
 
 <div class="panel">
 
-<h3>Upload Questions (JSON File)</h3>
+<h3>Upload JSON File</h3>
 
 <input type="file" id="jsonFile">
-<button onclick="uploadJSON()" class="upload">Upload File</button>
+<button onclick="uploadFile()" class="upload">Upload File</button>
 
 </div>
 
@@ -265,7 +308,7 @@ window.onload=loadQuestions;
 
 <h3>Paste JSON Questions</h3>
 
-<textarea id="jsonPaste" placeholder="Paste JSON questions here..."></textarea>
+<textarea id="jsonPaste" placeholder="Paste JSON questions here"></textarea>
 
 <button onclick="uploadPaste()" class="upload">Upload Pasted Questions</button>
 
@@ -274,14 +317,43 @@ window.onload=loadQuestions;
 
 <div class="panel">
 
+<h3>Filter Questions</h3>
+
+<div class="filter">
+
+<select id="filterClass">
+<option value="">All Classes</option>
+<option value="class1">Class 1</option>
+<option value="class2">Class 2</option>
+<option value="class3">Class 3</option>
+<option value="class4">Class 4</option>
+<option value="class5">Class 5</option>
+</select>
+
+<select id="filterSubject">
+<option value="">All Subjects</option>
+<option value="maths">Maths</option>
+<option value="science">Science</option>
+<option value="english">English</option>
+</select>
+
+<button onclick="loadQuestions()" class="upload">Apply Filter</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
 <h3>Delete Questions</h3>
 
-<input placeholder="class2" id="classDelete">
+<input placeholder="class2" id="deleteClass">
 <button onclick="deleteByClass()" class="delete">Delete by Class</button>
 
 <br><br>
 
-<input placeholder="maths" id="subjectDelete">
+<input placeholder="maths" id="deleteSubject">
 <button onclick="deleteBySubject()" class="delete">Delete by Subject</button>
 
 <br><br>
@@ -293,7 +365,7 @@ window.onload=loadQuestions;
 
 <div class="panel">
 
-<h3>Questions (<span id="count">0</span>)</h3>
+<h3>Total Questions: <span id="count">0</span></h3>
 
 <table>
 
