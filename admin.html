@@ -21,6 +21,7 @@ window.onpopstate = function () {
 --amber:#f59e0b;
 --danger:#ef4444;
 --green:#22c55e;
+--brand:#38bdf8;
 }
 body{
 font-family:'Inter',sans-serif;
@@ -100,6 +101,10 @@ color:white;
 background:var(--danger);
 color:white;
 }
+.edit-btn{
+background:var(--brand);
+color:white;
+}
 table{
 width:100%;
 border-collapse:collapse;
@@ -114,6 +119,18 @@ img{
 max-width:80px;
 border-radius:6px;
 }
+
+/* FEEDBACK & MODAL STYLES */
+.badge-unread { background: var(--danger); font-size: 10px; padding: 2px 6px; border-radius: 4px; }
+.modal {
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
+}
+.modal-content {
+    background: var(--surface); padding: 30px; border-radius: 12px; width: 90%; max-width: 600px;
+    border: 1px solid var(--border); max-height: 90vh; overflow-y: auto;
+}
+
 footer{
 text-align:center;
 padding:20px;
@@ -137,6 +154,22 @@ color:#94a3b8;
 </nav>
 
 <div class="container">
+    <div class="panel">
+        <h2>🚩 User Feedback & Error Reports</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Question ID</th>
+                    <th>Message</th>
+                    <th>Context</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="feedbackTable"></tbody>
+        </table>
+    </div>
+
 <div class="panel">
 <h2>Upload JSON File</h2>
 <input type="file" id="jsonFile">
@@ -205,6 +238,30 @@ color:#94a3b8;
 </div>
 </div>
 
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <h2 id="editHeader">Edit Question</h2>
+        <input type="hidden" id="editId">
+        <label>Question Text:</label>
+        <textarea id="editQ" style="height:80px;"></textarea>
+        
+        <label>Option 0 (Correct):</label>
+        <input id="editO0">
+        <label>Option 1:</label>
+        <input id="editO1">
+        <label>Option 2:</label>
+        <input id="editO2">
+        <label>Option 3:</label>
+        <input id="editO3">
+        
+        <label>Solution Text:</label>
+        <textarea id="editSol" style="height:60px;"></textarea>
+        
+        <button class="upload" onclick="saveEdit()">Save Changes</button>
+        <button class="delete" onclick="closeEdit()">Cancel</button>
+    </div>
+</div>
+
 <footer>
 © 2026 Olympiad Portal
 </footer>
@@ -212,7 +269,7 @@ color:#94a3b8;
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc } 
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc, onSnapshot, orderBy, getDoc, updateDoc } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
@@ -226,22 +283,93 @@ const db=getFirestore(app);
 const auth=getAuth(app);
 
 const questionsRef=collection(db,"questions");
+const feedbackRef=collection(db,"feedback");
 
-// Ensure user is admin before allowing actions
 onAuthStateChanged(auth, (user) => {
     if (user) {
         if (user.email !== "madhhu52@gmail.com") {
             alert("Unauthorized access!");
             signOut(auth).then(() => { window.location.href = "login.html"; });
         } else {
-            console.log("Admin Verified:", user.email);
             loadQuestions();
+            loadFeedback(); // Start listening for feedback
         }
     } else {
         window.location.href = "login.html";
     }
 });
 
+// REAL-TIME FEEDBACK LISTENER
+function loadFeedback() {
+    const qFB = query(feedbackRef, orderBy("timestamp", "desc"));
+    onSnapshot(qFB, (snapshot) => {
+        const list = document.getElementById("feedbackTable");
+        list.innerHTML = "";
+        snapshot.forEach((d) => {
+            const fb = d.data();
+            const row = `
+                <tr style="background: ${fb.status==='resolved'?'rgba(255,255,255,0.05)':'transparent'}">
+                    <td style="font-size:11px">${fb.timestamp?.toDate().toLocaleDateString() || 'Just now'}</td>
+                    <td><code>${fb.questionId}</code></td>
+                    <td>${fb.message}</td>
+                    <td>${fb.class} / ${fb.subject}</td>
+                    <td>
+                        <button class="edit-btn" onclick="openEdit('${fb.questionId}', '${d.id}')">Edit Q</button>
+                        <button class="delete" onclick="deleteFB('${d.id}')">🗑</button>
+                    </td>
+                </tr>`;
+            list.innerHTML += row;
+        });
+    });
+}
+
+// OPEN QUESTION EDITOR MODAL
+window.openEdit = async function(qId, fbDocId) {
+    try {
+        const qSnap = await getDoc(doc(db, "questions", qId));
+        if(!qSnap.exists()) { alert("Question not found in database."); return; }
+        
+        const data = qSnap.data();
+        document.getElementById("editId").value = qId;
+        document.getElementById("editQ").value = data.q;
+        document.getElementById("editO0").value = data.o[0];
+        document.getElementById("editO1").value = data.o[1];
+        document.getElementById("editO2").value = data.o[2];
+        document.getElementById("editO3").value = data.o[3];
+        document.getElementById("editSol").value = data.sol || "";
+        
+        document.getElementById("editModal").style.display = "flex";
+    } catch(e) { alert("Error loading question: " + e.message); }
+}
+
+window.saveEdit = async function() {
+    const qId = document.getElementById("editId").value;
+    const updatedData = {
+        q: document.getElementById("editQ").value,
+        o: [
+            document.getElementById("editO0").value,
+            document.getElementById("editO1").value,
+            document.getElementById("editO2").value,
+            document.getElementById("editO3").value
+        ],
+        sol: document.getElementById("editSol").value
+    };
+
+    try {
+        await updateDoc(doc(db, "questions", qId), updatedData);
+        alert("Question updated successfully!");
+        closeEdit();
+        loadQuestions();
+    } catch(e) { alert("Update failed: " + e.message); }
+}
+
+window.closeEdit = () => { document.getElementById("editModal").style.display = "none"; }
+
+window.deleteFB = async (id) => {
+    if(confirm("Delete this feedback report?")) await deleteDoc(doc(db, "feedback", id));
+}
+
+// ... REST OF YOUR EXISTING CODE ...
 function validateQuestion(q,i){
     if(!q.class) throw new Error("Question "+(i+1)+" missing class");
     if(!q.subject) throw new Error("Question "+(i+1)+" missing subject");
@@ -294,7 +422,10 @@ window.loadQuestions=async function(){
         <td>${data.subject}</td>
         <td>${data.q.substring(0,60)}...</td>
         <td>${data.image_url?`<img src="${data.image_url}">`:"-"}</td>
-        <td><button class="delete" onclick="deleteQuestion('${d.id}')">Delete</button></td>
+        <td>
+            <button class="edit-btn" onclick="openEdit('${d.id}')">Edit</button>
+            <button class="delete" onclick="deleteQuestion('${d.id}')">Delete</button>
+        </td>
         </tr>`;
     });
     document.getElementById("questionsTable").innerHTML=html;
@@ -356,4 +487,3 @@ window.logout=async function(){
 </script>
 </body>
 </html>
-
