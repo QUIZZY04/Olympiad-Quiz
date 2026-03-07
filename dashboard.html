@@ -1,241 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Dashboard - Olympiad Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0f172a; --surface: #1e293b; --text: #f8fafc;
-      --muted: #94a3b8; --border: #334155; --amber: #f59e0b; --danger: #ef4444;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Dashboard - Olympiad Portal</title>
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background: var(--bg); 
-      color: var(--text); 
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+<style>
 
-    /* --- NAVIGATION --- */
-    nav {
-      background: var(--surface); 
-      border-bottom: 2px solid var(--border);
-      padding: 15px 5%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap; 
-    }
+:root {
+--bg:#0f172a;
+--surface:#1e293b;
+--text:#f8fafc;
+--muted:#94a3b8;
+--border:#334155;
+--amber:#f59e0b;
+--danger:#ef4444;
+}
 
-    .brand { font-size: 22px; font-weight: 800; color: var(--amber); text-decoration: none; }
-    .nav-links { display: flex; gap: 12px; align-items: center; }
-    .nav-links a {
-      color: #ffffff; text-decoration: none; font-size: 11px; 
-      font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; 
-    }
-    .nav-links a.active { color: var(--amber); }
+*{box-sizing:border-box;margin:0;padding:0;}
 
-    /* --- MAIN CONTENT --- */
-    .container { 
-      width: 95%; 
-      max-width: 1200px; 
-      margin: 20px auto; 
-      padding: 0 10px; 
-      flex: 1; 
-    }
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
 
-    /* GRADE SELECTOR */
-    .class-selector-wrap {
-      background: rgba(245, 158, 11, 0.05); border: 1px dashed var(--amber);
-      padding: 15px; border-radius: 12px; margin-bottom: 25px;
-      display: flex; align-items: center; gap: 15px;
-    }
-    label { font-weight: 700; color: var(--amber); font-size: 12px; }
-    select {
-      background: var(--bg); color: white; border: 1px solid var(--border);
-      padding: 10px; border-radius: 8px; flex: 1; outline: none; cursor: pointer;
-    }
+/* NAV */
 
-    /* SUBJECT CARDS */
-    .grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-      gap: 20px; 
-      margin-bottom: 40px;
-    }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.2s; }
-    .card:hover { border-color: var(--amber); transform: translateY(-3px); }
-    .card h3 { color: var(--amber); margin-bottom: 10px; font-size: 18px; }
-    .card p { color: var(--muted); font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
-    .btn-start { background: var(--amber); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 800; width: 100%; cursor: pointer; text-transform: uppercase; font-size: 12px; }
+nav{
+background:var(--surface);
+border-bottom:2px solid var(--border);
+padding:15px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:sticky;
+top:0;
+z-index:1000;
+flex-wrap:wrap;
+}
 
-    /* --- EXPANDED INSTRUCTIONS (FORCED MOBILE VISIBILITY) --- */
-    .instructions-section { 
-      background: var(--surface); 
-      border: 1px solid var(--border); 
-      border-radius: 16px; 
-      padding: 25px; 
-      margin: 20px 0 60px 0; /* High bottom margin for mobile scrolling space */
-      display: block !important; /* Prevents accidental hiding */
-    }
-    .instructions-section h2 { color: var(--amber); margin-bottom: 25px; font-size: 20px; font-weight: 800; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-    
-    .ins-grid { 
-      display: grid; 
-      grid-template-columns: 1fr; /* Single column on mobile */
-      gap: 25px; 
-    }
-    .ins-item { display: flex; gap: 15px; align-items: flex-start; }
-    .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-weight: 800; font-size: 14px; }
-    .ins-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .ins-text strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 15px; }
+.brand{
+font-size:22px;
+font-weight:800;
+color:var(--amber);
+text-decoration:none;
+}
 
-    /* --- TABLET & LAPTOP ADJUSTMENTS --- */
-    @media (min-width: 769px) {
-      .ins-grid { grid-template-columns: 1fr 1fr; } /* 2 columns on laptop */
-      nav { padding: 15px 5%; }
-    }
+.nav-links{
+display:flex;
+gap:12px;
+align-items:center;
+}
 
-    /* --- MOBILE ADJUSTMENTS --- */
-    @media (max-width: 768px) {
-      nav { justify-content: center; gap: 10px; padding: 10px; }
-      .brand { width: 100%; text-align: center; margin-bottom: 8px; }
-      .nav-links { justify-content: center; width: 100%; flex-wrap: wrap; gap: 10px; }
-      .class-selector-wrap { flex-direction: column; text-align: center; }
-      .instructions-section { padding: 20px 15px; }
-    }
+.nav-links a{
+color:#ffffff;
+text-decoration:none;
+font-size:11px;
+font-weight:800;
+text-transform:uppercase;
+letter-spacing:0.5px;
+}
 
-    footer { text-align: center; padding: 25px; background: #020617; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
-  </style>
+.nav-links a.active{color:var(--amber);}
+
+/* CONTENT */
+
+.container{
+width:95%;
+max-width:1200px;
+margin:20px auto;
+padding:0 10px;
+flex:1;
+}
+
+/* CLASS SELECT */
+
+.class-selector-wrap{
+background:rgba(245,158,11,0.05);
+border:1px dashed var(--amber);
+padding:15px;
+border-radius:12px;
+margin-bottom:25px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+label{
+font-weight:700;
+color:var(--amber);
+font-size:12px;
+}
+
+select{
+background:var(--bg);
+color:white;
+border:1px solid var(--border);
+padding:10px;
+border-radius:8px;
+flex:1;
+outline:none;
+cursor:pointer;
+}
+
+/* SUBJECT CARDS */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+margin-bottom:40px;
+}
+
+.card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:16px;
+padding:25px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.card:hover{
+border-color:var(--amber);
+transform:translateY(-3px);
+}
+
+.card h3{
+color:var(--amber);
+margin-bottom:10px;
+font-size:18px;
+}
+
+.card p{
+color:var(--muted);
+font-size:13px;
+margin-bottom:20px;
+line-height:1.4;
+}
+
+.btn-start{
+background:var(--amber);
+color:#000;
+border:none;
+padding:12px;
+border-radius:8px;
+font-weight:800;
+width:100%;
+cursor:pointer;
+text-transform:uppercase;
+font-size:12px;
+}
+
+/* INSTRUCTIONS */
+
+.instructions-section{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:16px;
+padding:25px;
+margin:20px 0 60px 0;
+}
+
+.instructions-section h2{
+color:var(--amber);
+margin-bottom:25px;
+font-size:20px;
+font-weight:800;
+border-bottom:1px solid var(--border);
+padding-bottom:10px;
+}
+
+.ins-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:25px;
+}
+
+.ins-item{
+display:flex;
+gap:15px;
+align-items:flex-start;
+}
+
+.ins-icon{
+background:rgba(245,158,11,0.1);
+color:var(--amber);
+width:32px;
+height:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+flex-shrink:0;
+font-weight:800;
+font-size:14px;
+}
+
+.ins-text{
+font-size:14px;
+color:var(--muted);
+line-height:1.6;
+}
+
+.ins-text strong{
+color:var(--text);
+display:block;
+margin-bottom:4px;
+font-size:15px;
+}
+
+footer{
+text-align:center;
+padding:25px;
+background:#020617;
+border-top:1px solid var(--border);
+color:var(--muted);
+font-size:12px;
+}
+
+</style>
 </head>
+
 <body>
 
-  <nav>
-    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="dashboard.html" class="active">Dashboard</a>
-        <a href="quiz.html">Take Quiz</a>
-        <a href="leaderboard.html">Leaderboard</a>
-        <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
-    </div>
-  </nav>
+<nav>
 
-  <main class="container">
-    <div class="class-selector-wrap">
-      <label>SELECT GRADE (1-10):</label>
-      <select id="classSelect">
-        <option value="class1">Grade 1</option>
-        <option value="class2">Grade 2</option>
-        <option value="class3">Grade 3</option>
-        <option value="class4">Grade 4</option>
-        <option value="class5">Grade 5</option>
-        <option value="class6" selected>Grade 6</option>
-        <option value="class7">Grade 7</option>
-        <option value="class8">Grade 8</option>
-        <option value="class9">Grade 9</option>
-        <option value="class10">Grade 10</option>
-      </select>
-    </div>
+<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 
-    <div class="grid">
-      <div class="card" onclick="startQuiz('maths')">
-        <h3>Mathematics</h3>
-        <p>Challenge your logic with Algebra, Geometry, and Arithmetic.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
-      <div class="card" onclick="startQuiz('science')">
-        <h3>Science</h3>
-        <p>Explore the fascinating worlds of Physics, Chemistry, and Biology.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
-      <div class="card" onclick="startQuiz('english')">
-        <h3>English</h3>
-        <p>Master Vocabulary, Grammar, and Reading Comprehension skills.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
-      <div class="card" onclick="startQuiz('reasoning')">
-        <h3>Logical Reasoning</h3>
-        <p>Sharp your mind with Pattern recognition and Analytical puzzles.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
-    </div>
+<div class="nav-links">
 
-    <section class="instructions-section">
-      <h2>📝 Quiz Rules & Instructions</h2>
-      <div class="ins-grid">
-        <div class="ins-item">
-          <div class="ins-icon">1</div>
-          <div class="ins-text">
-            <strong>Duration & Submission</strong>
-            You have 30 minutes. The system will auto-submit your answers if the timer reaches zero.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">2</div>
-          <div class="ins-text">
-            <strong>Navigation Palette</strong>
-            Use the palette to jump between questions. Green indicates Answered, Red is Visited, and Grey is Unseen.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">3</div>
-          <div class="ins-text">
-            <strong>Save & Next</strong>
-            You MUST click the "Save & Next" button to record your answer. Simply clicking an option will not save it.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">4</div>
-          <div class="ins-text">
-            <strong>Mark for Review</strong>
-            Use the "Mark for Review" button if you are unsure. This allows you to easily find and revisit the question later.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">5</div>
-          <div class="ins-text">
-            <strong>Internet Stability</strong>
-            Ensure a stable connection. If you refresh the page, your progress will be saved up to your last "Save & Next" action.
-          </div>
-        </div>
-        <div class="ins-item">
-          <div class="ins-icon">6</div>
-          <div class="ins-text">
-            <strong>Results & Feedback</strong>
-            After submission, your score and detailed accuracy report will be instantly available on the Result page.
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<a href="index.html">Home</a>
+<a href="dashboard.html" class="active">Dashboard</a>
+<a href="quiz.html">Take Quiz</a>
+<a href="leaderboard.html">Leaderboard</a>
 
-  <footer>&copy; 2026 Olympiad Portal</footer>
+<!-- ADMIN TAB (HIDDEN BY DEFAULT) -->
+<a id="adminTab" href="admin.html" style="display:none;color:#22c55e;">Admin</a>
 
-  <script>
-    function startQuiz(subject) {
-      localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
-      localStorage.setItem("selectedSubject", subject);
-      window.location.href = "quiz.html";
-    }
-    function logout() { 
-      if(confirm("Are you sure you want to logout?")) {
-        window.location.href = "login.html"; 
-      }
-    }
-    window.onload = () => {
-      const lastClass = localStorage.getItem("selectedClass");
-      if(lastClass) { document.getElementById("classSelect").value = lastClass; }
-    };
-  </script>
+<a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+
+</div>
+
+</nav>
+
+<main class="container">
+
+<div class="class-selector-wrap">
+<label>SELECT GRADE (1-10):</label>
+<select id="classSelect">
+<option value="class1">Grade 1</option>
+<option value="class2">Grade 2</option>
+<option value="class3">Grade 3</option>
+<option value="class4">Grade 4</option>
+<option value="class5">Grade 5</option>
+<option value="class6" selected>Grade 6</option>
+<option value="class7">Grade 7</option>
+<option value="class8">Grade 8</option>
+<option value="class9">Grade 9</option>
+<option value="class10">Grade 10</option>
+</select>
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="startQuiz('maths')">
+<h3>Mathematics</h3>
+<p>Challenge your logic with Algebra, Geometry, and Arithmetic.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+<div class="card" onclick="startQuiz('science')">
+<h3>Science</h3>
+<p>Explore the fascinating worlds of Physics, Chemistry, and Biology.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+<div class="card" onclick="startQuiz('english')">
+<h3>English</h3>
+<p>Master Vocabulary, Grammar, and Reading Comprehension skills.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+<div class="card" onclick="startQuiz('reasoning')">
+<h3>Logical Reasoning</h3>
+<p>Sharp your mind with Pattern recognition and Analytical puzzles.</p>
+<button class="btn-start">Start Quiz</button>
+</div>
+
+</div>
+
+</main>
+
+<footer>© 2026 Olympiad Portal</footer>
+
+<script>
+
+function startQuiz(subject){
+localStorage.setItem("selectedClass",document.getElementById("classSelect").value);
+localStorage.setItem("selectedSubject",subject);
+window.location.href="quiz.html";
+}
+
+function logout(){
+if(confirm("Are you sure you want to logout?")){
+window.location.href="login.html";
+}
+}
+
+window.onload=()=>{
+
+const lastClass=localStorage.getItem("selectedClass");
+
+if(lastClass){
+document.getElementById("classSelect").value=lastClass;
+}
+
+/* ADMIN CHECK */
+
+const adminEmail="madhhu52@gmail.com";
+const userEmail=localStorage.getItem("userEmail");
+
+if(userEmail===adminEmail){
+
+const adminTab=document.getElementById("adminTab");
+
+if(adminTab){
+adminTab.style.display="inline";
+}
+
+}
+
+};
+
+</script>
+
 </body>
 </html>
