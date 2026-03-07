@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Panel - Olympiad Portal</title>
@@ -33,6 +34,7 @@ padding:15px 5%;
 display:flex;
 align-items:center;
 justify-content:space-between;
+flex-wrap:wrap;
 }
 
 .brand{
@@ -45,6 +47,7 @@ text-decoration:none;
 .nav-links{
 display:flex;
 gap:12px;
+align-items:center;
 }
 
 .nav-links a{
@@ -128,6 +131,13 @@ max-width:80px;
 border-radius:6px;
 }
 
+footer{
+text-align:center;
+padding:20px;
+background:#020617;
+color:#94a3b8;
+}
+
 </style>
 </head>
 
@@ -138,15 +148,20 @@ border-radius:6px;
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 
 <div class="nav-links">
+
 <a href="index.html">Home</a>
 <a href="dashboard.html">Dashboard</a>
 <a href="quiz.html">Take Quiz</a>
 <a href="leaderboard.html">Leaderboard</a>
+
 <a href="admin.html" class="active">Admin</a>
+
 <a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
+
 </div>
 
 </nav>
+
 
 <div class="container">
 
@@ -155,6 +170,7 @@ border-radius:6px;
 <h2>Upload JSON File</h2>
 
 <input type="file" id="jsonFile">
+
 <button class="upload" onclick="uploadFile()">Upload File</button>
 
 </div>
@@ -164,32 +180,48 @@ border-radius:6px;
 
 <h2>Paste JSON Questions</h2>
 
-<textarea id="jsonPaste"></textarea>
+<textarea id="jsonPaste" placeholder="Paste JSON questions here"></textarea>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
 
 <button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
+
 <button class="upload" onclick="pasteClipboard()">Paste</button>
+
 <button class="delete" onclick="clearPaste()">Clear</button>
+
+</div>
 
 </div>
 
 
 <div class="panel">
 
-<h2>Delete Questions</h2>
+<h2>Filter Questions</h2>
 
-<label>Delete by Class</label>
-<input id="deleteClass" placeholder="example: class2">
-<button class="delete" onclick="deleteByClass()">Delete by Class</button>
+<select id="filterClass">
+<option value="">All Classes</option>
+<option value="class1">Class 1</option>
+<option value="class2">Class 2</option>
+<option value="class3">Class 3</option>
+<option value="class4">Class 4</option>
+<option value="class5">Class 5</option>
+<option value="class6">Class 6</option>
+<option value="class7">Class 7</option>
+<option value="class8">Class 8</option>
+<option value="class9">Class 9</option>
+<option value="class10">Class 10</option>
+</select>
 
-<br><br>
+<select id="filterSubject">
+<option value="">All Subjects</option>
+<option value="maths">Maths</option>
+<option value="science">Science</option>
+<option value="english">English</option>
+<option value="reasoning">Reasoning</option>
+</select>
 
-<label>Delete by Subject</label>
-<input id="deleteSubject" placeholder="example: maths">
-<button class="delete" onclick="deleteBySubject()">Delete by Subject</button>
-
-<br><br>
-
-<button class="delete" onclick="deleteAll()">Delete ALL Questions</button>
+<button class="upload" onclick="loadQuestions()">Apply Filter</button>
 
 </div>
 
@@ -201,6 +233,7 @@ border-radius:6px;
 <table>
 
 <thead>
+
 <tr>
 <th>Class</th>
 <th>Subject</th>
@@ -208,6 +241,7 @@ border-radius:6px;
 <th>Image</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="questionsTable"></tbody>
@@ -218,16 +252,25 @@ border-radius:6px;
 
 </div>
 
+
+<footer>
+© 2026 Olympiad Portal
+</footer>
+
+
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where }
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc }
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
 authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
-projectId:"olympiad-portal-d2a5e"
+projectId:"olympiad-portal-d2a5e",
+storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+messagingSenderId:"341855557503",
+appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 };
 
 const app=initializeApp(firebaseConfig);
@@ -235,57 +278,148 @@ const db=getFirestore(app);
 
 const questionsRef=collection(db,"questions");
 
-window.deleteByClass=async function(){
 
-const c=document.getElementById("deleteClass").value;
+window.loadQuestions = async function(){
 
-const q=query(questionsRef,where("class","==",c));
+let classFilter=document.getElementById("filterClass").value;
+let subjectFilter=document.getElementById("filterSubject").value;
+
+let q=questionsRef;
+
+if(classFilter){
+q=query(q,where("class","==",classFilter));
+}
+
+if(subjectFilter){
+q=query(q,where("subject","==",subjectFilter));
+}
 
 const snapshot=await getDocs(q);
 
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
+let html="";
+
+snapshot.forEach((d)=>{
+
+const data=d.data();
+
+html+=`
+<tr>
+<td>${data.class}</td>
+<td>${data.subject}</td>
+<td>${data.q.substring(0,60)}...</td>
+<td>${data.image_url?`<img src="${data.image_url}">`:"-"}</td>
+<td><button class="delete" onclick="deleteQuestion('${d.id}')">Delete</button></td>
+</tr>
+`;
+
 });
 
-alert("Class questions deleted");
+document.getElementById("questionsTable").innerHTML=html;
+document.getElementById("count").innerText=snapshot.size;
+
+}
+
+
+window.uploadPaste=async function(){
+
+try{
+
+const text=document.getElementById("jsonPaste").value.trim();
+
+if(!text){
+alert("Paste JSON questions first");
+return;
+}
+
+const data=JSON.parse(text);
+
+await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+
+alert("Successfully uploaded "+data.length+" questions");
+
+document.getElementById("jsonPaste").value="";
+
+loadQuestions();
+
+}catch{
+
+alert("Invalid JSON format");
+
+}
+
+}
+
+
+window.uploadFile=async function(){
+
+try{
+
+const file=document.getElementById("jsonFile").files[0];
+
+if(!file){
+alert("Select JSON file");
+return;
+}
+
+const text=await file.text();
+const data=JSON.parse(text);
+
+await Promise.all(data.map(q=>addDoc(questionsRef,q)));
+
+alert("Successfully uploaded "+data.length+" questions");
+
+loadQuestions();
+
+}catch{
+
+alert("Invalid JSON file");
+
+}
+
+}
+
+
+window.deleteQuestion=async function(id){
+
+if(!confirm("Delete this question?")) return;
+
+await deleteDoc(doc(db,"questions",id));
 
 loadQuestions();
 
 }
 
-window.deleteBySubject=async function(){
 
-const s=document.getElementById("deleteSubject").value;
+window.pasteClipboard=async function(){
 
-const q=query(questionsRef,where("subject","==",s));
-
-const snapshot=await getDocs(q);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-alert("Subject questions deleted");
-
-loadQuestions();
+try{
+const text=await navigator.clipboard.readText();
+document.getElementById("jsonPaste").value=text;
+}catch{
+alert("Clipboard not allowed");
+}
 
 }
 
-window.deleteAll=async function(){
+window.clearPaste=function(){
 
-if(!confirm("Delete ALL questions?")) return;
-
-const snapshot=await getDocs(questionsRef);
-
-snapshot.forEach(async(d)=>{
-await deleteDoc(doc(db,"questions",d.id));
-});
-
-loadQuestions();
+if(confirm("Clear pasted text?")){
+document.getElementById("jsonPaste").value="";
+}
 
 }
+
 
 window.onload=loadQuestions;
+
+
+window.logout=function(){
+
+if(confirm("Logout?")){
+window.location.href="login.html";
+}
+
+}
 
 </script>
 
