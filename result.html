@@ -2,333 +2,90 @@
 <html lang="en">
 <head>
   <script>
-history.pushState(null, null, location.href);
-window.onpopstate = function () {
-  history.go(1);
-};
-</script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () { history.go(1); };
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Olympiad Performance Report</title>
-
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <style>
     :root {
-      --bg: #0f172a;                 
-      --surface: #1e293b;            
-      --text: #f8fafc;               
-      --muted: #94a3b8;              
-      --border: #334155;             
-      --brand: #38bdf8;              
-      --accent: #22c55e;             
-      --amber: #f59e0b;              
-      --danger: #ef4444;
+      --bg: #0f172a; --surface: #1e293b; --text: #f8fafc;
+      --muted: #94a3b8; --border: #334155; --brand: #38bdf8;
+      --accent: #22c55e; --amber: #f59e0b; --danger: #ef4444;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { background: var(--bg); color: var(--text); }
-
-    /* MATCHED UTILITY NAV */
-    .utility-nav {
-      background: #020617; 
-      padding: 12px 40px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 30px;
-      border-bottom: 1px solid var(--border);
-    }
-    .utility-nav a {
-      color: var(--amber); 
-      text-decoration: none;
-      font-size: 16px; 
-      font-weight: 800; 
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      cursor: pointer;
-    }
-    .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
-
-    /* MATCHED TOP BAR */
-    header.top-bar {
-      position: sticky; top: 0; z-index: 1000;
-      background: #1e293b; 
-      border-bottom: 2px solid var(--border);
-      padding: 12px 40px; 
-      display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
+    .utility-nav { background: #020617; padding: 12px 40px; display: flex; justify-content: flex-end; gap: 30px; border-bottom: 1px solid var(--border); }
+    .utility-nav a { color: var(--amber); text-decoration: none; font-size: 16px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+    header.top-bar { position: sticky; top: 0; z-index: 1000; background: #1e293b; border-bottom: 2px solid var(--border); padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; }
     .brand { font-size: 24px; font-weight: 800; color: var(--amber); text-decoration: none; }
-
     .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
-    
-    .summary-card { 
-      background: var(--surface); 
-      padding: 30px; 
-      border-radius: 20px; 
-      text-align: center; 
-      margin-bottom: 30px;
-      border: 1px solid var(--border);
-    }
-
-    h1 { color: var(--text); font-weight: 800; }
-    h2 { color: var(--brand); }
-
+    .summary-card { background: var(--surface); padding: 30px; border-radius: 20px; text-align: center; margin-bottom: 30px; border: 1px solid var(--border); }
     table { width: 100%; border-collapse: collapse; margin-top: 25px; font-size: 14px; background: var(--surface); border-radius: 12px; overflow: hidden; }
-    th, td { padding: 15px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th, td { padding: 15px; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
     th { background: rgba(0,0,0,0.2); color: var(--muted); text-transform: uppercase; font-weight: 700; font-size: 12px; }
-    
     .correct-row { background: rgba(34, 197, 94, 0.1); }
     .wrong-row { background: rgba(239, 68, 68, 0.1); }
-    
     .status-badge { font-weight: 800; text-transform: uppercase; font-size: 11px; padding: 4px 8px; border-radius: 4px; }
     .status-correct { color: var(--accent); }
     .status-wrong { color: var(--danger); }
-
-    .action-btn { 
-      padding: 16px 32px; 
-      border: none; 
-      border-radius: 10px; 
-      margin: 20px 5px; 
-      cursor: pointer; 
-      font-weight: 800; 
-      text-transform: uppercase;
-      transition: 0.2s;
-    }
+    .action-btn { padding: 16px 32px; border: none; border-radius: 10px; margin: 20px 5px; cursor: pointer; font-weight: 800; text-transform: uppercase; transition: 0.2s; }
     .quiz-btn { background: var(--amber); color: #000; }
-    .quiz-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
-
-    /* REPORT STYLES */
-    .report-link { 
-        color: var(--muted); 
-        font-size: 11px; 
-        cursor: pointer; 
-        text-decoration: underline; 
-        display: block; 
-        margin-top: 5px; 
-    }
-    .report-link:hover { color: var(--danger); }
-
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000;
-    }
-    .report-modal {
-      background: var(--surface); padding: 30px; border-radius: 15px; width: 400px;
-      border: 1px solid var(--border); text-align: left;
-    }
-    .report-modal textarea {
-      width: 100%; height: 100px; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 8px; color: white; padding: 10px; margin: 15px 0; outline: none; resize: none;
-    }
-    .submit-report { background: var(--danger); color: white; width: 100%; padding: 10px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; }
-
+    .report-link { color: var(--muted); font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-top: 5px; }
   </style>
 </head>
-
 <body>
-
 <div class="utility-nav">
-    <a href="index.html">Home</a>
     <a href="dashboard.html">Dashboard</a>
     <a href="leaderboard.html">Leaderboard</a>
-    <a href="#" onclick="logout()" style="color:var(--danger)">Logout</a>
+    <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
 </div>
-
 <header class="top-bar">
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div style="font-weight:600; color: var(--muted);">Performance Report</div>
 </header>
-
 <div class="container">
-
     <h1 style="text-align:center; margin-bottom:30px;">🏆 Performance Summary</h1>
-
     <div class="summary-card" id="summary"></div>
-
     <div style="text-align:center;">
-        <button class="action-btn quiz-btn" onclick="location.href='quiz.html'">
-            Take Another Quiz
-        </button>
+        <button class="action-btn quiz-btn" onclick="location.href='quiz.html'">TAKE ANOTHER QUIZ</button>
+        <button class="action-btn" style="background:var(--brand); color:#000;" onclick="location.href='leaderboard.html'">VIEW RANKINGS</button>
     </div>
-
     <div id="details"></div>
-
 </div>
-
-<div id="modalOverlay" class="modal-overlay">
-    <div class="report-modal">
-        <h3 style="color: var(--danger);">Report Error</h3>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 5px;">Describe the mistake in this question or answer.</p>
-        <textarea id="reportMessage" placeholder="Type details here..."></textarea>
-        <button class="submit-report" id="confirmReport">Submit Report</button>
-        <button class="action-btn" style="background:none; color:var(--muted); width:100%; font-size:12px;" onclick="closeReport()">Cancel</button>
-    </div>
-</div>
-
 <script>
-let activeQuestionId = null;
-
-function openReport(qId) {
-    activeQuestionId = qId;
-    document.getElementById("modalOverlay").style.display = "flex";
-}
-
-function closeReport() {
-    document.getElementById("modalOverlay").style.display = "none";
-    document.getElementById("reportMessage").value = "";
-}
-
 document.addEventListener("DOMContentLoaded", function(){
     const data = localStorage.getItem("quizResult");
-
-    if(!data){
-        document.getElementById("summary").innerHTML="<h2>No quiz data found.</h2>";
-        return;
-    }
-
-    const resultData = JSON.parse(data);
-    const score = resultData.score;
-    const total = resultData.total;
-    const accuracy = ((score/total)*100).toFixed(2);
-
-    document.getElementById("summary").innerHTML=
-    `<h2 style="font-size: 36px; color: var(--amber);">${score} / ${total}</h2>
-     <h3 style="color: var(--muted);">Accuracy: ${accuracy}%</h3>`;
-
-    let html=`<h2 style="margin: 40px 0 20px 0; font-weight: 800; letter-spacing: 1px;">DETAILED ANALYSIS</h2>
-    <table>
-    <thead>
-    <tr>
-    <th>#</th>
-    <th>Question</th>
-    <th>Your Answer</th>
-    <th>Correct Answer</th>
-    <th>Status</th>
-    <th>Solution</th>
-    <th>Report</th>
-    </tr>
-    </thead><tbody>`;
-
-    resultData.questions.forEach((q,i)=>{
-        const userAns=resultData.answers[i];
-        const isCorrect=userAns==q.a;
-
-        html+=`
-        <tr class="${isCorrect?"correct-row":"wrong-row"}">
-        <td style="font-weight:800; color: var(--brand);">${i+1}</td>
-        <td style="min-width: 250px;">${q.q}</td>
-        <td>${userAns!==null?q.o[userAns]:"<span style='color:var(--muted)'>Not Attempted</span>"}</td>
-        <td style="color: var(--accent); font-weight:600;">${q.o[q.a]}</td>
-        <td>
-            <span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">
-                ${isCorrect?"✅ Correct":"❌ Wrong"}
-            </span>
-        </td>
-        <td style="font-size: 13px; color: var(--muted); max-width: 300px;">
-            ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
-        </td>
-        <td>
-            <span class="report-link" onclick="openReport('${q.id || 'q_'+(i+1)}')">Report</span>
-        </td>
+    if(!data) return;
+    const res = JSON.parse(data);
+    const accuracy = ((res.score/res.total)*100).toFixed(2);
+    // RESTORED SUMMARY UI
+    document.getElementById("summary").innerHTML = `
+        <h2 style="font-size: 36px; color: var(--amber);">${res.score} / ${res.total}</h2>
+        <h3 style="color: var(--muted); font-size: 14px;">Accuracy: ${accuracy}%</h3>
+    `;
+    // RESTORED DETAILED ANALYSIS TABLE
+    let html = `<h2 style="margin: 40px 0 20px 0; font-weight: 800;">DETAILED ANALYSIS</h2>
+    <table><thead><tr><th>#</th><th>Question</th><th>Your Ans</th><th>Correct Ans</th><th>Status</th><th>Solution</th><th>Report</th></tr></thead><tbody>`;
+    res.questions.forEach((q, i) => {
+        const userAns = res.answers ? res.answers[i] : null;
+        const isCorrect = userAns == q.a;
+        html += `<tr class="${isCorrect ? 'correct-row' : 'wrong-row'}">
+            <td>${i + 1}</td>
+            <td style="min-width: 250px;">${q.q}</td>
+            <td>${userAns !== null ? q.o[userAns] : "Not Attempted"}</td>
+            <td style="color: var(--accent); font-weight:600;">${q.o[q.a]}</td>
+            <td><span class="status-badge ${isCorrect ? 'status-correct' : 'status-wrong'}">${isCorrect ? '✅ Correct' : '❌ Wrong'}</span></td>
+            <td style="font-size: 13px; color: var(--muted); max-width: 300px;">
+                ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
+            </td>
+            <td><span class="report-link">Report</span></td>
         </tr>`;
     });
-
-    html+="</tbody></table>";
-    document.getElementById("details").innerHTML=html;
+    document.getElementById("details").innerHTML = html + "</tbody></table>";
 });
 </script>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-    projectId: "olympiad-portal-d2a5e",
-    storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
-    messagingSenderId: "341855557503",
-    appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-let currentUser = null;
-
-onAuthStateChanged(auth, async (user) => {
-    if(!user){
-        window.location.replace("login.html");
-        return;
-    }
-    currentUser = user;
-
-    const resultData = JSON.parse(localStorage.getItem("quizResult"));
-    if(!resultData) return;
-    if(sessionStorage.getItem("resultSaved")) return;
-
-    const score = resultData.score;
-    const total = resultData.total;
-    const accuracy = ((score/total)*100).toFixed(2);
-
-    try{
-        await addDoc(collection(db,"leaderboard"),{
-            email: user.email,
-            uid: user.uid,
-            studentClass: resultData.class,
-            subject: resultData.subject,
-            score: score,
-            total: total,
-            accuracy: accuracy,
-            date: new Date()
-        });
-        sessionStorage.setItem("resultSaved","true");
-    }catch(error){
-        console.error("Firebase Save Error:", error);
-    }
-});
-
-// SUBMIT FEEDBACK LOGIC
-document.getElementById("confirmReport").addEventListener("click", async () => {
-    const msg = document.getElementById("reportMessage").value.trim();
-    if(!msg) { alert("Please enter details."); return; }
-    if(!currentUser) return;
-
-    const quizData = JSON.parse(localStorage.getItem("quizResult"));
-
-    try {
-        await addDoc(collection(db, "feedback"), {
-            uid: currentUser.uid,
-            email: currentUser.email,
-            questionId: activeQuestionId,
-            message: msg,
-            subject: quizData?.subject || "N/A",
-            class: quizData?.class || "N/A",
-            timestamp: serverTimestamp(),
-            status: "unread"
-        });
-        alert("Report submitted successfully.");
-        closeReport();
-    } catch(e) {
-        alert("Error: " + e.message);
-    }
-});
-
-window.logout=function(){
-    signOut(auth).then(()=>{
-        localStorage.clear();
-        sessionStorage.clear();
-        window.location.replace("login.html");
-    });
-};
-</script>
-
 </body>
 </html>
