@@ -28,6 +28,7 @@
     :root {
       --bg:#0f172a;
       --surface:#1e293b;
+      --surface-bright:#243146;
       --text:#f8fafc;
       --muted:#94a3b8;
       --border:#334155;
@@ -47,7 +48,6 @@
       min-height:100vh;
     }
 
-    /* NAVIGATION */
     nav{
       background:var(--surface);
       border-bottom:2px solid var(--border);
@@ -60,217 +60,85 @@
       z-index:1000;
     }
 
-    .brand{
-      font-size:22px;
-      font-weight:800;
-      color:var(--amber);
-      text-decoration:none;
-    }
-
+    .brand{ font-size:22px; font-weight:800; color:var(--amber); text-decoration:none; }
     .nav-links{ display:flex; gap:15px; align-items:center; }
-    .nav-links a{
-      color:#ffffff;
-      text-decoration:none;
-      font-size:12px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:0.5px;
-    }
+    .nav-links a{ color:#ffffff; text-decoration:none; font-size:12px; font-weight:800; text-transform:uppercase; }
     .nav-links a.active{ color:var(--amber); }
 
-    .container{
-      width:95%;
-      max-width:1200px;
-      margin:30px auto;
-      padding:0 15px;
-      flex:1;
-    }
+    .container{ width:95%; max-width:1200px; margin:30px auto; padding:0 15px; flex:1; }
 
-    /* 🏆 NEW: CHAMPIONSHIP AREA */
+    /* 🏆 SPLIT CHAMPIONSHIP AREA */
     .championship-section {
-      background: #1e293b; 
+      background: var(--surface-bright); 
       border: 3px solid var(--amber); 
-      border-radius: 16px;
-      padding: 35px;
-      margin-bottom: 50px;
-      box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); 
-    }
-
-    .champ-header {
+      border-radius: 20px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 25px;
       flex-wrap: wrap;
-      gap: 25px;
+      overflow: hidden;
     }
 
-    .champ-title-area h2 {
-      font-size: 32px;
-      color: #fff;
-      margin-bottom: 5px;
-      font-weight: 800;
+    .champ-left {
+      flex: 1; min-width: 320px; padding: 40px; border-right: 1px solid var(--border);
     }
 
-    .champ-selector-wrap {
-      margin: 20px 0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .champ-right {
+      flex: 1; min-width: 320px; padding: 40px; background: rgba(15, 23, 42, 0.3);
     }
 
+    .champ-title-area h2 { font-size: 30px; color: #fff; margin-bottom: 5px; font-weight: 800; }
+    
+    .champ-selector-wrap { margin: 20px 0; display: flex; align-items: center; gap: 12px; }
     .champ-select {
-      background: #0f172a;
-      color: var(--amber);
-      border: 1px solid var(--amber);
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-weight: 700;
-      outline: none;
-      cursor: pointer;
+      background: #0f172a; color: var(--amber); border: 1px solid var(--amber);
+      padding: 10px 15px; border-radius: 8px; font-weight: 700; outline: none; cursor: pointer;
     }
 
-    .class-badge {
-      color: var(--amber);
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      display: block;
+    .timer-container { 
+      background: #020617; padding: 20px; border-radius: 12px; 
+      border: 1px solid var(--border); text-align: center; margin: 25px 0;
     }
-
-    .detail-tag {
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid var(--amber);
-      color: var(--amber);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-right: 10px;
-      display: inline-block;
-    }
-
-    .timer-container {
-      background: #020617;
-      padding: 20px 30px;
-      border-radius: 15px;
-      border: 1px solid var(--border);
-      text-align: center;
-      min-width: 180px;
-    }
+    .timer-clock { font-size: 28px; font-weight: 800; color: var(--amber); font-family: monospace; }
 
     .btn-action {
-      width: 100%;
-      padding: 22px;
-      border-radius: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-      letter-spacing: 1.5px;
-      margin-top: 25px;
+      width: 100%; padding: 20px; border-radius: 12px; font-weight: 800;
+      text-transform: uppercase; font-size: 15px; border: none; cursor: pointer; transition: 0.3s;
     }
-
     .btn-buy { background: var(--amber); color: #000; }
-    .btn-live { background: var(--green); color: #fff; box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
+    .btn-live { background: var(--green); color: #fff; }
     .btn-none { background: var(--surface); color: var(--muted); cursor: default; }
 
+    .champ-info-title { color: var(--amber); font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; display: block; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .champ-ins-list { list-style: none; }
+    .champ-ins-list li { color: var(--muted); font-size: 14px; margin-bottom: 15px; display: flex; gap: 12px; line-height: 1.5; }
+    .champ-ins-list li b { color: var(--text); }
+
     /* 📚 DAILY PRACTICE SECTION */
-    .section-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .practice-container { margin-top: 20px; padding-top: 20px; }
+    .section-header-title { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 20px; }
 
     .class-selector-wrap {
-      background: rgba(245, 158, 11, 0.05);
-      border: 1px dashed var(--amber);
-      padding: 20px;
-      border-radius: 14px;
-      margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 20px; border-radius: 14px; margin-bottom: 30px;
+      display: flex; align-items: center; gap: 15px;
     }
 
-    select#classSelect {
-      background: var(--bg);
-      color: white;
-      border: 1px solid var(--border);
-      padding: 12px;
-      border-radius: 8px;
-      flex: 1;
-      cursor: pointer;
-    }
+    select#classSelect { background: var(--bg); color: white; border: 1px solid var(--border); padding: 12px; border-radius: 8px; flex: 1; cursor: pointer; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-bottom: 50px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 30px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 50px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 35px; cursor: pointer; transition: 0.3s; }
     .card:hover { border-color: var(--amber); transform: translateY(-5px); }
-    .card h3 { color: var(--amber); margin-bottom: 12px; font-size: 20px; }
-    .card p { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 25px; }
+    .card h3 { color: var(--amber); font-size: 20px; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
 
-    .btn-start {
-      background: var(--amber);
-      color: #000;
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-weight: 800;
-      width: 100%;
-      text-transform: uppercase;
-      font-size: 13px;
-    }
+    .btn-start { background: var(--amber); color: #000; border: none; padding: 14px; border-radius: 10px; font-weight: 800; width: 100%; text-transform: uppercase; }
 
     /* 📝 INSTRUCTIONS SECTION */
-    .instructions-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 35px;
-      margin-bottom: 80px;
-    }
-
-    .instructions-section h2 {
-      color: var(--amber);
-      margin-bottom: 30px;
-      font-size: 22px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 15px;
-    }
-
-    .ins-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-    .ins-item { display: flex; gap: 20px; align-items: flex-start; }
-    .ins-icon {
-      background: rgba(245, 158, 11, 0.1);
-      color: var(--amber);
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; font-weight: 800; flex-shrink: 0;
-    }
-
+    .instructions-section { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 35px; margin-bottom: 80px; }
+    .instructions-section h2 { color: var(--amber); margin-bottom: 30px; font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+    .ins-item { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 25px; }
+    .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; }
     .ins-text strong { color: var(--text); display: block; margin-bottom: 5px; font-size: 16px; }
     .ins-text { font-size: 15px; color: var(--muted); line-height: 1.6; }
 
@@ -295,12 +163,11 @@
   <main class="container">
 
     <div id="champSection" class="championship-section">
-      <div class="champ-header">
+      <div class="champ-left">
         <div class="champ-title-area">
-          <h2 id="champTitle">Science Weekly Quiz 2</h2>
-          
+          <h2>Science Weekly Quiz 2</h2>
           <div class="champ-selector-wrap">
-            <label style="color:var(--muted); font-size:11px; font-weight:800;">SCHEDULE FOR:</label>
+            <label style="color:var(--muted); font-size:11px; font-weight:800;">SELECT GRADE:</label>
             <select id="champGradeSelect" class="champ-select">
               <option value="class5">Grade 5</option>
               <option value="class6" selected>Grade 6</option>
@@ -310,67 +177,75 @@
               <option value="class10">Grade 10</option>
             </select>
           </div>
+          <span id="champClassMention" class="class-badge" style="margin: 15px 0;">For Class 6th</span>
+        </div>
 
-          <span id="champClassMention" class="class-badge">For Class 6th</span>
-          
-          <div class="champ-details-bar">
-            <span class="detail-tag">📅 March 15, 2026</span>
-            <span class="detail-tag">⏰ 10:00 AM IST</span>
-            <span id="champPriceTag" class="detail-tag">💰 Fee: ₹99</span>
-            <span id="regStatus" style="color:var(--green); font-size:12px; display:none; font-weight:800; margin-left:10px;">✔ REGISTERED</span>
+        <div class="timer-container">
+          <p style="font-size:11px; color:var(--muted); margin-bottom:8px; text-transform:uppercase; font-weight:800;">Countdown</p>
+          <p id="champTimer" class="timer-clock">00:00:00</p>
+        </div>
+
+        <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">Unlock & Register Now</button>
+      </div>
+
+      <div class="champ-right">
+        <span class="champ-info-title">About Weekly Quiz</span>
+        <ul class="champ-ins-list">
+          <li>✨ <b>Subject:</b> High-difficulty Science questions curated for Olympiads.</li>
+          <li>📅 <b>Date:</b> March 15th, 2026 at 10:00 AM IST.</li>
+          <li>💰 <b>Fee:</b> One-time fee of ₹99 per grade session.</li>
+          <li>🏆 <b>Goal:</b> Compete globally and reach the top 10 on the leaderboard.</li>
+        </ul>
+
+        <span class="champ-info-title" style="margin-top: 25px;">Championship Rules</span>
+        <ul class="champ-ins-list">
+          <li>⚠️ <b>One Attempt:</b> Students get only one chance to submit.</li>
+          <li>⏱️ <b>Time Limit:</b> Exactly 30 minutes. Auto-submit is enabled.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="practice-container">
+        <div class="section-header-title">📚 Daily Practice Quizzes</div>
+        
+        <div class="class-selector-wrap">
+          <label style="font-weight:800; color:var(--amber);">SELECT PRACTICE GRADE:</label>
+          <select id="classSelect">
+            <option value="class1">Grade 1</option>
+            <option value="class2">Grade 2</option>
+            <option value="class3">Grade 3</option>
+            <option value="class4">Grade 4</option>
+            <option value="class5">Grade 5</option>
+            <option value="class6" selected>Grade 6</option>
+            <option value="class7">Grade 7</option>
+            <option value="class8">Grade 8</option>
+            <option value="class9">Grade 9</option>
+            <option value="class10">Grade 10</option>
+          </select>
+        </div>
+
+        <div class="grid">
+          <div class="card" onclick="startQuiz('maths')">
+            <h3>Mathematics</h3>
+            <p>Challenge your logic with Algebra, Geometry, and Arithmetic.</p>
+            <button class="btn-start">Start Quiz</button>
+          </div>
+          <div class="card" onclick="startQuiz('science')">
+            <h3>Science</h3>
+            <p>Explore Physics, Chemistry, and Biology.</p>
+            <button class="btn-start">Start Quiz</button>
+          </div>
+          <div class="card" onclick="startQuiz('english')">
+            <h3>English</h3>
+            <p>Master Vocabulary, Grammar, and Reading skills.</p>
+            <button class="btn-start">Start Quiz</button>
+          </div>
+          <div class="card" onclick="startQuiz('reasoning')">
+            <h3>Logical Reasoning</h3>
+            <p>Sharpen your mind with patterns and puzzles.</p>
+            <button class="btn-start">Start Quiz</button>
           </div>
         </div>
-        
-        <div class="timer-container">
-          <p style="font-size:11px; color:var(--muted); margin-bottom:8px; font-weight:800; text-transform:uppercase;">Starts In</p>
-          <p id="champTimer" style="font-size:28px; color:var(--amber); font-weight:800; font-family:monospace;">00:00:00</p>
-        </div>
-      </div>
-
-      <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">
-        UNLOCK & REGISTER NOW
-      </button>
-    </div>
-
-    <div class="class-selector-wrap">
-      <label style="font-weight:800; color:var(--amber);">SELECT PRACTICE GRADE:</label>
-      <select id="classSelect">
-        <option value="class1">Grade 1</option>
-        <option value="class2">Grade 2</option>
-        <option value="class3">Grade 3</option>
-        <option value="class4">Grade 4</option>
-        <option value="class5">Grade 5</option>
-        <option value="class6" selected>Grade 6</option>
-        <option value="class7">Grade 7</option>
-        <option value="class8">Grade 8</option>
-        <option value="class9">Grade 9</option>
-        <option value="class10">Grade 10</option>
-      </select>
-    </div>
-
-    <div class="section-title">📚 Daily Practice Quizzes</div>
-
-    <div class="grid">
-      <div class="card" onclick="startQuiz('maths')">
-        <h3>Mathematics</h3>
-        <p>Challenge your logic with Algebra, Geometry, and Arithmetic.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
-      <div class="card" onclick="startQuiz('science')">
-        <h3>Science</h3>
-        <p>Explore Physics, Chemistry, and Biology.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
-      <div class="card" onclick="startQuiz('english')">
-        <h3>English</h3>
-        <p>Master Vocabulary, Grammar, and Reading skills.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
-      <div class="card" onclick="startQuiz('reasoning')">
-        <h3>Logical Reasoning</h3>
-        <p>Sharpen your mind with patterns and puzzles.</p>
-        <button class="btn-start">Start Quiz</button>
-      </div>
     </div>
 
     <section class="instructions-section">
@@ -423,19 +298,17 @@
     async function fetchChampSession(grade) {
       if (timerInterval) clearInterval(timerInterval);
       const classNum = grade.replace('class', '');
-      const sessId = `2026_03_15_C${classNum}_SCI`; 
+      const sessId = `2026_03_15_C${classNum}_SCI`; // Matches Admin IDs
       
       const docSnap = await getDoc(doc(db, "test_sessions", sessId));
       const btn = document.getElementById("btnChamp");
       const classMention = document.getElementById("champClassMention");
-      const regLabel = document.getElementById("regStatus");
 
       if (docSnap.exists()) {
         const data = docSnap.data();
         activeSession = { ...data, id: docSnap.id };
         classMention.style.color = "var(--amber)";
         classMention.innerText = `For Class ${classNum}th`;
-        document.getElementById("champPriceTag").innerText = `💰 Fee: ₹${data.price}`;
         
         const isBought = localStorage.getItem(`paid_${sessId}`) === "true";
         startChampTimer(data.startTime.toDate(), isBought);
@@ -446,14 +319,12 @@
         btn.innerText = "Check Back Later";
         btn.className = "btn-action btn-none";
         btn.disabled = true;
-        regLabel.style.display = "none";
       }
     }
 
     function startChampTimer(startTime, isBought) {
       const btn = document.getElementById("btnChamp");
       const timerDisplay = document.getElementById("champTimer");
-      const regLabel = document.getElementById("regStatus");
 
       timerInterval = setInterval(() => {
         const diff = startTime - new Date().getTime();
@@ -462,9 +333,7 @@
           btn.innerText = `UNLOCK TEST (₹${activeSession.price})`;
           btn.className = "btn-action btn-buy";
           btn.disabled = false;
-          regLabel.style.display = "none";
         } else {
-          regLabel.style.display = "inline";
           if (diff > 0) {
             btn.innerText = "REGISTERED - WAITING FOR START";
             btn.className = "btn-action btn-none";
