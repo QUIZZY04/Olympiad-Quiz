@@ -47,6 +47,7 @@
       min-height:100vh;
     }
 
+    /* NAVIGATION */
     nav{
       background:var(--surface);
       border-bottom:2px solid var(--border);
@@ -57,7 +58,6 @@
       position:sticky;
       top:0;
       z-index:1000;
-      flex-wrap:wrap;
     }
 
     .brand{
@@ -67,42 +67,33 @@
       text-decoration:none;
     }
 
-    .nav-links{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-
+    .nav-links{ display:flex; gap:15px; align-items:center; }
     .nav-links a{
       color:#ffffff;
       text-decoration:none;
-      font-size:11px;
+      font-size:12px;
       font-weight:800;
       text-transform:uppercase;
       letter-spacing:0.5px;
     }
-
-    .nav-links a.active{
-      color:var(--amber);
-    }
+    .nav-links a.active{ color:var(--amber); }
 
     .container{
       width:95%;
       max-width:1200px;
-      margin:20px auto;
-      padding:0 10px;
+      margin:30px auto;
+      padding:0 15px;
       flex:1;
     }
 
-    /* --- SPECIAL: WEEKLY CHAMPIONSHIP AREA (HIGH VISIBILITY) --- */
+    /* 🏆 NEW: CHAMPIONSHIP AREA */
     .championship-section {
-      background: #1e293b; /* Distinct background color */
-      border: 2px solid var(--amber); /* Bold Amber Border */
+      background: #1e293b; 
+      border: 3px solid var(--amber); 
       border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 40px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-      display: none; /* JS will show this if session exists */
+      padding: 35px;
+      margin-bottom: 50px;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); 
     }
 
     .champ-header {
@@ -111,162 +102,179 @@
       align-items: flex-start;
       margin-bottom: 25px;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 25px;
     }
 
     .champ-title-area h2 {
-      font-size: 26px;
+      font-size: 32px;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 5px;
       font-weight: 800;
     }
 
-    .champ-details-bar {
+    .champ-selector-wrap {
+      margin: 20px 0;
       display: flex;
+      align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
+    }
+
+    .champ-select {
+      background: #0f172a;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .class-badge {
+      color: var(--amber);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: block;
     }
 
     .detail-tag {
       background: rgba(245, 158, 11, 0.1);
       border: 1px solid var(--amber);
       color: var(--amber);
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 8px;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       text-transform: uppercase;
+      margin-right: 10px;
+      display: inline-block;
     }
 
     .timer-container {
       background: #020617;
-      padding: 15px 25px;
-      border-radius: 12px;
+      padding: 20px 30px;
+      border-radius: 15px;
       border: 1px solid var(--border);
       text-align: center;
-      min-width: 150px;
-    }
-
-    .timer-clock {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--amber);
-      font-family: monospace;
+      min-width: 180px;
     }
 
     .btn-action {
       width: 100%;
-      padding: 20px;
+      padding: 22px;
       border-radius: 12px;
       font-weight: 800;
       text-transform: uppercase;
-      font-size: 15px;
+      font-size: 16px;
       border: none;
       cursor: pointer;
       transition: 0.3s;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      margin-top: 25px;
     }
 
     .btn-buy { background: var(--amber); color: #000; }
-    .btn-buy:hover { background: #fbbf24; transform: scale(1.01); }
-    .btn-locked { background: var(--surface); color: var(--muted); cursor: not-allowed; }
-    .btn-live { background: var(--green); color: #fff; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
+    .btn-live { background: var(--green); color: #fff; box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
+    .btn-none { background: var(--surface); color: var(--muted); cursor: default; }
 
-    /* --- EXISTING STYLES --- */
-    .class-selector-wrap{
-      background:rgba(245,158,11,0.05);
-      border:1px dashed var(--amber);
-      padding:15px;
-      border-radius:12px;
-      margin-bottom:25px;
-      display:flex;
-      align-items:center;
-      gap:15px;
+    /* 📚 DAILY PRACTICE SECTION */
+    .section-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    label{ font-weight:700; color:var(--amber); font-size:12px; }
-
-    select{
-      background:var(--bg);
-      color:white;
-      border:1px solid var(--border);
-      padding:10px;
-      border-radius:8px;
-      flex:1;
-      outline:none;
-      cursor:pointer;
+    .class-selector-wrap {
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px dashed var(--amber);
+      padding: 20px;
+      border-radius: 14px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:20px;
-      margin-bottom:40px;
+    select#classSelect {
+      background: var(--bg);
+      color: white;
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 8px;
+      flex: 1;
+      cursor: pointer;
     }
 
-    .card{
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:25px;
-      cursor:pointer;
-      transition:0.2s;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
     }
 
-    .card:hover{ border-color:var(--amber); transform:translateY(-3px); }
-    .card h3{ color:var(--amber); margin-bottom:10px; font-size:18px; }
-    .card p{ color:var(--muted); font-size:13px; margin-bottom:20px; line-height:1.4; }
-
-    .btn-start{
-      background:var(--amber);
-      color:#000;
-      border:none;
-      padding:12px;
-      border-radius:8px;
-      font-weight:800;
-      width:100%;
-      cursor:pointer;
-      text-transform:uppercase;
-      font-size:12px;
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .instructions-section{
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:25px;
-      margin:20px 0 60px 0;
+    .card:hover { border-color: var(--amber); transform: translateY(-5px); }
+    .card h3 { color: var(--amber); margin-bottom: 12px; font-size: 20px; }
+    .card p { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 25px; }
+
+    .btn-start {
+      background: var(--amber);
+      color: #000;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 800;
+      width: 100%;
+      text-transform: uppercase;
+      font-size: 13px;
     }
 
-    .instructions-section h2{
-      color:var(--amber);
-      margin-bottom:25px;
-      font-size:20px;
-      font-weight:800;
-      border-bottom:1px solid var(--border);
-      padding-bottom:10px;
+    /* 📝 INSTRUCTIONS SECTION */
+    .instructions-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 80px;
     }
 
-    .ins-grid{ display:grid; grid-template-columns:1fr; gap:25px; }
-    .ins-item{ display:flex; gap:15px; align-items:flex-start; }
-    .ins-icon{
-      background:rgba(245,158,11,0.1);
-      color:var(--amber);
-      width:32px;
-      height:32px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:50%;
-      flex-shrink:0;
-      font-weight:800;
-      font-size:14px;
+    .instructions-section h2 {
+      color: var(--amber);
+      margin-bottom: 30px;
+      font-size: 22px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 15px;
     }
 
-    .ins-text{ font-size:14px; color:var(--muted); line-height:1.6; }
-    .ins-text strong{ color:var(--text); display:block; margin-bottom:4px; font-size:15px; }
+    .ins-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+    .ins-item { display: flex; gap: 20px; align-items: flex-start; }
+    .ins-icon {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--amber);
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; font-weight: 800; flex-shrink: 0;
+    }
 
-    footer{ text-align:center; padding:25px; background:#020617; border-top:1px solid var(--border); color:var(--muted); font-size:12px; }
+    .ins-text strong { color: var(--text); display: block; margin-bottom: 5px; font-size: 16px; }
+    .ins-text { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+    footer { text-align: center; padding: 30px; background: #020617; color: var(--muted); font-size: 13px; border-top: 1px solid var(--border); }
   </style>
 </head>
 
@@ -289,30 +297,43 @@
     <div id="champSection" class="championship-section">
       <div class="champ-header">
         <div class="champ-title-area">
-          <h2 id="champTitle">Science Weekly Quiz</h2>
+          <h2 id="champTitle">Science Weekly Quiz 2</h2>
+          
+          <div class="champ-selector-wrap">
+            <label style="color:var(--muted); font-size:11px; font-weight:800;">SCHEDULE FOR:</label>
+            <select id="champGradeSelect" class="champ-select">
+              <option value="class5">Grade 5</option>
+              <option value="class6" selected>Grade 6</option>
+              <option value="class7">Grade 7</option>
+              <option value="class8">Grade 8</option>
+              <option value="class9">Grade 9</option>
+              <option value="class10">Grade 10</option>
+            </select>
+          </div>
+
+          <span id="champClassMention" class="class-badge">For Class 6th</span>
+          
           <div class="champ-details-bar">
-            <span class="detail-tag">📅 Date: March 15, 2026</span>
-            <span class="detail-tag">⏰ Time: 10:00 AM</span>
+            <span class="detail-tag">📅 March 15, 2026</span>
+            <span class="detail-tag">⏰ 10:00 AM IST</span>
             <span id="champPriceTag" class="detail-tag">💰 Fee: ₹99</span>
-            <span id="regStatus" style="color:var(--green); font-size:11px; display:none; align-self:center; font-weight:800; margin-left:10px;">✔ REGISTERED</span>
+            <span id="regStatus" style="color:var(--green); font-size:12px; display:none; font-weight:800; margin-left:10px;">✔ REGISTERED</span>
           </div>
         </div>
         
         <div class="timer-container">
-          <p style="font-size:10px; color:var(--muted); margin-bottom:5px; font-weight:700;">STARTS IN</p>
-          <p id="champTimer" class="timer-clock">00:00:00</p>
+          <p style="font-size:11px; color:var(--muted); margin-bottom:8px; font-weight:800; text-transform:uppercase;">Starts In</p>
+          <p id="champTimer" style="font-size:28px; color:var(--amber); font-weight:800; font-family:monospace;">00:00:00</p>
         </div>
       </div>
 
-      <div id="actionArea">
-        <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">
-          UNLOCK & REGISTER NOW
-        </button>
-      </div>
+      <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">
+        UNLOCK & REGISTER NOW
+      </button>
     </div>
 
     <div class="class-selector-wrap">
-      <label>SELECT GRADE (1-10):</label>
+      <label style="font-weight:800; color:var(--amber);">SELECT PRACTICE GRADE:</label>
       <select id="classSelect">
         <option value="class1">Grade 1</option>
         <option value="class2">Grade 2</option>
@@ -327,7 +348,7 @@
       </select>
     </div>
 
-    <p style="margin-bottom:20px; color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase;">📚 Daily Practice Quizzes</p>
+    <div class="section-title">📚 Daily Practice Quizzes</div>
 
     <div class="grid">
       <div class="card" onclick="startQuiz('maths')">
@@ -367,6 +388,10 @@
           <div class="ins-icon">3</div>
           <div class="ins-text"><strong>Save & Next</strong>Click "Save & Next" to store your answer.</div>
         </div>
+        <div class="ins-item">
+          <div class="ins-icon">4</div>
+          <div class="ins-text"><strong>Mark for Review</strong>Use if you want to revisit a question later.</div>
+        </div>
       </div>
     </section>
 
@@ -395,47 +420,54 @@
     let activeSession = null;
     let timerInterval = null;
 
-    async function fetchSession(grade) {
+    async function fetchChampSession(grade) {
       if (timerInterval) clearInterval(timerInterval);
       const classNum = grade.replace('class', '');
-      const sessId = `2026_03_15_C${classNum}_SCI`; // Match Admin Pattern
+      const sessId = `2026_03_15_C${classNum}_SCI`; 
       
-      const docRef = doc(db, "test_sessions", sessId);
-      const snap = await getDoc(docRef);
+      const docSnap = await getDoc(doc(db, "test_sessions", sessId));
+      const btn = document.getElementById("btnChamp");
+      const classMention = document.getElementById("champClassMention");
+      const regLabel = document.getElementById("regStatus");
 
-      if (snap.exists()) {
-        const data = snap.data();
-        activeSession = { ...data, id: snap.id };
-        
-        document.getElementById("champSection").style.display = "block";
-        document.getElementById("champTitle").innerText = data.title;
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        activeSession = { ...data, id: docSnap.id };
+        classMention.style.color = "var(--amber)";
+        classMention.innerText = `For Class ${classNum}th`;
         document.getElementById("champPriceTag").innerText = `💰 Fee: ₹${data.price}`;
         
         const isBought = localStorage.getItem(`paid_${sessId}`) === "true";
-        refreshButton(data.startTime.toDate(), isBought);
+        startChampTimer(data.startTime.toDate(), isBought);
       } else {
-        document.getElementById("champSection").style.display = "none";
+        classMention.innerText = "No Session Scheduled for this Grade";
+        classMention.style.color = "var(--danger)";
+        document.getElementById("champTimer").innerText = "00:00:00";
+        btn.innerText = "Check Back Later";
+        btn.className = "btn-action btn-none";
+        btn.disabled = true;
+        regLabel.style.display = "none";
       }
     }
 
-    function refreshButton(startTime, isBought) {
+    function startChampTimer(startTime, isBought) {
       const btn = document.getElementById("btnChamp");
-      const regLabel = document.getElementById("regStatus");
       const timerDisplay = document.getElementById("champTimer");
+      const regLabel = document.getElementById("regStatus");
 
       timerInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const diff = startTime - now;
+        const diff = startTime - new Date().getTime();
 
         if (!isBought) {
           btn.innerText = `UNLOCK TEST (₹${activeSession.price})`;
           btn.className = "btn-action btn-buy";
           btn.disabled = false;
+          regLabel.style.display = "none";
         } else {
           regLabel.style.display = "inline";
           if (diff > 0) {
             btn.innerText = "REGISTERED - WAITING FOR START";
-            btn.className = "btn-action btn-locked";
+            btn.className = "btn-action btn-none";
             btn.disabled = true;
           } else {
             btn.innerText = "JOIN CHAMPIONSHIP NOW";
@@ -443,24 +475,25 @@
             btn.disabled = false;
           }
         }
-
-        if (diff <= 0) {
-          timerDisplay.innerText = "LIVE NOW";
-        } else {
-          const h = Math.floor(diff / (1000 * 60 * 60));
-          const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          const s = Math.floor((diff % (1000 * 60)) / 1000);
-          timerDisplay.innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-        }
+        timerDisplay.innerText = diff <= 0 ? "LIVE NOW" : formatTime(diff);
       }, 1000);
     }
 
+    function formatTime(ms) {
+      const h = Math.floor(ms / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    }
+
     window.handleEventClick = function() {
-      if (localStorage.getItem(`paid_${activeSession.id}`) !== "true") {
-        if (confirm(`Register for this championship for ₹${activeSession.price}?`)) {
+      if (!activeSession) return;
+      const isPaid = localStorage.getItem(`paid_${activeSession.id}`) === "true";
+      if (!isPaid) {
+        if (confirm(`Unlock ${activeSession.title} for ₹${activeSession.price}?`)) {
           localStorage.setItem(`paid_${activeSession.id}`, "true");
-          alert("Registration Successful!");
-          location.reload();
+          alert("Success! You are now registered.");
+          fetchChampSession(document.getElementById("champGradeSelect").value);
         }
       } else {
         localStorage.setItem("activeSessionId", activeSession.id);
@@ -479,16 +512,14 @@
 
     window.logout = () => { sessionStorage.clear(); window.location.href = "login.html"; };
 
-    document.getElementById("classSelect").addEventListener("change", (e) => {
-      localStorage.setItem("selectedClass", e.target.value);
-      fetchSession(e.target.value);
-    });
+    document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
+    document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
 
     onAuthStateChanged(auth, (user) => {
       if (user && user.email === "madhhu52@gmail.com") document.getElementById("adminTab").style.display = "inline";
-      const savedClass = localStorage.getItem("selectedClass") || "class6";
-      document.getElementById("classSelect").value = savedClass;
-      fetchSession(savedClass);
+      const saved = localStorage.getItem("selectedClass") || "class6";
+      document.getElementById("classSelect").value = saved;
+      fetchChampSession("class6");
     });
   </script>
 </body>
