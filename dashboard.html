@@ -15,7 +15,7 @@ window.onpopstate = function () {
 </script>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Dashboard - Olympiad Portal</title>
 
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
@@ -94,14 +94,14 @@ padding:0 10px;
 flex:1;
 }
 
-/* CHAMPIONSHIP SECTION */
+/* --- NEW CHAMPIONSHIP UI --- */
 .championship-section {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(30, 41, 59, 1) 100%);
     border: 2px solid var(--amber);
     border-radius: 16px;
     padding: 25px;
     margin-bottom: 30px;
-    display: none; /* Hidden by default, shown via JS if session exists */
+    display: none; /* JS will toggle this */
 }
 
 .champ-header {
@@ -113,47 +113,37 @@ flex:1;
     gap: 15px;
 }
 
-.champ-badge {
-    background: var(--amber);
-    color: #000;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
 .timer-box {
     background: #020617;
     padding: 10px 20px;
     border-radius: 12px;
     border: 1px solid var(--border);
     text-align: center;
+    min-width: 140px;
 }
 
-.timer-label { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
 .timer-clock { font-size: 20px; font-weight: 800; color: var(--amber); font-family: monospace; }
 
 .btn-join {
     background: var(--green);
     color: white;
     border: none;
-    padding: 15px 30px;
+    padding: 15px;
     border-radius: 10px;
     font-weight: 800;
     cursor: pointer;
-    font-size: 14px;
-    transition: 0.3s;
     width: 100%;
+    text-transform: uppercase;
+    transition: 0.3s;
 }
 
 .btn-join:disabled {
     background: var(--border);
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.6;
 }
+/* --------------------------- */
 
-/* EXISTING STYLES */
 .class-selector-wrap{
 background:rgba(245,158,11,0.05);
 border:1px dashed var(--amber);
@@ -175,7 +165,6 @@ padding:10px;
 border-radius:8px;
 flex:1;
 outline:none;
-cursor:pointer;
 }
 
 .grid{
@@ -200,7 +189,7 @@ transform:translateY(-3px);
 }
 
 .card h3{ color:var(--amber); margin-bottom:10px; font-size:18px; }
-.card p{ color:var(--muted); font-size:13px; margin-bottom:20px; line-height:1.4; }
+.card p{ color:var(--muted); font-size:13px; margin-bottom:20px; }
 
 .btn-start{
 background:var(--amber);
@@ -210,7 +199,6 @@ padding:12px;
 border-radius:8px;
 font-weight:800;
 width:100%;
-cursor:pointer;
 text-transform:uppercase;
 font-size:12px;
 }
@@ -220,16 +208,7 @@ background:var(--surface);
 border:1px solid var(--border);
 border-radius:16px;
 padding:25px;
-margin:20px 0 60px 0;
-}
-
-.instructions-section h2{
-color:var(--amber);
-margin-bottom:25px;
-font-size:20px;
-font-weight:800;
-border-bottom:1px solid var(--border);
-padding-bottom:10px;
+margin-bottom:60px;
 }
 
 .ins-grid{ display:grid; grid-template-columns:1fr; gap:25px; }
@@ -251,14 +230,7 @@ font-size:14px;
 .ins-text{ font-size:14px; color:var(--muted); line-height:1.6; }
 .ins-text strong{ color:var(--text); display:block; margin-bottom:4px; font-size:15px; }
 
-footer{
-text-align:center;
-padding:25px;
-background:#020617;
-border-top:1px solid var(--border);
-color:var(--muted);
-font-size:12px;
-}
+footer{ text-align:center; padding:25px; background:#020617; color:var(--muted); font-size:12px; }
 </style>
 </head>
 
@@ -271,7 +243,7 @@ font-size:12px;
 <a href="dashboard.html" class="active">Dashboard</a>
 <a href="quiz.html">Take Quiz</a>
 <a href="leaderboard.html">Leaderboard</a>
-<a id="adminTab" href="admin.html" style="display:none;color:#22c55e;">Admin</a>
+<a id="adminTab" href="admin.html" style="display:none;color:var(--green);">Admin</a>
 <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
 </div>
 </nav>
@@ -281,93 +253,73 @@ font-size:12px;
     <div id="champSection" class="championship-section">
         <div class="champ-header">
             <div>
-                <span class="champ-badge">Live Event</span>
-                <h2 id="champTitle" style="color:white; margin-top:10px; font-size:24px;">Weekly Science Mock</h2>
-                <p id="champMeta" style="color:var(--muted); font-size:13px;"></p>
+                <h2 id="champTitle" style="color:white; font-size:22px;">Upcoming Championship</h2>
+                <p id="champMeta" style="color:var(--muted); font-size:12px; margin-top:5px;"></p>
             </div>
             <div class="timer-box">
-                <p class="timer-label">Starts In</p>
+                <p style="font-size:10px; color:var(--muted); margin-bottom:4px;">STARTS IN</p>
                 <p id="champTimer" class="timer-clock">00:00:00</p>
             </div>
         </div>
         <button id="btnJoinChamp" class="btn-join" disabled onclick="joinChampionship()">
-            Waiting for Start Time...
+            Waiting for Start...
         </button>
     </div>
 
     <div class="class-selector-wrap">
-    <label>SELECT GRADE (1-10):</label>
-    <select id="classSelect">
-    <option value="class1">Grade 1</option>
-    <option value="class2">Grade 2</option>
-    <option value="class3">Grade 3</option>
-    <option value="class4">Grade 4</option>
-    <option value="class5">Grade 5</option>
-    <option value="class6" selected>Grade 6</option>
-    <option value="class7">Grade 7</option>
-    <option value="class8">Grade 8</option>
-    <option value="class9">Grade 9</option>
-    <option value="class10">Grade 10</option>
-    </select>
+        <label>SELECT GRADE (1-10):</label>
+        <select id="classSelect">
+            <option value="class1">Grade 1</option>
+            <option value="class2">Grade 2</option>
+            <option value="class3">Grade 3</option>
+            <option value="class4">Grade 4</option>
+            <option value="class5">Grade 5</option>
+            <option value="class6" selected>Grade 6</option>
+            <option value="class7">Grade 7</option>
+            <option value="class8">Grade 8</option>
+            <option value="class9">Grade 9</option>
+            <option value="class10">Grade 10</option>
+        </select>
     </div>
 
-    <h2 style="margin-bottom:20px; font-size:14px; text-transform:uppercase; letter-spacing:1px; color:var(--muted);">📚 Daily Practice Quizzes</h2>
+    <p style="margin:20px 0 15px 0; color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase;">📚 Daily Practice Quizzes</p>
+    
     <div class="grid">
-    <div class="card" onclick="startQuiz('maths')">
-    <h3>Mathematics</h3>
-    <p>Challenge your logic with Algebra, Geometry, and Arithmetic.</p>
-    <button class="btn-start">Start Quiz</button>
-    </div>
-
-    <div class="card" onclick="startQuiz('science')">
-    <h3>Science</h3>
-    <p>Explore Physics, Chemistry, and Biology.</p>
-    <button class="btn-start">Start Quiz</button>
-    </div>
-
-    <div class="card" onclick="startQuiz('english')">
-    <h3>English</h3>
-    <p>Master Vocabulary, Grammar, and Reading skills.</p>
-    <button class="btn-start">Start Quiz</button>
-    </div>
-
-    <div class="card" onclick="startQuiz('reasoning')">
-    <h3>Logical Reasoning</h3>
-    <p>Sharpen your mind with patterns and puzzles.</p>
-    <button class="btn-start">Start Quiz</button>
-    </div>
+        <div class="card" onclick="startQuiz('maths')">
+            <h3>Mathematics</h3>
+            <p>Challenge your logic with Algebra, Geometry, and Arithmetic.</p>
+            <button class="btn-start">Start Quiz</button>
+        </div>
+        <div class="card" onclick="startQuiz('science')">
+            <h3>Science</h3>
+            <p>Explore Physics, Chemistry, and Biology.</p>
+            <button class="btn-start">Start Quiz</button>
+        </div>
+        <div class="card" onclick="startQuiz('english')">
+            <h3>English</h3>
+            <p>Master Vocabulary, Grammar, and Reading skills.</p>
+            <button class="btn-start">Start Quiz</button>
+        </div>
+        <div class="card" onclick="startQuiz('reasoning')">
+            <h3>Logical Reasoning</h3>
+            <p>Sharpen your mind with patterns and puzzles.</p>
+            <button class="btn-start">Start Quiz</button>
+        </div>
     </div>
 
     <section class="instructions-section">
-    <h2>📝 Quiz Rules & Instructions</h2>
-    <div class="ins-grid">
-    <div class="ins-item">
-    <div class="ins-icon">1</div>
-    <div class="ins-text"><strong>Duration & Submission</strong>You have 30 minutes. The system auto-submits when time ends.</div>
-    </div>
-    <div class="ins-item">
-    <div class="ins-icon">2</div>
-    <div class="ins-text"><strong>Navigation Palette</strong>Green = Answered, Red = Visited, Grey = Unseen.</div>
-    </div>
-    <div class="ins-item">
-    <div class="ins-icon">3</div>
-    <div class="ins-text"><strong>Save & Next</strong>Click "Save & Next" to store your answer.</div>
-    </div>
-    <div class="ins-item">
-    <div class="ins-icon">4</div>
-    <div class="ins-text"><strong>Mark for Review</strong>Use if you want to revisit a question later.</div>
-    </div>
-    <div class="ins-item">
-    <div class="ins-icon">5</div>
-    <div class="ins-text"><strong>Internet Stability</strong>Maintain a stable internet connection.</div>
-    </div>
-    <div class="ins-item">
-    <div class="ins-icon">6</div>
-    <div class="ins-text"><strong>Results & Feedback</strong>Score and analysis appear after submission.</div>
-    </div>
-    </div>
+        <h2 style="color:var(--amber); margin-bottom:25px; font-size:20px; border-bottom:1px solid var(--border); padding-bottom:10px;">📝 Quiz Rules & Instructions</h2>
+        <div class="ins-grid">
+            <div class="ins-item">
+                <div class="ins-icon">1</div>
+                <div class="ins-text"><strong>Duration & Submission</strong>You have 30 minutes. The system auto-submits when time ends.</div>
+            </div>
+            <div class="ins-item">
+                <div class="ins-icon">2</div>
+                <div class="ins-text"><strong>Navigation Palette</strong>Green = Answered, Red = Visited, Grey = Unseen.</div>
+            </div>
+        </div>
     </section>
-
 </main>
 
 <footer>© 2026 Olympiad Portal</footer>
@@ -375,118 +327,106 @@ font-size:12px;
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, collection, query, where, onSnapshot } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig={
-apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
-projectId:"olympiad-portal-d2a5e",
-storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
-messagingSenderId:"341855557503",
-appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+const firebaseConfig = {
+    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+    projectId: "olympiad-portal-d2a5e"
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-let currentChampSession = null;
+let activeSession = null;
 
-// CHAMPIONSHIP LOGIC
-async function checkChampionship(studentClass) {
-    const classNum = studentClass.replace('class', '');
-    const dateStr = "2026_03_15"; // Target date
-    const sessionId = `${dateStr}_C${classNum}_SCI`;
+// --- CHAMPIONSHIP DATA FETCHER ---
+async function checkChampionship(selectedGrade) {
+    const classNum = selectedGrade.replace('class', '');
+    const sessionId = `2026_03_15_C${classNum}_SCI`; 
     
-    const sessRef = doc(db, "test_sessions", sessionId);
-    const snap = await getDoc(sessRef);
+    try {
+        const docRef = doc(db, "test_sessions", sessionId);
+        const docSnap = await getDoc(docRef);
 
-    if (snap.exists()) {
-        const data = snap.data();
-        currentChampSession = data;
-        currentChampSession.id = snap.id;
-        
-        document.getElementById("champSection").style.display = "block";
-        document.getElementById("champTitle").innerText = data.title;
-        document.getElementById("champMeta").innerText = `Subject: Science | Class: ${classNum} | Fee: ₹${data.price}`;
-        
-        startTimer(data.startTime.toDate());
-    } else {
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            activeSession = { ...data, id: docSnap.id };
+            
+            document.getElementById("champSection").style.display = "block";
+            document.getElementById("champTitle").innerText = data.title;
+            document.getElementById("champMeta").innerText = `Subject: Science | Price: ₹${data.price}`;
+            
+            updateTimer(data.startTime.toDate());
+        } else {
+            document.getElementById("champSection").style.display = "none";
+        }
+    } catch (e) { 
+        console.error("Firestore Check Failed:", e); 
         document.getElementById("champSection").style.display = "none";
     }
 }
 
-function startTimer(startTime) {
-    const timerEl = document.getElementById("champTimer");
+function updateTimer(startTime) {
+    const timerDisplay = document.getElementById("champTimer");
     const joinBtn = document.getElementById("btnJoinChamp");
 
-    const timerInterval = setInterval(() => {
+    const interval = setInterval(() => {
         const now = new Date().getTime();
-        const distance = startTime - now;
+        const diff = startTime - now;
 
-        if (distance < 0) {
-            clearInterval(timerInterval);
-            timerEl.innerText = "LIVE NOW";
-            joinBtn.innerText = "JOIN CHAMPIONSHIP NOW";
+        if (diff <= 0) {
+            clearInterval(interval);
+            timerDisplay.innerText = "LIVE NOW";
+            joinBtn.innerText = "JOIN CHAMPIONSHIP";
             joinBtn.disabled = false;
             joinBtn.style.background = "#22c55e";
             return;
         }
 
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        timerEl.innerText = 
-            `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+        const h = Math.floor(diff / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+        timerDisplay.innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }, 1000);
 }
 
 window.joinChampionship = function() {
-    if(!currentChampSession) return;
-    localStorage.setItem("activeSessionId", currentChampSession.id);
+    if(!activeSession) return;
+    localStorage.setItem("activeSessionId", activeSession.id);
     localStorage.setItem("isChampionship", "true");
     window.location.href = "quiz.html";
 };
 
-// EXISTING LOGIC
-function startQuiz(subject){
-    localStorage.setItem("selectedClass",document.getElementById("classSelect").value);
-    localStorage.setItem("selectedSubject",subject);
+// --- NORMAL QUIZ LOGIC ---
+window.startQuiz = (subject) => {
+    localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
+    localStorage.setItem("selectedSubject", subject);
     localStorage.removeItem("activeSessionId");
     localStorage.removeItem("isChampionship");
-    window.location.href="quiz.html";
-}
-
-window.startQuiz=startQuiz;
-
-window.logout=function(){
-    if(confirm("Are you sure you want to logout?")){
-        sessionStorage.removeItem("loggedIn");
-        window.location.replace("login.html");
-    }
+    window.location.href = "quiz.html";
 };
 
+window.logout = () => { 
+    sessionStorage.clear(); 
+    window.location.href = "login.html"; 
+};
+
+// --- INITIALIZATION ---
 document.getElementById("classSelect").addEventListener("change", (e) => {
     localStorage.setItem("selectedClass", e.target.value);
     checkChampionship(e.target.value);
 });
 
-window.onload=()=>{
-    const lastClass=localStorage.getItem("selectedClass") || "class6";
-    document.getElementById("classSelect").value=lastClass;
-    checkChampionship(lastClass);
-};
-
-onAuthStateChanged(auth,(user)=>{
-    const adminEmail="madhhu52@gmail.com";
-    if(user && user.email===adminEmail){
-        const adminTab=document.getElementById("adminTab");
-        if(adminTab){ adminTab.style.display="inline"; }
+onAuthStateChanged(auth, (user) => {
+    if (user && user.email === "madhhu52@gmail.com") {
+        document.getElementById("adminTab").style.display = "inline";
     }
+    const savedClass = localStorage.getItem("selectedClass") || "class6";
+    document.getElementById("classSelect").value = savedClass;
+    checkChampionship(savedClass);
 });
 </script>
-
 </body>
 </html>
