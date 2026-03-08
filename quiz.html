@@ -83,10 +83,9 @@ window.onpopstate = function () {
     .opt span { font-size: 15px; color: #ffffff; text-align: left; }
     .opt input { accent-color: var(--amber); width: 18px; height: 18px; flex-shrink: 0; }
 
-    .quiz-buttons { display: flex; gap: 10px; margin-top: 20px; }
     .btn { 
       flex: 1; padding: 12px 5px; border-radius: 6px; font-weight: 800; cursor: pointer; border: none; 
-      text-transform: uppercase; font-size: 14px; text-align: center;
+      text-transform: uppercase; font-size: 15px !important; text-align: center; min-width: 0;
     }
     .btn-save { background: var(--amber); color: #000; }
     .btn-prev { background: #334155; color: #fff; }
@@ -117,11 +116,13 @@ window.onpopstate = function () {
       .navigation-section { width: 100%; order: 2; margin-top: 10px; }
       .question-section { width: 100%; order: 1; }
       .grid { width: 100%; grid-template-columns: repeat(6, 1fr); }
+      .btn { padding: 12px 2px; font-size: 13px !important; } 
     }
 </style>
 </head>
 <body>
   <div class="utility-nav">
+      <a href="index.html">Home</a> 
       <a href="dashboard.html">Dashboard</a>
       <a href="leaderboard.html">Leaderboard</a>
       <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
@@ -129,7 +130,7 @@ window.onpopstate = function () {
 
   <header class="top-bar">
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-    <div id="timerWrap">⏳ <span id="timer">--:--</span></div>
+    <div id="timerWrap">⏳ <span id="timer">30:00</span></div>
   </header>
 
   <main class="quiz-container">
@@ -176,7 +177,7 @@ window.onpopstate = function () {
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -191,47 +192,82 @@ window.onpopstate = function () {
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    let current = 0, questions = [], selectedAnswers = [], visitedQuestions = [], quizSubmitted = false;
-    const isChampionship = localStorage.getItem("isChampionship") === "true";
-    let totalTime = isChampionship ? 3600 : 1800;
-    const initialTime = totalTime;
+    let current = 0;
+    let questions = [];
+    let selectedAnswers = [];
+    let visitedQuestions = [];
+    let quizSubmitted = false;
 
-    window.onbeforeunload = function(e) { if (!quizSubmitted) return "Progress will be lost!"; };
+    window.onbeforeunload = function(e) {
+      if (!quizSubmitted) return "Progress will be lost!";
+    };
 
-    const selectedClass = localStorage.getItem("selectedClass") || "class6";
+    const selectedClass = localStorage.getItem("selectedClass") || "class4";
     const selectedSubject = localStorage.getItem("selectedSubject") || "maths";
+    
     document.getElementById("displaySubject").innerText = `${selectedSubject.toUpperCase()} - GRADE ${selectedClass.replace("class", "")}`;
 
     async function loadQuestions() {
       try {
         const q = query(collection(db, "questions"), where("class", "==", selectedClass), where("subject", "==", selectedSubject));
         const snapshot = await getDocs(q);
+        
         if (!snapshot.empty) {
-          questions = snapshot.docs.map(doc => ({...doc.data(), id: doc.id})).sort(() => Math.random() - 0.5);
-          if (isChampionship) questions = questions.slice(0, 50); else questions = questions.slice(0, 30);
-        } else {
-          alert("No questions found."); window.location.href = "dashboard.html"; return;
+          // CAPTURE FIRESTORE DOC ID HERE
+          questions = snapshot.docs.map(doc => {
+              let data = doc.data();
+              data.id = doc.id; // Assign actual Firestore Document ID
+              return data;
+          }).sort(() => Math.random() - 0.5);
+          
+          if (questions.length > 30) questions = questions.slice(0, 30);
+        } 
+        else if (typeof questionsData !== 'undefined' && questionsData[selectedClass] && questionsData[selectedClass][selectedSubject]) {
+          questions = questionsData[selectedClass][selectedSubject].sort(() => Math.random() - 0.5);
+        } 
+        else {
+          alert("No questions available for this subject yet!");
+          window.location.href = "dashboard.html";
+          return;
         }
+
         selectedAnswers = new Array(questions.length).fill(null);
         visitedQuestions = new Array(questions.length).fill(false);
-        generateGrid(); loadQuestion();
-      } catch (e) { console.error(e); }
+        generateGrid();
+        loadQuestion();
+      } catch (error) {
+        console.error("Error loading questions:", error);
+      }
     }
 
-    onAuthStateChanged(auth, (user) => { if (!user) window.location.replace("login.html"); else loadQuestions(); });
+    onAuthStateChanged(auth, (user) => {
+      if (!user) window.location.replace("login.html");
+      else loadQuestions();
+    });
 
-    window.loadQuestion = () => {
-      if (!questions[current]) return; visitedQuestions[current] = true;
+    window.loadQuestion = function() {
+      if (!questions[current]) return;
+      visitedQuestions[current] = true;
       const q = questions[current];
+      
       document.getElementById("questionNumber").innerText = `QUESTION ${current + 1}`;
       document.getElementById("questionText").innerHTML = q.q;
-      const imgWrap = document.getElementById("questionImageWrap"), imgTag = document.getElementById("questionImage");
-      if (q.image_url) { imgWrap.style.display = "block"; imgTag.src = q.image_url; } else { imgWrap.style.display = "none"; }
+
+      const imgWrap = document.getElementById("questionImageWrap");
+      const imgTag = document.getElementById("questionImage");
+      if (q.image_url && q.image_url.trim() !== "") {
+          imgWrap.style.display = "block";
+          imgTag.src = q.image_url;
+      } else {
+          imgWrap.style.display = "none";
+      }
+
       let html = '';
       q.o.forEach((opt, i) => {
         html += `<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current] === i ? "checked" : ""} onchange="saveAnswer(${i})" /><span>${opt}</span></label>`;
       });
-      document.getElementById("options").innerHTML = html; updateGrid();
+      document.getElementById("options").innerHTML = html;
+      updateGrid();
     };
 
     window.saveAnswer = (v) => { selectedAnswers[current] = v; updateGrid(); };
@@ -240,14 +276,16 @@ window.onpopstate = function () {
     window.jumpTo = (i) => { current = i; loadQuestion(); };
 
     function generateGrid() {
-      let html = ''; for (let i = 0; i < questions.length; i++) html += `<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i + 1}</div>`;
+      let html = '';
+      for (let i = 0; i < questions.length; i++) html += `<div class="cell" onclick="jumpTo(${i})" id="q${i}">${i + 1}</div>`;
       document.getElementById("questionGrid").innerHTML = html;
     }
 
     function updateGrid() {
       let answeredCount = 0;
       for (let i = 0; i < questions.length; i++) {
-        const el = document.getElementById("q" + i); if(!el) continue;
+        const el = document.getElementById("q" + i);
+        if(!el) continue;
         el.className = 'cell';
         if (i === current) el.classList.add('current');
         else if (selectedAnswers[i] !== null) el.classList.add('answered');
@@ -260,40 +298,32 @@ window.onpopstate = function () {
       document.getElementById("progressPercent").innerText = progressPercent + "%";
     }
 
+    let totalTime = 1800;
     const timer = setInterval(() => {
-      const m = Math.floor(totalTime / 60), s = totalTime % 60;
-      document.getElementById("timer").innerText = `${m}:${s < 10 ? "0" : ""}${s}`;
+      const m = Math.floor(totalTime / 60); const s = totalTime % 60;
+      const timerEl = document.getElementById("timer");
+      if(timerEl) timerEl.innerText = `${m}:${s < 10 ? "0" : ""}${s}`;
       if (--totalTime < 0) { clearInterval(timer); submitQuiz(); }
     }, 1000);
 
     window.confirmSubmit = () => { if (confirm("Submit quiz?")) submitQuiz(); };
     
-    async function submitQuiz() {
-      if(quizSubmitted) return; quizSubmitted = true;
-      let score = 0; questions.forEach((q, i) => { if (selectedAnswers[i] == q.a) score++; });
-      const accuracy = ((score / questions.length) * 100).toFixed(2);
-      
-      const resultData = {
-        email: auth.currentUser.email,
-        score: score,
-        total: questions.length,
-        accuracy: accuracy,
-        subject: selectedSubject,
-        studentClass: selectedClass,
-        date: serverTimestamp(),
-        timeTaken: initialTime - totalTime,
-        isChampionship: isChampionship,
-        sessionId: localStorage.getItem("activeSessionId") || null
-      };
-
-      try {
-        await addDoc(collection(db, "leaderboard"), resultData);
-        localStorage.setItem("quizResult", JSON.stringify(resultData));
-        window.location.href = "result.html";
-      } catch (e) { console.error(e); window.location.href = "result.html"; }
+    function submitQuiz() {
+      quizSubmitted = true;
+      let score = 0;
+      questions.forEach((q, i) => { if (selectedAnswers[i] == q.a) score++; });
+      localStorage.setItem("quizResult", JSON.stringify({ score, total: questions.length, subject: selectedSubject, class: selectedClass, answers: selectedAnswers, questions }));
+      window.location.href = "result.html";
     }
 
-    window.logout = async () => { if(confirm("Logout? Progress will be lost.")) { quizSubmitted = true; await signOut(auth); window.location.replace("login.html"); } };
+    window.logout = async function() {
+      if(confirm("Logout? Progress will be lost.")) {
+          quizSubmitted = true;
+          sessionStorage.removeItem("loggedIn");
+          await signOut(auth);
+          window.location.replace("login.html");
+      }
+    };
   </script>
 </body>
 </html>
