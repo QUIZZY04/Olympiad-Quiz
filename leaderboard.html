@@ -46,7 +46,6 @@
     
     h1 { text-align: center; margin-bottom: 20px; font-weight: 800; font-size: 24px; color: var(--text); }
 
-    /* SELECTION BAR */
     .selection-bar {
       display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
     }
@@ -55,7 +54,6 @@
       padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; outline: none;
     }
 
-    /* DUAL GRID LAYOUT */
     .leaderboard-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -78,7 +76,6 @@
     }
     .card-header h2 { font-size: 16px; font-weight: 800; text-transform: uppercase; color: var(--amber); }
 
-    /* TABLE STYLES */
     .table-wrapper { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; min-width: 450px; }
     th { color: var(--muted); text-align: center; padding: 12px 5px; font-size: 10px; text-transform: uppercase; background: rgba(0,0,0,0.2); }
@@ -90,11 +87,9 @@
         align-items: center; justify-content: center; border-radius: 50%; font-weight: 800;
     }
 
-    /* MOBILE ADJUSTMENTS */
     @media (max-width: 900px) {
       .leaderboard-grid { grid-template-columns: 1fr; }
       .selection-bar { flex-direction: column; align-items: center; }
-      .selection-bar select { width: 100%; max-width: 300px; }
     }
     
     footer { text-align: center; padding: 20px; color: var(--muted); font-size: 11px; background: #020617; margin-top: 40px; }
@@ -119,6 +114,10 @@
 
     <div class="selection-bar">
         <select id="gradeSelect">
+            <option value="class1">Grade 1</option>
+            <option value="class2">Grade 2</option>
+            <option value="class3">Grade 3</option>
+            <option value="class4">Grade 4</option>
             <option value="class5">Grade 5</option>
             <option value="class6" selected>Grade 6</option>
             <option value="class7">Grade 7</option>
@@ -128,8 +127,8 @@
         </select>
 
         <select id="subjectSelect">
-            <option value="maths">Mathematics</option>
-            <option value="science" selected>Science</option>
+            <option value="maths" selected>Mathematics</option>
+            <option value="science">Science</option>
             <option value="english">English</option>
             <option value="reasoning">Reasoning</option>
         </select>
@@ -144,12 +143,7 @@
             <div class="table-wrapper">
                 <table>
                     <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Participant</th>
-                            <th>Score</th>
-                            <th>Time Taken</th>
-                        </tr>
+                        <tr><th>Rank</th><th>Participant</th><th>Score</th><th>Time</th></tr>
                     </thead>
                     <tbody id="weeklyBody">
                         <tr><td colspan="4">Loading...</td></tr>
@@ -166,12 +160,7 @@
             <div class="table-wrapper">
                 <table>
                     <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Participant</th>
-                            <th>Score</th>
-                            <th>Accuracy</th>
-                        </tr>
+                        <tr><th>Rank</th><th>Participant</th><th>Score</th><th>Accuracy</th></tr>
                     </thead>
                     <tbody id="dailyBody">
                         <tr><td colspan="4">Loading...</td></tr>
@@ -216,12 +205,29 @@ async function refreshAll() {
     loadDaily(grade, subject);
 }
 
-// LOAD WEEKLY CHAMPIONSHIP DATA
+// MATCHED TO YOUR FIREBASE STRUCTURE (studentClass, subject, score)
+async function loadDaily(grade, subject) {
+    const tbody = document.getElementById("dailyBody");
+    try {
+        const q = query(
+            collection(db, "leaderboard"), 
+            where("studentClass", "==", grade), 
+            where("subject", "==", subject),
+            orderBy("score", "desc"),
+            limit(10)
+        );
+        const snap = await getDocs(q);
+        renderTable(snap, tbody, false);
+    } catch (err) {
+        console.error("Daily Error:", err);
+        tbody.innerHTML = "<tr><td colspan='4'>Error: Create index in F12 Console.</td></tr>";
+    }
+}
+
 async function loadWeekly(grade) {
     const tbody = document.getElementById("weeklyBody");
     const classNum = grade.replace('class', '');
     const sessionId = `2026_03_15_C${classNum}_SCI`;
-
     try {
         const q = query(
             collection(db, "leaderboard"), 
@@ -233,44 +239,24 @@ async function loadWeekly(grade) {
         renderTable(snap, tbody, true);
     } catch (err) {
         console.error("Weekly Error:", err);
-        tbody.innerHTML = "<tr><td colspan='4'>Error loading data. Check F12 for Index link.</td></tr>";
-    }
-}
-
-// LOAD DAILY PRACTICE DATA (Matches your studentClass and subject fields)
-async function loadDaily(grade, subject) {
-    const tbody = document.getElementById("dailyBody");
-
-    try {
-        const q = query(
-            collection(db, "leaderboard"), 
-            where("studentClass", "==", grade),
-            where("subject", "==", subject),
-            orderBy("score", "desc"),
-            limit(10)
-        );
-        const snap = await getDocs(q);
-        renderTable(snap, tbody, false);
-    } catch (err) {
-        console.error("Daily Error:", err);
-        tbody.innerHTML = "<tr><td colspan='4'>Error loading data. Check F12 for Index link.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='4'>Error: Create index in F12 Console.</td></tr>";
     }
 }
 
 function renderTable(snap, tbody, isWeekly) {
     tbody.innerHTML = "";
     if (snap.empty) {
-        tbody.innerHTML = "<tr><td colspan='4'>No records found for this selection.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='4'>No records found.</td></tr>";
         return;
     }
 
     let rank = 1;
     snap.forEach((doc) => {
         const data = doc.data();
-        const participant = data.email || data.userName || "Student";
+        const participant = data.email || "Student"; 
         const score = data.score || 0;
         const total = data.total || (isWeekly ? 50 : 30);
-        const extraInfo = isWeekly ? 
+        const extra = isWeekly ? 
             (data.timeTaken ? `${Math.floor(data.timeTaken/60)}m` : "60m") : 
             `${data.accuracy || 0}%`;
 
@@ -279,7 +265,7 @@ function renderTable(snap, tbody, isWeekly) {
                 <td><span class="rank-circle">${rank}</span></td>
                 <td style="font-weight:600; text-align:left;">${participant}</td>
                 <td style="color:var(--amber); font-weight:700;">${score}/${total}</td>
-                <td style="font-size:11px; color:var(--muted);">${extraInfo}</td>
+                <td>${extra}</td>
             </tr>
         `;
         rank++;
@@ -295,6 +281,5 @@ window.logout = function() {
     }
 };
 </script>
-
 </body>
 </html>
