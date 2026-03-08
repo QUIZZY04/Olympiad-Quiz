@@ -33,6 +33,7 @@ window.onpopstate = function () {
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { background: var(--bg); color: var(--text); }
 
+    /* MATCHED UTILITY NAV */
     .utility-nav {
       background: #020617; 
       padding: 12px 40px;
@@ -52,6 +53,7 @@ window.onpopstate = function () {
     }
     .utility-nav a:hover { text-decoration: underline; filter: brightness(1.2); }
 
+    /* MATCHED TOP BAR */
     header.top-bar {
       position: sticky; top: 0; z-index: 1000;
       background: #1e293b; 
@@ -100,6 +102,7 @@ window.onpopstate = function () {
     .quiz-btn { background: var(--amber); color: #000; }
     .quiz-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
+    /* REPORT STYLES */
     .report-link { 
         color: var(--muted); 
         font-size: 11px; 
@@ -142,22 +145,25 @@ window.onpopstate = function () {
 </header>
 
 <div class="container">
+
     <h1 style="text-align:center; margin-bottom:30px;">🏆 Performance Summary</h1>
+
     <div class="summary-card" id="summary"></div>
+
     <div style="text-align:center;">
         <button class="action-btn quiz-btn" onclick="location.href='quiz.html'">
             Take Another Quiz
         </button>
-        <button class="action-btn" style="background:var(--brand); color:#000;" onclick="location.href='leaderboard.html'">
-            View Rankings
-        </button>
     </div>
+
     <div id="details"></div>
+
 </div>
 
 <div id="modalOverlay" class="modal-overlay">
     <div class="report-modal">
         <h3 style="color: var(--danger);">Report Error</h3>
+        <p style="font-size: 13px; color: var(--muted); margin-top: 5px;">Describe the mistake in this question or answer.</p>
         <textarea id="reportMessage" placeholder="Type details here..."></textarea>
         <button class="submit-report" id="confirmReport">Submit Report</button>
         <button class="action-btn" style="background:none; color:var(--muted); width:100%; font-size:12px;" onclick="closeReport()">Cancel</button>
@@ -165,7 +171,6 @@ window.onpopstate = function () {
 </div>
 
 <script>
-// RESTORED: All original table and logic functions from your working page
 let activeQuestionId = null;
 
 function openReport(qId) {
@@ -180,6 +185,7 @@ function closeReport() {
 
 document.addEventListener("DOMContentLoaded", function(){
     const data = localStorage.getItem("quizResult");
+
     if(!data){
         document.getElementById("summary").innerHTML="<h2>No quiz data found.</h2>";
         return;
@@ -190,17 +196,27 @@ document.addEventListener("DOMContentLoaded", function(){
     const total = resultData.total;
     const accuracy = ((score/total)*100).toFixed(2);
 
-    // RESTORED: Summary display
     document.getElementById("summary").innerHTML=
     `<h2 style="font-size: 36px; color: var(--amber);">${score} / ${total}</h2>
      <h3 style="color: var(--muted);">Accuracy: ${accuracy}%</h3>`;
 
     let html=`<h2 style="margin: 40px 0 20px 0; font-weight: 800; letter-spacing: 1px;">DETAILED ANALYSIS</h2>
-    <table><thead><tr><th>#</th><th>Question</th><th>Your Answer</th><th>Correct Answer</th><th>Status</th><th>Solution</th><th>Report</th></tr></thead><tbody>`;
+    <table>
+    <thead>
+    <tr>
+    <th>#</th>
+    <th>Question</th>
+    <th>Your Answer</th>
+    <th>Correct Answer</th>
+    <th>Status</th>
+    <th>Solution</th>
+    <th>Report</th>
+    </tr>
+    </thead><tbody>`;
 
     resultData.questions.forEach((q,i)=>{
-        const userAns = resultData.answers ? resultData.answers[i] : null;
-        const isCorrect = userAns == q.a;
+        const userAns=resultData.answers[i];
+        const isCorrect=userAns==q.a;
 
         html+=`
         <tr class="${isCorrect?"correct-row":"wrong-row"}">
@@ -208,14 +224,22 @@ document.addEventListener("DOMContentLoaded", function(){
         <td style="min-width: 250px;">${q.q}</td>
         <td>${userAns!==null?q.o[userAns]:"<span style='color:var(--muted)'>Not Attempted</span>"}</td>
         <td style="color: var(--accent); font-weight:600;">${q.o[q.a]}</td>
-        <td><span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">${isCorrect?"✅ Correct":"❌ Wrong"}</span></td>
+        <td>
+            <span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">
+                ${isCorrect?"✅ Correct":"❌ Wrong"}
+            </span>
+        </td>
         <td style="font-size: 13px; color: var(--muted); max-width: 300px;">
             ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
         </td>
-        <td><span class="report-link" onclick="openReport('${q.id || 'q_'+(i+1)}')">Report</span></td>
+        <td>
+            <span class="report-link" onclick="openReport('${q.id || 'q_'+(i+1)}')">Report</span>
+        </td>
         </tr>`;
     });
-    document.getElementById("details").innerHTML=html+"</tbody></table>";
+
+    html+="</tbody></table>";
+    document.getElementById("details").innerHTML=html;
 });
 </script>
 
@@ -237,31 +261,74 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-onAuthStateChanged(auth, async (user) => {
-    if(!user) { window.location.replace("login.html"); return; }
-    
-    const resultData = JSON.parse(localStorage.getItem("quizResult"));
-    if(!resultData || sessionStorage.getItem("resultSaved")) return;
+let currentUser = null;
 
-    try {
-        await addDoc(collection(db, "leaderboard"), {
+onAuthStateChanged(auth, async (user) => {
+    if(!user){
+        window.location.replace("login.html");
+        return;
+    }
+    currentUser = user;
+
+    const resultData = JSON.parse(localStorage.getItem("quizResult"));
+    if(!resultData) return;
+    if(sessionStorage.getItem("resultSaved")) return;
+
+    const score = resultData.score;
+    const total = resultData.total;
+    const accuracy = ((score/total)*100).toFixed(2);
+
+    try{
+        await addDoc(collection(db,"leaderboard"),{
             email: user.email,
             uid: user.uid,
-            studentClass: resultData.class || resultData.studentClass, // FIX: Match database field
+            studentClass: resultData.class,
             subject: resultData.subject,
-            score: resultData.score,
-            total: resultData.total,
-            accuracy: ((resultData.score/resultData.total)*100).toFixed(2),
-            date: serverTimestamp(),
-            isChampionship: resultData.isChampionship || false,
-            sessionId: resultData.sessionId || null,
-            timeTaken: resultData.timeTaken || 0
+            score: score,
+            total: total,
+            accuracy: accuracy,
+            date: new Date()
         });
-        sessionStorage.setItem("resultSaved", "true");
-    } catch(e) { console.error("Firebase Save Error:", e); }
+        sessionStorage.setItem("resultSaved","true");
+    }catch(error){
+        console.error("Firebase Save Error:", error);
+    }
 });
 
-window.logout = () => signOut(auth).then(() => { localStorage.clear(); sessionStorage.clear(); window.location.replace("login.html"); });
+// SUBMIT FEEDBACK LOGIC
+document.getElementById("confirmReport").addEventListener("click", async () => {
+    const msg = document.getElementById("reportMessage").value.trim();
+    if(!msg) { alert("Please enter details."); return; }
+    if(!currentUser) return;
+
+    const quizData = JSON.parse(localStorage.getItem("quizResult"));
+
+    try {
+        await addDoc(collection(db, "feedback"), {
+            uid: currentUser.uid,
+            email: currentUser.email,
+            questionId: activeQuestionId,
+            message: msg,
+            subject: quizData?.subject || "N/A",
+            class: quizData?.class || "N/A",
+            timestamp: serverTimestamp(),
+            status: "unread"
+        });
+        alert("Report submitted successfully.");
+        closeReport();
+    } catch(e) {
+        alert("Error: " + e.message);
+    }
+});
+
+window.logout=function(){
+    signOut(auth).then(()=>{
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.replace("login.html");
+    });
+};
 </script>
+
 </body>
 </html>
