@@ -46,20 +46,39 @@
     
     h1 { text-align: center; margin-bottom: 20px; font-weight: 800; font-size: 24px; color: var(--text); }
 
-    .selection-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+    /* SELECTION BAR */
+    .selection-bar {
+      display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
+    }
     .selection-bar select {
       background: var(--surface); color: var(--amber); border: 2px solid var(--amber);
       padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; outline: none;
     }
 
-    .leaderboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    /* DUAL GRID LAYOUT */
+    .leaderboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
 
-    .lb-card { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 20px; }
+    .lb-card {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
     .weekly-card { border: 2px solid var(--amber); background: var(--surface-champ); }
 
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px;
+    }
     .card-header h2 { font-size: 16px; font-weight: 800; text-transform: uppercase; color: var(--amber); }
 
+    /* TABLE STYLES */
     .table-wrapper { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; min-width: 450px; }
     th { color: var(--muted); text-align: center; padding: 12px 5px; font-size: 10px; text-transform: uppercase; background: rgba(0,0,0,0.2); }
@@ -71,9 +90,11 @@
         align-items: center; justify-content: center; border-radius: 50%; font-weight: 800;
     }
 
+    /* MOBILE ADJUSTMENTS */
     @media (max-width: 900px) {
       .leaderboard-grid { grid-template-columns: 1fr; }
       .selection-bar { flex-direction: column; align-items: center; }
+      .selection-bar select { width: 100%; max-width: 300px; }
     }
     
     footer { text-align: center; padding: 20px; color: var(--muted); font-size: 11px; background: #020617; margin-top: 40px; }
@@ -123,7 +144,12 @@
             <div class="table-wrapper">
                 <table>
                     <thead>
-                        <tr><th>Rank</th><th>Participant</th><th>Score</th><th>Time</th></tr>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Participant</th>
+                            <th>Score</th>
+                            <th>Time Taken</th>
+                        </tr>
                     </thead>
                     <tbody id="weeklyBody">
                         <tr><td colspan="4">Loading...</td></tr>
@@ -140,7 +166,12 @@
             <div class="table-wrapper">
                 <table>
                     <thead>
-                        <tr><th>Rank</th><th>Participant</th><th>Score</th><th>Accuracy</th></tr>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Participant</th>
+                            <th>Score</th>
+                            <th>Accuracy</th>
+                        </tr>
                     </thead>
                     <tbody id="dailyBody">
                         <tr><td colspan="4">Loading...</td></tr>
@@ -185,30 +216,12 @@ async function refreshAll() {
     loadDaily(grade, subject);
 }
 
-// RESTORED DAILY LOGIC: Uses your 'leaderboard' collection
-async function loadDaily(grade, subject) {
-    const tbody = document.getElementById("dailyBody");
-    try {
-        // Query matching your original 'leaderboard' structure
-        const q = query(
-            collection(db, "leaderboard"), 
-            where("class", "==", grade), 
-            where("subject", "==", subject),
-            orderBy("score", "desc"),
-            limit(10)
-        );
-        const snap = await getDocs(q);
-        renderTable(snap, tbody, false);
-    } catch (err) {
-        console.error("Daily Error:", err);
-        tbody.innerHTML = "<tr><td colspan='4'>Error loading data.</td></tr>";
-    }
-}
-
+// LOAD WEEKLY CHAMPIONSHIP DATA
 async function loadWeekly(grade) {
     const tbody = document.getElementById("weeklyBody");
     const classNum = grade.replace('class', '');
     const sessionId = `2026_03_15_C${classNum}_SCI`;
+
     try {
         const q = query(
             collection(db, "leaderboard"), 
@@ -220,24 +233,45 @@ async function loadWeekly(grade) {
         renderTable(snap, tbody, true);
     } catch (err) {
         console.error("Weekly Error:", err);
-        tbody.innerHTML = "<tr><td colspan='4'>Error loading data.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='4'>Error loading data. Check F12 for Index link.</td></tr>";
+    }
+}
+
+// LOAD DAILY PRACTICE DATA (Matches your studentClass and subject fields)
+async function loadDaily(grade, subject) {
+    const tbody = document.getElementById("dailyBody");
+
+    try {
+        const q = query(
+            collection(db, "leaderboard"), 
+            where("studentClass", "==", grade),
+            where("subject", "==", subject),
+            orderBy("score", "desc"),
+            limit(10)
+        );
+        const snap = await getDocs(q);
+        renderTable(snap, tbody, false);
+    } catch (err) {
+        console.error("Daily Error:", err);
+        tbody.innerHTML = "<tr><td colspan='4'>Error loading data. Check F12 for Index link.</td></tr>";
     }
 }
 
 function renderTable(snap, tbody, isWeekly) {
     tbody.innerHTML = "";
     if (snap.empty) {
-        tbody.innerHTML = "<tr><td colspan='4'>No records found.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='4'>No records found for this selection.</td></tr>";
         return;
     }
+
     let rank = 1;
     snap.forEach((doc) => {
         const data = doc.data();
-        const participant = data.userName || data.email || "Student";
+        const participant = data.email || data.userName || "Student";
         const score = data.score || 0;
-        const total = isWeekly ? 50 : (data.total || 30);
-        const extra = isWeekly ? 
-            (data.timeTaken ? `${Math.floor(data.timeTaken/60)}m ${data.timeTaken%60}s` : "-") : 
+        const total = data.total || (isWeekly ? 50 : 30);
+        const extraInfo = isWeekly ? 
+            (data.timeTaken ? `${Math.floor(data.timeTaken/60)}m` : "60m") : 
             `${data.accuracy || 0}%`;
 
         tbody.innerHTML += `
@@ -245,7 +279,7 @@ function renderTable(snap, tbody, isWeekly) {
                 <td><span class="rank-circle">${rank}</span></td>
                 <td style="font-weight:600; text-align:left;">${participant}</td>
                 <td style="color:var(--amber); font-weight:700;">${score}/${total}</td>
-                <td>${extra}</td>
+                <td style="font-size:11px; color:var(--muted);">${extraInfo}</td>
             </tr>
         `;
         rank++;
@@ -261,5 +295,6 @@ window.logout = function() {
     }
 };
 </script>
+
 </body>
 </html>
