@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <script>
-history.pushState(null, null, location.href);
-window.onpopstate = function () {
-  history.go(1);
-};
-</script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leaderboard - Olympiad Portal</title>
@@ -14,112 +14,90 @@ window.onpopstate = function () {
 
   <style>
     :root {
-      --bg: #0f172a;                 
-      --surface: #1e293b;            
+      --bg: #020617;                 
+      --surface: #0f172a;            
+      --surface-champ: #1e293b;            
       --text: #f8fafc;               
       --muted: #94a3b8;              
       --border: #334155;             
-      --brand: #38bdf8;              
       --amber: #f59e0b;              
       --danger: #ef4444;
+      --brand: #38bdf8;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     
-    body { 
-      background-color: var(--bg); 
-      min-height: 100vh; 
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-    }
+    body { background-color: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
 
-    /* --- MOBILE-FRIENDLY NAVIGATION --- */
     nav {
       background: var(--surface); 
       border-bottom: 2px solid var(--border);
       padding: 15px 5%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 1000;
     }
 
     .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    .nav-links { display: flex; gap: 15px; }
+    .nav-links a { color: #ffffff; text-decoration: none; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .nav-links a.active { color: var(--amber); }
 
-    .nav-links { display: flex; gap: 15px; align-items: center; }
-    .nav-links a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: 0.2s;
+    .container { width: 98%; max-width: 1400px; margin: 20px auto; padding: 0 10px; flex: 1; }
+    
+    h1 { text-align: center; margin-bottom: 20px; font-weight: 800; font-size: 24px; color: var(--text); }
+
+    /* SELECTION BAR */
+    .selection-bar {
+      display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--amber) !important; }
-
-    /* --- RESPONSIVE CONTAINER --- */
-    .container {
-      width: 95%;
-      max-width: 1100px;
-      margin: 30px auto;
-      flex: 1;
+    .selection-bar select {
+      background: var(--surface); color: var(--amber); border: 2px solid var(--amber);
+      padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; outline: none;
     }
 
-    h1 { text-align: center; margin-bottom: 25px; font-weight: 800; font-size: 24px; }
+    /* DUAL GRID LAYOUT */
+    .leaderboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
 
-    /* --- THE FIX: MOBILE SCROLLABLE TABLE --- */
-    .table-responsive {
-      width: 100%;
-      overflow-x: auto; /* Vital for Mobile swiping */
-      -webkit-overflow-scrolling: touch;
+    .lb-card {
       background: var(--surface);
       border-radius: 12px;
       border: 1px solid var(--border);
+      padding: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 750px; /* Prevents columns from squashing on laptop/mobile */
+    .weekly-card { border: 2px solid var(--amber); background: var(--surface-champ); }
+
+    .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px;
+    }
+    .card-header h2 { font-size: 16px; font-weight: 800; text-transform: uppercase; color: var(--amber); }
+
+    /* TABLE STYLES */
+    .table-wrapper { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 450px; }
+    th { color: var(--muted); text-align: center; padding: 12px 5px; font-size: 10px; text-transform: uppercase; background: rgba(0,0,0,0.2); }
+    td { padding: 12px 5px; text-align: center; border-bottom: 1px solid var(--border); font-size: 13px; }
+    
+    .rank-circle {
+        background: rgba(245, 158, 11, 0.2); color: var(--amber); 
+        width: 28px; height: 28px; display: inline-flex; 
+        align-items: center; justify-content: center; border-radius: 50%; font-weight: 800;
     }
 
-    th {
-      background: #020617;
-      color: var(--amber);
-      padding: 18px 10px;
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-align: center;
-    }
-
-    td {
-      padding: 16px 10px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px;
-      white-space: nowrap; /* Keeps data clean on one line */
-    }
-
-    tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-    tr:hover { background: rgba(56, 189, 248, 0.05); }
-
-    .top-rank { background: rgba(245, 158, 11, 0.08) !important; }
-
-    /* --- SMALL SCREEN TWEAKS --- */
-    @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 12px; padding: 15px; }
-      .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
-      h1 { font-size: 20px; }
+    /* MOBILE ADJUSTMENTS */
+    @media (max-width: 900px) {
+      .leaderboard-grid { grid-template-columns: 1fr; }
+      .selection-bar { flex-direction: column; align-items: center; }
+      .selection-bar select { width: 100%; max-width: 300px; }
     }
     
-    footer { text-align: center; padding: 20px; color: var(--muted); font-size: 11px; background: #020617; }
+    footer { text-align: center; padding: 20px; color: var(--muted); font-size: 11px; background: #020617; margin-top: 40px; }
   </style>
 </head>
 
@@ -137,25 +115,70 @@ window.onpopstate = function () {
 </nav>
 
 <div class="container">
-    <h1>🏆 Global Leaderboard</h1>
+    <h1>🏆 Hall of Fame</h1>
 
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Participant</th>
-                    <th>Class</th>
-                    <th>Subject</th>
-                    <th>Score</th>
-                    <th>Accuracy</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody id="leaderboardBody">
-                <tr><td colspan="7">Loading rankings...</td></tr>
-            </tbody>
-        </table>
+    <div class="selection-bar">
+        <select id="gradeSelect">
+            <option value="class5">Grade 5</option>
+            <option value="class6" selected>Grade 6</option>
+            <option value="class7">Grade 7</option>
+            <option value="class8">Grade 8</option>
+            <option value="class9">Grade 9</option>
+            <option value="class10">Grade 10</option>
+        </select>
+
+        <select id="subjectSelect">
+            <option value="maths">Mathematics</option>
+            <option value="science" selected>Science</option>
+            <option value="english">English</option>
+            <option value="reasoning">Reasoning</option>
+        </select>
+    </div>
+
+    <div class="leaderboard-grid">
+        <div class="lb-card weekly-card">
+            <div class="card-header">
+                <h2>⭐ Science Weekly Quiz 2</h2>
+                <span style="font-size:10px; color:var(--muted);">SESSION: MAR 15</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Participant</th>
+                            <th>Score</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="weeklyBody">
+                        <tr><td colspan="4">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="lb-card">
+            <div class="card-header">
+                <h2>📚 Daily Practice</h2>
+                <span id="subjectLabel" style="font-size:10px; color:var(--muted); text-transform:uppercase;">SCIENCE</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Participant</th>
+                            <th>Score</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dailyBody">
+                        <tr><td colspan="4">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -164,7 +187,7 @@ window.onpopstate = function () {
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, query, where, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -181,47 +204,91 @@ const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
   if (!user) window.location.href = "login.html";
-  else loadLeaderboard();
+  else refreshAll();
 });
 
-async function loadLeaderboard() {
-    const leaderboardBody = document.getElementById("leaderboardBody");
+async function refreshAll() {
+    const grade = document.getElementById("gradeSelect").value;
+    const subject = document.getElementById("subjectSelect").value;
+    document.getElementById("subjectLabel").innerText = subject;
+    
+    loadWeekly(grade);
+    loadDaily(grade, subject);
+}
+
+// LOAD WEEKLY CHAMPIONSHIP DATA
+async function loadWeekly(grade) {
+    const tbody = document.getElementById("weeklyBody");
+    const classNum = grade.replace('class', '');
+    const sessionId = `2026_03_15_C${classNum}_SCI`;
+
     try {
-        const q = query(collection(db, "leaderboard"), orderBy("score", "desc"));
-        const querySnapshot = await getDocs(q);
-        leaderboardBody.innerHTML = "";
-        let rank = 1;
-
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            
-            /* --- THE FIX: HANDLE MISSING DATA BY CHECKING ALL KEYS --- */
-            const participant = data.email || data.userEmail || data.userName || data.id || "Participant";
-            const studentClass = data.class || data.studentClass || data.grade || "N/A";
-            
-            const isTop3 = rank <= 3;
-            const rankSymbol = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
-
-            leaderboardBody.innerHTML += `
-                <tr class="${isTop3 ? 'top-rank' : ''}">
-                    <td style="font-weight:800;">${rankSymbol}</td>
-                    <td style="font-weight:600; text-align:left;">${participant}</td>
-                    <td>${studentClass}</td>
-                    <td style="text-transform:capitalize;">${data.subject || "-"}</td>
-                    <td>${data.score || 0}/${data.total || 30}</td>
-                    <td style="color:var(--brand); font-weight:700;">${data.accuracy || 0}%</td>
-                    <td>${data.date ? (data.date.toDate ? data.date.toDate().toLocaleDateString() : data.date) : "-"}</td>
-                </tr>
-            `;
-            rank++;
-        });
-
-        if (rank === 1) leaderboardBody.innerHTML = "<tr><td colspan='7'>No records found.</td></tr>";
+        const q = query(
+            collection(db, "leaderboard"), 
+            where("sessionId", "==", sessionId),
+            orderBy("score", "desc"),
+            orderBy("timeTaken", "asc"),
+            limit(10)
+        );
+        const snap = await getDocs(q);
+        renderTable(snap, tbody, true);
     } catch (err) {
         console.error(err);
-        leaderboardBody.innerHTML = "<tr><td colspan='7'>Error loading table.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='4'>Error loading data.</td></tr>";
     }
 }
+
+// LOAD DAILY PRACTICE DATA
+async function loadDaily(grade, subject) {
+    const tbody = document.getElementById("dailyBody");
+
+    try {
+        const q = query(
+            collection(db, "leaderboard"), 
+            where("grade", "==", grade),
+            where("subject", "==", subject),
+            where("isChampionship", "==", false),
+            orderBy("score", "desc"),
+            orderBy("timeTaken", "asc"),
+            limit(10)
+        );
+        const snap = await getDocs(q);
+        renderTable(snap, tbody, false);
+    } catch (err) {
+        console.error(err);
+        tbody.innerHTML = "<tr><td colspan='4'>Error loading data.</td></tr>";
+    }
+}
+
+function renderTable(snap, tbody, isWeekly) {
+    tbody.innerHTML = "";
+    if (snap.empty) {
+        tbody.innerHTML = "<tr><td colspan='4'>No records found.</td></tr>";
+        return;
+    }
+
+    let rank = 1;
+    snap.forEach((doc) => {
+        const data = doc.data();
+        const participant = data.userName || data.userEmail || "Student";
+        const score = data.score || 0;
+        const total = isWeekly ? 50 : (data.total || 30);
+        const time = data.timeTaken ? `${Math.floor(data.timeTaken/60)}m ${data.timeTaken%60}s` : "-";
+
+        tbody.innerHTML += `
+            <tr>
+                <td><span class="rank-circle">${rank}</span></td>
+                <td style="font-weight:600; text-align:left;">${participant}</td>
+                <td style="color:var(--amber); font-weight:700;">${score}/${total}</td>
+                <td style="font-size:11px; color:var(--muted);">${time}</td>
+            </tr>
+        `;
+        rank++;
+    });
+}
+
+document.getElementById("gradeSelect").addEventListener("change", refreshAll);
+document.getElementById("subjectSelect").addEventListener("change", refreshAll);
 
 window.logout = function() {
     if(confirm("Are you sure you want to logout?")) {
@@ -232,4 +299,3 @@ window.logout = function() {
 
 </body>
 </html>
-
