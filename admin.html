@@ -184,6 +184,44 @@ color:#94a3b8;
 <button class="delete" onclick="clearPaste()">Clear</button>
 </div>
 
+<div class="panel" style="border: 2px solid var(--amber);">
+    <h2>📅 Schedule Weekly Test Session</h2>
+    <p style="font-size: 12px; color: #94a3b8; margin-bottom: 10px;">This tool automatically links 50 question IDs to a specific timed session.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div>
+            <label>Test Title</label>
+            <input type="text" id="sessTitle" placeholder="e.g. Science Week 1 Mock">
+        </div>
+        <div>
+            <label>Class</label>
+            <select id="sessClass">
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+            </select>
+        </div>
+        <div>
+            <label>Test Date (Sunday March 15)</label>
+            <input type="date" id="sessDate" value="2026-03-15">
+        </div>
+        <div>
+            <label>Starting Question ID (Exactly)</label>
+            <input type="text" id="sessStartId" placeholder="e.g. sci_c7_v1_001">
+        </div>
+        <div>
+            <label>Price (INR)</label>
+            <input type="number" id="sessPrice" value="99">
+        </div>
+        <div>
+            <label>Duration (Minutes)</label>
+            <input type="number" id="sessDuration" value="60">
+        </div>
+    </div>
+    <button class="upload" style="width: 100%; margin-top: 20px; font-size: 16px;" onclick="createSession()">Create Session & Auto-Link 50 IDs</button>
+</div>
 <div class="panel">
 <h2>Filter Questions</h2>
 <select id="filterClass">
@@ -269,7 +307,7 @@ color:#94a3b8;
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc, onSnapshot, orderBy, getDoc, updateDoc } 
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc, onSnapshot, orderBy, getDoc, updateDoc, setDoc, serverTimestamp, Timestamp } 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
@@ -284,6 +322,7 @@ const auth=getAuth(app);
 
 const questionsRef=collection(db,"questions");
 const feedbackRef=collection(db,"feedback");
+const sessionsRef=collection(db,"test_sessions");
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -298,6 +337,50 @@ onAuthStateChanged(auth, (user) => {
         window.location.href = "login.html";
     }
 });
+
+// CREATE WEEKLY TEST SESSION LOGIC
+window.createSession = async function() {
+    const title = document.getElementById('sessTitle').value;
+    const className = document.getElementById('sessClass').value;
+    const dateValue = document.getElementById('sessDate').value;
+    const startIdFull = document.getElementById('sessStartId').value; 
+    const priceValue = document.getElementById('sessPrice').value;
+    const durationValue = document.getElementById('sessDuration').value;
+
+    if(!title || !className || !dateValue || !startIdFull) {
+        alert("Please fill all required fields");
+        return;
+    }
+
+    const questionArray = [];
+    const prefix = startIdFull.substring(0, startIdFull.lastIndexOf('_') + 1); 
+    
+    for (let i = 1; i <= 50; i++) {
+        const idNumber = i.toString().padStart(3, '0'); 
+        questionArray.push(`${prefix}${idNumber}`);
+    }
+
+    const docId = `${dateValue.replaceAll('-', '_')}_C${className}_SCI`;
+
+    try {
+        await setDoc(doc(db, "test_sessions", docId), {
+            title: title,
+            class: parseInt(className),
+            subject: "science",
+            startTime: Timestamp.fromDate(new Date(dateValue + "T10:00:00")),
+            endTime: Timestamp.fromDate(new Date(dateValue + "T11:30:00")), // Default 1.5h window
+            duration: parseInt(durationValue),
+            questionIds: questionArray, 
+            price: parseInt(priceValue),
+            status: "upcoming",
+            createdAt: serverTimestamp()
+        });
+        alert("✅ Success! Session " + docId + " created with 50 linked questions.");
+    } catch (error) {
+        console.error("Error creating session:", error);
+        alert("❌ Error: " + error.message);
+    }
+}
 
 // REAL-TIME FEEDBACK LISTENER
 function loadFeedback() {
@@ -369,7 +452,6 @@ window.deleteFB = async (id) => {
     if(confirm("Delete this feedback report?")) await deleteDoc(doc(db, "feedback", id));
 }
 
-// ... REST OF YOUR EXISTING CODE ...
 function validateQuestion(q,i){
     if(!q.class) throw new Error("Question "+(i+1)+" missing class");
     if(!q.subject) throw new Error("Question "+(i+1)+" missing subject");
