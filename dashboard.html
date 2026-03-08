@@ -94,56 +94,57 @@ padding:0 10px;
 flex:1;
 }
 
-/* --- NEW CHAMPIONSHIP UI --- */
+/* CHAMPIONSHIP UI (Match Goal Image) */
 .championship-section {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(30, 41, 59, 1) 100%);
+    background: rgba(30, 41, 59, 0.5);
     border: 2px solid var(--amber);
     border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 30px;
-    display: none; /* JS will toggle this */
+    padding: 30px;
+    margin-bottom: 35px;
+    display: none; /* Shown via JS */
 }
 
 .champ-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
 }
 
-.timer-box {
+.timer-container {
     background: #020617;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 12px;
     border: 1px solid var(--border);
     text-align: center;
-    min-width: 140px;
+    min-width: 160px;
 }
 
-.timer-clock { font-size: 20px; font-weight: 800; color: var(--amber); font-family: monospace; }
+.timer-label { font-size: 10px; font-weight: 800; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; }
+.timer-clock { font-size: 22px; font-weight: 800; color: var(--amber); font-family: monospace; }
 
-.btn-join {
-    background: var(--green);
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
+.btn-status {
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 12px;
     font-weight: 800;
-    cursor: pointer;
     width: 100%;
     text-transform: uppercase;
-    transition: 0.3s;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
-.btn-join:disabled {
-    background: var(--border);
-    cursor: not-allowed;
-    opacity: 0.6;
+.btn-active {
+    background: var(--green) !important;
+    color: white !important;
+    cursor: pointer !important;
 }
-/* --------------------------- */
 
+/* EXISTING DASHBOARD STYLES */
 .class-selector-wrap{
 background:rgba(245,158,11,0.05);
 border:1px dashed var(--amber);
@@ -183,11 +184,7 @@ cursor:pointer;
 transition:0.2s;
 }
 
-.card:hover{
-border-color:var(--amber);
-transform:translateY(-3px);
-}
-
+.card:hover{ border-color:var(--amber); transform:translateY(-3px); }
 .card h3{ color:var(--amber); margin-bottom:10px; font-size:18px; }
 .card p{ color:var(--muted); font-size:13px; margin-bottom:20px; }
 
@@ -211,24 +208,14 @@ padding:25px;
 margin-bottom:60px;
 }
 
-.ins-grid{ display:grid; grid-template-columns:1fr; gap:25px; }
-.ins-item{ display:flex; gap:15px; align-items:flex-start; }
+.ins-item{ display:flex; gap:15px; margin-bottom: 20px; }
 .ins-icon{
 background:rgba(245,158,11,0.1);
 color:var(--amber);
-width:32px;
-height:32px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-flex-shrink:0;
-font-weight:800;
-font-size:14px;
+width:32px; height:32px;
+display:flex; align-items:center; justify-content:center;
+border-radius:50%; font-weight:800;
 }
-
-.ins-text{ font-size:14px; color:var(--muted); line-height:1.6; }
-.ins-text strong{ color:var(--text); display:block; margin-bottom:4px; font-size:15px; }
 
 footer{ text-align:center; padding:25px; background:#020617; color:var(--muted); font-size:12px; }
 </style>
@@ -253,15 +240,15 @@ footer{ text-align:center; padding:25px; background:#020617; color:var(--muted);
     <div id="champSection" class="championship-section">
         <div class="champ-header">
             <div>
-                <h2 id="champTitle" style="color:white; font-size:22px;">Upcoming Championship</h2>
-                <p id="champMeta" style="color:var(--muted); font-size:12px; margin-top:5px;"></p>
+                <h2 id="champTitle" style="color:white; font-size:26px; font-weight:800;">Weekly Science Mock</h2>
+                <p id="champMeta" style="color:var(--muted); font-size:14px; margin-top:8px;"></p>
             </div>
-            <div class="timer-box">
-                <p style="font-size:10px; color:var(--muted); margin-bottom:4px;">STARTS IN</p>
+            <div class="timer-container">
+                <p class="timer-label">Starts In</p>
                 <p id="champTimer" class="timer-clock">00:00:00</p>
             </div>
         </div>
-        <button id="btnJoinChamp" class="btn-join" disabled onclick="joinChampionship()">
+        <button id="btnJoinChamp" class="btn-status" disabled onclick="joinChampionship()">
             Waiting for Start...
         </button>
     </div>
@@ -282,7 +269,9 @@ footer{ text-align:center; padding:25px; background:#020617; color:var(--muted);
         </select>
     </div>
 
-    <p style="margin:20px 0 15px 0; color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase;">📚 Daily Practice Quizzes</p>
+    <p style="margin-bottom:20px; color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase; display:flex; align-items:center; gap:8px;">
+        <span style="font-size:16px;">📚</span> Daily Practice Quizzes
+    </p>
     
     <div class="grid">
         <div class="card" onclick="startQuiz('maths')">
@@ -309,15 +298,13 @@ footer{ text-align:center; padding:25px; background:#020617; color:var(--muted);
 
     <section class="instructions-section">
         <h2 style="color:var(--amber); margin-bottom:25px; font-size:20px; border-bottom:1px solid var(--border); padding-bottom:10px;">📝 Quiz Rules & Instructions</h2>
-        <div class="ins-grid">
-            <div class="ins-item">
-                <div class="ins-icon">1</div>
-                <div class="ins-text"><strong>Duration & Submission</strong>You have 30 minutes. The system auto-submits when time ends.</div>
-            </div>
-            <div class="ins-item">
-                <div class="ins-icon">2</div>
-                <div class="ins-text"><strong>Navigation Palette</strong>Green = Answered, Red = Visited, Grey = Unseen.</div>
-            </div>
+        <div class="ins-item">
+            <div class="ins-icon">1</div>
+            <div class="ins-text"><strong>Duration & Submission:</strong> You have 30 minutes. The system auto-submits when time ends.</div>
+        </div>
+        <div class="ins-item">
+            <div class="ins-icon">2</div>
+            <div class="ins-text"><strong>Navigation Palette:</strong> Green = Answered, Red = Visited, Grey = Unseen.</div>
         </div>
     </section>
 </main>
@@ -340,11 +327,13 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 let activeSession = null;
+let timerInterval = null;
 
-// --- CHAMPIONSHIP DATA FETCHER ---
-async function checkChampionship(selectedGrade) {
-    const classNum = selectedGrade.replace('class', '');
-    const sessionId = `2026_03_15_C${classNum}_SCI`; 
+// CHAMPIONSHIP LOGIC
+async function fetchCurrentSession(grade) {
+    if (timerInterval) clearInterval(timerInterval);
+    const classNum = grade.replace('class', '');
+    const sessionId = `2026_03_15_C${classNum}_SCI`; // Match the Admin Panel IDs
     
     try {
         const docRef = doc(db, "test_sessions", sessionId);
@@ -356,32 +345,29 @@ async function checkChampionship(selectedGrade) {
             
             document.getElementById("champSection").style.display = "block";
             document.getElementById("champTitle").innerText = data.title;
-            document.getElementById("champMeta").innerText = `Subject: Science | Price: ₹${data.price}`;
+            document.getElementById("champMeta").innerText = `Subject: ${data.subject.toUpperCase()} | Price: ₹${data.price}`;
             
-            updateTimer(data.startTime.toDate());
+            startCountdown(data.startTime.toDate());
         } else {
             document.getElementById("champSection").style.display = "none";
         }
-    } catch (e) { 
-        console.error("Firestore Check Failed:", e); 
-        document.getElementById("champSection").style.display = "none";
-    }
+    } catch (e) { document.getElementById("champSection").style.display = "none"; }
 }
 
-function updateTimer(startTime) {
+function startCountdown(startTime) {
     const timerDisplay = document.getElementById("champTimer");
     const joinBtn = document.getElementById("btnJoinChamp");
 
-    const interval = setInterval(() => {
+    timerInterval = setInterval(() => {
         const now = new Date().getTime();
         const diff = startTime - now;
 
         if (diff <= 0) {
-            clearInterval(interval);
+            clearInterval(timerInterval);
             timerDisplay.innerText = "LIVE NOW";
-            joinBtn.innerText = "JOIN CHAMPIONSHIP";
+            joinBtn.innerText = "JOIN CHAMPIONSHIP NOW";
             joinBtn.disabled = false;
-            joinBtn.style.background = "#22c55e";
+            joinBtn.classList.add("btn-active");
             return;
         }
 
@@ -399,33 +385,27 @@ window.joinChampionship = function() {
     window.location.href = "quiz.html";
 };
 
-// --- NORMAL QUIZ LOGIC ---
+// NORMAL QUIZ LOGIC
 window.startQuiz = (subject) => {
     localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
     localStorage.setItem("selectedSubject", subject);
     localStorage.removeItem("activeSessionId");
-    localStorage.removeItem("isChampionship");
     window.location.href = "quiz.html";
 };
 
-window.logout = () => { 
-    sessionStorage.clear(); 
-    window.location.href = "login.html"; 
-};
+window.logout = () => { sessionStorage.clear(); window.location.href = "login.html"; };
 
-// --- INITIALIZATION ---
+// INITIALIZE & LISTENERS
 document.getElementById("classSelect").addEventListener("change", (e) => {
     localStorage.setItem("selectedClass", e.target.value);
-    checkChampionship(e.target.value);
+    fetchCurrentSession(e.target.value);
 });
 
 onAuthStateChanged(auth, (user) => {
-    if (user && user.email === "madhhu52@gmail.com") {
-        document.getElementById("adminTab").style.display = "inline";
-    }
+    if (user && user.email === "madhhu52@gmail.com") document.getElementById("adminTab").style.display = "inline";
     const savedClass = localStorage.getItem("selectedClass") || "class6";
     document.getElementById("classSelect").value = savedClass;
-    checkChampionship(savedClass);
+    fetchCurrentSession(savedClass);
 });
 </script>
 </body>
