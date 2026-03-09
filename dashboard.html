@@ -242,10 +242,12 @@
     window.handleEventClick = async function() {
       if (!activeSession) return;
       
+      // 1. Check Firestore to see if the user has already paid
       const purchaseRef = doc(db, "users", auth.currentUser.uid, "purchases", activeSession.id);
       const purchaseSnap = await getDoc(purchaseRef);
 
       if (purchaseSnap.exists()) {
+        // If already paid, check if the test is LIVE
         if (new Date() >= activeSession.startTime.toDate()) {
           localStorage.setItem("activeSessionId", activeSession.id);
           localStorage.setItem("isChampionship", "true");
@@ -256,28 +258,30 @@
         return;
       }
 
-      // INTEGRATE RAZORPAY HERE
+      // 2. TRIGGER RAZORPAY PAYMENT
       const options = {
-        "key": "rzp_test_YOUR_KEY", // REPLACE WITH YOUR RAZORPAY KEY ID
-        "amount": activeSession.price * 100,
+        "key": "rzp_live_SP3l6l34By3jpa", // <--- PASTE YOUR RAZORPAY KEY ID HERE
+        "amount": 9900, // Rs 99 in paise (99 * 100)
         "currency": "INR",
         "name": "Olympiad Portal",
         "description": `Unlock ${activeSession.title}`,
         "handler": async function (response) {
-          // ON SUCCESS: Write to Firestore to satisfy Security Rules
+          // 3. ON SUCCESS: Record payment in Firestore to satisfy Security Rules
           try {
             await setDoc(purchaseRef, {
               paid: true,
               paymentId: response.razorpay_payment_id,
+              amount: 99,
               registeredAt: serverTimestamp()
             });
             alert("Payment Successful! Test Unlocked.");
             location.reload(); 
           } catch (err) {
-            console.error("Save failed:", err);
+            console.error("Database save failed:", err);
           }
         },
-        "prefill": { "email": auth.currentUser.email }
+        "prefill": { "email": auth.currentUser.email },
+        "theme": { "color": "#f59e0b" } // Matches your Amber theme
       };
       const rzp = new Razorpay(options);
       rzp.open();
@@ -304,6 +308,7 @@
   </script>
 </body>
 </html>
+
 
 
 
