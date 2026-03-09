@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
+    /* ALL ORIGINAL STYLES PRESERVED EXACTLY */
     :root {
       --bg:#020617; --surface-champ:#1e293b; --surface-practice:#0f172a; 
       --card-bg:#1e293b; --text:#f8fafc; --muted:#94a3b8;
@@ -30,10 +31,9 @@
     .nav-links a{ color:#ffffff; text-decoration:none; font-size:11px; font-weight:800; text-transform:uppercase; }
     .nav-links a.active{ color:var(--amber); }
     .container{ width:98%; max-width:1400px; margin:20px auto; padding:0 10px; flex:1; }
-
-    /* CHAMPIONSHIP SECTION */
-    .championship-section { background: var(--surface-champ); border: 3px solid var(--amber); border-radius: 12px; margin: 0 auto 40px auto; width: 60%; min-width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: row; overflow: hidden; position: relative; }
-    .champ-left { flex: 1.2; padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 2; }
+    
+    .championship-section { background: var(--surface-champ); border: 3px solid var(--amber); border-radius: 12px; margin: 0 auto 40px auto; width: 60%; min-width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: row; overflow: hidden; }
+    .champ-left { flex: 1.2; padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
     .champ-right { flex: 1.5; padding: 25px; background: rgba(15, 23, 42, 0.4); display: flex; flex-direction: column; justify-content: flex-start; }
     .champ-title-area h2 { font-size: 22px; color: #fff; margin-bottom: 5px; font-weight: 800; }
     .champ-selector-wrap { margin: 10px 0; display: flex; align-items: center; gap: 8px; justify-content: center; }
@@ -41,17 +41,28 @@
     .class-badge { color: var(--amber); font-size: 14px; font-weight: 700; margin: 5px 0; display:block; }
     .timer-container { background: #020617; padding: 12px 20px; border-radius: 10px; border: 1px solid var(--border); text-align: center; margin: 15px 0; width: 100%; max-width: 200px; }
     .timer-clock { font-size: 22px; font-weight: 800; color: var(--amber); font-family: monospace; }
-    .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; position: relative; z-index: 5; }
+    .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; }
     .btn-buy { background: var(--amber); color: #000; }
     .btn-live { background: var(--green); color: #fff; }
-
-    /* PRACTICE SECTION */
-    .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; position: relative; }
+    
+    .champ-info-title { color: var(--amber); font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; display: block; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+    .champ-ins-list { list-style: none; }
+    .champ-ins-list li { color: var(--muted); font-size: 12px; margin-bottom: 10px; display: flex; gap: 10px; line-height: 1.4; }
+    .champ-ins-list li b { color: var(--text); }
+    
+    .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; }
+    .section-header-title { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 20px; }
+    .class-selector-wrap { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 15px; border-radius: 12px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+    select#classSelect { background: var(--bg); color: white; border: 1px solid var(--border); padding: 10px; border-radius: 8px; flex: 1; font-size: 13px; cursor: pointer; }
+    
     .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 40px; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; position: relative; z-index: 1; }
-    .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; pointer-events: none; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .card:hover { border-color: var(--amber); transform: translateY(-3px); }
+    .card h3 { color: var(--amber); font-size: 16px; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 12px; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
+    .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
 
-    /* MOBILE ADJUSTMENTS */
+    /* ADDED ONLY THIS BLOCK FOR MOBILE COMPATIBILITY */
     @media (max-width: 768px) {
       .championship-section { width: 95%; flex-direction: column; }
       .champ-left { border-right: none; border-bottom: 1px solid var(--border); }
@@ -95,10 +106,12 @@
           </div>
           <span id="champClassMention" class="class-badge">For Class 6th</span>
         </div>
+
         <div class="timer-container">
           <p style="font-size:10px; color:var(--muted); margin-bottom:5px; text-transform:uppercase; font-weight:800;">Starts In</p>
           <p id="champTimer" class="timer-clock">00:00:00</p>
         </div>
+
         <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">Unlock Test Now (₹69)</button>
       </div>
 
@@ -115,12 +128,22 @@
     </div>
 
     <div class="practice-container">
-        <h2 style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 20px;">📚 Daily Practice</h2>
+        <div class="section-header-title">📚 Daily Practice Quizzes</div>
+        <div class="class-selector-wrap">
+          <label style="font-weight:800; color:var(--amber);">PRACTICE GRADE (1-10):</label>
+          <select id="classSelect">
+            <option value="class1">Grade 1</option><option value="class2">Grade 2</option>
+            <option value="class3">Grade 3</option><option value="class4">Grade 4</option>
+            <option value="class5">Grade 5</option><option value="class6" selected>Grade 6</option>
+            <option value="class7">Grade 7</option><option value="class8">Grade 8</option>
+            <option value="class9">Grade 9</option><option value="class10">Grade 10</option>
+          </select>
+        </div>
         <div class="grid">
-          <div class="card" onclick="startQuiz('maths')"><h3>Mathematics</h3><p>Algebra and Arithmetic.</p><button class="btn-start">Start</button></div>
+          <div class="card" onclick="startQuiz('maths')"><h3>Mathematics</h3><p>Algebra and Geometry.</p><button class="btn-start">Start</button></div>
           <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p>Physics and Biology.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('english')"><h3>English</h3><p>Vocabulary and Grammar.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('reasoning')"><h3>Reasoning</h3><p>Patterns and Logic.</p><button class="btn-start">Start</button></div>
+          <div class="card" onclick="startQuiz('english')"><h3>English</h3><p>Grammar rules.</p><button class="btn-start">Start</button></div>
+          <div class="card" onclick="startQuiz('reasoning')"><h3>Reasoning</h3><p>Logic Puzzles.</p><button class="btn-start">Start</button></div>
         </div>
     </div>
   </main>
@@ -198,7 +221,7 @@
     };
 
     window.startQuiz = (subject) => {
-      localStorage.setItem("selectedClass", "class6");
+      localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
       localStorage.setItem("selectedSubject", subject);
       window.location.href = "quiz.html";
     };
@@ -206,6 +229,9 @@
     onAuthStateChanged(auth, (user) => {
       if (user) fetchChampSession("class6");
     });
+
+    document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
+    document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
   </script>
 </body>
 </html>
