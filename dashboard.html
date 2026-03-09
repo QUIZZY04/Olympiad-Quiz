@@ -105,7 +105,7 @@
           <p id="champTimer" class="timer-clock">00:00:00</p>
         </div>
 
-        <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">Unlock Test Now FOR Rs 99</button>
+        <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">Unlock Test Now FOR Rs 69</button>
       </div>
 
       <div class="champ-right">
@@ -115,7 +115,8 @@
           <li>⏰ <b>Time:</b> 10:00 AM IST</li>
           <li>⏱️ <b>Duration:</b> 60 Minutes (1 Hour)</li>
           <li>📊 <b>Total:</b> 50 High-Difficulty Questions</li>
-          <li>💰 <b>Price:</b> Rs 99</li> </ul>
+          <li>💰 <b>Price:</b> Rs 69
+          </li> </ul>
         </ul>
         <span class="champ-info-title" style="margin-top: 15px;">Event Rules</span>
         <ul class="champ-ins-list">
@@ -262,7 +263,7 @@
       // 2. TRIGGER RAZORPAY PAYMENT
       const options = {
         "key": "rzp_live_SP3l6l34By3jpa", // <--- PASTE YOUR RAZORPAY KEY ID HERE
-        "amount": 100, // Rs 99 in paise (99 * 100)
+        "amount": 690, // Rs 69 in paise (69 * 100)
         "currency": "INR",
         "name": "Olympiad Portal",
         "description": `Unlock ${activeSession.title}`,
@@ -272,7 +273,7 @@
             await setDoc(purchaseRef, {
               paid: true,
               paymentId: response.razorpay_payment_id,
-              amount: 99,
+              amount: 69,
               registeredAt: serverTimestamp()
             });
             alert("Payment Successful! Test Unlocked.");
@@ -309,6 +310,7 @@
   </script>
 </body>
 </html>
+
 
 
 
