@@ -283,7 +283,10 @@
             console.error("Database save failed:", err);
           }
         },
-        "prefill": { "email": auth.currentUser.email },
+        "prefill": {
+    "email": auth.currentUser.email,
+    "contact": "" 
+},
         "theme": { "color": "#f59e0b" } // Matches your Amber theme
       };
       const rzp = new Razorpay(options);
@@ -311,6 +314,7 @@
   </script>
 </body>
 </html>
+
 
 
 
