@@ -1,135 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () { history.go(1); };
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - Olympiad Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #020617; --surface: #0f172a; --surface-champ: #1e293b;
+      --text: #f8fafc; --muted: #94a3b8; --border: #334155;
+      --amber: #f59e0b; --danger: #ef4444; --brand: #38bdf8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
+    
+    /* RESTORED NAVIGATION */
+    nav { background: var(--surface); border-bottom: 2px solid var(--border); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; }
+    .brand { font-size: 20px; font-weight: 800; color: var(--amber); text-decoration: none; }
+    .nav-links { display: flex; gap: 15px; }
+    .nav-links a { color: #ffffff; text-decoration: none; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .nav-links a.active { color: var(--amber); }
+
+    .container { width: 98%; max-width: 1400px; margin: 20px auto; padding: 0 10px; flex: 1; }
+    h1 { text-align: center; margin-bottom: 20px; font-weight: 800; font-size: 24px; }
+
+    .selection-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+    .selection-bar select { background: var(--surface); color: var(--amber); border: 2px solid var(--amber); padding: 10px 20px; border-radius: 8px; font-weight: 800; outline: none; }
+
+    .leaderboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .lb-card { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .weekly-card { border: 2px solid var(--amber); background: var(--surface-champ); }
+    
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .card-header h2 { font-size: 16px; font-weight: 800; text-transform: uppercase; color: var(--amber); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th { color: var(--muted); text-align: center; padding: 12px 5px; font-size: 10px; text-transform: uppercase; background: rgba(0,0,0,0.2); }
+    td { padding: 12px 5px; text-align: center; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .rank-circle { background: rgba(245, 158, 11, 0.2); color: var(--amber); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; }
+
+    @media (max-width: 900px) { .leaderboard-grid { grid-template-columns: 1fr; } }
+    footer { text-align: center; padding: 20px; color: var(--muted); font-size: 11px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+<nav>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html" class="active">Leaderboard</a>
+        <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
+    </div>
+</nav>
+
 <div class="container">
     <h1>🏆 Hall of Fame</h1>
-
     <div class="selection-bar">
         <select id="gradeSelect">
-            <option value="all">All Grades (Global)</option> <option value="class1">Grade 1</option>
-            <option value="class2">Grade 2</option>
-            <option value="class3">Grade 3</option>
-            <option value="class4">Grade 4</option>
-            <option value="class5">Grade 5</option>
-            <option value="class6">Grade 6</option>
-            <option value="class7">Grade 7</option>
-            <option value="class8">Grade 8</option>
-            <option value="class9">Grade 9</option>
-            <option value="class10">Grade 10</option>
+            <option value="all" selected>All Grades (Global)</option>
+            <option value="class1">Grade 1</option><option value="class4">Grade 4</option>
+            <option value="class6">Grade 6</option><option value="class7">Grade 7</option>
         </select>
-
         <select id="subjectSelect">
-            <option value="all">All Subjects</option> <option value="maths">Mathematics</option>
-            <option value="science">Science</option>
-            <option value="english">English</option>
-            <option value="reasoning">Reasoning</option>
+            <option value="all" selected>All Subjects</option>
+            <option value="maths">Mathematics</option><option value="science">Science</option>
         </select>
     </div>
 
     <div class="leaderboard-grid">
         <div class="lb-card weekly-card">
-            <div class="card-header">
-                <h2>⭐ Science Weekly Quiz 2</h2>
-                <span style="font-size:10px; color:var(--muted);">SESSION: MAR 15</span>
-            </div>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr><th>Rank</th><th>Participant</th><th>Score</th><th>Time</th></tr>
-                    </thead>
-                    <tbody id="weeklyBody">
-                        <tr><td colspan="4">Loading...</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="card-header"><h2>⭐ Weekly Quiz</h2></div>
+            <table><thead><tr><th>Rank</th><th>Participant</th><th>Score</th><th>Time</th></tr></thead><tbody id="weeklyBody"></tbody></table>
         </div>
-
         <div class="lb-card">
-            <div class="card-header">
-                <h2>📚 Daily Practice</h2>
-                <span id="subjectLabel" style="font-size:10px; color:var(--muted); text-transform:uppercase;">GLOBAL</span>
-            </div>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr><th>Rank</th><th>Participant</th><th>Score</th><th>Grade</th></tr> </thead>
-                    <tbody id="dailyBody">
-                        <tr><td colspan="4">Loading...</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <div class="card-header"><h2>📚 Daily Practice</h2><span id="subjectLabel" style="font-size:10px; color:var(--muted);">GLOBAL</span></div>
+            <table><thead><tr><th>Rank</th><th>Participant</th><th>Score</th><th>Grade</th></tr></thead><tbody id="dailyBody"></tbody></table>
         </div>
     </div>
 </div>
 
 <script type="module">
-// ... Firebase Imports and Config remain same as your provided file ...
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, query, where, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// ... Your Config ...
+const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e", storageBucket: "olympiad-portal-d2a5e.firebasestorage.app", messagingSenderId: "341855557503", appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a" };
+const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app);
+
+onAuthStateChanged(auth, (user) => { if (!user) window.location.href = "login.html"; else refreshAll(); });
 
 async function refreshAll() {
     const grade = document.getElementById("gradeSelect").value;
     const subject = document.getElementById("subjectSelect").value;
-    document.getElementById("subjectLabel").innerText = (grade === "all" && subject === "all") ? "GLOBAL" : subject;
-    
-    loadWeekly(grade === "all" ? "class6" : grade); // Default weekly to class6 if all selected
     loadDaily(grade, subject);
 }
 
 async function loadDaily(grade, subject) {
     const tbody = document.getElementById("dailyBody");
-    tbody.innerHTML = "<tr><td colspan='4'>Searching...</td></tr>";
-    
+    tbody.innerHTML = "<tr><td colspan='4'>Loading...</td></tr>";
     try {
         let q = collection(db, "leaderboard");
-
-        // DYNAMIC QUERY BUILDING
-        if (grade !== "all" && subject !== "all") {
-            // Filtered View: Only shows specific grade and subject
-            q = query(q, where("studentClass", "==", grade), where("subject", "==", subject), orderBy("score", "desc"), limit(20));
-        } else if (grade !== "all") {
-            // Grade-only View: Shows all subjects for a specific grade
-            q = query(q, where("studentClass", "==", grade), orderBy("score", "desc"), limit(20));
-        } else if (subject !== "all") {
-            // Subject-only View: Shows all grades for a specific subject
-            q = query(q, where("subject", "==", subject), orderBy("score", "desc"), limit(20));
-        } else {
-            // GLOBAL VIEW: Shows everything in the database
+        // GLOBAL VS FILTERED LOGIC
+        if (grade === "all" && subject === "all") {
             q = query(q, orderBy("score", "desc"), limit(30));
+        } else if (grade !== "all" && subject !== "all") {
+            q = query(q, where("studentClass", "==", grade), where("subject", "==", subject), orderBy("score", "desc"), limit(20));
+        } else {
+            const field = grade !== "all" ? "studentClass" : "subject";
+            const val = grade !== "all" ? grade : subject;
+            q = query(q, where(field, "==", val), orderBy("score", "desc"), limit(20));
         }
 
-        let snap = await getDocs(q);
-
-        // FALLBACK FOR OLDER DATA (checks 'class' field if 'studentClass' is empty)
-        if (snap.empty && grade !== "all") {
-            const qBackup = query(collection(db, "leaderboard"), where("class", "==", grade), orderBy("score", "desc"), limit(20));
-            snap = await getDocs(qBackup);
-        }
-
-        renderDailyTable(snap, tbody);
+        const snap = await getDocs(q);
+        tbody.innerHTML = snap.empty ? "<tr><td colspan='4'>No records found.</td></tr>" : "";
+        let rank = 1;
+        snap.forEach(doc => {
+            const d = doc.data();
+            tbody.innerHTML += `<tr><td><span class="rank-circle">${rank++}</span></td><td style="text-align:left;">${d.email}</td><td style="color:var(--amber);font-weight:700;">${d.score}/${d.total||30}</td><td>${(d.studentClass||"").replace('class','G')}</td></tr>`;
+        });
     } catch (err) {
-        console.error("Daily Error:", err);
-        tbody.innerHTML = "<tr><td colspan='4'>Error: Click the new blue link in F12 Console.</td></tr>";
+        console.error(err); tbody.innerHTML = "<tr><td colspan='4'>Error: Click blue link in F12 Console.</td></tr>";
     }
 }
 
-function renderDailyTable(snap, tbody) {
-    tbody.innerHTML = "";
-    if (snap.empty) {
-        tbody.innerHTML = "<tr><td colspan='4'>No records found.</td></tr>";
-        return;
-    }
-
-    let rank = 1;
-    snap.forEach((doc) => {
-        const data = doc.data();
-        const gradeDisplay = (data.studentClass || data.class || "N/A").replace('class', 'G');
-        
-        tbody.innerHTML += `
-            <tr>
-                <td><span class="rank-circle">${rank}</span></td>
-                <td style="font-weight:600; text-align:left;">${data.email || "Student"}</td>
-                <td style="color:var(--amber); font-weight:700;">${data.score}/${data.total || 30}</td>
-                <td style="text-transform:uppercase; font-size:10px;">${gradeDisplay}</td>
-            </tr>
-        `;
-        rank++;
-    });
-}
-// ... Rest of scripts (loadWeekly, events, logout) remain same as your file ...
+document.getElementById("gradeSelect").addEventListener("change", refreshAll);
+document.getElementById("subjectSelect").addEventListener("change", refreshAll);
 </script>
+</body>
+</html>
