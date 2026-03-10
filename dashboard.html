@@ -11,18 +11,25 @@
       --bg:#020617; --surface-champ:#1e293b; --surface-practice:#0f172a; 
       --card-bg:#1e293b; --text:#f8fafc; --muted:#94a3b8;
       --border:#334155; --amber:#f59e0b; --danger:#ef4444; --green:#22c55e;
-      --blue-accent: #3b82f6; /* High contrast color for instructions */
+      --blue-accent: #3b82f6;
     }
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; }
-    nav{ background:var(--surface-champ); border-bottom:2px solid var(--border); padding:12px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; }
-    .brand{ font-size:20px; font-weight:800; color:var(--amber); text-decoration:none; }
-    .nav-links{ display:flex; gap:12px; align-items:center; }
+    body{ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; overflow-x: hidden; }
+    
+    /* MOBILE NAV FIX */
+    nav{ 
+      background:var(--surface-champ); border-bottom:2px solid var(--border); 
+      padding:12px 5%; display:flex; align-items:center; justify-content:space-between; 
+      position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+    }
+    .brand{ font-size:20px; font-weight:800; color:var(--amber); text-decoration:none; white-space: nowrap; }
+    .nav-links{ display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
     .nav-links a{ color:#ffffff; text-decoration:none; font-size:11px; font-weight:800; text-transform:uppercase; }
-    .container{ width:98%; max-width:1400px; margin:20px auto; padding:0 10px; flex:1; }
+
+    .container{ width:100%; max-width:1400px; margin:20px auto; padding:0 15px; flex:1; }
 
     /* CHAMPIONSHIP SECTION */
-    .championship-section { background: var(--surface-champ); border: 3px solid var(--amber); border-radius: 12px; margin: 0 auto 40px auto; width: 60%; min-width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: row; overflow: hidden; position: relative; }
+    .championship-section { background: var(--surface-champ); border: 3px solid var(--amber); border-radius: 12px; margin: 0 auto 40px auto; width: 100%; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: row; overflow: hidden; position: relative; }
     .champ-left { flex: 1.2; padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 10; }
     .champ-right { flex: 1.5; padding: 25px; background: rgba(15, 23, 42, 0.4); display: flex; flex-direction: column; justify-content: flex-start; }
     .champ-title-area h2 { font-size: 22px; color: #fff; margin-bottom: 5px; font-weight: 800; }
@@ -30,44 +37,35 @@
     .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; position: relative; pointer-events: auto; }
     .btn-buy { background: var(--amber); color: #000; }
 
-    /* UPDATED: Bigger & Higher Contrast Instruction Button */
     .btn-detail-ins {
-      background: var(--blue-accent);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      cursor: pointer;
-      margin-bottom: 20px;
-      width: 100%;
-      max-width: 250px;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      background: var(--blue-accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-bottom: 20px; width: 100%; max-width: 250px; transition: 0.2s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
     .btn-detail-ins:hover { background: #2563eb; transform: translateY(-1px); }
-    .btn-detail-ins:active { transform: translateY(0); }
 
     /* PRACTICE SECTION */
     .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; }
     .class-selector-wrap { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 15px; border-radius: 12px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
     select#classSelect { background: var(--bg); color: white; border: 1px solid var(--border); padding: 10px; border-radius: 8px; flex: 1; font-size: 13px; cursor: pointer; }
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 40px; }
+    
+    /* MOBILE GRID FIX */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 40px; }
     .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
     .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
 
-    /* INSTRUCTIONS */
-    .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 35px; margin-top: 40px; margin-bottom: 60px; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-    .ins-item { display: flex; gap: 15px; align-items: flex-start; }
+    /* INSTRUCTIONS MOBILE FIX */
+    .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 25px; margin-top: 40px; margin-bottom: 60px; overflow: hidden; }
+    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .ins-item { display: flex; gap: 15px; align-items: flex-start; overflow-wrap: break-word; word-wrap: break-word; }
     .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; }
+    .ins-text { flex: 1; font-size: 14px; line-height: 1.5; }
 
     @media (max-width: 768px) {
+      nav { justify-content: center; }
+      .brand { width: 100%; text-align: center; }
       .championship-section { width: 95%; flex-direction: column; }
       .champ-left { border-right: none; border-bottom: 1px solid var(--border); }
-      .grid { grid-template-columns: 1fr; }
+      .practice-container { padding: 20px; }
+      .ins-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
