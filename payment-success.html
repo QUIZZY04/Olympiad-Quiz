@@ -5,58 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Payment Successful</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
 <style>
 
+:root{
+--bg:#020617;
+--card:#1e293b;
+--text:#f8fafc;
+--amber:#f59e0b;
+--green:#22c55e;
+}
+
 body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
 }
 
-.container{
-    background:#1e293b;
-    padding:40px 50px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    border:2px solid gold;
+.card{
+background:var(--card);
+padding:40px;
+border-radius:16px;
+border:2px solid var(--amber);
+text-align:center;
+max-width:420px;
+width:90%;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-.check{
-    font-size:70px;
-    color:#4ade80;
+.icon{
+font-size:55px;
+margin-bottom:15px;
 }
 
 h1{
-    margin-top:10px;
-    font-size:32px;
+color:var(--amber);
+margin-bottom:10px;
 }
 
 p{
-    margin-top:10px;
-    color:#d1d5db;
+color:#94a3b8;
+margin-bottom:20px;
 }
 
-.button{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:gold;
-    color:black;
-    text-decoration:none;
-    font-weight:bold;
-    border-radius:8px;
+.loader{
+border:4px solid #334155;
+border-top:4px solid var(--amber);
+border-radius:50%;
+width:30px;
+height:30px;
+animation:spin 1s linear infinite;
+margin:20px auto;
 }
 
-.timer{
-    margin-top:15px;
-    font-size:14px;
-    color:#9ca3af;
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
 
 </style>
@@ -64,41 +74,88 @@ p{
 
 <body>
 
-<div class="container">
+<div class="card">
 
-<div class="check">✔</div>
+<div id="icon" class="icon">⏳</div>
 
-<h1>Payment Successful</h1>
+<h1 id="title">Verifying Payment</h1>
 
-<p>Your Olympiad Quiz registration is confirmed.</p>
+<p id="msg">Please wait while we activate your test.</p>
 
-<p>You will be redirected to the quiz shortly.</p>
-
-<a class="button" href="index.html">Start Quiz Now</a>
-
-<div class="timer">
-Redirecting automatically in <span id="count">5</span> seconds...
-</div>
+<div id="loader" class="loader"></div>
 
 </div>
 
-<script>
+<script type="module">
 
-let time = 5;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore,doc,setDoc,serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-let timer = setInterval(function(){
+const firebaseConfig={
+apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
+projectId:"olympiad-portal-d2a5e",
+storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+messagingSenderId:"341855557503",
+appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
 
-time--;
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
 
-document.getElementById("count").innerText = time;
+onAuthStateChanged(auth,async(user)=>{
 
-if(time <= 0){
+if(!user){
+window.location.href="login.html";
+return;
+}
 
-window.location.href = "index.html";
+const sessionId=localStorage.getItem("activeSessionId");
+
+try{
+
+if(sessionId){
+
+await setDoc(doc(db,"users",user.uid,"purchases",sessionId),{
+
+paid:true,
+amount:69,
+registeredAt:serverTimestamp()
+
+});
 
 }
 
-},1000);
+document.getElementById("icon").innerText="✅";
+document.getElementById("title").innerText="Payment Successful";
+document.getElementById("msg").innerText="Redirecting to dashboard...";
+document.getElementById("loader").style.display="none";
+
+setTimeout(()=>{
+
+window.location.href="dashboard.html";
+
+},3000);
+
+}
+
+catch(e){
+
+document.getElementById("icon").innerText="❌";
+document.getElementById("title").innerText="Error";
+document.getElementById("msg").innerText="Something went wrong.";
+
+setTimeout(()=>{
+
+window.location.href="dashboard.html";
+
+},3000);
+
+}
+
+});
 
 </script>
 
