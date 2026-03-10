@@ -241,7 +241,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     try {
         await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
-        sessionStorage.setItem("loggedIn","true");
+        
         window.location.href="dashboard.html";
     } catch(err) { alert(err.message); }
 });
@@ -250,7 +250,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
     try {
         await signInWithPopup(auth, provider);
-        sessionStorage.setItem("loggedIn","true");
+        
         window.location.href = "dashboard.html";
     } catch (err) { alert(err.message); }
 });
@@ -291,3 +291,4 @@ document.getElementById("changeForm").addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
