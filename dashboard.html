@@ -211,11 +211,18 @@ fetchChampSession("class6");
 };
 
     // 2. DAILY PRACTICE START
-    window.startQuiz = (subject) => { 
-      localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
-      localStorage.setItem("selectedSubject", subject); 
-      window.location.href = "quiz.html"; 
-    };
+    window.startQuiz = (subject) => {
+
+localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
+localStorage.setItem("selectedSubject", subject);
+
+/* ensure daily quiz is free */
+localStorage.setItem("isChampionship","false");
+localStorage.removeItem("activeSessionId");
+
+window.location.href = "quiz.html";
+
+};
 
     
 
@@ -231,6 +238,7 @@ window.logout = () => {
   </script>
 </body>
 </html>
+
 
 
 
