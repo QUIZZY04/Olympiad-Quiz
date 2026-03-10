@@ -16,10 +16,12 @@ window.onpopstate = function () {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
 <style>
-:root{
+
+:root {
 --bg:#0f172a;
 --surface:#1e293b;
 --text:#f8fafc;
+--muted:#94a3b8;
 --border:#334155;
 --brand:#38bdf8;
 --accent:#22c55e;
@@ -59,6 +61,7 @@ cursor:pointer;
 }
 
 header.top-bar{
+z-index:1000;
 background:#1e293b;
 border-bottom:2px solid var(--border);
 padding:15px 40px;
@@ -108,6 +111,13 @@ overflow-y:auto;
 .question-section{flex:2.8}
 .navigation-section{flex:0 0 300px;height:fit-content}
 
+#displaySubject{
+font-size:16px;
+font-weight:800;
+color:var(--brand);
+text-transform:uppercase;
+}
+
 .progress-container{
 background:var(--border);
 border-radius:10px;
@@ -120,6 +130,7 @@ margin-top:5px;
 height:100%;
 width:0%;
 background:linear-gradient(90deg,var(--brand),var(--accent));
+transition:width .4s ease;
 }
 
 .options{
@@ -139,7 +150,11 @@ border-radius:8px;
 cursor:pointer;
 }
 
-.opt span{font-size:15px}
+.opt span{
+font-size:15px;
+color:#fff;
+text-align:left;
+}
 
 .quiz-buttons{
 display:flex;
@@ -149,7 +164,7 @@ margin-top:20px;
 
 .btn{
 flex:1;
-padding:12px;
+padding:12px 5px;
 border-radius:6px;
 font-weight:800;
 cursor:pointer;
@@ -168,6 +183,7 @@ grid-template-columns:repeat(5,1fr);
 gap:6px;
 margin-top:8px;
 margin-bottom:15px;
+width:100%;
 }
 
 .cell{
@@ -182,54 +198,57 @@ font-weight:700;
 font-size:12px;
 }
 
-.cell.current{background:#2563eb}
-.cell.answered{background:#16a34a}
-.cell.visited{background:#dc2626}
+.cell.current{background:#2563eb;color:white}
+.cell.answered{background:#16a34a;color:white}
+.cell.visited{background:#dc2626;color:white}
 .cell.unseen{background:var(--unseen-grey);color:#000}
-/* MOBILE RESPONSIVENESS - RESTORE ORIGINAL LAYOUT */
-@media (max-width: 850px) { 
 
-  html, body { 
-    overflow: auto; 
-    height: auto; 
-  }
+/* MOBILE RESPONSIVENESS (RESTORED ORIGINAL) */
 
-  .utility-nav { 
-    padding: 10px 15px; 
-    gap: 15px; 
-    justify-content: center; 
-  }
+@media (max-width: 850px) {
 
-  header.top-bar { 
-    padding: 10px 15px; 
-  }
+html,body{
+overflow:auto;
+height:auto;
+}
 
-  .quiz-container { 
-    flex-direction: column; 
-    height: auto; 
-    padding: 10px; 
-    gap: 10px; 
-  } 
+.utility-nav{
+padding:10px 15px;
+gap:15px;
+justify-content:center;
+}
 
-  .question-section, 
-  .navigation-section { 
-    width: 100%; 
-    flex: none; 
-  } 
+header.top-bar{
+padding:10px 15px;
+}
 
-  /* Slim mobile buttons */
-  .btn { 
-    padding: 8px 4px; 
-    font-size: 12px !important; 
-    height: 38px; 
-  }
+.quiz-container{
+flex-direction:column;
+height:auto;
+padding:10px;
+gap:10px;
+}
 
-  /* Responsive question palette */
-  .grid { 
-    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); 
-  }
+.question-section,
+.navigation-section{
+width:100%;
+flex:none;
+}
+
+/* Slim buttons */
+.btn{
+padding:8px 4px;
+font-size:12px !important;
+height:38px;
+}
+
+/* responsive palette */
+.grid{
+grid-template-columns:repeat(auto-fill,minmax(45px,1fr));
+}
 
 }
+
 </style>
 </head>
 
@@ -260,11 +279,10 @@ font-size:12px;
 <div class="progress-fill" id="progressBar"></div>
 </div>
 
-<div id="questionNumber" style="margin-top:15px">QUESTION 1</div>
-
+<div id="questionNumber" style="margin-top:15px;">QUESTION 1</div>
 <div id="questionText">Loading...</div>
 
-<div id="options" class="options"></div>
+<div class="options" id="options"></div>
 
 <div class="quiz-buttons">
 <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
@@ -275,11 +293,8 @@ font-size:12px;
 </section>
 
 <aside class="navigation-section section">
-
 <h3>Question Palette</h3>
-
 <div class="grid" id="questionGrid"></div>
-
 </aside>
 
 </main>
@@ -287,11 +302,11 @@ font-size:12px;
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore,collection,query,where,getDocs,addDoc,serverTimestamp,doc,getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
-apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+apiKey:"AIzaSyB49...",
 authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
 projectId:"olympiad-portal-d2a5e",
 storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
@@ -303,7 +318,7 @@ const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
 
-/* VARIABLES FIXED */
+/* FIXED VARIABLE ORDER */
 
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 const selectedClass=localStorage.getItem("selectedClass")||"class6";
@@ -320,19 +335,6 @@ let quizSubmitted=false;
 
 let totalTime=isChampionship?3600:1800;
 const initialTime=totalTime;
-
-/* TAB PROTECTION */
-
-if(localStorage.getItem("quizRunning")==="true"){
-alert("Quiz already running in another tab.");
-window.location.href="dashboard.html";
-}
-
-localStorage.setItem("quizRunning","true");
-
-window.addEventListener("beforeunload",()=>{
-localStorage.removeItem("quizRunning");
-});
 
 /* AUTH */
 
@@ -391,8 +393,6 @@ generateGrid();
 loadQuestion();
 
 }
-
-/* QUIZ */
 
 window.loadQuestion=()=>{
 const q=questions[current];
@@ -475,8 +475,6 @@ document.getElementById("progressPercent").innerText=percent+"%";
 
 }
 
-/* TIMER */
-
 const timer=setInterval(()=>{
 
 const m=Math.floor(totalTime/60);
@@ -490,8 +488,6 @@ submitQuiz();
 }
 
 },1000);
-
-/* SUBMIT */
 
 window.confirmSubmit=()=>{
 if(confirm("Submit quiz?"))submitQuiz();
@@ -511,31 +507,17 @@ if(selectedAnswers[i]==q.a)score++;
 
 const accuracy=((score/questions.length)*100).toFixed(2);
 
-const resultData={
-score,
-total:questions.length,
-subject:selectedSubject,
-class:selectedClass,
-accuracy,
-answers:selectedAnswers,
-questions,
-timeTaken:initialTime-totalTime,
-isChampionship
-};
-
 await addDoc(collection(db,"leaderboard"),{
 email:auth.currentUser.email,
 uid:auth.currentUser.uid,
-studentClass:resultData.class,
-subject:resultData.subject,
-score:resultData.score,
-total:resultData.total,
-accuracy:resultData.accuracy,
+studentClass:selectedClass,
+subject:selectedSubject,
+score:score,
+total:questions.length,
+accuracy:accuracy,
 date:serverTimestamp(),
-isChampionship:resultData.isChampionship
+isChampionship:isChampionship
 });
-
-localStorage.setItem("quizResult",JSON.stringify(resultData));
 
 window.location.href="result.html";
 
@@ -552,4 +534,3 @@ window.location.replace("login.html");
 
 </body>
 </html>
-
