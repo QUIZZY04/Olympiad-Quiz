@@ -47,7 +47,7 @@ cursor:pointer;
 <div class="box">
 <h2>✅ Payment Successful</h2>
 <p>Your quiz has been unlocked.</p>
-<p id="statusMsg">Updating your account...</p>
+<p id="statusMsg">Updating your account details...</p>
 
 <button onclick="goDashboard()">Go to Dashboard</button>
 </div>
@@ -77,7 +77,14 @@ onAuthStateChanged(auth, async (user) => {
 
     if (user && sessionId) {
         try {
-            // SAVE THE PURCHASE TO FIREBASE
+            // 1. UPDATE USER PROFILE (Makes the user document visible in Firestore)
+            await setDoc(doc(db, "users", user.uid), {
+                name: user.displayName || "Student",
+                email: user.email,
+                lastPurchaseAt: serverTimestamp()
+            }, { merge: true });
+
+            // 2. SAVE THE PURCHASE RECORD
             await setDoc(
                 doc(db, "users", user.uid, "purchases", sessionId),
                 {
@@ -87,11 +94,12 @@ onAuthStateChanged(auth, async (user) => {
                     sessionId: sessionId
                 }
             );
-            statusMsg.innerText = "Account updated! You can now go to the dashboard.";
+
+            statusMsg.innerText = "Account and purchase updated! You can now go to the dashboard.";
             statusMsg.style.color = "#22c55e";
-            console.log("Purchase saved successfully for session:", sessionId);
+            console.log("User details and purchase saved for:", user.email);
         } catch (error) {
-            console.error("Error saving purchase:", error);
+            console.error("Error saving data:", error);
             statusMsg.innerText = "Error updating account. Please contact support.";
             statusMsg.style.color = "#ef4444";
         }
