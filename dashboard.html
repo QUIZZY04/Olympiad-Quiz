@@ -37,7 +37,7 @@
     .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
     .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
 
-    /* INSTRUCTIONS SECTION */
+    /* INSTRUCTIONS */
     .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 35px; margin-top: 40px; margin-bottom: 60px; }
     .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
     .ins-item { display: flex; gap: 15px; align-items: flex-start; }
@@ -46,7 +46,7 @@
     @media (max-width: 768px) {
       .championship-section { width: 95%; flex-direction: column; }
       .champ-left { border-right: none; border-bottom: 1px solid var(--border); }
-      .grid, .ins-grid { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -171,31 +171,36 @@
 
     function startChampTimer(startTime, isBought) {
       const btn = document.getElementById("btnChamp");
-      if (isBought) {
-          btn.style.background = "var(--green)";
-          btn.style.color = "#fff";
-          btn.onclick = () => {
-              localStorage.setItem("isChampionship", "true");
-              localStorage.setItem("activeSessionId", activeSession.id);
-              window.location.href = "quiz.html";
-          };
-      } else {
-          btn.style.background = "var(--amber)";
-          btn.style.color = "#000";
-          btn.onclick = () => redirectToPayment();
-      }
-
+      
       timerInterval = setInterval(() => {
         const now = new Date().getTime();
         const diff = startTime - now;
 
         if (isBought) {
-          btn.innerText = (diff > 0 ? "Test Unlocked" : "Join Now");
+          btn.style.background = "var(--green)";
+          btn.style.color = "#fff";
+          
+          if (diff > 0) {
+            btn.innerText = "Test Unlocked";
+            btn.onclick = () => {
+                const testDate = "March 15th, 2026";
+                alert(`Success! You have already unlocked the Science Weekly Quiz 2 dated ${testDate}. Please come back when the timer reaches zero to start your exam.`);
+            };
+          } else {
+            btn.innerText = "Join Now";
+            btn.onclick = () => {
+                localStorage.setItem("isChampionship", "true");
+                localStorage.setItem("activeSessionId", activeSession.id);
+                window.location.href = "quiz.html";
+            };
+          }
         } else {
+          btn.style.background = "var(--amber)";
+          btn.style.color = "#000";
           btn.innerText = `Unlock Test (₹${activeSession ? activeSession.price : '69'})`;
+          btn.onclick = () => redirectToPayment();
         }
 
-        // CORRECTED TIMER LOGIC
         if (diff <= 0) {
             document.getElementById("champTimer").innerText = "LIVE NOW";
         } else {
