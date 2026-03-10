@@ -179,36 +179,46 @@
       }, 1000);
     }
 
-    window.handleEventClick = async function() {
+   window.handleEventClick = async function() {
   if (!activeSession) return;
   
   // Save session ID for the success page to use later
   localStorage.setItem("activeSessionId", activeSession.id);
 
-  const options = {
-    "key": "rzp_live_SP3l6l34By3jpa", 
-    "amount": 6900, 
-    "currency": "INR",
-    "name": "Olympiad Portal",
-    "description": `Unlock ${activeSession.title}`,
-    
-    // THESE THREE LINES ARE MANDATORY FOR REDIRECT
-    "callback_url": "https://quizzy04.github.io/Olympiad-Quiz/payment-success.html", 
-    "redirect": true, 
-    "notes": {
-       "session_id": activeSession.id
-    },
+  // Define your parameters
+  const key = "rzp_live_SP3l6l34By3jpa";
+  const amount = 6900;
+  const currency = "INR";
+  const name = "Olympiad Portal";
+  const description = `Unlock ${activeSession.title}`;
+  const callback_url = "https://quizzy04.github.io/Olympiad-Quiz/payment-success.html";
 
-    "prefill": {
-      "email": auth.currentUser.email,
-      "contact": "" 
-    },
-    "theme": { "color": "#f59e0b" }
+  // Create a hidden form dynamically to force a POST redirect
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://api.razorpay.com/v1/checkout/embedded';
+
+  const params = {
+    key_id: key,
+    amount: amount,
+    currency: currency,
+    name: name,
+    description: description,
+    callback_url: callback_url,
+    prefill_email: auth.currentUser.email,
+    notes: { session_id: activeSession.id }
   };
 
-  // Create the instance and open
-  const rzp = new Razorpay(options);
-  rzp.open(); 
+  for (const key in params) {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = key;
+    input.value = typeof params[key] === 'object' ? JSON.stringify(params[key]) : params[key];
+    form.appendChild(input);
+  }
+
+  document.body.appendChild(form);
+  form.submit(); // This forces the separate page opening
 };
 
     window.startQuiz = (subject) => { 
@@ -224,6 +234,7 @@
   </script>
 </body>
 </html>
+
 
 
 
