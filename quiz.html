@@ -1,258 +1,335 @@
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig={
-apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
-projectId:"olympiad-portal-d2a5e",
-storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
-messagingSenderId:"341855557503",
-appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-};
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-
-/* VARIABLES */
-
-const isChampionship = localStorage.getItem("isChampionship") === "true";
-const selectedClass = localStorage.getItem("selectedClass") || "class6";
-const selectedSubject = localStorage.getItem("selectedSubject") || "science";
-
-document.getElementById("displaySubject").innerText =
-`${selectedSubject.toUpperCase()} - GRADE ${selectedClass.replace("class","")}`;
-
-let current = 0;
-let questions = [];
-let selectedAnswers = [];
-let visitedQuestions = [];
-let quizSubmitted = false;
-
-let totalTime = isChampionship ? 3600 : 1800;
-const initialTime = totalTime;
-
-/* AUTH CHECK */
-
-onAuthStateChanged(auth, async (user)=>{
-
-/* Wait until Firebase confirms login */
-if(!user){
-console.log("Waiting for auth session...");
-return;
-}
-
-/* Championship purchase verification */
-
-if(isChampionship){
-
-const sessionId = localStorage.getItem("activeSessionId");
-
-if(!sessionId){
-alert("Please unlock the test first.");
-window.location.href="dashboard.html";
-return;
-}
-
-const purchaseRef = doc(db,"users",user.uid,"purchases",sessionId);
-const purchaseSnap = await getDoc(purchaseRef);
-
-if(!purchaseSnap.exists()){
-alert("You have not unlocked this quiz.");
-window.location.href="dashboard.html";
-return;
-}
-
-}
-
-/* Load quiz questions */
-
-loadQuestions();
-
-});
-
-/* LOAD QUESTIONS */
-
-async function loadQuestions(){
-
-const q = query(
-collection(db,"questions"),
-where("class","==",selectedClass),
-where("subject","==",selectedSubject)
-);
-
-const snapshot = await getDocs(q);
-
-questions = snapshot.docs.map(doc => doc.data());
-
-if(questions.length > 30) questions = questions.slice(0,30);
-
-selectedAnswers = new Array(questions.length).fill(null);
-visitedQuestions = new Array(questions.length).fill(false);
-
-generateGrid();
-loadQuestion();
-
-}
-
-/* QUESTION RENDER */
-
-window.loadQuestion = () => {
-
-const q = questions[current];
-visitedQuestions[current] = true;
-
-document.getElementById("questionNumber").innerText = `QUESTION ${current+1}`;
-document.getElementById("questionText").innerHTML = q.q;
-
-let html = "";
-
-q.o.forEach((opt,i)=>{
-html += `<label class="opt">
-<input type="radio" name="option" value="${i}"
-${selectedAnswers[current]===i?"checked":""}
-onchange="saveAnswer(${i})"/>
-<span>${opt}</span>
-</label>`;
-});
-
-document.getElementById("options").innerHTML = html;
-
-updateGrid();
-
-};
-
-/* ANSWER SAVE */
-
-window.saveAnswer = v=>{
-selectedAnswers[current] = v;
-updateGrid();
-};
-
-window.nextQuestion = ()=>{
-if(current < questions.length-1){
-current++;
-loadQuestion();
-}
-};
-
-window.prevQuestion = ()=>{
-if(current > 0){
-current--;
-loadQuestion();
-}
-};
-
-window.jumpTo = i=>{
-current = i;
-loadQuestion();
-};
-
-/* GRID */
-
-function generateGrid(){
-
-let html="";
-
-for(let i=0;i<questions.length;i++){
-html += `<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
-}
-
-document.getElementById("questionGrid").innerHTML = html;
-
-}
-
-function updateGrid(){
-
-let answered = 0;
-
-for(let i=0;i<questions.length;i++){
-
-const el=document.getElementById("q"+i);
-if(!el) continue;
-
-el.className="cell";
-
-if(i===current) el.classList.add("current");
-else if(selectedAnswers[i]!==null) el.classList.add("answered");
-else if(visitedQuestions[i]) el.classList.add("visited");
-else el.classList.add("unseen");
-
-if(selectedAnswers[i]!==null) answered++;
-
-}
-
-const percent = Math.round((answered/questions.length)*100);
-
-document.getElementById("progressBar").style.width = percent+"%";
-document.getElementById("progressPercent").innerText = percent+"%";
-
-}
-
-/* TIMER */
-
-const timer=setInterval(()=>{
-
-const m=Math.floor(totalTime/60);
-const s=totalTime%60;
-
-document.getElementById("timer").innerText =
-`${m}:${s<10?"0":""}${s}`;
-
-if(--totalTime < 0){
-clearInterval(timer);
-submitQuiz();
-}
-
-},1000);
-
-/* SUBMIT */
-
-window.confirmSubmit = ()=>{
-if(confirm("Submit quiz?")) submitQuiz();
-};
-
-async function submitQuiz(){
-
-if(quizSubmitted) return;
-
-quizSubmitted = true;
-
-let score = 0;
-
-questions.forEach((q,i)=>{
-if(selectedAnswers[i]==q.a) score++;
-});
-
-const accuracy = ((score/questions.length)*100).toFixed(2);
-
-await addDoc(collection(db,"leaderboard"),{
-email:auth.currentUser.email,
-uid:auth.currentUser.uid,
-studentClass:selectedClass,
-subject:selectedSubject,
-score:score,
-total:questions.length,
-accuracy:accuracy,
-date:serverTimestamp(),
-isChampionship:isChampionship
-});
-
-window.location.href="result.html";
-
-}
-
-/* LOGOUT */
-
-window.logout = async ()=>{
-if(confirm("Logout?")){
-await signOut(auth);
-window.location.replace("login.html");
-}
-};
-
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Portal - Quizzy04</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --success: #22c55e;
+            --amber: #f59e0b;
+            --slate: #64748b;
+            --bg: #f8fafc;
+        }
+
+        * { box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+        body { margin: 0; background: var(--bg); color: var(--primary); }
+
+        /* Header */
+        .header {
+            background: white; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .timer-box {
+            background: #fee2e2; color: #ef4444;
+            padding: 8px 15px; border-radius: 8px;
+            font-weight: 800; font-size: 1.2rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        /* Progress Bar */
+        .progress-container { height: 6px; background: #e2e8f0; width: 100%; }
+        .progress-fill { 
+            height: 100%; background: var(--success); 
+            width: 0%; transition: width 0.4s ease; 
+        }
+
+        .main-container {
+            max-width: 1200px; margin: 20px auto;
+            display: grid; grid-template-columns: 1fr 350px; gap: 20px;
+            padding: 0 20px;
+        }
+
+        /* Quiz Section */
+        .quiz-card {
+            background: white; padding: 30px;
+            border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .q-meta { color: var(--slate); font-weight: 600; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .q-text { font-size: 1.25rem; font-weight: 600; line-height: 1.6; margin-bottom: 25px; }
+
+        .options-grid { display: flex; flex-direction: column; gap: 12px; }
+        .opt {
+            padding: 15px 20px; border: 2px solid #e2e8f0;
+            border-radius: 12px; cursor: pointer;
+            display: flex; align-items: center; gap: 15px;
+            transition: all 0.2s;
+        }
+        .opt:hover { border-color: var(--accent); background: #eff6ff; }
+        .opt input { width: 18px; height: 18px; cursor: pointer; }
+
+        /* Navigation Buttons */
+        .nav-btns { display: flex; justify-content: space-between; margin-top: 30px; }
+        .btn {
+            padding: 12px 25px; border-radius: 10px; border: none;
+            font-weight: 700; cursor: pointer; transition: opacity 0.2s;
+        }
+        .btn-prev { background: #e2e8f0; color: var(--primary); }
+        .btn-next { background: var(--primary); color: white; }
+        .btn-submit { background: var(--success); color: white; }
+
+        /* Sidebar Grid */
+        .sidebar { background: white; padding: 25px; border-radius: 16px; height: fit-content; }
+        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+        .cell {
+            aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; font-weight: 700; cursor: pointer;
+            border: 2px solid #e2e8f0; font-size: 0.9rem;
+        }
+        .cell.current { border-color: var(--accent); color: var(--accent); background: #eff6ff; }
+        .cell.answered { background: var(--success); color: white; border-color: var(--success); }
+        .cell.visited { background: #fef3c7; border-color: var(--amber); }
+
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; }
+            .sidebar { order: 2; }
+            .quiz-card { order: 1; padding: 20px; }
+            .q-text { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div>
+            <div id="displaySubject" style="font-weight: 800; font-size: 1.1rem; color: var(--accent);">LOADING...</div>
+            <div style="font-size: 0.8rem; color: var(--slate);">Progress: <span id="progressPercent">0%</span></div>
+        </div>
+        <div class="timer-box">
+            ⏱️ <span id="timer">--:--</span>
+        </div>
+        <button class="btn btn-prev" onclick="logout()" style="padding: 8px 15px;">Logout</button>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <main class="main-container">
+        <section class="quiz-card">
+            <div class="q-meta">
+                <span id="questionNumber">QUESTION --</span>
+            </div>
+            <div class="q-text" id="questionText">Loading your questions...</div>
+            
+            <div class="options-grid" id="options">
+                </div>
+
+            <div class="nav-btns">
+                <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
+                <button class="btn btn-next" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+                <button class="btn btn-submit" id="submitBtn" onclick="confirmSubmit()" style="display:none;">Finish Quiz</button>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <h3 style="margin-top: 0; font-size: 1rem;">Question Navigator</h3>
+            <div class="grid" id="questionGrid">
+                </div>
+            <div style="margin-top: 20px; display: grid; gap: 8px; font-size: 0.8rem;">
+                <div style="display:flex; align-items:center; gap:8px;"><div style="width:12px; height:12px; background:var(--success); border-radius:3px;"></div> Answered</div>
+                <div style="display:flex; align-items:center; gap:8px;"><div style="width:12px; height:12px; background:#fef3c7; border-radius:3px; border:1px solid var(--amber);"></div> Visited</div>
+            </div>
+        </aside>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc } 
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+            authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+            projectId: "olympiad-portal-d2a5e",
+            storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+            messagingSenderId: "341855557503",
+            appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        /* --- STATE --- */
+        const isChampionship = localStorage.getItem("isChampionship") === "true";
+        const selectedClass = localStorage.getItem("selectedClass") || "class6";
+        const selectedSubject = localStorage.getItem("selectedSubject") || "science";
+
+        let current = 0;
+        let questions = [];
+        let selectedAnswers = [];
+        let visitedQuestions = [];
+        let quizSubmitted = false;
+        let totalTime = isChampionship ? 3600 : 1800;
+
+        /* --- AUTH CHECK --- */
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.replace("login.html");
+                return;
+            }
+
+            if (isChampionship) {
+                const sessionId = localStorage.getItem("activeSessionId");
+                if (!sessionId) {
+                    alert("No session found. Please unlock from dashboard.");
+                    window.location.replace("dashboard.html");
+                    return;
+                }
+                const pSnap = await getDoc(doc(db, "users", user.uid, "purchases", sessionId));
+                if (!pSnap.exists()) {
+                    alert("Unauthorized access. Please pay to unlock.");
+                    window.location.replace("dashboard.html");
+                    return;
+                }
+            }
+
+            document.getElementById("displaySubject").innerText = 
+                `${selectedSubject.toUpperCase()} - GRADE ${selectedClass.replace("class", "")}`;
+            
+            startTimer();
+            loadQuestions();
+        });
+
+        /* --- QUIZ LOGIC --- */
+        async function loadQuestions() {
+            const q = query(collection(db, "questions"), 
+                where("class", "==", selectedClass), 
+                where("subject", "==", selectedSubject));
+            
+            const snap = await getDocs(q);
+            questions = snap.docs.map(d => d.data());
+            if (questions.length > 30) questions = questions.slice(0, 30);
+
+            selectedAnswers = new Array(questions.length).fill(null);
+            visitedQuestions = new Array(questions.length).fill(false);
+
+            generateGrid();
+            loadQuestion();
+        }
+
+        window.loadQuestion = () => {
+            const q = questions[current];
+            visitedQuestions[current] = true;
+
+            document.getElementById("questionNumber").innerText = `QUESTION ${current + 1} OF ${questions.length}`;
+            document.getElementById("questionText").innerHTML = q.q;
+
+            let html = "";
+            q.o.forEach((opt, i) => {
+                html += `
+                    <label class="opt">
+                        <input type="radio" name="option" value="${i}" 
+                            ${selectedAnswers[current] === i ? "checked" : ""} 
+                            onchange="saveAnswer(${i})"/>
+                        <span>${opt}</span>
+                    </label>`;
+            });
+            document.getElementById("options").innerHTML = html;
+
+            document.getElementById("nextBtn").style.display = (current === questions.length - 1) ? "none" : "block";
+            document.getElementById("submitBtn").style.display = (current === questions.length - 1) ? "block" : "none";
+            
+            updateGrid();
+        };
+
+        window.saveAnswer = (v) => {
+            selectedAnswers[current] = v;
+            updateGrid();
+        };
+
+        window.nextQuestion = () => { if (current < questions.length - 1) { current++; loadQuestion(); } };
+        window.prevQuestion = () => { if (current > 0) { current--; loadQuestion(); } };
+        window.jumpTo = (i) => { current = i; loadQuestion(); };
+
+        function generateGrid() {
+            let html = "";
+            for (let i = 0; i < questions.length; i++) {
+                html += `<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i + 1}</div>`;
+            }
+            document.getElementById("questionGrid").innerHTML = html;
+        }
+
+        function updateGrid() {
+            let answeredCount = 0;
+            for (let i = 0; i < questions.length; i++) {
+                const el = document.getElementById("q" + i);
+                if (!el) continue;
+                el.className = "cell";
+                if (i === current) el.classList.add("current");
+                if (selectedAnswers[i] !== null) {
+                    el.classList.add("answered");
+                    answeredCount++;
+                } else if (visitedQuestions[i]) {
+                    el.classList.add("visited");
+                }
+            }
+            const p = Math.round((answeredCount / questions.length) * 100);
+            document.getElementById("progressBar").style.width = p + "%";
+            document.getElementById("progressPercent").innerText = p + "%";
+        }
+
+        /* --- TIMER --- */
+        function startTimer() {
+            let endTime = localStorage.getItem("quizEndTime");
+            if (!endTime) {
+                endTime = Date.now() + (totalTime * 1000);
+                localStorage.setItem("quizEndTime", endTime);
+            }
+
+            const timerInt = setInterval(() => {
+                const remaining = Math.floor((endTime - Date.now()) / 1000);
+                if (remaining <= 0) {
+                    clearInterval(timerInt);
+                    submitQuiz();
+                } else {
+                    const m = Math.floor(remaining / 60);
+                    const s = remaining % 60;
+                    document.getElementById("timer").innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                }
+            }, 1000);
+        }
+
+        /* --- SUBMIT --- */
+        window.confirmSubmit = () => { if (confirm("Final submission?")) submitQuiz(); };
+
+        async function submitQuiz() {
+            if (quizSubmitted) return;
+            quizSubmitted = true;
+            
+            let score = 0;
+            questions.forEach((q, i) => { if (selectedAnswers[i] == q.a) score++; });
+
+            try {
+                await addDoc(collection(db, "leaderboard"), {
+                    email: auth.currentUser.email,
+                    uid: auth.currentUser.uid,
+                    studentClass: selectedClass,
+                    subject: selectedSubject,
+                    score: score,
+                    total: questions.length,
+                    accuracy: ((score / questions.length) * 100).toFixed(2),
+                    date: serverTimestamp(),
+                    isChampionship: isChampionship
+                });
+                localStorage.removeItem("quizEndTime");
+                localStorage.setItem("lastScore", score);
+                window.location.replace("result.html");
+            } catch (e) {
+                alert("Error saving result. Check connection.");
+                quizSubmitted = false;
+            }
+        }
+
+        window.logout = async () => { if (confirm("Exit quiz?")) { await signOut(auth); window.location.replace("login.html"); }};
+    </script>
+</body>
+</html>
