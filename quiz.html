@@ -181,7 +181,7 @@ return;
 });
 
     let current = 0, questions = [], selectedAnswers = [], visitedQuestions = [], quizSubmitted = false;
-    const isChampionship = localStorage.getItem("isChampionship") === "true";
+    
     let totalTime = isChampionship ? 3600 : 1800; const initialTime = totalTime;
 
     const selectedClass = localStorage.getItem("selectedClass") || "class6";
@@ -256,6 +256,7 @@ return;
   </script>
 </body>
 </html>
+
 
 
 
