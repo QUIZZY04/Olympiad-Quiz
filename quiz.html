@@ -186,7 +186,50 @@ font-size:12px;
 .cell.answered{background:#16a34a}
 .cell.visited{background:#dc2626}
 .cell.unseen{background:var(--unseen-grey);color:#000}
+/* MOBILE RESPONSIVENESS - RESTORE ORIGINAL LAYOUT */
+@media (max-width: 850px) { 
 
+  html, body { 
+    overflow: auto; 
+    height: auto; 
+  }
+
+  .utility-nav { 
+    padding: 10px 15px; 
+    gap: 15px; 
+    justify-content: center; 
+  }
+
+  header.top-bar { 
+    padding: 10px 15px; 
+  }
+
+  .quiz-container { 
+    flex-direction: column; 
+    height: auto; 
+    padding: 10px; 
+    gap: 10px; 
+  } 
+
+  .question-section, 
+  .navigation-section { 
+    width: 100%; 
+    flex: none; 
+  } 
+
+  /* Slim mobile buttons */
+  .btn { 
+    padding: 8px 4px; 
+    font-size: 12px !important; 
+    height: 38px; 
+  }
+
+  /* Responsive question palette */
+  .grid { 
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); 
+  }
+
+}
 </style>
 </head>
 
@@ -509,3 +552,4 @@ window.location.replace("login.html");
 
 </body>
 </html>
+
