@@ -148,16 +148,41 @@ font-weight:700;
 font-size:12px;
 }
 
-/* Updated Palette Colors */
-.cell.current, .legend-current { background: #2563eb !important; color: white !important; }
-.cell.answered, .legend-answered { background: #16a34a !important; color: white !important; }
-.cell.visited, .legend-visited { background: #dc2626 !important; color: white !important; }
-.cell.unseen, .legend-unseen { background: var(--unseen-grey) !important; color: #0f172a !important; }
+.cell.current{background:#2563eb;color:white}
+.cell.answered{background:#16a34a;color:white}
+.cell.visited{background:#dc2626;color:white}
+.cell.unseen{background:var(--unseen-grey);color:#000}
 
-/* Palette Legend Styling */
-.palette-legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid var(--border); width: 100%; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #ffffff; }
-.legend-box { width: 14px; height: 14px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: white; }
+/* ADDED LEGEND STYLES */
+
+.palette-legend{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+border-top:1px solid var(--border);
+padding-top:10px;
+}
+
+.legend-item{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:11px;
+font-weight:700;
+color:#fff;
+}
+
+.legend-box{
+width:14px;
+height:14px;
+border-radius:4px;
+display:inline-block;
+}
+
+.legend-current{background:#2563eb;}
+.legend-answered{background:#16a34a;}
+.legend-visited{background:#dc2626;}
+.legend-unseen{background:#cbd5e1;}
 
 @media (max-width:850px){
 html,body{overflow:auto;height:auto}
@@ -212,185 +237,18 @@ header.top-bar{padding:10px 15px}
 </section>
 
 <aside class="navigation-section section">
-<h3 style="margin:0 0 10px 0;font-size:15px;color:white;">Question Palette</h3>
+<h3>Question Palette</h3>
+
 <div class="grid" id="questionGrid"></div>
 
+<!-- ADDED LEGEND ONLY -->
 <div class="palette-legend">
-    <div class="legend-item"><div class="legend-box legend-current">1</div> Current</div>
-    <div class="legend-item"><div class="legend-box legend-answered">1</div> Answered</div>
-    <div class="legend-item"><div class="legend-box legend-visited">1</div> Visited</div>
-    <div class="legend-item"><div class="legend-box legend-unseen">1</div> Unseen</div>
+<div class="legend-item"><div class="legend-box legend-current"></div> Current</div>
+<div class="legend-item"><div class="legend-box legend-answered"></div> Answered</div>
+<div class="legend-item"><div class="legend-box legend-visited"></div> Visited</div>
+<div class="legend-item"><div class="legend-box legend-unseen"></div> Unseen</div>
 </div>
+
 </aside>
 
 </main>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore,collection,query,where,getDocs,addDoc,serverTimestamp,doc,getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig={
-apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
-projectId:"olympiad-portal-d2a5e",
-storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
-messagingSenderId:"341855557503",
-appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-};
-
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-
-const isChampionship=localStorage.getItem("isChampionship")==="true";
-const selectedClass=localStorage.getItem("selectedClass")||"class6";
-const selectedSubject=localStorage.getItem("selectedSubject")||"science";
-
-document.getElementById("displaySubject").innerText=
-`${selectedSubject.toUpperCase()} - GRADE ${selectedClass.replace("class","")}`;
-
-let current=0,questions=[],selectedAnswers=[],visitedQuestions=[],quizSubmitted=false;
-let totalTime=isChampionship?3600:1800;
-const initialTime=totalTime;
-
-onAuthStateChanged(auth,async(user)=>{
-
-if(!user){
-window.location.href="login.html";
-return;
-}
-
-if(isChampionship){
-const sessionId=localStorage.getItem("activeSessionId");
-if(!sessionId){
-alert("Please unlock the test first.");
-window.location.href="dashboard.html";
-return;
-}
-const purchaseRef=doc(db,"users",user.uid,"purchases",sessionId);
-const purchaseSnap=await getDoc(purchaseRef);
-if(!purchaseSnap.exists()){
-alert("You have not unlocked this quiz.");
-window.location.href="dashboard.html";
-return;
-}
-}
-loadQuestions();
-});
-
-function generateGrid(){
-let html="";
-for(let i=0;i<questions.length;i++){
-html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
-}
-document.getElementById("questionGrid").innerHTML=html;
-}
-
-async function loadQuestions(){
-const q=query(collection(db,"questions"),where("class","==",selectedClass),where("subject","==",selectedSubject));
-const snapshot=await getDocs(q);
-questions=snapshot.docs.map(doc=>doc.data());
-if(questions.length>30)questions=questions.slice(0,30);
-selectedAnswers=new Array(questions.length).fill(null);
-visitedQuestions=new Array(questions.length).fill(false);
-generateGrid();
-loadQuestion();
-}
-
-window.loadQuestion=()=>{
-const q=questions[current];
-visitedQuestions[current]=true;
-document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
-document.getElementById("questionText").innerHTML=q.q;
-let html="";
-q.o.forEach((opt,i)=>{
-html+=`<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current]===i?"checked":""} onchange="saveAnswer(${i})"/><span>${opt}</span></label>`;
-});
-document.getElementById("options").innerHTML=html;
-updateGrid();
-};
-
-window.saveAnswer=v=>{
-selectedAnswers[current]=v;
-updateGrid();
-};
-
-window.nextQuestion=()=>{
-if(current<questions.length-1){current++;loadQuestion();}
-};
-
-window.prevQuestion=()=>{
-if(current>0){current--;loadQuestion();}
-};
-
-window.jumpTo=i=>{
-current=i;
-loadQuestion();
-};
-
-function updateGrid(){
-let answered=0;
-for(let i=0;i<questions.length;i++){
-const el=document.getElementById("q"+i);
-if(!el)continue;
-el.className="cell";
-if(i===current)el.classList.add("current");
-else if(selectedAnswers[i]!==null)el.classList.add("answered");
-else if(visitedQuestions[i])el.classList.add("visited");
-else el.classList.add("unseen");
-if(selectedAnswers[i]!==null)answered++;
-}
-const percent=Math.round((answered/questions.length)*100);
-document.getElementById("progressBar").style.width=percent+"%";
-document.getElementById("progressPercent").innerText=percent+"%";
-}
-
-const timer=setInterval(()=>{
-const m=Math.floor(totalTime/60);
-const s=totalTime%60;
-document.getElementById("timer").innerText=`${m}:${s<10?"0":""}${s}`;
-if(--totalTime<0){
-clearInterval(timer);
-submitQuiz();
-}
-},1000);
-
-window.confirmSubmit=()=>{
-if(confirm("Submit quiz?"))submitQuiz();
-};
-
-async function submitQuiz(){
-if(quizSubmitted)return;
-quizSubmitted=true;
-let score=0;
-questions.forEach((q,i)=>{
-if(selectedAnswers[i]==q.a)score++;
-});
-const accuracy=((score/questions.length)*100).toFixed(2);
-await addDoc(collection(db,"leaderboard"),{
-email:auth.currentUser.email,
-uid:auth.currentUser.uid,
-studentClass:selectedClass,
-subject:selectedSubject,
-score:score,
-total:questions.length,
-accuracy:accuracy,
-date:serverTimestamp(),
-isChampionship:isChampionship
-});
-window.location.href="result.html";
-}
-
-window.logout=async()=>{
-if(confirm("Logout?")){
-await signOut(auth);
-window.location.replace("login.html");
-}
-};
-
-</script>
-
-</body>
-</html>
