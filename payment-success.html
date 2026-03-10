@@ -1,99 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Success - Olympiad Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root { --bg:#020617; --card:#1e293b; --text:#f8fafc; --amber:#f59e0b; --green:#22c55e; }
-    body { font-family:'Inter', sans-serif; background:var(--bg); color:var(--text); display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
-    .status-card { background:var(--card); padding:40px; border-radius:16px; border:2px solid var(--amber); text-align:center; max-width:400px; width:90%; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
-    .icon { font-size:50px; color:var(--green); margin-bottom:20px; }
-    h1 { color:var(--amber); margin-bottom:10px; font-weight:800; }
-    p { color:#94a3b8; line-height:1.6; margin-bottom:25px; }
-    .loader { border:4px solid #334155; border-top:4px solid var(--amber); border-radius:50%; width:30px; height:30px; animation:spin 1s linear infinite; margin:20px auto; }
-    @keyframes spin { 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.container{
+    background:#1e293b;
+    padding:40px 50px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    border:2px solid gold;
+}
+
+.check{
+    font-size:70px;
+    color:#4ade80;
+}
+
+h1{
+    margin-top:10px;
+    font-size:32px;
+}
+
+p{
+    margin-top:10px;
+    color:#d1d5db;
+}
+
+.button{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:gold;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:8px;
+}
+
+.timer{
+    margin-top:15px;
+    font-size:14px;
+    color:#9ca3af;
+}
+
+</style>
 </head>
+
 <body>
 
-  <div class="status-card">
-    <div id="statusIcon" class="icon">⌛</div>
-    <h1 id="statusTitle">Verifying...</h1>
-    <p id="statusMsg">Please wait while we unlock your test. Do not refresh this page.</p>
-    <div id="loader" class="loader"></div>
-  </div>
+<div class="container">
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<div class="check">✔</div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-      authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-      projectId: "olympiad-portal-d2a5e",
-      storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
-      messagingSenderId: "341855557503",
-      appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-    };
+<h1>Payment Successful</h1>
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+<p>Your Olympiad Quiz registration is confirmed.</p>
 
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = "login.html";
-        return;
-      }
+<p>You will be redirected to the quiz shortly.</p>
 
-      // 1. Get Payment ID from URL parameters
-      const urlParams = new URLSearchParams(window.location.search);
-      const paymentId = urlParams.get('razorpay_payment_id');
-      
-      // 2. Get the specific Test Session ID from storage
-      // Make sure your dashboard saves this before redirecting!
-      const sessionId = localStorage.getItem("activeSessionId");
+<a class="button" href="index.html">Start Quiz Now</a>
 
-      if (paymentId && sessionId) {
-        try {
-          // 3. Update Firebase to unlock the test
-          await setDoc(doc(db, "users", user.uid, "purchases", sessionId), {
-            paid: true,
-            paymentId: paymentId,
-            amount: 69,
-            registeredAt: serverTimestamp()
-          });
+<div class="timer">
+Redirecting automatically in <span id="count">5</span> seconds...
+</div>
 
-          // 4. Update UI Success
-          document.getElementById("statusIcon").innerText = "✅";
-          document.getElementById("statusIcon").style.color = "#22c55e";
-          document.getElementById("statusTitle").innerText = "Success!";
-          document.getElementById("statusMsg").innerText = "Payment verified. You are being redirected to your dashboard.";
-          document.getElementById("loader").style.display = "none";
+</div>
 
-          setTimeout(() => {
-            window.location.href = "dashboard.html";
-          }, 3000);
+<script>
 
-        } catch (error) {
-          console.error("Firebase Error:", error);
-          showError("Database error. Please contact support.");
-        }
-      } else {
-        showError("Invalid payment session or ID missing.");
-      }
-    });
+let time = 5;
 
-    function showError(msg) {
-      document.getElementById("statusIcon").innerText = "❌";
-      document.getElementById("statusIcon").style.color = "#ef4444";
-      document.getElementById("statusTitle").innerText = "Error";
-      document.getElementById("statusMsg").innerText = msg;
-      document.getElementById("loader").style.display = "none";
-    }
-  </script>
+let timer = setInterval(function(){
+
+time--;
+
+document.getElementById("count").innerText = time;
+
+if(time <= 0){
+
+window.location.href = "index.html";
+
+}
+
+},1000);
+
+</script>
+
 </body>
 </html>
