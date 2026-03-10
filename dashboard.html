@@ -180,17 +180,29 @@
     }
 
     window.handleEventClick = async function() {
-      if (!activeSession) return;
-      const options = {
-        "key": "rzp_live_SP3l6l34By3jpa", "amount": 6900, "name": "Olympiad Portal",
-        "handler": async function (response) {
-          await setDoc(doc(db, "users", auth.currentUser.uid, "purchases", activeSession.id), { paid: true, amount: 69, registeredAt: serverTimestamp() });
-          location.reload(); 
-        },
-        "prefill": { "email": auth.currentUser.email, "contact": "" }
-      };
-      new Razorpay(options).open();
-    };
+  if (!activeSession) return;
+  
+  // CRITICAL: Save session ID so success page can read it
+  localStorage.setItem("activeSessionId", activeSession.id);
+
+  const options = {
+    "key": "rzp_live_SP3l6l34By3jpa", 
+    "amount": 6900, 
+    "currency": "INR",
+    "name": "Olympiad Portal",
+    "description": `Unlock ${activeSession.title}`,
+    "redirect": true, // Force separate page
+    "callback_url": "https://yourdomain.com/payment-success.html", // Change to your LIVE URL
+    "prefill": {
+      "email": auth.currentUser.email,
+      "contact": "" 
+    },
+    "theme": { "color": "#f59e0b" }
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+};
 
     window.startQuiz = (subject) => { 
       localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
@@ -205,4 +217,5 @@
   </script>
 </body>
 </html>
+
 
