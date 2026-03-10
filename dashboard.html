@@ -7,7 +7,7 @@
     }
     history.pushState(null, null, location.href);
     window.onpopstate = function () { history.go(1); };
-  </script>rzp
+  </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -185,13 +185,17 @@
 
     // 1. CHAMPIONSHIP REDIRECT
     window.redirectToPayment = function() {
-      if (!activeSession) {
-        alert("Please select a grade first.");
-        return;
-      }
-      localStorage.setItem("activeSessionId", activeSession.id);
-      window.location.href = "https://rzp.io/rzp/nuSE4UFw"; 
-    };
+
+  if (!activeSession) {
+    alert("Please select a grade first.");
+    return;
+  }
+
+  localStorage.setItem("activeSessionId", activeSession.id);
+
+  window.open("https://rzp.io/rzp/jN9YG3p","_blank");
+
+};
 
     // 2. DAILY PRACTICE START
     window.startQuiz = (subject) => { 
@@ -213,6 +217,7 @@
   </script>
 </body>
 </html>
+
 
 
 
