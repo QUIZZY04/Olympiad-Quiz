@@ -217,19 +217,21 @@ fetchChampSession("class6");
       window.location.href = "quiz.html"; 
     };
 
-    onAuthStateChanged(auth, (user) => { 
-      if (user) { 
-        if (user.email === "madhhu52@gmail.com") document.getElementById("adminTab").style.display = "inline"; 
-        fetchChampSession("class6"); 
-      } 
-    });
+    
 
     document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
     document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
-    window.logout = () => { sessionStorage.clear(); window.location.href = "login.html"; };
+    import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+window.logout = () => {
+  signOut(auth).then(()=>{
+    window.location.href="login.html";
+  });
+};
   </script>
 </body>
 </html>
+
 
 
 
