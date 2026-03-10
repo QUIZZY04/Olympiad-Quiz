@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-   
-    
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Dashboard - Olympiad Portal</title>
@@ -65,7 +60,6 @@
       <a href="index.html">Home</a>
       <a href="dashboard.html" style="color:var(--amber);">Dashboard</a>
       <a href="leaderboard.html">Leaderboard</a>
-      <a href="quiz.html">Take Quiz</a>
       <a id="adminTab" href="admin.html" style="display:none;color:var(--green);">Admin</a>
       <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
     </div>
@@ -92,7 +86,7 @@
         <div style="background:#020617; padding:12px 20px; border-radius:10px; border:1px solid var(--border); text-align:center; margin:15px 0;">
           <p id="champTimer" class="timer-clock">00:00:00</p>
         </div>
-        <button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">Unlock Test Now (₹69)</button>
+        <button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">Unlock Test (₹69)</button>
       </div>
 
       <div class="champ-right">
@@ -146,28 +140,21 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain:"olympiad-portal-d2a5e.firebaseapp.com", projectId:"olympiad-portal-d2a5e", storageBucket:"olympiad-portal-d2a5e.firebasestorage.app", messagingSenderId:"341855557503", appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a" };
     const app=initializeApp(firebaseConfig);
     const auth=getAuth(app);
     const db=getFirestore(app);
-    onAuthStateChanged(auth,(user)=>{
-
-if(!user){
-window.location.href="login.html";
-return;
-}
-
-if(user.email==="madhhu52@gmail.com"){
-document.getElementById("adminTab").style.display="inline";
-}
-
-fetchChampSession("class6");
-
-});
     
-    let activeSession = null; let timerInterval = null;
+    let activeSession = null; 
+    let timerInterval = null;
+
+    onAuthStateChanged(auth, (user) => {
+        if(!user) { window.location.href="login.html"; return; }
+        if(user.email==="madhhu52@gmail.com") document.getElementById("adminTab").style.display="inline";
+        fetchChampSession(document.getElementById("champGradeSelect").value);
+    });
 
     async function fetchChampSession(grade) {
       if (timerInterval) clearInterval(timerInterval);
@@ -177,6 +164,8 @@ fetchChampSession("class6");
       if (docSnap.exists()) {
         activeSession = { ...docSnap.data(), id: docSnap.id };
         document.getElementById("champClassMention").innerText = `For Class ${classNum}th`;
+        
+        // CHECK IF ALREADY BOUGHT
         const purchaseRef = doc(db, "users", auth.currentUser.uid, "purchases", sessId);
         const purchaseSnap = await getDoc(purchaseRef);
         startChampTimer(activeSession.startTime.toDate(), purchaseSnap.exists());
@@ -185,68 +174,67 @@ fetchChampSession("class6");
 
     function startChampTimer(startTime, isBought) {
       const btn = document.getElementById("btnChamp");
+      
+      // Update Button state/action based on payment
+      if (isBought) {
+          btn.style.background = "var(--green)";
+          btn.style.color = "#fff";
+          btn.onclick = () => joinChampionship();
+      } else {
+          btn.style.background = "var(--amber)";
+          btn.style.color = "#000";
+          btn.onclick = () => redirectToPayment();
+      }
+
       timerInterval = setInterval(() => {
-        const diff = startTime - new Date().getTime();
+        const now = new Date().getTime();
+        const diff = startTime - now;
+
+        // Update Text
         if (isBought) {
-          btn.innerText = (diff > 0 ? "Registered - Waiting" : "Join Now");
+          btn.innerText = "Test Unlocked";
         } else {
-          btn.innerText = `Unlock Test (₹${activeSession.price})`;
+          btn.innerText = `Unlock Test (₹${activeSession ? activeSession.price : '69'})`;
         }
-        document.getElementById("champTimer").innerText = diff <= 0 ? "LIVE" : new Date(diff).toISOString().substr(11, 8);
+
+        if (diff <= 0) {
+            document.getElementById("champTimer").innerText = "LIVE NOW";
+        } else {
+            const h = Math.floor(diff / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("champTimer").innerText = `${h}:${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+        }
       }, 1000);
     }
 
-    // 1. CHAMPIONSHIP REDIRECT
+    // Function for users who have already paid
+    window.joinChampionship = function() {
+        localStorage.setItem("isChampionship", "true");
+        localStorage.setItem("activeSessionId", activeSession.id);
+        localStorage.setItem("selectedClass", document.getElementById("champGradeSelect").value);
+        localStorage.setItem("selectedSubject", "science");
+        window.location.href = "quiz.html";
+    };
+
     window.redirectToPayment = function() {
+        if (!activeSession) { alert("Please select a grade."); return; }
+        localStorage.setItem("activeSessionId", activeSession.id);
+        window.open("https://rzp.io/rzp/7taxCnr", "_blank");
+    };
 
-  if (!activeSession) {
-    alert("Please select a grade first.");
-    return;
-  }
-
-  localStorage.setItem("activeSessionId", activeSession.id);
-
-  window.open("https://rzp.io/rzp/7taxCnr","_blank");
-
-};
-
-    // 2. DAILY PRACTICE START
     window.startQuiz = (subject) => {
-
-localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
-localStorage.setItem("selectedSubject", subject);
-
-/* ensure daily quiz is free */
-localStorage.setItem("isChampionship","false");
-localStorage.removeItem("activeSessionId");
-
-window.location.href = "quiz.html";
-
-};
-
-    
+        localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
+        localStorage.setItem("selectedSubject", subject);
+        localStorage.setItem("isChampionship", "false");
+        localStorage.removeItem("activeSessionId");
+        window.location.href = "quiz.html";
+    };
 
     document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
     document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
     
-
-window.logout = () => {
-  signOut(auth).then(()=>{
-    window.location.href="login.html";
-  });
-};
+    window.logout = () => signOut(auth).then(() => window.location.href="login.html");
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
