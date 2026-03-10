@@ -154,6 +154,10 @@ window.location.href="login.html";
 return;
 }
 
+const isChampionship = localStorage.getItem("isChampionship") === "true";
+
+if(isChampionship){
+
 const sessionId = localStorage.getItem("activeSessionId");
 
 if(!sessionId){
@@ -169,6 +173,8 @@ if(!purchaseSnap.exists()){
 alert("You have not unlocked this quiz.");
 window.location.href="dashboard.html";
 return;
+}
+
 }
       loadQuestions();
 
@@ -250,6 +256,7 @@ return;
   </script>
 </body>
 </html>
+
 
 
 
