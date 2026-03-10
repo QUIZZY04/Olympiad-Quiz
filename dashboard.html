@@ -156,10 +156,17 @@
 
 if(!user){
 window.location.href="login.html";
+return;
 }
 
-});
+if(user.email==="madhhu52@gmail.com"){
+document.getElementById("adminTab").style.display="inline";
+}
 
+fetchChampSession("class6");
+
+});
+    
     let activeSession = null; let timerInterval = null;
 
     async function fetchChampSession(grade) {
@@ -223,6 +230,7 @@ window.location.href="login.html";
   </script>
 </body>
 </html>
+
 
 
 
