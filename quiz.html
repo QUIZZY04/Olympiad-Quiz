@@ -82,7 +82,11 @@ window.onpopstate = function () {
 </style>
 </head>
 <body>
-  <div class="utility-nav"><a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a></div>
+  <div class="utility-nav">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="leaderboard.html">Leaderboard</a> <a onclick="logout()" style="color:var(--danger); cursor:pointer;">Logout</a>
+</div>
   <header class="top-bar"><a href="dashboard.html" class="brand">🎓 Olympiad Portal</a><div id="timerWrap">⏳ <span id="timer">--:--</span></div></header>
   <main class="quiz-container">
     <section class="question-section section">
@@ -192,3 +196,4 @@ window.onpopstate = function () {
   </script>
 </body>
 </html>
+
