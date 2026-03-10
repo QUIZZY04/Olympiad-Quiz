@@ -124,6 +124,26 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
+/* QUIZ TAB PROTECTION */
+
+if(localStorage.getItem("quizRunning") === "true"){
+alert("Quiz already running in another tab.");
+window.location.href="dashboard.html";
+}
+
+localStorage.setItem("quizRunning","true");
+
+window.addEventListener("beforeunload", function(){
+localStorage.removeItem("quizRunning");
+});
+
+
+onAuthStateChanged(auth, async (user)=>{
+    const app = initializeApp(firebaseConfig); 
+const auth = getAuth(app); 
+const db = getFirestore(app);
+
+
 /* QUIZ SINGLE TAB PROTECTION */
 
 if(localStorage.getItem("quizRunning") === "true"){
@@ -241,6 +261,7 @@ return;
   </script>
 </body>
 </html>
+
 
 
 
