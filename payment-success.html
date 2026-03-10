@@ -1,96 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Payment Successful</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-
-:root{
---bg:#020617;
---card:#1e293b;
---text:#f8fafc;
---amber:#f59e0b;
---green:#22c55e;
-}
-
 body{
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text);
+font-family:Arial;
+background:#020617;
+color:white;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-margin:0;
+flex-direction:column;
 }
 
-.card{
-background:var(--card);
+.box{
+background:#1e293b;
 padding:40px;
-border-radius:16px;
-border:2px solid var(--amber);
+border-radius:12px;
 text-align:center;
-max-width:420px;
-width:90%;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+border:2px solid #22c55e;
 }
 
-.icon{
-font-size:55px;
-margin-bottom:15px;
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:8px;
+background:#f59e0b;
+font-weight:bold;
+cursor:pointer;
 }
-
-h1{
-color:var(--amber);
-margin-bottom:10px;
-}
-
-p{
-color:#94a3b8;
-margin-bottom:20px;
-}
-
-.loader{
-border:4px solid #334155;
-border-top:4px solid var(--amber);
-border-radius:50%;
-width:30px;
-height:30px;
-animation:spin 1s linear infinite;
-margin:20px auto;
-}
-
-@keyframes spin{
-0%{transform:rotate(0deg);}
-100%{transform:rotate(360deg);}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="box">
+<h2>✅ Payment Successful</h2>
+<p>Your quiz has been unlocked.</p>
 
-<div id="icon" class="icon">⏳</div>
-
-<h1 id="title">Verifying Payment</h1>
-
-<p id="msg">Please wait while we activate your test.</p>
-
-<div id="loader" class="loader"></div>
-
+<button onclick="goDashboard()">Go to Dashboard</button>
 </div>
+
 
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore,doc,setDoc,serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -105,57 +65,27 @@ const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
 
-onAuthStateChanged(auth,async(user)=>{
-
-if(!user){
-window.location.href="login.html";
-return;
-}
+async function savePurchase(){
 
 const sessionId=localStorage.getItem("activeSessionId");
 
-try{
+if(!auth.currentUser || !sessionId) return;
 
-if(sessionId){
-
-await setDoc(doc(db,"users",user.uid,"purchases",sessionId),{
-
+await setDoc(
+doc(db,"users",auth.currentUser.uid,"purchases",sessionId),
+{
 paid:true,
-amount:69,
-registeredAt:serverTimestamp()
-
-});
+time:serverTimestamp()
+}
+);
 
 }
 
-document.getElementById("icon").innerText="✅";
-document.getElementById("title").innerText="Payment Successful";
-document.getElementById("msg").innerText="Redirecting to dashboard...";
-document.getElementById("loader").style.display="none";
+savePurchase();
 
-setTimeout(()=>{
-
+window.goDashboard=function(){
 window.location.href="dashboard.html";
-
-},3000);
-
 }
-
-catch(e){
-
-document.getElementById("icon").innerText="❌";
-document.getElementById("title").innerText="Error";
-document.getElementById("msg").innerText="Something went wrong.";
-
-setTimeout(()=>{
-
-window.location.href="dashboard.html";
-
-},3000);
-
-}
-
-});
 
 </script>
 
