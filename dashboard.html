@@ -28,35 +28,43 @@
     .brand{ font-size:20px; font-weight:800; color:var(--amber); text-decoration:none; }
     .nav-links{ display:flex; gap:12px; align-items:center; }
     .nav-links a{ color:#ffffff; text-decoration:none; font-size:11px; font-weight:800; text-transform:uppercase; }
+    .nav-links a.active{ color:var(--amber); }
     .container{ width:98%; max-width:1400px; margin:20px auto; padding:0 10px; flex:1; }
 
     /* CHAMPIONSHIP SECTION */
     .championship-section { background: var(--surface-champ); border: 3px solid var(--amber); border-radius: 12px; margin: 0 auto 40px auto; width: 60%; min-width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: row; overflow: hidden; position: relative; }
-    .champ-left { flex: 1.2; padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .champ-left { flex: 1.2; padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 10; }
     .champ-right { flex: 1.5; padding: 25px; background: rgba(15, 23, 42, 0.4); display: flex; flex-direction: column; justify-content: flex-start; }
     .champ-title-area h2 { font-size: 22px; color: #fff; margin-bottom: 5px; font-weight: 800; }
     .timer-clock { font-size: 22px; font-weight: 800; color: var(--amber); font-family: monospace; }
-    .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; position: relative; z-index: 10; }
+    .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; position: relative; pointer-events: auto; }
     .btn-buy { background: var(--amber); color: #000; }
 
     /* PRACTICE SECTION */
     .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; }
+    .section-header-title { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 20px; }
     .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 40px; }
     .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .card h3 { color: var(--amber); font-size: 16px; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 12px; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
     .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
 
     /* INSTRUCTIONS */
-    .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 35px; margin-top: 40px; }
-    .ins-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+    .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 35px; margin-top: 40px; margin-bottom: 60px; }
+    .instructions-section h2 { color: var(--amber); margin-bottom: 25px; font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 15px; font-weight: 800; }
+    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
     .ins-item { display: flex; gap: 15px; align-items: flex-start; }
-    .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; }
+    .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; font-size: 14px; }
+    .ins-text strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 15px; }
+    .ins-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
     /* MOBILE RESPONSIVENESS */
     @media (max-width: 768px) {
       .championship-section { width: 95%; flex-direction: column; }
       .champ-left { border-right: none; border-bottom: 1px solid var(--border); }
       .grid, .ins-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      .nav-links { gap: 8px; }
+      .nav-links a { font-size: 9px; }
     }
   </style>
 </head>
@@ -66,7 +74,9 @@
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="dashboard.html" style="color:var(--amber);">Dashboard</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="quiz.html">Take Quiz</a>
+      <a id="adminTab" href="admin.html" style="display:none;color:var(--green);">Admin</a>
       <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
     </div>
   </nav>
@@ -76,15 +86,18 @@
       <div class="champ-left">
         <div class="champ-title-area">
           <h2>Science Weekly Quiz 2</h2>
-          <div style="margin:10px 0;">
-            <label style="color:var(--muted); font-size:10px; font-weight:800;">SELECT GRADE:</label>
-            <select id="champGradeSelect" style="background:#0f172a; color:var(--amber); border:1px solid var(--amber); padding:5px 10px; border-radius:6px; cursor:pointer;">
+          <div style="margin:10px 0; display:flex; align-items:center; gap:8px;">
+            <label style="color:var(--muted); font-size:10px; font-weight:800;">GRADE:</label>
+            <select id="champGradeSelect" style="background:#0f172a; color:var(--amber); border:1px solid var(--amber); padding:5px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;">
+              <option value="class5">Grade 5</option>
               <option value="class6" selected>Grade 6</option>
               <option value="class7">Grade 7</option>
               <option value="class8">Grade 8</option>
+              <option value="class9">Grade 9</option>
+              <option value="class10">Grade 10</option>
             </select>
           </div>
-          <span id="champClassMention" style="color:var(--amber); font-weight:700;">For Class 6th</span>
+          <span id="champClassMention" style="color:var(--amber); font-weight:700; font-size:14px;">For Class 6th</span>
         </div>
         <div style="background:#020617; padding:12px 20px; border-radius:10px; border:1px solid var(--border); text-align:center; margin:15px 0;">
           <p id="champTimer" class="timer-clock">00:00:00</p>
@@ -101,30 +114,33 @@
         </ul>
         <span style="color:var(--amber); font-weight:800; text-transform:uppercase; margin-top:15px; display:block; padding-bottom:5px; border-bottom:1px solid var(--border);">Event Rules</span>
         <ul style="list-style:none; font-size:12px; color:var(--muted); margin-top:10px;">
-          <li style="margin-bottom:8px;">⚠️ <b>One Attempt:</b> Only one submission allowed.</li>
-          <li style="margin-bottom:8px;">✅ <b>Auto-Submit:</b> Paper submits after 60 mins.</li>
+          <li style="margin-bottom:8px;">⚠️ <b>One Attempt:</b> Only one submission allowed per student.</li>
+          <li style="margin-bottom:8px;">✅ <b>Auto-Submit:</b> Paper submits automatically after 60 mins.</li>
+          <li style="margin-bottom:8px;">🔓 <b>Access:</b> Registration is required to enter the session.</li>
         </ul>
       </div>
     </div>
 
     <div class="practice-container">
-        <h2 style="font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 20px;">📚 Daily Practice Quizzes</h2>
+        <div class="section-header-title">📚 Daily Practice Quizzes</div>
         <div class="grid">
-          <div class="card" onclick="startQuiz('maths')"><h3>Mathematics</h3><p>Algebra and Geometry.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p>Physics and Biology.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('english')"><h3>English</h3><p>Grammar and Vocab.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('reasoning')"><h3>Reasoning</h3><p>Logic Puzzles.</p><button class="btn-start">Start</button></div>
+          <div class="card" onclick="startQuiz('maths')"><h3>Maths</h3><p>Algebra, Geometry, and Arithmetic.</p><button class="btn-start">Start</button></div>
+          <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p>Physics, Chemistry, and Biology.</p><button class="btn-start">Start</button></div>
+          <div class="card" onclick="startQuiz('english')"><h3>English</h3><p>Vocabulary and Grammar rules.</p><button class="btn-start">Start</button></div>
+          <div class="card" onclick="startQuiz('reasoning')"><h3>Reasoning</h3><p>Patterns, Puzzles, and Logic.</p><button class="btn-start">Start</button></div>
         </div>
 
-        <div class="instructions-section">
-          <h2 style="color:var(--amber); margin-bottom:20px; font-weight:800;">📝 Practice Instructions</h2>
+        <section class="instructions-section">
+          <h2>📝 Detailed Practice Instructions</h2>
           <div class="ins-grid">
-            <div class="ins-item"><div class="ins-icon">1</div><div><strong style="display:block;color:var(--text);">Navigation</strong> Use the palette to jump between questions.</div></div>
-            <div class="ins-item"><div class="ins-icon">2</div><div><strong style="display:block;color:var(--text);">Saving</strong> Click "Save & Next" to lock in your choice.</div></div>
-            <div class="ins-item"><div class="ins-icon">3</div><div><strong style="display:block;color:var(--text);">Review</strong> Use "Mark for Review" to revisit tough ones later.</div></div>
-            <div class="ins-item"><div class="ins-icon">4</div><div><strong style="display:block;color:var(--text);">Auto-Submit</strong> System submits when timer expires.</div></div>
+            <div class="ins-item"><div class="ins-icon">1</div><div class="ins-text"><strong>Navigation:</strong> Use the palette to jump between questions. Green = Answered, Red = Skipped.</div></div>
+            <div class="ins-item"><div class="ins-icon">2</div><div class="ins-text"><strong>Saving:</strong> Click "Save & Next" to lock in your choice. Unsaved answers will not count.</div></div>
+            <div class="ins-item"><div class="ins-icon">3</div><div class="ins-text"><strong>Review:</strong> Use "Mark for Review" to revisit tough questions quickly later.</div></div>
+            <div class="ins-item"><div class="ins-icon">4</div><div class="ins-text"><strong>Auto-Submit:</strong> System submits your paper when the timer expires.</div></div>
+            <div class="ins-item"><div class="ins-icon">5</div><div class="ins-text"><strong>Results:</strong> View scores and explanations immediately after submission.</div></div>
+            <div class="ins-item"><div class="ins-icon">6</div><div class="ins-text"><strong>Stability:</strong> Maintain a stable connection. Refresh to resume if disconnected.</div></div>
           </div>
-        </div>
+        </section>
     </div>
   </main>
 
@@ -133,28 +149,19 @@
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    const firebaseConfig={
-      apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-      authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
-      projectId:"olympiad-portal-d2a5e",
-      storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
-      messagingSenderId:"341855557503",
-      appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-    };
+    const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain:"olympiad-portal-d2a5e.firebaseapp.com", projectId:"olympiad-portal-d2a5e", storageBucket:"olympiad-portal-d2a5e.firebasestorage.app", messagingSenderId:"341855557503", appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a" };
+    const app=initializeApp(firebaseConfig); const auth=getAuth(app); const db=getFirestore(app);
 
-    const app=initializeApp(firebaseConfig);
-    const auth=getAuth(app);
-    const db=getFirestore(app);
-
-    let activeSession = null;
-    let timerInterval = null;
+    let activeSession = null; let timerInterval = null;
 
     async function fetchChampSession(grade) {
       if (timerInterval) clearInterval(timerInterval);
-      const sessId = `2026_03_15_C${grade.replace('class','')}_SCI`; 
+      const classNum = grade.replace('class', '');
+      const sessId = `2026_03_15_C${classNum}_SCI`; 
       const docSnap = await getDoc(doc(db, "test_sessions", sessId));
       if (docSnap.exists()) {
         activeSession = { ...docSnap.data(), id: docSnap.id };
+        document.getElementById("champClassMention").innerText = `For Class ${classNum}th`;
         const purchaseRef = doc(db, "users", auth.currentUser.uid, "purchases", sessId);
         const purchaseSnap = await getDoc(purchaseRef);
         startChampTimer(activeSession.startTime.toDate(), purchaseSnap.exists());
@@ -173,9 +180,7 @@
     window.handleEventClick = async function() {
       if (!activeSession) return;
       const options = {
-        "key": "rzp_live_SP3l6l34By3jpa",
-        "amount": 6900,
-        "name": "Olympiad Portal",
+        "key": "rzp_live_SP3l6l34By3jpa", "amount": 6900, "name": "Olympiad Portal",
         "handler": async function (response) {
           await setDoc(doc(db, "users", auth.currentUser.uid, "purchases", activeSession.id), { paid: true, amount: 69, registeredAt: serverTimestamp() });
           location.reload(); 
@@ -185,12 +190,8 @@
       new Razorpay(options).open();
     };
 
-    window.startQuiz = (subject) => {
-      localStorage.setItem("selectedSubject", subject);
-      window.location.href = "quiz.html";
-    };
-
-    onAuthStateChanged(auth, (user) => { if (user) fetchChampSession("class6"); });
+    window.startQuiz = (subject) => { localStorage.setItem("selectedSubject", subject); window.location.href = "quiz.html"; };
+    onAuthStateChanged(auth, (user) => { if (user) { if (user.email === "madhhu52@gmail.com") document.getElementById("adminTab").style.display = "inline"; fetchChampSession("class6"); } });
     document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
     window.logout = () => { sessionStorage.clear(); window.location.href = "login.html"; };
   </script>
