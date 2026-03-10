@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-if(sessionStorage.getItem("loggedIn") !== "true"){
-  window.location.href="login.html";
-}
-</script>
+
 <script>
 history.pushState(null, null, location.href);
 window.onpopstate = function () {
@@ -119,7 +115,35 @@ window.onpopstate = function () {
     import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e", storageBucket: "olympiad-portal-d2a5e.firebasestorage.app", messagingSenderId: "341855557503", appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a" };
-    const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app);
+    
+    const app = initializeApp(firebaseConfig); 
+    const auth = getAuth(app); 
+    const db = getFirestore(app);
+    onAuthStateChanged(auth, async (user)=>{
+
+if(!user){
+window.location.href="login.html";
+return;
+}
+
+const sessionId = localStorage.getItem("activeSessionId");
+
+if(!sessionId){
+alert("Please unlock the test first.");
+window.location.href="dashboard.html";
+return;
+}
+
+const purchaseRef = doc(db,"users",user.uid,"purchases",sessionId);
+const purchaseSnap = await getDoc(purchaseRef);
+
+if(!purchaseSnap.exists()){
+alert("You have not unlocked this quiz.");
+window.location.href="dashboard.html";
+return;
+}
+
+});
 
     let current = 0, questions = [], selectedAnswers = [], visitedQuestions = [], quizSubmitted = false;
     const isChampionship = localStorage.getItem("isChampionship") === "true";
@@ -142,7 +166,7 @@ window.onpopstate = function () {
       } catch (e) { console.error(e); }
     }
 
-    onAuthStateChanged(auth, (user) => { if (!user) window.location.replace("login.html"); else loadQuestions(); });
+    
 
     window.loadQuestion = () => {
       const q = questions[current]; visitedQuestions[current] = true;
@@ -196,4 +220,5 @@ window.onpopstate = function () {
   </script>
 </body>
 </html>
+
 
