@@ -1,12 +1,8 @@
-
 @echo off
 
-set folder=backup\backup_%date:~-4%-%date:~4,2%-%date:~7,2%_%time:~0,2%%time:~3,2%
+mkdir backup\latest_backup
 
-mkdir %folder%
+xcopy * backup\latest_backup /E /I /Y
 
-xcopy * %folder% /E /I /Y
-
-echo Backup completed successfully!
-
+echo Backup Completed
 pause
