@@ -24,6 +24,12 @@ text-align:center;
 border:2px solid #22c55e;
 }
 
+#statusMsg {
+margin-top: 10px;
+font-size: 14px;
+color: #94a3b8;
+}
+
 button{
 margin-top:20px;
 padding:12px 25px;
@@ -41,15 +47,14 @@ cursor:pointer;
 <div class="box">
 <h2>✅ Payment Successful</h2>
 <p>Your quiz has been unlocked.</p>
+<p id="statusMsg">Updating your account...</p>
 
 <button onclick="goDashboard()">Go to Dashboard</button>
 </div>
 
-
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig={
@@ -65,28 +70,41 @@ const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
 
-async function savePurchase(){
+// Wait for Firebase to confirm the user is logged in
+onAuthStateChanged(auth, async (user) => {
+    const statusMsg = document.getElementById("statusMsg");
+    const sessionId = localStorage.getItem("activeSessionId");
 
-const sessionId=localStorage.getItem("activeSessionId");
-
-if(!auth.currentUser || !sessionId) return;
-
-await setDoc(
-doc(db,"users",auth.currentUser.uid,"purchases",sessionId),
-{
-paid:true,
-time:serverTimestamp()
-}
-);
-
-}
-
-savePurchase();
+    if (user && sessionId) {
+        try {
+            // SAVE THE PURCHASE TO FIREBASE
+            await setDoc(
+                doc(db, "users", user.uid, "purchases", sessionId),
+                {
+                    paid: true,
+                    time: serverTimestamp(),
+                    amount: 69,
+                    sessionId: sessionId
+                }
+            );
+            statusMsg.innerText = "Account updated! You can now go to the dashboard.";
+            statusMsg.style.color = "#22c55e";
+            console.log("Purchase saved successfully for session:", sessionId);
+        } catch (error) {
+            console.error("Error saving purchase:", error);
+            statusMsg.innerText = "Error updating account. Please contact support.";
+            statusMsg.style.color = "#ef4444";
+        }
+    } else if (!user) {
+        statusMsg.innerText = "Error: User not logged in.";
+    } else if (!sessionId) {
+        statusMsg.innerText = "Error: Session information missing.";
+    }
+});
 
 window.goDashboard=function(){
-window.location.href="dashboard.html";
+    window.location.href="dashboard.html";
 }
-
 </script>
 
 </body>
