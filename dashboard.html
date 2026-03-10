@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-  
   <script>
     if(sessionStorage.getItem("loggedIn") !== "true"){
       window.location.href="login.html";
@@ -37,6 +35,7 @@
     .champ-title-area h2 { font-size: 22px; color: #fff; margin-bottom: 5px; font-weight: 800; }
     .timer-clock { font-size: 22px; font-weight: 800; color: var(--amber); font-family: monospace; }
     .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; position: relative; pointer-events: auto; }
+    .btn-buy { background: var(--amber); color: #000; }
 
     /* PRACTICE SECTION */
     .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; }
@@ -64,15 +63,16 @@
 
 <body>
   <nav>
-  <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="leaderboard.html">Leaderboard</a> <a href="quiz.html">Take Quiz</a>
-    <a id="adminTab" href="admin.html" style="display:none;color:var(--green);">Admin</a>
-    <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
-  </div>
-</nav>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html" style="color:var(--amber);">Dashboard</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="quiz.html">Take Quiz</a>
+      <a id="adminTab" href="admin.html" style="display:none;color:var(--green);">Admin</a>
+      <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+    </div>
+  </nav>
 
   <main class="container">
     <div id="champSection" class="championship-section">
@@ -105,7 +105,7 @@
           <li style="margin-bottom:10px;">⏰ <strong style="color:var(--amber);">Time:</strong> <strong style="color:var(--text);">10:00 AM IST</strong></li>
           <li style="margin-bottom:10px;">💰 <strong style="color:var(--amber);">Price:</strong> <strong style="color:var(--text);">Rs 69</strong></li>
         </ul>
-        <span style="color:var(--amber); font-weight:800; text-transform:uppercase; margin-top:15px; display:block; border-bottom:1px solid var(--border);">Event Rules</span>
+        <span style="color:var(--amber); font-weight:800; text-transform:uppercase; margin-top:15px; display:block; padding-bottom:5px; border-bottom:1px solid var(--border);">Event Rules</span>
         <ul style="list-style:none; font-size:12px; color:var(--muted); margin-top:10px;">
           <li style="margin-bottom:8px;">⚠️ <b>One Attempt:</b> Only one submission allowed per student.</li>
           <li style="margin-bottom:8px;">✅ <b>Auto-Submit:</b> Paper submits automatically after 60 mins.</li>
@@ -174,70 +174,42 @@
       const btn = document.getElementById("btnChamp");
       timerInterval = setInterval(() => {
         const diff = startTime - new Date().getTime();
-        btn.innerText = isBought ? (diff > 0 ? "Registered - Waiting" : "Join Now") : `Unlock Test (₹${activeSession.price})`;
+        if (isBought) {
+          btn.innerText = (diff > 0 ? "Registered - Waiting" : "Join Now");
+        } else {
+          btn.innerText = `Unlock Test (₹${activeSession.price})`;
+        }
         document.getElementById("champTimer").innerText = diff <= 0 ? "LIVE" : new Date(diff).toISOString().substr(11, 8);
       }, 1000);
     }
 
-   window.redirectToPayment = function() {
-  if (!activeSession) {
-    alert("Please select a grade first.");
-    return;
-  }
-  
-  // 1. Save the Session ID so the success page knows what to unlock
-  localStorage.setItem("activeSessionId", activeSession.id);
+    // 1. CHAMPIONSHIP REDIRECT
+    window.redirectToPayment = function() {
+      if (!activeSession) {
+        alert("Please select a grade first.");
+        return;
+      }
+      localStorage.setItem("activeSessionId", activeSession.id);
+      window.location.href = "https://rzp.io/rzp/jo6J42c9"; 
+    };
 
-  // 2. Redirect the current window to your Razorpay Link
-  window.location.href = "https://rzp.io/rzp/jo6J42c9"; 
-};
-
-  // Create a hidden form dynamically to force a POST redirect
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://api.razorpay.com/v1/checkout/embedded';
-
-  const params = {
-    key_id: key,
-    amount: amount,
-    currency: currency,
-    name: name,
-    description: description,
-    callback_url: callback_url,
-    prefill_email: auth.currentUser.email,
-    notes: { session_id: activeSession.id }
-  };
-
-  for (const key in params) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = typeof params[key] === 'object' ? JSON.stringify(params[key]) : params[key];
-    form.appendChild(input);
-  }
-
-  document.body.appendChild(form);
-  form.submit(); // This forces the separate page opening
-};
-
+    // 2. DAILY PRACTICE START
     window.startQuiz = (subject) => { 
       localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
       localStorage.setItem("selectedSubject", subject); 
       window.location.href = "quiz.html"; 
     };
 
-    onAuthStateChanged(auth, (user) => { if (user) { if (user.email === "madhhu52@gmail.com") document.getElementById("adminTab").style.display = "inline"; fetchChampSession("class6"); } });
+    onAuthStateChanged(auth, (user) => { 
+      if (user) { 
+        if (user.email === "madhhu52@gmail.com") document.getElementById("adminTab").style.display = "inline"; 
+        fetchChampSession("class6"); 
+      } 
+    });
+
     document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
     document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
     window.logout = () => { sessionStorage.clear(); window.location.href = "login.html"; };
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
