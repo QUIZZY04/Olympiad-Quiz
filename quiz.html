@@ -137,25 +137,16 @@ localStorage.removeItem("quizRunning");
 });
 
 
-onAuthStateChanged(auth, async (user)=>{
+
     
 
 
 /* QUIZ SINGLE TAB PROTECTION */
 
-if(localStorage.getItem("quizRunning") === "true"){
-alert("Quiz already running in another tab.");
-window.location.href="dashboard.html";
-}
-
-localStorage.setItem("quizRunning","true");
-
-window.addEventListener("beforeunload", function(){
-localStorage.removeItem("quizRunning");
-});
 
 
-onAuthStateChanged(auth, async (user)=>{
+
+
     onAuthStateChanged(auth, async (user)=>{
 
 if(!user){
@@ -258,6 +249,7 @@ return;
   </script>
 </body>
 </html>
+
 
 
 
