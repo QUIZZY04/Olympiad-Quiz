@@ -95,7 +95,7 @@
         <div style="background:#020617; padding:12px 20px; border-radius:10px; border:1px solid var(--border); text-align:center; margin:15px 0;">
           <p id="champTimer" class="timer-clock">00:00:00</p>
         </div>
-        <button id="btnChamp" class="btn-action btn-buy" onclick="handleEventClick()">Unlock Test Now (₹69)</button>
+        <button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">Unlock Test Now (₹69)</button>
       </div>
 
       <div class="champ-right">
@@ -179,19 +179,18 @@
       }, 1000);
     }
 
-   window.handleEventClick = async function() {
-  if (!activeSession) return;
+   window.redirectToPayment = function() {
+  if (!activeSession) {
+    alert("Please select a grade first.");
+    return;
+  }
   
-  // Save session ID for the success page to use later
+  // 1. Save the Session ID so the success page knows what to unlock
   localStorage.setItem("activeSessionId", activeSession.id);
 
-  // Define your parameters
-  const key = "rzp_live_SP3l6l34By3jpa";
-  const amount = 6900;
-  const currency = "INR";
-  const name = "Olympiad Portal";
-  const description = `Unlock ${activeSession.title}`;
-  const callback_url = "https://quizzy04.github.io/Olympiad-Quiz/payment-success.html";
+  // 2. Redirect the current window to your Razorpay Link
+  window.location.href = "https://rzp.io/rzp/jo6J42c9"; 
+};
 
   // Create a hidden form dynamically to force a POST redirect
   const form = document.createElement('form');
@@ -234,6 +233,7 @@
   </script>
 </body>
 </html>
+
 
 
 
