@@ -1,240 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Dashboard - Olympiad Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Dashboard - Olympiad Portal</title>
 
-  <style>
-    :root {
-      --bg:#020617; --surface-champ:#1e293b; --surface-practice:#0f172a; 
-      --card-bg:#1e293b; --text:#f8fafc; --muted:#94a3b8;
-      --border:#334155; --amber:#f59e0b; --danger:#ef4444; --green:#22c55e;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; }
-    nav{ background:var(--surface-champ); border-bottom:2px solid var(--border); padding:12px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; }
-    .brand{ font-size:20px; font-weight:800; color:var(--amber); text-decoration:none; }
-    .nav-links{ display:flex; gap:12px; align-items:center; }
-    .nav-links a{ color:#ffffff; text-decoration:none; font-size:11px; font-weight:800; text-transform:uppercase; }
-    .container{ width:98%; max-width:1400px; margin:20px auto; padding:0 10px; flex:1; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
-    /* CHAMPIONSHIP SECTION */
-    .championship-section { background: var(--surface-champ); border: 3px solid var(--amber); border-radius: 12px; margin: 0 auto 40px auto; width: 60%; min-width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: row; overflow: hidden; position: relative; }
-    .champ-left { flex: 1.2; padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 10; }
-    .champ-right { flex: 1.5; padding: 25px; background: rgba(15, 23, 42, 0.4); display: flex; flex-direction: column; justify-content: flex-start; }
-    .champ-title-area h2 { font-size: 22px; color: #fff; margin-bottom: 5px; font-weight: 800; }
-    .timer-clock { font-size: 22px; font-weight: 800; color: var(--amber); font-family: monospace; }
-    .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; position: relative; pointer-events: auto; }
-    .btn-buy { background: var(--amber); color: #000; }
+<style>
+:root {
+--bg:#020617;
+--surface-champ:#1e293b;
+--surface-practice:#0f172a;
+--card-bg:#1e293b;
+--text:#f8fafc;
+--muted:#94a3b8;
+--border:#334155;
+--amber:#f59e0b;
+--danger:#ef4444;
+--green:#22c55e;
+}
 
-    /* PRACTICE SECTION */
-    .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; }
-    .class-selector-wrap { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 15px; border-radius: 12px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
-    select#classSelect { background: var(--bg); color: white; border: 1px solid var(--border); padding: 10px; border-radius: 8px; flex: 1; font-size: 13px; cursor: pointer; }
-    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 40px; }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
-    .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
+*{box-sizing:border-box;margin:0;padding:0}
 
-    /* INSTRUCTIONS */
-    .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 35px; margin-top: 40px; margin-bottom: 60px; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-    .ins-item { display: flex; gap: 15px; align-items: flex-start; }
-    .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; }
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+display:flex;
+flex-direction:column;
+min-height:100vh
+}
 
-    @media (max-width: 768px) {
-      .championship-section { width: 95%; flex-direction: column; }
-      .champ-left { border-right: none; border-bottom: 1px solid var(--border); }
-      .grid, .ins-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 8px; }
-      .nav-links a { font-size: 9px; }
-    }
-  </style>
+nav{
+background:var(--surface-champ);
+border-bottom:2px solid var(--border);
+padding:12px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:sticky;
+top:0;
+z-index:1000
+}
+
+.brand{
+font-size:20px;
+font-weight:800;
+color:var(--amber);
+text-decoration:none
+}
+
+.nav-links{
+display:flex;
+gap:12px;
+align-items:center
+}
+
+.nav-links a{
+color:#fff;
+text-decoration:none;
+font-size:11px;
+font-weight:800;
+text-transform:uppercase
+}
+
+.container{
+width:98%;
+max-width:1400px;
+margin:20px auto;
+padding:0 10px;
+flex:1
+}
+
+/* CHAMPIONSHIP */
+
+.championship-section{
+background:var(--surface-champ);
+border:3px solid var(--amber);
+border-radius:12px;
+margin:0 auto 40px auto;
+width:60%;
+min-width:320px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+display:flex;
+overflow:hidden
+}
+
+.champ-left{
+flex:1.2;
+padding:25px;
+border-right:1px solid var(--border);
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center
+}
+
+.champ-right{
+flex:1.5;
+padding:25px;
+background:rgba(15,23,42,0.4)
+}
+
+.timer-clock{
+font-size:22px;
+font-weight:800;
+color:var(--amber);
+font-family:monospace
+}
+
+.btn-action{
+width:100%;
+max-width:250px;
+padding:15px;
+border-radius:10px;
+font-weight:800;
+text-transform:uppercase;
+font-size:13px;
+border:none;
+cursor:pointer
+}
+
+.btn-buy{
+background:var(--amber);
+color:#000
+}
+
+/* PRACTICE */
+
+.practice-container{
+background:var(--surface-practice);
+padding:30px;
+border-radius:16px;
+border:1px solid var(--border);
+margin-top:20px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:40px
+}
+
+.card{
+background:var(--card-bg);
+border:1px solid var(--border);
+border-radius:12px;
+padding:20px;
+cursor:pointer;
+display:flex;
+flex-direction:column;
+justify-content:space-between
+}
+
+.btn-start{
+background:var(--amber);
+color:#000;
+border:none;
+padding:10px;
+border-radius:6px;
+font-weight:800;
+width:100%;
+text-transform:uppercase;
+font-size:11px
+}
+
+@media(max-width:768px){
+.championship-section{width:95%;flex-direction:column}
+.grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
-  <nav>
-    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html" style="color:var(--amber);">Dashboard</a>
-      <a href="leaderboard.html">Leaderboard</a>
-      <a id="adminTab" href="admin.html" style="display:none;color:var(--green);">Admin</a>
-      <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
-    </div>
-  </nav>
 
-  <main class="container">
-    <div id="champSection" class="championship-section">
-      <div class="champ-left">
-        <div class="champ-title-area">
-          <h2>Science Weekly Quiz 2</h2>
-          <div style="margin:10px 0; display:flex; align-items:center; gap:8px;">
-            <label style="color:var(--muted); font-size:10px; font-weight:800;">GRADE:</label>
-            <select id="champGradeSelect" style="background:#0f172a; color:var(--amber); border:1px solid var(--amber); padding:5px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;">
-              <option value="class5">Grade 5</option>
-              <option value="class6" selected>Grade 6</option>
-              <option value="class7">Grade 7</option>
-              <option value="class8">Grade 8</option>
-              <option value="class9">Grade 9</option>
-              <option value="class10">Grade 10</option>
-            </select>
-          </div>
-          <span id="champClassMention" style="color:var(--amber); font-weight:700; font-size:14px;">For Class 6th</span>
-        </div>
-        <div style="background:#020617; padding:12px 20px; border-radius:10px; border:1px solid var(--border); text-align:center; margin:15px 0;">
-          <p id="champTimer" class="timer-clock">00:00:00</p>
-        </div>
-        <button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">Unlock Test (₹69)</button>
-      </div>
+<nav>
+<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 
-      <div class="champ-right">
-        <span style="color:var(--amber); font-weight:800; text-transform:uppercase; border-bottom:1px solid var(--border); padding-bottom:5px; margin-bottom:15px; display:block;">Schedule & Info</span>
-        <ul style="list-style:none; font-size:12px;">
-          <li style="margin-bottom:10px;">📅 <strong style="color:var(--amber);">Date:</strong> <strong style="color:var(--text);">March 15th, 2026</strong></li>
-          <li style="margin-bottom:10px;">⏰ <strong style="color:var(--amber);">Time:</strong> <strong style="color:var(--text);">10:00 AM IST</strong></li>
-          <li style="margin-bottom:10px;">💰 <strong style="color:var(--amber);">Price:</strong> <strong style="color:var(--text);">Rs 69</strong></li>
-        </ul>
-        <span style="color:var(--amber); font-weight:800; text-transform:uppercase; margin-top:15px; display:block; padding-bottom:5px; border-bottom:1px solid var(--border);">Event Rules</span>
-        <ul style="list-style:none; font-size:12px; color:var(--muted); margin-top:10px;">
-          <li style="margin-bottom:8px;">⚠️ <b>One Attempt:</b> Only one submission allowed per student.</li>
-          <li style="margin-bottom:8px;">✅ <b>Auto-Submit:</b> Paper submits automatically after 60 mins.</li>
-        </ul>
-      </div>
-    </div>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="dashboard.html" style="color:var(--amber)">Dashboard</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="quiz.html">Take Quiz</a>
+<a id="adminTab" href="admin.html" style="display:none;color:var(--green)">Admin</a>
+<a onclick="logout()" style="color:var(--danger);cursor:pointer">Logout</a>
+</div>
+</nav>
 
-    <div class="practice-container">
-        <h2 style="font-size:24px; font-weight:800; color:#fff; margin-bottom:20px;">📚 Daily Practice Quizzes</h2>
-        <div class="class-selector-wrap">
-          <label style="font-weight:800; color:var(--amber);">PRACTICE GRADE (1-10):</label>
-          <select id="classSelect">
-            <option value="class1">Grade 1</option><option value="class2">Grade 2</option>
-            <option value="class3">Grade 3</option><option value="class4">Grade 4</option>
-            <option value="class5">Grade 5</option><option value="class6" selected>Grade 6</option>
-            <option value="class7">Grade 7</option><option value="class8">Grade 8</option>
-            <option value="class9">Grade 9</option><option value="class10">Grade 10</option>
-          </select>
-        </div>
-        <div class="grid">
-          <div class="card" onclick="startQuiz('maths')"><h3>Maths</h3><p>Algebra, Geometry, and Arithmetic.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('science')"><h3>Science</h3><p>Physics, Chemistry, and Biology.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('english')"><h3>English</h3><p>Vocabulary and Grammar rules.</p><button class="btn-start">Start</button></div>
-          <div class="card" onclick="startQuiz('reasoning')"><h3>Reasoning</h3><p>Patterns, Puzzles, and Logic.</p><button class="btn-start">Start</button></div>
-        </div>
+<main class="container">
 
-        <section class="instructions-section">
-          <h2>📝 Detailed Practice Instructions</h2>
-          <div class="ins-grid">
-            <div class="ins-item"><div class="ins-icon">1</div><div class="ins-text"><strong>Navigation:</strong> Use the palette to jump between questions. Green = Answered, Red = Skipped.</div></div>
-            <div class="ins-item"><div class="ins-icon">2</div><div class="ins-text"><strong>Saving:</strong> Click "Save & Next" to lock in your choice. Unsaved answers will not count.</div></div>
-            <div class="ins-item"><div class="ins-icon">3</div><div class="ins-text"><strong>Review:</strong> Use "Mark for Review" to revisit tough questions quickly later.</div></div>
-            <div class="ins-item"><div class="ins-icon">4</div><div class="ins-text"><strong>Auto-Submit:</strong> System submits your paper when the timer expires.</div></div>
-            <div class="ins-item"><div class="ins-icon">5</div><div class="ins-text"><strong>Results:</strong> View scores and explanations immediately after submission.</div></div>
-            <div class="ins-item"><div class="ins-icon">6</div><div class="ins-text"><strong>Stability:</strong> Maintain a stable connection. Refresh to resume if disconnected.</div></div>
-          </div>
-        </section>
-    </div>
-  </main>
+<div class="championship-section">
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<div class="champ-left">
 
-    const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain:"olympiad-portal-d2a5e.firebaseapp.com", projectId:"olympiad-portal-d2a5e", storageBucket:"olympiad-portal-d2a5e.firebasestorage.app", messagingSenderId:"341855557503", appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a" };
-    const app=initializeApp(firebaseConfig);
-    const auth=getAuth(app);
-    const db=getFirestore(app);
-    
-    let activeSession = null; 
-    let timerInterval = null;
+<h2>Science Weekly Quiz 2</h2>
 
-    onAuthStateChanged(auth, (user) => {
-        if(!user) { window.location.href="login.html"; return; }
-        if(user.email==="madhhu52@gmail.com") document.getElementById("adminTab").style.display="inline";
-        fetchChampSession(document.getElementById("champGradeSelect").value);
-    });
+<div style="margin:10px 0">
+<label style="font-size:10px;font-weight:800;color:var(--muted)">GRADE:</label>
 
-    async function fetchChampSession(grade) {
-      if (timerInterval) clearInterval(timerInterval);
-      const classNum = grade.replace('class', '');
-      const sessId = `2026_03_15_C${classNum}_SCI`; 
-      const docSnap = await getDoc(doc(db, "test_sessions", sessId));
-      if (docSnap.exists()) {
-        activeSession = { ...docSnap.data(), id: docSnap.id };
-        document.getElementById("champClassMention").innerText = `For Class ${classNum}th`;
-        
-        // CHECK IF ALREADY BOUGHT
-        const purchaseRef = doc(db, "users", auth.currentUser.uid, "purchases", sessId);
-        const purchaseSnap = await getDoc(purchaseRef);
-        startChampTimer(activeSession.startTime.toDate(), purchaseSnap.exists());
-      }
-    }
+<select id="champGradeSelect" style="background:#0f172a;color:var(--amber);border:1px solid var(--amber);padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700">
+<option value="class5">Grade 5</option>
+<option value="class6" selected>Grade 6</option>
+<option value="class7">Grade 7</option>
+<option value="class8">Grade 8</option>
+<option value="class9">Grade 9</option>
+<option value="class10">Grade 10</option>
+</select>
+</div>
 
-    function startChampTimer(startTime, isBought) {
-      const btn = document.getElementById("btnChamp");
-      
-      // Update Button state/action based on payment
-      if (isBought) {
-          btn.style.background = "var(--green)";
-          btn.style.color = "#fff";
-          btn.onclick = () => joinChampionship();
-      } else {
-          btn.style.background = "var(--amber)";
-          btn.style.color = "#000";
-          btn.onclick = () => redirectToPayment();
-      }
+<span id="champClassMention">For Class 6th</span>
 
-      timerInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const diff = startTime - now;
+<div style="background:#020617;padding:12px 20px;border-radius:10px;border:1px solid var(--border);margin:15px 0">
+<p id="champTimer" class="timer-clock">00:00:00</p>
+</div>
 
-        // Update Text
-        if (isBought) {
-          btn.innerText = "Test Unlocked";
-        } else {
-          btn.innerText = `Unlock Test (₹${activeSession ? activeSession.price : '69'})`;
-        }
+<button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">
+Unlock Test (₹69)
+</button>
 
-        if (diff <= 0) {
-            document.getElementById("champTimer").innerText = "LIVE NOW";
-        } else {
-            const h = Math.floor(diff / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("champTimer").innerText = `${h}:${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
-        }
-      }, 1000);
-    }
+</div>
 
-    // Function for users who have already paid
-    window.joinChampionship = function() {
-        localStorage.setItem("isChampionship", "true");
-        localStorage.setItem("activeSessionId", activeSession.id);
-        localStorage.setItem("selectedClass", document.getElementById("champGradeSelect").value);
-        localStorage.setItem("selectedSubject", "science");
-        window.location.href = "quiz.html";
-    };
+<div class="champ-right">
 
-    window.redirectToPayment = function() {
-        if (!activeSession) { alert("Please select a grade."); return; }
-        localStorage.setItem("activeSessionId", activeSession.id);
-        window.open("https://rzp.io/rzp/7taxCnr", "_blank");
-    };
+<b style="color:var(--amber)">Schedule & Info</b>
 
-    window.startQuiz = (subject) => {
-        localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
-        localStorage.setItem("selectedSubject", subject);
-        localStorage.setItem("isChampionship", "false");
-        localStorage.removeItem("activeSessionId");
-        window.location.href = "quiz.html";
-    };
+<ul style="font-size:12px;margin-top:10px">
+<li>📅 Date: March 15th 2026</li>
+<li>⏰ Time: 10:00 AM IST</li>
+<li>💰 Price: ₹69</li>
+</ul>
 
-    document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
-    document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
-    
-    window.logout = () => signOut(auth).then(() => window.location.href="login.html");
-  </script>
+</div>
+
+</div>
+
+</main>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore,doc,getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
+projectId:"olympiad-portal-d2a5e"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+let activeSession=null;
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+window.location.href="login.html";
+return;
+}
+
+fetchSession();
+
+});
+
+async function fetchSession(){
+
+const sessId="2026_03_15_C6_SCI";
+
+const snap=await getDoc(doc(db,"test_sessions",sessId));
+
+if(!snap.exists())return;
+
+activeSession={...snap.data(),id:snap.id};
+
+checkPurchase();
+
+}
+
+async function checkPurchase(){
+
+const uid=auth.currentUser.uid;
+
+const purchaseRef=doc(db,"users",uid,"purchases",activeSession.id);
+
+const purchaseSnap=await getDoc(purchaseRef);
+
+const btn=document.getElementById("btnChamp");
+
+if(purchaseSnap.exists()){
+btn.innerText="Test Unlocked";
+btn.disabled=true;
+btn.style.opacity="0.7";
+}
+
+}
+
+window.redirectToPayment=async function(){
+
+const uid=auth.currentUser.uid;
+
+const purchaseRef=doc(db,"users",uid,"purchases",activeSession.id);
+
+const purchaseSnap=await getDoc(purchaseRef);
+
+if(purchaseSnap.exists()){
+alert("You already unlocked this quiz.");
+return;
+}
+
+localStorage.setItem("activeSessionId",activeSession.id);
+
+window.open("https://rzp.io/rzp/7taxCnr","_blank");
+
+};
+
+window.logout=()=>{
+signOut(auth).then(()=>window.location.href="login.html");
+};
+
+</script>
+
 </body>
 </html>
