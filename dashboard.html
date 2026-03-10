@@ -182,7 +182,7 @@
     window.handleEventClick = async function() {
   if (!activeSession) return;
   
-  // 1. Save the Session ID so the success page knows what to unlock
+  // Save session ID for the success page to use later
   localStorage.setItem("activeSessionId", activeSession.id);
 
   const options = {
@@ -192,10 +192,13 @@
     "name": "Olympiad Portal",
     "description": `Unlock ${activeSession.title}`,
     
-    // 2. These two lines FORCE the separate page redirect
+    // THESE THREE LINES ARE MANDATORY FOR REDIRECT
     "callback_url": "https://quizzy04.github.io/Olympiad-Quiz/payment-success.html", 
     "redirect": true, 
-    
+    "notes": {
+       "session_id": activeSession.id
+    },
+
     "prefill": {
       "email": auth.currentUser.email,
       "contact": "" 
@@ -203,9 +206,9 @@
     "theme": { "color": "#f59e0b" }
   };
 
-  // 3. Initialize and open - this will now redirect the current window
+  // Create the instance and open
   const rzp = new Razorpay(options);
-  rzp.open();
+  rzp.open(); 
 };
 
     window.startQuiz = (subject) => { 
@@ -221,6 +224,7 @@
   </script>
 </body>
 </html>
+
 
 
 
