@@ -145,7 +145,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain:"olympiad-portal-d2a5e.firebaseapp.com", projectId:"olympiad-portal-d2a5e", storageBucket:"olympiad-portal-d2a5e.firebasestorage.app", messagingSenderId:"341855557503", appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a" };
@@ -221,7 +221,7 @@ fetchChampSession("class6");
 
     document.getElementById("champGradeSelect").addEventListener("change", (e) => fetchChampSession(e.target.value));
     document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
-    import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    
 
 window.logout = () => {
   signOut(auth).then(()=>{
@@ -231,6 +231,7 @@ window.logout = () => {
   </script>
 </body>
 </html>
+
 
 
 
