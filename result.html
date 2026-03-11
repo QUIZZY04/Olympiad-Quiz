@@ -93,9 +93,8 @@
 </div>
 
 <script type="module">
-// Standard Firebase v10 Imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -108,13 +107,26 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// Attach functions to window so HTML buttons can access them
 window.openFeedback = () => document.getElementById("feedbackModal").style.display = "flex";
 window.closeFeedback = () => document.getElementById("feedbackModal").style.display = "none";
-window.logout = async () => {
-    if(confirm("Logout?")) {
-        await signOut(auth);
-        window.location.href = "login.html";
+
+// RESTORED: Report individual question function
+window.reportQuestion = async function(qId, qClass, qSub) {
+    const msg = prompt("Please describe the issue with this question:");
+    if (!msg || !msg.trim()) return;
+
+    try {
+        await addDoc(collection(db, "feedback"), {
+            questionId: qId,
+            message: msg,
+            class: qClass,
+            subject: qSub,
+            timestamp: serverTimestamp(),
+            status: "pending"
+        });
+        alert("Report submitted successfully.");
+    } catch (e) {
+        alert("Report failed: " + e.message);
     }
 };
 
@@ -122,29 +134,34 @@ window.submitFeedback = async () => {
     const rating = document.getElementById("fbRating").value;
     const comment = document.getElementById("fbText").value;
     const resultData = JSON.parse(localStorage.getItem("quizResult"));
-    const userData = JSON.parse(localStorage.getItem("user")) || { name: "Guest" };
+    const currentUser = auth.currentUser;
 
     if(!comment.trim()) { alert("Please write a suggestion."); return; }
 
     try {
         await addDoc(collection(db, "feedbacks"), {
-            name: userData.name,
-            email: userData.email || "N/A",
+            name: currentUser?.displayName || "Guest",
+            email: currentUser?.email || "N/A",
             rating: rating,
             suggestion: comment,
             score: resultData ? `${resultData.score}/${resultData.total}` : "N/A",
             date: new Date().toLocaleString(),
-            timestamp: new Date()
+            timestamp: serverTimestamp()
         });
         alert("Thank you for your feedback!");
         window.closeFeedback();
     } catch (e) {
-        console.error(e);
         alert("Error: " + e.message);
     }
 };
 
-// Original Analysis Logic
+window.logout = async () => {
+    if(confirm("Logout?")) {
+        await signOut(auth);
+        window.location.href = "login.html";
+    }
+};
+
 document.addEventListener("DOMContentLoaded", function(){
     const data = localStorage.getItem("quizResult");
     if(!data) return;
@@ -170,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <td style="font-size: 13px; color: var(--muted); max-width: 300px;">
                 ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
             </td>
-            <td><span class="report-link">Report</span></td>
+            <td><span class="report-link" onclick="reportQuestion('${q.id}', '${q.class}', '${q.subject}')">Report</span></td>
         </tr>`;
     });
     document.getElementById("details").innerHTML = html + "</tbody></table>";
