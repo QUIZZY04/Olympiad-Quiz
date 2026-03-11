@@ -160,10 +160,10 @@ padding:10px;
 border-radius:8px;
 }
 
-/* FEATURES */
+/* FEATURES - UPDATED FOR SPACING AND SIZE */
 
 .features{
-padding:60px 10%;
+padding:100px 10% 60px 10%; /* Increased top padding to move cards lower */
 text-align:center;
 }
 
@@ -171,19 +171,25 @@ text-align:center;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:30px;
+gap:25px;
 }
 
 .feature{
 background:#1e293b;
-padding:25px;
+padding:20px; /* Reduced padding for smaller size */
 border-radius:12px;
-width:260px;
+width:230px; /* Reduced width to make cards smaller */
 }
 
 .feature h3{
 color:#f59e0b;
 margin-bottom:10px;
+font-size:18px; /* Slightly smaller heading */
+}
+
+.feature p{
+font-size:14px; /* Slightly smaller text */
+line-height:1.5;
 }
 
 /* FOOTER */
@@ -254,11 +260,11 @@ Practice advanced questions, track your performance and compete with students ac
 <div class="btn-group">
 
 <a href="signup.html" class="btn btn-primary">
-Start Free Trial
+Go for Live Quiz
 </a>
 
-<a href="login.html" class="btn btn-secondary">
-Login
+<a href="signup.html" class="btn btn-primary">
+Daily Practice Quiz
 </a>
 
 </div>
