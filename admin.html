@@ -380,7 +380,7 @@ onAuthStateChanged(auth, (user) => {
             alert("Unauthorized access!");
             signOut(auth).then(() => { window.location.href = "login.html"; });
         } else {
-            loadQuestions();
+            // Questions are NOT loaded here anymore to prevent auto-loading on login
             loadFeedback(); 
             loadExpFeedback(); 
         }
