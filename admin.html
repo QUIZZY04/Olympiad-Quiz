@@ -43,7 +43,6 @@ font-weight:800;
 color:var(--amber);
 text-decoration:none;
 }
-.brand:hover { opacity: 0.8; }
 .nav-links{
 display:flex;
 gap:12px;
@@ -139,7 +138,6 @@ background:#020617;
 color:#94a3b8;
 }
 
-/* NEW: Style for the score badge in feedback */
 .score-tag { background: var(--bg); padding: 2px 8px; border-radius: 4px; color: var(--brand); font-family: monospace; font-weight: 700; }
 </style>
 </head>
@@ -348,7 +346,7 @@ const auth=getAuth(app);
 
 const questionsRef=collection(db,"questions");
 const feedbackRef=collection(db,"feedback");
-const expFeedbackRef=collection(db,"feedbacks"); // This matches your submission collection
+const expFeedbackRef=collection(db,"feedbacks"); 
 const sessionsRef=collection(db,"test_sessions");
 
 onAuthStateChanged(auth, (user) => {
@@ -359,14 +357,13 @@ onAuthStateChanged(auth, (user) => {
         } else {
             loadQuestions();
             loadFeedback(); 
-            loadExpFeedback(); // Start listening for experience feedback
+            loadExpFeedback(); 
         }
     } else {
         window.location.href = "login.html";
     }
 });
 
-// NEW: REAL-TIME EXPERIENCE FEEDBACK LISTENER
 function loadExpFeedback() {
     const qExp = query(expFeedbackRef, orderBy("date", "desc"));
     onSnapshot(qExp, (snapshot) => {
@@ -386,8 +383,8 @@ function loadExpFeedback() {
                 <tr>
                     <td style="font-size:11px; color: var(--muted);">${fb.date}</td>
                     <td>
-                        <div style="font-weight:700">${fb.name}</div>
-                        <div style="font-size:10px; color:var(--brand)">${fb.email}</div>
+                        <div style="font-weight:700; color:var(--text);">${fb.email || 'No Email'}</div>
+                        <div style="font-size:10px; color:var(--muted)">${fb.name || 'Anonymous'}</div>
                     </td>
                     <td style="color:var(--amber); font-weight:800">${fb.rating}</td>
                     <td><span class="score-tag">${fb.score}</span></td>
@@ -409,7 +406,6 @@ window.deleteExpFB = async (id) => {
     }
 }
 
-// CREATE WEEKLY TEST SESSION LOGIC
 window.createSession = async function() {
     const title = document.getElementById('sessTitle').value;
     const className = document.getElementById('sessClass').value;
@@ -453,7 +449,6 @@ window.createSession = async function() {
     }
 }
 
-// REAL-TIME ERROR FEEDBACK LISTENER
 function loadFeedback() {
     const qFB = query(feedbackRef, orderBy("timestamp", "desc"));
     onSnapshot(qFB, (snapshot) => {
@@ -477,7 +472,6 @@ function loadFeedback() {
     });
 }
 
-// OPEN QUESTION EDITOR MODAL
 window.openEdit = async function(qId, fbDocId) {
     try {
         const qSnap = await getDoc(doc(db, "questions", qId));
