@@ -133,7 +133,6 @@
 
     button:hover { background: #fbbf24; transform: translateY(-2px); }
 
-    /* GOOGLE BUTTON FIX */
     .google-btn {
       background: white !important;
       color: #1e293b !important;
@@ -257,7 +256,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -283,13 +282,25 @@ document.getElementById("signupForm").addEventListener("submit", async (e)=>{
     const classSelect=document.getElementById("classSelect").value;
 
     try {
-        const userCredential=await createUserWithEmailAndPassword(auth,email,password);
-        await setDoc(doc(db,"users",userCredential.user.uid),{
-            name, email, class:classSelect, createdAt:new Date()
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        
+        // Save user profile data
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+            name, email, class: classSelect, createdAt: new Date()
         });
-        alert("Account Created Successfully!");
-        window.location.href="login.html";
-    } catch(error) { alert(error.message); }
+
+        // 1. Force logout immediately to clear the auto-login session
+        await signOut(auth);
+
+        // 2. Inform the user they can now log in manually
+        alert("Account Created Successfully! Please use your credentials to log in on the next screen.");
+        
+        // 3. Redirect to the login page
+        window.location.href = "login.html";
+
+    } catch(error) { 
+        alert("Signup Failed: " + error.message); 
+    }
 });
 
 // Google Sign-In Logic
@@ -298,11 +309,9 @@ document.getElementById("googleBtn").addEventListener("click", async () => {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
 
-        // Verify if user data exists to avoid data loss
         const userDoc = await getDoc(doc(db, "users", user.uid));
         
         if (!userDoc.exists()) {
-            // New Google user: Prompt for Grade
             const userClass = prompt("Welcome! Please enter your grade (e.g., class5):") || "class1";
             
             await setDoc(doc(db, "users", user.uid), {
