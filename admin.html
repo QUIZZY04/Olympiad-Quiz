@@ -120,6 +120,18 @@ max-width:80px;
 border-radius:6px;
 }
 
+/* COLLAPSIBLE STYLES */
+.collapse-btn {
+    background: transparent;
+    color: var(--brand);
+    border: 1px solid var(--brand);
+    padding: 4px 10px;
+    font-size: 10px;
+    margin-top: 0;
+}
+.collapse-btn:hover { background: var(--brand); color: #000; }
+.hidden-content { display: none; }
+
 /* FEEDBACK & MODAL STYLES */
 .badge-unread { background: var(--danger); font-size: 10px; padding: 2px 6px; border-radius: 4px; }
 .modal {
@@ -157,41 +169,51 @@ color:#94a3b8;
 
 <div class="container">
     <div class="panel">
-        <h2>🚩 User Feedback & Error Reports</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Question ID</th>
-                    <th>Message</th>
-                    <th>Context</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="feedbackTable"></tbody>
-        </table>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>🚩 User Feedback & Error Reports</h2>
+            <button class="collapse-btn" onclick="toggleSection('errTable')">SHOW/HIDE</button>
+        </div>
+        <div id="errTable" class="hidden-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Question ID</th>
+                        <th>Message</th>
+                        <th>Context</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbackTable"></tbody>
+            </table>
+        </div>
     </div>
 
     <div class="panel" style="border-left: 5px solid var(--green);">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>💬 User Experience Feedback</h2>
-            <div id="expCount" style="background: var(--brand); color: #000; padding: 2px 10px; border-radius: 20px; font-weight: 800; font-size: 12px;">0 Reports</div>
+            <h2 style="margin-bottom:0;">💬 User Experience Feedback</h2>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <div id="expCount" style="background: var(--brand); color: #000; padding: 2px 10px; border-radius: 20px; font-weight: 800; font-size: 10px;">0 Reports</div>
+                <button class="collapse-btn" onclick="toggleSection('expTable')">SHOW/HIDE</button>
+            </div>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>User</th>
-                    <th>Rating</th>
-                    <th>Score</th>
-                    <th>Suggestion</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="expFeedbackTable">
-                <tr><td colspan="6" style="text-align:center; color: var(--muted);">Loading experience data...</td></tr>
-            </tbody>
-        </table>
+        <div id="expTable" class="hidden-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>User (Email)</th>
+                        <th>Rating</th>
+                        <th>Score</th>
+                        <th>Suggestion</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="expFeedbackTable">
+                    <tr><td colspan="6" style="text-align:center; color: var(--muted);">Loading experience data...</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 <div class="panel">
@@ -349,6 +371,11 @@ const feedbackRef=collection(db,"feedback");
 const expFeedbackRef=collection(db,"feedbacks"); 
 const sessionsRef=collection(db,"test_sessions");
 
+window.toggleSection = (id) => {
+    const el = document.getElementById(id);
+    el.classList.toggle('hidden-content');
+}
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         if (user.email !== "madhhu52@gmail.com") {
@@ -379,18 +406,19 @@ function loadExpFeedback() {
 
         snapshot.forEach((d) => {
             const fb = d.data();
+            // Fixing "Guest" by showing Email primarily
             const row = `
                 <tr>
                     <td style="font-size:11px; color: var(--muted);">${fb.date}</td>
                     <td>
                         <div style="font-weight:700; color:var(--text);">${fb.email || 'No Email'}</div>
-                        <div style="font-size:10px; color:var(--muted)">${fb.name || 'Anonymous'}</div>
+                        <div style="font-size:9px; color:var(--muted)">${fb.name || 'Anonymous'}</div>
                     </td>
                     <td style="color:var(--amber); font-weight:800">${fb.rating}</td>
                     <td><span class="score-tag">${fb.score}</span></td>
-                    <td style="font-size:13px; max-width: 300px;">${fb.suggestion}</td>
+                    <td style="font-size:12px; max-width: 300px;">${fb.suggestion}</td>
                     <td>
-                        <button class="delete" onclick="deleteExpFB('${d.id}')">🗑</button>
+                        <button class="delete" style="padding:4px 8px; font-size:10px;" onclick="deleteExpFB('${d.id}')">🗑</button>
                     </td>
                 </tr>`;
             list.innerHTML += row;
@@ -463,8 +491,8 @@ function loadFeedback() {
                     <td>${fb.message}</td>
                     <td>${fb.class} / ${fb.subject}</td>
                     <td>
-                        <button class="edit-btn" onclick="openEdit('${fb.questionId}', '${d.id}')">Edit Q</button>
-                        <button class="delete" onclick="deleteFB('${d.id}')">🗑</button>
+                        <button class="edit-btn" style="padding:4px 8px; font-size:10px;" onclick="openEdit('${fb.questionId}', '${d.id}')">Edit Q</button>
+                        <button class="delete" style="padding:4px 8px; font-size:10px;" onclick="deleteFB('${d.id}')">🗑</button>
                     </td>
                 </tr>`;
             list.innerHTML += row;
@@ -570,8 +598,8 @@ window.loadQuestions=async function(){
         <td>${data.q.substring(0,60)}...</td>
         <td>${data.image_url?`<img src="${data.image_url}">`:"-"}</td>
         <td>
-            <button class="edit-btn" onclick="openEdit('${d.id}')">Edit</button>
-            <button class="delete" onclick="deleteQuestion('${d.id}')">Delete</button>
+            <button class="edit-btn" style="padding:4px 8px; font-size:10px;" onclick="openEdit('${d.id}')">Edit</button>
+            <button class="delete" style="padding:4px 8px; font-size:10px;" onclick="deleteQuestion('${d.id}')">Delete</button>
         </td>
         </tr>`;
     });
