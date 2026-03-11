@@ -28,44 +28,63 @@
 
     .container{ width:100%; max-width:1400px; margin:20px auto; padding:0 15px; flex:1; }
 
-    /* CHAMPIONSHIP SECTION */
-    .championship-section { background: var(--surface-champ); border: 3px solid var(--amber); border-radius: 12px; margin: 0 auto 40px auto; width: 100%; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: row; overflow: hidden; position: relative; }
-    .champ-left { flex: 1.2; padding: 25px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 10; }
-    .champ-right { flex: 1.5; padding: 25px; background: rgba(15, 23, 42, 0.4); display: flex; flex-direction: column; justify-content: flex-start; }
-    .champ-title-area h2 { font-size: 22px; color: #fff; margin-bottom: 5px; font-weight: 800; }
-    .timer-clock { font-size: 22px; font-weight: 800; color: var(--amber); font-family: monospace; }
-    .btn-action { width: 100%; max-width: 250px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; position: relative; pointer-events: auto; }
-    .btn-buy { background: var(--amber); color: #000; }
+    /* NEW LIVE QUIZ SECTION DESIGN */
+    .championship-section { 
+      background: var(--surface-champ); 
+      border: 3px solid var(--amber); 
+      border-radius: 12px; 
+      margin: 0 auto 40px auto; 
+      width: 100%; 
+      max-width: 850px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+      display: flex; 
+      flex-direction: column; 
+      padding: 35px;
+      text-align: center;
+    }
+    .live-quiz-header h2 { font-size: 32px; font-weight: 800; color: var(--amber); margin-bottom: 5px; text-transform: uppercase; }
+    .live-quiz-header p { font-size: 16px; color: var(--muted); margin-bottom: 25px; font-weight: 500; }
+    
+    .selection-row { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
+    .field-group { display: flex; flex-direction: column; align-items: flex-start; width: 220px; }
+    .field-group label { font-size: 10px; font-weight: 800; color: var(--amber); margin-bottom: 5px; letter-spacing: 1px; }
+    .field-group select { 
+      width: 100%; background: #0f172a; color: white; border: 1px solid var(--amber); 
+      padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+
+    .timer-clock { font-size: 28px; font-weight: 800; color: var(--amber); font-family: monospace; letter-spacing: 2px; }
+    .btn-action { width: 100%; max-width: 320px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; margin: 0 auto; }
+    .btn-buy { background: var(--amber); color: #000; margin-top: 10px; }
 
     .btn-detail-ins {
-      background: var(--blue-accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-bottom: 20px; width: 100%; max-width: 250px; transition: 0.2s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      background: var(--blue-accent); color: white; border: none; padding: 14px; border-radius: 10px; font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; width: 100%; max-width: 320px; transition: 0.2s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); margin: 0 auto 15px auto;
     }
-    .btn-detail-ins:hover { background: #2563eb; transform: translateY(-1px); }
 
     /* PRACTICE SECTION */
     .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; }
     .class-selector-wrap { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 15px; border-radius: 12px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
     select#classSelect { background: var(--bg); color: white; border: 1px solid var(--border); padding: 10px; border-radius: 8px; flex: 1; font-size: 13px; cursor: pointer; }
     
-    /* MOBILE GRID FIX */
+    /* GRID */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 40px; }
     .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
     .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
 
-    /* INSTRUCTIONS MOBILE FIX */
+    /* INSTRUCTIONS */
     .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 25px; margin-top: 40px; margin-bottom: 60px; overflow: hidden; }
     .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-    .ins-item { display: flex; gap: 15px; align-items: flex-start; overflow-wrap: break-word; word-wrap: break-word; }
+    .ins-item { display: flex; gap: 15px; align-items: flex-start; }
     .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; }
     .ins-text { flex: 1; font-size: 14px; line-height: 1.5; }
 
     @media (max-width: 768px) {
       nav { justify-content: center; }
       .brand { width: 100%; text-align: center; }
-      .championship-section { width: 95%; flex-direction: column; }
-      .champ-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .championship-section { width: 95%; padding: 25px; }
+      .selection-row { flex-direction: column; align-items: center; }
+      .field-group { width: 100%; }
       .practice-container { padding: 20px; }
-      .ins-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -84,47 +103,43 @@
 
   <main class="container">
     <div id="champSection" class="championship-section">
-      <div class="champ-left">
-        <div class="champ-title-area">
-          <h2>Science Weekly Quiz 2</h2>
-          <div style="margin:10px 0; display:flex; align-items:center; gap:8px;">
-            <label style="color:var(--muted); font-size:10px; font-weight:800;">GRADE:</label>
-            <select id="champGradeSelect" style="background:#0f172a; color:var(--amber); border:1px solid var(--amber); padding:5px 10px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;">
-              <option value="class5">Grade 5</option>
-              <option value="class6" selected>Grade 6</option>
-              <option value="class7">Grade 7</option>
-              <option value="class8">Grade 8</option>
-              <option value="class9">Grade 9</option>
-              <option value="class10">Grade 10</option>
-            </select>
-          </div>
-          <span id="champClassMention" style="color:var(--amber); font-weight:700; font-size:14px;">For Class 6th</span>
-        </div>
-        
-        <div style="background:#020617; padding:12px 20px; border-radius:10px; border:1px solid var(--border); text-align:center; margin:15px 0;">
-          <p id="champTimer" class="timer-clock">00:00:00</p>
-        </div>
-
-        <button class="btn-detail-ins" onclick="window.location.href='instructions.html'">
-            Detail Instruction of weekly Quiz
-        </button>
-
-        <button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">Unlock Test (₹69)</button>
+      <div class="live-quiz-header">
+        <h2>Live Quiz</h2>
+        <p>Select your grade and subject for 15th March Live quiz</p>
       </div>
 
-      <div class="champ-right">
-        <span style="color:var(--amber); font-weight:800; text-transform:uppercase; border-bottom:1px solid var(--border); padding-bottom:5px; margin-bottom:15px; display:block;">Schedule & Info</span>
-        <ul style="list-style:none; font-size:12px;">
-          <li style="margin-bottom:10px;">📅 <strong style="color:var(--amber);">Date:</strong> <strong style="color:var(--text);">March 15th, 2026</strong></li>
-          <li style="margin-bottom:10px;">⏰ <strong style="color:var(--amber);">Time:</strong> <strong style="color:var(--text);">10:00 AM IST</strong></li>
-          <li style="margin-bottom:10px;">💰 <strong style="color:var(--amber);">Price:</strong> <strong style="color:var(--text);">Rs 69</strong></li>
-        </ul>
-        <span style="color:var(--amber); font-weight:800; text-transform:uppercase; margin-top:15px; display:block; padding-bottom:5px; border-bottom:1px solid var(--border);">Event Rules</span>
-        <ul style="list-style:none; font-size:12px; color:var(--muted); margin-top:10px;">
-          <li style="margin-bottom:8px;">⚠️ <b>One Attempt:</b> Only one submission allowed per student.</li>
-          <li style="margin-bottom:8px;">✅ <b>Auto-Submit:</b> Paper submits automatically after 60 mins.</li>
-        </ul>
+      <div class="selection-row">
+        <div class="field-group">
+          <label>GRADE:</label>
+          <select id="champGradeSelect">
+            <option value="class5">Grade 5</option>
+            <option value="class6" selected>Grade 6</option>
+            <option value="class7">Grade 7</option>
+            <option value="class8">Grade 8</option>
+            <option value="class9">Grade 9</option>
+            <option value="class10">Grade 10</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>SUBJECT:</label>
+          <select id="champSubjectSelect">
+            <option value="science" selected>Science</option>
+            <option value="maths">Maths</option>
+            <option value="english">English</option>
+            <option value="reasoning">Reasoning</option>
+          </select>
+        </div>
       </div>
+      
+      <div style="background:#020617; padding:15px 30px; border-radius:12px; border:1px solid var(--border); display: inline-block; margin: 0 auto 30px auto;">
+        <p id="champTimer" class="timer-clock">00:00:00</p>
+      </div>
+
+      <button class="btn-detail-ins" onclick="window.location.href='instructions.html'">
+          Detail Instruction of weekly Quiz
+      </button>
+
+      <button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">Unlock Test (₹69)</button>
     </div>
 
     <div class="practice-container">
@@ -187,7 +202,6 @@
       const docSnap = await getDoc(doc(db, "test_sessions", sessId));
       if (docSnap.exists()) {
         activeSession = { ...docSnap.data(), id: docSnap.id };
-        document.getElementById("champClassMention").innerText = `For Class ${classNum}th`;
         const purchaseRef = doc(db, "users", auth.currentUser.uid, "purchases", sessId);
         const purchaseSnap = await getDoc(purchaseRef);
         startChampTimer(activeSession.startTime.toDate(), purchaseSnap.exists());
@@ -209,7 +223,7 @@
             btn.innerText = "Test Unlocked";
             btn.onclick = () => {
                 const testDate = "March 15th, 2026";
-                alert(`Success! You have already unlocked the Science Weekly Quiz 2 dated ${testDate}. Please come back when the timer reaches zero to start your exam.`);
+                alert(`Success! You have already unlocked the Live Quiz dated ${testDate}. Please come back when the timer reaches zero to start your exam.`);
             };
           } else {
             btn.innerText = "Join Now";
