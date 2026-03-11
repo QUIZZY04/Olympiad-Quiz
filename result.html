@@ -35,8 +35,8 @@
     .quiz-btn { background: var(--amber); color: #000; }
     .report-link { color: var(--muted); font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-top: 5px; }
 
-    /* Modal Styling */
-    #feedbackModal {
+    /* Unified Modal Styling */
+    .modal-overlay {
         display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
         background:rgba(0,0,0,0.9); z-index:2000; justify-content:center; align-items:center; padding:20px;
     }
@@ -44,7 +44,7 @@
         background: var(--surface); padding: 30px; border-radius: 20px; width: 100%; max-width: 500px;
         border: 1px solid var(--border); text-align: center;
     }
-    .fb-input {
+    .modal-input {
         width: 100%; padding: 12px; background: #020617; color: white;
         border: 1px solid var(--border); border-radius: 10px; margin: 10px 0 20px 0; font-size: 14px;
     }
@@ -71,23 +71,41 @@
     <div id="details"></div>
 </div>
 
-<div id="feedbackModal">
+<div id="feedbackModal" class="modal-overlay">
     <div class="modal-content">
         <h2 style="color:var(--amber); margin-bottom:20px;">Share Feedback</h2>
         <div style="text-align:left;">
             <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING</label>
-            <select id="fbRating" class="fb-input">
+            <select id="fbRating" class="modal-input">
                 <option value="Excellent">Excellent</option>
                 <option value="Good">Good</option>
                 <option value="Average">Average</option>
                 <option value="Poor">Poor</option>
             </select>
             <label style="color:var(--muted); font-size:12px; font-weight:700;">SUGGESTIONS</label>
-            <textarea id="fbText" class="fb-input" rows="4" style="height:100px; resize:none;" placeholder="How can we improve?"></textarea>
+            <textarea id="fbText" class="modal-input" rows="4" style="height:100px; resize:none;" placeholder="How can we improve?"></textarea>
         </div>
         <div style="display:flex; gap:10px;">
             <button class="action-btn" style="flex:1; margin:0; background:var(--accent); color:#000;" onclick="submitFeedback()">SUBMIT</button>
             <button class="action-btn" style="flex:1; margin:0; background:var(--danger); color:white;" onclick="closeFeedback()">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<div id="reportModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 style="color:var(--amber); margin-bottom:10px;">Report Question</h2>
+        <p id="reportQIdDisplay" style="font-size: 11px; color: var(--brand); margin-bottom: 20px;"></p>
+        <div style="text-align:left;">
+            <input type="hidden" id="reportQId">
+            <input type="hidden" id="reportQClass">
+            <input type="hidden" id="reportQSub">
+            <label style="color:var(--muted); font-size:12px; font-weight:700;">DESCRIBE THE ISSUE</label>
+            <textarea id="reportMsg" class="modal-input" rows="4" style="height:120px; resize:none;" placeholder="E.g., Wrong answer, Typo in question..."></textarea>
+        </div>
+        <div style="display:flex; gap:10px;">
+            <button class="action-btn" style="flex:1; margin:0; background:var(--accent); color:#000;" onclick="submitReport()">SUBMIT REPORT</button>
+            <button class="action-btn" style="flex:1; margin:0; background:var(--danger); color:white;" onclick="closeReport()">CANCEL</button>
         </div>
     </div>
 </div>
@@ -107,28 +125,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+// Global references
+window.db = db;
+
+// --- Feedback Handlers ---
 window.openFeedback = () => document.getElementById("feedbackModal").style.display = "flex";
 window.closeFeedback = () => document.getElementById("feedbackModal").style.display = "none";
-
-// RESTORED: Report individual question function
-window.reportQuestion = async function(qId, qClass, qSub) {
-    const msg = prompt("Please describe the issue with this question:");
-    if (!msg || !msg.trim()) return;
-
-    try {
-        await addDoc(collection(db, "feedback"), {
-            questionId: qId,
-            message: msg,
-            class: qClass,
-            subject: qSub,
-            timestamp: serverTimestamp(),
-            status: "pending"
-        });
-        alert("Report submitted successfully.");
-    } catch (e) {
-        alert("Report failed: " + e.message);
-    }
-};
 
 window.submitFeedback = async () => {
     const rating = document.getElementById("fbRating").value;
@@ -155,6 +157,45 @@ window.submitFeedback = async () => {
     }
 };
 
+// --- Report Question Handlers ---
+window.openReport = (qId, qClass, qSub) => {
+    document.getElementById("reportQId").value = qId;
+    document.getElementById("reportQClass").value = qClass;
+    document.getElementById("reportQSub").value = qSub;
+    document.getElementById("reportQIdDisplay").innerText = "Question ID: " + qId;
+    document.getElementById("reportModal").style.display = "flex";
+};
+
+window.closeReport = () => {
+    document.getElementById("reportModal").style.display = "none";
+    document.getElementById("reportMsg").value = "";
+};
+
+window.submitReport = async () => {
+    const qId = document.getElementById("reportQId").value;
+    const qClass = document.getElementById("reportQClass").value;
+    const qSub = document.getElementById("reportQSub").value;
+    const msg = document.getElementById("reportMsg").value;
+
+    if (!msg.trim()) { alert("Please describe the issue."); return; }
+
+    try {
+        await addDoc(collection(db, "feedback"), {
+            questionId: qId,
+            message: msg,
+            class: qClass,
+            subject: qSub,
+            timestamp: serverTimestamp(),
+            status: "pending"
+        });
+        alert("Report submitted successfully.");
+        window.closeReport();
+    } catch (e) {
+        alert("Report failed: " + e.message);
+    }
+};
+
+// --- Auth & Logout ---
 window.logout = async () => {
     if(confirm("Logout?")) {
         await signOut(auth);
@@ -162,6 +203,7 @@ window.logout = async () => {
     }
 };
 
+// --- Analysis logic ---
 document.addEventListener("DOMContentLoaded", function(){
     const data = localStorage.getItem("quizResult");
     if(!data) return;
@@ -187,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <td style="font-size: 13px; color: var(--muted); max-width: 300px;">
                 ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
             </td>
-            <td><span class="report-link" onclick="reportQuestion('${q.id}', '${q.class}', '${q.subject}')">Report</span></td>
+            <td><span class="report-link" onclick="openReport('${q.id}', '${q.class}', '${q.subject}')">Report</span></td>
         </tr>`;
     });
     document.getElementById("details").innerHTML = html + "</tbody></table>";
