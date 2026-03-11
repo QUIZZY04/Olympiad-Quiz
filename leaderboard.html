@@ -260,8 +260,9 @@ async function refreshDaily() {
         const snap = await getDocs(q);
         renderDaily(snap, tbody);
     } catch (err) { 
-        tbody.innerHTML = "<tr><td colspan='6'>Error: Create Index in F12 Console.</td></tr>"; 
-    }
+    console.error(err);
+    tbody.innerHTML = "<tr><td colspan='6'>Error loading leaderboard</td></tr>"; 
+}
 }
 
 function renderDaily(snap, tbody) {
@@ -317,5 +318,6 @@ window.logout = function() {
 </script>
 </body>
 </html>
+
 
 
