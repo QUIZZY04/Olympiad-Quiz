@@ -3,15 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Olympiad Portal - Ignite Your Potential</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -26,7 +22,6 @@ overflow-x:hidden;
 }
 
 /* PARTICLES */
-
 #particles-js{
 position:fixed;
 width:100%;
@@ -35,7 +30,6 @@ z-index:-1;
 }
 
 /* NAVBAR */
-
 nav{
 display:flex;
 justify-content:space-between;
@@ -57,16 +51,27 @@ color:#f59e0b;
 .nav-links{
 display:flex;
 gap:25px;
+align-items: center;
 }
 
 .nav-links a{
 text-decoration:none;
 color:white;
 font-weight:500;
+transition: 0.3s;
 }
 
 .nav-links a:hover{
 color:#f59e0b;
+}
+
+/* Styled Sign Up Button */
+.nav-signup {
+    background: #f59e0b;
+    color: #000 !important;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 700 !important;
 }
 
 .menu-icon{
@@ -77,7 +82,6 @@ color:white;
 }
 
 /* HERO */
-
 .hero{
 padding-top:20px;
 padding-bottom:20px;
@@ -104,7 +108,6 @@ margin-bottom:25px;
 }
 
 /* BUTTONS */
-
 .btn-group{
 display:flex;
 gap:20px;
@@ -134,7 +137,6 @@ transform:translateY(-3px);
 }
 
 /* PREPARE FOR */
-
 .prepare{
 padding:30px 10%;
 text-align:center;
@@ -160,10 +162,9 @@ padding:10px;
 border-radius:8px;
 }
 
-/* FEATURES - UPDATED FOR SPACING AND SIZE */
-
+/* FEATURES */
 .features{
-padding:100px 10% 60px 10%; /* Increased top padding to move cards lower */
+padding:100px 10% 60px 10%;
 text-align:center;
 }
 
@@ -176,24 +177,23 @@ gap:25px;
 
 .feature{
 background:#1e293b;
-padding:20px; /* Reduced padding for smaller size */
+padding:20px;
 border-radius:12px;
-width:230px; /* Reduced width to make cards smaller */
+width:230px;
 }
 
 .feature h3{
 color:#f59e0b;
 margin-bottom:10px;
-font-size:18px; /* Slightly smaller heading */
+font-size:18px;
 }
 
 .feature p{
-font-size:14px; /* Slightly smaller text */
+font-size:14px;
 line-height:1.5;
 }
 
 /* FOOTER */
-
 footer{
 text-align:center;
 padding:25px;
@@ -202,13 +202,8 @@ color:#94a3b8;
 }
 
 /* MOBILE HEADER */
-
 @media (max-width:768px){
-
-.menu-icon{
-display:block;
-}
-
+.menu-icon{ display:block; }
 .nav-links{
 display:none;
 position:absolute;
@@ -218,123 +213,112 @@ background:#020617;
 flex-direction:column;
 padding:15px;
 border-radius:8px;
+width: 180px;
 }
-
 .nav-links a{
 display:block;
 padding:10px;
+text-align: center;
 }
-
 }
-
 </style>
-
 </head>
 
 <body>
-
 <div id="particles-js"></div>
 
 <nav>
-
 <div class="logo">🎓 Olympiad Portal</div>
-
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
 <div class="nav-links" id="navLinks">
-<a href="login.html">Login</a>
-<a href="signup.html">Start Free Trial</a>
+    <div id="guestLinks" style="display: flex; gap: 20px; align-items: center;">
+        <a href="login.html">Login</a>
+        <a href="signup.html" class="nav-signup">Sign Up</a>
+    </div>
+    <a id="dashLink" href="dashboard.html" style="display: none;" class="nav-signup">Dashboard</a>
 </div>
-
 </nav>
 
 <section class="hero">
-
 <h1>Master Your <span>Olympiad Skills</span></h1>
-
 <p>
 Prepare for SOF Olympiads, SilverZone Olympiads, NSTSE and Unified Council exams.
 Practice advanced questions, track your performance and compete with students across India.
 </p>
 
 <div class="btn-group">
-
-<a href="signup.html" class="btn btn-primary">
-Go for Live Quiz
-</a>
-
-<a href="signup.html" class="btn btn-primary">
-Daily Practice Quiz
-</a>
-
+<a href="signup.html" class="btn btn-primary">Go for Live Quiz</a>
+<a href="signup.html" class="btn btn-primary">Daily Practice Quiz</a>
 </div>
-
 </section>
 
-
 <section class="prepare">
-
 <h2>Prepare For</h2>
-
 <div class="logo-row">
-
 <img src="images/sof.png" alt="SOF Olympiad">
 <img src="images/silverzone.png" alt="SilverZone Olympiad">
 <img src="images/nstse.png" alt="NSTSE Olympiad">
 <img src="images/unified.png" alt="Unified Council">
-
 </div>
-
 </section>
 
-
 <section class="features">
-
 <h2>Why Choose Olympiad Portal</h2>
-
 <div class="feature-grid">
-
 <div class="feature">
 <h3>Olympiad Level Questions</h3>
 <p>Practice thousands of challenging questions designed for Olympiad exams.</p>
 </div>
-
 <div class="feature">
 <h3>Performance Analytics</h3>
 <p>Track your strengths and improve weak areas with detailed reports.</p>
 </div>
-
 <div class="feature">
 <h3>National Ranking</h3>
 <p>Compare your performance with students across India.</p>
 </div>
-
 <div class="feature">
 <h3>Smart Learning</h3>
 <p>Adaptive quizzes that adjust difficulty automatically.</p>
 </div>
-
 </div>
-
 </section>
 
 <footer>
-
 © 2026 Olympiad Portal • Preparation Redefined
-
 </footer>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+    projectId: "olympiad-portal-d2a5e"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+    const guestLinks = document.getElementById("guestLinks");
+    const dashLink = document.getElementById("dashLink");
+    if (user) {
+        guestLinks.style.display = "none";
+        dashLink.style.display = "block";
+    } else {
+        guestLinks.style.display = "flex";
+        dashLink.style.display = "none";
+    }
+});
+</script>
 
 <script>
-
 function toggleMenu(){
-var menu = document.getElementById("navLinks");
-
-if(menu.style.display === "block"){
-menu.style.display = "none";
-}else{
-menu.style.display = "block";
-}
+    var menu = document.getElementById("navLinks");
+    menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
 
 particlesJS("particles-js",{
@@ -360,8 +344,6 @@ onhover:{enable:true,mode:"grab"}
 }
 }
 });
-
 </script>
-
 </body>
 </html>
