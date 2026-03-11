@@ -41,6 +41,21 @@
       text-align: center;
     }
     .live-quiz-header h2 { font-size: 32px; font-weight: 800; color: var(--amber); margin-bottom: 5px; text-transform: uppercase; }
+    
+    /* HIGH CONTRAST DATE STYLE */
+    .quiz-schedule-badge {
+      background: var(--amber);
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .live-quiz-header p { font-size: 16px; color: var(--muted); margin-bottom: 25px; font-weight: 500; }
     
     .selection-row { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
@@ -67,13 +82,6 @@
     .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
     .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
 
-    .instructions-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 25px; margin-top: 40px; margin-bottom: 60px; overflow: hidden; }
-    .ins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-    .ins-item { display: flex; gap: 15px; align-items: flex-start; }
-    .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; }
-    .ins-text { flex: 1; font-size: 14px; line-height: 1.5; }
-
-    /* MOBILE SPLIT SCREEN FIX */
     @media (max-width: 768px) {
       nav { justify-content: center; }
       .brand { width: 100%; text-align: center; }
@@ -82,24 +90,21 @@
         width: 100%; 
         padding: 15px; 
         margin-bottom: 15px;
-        min-height: auto;
       }
       .live-quiz-header h2 { font-size: 20px; }
+      .quiz-schedule-badge { font-size: 11px; padding: 5px 15px; margin-bottom: 10px; }
       .live-quiz-header p { font-size: 12px; margin-bottom: 10px; }
       .selection-row { flex-direction: row; gap: 10px; margin-bottom: 10px; }
       .field-group { width: 48%; }
-      .field-group label { font-size: 9px; }
-      .field-group select { padding: 6px; font-size: 11px; }
       .timer-clock { font-size: 18px; }
       .btn-detail-ins, .btn-action { padding: 10px; font-size: 11px; margin-bottom: 8px; }
       
       .practice-container { padding: 15px; margin-top: 0; }
       .practice-container h2 { font-size: 18px; margin-bottom: 10px; }
-      .class-selector-wrap { padding: 10px; margin-bottom: 15px; }
       .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .card { padding: 12px; }
       .card h3 { font-size: 14px; }
-      .card p { display: none; } /* Hide descriptions on mobile to save space */
+      .card p { display: none; }
     }
   </style>
 </head>
@@ -119,8 +124,9 @@
   <main class="container">
     <div id="champSection" class="championship-section">
       <div class="live-quiz-header">
+        <div class="quiz-schedule-badge">Scheduled: March 15th, 2026 @ 10:00 AM IST</div>
         <h2>Live Quiz</h2>
-        <p>Select your grade and subject for 15th March Live quiz</p>
+        <p>Choose your subjects for the upcoming Weekly Championship</p>
       </div>
 
       <div class="selection-row">
@@ -148,7 +154,7 @@
       </div>
 
       <button class="btn-detail-ins" onclick="window.location.href='instructions.html'">
-          Detail Instruction of LIVE Quiz
+          Detail Instruction of weekly Quiz
       </button>
 
       <button id="btnChamp" class="btn-action btn-buy" onclick="redirectToPayment()">Loading...</button>
@@ -172,18 +178,6 @@
           <div class="card" onclick="startQuiz('english')"><h3>English</h3><p>Vocabulary and Grammar rules.</p><button class="btn-start">Start</button></div>
           <div class="card" onclick="startQuiz('reasoning')"><h3>Reasoning</h3><p>Patterns, Puzzles, and Logic.</p><button class="btn-start">Start</button></div>
         </div>
-
-        <section class="instructions-section">
-          <h2 style="margin-bottom: 25px;">📘 Detailed Practice Instructions</h2>
-          <div class="ins-grid">
-            <div class="ins-item"><div class="ins-icon">1</div><div class="ins-text"><strong>Navigation:</strong> Use the palette to jump between questions. Green = Answered, Red = Skipped.</div></div>
-            <div class="ins-item"><div class="ins-icon">2</div><div class="ins-text"><strong>Saving:</strong> Click "Save & Next" to lock in your choice. Unsaved answers will not count.</div></div>
-            <div class="ins-item"><div class="ins-icon">3</div><div class="ins-text"><strong>Review:</strong> Use "Mark for Review" to revisit tough questions quickly later.</div></div>
-            <div class="ins-item"><div class="ins-icon">4</div><div class="ins-text"><strong>Auto-Submit:</strong> System submits your paper when the timer expires.</div></div>
-            <div class="ins-item"><div class="ins-icon">5</div><div class="ins-text"><strong>Results:</strong> View scores and explanations immediately after submission.</div></div>
-            <div class="ins-item"><div class="ins-icon">6</div><div class="ins-text"><strong>Stability:</strong> Maintain a stable connection. Refresh to resume if disconnected.</div></div>
-          </div>
-        </section>
     </div>
   </main>
 
@@ -203,7 +197,6 @@
     onAuthStateChanged(auth, (user) => {
         if(!user) { window.location.href="login.html"; return; }
         if(user.email==="madhhu52@gmail.com") document.getElementById("adminTab").style.display="inline";
-        
         loadAvailableSubjects("class6");
         localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
     });
@@ -215,20 +208,15 @@
         onSnapshot(q, (snapshot) => {
             const subjectSelect = document.getElementById("champSubjectSelect");
             subjectSelect.innerHTML = ""; 
-            
             if (snapshot.empty) {
                 const opt = document.createElement("option");
-                opt.value = "";
-                opt.text = "No Tests Found";
+                opt.value = ""; opt.text = "No Tests Found";
                 subjectSelect.appendChild(opt);
-                
                 if (timerInterval) clearInterval(timerInterval);
                 document.getElementById("champTimer").innerText = "00:00:00";
                 document.getElementById("btnChamp").innerText = "No Test Available";
-                document.getElementById("btnChamp").onclick = null;
                 return;
             }
-
             snapshot.forEach((doc) => {
                 const data = doc.data();
                 const opt = document.createElement("option");
@@ -236,7 +224,6 @@
                 opt.text = data.subject.charAt(0).toUpperCase() + data.subject.slice(1);
                 subjectSelect.appendChild(opt);
             });
-
             fetchChampSession(grade, subjectSelect.value);
         });
     }
@@ -244,11 +231,9 @@
     async function fetchChampSession(grade, subject) {
       if (timerInterval) clearInterval(timerInterval);
       if (!subject) return;
-
       const classNum = grade.replace('class', '');
       const subCode = subject.substring(0, 3).toUpperCase();
       const sessId = `2026_03_15_C${classNum}_${subCode}`; 
-      
       const docSnap = await getDoc(doc(db, "test_sessions", sessId));
       if (docSnap.exists()) {
         activeSession = { ...docSnap.data(), id: docSnap.id };
@@ -261,21 +246,14 @@
     function startChampTimer(startTime, isBought) {
       const btn = document.getElementById("btnChamp");
       if (timerInterval) clearInterval(timerInterval);
-      
       timerInterval = setInterval(() => {
         const now = new Date().getTime();
         const diff = startTime - now;
-
         if (isBought) {
-          btn.style.background = "var(--green)";
-          btn.style.color = "#fff";
-          
+          btn.style.background = "var(--green)"; btn.style.color = "#fff";
           if (diff > 0) {
             btn.innerText = "Test Unlocked";
-            btn.onclick = () => {
-                const testDate = "March 15th, 2026";
-                alert(`Success! You have already unlocked the Live Quiz dated ${testDate}. Please come back when the timer reaches zero to start your exam.`);
-            };
+            btn.onclick = () => alert(`Success! You have already unlocked the Live Quiz dated March 15th, 2026. Please return at 10:00 AM IST.`);
           } else {
             btn.innerText = "Join Now";
             btn.onclick = () => {
@@ -285,15 +263,12 @@
             };
           }
         } else {
-          btn.style.background = "var(--amber)";
-          btn.style.color = "#000";
+          btn.style.background = "var(--amber)"; btn.style.color = "#000";
           btn.innerText = `Unlock Test (₹${activeSession ? activeSession.price : '69'})`;
           btn.onclick = () => redirectToPayment();
         }
-
-        if (diff <= 0) {
-            document.getElementById("champTimer").innerText = "LIVE NOW";
-        } else {
+        if (diff <= 0) { document.getElementById("champTimer").innerText = "LIVE NOW"; }
+        else {
             const h = Math.floor(diff / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
@@ -309,23 +284,16 @@
     };
 
     window.startQuiz = (subject) => {
-        const grade = document.getElementById("classSelect").value;
-        localStorage.setItem("selectedClass", grade);
+        localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
         localStorage.setItem("selectedSubject", subject);
         localStorage.setItem("isChampionship", "false");
-        localStorage.removeItem("activeSessionId");
         window.location.href = "quiz.html";
     };
 
     document.getElementById("champGradeSelect").addEventListener("change", (e) => loadAvailableSubjects(e.target.value));
-    document.getElementById("champSubjectSelect").addEventListener("change", (e) => {
-        fetchChampSession(document.getElementById("champGradeSelect").value, e.target.value);
-    });
-    
+    document.getElementById("champSubjectSelect").addEventListener("change", (e) => fetchChampSession(document.getElementById("champGradeSelect").value, e.target.value));
     document.getElementById("classSelect").addEventListener("change", (e) => localStorage.setItem("selectedClass", e.target.value));
-    
     window.logout = () => signOut(auth).then(() => window.location.href="login.html");
   </script>
 </body>
 </html>
-
