@@ -73,13 +73,33 @@
     .ins-icon { background: rgba(245, 158, 11, 0.1); color: var(--amber); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; flex-shrink: 0; }
     .ins-text { flex: 1; font-size: 14px; line-height: 1.5; }
 
+    /* MOBILE SPLIT SCREEN FIX */
     @media (max-width: 768px) {
       nav { justify-content: center; }
       .brand { width: 100%; text-align: center; }
-      .championship-section { width: 95%; padding: 25px; }
-      .selection-row { flex-direction: column; align-items: center; }
-      .field-group { width: 100%; }
-      .practice-container { padding: 20px; }
+      .container { margin: 10px auto; }
+      .championship-section { 
+        width: 100%; 
+        padding: 15px; 
+        margin-bottom: 15px;
+        min-height: auto;
+      }
+      .live-quiz-header h2 { font-size: 20px; }
+      .live-quiz-header p { font-size: 12px; margin-bottom: 10px; }
+      .selection-row { flex-direction: row; gap: 10px; margin-bottom: 10px; }
+      .field-group { width: 48%; }
+      .field-group label { font-size: 9px; }
+      .field-group select { padding: 6px; font-size: 11px; }
+      .timer-clock { font-size: 18px; }
+      .btn-detail-ins, .btn-action { padding: 10px; font-size: 11px; margin-bottom: 8px; }
+      
+      .practice-container { padding: 15px; margin-top: 0; }
+      .practice-container h2 { font-size: 18px; margin-bottom: 10px; }
+      .class-selector-wrap { padding: 10px; margin-bottom: 15px; }
+      .grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .card { padding: 12px; }
+      .card h3 { font-size: 14px; }
+      .card p { display: none; } /* Hide descriptions on mobile to save space */
     }
   </style>
 </head>
@@ -123,7 +143,7 @@
         </div>
       </div>
       
-      <div style="background:#020617; padding:15px 30px; border-radius:12px; border:1px solid var(--border); display: inline-block; margin: 0 auto 30px auto;">
+      <div style="background:#020617; padding:8px 20px; border-radius:12px; border:1px solid var(--border); display: inline-block; margin: 0 auto 15px auto;">
         <p id="champTimer" class="timer-clock">00:00:00</p>
       </div>
 
@@ -135,7 +155,7 @@
     </div>
 
     <div class="practice-container">
-        <h2 style="font-size:24px; font-weight:800; color:#fff; margin-bottom:20px;">📘 Daily Practice Quizzes</h2>
+        <h2 style="font-size:24px; font-weight:800; color:#fff; margin-bottom:20px;">🛡️ Free Quiz</h2>
         <div class="class-selector-wrap">
           <label style="font-weight:800; color:var(--amber);">PRACTICE GRADE (1-10):</label>
           <select id="classSelect">
@@ -154,7 +174,7 @@
         </div>
 
         <section class="instructions-section">
-          <h2 style="margin-bottom: 25px;">📝 Detailed Practice Instructions</h2>
+          <h2 style="margin-bottom: 25px;">📘 Detailed Practice Instructions</h2>
           <div class="ins-grid">
             <div class="ins-item"><div class="ins-icon">1</div><div class="ins-text"><strong>Navigation:</strong> Use the palette to jump between questions. Green = Answered, Red = Skipped.</div></div>
             <div class="ins-item"><div class="ins-icon">2</div><div class="ins-text"><strong>Saving:</strong> Click "Save & Next" to lock in your choice. Unsaved answers will not count.</div></div>
@@ -184,12 +204,10 @@
         if(!user) { window.location.href="login.html"; return; }
         if(user.email==="madhhu52@gmail.com") document.getElementById("adminTab").style.display="inline";
         
-        // Initial setup for default selection
         loadAvailableSubjects("class6");
         localStorage.setItem("selectedClass", document.getElementById("classSelect").value);
     });
 
-    // Dynamic Subject Loader
     function loadAvailableSubjects(grade) {
         const classNum = parseInt(grade.replace('class', ''));
         const q = query(collection(db, "test_sessions"), where("class", "==", classNum), where("status", "==", "upcoming"));
@@ -204,7 +222,6 @@
                 opt.text = "No Tests Found";
                 subjectSelect.appendChild(opt);
                 
-                // Clear state
                 if (timerInterval) clearInterval(timerInterval);
                 document.getElementById("champTimer").innerText = "00:00:00";
                 document.getElementById("btnChamp").innerText = "No Test Available";
@@ -220,7 +237,6 @@
                 subjectSelect.appendChild(opt);
             });
 
-            // Trigger fetch for the first subject in the list
             fetchChampSession(grade, subjectSelect.value);
         });
     }
@@ -231,7 +247,6 @@
 
       const classNum = grade.replace('class', '');
       const subCode = subject.substring(0, 3).toUpperCase();
-      // Constructs dynamic ID based on Subject choice
       const sessId = `2026_03_15_C${classNum}_${subCode}`; 
       
       const docSnap = await getDoc(doc(db, "test_sessions", sessId));
@@ -302,7 +317,6 @@
         window.location.href = "quiz.html";
     };
 
-    // Event Listeners for Dynamic Selection
     document.getElementById("champGradeSelect").addEventListener("change", (e) => loadAvailableSubjects(e.target.value));
     document.getElementById("champSubjectSelect").addEventListener("change", (e) => {
         fetchChampSession(document.getElementById("champGradeSelect").value, e.target.value);
