@@ -9,11 +9,19 @@
 
 <style>
 :root{
---bg:#020617;--surface-champ:#1e293b;--surface-practice:#0f172a;
---card-bg:#1e293b;--text:#f8fafc;--muted:#94a3b8;
---border:#334155;--amber:#f59e0b;--danger:#ef4444;--green:#22c55e;
+--bg:#020617;
+--surface-champ:#1e293b;
+--surface-practice:#0f172a;
+--card-bg:#1e293b;
+--text:#f8fafc;
+--muted:#94a3b8;
+--border:#334155;
+--amber:#f59e0b;
+--danger:#ef4444;
+--green:#22c55e;
 --blue-accent:#3b82f6;
 }
+
 *{box-sizing:border-box;margin:0;padding:0;}
 
 body{
@@ -171,7 +179,11 @@ transition:0.3s;
 margin:0 auto;
 }
 
-.btn-buy{background:var(--amber);color:#000;margin-top:10px;}
+.btn-buy{
+background:var(--amber);
+color:#000;
+margin-top:10px;
+}
 
 .btn-detail-ins{
 background:var(--blue-accent);
@@ -186,7 +198,6 @@ cursor:pointer;
 margin-bottom:15px;
 width:100%;
 max-width:320px;
-transition:0.2s;
 box-shadow:0 4px 6px rgba(0,0,0,0.2);
 margin:0 auto 15px auto;
 }
@@ -234,7 +245,6 @@ border:1px solid var(--border);
 border-radius:12px;
 padding:20px;
 cursor:pointer;
-transition:0.2s;
 display:flex;
 flex-direction:column;
 justify-content:space-between;
@@ -252,61 +262,6 @@ text-transform:uppercase;
 font-size:11px;
 cursor:pointer;
 }
-
-@media (max-width:768px){
-
-nav{justify-content:center;}
-.brand{width:100%;text-align:center;}
-
-.container{margin:10px auto;}
-
-.championship-section{
-width:100%;
-padding:15px;
-margin-bottom:15px;
-}
-
-.live-quiz-header h2{font-size:20px;}
-
-.quiz-schedule-badge{
-font-size:11px;
-padding:5px 15px;
-margin-bottom:10px;
-}
-
-.live-quiz-header p{
-font-size:12px;
-margin-bottom:10px;
-}
-
-.selection-row{
-flex-direction:row;
-gap:10px;
-margin-bottom:10px;
-}
-
-.field-group{width:48%;}
-
-.timer-clock{font-size:18px;}
-
-.btn-detail-ins,.btn-action{
-padding:10px;
-font-size:11px;
-margin-bottom:8px;
-}
-
-.practice-container{padding:15px;margin-top:0;}
-
-.practice-container h2{font-size:18px;margin-bottom:10px;}
-
-.grid{grid-template-columns:1fr 1fr;gap:10px;}
-
-.card{padding:12px;}
-
-.card h3{font-size:14px;}
-
-.card p{display:none;}
-}
 </style>
 </head>
 
@@ -314,7 +269,6 @@ margin-bottom:8px;
 
 <nav>
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-
 <div class="nav-links">
 <a href="index.html">Home</a>
 <a href="dashboard.html" style="color:var(--amber);">Dashboard</a>
@@ -418,24 +372,15 @@ Detail Instruction of weekly Quiz
 
 </div>
 
-<!-- FREE QUIZ INSTRUCTION BOX -->
-
 <div style="margin-top:20px;background:#020617;border:1px solid var(--border);border-radius:12px;padding:18px;color:#94a3b8;line-height:1.6;">
-
-<h3 style="color:var(--amber);font-size:18px;margin-bottom:10px;font-weight:800;">
-📘 Free Quiz – Rules & Instructions
-</h3>
-
+<h3 style="color:var(--amber);font-size:18px;margin-bottom:10px;font-weight:800;">📘 Free Quiz – Rules & Instructions</h3>
 <ul style="padding-left:18px;font-size:13px;">
 <li>Select your practice grade from the dropdown above.</li>
-<li>Click any subject card (Maths, Science, English, or Reasoning) to start the quiz.</li>
-<li>Each quiz contains Olympiad-level practice questions designed for learning.</li>
-<li>Read each question carefully before selecting your answer.</li>
-<li>You may attempt the Free Quiz multiple times for practice.</li>
-<li>Your score will be displayed immediately after finishing the quiz.</li>
-<li>Use these quizzes regularly to strengthen your Olympiad preparation.</li>
+<li>Click any subject card to start the quiz.</li>
+<li>Each quiz contains Olympiad-level practice questions.</li>
+<li>You can attempt Free Quiz multiple times.</li>
+<li>Your score appears immediately after submission.</li>
 </ul>
-
 </div>
 
 </div>
@@ -443,16 +388,11 @@ Detail Instruction of weekly Quiz
 </main>
 
 <footer style="text-align:center;padding:20px;background:#0a3d62;color:white;margin-top:40px;">
-
 <a href="about.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">About Us</a> |
 <a href="contact.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Contact Us</a> |
 <a href="privacy-policy.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Privacy Policy</a> |
 <a href="term.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Terms & Conditions</a>
-
-<p style="margin-top:12px;font-size:14px;">
-© 2026 Olympiad Quiz. All rights reserved.
-</p>
-
+<p style="margin-top:12px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
 </footer>
 
 </body>
