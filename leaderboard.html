@@ -223,11 +223,13 @@ function logout(){
 </script>
 
 onAuthStateChanged(auth, (user) => {
-  if (!user) window.location.href = "login.html";
-  else {
-      refreshWeekly();
-      refreshDaily();
-  }
+    if (!user) {
+        window.location.replace("login.html");
+        return;
+    }
+
+    refreshWeekly();
+    refreshDaily();
 });
 
 // WEEKLY LOGIC
@@ -343,6 +345,7 @@ window.logout = function() {
 </footer>
 </body>
 </html>
+
 
 
 
