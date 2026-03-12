@@ -1,268 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Dashboard - Olympiad Portal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Dashboard - Olympiad Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:#020617; --surface-champ:#1e293b; --surface-practice:#0f172a; 
+      --card-bg:#1e293b; --text:#f8fafc; --muted:#94a3b8;
+      --border:#334155; --amber:#f59e0b; --danger:#ef4444; --green:#22c55e;
+      --blue-accent: #3b82f6;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; overflow-x: hidden; }
+    
+    nav{ 
+      background:var(--surface-champ); border-bottom:2px solid var(--border); 
+      padding:12px 5%; display:flex; align-items:center; justify-content:space-between; 
+      position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+    }
+    .brand{ font-size:20px; font-weight:800; color:var(--amber); text-decoration:none; white-space: nowrap; }
+    .nav-links{ display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+    .nav-links a{ color:#ffffff; text-decoration:none; font-size:11px; font-weight:800; text-transform:uppercase; }
 
-<style>
-:root{
---bg:#020617;
---surface-champ:#1e293b;
---surface-practice:#0f172a;
---card-bg:#1e293b;
---text:#f8fafc;
---muted:#94a3b8;
---border:#334155;
---amber:#f59e0b;
---danger:#ef4444;
---green:#22c55e;
---blue-accent:#3b82f6;
-}
+    .container{ width:100%; max-width:1400px; margin:20px auto; padding:0 15px; flex:1; }
 
-*{box-sizing:border-box;margin:0;padding:0;}
+    .championship-section { 
+      background: var(--surface-champ); 
+      border: 3px solid var(--amber); 
+      border-radius: 12px; 
+      margin: 0 auto 40px auto; 
+      width: 100%; 
+      max-width: 850px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+      display: flex; 
+      flex-direction: column; 
+      padding: 35px;
+      text-align: center;
+    }
+    .live-quiz-header h2 { font-size: 32px; font-weight: 800; color: var(--amber); margin-bottom: 5px; text-transform: uppercase; }
+    
+    .quiz-schedule-badge {
+      background: var(--amber);
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 14px;
+      display: inline-block;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-body{
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text);
-display:flex;
-flex-direction:column;
-min-height:100vh;
-overflow-x:hidden;
-}
+    .live-quiz-header p { font-size: 16px; color: var(--muted); margin-bottom: 25px; font-weight: 500; }
+    
+    .selection-row { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
+    .field-group { display: flex; flex-direction: column; align-items: flex-start; width: 220px; }
+    .field-group label { font-size: 10px; font-weight: 800; color: var(--amber); margin-bottom: 5px; letter-spacing: 1px; }
+    .field-group select { 
+      width: 100%; background: #0f172a; color: white; border: 1px solid var(--amber); 
+      padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
 
-nav{
-background:var(--surface-champ);
-border-bottom:2px solid var(--border);
-padding:12px 5%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-position:sticky;
-top:0;
-z-index:1000;
-flex-wrap:wrap;
-gap:10px;
-}
+    .timer-clock { font-size: 28px; font-weight: 800; color: var(--amber); font-family: monospace; letter-spacing: 2px; }
+    .btn-action { width: 100%; max-width: 320px; padding: 15px; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: 13px; border: none; cursor: pointer; transition: 0.3s; margin: 0 auto; }
+    .btn-buy { background: var(--amber); color: #000; margin-top: 10px; }
 
-.brand{
-font-size:20px;
-font-weight:800;
-color:var(--amber);
-text-decoration:none;
-white-space:nowrap;
-}
+    .btn-detail-ins {
+      background: var(--blue-accent); color: white; border: none; padding: 14px; border-radius: 10px; font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; width: 100%; max-width: 320px; transition: 0.2s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); margin: 0 auto 15px auto;
+    }
 
-.nav-links{
-display:flex;
-gap:12px;
-align-items:center;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.nav-links a{
-color:#fff;
-text-decoration:none;
-font-size:11px;
-font-weight:800;
-text-transform:uppercase;
-}
-
-.container{
-width:100%;
-max-width:1400px;
-margin:20px auto;
-padding:0 15px;
-flex:1;
-}
-
-.championship-section{
-background:var(--surface-champ);
-border:3px solid var(--amber);
-border-radius:12px;
-margin:0 auto 40px auto;
-width:100%;
-max-width:850px;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-display:flex;
-flex-direction:column;
-padding:35px;
-text-align:center;
-}
-
-.live-quiz-header h2{
-font-size:32px;
-font-weight:800;
-color:var(--amber);
-margin-bottom:5px;
-text-transform:uppercase;
-}
-
-.quiz-schedule-badge{
-background:var(--amber);
-color:#000;
-padding:8px 20px;
-border-radius:50px;
-font-weight:800;
-font-size:14px;
-display:inline-block;
-margin-bottom:15px;
-text-transform:uppercase;
-letter-spacing:1px;
-}
-
-.live-quiz-header p{
-font-size:16px;
-color:var(--muted);
-margin-bottom:25px;
-font-weight:500;
-}
-
-.selection-row{
-display:flex;
-justify-content:center;
-gap:20px;
-margin-bottom:25px;
-flex-wrap:wrap;
-}
-
-.field-group{
-display:flex;
-flex-direction:column;
-align-items:flex-start;
-width:220px;
-}
-
-.field-group label{
-font-size:10px;
-font-weight:800;
-color:var(--amber);
-margin-bottom:5px;
-letter-spacing:1px;
-}
-
-.field-group select{
-width:100%;
-background:#0f172a;
-color:white;
-border:1px solid var(--amber);
-padding:10px;
-border-radius:8px;
-font-size:13px;
-font-weight:600;
-cursor:pointer;
-}
-
-.timer-clock{
-font-size:28px;
-font-weight:800;
-color:var(--amber);
-font-family:monospace;
-letter-spacing:2px;
-}
-
-.btn-action{
-width:100%;
-max-width:320px;
-padding:15px;
-border-radius:10px;
-font-weight:800;
-text-transform:uppercase;
-font-size:13px;
-border:none;
-cursor:pointer;
-transition:0.3s;
-margin:0 auto;
-}
-
-.btn-buy{
-background:var(--amber);
-color:#000;
-margin-top:10px;
-}
-
-.btn-detail-ins{
-background:var(--blue-accent);
-color:white;
-border:none;
-padding:14px;
-border-radius:10px;
-font-size:13px;
-font-weight:800;
-text-transform:uppercase;
-cursor:pointer;
-margin-bottom:15px;
-width:100%;
-max-width:320px;
-box-shadow:0 4px 6px rgba(0,0,0,0.2);
-margin:0 auto 15px auto;
-}
-
-.practice-container{
-background:var(--surface-practice);
-padding:30px;
-border-radius:16px;
-border:1px solid var(--border);
-margin-top:20px;
-}
-
-.class-selector-wrap{
-background:rgba(255,255,255,0.03);
-border:1px solid var(--border);
-padding:15px;
-border-radius:12px;
-margin-bottom:25px;
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-select#classSelect{
-background:var(--bg);
-color:white;
-border:1px solid var(--border);
-padding:10px;
-border-radius:8px;
-flex:1;
-font-size:13px;
-cursor:pointer;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:15px;
-margin-bottom:20px;
-}
-
-.card{
-background:var(--card-bg);
-border:1px solid var(--border);
-border-radius:12px;
-padding:20px;
-cursor:pointer;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-}
-
-.btn-start{
-background:var(--amber);
-color:#000;
-border:none;
-padding:10px;
-border-radius:6px;
-font-weight:800;
-width:100%;
-text-transform:uppercase;
-font-size:11px;
-cursor:pointer;
-}
-</style>
+    .practice-container { background: var(--surface-practice); padding: 30px; border-radius: 16px; border: 1px solid var(--border); margin-top: 20px; }
+    .class-selector-wrap { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); padding: 15px; border-radius: 12px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+    select#classSelect { background: var(--bg); color: white; border: 1px solid var(--border); padding: 10px; border-radius: 8px; flex: 1; font-size: 13px; cursor: pointer; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 40px; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+    .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
+  </style>
 </head>
 
 <body>
@@ -311,7 +129,7 @@ cursor:pointer;
 
 </div>
 
-<div style="background:#020617;padding:8px 20px;border-radius:12px;border:1px solid var(--border);display:inline-block;margin:0 auto 15px auto;">
+<div style="background:#020617; padding:8px 20px; border-radius:12px; border:1px solid var(--border); display:inline-block; margin:0 auto 15px auto;">
 <p id="champTimer" class="timer-clock">00:00:00</p>
 </div>
 
@@ -372,20 +190,174 @@ Detail Instruction of weekly Quiz
 
 </div>
 
-<div style="margin-top:20px;background:#020617;border:1px solid var(--border);border-radius:12px;padding:18px;color:#94a3b8;line-height:1.6;">
-<h3 style="color:var(--amber);font-size:18px;margin-bottom:10px;font-weight:800;">📘 Free Quiz – Rules & Instructions</h3>
-<ul style="padding-left:18px;font-size:13px;">
-<li>Select your practice grade from the dropdown above.</li>
-<li>Click any subject card to start the quiz.</li>
-<li>Each quiz contains Olympiad-level practice questions.</li>
-<li>You can attempt Free Quiz multiple times.</li>
-<li>Your score appears immediately after submission.</li>
-</ul>
-</div>
-
 </div>
 
 </main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore,doc,getDoc,collection,query,where,onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",authDomain:"olympiad-portal-d2a5e.firebaseapp.com",projectId:"olympiad-portal-d2a5e",storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",messagingSenderId:"341855557503",appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+let activeSession=null;
+let timerInterval=null;
+
+onAuthStateChanged(auth,(user)=>{
+if(!user){window.location.href="login.html";return;}
+if(user.email==="madhhu52@gmail.com")document.getElementById("adminTab").style.display="inline";
+loadAvailableSubjects("class6");
+localStorage.setItem("selectedClass",document.getElementById("classSelect").value);
+});
+
+function loadAvailableSubjects(grade){
+
+const classNum=parseInt(grade.replace('class',''));
+
+const q=query(collection(db,"test_sessions"),
+where("class","==",classNum),
+where("status","==","upcoming"));
+
+onSnapshot(q,(snapshot)=>{
+
+const subjectSelect=document.getElementById("champSubjectSelect");
+subjectSelect.innerHTML="";
+
+if(snapshot.empty){
+const opt=document.createElement("option");
+opt.value="";
+opt.text="No Tests Found";
+subjectSelect.appendChild(opt);
+document.getElementById("btnChamp").innerText="No Test Available";
+return;
+}
+
+snapshot.forEach((doc)=>{
+const data=doc.data();
+const opt=document.createElement("option");
+opt.value=data.subject;
+opt.text=data.subject.charAt(0).toUpperCase()+data.subject.slice(1);
+subjectSelect.appendChild(opt);
+});
+
+if(subjectSelect.value){
+fetchChampSession(grade,subjectSelect.value);
+}
+
+});
+
+}
+
+async function fetchChampSession(grade,subject){
+
+if(timerInterval)clearInterval(timerInterval);
+if(!subject)return;
+
+const classNum=grade.replace('class','');
+const subCode=subject.substring(0,3).toUpperCase();
+
+const sessId=`2026_03_15_C${classNum}_${subCode}`;
+
+const docSnap=await getDoc(doc(db,"test_sessions",sessId));
+
+if(docSnap.exists()){
+
+activeSession={...docSnap.data(),id:docSnap.id};
+
+const purchaseRef=doc(db,"users",auth.currentUser.uid,"purchases",sessId);
+const purchaseSnap=await getDoc(purchaseRef);
+
+startChampTimer(activeSession.startTime.toDate(),purchaseSnap.exists());
+
+}
+
+}
+
+function startChampTimer(startTime,isBought){
+
+const btn=document.getElementById("btnChamp");
+
+if(timerInterval)clearInterval(timerInterval);
+
+timerInterval=setInterval(()=>{
+
+const now=new Date().getTime();
+const diff=startTime-now;
+
+if(isBought){
+
+btn.style.background="var(--green)";
+btn.style.color="#fff";
+
+if(diff>0){
+
+btn.innerText="Test Unlocked";
+
+btn.onclick=()=>alert("You already unlocked this test.");
+
+}else{
+
+btn.innerText="Join Now";
+
+btn.onclick=()=>{
+localStorage.setItem("isChampionship","true");
+localStorage.setItem("activeSessionId",activeSession.id);
+window.location.href="quiz.html";
+};
+
+}
+
+}else{
+
+btn.style.background="var(--amber)";
+btn.style.color="#000";
+
+btn.innerText=`Unlock Test (₹${activeSession?activeSession.price:'69'})`;
+
+btn.onclick=()=>redirectToPayment();
+
+}
+
+if(diff<=0){
+document.getElementById("champTimer").innerText="LIVE NOW";
+}else{
+
+const h=Math.floor(diff/(1000*60*60));
+const m=Math.floor((diff%(1000*60*60))/(1000*60));
+const s=Math.floor((diff%(1000*60))/1000);
+
+document.getElementById("champTimer").innerText=`${h}:${m<10?'0'+m:m}:${s<10?'0'+s:s}`;
+
+}
+
+},1000);
+
+}
+
+window.redirectToPayment=function(){
+if(!activeSession){alert("Please select subject");return;}
+localStorage.setItem("activeSessionId",activeSession.id);
+window.open("https://rzp.io/rzp/7taxCnr","_blank");
+};
+
+window.startQuiz=(subject)=>{
+localStorage.setItem("selectedClass",document.getElementById("classSelect").value);
+localStorage.setItem("selectedSubject",subject);
+localStorage.setItem("isChampionship","false");
+window.location.href="quiz.html";
+};
+
+document.getElementById("champGradeSelect").addEventListener("change",(e)=>loadAvailableSubjects(e.target.value));
+document.getElementById("champSubjectSelect").addEventListener("change",(e)=>fetchChampSession(document.getElementById("champGradeSelect").value,e.target.value));
+document.getElementById("classSelect").addEventListener("change",(e)=>localStorage.setItem("selectedClass",e.target.value));
+window.logout=()=>signOut(auth).then(()=>window.location.href="login.html");
+
+</script>
 
 <footer style="text-align:center;padding:20px;background:#0a3d62;color:white;margin-top:40px;">
 <a href="about.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">About Us</a> |
