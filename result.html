@@ -54,8 +54,7 @@ background:#1e293b;
 border-bottom:2px solid var(--border);
 padding:12px 40px;
 display:flex;
-align-items:center;
-justify-content:space-between;
+align-items:center; justify-content:space-between;
 }
 
 .brand{
@@ -105,19 +104,68 @@ font-weight:700;
 font-size:12px;
 }
 
-.correct-row{background:rgba(34,197,94,0.1);}
-.wrong-row{background:rgba(239,68,68,0.1);}
+.correct-row{background:rgba(34,197,94,0.05);}
+.wrong-row{background:rgba(239,68,68,0.05);}
 
 .status-badge{
 font-weight:800;
 text-transform:uppercase;
 font-size:11px;
-padding:4px 8px;
-border-radius:4px;
+padding:6px 10px;
+border-radius:6px;
+white-space: nowrap;
 }
 
-.status-correct{color:var(--accent);}
-.status-wrong{color:var(--danger);}
+.status-correct{color:var(--accent); background: rgba(34, 197, 94, 0.1);}
+.status-wrong{color:var(--danger); background: rgba(239, 68, 68, 0.1);}
+
+/* IMPROVED SOLUTION BOX STYLING */
+.sol-box {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 12px;
+    border-radius: 10px;
+    border-left: 4px solid var(--brand);
+}
+
+.sol-item {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.sol-label {
+    color: var(--brand);
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* IMPROVED REPORT BUTTON STYLING */
+.report-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.report-btn:hover {
+    border-color: var(--amber);
+    color: var(--amber);
+    background: rgba(245, 158, 11, 0.15);
+    transform: translateY(-2px);
+}
 
 .action-btn{
 padding:16px 32px;
@@ -132,16 +180,6 @@ transition:0.2s;
 
 .quiz-btn{background:var(--amber);color:#000;}
 
-.report-link{
-color:var(--muted);
-font-size:11px;
-cursor:pointer;
-text-decoration:underline;
-display:block;
-margin-top:5px;
-}
-
-/* Modal Overlay Styles */
 .modal-overlay{
 display:none;
 position:fixed;
@@ -257,7 +295,6 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
 
-// Global UI Handlers
 window.logout=async()=>{
     if(confirm("Logout?")){
         await signOut(auth);
@@ -347,7 +384,7 @@ document.addEventListener("DOMContentLoaded",function(){
     `;
 
     let html=`<h2 style="margin:40px 0 20px 0;font-weight:800;">DETAILED ANALYSIS</h2>
-    <table><thead><tr><th>#</th><th>Question</th><th>Your Ans</th><th>Correct Ans</th><th>Status</th><th>Solution</th><th>Report</th></tr></thead><tbody>`;
+    <table><thead><tr><th>#</th><th>Question</th><th>Your Ans</th><th>Correct Ans</th><th>Status</th><th>Solution</th><th style="text-align:center;">Action</th></tr></thead><tbody>`;
 
     res.questions.forEach((q,i)=>{
         const userAns = answersArray[i] ?? null;
@@ -355,15 +392,22 @@ document.addEventListener("DOMContentLoaded",function(){
 
         html+=`<tr class="${isCorrect?'correct-row':'wrong-row'}">
             <td>${i+1}</td>
-            <td style="min-width:250px;">${q.q}</td>
-            <td>${userAns!==null ? q.o[userAns] : "Not Attempted"}</td>
-            <td style="color:var(--accent);font-weight:600;">${q.o[q.a]}</td>
+            <td style="min-width: 250px; font-weight: 500;">${q.q}</td>
+            <td style="font-weight: 700;">${userAns!==null ? q.o[userAns] : "Not Attempted"}</td>
+            <td style="color:var(--accent);font-weight:800;">${q.o[q.a]}</td>
             <td><span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span></td>
-            <td style="font-size:13px;color:var(--muted);max-width:300px;">
-                ${!isCorrect ? `<strong>Hint:</strong> ${q.hint || "N/A"}<br><strong>Sol:</strong> ${q.sol || "N/A"}` : "—"}
-            </td>
             <td>
-                <span class="report-link" onclick="openReport('${q.id}', '${res.class}', '${res.subject}')">Report</span>
+                <div class="sol-box">
+                    <span class="sol-label">Hint</span>
+                    <div class="sol-item">${q.hint || "N/A"}</div>
+                    <span class="sol-label" style="margin-top:8px;">Solution</span>
+                    <div class="sol-item">${q.sol || "N/A"}</div>
+                </div>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">
+                <div class="report-btn" onclick="openReport('${q.id}', '${res.class}', '${res.subject}')">
+                    <span>Flag</span> 🚩
+                </div>
             </td>
         </tr>`;
     });
