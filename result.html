@@ -119,7 +119,6 @@ white-space: nowrap;
 .status-correct{color:var(--accent); background: rgba(34, 197, 94, 0.1);}
 .status-wrong{color:var(--danger); background: rgba(239, 68, 68, 0.1);}
 
-/* IMPROVED SOLUTION BOX STYLING */
 .sol-box {
     background: rgba(0, 0, 0, 0.25);
     padding: 12px;
@@ -142,7 +141,6 @@ white-space: nowrap;
     margin-bottom: 2px;
 }
 
-/* IMPROVED REPORT BUTTON STYLING */
 .report-btn {
     display: inline-flex;
     align-items: center;
@@ -383,7 +381,14 @@ document.addEventListener("DOMContentLoaded",function(){
         <h3 style="color:var(--muted);font-size:14px;">Accuracy: ${accuracy}%</h3>
     `;
 
-    let html=`<h2 style="margin:40px 0 20px 0;font-weight:800;">DETAILED ANALYSIS</h2>
+    // Updated Header with high-contrast instruction box
+    let html=`
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin: 40px 0 20px 0; flex-wrap: wrap; gap: 15px;">
+        <h2 style="font-weight: 800; margin: 0;">DETAILED ANALYSIS</h2>
+        <div style="background: rgba(56, 189, 248, 0.1); border-left: 4px solid var(--brand); padding: 10px 20px; border-radius: 8px; font-size: 13px; color: var(--text); max-width: 600px; line-height: 1.5;">
+            💡 If there are any discrepancies in the quiz, report to the admin by clicking on the <strong>Flag</strong> button next to the question.
+        </div>
+    </div>
     <table><thead><tr><th>#</th><th>Question</th><th>Your Ans</th><th>Correct Ans</th><th>Status</th><th>Solution</th><th style="text-align:center;">Action</th></tr></thead><tbody>`;
 
     res.questions.forEach((q,i)=>{
