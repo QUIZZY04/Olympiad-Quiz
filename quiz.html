@@ -30,6 +30,7 @@ overflow-x:hidden;
 header.top-bar{z-index:1000; background:#1e293b; border-bottom:2px solid var(--border); padding:15px 40px; display:flex; align-items:center; justify-content:space-between;}
 .brand{font-size:18px; font-weight:800; color:var(--amber); text-decoration:none;}
 #timerWrap{margin-top:10px; padding:6px 15px; border-radius:8px; background:rgba(245,158,11,0.1); color:var(--amber); border:1px solid var(--amber); font-weight:800; font-size:1rem;}
+
 .quiz-container{
 display:flex;
 gap:15px;
@@ -37,8 +38,10 @@ padding:15px;
 max-width:1400px;
 width:100%;
 margin:0 auto;
+padding-bottom: 80px; /* Buffer for footer on mobile */
 min-height:calc(100vh - 140px);
 }
+
 .section{
 background:var(--surface);
 border:1px solid var(--border);
@@ -61,7 +64,6 @@ height:100%;
 .grid{display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-top:8px; margin-bottom:15px; width:100%;}
 .cell{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:6px; border:1px solid var(--border); cursor:pointer; font-weight:700; font-size:12px;}
 
-/* Legend and Cell Colors from Screenshot */
 .cell.current, .legend-current { background: #2563eb !important; color: white !important; }
 .cell.answered, .legend-answered { background: #16a34a !important; color: white !important; }
 .cell.visited, .legend-visited { background: #dc2626 !important; color: white !important; }
@@ -71,11 +73,21 @@ height:100%;
 .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: #ffffff; }
 .legend-box { width: 14px; height: 14px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 8px; color: white; }
 
+footer {
+  text-align:center;
+  padding:30px 20px;
+  background:#020617;
+  color:white;
+  margin-top:40px;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
 @media (max-width:850px){
 html,body{overflow:auto;height:auto}
 .utility-nav{padding:10px 15px;gap:15px;justify-content:center}
 header.top-bar{padding:10px 15px}
-.quiz-container{flex-direction:column;height:auto;padding:10px;gap:10px}
+.quiz-container{flex-direction:column;height:auto;padding:10px;gap:10px; padding-bottom:40px;}
 .question-section,.navigation-section{width:100%;flex:none}
 .btn{padding:8px 4px;font-size:12px !important;height:38px}
 .grid{grid-template-columns:repeat(auto-fill,minmax(45px,1fr))}
@@ -93,7 +105,9 @@ header.top-bar{padding:10px 15px}
 <main class="quiz-container">
 <section class="question-section section">
 <div style="display:flex;justify-content:space-between;"><span id="displaySubject">Progress</span><span id="progressPercent">0%</span></div>
-<div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
+<div style="width:100%; height:8px; background:#0f172a; border-radius:4px; margin-top:8px; overflow:hidden;">
+    <div id="progressBar" style="width:0%; height:100%; background:var(--accent); transition:0.3s;"></div>
+</div>
 <div id="questionNumber" style="margin-top:15px; font-weight:800; color:var(--brand);">QUESTION 1</div>
 <div id="questionText" style="margin-top:10px;">Loading...</div>
 <div class="options" id="options"></div>
@@ -114,6 +128,7 @@ header.top-bar{padding:10px 15px}
 </div>
 </aside>
 </main>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -155,7 +170,10 @@ document.getElementById("displaySubject").innerText=`${sSub.toUpperCase()} - GRA
 
 const q=query(collection(db,"questions"), where("class","==",sClass), where("subject","==",sSub));
 const snap=await getDocs(q);
-questions=snap.docs.map(d=>d.data());
+questions=snap.docs.map(d=> {
+    const data = d.data();
+    return { ...data, id: d.id }; 
+});
 if(questions.length>30) questions=questions.slice(0,30);
 
 selectedAnswers=new Array(questions.length).fill(null);
@@ -211,40 +229,54 @@ if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 }
 
 async function submitQuiz(){
-if(quizSubmitted)return; quizSubmitted=true;
-let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i]==q.a)score++; });
-await addDoc(collection(db,"leaderboard"),{
-email:auth.currentUser.email, uid:auth.currentUser.uid, score:score, total:questions.length,
-accuracy:((score/questions.length)*100).toFixed(2), date:serverTimestamp(),
-isChampionship:isChampionship, subject:localStorage.getItem("selectedSubject"), class:localStorage.getItem("selectedClass")
-});
-window.location.href="result.html";
+    if(quizSubmitted)return; 
+    quizSubmitted=true;
+    let score=0; 
+    questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+
+    // RE-ESTABLISHED DATA BRIDGE FOR RESULT PAGE
+    const resultData = {
+        score: score,
+        total: questions.length,
+        questions: questions,
+        answers: selectedAnswers,
+        subject: localStorage.getItem("selectedSubject"),
+        class: localStorage.getItem("selectedClass")
+    };
+    localStorage.setItem("quizResult", JSON.stringify(resultData));
+
+    try {
+        await addDoc(collection(db,"leaderboard"),{
+            email:auth.currentUser.email, 
+            uid:auth.currentUser.uid, 
+            score:score, 
+            total:questions.length,
+            accuracy:((score/questions.length)*100).toFixed(2), 
+            date:serverTimestamp(),
+            isChampionship:isChampionship, 
+            subject:localStorage.getItem("selectedSubject"), 
+            studentClass:localStorage.getItem("selectedClass")
+        });
+        window.location.href="result.html";
+    } catch(e) {
+        window.location.href="result.html";
+    }
 }
 
 window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("login.html"); } };
-
-// Bind functions to window for onclick
 window.nextQuestion = nextQuestion; window.prevQuestion = prevQuestion;
 window.jumpTo = jumpTo; window.saveAnswer = saveAnswer;
 window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
 </script>
-  <footer style="text-align:center;padding:20px;background:#0a3d62;color:white;margin-top:40px;">
 
-<a href="about.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">About Us</a> |
-
-<a href="contact.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Contact Us</a> |
-
-<a href="privacy-policy.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Privacy Policy</a> |
-
-<a href="term.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Terms & Conditions</a>
-
-<p style="margin-top:12px;font-size:14px;">
-© 2026 Olympiad Quiz. All rights reserved.
-</p>
-
+<footer>
+    <div style="margin-bottom: 15px;">
+        <a href="about.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;font-size:12px;">About Us</a> |
+        <a href="contact.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;font-size:12px;">Contact Us</a> |
+        <a href="privacy-policy.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;font-size:12px;">Privacy Policy</a> |
+        <a href="term.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;font-size:12px;">Terms & Conditions</a>
+    </div>
+    <p style="font-size:12px; opacity: 0.8;">© 2026 Olympiad Quiz. All rights reserved.</p>
 </footer>
 </body>
 </html>
-
-
-
