@@ -16,6 +16,9 @@
     *{box-sizing:border-box;margin:0;padding:0;}
     body{ font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; overflow-x: hidden; }
     
+    /* Utility class to hide the session when not in use */
+    .hidden-session { display: none !important; }
+
     nav{ 
       background:var(--surface-champ); border-bottom:2px solid var(--border); 
       padding:12px 5%; display:flex; align-items:center; justify-content:space-between; 
@@ -80,73 +83,23 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 40px; }
     .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
     .btn-start { background: var(--amber); color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: 800; width: 100%; text-transform: uppercase; font-size: 11px; cursor: pointer; }
+    
     @media (max-width:768px){
-
-.championship-section{
-  padding:15px;
-  margin-bottom:10px;
-}
-
-.live-quiz-header h2{
-  font-size:20px;
-}
-
-.live-quiz-header p{
-  font-size:12px;
-  margin-bottom:10px;
-}
-
-.quiz-schedule-badge{
-  font-size:11px;
-  padding:5px 15px;
-  margin-bottom:10px;
-}
-
-.selection-row{
-  gap:10px;
-  margin-bottom:10px;
-}
-
-.field-group{
-  width:48%;
-}
-
-.timer-clock{
-  font-size:18px;
-}
-
-.btn-detail-ins{
-  padding:10px;
-  font-size:11px;
-}
-
-.btn-action{
-  padding:10px;
-  font-size:11px;
-}
-
-.practice-container{
-  padding:15px;
-}
-
-.grid{
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.card{
-  padding:12px;
-}
-
-.card h3{
-  font-size:14px;
-}
-
-.card p{
-  display:none;
-}
-
-}
+      .championship-section{ padding:15px; margin-bottom:10px; }
+      .live-quiz-header h2{ font-size:20px; }
+      .live-quiz-header p{ font-size:12px; margin-bottom:10px; }
+      .quiz-schedule-badge{ font-size:11px; padding:5px 15px; margin-bottom:10px; }
+      .selection-row{ gap:10px; margin-bottom:10px; }
+      .field-group{ width:48%; }
+      .timer-clock{ font-size:18px; }
+      .btn-detail-ins{ padding:10px; font-size:11px; }
+      .btn-action{ padding:10px; font-size:11px; }
+      .practice-container{ padding:15px; }
+      .grid{ grid-template-columns:1fr 1fr; gap:10px; }
+      .card{ padding:12px; }
+      .card h3{ font-size:14px; }
+      .card p{ display:none; }
+    }
   </style>
 </head>
 
@@ -165,7 +118,7 @@
 
 <main class="container">
 
-<div id="champSection" class="championship-section">
+<div id="champSection" class="championship-section hidden-session">
 
 <div class="live-quiz-header">
 <div class="quiz-schedule-badge">Scheduled: March 15th, 2026 @ 10:00 AM IST</div>
@@ -453,6 +406,3 @@ window.logout=()=>signOut(auth).then(()=>window.location.href="login.html");
 
 </body>
 </html>
-
-
-
