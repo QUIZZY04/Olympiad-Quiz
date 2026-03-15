@@ -3,213 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olympiad Portal - Ignite Your Potential</title>
+<title>Olympiad Portal - Master Your Future</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+:root {
+  --bg: #020617;
+  --surface: #0f172a;
+  --card-bg: #1e293b;
+  --amber: #f59e0b;
+  --blue: #3b82f6;
+  --green: #10b981;
+  --text: #f8fafc;
+  --muted: #94a3b8;
 }
 
-body{
-background:#0f172a;
-color:white;
-overflow-x:hidden;
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body{ background: var(--bg); color: var(--text); overflow-x:hidden; line-height: 1.6; }
+
+#particles-js { position:fixed; width:100%; height:100%; z-index:-1; }
+
+/* NAVIGATION */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 8%; background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.logo { font-size: 24px; font-weight: 800; color: var(--amber); }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a { text-decoration: none; color: white; font-weight: 600; font-size: 14px; transition: 0.3s; }
+.btn-login { color: white; }
+.btn-signup { background: var(--amber); color: #000 !important; padding: 8px 20px; border-radius: 8px; font-weight: 700 !important; }
+
+/* HERO SECTION */
+.hero {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 60px 8%; min-height: 80vh; gap: 40px;
+}
+.hero-content { flex: 1; text-align: left; }
+.hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 20px; font-weight: 800; }
+.hero-content span { color: var(--amber); }
+.hero-content p { font-size: 18px; color: var(--muted); margin-bottom: 30px; max-width: 600px; }
+
+.hero-image { flex: 1; display: flex; justify-content: center; position: relative; }
+/* Replace URL below with your actual student image file */
+.hero-image img { 
+  width: 100%; max-width: 500px; border-radius: 30px; 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 4px solid var(--card-bg);
 }
 
-/* PARTICLES */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
+/* QUIZ CATEGORIES SECTION */
+.quiz-types { padding: 80px 8%; background: var(--surface); text-align: center; }
+.section-title { font-size: 32px; font-weight: 800; margin-bottom: 50px; }
+.section-title span { color: var(--amber); }
+
+.category-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+}
+.type-card {
+  background: var(--card-bg); padding: 40px 30px; border-radius: 20px;
+  text-align: left; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05);
+  position: relative; overflow: hidden;
+}
+.type-card:hover { transform: translateY(-10px); border-color: var(--amber); }
+
+.type-card i { font-size: 40px; margin-bottom: 20px; display: block; }
+.type-card h3 { font-size: 22px; margin-bottom: 15px; font-weight: 700; }
+.type-card p { color: var(--muted); font-size: 14px; margin-bottom: 25px; }
+
+/* Theme Colors for Cards */
+.card-chapter { border-top: 5px solid var(--blue); }
+.card-chapter h3 { color: var(--blue); }
+.card-mock { border-top: 5px solid var(--green); }
+.card-mock h3 { color: var(--green); }
+.card-live { border-top: 5px solid var(--amber); }
+.card-live h3 { color: var(--amber); }
+
+.btn-card {
+  display: inline-block; padding: 10px 20px; border-radius: 8px;
+  text-decoration: none; font-weight: 700; font-size: 13px; text-transform: uppercase;
+}
+.btn-blue { background: var(--blue); color: white; }
+.btn-green { background: var(--green); color: white; }
+.btn-amber { background: var(--amber); color: black; }
+
+/* EXAM LOGOS */
+.prepare-for { padding: 40px 8%; text-align: center; opacity: 0.7; }
+.logo-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 20px; filter: grayscale(1); }
+.logo-row img { height: 40px; }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .hero { flex-direction: column; text-align: center; padding-top: 40px; }
+  .hero-content { display: flex; flex-direction: column; align-items: center; }
+  .hero-image img { max-width: 350px; }
 }
 
-/* NAVBAR - UPDATED FOR MOBILE VISIBILITY */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 5%;
-background:rgba(0,0,0,0.45);
-backdrop-filter:blur(10px);
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-.logo{
-font-size: clamp(18px, 4vw, 24px); /* Responsive font size */
-font-weight:800;
-color:#f59e0b;
-}
-
-.nav-links{
-display:flex;
-gap:15px; /* Tighter gap for mobile */
-align-items: center;
-}
-
-.nav-links a{
-text-decoration:none;
-color:white;
-font-weight:600;
-font-size: 13px; /* Smaller text for mobile fit */
-transition: 0.3s;
-}
-
-.nav-links a:hover{
-color:#f59e0b;
-}
-
-.nav-signup {
-    background: #f59e0b;
-    color: #000 !important;
-    padding: 8px 15px;
-    border-radius: 8px;
-    font-weight: 700 !important;
-}
-
-/* HERO */
-.hero{
-padding: 40px 20px;
-display:flex;
-flex-direction:column;
-align-items:center;
-text-align:center;
-}
-
-.hero h1{
-font-size:clamp(2.2rem,6vw,4rem);
-margin-bottom:10px;
-}
-
-.hero span{
-color:#f59e0b;
-}
-
-.hero p{
-max-width:700px;
-font-size:16px;
-color:#cbd5f5;
-margin-bottom:25px;
-}
-
-/* BUTTONS */
-.btn-group{
-display:flex;
-gap:15px;
-flex-wrap: wrap;
-justify-content: center;
-}
-
-.btn{
-padding:12px 25px;
-border-radius:8px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-font-size: 14px;
-}
-
-.btn-primary{
-background:#f59e0b;
-color:black;
-}
-
-.btn-secondary{
-background:#1e293b;
-border:1px solid #334155;
-color:white;
-}
-
-.btn:hover{
-transform:translateY(-3px);
-}
-
-/* PREPARE FOR */
-.prepare{
-padding:30px 10%;
-text-align:center;
-}
-
-.prepare h2{
-font-size:26px;
-margin-bottom:30px;
-}
-
-.logo-row{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
-align-items:center;
-}
-
-.logo-row img{
-height:50px;
-background:white;
-padding:8px;
-border-radius:8px;
-}
-
-/* FEATURES */
-.features{
-padding:60px 10%;
-text-align:center;
-}
-
-.feature-grid{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-}
-
-.feature{
-background:#1e293b;
-padding:20px;
-border-radius:12px;
-width:230px;
-}
-
-.feature h3{
-color:#f59e0b;
-margin-bottom:10px;
-font-size:18px;
-}
-
-.feature p{
-font-size:14px;
-line-height:1.5;
-}
-
-footer{
-text-align:center;
-padding:25px;
-border-top:1px solid #334155;
-color:#94a3b8;
-font-size: 12px;
-}
-
-/* MOBILE MEDIA QUERY - REMOVED HAMBURGER */
-@media (max-width:480px){
-    nav {
-        padding: 12px 4%;
-    }
-    .nav-links {
-        gap: 10px;
-    }
-    .nav-links a {
-        font-size: 12px;
-    }
-    .nav-signup {
-        padding: 6px 12px;
-    }
+footer {
+  text-align: center; padding: 40px; background: #010409;
+  border-top: 1px solid var(--card-bg); color: var(--muted);
 }
 </style>
 </head>
@@ -219,103 +114,96 @@ font-size: 12px;
 
 <nav>
 <div class="logo">🎓 Olympiad Portal</div>
-
 <div class="nav-links">
-    <a href="login.html">Login</a>
-    <a href="signup.html" class="nav-signup">Sign Up</a>
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up Free</a>
 </div>
 </nav>
 
 <section class="hero">
-<h1>Master Your <span>Olympiad Skills</span></h1>
-<p>
-Prepare for SOF Olympiads, SilverZone Olympiads, NSTSE and Unified Council exams.
-Practice advanced questions, track your performance and compete with students across India.
-</p>
-
-<div class="btn-group">
-<a href="signup.html" class="btn btn-primary">Go for Live Quiz</a>
-<a href="signup.html" class="btn btn-primary">Daily Practice Quiz</a>
+<div class="hero-content">
+  <h1>Unlock Your <span>True Potential</span> In Olympiads</h1>
+  <p>The most comprehensive platform for SOF, SilverZone, and NSTSE preparation. Master every concept with our expert-designed modules.</p>
+  <div style="display: flex; gap: 15px;">
+    <a href="signup.html" class="btn-signup" style="padding: 15px 30px;">Start Practicing Now</a>
+  </div>
+</div>
+<div class="hero-image">
+  <img src="https://images.unsplash.com/photo-1523240715630-97d81289a6c2?auto=format&fit=crop&q=80&w=1000" alt="Students Learning">
 </div>
 </section>
 
-<section class="prepare">
-<h2>Prepare For</h2>
-<div class="logo-row">
-<img src="images/sof.png" alt="SOF Olympiad">
-<img src="images/silverzone.png" alt="SilverZone Olympiad">
-<img src="images/nstse.png" alt="NSTSE Olympiad">
-<img src="images/unified.png" alt="Unified Council">
-</div>
+<section class="quiz-types">
+  <h2 class="section-title">Our <span>Learning</span> Pathways</h2>
+  <div class="category-grid">
+    
+    <div class="type-card card-chapter">
+      <h3>Chapterwise Quiz</h3>
+      <p>Master specific topics one by one. Our granular approach ensures you build a strong foundation in Science, Maths, and Reasoning chapters.</p>
+      <ul style="color: var(--muted); font-size: 13px; margin-bottom: 20px; list-style: none;">
+        <li>✅ Topic-focused questions</li>
+        <li>✅ Instant explanations</li>
+        <li>✅ Unlimited attempts</li>
+      </ul>
+      <a href="signup.html" class="btn-card btn-blue">Explore Chapters</a>
+    </div>
+
+    <div class="type-card card-mock">
+      <h3>Full Mock Quiz</h3>
+      <p>Experience the real exam environment. These timed tests cover the entire syllabus to help you manage time and stress during the big day.</p>
+      <ul style="color: var(--muted); font-size: 13px; margin-bottom: 20px; list-style: none;">
+        <li>✅ Full Syllabus coverage</li>
+        <li>✅ Real Exam Timer</li>
+        <li>✅ Performance Analytics</li>
+      </ul>
+      <a href="signup.html" class="btn-card btn-green">Take a Mock Test</a>
+    </div>
+
+    <div class="type-card card-live">
+      <h3>Live Championship</h3>
+      <p>Compete against the brightest minds across the nation. Join scheduled live sessions and secure your spot on the National Leaderboard.</p>
+      <ul style="color: var(--muted); font-size: 13px; margin-bottom: 20px; list-style: none;">
+        <li>✅ Weekly Live Events</li>
+        <li>✅ National Rankings</li>
+        <li>✅ Exciting Certificates</li>
+      </ul>
+      <a href="signup.html" class="btn-card btn-amber">Join Live Session</a>
+    </div>
+
+  </div>
 </section>
 
-<section class="features">
-<h2>Why Choose Olympiad Portal</h2>
-<div class="feature-grid">
-<div class="feature">
-<h3>Olympiad Level Questions</h3>
-<p>Practice thousands of challenging questions designed for Olympiad exams.</p>
-</div>
-<div class="feature">
-<h3>Performance Analytics</h3>
-<p>Track your strengths and improve weak areas with detailed reports.</p>
-</div>
-<div class="feature">
-<h3>National Ranking</h3>
-<p>Compare your performance with students across India.</p>
-</div>
-<div class="feature">
-<h3>Smart Learning</h3>
-<p>Adaptive quizzes that adjust difficulty automatically.</p>
-</div>
-</div>
+<section class="prepare-for">
+  <p style="font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 2px; font-size: 12px;">Supported Exam Formats</p>
+  <div class="logo-row">
+    <img src="images/sof.png" alt="SOF">
+    <img src="images/silverzone.png" alt="SilverZone">
+    <img src="images/nstse.png" alt="NSTSE">
+    <img src="images/unified.png" alt="Unified Council">
+  </div>
 </section>
 
-
+<footer style="background: #020617; border-top: 1px solid #1e293b; color: #94a3b8; padding: 40px 20px; text-align: center;">
+  <div style="margin-bottom: 20px;">
+    <a href="about.html" style="color:white; text-decoration:none; margin: 0 10px;">About</a>
+    <a href="contact.html" style="color:white; text-decoration:none; margin: 0 10px;">Contact</a>
+    <a href="privacy-policy.html" style="color:white; text-decoration:none; margin: 0 10px;">Privacy</a>
+  </div>
+  <p>© 2026 Olympiad Portal. Empowering the next generation of scholars.</p>
+</footer>
 
 <script>
 particlesJS("particles-js",{
 particles:{
-number:{value:60},
-size:{value:3},
+number:{value:50},
+size:{value:2},
 color:{value:"#f59e0b"},
-line_linked:{
-enable:true,
-distance:150,
-color:"#f59e0b",
-opacity:0.3,
-width:1
+line_linked:{ enable:true, distance:150, color:"#f59e0b", opacity:0.2, width:1 },
+move:{ enable:true, speed:1.5 }
 },
-move:{
-enable:true,
-speed:2
-}
-},
-interactivity:{
-events:{
-onhover:{enable:true,mode:"grab"}
-}
-}
+interactivity:{ events:{ onhover:{enable:true, mode:"grab"} } }
 });
 </script>
-    <footer style="text-align:center;padding:20px;background:#0a3d62;color:white;margin-top:40px;">
 
-<a href="about.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">About Us</a> |
-
-<a href="contact.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Contact Us</a> |
-
-<a href="privacy-policy.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Privacy Policy</a> |
-
-<a href="term.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Terms & Conditions</a>
-
-<p style="margin-top:12px;font-size:14px;">
-© 2026 Olympiad Quiz. All rights reserved.
-</p>
-
-</footer>
 </body>
 </html>
-
-
-
-
