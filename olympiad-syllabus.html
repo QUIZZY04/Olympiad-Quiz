@@ -17,6 +17,49 @@ background:#f4f7fb;
 color:#333;
 }
 
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+background:#083a7c;
+color:white;
+}
+
+.logo{
+font-size:20px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:600;
+font-size:14px;
+}
+
+.nav-links a:hover{
+color:#f59e0b;
+}
+
+.nav-signup{
+background:#f59e0b;
+color:#000 !important;
+padding:8px 15px;
+border-radius:6px;
+font-weight:bold;
+}
+
+/* HEADER */
+
 header{
 background:linear-gradient(135deg,#0a4fa3,#083a7c);
 color:white;
@@ -74,12 +117,36 @@ margin-top:40px;
 
 <body>
 
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="logo">🎓 Olympiad Quiz</div>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+<a href="olympiad-syllabus.html">Syllabus</a>
+<a href="study-material.html">Study</a>
+<a href="olympiad-preparation-tips.html">Tips</a>
+<a href="math-olympiad-tricks.html">Math</a>
+<a href="science-olympiad-guide.html">Science</a>
+
+<a href="login.html">Login</a>
+<a href="signup.html" class="nav-signup">Sign Up</a>
+
+</div>
+
+</nav>
+
+
 <header>
 
 <h1>Olympiad Syllabus Explorer</h1>
 <p>Select Class and Subject to View Detailed Syllabus</p>
 
 </header>
+
 
 <div class="container">
 
@@ -121,6 +188,7 @@ margin-top:40px;
 
 </div>
 
+
 <div class="footer">
 
 © 2026 OlympiadQuiz.org
@@ -155,45 +223,6 @@ science:{
 8:["Force and Pressure","Sound","Chemical Effects","Friction","Cell Structure"],
 9:["Matter in Our Surroundings","Atoms and Molecules","Motion","Energy","Cell Biology"],
 10:["Chemical Reactions","Acids Bases and Salts","Life Processes","Electricity","Light"]
-},
-
-english:{
-1:["Alphabet","Basic Vocabulary","Simple Sentences","Spellings"],
-2:["Vocabulary","Sentence Formation","Grammar Basics","Spellings"],
-3:["Nouns","Verbs","Adjectives","Articles","Comprehension"],
-4:["Tenses","Pronouns","Adverbs","Vocabulary","Reading Comprehension"],
-5:["Synonyms","Antonyms","Sentence Structure","Comprehension"],
-6:["Grammar Rules","Vocabulary","Tenses","Comprehension"],
-7:["Parts of Speech","Idioms","Vocabulary","Reading Skills"],
-8:["Advanced Grammar","Vocabulary","Comprehension"],
-9:["Grammar","Vocabulary","Reading Comprehension"],
-10:["Advanced Grammar","Vocabulary","Comprehension"]
-},
-
-reasoning:{
-1:["Patterns","Odd One Out","Picture Series"],
-2:["Analogies","Patterns","Classification"],
-3:["Coding Decoding","Series","Direction Sense"],
-4:["Classification","Coding","Series","Mirror Images"],
-5:["Number Series","Venn Diagrams","Patterns"],
-6:["Analogy","Series","Logical Puzzles"],
-7:["Coding Decoding","Series","Venn Diagrams"],
-8:["Logical Puzzles","Analogy","Series"],
-9:["Analytical Reasoning","Coding","Series"],
-10:["Advanced Logical Reasoning","Puzzles"]
-},
-
-gk:{
-1:["Animals","Plants","Environment"],
-2:["Nature","Basic Science Facts"],
-3:["Countries","Animals","Famous Places"],
-4:["History Basics","Geography Basics"],
-5:["Science Facts","World Knowledge"],
-6:["Current Affairs","Science Discoveries"],
-7:["Geography","History","Science"],
-8:["World Geography","Current Affairs"],
-9:["International Events","Science and Technology"],
-10:["Global Affairs","Science Innovations"]
 }
 
 }
@@ -225,5 +254,4 @@ result.innerHTML=html
 </script>
 
 </body>
-
 </html>
