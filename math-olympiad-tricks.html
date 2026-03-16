@@ -1,269 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Olympiad Preparation Guide | Master IMO, iOM & More</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #083a7c;
+            --accent: #f59e0b;
+            --bg: #f4f7fb;
+            --text: #1e293b;
+            --white: #ffffff;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: var(--bg);
+            line-height: 1.7;
+            color: var(--text);
+        }
 
-<title>Math Olympiad Preparation Guide | OlympiadQuiz</title>
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-<style>
+        .logo { font-size: 22px; font-weight: 800; color: var(--accent); }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-signup { background: var(--accent); color: #000 !important; padding: 8px 18px; border-radius: 8px; }
 
-body{
-font-family:Arial, Helvetica, sans-serif;
-margin:0;
-background:#f4f7fb;
-line-height:1.8;
-color:#333;
-}
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #0a4fa3 0%, #083a7c 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
 
-/* NAVBAR */
+        header h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 800; }
+        header p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9; }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 5%;
-background:#083a7c;
-color:white;
-}
+        /* CONTENT */
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
 
-.logo{
-font-size:20px;
-font-weight:bold;
-}
+        .card {
+            background: var(--white);
+            padding: 40px;
+            margin-bottom: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+        }
 
-.nav-links{
-display:flex;
-gap:15px;
-align-items:center;
-}
+        .card h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        
+        /* STRATEGY GRID */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
 
-.nav-links a{
-text-decoration:none;
-color:white;
-font-weight:600;
-font-size:14px;
-}
+        .strategy-item {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
 
-.nav-links a:hover{
-color:#f59e0b;
-}
+        .strategy-item h3 { color: #0f172a; margin-top: 0; font-size: 1.2rem; }
+        .strategy-item p { font-size: 0.95rem; color: #475569; }
 
-.nav-signup{
-background:#f59e0b;
-color:#000 !important;
-padding:8px 15px;
-border-radius:6px;
-font-weight:bold;
-}
+        /* CLASS SELECTION */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
 
-/* HEADER */
+        .class-card {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid #dbeafe;
+        }
 
-header{
-background:#0a4fa3;
-color:white;
-padding:40px;
-text-align:center;
-}
+        .class-card a { text-decoration: none; font-weight: 700; color: var(--primary); }
+        .class-card:hover { transform: translateY(-3px); background: var(--accent); }
+        .class-card:hover a { color: black; }
 
-/* CONTENT */
+        /* GUIDANCE LIST */
+        .guidance-list { list-style: none; padding: 0; }
+        .guidance-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            gap: 12px;
+        }
+        .guidance-list li::before { content: "🎯"; }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:30px;
-}
-
-.card{
-background:white;
-padding:30px;
-margin-bottom:30px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-}
-
-.card h2{
-color:#0a4fa3;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.class-card{
-background:#eef4ff;
-padding:20px;
-border-radius:8px;
-text-align:center;
-}
-
-.class-card a{
-text-decoration:none;
-font-weight:bold;
-color:#0a4fa3;
-}
-
-.class-card:hover{
-background:#dde8ff;
-}
-
-</style>
-
+        footer { text-align:center; padding:40px; background:#1e293b; color:#94a3b8; margin-top:50px; }
+    </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
-
 <nav>
-
-<div class="logo">🎓 Olympiad Quiz</div>
-
-<div class="nav-links">
-
-<a href="index.html">Home</a>
-<a href="olympiad-syllabus.html">Syllabus</a>
-<a href="study-material.html">Study</a>
-<a href="olympiad-preparation-tips.html">Tips</a>
-<a href="math-olympiad-tricks.html">Math</a>
-<a href="science-olympiad-guide.html">Science</a>
-
-<a href="login.html">Login</a>
-<a href="signup.html" class="nav-signup">Sign Up</a>
-</div>
-
+    <div class="logo">🎓 OlympiadPortal</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="olympiad-syllabus.html">Syllabus</a>
+        <a href="study-material.html">Study</a>
+        <a href="math-olympiad-tricks.html">Math Tricks</a>
+        <a href="signup.html" class="nav-signup">Free Practice</a>
+    </div>
 </nav>
 
-
 <header>
-
-<h1>Math Olympiad Preparation Guide</h1>
-
-<p>
-Learn powerful strategies, problem solving techniques and shortcuts
-for Math Olympiad exams from Class 1 to Class 10.
-</p>
-
+    <h1>The Ultimate Math Olympiad Roadmap</h1>
+    <p>Strategic guidance to crack IMO, iOM, NSTSE, and Unified Council Mathematics Examinations.</p>
 </header>
-
 
 <div class="container">
 
-<div class="card">
+    <div class="card">
+        <h2>🚀 Why Olympiad Math is Different</h2>
+        <p>
+            Traditional school exams reward <b>rote memorization</b>, but Mathematics Olympiads reward <b>logical agility</b>. To excel in exams like the International Mathematics Olympiad (IMO), you must move beyond formulas and focus on the "why" behind every theorem.
+        </p>
+        <p>
+            Competitive math is about efficiency—finding the shortest path to a solution using symmetry, parity, and smart estimation.
+        </p>
+    </div>
 
-<h2>What is Math Olympiad?</h2>
+    <div class="card">
+        <h2>🛠️ Core Strategy Roadmap</h2>
+        <div class="strategy-grid">
+            <div class="strategy-item">
+                <h3>1. Master the 'Achievers Section'</h3>
+                <p>The SOF IMO includes an "Achievers Section" with higher-weightage questions. These usually require combining two different concepts (e.g., Geometry + Algebra) into one solution.</p>
+            </div>
+            <div class="strategy-item">
+                <h3>2. Pattern Recognition (PR)</h3>
+                <p>Olympiad problems often use very large numbers (e.g., find the last digit of 7^2026). Instead of calculating, look for cycles (Unit Digit cycles of 4) to solve in seconds.</p>
+            </div>
+            <div class="strategy-item">
+                <h3>3. Intelligent Elimination</h3>
+                <p>Since these are MCQ-based, use "Substitution." Plug the options back into the question to see which one satisfies the conditions, saving you long derivation time.</p>
+            </div>
+            <div class="strategy-item">
+                <h3>4. Visualization</h3>
+                <p>For mensuration and geometry, always draw a rough sketch. Visualizing the "Hidden Shapes" or "Lines of Symmetry" often reveals the answer without calculations.</p>
+            </div>
+        </div>
+    </div>
 
-<p>
-Mathematics Olympiad examinations are competitive tests designed
-to evaluate students' logical reasoning and analytical thinking.
-Unlike regular school exams, Olympiad questions often require
-creative approaches and deep conceptual understanding.
-</p>
+    <div class="card">
+        <h2>📚 Class-Wise Strategic Focus</h2>
+        <p>Specific guidance tailored for each grade level. Select your class to view specialized techniques.</p>
+        <div class="grid">
+            <div class="class-card"><a href="class1-math-tricks.html">Class 1: Visual Math</a></div>
+            <div class="class-card"><a href="class2-math-tricks.html">Class 2: Number Fun</a></div>
+            <div class="class-card"><a href="class3-math-tricks.html">Class 3: Logic Intro</a></div>
+            <div class="class-card"><a href="class4-math-tricks.html">Class 4: Fast Ops</a></div>
+            <div class="class-card"><a href="class5-math-tricks.html">Class 5: Fractions</a></div>
+            <div class="class-card"><a href="class6-math-tricks.html">Class 6: Algebra</a></div>
+            <div class="class-card"><a href="class7-math-tricks.html">Class 7: Proportions</a></div>
+            <div class="class-card"><a href="class8-math-tricks.html">Class 8: Exponents</a></div>
+            <div class="class-card"><a href="class9-math-tricks.html">Class 9: Theorems</a></div>
+            <div class="class-card"><a href="class10-math-tricks.html">Class 10: Advanced</a></div>
+        </div>
+    </div>
 
-<p>
-Students preparing for Olympiad mathematics should focus on
-developing strong fundamentals, pattern recognition ability,
-and fast problem solving skills.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Key Skills Required for Olympiad Mathematics</h2>
-
-<ul>
-
-<li>Logical reasoning ability</li>
-<li>Pattern recognition skills</li>
-<li>Strong number sense</li>
-<li>Quick mental calculations</li>
-<li>Problem solving creativity</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>General Olympiad Math Tricks</h2>
-
-<h3>Pattern Recognition</h3>
-
-<p>
-Many Olympiad problems follow numerical patterns. Recognizing
-these patterns helps solve problems quickly.
-</p>
-
-<h3>Estimation</h3>
-
-<p>
-Instead of calculating exact values immediately, estimate
-answers to eliminate incorrect options.
-</p>
-
-<h3>Breaking Problems into Steps</h3>
-
-<p>
-Complex problems can be simplified by breaking them into smaller steps.
-</p>
+    <div class="card">
+        <h2>💡 Pro-Tips for Exam Day</h2>
+        <ul class="guidance-list">
+            <li><b>The 1-Minute Rule:</b> If a question takes more than 60 seconds, mark it for review and move on. Don't let one hard problem steal time from three easy ones.</li>
+            <li><b>Units & Dimensions:</b> Check if the answer options match the units asked (e.g., cm² vs cm³). This helps eliminate 50% of wrong options instantly.</li>
+            <li><b>Avoid Mental Fatigue:</b> Solve the Reasoning section first to "warm up" your brain before diving into the heavy Mathematics section.</li>
+            <li><b>Work Backward:</b> Especially in Algebra, it's often faster to work from the answer choices back to the question.</li>
+        </ul>
+    </div>
 
 </div>
 
-
-
-<div class="card">
-
-<h2>Class-wise Math Olympiad Tricks</h2>
-
-<p>Select your class to learn detailed tricks and strategies.</p>
-
-<div class="grid">
-
-<div class="class-card"><a href="class1-math-tricks.html">Class 1 Tricks</a></div>
-<div class="class-card"><a href="class2-math-tricks.html">Class 2 Tricks</a></div>
-<div class="class-card"><a href="class3-math-tricks.html">Class 3 Tricks</a></div>
-<div class="class-card"><a href="class4-math-tricks.html">Class 4 Tricks</a></div>
-<div class="class-card"><a href="class5-math-tricks.html">Class 5 Tricks</a></div>
-<div class="class-card"><a href="class6-math-tricks.html">Class 6 Tricks</a></div>
-<div class="class-card"><a href="class7-math-tricks.html">Class 7 Tricks</a></div>
-<div class="class-card"><a href="class8-math-tricks.html">Class 8 Tricks</a></div>
-<div class="class-card"><a href="class9-math-tricks.html">Class 9 Tricks</a></div>
-<div class="class-card"><a href="class10-math-tricks.html">Class 10 Tricks</a></div>
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Tips to Improve Olympiad Performance</h2>
-
-<ul>
-
-<li>Practice Olympiad level questions regularly.</li>
-<li>Focus on understanding concepts deeply.</li>
-<li>Analyze mistakes after solving problems.</li>
-<li>Improve mental calculation speed.</li>
-<li>Attempt mock tests frequently.</li>
-
-</ul>
-
-</div>
-
-
-</div>
+<footer>
+    <p>© 2026 OlympiadPortal. Dedicated to the next generation of mathematicians.</p>
+    <div style="margin-top:10px;">
+        <a href="privacy-policy.html" style="color:white; margin:0 10px;">Privacy Policy</a> | 
+        <a href="about.html" style="color:white; margin:0 10px;">About Us</a>
+    </div>
+</footer>
 
 </body>
-
 </html>
