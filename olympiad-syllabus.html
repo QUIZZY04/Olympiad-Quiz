@@ -117,8 +117,6 @@ margin-top:40px;
 
 <body>
 
-<!-- NAVIGATION -->
-
 <nav>
 
 <div class="logo">🎓 Olympiad Quiz</div>
@@ -195,6 +193,7 @@ margin-top:40px;
 
 </div>
 
+
 <script>
 
 const syllabus={
@@ -223,31 +222,71 @@ science:{
 8:["Force and Pressure","Sound","Chemical Effects","Friction","Cell Structure"],
 9:["Matter in Our Surroundings","Atoms and Molecules","Motion","Energy","Cell Biology"],
 10:["Chemical Reactions","Acids Bases and Salts","Life Processes","Electricity","Light"]
+},
+
+english:{
+1:["Alphabet","Basic Vocabulary","Simple Sentences","Spellings"],
+2:["Vocabulary","Sentence Formation","Grammar Basics","Spellings"],
+3:["Nouns","Verbs","Adjectives","Articles","Comprehension"],
+4:["Tenses","Pronouns","Adverbs","Vocabulary","Reading Comprehension"],
+5:["Synonyms","Antonyms","Sentence Structure","Comprehension"],
+6:["Grammar Rules","Vocabulary","Tenses","Comprehension"],
+7:["Parts of Speech","Idioms","Vocabulary","Reading Skills"],
+8:["Advanced Grammar","Vocabulary","Comprehension"],
+9:["Grammar","Vocabulary","Reading Comprehension"],
+10:["Advanced Grammar","Vocabulary","Comprehension"]
+},
+
+reasoning:{
+1:["Patterns","Odd One Out","Picture Series"],
+2:["Analogies","Patterns","Classification"],
+3:["Coding Decoding","Series","Direction Sense"],
+4:["Classification","Coding","Series","Mirror Images"],
+5:["Number Series","Venn Diagrams","Patterns"],
+6:["Analogy","Series","Logical Puzzles"],
+7:["Coding Decoding","Series","Venn Diagrams"],
+8:["Logical Puzzles","Analogy","Series"],
+9:["Analytical Reasoning","Coding","Series"],
+10:["Advanced Logical Reasoning","Puzzles"]
+},
+
+gk:{
+1:["Animals","Plants","Environment"],
+2:["Nature","Basic Science Facts"],
+3:["Countries","Animals","Famous Places"],
+4:["History Basics","Geography Basics"],
+5:["Science Facts","World Knowledge"],
+6:["Current Affairs","Science Discoveries"],
+7:["Geography","History","Science"],
+8:["World Geography","Current Affairs"],
+9:["International Events","Science and Technology"],
+10:["Global Affairs","Science Innovations"]
 }
 
 }
 
 function showSyllabus(){
 
-let c=document.getElementById("classSelect").value
-let s=document.getElementById("subjectSelect").value
-let result=document.getElementById("syllabusResult")
+const c=document.getElementById("classSelect").value
+const s=document.getElementById("subjectSelect").value
+const result=document.getElementById("syllabusResult")
 
-if(c && s){
+if(!c || !s){
+result.innerHTML="<h2>Select Class and Subject</h2><p>Syllabus will appear here.</p>"
+return
+}
 
-let topics=syllabus[s][c]
+const topics=syllabus[s][c]
 
 let html="<h2>Class "+c+" "+s.toUpperCase()+" Syllabus</h2><ul>"
 
-topics.forEach(t=>{
-html+="<li>"+t+"</li>"
+topics.forEach(topic=>{
+html+="<li>"+topic+"</li>"
 })
 
 html+="</ul>"
 
 result.innerHTML=html
-
-}
 
 }
 
