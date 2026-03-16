@@ -1,399 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 3 Math Olympiad Mastery: Advanced Logic & Fractions | OlympiadPortal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #083a7c;
+            --secondary: #0a4fa3;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+            --success: #10b981;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.8; }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 22px; font-weight: 800; color: var(--accent); text-decoration: none; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 600; margin-left: 20px; font-size: 14px; }
 
-<title>Class 3 Math Olympiad Tricks | OlympiadQuiz</title>
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; }
+        .hero p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.9; }
 
-<style>
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
 
-body{
-font-family:Arial, Helvetica, sans-serif;
-margin:0;
-background:#f4f7fb;
-line-height:1.8;
-color:#333;
-}
+        .card {
+            background: var(--white);
+            padding: 45px;
+            margin-bottom: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-top: 6px solid var(--accent);
+        }
+        .card h2 { color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; }
+        .card h3 { color: var(--secondary); font-size: 1.5rem; margin-top: 30px; }
 
-/* NAVBAR */
+        .example-box {
+            background: #f0fdf4;
+            border-left: 6px solid var(--success);
+            padding: 35px;
+            border-radius: 0 20px 20px 0;
+            margin: 30px 0;
+            position: relative;
+        }
+        .example-box::before {
+            content: "OLYMPIAD CHALLENGE";
+            position: absolute;
+            top: -12px; left: 20px;
+            background: var(--success); color: white;
+            padding: 3px 15px; font-size: 11px; font-weight: 900; border-radius: 4px;
+        }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 5%;
-background:#083a7c;
-color:white;
-}
+        .guideline-box {
+            background: #eff6ff;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #dbeafe;
+            margin: 20px 0;
+        }
 
-.logo{
-font-size:20px;
-font-weight:bold;
-}
+        .btn-cta {
+            background: var(--accent); color: #000;
+            padding: 20px 50px; border-radius: 12px;
+            text-decoration: none; font-weight: 800; font-size: 1.2rem;
+            display: inline-block; transition: 0.3s; margin-top: 30px;
+        }
+        .btn-cta:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4); }
 
-.nav-links{
-display:flex;
-gap:15px;
-align-items:center;
-}
-
-.nav-links a{
-text-decoration:none;
-color:white;
-font-weight:600;
-font-size:14px;
-}
-
-.nav-links a:hover{
-color:#f59e0b;
-}
-
-.nav-signup{
-background:#f59e0b;
-color:#000 !important;
-padding:8px 15px;
-border-radius:6px;
-font-weight:bold;
-}
-
-/* HEADER */
-
-header{
-background:#0a4fa3;
-color:white;
-padding:40px;
-text-align:center;
-}
-
-/* CONTENT */
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:30px;
-}
-
-.card{
-background:white;
-padding:30px;
-margin-bottom:30px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-}
-
-.card h2{
-color:#0a4fa3;
-}
-
-.example{
-background:#eef4ff;
-padding:12px;
-border-left:5px solid #0a4fa3;
-margin-top:12px;
-}
-
-</style>
-
+        footer { text-align: center; padding: 60px; background: #0f172a; color: #94a3b8; margin-top: 80px; }
+    </style>
 </head>
-
 <body>
 
 <nav>
-
-<div class="logo">🎓 Olympiad Quiz</div>
-
-<div class="nav-links">
-
-<a href="index.html">Home</a>
-<a href="olympiad-syllabus.html">Syllabus</a>
-<a href="study-material.html">Study</a>
-<a href="olympiad-preparation-tips.html">Tips</a>
-<a href="math-olympiad-tricks.html">Math</a>
-<a href="science-olympiad-guide.html">Science</a>
-
-<a href="login.html">Login</a>
-<a href="signup.html" class="nav-signup">Sign Up</a>
-</div>
-
+    <a href="index.html" class="logo">🎓 OlympiadPortal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="math-olympiad-tricks.html">Main Tricks</a>
+        <a href="signup.html">Practice Test</a>
+    </div>
 </nav>
 
-
-<header>
-
-<h1>Class 3 Math Olympiad Tricks and Strategies</h1>
-
-<p>
-Learn powerful techniques to solve Class 3 Olympiad mathematics problems faster.
-</p>
-
+<header class="hero">
+    <h1>Class 3 Math Olympiad Mastery</h1>
+    <p>The Ultimate 1000-Word Roadmap: Solving Fractions, Time, and 4-Digit Logic with Speed.</p>
 </header>
-
 
 <div class="container">
 
+    <div class="card">
+        <h2>🌐 The Class 3 Shift: Logic Over Calculation</h2>
+        <p>In Class 3, Math Olympiads (IMO, iOM, NSTSE) introduce a significant jump in difficulty. Students must now move from simple 2-digit arithmetic to <b>4-digit Number Sense</b>, <b>Fractional Parts</b>, and <b>Calendar/Clock Logic</b>. Standard school methods often become too slow for the 60-minute exam format.</p>
+        <p>To secure a top rank, a student must master "Mental Benchmarking"—the ability to estimate answers and identify patterns in fractions and geometric symmetry instantly.</p>
+    </div>
 
-<div class="card">
+    <div class="card">
+        <h2>🔢 Trick 1: 4-Digit "Place Value" Shortcuts</h2>
+        <p>Olympiad questions often ask to find the sum or difference of the "Place Value" and "Face Value" of a digit. Students often confuse these two under pressure.</p>
+        
+        <h3>The Logic: Face vs. Place</h3>
+        <p>Teach the child that <b>Face Value</b> is like a person's name (it never changes), while <b>Place Value</b> is their address (it depends on where they sit).</p>
 
-<h2>Understanding Class 3 Olympiad Mathematics</h2>
+        <div class="example-box">
+            <strong>The Problem:</strong> Find the difference between the Place Value of 7 and the Face Value of 7 in the number 8,742.<br><br>
+            <strong>The Trick:</strong> <br>
+            1. Face Value of 7 is always <b>7</b>. <br>
+            2. Place Value of 7 (in the hundreds place) is <b>700</b>. <br>
+            3. Difference: 700 - 7 = <b>693</b>. <br><br>
+            <strong>Achiever's Shortcut:</strong> Instead of long subtraction, just think: "What is 7 less than a hundred?" (93), then place it in the 600 range.
+        </div>
+    </div>
 
-<p>
-In Class 3, Olympiad mathematics introduces more advanced topics such as
-multiplication, division, fractions, geometry and logical number patterns.
-Students must begin developing strong problem solving skills.
-</p>
+    <div class="card">
+        <h2>🍕 Trick 2: Visualizing Fractions as "Pizza Pieces"</h2>
+        <p>Fractions are often the hardest topic for Class 3. Olympiads love comparing fractions like 1/4 and 1/8. Most students think 1/8 is bigger because 8 is bigger than 4.</p>
 
-<p>
-Instead of solving problems using long methods, smart tricks and strategies
-can help students solve questions quickly during Olympiad exams.
-</p>
+        <h3>Guidance: The "Share" Method</h3>
+        <p>Teach the child: The <b>Denominator</b> (bottom number) is how many friends are sharing one pizza. The more friends there are, the <b>smaller</b> the piece each friend gets.</p>
+        
 
-</div>
+        <div class="example-box">
+            <strong>The Problem:</strong> Which is greater: 1/3 or 1/5?<br><br>
+            <strong>The Trick:</strong> <br>
+            1. Imagine 1 pizza shared by 3 friends vs. 1 pizza shared by 5 friends. <br>
+            2. In the group of 3, the pieces are much larger. <br>
+            <strong>Answer:</strong> 1/3 is greater than 1/5.
+        </div>
+    </div>
 
+    <div class="card">
+        <h2>⏰ Trick 3: The "Elapsed Time" Jump</h2>
+        <p>Time questions in Class 3 involve moving from "Now" to "Later." Counting minutes on a clock one by one is a trap that leads to 404-style mental exhaustion.</p>
 
+        <div class="example-box">
+            <strong>The Problem:</strong> A movie starts at 4:45 PM and lasts for 1 hour and 30 minutes. When does it end?<br><br>
+            <strong>The Trick: The "Round Up" Jump</strong> <br>
+            1. Jump the 1 hour first: 4:45 → <b>5:45</b>. <br>
+            2. To add the 30 minutes, "Bridge to the Hour": <br>
+               - 15 minutes to reach 6:00. <br>
+               - 15 minutes remaining. <br>
+            <strong>Answer:</strong> 6:15 PM.
+        </div>
+        
+    </div>
 
-<div class="card">
+    <div class="card">
+        <h2>💡 Strategic Guidelines for Class 3 Success</h2>
+        <div class="guideline-box">
+            <h3>1. The "Unitary Method" Intro</h3>
+            <p>If 3 chocolates cost 15, don't just find 1 chocolate. Recognize that if asked for 6 chocolates, you just need to <b>double</b> the 15. Olympiads reward this "Scale Thinking."</p>
+        </div>
 
-<h2>Trick 1: Skip Counting for Multiplication</h2>
+        <div class="guideline-box">
+            <h3>2. Mastery of the Calendar</h3>
+            <p>Teach the child the "Knuckle Trick" for months with 31 days. Olympiads frequently ask questions like "If today is Monday, what day is it in 8 days?" <br>
+            <b>Trick:</b> Every 7 days, the day stays the same. So 7 days is Monday, and 8 days is just Monday + 1 = Tuesday.</p>
+        </div>
 
-<p>
-Skip counting helps students understand multiplication quickly.
-Instead of repeated addition, count numbers in steps.
-</p>
+        <div class="guideline-box">
+            <h3>3. "Achievers Section" Word Problems</h3>
+            <p>These are 3-mark questions. They usually combine two topics—e.g., Multiplication and Money. <br>
+            <b>Guideline:</b> Always write down the "First Result" before moving to the second step of the story. Don't hold it all in your head.</p>
+        </div>
+    </div>
 
-<div class="example">
-
-Example:
-
-4 × 6
-
-Skip count by 4
-
-4, 8, 12, 16, 20, 24
-
-Answer = 24
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 2: Multiply by 5 Shortcut</h2>
-
-<p>
-Multiplying by 5 can be done easily using a shortcut.
-Multiply the number by 10 and divide by 2.
-</p>
-
-<div class="example">
-
-Example:
-
-5 × 18
-
-10 × 18 = 180
-
-180 ÷ 2 = 90
-
-Answer = 90
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 3: Multiply by 9 Trick</h2>
-
-<p>
-To multiply a number by 9, multiply it by 10 and subtract the original number.
-</p>
-
-<div class="example">
-
-Example:
-
-9 × 34
-
-10 × 34 = 340
-
-340 − 34 = 306
-
-Answer = 306
+    <div style="text-align: center;">
+        <a href="signup.html" class="btn-cta">Start Free Class 3 Practice Quiz →</a>
+    </div>
 
 </div>
 
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 4: Division Check Method</h2>
-
-<p>
-You can check your division answer by multiplying the quotient and divisor.
-</p>
-
-<div class="example">
-
-Example:
-
-24 ÷ 6 = 4
-
-Check:
-
-4 × 6 = 24
-
-So the answer is correct.
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 5: Number Pattern Recognition</h2>
-
-<p>
-Many Olympiad questions involve recognizing patterns in numbers.
-</p>
-
-<div class="example">
-
-Example:
-
-3, 6, 9, 12, ?
-
-Pattern = +3
-
-Answer = 15
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 6: Doubling and Halving Method</h2>
-
-<p>
-Multiplication problems can sometimes be simplified by doubling and halving numbers.
-</p>
-
-<div class="example">
-
-Example:
-
-4 × 25
-
-Double 25 → 50  
-Double again → 100
-
-Answer = 100
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 7: Understanding Fractions</h2>
-
-<p>
-Fractions represent equal parts of a whole.
-Understanding fractions visually makes solving problems easier.
-</p>
-
-<div class="example">
-
-Example:
-
-1/2 means one part out of two equal parts.
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 8: Estimation Strategy</h2>
-
-<p>
-Estimation helps eliminate wrong answers quickly.
-</p>
-
-<div class="example">
-
-Example:
-
-198 + 102
-
-Estimate
-
-200 + 100 = 300
-
-Actual answer = 300
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Practice Tips for Students</h2>
-
-<ul>
-
-<li>Memorize multiplication tables up to 12.</li>
-<li>Practice mental math daily.</li>
-<li>Solve pattern problems regularly.</li>
-<li>Practice division problems.</li>
-<li>Understand fractions using diagrams.</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Practice Question</h2>
-
-<div class="example">
-
-Question:
-
-7 × 8 = ?
-
-Solution:
-
-7 × 8 = 56
-
-</div>
-
-</div>
-
-
-</div>
+<footer>
+    <p>© 2026 OlympiadPortal. Nurturing Logical Giants of Tomorrow.</p>
+    <div style="margin-top:20px;">
+        <a href="privacy-policy.html" style="color:white; margin:0 10px;">Privacy Policy</a> | 
+        <a href="about.html" style="color:white; margin:0 10px;">About Us</a>
+    </div>
+</footer>
 
 </body>
 </html>
