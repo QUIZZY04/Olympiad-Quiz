@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4 Math Olympiad Mastery: Number Theory & Geometry | OlympiadPortal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #083a7c;
+            --secondary: #0a4fa3;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+            --success: #10b981;
+        }
+
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.8; }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 22px; font-weight: 800; color: var(--accent); text-decoration: none; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 600; margin-left: 20px; font-size: 14px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; }
+        .hero p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.9; }
+
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
+
+        .card {
+            background: var(--white);
+            padding: 45px;
+            margin-bottom: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-top: 6px solid var(--accent);
+        }
+        .card h2 { color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; }
+        .card h3 { color: var(--secondary); font-size: 1.5rem; margin-top: 30px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+
+        .example-box {
+            background: #f0fdf4;
+            border-left: 6px solid var(--success);
+            padding: 35px;
+            border-radius: 0 20px 20px 0;
+            margin: 30px 0;
+            position: relative;
+        }
+        .example-box::before {
+            content: "MASTER STRATEGY";
+            position: absolute;
+            top: -12px; left: 20px;
+            background: var(--success); color: white;
+            padding: 3px 15px; font-size: 11px; font-weight: 900; border-radius: 4px;
+        }
+
+        .guideline-box {
+            background: #eff6ff;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #dbeafe;
+            margin: 20px 0;
+        }
+
+        .btn-cta {
+            background: var(--accent); color: #000;
+            padding: 20px 50px; border-radius: 12px;
+            text-decoration: none; font-weight: 800; font-size: 1.2rem;
+            display: inline-block; transition: 0.3s; margin-top: 30px;
+        }
+        .btn-cta:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4); }
+
+        footer { text-align: center; padding: 60px; background: #0f172a; color: #94a3b8; margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo">🎓 OlympiadPortal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="math-olympiad-tricks.html">Main Tricks</a>
+        <a href="signup.html">Practice Test</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <h1>Class 4 Math Olympiad Masterclass</h1>
+    <p>Advanced Number Theory, Multi-Step Problem Solving, and Geometric Optimization for Top National Ranks.</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>🚀 The Class 4 Competitive Jump</h2>
+        <p>In Grade 4, Math Olympiads like the <b>SOF IMO</b> or <b>SilverZone iOM</b> evolve from basic arithmetic into <b>Conceptual Number Theory</b>. This is the stage where "Achievers Section" questions begin to combine two or more chapters into a single problem. For example, a question might ask you to find the perimeter of a shape where the side lengths are determined by the HCF of two numbers.</p>
+        <p>To succeed at this level, students must move away from "Step-by-Step" school math and embrace <b>"Pattern Recognition"</b> and <b>"Logical Elimination."</b> This guide covers the high-value shortcuts needed to master the Class 4 syllabus with 100% accuracy.</p>
+    </div>
+
+    <div class="card">
+        <h2>🔢 Strategy 1: The Rainbow Factor Method</h2>
+        <p>Factors and Multiples are the backbone of the Class 4 syllabus. Most students find factors by dividing one by one, which is slow and often leads to missing the middle factors. Olympians use the <b>Rainbow Symmetry</b> method.</p>
+        
+        <h3>The Logic: Symmetry in Multiples</h3>
+        <p>Every factor (except for perfect squares) has a unique "partner." By finding factors in pairs starting from 1, you can work your way to the center and ensure no factor is left behind.</p>
+        
+        
+
+        <div class="example-box">
+            <strong>The Problem: Find all factors of 48.</strong><br><br>
+            <strong>The Shortcut:</strong> <br>
+            1. Start with 1: $1 \times 48$. (Pairs: 1, 48) <br>
+            2. Move to 2: $2 \times 24$. (Pairs: 2, 24) <br>
+            3. Move to 3: $3 \times 16$. (Pairs: 3, 16) <br>
+            4. Move to 4: $4 \times 12$. (Pairs: 4, 12) <br>
+            5. Move to 6: $6 \times 8$. (Pairs: 6, 8) <br>
+            6. There is no whole number between 6 and 8 that divides 48. <b>Stop.</b> <br><br>
+            <strong>Result:</strong> 1, 2, 3, 4, 6, 8, 12, 16, 24, 48.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📐 Strategy 2: Perimeter of "Complex" Polygons</h2>
+        <p>A favorite question in the Achievers Section involves finding the perimeter of an L-shaped or "staircase" figure where some side lengths are hidden. Many students get stuck trying to find every individual segment. We use the <b>"Push-Out" Method</b>.</p>
+
+        
+
+        <h3>The Logic: Rectangle Equivalence</h3>
+        <p>If you "push out" the inner horizontal and vertical segments of a staircase shape, they perfectly match the total width and total height of the bounding rectangle. The perimeter of an L-shaped figure is exactly the same as the perimeter of the rectangle it fits inside.</p>
+
+        <div class="example-box">
+            <strong>The Problem: An L-shaped garden has a total vertical height of 15m and a total horizontal width of 20m. Find the perimeter.</strong><br><br>
+            <strong>The Trick:</strong> <br>
+            Ignore the inner corner. The perimeter is simply: <br>
+            $2 \times (Height + Width) = 2 \times (15 + 20) = 2 \times 35 = 70\text{m}$. <br><br>
+            <em>Note: This only works if all angles are right angles ($90^\circ$).</em>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📊 Strategy 3: Fast Unitary Scaling</h2>
+        <p>Word problems in Class 4 often involve large numbers. Traditional unitary methods (finding the value of 1) lead to difficult division. Olympians look for <b>"Scaling Relationships."</b></p>
+
+        <div class="example-box">
+            <strong>The Problem: If 8 boxes of chocolate cost $120, how much do 24 boxes cost?</strong><br><br>
+            <strong>The Shortcut:</strong> <br>
+            1. Don't divide 120 by 8. <br>
+            2. Look at the numbers: 24 is exactly <b>3 times</b> 8. <br>
+            3. Simply triple the price: $120 \times 3 = 360$. <br>
+            <strong>Answer:</strong> $360.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>💡 The Olympian’s Success Roadmap</h2>
+        <div class="guideline-box">
+            <h3>1. The "Last Digit" Filter</h3>
+            <p>In large multiplications (e.g., $456 \times 7$), look at the unit digit first: $6 \times 7 = 42$. The answer must end in 2. Use this to eliminate wrong MCQ options in 2 seconds.</p>
+        </div>
+
+        <div class="guideline-box">
+            <h3>2. Roman Numeral "Subtractive" Rule</h3>
+            <p>Class 4 introduces Roman Numerals up to 100. Always remember the <b>Left-Smaller Rule</b>: If a smaller numeral is on the left, you subtract (e.g., XC = 90). If it's on the right, you add (e.g., CX = 110).</p>
+        </div>
+
+        <div class="guideline-box">
+            <h3>3. Data Interpretation: The "Total Value" Check</h3>
+            <p>In Bar Graphs or Pictographs, always calculate the "Key" first (e.g., 1 icon = 5 students). Write down the numeric value on top of every bar before reading the questions. This prevents reading errors.</p>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="signup.html" class="btn-cta">Start Free Class 4 Practice Quiz →</a>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 OlympiadPortal. Engineering the Logical Giants of Tomorrow.</p>
+</footer>
+
+</body>
+</html>
