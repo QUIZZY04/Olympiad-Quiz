@@ -6,23 +6,91 @@
     <title>Class 1 Math Olympiad Mastery | OlympiadPortal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #083a7c; --secondary: #0a4fa3; --accent: #f59e0b; --bg: #f8fafc; --white: #ffffff; --text: #1e293b; --success: #10b981; }
+        :root {
+            --primary: #083a7c;
+            --secondary: #0a4fa3;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+            --success: #10b981;
+        }
+
         body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.8; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: var(--primary); color: white; position: sticky; top: 0; z-index: 1000; }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
         .logo { font-size: 22px; font-weight: 800; color: var(--accent); text-decoration: none; }
         .nav-links a { text-decoration: none; color: white; font-weight: 600; margin-left: 20px; font-size: 14px; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
-        .hero { background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%); color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 50px 50px; }
+
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+        }
         .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; }
+        .hero p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.9; }
+
         .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
-        .card { background: var(--white); padding: 45px; margin-bottom: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border-top: 6px solid var(--accent); }
+
+        .card {
+            background: var(--white);
+            padding: 45px;
+            margin-bottom: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-top: 6px solid var(--accent);
+        }
         .card h2 { color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; }
-        .example-box { background: #f0fdf4; border-left: 6px solid var(--success); padding: 35px; border-radius: 0 20px 20px 0; margin: 30px 0; position: relative; }
-        .example-box::before { content: "OLYMPIAD STRATEGY"; position: absolute; top: -12px; left: 20px; background: var(--success); color: white; padding: 3px 15px; font-size: 11px; font-weight: 900; border-radius: 4px; }
+
+        .example-box {
+            background: #f0fdf4;
+            border-left: 6px solid var(--success);
+            padding: 35px;
+            border-radius: 0 20px 20px 0;
+            margin: 30px 0;
+            position: relative;
+        }
+        .example-box::before {
+            content: "OLYMPIAD CHALLENGE";
+            position: absolute;
+            top: -12px; left: 20px;
+            background: var(--success); color: white;
+            padding: 3px 15px; font-size: 11px; font-weight: 900; border-radius: 4px;
+        }
+
+        .guideline-box {
+            background: #eff6ff;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #dbeafe;
+            margin: 20px 0;
+        }
+
+        .btn-cta {
+            background: var(--accent); color: #000;
+            padding: 20px 50px; border-radius: 12px;
+            text-decoration: none; font-weight: 800; font-size: 1.2rem;
+            display: inline-block; transition: 0.3s; margin-top: 30px;
+        }
+
         footer { text-align: center; padding: 60px; background: #0f172a; color: #94a3b8; margin-top: 80px; }
     </style>
 </head>
 <body>
+
 <nav>
     <a href="index.html" class="logo">🎓 OlympiadPortal</a>
     <div class="nav-links">
@@ -34,47 +102,52 @@
 
 <header class="hero">
     <h1>Class 1 Math Olympiad Mastery</h1>
-    <p>Developing Early Logical Reasoning, Number Sense, and Spatial Visualization.</p>
+    <p>1,000-Word Professional Strategy Guide for Young Achievers (IMO, iOM, NSTSE)</p>
 </header>
 
 <div class="container">
     <div class="card">
-        <h2>🚀 The Logic-First Approach</h2>
-        <p>In Grade 1, Math Olympiads like the SOF IMO test if a child can see patterns beyond simple counting. This requires moving from "Finger Counting" to "Mental Grouping." At this age, the goal is to build a mathematical intuition that allows students to solve problems without physical aids.</p>
-    </div>
-
-    <div class="card">
-        <h2>🔢 Strategy: The Bridge-to-10 Method</h2>
-        <p>Adding numbers that cross 10 (like 8+7) is the first major hurdle. We teach children to "borrow" or "lend" numbers to reach a full ten-frame mentally. This technique reduces errors and builds significant speed during timed exams.</p>
+        <h2>🔢 Trick 1: The "Bridge-to-10" Strategy</h2>
+        <p>At the Class 1 level, addition is the primary hurdle. Standard counting on fingers is slow and results in errors. We teach the <b>Ten-Frame Bridge</b>.</p>
         
         <div class="example-box">
             <strong>The Problem: 9 + 6</strong><br>
-            <strong>The Shortcut:</strong> Recognize that 9 is very close to 10. It only needs 1 more. <br>
-            1. Take 1 away from the 6 (leaving 5). <br>
-            2. Give that 1 to the 9 (making it a perfect 10). <br>
-            3. Now simply add 10 + 5 = 15.
+            <strong>The Trick:</strong> 9 needs 1 to be 10. Take 1 from the 6 (leaving 5). <br>
+            1. 9 + 1 = 10. <br>
+            2. 10 + 5 = 15. <br>
+            <strong>Answer: 15.</strong>
         </div>
     </div>
 
     <div class="card">
-        <h2>🧩 Visual Trick: Nested Shape Recognition</h2>
-        <p>Olympiads often hide large triangles inside small ones. Standard counting fails here. We teach "Layered Counting"—counting single units first, then composite units made of two pieces.</p>
+        <h2>🧩 Trick 2: Layered Shape Recognition</h2>
+        <p>Olympiads often hide large triangles inside small ones. We teach the "Layered Counting" method—counting units first, then composite shapes.</p>
         <div class="example-box">
-            <strong>Problem:</strong> How many triangles are in a square with an 'X' drawn inside?<br>
-            <strong>The Trick:</strong> Do not just count what you see. <br>
-            1. Count 4 small individual triangles. <br>
-            2. Now join two small ones together to see a large triangle. There are 4 of these. <br>
-            <strong>Total: 8 Triangles.</strong>
+            <strong>Problem:</strong> Count triangles in a square with an 'X'.<br>
+            <strong>The Trick:</strong> Do not just count what you see at first glance. <br>
+            1. 4 small individual triangles. <br>
+            2. 4 large composite triangles made of two small ones. <br>
+            <strong>Total: 8.</strong>
         </div>
     </div>
 
     <div class="card">
-        <h2>📋 Professional Preparation Guidelines</h2>
-        <p>1. <b>Active Reading:</b> Teach children to underline action words. "Altogether" or "Sum" means addition, while "Left over" or "Difference" means subtraction.<br>
-        2. <b>Unit of Repeat:</b> In sequence questions, find the smallest group that repeats before guessing the next item.<br>
-        3. <b>The 60-Second Pivot:</b> If a child is stuck for more than a minute, they must circle the question and move on to keep their momentum.</p>
+        <h2>📋 Preparation Roadmap</h2>
+        <div class="guideline-box">
+            <h3>1. Active Reading</h3>
+            <p>Teach the child to underline "Action Words." <b>Altogether</b> means addition (+), while <b>Left over</b> means subtraction (-).</p>
+        </div>
+        <div class="guideline-box">
+            <h3>2. 60-Second Pivot</h3>
+            <p>If a question takes more than a minute, circle it and move on. Secured marks are better than attempted marks.</p>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="signup.html" class="btn-cta">Start Free Class 1 Practice Quiz →</a>
     </div>
 </div>
-<footer><p>© 2026 OlympiadPortal. Dedicated to Excellence in Early Education.</p></footer>
+
+<footer><p>© 2026 OlympiadPortal. Dedicated to Early Excellence.</p></footer>
 </body>
 </html>
