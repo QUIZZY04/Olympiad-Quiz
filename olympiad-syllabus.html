@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Olympiad Syllabus Explorer | Class 1–10</title>
+
+<style>
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+margin:0;
+background:#f4f7fb;
+color:#333;
+}
+
+header{
+background:linear-gradient(135deg,#0a4fa3,#083a7c);
+color:white;
+padding:35px;
+text-align:center;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:25px;
+}
+
+.selector{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+margin-bottom:20px;
+text-align:center;
+}
+
+select{
+padding:10px;
+margin:10px;
+font-size:16px;
+}
+
+.result{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+h2{
+color:#0a4fa3;
+}
+
+ul{
+line-height:1.8;
+}
+
+.footer{
+background:#0a4fa3;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Olympiad Syllabus Explorer</h1>
+<p>Select Class and Subject to View Detailed Syllabus</p>
+
+</header>
+
+<div class="container">
+
+<div class="selector">
+
+<select id="classSelect" onchange="showSyllabus()">
+<option value="">Select Class</option>
+<option value="1">Class 1</option>
+<option value="2">Class 2</option>
+<option value="3">Class 3</option>
+<option value="4">Class 4</option>
+<option value="5">Class 5</option>
+<option value="6">Class 6</option>
+<option value="7">Class 7</option>
+<option value="8">Class 8</option>
+<option value="9">Class 9</option>
+<option value="10">Class 10</option>
+</select>
+
+<select id="subjectSelect" onchange="showSyllabus()">
+
+<option value="">Select Subject</option>
+<option value="math">Mathematics</option>
+<option value="science">Science</option>
+<option value="english">English</option>
+<option value="reasoning">Logical Reasoning</option>
+<option value="gk">General Knowledge</option>
+
+</select>
+
+</div>
+
+<div class="result" id="syllabusResult">
+
+<h2>Select Class and Subject</h2>
+<p>Syllabus will appear here.</p>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+© 2026 OlympiadQuiz.org
+
+</div>
+
+<script>
+
+const syllabus={
+
+math:{
+1:["Counting Numbers","Addition","Subtraction","Shapes","Patterns","Measurement"],
+2:["Two Digit Numbers","Addition and Subtraction","Time","Money","Shapes","Patterns"],
+3:["Multiplication","Division","Fractions","Measurement","Geometry Basics","Data Handling"],
+4:["Large Numbers","Multiplication","Division","Fractions","Decimals","Geometry","Measurement"],
+5:["Factors and Multiples","Fractions","Decimals","Geometry","Perimeter and Area","Data Handling"],
+6:["Integers","Fractions","Decimals","Algebra Basics","Ratio","Geometry","Data Handling"],
+7:["Rational Numbers","Linear Equations","Algebraic Expressions","Mensuration","Data Handling"],
+8:["Exponents and Powers","Algebra","Squares and Cubes","Mensuration","Graphs","Probability"],
+9:["Polynomials","Coordinate Geometry","Linear Equations","Triangles","Statistics"],
+10:["Quadratic Equations","Trigonometry","Coordinate Geometry","Probability","Surface Areas and Volumes"]
+},
+
+science:{
+1:["Living and Non Living","Plants","Animals","Human Body","Air and Water"],
+2:["Plants","Animals","Food","Human Body","Environment"],
+3:["Food and Digestion","Human Body","Plants","Animals","Earth and Universe"],
+4:["Animals","Human Body Systems","Matter","Energy","Environment"],
+5:["Food and Health","Force","Energy","Matter","Earth Science"],
+6:["Components of Food","Motion","Electricity","Light","Magnetism","Air Around Us"],
+7:["Nutrition","Heat","Acids Bases and Salts","Physical and Chemical Changes","Light"],
+8:["Force and Pressure","Sound","Chemical Effects","Friction","Cell Structure"],
+9:["Matter in Our Surroundings","Atoms and Molecules","Motion","Energy","Cell Biology"],
+10:["Chemical Reactions","Acids Bases and Salts","Life Processes","Electricity","Light"]
+},
+
+english:{
+1:["Alphabet","Basic Vocabulary","Simple Sentences","Spellings"],
+2:["Vocabulary","Sentence Formation","Grammar Basics","Spellings"],
+3:["Nouns","Verbs","Adjectives","Articles","Comprehension"],
+4:["Tenses","Pronouns","Adverbs","Vocabulary","Reading Comprehension"],
+5:["Synonyms","Antonyms","Sentence Structure","Comprehension"],
+6:["Grammar Rules","Vocabulary","Tenses","Comprehension"],
+7:["Parts of Speech","Idioms","Vocabulary","Reading Skills"],
+8:["Advanced Grammar","Vocabulary","Comprehension"],
+9:["Grammar","Vocabulary","Reading Comprehension"],
+10:["Advanced Grammar","Vocabulary","Comprehension"]
+},
+
+reasoning:{
+1:["Patterns","Odd One Out","Picture Series"],
+2:["Analogies","Patterns","Classification"],
+3:["Coding Decoding","Series","Direction Sense"],
+4:["Classification","Coding","Series","Mirror Images"],
+5:["Number Series","Venn Diagrams","Patterns"],
+6:["Analogy","Series","Logical Puzzles"],
+7:["Coding Decoding","Series","Venn Diagrams"],
+8:["Logical Puzzles","Analogy","Series"],
+9:["Analytical Reasoning","Coding","Series"],
+10:["Advanced Logical Reasoning","Puzzles"]
+},
+
+gk:{
+1:["Animals","Plants","Environment"],
+2:["Nature","Basic Science Facts"],
+3:["Countries","Animals","Famous Places"],
+4:["History Basics","Geography Basics"],
+5:["Science Facts","World Knowledge"],
+6:["Current Affairs","Science Discoveries"],
+7:["Geography","History","Science"],
+8:["World Geography","Current Affairs"],
+9:["International Events","Science and Technology"],
+10:["Global Affairs","Science Innovations"]
+}
+
+}
+
+function showSyllabus(){
+
+let c=document.getElementById("classSelect").value
+let s=document.getElementById("subjectSelect").value
+let result=document.getElementById("syllabusResult")
+
+if(c && s){
+
+let topics=syllabus[s][c]
+
+let html="<h2>Class "+c+" "+s.toUpperCase()+" Syllabus</h2><ul>"
+
+topics.forEach(t=>{
+html+="<li>"+t+"</li>"
+})
+
+html+="</ul>"
+
+result.innerHTML=html
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
