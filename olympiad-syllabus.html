@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,10 +9,13 @@
 <style>
 
 body{
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 margin:0;
 background:#f4f7fb;
+color:#333;
 }
+
+/* NAVBAR */
 
 nav{
 display:flex;
@@ -30,10 +32,12 @@ gap:15px;
 }
 
 .nav-links a{
-color:white;
 text-decoration:none;
+color:white;
 font-weight:bold;
 }
+
+/* HEADER */
 
 header{
 background:#0a4fa3;
@@ -41,6 +45,8 @@ color:white;
 padding:35px;
 text-align:center;
 }
+
+/* CONTENT */
 
 .container{
 max-width:1000px;
@@ -60,10 +66,12 @@ margin-bottom:20px;
 background:white;
 padding:25px;
 border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
 h3{
 color:#0a4fa3;
+margin-top:25px;
 }
 
 </style>
@@ -77,22 +85,18 @@ color:#0a4fa3;
 <div>🎓 Olympiad Quiz</div>
 
 <div class="nav-links">
-
 <a href="index.html">Home</a>
 <a href="olympiad-syllabus.html">Syllabus</a>
 <a href="study-material.html">Study</a>
 <a href="olympiad-preparation-tips.html">Tips</a>
-
 </div>
 
 </nav>
 
 
 <header>
-
 <h1>Olympiad Syllabus Explorer</h1>
-<p>Select Class and Subject</p>
-
+<p>Select Class and Subject to view detailed syllabus</p>
 </header>
 
 
@@ -101,7 +105,6 @@ color:#0a4fa3;
 <div class="selector">
 
 <select id="classSelect" onchange="showSyllabus()">
-
 <option value="">Select Class</option>
 <option value="1">Class 1</option>
 <option value="2">Class 2</option>
@@ -113,22 +116,21 @@ color:#0a4fa3;
 <option value="8">Class 8</option>
 <option value="9">Class 9</option>
 <option value="10">Class 10</option>
-
 </select>
 
 <select id="subjectSelect" onchange="showSyllabus()">
-
 <option value="">Select Subject</option>
 <option value="math">Mathematics</option>
-
+<option value="science">Science</option>
+<option value="english">English</option>
+<option value="reasoning">Logical Reasoning</option>
+<option value="gk">General Knowledge</option>
 </select>
 
 </div>
 
 <div id="syllabusResult" class="result">
-
 <h2>Select Class and Subject</h2>
-
 </div>
 
 </div>
@@ -140,198 +142,152 @@ const syllabus = {
 
 math:{
 
-1:{
-reasoning:["Odd One Out","Analogy","Pattern Completion","Picture Series"],
-math:[
+1:[
 "Counting numbers up to 100",
 "Number names and number comparison",
+"Before and after numbers",
 "Addition and subtraction",
 "Basic number patterns",
 "Shapes and spatial understanding"
 ],
-everyday:[
-"Time concepts",
-"Money identification",
-"Measurement comparison"
-],
-achievers:[
-"Advanced addition problems",
-"Complex pattern problems"
-]
-},
 
-2:{
-reasoning:["Analogy","Series completion","Classification","Mirror images"],
-math:[
-"Two digit numbers",
-"Place value",
-"Addition and subtraction",
-"Multiplication introduction",
-"Number patterns"
+2:[
+"Two-digit numbers and place value",
+"Addition and subtraction of larger numbers",
+"Introduction to multiplication",
+"Number patterns and sequences",
+"Basic fractions",
+"Measurement and time"
 ],
-everyday:[
-"Time calculation",
-"Money problems",
-"Measurement units"
-],
-achievers:[
-"Mixed arithmetic problems",
-"Advanced number patterns"
-]
-},
 
-3:{
-reasoning:["Alphabet series","Coding decoding","Direction sense","Logical classification"],
-math:[
+3:[
 "Place value up to 4 digits",
 "Addition and subtraction of larger numbers",
 "Multiplication and division",
 "Fractions introduction",
-"Basic geometry"
+"Basic geometry",
+"Measurement and data handling"
 ],
-everyday:[
-"Time intervals",
-"Money calculations",
-"Measurement conversions",
-"Data interpretation"
-],
-achievers:[
-"Multi-step word problems",
-"Advanced fraction questions"
-]
-},
 
-4:{
-reasoning:["Figure series","Coding decoding","Mirror images","Logical puzzles"],
-math:[
-"Large numbers",
+4:[
+"Large numbers and place value",
 "Multiplication and division",
 "Factors and multiples",
-"Fractions",
-"Decimals",
-"Geometry basics"
-],
-everyday:[
-"Perimeter and area",
-"Measurement units",
-"Data handling"
-],
-achievers:[
-"Complex arithmetic problems",
-"Advanced fractions"
-]
-},
-
-5:{
-reasoning:["Number series","Alphabet series","Venn diagrams","Logical puzzles"],
-math:[
-"Factors and multiples",
-"Fractions",
-"Decimals",
-"Geometry",
-"Perimeter and area"
-],
-everyday:[
-"Measurement conversions",
-"Time and calendar",
-"Data handling"
-],
-achievers:[
-"Advanced arithmetic puzzles"
-]
-},
-
-6:{
-reasoning:["Analogy","Series","Coding decoding","Logical puzzles"],
-math:[
-"Integers",
 "Fractions and decimals",
-"Ratio and proportion",
-"Algebra basics",
-"Geometry"
+"Basic geometry concepts",
+"Perimeter and measurement"
 ],
-everyday:[
-"Mensuration",
-"Data handling",
-"Speed distance time"
-],
-achievers:[
-"Advanced algebra problems"
-]
-},
 
-7:{
-reasoning:["Coding decoding","Series","Logical puzzles","Venn diagrams"],
-math:[
+5:[
+"Factors and multiples",
+"Fractions and decimals",
+"Geometry basics",
+"Perimeter and area",
+"Measurement conversions",
+"Data handling"
+],
+
+6:[
+"Integers and number line",
+"Fractions and decimals operations",
+"Ratio and proportion",
+"Basic algebra expressions",
+"Geometry and angles",
+"Mensuration and area"
+],
+
+7:[
 "Rational numbers",
 "Algebraic expressions",
 "Linear equations",
-"Geometry",
-"Mensuration"
+"Geometry concepts",
+"Mensuration",
+"Simple interest and data handling"
 ],
-everyday:[
-"Data handling",
-"Simple interest"
-],
-achievers:[
-"Advanced algebra problems"
-]
-},
 
-8:{
-reasoning:["Logical puzzles","Analogy","Series","Data interpretation"],
-math:[
-"Exponents",
+8:[
+"Exponents and powers",
 "Squares and cubes",
-"Algebra",
-"Linear equations",
-"Mensuration"
-],
-everyday:[
+"Algebra and equations",
+"Geometry and mensuration",
 "Graphs",
 "Probability basics"
 ],
-achievers:[
-"Advanced algebra and graph problems"
-]
-},
 
-9:{
-reasoning:["Analytical reasoning","Series","Coding decoding"],
-math:[
+9:[
 "Polynomials",
 "Coordinate geometry",
 "Linear equations",
 "Triangles",
-"Surface areas"
+"Surface areas",
+"Statistics and probability"
 ],
-everyday:[
-"Statistics",
-"Probability"
-],
-achievers:[
-"Advanced polynomial problems"
+
+10:[
+"Quadratic equations",
+"Trigonometry basics",
+"Coordinate geometry",
+"Arithmetic progression",
+"Surface areas and volumes",
+"Statistics and probability"
 ]
+
 },
 
-10:{
-reasoning:["Advanced logical reasoning","Analytical puzzles"],
-math:[
-"Quadratic equations",
-"Trigonometry",
-"Coordinate geometry",
-"Arithmetic progression"
-],
-everyday:[
-"Probability",
-"Statistics",
-"Surface areas and volumes"
-],
-achievers:[
-"Advanced trigonometry problems"
-]
-}
+science:{
 
+1:["Living and non-living things","Plants and animals","Human body basics","Air and water","Environment"],
+2:["Plants and animals","Food and nutrition","Human body systems","Environment and nature"],
+3:["Food and digestion","Human body organs","Plants","Animals","Earth and universe"],
+4:["Animals and habitats","Human body systems","Matter and materials","Energy and environment"],
+5:["Food and health","Force and energy","Matter","Earth science"],
+6:["Components of food","Motion and measurement","Electricity and circuits","Light and magnetism","Air around us"],
+7:["Nutrition in plants and animals","Heat","Acids bases and salts","Physical and chemical changes","Light"],
+8:["Force and pressure","Sound","Chemical effects","Friction","Cell structure"],
+9:["Matter in surroundings","Atoms and molecules","Motion","Energy","Cell biology"],
+10:["Chemical reactions","Acids bases and salts","Life processes","Electricity","Light"]
+},
+
+english:{
+
+1:["Alphabet","Basic vocabulary","Simple sentences","Spellings"],
+2:["Vocabulary development","Sentence formation","Basic grammar"],
+3:["Nouns verbs adjectives","Articles","Reading comprehension"],
+4:["Tenses","Pronouns","Adverbs","Vocabulary building"],
+5:["Synonyms and antonyms","Sentence structure","Reading comprehension"],
+6:["Grammar rules","Vocabulary","Tenses","Reading skills"],
+7:["Parts of speech","Idioms","Vocabulary development"],
+8:["Advanced grammar","Vocabulary enrichment","Comprehension"],
+9:["Grammar and vocabulary","Reading comprehension"],
+10:["Advanced grammar usage","Vocabulary building","Reading comprehension"]
+},
+
+reasoning:{
+
+1:["Patterns","Odd one out","Picture series"],
+2:["Analogies","Classification","Pattern completion"],
+3:["Coding decoding","Series","Direction sense"],
+4:["Series","Coding","Mirror images"],
+5:["Number series","Venn diagrams","Logical patterns"],
+6:["Analogy","Series","Logical puzzles"],
+7:["Coding decoding","Series","Venn diagrams"],
+8:["Logical puzzles","Analogy","Series"],
+9:["Analytical reasoning","Coding","Series"],
+10:["Advanced reasoning puzzles","Analytical reasoning"]
+},
+
+gk:{
+
+1:["Animals","Plants","Environment"],
+2:["Nature","Science facts","Daily life knowledge"],
+3:["Countries","Animals","Famous places"],
+4:["Basic history","Basic geography"],
+5:["Science facts","World knowledge"],
+6:["Current affairs","Scientific discoveries"],
+7:["Geography","History","Science"],
+8:["World geography","Current affairs"],
+9:["International events","Science and technology"],
+10:["Global affairs","Science innovations"]
 }
 
 }
@@ -343,22 +299,15 @@ let s=document.getElementById("subjectSelect").value
 
 if(!c || !s) return
 
-let data=syllabus[s][c]
+let topics=syllabus[s][c]
 
-let html=`<h2>Class ${c} ${s.toUpperCase()} Syllabus</h2>
+let html="<h2>Class "+c+" "+s.toUpperCase()+" Syllabus</h2><ul>"
 
-<h3>Logical Reasoning</h3>
-<ul>${data.reasoning.map(x=>`<li>${x}</li>`).join("")}</ul>
+topics.forEach(topic=>{
+html+="<li>"+topic+"</li>"
+})
 
-<h3>Mathematical Reasoning</h3>
-<ul>${data.math.map(x=>`<li>${x}</li>`).join("")}</ul>
-
-<h3>Everyday Mathematics</h3>
-<ul>${data.everyday.map(x=>`<li>${x}</li>`).join("")}</ul>
-
-<h3>Achievers Section</h3>
-<ul>${data.achievers.map(x=>`<li>${x}</li>`).join("")}</ul>
-`
+html+="</ul>"
 
 document.getElementById("syllabusResult").innerHTML=html
 
