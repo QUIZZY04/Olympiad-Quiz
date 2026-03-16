@@ -1,380 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 2 Math Olympiad Mastery: Strategies & Advanced Tricks | OlympiadPortal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #083a7c;
+            --secondary: #0a4fa3;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+            --success: #10b981;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.8; }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { font-size: 22px; font-weight: 800; color: var(--accent); text-decoration: none; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 600; margin-left: 20px; font-size: 14px; }
 
-<title>Class 2 Math Olympiad Tricks | OlympiadQuiz</title>
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; }
+        .hero p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.9; }
 
-<style>
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
 
-body{
-font-family:Arial, Helvetica, sans-serif;
-margin:0;
-background:#f4f7fb;
-line-height:1.8;
-color:#333;
-}
+        .card {
+            background: var(--white);
+            padding: 45px;
+            margin-bottom: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-top: 6px solid var(--accent);
+        }
+        .card h2 { color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; }
+        .card h3 { color: var(--secondary); font-size: 1.5rem; margin-top: 30px; }
 
-/* NAVIGATION */
+        .example-box {
+            background: #f0fdf4;
+            border-left: 6px solid var(--success);
+            padding: 35px;
+            border-radius: 0 20px 20px 0;
+            margin: 30px 0;
+            position: relative;
+        }
+        .example-box::before {
+            content: "OLYMPIAD CHALLENGE";
+            position: absolute;
+            top: -12px; left: 20px;
+            background: var(--success); color: white;
+            padding: 3px 15px; font-size: 11px; font-weight: 900; border-radius: 4px;
+        }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 5%;
-background:#083a7c;
-color:white;
-}
+        .guideline-box {
+            background: #eff6ff;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #dbeafe;
+            margin: 20px 0;
+        }
 
-.logo{
-font-size:20px;
-font-weight:bold;
-}
+        .btn-cta {
+            background: var(--accent); color: #000;
+            padding: 20px 50px; border-radius: 12px;
+            text-decoration: none; font-weight: 800; font-size: 1.2rem;
+            display: inline-block; transition: 0.3s; margin-top: 30px;
+        }
+        .btn-cta:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4); }
 
-.nav-links{
-display:flex;
-gap:15px;
-align-items:center;
-}
-
-.nav-links a{
-text-decoration:none;
-color:white;
-font-weight:600;
-font-size:14px;
-}
-
-.nav-links a:hover{
-color:#f59e0b;
-}
-
-.nav-signup{
-background:#f59e0b;
-color:#000 !important;
-padding:8px 15px;
-border-radius:6px;
-font-weight:bold;
-}
-
-/* HEADER */
-
-header{
-background:#0a4fa3;
-color:white;
-padding:40px;
-text-align:center;
-}
-
-/* CONTENT */
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:30px;
-}
-
-.card{
-background:white;
-padding:30px;
-margin-bottom:30px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-}
-
-.card h2{
-color:#0a4fa3;
-}
-
-.example{
-background:#eef4ff;
-padding:12px;
-border-left:5px solid #0a4fa3;
-margin-top:12px;
-}
-
-</style>
-
+        footer { text-align: center; padding: 60px; background: #0f172a; color: #94a3b8; margin-top: 80px; }
+    </style>
 </head>
-
 <body>
 
 <nav>
-
-<div class="logo">🎓 Olympiad Quiz</div>
-
-<div class="nav-links">
-
-<a href="index.html">Home</a>
-<a href="olympiad-syllabus.html">Syllabus</a>
-<a href="study-material.html">Study</a>
-<a href="olympiad-preparation-tips.html">Tips</a>
-<a href="math-olympiad-tricks.html">Math</a>
-<a href="science-olympiad-guide.html">Science</a>
-
-<a href="login.html">Login</a>
-<a href="signup.html" class="nav-signup">Sign Up</a>
-
-</div>
-
+    <a href="index.html" class="logo">🎓 OlympiadPortal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="math-olympiad-tricks.html">Main Tricks</a>
+        <a href="signup.html">Practice Test</a>
+    </div>
 </nav>
 
-
-<header>
-
-<h1>Class 2 Math Olympiad Tricks and Strategies</h1>
-
-<p>
-Learn smart techniques to solve Class 2 Olympiad math questions quickly and accurately.
-</p>
-
+<header class="hero">
+    <h1>Class 2 Math Olympiad Mastery</h1>
+    <p>The Comprehensive 1000-Word Roadmap for Advanced Level Competitive Excellence.</p>
 </header>
-
 
 <div class="container">
 
+    <div class="card">
+        <h2>🚀 The Transition: From Basics to Logic</h2>
+        <p>By Class 2, the Math Olympiad (IMO/iOM) shifts from simple counting to <b>Operational Logic</b>. Students are no longer just asked "how many," but "what if." At this level, exams introduce 3-digit numbers, complex patterns, and the "Achievers Section," where questions carry double marks.</p>
+        <p>To succeed, a student must master three core domains: <b>Number Sense up to 1000</b>, <b>Visual Geometry</b>, and <b>Critical Reasoning</b>.</p>
+    </div>
 
-<div class="card">
+    <div class="card">
+        <h2>🔢 Trick 1: The "Compensation" Method (Subtraction)</h2>
+        <p>Class 2 students often struggle with "borrowing" or "regrouping" in subtraction. This is slow. Olympians use <b>Compensation</b> to turn hard numbers into easy ones.</p>
+        
+        <h3>The Logic:</h3>
+        <p>If you add or subtract the same amount from both numbers in a subtraction problem, the difference stays the same. We use this to reach the nearest 10 or 100.</p>
 
-<h2>Understanding Class 2 Olympiad Mathematics</h2>
+        
 
-<p>
-In Class 2, Olympiad mathematics questions become slightly more advanced than
-Class 1. Students begin working with two-digit numbers, number patterns,
-addition and subtraction, and basic multiplication concepts.
-</p>
+        <div class="example-box">
+            <strong>The Problem:</strong> Solve 52 - 18.<br><br>
+            <strong>The Trick:</strong> 18 is very close to 20. <br>
+            1. Add 2 to 18 to make it <b>20</b>. <br>
+            2. To keep the balance, add 2 to 52 to make it <b>54</b>. <br>
+            3. Now solve: 54 - 20 = <b>34</b>. <br><br>
+            <strong>Result:</strong> Mental subtraction without ever needing to "borrow" or use a pencil!
+        </div>
+    </div>
 
-<p>
-The key goal at this level is to improve number sense and mental calculation ability.
-Students should focus on understanding numbers rather than memorizing formulas.
-</p>
+    <div class="card">
+        <h2>🧩 Trick 2: Symmetry & Fold Logic</h2>
+        <p>Olympiads frequently use "Paper Folding" and "Mirror Images" to test spatial intelligence. Class 2 students must learn to see the **Line of Symmetry**.</p>
 
-</div>
+        
 
-
-
-<div class="card">
-
-<h2>Trick 1: Tens and Ones Strategy</h2>
-
-<p>
-Large numbers can be simplified by separating them into tens and ones.
-</p>
-
-<div class="example">
-
-Example:
-
-47 + 25
-
-Break into tens and ones
-
-40 + 20 = 60  
-7 + 5 = 12  
-
-Answer = 72
-
-</div>
-
-</div>
+[Image of line of symmetry in geometric shapes]
 
 
+        <h3>Guidance: The "Mirror Check"</h3>
+        <p>Teach the child that in a mirror, <b>Left becomes Right</b>, but Top stays Top. When a paper is folded, the design is "cloned" across the fold line.</p>
 
-<div class="card">
+        <div class="example-box">
+            <strong>The Problem:</strong> A square paper is folded in half. A small circle is cut out from the folded corner. What does it look like when opened?<br><br>
+            <strong>The Trick:</strong> <br>
+            1. Identify the fold line. <br>
+            2. "Flip" the circle over that line like a mirror. <br>
+            3. A single cut on a folded paper always results in <b>at least 2</b> holes when opened. <br><br>
+            <em>Pro Tip: Always look for pairs of shapes in the answer options!</em>
+        </div>
+    </div>
 
-<h2>Trick 2: Quick Subtraction Trick</h2>
+    <div class="card">
+        <h2>📊 Trick 3: Multiplication as "Fast Addition"</h2>
+        <p>Class 2 introduces the concept of multiplication. Standard exams ask for tables; Olympiads ask for <b>Groups</b>.</p>
 
-<p>
-Instead of subtracting directly, round the number first and adjust later.
-</p>
+        <div class="example-box">
+            <strong>The Problem:</strong> There are 5 cycles. Each cycle has 2 wheels. How many wheels are there altogether?<br><br>
+            <strong>The Trick:</strong> <br>
+            Instead of counting 1, 2, 3... teach <b>Skip Counting</b>. <br>
+            2, 4, 6, 8, 10. <br>
+            <strong>Advanced Logic:</strong> Show the child that 5 groups of 2 is the same as 2 groups of 5. This is called the <b>Commutative Property</b>.
+        </div>
+    </div>
 
-<div class="example">
+    <div class="card">
+        <h2>💡 Guidelines for the Achievers Section</h2>
+        <div class="guideline-box">
+            <h3>1. The "Reverse Working" Technique</h3>
+            <p>In questions like "I thought of a number, added 5, and got 12. What is my number?", teach the child to start from the result (12) and do the <b>Opposite</b>. 12 - 5 = 7.</p>
+        </div>
 
-Example:
+        <div class="guideline-box">
+            <h3>2. Mastery of Measurement</h3>
+            <p>Class 2 exams love comparing Length and Weight. <b>Trick:</b> Always convert to the same unit mentally. Understand that a "long" object might be "light" (like a balloon), and a "small" object might be "heavy" (like a stone).</p>
+        </div>
 
-63 − 29
+        <div class="guideline-box">
+            <h3>3. The "Two-Step" Problem Filter</h3>
+            <p>Achievers section questions are always 2 steps. Example: "Rohan has 10 coins. He gives 2 to Sam and Sam gives 1 back." <br>
+            <b>Guideline:</b> Solve the first action first, then the second. Don't try to solve the whole story at once.</p>
+        </div>
+    </div>
 
-63 − 30 = 33  
-
-Add back 1  
-
-Answer = 34
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 3: Doubling Method</h2>
-
-<p>
-Multiplying by 2 is simply doubling the number.
-</p>
-
-<div class="example">
-
-Example:
-
-2 × 14
-
-14 + 14 = 28
+    <div style="text-align: center;">
+        <a href="signup.html" class="btn-cta">Start Class 2 Practice Quiz →</a>
+    </div>
 
 </div>
 
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 4: Number Pattern Recognition</h2>
-
-<p>
-Many Olympiad questions test pattern recognition.
-</p>
-
-<div class="example">
-
-Example:
-
-5, 10, 15, 20, ?
-
-Pattern = +5
-
-Answer = 25
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 5: Estimation Method</h2>
-
-<p>
-Students can estimate answers quickly before calculating.
-</p>
-
-<div class="example">
-
-Example:
-
-98 + 21
-
-≈ 100 + 20
-
-≈ 120
-
-Actual answer = 119
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 6: Comparing Numbers Quickly</h2>
-
-<p>
-Students should practice identifying the largest and smallest numbers quickly.
-</p>
-
-<div class="example">
-
-Which number is greater?
-
-56 or 65
-
-Look at tens digit:
-
-6 > 5
-
-Answer = 65
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Trick 7: Skip Counting</h2>
-
-<p>
-Skip counting helps in solving multiplication problems.
-</p>
-
-<div class="example">
-
-Example:
-
-3 × 6
-
-Count by 3:
-
-3, 6, 9, 12, 15, 18
-
-Answer = 18
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Practice Tips for Students</h2>
-
-<ul>
-
-<li>Practice mental addition every day.</li>
-<li>Learn number patterns.</li>
-<li>Practice subtraction using number lines.</li>
-<li>Improve observation skills.</li>
-<li>Try solving Olympiad style puzzles.</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Practice Question</h2>
-
-<div class="example">
-
-Question:
-
-25 + 14 = ?
-
-Solution:
-
-20 + 10 = 30  
-
-5 + 4 = 9  
-
-Answer = 39
-
-</div>
-
-</div>
-
-
-
-</div>
+<footer>
+    <p>© 2026 OlympiadPortal. Building the Foundation for Global Excellence.</p>
+    <div style="margin-top:20px;">
+        <a href="privacy-policy.html" style="color:white; margin:0 10px;">Privacy Policy</a> | 
+        <a href="about.html" style="color:white; margin:0 10px;">About Us</a>
+    </div>
+</footer>
 
 </body>
 </html>
