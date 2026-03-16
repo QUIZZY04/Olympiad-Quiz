@@ -18,12 +18,57 @@ line-height:1.8;
 color:#333;
 }
 
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+background:#083a7c;
+color:white;
+}
+
+.logo{
+font-size:20px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:600;
+font-size:14px;
+}
+
+.nav-links a:hover{
+color:#f59e0b;
+}
+
+.nav-signup{
+background:#f59e0b;
+color:#000 !important;
+padding:8px 15px;
+border-radius:6px;
+font-weight:bold;
+}
+
+/* HEADER */
+
 header{
 background:#0a4fa3;
 color:white;
 padding:40px;
 text-align:center;
 }
+
+/* CONTENT */
 
 .container{
 max-width:1100px;
@@ -62,11 +107,37 @@ font-weight:bold;
 color:#0a4fa3;
 }
 
+.class-card:hover{
+background:#dde8ff;
+}
+
 </style>
 
 </head>
 
 <body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="logo">🎓 Olympiad Quiz</div>
+
+<div class="nav-links">
+
+<a href="olympiad-syllabus.html">Syllabus</a>
+<a href="study-material.html">Study</a>
+<a href="olympiad-preparation-tips.html">Tips</a>
+<a href="math-olympiad-tricks.html">Math</a>
+<a href="science-olympiad-guide.html">Science</a>
+
+<a href="login.html">Login</a>
+<a href="signup.html" class="nav-signup">Sign Up</a>
+
+</div>
+
+</nav>
+
 
 <header>
 
@@ -173,6 +244,7 @@ Complex problems can be simplified by breaking them into smaller steps.
 </div>
 
 
+
 <div class="card">
 
 <h2>Tips to Improve Olympiad Performance</h2>
@@ -193,4 +265,5 @@ Complex problems can be simplified by breaking them into smaller steps.
 </div>
 
 </body>
+
 </html>
