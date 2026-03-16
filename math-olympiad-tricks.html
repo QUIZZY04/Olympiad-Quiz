@@ -18,6 +18,49 @@ line-height:1.7;
 color:#333;
 }
 
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 5%;
+background:#083a7c;
+color:white;
+}
+
+.logo{
+font-size:20px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:600;
+font-size:14px;
+}
+
+.nav-links a:hover{
+color:#f59e0b;
+}
+
+.nav-signup{
+background:#f59e0b;
+color:#000 !important;
+padding:8px 15px;
+border-radius:6px;
+font-weight:bold;
+}
+
+/* HEADER */
+
 header{
 background:linear-gradient(135deg,#0a4fa3,#083a7c);
 color:white;
@@ -25,18 +68,7 @@ padding:35px;
 text-align:center;
 }
 
-nav{
-background:#083a7c;
-padding:12px;
-text-align:center;
-}
-
-nav a{
-color:white;
-margin:0 15px;
-text-decoration:none;
-font-weight:bold;
-}
+/* CONTENT */
 
 .container{
 max-width:1100px;
@@ -54,11 +86,6 @@ box-shadow:0 3px 10px rgba(0,0,0,0.08);
 
 h2{
 color:#0a4fa3;
-margin-top:0;
-}
-
-ul{
-padding-left:20px;
 }
 
 .example{
@@ -66,23 +93,6 @@ background:#eef4ff;
 padding:12px;
 border-left:5px solid #0a4fa3;
 margin-top:10px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px;
-}
-
-th{
-background:#0a4fa3;
-color:white;
-padding:10px;
-}
-
-td{
-border:1px solid #ddd;
-padding:10px;
 }
 
 .footer{
@@ -99,53 +109,47 @@ margin-top:40px;
 
 <body>
 
-<header>
-
-<h1>Math Olympiad Tricks and Strategies</h1>
-
-<p>Smart techniques to solve Olympiad mathematics questions faster</p>
-
-</header>
+<!-- NAVIGATION -->
 
 <nav>
 
-<a href="index.html">Home</a>
-<a href="study-material.html">Study Material</a>
+<div class="logo">🎓 Olympiad Quiz</div>
+
+<div class="nav-links">
+
 <a href="olympiad-syllabus.html">Syllabus</a>
+<a href="study-material.html">Study</a>
+<a href="olympiad-preparation-tips.html">Tips</a>
+<a href="math-olympiad-tricks.html">Math</a>
+<a href="science-olympiad-guide.html">Science</a>
+
+<a href="login.html">Login</a>
+<a href="signup.html" class="nav-signup">Sign Up</a>
+
+</div>
 
 </nav>
+
+<header>
+
+<h1>Math Olympiad Tricks (Class 1–10)</h1>
+<p>Smart problem-solving techniques for Olympiad mathematics</p>
+
+</header>
 
 <div class="container">
 
 <div class="card">
 
-<h2>Why Math Tricks Are Important in Olympiad Exams</h2>
+<h2>Class 1 Math Tricks</h2>
 
-<p>
-Olympiad mathematics questions are designed to test logical thinking and problem solving ability. 
-Instead of solving problems using long traditional methods, smart tricks and strategies can help 
-students solve problems quickly and accurately.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h2>1. Pattern Recognition Trick</h2>
-
-<p>
-Many Olympiad questions involve number patterns. Identifying patterns can help you predict the next number easily.
-</p>
+<p>Focus on counting, number recognition and simple addition.</p>
 
 <div class="example">
-
 Example:  
-2, 4, 8, 16, ?
-
-Pattern: Each number is multiplied by 2.  
-Answer: **32**
-
+3 + 4  
+Count forward → 4,5,6,7  
+Answer = 7
 </div>
 
 </div>
@@ -153,25 +157,15 @@ Answer: **32**
 
 <div class="card">
 
-<h2>2. Elimination Method</h2>
+<h2>Class 2 Math Tricks</h2>
 
-<p>
-Since most Olympiad questions are multiple choice questions, students can eliminate incorrect options quickly.
-</p>
-
-<ul>
-
-<li>Remove impossible answers</li>
-<li>Estimate approximate values</li>
-<li>Narrow down options</li>
-
-</ul>
+<p>Break numbers into tens and ones.</p>
 
 <div class="example">
-
-Example:  
-If the answer must be between 20 and 30, eliminate options outside this range.
-
+48 + 23  
+40 + 20 = 60  
+8 + 3 = 11  
+Answer = 71
 </div>
 
 </div>
@@ -179,23 +173,13 @@ If the answer must be between 20 and 30, eliminate options outside this range.
 
 <div class="card">
 
-<h2>3. Breaking Complex Problems</h2>
+<h2>Class 3 Math Tricks</h2>
 
-<p>
-Large problems become easier when broken into smaller steps.
-</p>
+<p>Use multiplication tables and skip counting.</p>
 
 <div class="example">
-
-Example:
-
-Find 25 × 16
-
-Step 1: 25 × 10 = 250  
-Step 2: 25 × 6 = 150  
-
-Total = **400**
-
+6 × 4  
+6 + 6 + 6 + 6 = 24
 </div>
 
 </div>
@@ -203,49 +187,13 @@ Total = **400**
 
 <div class="card">
 
-<h2>4. Mental Math Tricks</h2>
-
-<table>
-
-<tr>
-<th>Operation</th>
-<th>Trick</th>
-</tr>
-
-<tr>
-<td>Multiply by 5</td>
-<td>Multiply by 10 then divide by 2</td>
-</tr>
-
-<tr>
-<td>Multiply by 9</td>
-<td>Multiply by 10 then subtract the number</td>
-</tr>
-
-<tr>
-<td>Multiply by 25</td>
-<td>Multiply by 100 then divide by 4</td>
-</tr>
-
-</table>
-
-</div>
-
-
-<div class="card">
-
-<h2>5. Approximation Technique</h2>
-
-<p>
-Sometimes exact calculation is unnecessary. Approximation can help find answers quickly.
-</p>
+<h2>Class 4 Math Tricks</h2>
 
 <div class="example">
-
-Example:
-
-498 + 302 ≈ 500 + 300 = **800**
-
+25 × 12  
+25 × (10 + 2)  
+= 250 + 50  
+= 300
 </div>
 
 </div>
@@ -253,35 +201,70 @@ Example:
 
 <div class="card">
 
-<h2>6. Important Olympiad Math Topics</h2>
+<h2>Class 5 Math Tricks</h2>
 
-<ul>
-
-<li>Number systems</li>
-<li>Fractions and decimals</li>
-<li>Algebra basics</li>
-<li>Geometry and shapes</li>
-<li>Data interpretation</li>
-<li>Logical reasoning</li>
-
-</ul>
+<div class="example">
+Divisibility rule for 9  
+Sum of digits divisible by 9 → number divisible by 9
+</div>
 
 </div>
 
 
 <div class="card">
 
-<h2>7. Tips to Improve Math Olympiad Performance</h2>
+<h2>Class 6 Math Tricks</h2>
 
-<ul>
+<div class="example">
+−7 + 10 = 3
+</div>
 
-<li>Practice challenging questions regularly</li>
-<li>Improve mental calculation speed</li>
-<li>Understand mathematical concepts deeply</li>
-<li>Learn shortcuts and tricks</li>
-<li>Analyze mistakes after solving problems</li>
+</div>
 
-</ul>
+
+<div class="card">
+
+<h2>Class 7 Math Tricks</h2>
+
+<div class="example">
+(a + b)² = a² + 2ab + b²
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Class 8 Math Tricks</h2>
+
+<div class="example">
+18²  
+= (20 − 2)²  
+= 400 − 80 + 4  
+= 324
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Class 9 Math Tricks</h2>
+
+<div class="example">
+a² − b² = (a − b)(a + b)
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Class 10 Math Tricks</h2>
+
+<div class="example">
+sin²θ + cos²θ = 1
+</div>
 
 </div>
 
@@ -289,7 +272,7 @@ Example:
 
 <div class="footer">
 
-© 2026 OlympiadQuiz.org | Olympiad Learning Platform
+© 2026 OlympiadQuiz.org
 
 </div>
 
