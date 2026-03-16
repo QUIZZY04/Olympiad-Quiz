@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Olympiad Syllabus Explorer | Class 1–10</title>
+<title>Olympiad Syllabus Explorer</title>
 
 <style>
 
 body{
-font-family:Arial,Helvetica,sans-serif;
+font-family:Arial;
 margin:0;
 background:#f4f7fb;
-color:#333;
 }
-
-/* NAVBAR */
 
 nav{
 display:flex;
@@ -28,40 +24,19 @@ background:#083a7c;
 color:white;
 }
 
-.logo{
-font-size:20px;
-font-weight:bold;
-}
-
 .nav-links{
 display:flex;
 gap:15px;
-align-items:center;
 }
 
 .nav-links a{
-text-decoration:none;
 color:white;
-font-weight:600;
-font-size:14px;
-}
-
-.nav-links a:hover{
-color:#f59e0b;
-}
-
-.nav-signup{
-background:#f59e0b;
-color:#000 !important;
-padding:8px 15px;
-border-radius:6px;
+text-decoration:none;
 font-weight:bold;
 }
 
-/* HEADER */
-
 header{
-background:linear-gradient(135deg,#0a4fa3,#083a7c);
+background:#0a4fa3;
 color:white;
 padding:35px;
 text-align:center;
@@ -70,45 +45,25 @@ text-align:center;
 .container{
 max-width:1000px;
 margin:auto;
-padding:25px;
+padding:30px;
 }
 
 .selector{
 background:white;
 padding:20px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
-margin-bottom:20px;
 text-align:center;
-}
-
-select{
-padding:10px;
-margin:10px;
-font-size:16px;
+margin-bottom:20px;
 }
 
 .result{
 background:white;
 padding:25px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
-.section{
-margin-bottom:20px;
-}
-
-.section h3{
+h3{
 color:#0a4fa3;
-}
-
-.footer{
-background:#0a4fa3;
-color:white;
-text-align:center;
-padding:20px;
-margin-top:40px;
 }
 
 </style>
@@ -119,7 +74,7 @@ margin-top:40px;
 
 <nav>
 
-<div class="logo">🎓 Olympiad Quiz</div>
+<div>🎓 Olympiad Quiz</div>
 
 <div class="nav-links">
 
@@ -127,11 +82,6 @@ margin-top:40px;
 <a href="olympiad-syllabus.html">Syllabus</a>
 <a href="study-material.html">Study</a>
 <a href="olympiad-preparation-tips.html">Tips</a>
-<a href="math-olympiad-tricks.html">Math</a>
-<a href="science-olympiad-guide.html">Science</a>
-
-<a href="login.html">Login</a>
-<a href="signup.html" class="nav-signup">Sign Up</a>
 
 </div>
 
@@ -141,7 +91,7 @@ margin-top:40px;
 <header>
 
 <h1>Olympiad Syllabus Explorer</h1>
-<p>Select Class and Subject to View Detailed Syllabus</p>
+<p>Select Class and Subject</p>
 
 </header>
 
@@ -151,6 +101,7 @@ margin-top:40px;
 <div class="selector">
 
 <select id="classSelect" onchange="showSyllabus()">
+
 <option value="">Select Class</option>
 <option value="1">Class 1</option>
 <option value="2">Class 2</option>
@@ -162,107 +113,225 @@ margin-top:40px;
 <option value="8">Class 8</option>
 <option value="9">Class 9</option>
 <option value="10">Class 10</option>
-</select>
 
+</select>
 
 <select id="subjectSelect" onchange="showSyllabus()">
 
 <option value="">Select Subject</option>
 <option value="math">Mathematics</option>
-<option value="science">Science</option>
-<option value="english">English</option>
-<option value="reasoning">Logical Reasoning</option>
-<option value="gk">General Knowledge</option>
 
 </select>
 
 </div>
 
-
-<div class="result" id="syllabusResult">
+<div id="syllabusResult" class="result">
 
 <h2>Select Class and Subject</h2>
-<p>Syllabus will appear here.</p>
 
 </div>
-
-</div>
-
-
-<div class="footer">
-
-© 2026 OlympiadQuiz.org
 
 </div>
 
 
 <script>
 
-const syllabus={
+const syllabus = {
 
 math:{
-1:["Counting Numbers","Number Names","Addition","Subtraction","Shapes","Patterns"],
-2:["Two Digit Numbers","Place Value","Addition and Subtraction","Multiplication Basics","Patterns"],
-3:["Multiplication","Division","Fractions","Measurement","Geometry Basics","Data Handling"],
-4:["Large Numbers","Multiplication","Division","Fractions","Decimals","Factors and Multiples","Geometry"],
-5:["Factors and Multiples","Fractions","Decimals","Geometry","Perimeter and Area","Data Handling"],
-6:["Integers","Fractions","Decimals","Ratio and Proportion","Algebra Basics","Geometry","Data Handling"],
-7:["Rational Numbers","Linear Equations","Algebraic Expressions","Geometry","Mensuration"],
-8:["Exponents and Powers","Algebra","Squares and Cubes","Mensuration","Graphs","Probability"],
-9:["Polynomials","Coordinate Geometry","Linear Equations","Triangles","Statistics"],
-10:["Quadratic Equations","Trigonometry","Coordinate Geometry","Probability","Surface Areas and Volumes"]
+
+1:{
+reasoning:["Odd One Out","Analogy","Pattern Completion","Picture Series"],
+math:[
+"Counting numbers up to 100",
+"Number names and number comparison",
+"Addition and subtraction",
+"Basic number patterns",
+"Shapes and spatial understanding"
+],
+everyday:[
+"Time concepts",
+"Money identification",
+"Measurement comparison"
+],
+achievers:[
+"Advanced addition problems",
+"Complex pattern problems"
+]
 },
 
-science:{
-1:["Living and Non Living","Plants","Animals","Human Body","Air and Water"],
-2:["Plants","Animals","Food","Human Body","Environment"],
-3:["Food and Digestion","Human Body","Plants","Animals","Earth and Universe"],
-4:["Animals","Human Body Systems","Matter","Energy","Environment"],
-5:["Food and Health","Force","Energy","Matter","Earth Science"],
-6:["Components of Food","Motion","Electricity","Light","Magnetism","Air Around Us"],
-7:["Nutrition","Heat","Acids Bases and Salts","Physical and Chemical Changes","Light"],
-8:["Force and Pressure","Sound","Chemical Effects","Friction","Cell Structure"],
-9:["Matter in Our Surroundings","Atoms and Molecules","Motion","Energy","Cell Biology"],
-10:["Chemical Reactions","Acids Bases and Salts","Life Processes","Electricity","Light"]
+2:{
+reasoning:["Analogy","Series completion","Classification","Mirror images"],
+math:[
+"Two digit numbers",
+"Place value",
+"Addition and subtraction",
+"Multiplication introduction",
+"Number patterns"
+],
+everyday:[
+"Time calculation",
+"Money problems",
+"Measurement units"
+],
+achievers:[
+"Mixed arithmetic problems",
+"Advanced number patterns"
+]
 },
 
-english:{
-1:["Alphabet","Vocabulary","Simple Sentences","Spellings"],
-2:["Vocabulary","Sentence Formation","Grammar Basics"],
-3:["Nouns","Verbs","Adjectives","Articles","Comprehension"],
-4:["Tenses","Pronouns","Adverbs","Vocabulary","Reading"],
-5:["Synonyms","Antonyms","Sentence Structure","Comprehension"],
-6:["Grammar Rules","Vocabulary","Tenses","Reading Skills"],
-7:["Parts of Speech","Idioms","Vocabulary","Reading"],
-8:["Advanced Grammar","Vocabulary","Comprehension"],
-9:["Grammar","Vocabulary","Reading Comprehension"],
-10:["Advanced Grammar","Vocabulary","Comprehension"]
+3:{
+reasoning:["Alphabet series","Coding decoding","Direction sense","Logical classification"],
+math:[
+"Place value up to 4 digits",
+"Addition and subtraction of larger numbers",
+"Multiplication and division",
+"Fractions introduction",
+"Basic geometry"
+],
+everyday:[
+"Time intervals",
+"Money calculations",
+"Measurement conversions",
+"Data interpretation"
+],
+achievers:[
+"Multi-step word problems",
+"Advanced fraction questions"
+]
 },
 
-reasoning:{
-1:["Patterns","Odd One Out","Picture Series"],
-2:["Analogies","Patterns","Classification"],
-3:["Coding Decoding","Series","Direction Sense"],
-4:["Classification","Coding","Series","Mirror Images"],
-5:["Number Series","Venn Diagrams","Patterns"],
-6:["Analogy","Series","Logical Puzzles"],
-7:["Coding Decoding","Series","Venn Diagrams"],
-8:["Logical Puzzles","Analogy","Series"],
-9:["Analytical Reasoning","Coding","Series"],
-10:["Advanced Logical Reasoning","Puzzles"]
+4:{
+reasoning:["Figure series","Coding decoding","Mirror images","Logical puzzles"],
+math:[
+"Large numbers",
+"Multiplication and division",
+"Factors and multiples",
+"Fractions",
+"Decimals",
+"Geometry basics"
+],
+everyday:[
+"Perimeter and area",
+"Measurement units",
+"Data handling"
+],
+achievers:[
+"Complex arithmetic problems",
+"Advanced fractions"
+]
 },
 
-gk:{
-1:["Animals","Plants","Environment"],
-2:["Nature","Basic Science Facts"],
-3:["Countries","Animals","Famous Places"],
-4:["History Basics","Geography Basics"],
-5:["Science Facts","World Knowledge"],
-6:["Current Affairs","Science Discoveries"],
-7:["Geography","History","Science"],
-8:["World Geography","Current Affairs"],
-9:["International Events","Science and Technology"],
-10:["Global Affairs","Science Innovations"]
+5:{
+reasoning:["Number series","Alphabet series","Venn diagrams","Logical puzzles"],
+math:[
+"Factors and multiples",
+"Fractions",
+"Decimals",
+"Geometry",
+"Perimeter and area"
+],
+everyday:[
+"Measurement conversions",
+"Time and calendar",
+"Data handling"
+],
+achievers:[
+"Advanced arithmetic puzzles"
+]
+},
+
+6:{
+reasoning:["Analogy","Series","Coding decoding","Logical puzzles"],
+math:[
+"Integers",
+"Fractions and decimals",
+"Ratio and proportion",
+"Algebra basics",
+"Geometry"
+],
+everyday:[
+"Mensuration",
+"Data handling",
+"Speed distance time"
+],
+achievers:[
+"Advanced algebra problems"
+]
+},
+
+7:{
+reasoning:["Coding decoding","Series","Logical puzzles","Venn diagrams"],
+math:[
+"Rational numbers",
+"Algebraic expressions",
+"Linear equations",
+"Geometry",
+"Mensuration"
+],
+everyday:[
+"Data handling",
+"Simple interest"
+],
+achievers:[
+"Advanced algebra problems"
+]
+},
+
+8:{
+reasoning:["Logical puzzles","Analogy","Series","Data interpretation"],
+math:[
+"Exponents",
+"Squares and cubes",
+"Algebra",
+"Linear equations",
+"Mensuration"
+],
+everyday:[
+"Graphs",
+"Probability basics"
+],
+achievers:[
+"Advanced algebra and graph problems"
+]
+},
+
+9:{
+reasoning:["Analytical reasoning","Series","Coding decoding"],
+math:[
+"Polynomials",
+"Coordinate geometry",
+"Linear equations",
+"Triangles",
+"Surface areas"
+],
+everyday:[
+"Statistics",
+"Probability"
+],
+achievers:[
+"Advanced polynomial problems"
+]
+},
+
+10:{
+reasoning:["Advanced logical reasoning","Analytical puzzles"],
+math:[
+"Quadratic equations",
+"Trigonometry",
+"Coordinate geometry",
+"Arithmetic progression"
+],
+everyday:[
+"Probability",
+"Statistics",
+"Surface areas and volumes"
+],
+achievers:[
+"Advanced trigonometry problems"
+]
+}
+
 }
 
 }
@@ -271,29 +340,31 @@ function showSyllabus(){
 
 let c=document.getElementById("classSelect").value
 let s=document.getElementById("subjectSelect").value
-let result=document.getElementById("syllabusResult")
 
-if(!c || !s){
-result.innerHTML="<h2>Select Class and Subject</h2>"
-return
-}
+if(!c || !s) return
 
-let topics=syllabus[s][c]
+let data=syllabus[s][c]
 
-let html="<h2>Class "+c+" "+s.toUpperCase()+" Syllabus</h2><ul>"
+let html=`<h2>Class ${c} ${s.toUpperCase()} Syllabus</h2>
 
-topics.forEach(t=>{
-html+="<li>"+t+"</li>"
-})
+<h3>Logical Reasoning</h3>
+<ul>${data.reasoning.map(x=>`<li>${x}</li>`).join("")}</ul>
 
-html+="</ul>"
+<h3>Mathematical Reasoning</h3>
+<ul>${data.math.map(x=>`<li>${x}</li>`).join("")}</ul>
 
-result.innerHTML=html
+<h3>Everyday Mathematics</h3>
+<ul>${data.everyday.map(x=>`<li>${x}</li>`).join("")}</ul>
+
+<h3>Achievers Section</h3>
+<ul>${data.achievers.map(x=>`<li>${x}</li>`).join("")}</ul>
+`
+
+document.getElementById("syllabusResult").innerHTML=html
 
 }
 
 </script>
 
 </body>
-
 </html>
