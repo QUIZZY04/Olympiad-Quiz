@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 1 Math Olympiad: Strategic Guide & Tricks | OlympiadPortal</title>
+    <title>Class 1 Math Olympiad: The Ultimate Strategy Guide | OlympiadPortal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #083a7c;
+            --secondary: #0a4fa3;
             --accent: #f59e0b;
-            --bg: #f4f7fb;
-            --card-bg: #ffffff;
+            --bg: #f8fafc;
+            --white: #ffffff;
             --text: #1e293b;
-            --muted: #64748b;
+            --success: #10b981;
+            --info: #3b82f6;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background: var(--bg);
-            line-height: 1.7;
-            color: var(--text);
-        }
-
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.8; }
+        
         /* NAVIGATION */
         nav {
             display: flex;
@@ -35,214 +31,192 @@
             top: 0;
             z-index: 1000;
         }
-
         .logo { font-size: 22px; font-weight: 800; color: var(--accent); text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: white; font-weight: 600; font-size: 14px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
-        .nav-signup { background: var(--accent); color: #000 !important; padding: 8px 18px; border-radius: 8px; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 600; margin-left: 20px; font-size: 14px; }
 
-        /* HEADER */
-        header {
-            background: linear-gradient(135deg, #0a4fa3 0%, #083a7c 100%);
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
+            border-radius: 0 0 50px 50px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; }
+        .hero p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.9; }
+
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
+
+        /* CONTENT CARDS */
+        .card {
+            background: var(--white);
+            padding: 45px;
+            margin-bottom: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-top: 6px solid var(--accent);
+        }
+        .card h2 { color: var(--primary); font-size: 2.2rem; margin-bottom: 25px; font-weight: 800; }
+        .card h3 { color: var(--secondary); font-size: 1.5rem; margin-top: 30px; }
+
+        /* SOLVED EXAMPLES */
+        .example-box {
+            background: #f0fdf4;
+            border-left: 6px solid var(--success);
+            padding: 35px;
+            border-radius: 0 20px 20px 0;
+            margin: 30px 0;
+            position: relative;
+        }
+        .example-box::before {
+            content: "OLYMPIAD CHALLENGE";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--success);
+            color: white;
+            padding: 3px 15px;
+            font-size: 11px;
+            font-weight: 900;
+            border-radius: 4px;
         }
 
-        header h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 800; }
-        header p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; opacity: 0.9; }
-
-        /* CONTENT */
-        .container { max-width: 1000px; margin: auto; padding: 40px 20px; }
-
-        .section-card {
-            background: var(--card-bg);
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--accent);
-        }
-
-        .section-card h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-
-        /* TRICK BOXES */
-        .trick-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
-        }
-
-        .trick-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .trick-tag {
-            background: #dcfce7;
-            color: #166534;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .example-block {
+        /* PARENT TIPS */
+        .guideline-box {
             background: #eff6ff;
-            padding: 20px;
-            border-left: 5px solid #3b82f6;
-            border-radius: 0 8px 8px 0;
-            margin-top: 15px;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #dbeafe;
+            margin: 20px 0;
         }
 
-        /* GRID FOR SHAPES */
-        .shape-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .shape-item {
-            text-align: center;
-            padding: 20px;
-            background: #fff;
-            border: 1px dashed #cbd5e1;
+        .btn-cta {
+            background: var(--accent);
+            color: #000;
+            padding: 20px 50px;
             border-radius: 12px;
-        }
-
-        .parent-tip {
-            background: #fff7ed;
-            border: 1px solid #ffedd5;
-            padding: 20px;
-            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: 0.3s;
             margin-top: 30px;
-            color: #9a3412;
-            font-size: 0.95rem;
         }
+        .btn-cta:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4); }
 
-        footer { text-align:center; padding:40px; background:#1e293b; color:#94a3b8; margin-top:50px; }
+        footer { text-align: center; padding: 60px; background: #0f172a; color: #94a3b8; margin-top: 80px; }
     </style>
 </head>
-
 <body>
 
 <nav>
     <a href="index.html" class="logo">🎓 OlympiadPortal</a>
     <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="olympiad-syllabus.html">Syllabus</a>
-        <a href="math-olympiad-tricks.html">Math Master</a>
-        <a href="signup.html" class="nav-signup">Practice Quiz</a>
+        <a href="math-olympiad-tricks.html">Main Tricks</a>
+        <a href="signup.html">Practice Test</a>
     </div>
 </nav>
 
-<header>
+<header class="hero">
     <h1>Class 1 Math Olympiad Mastery</h1>
-    <p>Essential strategies for IMO, iOM, and NSTSE. Building logical foundations for the next generation of achievers.</p>
+    <p>A 1000-Word Professional Strategy Guide for Young Achievers (IMO, iOM, NSTSE)</p>
 </header>
 
 <div class="container">
 
-    <div class="section-card">
-        <h2>🔍 What to Expect in Class 1 Olympiads</h2>
-        <p>
-            At the Grade 1 level, Olympiads like the <b>International Mathematics Olympiad (IMO)</b> focus on <b>Visual Arithmetic</b> and <b>Spatial Reasoning</b>. Questions are designed to test if a child can see patterns beyond simple rote counting taught in standard classrooms.
-        </p>
-        <p><b>Focus Areas:</b> Number Sense (0-100), Computation, Basic Geometry, and Logical Sequencing.</p>
+    <div class="card">
+        <h2>🌟 Introduction: The Olympiad Mindset</h2>
+        <p>In Class 1, many parents believe that if a child can count to 100, they are ready for a Math Olympiad. However, exams like the <b>International Mathematics Olympiad (IMO)</b> are not "counting tests." They are <b>logic tests</b>.</p>
+        <p>A Class 1 student is expected to understand the relationship between numbers, recognize patterns in the physical world, and solve spatial puzzles. This guide provides the deep pedagogical tricks needed to transition a student from "School Math" to "Olympiad Math."</p>
     </div>
 
-    <div class="section-card">
-        <div class="trick-header">
-            <h2>🔢 Strategy 1: The "Jump Counting" Technique</h2>
-            <span class="trick-tag">Arithmetic Speed</span>
-        </div>
-        <p>In competitive exams, time is limited. Instead of starting from 1 for every addition, students should learn the "Start-Big" method. This minimizes errors and saves precious seconds.</p>
+    <div class="card">
+        <h2>🔢 Trick 1: The "Jump & Bridge" Addition</h2>
+        <p>Standard schools teach addition using finger counting. For an Olympiad, finger counting is too slow and error-prone. We teach the <b>Bridge-to-10</b> method.</p>
         
-        <div class="example-block">
-            <strong>Olympiad Problem:</strong> Add 4 to 17.<br>
-            <strong>Standard Way:</strong> 1, 2, 3... 17... 18, 19, 20, 21.<br>
-            <strong>Olympiad Trick:</strong> Put 17 in your mind, then "Jump" four times: 18 → 19 → 20 → <b>21</b>.
-        </div>
-    </div>
+        <h3>The Logic:</h3>
+        <p>Our brains process "10" much faster than any other number. By "lending" parts of a number to reach 10, the calculation becomes a mental visual rather than a physical count.</p>
 
-    <div class="section-card">
-        <div class="trick-header">
-            <h2>🧩 Strategy 2: Logical Pattern Cracking</h2>
-            <span class="trick-tag">Mental Ability</span>
-        </div>
-        <p>Patterns are the heart of Logical Reasoning. Students are often asked to find the "missing piece" in a sequence. Teach them to look for <b>ABC</b> or <b>AABB</b> patterns.</p>
         
-        <div class="trick-box">
-            <strong>Look for the 'Rule':</strong><br>
-            Sequence: 🍎, 🍌, 🍎, 🍌, ?<br>
-            <strong>Rule:</strong> The fruit changes every time. The next must be 🍎.<br>
-            <em>Pro Tip: Patterns can be in Colors, Shapes, or Numbers!</em>
+
+        <div class="example-box">
+            <strong>The Problem:</strong> Solve 9 + 7.<br><br>
+            <strong>The Trick:</strong> 9 is very close to 10. It needs 1 more. <br>
+            1. Take 1 from the 7 (which makes the 7 a 6). <br>
+            2. Give that 1 to the 9 (which makes the 9 a 10). <br>
+            3. Now simply add 10 + 6 = 16. <br><br>
+            <strong>Result:</strong> No fingers needed. Total speed!
         </div>
     </div>
 
-    <div class="section-card">
-        <h2>📐 Strategy 3: Spatial Shape Recognition</h2>
-        <p>Olympiad geometry for Class 1 isn't just naming shapes; it’s about identifying them in complex "hidden" drawings. </p>
-        
-        <div class="shape-grid">
-            <div class="shape-item">
-                <strong>Triangle</strong>
-                <p>3 Corners (Vertices)<br>3 Sides</p>
-            </div>
-            <div class="shape-item">
-                <strong>Square</strong>
-                <p>4 Corners<br>All 4 Sides Equal</p>
-            </div>
-            <div class="shape-item">
-                <strong>Rectangle</strong>
-                <p>4 Corners<br>Opposite Sides Equal</p>
-            </div>
-            <div class="shape-item">
-                <strong>Circle</strong>
-                <p>0 Corners<br>Curved Edge</p>
-            </div>
+    <div class="card">
+        <h2>🧩 Trick 2: Spatial Decomposition (Hidden Shapes)</h2>
+        <p>A favorite topic in SOF and SilverZone exams is counting shapes in a complex diagram. Students often miss "Composite Shapes"—shapes made of smaller ones.</p>
+
+        <h3>The Guideline: The "Individual vs. Group" Method</h3>
+        <p>Teach your child to count in layers. Layer 1: Smallest single shapes. Layer 2: Shapes made of two small ones. Layer 3: Shapes made of four small ones.</p>
+
+        <div class="example-box">
+            <strong>The Problem:</strong> How many triangles are in a square with an 'X' drawn inside?<br><br>
+            <strong>The Trick:</strong> <br>
+            1. Look at the 4 small triangles inside. (Count: 4) <br>
+            2. Now, hide half the square. See the large triangle made of two small ones? There are 4 of these large triangles. (Count: 4) <br>
+            <strong>Total:</strong> 4 + 4 = 8. <br><br>
+            <em>Note: Most students will only answer 4. The "Group" method secures the Gold Medal.</em>
         </div>
     </div>
 
-    <div class="section-card">
-        <h2>💡 Parent & Teacher Guidance</h2>
-        <p>Preparing a 6-year-old for a national exam requires a balanced approach. Focus on the following habits:</p>
-        <ul style="padding-left: 20px;">
-            <li><b>Daily Mental Math:</b> Ask simple addition/subtraction during car rides or dinner.</li>
-            <li><b>Visual Aids:</b> Use rajma beans, beads, or LEGO blocks to explain "Place Value."</li>
-            <li><b>Reading the Question:</b> Class 1 students often know the math but fail because they didn't understand what the question was asking. Practice reading aloud.</li>
-        </ul>
-        
-        <div class="parent-tip">
-            <strong>🌟 Achiever's Tip:</strong> Most SOF IMO papers have an "Achievers Section" worth double marks. These questions usually involve two steps (e.g., "Find the sum of the largest 1-digit number and the smallest 2-digit number").
+    <div class="card">
+        <h2>📊 Trick 3: Logical Sequencing (Pattern Cracking)</h2>
+        <p>Patterns are the foundation of Algebra. In Class 1, these appear as "What comes next?" puzzles using colors, shapes, or numbers.</p>
+
+        <h3>Guidance: Identifying the 'Unit of Repeat'</h3>
+        <p>The secret is to find the smallest group that repeats. Once the child identifies the "Unit," the answer for the 10th or 20th item becomes obvious.</p>
+
+        <div class="example-box">
+            <strong>The Problem:</strong> 🍎, 🍌, 🍒, 🍎, 🍌, 🍒, ?, 🍌<br><br>
+            <strong>The Trick:</strong> <br>
+            1. Identify the unit: (🍎, 🍌, 🍒). <br>
+            2. The sequence restarted: (🍎, 🍌, 🍒). <br>
+            3. After 🍒, the unit starts again with 🍎. <br>
+            <strong>Answer:</strong> Apple (🍎).
         </div>
     </div>
 
-    <div class="section-card" style="border-top-color: #22c55e;">
-        <h2>📝 Sample Challenge</h2>
-        <div class="trick-box" style="background: #f0fdf4; border-color: #bbf7d0;">
-            <strong>Question:</strong> Rohan has 12 chocolates. He gives 5 to his sister. How many does he have left?<br><br>
-            <strong>Olympiad Shortcut:</strong> Don't draw 12 lines. Count back 5 from 12: (11, 10, 9, 8, <b>7</b>).
+    <div class="card">
+        <h2>💡 Parent & Teacher Roadmap: Deep Preparation</h2>
+        <div class="guideline-box">
+            <h3>1. The "Read-Aloud" Habit</h3>
+            <p>Most Class 1 students fail not because they can't do the math, but because they cannot yet read complex word problems. <b>Trick:</b> Practice "Active Reading" where the child underlines the numbers and the 'action word' (e.g., 'altogether' means +, 'left' means -).</p>
         </div>
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="signup.html" class="nav-signup" style="padding: 15px 40px; font-size: 1.1rem; display: inline-block;">Start Class 1 Practice Quiz →</a>
+
+        <div class="guideline-box">
+            <h3>2. Mental Math Drills</h3>
+            <p>Spend 5 minutes daily on "Number Bonds." A child should know instantly that 7 needs 3 to make 10, and 6 needs 4. This speed is what separates the Achievers Section from the rest.</p>
         </div>
+
+        <div class="guideline-box">
+            <h3>3. Time Management: The "Traffic Light" Strategy</h3>
+            <p>Teach the child to look at a question: <br>
+            🟢 <b>Green:</b> I know this! (Solve immediately) <br>
+            🟡 <b>Yellow:</b> I know this but it's long. (Circle it) <br>
+            🔴 <b>Red:</b> I don't understand. (Skip and come back) <br>
+            This prevents the child from crying over one hard question and missing 10 easy ones.</p>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="signup.html" class="btn-cta">Start Free Class 1 Practice Quiz →</a>
     </div>
 
 </div>
 
 <footer>
-    <p>© 2026 OlympiadPortal. Empowering young minds for a brighter future.</p>
-    <div style="margin-top:10px;">
-        <a href="privacy-policy.html" style="color:white; margin:0 10px; text-decoration:none;">Privacy Policy</a> | 
-        <a href="about.html" style="color:white; margin:0 10px; text-decoration:none;">About Us</a>
+    <p>© 2026 OlympiadPortal. Empowering the Next Generation of Scientists and Mathematicians.</p>
+    <div style="margin-top:20px;">
+        <a href="privacy-policy.html" style="color:white; margin:0 10px;">Privacy Policy</a> | 
+        <a href="about.html" style="color:white; margin:0 10px;">About Us</a>
     </div>
 </footer>
 
