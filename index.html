@@ -1,351 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olympiad Portal - Ignite Your Potential</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Olympiad Quiz | School Math & Science Practice (Class 1-10)</title>
+    <meta name="description" content="Free online Olympiad practice portal for students of Class 1 to 10. Interactive quizzes for IMO, NSO, and school foundation exams.">
+    <link rel="canonical" href="https://olympiadquiz.org/" />
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+    <meta property="og:title" content="Olympiad Quiz - Class 1-10 Learning Portal">
+    <meta property="og:description" content="Master your school subjects and Olympiads with fun, interactive quizzes.">
+    <meta property="og:url" content="https://olympiadquiz.org">
+    <meta property="og:image" content="https://olympiadquiz.org/assets/og-image-kids.jpg">
 
-body{
-background:#0f172a;
-color:white;
-overflow-x:hidden;
-}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Olympiad Quiz Portal",
+      "url": "https://olympiadquiz.org",
+      "description": "Interactive educational portal providing foundation and Olympiad practice for students in grades 1 through 10.",
+      "educationalLevel": "Primary and Secondary School"
+    }
+    </script>
 
-/* PARTICLES */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-}
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --bg: #ffffff;
+            --card-bg: #f8fafc;
+        }
 
-/* NAVBAR */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 5%;
-background:rgba(0,0,0,0.45);
-backdrop-filter:blur(10px);
-position:sticky;
-top:0;
-z-index:1000;
-}
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+        }
 
-.logo{
-font-size: clamp(18px, 4vw, 24px);
-font-weight:800;
-color:#f59e0b;
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-.nav-links{
-display:flex;
-gap:15px;
-align-items:center;
-}
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .logo span { color: var(--secondary); }
 
-.nav-links a{
-text-decoration:none;
-color:white;
-font-weight:600;
-font-size:13px;
-transition:0.3s;
-}
+        nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        nav a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem; }
+        nav a:hover { color: var(--primary); }
 
-.nav-links a:hover{
-color:#f59e0b;
-}
+        .hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #0ea5e9 100%);
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
 
-.nav-signup{
-background:#f59e0b;
-color:#000 !important;
-padding:8px 15px;
-border-radius:8px;
-font-weight:700 !important;
-}
+        .hero h1 { font-size: 2.8rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto 30px; }
 
-/* HERO */
-.hero{
-padding:40px 20px;
-display:flex;
-flex-direction:column;
-align-items:center;
-text-align:center;
-}
+        .btn { padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-block; }
+        .btn-main { background: var(--accent); color: white; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); }
+        .btn-main:hover { transform: scale(1.05); }
 
-.hero h1{
-font-size:clamp(2.2rem,6vw,4rem);
-margin-bottom:10px;
-}
+        .container { max-width: 1200px; margin: 60px auto; padding: 0 5%; }
+        
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 2rem; color: var(--primary); }
 
-.hero span{
-color:#f59e0b;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
 
-.hero p{
-max-width:700px;
-font-size:16px;
-color:#cbd5f5;
-margin-bottom:25px;
-}
+        .card {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
 
-/* BUTTONS */
-.btn-group{
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-justify-content:center;
-}
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary); }
+        .card p { font-size: 0.95rem; color: #64748b; margin-bottom: 20px; }
+        .card a { color: var(--secondary); font-weight: bold; text-decoration: none; }
 
-.btn{
-padding:12px 25px;
-border-radius:8px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-font-size:14px;
-}
+        .content-block { background: #f1f5f9; padding: 60px 5%; border-radius: 30px; margin: 40px 0; }
 
-.btn-primary{
-background:#f59e0b;
-color:black;
-}
+        footer { background: #0f172a; color: white; padding: 60px 5% 30px; text-align: center; }
+        .footer-links { margin-bottom: 30px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; margin: 0 15px; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; }
+        .copyright { font-size: 0.8rem; color: #64748b; border-top: 1px solid #1e293b; padding-top: 20px; }
 
-.btn-secondary{
-background:#1e293b;
-border:1px solid #334155;
-color:white;
-}
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { display: none; } /* Add a mobile menu toggle later */
+        }
+    </style>
 
-.btn:hover{
-transform:translateY(-3px);
-}
-
-/* PREPARE FOR */
-.prepare{
-padding:30px 10%;
-text-align:center;
-}
-
-.prepare h2{
-font-size:26px;
-margin-bottom:30px;
-}
-
-.logo-row{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
-align-items:center;
-}
-
-.logo-row img{
-height:50px;
-background:white;
-padding:8px;
-border-radius:8px;
-}
-
-/* FEATURES */
-.features{
-padding:60px 10%;
-text-align:center;
-}
-
-.feature-grid{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-}
-
-.feature{
-background:#1e293b;
-padding:20px;
-border-radius:12px;
-width:230px;
-}
-
-.feature h3{
-color:#f59e0b;
-margin-bottom:10px;
-font-size:18px;
-}
-
-.feature p{
-font-size:14px;
-line-height:1.5;
-}
-
-footer{
-text-align:center;
-padding:25px;
-border-top:1px solid #334155;
-color:#94a3b8;
-font-size:12px;
-}
-
-/* MOBILE */
-@media (max-width:480px){
-nav{
-padding:12px 4%;
-}
-.nav-links{
-gap:10px;
-}
-.nav-links a{
-font-size:12px;
-}
-.nav-signup{
-padding:6px 12px;
-}
-}
-</style>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      // Paste your real firebaseConfig here
+      const firebaseConfig = {
+        apiKey: "REPLACE_WITH_YOUR_KEY",
+        authDomain: "olympiad-quiz.firebaseapp.com",
+        projectId: "olympiad-quiz",
+        storageBucket: "olympiad-quiz.appspot.com",
+        messagingSenderId: "123456789",
+        appId: "1:123456789:web:abcdef"
+      };
+      const app = initializeApp(firebaseConfig);
+    </script>
 </head>
-
 <body>
 
-<div id="particles-js"></div>
+    <header>
+        <a href="index.html" class="logo">Olympiad<span>Quiz</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Practice Sets</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<nav>
+    <main>
+        <section class="hero">
+            <h1>Making Learning Fun for Class 1-10</h1>
+            <p>The ultimate foundation portal for Science, Math, and English Olympiads. Build confidence and excel in school exams.</p>
+            <a href="login.html" class="btn btn-main">Start Free Practice</a>
+        </section>
 
-<div class="logo">🎓 Olympiad Portal</div>
+        <section class="container">
+            <div class="section-title">
+                <h2>Browse by Grade</h2>
+                <p>Curriculum-aligned quizzes designed for every age group.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Primary (Class 1-5)</h3>
+                    <p>Fun puzzles, basic mental math, and "Nature Study" science questions to spark curiosity.</p>
+                    <a href="quiz.html?grade=primary">View Quizzes &rarr;</a>
+                </div>
 
-<div class="nav-links">
+                <div class="card">
+                    <h3>Middle School (6-8)</h3>
+                    <p>Foundation building for Physics, Chemistry, and Biology. Advanced Math and Logical Reasoning.</p>
+                    <a href="quiz.html?grade=middle">View Quizzes &rarr;</a>
+                </div>
 
-<a href="olympiad-syllabus.html">Syllabus</a>
-<a href="study-material.html">Study</a>
-<a href="olympiad-preparation-tips.html">Tips</a>
-<a href="math-olympiad-tricks.html">Math</a>
-<a href="science-olympiad-guide.html">Science</a>
+                <div class="card">
+                    <h3>Secondary (9-10)</h3>
+                    <p>Competitive prep for NTSE, NSO, and IMO. Focused practice for Board Exam excellence.</p>
+                    <a href="quiz.html?grade=secondary">View Quizzes &rarr;</a>
+                </div>
+            </div>
+        </section>
 
-<a href="login.html">Login</a>
-<a href="signup.html" class="nav-signup">Sign Up</a>
+        <section class="container content-block" id="about">
+            <h2>About OlympiadQuiz.org</h2>
+            <p>OlympiadQuiz.org is a dedicated educational platform designed to help students from <strong>Class 1 to Class 10</strong> master their academic concepts through interactive testing. We provide high-quality practice sets for <strong>Math Olympiads (IMO)</strong>, <strong>Science Olympiads (NSO)</strong>, and General Knowledge.</p>
+            <p>Our quizzes are structured to follow the school curriculum while adding a layer of critical thinking required for competitive exams. With our real-time dashboard, students can track their accuracy, speed, and progress across different subjects, making us the perfect companion for school foundation prep.</p>
+        </section>
+    </main>
 
-</div>
-
-</nav>
-
-<section class="hero">
-
-<h1>Master Your <span>Olympiad Skills</span></h1>
-
-<p>
-Prepare for SOF Olympiads, SilverZone Olympiads, NSTSE and Unified Council exams.
-Practice advanced questions, track your performance and compete with students across India.
-</p>
-
-<div class="btn-group">
-<a href="signup.html" class="btn btn-primary">Go for Live Quiz</a>
-<a href="signup.html" class="btn btn-primary">Daily Practice Quiz</a>
-</div>
-
-</section>
-
-<section class="prepare">
-
-<h2>Prepare For</h2>
-
-<div class="logo-row">
-<img src="images/sof.png" alt="SOF Olympiad">
-<img src="images/silverzone.png" alt="SilverZone Olympiad">
-<img src="images/nstse.png" alt="NSTSE Olympiad">
-<img src="images/unified.png" alt="Unified Council">
-</div>
-
-</section>
-
-<section class="features">
-
-<h2>Why Choose Olympiad Portal</h2>
-
-<div class="feature-grid">
-
-<div class="feature">
-<h3>Olympiad Level Questions</h3>
-<p>Practice thousands of challenging questions designed for Olympiad exams.</p>
-</div>
-
-<div class="feature">
-<h3>Performance Analytics</h3>
-<p>Track your strengths and improve weak areas with detailed reports.</p>
-</div>
-
-<div class="feature">
-<h3>National Ranking</h3>
-<p>Compare your performance with students across India.</p>
-</div>
-
-<div class="feature">
-<h3>Smart Learning</h3>
-<p>Adaptive quizzes that adjust difficulty automatically.</p>
-</div>
-
-</div>
-
-</section>
-
-<script>
-
-particlesJS("particles-js",{
-
-particles:{
-number:{value:60},
-size:{value:3},
-color:{value:"#f59e0b"},
-line_linked:{
-enable:true,
-distance:150,
-color:"#f59e0b",
-opacity:0.3,
-width:1
-},
-move:{
-enable:true,
-speed:2
-}
-},
-
-interactivity:{
-events:{
-onhover:{enable:true,mode:"grab"}
-}
-}
-
-});
-
-</script>
-
-<footer style="text-align:center;padding:20px;background:#0a3d62;color:white;margin-top:40px;">
-
-<a href="about.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">About Us</a> |
-
-<a href="contact.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Contact Us</a> |
-
-<a href="olympiad-syllabus.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Olympiad Syllabus</a> |
-
-<a href="privacy-policy.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Privacy Policy</a> |
-
-<a href="term.html" target="_blank" style="color:white;margin:0 10px;text-decoration:none;">Terms & Conditions</a>
-
-<p style="margin-top:12px;font-size:14px;">
-© 2026 Olympiad Quiz. All rights reserved.
-</p>
-
-</footer>
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Olympiad Quiz Portal. Helping students achieve academic excellence.
+        </div>
+    </footer>
 
 </body>
 </html>
