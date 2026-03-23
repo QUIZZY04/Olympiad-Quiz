@@ -6,11 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter-wise Practice Questions | Science & Math Olympiad Chapter wise Quiz</title>
+    
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () { history.go(1); };
+
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+    </script>
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         /* Content is visible by default for immediate loading */
         #main-app-container { 
-            display: block; 
+            display: block !important; 
         }
 
         :root {
@@ -186,7 +202,7 @@
 
 <div id="main-app-container">
     <nav>
-        <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+        <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="dashboard.html">Dashboard</a>
@@ -265,7 +281,6 @@
 </div>
 
 <script>
-    // [Topic data remains exactly as you had it]
     const sofTopics = {
         class1: { maths: [{ code: "M01", name: "Number Sense" }, { code: "M02", name: "Addition" }, { code: "M03", name: "Subtraction" }, { code: "M04", name: "Lengths, Weights and Comparisons" }, { code: "M05", name: "Time" }, { code: "M06", name: "Money" }, { code: "M07", name: "Geometrical Shapes" }], science: [{ code: "S01", name: "Plants" }, { code: "S02", name: "Animals" }, { code: "S03", name: "Human Body" }, { code: "S04", name: "Food" }, { code: "S05", name: "Housing and Clothing" }, { code: "S06", name: "Family and Festivals" }, { code: "S07", name: "Good Habits and Safety Rules" }, { code: "S08", name: "Transport and Communication" }, { code: "S09", name: "Air, Water and Weather" }, { code: "S10", name: "Earth and Universe" }] },
         class2: { maths: [{ code: "M01", name: "Number Sense" }, { code: "M02", name: "Computation Operations" }, { code: "M03", name: "Length, Weight, Capacity" }, { code: "M04", name: "Time and Money" }, { code: "M05", name: "Lines, Shapes and Solids" }, { code: "M06", name: "Pictographs" }], science: [{ code: "S01", name: "Plants" }, { code: "S02", name: "Animals" }, { code: "S03", name: "Human Body" }, { code: "S04", name: "Food" }, { code: "S05", name: "Housing and Clothing" }, { code: "S06", name: "Family and Festivals" }, { code: "S07", name: "Good Habits and Safety Rules" }, { code: "S08", name: "Transport and Communication" }, { code: "S09", name: "Air, Water and Weather" }, { code: "S10", name: "Earth and Universe" }] },
@@ -358,7 +373,9 @@
     window.logout = async () => {
         if (confirm("Logout?")) {
             await signOut(auth);
-            window.location.href = "index.html";
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("index.html");
         }
     };
 </script>
