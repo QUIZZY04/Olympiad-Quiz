@@ -3,43 +3,21 @@
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
      crossorigin="anonymous"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Online Mock Tests | IMO, NSO & School Exam  Test Practice</title>
+    <title>Free Online Mock Tests | IMO, NSO & School Exam Test Practice</title>
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* 1. Hide the app by default */
-#main-app-container { 
-    display: none; 
-}
+        /* Content is visible by default for immediate loading */
+        #main-app-container { 
+            display: block !important; 
+        }
 
-/* 2. Style the Loading Screen */
-#auth-overlay {
-    position: fixed;
-    inset: 0;
-    background: #0f172a; /* Dark background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: #38bdf8;
-    font-family: sans-serif;
-    text-align: center;
-}
-
-/* 3. Simple Spinner Animation */
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(56, 189, 248, 0.1);
-    border-left-color: #38bdf8;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
         :root {
             --bg: #020617;
             --surface: #0f172a;
@@ -225,88 +203,81 @@
     </style>
 </head>
 <body>
-    <div id="auth-overlay">
-    <div>
-        <div class="spinner"></div>
-        <p>Verifying Session...</p>
-    </div>
-</div>
 
 <div id="main-app-container">
-    </div>
-
-<nav>
-    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="leaderboard.html">Leaderboard</a>
-        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="selection-box">
-        <h2>📝 Free Mock <span>Tests</span></h2>
-        <p>Full-length papers designed like real Olympiad exams to test your speed and accuracy.</p>
-
-        <div class="form-group">
-            <div class="step-label">
-                <span class="step-number">1</span>
-                Select Grade
-            </div>
-            <select id="classSelect">
-                <option value="class1">Grade 1</option>
-                <option value="class2">Grade 2</option>
-                <option value="class3">Grade 3</option>
-                <option value="class4">Grade 4</option>
-                <option value="class5">Grade 5</option>
-                <option value="class6" selected>Grade 6</option>
-                <option value="class7">Grade 7</option>
-                <option value="class8">Grade 8</option>
-                <option value="class9">Grade 9</option>
-                <option value="class10">Grade 10</option>
-            </select>
+    <nav>
+        <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
+    </nav>
 
-        <div class="form-group">
-            <div class="step-label">
-                <span class="step-number">2</span>
-                Select Subject to Start
+    <div class="container">
+        <div class="selection-box">
+            <h2>📝 Free Mock <span>Tests</span></h2>
+            <p>Full-length papers designed like real Olympiad exams to test your speed and accuracy.</p>
+
+            <div class="form-group">
+                <div class="step-label">
+                    <span class="step-number">1</span>
+                    Select Grade
+                </div>
+                <select id="classSelect">
+                    <option value="class1">Grade 1</option>
+                    <option value="class2">Grade 2</option>
+                    <option value="class3">Grade 3</option>
+                    <option value="class4">Grade 4</option>
+                    <option value="class5">Grade 5</option>
+                    <option value="class6" selected>Grade 6</option>
+                    <option value="class7">Grade 7</option>
+                    <option value="class8">Grade 8</option>
+                    <option value="class9">Grade 9</option>
+                    <option value="class10">Grade 10</option>
+                </select>
             </div>
-            <div class="subject-grid">
-                <div class="subject-card" onclick="startMock('maths')">
-                    <h3>Mathematics (IMO)</h3>
-                    <p>Algebra, Geometry, Arithmetic</p>
+
+            <div class="form-group">
+                <div class="step-label">
+                    <span class="step-number">2</span>
+                    Select Subject to Start
                 </div>
-                <div class="subject-card" onclick="startMock('science')">
-                    <h3>Science (NSO)</h3>
-                    <p>Physics, Chemistry, Biology</p>
-                </div>
-                <div class="subject-card" onclick="startMock('english')">
-                    <h3>English (IEO)</h3>
-                    <p>Grammar, Vocabulary, Reading</p>
-                </div>
-                <div class="subject-card" onclick="startMock('reasoning')">
-                    <h3>Reasoning</h3>
-                    <p>Patterns, Logic, Puzzles</p>
+                <div class="subject-grid">
+                    <div class="subject-card" onclick="startMock('maths')">
+                        <h3>Mathematics (IMO)</h3>
+                        <p>Algebra, Geometry, Arithmetic</p>
+                    </div>
+                    <div class="subject-card" onclick="startMock('science')">
+                        <h3>Science (NSO)</h3>
+                        <p>Physics, Chemistry, Biology</p>
+                    </div>
+                    <div class="subject-card" onclick="startMock('english')">
+                        <h3>English (IEO)</h3>
+                        <p>Grammar, Vocabulary, Reading</p>
+                    </div>
+                    <div class="subject-card" onclick="startMock('reasoning')">
+                        <h3>Reasoning</h3>
+                        <p>Patterns, Logic, Puzzles</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+            <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
+            <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
+            <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+            <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+            <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+            <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+        </div>
+        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    </footer>
 </div>
-
-<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-        <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
-        <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
-    </div>
-    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
-</footer>
 
 <script>
     function startMock(subject) {
@@ -341,16 +312,17 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Optimistic check: only redirect if definitely logged out
     onAuthStateChanged(auth, (user) => {
         if (!user) {
-            window.location.href = "login.html";
+            window.location.replace("index.html");
         }
     });
 
     window.logout = async () => {
         if (confirm("Logout?")) {
             await signOut(auth);
-            window.location.href = "login.html";
+            window.location.replace("index.html");
         }
     };
 </script>
