@@ -118,7 +118,7 @@
 
             <div class="form-group">
                 <div class="step-label"><span class="step-number">1</span> Select Grade</div>
-                <select id="classSelect" onchange="updateTopics()">
+                <select id="classSelect" onchange="resetSelection()">
                     <option value="class1">Grade 1</option>
                     <option value="class2">Grade 2</option>
                     <option value="class3">Grade 3</option>
@@ -160,7 +160,6 @@
         class5: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
         class6: { maths: [{code:"M01", name:"Knowing our Numbers"}], science: [{code:"S01", name:"Food"}] },
         class7: { maths: [{code:"M01", name:"Integers"}], science: [{code:"S01", name:"Nutrition"}] },
-        // GRADE 8 DATA
         class8: {
             maths: [
                 { code: "M01", name: "Rational Numbers" },
@@ -200,6 +199,12 @@
         }
     };
 
+    function resetSelection() {
+        document.getElementById("subjectSelect").value = "";
+        const topicSelect = document.getElementById("topicSelect");
+        topicSelect.innerHTML = '<option value="" disabled selected>Select subject first...</option>';
+    }
+
     function updateTopics() {
         const subject = document.getElementById("subjectSelect").value;
         const topicSelect = document.getElementById("topicSelect");
@@ -208,6 +213,14 @@
         topicSelect.innerHTML = ""; 
         
         if (selectedClass && subject && sofTopics[selectedClass] && sofTopics[selectedClass][subject]) {
+            // Add a default select prompt
+            const defaultOpt = document.createElement("option");
+            defaultOpt.textContent = "Choose a topic...";
+            defaultOpt.value = "";
+            defaultOpt.disabled = true;
+            defaultOpt.selected = true;
+            topicSelect.appendChild(defaultOpt);
+
             sofTopics[selectedClass][subject].forEach(topic => {
                 const option = document.createElement("option");
                 option.value = topic.code; 
