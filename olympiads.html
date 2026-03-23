@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Olympiads - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+            --accent: #818cf8;
+            --danger: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg);
+            min-height: 100vh; 
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom:1px solid var(--border); 
+            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
+            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+        }
+        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .header-text h1 span { color: var(--brand); }
+        .header-text p {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+            background: linear-gradient(145deg, #0f172a, #020617);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--brand);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--brand);
+            margin-bottom: 25px;
+            font-weight: 700;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .link-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--brand);
+            background: rgba(56, 189, 248, 0.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .link-card h4 {
+            font-size: 18px;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .link-card p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .visit-btn {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .link-card:hover .visit-btn {
+            background: linear-gradient(135deg, #0ea5e9, #1d4ed8);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header-text h1 { font-size: 2rem; }
+            nav { flex-direction: column; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header-text">
+        <h1>Official <span>Olympiads</span> Directory</h1>
+        <p>Find and visit the official websites of major competitive exams across all subjects.</p>
+    </div>
+
+    <!-- MATHEMATICS -->
+    <div class="category-section">
+        <div class="category-title">📐 Mathematics Olympiads</div>
+        <div class="link-grid">
+            <a href="https://sofworld.org/imo" target="_blank" class="link-card">
+                <h4>SOF IMO</h4>
+                <p>International Mathematics Olympiad conducted by the Science Olympiad Foundation.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://www.silverzone.org/iom" target="_blank" class="link-card">
+                <h4>SilverZone iOM</h4>
+                <p>International Olympiad of Mathematics evaluating mathematical skills.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://www.crestolympiads.com/cmo" target="_blank" class="link-card">
+                <h4>CREST CMO</h4>
+                <p>CREST Mathematics Olympiad focusing on conceptual math knowledge.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- SCIENCE -->
+    <div class="category-section">
+        <div class="category-title">🔬 Science Olympiads</div>
+        <div class="link-grid">
+            <a href="https://sofworld.org/nso" target="_blank" class="link-card">
+                <h4>SOF NSO</h4>
+                <p>National Science Olympiad fostering scientific temperament in students.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://www.silverzone.org/ios" target="_blank" class="link-card">
+                <h4>SilverZone iOS</h4>
+                <p>International Olympiad of Science assessing applied science knowledge.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://www.crestolympiads.com/cso" target="_blank" class="link-card">
+                <h4>CREST CSO</h4>
+                <p>CREST Science Olympiad promoting interactive science learning.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ENGLISH & REASONING -->
+    <div class="category-section">
+        <div class="category-title">📚 English & Reasoning</div>
+        <div class="link-grid">
+            <a href="https://sofworld.org/ieo" target="_blank" class="link-card">
+                <h4>SOF IEO</h4>
+                <p>International English Olympiad partnered with the British Council.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://www.crestolympiads.com/cro" target="_blank" class="link-card">
+                <h4>CREST CRO</h4>
+                <p>CREST Reasoning Olympiad focusing on logical & analytical skills.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- CYBER & GK -->
+    <div class="category-section">
+        <div class="category-title">💻 Cyber & General Knowledge</div>
+        <div class="link-grid">
+            <a href="https://sofworld.org/nco" target="_blank" class="link-card">
+                <h4>SOF NCO</h4>
+                <p>National Cyber Olympiad focusing on computer and IT skills.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://sofworld.org/igko" target="_blank" class="link-card">
+                <h4>SOF IGKO</h4>
+                <p>International General Knowledge Olympiad for all-around awareness.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- OTHER MAJOR OLYMPIADS -->
+    <div class="category-section">
+        <div class="category-title">🌟 Other Major Olympiads</div>
+        <div class="link-grid">
+            <a href="https://www.unifiedcouncil.com/about-nstse.aspx" target="_blank" class="link-card">
+                <h4>NSTSE (Unified Council)</h4>
+                <p>National Level Science Talent Search Examination focusing on fundamentals and concepts.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://hummingbirdeducation.com/" target="_blank" class="link-card">
+                <h4>Humming Bird Olympiads</h4>
+                <p>International level Olympiads in multiple subjects enhancing analytical and problem-solving skills.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://www.orangeeducation.in/orange-global-olympiad" target="_blank" class="link-card">
+                <h4>Orange Global Olympiad (OGO)</h4>
+                <p>A scientifically designed, skill-based assessment to measure students' aptitude across subjects.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+            <a href="https://www.crestolympiads.com/" target="_blank" class="link-card">
+                <h4>CREST Olympiads (All Subjects)</h4>
+                <p>Asia's most innovative online Olympiad exams focusing on conceptual and practical learning.</p>
+                <div class="visit-btn">Visit Official Site ↗</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+        projectId: "olympiad-portal-d2a5e",
+        storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+        messagingSenderId: "341855557503",
+        appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            window.location.href = "login.html";
+        }
+    };
+</script>
+</body>
+</html>

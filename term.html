@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions - Olympiad Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+    :root {
+        --bg: #020617;
+        --surface: #0f172a;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --border: #1e293b;
+        --brand: #38bdf8;
+        --accent: #818cf8;
+        --danger: #f43f5e;
+        --success: #10b981;
+        --warning: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    
+    body { 
+        background: var(--bg);
+        min-height: 100vh; 
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+        background-attachment: fixed;
+    }
+
+    nav { 
+        background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+        border-bottom:1px solid var(--border); 
+        padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
+        position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+    }
+    .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+    .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+    .nav-links a:hover { color: var(--brand); }
+
+    .container {
+        width: 100%;
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 0 20px;
+        flex: 1;
+    }
+
+    .header-text {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .header-text h1 {
+        font-size: 2.8rem;
+        color: var(--text);
+        margin-bottom: 15px;
+        font-weight: 800;
+    }
+    .header-text h1 span { color: var(--brand); }
+    .header-text p {
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .content-card {
+        background: linear-gradient(145deg, #0f172a, #020617);
+        border: 1px solid var(--border);
+        border-top: 2px solid var(--brand);
+        border-radius: 24px;
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        margin-bottom: 40px;
+    }
+
+    .content-card h2 {
+        color: var(--brand);
+        font-size: 1.5rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .content-card h2:first-child {
+        margin-top: 0;
+    }
+
+    .content-card p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+
+    .content-card ul {
+        margin-bottom: 20px;
+        padding-left: 20px;
+        color: var(--muted);
+        line-height: 1.8;
+    }
+
+    .content-card li { margin-bottom: 8px; }
+
+    @media (max-width: 768px) {
+        .content-card { padding: 30px 20px; }
+        nav { flex-direction: column; padding: 15px; }
+        .header-text h1 { font-size: 2.2rem; }
+    }
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <div style="display: inline-block; margin-left: 15px; border-left: 2px solid var(--border); padding-left: 15px;">
+            <a href="login.html" style="margin-left: 5px; font-weight: 600; color: var(--text); text-transform:none;">Log in</a>
+            <a href="signup.html" style="background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; margin-left: 15px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); text-transform:none;">Get Started Free</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header-text">
+        <h1>Terms & <span>Conditions</span></h1>
+        <p>Please read these terms carefully before accessing or participating in Olympiad Portal.</p>
+    </div>
+
+    <div class="content-card">
+        <p>Welcome to <strong>Olympiad Portal</strong>. These Terms and Conditions ("Terms") govern your access to and use of the Olympiad Portal website, platform, and related services (collectively, the "Services"). By accessing, browsing, or using our platform, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you are under the age of 18, you must have your parent or legal guardian review and agree to these Terms on your behalf. If you do not agree with any part of these Terms, you must not use our platform.</p>
+        
+        <h2>1. User Accounts, Registration & Security</h2>
+        <p>To access personalized features, mock tests, and live arenas, you must register for an account. By registering, you agree to:</p>
+        <ul>
+            <li>Provide accurate, current, and complete information during the registration process.</li>
+            <li>Maintain the security and confidentiality of your account credentials and password.</li>
+            <li>Take full responsibility for all activities that occur under your account.</li>
+            <li>Immediately notify us of any unauthorized use of your account or any other breach of security.</li>
+        </ul>
+        <p>We reserve the right to suspend or terminate accounts that contain false, misleading, or outdated information, or if we suspect account sharing.</p>
+        
+        <h2>2. Acceptable Use & Code of Conduct</h2>
+        <p>Olympiad Portal is dedicated strictly to educational and preparatory purposes. You agree to use the platform respectfully. You agree <strong>NOT</strong> to:</p>
+        <ul>
+            <li>Use the platform for any illegal, unauthorized, or commercial purpose.</li>
+            <li>Attempt to hack, destabilize, overburden, or exploit the website's infrastructure or database.</li>
+            <li>Use automated scripts, bots, spiders, or scrapers to extract questions, data, or content from the platform.</li>
+            <li>Share, sell, rent, or distribute your account access or premium content to third parties.</li>
+            <li>Post or transmit any content that is abusive, defamatory, threatening, or violates the rights of others (e.g., in feedback or community areas).</li>
+        </ul>
+        
+        <h2>3. Intellectual Property Rights</h2>
+        <p>All content and materials available on Olympiad Portal—including but not limited to quiz questions, study materials, text, graphics, logos, icons, images, audio clips, and software code—are the exclusive intellectual property of Olympiad Portal or its content suppliers and are protected by applicable copyright, trademark, and other intellectual property laws.</p>
+        <p>We grant you a limited, non-exclusive, non-transferable license to access and use the platform for your personal, non-commercial educational use. Unauthorized reproduction, modification, republication, or distribution of our materials is strictly prohibited and will result in immediate account termination and potential legal action.</p>
+        
+        <h2>4. Payments, Subscriptions, & Refund Policy</h2>
+        <p>While many foundational features on our platform are free, certain premium services (e.g., Live Weekly Championships, Advanced Analytics, Premium Mock Tests) require payment.</p>
+        <ul>
+            <li><strong>Billing:</strong> All payments are processed securely through authorized third-party payment gateways. We do not store your full credit card information.</li>
+            <li><strong>Pricing:</strong> Prices are subject to change at our discretion. Any price changes will not affect previously purchased unexpired content.</li>
+            <li><strong>Refund Policy:</strong> Due to the digital nature of our educational services and instant access to proprietary content, <strong>all purchases are final and non-refundable</strong>. Exceptions may only be made in cases of proven technical failure on our end that entirely prevented you from accessing the purchased content, provided you notify us within 48 hours of the transaction.</li>
+        </ul>
+
+        <h2>5. Disclaimers & Limitation of Liability</h2>
+        <p>Olympiad Portal is provided on an "AS IS" and "AS AVAILABLE" basis. While we strive for accuracy, we make no warranties, express or implied, regarding the completeness, accuracy, reliability, or availability of the platform.</p>
+        <p><strong>No Guarantee of Results:</strong> Olympiad Portal provides preparatory materials. We do not guarantee that using our platform will result in specific grades, ranks, or outcomes in official Olympiad examinations.</p>
+        <p>To the maximum extent permitted by law, Olympiad Portal shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your use of, or inability to use, the platform.</p>
+
+        <h2>6. Account Termination & Suspension</h2>
+        <p>We reserve the right to terminate or suspend your account and restrict your access to the platform at any time, without prior notice or liability, for any reason whatsoever, including but not limited to a breach of these Terms. Upon termination, your right to use the platform will immediately cease.</p>
+
+        <h2>7. Third-Party Links & Resources</h2>
+        <p>Our website may contain links to external websites (such as official Olympiad registration sites like SOF or SilverZone). We do not control these third-party websites and are not responsible for their content, privacy policies, or practices. Accessing these external links is done entirely at your own risk, and we encourage you to read their respective terms and policies.</p>
+        
+        <h2>8. Governing Law & Dispute Resolution</h2>
+        <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Olympiad Portal operates, without regard to its conflict of law provisions. Any disputes arising out of or relating to these Terms or the use of the platform shall be resolved through amicable negotiation, and if necessary, subject to the exclusive jurisdiction of the competent courts in that region.</p>
+
+        <h2>9. Modifications to the Terms</h2>
+        <p>We reserve the right to update, modify, or replace these Terms and Conditions at any time. We will indicate changes by updating the "Last Updated" date at the top of this page. Your continued use of the platform following the posting of any changes constitutes your acceptance of the revised terms.</p>
+
+        <h2>10. Contact Us</h2>
+        <p>If you have any questions, concerns, or disputes regarding these Terms and Conditions, please reach out to our support team via the <a href="contact.html" style="color:var(--brand); text-decoration:none; font-weight:600;">Contact Us</a> page or email us directly at support@olympiadquiz.org.</p>
+    </div>
+</div>
+
+<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+        <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
+        <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
+        <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+        <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

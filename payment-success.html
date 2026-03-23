@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Payment Successful</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+font-family: 'Inter', sans-serif;
+background:#020617;
+color:#f8fafc;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+flex-direction:column;
+background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+background-attachment: fixed;
+}
+
+.box{
+background:linear-gradient(145deg, #0f172a, #020617);
+padding:50px;
+border-radius:24px;
+text-align:center;
+border:1px solid #1e293b;
+border-top: 2px solid #10b981;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+#statusMsg {
+margin-top: 10px;
+font-size: 14px;
+color: #94a3b8;
+}
+
+button{
+margin-top:20px;
+padding:14px 25px;
+border:none;
+border-radius:10px;
+background: linear-gradient(135deg, #10b981, #059669);
+color: white;
+font-weight:bold;
+cursor:pointer;
+text-transform: uppercase;
+transition: 0.3s;
+}
+button:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>✅ Payment Successful</h2>
+<p>Your quiz has been unlocked.</p>
+<p id="statusMsg">Updating your account details...</p>
+
+<button onclick="goDashboard()">Go to Dashboard</button>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
+projectId:"olympiad-portal-d2a5e",
+storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+messagingSenderId:"341855557503",
+appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+// Wait for Firebase to confirm the user is logged in
+onAuthStateChanged(auth, async (user) => {
+    const statusMsg = document.getElementById("statusMsg");
+    const sessionId = localStorage.getItem("activeSessionId");
+    const sessionPrice = localStorage.getItem("activeSessionPrice");
+
+    if (user && sessionId) {
+        try {
+            // 1. UPDATE USER PROFILE (Makes the user document visible in Firestore)
+            await setDoc(doc(db, "users", user.uid), {
+                name: user.displayName || "Student",
+                email: user.email,
+                lastPurchaseAt: serverTimestamp()
+            }, { merge: true });
+
+            // 2. SAVE THE PURCHASE RECORD
+            await setDoc(
+                doc(db, "users", user.uid, "purchases", sessionId),
+                {
+                    paid: true,
+                    time: serverTimestamp(),
+                    amount: parseInt(sessionPrice) || 99, // Use the actual session price
+                    sessionId: sessionId
+                }
+            );
+
+            statusMsg.innerText = "Account and purchase updated! You can now go to the dashboard.";
+            statusMsg.style.color = "#22c55e";
+            console.log("User details and purchase saved for:", user.email);
+        } catch (error) {
+            console.error("Error saving data:", error);
+            statusMsg.innerText = "Error updating account. Please contact support.";
+            statusMsg.style.color = "#ef4444";
+        }
+    } else if (!user) {
+        statusMsg.innerText = "Error: User not logged in.";
+    } else if (!sessionId) {
+        statusMsg.innerText = "Error: Session information missing.";
+    }
+});
+
+window.goDashboard=function(){
+    window.location.href="dashboard.html";
+}
+</script>
+
+</body>
+</html>

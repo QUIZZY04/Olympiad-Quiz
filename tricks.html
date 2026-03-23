@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympiad Tricks - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+            --accent: #818cf8;
+            --danger: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg);
+            min-height: 100vh; 
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom:1px solid var(--border); 
+            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
+            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+        }
+        
+        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-text h1 {
+            font-size: 2.8rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .header-text h1 span { color: var(--warning); }
+        
+        .header-text p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-section {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+            transition: 0.2s;
+            font-weight: 500;
+        }
+
+        select:focus { border-color: var(--warning); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1); }
+
+        .tricks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .trick-card {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--warning);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .trick-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+            border-color: #334155;
+        }
+
+        .trick-title {
+            font-size: 1.25rem;
+            color: var(--text);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.4;
+        }
+
+        .trick-title span {
+            font-size: 22px;
+            line-height: 1;
+            background: rgba(245, 158, 11, 0.1);
+            padding: 8px;
+            border-radius: 10px;
+            color: var(--warning);
+        }
+
+        .trick-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .trick-example {
+            background: rgba(245, 158, 11, 0.05);
+            border-left: 4px solid var(--warning);
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            color: #fcd34d;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .trick-example strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--warning);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .placeholder-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px dashed var(--border);
+            border-radius: 24px;
+            color: var(--muted);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* Strategy Section Styles */
+        .strategy-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-heading {
+            font-size: 1.8rem;
+            color: var(--text);
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .strategy-conclusion {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--brand);
+            padding: 30px;
+            border-radius: 24px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Subject Specific Guidance Card */
+        .subject-guidance-card {
+            grid-column: 1 / -1; 
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--brand);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+        .subject-guidance-card h3 {
+            color: var(--brand);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subject-guidance-card p {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .subject-guidance-card ul { padding-left: 20px; }
+        .subject-guidance-card li { margin-bottom: 8px; color: #cbd5e1; font-weight: 500; font-size: 0.95rem; line-height: 1.5; }
+        
+        .strategy-conclusion h3 {
+            color: var(--brand);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .strategy-conclusion ul { padding-left: 20px; }
+        .strategy-conclusion li { margin-bottom: 10px; font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; font-weight: 500; }
+
+        @media (max-width: 768px) {
+            .filter-section { flex-direction: column; padding: 20px; gap: 15px; }
+            .form-group { width: 100%; min-width: 100%; }
+            .header-text h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header-text">
+        <h1>Olympiad <span>Tricks</span></h1>
+        <p>Learn advanced shortcut methods, smart strategies, and memory mnemonics to solve complex problems in seconds.</p>
+    </div>
+    
+    <div class="strategy-section">
+        <h2 class="section-heading">🧠 Master the Exam: General Strategy</h2>
+        <div class="tricks-grid">
+            <div class="trick-card" style="border-top-color: var(--brand);">
+                <div class="trick-title"><span>⏳</span> Time Management (The 3-Pass Rule)</div>
+                <div class="trick-desc">
+                    <p>Olympiads test your speed as much as your knowledge. Never try to solve the paper strictly from question 1 to 50. Use the <b>3-Pass Rule</b>:</p>
+                    <ul style="margin-top:10px; padding-left:20px;">
+                        <li><b>Pass 1 (Scan & Solve):</b> Instantly answer questions you know immediately (takes 10-15 secs each).</li>
+                        <li><b>Pass 2 (Calculate):</b> Tackle questions that require moderate calculation or reading.</li>
+                        <li><b>Pass 3 (Achievers):</b> Dedicate your remaining time to the high-weightage, difficult questions.</li>
+                    </ul>
+                </div>
+                <div class="trick-example">
+                    <strong>Example Application</strong>
+                    If you have 60 mins for 50 questions, aim to finish Pass 1 in the first 15 mins. Do not spend more than 2 minutes on <i>any</i> single question during your first pass. Skip and come back to it!
+                </div>
+            </div>
+            
+            <div class="trick-card" style="border-top-color: var(--danger);">
+                <div class="trick-title"><span>⚠️</span> Spotting the Traps (Where Mistakes Occur)</div>
+                <div class="trick-desc">
+                    <p>Olympiad setters design options to trap you. 80% of top students lose marks on questions they actually knew how to solve due to "silly mistakes".</p>
+                    <ul style="margin-top:10px; padding-left:20px;">
+                        <li><b>Misreading the prompt:</b> Ignoring words like <i>NOT, INCORRECT, EXCEPT</i>.</li>
+                        <li><b>Unit mismatch:</b> Calculating in <i>cm</i> but the answer options are in <i>m</i>.</li>
+                        <li><b>Intermediate Answers:</b> Finding 'x' and marking it, when the question asked for '2x'.</li>
+                    </ul>
+                </div>
+                <div class="trick-example">
+                    <strong>Practical Example</strong>
+                    The question asks for the <b>Diameter</b> of a circle. You solve the equation, find the radius (r=5), see "5" as Option A, and immediately mark it. You forgot to double it! Always re-read the last line of the question before bubbling the answer.
+                </div>
+            </div>
+        </div>
+        
+        <div class="strategy-conclusion">
+            <h3>📌 Final Conclusive Instructions for Exam Day</h3>
+            <ul>
+                <li><b>Use the Elimination Method:</b> Don't just look for the right answer. Actively cross out 2 options that are completely illogical. A 50% guess is better than a 25% guess.</li>
+                <li><b>Keep Rough Work Neat:</b> Do not scribble randomly. Number your rough work boxes (e.g., "Q14") so if you need to review a calculation later, you don't have to start from scratch.</li>
+                <li><b>Don't Let One Question Ruin Your Exam:</b> If an Achiever's Section question is taking 5 minutes and you are stuck, let it go. Securing marks on 4 easier questions is worth more than getting stuck on an ego battle with 1 hard question.</li>
+                <li><b>Check Your Units:</b> Always verify the units (minutes vs hours, km vs m) before starting a calculation.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="section-heading" style="font-size: 1.5rem; margin-top: 40px;">🎯 Subject-Specific Tricks & Shortcuts</h2>
+
+    <div class="filter-section">
+        <div class="form-group">
+            <label>1. Select Grade</label>
+            <select id="classSelect" onchange="loadTricks()">
+                <option value="" disabled selected>Choose Grade...</option>
+                <option value="class1">Grade 1 - 2</option>
+                <option value="class3">Grade 3 - 4</option>
+                <option value="class5">Grade 5 - 6</option>
+                <option value="class7">Grade 7 - 8</option>
+                <option value="class9">Grade 9 - 10</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>2. Select Subject</label>
+            <select id="subjectSelect" onchange="loadTricks()">
+                <option value="" disabled selected>Choose Subject...</option>
+                <option value="maths">Mathematics</option>
+                <option value="science">Science</option>
+                <option value="english">English</option>
+                <option value="reasoning">Logical Reasoning</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="tricksContent" class="tricks-grid">
+        <div class="placeholder-msg">Select your Grade and Subject above to reveal powerful tricks and shortcuts.</div>
+    </div>
+</div>
+
+<script>
+    // Dynamic structured database to scale tricks progressively based on grade level
+    const tricksDatabase = {
+        maths: {
+            basic: [
+                { 
+                    title: "Multiply any 2-digit number by 11", 
+                    desc: "<p>The rule of 11 is one of the most powerful Vedic Math shortcuts. Instead of standard multiplication, you simply separate the two digits of the number and insert their sum in the middle.</p><ul style='margin-top:8px; padding-left:20px;'><li><b>Step 1:</b> Write the first digit.</li><li><b>Step 2:</b> Add the two digits together.</li><li><b>Step 3:</b> Write the second digit.</li><li><i>Note:</i> If the sum is greater than 9, carry over the 1 to the first digit.</li></ul>", 
+                    example: "<b>Basic:</b> 35 × 11 <br>➔ 3_ (3+5) _5 ➔ <b>385</b>.<br><br><b>With Carry-Over:</b> 86 × 11 <br>➔ 8_ (8+6) _6 ➔ 8_ (14) _6 ➔ (8+1)_4_6 ➔ <b>946</b>." 
+                },
+                { 
+                    title: "Squaring numbers ending in 5", 
+                    desc: "<p>Finding the square of any number ending in 5 takes less than 3 seconds with this trick.</p><ul style='margin-top:8px; padding-left:20px;'><li><b>Step 1:</b> Take the first digit (or digits) before the 5.</li><li><b>Step 2:</b> Multiply it by the next consecutive higher integer.</li><li><b>Step 3:</b> Append '25' to the end of your result.</li></ul>", 
+                    example: "<b>Find 65²:</b><br>1. First digit is 6.<br>2. Next integer is 7. (6 × 7 = 42).<br>3. Append 25. ➔ <b>4225</b>.<br><br><b>Find 115²:</b><br>1. First digits are 11.<br>2. Next integer is 12. (11 × 12 = 132).<br>3. Append 25. ➔ <b>13225</b>." 
+                }
+            ],
+            intermediate: [
+                { 
+                    title: "Comparing Fractions (Cross-Multiplication)", 
+                    desc: "<p>Finding LCMs to compare fractions wastes precious time. Use the cross-multiplication method to instantly find the larger fraction.</p><ul style='margin-top:8px; padding-left:20px;'><li><b>Rule:</b> To compare <b>a/b</b> and <b>c/d</b>, cross multiply to get <b>(a × d)</b> and <b>(b × c)</b>.</li><li>Whichever product is larger, the fraction directly above it is the larger fraction.</li></ul>", 
+                    example: "<b>Compare 5/8 and 7/11:</b><br>1. Left product: 5 × 11 = <b>55</b>.<br>2. Right product: 8 × 7 = <b>56</b>.<br>3. Since 56 > 55, the right fraction <b>7/11 is larger</b>." 
+                },
+                { 
+                    title: "The Digital Sum Method (Checking Answers)", 
+                    desc: "<p>The Digital Sum (or Digital Root) is the sum of all digits of a number until it becomes a single digit. This is used to instantly verify complex calculations without resolving them.</p><ul style='margin-top:8px; padding-left:20px;'><li><b>Rule:</b> The digital sum of the question must equal the digital sum of the correct answer option.</li><li><i>Shortcut:</i> Always ignore '9's when adding digits (casting out nines).</li></ul>", 
+                    example: "<b>Verify: 345 × 12 = 4140</b><br>1. DS of 345 ➔ 3+4+5 = 12 ➔ 1+2 = <b>3</b><br>2. DS of 12 ➔ 1+2 = <b>3</b><br>3. Product of DS ➔ 3 × 3 = <b>9</b><br>4. DS of answer 4140 ➔ 4+1+4+0 = <b>9</b>.<br><i>Since both sides equal 9, the calculation is correct!</i>" 
+                }
+            ],
+            advanced: [
+                { 
+                    title: "Base Method Multiplication (Near 100)", 
+                    desc: "<p>Multiply numbers close to 100 in your head using the base method.</p><ul style='margin-top:8px; padding-left:20px;'><li><b>Step 1:</b> Find the difference of both numbers from 100.</li><li><b>Step 2:</b> Subtract one number's difference diagonally from the other number. This forms the first two digits.</li><li><b>Step 3:</b> Multiply the two differences. This forms the last two digits.</li></ul>", 
+                    example: "<b>Multiply 94 × 97:</b><br>1. Differences from 100 are <b>-6</b> and <b>-3</b>.<br>2. Diagonal Subtraction: 94 - 3 = <b>91</b> (First part).<br>3. Multiply Differences: (-6) × (-3) = <b>18</b> (Second part).<br>4. Combine them ➔ <b>9118</b>." 
+                },
+                { 
+                    title: "Pythagorean Triplets Generator", 
+                    desc: "<p>Olympiad geometry heavily relies on right-angled triangles. Instead of using Pythagoras theorem (a² + b² = c²), you can generate triplets instantly using an odd number.</p><ul style='margin-top:8px; padding-left:20px;'><li>Let the shortest side be an odd number <b>n</b>.</li><li>The second side is <b>(n² - 1) / 2</b>.</li><li>The hypotenuse is <b>(n² + 1) / 2</b>.</li></ul>", 
+                    example: "<b>Generate a triplet starting with 7:</b><br>1. n = 7<br>2. Second side = (49 - 1) / 2 = <b>24</b><br>3. Hypotenuse = (49 + 1) / 2 = <b>25</b><br><i>Triplet is 7, 24, 25.</i>" 
+                }
+            ]
+        },
+        science: {
+            basic: [
+                { 
+                    title: "Remembering Planets Order", 
+                    desc: "<p>Memorizing sequences is crucial in science. Use this simple mnemonic to remember the planets in order from the Sun.</p>", 
+                    example: "<b>M</b>y <b>V</b>ery <b>E</b>ducated <b>M</b>other <b>J</b>ust <b>S</b>erved <b>U</b>s <b>N</b>oodles <br><br>➔ <b>M</b>ercury, <b>V</b>enus, <b>E</b>arth, <b>M</b>ars, <b>J</b>upiter, <b>S</b>aturn, <b>U</b>ranus, <b>N</b>eptune." 
+                },
+                { 
+                    title: "Characteristics of Living Things", 
+                    desc: "<p>How do you prove something is biologically alive? It must exhibit 7 specific life processes. Remember them using the acronym <b>MRS GREN</b>.</p>", 
+                    example: "<b>M</b> - Movement<br><b>R</b> - Respiration<br><b>S</b> - Sensitivity<br><br><b>G</b> - Growth<br><b>R</b> - Reproduction<br><b>E</b> - Excretion<br><b>N</b> - Nutrition" 
+                }
+            ],
+            intermediate: [
+                { 
+                    title: "Fat-Soluble vs Water-Soluble Vitamins", 
+                    desc: "<p>A very common biology question asks you to classify vitamins. If you remember the water-soluble ones, the rest are fat-soluble.</p><ul style='margin-top:8px; padding-left:20px;'><li><b>Water-Soluble:</b> Vitamins B and C. (Think of <b>B</b>oat in the <b>C</b> / Sea).</li><li><b>Fat-Soluble:</b> Vitamins A, D, E, K.</li></ul>", 
+                    example: "Remember the fat-soluble vitamins using the word <b>KEDA</b>. Think of them as getting 'stuck' in body fat, which is why taking too much of them can be toxic, unlike Vitamin C which flushes out in water!" 
+                },
+                { 
+                    title: "Taxonomic Classification Hierarchy", 
+                    desc: "<p>The order of biological classification from broadest to most specific is: Kingdom, Phylum, Class, Order, Family, Genus, Species. Memorize it effortlessly with this sentence:</p>", 
+                    example: "<b>K</b>ing <b>P</b>hillip <b>C</b>ame <b>O</b>ver <b>F</b>or <b>G</b>ood <b>S</b>oup." 
+                }
+            ],
+            advanced: [
+                { 
+                    title: "Reactivity Series of Metals", 
+                    desc: "<p>Knowing which metal displaces another in a chemical reaction requires memorizing the reactivity series from most reactive to least reactive.</p>", 
+                    example: "<b>P</b>lease <b>S</b>top <b>C</b>alling <b>M</b>e <b>A</b> <b>C</b>areless <b>Z</b>ebra, <b>I</b>nstead <b>T</b>ry <b>L</b>earning <b>H</b>ow <b>C</b>opper <b>S</b>aves <b>G</b>old.<br><br>➔ <b>P</b>otassium (K), <b>S</b>odium (Na), <b>C</b>alcium (Ca), <b>M</b>agnesium (Mg), <b>A</b>luminium (Al), <b>C</b>arbon (C), <b>Z</b>inc (Zn), <b>I</b>ron (Fe), <b>T</b>in (Sn), <b>L</b>ead (Pb), <b>H</b>ydrogen (H), <b>C</b>opper (Cu), <b>S</b>ilver (Ag), <b>G</b>old (Au)." 
+                },
+                { 
+                    title: "Concave vs Convex Lenses & Mirrors", 
+                    desc: "<p>Optics questions are confusing because mirrors and lenses have opposite rules. Use this simple mapping:</p><ul style='margin-top:8px; padding-left:20px;'><li>Con<b>cave</b> Mirror = Con<b>vex</b> Lens (Both Converge light).</li><li>Con<b>vex</b> Mirror = Con<b>cave</b> Lens (Both Diverge light).</li></ul>", 
+                    example: "To remember what a <b>Concave</b> shape looks like, think of walking into a <b>CAVE</b> (it curves inwards). Therefore, a Concave Mirror traps/converges light inside the cave!" 
+                }
+            ]
+        },
+        reasoning: {
+            basic: [
+                { 
+                    title: "Alphabet Position (EJOTY Rule)", 
+                    desc: "<p>In coding-decoding questions, counting letter positions on your fingers wastes time. Memorize the numerical positions of these five anchor letters (multiples of 5) to quickly locate any letter.</p>", 
+                    example: "<b>E</b> = 5, <b>J</b> = 10, <b>O</b> = 15, <b>T</b> = 20, <b>Y</b> = 25.<br><br><i>How to use it:</i> To find the position of 'S', you know 'T' is 20. 'S' comes right before 'T', so 'S' is 19!" 
+                },
+                { 
+                    title: "Direction Sense (NESW Clockwise)", 
+                    desc: "<p>When solving direction questions involving left/right turns, always draw a cross and label it clockwise.</p>", 
+                    example: "Start at Top and go Clockwise: <b>N</b>orth, <b>E</b>ast, <b>S</b>outh, <b>W</b>est.<br>Mnemonic: <b>N</b>ever <b>E</b>at <b>S</b>hredded <b>W</b>heat.<br><br>If a person is facing East and turns 90° right (clockwise), look at your map: the next direction clockwise from East is South." 
+                }
+            ],
+            intermediate: [
+                { 
+                    title: "Reverse Alphabet Rule (Rule of 27)", 
+                    desc: "<p>Some puzzles require finding the 'opposite' letter (e.g., A is opposite Z, B is opposite Y). The sum of a letter's forward position and its reverse position is always exactly 27.</p>", 
+                    example: "<b>What is the opposite letter of 'H'?</b><br>1. 'H' is the 8th letter.<br>2. Subtract from 27: 27 - 8 = 19.<br>3. The 19th letter is 'S'.<br>➔ Therefore, H and S are opposites." 
+                },
+                { 
+                    title: "Number Series: The Double Difference", 
+                    desc: "<p>If a number series seems to have no pattern, find the difference between the consecutive terms. If that still yields no pattern, find the difference of THOSE differences. 90% of complex series are solved on the second layer.</p>", 
+                    example: "<b>Series:</b> 2, 5, 11, 20, 32, ?<br><b>Layer 1 Diffs:</b> 3, 6, 9, 12... (Aha! The differences form their own series).<br><b>Next Diff:</b> 15.<br><b>Next Term:</b> 32 + 15 = <b>47</b>." 
+                }
+            ],
+            advanced: [
+                { 
+                    title: "Clock Angle Formula", 
+                    desc: "<p>Finding the angle between the hour and minute hands of a clock at a specific time is a standard reasoning question. Instead of drawing it out, use this universal formula.</p><p style='text-align:center; font-weight:bold; margin:10px 0;'>Angle = | 30H - 5.5M |</p>", 
+                    example: "<b>Find the angle at 4:20:</b><br>H = 4, M = 20.<br>Angle = | 30(4) - 5.5(20) |<br>Angle = | 120 - 110 | = <b>10 Degrees</b>." 
+                },
+                { 
+                    title: "Syllogism (Minimum Overlap Venn Diagrams)", 
+                    desc: "<p>When solving logical deduction statements like 'Some A are B' and 'All B are C', never assume relationships that aren't explicitly stated. Always draw the <i>minimum overlapping</i> Venn diagram.</p>", 
+                    example: "<b>Statements:</b> Some Cats are Dogs. All Dogs are Birds.<br><b>Venn:</b> Draw circle 'Cats' intersecting circle 'Dogs'. Then draw a large 'Birds' circle completely enclosing ONLY 'Dogs'.<br><b>Conclusion:</b> Because 'Birds' wraps around 'Dogs', it is forced to also intersect the part of 'Cats' that touches 'Dogs'. So 'Some Cats are Birds' is definitely true!" 
+                }
+            ]
+        },
+        english: {
+            basic: [
+                { 
+                    title: "Its vs It's Trap", 
+                    desc: "<p>This is the most frequent grammatical trap in English Olympiads. Apostrophes usually show possession, but for the word 'It', the rule is completely reversed!</p><ul style='margin-top:8px; padding-left:20px;'><li><b>It's:</b> A contraction for 'It is' or 'It has'.</li><li><b>Its:</b> The possessive form (belonging to it).</li></ul>", 
+                    example: "<b>Trick:</b> Always replace the word with 'it is'. If the sentence still makes sense, use 'It's'.<br><br><i>The dog chased (its/it's) tail.</i><br>Test: 'The dog chased it is tail' makes no sense. So the answer is <b>its</b>." 
+                },
+                { 
+                    title: "Affect vs Effect (RAVEN)", 
+                    desc: "<p>Confusing these two words is a common error. Use the mnemonic <b>RAVEN</b> to never get them wrong again.</p>", 
+                    example: "<b>R</b>emember:<br><b>A</b>ffect = <br><b>V</b>erb (An action that changes something).<br><b>E</b>ffect = <br><b>N</b>oun (The final result).<br><br><i>The loud noise <b>affected</b> my concentration. The <b>effect</b> was a poor test score.</i>" 
+                }
+            ],
+            intermediate: [
+                { 
+                    title: "The Order of Adjectives (OSASCOMP)", 
+                    desc: "<p>When a sentence has multiple adjectives describing a single noun, they cannot be placed randomly. They must follow a strict grammatical order:</p><p><b>O</b>pinion, <b>S</b>ize, <b>A</b>ge, <b>S</b>hape, <b>C</b>olor, <b>O</b>rigin, <b>M</b>aterial, <b>P</b>urpose.</p>", 
+                    example: "<b>Incorrect:</b> A wooden French beautiful old table.<br><b>Correct:</b> A beautiful (<i>Opinion</i>), old (<i>Age</i>), French (<i>Origin</i>), wooden (<i>Material</i>) table." 
+                },
+                { 
+                    title: "Subject-Verb Agreement (Each/Every/Neither)", 
+                    desc: "<p>Words like <i>Each, Every, Either, Neither, Everyone,</i> and <i>Nobody</i> act as singular subjects, even though they imply a group. They must always take a singular verb.</p>", 
+                    example: "<b>Trap:</b> 'Each of the boys <i>are</i> playing.' (Sounds right but is WRONG).<br><b>Correct:</b> 'Each of the boys <b>is</b> playing.'<br><br><b>Trap:</b> 'Neither of the answers <i>were</i> correct.'<br><b>Correct:</b> 'Neither of the answers <b>was</b> correct.'" 
+                }
+            ],
+            advanced: [
+                { 
+                    title: "The Subjunctive Mood (If I were...)", 
+                    desc: "<p>When talking about hypothetical situations or wishes that are not currently true, English abandons normal grammar rules and uses the subjunctive mood. In this mood, the verb 'to be' becomes 'were' for ALL subjects (I, He, She, It).</p>", 
+                    example: "<b>Standard:</b> 'I <i>was</i> at the store.'<br><b>Hypothetical:</b> 'If I <b>were</b> a bird, I would fly.' (Not 'If I was').<br><b>Hypothetical:</b> 'She acts as if she <b>were</b> the boss.' (Not 'as if she was')." 
+                },
+                { 
+                    title: "Identifying Passive Voice Trick", 
+                    desc: "<p>Voice questions require you to convert active to passive. A sentence is passive if the grammatical subject is <i>receiving</i> the action rather than doing it. Look for the formula: <b>[Form of 'To Be'] + [Past Participle]</b>.</p>", 
+                    example: "<b>Active:</b> The chef (Subject doing action) baked the cake.<br><b>Passive:</b> The cake (Subject receiving action) <b>was baked</b> by the chef.<br><br><i>Trick:</i> If you can add 'by zombies' to the end of the sentence and it makes sense, it's passive! ('The car was stolen... by zombies')." 
+                }
+            ]
+        }
+    };
+
+    // Subject-specific broad guidance that appears at the top of the selected tricks
+    const subjectGuidance = {
+        maths: {
+            title: "📐 Mathematics (IMO) Mastery Strategy",
+            content: "<p>The Mathematics Olympiad tests your problem-solving speed, logical application of formulas, and ability to think outside the box. Brute-force calculation will often consume too much time. Use these foundational strategies to dominate the maths section:</p><ul><li><b>Work Backward from Options:</b> Instead of solving an equation from scratch, plug the given answer choices back into the problem. Start with the middle value to see if you need to go higher or lower.</li><li><b>The Unit Digit Concept:</b> When dealing with large multiplications or powers, calculate only the last digit. If a calculation is 456 × 892, the last digit must be 2 (6×2=12). You can instantly eliminate any option not ending in 2.</li><li><b>Always Draw Geometry:</b> Never attempt to solve a geometry question entirely in your head. Quickly sketch the shape, label the given angles and sides, and use visual properties (like parallel lines and transversals) to find the missing value.</li><li><b>Use Smart Approximations:</b> If the options are far apart (e.g., 120, 450, 890, 1500), round off the numbers in the question to their nearest tens or hundreds to do a quick mental estimate and pick the closest option.</li><li><b>Variable Substitution:</b> When an algebra problem has variables in both the question and the options, substitute simple numbers (like 1 or 2) for the variables. Evaluate the question, then evaluate the options to see which matches!</li></ul>"
+        },
+        science: {
+            title: "🔬 Science (NSO) Mastery Strategy",
+            content: "<p>Science Olympiads (like NSO) are notorious for presenting familiar textbook concepts in unfamiliar, practical, or experimental scenarios. Rote memorization won't be enough. Here is how to approach the science paper:</p><ul><li><b>Beware the 'NOT' Trap:</b> Examiners deliberately use phrasing like <i>\"Which of the following is INCORRECT?\"</i> or <i>\"All of the following are true EXCEPT...\"</i>. Always underline these negative words so you don't hastily pick the first correct statement you read.</li><li><b>Analyze Diagrams and Graphs First:</b> Before reading a long paragraph of text, look at the accompanying graph, flowchart, or experimental setup. Understand the axes, variables, and trends first—this often makes the text much easier to digest.</li><li><b>Master the Process of Elimination:</b> In complex \"Match the Following\" questions, you rarely need to know all four matches. Find the one or two pairs you are 100% sure about, and look at the options. You can usually eliminate 3 incorrect options instantly.</li><li><b>Watch Out for Unit Traps:</b> A classic trick is giving the speed in km/hr but asking for the time in seconds. Always verify that your final calculation units match the units provided in the answer options before marking it.</li><li><b>Apply Everyday Logic:</b> Many \"Achievers Section\" questions involve real-life applications (e.g., shadows at different times of the day, friction on different surfaces). Visualize the physical scenario happening in your own room.</li></ul>"
+        },
+        reasoning: {
+            title: "🧩 Logical Reasoning Mastery Strategy",
+            content: "<p>Logical Reasoning is often the deciding factor for top ranks because it isn't actively taught in standard school curriculums. Success here relies entirely on structured thinking and avoiding mental overload.</p><ul><li><b>Put Pen to Paper (Never Visualize):</b> Always draw directional maps (North, South, East, West), family trees for Blood Relations, and circular seating arrangements. Trying to hold multiple moving parts in your head is a guaranteed way to make a critical error.</li><li><b>Write Down the Alphabet:</b> As soon as your exam starts, quickly write the alphabet (A-Z) and their corresponding numbers (1-26) on your rough sheet. This will save you massive amounts of time on Coding-Decoding and Alphabet Series questions.</li><li><b>Strict Syllogism Rules:</b> For statements like <i>\"Some A are B\"</i> and <i>\"All B are C\"</i>, draw the minimum overlapping Venn diagram. Do not use real-world logic (e.g., if the prompt says 'All apples are blue', treat it as absolute truth within the context of the question).</li><li><b>Identify Time-Sinks:</b> Number matrices and complex missing number series can trap you for 5 minutes if you aren't careful. If you cannot identify the pattern (addition, multiplication, squares, prime numbers) within 45 seconds, skip it and return at the end of the exam.</li><li><b>Break Down Long Puzzles:</b> For long logic puzzles, list the clues as bullet points on your rough sheet. Cross them out as you apply them to your grid. Do not read the paragraph over and over.</li></ul>"
+        },
+        english: {
+            title: "📚 English (IEO) Mastery Strategy",
+            content: "<p>The English Olympiad (IEO) focuses heavily on applied grammar, vocabulary in context, and reading comprehension rather than just reciting standard textbook rules. Here is your blueprint for maximizing your English score:</p><ul><li><b>Reading Comprehension Strategy:</b> Never read the passage first! Read the questions beforehand to identify specific keywords. When you finally scan the passage, your brain will automatically lock onto the relevant sentences, saving you crucial minutes.</li><li><b>Context is King for Vocabulary:</b> Do not blindly pick a synonym just because it matches the target word perfectly in isolation. Plug your chosen word back into the original sentence to ensure it actually makes logical and grammatical sense in that specific context.</li><li><b>Hunt for Subject-Verb Traps:</b> Examiners love to separate the subject from its verb using long intervening phrases. For example: <i>\"The box of assorted chocolates, which was a gift from my friends, <b>is</b> missing.\"</i> (The verb must match 'box', not 'chocolates' or 'friends').</li><li><b>Don't Translate Idioms Literally:</b> Idioms and phrasal verbs carry figurative meanings. If you haven't heard an idiom before, look at the tone of the sentence. Is it positive, negative, or frustrated? Choose the option that matches the underlying emotion.</li><li><b>Process of Elimination for Spelling:</b> If you are unsure of a spelling, write the word down on your rough sheet exactly as it sounds to you. Compare your written word to the options, paying close attention to common tricky rules like \"i before e\" and double consonants.</li></ul>"
+        }
+    };
+
+    window.loadTricks = function() {
+        const grade = document.getElementById('classSelect').value;
+        const sub = document.getElementById('subjectSelect').value;
+        const container = document.getElementById('tricksContent');
+
+        if(!grade || !sub) return; // Keep placeholder until both selected
+
+        // Calculate complexity level based on grade string
+        const gradeNum = parseInt(grade.replace('class', ''));
+        let level = 'basic';
+        if (gradeNum >= 5) level = 'intermediate';
+        if (gradeNum >= 9) level = 'advanced';
+
+        const subjectTricks = tricksDatabase[sub];
+        let selectedTricks = [];
+
+        // Progressively add tricks so higher grades get more robust content
+        if (subjectTricks) {
+            if(subjectTricks.basic) selectedTricks = [...subjectTricks.basic];
+            if ((level === 'intermediate' || level === 'advanced') && subjectTricks.intermediate) {
+                selectedTricks = [...selectedTricks, ...subjectTricks.intermediate];
+            }
+            if (level === 'advanced' && subjectTricks.advanced) {
+                selectedTricks = [...selectedTricks, ...subjectTricks.advanced];
+            }
+        }
+
+        if (selectedTricks.length === 0) {
+            container.innerHTML = '<div class="placeholder-msg">Tricks for this specific selection are being curated by our experts! Check back soon.</div>';
+            return;
+        }
+
+        let html = '';
+        
+        // 1. Inject the subject guidance card at the top
+        if (subjectGuidance[sub]) {
+            html += `
+                <div class="subject-guidance-card">
+                    <h3>${subjectGuidance[sub].title}</h3>
+                    ${subjectGuidance[sub].content}
+                </div>
+            `;
+        }
+
+        // 2. Inject the specific tricks with staggered animation
+        selectedTricks.forEach((trick, index) => {
+            html += `
+                <div class="trick-card" style="animation-delay: ${(index * 0.1) + 0.2}s">
+                    <div class="trick-title"><span>💡</span> ${trick.title}</div>
+                    <div class="trick-desc">${trick.desc}</div>
+                    <div class="trick-example">
+                        <strong>Practical Example</strong>
+                        ${trick.example}
+                    </div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+        projectId: "olympiad-portal-d2a5e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            window.location.href = "login.html";
+        }
+    };
+</script>
+</body>
+</html>

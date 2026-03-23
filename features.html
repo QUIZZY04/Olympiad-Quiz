@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+            --accent: #818cf8;
+            --danger: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg);
+            min-height: 100vh; 
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom:1px solid var(--border); 
+            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
+            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+        }
+        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header-text h1 {
+            font-size: 3rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        .header-text h1 span { color: var(--brand); }
+        .header-text p {
+            color: var(--muted);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .feature-showcase {
+            margin-bottom: 80px;
+        }
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+        .feature-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .feature-text {
+            flex: 1;
+        }
+        .feature-text h2 {
+            font-size: 2.2rem;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .feature-text p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .feature-list {
+            list-style: none;
+        }
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+        .feature-visual {
+            flex: 1;
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--brand);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, var(--c-accent, var(--brand)) 0%, transparent 50%);
+            opacity: 0.08;
+        }
+        .visual-icon {
+            font-size: 100px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a, #020617);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--brand);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+            background: linear-gradient(135deg, #0ea5e9, #1d4ed8);
+        }
+
+        @media (max-width: 768px) {
+            .header-text h1 { font-size: 2.2rem; }
+            .cta-section h2 { font-size: 2rem; }
+            nav { flex-direction: column; padding: 15px; }
+            .feature-row, .feature-row:nth-child(even) {
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 60px;
+            }
+            .feature-text h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html" style="color:var(--brand); border-bottom: 2px solid var(--brand); padding-bottom: 2px;">Features</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <div style="display: inline-block; margin-left: 15px; border-left: 2px solid var(--border); padding-left: 15px;">
+            <a href="login.html" style="margin-left: 5px; font-weight: 600; color: var(--text); text-transform:none;">Log in</a>
+            <a href="signup.html" style="background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; margin-left: 15px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); text-transform:none;">Get Started Free</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header-text">
+        <h1>Everything You Need to <span>Succeed</span></h1>
+        <p>Discover our comprehensive suite of tools designed to help you master every subject, track your progress, and conquer the Olympiads.</p>
+    </div>
+
+    <div class="feature-showcase">
+        
+        <div class="feature-row">
+            <div class="feature-text">
+                <h2>📝 Full-Length Mock Tests</h2>
+                <p>Experience the real Olympiad environment with our expertly crafted mock exams. Designed to match the exact difficulty level and pattern of SOF, SilverZone, and CREST.</p>
+                <ul class="feature-list">
+                    <li>✨ Strictly adheres to the latest syllabus</li>
+                    <li>✨ Timed environment to improve speed</li>
+                    <li>✨ Detailed step-by-step solutions after submission</li>
+                </ul>
+            </div>
+            <div class="feature-visual" style="--c-accent: #38bdf8;">
+                <div class="visual-icon">📝</div>
+            </div>
+        </div>
+        
+        <div class="feature-row">
+            <div class="feature-text">
+                <h2>📖 Chapterwise Practice</h2>
+                <p>Don't just randomly guess. Target specific weak points by selecting exact chapters from your school curriculum to build a rock-solid foundation of core concepts.</p>
+                <ul class="feature-list">
+                    <li>✨ Filter instantly by Grade, Subject, and Topic</li>
+                    <li>✨ Thousands of high-quality targeted questions</li>
+                    <li>✨ Perfect for regular, focused school revision</li>
+                </ul>
+            </div>
+            <div class="feature-visual" style="--c-accent: #818cf8;">
+                <div class="visual-icon">📖</div>
+            </div>
+        </div>
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h2>⚡ Live Quiz Arena</h2>
+                <p>Ready to prove your skills? Join our scheduled weekly championships and compete in real-time against thousands of ambitious students from across the country.</p>
+                <ul class="feature-list">
+                    <li>✨ Live countdown timer and synced starting gate</li>
+                    <li>✨ Climb the dynamic national leaderboards</li>
+                    <li>✨ Earn prestige and track your competitive rank</li>
+                </ul>
+            </div>
+            <div class="feature-visual" style="--c-accent: #f43f5e;">
+                <div class="visual-icon">⚡</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cta-section">
+        <h2>Ready to start your journey?</h2>
+        <p>Join thousands of students who are already using Olympiad Portal to achieve their academic goals and secure top ranks.</p>
+        <a href="signup.html" class="cta-btn">Create Free Account</a>
+    </div>
+</div>
+
+<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+        <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
+        <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
+        <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+        <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

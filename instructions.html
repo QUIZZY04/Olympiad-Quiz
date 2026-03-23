@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Start Quiz - Olympiad Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#020617; --card:#1e293b; --amber:#f59e0b; --text:#f8fafc; --muted:#94a3b8; --border:#334155; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); padding:40px 5%; }
+    .container { max-width: 800px; margin: 0 auto; }
+    .back-link { color: #38bdf8; text-decoration: none; font-weight: 800; display: block; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .section { 
+        background: linear-gradient(145deg, #0f172a, #020617); 
+        border: 1px solid var(--border); 
+        border-top: 2px solid var(--brand);
+        padding: 35px 30px; 
+        border-radius: 24px; 
+        margin-bottom: 30px; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h1, h2 { color: #38bdf8; margin-bottom: 20px; }
+    .faq-item { margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+    .faq-q { font-weight: 800; color: #fff; display: block; margin-bottom: 5px; }
+    .faq-a { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="live.html" class="back-link">← Back to Live Arena</a>
+    
+    <div class="section">
+      <h1>📋 How to Start the Live Quiz</h1>
+      <ul style="line-height: 2.2; font-size: 15px; color: #cbd5e1;">
+        <li><b>1. Unlock the Test:</b> Ensure you have registered and unlocked the test in the Arena. The status will change to "Access Granted".</li>
+        <li><b>2. Wait for the Timer:</b> Watch the countdown timer on the card. <b>When the timer reaches exactly 00:00:00</b>, the system will verify the start time.</li>
+        <li><b>3. Click 'Join Quiz':</b> Once the timer hits zero, the bottom button will turn into a vibrant <b style="color: #10b981;">Green "Join Quiz"</b> button. Click this to immediately enter the exam interface.</li>
+        <li><b>4. Time Limit:</b> Your individual timer starts as soon as you enter the quiz. It cannot be paused.</li>
+        <li><b>5. Single Attempt:</b> Only 1 attempt is allowed. Do not refresh your browser during the test or you may lose your progress.</li>
+        <li><b>6. Auto-Submit:</b> If the timer runs out while you are testing, your saved answers will be submitted automatically.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>❓ Troubleshooting & FAQs</h2>
+      <div class="faq-item">
+        <span class="faq-q">The timer reached 00:00:00 but the button didn't turn green. What should I do?</span>
+        <p class="faq-a">Sometimes, local network delays can cause a slight lag. Wait a few seconds. If it still doesn't change, try refreshing the Live Arena page manually.</p>
+      </div>
+      <div class="faq-item">
+        <span class="faq-q">I unlocked the test, but the status still says "Locked".</span>
+        <p class="faq-a">Wait a few seconds on the dashboard for your payment verification to sync securely with the database, then refresh the page.</p>
+      </div>
+      <div class="faq-item">
+        <span class="faq-q">Can I join the quiz late?</span>
+        <p class="faq-a">Yes, you can join after the start time, as long as the session has not officially "Ended". However, your time may be reduced depending on the strict session end time.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

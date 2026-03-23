@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bulk Upload Questions</title>
+<style>
+    body{background:#0f0f1b;color:white;font-family:Segoe UI;padding:30px;}
+    textarea{width:100%;height:300px;padding:10px;background:#1e1e2e;color:white;border:1px solid #444;border-radius:5px;}
+    button{padding:10px 20px;background:#ffb703;border:none;margin-top:10px;margin-right:10px;cursor:pointer;font-weight:bold;border-radius:5px;}
+    button:hover{background:#fb8500;}
+    #status{margin-top:15px;font-weight:bold;}
+    #userInfo{color:#94a3b8;margin-bottom:20px;}
+</style>
+</head>
+<body>
+
+<h2>📦 Bulk Upload Questions (Admin Only)</h2>
+
+<p id="userInfo">Verifying session...</p>
+
+<textarea id="jsonInput" placeholder="Paste JSON array here..."></textarea>
+<br>
+<button onclick="uploadBulk()">Upload Questions</button>
+<button onclick="clearInput()">Clear</button>
+<button onclick="pasteFromClipboard()">Paste</button>
+<div id="status"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+    projectId: "olympiad-portal-d2a5e",
+    storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+    messagingSenderId: "341855557503",
+    appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentUser = null;
+const adminEmail = "madhhu52@gmail.com";
+
+// Admin Access Guard: Waits for Firebase to settle before redirecting
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        if (user.email === adminEmail) {
+            currentUser = user;
+            document.getElementById("userInfo").innerText = "Logged in as Admin: " + user.email;
+            document.getElementById("status").innerText = "✅ System ready for upload.";
+        } else {
+            document.getElementById("status").innerText = "❌ Access denied. Redirecting...";
+            setTimeout(() => { window.location.replace("login.html"); }, 2000);
+        }
+    } else {
+        // No user found, send to login
+        window.location.replace("login.html");
+    }
+});
+
+window.uploadBulk = async function () {
+    const statusDiv = document.getElementById("status");
+    const inputArea = document.getElementById("jsonInput");
+
+        // Add a basic validation for 'id' field
+        function validateQuestionId(item, index) {
+            if (!item.id) throw new Error(`Question ${index + 1} is missing an 'id' field. Each question must have a unique ID.`);
+        }
+
+    if(!currentUser || currentUser.email !== adminEmail) {
+        statusDiv.innerText = "❌ Unauthorized: You must be logged in as " + adminEmail;
+        return;
+    }
+
+    try {
+        const rawData = inputArea.value.trim();
+        if(!rawData) {
+            statusDiv.innerText = "⚠️ Please paste JSON data first.";
+            return;
+        }
+
+        const data = JSON.parse(rawData);
+        if (!Array.isArray(data)) { throw new Error("JSON data must be an array of question objects."); }
+        statusDiv.innerText = "⏳ Uploading " + data.length + " questions...";
+
+        for (let item of data) {
+            // Use the 'id' from JSON as the Firestore Document ID
+            // If 'id' is missing, it creates a temporary one to avoid errors
+            const docId = item.id || `temp_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
+            await setDoc(doc(db, "questions", docId), item);
+        for (let i = 0; i < data.length; i++) {
+            validateQuestionId(data[i], i); // Validate each item has an ID
+            await setDoc(doc(db, "questions", data[i].id), data[i]); // CRITICAL CHANGE: Use item.id as doc ID
+        }
+
+        statusDiv.innerText = "✅ Successfully uploaded " + data.length + " questions with consistent IDs.";
+        inputArea.value = ""; // Clear after success
+
+    } catch (error) {
+        console.error(error);
+        statusDiv.innerText = "❌ Upload failed: " + error.message;
+    }
+};
+
+window.clearInput = function () {
+    document.getElementById("jsonInput").value = "";
+    document.getElementById("status").innerText = "🧹 Cleared input.";
+};
+
+window.pasteFromClipboard = async function () {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("jsonInput").value = text;
+        document.getElementById("status").innerText = "📋 Pasted from clipboard.";
+    } catch (error) {
+        document.getElementById("status").innerText = "❌ Failed to paste: " + error.message;
+    }
+};
+</script>
+
+</body>
+</html>

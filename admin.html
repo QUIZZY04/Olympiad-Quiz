@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+  history.go(1);
+};
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Panel - Olympiad Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg: #020617;
+--surface: #0f172a;
+--text:#f8fafc;
+--muted:#94a3b8;
+--border:#334155;
+--brand: #38bdf8;
+--accent: #818cf8;
+--danger: #f43f5e;
+--success: #10b981;
+--warning: #f59e0b;
+}
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+margin:0;
+background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+background-attachment: fixed;
+}
+nav{
+background:rgba(2, 6, 23, 0.8);
+backdrop-filter: blur(12px);
+border-bottom:1px solid var(--border);
+padding:15px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position: sticky; top: 0; z-index: 1000;
+}
+.brand{
+font-size:22px;
+font-weight:800;
+color:#ffffff;
+text-decoration:none;
+}
+.nav-links{
+display:flex;
+gap:12px;
+}
+.nav-links a{
+color:white;
+text-decoration:none;
+font-size:11px;
+font-weight:800;
+text-transform:uppercase;
+}
+.nav-links a.active{
+color:var(--success);
+}
+.container{
+width:95%;
+max-width:1200px;
+margin:30px auto;
+}
+.panel{
+background: linear-gradient(145deg, #0f172a, #020617);
+padding:25px 30px;
+border-radius:24px;
+margin-bottom:30px;
+border:1px solid var(--border);
+border-top:2px solid var(--brand);
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+h2{
+color:var(--warning);
+margin-top:0;
+}
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:none;
+background:#020617;
+color:white;
+}
+textarea{
+height:200px;
+}
+button{
+padding:10px 16px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+font-weight:700;
+}
+.upload{
+background:var(--success);
+color:white;
+}
+.delete{
+background:var(--danger);
+color:white;
+}
+.edit-btn{
+background:var(--brand);
+color:white;
+}
+table{
+width:100%;
+border-collapse:separate;
+margin-top:20px;
+}
+th,td{
+padding:10px;
+border-bottom:1px solid var(--border);
+text-align:left;
+}
+img{
+max-width:80px;
+border-radius:6px;
+}
+
+.collapse-btn {
+    background: transparent;
+    color: var(--brand);
+    border: 1px solid var(--brand);
+    padding: 4px 10px;
+    font-size: 10px;
+    margin-top: 0;
+    cursor: pointer;
+}
+.collapse-btn:hover { background: var(--brand); color: #000; }
+.hidden-content { display: none; }
+
+.modal {
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
+}
+.modal-content {
+    background: var(--surface); padding: 30px; border-radius: 12px; width: 90%; max-width: 600px;
+    border: 1px solid var(--border); max-height: 90vh; overflow-y: auto;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:rgba(2, 6, 23, 0.8);
+color:#94a3b8;
+border-top:1px solid var(--border);
+}
+
+.score-tag { background: var(--bg); padding: 2px 8px; border-radius: 4px; color: var(--brand); font-family: monospace; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<nav>
+<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="dashboard.html">Dashboard</a>
+<a href="quiz.html">Take Quiz</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="admin.html" class="active">Admin</a>
+<a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
+</div>
+</nav>
+
+<div class="container">
+    <div class="panel" style="border-top: 2px solid var(--accent);">
+        <h2>🖼 Step 1: Bulk Image Folder Upload</h2>
+        <p style="font-size: 12px; color: var(--muted); margin-bottom: 10px;">
+            Select a folder containing images. Images must be named exactly like the Question ID (e.g., <code>math_c7_001.png</code>).
+        </p>
+        <input type="file" id="imageFolderInput" webkitdirectory directory multiple>
+        <button class="upload" style="background: var(--accent);" onclick="uploadImageFolder()">Upload Folder Images</button>
+        <div id="imageUploadStatus" style="margin-top:10px; font-size: 13px; font-weight: 600;"></div>
+    </div>
+
+    <div class="panel">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>🚩 User Feedback & Error Reports</h2>
+            <button class="collapse-btn" onclick="toggleSection('errTable')">SHOW/HIDE</button>
+        </div>
+        <div id="errTable" class="hidden-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Question ID</th>
+                        <th>Message</th>
+                        <th>Context</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbackTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel" style="border-left: 5px solid var(--success);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin-bottom:0;">💬 User Experience Feedback</h2>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <div id="expCount" style="background: var(--brand); color: #000; padding: 2px 10px; border-radius: 20px; font-weight: 800; font-size: 10px;">0 Reports</div>
+                <button class="collapse-btn" onclick="toggleSection('expTable')">SHOW/HIDE</button>
+            </div>
+        </div>
+        <div id="expTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>User Details</th>
+                        <th>Rating</th>
+                        <th>Score</th>
+                        <th>Suggestion</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="expFeedbackTable">
+                    <tr><td colspan="6" style="text-align:center; color: var(--muted);">Loading experience data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<div class="panel">
+<h2>Step 2: Upload JSON File</h2>
+<input type="file" id="jsonFile">
+<button class="upload" onclick="uploadFile()">Upload File</button>
+</div>
+
+<div class="panel">
+<h2>OR Paste JSON Questions</h2>
+<textarea id="jsonPaste"></textarea>
+<button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
+<button class="upload" onclick="pasteClipboard()" style="background: var(--brand); color: #000;">Paste</button>
+<button class="delete" onclick="clearPaste()">Clear</button>
+</div>
+
+<div class="panel" style="border: 2px solid var(--warning);">
+    <h2>📅 Schedule Weekly Test Session</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div><label>Test Title</label><input type="text" id="sessTitle"></div>
+        <div><label>Subject</label>
+            <select id="sessSubject">
+                <option value="maths">Mathematics</option>
+                <option value="science" selected>Science</option>
+                <option value="english">English</option>
+                <option value="reasoning">Reasoning</option>
+            </select>
+        </div>
+        <div><label>Class</label>
+            <select id="sessClass">
+                <option value="1">Class 1</option><option value="2">Class 2</option>
+                <option value="3">Class 3</option><option value="4">Class 4</option>
+                <option value="5">Class 5</option><option value="6">Class 6</option>
+                <option value="7">Class 7</option><option value="8">Class 8</option>
+                <option value="9">Class 9</option><option value="10">Class 10</option>
+            </select>
+        </div>
+        <div><label>Test Date</label><input type="date" id="sessDate"></div>
+        <div><label>Start Time</label><input type="time" id="sessTime"></div>
+        <div><label>Starting Question ID</label><input type="text" id="sessStartId"></div>
+        <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
+        <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
+    </div>
+    <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session & Auto-Link 50 IDs</button>
+</div>
+
+<div class="panel">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>📅 Managed Test Sessions</h2>
+        <button class="upload" onclick="loadSessions()">Refresh List</button>
+    </div>
+    <table style="margin-top: 15px;">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Title</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="sessionsTable"></tbody>
+    </table>
+</div>
+
+<div class="panel">
+<h2>Filter Questions</h2>
+<select id="filterClass">
+<option value="">All Classes</option>
+<option value="class1">Class 1</option><option value="class2">Class 2</option>
+<option value="class3">Class 3</option><option value="class4">Class 4</option>
+<option value="class5">Class 5</option><option value="class6">Class 6</option>
+<option value="class7">Class 7</option><option value="class8">Class 8</option>
+<option value="class9">Class 9</option><option value="class10">Class 10</option>
+</select>
+<select id="filterSubject">
+<option value="">All Subjects</option>
+<option value="maths">Maths</option><option value="science">Science</option>
+<option value="english">English</option><option value="reasoning">Reasoning</option>
+</select>
+<button class="upload" onclick="loadQuestions()">Apply Filter</button>
+</div>
+
+<div class="panel">
+<h2>Total Questions: <span id="count">0</span></h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Subject</th>
+<th>Question</th>
+<th>Image</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="questionsTable">
+    <tr><td colspan="5" style="text-align:center; color: var(--muted);">Click Apply Filter to load questions...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <h2>Edit Question</h2>
+        <input type="hidden" id="editId">
+        <textarea id="editQ" style="height:80px;"></textarea>
+        <input id="editO0" placeholder="Option 0 (Correct)"><input id="editO1" placeholder="Option 1">
+        <input id="editO2" placeholder="Option 2"><input id="editO3" placeholder="Option 3">
+        <textarea id="editSol" placeholder="Solution" style="height:60px;"></textarea>
+        <button class="upload" onclick="saveEdit()">Save</button>
+        <button class="delete" onclick="closeEdit()">Cancel</button>
+    </div>
+</div>
+
+<div id="editSessModal" class="modal">
+    <div class="modal-content">
+        <h2>Edit Test Session</h2>
+        <input type="hidden" id="editSessId">
+        <label>Title</label><input type="text" id="editSessTitle">
+        <label>Price (INR)</label><input type="number" id="editSessPrice">
+        <label>Duration (Min)</label><input type="number" id="editSessDuration">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+            <div><label>Date</label><input type="date" id="editSessDate"></div>
+            <div><label>Time</label><input type="time" id="editSessTime"></div>
+        </div>
+        <button class="upload" onclick="saveSessionEdit()">Update Session</button>
+        <button class="delete" onclick="closeSessEdit()">Cancel</button>
+    </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc, onSnapshot, orderBy, getDoc, updateDoc, setDoc, serverTimestamp, Timestamp }
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+    projectId: "olympiad-portal-d2a5e",
+    storageBucket: "olympiad-portal-d2a5e.firebasestorage.app" 
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const auth=getAuth(app);
+const storage = getStorage(app);
+
+const questionsRef=collection(db,"questions");
+const feedbackRef=collection(db,"feedback");
+const expFeedbackRef=collection(db,"feedbacks"); 
+const sessionsRef=collection(db,"test_sessions");
+
+let uploadedImageUrls = {}; 
+
+onAuthStateChanged(auth, (user) => {
+    if (user && user.email === "madhhu52@gmail.com") {
+        loadFeedback(); loadExpFeedback(); loadSessions();
+    } else {
+        window.location.href = "login.html";
+    }
+});
+
+window.toggleSection = (id) => document.getElementById(id).classList.toggle('hidden-content');
+
+window.pasteClipboard = async function() {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("jsonPaste").value = text;
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually.");
+    }
+};
+
+window.clearPaste = function() {
+    document.getElementById("jsonPaste").value = "";
+};
+
+window.uploadImageFolder = async function() {
+    const input = document.getElementById('imageFolderInput');
+    const statusDiv = document.getElementById('imageUploadStatus');
+    const files = input.files;
+    if (files.length === 0) { statusDiv.innerHTML = "Select a folder first."; return; }
+
+    statusDiv.innerHTML = "Processing and uploading images... ⏳";
+    let uploadedCount = 0;
+    uploadedImageUrls = {}; 
+
+    for (const file of files) {
+        if (file.name.startsWith('.') || !file.type.startsWith('image/')) continue;
+        const idKey = file.name.split('.').slice(0, -1).join('.');
+        const storageRef = ref(storage, `question_images/${file.name}`);
+        try {
+            await uploadBytes(storageRef, file);
+            const downloadURL = await getDownloadURL(storageRef);
+            uploadedImageUrls[idKey] = downloadURL;
+            uploadedCount++;
+            statusDiv.innerHTML = `Uploading: ${uploadedCount} images complete...`;
+        } catch (e) { console.error(e); }
+    }
+    statusDiv.innerHTML = `<span style='color:var(--success);'>✅ ${uploadedCount} images ready in memory!</span>`;
+};
+
+window.uploadPaste=async function(){
+    try{
+        const text=document.getElementById("jsonPaste").value.trim();
+        if(!text) return;
+        const data=JSON.parse(text);
+        for (let q of data) {
+            if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+            await setDoc(doc(questionsRef, q.id), q);
+        }
+        alert("Success!");
+    }catch(e){ alert("Error: "+e.message); }
+}
+
+window.uploadFile=async function(){
+    const file=document.getElementById("jsonFile").files[0];
+    if(!file) return;
+    const text=await file.text();
+    try {
+        const data=JSON.parse(text);
+        for (let q of data) {
+            if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+            await setDoc(doc(questionsRef, q.id), q);
+        }
+        alert("Success!");
+    } catch(e) { alert("File Error: " + e.message); }
+}
+
+window.loadQuestions=async function(){
+    const fClass = document.getElementById("filterClass").value;
+    const fSubject = document.getElementById("filterSubject").value;
+    
+    document.getElementById("questionsTable").innerHTML = `<tr><td colspan="5" style="text-align:center;">Filtering questions...</td></tr>`;
+
+    let qry = questionsRef;
+    if (fClass) qry = query(qry, where("class", "==", fClass));
+    if (fSubject) qry = query(qry, where("subject", "==", fSubject));
+
+    try {
+        const snapshot = await getDocs(qry);
+        let html="";
+        if (snapshot.empty) {
+            html = `<tr><td colspan="5" style="text-align:center; color: var(--muted);">No questions found matching these filters.</td></tr>`;
+        } else {
+            snapshot.forEach((d)=>{
+                const data=d.data();
+                html+=`<tr>
+                    <td>${data.class}</td>
+                    <td>${data.subject}</td>
+                    <td>${data.q ? data.q.substring(0,30) : 'No Text'}...</td>
+                    <td>${data.image_url ? '✅' : '❌'}</td>
+                    <td>
+                        <button class="edit-btn" onclick="openEdit('${d.id}')">Edit</button>
+                        <button class="delete" onclick="deleteQuestion('${d.id}')">Del</button>
+                    </td>
+                </tr>`;
+            });
+        }
+        document.getElementById("questionsTable").innerHTML=html;
+        document.getElementById("count").innerText=snapshot.size;
+    } catch (e) {
+        alert("Filter Error: " + e.message);
+        console.error(e);
+    }
+}
+
+window.openEdit = async (id) => {
+    const docSnap = await getDoc(doc(db, "questions", id));
+    if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById("editId").value = id;
+        document.getElementById("editQ").value = data.q;
+        document.getElementById("editO0").value = data.o[0];
+        document.getElementById("editO1").value = data.o[1];
+        document.getElementById("editO2").value = data.o[2];
+        document.getElementById("editO3").value = data.o[3];
+        document.getElementById("editSol").value = data.sol || "";
+        document.getElementById("editModal").style.display = "flex";
+    }
+};
+
+window.saveEdit = async () => {
+    const id = document.getElementById("editId").value;
+    const updateData = {
+        q: document.getElementById("editQ").value,
+        o: [
+            document.getElementById("editO0").value,
+            document.getElementById("editO1").value,
+            document.getElementById("editO2").value,
+            document.getElementById("editO3").value
+        ],
+        sol: document.getElementById("editSol").value
+    };
+    await updateDoc(doc(db, "questions", id), updateData);
+    closeEdit();
+    loadQuestions();
+};
+
+window.closeEdit = () => document.getElementById("editModal").style.display = "none";
+
+window.deleteQuestion=async (id) => { if(confirm("Delete?")) { await deleteDoc(doc(db,"questions",id)); loadQuestions(); } };
+
+window.logout=async () => { await signOut(auth); window.location.href="login.html"; };
+
+function loadFeedback() {
+    onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), (snap) => {
+        let html=""; snap.forEach(d => { 
+            const f=d.data(); 
+            const date = f.timestamp ? f.timestamp.toDate().toLocaleDateString() : 'N/A';
+            html+=`<tr><td>${date}</td><td>${f.questionId}</td><td>${f.message}</td><td>${f.context || ''}</td><td><button class="delete" onclick="deleteFB('${d.id}')">🗑</button></td></tr>`; 
+        });
+        document.getElementById("feedbackTable").innerHTML=html;
+    });
+}
+window.deleteFB = async (id) => { await deleteDoc(doc(db, "feedback", id)); };
+
+function loadExpFeedback() {
+    onSnapshot(query(expFeedbackRef, orderBy("date", "desc")), (snap) => {
+        let html=""; snap.forEach(d => { 
+            const f=d.data(); 
+            const dateStr = f.date instanceof Timestamp ? f.date.toDate().toLocaleDateString() : f.date;
+            html+=`<tr><td>${dateStr}</td><td>${f.userEmail || 'User'}</td><td>${f.rating}⭐</td><td>${f.score || 0}</td><td>${f.suggestion}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')">🗑</button></td></tr>`; 
+        });
+        document.getElementById("expFeedbackTable").innerHTML=html;
+        document.getElementById("expCount").innerText = snap.size + " Reports";
+    });
+}
+window.deleteExpFB = async (id) => { await deleteDoc(doc(db, "feedbacks", id)); };
+
+window.loadSessions = async () => {
+    const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
+    let html=""; snap.forEach(d => { 
+        const s=d.data(); 
+        const time = s.startTime instanceof Timestamp ? s.startTime.toDate().toLocaleString() : s.startTime;
+        html+=`<tr><td>${time}</td><td>${s.title}</td><td>${s.class}</td><td>${s.subject}</td><td>₹${s.price}</td><td>
+            <button class="edit-btn" onclick="openSessionEdit('${d.id}')">Edit</button>
+            <button class="delete" onclick="deleteSession('${d.id}')">🗑</button>
+        </td></tr>`; 
+    });
+    document.getElementById("sessionsTable").innerHTML=html;
+};
+
+window.openSessionEdit = async (id) => {
+    const docSnap = await getDoc(doc(db, "test_sessions", id));
+    if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById("editSessId").value = id;
+        document.getElementById("editSessTitle").value = data.title;
+        document.getElementById("editSessPrice").value = data.price;
+        document.getElementById("editSessDuration").value = data.duration;
+        
+        if (data.startTime instanceof Timestamp) {
+            const dt = data.startTime.toDate();
+            document.getElementById("editSessDate").value = dt.toISOString().split('T')[0];
+            document.getElementById("editSessTime").value = dt.toTimeString().slice(0,5);
+        }
+        document.getElementById("editSessModal").style.display = "flex";
+    }
+};
+
+window.saveSessionEdit = async () => {
+    const id = document.getElementById("editSessId").value;
+    const date = document.getElementById("editSessDate").value;
+    const time = document.getElementById("editSessTime").value;
+    const startDateTime = new Date(`${date}T${time}`);
+
+    const updateData = {
+        title: document.getElementById("editSessTitle").value,
+        price: parseInt(document.getElementById("editSessPrice").value),
+        duration: parseInt(document.getElementById("editSessDuration").value),
+        startTime: Timestamp.fromDate(startDateTime)
+    };
+
+    await updateDoc(doc(db, "test_sessions", id), updateData);
+    closeSessEdit();
+    loadSessions();
+};
+
+window.closeSessEdit = () => document.getElementById("editSessModal").style.display = "none";
+
+window.deleteSession = async (id) => { if(confirm("Delete session?")) { await deleteDoc(doc(db, "test_sessions", id)); loadSessions(); } };
+
+window.createSession = async () => {
+    const title = document.getElementById("sessTitle").value;
+    const subject = document.getElementById("sessSubject").value;
+    const cls = document.getElementById("sessClass").value;
+    const date = document.getElementById("sessDate").value;
+    const time = document.getElementById("sessTime").value;
+    const startId = document.getElementById("sessStartId").value;
+    const price = document.getElementById("sessPrice").value;
+    const duration = document.getElementById("sessDuration").value;
+
+    if(!title || !date || !time || !startId) { alert("Fill all session fields"); return; }
+
+    const startDateTime = new Date(`${date}T${time}`);
+    
+    const questionIds = [];
+    const prefix = startId.replace(/\d+$/, "");
+    const startNum = parseInt(startId.match(/\d+$/)[0]);
+
+    for(let i=0; i<50; i++) {
+        const num = (startNum + i).toString().padStart(3, '0');
+        questionIds.push(prefix + num);
+    }
+
+    await addDoc(sessionsRef, {
+        title, subject, class: cls,
+        startTime: Timestamp.fromDate(startDateTime),
+        questionIds,
+        price: parseInt(price),
+        duration: parseInt(duration),
+        createdAt: serverTimestamp()
+    });
+
+    alert("Session Created!");
+    loadSessions();
+};
+</script>
+</body>
+</html>

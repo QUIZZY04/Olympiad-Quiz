@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Quiz Arena - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+            --accent: #818cf8;
+            --danger: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; 
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid var(--border); 
+            padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; 
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container { width: 100%; max-width: 1200px; margin: 40px auto; padding: 0 20px; flex: 1; }
+
+        .arena-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding: 20px;
+        }
+        .arena-header h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; color: #ffffff; letter-spacing: -1px; }
+        .arena-header h1 span { 
+            background: linear-gradient(135deg, #38bdf8, #818cf8); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+        }
+        .arena-header p { color: var(--muted); font-size: 1.15rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        
+        .header-meta { margin-top: 25px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        #userClassInfo { font-size: 12px; font-weight: 800; color: #020617; text-transform: uppercase; padding: 6px 16px; background: var(--brand); border-radius: 20px; box-shadow: 0 0 15px rgba(56,189,248,0.4); }
+        #currentTimeDisplay { font-size: 12px; font-weight: 600; color: var(--muted); background: var(--surface); padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); }
+
+        .session-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+
+        .card-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+            width: 100%;
+            max-width: 550px;
+        }
+        
+        .session-card { 
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border); 
+            border-top: 2px solid var(--brand);
+            border-radius: 24px; 
+            padding: 25px 30px; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            display: flex; flex-direction: column; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            min-height: 320px;
+            z-index: 1;
+        }
+
+        .session-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 20px rgba(56, 189, 248, 0.1); 
+            border-color: #334155;
+        }
+
+        .card-highlight {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+            white-space: nowrap;
+            animation: pulseBadge 2s infinite;
+        }
+        @keyframes pulseBadge {
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.6); }
+            70% { box-shadow: 0 0 0 12px rgba(244, 63, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+        }
+
+        .status-pill { 
+            align-self: flex-start; padding: 6px 12px; border-radius: 8px; font-size: 11px; 
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;
+        }
+        .status-live { background: rgba(244, 63, 94, 0.1); color: var(--danger); border: 1px solid rgba(244, 63, 94, 0.3); }
+        .status-upcoming { background: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .status-ended { background: rgba(148, 163, 184, 0.1); color: var(--muted); border: 1px solid rgba(148, 163, 184, 0.2); }
+        .status-locked { background: rgba(244, 63, 94, 0.1); color: var(--danger); border: 1px solid rgba(244, 63, 94, 0.3); }
+        .status-unlocked { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .session-title { font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 12px; line-height: 1.3; }
+        
+        .session-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
+        .meta-item { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); font-size: 12px; color: #cbd5e1; display: flex; align-items: center; }
+        .meta-item:last-child { grid-column: 1 / -1; justify-content: center; background: rgba(56, 189, 248, 0.05); border-color: rgba(56, 189, 248, 0.2); color: var(--brand); font-weight: 700; }
+        .meta-item b { color: #ffffff; font-weight: 600; margin-right: 6px; }
+
+        .countdown-timer {
+            font-weight: 800; color: var(--brand); font-size: 22px; margin-bottom: 15px; text-align: center; font-family: 'Inter', monospace;
+            background: #020617; padding: 12px; border-radius: 12px; letter-spacing: 3px; border: 1px solid var(--border);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .rules-box {
+            background: rgba(0,0,0,0.2); border-radius: 12px; padding: 12px 15px; margin-bottom: 15px;
+            font-size: 12px; color: var(--muted); border: 1px solid var(--border);
+        }
+        .rules-box b { color: #e2e8f0; display: block; margin-bottom: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .rules-box ul { padding-left: 20px; margin: 0; }
+        .rules-box li { margin-bottom: 5px; line-height: 1.5; }
+
+        .info-btn {
+            background: transparent; color: var(--muted); border: 1px solid var(--border);
+            padding: 10px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer; transition: 0.3s;
+            margin-bottom: 10px; width: 100%; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .info-btn:hover { color: var(--brand); border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
+
+        .join-btn { 
+            margin-top: auto; width: 100%; padding: 12px; border-radius: 12px; border: none; 
+            font-weight: 800; cursor: pointer; transition: all 0.3s; font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-unlocked { background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
+        .btn-unlocked:hover { background: linear-gradient(135deg, #0ea5e9, #1d4ed8); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4); }
+        .btn-locked { background: transparent; color: var(--warning); border: 2px solid var(--warning); }
+        .btn-locked:hover { background: rgba(245, 158, 11, 0.1); transform: translateY(-2px); }
+        .btn-ready { background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2); cursor: not-allowed; opacity: 0.9; }
+        .btn-disabled { background: #1e293b; color: #64748b; border: 1px solid #334155; cursor: not-allowed; }
+
+        #loader { text-align: center; padding: 50px; font-weight: 600; color: var(--brand); }
+
+        footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); color: var(--muted); margin-top: auto; background: rgba(2, 6, 23, 0.8); }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; gap: 15px; }
+            .arena-header h1 { font-size: 2.2rem; }
+            .session-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <!-- Add Inter font for better numbers -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="arena-header">
+        <h1>Live Quiz <span>Arena</span></h1>
+        <p>Compete in nationwide championships and earn your place on the leaderboard.</p>
+        <div class="header-meta">
+            <span id="userClassInfo"></span>
+            <span id="currentTimeDisplay"></span>
+        </div>
+    </div>
+
+    <div id="loader">Syncing live sessions...</div>
+    <div id="sessionContainer" class="session-grid"></div>
+</div>
+
+<footer><p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p></footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"; // Corrected import
+    import { getFirestore, collection, getDocs, doc, getDoc, query, where, orderBy, limit, deleteDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"; // Corrected import
+
+    const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            window.location.href = "login.html";
+            return;
+        }
+        loadSessions(user);
+    });
+
+    window.updateGradeFilter = (g) => {
+        localStorage.setItem("active_grade_filter", g);
+        location.reload();
+    };
+
+    window.deleteSession = async (id) => {
+        if(confirm("⚠️ ADMIN ACTION: Are you sure you want to permanently delete this session? This will remove it for all students.")) {
+            try {
+                await deleteDoc(doc(db, "test_sessions", id));
+                location.reload();
+            } catch (e) {
+                alert("Delete failed: " + e.message);
+            }
+        }
+    };
+
+    let timerInterval;
+
+    async function loadSessions(user) {
+        const container = document.getElementById("sessionContainer");
+        const loader = document.getElementById("loader");
+        document.getElementById("userClassInfo").innerText = `Global Quiz Lobby`; // Always show global lobby
+        document.getElementById("currentTimeDisplay").innerText = `Your Local Time: ${new Date().toLocaleTimeString()}`;
+
+        try {
+            const isAdmin = user.email === "madhhu52@gmail.com";
+            
+            let sessionDocs = [];
+            // Step 1: Resilient Query - Try ordered query first
+            try {
+                const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(30));
+                const sSnap = await getDocs(q);
+                sessionDocs = sSnap.docs;
+                console.log(`[ARENA DEBUG] Successfully fetched ${sessionDocs.length} sessions with orderBy.`);
+            } catch (indexErr) {
+                console.warn(`[ARENA DEBUG] Ordered query failed (likely missing index):`, indexErr.message);
+                // Fallback: Fetch without ordering if index is missing
+                const sSnap = await getDocs(collection(db, "test_sessions"));
+                sessionDocs = sSnap.docs;
+                console.log(`[ARENA DEBUG] Fallback: Fetched ${sessionDocs.length} sessions without orderBy.`);
+                
+                // If the error is about a missing index, display the user-friendly message
+                if (indexErr.message.includes("requires an index")) {
+                    const link = indexErr.message.match(/https:\/\/console\.firebase\.google\.com[^\s]+/)?.[0];
+                    loader.innerHTML = `
+                    <div style="color:var(--danger); padding:30px; border:1px solid var(--danger); border-radius:10px; text-align:left; background:rgba(239, 68, 68, 0.05);">
+                        <b style="font-size:18px;">🛠️ Setup Required: Database Index</b><br><br>
+                        Your database needs a specific index to sort these sessions.
+                        <ol style="margin-top:10px; margin-left:20px;">
+                            <li>Press <b>F12</b> to open the Browser Console.</li>
+                            <li>Click the <b>Firebase URL</b> inside the red error message.</li>
+                            <li>Click <b>"Create Index"</b> in the window that opens.</li>
+                        </ol>
+                        <button onclick="location.reload()" style="margin-top:15px; background:var(--brand); color:white; border:none; padding:10px 20px; border-radius:10px; cursor:pointer; font-weight:700;">CHECK STATUS AGAIN</button>
+                    </div>`;
+                    return; // Stop execution if index is missing and message is shown
+                }
+            }
+            
+            loader.style.display = "none";
+            container.innerHTML = "";
+
+            if (sessionDocs.length === 0) {
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px;">No sessions found. Ensure you have created a session in the Admin Panel for any class.</div>`;
+                return;
+            }
+
+            const sessionList = [];
+            // Process sessions and check access
+            for (const sDoc of sessionDocs) {
+                const s = sDoc.data();
+                // Basic validation for essential fields
+                const isMalformed = !s.startTime || !s.endTime || !s.title || s.class === undefined || s.subject === undefined;
+                
+                if (isMalformed) {
+                    console.warn(`[ARENA DEBUG] Skipping malformed session ${sDoc.id}: Missing essential data.`, {
+                        startTime: s.startTime, endTime: s.endTime, title: s.title, class: s.class, subject: s.subject
+                    });
+                    if (isAdmin) {
+                        container.innerHTML += `<div style="border:1px dashed var(--danger); padding:10px; margin-bottom:10px; font-size:11px; color:var(--danger);">⚠️ Admin: Session ${sDoc.id} is missing fields (Time, Title, or Class).</div>`;
+                    }
+                    console.warn(`[ARENA DEBUG] Skipping malformed session ${sDoc.id}: Missing essential data.`, s);
+                    continue;
+                }
+
+                const start = s.startTime.toDate();
+                const end = s.endTime.toDate();
+                const now = new Date(); // Get current time inside the loop for precise comparison
+
+                console.log(`[ARENA DEBUG] Processing session ${s.title} (${sDoc.id}):`);
+                console.log(`  - Current Time (Local): ${now.toLocaleString()}`);
+                console.log(`  - Session Start Time (Local): ${start.toLocaleString()}`);
+                console.log(`  - Session End Time (Local): ${end.toLocaleString()}`);
+                
+                const sessionPrice = s.price === undefined ? 99 : s.price; // Ensure price is always defined for logic
+                let hasAccess = false; // Start with false, only true if a purchase record exists
+
+                // Check if a purchase record exists for this session (regardless of price)
+                const pSnap = await getDoc(doc(db, "users", user.uid, "purchases", sDoc.id));
+                if (pSnap.exists()) {
+                    hasAccess = true;
+                } 
+
+                // Check if the session has already ended
+                if (now > end) {
+                    console.log(`  - Session ${s.title} has ended. Skipping.`);
+                    continue; // Skip rendering sessions that have already ended
+                }
+
+                sessionList.push({ id: sDoc.id, start, end, hasAccess, price: sessionPrice, title: s.title, duration: s.duration, subject: s.subject, class: s.class });
+
+                const wrapper = document.createElement("div");
+                wrapper.className = "card-wrapper";
+                wrapper.style.display = "flex";
+                wrapper.style.flexDirection = "column";
+                wrapper.innerHTML = `
+                <div id="highlight-${sDoc.id}" class="card-highlight">🔥 Upcoming Live Quiz</div>
+                <div class="session-card" style="flex: 1; width: 100%;">
+                    <span id="pill-${sDoc.id}" class="status-pill">Checking...</span>
+                <h3 class="session-title">${s.title}</h3>
+                <div class="session-meta">
+                    <div class="meta-item">📅 <b style="color: #94a3b8;">Date:</b> <span style="color: #fbbf24; font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                    <div class="meta-item">⏰ <b style="color: #94a3b8;">Starts:</b> <span style="color: #fbbf24; font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div>
+                    <div class="meta-item">⌛ <b style="color: #94a3b8;">Duration:</b> <span style="color: #f8fafc; font-weight: 600;">${s.duration} Min</span></div>
+                    <div class="meta-item">📖 <b style="color: #94a3b8;">Subject:</b> <span style="color: #f8fafc; font-weight: 600;">${s.subject.toUpperCase()}</span></div>
+                    <div class="meta-item">🎓 <b>Grade:</b> ${s.class}</div>
+                </div>
+                <div id="timer-${sDoc.id}" class="countdown-timer">00:00:00</div>
+                <div class="rules-box">
+                    <b>📜 Quiz Rules:</b>
+                    <ul>
+                            <li>Access restricted to registered participants.</li>
+                            <li>One attempt only. Quiz auto-submits on timeout.</li>
+                            <li>Ensure stable internet; do not refresh during test.</li>
+                    </ul>
+                </div>
+                <button onclick="window.location.href='instructions.html'" class="info-btn">❓ How to start Quiz</button>
+                ${isAdmin ? `<button onclick="deleteSession('${sDoc.id}')" style="margin-bottom:10px; background:var(--danger); color:white; border:none; padding:8px; border-radius:8px; font-size:10px; cursor:pointer; width:100%;">🗑 DELETE SESSION</button>` : ''}
+                <button id="btn-${sDoc.id}" class="join-btn btn-disabled" disabled>
+                    Please Wait
+                </button>
+                </div>
+                `;
+                container.appendChild(wrapper);
+            }
+            // Sort sessionList by startTime (descending) after all data is gathered
+            sessionList.sort((a, b) => b.start.getTime() - a.start.getTime());
+
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => updateTick(sessionList), 1000);
+            updateTick(sessionList);
+
+        } catch (e) {
+            console.error("Lobby Load Error:", e);
+            if (e.message.includes("requires an index")) {
+                const link = e.message.match(/https:\/\/console\.firebase\.google\.com[^\s]+/)?.[0];
+                loader.innerHTML = `
+                <div style="color:var(--danger); padding:30px; border:1px solid var(--danger); border-radius:10px; text-align:left; background:rgba(239, 68, 68, 0.05);">
+                    <b style="font-size:18px;">🛠️ Setup Required: Database Index</b><br><br>
+                    Your database needs a specific index to sort these sessions.
+                    <ol style="margin-top:10px; margin-left:20px;">
+                        <li>Press <b>F12</b> to open the Browser Console.</li>
+                        <li>Click the <b>Firebase URL</b> inside the red error message.</li>
+                        <li>Click <b>"Create Index"</b> in the window that opens.</li>
+                    </ol>
+                    <button onclick="location.reload()" style="margin-top:15px; background:var(--brand); color:white; border:none; padding:10px 20px; border-radius:10px; cursor:pointer; font-weight:700;">CHECK STATUS AGAIN</button>
+                </div>`;
+            } else {
+                loader.innerText = "Error loading sessions. Please check your internet and refresh.";
+            }
+        }
+    }
+
+    function updateTick(sessions) {
+        const now = new Date();
+        sessions.forEach(s => {
+            const btn = document.getElementById(`btn-${s.id}`);
+            const timerEl = document.getElementById(`timer-${s.id}`);
+            const pill = document.getElementById(`pill-${s.id}`);
+            const highlight = document.getElementById(`highlight-${s.id}`);
+
+            if (now > s.end) {
+                pill.innerText = "Ended"; pill.className = "status-pill status-ended";
+                timerEl.innerText = "00:00:00";
+                if (highlight) highlight.style.display = "none";
+                btn.innerText = "Session Ended"; btn.className = "join-btn btn-disabled"; btn.disabled = true;
+            } else if (!s.hasAccess) {
+                pill.innerText = "Locked"; pill.className = "status-pill status-upcoming";
+                timerEl.innerText = "Registration Open";
+                btn.innerText = `Unlock for ₹${s.price}`; btn.className = "join-btn btn-locked"; btn.disabled = false;
+                btn.onclick = () => handleUnlock(s.id, s.price, s.title);
+            } else {
+                // User has access
+                if (now < s.start) {
+                    const diff = s.start - now;
+                    const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
+                    const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+                    const sec = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+                    
+                    pill.innerText = "Access Granted"; pill.className = "status-pill status-unlocked";
+                    timerEl.innerText = `${h}:${m}:${sec}`;
+                    btn.innerText = "Test Unlocked"; btn.className = "join-btn btn-ready"; btn.disabled = true;
+                } else {
+                    pill.innerText = "LIVE NOW"; pill.className = "status-pill status-live";
+                    if (highlight) highlight.innerHTML = "⚡ JOIN BATTLE NOW";
+                    timerEl.innerText = "Battle is Live!";
+                    btn.innerText = "Join Quiz"; btn.className = "join-btn btn-unlocked"; btn.disabled = false;
+                    btn.onclick = () => handleJoin(s.id);
+                }
+            }
+        });
+    }
+
+    window.handleUnlock = async (sessionId, price, title) => {
+        const sessionPrice = parseInt(price); // Ensure price is a number
+
+        if (sessionPrice === 0) {
+            // --- Handle Free Unlock ---
+            localStorage.setItem("activeSessionId", sessionId);
+            localStorage.setItem("activeSessionPrice", 0);
+
+            try {
+                const user = auth.currentUser;
+                if (user) {
+                    // Create a 0-cost purchase record in Firestore
+                    await setDoc(
+                        doc(db, "users", user.uid, "purchases", sessionId),
+                        {
+                            paid: true,
+                            time: serverTimestamp(),
+                            amount: 0,
+                            sessionId: sessionId
+                        }
+                    );
+                    alert("Quiz unlocked for free!");
+                    window.location.href = "payment-success.html"; // Redirect to success page
+                } else {
+                    alert("Error: User not logged in. Please log in to unlock.");
+                    window.location.href = "login.html";
+                    return; // Stop execution if user not logged in
+                }
+            } catch (e) {
+                console.error("Error recording free unlock:", e);
+                alert("Error unlocking quiz: " + e.message + ". Please try again or contact support.");
+            }
+
+        } else {
+            // --- Handle Paid Unlock (Existing Razorpay flow) ---
+            const options = {
+                "key": "rzp_live_SSiYcJa8TB4OIC", // Your active Razorpay Live Key
+                "amount": sessionPrice * 100, // Razorpay expects amount in paisa
+                "currency": "INR",
+                "name": "Olympiad Portal",
+                "description": "Unlock: " + title,
+                "handler": function (response) {
+                    localStorage.setItem("activeSessionId", sessionId);
+                    localStorage.setItem("activeSessionPrice", sessionPrice);
+                    window.location.href = "payment-success.html";
+                },
+                "prefill": { 
+                    "name": auth.currentUser?.displayName || "Student", 
+                    "email": auth.currentUser?.email || "" 
+                },
+                "theme": { "color": "#38bdf8" }
+            };
+            const rzp = new Razorpay(options);
+            rzp.on('payment.failed', function (response) { alert("Payment Failed: " + response.error.description); });
+            rzp.open();
+        }
+    };
+
+    window.handleJoin = (sessionId, hasAccess, isLive) => {
+        localStorage.setItem("activeSessionId", sessionId);
+        localStorage.setItem("isChampionship", "true");
+        window.location.href = "quiz.html";
+    };
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            window.location.href = "login.html";
+        }
+    };
+</script>
+</body>
+</html>

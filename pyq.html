@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Year Papers - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f8fafc;                  
+            --surface: #ffffff;            
+            --text: #1e293b;                
+            --muted: #475569;              
+            --border: #e2e8f0;             
+            --brand: #2563eb;              
+            --accent: #3b82f6;              
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh; 
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background: var(--surface); 
+            border-bottom: 2px solid var(--border);
+            padding: 15px 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+        }
+        
+        .brand { font-size: 24px; font-weight: 800; color: var(--brand); text-decoration: none; }
+        .nav-links { display: flex; align-items: center; gap: 20px;}
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .selection-box {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--brand);
+            padding: 45px 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .selection-box h2 {
+            color: var(--text);
+            margin-bottom: 10px;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .selection-box h2 span {
+            color: var(--brand);
+        }
+
+        .selection-box p {
+            color: var(--muted);
+            margin-bottom: 35px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        
+        .form-group:hover {
+            border-color: var(--brand);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .step-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--brand);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 20px;
+                background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+            transition: 0.2s;
+        }
+
+        select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+
+        .btn-start {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: var(--brand);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-start:hover { 
+            background: var(--accent); 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); 
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="selection-box">
+        <h2>📚 Previous Year <span>Papers</span></h2>
+        <p>Practice with actual question papers from previous Olympiad years to understand the pattern.</p>
+
+        <div class="form-group">
+            <div class="step-label">
+                <span class="step-number">1</span>
+                Select Grade
+            </div>
+            <select id="classSelect">
+                <option value="class1">Grade 1</option>
+                <option value="class2">Grade 2</option>
+                <option value="class3">Grade 3</option>
+                <option value="class4">Grade 4</option>
+                <option value="class5">Grade 5</option>
+                <option value="class6" selected>Grade 6</option>
+                <option value="class7">Grade 7</option>
+                <option value="class8">Grade 8</option>
+                <option value="class9">Grade 9</option>
+                <option value="class10">Grade 10</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="step-label">
+                <span class="step-number">2</span>
+                Select Subject
+            </div>
+            <select id="subjectSelect">
+                <option value="" disabled selected>Choose a Subject...</option>
+                <option value="maths">Mathematics (IMO)</option>
+                <option value="science">Science (NSO)</option>
+                <option value="english">English (IEO)</option>
+                <option value="reasoning">Logical Reasoning</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="step-label">
+                <span class="step-number">3</span>
+                Select Year
+            </div>
+            <select id="yearSelect">
+                <option value="" disabled selected>Choose a Year...</option>
+                <option value="2023">2023-24</option>
+                <option value="2022">2022-23</option>
+                <option value="2021">2021-22</option>
+                <option value="2020">2020-21</option>
+                <option value="2019">2019-20</option>
+            </select>
+        </div>
+
+        <button class="btn-start" onclick="startPYQ()">
+            Start Paper 
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    function startPYQ() {
+        const selectedClass = document.getElementById("classSelect").value;
+        const selectedSubject = document.getElementById("subjectSelect").value;
+        const selectedYear = document.getElementById("yearSelect").value;
+
+        if(!selectedSubject || !selectedYear) {
+            alert("Please select both a subject and a year to proceed.");
+            return;
+        }
+
+        // Save choices. We format the topic internally as "pyq-2023" so quiz.html can filter it naturally.
+        localStorage.setItem("selectedClass", selectedClass);
+        localStorage.setItem("selectedSubject", selectedSubject);
+        localStorage.setItem("selectedTopic", "pyq-" + selectedYear);
+        localStorage.setItem("selectedTopicName", "PYQ " + selectedYear);
+        localStorage.setItem("isChampionship", "false"); 
+
+        // Redirect to Quiz page
+        window.location.href = "quiz.html";
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+        projectId: "olympiad-portal-d2a5e",
+        storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+        messagingSenderId: "341855557503",
+        appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            console.log("User not logged in, but page remains visible.");
+        }
+    });
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            window.location.href = "login.html";
+        }
+    };
+</script>
+</body>
+</html>
