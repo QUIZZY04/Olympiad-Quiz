@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 
-<!-- Prevent back button after logout -->
 <script>
 history.pushState(null,null,location.href);
 window.onpopstate=function(){history.go(1);}
@@ -11,8 +10,7 @@ window.onpopstate=function(){history.go(1);}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Disable browser cache -->
-<meta http-equiv="Cache-Control" content="no-store">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
@@ -21,36 +19,10 @@ window.onpopstate=function(){history.go(1);}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
 <style>
-    /* 1. Hide the app by default */
+/* Content is visible by default for immediate loading */
 #main-app-container { 
-    display: none; 
+    display: block !important; 
 }
-
-/* 2. Style the Loading Screen */
-#auth-overlay {
-    position: fixed;
-    inset: 0;
-    background: #0f172a; /* Dark background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: #38bdf8;
-    font-family: sans-serif;
-    text-align: center;
-}
-
-/* 3. Simple Spinner Animation */
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(56, 189, 248, 0.1);
-    border-left-color: #38bdf8;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
 
 :root{
 --bg: #020617;
@@ -286,140 +258,145 @@ font-size:14px;
 </head>
 
 <body>
-    <div id="auth-overlay">
-    <div>
-        <div class="spinner"></div>
-        <p>Verifying Session...</p>
-    </div>
-</div>
 
 <div id="main-app-container">
+    <nav>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+
+    <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="leaderboard.html" class="active">Leaderboard</a>
+    <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+    </div>
+    </nav>
+
+    <div class="container">
+
+    <h1>🏆 Hall of Fame</h1>
+
+    <div class="filter-container">
+
+    <div class="filter-box weekly-filter">
+    <h3>Weekly Championship Filters</h3>
+
+    <div class="filter-row">
+
+    <select id="weeklyGrade">
+    <option value="class6">Grade 6</option>
+    <option value="class7">Grade 7</option>
+    <option value="class8">Grade 8</option>
+    </select>
+
+    <select id="weeklySubject">
+    <option value="maths">Maths</option>
+    <option value="science" selected>Science</option>
+    <option value="english">English</option>
+    <option value="reasoning">Reasoning</option>
+    </select>
+
+    <select id="weeklySession">
+    <option value="" disabled selected>Loading Sessions...</option>
+    </select>
+
+    </div>
     </div>
 
-<nav>
-<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="filter-box">
 
-<div class="nav-links">
-<a href="dashboard.html">Dashboard</a>
-<a href="leaderboard.html" class="active">Leaderboard</a>
-<a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
-</div>
-</nav>
+    <h3>Daily Practice Filters</h3>
 
-<div class="container">
+    <div class="filter-row">
 
-<h1>🏆 Hall of Fame</h1>
+    <select id="dailyGrade">
+    <option value="all">All Grades</option>
+    <option value="class1">Grade 1</option>
+    <option value="class2">Grade 2</option>
+    <option value="class3">Grade 3</option>
+    <option value="class4">Grade 4</option>
+    <option value="class5">Grade 5</option>
+    <option value="class6">Grade 6</option>
+    <option value="class7">Grade 7</option>
+    </select>
 
-<div class="filter-container">
+    <select id="dailySubject">
+    <option value="all">All Subjects</option>
+    <option value="maths">Maths</option>
+    <option value="science">Science</option>
+    <option value="english">English</option>
+    <option value="reasoning">Reasoning</option>
+    </select>
 
-<div class="filter-box weekly-filter">
-<h3>Weekly Championship Filters</h3>
+    </div>
+    </div>
 
-<div class="filter-row">
+    </div>
 
-<select id="weeklyGrade">
-<option value="class6">Grade 6</option>
-<option value="class7">Grade 7</option>
-<option value="class8">Grade 8</option>
-</select>
+    <div class="leaderboard-grid">
 
-<select id="weeklySubject">
-<option value="maths">Maths</option>
-<option value="science" selected>Science</option>
-<option value="english">English</option>
-<option value="reasoning">Reasoning</option>
-</select>
+    <div class="lb-card weekly-card">
 
-<select id="weeklySession">
-<option value="" disabled selected>Loading Sessions...</option>
-</select>
+    <div class="card-header">
+    <h2>⭐ Weekly Quiz</h2>
+    <span id="weeklyLabel">MAR 15</span>
+    </div>
 
-</div>
-</div>
+    <table>
+    <thead>
+    <tr>
+    <th>Rank</th>
+    <th>Participant</th>
+    <th>Score</th>
+    <th>Time</th>
+    </tr>
+    </thead>
 
-<div class="filter-box">
+    <tbody id="weeklyBody"></tbody>
 
-<h3>Daily Practice Filters</h3>
+    </table>
 
-<div class="filter-row">
+    </div>
 
-<select id="dailyGrade">
-<option value="all">All Grades</option>
-<option value="class1">Grade 1</option>
-<option value="class2">Grade 2</option>
-<option value="class3">Grade 3</option>
-<option value="class4">Grade 4</option>
-<option value="class5">Grade 5</option>
-<option value="class6">Grade 6</option>
-<option value="class7">Grade 7</option>
-</select>
+    <div class="lb-card">
 
-<select id="dailySubject">
-<option value="all">All Subjects</option>
-<option value="maths">Maths</option>
-<option value="science">Science</option>
-<option value="english">English</option>
-<option value="reasoning">Reasoning</option>
-</select>
+    <div class="card-header">
+    <h2>📚 Daily Practice</h2>
+    <span id="dailyLabel">GLOBAL</span>
+    </div>
 
-</div>
-</div>
+    <table>
 
-</div>
+    <thead>
+    <tr>
+    <th>Rank</th>
+    <th>Participant</th>
+    <th>Score</th>
+    <th>Sub</th>
+    <th>Grd</th>
+    <th>Date</th>
+    </tr>
+    </thead>
 
-<div class="leaderboard-grid">
+    <tbody id="dailyBody"></tbody>
 
-<div class="lb-card weekly-card">
+    </table>
 
-<div class="card-header">
-<h2>⭐ Weekly Quiz</h2>
-<span id="weeklyLabel">MAR 15</span>
-</div>
+    </div>
 
-<table>
-<thead>
-<tr>
-<th>Rank</th>
-<th>Participant</th>
-<th>Score</th>
-<th>Time</th>
-</tr>
-</thead>
+    </div>
 
-<tbody id="weeklyBody"></tbody>
+    </div>
 
-</table>
-
-</div>
-
-<div class="lb-card">
-
-<div class="card-header">
-<h2>📚 Daily Practice</h2>
-<span id="dailyLabel">GLOBAL</span>
-</div>
-
-<table>
-
-<thead>
-<tr>
-<th>Rank</th>
-<th>Participant</th>
-<th>Score</th>
-<th>Sub</th>
-<th>Grd</th>
-<th>Date</th>
-</tr>
-</thead>
-
-<tbody id="dailyBody"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
+    <footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+            <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
+            <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
+            <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+            <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+            <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+            <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+        </div>
+        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    </footer>
 </div>
 
 <script type="module">
@@ -460,7 +437,6 @@ async function loadSessionsList() {
     const classNum = parseInt(grade.replace("class", ""));
 
     try {
-        // Show only sessions that match the selected Grade and Subject
         const q = query(collection(db, "test_sessions"), 
             where("class", "==", classNum),
             where("subject", "==", subject),
@@ -471,7 +447,6 @@ async function loadSessionsList() {
         
         let html = "";
         snap.forEach(doc => {
-            // Use the actual document ID as the value
             const label = `${doc.data().title} (${doc.data().startTime.toDate().toLocaleDateString()})`;
             html += `<option value="${doc.id}">${label}</option>`;
         });
@@ -479,21 +454,13 @@ async function loadSessionsList() {
         sessSelect.innerHTML = html;
     } catch(e) {
         console.error("Session List Error:", e);
-        if (e.message.includes("requires an index")) {
-            const link = e.message.match(/https:\/\/console\.firebase\.google\.com[^\s]+/)?.[0];
-            if(link) console.log("%c👉 LEADERBOARD DROPDOWN INDEX:", "background: #2563eb; color: white; padding: 5px;", link);
-            sessSelect.innerHTML = `<option value="">Index Required (Check F12)</option>`;
-        } else {
-            sessSelect.innerHTML = `<option value="">Error loading</option>`;
-        }
+        sessSelect.innerHTML = `<option value="">Error loading</option>`;
     }
 }
 
 async function refreshWeekly(){
 
 const tbody=document.getElementById("weeklyBody")
-
-// Get the full sessionId directly from the dropdown value
 const sessionId = document.getElementById("weeklySession").value;
 if(!sessionId) return;
 
@@ -509,20 +476,7 @@ try {
     renderWeekly(snap,tbody)
 } catch (e) {
     console.error(e);
-    if (e.message.includes("requires an index")) {
-        tbody.innerHTML = `<tr><td colspan="4" style="color:var(--danger); padding:30px; text-align:left;">
-            <b style="font-size:16px;">🛠️ Action Required: Database Index Needed</b><br><br>
-            Firestore needs a composite index to sort rankings for this subject/session.
-            <ol style="margin-top:10px; margin-left:20px; font-size:13px; line-height:1.6;">
-                <li>Press <b>F12</b> to open the Browser Console.</li>
-                <li>Click the <b>Firebase URL</b> inside the red error message.</li>
-                <li>Click <b>"Create Index"</b> in the window that opens.</li>
-            </ol>
-            <button onclick="location.reload()" style="margin-top:15px; background:var(--brand); color:white; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:600; font-size:12px;">REFRESH RANKINGS</button>
-        </td></tr>`;
-    } else {
-        tbody.innerHTML = "<tr><td colspan='4'>Error loading rankings.</td></tr>";
-    }
+    tbody.innerHTML = "<tr><td colspan='4'>Error loading rankings.</td></tr>";
 }
 
 }
@@ -530,7 +484,6 @@ try {
 async function refreshDaily(){
 
 const tbody=document.getElementById("dailyBody")
-
 tbody.innerHTML="<tr><td colspan='6'>Loading...</td></tr>"
 
 try {
@@ -548,15 +501,10 @@ try {
 }
 
 function renderWeekly(snap,tbody){
-
 tbody.innerHTML=""
-
 let rank=1
-
 snap.forEach(doc=>{
-
 const d=doc.data()
-
 tbody.innerHTML+=`
 <tr>
 <td><span class="rank-circle">${rank++}</span></td>
@@ -564,21 +512,14 @@ tbody.innerHTML+=`
 <td style="color:var(--brand);font-weight:700">${d.score}/${d.total || 50}</td>
 <td>${d.timeTaken?Math.floor(d.timeTaken/60)+"m":"60m"}</td>
 </tr>`
-
 })
-
 }
 
 function renderDaily(snap,tbody){
-
 tbody.innerHTML=""
-
 let rank=1
-
 snap.forEach(doc=>{
-
 const d=doc.data()
-
 tbody.innerHTML+=`
 <tr>
 <td><span class="rank-circle">${rank++}</span></td>
@@ -588,46 +529,24 @@ tbody.innerHTML+=`
 <td>${(d.studentClass||"").replace("class","G")}</td>
 <td>${d.date?d.date.toDate().toLocaleDateString("en-GB"):"NA"}</td>
 </tr>`
-
 })
-
 }
 
-// Update session list whenever grade or subject changes
 document.getElementById("weeklyGrade").addEventListener("change", () => loadSessionsList().then(refreshWeekly));
 document.getElementById("weeklySubject").addEventListener("change", () => loadSessionsList().then(refreshWeekly));
-
 document.getElementById("weeklySession").addEventListener("change",refreshWeekly)
 document.getElementById("dailyGrade").addEventListener("change",refreshDaily)
 document.getElementById("dailySubject").addEventListener("change",refreshDaily)
 
 window.logout=function(){
-
 if(confirm("Logout?")){
-
 signOut(auth).then(()=>{
-
 window.location.replace("login.html")
-
 })
-
 }
-
 }
 
 </script>
-
-<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-        <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
-        <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
-    </div>
-    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
