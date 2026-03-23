@@ -153,13 +153,34 @@
 
 <script>
     const sofTopics = {
-        class1: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class2: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class3: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class4: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class5: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class6: { maths: [{code:"M01", name:"Knowing our Numbers"}], science: [{code:"S01", name:"Food"}] },
-        class7: { maths: [{code:"M01", name:"Integers"}], science: [{code:"S01", name:"Nutrition"}] },
+        class1: { 
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Addition"}, {code:"M03", name:"Subtraction"}], 
+            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Human Body"}] 
+        },
+        class2: { 
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}], 
+            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
+        },
+        class3: { 
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Fractions"}], 
+            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
+        },
+        class4: { 
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Weight and Capacity"}], 
+            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
+        },
+        class5: { 
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Decimals"}], 
+            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
+        },
+        class6: { 
+            maths: [{code:"M01", name:"Knowing our Numbers"}, {code:"M02", name:"Whole Numbers"}], 
+            science: [{code:"S01", name:"Food"}, {code:"S02", name:"Components of Food"}] 
+        },
+        class7: { 
+            maths: [{code:"M01", name:"Integers"}, {code:"M02", name:"Fractions and Decimals"}], 
+            science: [{code:"S01", name:"Nutrition in Plants"}, {code:"S02", name:"Nutrition in Animals"}] 
+        },
         class8: {
             maths: [
                 { code: "M01", name: "Rational Numbers" },
@@ -200,6 +221,7 @@
     };
 
     function resetSelection() {
+        // Clear subject and topic when grade changes
         document.getElementById("subjectSelect").value = "";
         const topicSelect = document.getElementById("topicSelect");
         topicSelect.innerHTML = '<option value="" disabled selected>Select subject first...</option>';
@@ -210,17 +232,19 @@
         const topicSelect = document.getElementById("topicSelect");
         const selectedClass = document.getElementById("classSelect").value; 
 
+        // Clear previous options
         topicSelect.innerHTML = ""; 
         
         if (selectedClass && subject && sofTopics[selectedClass] && sofTopics[selectedClass][subject]) {
-            // Add a default select prompt
-            const defaultOpt = document.createElement("option");
-            defaultOpt.textContent = "Choose a topic...";
-            defaultOpt.value = "";
-            defaultOpt.disabled = true;
-            defaultOpt.selected = true;
-            topicSelect.appendChild(defaultOpt);
+            // Add initial placeholder
+            const placeholder = document.createElement("option");
+            placeholder.textContent = "Select a Topic...";
+            placeholder.value = "";
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            topicSelect.appendChild(placeholder);
 
+            // Populate only the relevant subject topics
             sofTopics[selectedClass][subject].forEach(topic => {
                 const option = document.createElement("option");
                 option.value = topic.code; 
