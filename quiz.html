@@ -241,8 +241,8 @@ window.backToSelection = function() {
         const sTopic = localStorage.getItem("selectedTopic");
         localStorage.setItem("isChampionship", "false"); 
         
-        // Redirect to chapterwise if a topic was chosen, otherwise to mock.html
-        if (sTopic) {
+        // CRITICAL FIX: Ensure 'null' strings or empty values are treated as Mock tests
+        if (sTopic && sTopic !== "null" && sTopic !== "") {
             window.location.href = "chapterwise.html";
         } else {
             window.location.href = "mock.html"; 
@@ -253,9 +253,18 @@ window.backToSelection = function() {
 async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
-const sTopic=localStorage.getItem("selectedTopic");
+let sTopic=localStorage.getItem("selectedTopic");
 const sTopicName=localStorage.getItem("selectedTopicName");
 const sId=localStorage.getItem("activeSessionId");
+
+// Helper to check for mock test status
+const isMockMode = !sTopic || sTopic === "null" || sTopic === "";
+
+if (isMockMode && !isChampionship) {
+    localStorage.removeItem("selectedTopic");
+    localStorage.removeItem("selectedTopicName");
+    sTopic = null;
+}
 
 try {
     if (isChampionship && sId) {
@@ -415,10 +424,10 @@ window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
 
 <footer>
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About</a>
-        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact</a>
-        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy</a>
-        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms</a>
+        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
     </div>
     <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
 </footer>
