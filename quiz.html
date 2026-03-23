@@ -240,6 +240,8 @@ window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
         const sTopic = localStorage.getItem("selectedTopic");
         localStorage.setItem("isChampionship", "false"); 
+        
+        // Redirect to chapterwise if a topic was chosen, otherwise to mock.html
         if (sTopic) {
             window.location.href = "chapterwise.html";
         } else {
