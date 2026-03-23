@@ -118,7 +118,7 @@
 
             <div class="form-group">
                 <div class="step-label"><span class="step-number">1</span> Select Grade</div>
-                <select id="classSelect" onchange="resetOnGradeChange()">
+                <select id="classSelect" onchange="updateTopics()">
                     <option value="class1">Grade 1</option>
                     <option value="class2">Grade 2</option>
                     <option value="class3">Grade 3</option>
@@ -153,34 +153,175 @@
 
 <script>
     const sofTopics = {
-        class1: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Addition"}], 
-            science: [{code:"S01", name:"Living & Non-living"}, {code:"S02", name:"Plants"}] 
+        class1: {
+            maths: [
+                { code: "M01", name: "Number Sense" },
+                { code: "M02", name: "Patterns" },
+                { code: "M03", name: "Measurements" },
+                { code: "M04", name: "Geometry" },
+                { code: "M05", name: "Data Handling" }
+            ],
+            science: [
+                { code: "S01", name: "Plants Around Us" },
+                { code: "S02", name: "Animals Around Us" },
+                { code: "S03", name: "Food and Water" },
+                { code: "S04", name: "Our Body and Hygiene" },
+                { code: "S05", name: "Air, Water and Environment" }
+            ]
         },
-        class2: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
+
+        class2: {
+            maths: [
+                { code: "M01", name: "Numbers" },
+                { code: "M02", name: "Addition and Subtraction" },
+                { code: "M03", name: "Multiplication" },
+                { code: "M04", name: "Shapes and Patterns" },
+                { code: "M05", name: "Measurements and Data" }
+            ],
+            science: [
+                { code: "S01", name: "Living and Non-Living Things" },
+                { code: "S02", name: "Plants" },
+                { code: "S03", name: "Animals" },
+                { code: "S04", name: "Food, Water and Air" },
+                { code: "S05", name: "Our Body and Safety" }
+            ]
         },
-        class3: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Fractions"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
+
+        class3: {
+            maths: [
+                { code: "M01", name: "Numbers" },
+                { code: "M02", name: "Addition, Subtraction and Multiplication" },
+                { code: "M03", name: "Division" },
+                { code: "M04", name: "Fractions" },
+                { code: "M05", name: "Geometry and Measurement" },
+                { code: "M06", name: "Data Handling" }
+            ],
+            science: [
+                { code: "S01", name: "Living World" },
+                { code: "S02", name: "Plants" },
+                { code: "S03", name: "Animals" },
+                { code: "S04", name: "Human Body" },
+                { code: "S05", name: "Food, Water and Air" },
+                { code: "S06", name: "Light, Sound and Force" }
+            ]
         },
-        class4: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
+
+        class4: {
+            maths: [
+                { code: "M01", name: "Numbers" },
+                { code: "M02", name: "Addition, Subtraction, Multiplication and Division" },
+                { code: "M03", name: "Factors and Multiples" },
+                { code: "M04", name: "Fractions and Decimals" },
+                { code: "M05", name: "Geometry" },
+                { code: "M06", name: "Measurement" },
+                { code: "M07", name: "Data Handling" }
+            ],
+            science: [
+                { code: "S01", name: "Plants and Animals" },
+                { code: "S02", name: "Food and Digestion" },
+                { code: "S03", name: "Matter and Materials" },
+                { code: "S04", name: "Force, Work and Energy" },
+                { code: "S05", name: "Air, Water and Weather" },
+                { code: "S06", name: "Earth and Universe" }
+            ]
         },
-        class5: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Decimals"}], 
-            science: [{code:"S01", name:"Animals"}, {code:"S02", name:"Human Body"}] 
+
+        class5: {
+            maths: [
+                { code: "M01", name: "Large Numbers" },
+                { code: "M02", name: "Operations on Numbers" },
+                { code: "M03", name: "Factors and Multiples" },
+                { code: "M04", name: "Fractions and Decimals" },
+                { code: "M05", name: "Geometry" },
+                { code: "M06", name: "Measurement" },
+                { code: "M07", name: "Perimeter, Area and Volume" },
+                { code: "M08", name: "Data Handling" }
+            ],
+            science: [
+                { code: "S01", name: "Plants and Animals" },
+                { code: "S02", name: "Human Body and Health" },
+                { code: "S03", name: "Matter and Materials" },
+                { code: "S04", name: "Force, Energy and Machines" },
+                { code: "S05", name: "Air, Water and Environment" },
+                { code: "S06", name: "Earth and Space" }
+            ]
         },
-        class6: { 
-            maths: [{code:"M01", name:"Knowing our Numbers"}, {code:"M02", name:"Whole Numbers"}], 
-            science: [{code:"S01", name:"Food"}, {code:"S02", name:"Components of Food"}] 
+
+        class6: {
+            maths: [
+                { code: "M01", name: "Knowing Our Numbers" },
+                { code: "M02", name: "Whole Numbers" },
+                { code: "M03", name: "Playing with Numbers" },
+                { code: "M04", name: "Basic Geometrical Ideas" },
+                { code: "M05", name: "Understanding Elementary Shapes" },
+                { code: "M06", name: "Integers" },
+                { code: "M07", name: "Fractions" },
+                { code: "M08", name: "Decimals" },
+                { code: "M09", name: "Data Handling" },
+                { code: "M10", name: "Mensuration" },
+                { code: "M11", name: "Algebra" },
+                { code: "M12", name: "Ratio and Proportion" }
+            ],
+            science: [
+                { code: "S01", name: "Food" },
+                { code: "S02", name: "Components of Food" },
+                { code: "S03", name: "Fibre to Fabric" },
+                { code: "S04", name: "Sorting Materials into Groups" },
+                { code: "S05", name: "Separation of Substances" },
+                { code: "S06", name: "Changes Around Us" },
+                { code: "S07", name: "Getting to Know Plants" },
+                { code: "S08", name: "Body Movements" },
+                { code: "S09", name: "Living Organisms and Their Surroundings" },
+                { code: "S10", name: "Motion and Measurement of Distances" },
+                { code: "S11", name: "Light, Shadows and Reflections" },
+                { code: "S12", name: "Electricity and Circuits" },
+                { code: "S13", name: "Fun with Magnets" },
+                { code: "S14", name: "Water" },
+                { code: "S15", name: "Air Around Us" },
+                { code: "S16", name: "Garbage In, Garbage Out" }
+            ]
         },
-        class7: { 
-            maths: [{code:"M01", name:"Integers"}, {code:"M02", name:"Fractions"}], 
-            science: [{code:"S01", name:"Nutrition in Plants"}, {code:"S02", name:"Nutrition in Animals"}] 
+
+        class7: {
+            maths: [
+                { code: "M01", name: "Integers" },
+                { code: "M02", name: "Fractions and Decimals" },
+                { code: "M03", name: "Data Handling" },
+                { code: "M04", name: "Simple Equations" },
+                { code: "M05", name: "Lines and Angles" },
+                { code: "M06", name: "The Triangle and its Properties" },
+                { code: "M07", name: "Congruence of Triangles" },
+                { code: "M08", name: "Comparing Quantities" },
+                { code: "M09", name: "Rational Numbers" },
+                { code: "M10", name: "Practical Geometry" },
+                { code: "M11", name: "Perimeter and Area" },
+                { code: "M12", name: "Algebraic Expressions" },
+                { code: "M13", name: "Exponents and Powers" },
+                { code: "M14", name: "Symmetry" },
+                { code: "M15", name: "Visualising Solid Shapes" }
+            ],
+            science: [
+                { code: "S01", name: "Nutrition in Plants" },
+                { code: "S02", name: "Nutrition in Animals" },
+                { code: "S03", name: "Fibre to Fabric" },
+                { code: "S04", name: "Heat" },
+                { code: "S05", name: "Acids, Bases and Salts" },
+                { code: "S06", name: "Physical and Chemical Changes" },
+                { code: "S07", name: "Weather, Climate and Adaptations" },
+                { code: "S08", name: "Winds, Storms and Cyclones" },
+                { code: "S09", name: "Soil" },
+                { code: "S10", name: "Respiration in Organisms" },
+                { code: "S11", name: "Transportation in Animals and Plants" },
+                { code: "S12", name: "Reproduction in Plants" },
+                { code: "S13", name: "Motion and Time" },
+                { code: "S14", name: "Electric Current and its Effects" },
+                { code: "S15", name: "Light" },
+                { code: "S16", name: "Water: A Precious Resource" },
+                { code: "S17", name: "Forests: Our Lifeline" },
+                { code: "S18", name: "Wastewater Story" }
+            ]
         },
+
         class8: {
             maths: [
                 { code: "M01", name: "Rational Numbers" },
@@ -197,7 +338,7 @@
                 { code: "M12", name: "Exponents and Powers" },
                 { code: "M13", name: "Direct and Inverse Proportions" },
                 { code: "M14", name: "Factorisation" },
-                { code: "M15", name: "Intro to Graphs and Playing with Numbers" }
+                { code: "M15", name: "Introduction to Graphs" }
             ],
             science: [
                 { code: "S01", name: "Crop Production and Management" },
@@ -209,44 +350,34 @@
                 { code: "S07", name: "Conservation of Plants and Animals" },
                 { code: "S08", name: "Cell Structure and Functions" },
                 { code: "S09", name: "Reproduction and Adolescence" },
-                { code: "S10", name: "Force, Pressure and Friction" },
-                { code: "S11", name: "Sound" },
-                { code: "S12", name: "Chemical Effects of Electric Current" },
-                { code: "S13", name: "Some Natural Phenomena" },
-                { code: "S14", name: "Light" },
-                { code: "S15", name: "Stars and Solar System" },
-                { code: "S16", name: "Pollution of Air and Water" }
+                { code: "S10", name: "Force and Pressure" },
+                { code: "S11", name: "Friction" },
+                { code: "S12", name: "Sound" },
+                { code: "S13", name: "Chemical Effects of Electric Current" },
+                { code: "S14", name: "Some Natural Phenomena" },
+                { code: "S15", name: "Light" },
+                { code: "S16", name: "Stars and the Solar System" },
+                { code: "S17", name: "Pollution of Air and Water" }
             ]
         }
     };
 
-    function resetOnGradeChange() {
-        // Reset subject and topics whenever grade is switched
-        document.getElementById("subjectSelect").value = "";
-        const topicSelect = document.getElementById("topicSelect");
-        topicSelect.innerHTML = '<option value="" disabled selected>Select subject first...</option>';
-    }
-
     function updateTopics() {
-        const selectedClass = document.getElementById("classSelect").value;
-        const selectedSubject = document.getElementById("subjectSelect").value;
+        const subject = document.getElementById("subjectSelect").value;
         const topicSelect = document.getElementById("topicSelect");
+        const selectedClass = document.getElementById("classSelect").value;
 
-        // Force reset topic list every time subject changes
         topicSelect.innerHTML = "";
 
-        if (selectedClass && selectedSubject && sofTopics[selectedClass] && sofTopics[selectedClass][selectedSubject]) {
-            // Add a default select prompt
-            const defaultPrompt = document.createElement("option");
-            defaultPrompt.textContent = "Select a Topic...";
-            defaultPrompt.value = "";
-            defaultPrompt.disabled = true;
-            defaultPrompt.selected = true;
-            topicSelect.appendChild(defaultPrompt);
+        if (selectedClass && subject && sofTopics[selectedClass] && sofTopics[selectedClass][subject]) {
+            const defaultOption = document.createElement("option");
+            defaultOption.value = "";
+            defaultOption.textContent = "Choose a Topic...";
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            topicSelect.appendChild(defaultOption);
 
-            // Populate current class/subject topics
-            const currentTopics = sofTopics[selectedClass][selectedSubject];
-            currentTopics.forEach(topic => {
+            sofTopics[selectedClass][subject].forEach(topic => {
                 const option = document.createElement("option");
                 option.value = topic.code;
                 option.textContent = topic.code + " - " + topic.name;
@@ -254,6 +385,7 @@
             });
         } else {
             const option = document.createElement("option");
+            option.value = "";
             option.textContent = "Select subject first...";
             option.disabled = true;
             option.selected = true;
@@ -266,17 +398,15 @@
         const selectedSubject = document.getElementById("subjectSelect").value;
         const selectedTopic = document.getElementById("topicSelect").value;
 
-        if(!selectedSubject || !selectedTopic || selectedTopic === "") {
+        if (!selectedSubject || !selectedTopic) {
             alert("Please select both a subject and a topic.");
             return;
         }
 
-        // Save to storage
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", selectedSubject);
         localStorage.setItem("selectedTopic", selectedTopic);
-        localStorage.setItem("isChampionship", "false"); 
-        
+        localStorage.setItem("isChampionship", "false");
         window.location.href = "quiz.html";
     }
 </script>
