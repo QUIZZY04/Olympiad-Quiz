@@ -118,7 +118,7 @@
 
             <div class="form-group">
                 <div class="step-label"><span class="step-number">1</span> Select Grade</div>
-                <select id="classSelect" onchange="resetSelection()">
+                <select id="classSelect" onchange="resetAll()">
                     <option value="class1">Grade 1</option>
                     <option value="class2">Grade 2</option>
                     <option value="class3">Grade 3</option>
@@ -153,34 +153,13 @@
 
 <script>
     const sofTopics = {
-        class1: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Addition"}, {code:"M03", name:"Subtraction"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Human Body"}] 
-        },
-        class2: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
-        },
-        class3: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Fractions"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
-        },
-        class4: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Weight and Capacity"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
-        },
-        class5: { 
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Decimals"}], 
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}] 
-        },
-        class6: { 
-            maths: [{code:"M01", name:"Knowing our Numbers"}, {code:"M02", name:"Whole Numbers"}], 
-            science: [{code:"S01", name:"Food"}, {code:"S02", name:"Components of Food"}] 
-        },
-        class7: { 
-            maths: [{code:"M01", name:"Integers"}, {code:"M02", name:"Fractions and Decimals"}], 
-            science: [{code:"S01", name:"Nutrition in Plants"}, {code:"S02", name:"Nutrition in Animals"}] 
-        },
+        class1: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class2: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class3: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class4: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class5: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class6: { maths: [{code:"M01", name:"Knowing our Numbers"}], science: [{code:"S01", name:"Food"}] },
+        class7: { maths: [{code:"M01", name:"Integers"}], science: [{code:"S01", name:"Nutrition"}] },
         class8: {
             maths: [
                 { code: "M01", name: "Rational Numbers" },
@@ -220,32 +199,33 @@
         }
     };
 
-    function resetSelection() {
-        // Clear subject and topic when grade changes
+    // New safety function to reset EVERYTHING when grade changes
+    function resetAll() {
         document.getElementById("subjectSelect").value = "";
         const topicSelect = document.getElementById("topicSelect");
         topicSelect.innerHTML = '<option value="" disabled selected>Select subject first...</option>';
     }
 
     function updateTopics() {
+        const selectedClass = document.getElementById("classSelect").value;
         const subject = document.getElementById("subjectSelect").value;
         const topicSelect = document.getElementById("topicSelect");
-        const selectedClass = document.getElementById("classSelect").value; 
 
-        // Clear previous options
+        // Force clear existing items
         topicSelect.innerHTML = ""; 
         
         if (selectedClass && subject && sofTopics[selectedClass] && sofTopics[selectedClass][subject]) {
-            // Add initial placeholder
-            const placeholder = document.createElement("option");
-            placeholder.textContent = "Select a Topic...";
-            placeholder.value = "";
-            placeholder.disabled = true;
-            placeholder.selected = true;
-            topicSelect.appendChild(placeholder);
+            const list = sofTopics[selectedClass][subject];
+            
+            // Add initial disabled prompt
+            const defaultOpt = document.createElement("option");
+            defaultOpt.textContent = "Choose a topic...";
+            defaultOpt.value = "";
+            defaultOpt.disabled = true;
+            defaultOpt.selected = true;
+            topicSelect.appendChild(defaultOpt);
 
-            // Populate only the relevant subject topics
-            sofTopics[selectedClass][subject].forEach(topic => {
+            list.forEach(topic => {
                 const option = document.createElement("option");
                 option.value = topic.code; 
                 option.textContent = topic.code + " - " + topic.name;
@@ -265,15 +245,17 @@
         const selectedSubject = document.getElementById("subjectSelect").value;
         const selectedTopic = document.getElementById("topicSelect").value;
 
-        if(!selectedSubject || !selectedTopic) {
+        if(!selectedSubject || !selectedTopic || selectedTopic === "") {
             alert("Please select both a subject and a topic.");
             return;
         }
 
+        // Critical: Store fresh values to LocalStorage
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", selectedSubject);
         localStorage.setItem("selectedTopic", selectedTopic);
         localStorage.setItem("isChampionship", "false"); 
+        
         window.location.href = "quiz.html";
     }
 </script>
