@@ -10,38 +10,18 @@ window.onpopstate = function () { history.go(1); };
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Live Quiz Session | Olympiad Portal Interactive Test</title>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>
-  /* 1. Hide the app by default */
+/* Content is visible by default for immediate loading */
 #main-app-container { 
-    display: none; 
+    display: block !important; 
 }
 
-/* 2. Style the Loading Screen */
-#auth-overlay {
-    position: fixed;
-    inset: 0;
-    background: #0f172a; /* Dark background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: #38bdf8;
-    font-family: sans-serif;
-    text-align: center;
-}
-
-/* 3. Simple Spinner Animation */
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(56, 189, 248, 0.1);
-    border-left-color: #38bdf8;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
 :root {
   --bg: #020617;
   --surface: #0f172a;
@@ -178,69 +158,73 @@ footer {
 </style>
 </head>
 <body>
-  <div id="auth-overlay">
-    <div>
-        <div class="spinner"></div>
-        <p>Verifying Session...</p>
-    </div>
-</div>
 
 <div id="main-app-container">
+    <nav>
+        <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+        <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+        </div>
+    </nav>
+
+    <div style="max-width: 1400px; margin: 10px auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+        <div id="quizHeaderInfo" style="flex: 1; min-width: 0;">
+            <h1 id="quizTitle" style="font-size: clamp(1.1rem, 4.5vw, 1.5rem); font-weight: 800; color: var(--text); margin: 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h1>
+            <p id="quizSubtitle" style="font-size: 0.8rem; color: var(--muted); margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
+        </div>
+        <div id="timerWrap">⏳ <span id="timer">--:--</span></div>
     </div>
-<nav>
-<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="leaderboard.html">Leaderboard</a>
-<a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
-</div>
-</nav>
 
-<div style="max-width: 1400px; margin: 10px auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
-    <div id="quizHeaderInfo" style="flex: 1; min-width: 0;">
-        <h1 id="quizTitle" style="font-size: clamp(1.1rem, 4.5vw, 1.5rem); font-weight: 800; color: var(--text); margin: 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h1>
-        <p id="quizSubtitle" style="font-size: 0.8rem; color: var(--muted); margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
+    <main class="quiz-container">
+    <section class="question-section section">
+    <div style="display:flex;justify-content:space-between; font-weight:600; font-size:14px; color:var(--muted);"><span id="displaySubject">Progress</span><span id="progressPercent">0%</span></div>
+    <div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
+        <div id="progressBar" style="width:0%; height:100%; background:var(--brand); transition:0.3s;"></div>
     </div>
-    <div id="timerWrap">⏳ <span id="timer">--:--</span></div>
-</div>
+    <div id="questionNumber" style="margin-top:20px; font-weight:700; color:var(--brand); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
 
-<main class="quiz-container">
-<section class="question-section section">
-<div style="display:flex;justify-content:space-between; font-weight:600; font-size:14px; color:var(--muted);"><span id="displaySubject">Progress</span><span id="progressPercent">0%</span></div>
-<div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
-    <div id="progressBar" style="width:0%; height:100%; background:var(--brand); transition:0.3s;"></div>
-</div>
-<div id="questionNumber" style="margin-top:20px; font-weight:700; color:var(--brand); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
+    <div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Loading...</div>
 
-<div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Loading...</div>
+    <div id="questionImage" style="display:none;"></div> 
 
-<div id="questionImage" style="display:none;"></div> 
+    <div class="options" id="options"></div>
 
-<div class="options" id="options"></div>
+    <div class="quiz-buttons">
+    <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
+    <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
+    <button class="btn btn-finish" onclick="confirmSubmit()">Finish</button>
+    <button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete</button>
+    </div>
+    </section>
 
-<div class="quiz-buttons">
-<button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
-<button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
-<button class="btn btn-finish" onclick="confirmSubmit()">Finish</button>
-<button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete</button>
-</div>
-</section>
+    <aside class="navigation-section section">
+    <h3 style="margin:0 0 15px 0;font-size:16px;color:var(--text); font-weight:700;">Question Palette</h3>
+    <div class="grid" id="questionGrid"></div>
+    <div class="palette-legend">
+    <div class="legend-item"><div class="legend-box legend-current" style="background:#6366f1">1</div> Current</div>
+    <div class="legend-item"><div class="legend-box legend-answered" style="background:#14b8a6">1</div> Answered</div>
+    <div class="legend-item"><div class="legend-box legend-visited" style="background:#f43f5e">1</div> Visited</div>
+    <div class="legend-item"><div class="legend-box legend-unseen" style="background:var(--unseen-grey)">1</div> Unseen</div>
+    </div>
+    </aside>
+    </main>
 
-<aside class="navigation-section section">
-<h3 style="margin:0 0 15px 0;font-size:16px;color:var(--text); font-weight:700;">Question Palette</h3>
-<div class="grid" id="questionGrid"></div>
-<div class="palette-legend">
-<div class="legend-item"><div class="legend-box legend-current" style="background:#6366f1">1</div> Current</div>
-<div class="legend-item"><div class="legend-box legend-answered" style="background:#14b8a6">1</div> Answered</div>
-<div class="legend-item"><div class="legend-box legend-visited" style="background:#f43f5e">1</div> Visited</div>
-<div class="legend-item"><div class="legend-box legend-unseen" style="background:var(--unseen-grey)">1</div> Unseen</div>
-</div>
-</aside>
-</main>
+    <div class="bottom-nav-wrap">
+        <button class="btn-back-selection" onclick="backToSelection()">⬅ Back to Selection</button>
+    </div>
 
-<div class="bottom-nav-wrap">
-    <button class="btn-back-selection" onclick="backToSelection()">⬅ Back to Selection</button>
+    <footer>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+            <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+            <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+            <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+            <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+        </div>
+        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
+    </footer>
 </div>
 
 <script type="module">
@@ -267,8 +251,9 @@ let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmit
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 let totalTime=1800; 
 
+// Optimistic check: only redirect if definitely logged out
 onAuthStateChanged(auth, async(user)=>{
-if(!user){ window.location.href="login.html"; return; }
+if(!user){ window.location.replace("login.html"); return; }
 if (user.email === "madhhu52@gmail.com") {
     document.getElementById("deleteQuestionBtn").style.display = "inline-block";
 }
@@ -282,7 +267,6 @@ window.backToSelection = function() {
         const sTopic = localStorage.getItem("selectedTopic");
         localStorage.setItem("isChampionship", "false"); 
         
-        // CRITICAL FIX: Ensure 'null' strings or empty values are treated as Mock tests
         if (sTopic && sTopic !== "null" && sTopic !== "") {
             window.location.href = "chapterwise.html";
         } else {
@@ -298,7 +282,6 @@ let sTopic=localStorage.getItem("selectedTopic");
 const sTopicName=localStorage.getItem("selectedTopicName");
 const sId=localStorage.getItem("activeSessionId");
 
-// Helper to check for mock test status
 const isMockMode = !sTopic || sTopic === "null" || sTopic === "";
 
 if (isMockMode && !isChampionship) {
@@ -457,20 +440,11 @@ window.deleteCurrentQuestion = async () => {
     }
 };
 
-window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("login.html"); } };
+window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("index.html"); } };
 window.nextQuestion = nextQuestion; window.prevQuestion = prevQuestion;
 window.jumpTo = jumpTo; window.saveAnswer = saveAnswer;
 window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
 </script>
 
-<footer>
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
-    </div>
-    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
-</footer>
 </body>
 </html>
