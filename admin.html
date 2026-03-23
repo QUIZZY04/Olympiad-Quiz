@@ -437,32 +437,62 @@ window.uploadImageFolder = async function() {
     statusDiv.innerHTML = `<span style='color:var(--success);'>✅ ${uploadedCount} images ready in memory!</span>`;
 };
 
-window.uploadPaste=async function(){
-    try{
-        const text=document.getElementById("jsonPaste").value.trim();
-        if(!text) return;
-        const data=JSON.parse(text);
-        for (let q of data) {
-            if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
-            await setDoc(doc(questionsRef, q.id), q);
-        }
-        alert("Success!");
-    }catch(e){ alert("Error: "+e.message); }
-}
-
-window.uploadFile=async function(){
-    const file=document.getElementById("jsonFile").files[0];
-    if(!file) return;
-    const text=await file.text();
+window.uploadPaste = async function() {
     try {
-        const data=JSON.parse(text);
+        const text = document.getElementById("jsonPaste").value.trim();
+        if (!text) {
+            alert("Please paste some JSON data first.");
+            return;
+        }
+
+        const data = JSON.parse(text);
+        let successCount = 0;
+
         for (let q of data) {
             if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
             await setDoc(doc(questionsRef, q.id), q);
+            successCount++;
         }
-        alert("Success!");
-    } catch(e) { alert("File Error: " + e.message); }
-}
+
+        if (confirm(`✅ Successfully uploaded ${successCount} questions!\n\nClick OK to clear the area for the next batch.`)) {
+            document.getElementById("jsonPaste").value = "";
+            uploadedImageUrls = {}; 
+            document.getElementById('imageUploadStatus').innerHTML = "";
+            document.getElementById('imageFolderInput').value = "";
+        }
+    } catch (e) { 
+        alert("❌ Error: " + e.message); 
+    }
+};
+
+window.uploadFile = async function() {
+    const fileInput = document.getElementById("jsonFile");
+    const file = fileInput.files[0];
+    if (!file) {
+        alert("Please select a file first.");
+        return;
+    }
+
+    const text = await file.text();
+    try {
+        const data = JSON.parse(text);
+        let successCount = 0;
+
+        for (let q of data) {
+            if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+            await setDoc(doc(questionsRef, q.id), q);
+            successCount++;
+        }
+
+        if (confirm(`✅ Successfully uploaded ${successCount} questions from file!\n\nClick OK to reset the uploader.`)) {
+            fileInput.value = "";
+            uploadedImageUrls = {};
+            document.getElementById('imageUploadStatus').innerHTML = "";
+        }
+    } catch (e) { 
+        alert("❌ File Error: " + e.message); 
+    }
+};
 
 window.loadQuestions=async function(){
     const fClass = document.getElementById("filterClass").value;
