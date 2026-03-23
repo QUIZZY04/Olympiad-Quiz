@@ -235,10 +235,16 @@ await loadQuestions();
 startTimer();
 });
 
+// Dynamic redirect logic for Selection screen
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
+        const sTopic = localStorage.getItem("selectedTopic");
         localStorage.setItem("isChampionship", "false"); 
-        window.location.href = "chapterwise.html"; 
+        if (sTopic) {
+            window.location.href = "chapterwise.html";
+        } else {
+            window.location.href = "mock.html"; 
+        }
     }
 }
 
