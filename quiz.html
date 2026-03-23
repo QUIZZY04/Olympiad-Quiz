@@ -33,12 +33,12 @@ overflow-x:hidden;
 background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
 background-attachment: fixed;
 }
-nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
-.brand{ font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
+.brand{ font-size:1.3rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
 .nav-links{ display:flex; gap:15px; align-items:center; flex-wrap: wrap; justify-content: center; }
-.nav-links a{ color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+.nav-links a{ color:var(--muted); text-decoration:none; font-size:0.85rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
 .nav-links a:hover{ color: var(--brand); }
-#timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger); padding:8px 15px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2);}
+#timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger); padding:6px 12px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2); white-space: nowrap; flex-shrink: 0;}
 
 .quiz-container{
 display:flex;
@@ -92,7 +92,7 @@ box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 
 .bottom-nav-wrap {
     max-width: 1400px;
-    margin: 30px auto 0;
+    margin: 20px auto 0;
     padding: 0 5%;
     text-align: center;
 }
@@ -100,18 +100,17 @@ box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     background: transparent;
     color: var(--brand);
     border: 1px solid var(--brand);
-    padding: 12px 25px;
+    padding: 10px 20px;
     border-radius: 50px;
     font-weight: 700;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     transition: 0.3s;
     text-transform: uppercase;
 }
 .btn-back-selection:hover {
     background: var(--brand);
     color: #000;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
 }
 
 .grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:15px; margin-bottom:20px; width:100%;}
@@ -139,7 +138,10 @@ footer {
 @media (max-width:850px){
 .quiz-container{flex-direction:column;height:auto;padding:15px;gap:15px;}
 .question-section,.navigation-section{width:100%;flex:none;}
-.grid{grid-template-columns:repeat(auto-fill,minmax(45px,1fr))}
+.grid{grid-template-columns:repeat(auto-fill,minmax(40px,1fr))}
+.section { padding: 20px 15px; border-radius: 16px; }
+#questionText { font-size: 16px; }
+.btn { padding: 12px 5px; font-size: 12px; }
 }
 </style>
 </head>
@@ -154,15 +156,12 @@ footer {
 </div>
 </nav>
 
-<div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;">
-    <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
-            <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 0; line-height: 1;"></h1>
-            <p id="quizSubtitle" style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;"></p>
-        </div>
-        <div id="timerWrap" style="display: inline-block;">⏳ <span id="timer">--:--</span></div>
+<div style="max-width: 1400px; margin: 10px auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+    <div id="quizHeaderInfo" style="flex: 1; min-width: 0;">
+        <h1 id="quizTitle" style="font-size: clamp(1.1rem, 4.5vw, 1.5rem); font-weight: 800; color: var(--text); margin: 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h1>
+        <p id="quizSubtitle" style="font-size: 0.8rem; color: var(--muted); margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
     </div>
-    <div style="flex: 0 0 320px;"></div>
+    <div id="timerWrap">⏳ <span id="timer">--:--</span></div>
 </div>
 
 <main class="quiz-container">
@@ -171,7 +170,7 @@ footer {
 <div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
     <div id="progressBar" style="width:0%; height:100%; background:var(--brand); transition:0.3s;"></div>
 </div>
-<div id="questionNumber" style="margin-top:25px; font-weight:700; color:var(--brand); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
+<div id="questionNumber" style="margin-top:20px; font-weight:700; color:var(--brand); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
 
 <div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Loading...</div>
 
@@ -182,8 +181,8 @@ footer {
 <div class="quiz-buttons">
 <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
 <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
-<button class="btn btn-finish" onclick="confirmSubmit()">Finish Quiz</button>
-<button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete Question</button>
+<button class="btn btn-finish" onclick="confirmSubmit()">Finish</button>
+<button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete</button>
 </div>
 </section>
 
@@ -200,7 +199,7 @@ footer {
 </main>
 
 <div class="bottom-nav-wrap">
-    <button class="btn-back-selection" onclick="backToSelection()">⬅ Back to Topic Selection</button>
+    <button class="btn-back-selection" onclick="backToSelection()">⬅ Back to Selection</button>
 </div>
 
 <script type="module">
@@ -236,7 +235,6 @@ await loadQuestions();
 startTimer();
 });
 
-// FIXED: Redirects to your existing chapterwise.html page
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
         localStorage.setItem("isChampionship", "false"); 
@@ -280,7 +278,7 @@ const quizSubtitleEl = document.getElementById("quizSubtitle");
 const displayGradeEl = document.getElementById("displaySubject"); 
 
 if (isChampionship) {
-    quizTitleEl.innerHTML = `⚡ Live <span style="color: var(--brand);">Championship</span>`;
+    quizTitleEl.innerHTML = `⚡ <span style="color: var(--brand);">Championship</span>`;
     quizSubtitleEl.innerText = `Session ID: ${sId}`;
     displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
 } else {
@@ -409,10 +407,10 @@ window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
 
 <footer>
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About</a>
+        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact</a>
+        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy</a>
+        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms</a>
     </div>
     <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
 </footer>
