@@ -44,7 +44,7 @@ overflow-x:hidden;
 background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
 background-attachment: fixed;
 }
-nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
+nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index: 1000; flex-wrap: wrap; gap: 10px; }
 .brand{ font-size:1.3rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
 .nav-links{ display:flex; gap:15px; align-items:center; flex-wrap: wrap; justify-content: center; }
 .nav-links a{ color:var(--muted); text-decoration:none; font-size:0.85rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
@@ -178,6 +178,7 @@ footer {
             <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                 <span id="displayGradePill" style="background: rgba(56, 189, 248, 0.1); color: var(--brand); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2); text-transform: uppercase;">GRADE: --</span>
                 <span id="displaySubjectPill" style="background: rgba(129, 140, 248, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(129, 140, 248, 0.2); text-transform: uppercase;">SUBJECT: --</span>
+                <span id="displayTopicPill" style="display:none; background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.2); text-transform: uppercase;">TOPIC: --</span>
             </div>
             <p id="quizSubtitle" style="display: none;"></p>
         </div>
@@ -229,7 +230,7 @@ footer {
             <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
             <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
         </div>
-        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
+        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
     </footer>
 </div>
 
@@ -268,27 +269,36 @@ startTimer();
 
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
-        localStorage.setItem("isChampionship", "false"); 
-        window.location.href = "mock.html"; 
+        localStorage.setItem("isChampionship", "false");
+        const hasTopic = !!localStorage.getItem("selectedTopic");
+        window.location.href = hasTopic ? "chapterwise.html" : "mock.html";
     }
 }
 
 async function loadQuestions(){
-const sClass=localStorage.getItem("selectedClass")||"class6";
+const sClass=localStorage.getItem("selectedClass")||"class8";
 const sSub=localStorage.getItem("selectedSubject")||"science";
 const sId=localStorage.getItem("activeSessionId");
+const sTopicCode = localStorage.getItem("selectedTopic");
+const sTopicName = localStorage.getItem("selectedTopicName");
 
-// Handle visibility of Back to Selection button based on mode
 const navWrap = document.getElementById("selectionNavWrap");
 const titleText = document.getElementById("mainTitleText");
+const topicPill = document.getElementById("displayTopicPill");
 
 if (isChampionship) {
     if (navWrap) navWrap.style.display = "none";
     titleText.innerText = "Live Quiz";
+    topicPill.style.display = "none";
 } else {
     if (navWrap) navWrap.style.display = "block";
     const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
     titleText.innerText = `${subjectDisplayName} Practice`;
+    
+    if (sTopicName) {
+        topicPill.innerText = `TOPIC: ${sTopicName}`;
+        topicPill.style.display = "inline-block";
+    }
 }
 
 try {
@@ -305,18 +315,29 @@ try {
             document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${(sData.subject || sSub).toUpperCase()}`;
         }
     } else {
-        let qBase = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
-        const snap = await getDocs(qBase);
+        let q;
+        if (sTopicCode) {
+            q = query(collection(db, "questions"), 
+                where("class", "==", sClass), 
+                where("subject", "==", sSub), 
+                where("topic", "==", sTopicCode)
+            );
+        } else {
+            q = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
+        }
+
+        const snap = await getDocs(q);
         questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+
         if(questions.length>30) questions=questions.slice(0,30);
 
         document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
         document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${sSub.toUpperCase()}`;
     }
-} catch (error) { console.error(error); }
+} catch (error) { console.error("Firebase Error:", error); }
 
 if (questions.length === 0) {
-    document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found.</h3>";
+    document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found for this topic yet.</h3>";
     return;
 }
 
