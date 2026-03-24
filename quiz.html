@@ -23,40 +23,101 @@ window.onpopstate = function () { history.go(1); };
   --unseen-grey: #1e293b;
 }
 *{box-sizing:border-box}
-html,body{ height:100%; margin:0; font-family:'Poppins',sans-serif; color:var(--text); background:var(--bg); background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%); background-attachment: fixed; display: flex; flex-direction: column; }
-nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; }
+html,body{
+height:100%;
+margin:0;
+font-family:'Poppins',sans-serif;
+color:var(--text);
+background:var(--bg);
+overflow-x:hidden;
+background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+background-attachment: fixed;
+}
+nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
 .brand{ font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
-.nav-links{ display:flex; gap:15px; align-items:center; }
+.nav-links{ display:flex; gap:15px; align-items:center; flex-wrap: wrap; justify-content: center; }
 .nav-links a{ color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+.nav-links a:hover{ color: var(--brand); }
+#timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger); padding:8px 15px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2);}
 
-.quiz-container{ display:flex; gap:25px; padding:20px 5%; max-width:1400px; width:100%; margin:0 auto; flex: 1; }
-.section{ background:linear-gradient(145deg, #0f172a, #020617); border:1px solid var(--border); border-top:2px solid var(--brand); border-radius:24px; padding:30px 35px; display:flex; flex-direction:column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.quiz-container{
+display:flex;
+gap:25px;
+padding:0 5%;
+max-width:1400px;
+width:100%;
+margin:0 auto;
+}
+
+.section{
+background:linear-gradient(145deg, #0f172a, #020617);
+border:1px solid var(--border);
+border-top:2px solid var(--brand);
+border-radius:24px;
+padding:30px 35px;
+display:flex;
+flex-direction:column;
+overflow-y:auto;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
 .question-section{flex:2.8}
 .navigation-section{flex:0 0 320px;}
+#questionImage {
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+#questionImage img {
+    max-width: 100%;
+    max-height: 350px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    object-fit: contain;
+    background: rgba(255,255,255,0.02);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
 
-#questionImage img { max-width: 100%; max-height: 350px; border-radius: 12px; border: 1px solid var(--border); margin: 20px 0; display: block; margin-left: auto; margin-right: auto;}
 .options{display:grid;gap:12px;margin-top:15px}
 .opt{display:flex;align-items:center;gap:15px; padding:15px 20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.3s; font-size:15px;}
 .opt:hover{border-color:var(--brand); background:rgba(56, 189, 248, 0.05);}
+.quiz-buttons{display:flex;gap:15px;margin-top:auto;padding-top:30px;flex-wrap:wrap;}
+.btn{flex:1;padding:14px 10px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase;font-size:14px; transition:0.3s; min-width:140px;}
+.btn-save{background:#6366f1;color:#fff}
+.btn-save:hover{background:#4f46e5;}
+.btn-prev{background:var(--bg);color:var(--text); border:1px solid var(--border);}
+.btn-prev:hover{background:var(--border);}
+.btn-finish{background:#f43f5e;color:#fff}
+.btn-finish:hover{background:#e11d48;}
+.btn-danger{background:#b91c1c;color:#fff}
+.btn-danger:hover{background:#991b1b;}
 
-.quiz-buttons{display:flex;gap:10px;margin-top:auto;padding-top:30px; flex-wrap: wrap;}
-.btn{padding:14px 18px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase; transition:0.3s; font-size:13px; display: flex; align-items: center; justify-content: center; gap: 5px;}
-.btn-save{background:#6366f1;color:#fff; flex: 1.5;}
-.btn-finish{background:#f43f5e;color:#fff; flex: 1;}
-.btn-back{background: #0f172a; color: var(--brand); border: 1px solid var(--brand); flex: 1;}
-.btn-prev{background:var(--bg);color:var(--text); border:1px solid var(--border); flex: 1;}
+.grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:15px; margin-bottom:20px; width:100%;}
+.cell{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); cursor:pointer; font-weight:600; font-size:13px; background:var(--bg); transition:0.2s;}
+.cell:hover{border-color:#6366f1;}
 
-.grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:15px; margin-bottom:20px;}
-.cell{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); cursor:pointer; font-weight:600; font-size:13px;}
 .cell.current { background: #6366f1 !important; color: white !important; }
 .cell.answered { background: #14b8a6 !important; color: white !important; }
 .cell.visited { background: #f43f5e !important; color: white !important; }
+.cell.unseen { background: var(--unseen-grey) !important; color: var(--text) !important; }
 
-footer { text-align:center; padding:30px; background:rgba(2, 6, 23, 0.8); border-top:1px solid var(--border); color:var(--muted); margin-top: auto; width: 100%; }
+.palette-legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 20px; border-top: 1px solid var(--border); width: 100%; margin-top: auto; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
+.legend-box { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
 
-@media (max-width: 900px) {
-    .quiz-container { flex-direction: column; }
-    .navigation-section { flex: none; width: 100%; }
+footer {
+  text-align:center;
+  padding:30px;
+  background:rgba(2, 6, 23, 0.8);
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  margin-top:40px;
+}
+
+@media (max-width:850px){
+.quiz-container{flex-direction:column;height:auto;padding:15px;gap:15px;}
+.question-section,.navigation-section{width:100%;flex:none;}
+.grid{grid-template-columns:repeat(auto-fill,minmax(45px,1fr))}
 }
 </style>
 </head>
@@ -64,59 +125,63 @@ footer { text-align:center; padding:30px; background:rgba(2, 6, 23, 0.8); border
 <nav>
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 <div class="nav-links">
+<a href="index.html">Home</a>
 <a href="dashboard.html">Dashboard</a>
+<a href="leaderboard.html">Leaderboard</a>
 <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
 </div>
 </nav>
 
-<div style="max-width: 1400px; width:100%; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;">
-    <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <div>
-            <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 800; margin: 0; color: var(--text);">Loading...</h1>
+<div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;">
+    <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
+            <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 0; line-height: 1;"></h1>
             <p id="quizSubtitle" style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;"></p>
         </div>
-        <div id="timerWrap">⏳ <span id="timer">--:--</span></div>
+        <div id="timerWrap" style="display: inline-block;">⏳ <span id="timer">--:--</span></div>
     </div>
-    <div style="flex: 0 0 320px;" class="desktop-only"></div>
+    <div style="flex: 0 0 320px;"></div>
 </div>
 
 <main class="quiz-container">
 <section class="question-section section">
-<div id="displaySubject" style="font-weight:600; color:var(--muted); font-size:14px;">Practice Progress</div>
+<div style="display:flex;justify-content:space-between; font-weight:600; font-size:14px; color:var(--muted);"><span id="displaySubject">Progress</span><span id="progressPercent">0%</span></div>
+<div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
+    <div id="progressBar" style="width:0%; height:100%; background:var(--brand); transition:0.3s;"></div>
+</div>
 <div id="questionNumber" style="margin-top:25px; font-weight:700; color:var(--brand); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
-<div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Preparing...</div>
+
+<div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Loading...</div>
+
 <div id="questionImage" style="display:none;"></div> 
+
 <div class="options" id="options"></div>
 
 <div class="quiz-buttons">
-<button class="btn btn-prev" onclick="prevQuestion()">← Prev</button>
-<button class="btn btn-save" onclick="nextQuestion()">Save & Next →</button>
-<button class="btn btn-back" onclick="goBackToSelection()">↺ Back</button>
-<button class="btn btn-finish" onclick="confirmSubmit()">Finish</button>
+<button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
+<button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
+<button class="btn btn-finish" onclick="confirmSubmit()">Finish Quiz</button>
+<button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete Question</button>
 </div>
 </section>
 
 <aside class="navigation-section section">
 <h3 style="margin:0 0 15px 0;font-size:16px;color:var(--text); font-weight:700;">Question Palette</h3>
 <div class="grid" id="questionGrid"></div>
+<div class="palette-legend">
+<div class="legend-item"><div class="legend-box legend-current" style="background:#6366f1">1</div> Current</div>
+<div class="legend-item"><div class="legend-box legend-answered" style="background:#14b8a6">1</div> Answered</div>
+<div class="legend-item"><div class="legend-box legend-visited" style="background:#f43f5e">1</div> Visited</div>
+<div class="legend-item"><div class="legend-box legend-unseen" style="background:var(--unseen-grey)">1</div> Unseen</div>
+</div>
 </aside>
 </main>
-
-<footer>
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="about.html" style="color:var(--muted);text-decoration:none;font-size:13px;">About Us</a>
-        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-size:13px;">Privacy Policy</a>
-        <a href="term.html" style="color:var(--muted);text-decoration:none;font-size:13px;">Terms</a>
-    </div>
-    <p style="font-size:12px;">© 2026 Olympiad Portal. All rights reserved.</p>
-</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-import { SOF_CURRICULUM } from './topicMaster.js';
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -127,6 +192,500 @@ messagingSenderId:"341855557503",
 appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 };
 
+const sofTopics = {
+    class1: {
+        maths: [
+            { code: "M01", name: "Number Sense" },
+            { code: "M02", name: "Addition" },
+            { code: "M03", name: "Subtraction" },
+            { code: "M04", name: "Lengths, Weights and Comparisons" },
+            { code: "M05", name: "Time" },
+            { code: "M06", name: "Money" },
+            { code: "M07", name: "Geometrical Shapes" }
+        ],
+        science: [
+            { code: "S01", name: "Plants" },
+            { code: "S02", name: "Animals" },
+            { code: "S03", name: "Human Body" },
+            { code: "S04", name: "Food" },
+            { code: "S05", name: "Housing and Clothing" },
+            { code: "S06", name: "Family and Festivals" },
+            { code: "S07", name: "Good Habits and Safety Rules" },
+            { code: "S08", name: "Transport and Communication" },
+            { code: "S09", name: "Air, Water and Weather" },
+            { code: "S10", name: "Earth and Universe" }
+        ],
+        english: [
+            { code: "E01", name: "Word Power (Letters & Words)" },
+            { code: "E02", name: "Nouns and Pronouns" },
+            { code: "E03", name: "Verbs and Adjectives" },
+            { code: "E04", name: "Prepositions and Articles" },
+            { code: "E05", name: "Tenses and Punctuation" },
+            { code: "E06", name: "Reading Comprehension" },
+            { code: "E07", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Patterns" },
+            { code: "R02", name: "Odd One Out" },
+            { code: "R03", name: "Measuring Units" },
+            { code: "R04", name: "Geometrical Shapes" },
+            { code: "R05", name: "Spatial Understanding" },
+            { code: "R06", name: "Grouping and Analogy" },
+            { code: "R07", name: "Ranking Test" }
+        ]
+    },
+    class2: {
+        maths: [
+            { code: "M01", name: "Number Sense" },
+            { code: "M02", name: "Computation Operations" },
+            { code: "M03", name: "Length, Weight, Capacity" },
+            { code: "M04", name: "Time and Money" },
+            { code: "M05", name: "Lines, Shapes and Solids" },
+            { code: "M06", name: "Pictographs" }
+        ],
+        science: [
+            { code: "S01", name: "Plants" },
+            { code: "S02", name: "Animals" },
+            { code: "S03", name: "Human Body" },
+            { code: "S04", name: "Food" },
+            { code: "S05", name: "Housing and Clothing" },
+            { code: "S06", name: "Family and Festivals" },
+            { code: "S07", name: "Good Habits and Safety Rules" },
+            { code: "S08", name: "Transport and Communication" },
+            { code: "S09", name: "Air, Water and Weather" },
+            { code: "S10", name: "Earth and Universe" }
+        ],
+        english: [
+            { code: "E01", name: "Word Power" },
+            { code: "E02", name: "Nouns and Pronouns" },
+            { code: "E03", name: "Verbs, Adjectives and Adverbs" },
+            { code: "E04", name: "Prepositions and Conjunctions" },
+            { code: "E05", name: "Articles and Tenses" },
+            { code: "E06", name: "Punctuation and Jumbled Words" },
+            { code: "E07", name: "Reading Comprehension" },
+            { code: "E08", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Patterns" },
+            { code: "R02", name: "Measuring Units" },
+            { code: "R03", name: "Odd One Out" },
+            { code: "R04", name: "Series Completion" },
+            { code: "R05", name: "Geometrical Shapes" },
+            { code: "R06", name: "Analogy and Ranking Test" },
+            { code: "R07", name: "Grouping and Coding-Decoding" }
+        ]
+    },
+    class3: {
+        maths: [
+            { code: "M01", name: "Number Sense (Up to 10,000)" },
+            { code: "M02", name: "Addition, Subtraction, Multiplication" },
+            { code: "M03", name: "Division & Fractions (Basic)" },
+            { code: "M04", name: "Money (Indian Currency)" },
+            { code: "M05", name: "Measurement (Length, Weight, Capacity)" },
+            { code: "M06", name: "Time, Money & Calendar" },
+            { code: "M07", name: "Geometry & Symmetry" },
+            { code: "M08", name: "Data Handling (Bar Graphs)" }
+        ],
+        science: [
+            { code: "S01", name: "Plants and Animals" },
+            { code: "S02", name: "Birds" },
+            { code: "S03", name: "Food" },
+            { code: "S04", name: "Housing, Clothing and Occupation" },
+            { code: "S05", name: "Transport and Communication" },
+            { code: "S06", name: "Human Body" },
+            { code: "S07", name: "Earth and Universe" },
+            { code: "S08", name: "Matter and Materials" },
+            { code: "S09", name: "Light, Sound and Force" },
+            { code: "S10", name: "Our Environment" }
+        ],
+        english: [
+            { code: "E01", name: "Word Power" },
+            { code: "E02", name: "Synonyms and Antonyms" },
+            { code: "E03", name: "Nouns, Pronouns and Verbs" },
+            { code: "E04", name: "Adverbs and Adjectives" },
+            { code: "E05", name: "Articles and Prepositions" },
+            { code: "E06", name: "Conjunctions and Tenses" },
+            { code: "E07", name: "Punctuation and Jumbled Words" },
+            { code: "E08", name: "Reading Comprehension" },
+            { code: "E09", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Patterns" },
+            { code: "R02", name: "Analogy and Classification" },
+            { code: "R03", name: "Alphabet Test" },
+            { code: "R04", name: "Coding-Decoding" },
+            { code: "R05", name: "Ranking Test" },
+            { code: "R06", name: "Grouping and Figure Matrix" },
+            { code: "R07", name: "Mirror Images and Geometrical Shapes" },
+            { code: "R08", name: "Days, Dates and Combinations" }
+        ]
+    },
+    class4: {
+        maths: [
+            { code: "M01", name: "Number Sense" },
+            { code: "M02", name: "Computation Operations" },
+            { code: "M03", name: "Fractions" },
+            { code: "M04", name: "Length, Weight and Capacity" },
+            { code: "M05", name: "Time and Money" },
+            { code: "M06", name: "Geometry" },
+            { code: "M07", name: "Perimeter and Area" },
+            { code: "M08", name: "Data Handling" }
+        ],
+        science: [
+            { code: "S01", name: "Plants" },
+            { code: "S02", name: "Animals" },
+            { code: "S03", name: "Food and Digestion" },
+            { code: "S04", name: "Human Needs" },
+            { code: "S05", name: "Matter and Materials" },
+            { code: "S06", name: "Force, Work and Energy" },
+            { code: "S07", name: "Our Environment" },
+            { code: "S08", name: "Earth and Universe" }
+        ],
+        english: [
+            { code: "E01", name: "Word Power" },
+            { code: "E02", name: "Synonyms and Antonyms" },
+            { code: "E03", name: "Nouns, Pronouns and Verbs" },
+            { code: "E04", name: "Adverbs and Adjectives" },
+            { code: "E05", name: "Articles and Prepositions" },
+            { code: "E06", name: "Conjunctions and Tenses" },
+            { code: "E07", name: "Punctuation and Jumbled Words" },
+            { code: "E08", name: "Reading Comprehension" },
+            { code: "E09", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Patterns" },
+            { code: "R02", name: "Alphabet Test" },
+            { code: "R03", name: "Coding-Decoding" },
+            { code: "R04", name: "Ranking Test" },
+            { code: "R05", name: "Mirror Images" },
+            { code: "R06", name: "Geometrical Shapes" },
+            { code: "R07", name: "Direction Sense" },
+            { code: "R08", name: "Analogy and Classification" }
+        ]
+    },
+    class5: {
+        maths: [
+            { code: "M01", name: "Number Sense" },
+            { code: "M02", name: "Computation Operations" },
+            { code: "M03", name: "Fractions and Decimals" },
+            { code: "M04", name: "Measurement" },
+            { code: "M05", name: "Angles" },
+            { code: "M06", name: "Perimeter, Area and Volume" },
+            { code: "M07", name: "Data Handling" }
+        ],
+        science: [
+            { code: "S01", name: "Animals" },
+            { code: "S02", name: "Plants" },
+            { code: "S03", name: "Human Body and Health" },
+            { code: "S04", name: "Water" },
+            { code: "S05", name: "Matter and Materials" },
+            { code: "S06", name: "Force, Work and Energy" },
+            { code: "S07", name: "Our Environment" },
+            { code: "S08", name: "Earth and Universe" }
+        ],
+        english: [
+            { code: "E01", name: "Word Power" },
+            { code: "E02", name: "Synonyms and Antonyms" },
+            { code: "E03", name: "Idioms and Phrases" },
+            { code: "E04", name: "Nouns, Pronouns and Verbs" },
+            { code: "E05", name: "Adverbs and Adjectives" },
+            { code: "E06", name: "Articles, Prepositions and Conjunctions" },
+            { code: "E07", name: "Tenses" },
+            { code: "E08", name: "Active/Passive and Direct/Indirect" },
+            { code: "E09", name: "Reading Comprehension" },
+            { code: "E10", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Patterns" },
+            { code: "R02", name: "Analogy and Classification" },
+            { code: "R03", name: "Geometrical Shapes" },
+            { code: "R04", name: "Mirror and Water Images" },
+            { code: "R05", name: "Direction Sense" },
+            { code: "R06", name: "Ranking Test and Alphabet Test" },
+            { code: "R07", name: "Logical Sequence and Puzzle Test" },
+            { code: "R08", name: "Coding-Decoding" }
+        ]
+    },
+    class6: {
+        maths: [
+            { code: "M01", name: "Knowing our Numbers" },
+            { code: "M02", name: "Whole Numbers" },
+            { code: "M03", name: "Playing with Numbers" },
+            { code: "M04", name: "Basic Geometrical Ideas" },
+            { code: "M05", name: "Understanding Elementary Shapes" },
+            { code: "M06", name: "Integers" },
+            { code: "M07", name: "Fractions" },
+            { code: "M08", name: "Decimals" },
+            { code: "M09", name: "Data Handling" },
+            { code: "M10", name: "Mensuration" },
+            { code: "M11", name: "Algebra" },
+            { code: "M12", name: "Ratio and Proportion" },
+            { code: "M13", name: "Symmetry" },
+            { code: "M14", name: "Practical Geometry" }
+        ],
+        science: [
+            { code: "S01", name: "Food and Its Components" },
+            { code: "S02", name: "Sorting Materials" },
+            { code: "S03", name: "Separation of Substances" },
+            { code: "S04", name: "Getting to Know Plants" },
+            { code: "S05", name: "Body Movements" },
+            { code: "S06", name: "Living Organisms and Surroundings" },
+            { code: "S07", name: "Motion and Measurement" },
+            { code: "S08", name: "Light, Shadows and Reflections" },
+            { code: "S09", name: "Electricity and Circuits" },
+            { code: "S10", name: "Fun with Magnets" },
+            { code: "S11", name: "Air and Water" }
+        ],
+        english: [
+            { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+            { code: "E02", name: "One Word Substitutions" },
+            { code: "E03", name: "Idioms and Phrases" },
+            { code: "E04", name: "Parts of Speech" },
+            { code: "E05", name: "Articles and Tenses" },
+            { code: "E06", name: "Active/Passive and Direct/Indirect" },
+            { code: "E07", name: "Punctuation" },
+            { code: "E08", name: "Reading Comprehension" },
+            { code: "E09", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Series Completion" },
+            { code: "R02", name: "Analogy and Classification" },
+            { code: "R03", name: "Coding-Decoding" },
+            { code: "R04", name: "Blood Relations" },
+            { code: "R05", name: "Direction Sense Test" },
+            { code: "R06", name: "Logical Venn Diagrams" },
+            { code: "R07", name: "Mirror/Water Images and Paper Folding" },
+            { code: "R08", name: "Figure Matrix and Cubes/Dice" }
+        ]
+    },
+    class7: {
+        maths: [
+            { code: "M01", name: "Integers" },
+            { code: "M02", name: "Fractions and Decimals" },
+            { code: "M03", name: "Data Handling" },
+            { code: "M04", name: "Simple Equations" },
+            { code: "M05", name: "Lines and Angles" },
+            { code: "M06", name: "The Triangle and its Properties" },
+            { code: "M07", name: "Congruence of Triangles" },
+            { code: "M08", name: "Comparing Quantities" },
+            { code: "M09", name: "Rational Numbers" },
+            { code: "M10", name: "Practical Geometry" },
+            { code: "M11", name: "Perimeter and Area" },
+            { code: "M12", name: "Algebraic Expressions" },
+            { code: "M13", name: "Exponents and Powers" },
+            { code: "M14", name: "Symmetry" },
+            { code: "M15", name: "Visualising Solid Shapes" }
+        ],
+        science: [
+            { code: "S01", name: "Nutrition in Plants and Animals" },
+            { code: "S02", name: "Heat" },
+            { code: "S03", name: "Acids, Bases and Salts" },
+            { code: "S04", name: "Physical and Chemical Changes" },
+            { code: "S05", name: "Respiration in Organisms" },
+            { code: "S06", name: "Transportation in Plants and Animals" },
+            { code: "S07", name: "Reproduction in Plants" },
+            { code: "S08", name: "Motion and Time" },
+            { code: "S09", name: "Electric Current and its Effects" },
+            { code: "S10", name: "Light" },
+            { code: "S11", name: "Forests and Wastewater Story" }
+        ],
+        english: [
+            { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+            { code: "E02", name: "Spellings and One Word Substitutions" },
+            { code: "E03", name: "Idioms and Phrases" },
+            { code: "E04", name: "Parts of Speech" },
+            { code: "E05", name: "Articles and Tenses" },
+            { code: "E06", name: "Active/Passive and Direct/Indirect" },
+            { code: "E07", name: "Punctuation" },
+            { code: "E08", name: "Reading Comprehension" },
+            { code: "E09", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Series Completion" },
+            { code: "R02", name: "Analogy and Classification" },
+            { code: "R03", name: "Coding-Decoding" },
+            { code: "R04", name: "Blood Relations" },
+            { code: "R05", name: "Direction Sense Test" },
+            { code: "R06", name: "Logical Venn Diagrams" },
+            { code: "R07", name: "Mirror/Water Images and Paper Folding" },
+            { code: "R08", name: "Cubes, Dice and Figure Matrix" }
+        ]
+    },
+    class8: {
+        maths: [
+            { code: "M01", name: "Rational Numbers" },
+            { code: "M02", name: "Linear Equations in One Variable" },
+            { code: "M03", name: "Understanding Quadrilaterals" },
+            { code: "M04", name: "Practical Geometry" },
+            { code: "M05", name: "Data Handling" },
+            { code: "M06", name: "Squares and Square Roots" },
+            { code: "M07", name: "Cubes and Cube Roots" },
+            { code: "M08", name: "Comparing Quantities" },
+            { code: "M09", name: "Algebraic Expressions and Identities" },
+            { code: "M10", name: "Visualising Solid Shapes" },
+            { code: "M11", name: "Mensuration" },
+            { code: "M12", name: "Exponents and Powers" },
+            { code: "M13", name: "Direct and Inverse Proportions" },
+            { code: "M14", name: "Factorisation" },
+            { code: "M15", name: "Intro to Graphs and Playing with Numbers" }
+        ],
+        science: [
+            { code: "S01", name: "Crop Production and Management" },
+            { code: "S02", name: "Microorganisms" },
+            { code: "S03", name: "Synthetic Fibres and Plastics" },
+            { code: "S04", name: "Materials: Metals and Non-Metals" },
+            { code: "S05", name: "Coal and Petroleum" },
+            { code: "S06", name: "Combustion and Flame" },
+            { code: "S07", name: "Conservation of Plants and Animals" },
+            { code: "S08", name: "Cell Structure and Functions" },
+            { code: "S09", name: "Reproduction and Adolescence" },
+            { code: "S10", name: "Force, Pressure and Friction" },
+            { code: "S11", name: "Sound" },
+            { code: "S12", name: "Chemical Effects of Electric Current" },
+            { code: "S13", name: "Some Natural Phenomena" },
+            { code: "S14", name: "Light" },
+            { code: "S15", name: "Stars and Solar System" },
+            { code: "S16", name: "Pollution of Air and Water" }
+        ],
+        english: [
+            { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+            { code: "E02", name: "Spellings and One Word Substitutions" },
+            { code: "E03", name: "Idioms and Phrases" },
+            { code: "E04", name: "Parts of Speech" },
+            { code: "E05", name: "Articles and Tenses" },
+            { code: "E06", name: "Active/Passive and Direct/Indirect" },
+            { code: "E07", name: "Punctuation" },
+            { code: "E08", name: "Reading Comprehension" },
+            { code: "E09", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Series Completion" },
+            { code: "R02", name: "Analogy and Classification" },
+            { code: "R03", name: "Coding-Decoding" },
+            { code: "R04", name: "Blood Relations" },
+            { code: "R05", name: "Direction Sense Test" },
+            { code: "R06", name: "Logical Venn Diagrams" },
+            { code: "R07", name: "Alphabet and Ranking Test" },
+            { code: "R08", name: "Mirror/Water Images and Figure Matrix" }
+        ]
+    },
+    class9: {
+        maths: [
+            { code: "M01", name: "Number Systems" },
+            { code: "M02", name: "Polynomials" },
+            { code: "M03", name: "Coordinate Geometry" },
+            { code: "M04", name: "Linear Equations in Two Variables" },
+            { code: "M05", name: "Introduction to Euclid's Geometry" },
+            { code: "M06", name: "Lines and Angles" },
+            { code: "M07", name: "Triangles" },
+            { code: "M08", name: "Quadrilaterals" },
+            { code: "M09", name: "Areas of Parallelograms and Triangles" },
+            { code: "M10", name: "Circles" },
+            { code: "M11", name: "Constructions" },
+            { code: "M12", name: "Heron's Formula" },
+            { code: "M13", name: "Surface Areas and Volumes" },
+            { code: "M14", name: "Statistics" },
+            { code: "M15", name: "Probability" }
+        ],
+        science: [
+            { code: "S01", name: "Matter in Our Surroundings" },
+            { code: "S02", name: "Is Matter Around Us Pure" },
+            { code: "S03", name: "Atoms and Molecules" },
+            { code: "S04", name: "Structure of the Atom" },
+            { code: "S05", name: "The Fundamental Unit of Life" },
+            { code: "S06", name: "Tissues" },
+            { code: "S07", name: "Diversity in Living Organisms" },
+            { code: "S08", name: "Motion" },
+            { code: "S09", name: "Force and Laws of Motion" },
+            { code: "S10", name: "Gravitation" },
+            { code: "S11", name: "Work and Energy" },
+            { code: "S12", name: "Sound" },
+            { code: "S13", name: "Why Do We Fall Ill" },
+            { code: "S14", name: "Natural Resources" },
+            { code: "S15", name: "Improvement in Food Resources" }
+        ],
+        english: [
+            { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+            { code: "E02", name: "Spellings and One Word Substitutions" },
+            { code: "E03", name: "Idioms and Phrases" },
+            { code: "E04", name: "Parts of Speech" },
+            { code: "E05", name: "Articles and Tenses" },
+            { code: "E06", name: "Active/Passive and Direct/Indirect" },
+            { code: "E07", name: "Clauses" },
+            { code: "E08", name: "Reading Comprehension" },
+            { code: "E09", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Series Completion" },
+            { code: "R02", name: "Analogy and Classification" },
+            { code: "R03", name: "Coding-Decoding" },
+            { code: "R04", name: "Blood Relations" },
+            { code: "R05", name: "Direction Sense Test" },
+            { code: "R06", name: "Logical Venn Diagrams" },
+            { code: "R07", name: "Alphabet and Ranking Test" },
+            { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }
+        ]
+    },
+    class10: {
+        maths: [
+            { code: "M01", name: "Real Numbers" },
+            { code: "M02", name: "Polynomials" },
+            { code: "M03", name: "Pair of Linear Equations in Two Variables" },
+            { code: "M04", name: "Quadratic Equations" },
+            { code: "M05", name: "Arithmetic Progressions" },
+            { code: "M06", name: "Triangles" },
+            { code: "M07", name: "Coordinate Geometry" },
+            { code: "M08", name: "Introduction to Trigonometry" },
+            { code: "M09", name: "Some Applications of Trigonometry" },
+            { code: "M10", name: "Circles" },
+            { code: "M11", name: "Constructions" },
+            { code: "M12", name: "Areas Related to Circles" },
+            { code: "M13", name: "Surface Areas and Volumes" },
+            { code: "M14", name: "Statistics" },
+            { code: "M15", name: "Probability" }
+        ],
+        science: [
+            { code: "S01", name: "Chemical Reactions and Equations" },
+            { code: "S02", name: "Acids, Bases and Salts" },
+            { code: "S03", name: "Metals and Non-Metals" },
+            { code: "S04", name: "Carbon and Its Compounds" },
+            { code: "S05", name: "Periodic Classification of Elements" },
+            { code: "S06", name: "Life Processes" },
+            { code: "S07", name: "Control and Coordination" },
+            { code: "S08", name: "How Do Organisms Reproduce" },
+            { code: "S09", name: "Heredity and Evolution" },
+            { code: "S10", name: "Light - Reflection and Refraction" },
+            { code: "S11", name: "Human Eye and Colourful World" },
+            { code: "S12", name: "Electricity" },
+            { code: "S13", name: "Magnetic Effects of Electric Current" },
+            { code: "S14", name: "Sources of Energy" },
+            { code: "S15", name: "Our Environment" },
+            { code: "S16", name: "Management of Natural Resources" }
+        ],
+        english: [
+            { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+            { code: "E02", name: "Spellings and One Word Substitutions" },
+            { code: "E03", name: "Idioms and Phrases" },
+            { code: "E04", name: "Parts of Speech" },
+            { code: "E05", name: "Articles and Tenses" },
+            { code: "E06", name: "Active/Passive and Direct/Indirect" },
+            { code: "E07", name: "Clauses" },
+            { code: "E08", name: "Reading Comprehension" },
+            { code: "E09", name: "Spoken and Written Expression" }
+        ],
+        reasoning: [
+            { code: "R01", name: "Series Completion" },
+            { code: "R02", name: "Analogy and Classification" },
+            { code: "R03", name: "Coding-Decoding" },
+            { code: "R04", name: "Blood Relations" },
+            { code: "R05", name: "Direction Sense Test" },
+            { code: "R06", name: "Logical Venn Diagrams" },
+            { code: "R07", name: "Alphabet and Ranking Test" },
+            { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }
+        ]
+    }
+};
+
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
@@ -134,131 +693,291 @@ const storage = getStorage(app);
 
 let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
 const isChampionship=localStorage.getItem("isChampionship")==="true";
-let totalTime=1800; 
+let totalTime=1800;
+
+function getStoredTopicSelection() {
+    const selectedClass = localStorage.getItem("selectedClass") || "class6";
+    const selectedSubject = localStorage.getItem("selectedSubject") || "science";
+    const selectedTopic = localStorage.getItem("selectedTopic") || "";
+    const selectedTopicName = localStorage.getItem("selectedTopicName") || "";
+    const selectedTopicDisplay = localStorage.getItem("selectedTopicDisplay") || "";
+    const selectedTopicData = JSON.parse(localStorage.getItem("selectedTopicData") || "null");
+
+    return {
+        selectedClass,
+        selectedSubject,
+        selectedTopic,
+        selectedTopicName,
+        selectedTopicDisplay,
+        selectedTopicData
+    };
+}
+
+function getTopicFromMaster(className, subjectName, topicCode) {
+    const topics = sofTopics[className]?.[subjectName] || [];
+    return topics.find(topic => topic.code === topicCode) || null;
+}
+
+function getVerifiedTopicSelection() {
+    const stored = getStoredTopicSelection();
+    const topicCode = stored.selectedTopicData?.code || stored.selectedTopic || "";
+    const verifiedTopic = topicCode
+        ? getTopicFromMaster(stored.selectedClass, stored.selectedSubject, topicCode)
+        : null;
+
+    return {
+        selectedClass: stored.selectedClass,
+        selectedSubject: stored.selectedSubject,
+        selectedTopicCode: verifiedTopic?.code || topicCode || "",
+        selectedTopicName: verifiedTopic?.name || stored.selectedTopicData?.name || stored.selectedTopicName || "",
+        selectedTopicDisplay: verifiedTopic
+            ? `${verifiedTopic.code} - ${verifiedTopic.name}`
+            : (stored.selectedTopicDisplay || (topicCode && stored.selectedTopicName ? `${topicCode} - ${stored.selectedTopicName}` : "")),
+        verifiedTopic
+    };
+}
 
 onAuthStateChanged(auth, async(user)=>{
     if(!user){ window.location.href="login.html"; return; }
+    if (user.email === "madhhu52@gmail.com") {
+        document.getElementById("deleteQuestionBtn").style.display = "inline-block";
+    }
     await loadQuestions();
     startTimer();
 });
 
 async function loadQuestions(){
-    const sClass=localStorage.getItem("selectedClass")||"class6";
-    const sSub=localStorage.getItem("selectedSubject")||"science";
-    const sTopicCode=localStorage.getItem("selectedTopic");
-    const sId=localStorage.getItem("activeSessionId");
+const topicInfo = getVerifiedTopicSelection();
+const sClass = topicInfo.selectedClass;
+const sSub = topicInfo.selectedSubject;
+const sTopic = topicInfo.selectedTopicCode;
+const sTopicName = topicInfo.selectedTopicName;
+const sTopicDisplay = topicInfo.selectedTopicDisplay;
+const sId = localStorage.getItem("activeSessionId");
 
-    try {
-        const chapterName = SOF_CURRICULUM[sClass][sSub][sTopicCode];
-        document.getElementById("quizTitle").innerText = chapterName || "Practice Quiz";
-        document.getElementById("quizSubtitle").innerText = `Grade: ${sClass.replace('class', '')} | ${sSub.toUpperCase()}`;
-    } catch(e) { document.getElementById("quizTitle").innerText = "Practice Quiz"; }
-
-    try {
-        if (isChampionship && sId) {
-            const sSnap = await getDoc(doc(db, "test_sessions", sId));
-            if (sSnap.exists()) {
-                const sData = sSnap.data();
-                const qPromises = (sData.questionIds || []).map(id => getDoc(doc(db, "questions", id)));
-                const qSnaps = await Promise.all(qPromises);
-                questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
-            }
-        } else {
-            let qBase = sTopicCode ? query(collection(db, "questions"), 
-                                     where("class", "==", sClass), 
-                                     where("subject", "==", sSub), 
-                                     where("topic", "==", sTopicCode))
-                               : query(collection(db, "questions"), 
-                                     where("class", "==", sClass), 
-                                     where("subject", "==", sSub));
-            
-            const snap = await getDocs(qBase);
-            questions = snap.docs.map(d => ({ ...d.data(), id: d.id })).slice(0, 30);
-        }
-    } catch (error) { console.error("Load failed:", error); }
-
-    if (questions.length === 0) {
-        document.getElementById("questionText").innerHTML="<h3>No questions found.</h3>";
+if (!isChampionship) {
+    if (!sClass || !sSub) {
+        alert("Quiz selection is incomplete. Please select again.");
+        window.location.href = "chapterwise.html";
         return;
     }
 
-    selectedAnswers=new Array(questions.length).fill(null);
-    visitedQuestions=new Array(questions.length).fill(false);
-    generateGrid();
-    loadQuestion();
+    const hadStoredTopic = !!(localStorage.getItem("selectedTopic") || JSON.parse(localStorage.getItem("selectedTopicData") || "null")?.code);
+    if (hadStoredTopic && !topicInfo.verifiedTopic) {
+        alert("Selected topic code does not match the chapter list. Please select topic again.");
+        window.location.href = "chapterwise.html";
+        return;
+    }
+}
+
+try {
+    if (isChampionship && sId) {
+        const sSnap = await getDoc(doc(db, "test_sessions", sId));
+        if (sSnap.exists()) {
+            const sData = sSnap.data();
+            if(sData.duration) totalTime = sData.duration * 60;
+            const qPromises = (sData.questionIds || []).map(id => getDoc(doc(db, "questions", id)));
+            const qSnaps = await Promise.all(qPromises);
+            questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
+        }
+    } else {
+        let qBase = sTopic
+            ? query(collection(db, "questions"),
+                where("class", "==", sClass),
+                where("subject", "==", sSub),
+                where("topic", "==", sTopic))
+            : query(collection(db, "questions"),
+                where("class", "==", sClass),
+                where("subject", "==", sSub));
+
+        const snap = await getDocs(qBase);
+        questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+        if(questions.length>30) questions=questions.slice(0,30);
+    }
+} catch (error) {
+    console.error(error);
+}
+
+if (questions.length === 0) {
+    document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found.</h3>";
+    document.getElementById("options").innerHTML = "";
+    return;
+}
+
+const quizTitleEl = document.getElementById("quizTitle");
+const quizSubtitleEl = document.getElementById("quizSubtitle");
+const displayGradeEl = document.getElementById("displaySubject");
+
+if (isChampionship) {
+    quizTitleEl.innerHTML = `⚡ Live <span style="color: var(--brand);">Championship</span>`;
+    quizSubtitleEl.innerText = `Session ID: ${sId}`;
+    displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
+} else {
+    const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
+    quizTitleEl.innerHTML = `📖 ${subjectDisplayName} <span style="color: var(--brand);">Quiz</span>`;
+    if (sTopicDisplay) {
+        quizSubtitleEl.innerText = `Topic: ${sTopicDisplay}`;
+    } else if (sTopic && sTopicName) {
+        quizSubtitleEl.innerText = `Topic: ${sTopic} - ${sTopicName}`;
+    } else {
+        quizSubtitleEl.innerText = `Mock Test`;
+    }
+    displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
+}
+
+selectedAnswers=new Array(questions.length).fill(null);
+visitedQuestions=new Array(questions.length).fill(false);
+generateGrid();
+loadQuestion();
 }
 
 async function loadQuestion(){
-    const q=questions[current]; visitedQuestions[current]=true;
-    document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
-    document.getElementById("questionText").innerHTML=q.q;
-    const imgDiv = document.getElementById("questionImage");
-    imgDiv.innerHTML = ""; imgDiv.style.display = "none";
-    
-    const imageName = q.image_name || q.image_url; 
-    if (imageName) {
-        try {
-            let finalUrl = imageName;
-            if (typeof imageName === 'string' && !imageName.startsWith("http")) {
-                const storageRef = ref(storage, `question_images/${imageName}`);
-                finalUrl = await getDownloadURL(storageRef);
-            }
-            imgDiv.innerHTML = `<img src="${finalUrl}">`;
-            imgDiv.style.display = "block";
-        } catch (e) {}
-    }
+const q=questions[current];
+visitedQuestions[current]=true;
 
-    let html="";
-    q.o.forEach((opt,i)=>{
-        html+=`<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current]===i?"checked":""} onchange="saveAnswer(${i})"/><span>${opt}</span></label>`;
-    });
-    document.getElementById("options").innerHTML=html;
-    updateGrid();
+document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
+document.getElementById("questionText").innerHTML=q.q;
+
+const imgDiv = document.getElementById("questionImage");
+imgDiv.innerHTML = "";
+imgDiv.style.display = "none";
+
+const imageName = q.image_name || q.image_url;
+
+if (imageName) {
+    try {
+        let finalUrl = imageName;
+        if (typeof imageName === 'string' && !imageName.startsWith("http")) {
+            const storageRef = ref(storage, `question_images/${imageName}`);
+            finalUrl = await getDownloadURL(storageRef);
+        }
+
+        imgDiv.innerHTML = `<img src="${finalUrl}" alt="Question Diagram">`;
+        imgDiv.style.display = "block";
+    } catch (error) {
+        console.error("Image load failed for:", imageName, error);
+        imgDiv.style.display = "none";
+    }
 }
 
-window.goBackToSelection = () => {
-    if(confirm("Exit quiz and return to topic selection?")) {
-        window.location.href = "chapterwise.html";
-    }
-};
+let html="";
+q.o.forEach((opt,i)=>{
+html+=`<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current]===i?"checked":""} onchange="saveAnswer(${i})"/><span>${opt}</span></label>`;
+});
+document.getElementById("options").innerHTML=html;
+updateGrid();
+}
 
-window.saveAnswer = (v) => { selectedAnswers[current]=v; updateGrid(); };
-window.nextQuestion = () => { if(current<questions.length-1){current++; loadQuestion();} };
-window.prevQuestion = () => { if(current>0){current--; loadQuestion();} };
-window.jumpTo = (i) => { current=i; loadQuestion(); };
+function saveAnswer(v){ selectedAnswers[current]=v; updateGrid(); }
+function nextQuestion(){ if(current<questions.length-1){current++; loadQuestion();} }
+function prevQuestion(){ if(current>0){current--; loadQuestion();} }
+function jumpTo(i){ current=i; loadQuestion(); }
 
 function generateGrid(){
-    let html=""; for(let i=0;i<questions.length;i++) html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
-    document.getElementById("questionGrid").innerHTML=html;
+let html="";
+for(let i=0;i<questions.length;i++) html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
+document.getElementById("questionGrid").innerHTML=html;
 }
 
 function updateGrid(){
-    for(let i=0;i<questions.length;i++){
-        const el=document.getElementById("q"+i); if(!el)continue;
-        el.className="cell";
-        if(i===current) el.classList.add("current");
-        else if(selectedAnswers[i]!==null) el.classList.add("answered");
-        else if(visitedQuestions[i]) el.classList.add("visited");
-    }
+let ans=0;
+for(let i=0;i<questions.length;i++){
+const el=document.getElementById("q"+i);
+if(!el) continue;
+el.className="cell";
+if(i===current) el.classList.add("current");
+else if(selectedAnswers[i]!==null) el.classList.add("answered");
+else if(visitedQuestions[i]) el.classList.add("visited");
+else el.classList.add("unseen");
+if(selectedAnswers[i]!==null) ans++;
+}
+const p=Math.round((ans/questions.length)*100);
+document.getElementById("progressBar").style.width=p+"%";
+document.getElementById("progressPercent").innerText=p+"%";
 }
 
 function startTimer(){
-    const tInterval = setInterval(()=>{
-        const m=Math.floor(totalTime/60), s=totalTime%60;
-        document.getElementById("timer").innerText=`${m}:${s<10?"0":""}${s}`;
-        if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
-    },1000);
+const tInterval=setInterval(()=>{
+const m=Math.floor(totalTime/60), s=totalTime%60;
+document.getElementById("timer").innerText=`${m}:${s<10?"0":""}${s}`;
+if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
+},1000);
 }
 
 async function submitQuiz(){
-    if(quizSubmitted)return; quizSubmitted=true;
-    let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
-    localStorage.setItem("quizResult", JSON.stringify({ score, total: questions.length }));
-    window.location.href="result.html";
+    if(quizSubmitted) return;
+    quizSubmitted=true;
+
+    let score=0;
+    questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+
+    const topicInfo = getVerifiedTopicSelection();
+
+    const resultData = {
+        score,
+        total: questions.length,
+        questions,
+        answers: selectedAnswers,
+        subject: localStorage.getItem("selectedSubject"),
+        class: localStorage.getItem("selectedClass"),
+        topic: topicInfo.selectedTopicCode,
+        topicName: topicInfo.selectedTopicName,
+        topicDisplay: topicInfo.selectedTopicDisplay
+    };
+
+    localStorage.setItem("quizResult", JSON.stringify(resultData));
+
+    try {
+        await addDoc(collection(db,"leaderboard"),{
+            email:auth.currentUser.email,
+            uid:auth.currentUser.uid,
+            score,
+            total:questions.length,
+            accuracy:((score/questions.length)*100).toFixed(2),
+            date:serverTimestamp(),
+            isChampionship,
+            sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null,
+            subject:localStorage.getItem("selectedSubject"),
+            studentClass:localStorage.getItem("selectedClass"),
+            topic: topicInfo.selectedTopicCode || null,
+            topicName: topicInfo.selectedTopicName || null
+        });
+        window.location.href="result.html";
+    } catch(e) {
+        window.location.href="result.html";
+    }
 }
 
+window.deleteCurrentQuestion = async () => {
+    const qId = questions[current].id;
+    if (confirm("Delete this question permanently?")) {
+        await deleteDoc(doc(db, "questions", qId));
+        alert("Deleted.");
+        location.reload();
+    }
+};
+
+window.logout=async()=>{
+    if(confirm("Logout?")){
+        await signOut(auth);
+        window.location.replace("login.html");
+    }
+};
+window.nextQuestion = nextQuestion;
+window.prevQuestion = prevQuestion;
+window.jumpTo = jumpTo;
+window.saveAnswer = saveAnswer;
 window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
-window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("login.html"); } };
 </script>
+
+<footer>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
+</footer>
 </body>
 </html>
