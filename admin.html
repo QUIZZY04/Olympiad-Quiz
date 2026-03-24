@@ -312,6 +312,16 @@ border-top:1px solid var(--border);
             <div class="badge" id="chapterDetailCount">0 Questions</div>
         </div>
 
+        <div style="display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:end; margin-top:16px;">
+            <div>
+                <label>Filter by Chapter Name</label>
+                <input type="text" id="chapterNameSearch" placeholder="Type chapter name to filter question-wise details..." oninput="filterQuestionWiseChapterDetails()">
+            </div>
+            <div>
+                <button class="delete" onclick="clearQuestionWiseChapterFilter()">Clear Filter</button>
+            </div>
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -531,7 +541,8 @@ const feedbackRef=collection(db,"feedback");
 const expFeedbackRef=collection(db,"feedbacks"); 
 const sessionsRef=collection(db,"test_sessions");
 
-let uploadedImageUrls = {}; 
+let uploadedImageUrls = {};
+let allQuestionWiseChapterRows = []; 
 
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
@@ -644,6 +655,43 @@ function formatPrettyLabel(value, fallback = 'All') {
     return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
+window.filterQuestionWiseChapterDetails = function() {
+    const detailTableEl = document.getElementById('chapterQuestionTable');
+    const searchValue = (document.getElementById('chapterNameSearch').value || '').trim().toLowerCase();
+
+    let filteredRows = allQuestionWiseChapterRows;
+    if (searchValue) {
+        filteredRows = allQuestionWiseChapterRows.filter(item =>
+            (item.chapterName || '').toLowerCase().includes(searchValue)
+        );
+    }
+
+    if (!filteredRows.length) {
+        detailTableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No question details match this chapter name filter.</td></tr>`;
+        document.getElementById('chapterDetailCount').innerText = '0 Questions';
+        return;
+    }
+
+    let detailHtml = '';
+    filteredRows.forEach((item) => {
+        detailHtml += `<tr>
+            <td>${item.id}</td>
+            <td>${item.class}</td>
+            <td>${item.subject}</td>
+            <td><span class="badge">${item.code}</span></td>
+            <td>${item.chapterName}</td>
+            <td>${item.questionText}</td>
+        </tr>`;
+    });
+    detailTableEl.innerHTML = detailHtml;
+    document.getElementById('chapterDetailCount').innerText = `${filteredRows.length} Questions`;
+};
+
+window.clearQuestionWiseChapterFilter = function() {
+    document.getElementById('chapterNameSearch').value = '';
+    filterQuestionWiseChapterDetails();
+};
+
 window.loadChapterSummary = async function() {
     const fClass = document.getElementById('chapterFilterClass').value;
     const fSubject = document.getElementById('chapterFilterSubject').value;
@@ -656,6 +704,8 @@ window.loadChapterSummary = async function() {
     document.getElementById('chapterUniqueCount').innerText = '0';
     document.getElementById('chapterQuestionCount').innerText = '0';
     document.getElementById('chapterDetailCount').innerText = '0 Questions';
+    document.getElementById('chapterNameSearch').value = '';
+    allQuestionWiseChapterRows = [];
 
     tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center;">Loading chapter data...</td></tr>`;
     detailTableEl.innerHTML = `<tr><td colspan="6" style="text-align:center;">Loading question details...</td></tr>`;
@@ -670,6 +720,8 @@ window.loadChapterSummary = async function() {
         if (snapshot.empty) {
             tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No questions found for selected filter.</td></tr>`;
             detailTableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No question details found for selected filter.</td></tr>`;
+            document.getElementById('chapterNameSearch').value = '';
+            allQuestionWiseChapterRows = [];
             statusEl.innerText = 'No data found.';
             return;
         }
@@ -740,18 +792,8 @@ window.loadChapterSummary = async function() {
             return a.id.localeCompare(b.id, undefined, { numeric: true });
         });
 
-        let detailHtml = '';
-        questionRows.forEach((item) => {
-            detailHtml += `<tr>
-                <td>${item.id}</td>
-                <td>${item.class}</td>
-                <td>${item.subject}</td>
-                <td><span class="badge">${item.code}</span></td>
-                <td>${item.chapterName}</td>
-                <td>${item.questionText}</td>
-            </tr>`;
-        });
-        detailTableEl.innerHTML = detailHtml;
+        allQuestionWiseChapterRows = questionRows;
+        filterQuestionWiseChapterDetails();
 
         document.getElementById('chapterUniqueCount').innerText = rows.length;
         document.getElementById('chapterQuestionCount').innerText = totalQuestions;
@@ -761,6 +803,8 @@ window.loadChapterSummary = async function() {
         console.error(e);
         tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--danger);">Failed to load chapter data.</td></tr>`;
         detailTableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--danger);">Failed to load question details.</td></tr>`;
+        document.getElementById('chapterNameSearch').value = '';
+        allQuestionWiseChapterRows = [];
         statusEl.innerText = 'Error: ' + e.message;
     }
 };
