@@ -89,6 +89,7 @@ border-radius:8px;
 border:none;
 background:#020617;
 color:white;
+box-sizing:border-box;
 }
 textarea{
 height:200px;
@@ -122,11 +123,13 @@ th,td{
 padding:10px;
 border-bottom:1px solid var(--border);
 text-align:left;
+vertical-align:top;
 }
 img{
 max-width:80px;
 border-radius:6px;
 }
+
 .collapse-btn {
     background: transparent;
     color: var(--brand);
@@ -138,6 +141,7 @@ border-radius:6px;
 }
 .collapse-btn:hover { background: var(--brand); color: #000; }
 .hidden-content { display: none; }
+
 .modal {
     display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.9); justify-content: center; align-items: center;
@@ -146,7 +150,62 @@ border-radius:6px;
     background: var(--surface); padding: 30px; border-radius: 12px; width: 90%; max-width: 600px;
     border: 1px solid var(--border); max-height: 90vh; overflow-y: auto;
 }
+
+footer{
+text-align:center;
+padding:30px;
+background:rgba(2, 6, 23, 0.8);
+color:#94a3b8;
+border-top:1px solid var(--border);
+}
+
 .score-tag { background: var(--bg); padding: 2px 8px; border-radius: 4px; color: var(--brand); font-family: monospace; font-weight: 700; }
+
+.summary-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:14px;
+    margin-top:16px;
+}
+.summary-card{
+    background: rgba(15, 23, 42, 0.9);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:16px;
+}
+.summary-card .label{
+    font-size:12px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+}
+.summary-card .value{
+    font-size:28px;
+    font-weight:800;
+    margin-top:8px;
+}
+.chapter-tools{
+    display:grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap:12px;
+    align-items:end;
+}
+.badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:999px;
+    background:rgba(56,189,248,0.15);
+    color:var(--brand);
+    font-size:12px;
+    font-weight:700;
+}
+.muted{
+    color:var(--muted);
+    font-size:12px;
+}
+@media (max-width: 768px){
+    .chapter-tools{ grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -172,6 +231,78 @@ border-radius:6px;
         <input type="file" id="imageFolderInput" webkitdirectory directory multiple>
         <button class="upload" style="background: var(--accent);" onclick="uploadImageFolder()">Upload Folder Images</button>
         <div id="imageUploadStatus" style="margin-top:10px; font-size: 13px; font-weight: 600;"></div>
+    </div>
+
+    <div class="panel" style="border-top:2px solid var(--warning);">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap;">
+            <div>
+                <h2 style="margin-bottom:6px;">📚 Grade / Subject Chapter-Code Checker</h2>
+                <div class="muted">Check chapter code and chapter name class-wise and subject-wise directly from Firebase questions.</div>
+            </div>
+            <button class="upload" onclick="loadChapterSummary()">Refresh Chapter Data</button>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="label">Selected Class</div>
+                <div class="value" id="chapterSelectedClass">All</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Selected Subject</div>
+                <div class="value" id="chapterSelectedSubject">All</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Unique Chapters</div>
+                <div class="value" id="chapterUniqueCount">0</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Questions Count</div>
+                <div class="value" id="chapterQuestionCount">0</div>
+            </div>
+        </div>
+
+        <div class="chapter-tools" style="margin-top:18px;">
+            <div>
+                <label>Class</label>
+                <select id="chapterFilterClass">
+                    <option value="">All Classes</option>
+                    <option value="class1">Class 1</option><option value="class2">Class 2</option>
+                    <option value="class3">Class 3</option><option value="class4">Class 4</option>
+                    <option value="class5">Class 5</option><option value="class6">Class 6</option>
+                    <option value="class7">Class 7</option><option value="class8">Class 8</option>
+                    <option value="class9">Class 9</option><option value="class10">Class 10</option>
+                </select>
+            </div>
+            <div>
+                <label>Subject</label>
+                <select id="chapterFilterSubject">
+                    <option value="">All Subjects</option>
+                    <option value="maths">Maths</option><option value="science">Science</option>
+                    <option value="english">English</option><option value="reasoning">Reasoning</option>
+                </select>
+            </div>
+            <div>
+                <button class="upload" onclick="loadChapterSummary()">Check</button>
+            </div>
+        </div>
+
+        <div id="chapterSummaryStatus" class="muted" style="margin-top:12px;">Select class and subject, then click Check.</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Code</th>
+                    <th>Chapter Name</th>
+                    <th>Questions</th>
+                    <th>Sample IDs</th>
+                </tr>
+            </thead>
+            <tbody id="chapterSummaryTable">
+                <tr><td colspan="6" style="text-align:center; color: var(--muted);">No chapter data loaded yet.</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="panel">
@@ -222,129 +353,116 @@ border-radius:6px;
         </div>
     </div>
 
-    <div class="panel">
-        <h2>Step 2: Upload JSON File</h2>
-        <input type="file" id="jsonFile">
-        <button class="upload" onclick="uploadFile()">Upload File</button>
-    </div>
+<div class="panel">
+<h2>Step 2: Upload JSON File</h2>
+<input type="file" id="jsonFile">
+<button class="upload" onclick="uploadFile()">Upload File</button>
+</div>
 
-    <div class="panel">
-        <h2>OR Paste JSON Questions</h2>
-        <textarea id="jsonPaste"></textarea>
-        <button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
-        <button class="upload" onclick="pasteClipboard()" style="background: var(--brand); color: #000;">Paste</button>
-        <button class="delete" onclick="clearPaste()">Clear</button>
-    </div>
+<div class="panel">
+<h2>OR Paste JSON Questions</h2>
+<textarea id="jsonPaste"></textarea>
+<button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
+<button class="upload" onclick="pasteClipboard()" style="background: var(--brand); color: #000;">Paste</button>
+<button class="delete" onclick="clearPaste()">Clear</button>
+</div>
 
-    <div class="panel" style="border: 2px solid var(--warning);">
-        <h2>📅 Schedule Weekly Test Session</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div><label>Test Title</label><input type="text" id="sessTitle"></div>
-            <div><label>Subject</label>
-                <select id="sessSubject">
-                    <option value="maths">Mathematics</option>
-                    <option value="science" selected>Science</option>
-                    <option value="english">English</option>
-                    <option value="reasoning">Reasoning</option>
-                </select>
-            </div>
-            <div><label>Class</label>
-                <select id="sessClass">
-                    <option value="1">Class 1</option><option value="2">Class 2</option>
-                    <option value="3">Class 3</option><option value="4">Class 4</option>
-                    <option value="5">Class 5</option><option value="6">Class 6</option>
-                    <option value="7">Class 7</option><option value="8">Class 8</option>
-                    <option value="9">Class 9</option><option value="10">Class 10</option>
-                </select>
-            </div>
-            <div><label>Test Date</label><input type="date" id="sessDate"></div>
-            <div><label>Start Time</label><input type="time" id="sessTime"></div>
-            <div><label>Starting Question ID</label><input type="text" id="sessStartId"></div>
-            <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
-            <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
+<div class="panel" style="border: 2px solid var(--warning);">
+    <h2>📅 Schedule Weekly Test Session</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div><label>Test Title</label><input type="text" id="sessTitle"></div>
+        <div><label>Subject</label>
+            <select id="sessSubject">
+                <option value="maths">Mathematics</option>
+                <option value="science" selected>Science</option>
+                <option value="english">English</option>
+                <option value="reasoning">Reasoning</option>
+            </select>
         </div>
-        <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session & Auto-Link 50 IDs</button>
-    </div>
-
-    <div class="panel">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>📅 Managed Test Sessions</h2>
-            <button class="upload" onclick="loadSessions()">Refresh List</button>
+        <div><label>Class</label>
+            <select id="sessClass">
+                <option value="1">Class 1</option><option value="2">Class 2</option>
+                <option value="3">Class 3</option><option value="4">Class 4</option>
+                <option value="5">Class 5</option><option value="6">Class 6</option>
+                <option value="7">Class 7</option><option value="8">Class 8</option>
+                <option value="9">Class 9</option><option value="10">Class 10</option>
+            </select>
         </div>
-        <table style="margin-top: 15px;">
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Title</th>
-                    <th>Class</th>
-                    <th>Subject</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="sessionsTable"></tbody>
-        </table>
+        <div><label>Test Date</label><input type="date" id="sessDate"></div>
+        <div><label>Start Time</label><input type="time" id="sessTime"></div>
+        <div><label>Starting Question ID</label><input type="text" id="sessStartId"></div>
+        <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
+        <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
     </div>
+    <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session & Auto-Link 50 IDs</button>
+</div>
 
-    <div class="panel">
-        <h2>Filter Questions</h2>
-        <select id="filterClass">
-            <option value="">All Classes</option>
-            <option value="class1">Class 1</option><option value="class2">Class 2</option>
-            <option value="class3">Class 3</option><option value="class4">Class 4</option>
-            <option value="class5">Class 5</option><option value="class6">Class 6</option>
-            <option value="class7">Class 7</option><option value="class8">Class 8</option>
-            <option value="class9">Class 9</option><option value="class10">Class 10</option>
-        </select>
-        <select id="filterSubject">
-            <option value="">All Subjects</option>
-            <option value="maths">Maths</option><option value="science">Science</option>
-            <option value="english">English</option><option value="reasoning">Reasoning</option>
-        </select>
-        <button class="upload" onclick="loadQuestions()">Apply Filter</button>
+<div class="panel">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>📅 Managed Test Sessions</h2>
+        <button class="upload" onclick="loadSessions()">Refresh List</button>
     </div>
+    <table style="margin-top: 15px;">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Title</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="sessionsTable"></tbody>
+    </table>
+</div>
 
-    <div class="panel">
-        <h2>Total Questions: <span id="count">0</span></h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Class</th>
-                    <th>Subject</th>
-                    <th>Code</th>
-                    <th>Chapter</th>
-                    <th>Question</th>
-                    <th>Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="questionsTable">
-                <tr><td colspan="7" style="text-align:center; color: var(--muted);">Click Apply Filter to load questions...</td></tr>
-            </tbody>
-        </table>
-    </div>
+<div class="panel">
+<h2>Filter Questions</h2>
+<select id="filterClass">
+<option value="">All Classes</option>
+<option value="class1">Class 1</option><option value="class2">Class 2</option>
+<option value="class3">Class 3</option><option value="class4">Class 4</option>
+<option value="class5">Class 5</option><option value="class6">Class 6</option>
+<option value="class7">Class 7</option><option value="class8">Class 8</option>
+<option value="class9">Class 9</option><option value="class10">Class 10</option>
+</select>
+<select id="filterSubject">
+<option value="">All Subjects</option>
+<option value="maths">Maths</option><option value="science">Science</option>
+<option value="english">English</option><option value="reasoning">Reasoning</option>
+</select>
+<button class="upload" onclick="loadQuestions()">Apply Filter</button>
+</div>
+
+<div class="panel">
+<h2>Total Questions: <span id="count">0</span></h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Subject</th>
+<th>Question</th>
+<th>Image</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="questionsTable">
+    <tr><td colspan="5" style="text-align:center; color: var(--muted);">Click Apply Filter to load questions...</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 
 <div id="editModal" class="modal">
     <div class="modal-content">
         <h2>Edit Question</h2>
         <input type="hidden" id="editId">
-        <label style="font-size: 11px; color: var(--muted);">Question Text</label>
         <textarea id="editQ" style="height:80px;"></textarea>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div><label style="font-size: 11px; color: var(--muted);">Topic Code</label><input id="editCode"></div>
-            <div><label style="font-size: 11px; color: var(--muted);">Chapter Name</label><input id="editChapter"></div>
-        </div>
-
-        <label style="font-size: 11px; color: var(--muted);">Options</label>
         <input id="editO0" placeholder="Option 0 (Correct)"><input id="editO1" placeholder="Option 1">
         <input id="editO2" placeholder="Option 2"><input id="editO3" placeholder="Option 3">
-        
-        <label style="font-size: 11px; color: var(--muted);">Solution</label>
         <textarea id="editSol" placeholder="Solution" style="height:60px;"></textarea>
-        
-        <button class="upload" onclick="saveEdit()">Save Changes</button>
+        <button class="upload" onclick="saveEdit()">Save</button>
         <button class="delete" onclick="closeEdit()">Cancel</button>
     </div>
 </div>
@@ -405,18 +523,22 @@ window.pasteClipboard = async function() {
     try {
         const text = await navigator.clipboard.readText();
         document.getElementById("jsonPaste").value = text;
-    } catch (err) { alert("Paste manually."); }
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually.");
+    }
 };
 
-window.clearPaste = function() { document.getElementById("jsonPaste").value = ""; };
+window.clearPaste = function() {
+    document.getElementById("jsonPaste").value = "";
+};
 
 window.uploadImageFolder = async function() {
     const input = document.getElementById('imageFolderInput');
     const statusDiv = document.getElementById('imageUploadStatus');
     const files = input.files;
-    if (files.length === 0) { statusDiv.innerHTML = "Select folder."; return; }
+    if (files.length === 0) { statusDiv.innerHTML = "Select a folder first."; return; }
 
-    statusDiv.innerHTML = "Uploading images... ⏳";
+    statusDiv.innerHTML = "Processing and uploading images... ⏳";
     let uploadedCount = 0;
     uploadedImageUrls = {}; 
 
@@ -429,50 +551,164 @@ window.uploadImageFolder = async function() {
             const downloadURL = await getDownloadURL(storageRef);
             uploadedImageUrls[idKey] = downloadURL;
             uploadedCount++;
-            statusDiv.innerHTML = `Uploading: ${uploadedCount}...`;
+            statusDiv.innerHTML = `Uploading: ${uploadedCount} images complete...`;
         } catch (e) { console.error(e); }
     }
-    statusDiv.innerHTML = `<span style='color:var(--success);'>✅ ${uploadedCount} ready!</span>`;
+    statusDiv.innerHTML = `<span style='color:var(--success);'>✅ ${uploadedCount} images ready in memory!</span>`;
 };
 
 window.uploadPaste = async function() {
     try {
         const text = document.getElementById("jsonPaste").value.trim();
-        if (!text) return;
+        if (!text) {
+            alert("Please paste some JSON data first.");
+            return;
+        }
+
         const data = JSON.parse(text);
         let successCount = 0;
+
         for (let q of data) {
             if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
             await setDoc(doc(questionsRef, q.id), q);
             successCount++;
         }
-        alert(`✅ Uploaded ${successCount}!`);
-        document.getElementById("jsonPaste").value = "";
-    } catch (e) { alert("❌ Error: " + e.message); }
+
+        if (confirm(`✅ Successfully uploaded ${successCount} questions!\n\nClick OK to clear the area for the next batch.`)) {
+            document.getElementById("jsonPaste").value = "";
+            uploadedImageUrls = {}; 
+            document.getElementById('imageUploadStatus').innerHTML = "";
+            document.getElementById('imageFolderInput').value = "";
+        }
+    } catch (e) { 
+        alert("❌ Error: " + e.message); 
+    }
 };
 
 window.uploadFile = async function() {
     const fileInput = document.getElementById("jsonFile");
     const file = fileInput.files[0];
-    if (!file) return;
+    if (!file) {
+        alert("Please select a file first.");
+        return;
+    }
+
     const text = await file.text();
     try {
         const data = JSON.parse(text);
         let successCount = 0;
+
         for (let q of data) {
             if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
             await setDoc(doc(questionsRef, q.id), q);
             successCount++;
         }
-        alert(`✅ Uploaded ${successCount}!`);
-    } catch (e) { alert("❌ File Error: " + e.message); }
+
+        if (confirm(`✅ Successfully uploaded ${successCount} questions from file!\n\nClick OK to reset the uploader.`)) {
+            fileInput.value = "";
+            uploadedImageUrls = {};
+            document.getElementById('imageUploadStatus').innerHTML = "";
+        }
+    } catch (e) { 
+        alert("❌ File Error: " + e.message); 
+    }
+};
+
+function formatPrettyLabel(value, fallback = 'All') {
+    if (!value) return fallback;
+    if (value.startsWith('class')) return 'Class ' + value.replace('class', '');
+    return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+window.loadChapterSummary = async function() {
+    const fClass = document.getElementById('chapterFilterClass').value;
+    const fSubject = document.getElementById('chapterFilterSubject').value;
+    const statusEl = document.getElementById('chapterSummaryStatus');
+    const tableEl = document.getElementById('chapterSummaryTable');
+
+    document.getElementById('chapterSelectedClass').innerText = formatPrettyLabel(fClass);
+    document.getElementById('chapterSelectedSubject').innerText = formatPrettyLabel(fSubject);
+    document.getElementById('chapterUniqueCount').innerText = '0';
+    document.getElementById('chapterQuestionCount').innerText = '0';
+
+    tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center;">Loading chapter data...</td></tr>`;
+    statusEl.innerText = 'Reading chapter code and chapter name from Firebase...';
+
+    let qry = questionsRef;
+    if (fClass) qry = query(qry, where('class', '==', fClass));
+    if (fSubject) qry = query(qry, where('subject', '==', fSubject));
+
+    try {
+        const snapshot = await getDocs(qry);
+        if (snapshot.empty) {
+            tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No questions found for selected filter.</td></tr>`;
+            statusEl.innerText = 'No data found.';
+            return;
+        }
+
+        const chapterMap = new Map();
+        let totalQuestions = 0;
+
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            totalQuestions++;
+
+            const cls = data.class || 'N/A';
+            const subject = data.subject || 'N/A';
+            const code = data.code || data.chapterCode || data.chapter_code || data.topicCode || data.topic_code || '—';
+            const chapterName = data.chapter || data.chapterName || data.chapter_name || data.topic || data.topicName || data.topic_name || '—';
+            const key = `${cls}__${subject}__${code}__${chapterName}`;
+
+            if (!chapterMap.has(key)) {
+                chapterMap.set(key, {
+                    class: cls,
+                    subject,
+                    code,
+                    chapterName,
+                    count: 0,
+                    ids: []
+                });
+            }
+
+            const entry = chapterMap.get(key);
+            entry.count++;
+            if (entry.ids.length < 5) entry.ids.push(docSnap.id);
+        });
+
+        const rows = Array.from(chapterMap.values()).sort((a, b) => {
+            if (a.class !== b.class) return a.class.localeCompare(b.class, undefined, { numeric: true });
+            if (a.subject !== b.subject) return a.subject.localeCompare(b.subject);
+            return a.code.localeCompare(b.code, undefined, { numeric: true });
+        });
+
+        let html = '';
+        rows.forEach((item) => {
+            html += `<tr>
+                <td>${item.class}</td>
+                <td>${item.subject}</td>
+                <td><span class="badge">${item.code}</span></td>
+                <td>${item.chapterName}</td>
+                <td>${item.count}</td>
+                <td>${item.ids.join(', ')}</td>
+            </tr>`;
+        });
+
+        tableEl.innerHTML = html;
+        document.getElementById('chapterUniqueCount').innerText = rows.length;
+        document.getElementById('chapterQuestionCount').innerText = totalQuestions;
+        statusEl.innerText = `Found ${rows.length} unique chapter entries from ${totalQuestions} questions.`;
+    } catch (e) {
+        console.error(e);
+        tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--danger);">Failed to load chapter data.</td></tr>`;
+        statusEl.innerText = 'Error: ' + e.message;
+    }
 };
 
 window.loadQuestions=async function(){
     const fClass = document.getElementById("filterClass").value;
     const fSubject = document.getElementById("filterSubject").value;
-    const tableBody = document.getElementById("questionsTable");
-    tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;">Filtering...</td></tr>`;
+    
+    document.getElementById("questionsTable").innerHTML = `<tr><td colspan="5" style="text-align:center;">Filtering questions...</td></tr>`;
 
     let qry = questionsRef;
     if (fClass) qry = query(qry, where("class", "==", fClass));
@@ -482,18 +718,14 @@ window.loadQuestions=async function(){
         const snapshot = await getDocs(qry);
         let html="";
         if (snapshot.empty) {
-            html = `<tr><td colspan="7" style="text-align:center;">No questions found.</td></tr>`;
+            html = `<tr><td colspan="5" style="text-align:center; color: var(--muted);">No questions found matching these filters.</td></tr>`;
         } else {
             snapshot.forEach((d)=>{
                 const data=d.data();
-                const code = data.topicCode || data.code || 'N/A';
-                const chapter = data.chapterName || data.topic || 'N/A';
                 html+=`<tr>
                     <td>${data.class}</td>
                     <td>${data.subject}</td>
-                    <td><span class="score-tag">${code}</span></td>
-                    <td>${chapter}</td>
-                    <td>${data.q ? data.q.substring(0,25) : 'No Text'}...</td>
+                    <td>${data.q ? data.q.substring(0,30) : 'No Text'}...</td>
                     <td>${data.image_url ? '✅' : '❌'}</td>
                     <td>
                         <button class="edit-btn" onclick="openEdit('${d.id}')">Edit</button>
@@ -502,9 +734,12 @@ window.loadQuestions=async function(){
                 </tr>`;
             });
         }
-        tableBody.innerHTML=html;
+        document.getElementById("questionsTable").innerHTML=html;
         document.getElementById("count").innerText=snapshot.size;
-    } catch (e) { console.error(e); }
+    } catch (e) {
+        alert("Filter Error: " + e.message);
+        console.error(e);
+    }
 }
 
 window.openEdit = async (id) => {
@@ -512,13 +747,11 @@ window.openEdit = async (id) => {
     if (docSnap.exists()) {
         const data = docSnap.data();
         document.getElementById("editId").value = id;
-        document.getElementById("editQ").value = data.q || "";
-        document.getElementById("editCode").value = data.topicCode || data.code || "";
-        document.getElementById("editChapter").value = data.chapterName || data.topic || "";
-        document.getElementById("editO0").value = data.o[0] || "";
-        document.getElementById("editO1").value = data.o[1] || "";
-        document.getElementById("editO2").value = data.o[2] || "";
-        document.getElementById("editO3").value = data.o[3] || "";
+        document.getElementById("editQ").value = data.q;
+        document.getElementById("editO0").value = data.o[0];
+        document.getElementById("editO1").value = data.o[1];
+        document.getElementById("editO2").value = data.o[2];
+        document.getElementById("editO3").value = data.o[3];
         document.getElementById("editSol").value = data.sol || "";
         document.getElementById("editModal").style.display = "flex";
     }
@@ -528,8 +761,6 @@ window.saveEdit = async () => {
     const id = document.getElementById("editId").value;
     const updateData = {
         q: document.getElementById("editQ").value,
-        topicCode: document.getElementById("editCode").value,
-        chapterName: document.getElementById("editChapter").value,
         o: [
             document.getElementById("editO0").value,
             document.getElementById("editO1").value,
@@ -544,7 +775,10 @@ window.saveEdit = async () => {
 };
 
 window.closeEdit = () => document.getElementById("editModal").style.display = "none";
+
 window.deleteQuestion=async (id) => { if(confirm("Delete?")) { await deleteDoc(doc(db,"questions",id)); loadQuestions(); } };
+
+window.logout=async () => { await signOut(auth); window.location.href="login.html"; };
 
 function loadFeedback() {
     onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), (snap) => {
@@ -592,6 +826,7 @@ window.openSessionEdit = async (id) => {
         document.getElementById("editSessTitle").value = data.title;
         document.getElementById("editSessPrice").value = data.price;
         document.getElementById("editSessDuration").value = data.duration;
+        
         if (data.startTime instanceof Timestamp) {
             const dt = data.startTime.toDate();
             document.getElementById("editSessDate").value = dt.toISOString().split('T')[0];
@@ -607,8 +842,10 @@ window.saveSessionEdit = async () => {
     const time = document.getElementById("editSessTime").value;
     const duration = document.getElementById("editSessDuration").value;
     const startDateTime = new Date(`${date}T${time}`);
+
     const durationMs = parseInt(duration) * 60000;
     const endDateTime = new Date(startDateTime.getTime() + durationMs);
+
     const updateData = {
         title: document.getElementById("editSessTitle").value,
         price: parseInt(document.getElementById("editSessPrice").value),
@@ -616,12 +853,14 @@ window.saveSessionEdit = async () => {
         startTime: Timestamp.fromDate(startDateTime),
         endTime: Timestamp.fromDate(endDateTime)
     };
+
     await updateDoc(doc(db, "test_sessions", id), updateData);
     closeSessEdit();
     loadSessions();
 };
 
 window.closeSessEdit = () => document.getElementById("editSessModal").style.display = "none";
+
 window.deleteSession = async (id) => { if(confirm("Delete session?")) { await deleteDoc(doc(db, "test_sessions", id)); loadSessions(); } };
 
 window.createSession = async () => {
@@ -633,19 +872,23 @@ window.createSession = async () => {
     const startId = document.getElementById("sessStartId").value;
     const price = document.getElementById("sessPrice").value;
     const duration = document.getElementById("sessDuration").value;
-    if(!title || !date || !time || !startId || !duration) { alert("Fill all fields."); return; }
+
+    if(!title || !date || !time || !startId || !duration) { alert("Fill all session fields including Duration"); return; }
+
     const startDateTime = new Date(`${date}T${time}`);
+
     const durationMs = parseInt(duration) * 60000;
     const endDateTime = new Date(startDateTime.getTime() + durationMs);
+    
     const questionIds = [];
     const prefix = startId.replace(/\d+$/, "");
-    const startNumNum = startId.match(/\d+$/);
-    if (!startNumNum) { alert("Invalid Start ID"); return; }
-    const startNum = parseInt(startNumNum[0]);
+    const startNum = parseInt(startId.match(/\d+$/)[0]);
+
     for(let i=0; i<50; i++) {
         const num = (startNum + i).toString().padStart(3, '0');
         questionIds.push(prefix + num);
     }
+
     await addDoc(sessionsRef, {
         title, subject, class: cls,
         startTime: Timestamp.fromDate(startDateTime),
@@ -655,11 +898,10 @@ window.createSession = async () => {
         duration: parseInt(duration),
         createdAt: serverTimestamp()
     });
+
     alert("Session Created!");
     loadSessions();
 };
-
-window.logout=async () => { await signOut(auth); window.location.href="login.html"; };
 </script>
 </body>
 </html>
