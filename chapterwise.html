@@ -43,10 +43,23 @@
         
         .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; white-space: nowrap; }
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
         .nav-links a:hover { color: var(--brand); }
 
-        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
         .selection-box {
             background: linear-gradient(145deg, #0f172a, #020617);
@@ -60,15 +73,61 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .selection-box h2 { color: var(--text); margin-bottom: 10px; font-size: 30px; font-weight: 800; }
-        .selection-box h2 span { color: var(--brand); }
-        .selection-box p { color: var(--muted); margin-bottom: 35px; font-size: 15px; }
+        .selection-box h2 {
+            color: var(--text);
+            margin-bottom: 10px;
+            font-size: 30px;
+            font-weight: 800;
+        }
 
-        .form-group { text-align: left; margin-bottom: 25px; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s; }
-        .form-group:hover { border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
+        .selection-box h2 span {
+            color: var(--brand);
+        }
 
-        .step-label { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
-        .step-number { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--brand); color: white; border-radius: 50%; font-size: 12px; }
+        .selection-box p {
+            color: var(--muted);
+            margin-bottom: 35px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        
+        .form-group:hover {
+            border-color: var(--brand);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .step-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--brand);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+        }
 
         select {
             width: 100%;
@@ -85,12 +144,35 @@
             background-repeat: no-repeat;
             background-position: right 1rem center;
             background-size: 1.2em;
+            transition: 0.2s;
         }
 
+        select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+
         .btn-start {
-            display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; background: var(--brand); color: #ffffff; border: none; border-radius: 10px; font-weight: 800; font-size: 16px; text-transform: uppercase; cursor: pointer; margin-top: 10px; transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: var(--brand);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
         }
-        .btn-start:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); }
+
+        .btn-start:hover { 
+            background: var(--accent); 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); 
+        }
     </style>
 </head>
 <body>
@@ -100,6 +182,7 @@
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
         <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
     </div>
 </nav>
@@ -107,20 +190,32 @@
 <div class="container">
     <div class="selection-box">
         <h2>📑 Chapterwise <span>Quiz</span></h2>
-        <p>Master every concept by practicing specific topics.</p>
+        <p>Master every concept by practicing specific topics from your school curriculum.</p>
 
         <div class="form-group">
-            <div class="step-label"><span class="step-number">1</span> Select Grade</div>
+            <div class="step-label">
+                <span class="step-number">1</span>
+                Select Grade
+            </div>
             <select id="classSelect" onchange="updateTopics()">
                 <option value="class1">Grade 1</option>
+                <option value="class2">Grade 2</option>
+                <option value="class3">Grade 3</option>
+                <option value="class4">Grade 4</option>
+                <option value="class5">Grade 5</option>
                 <option value="class6" selected>Grade 6</option>
                 <option value="class7">Grade 7</option>
+                <option value="class8">Grade 8</option>
+                <option value="class9">Grade 9</option>
                 <option value="class10">Grade 10</option>
             </select>
         </div>
 
         <div class="form-group">
-            <div class="step-label"><span class="step-number">2</span> Select Subject</div>
+            <div class="step-label">
+                <span class="step-number">2</span>
+                Select Subject
+            </div>
             <select id="subjectSelect" onchange="updateTopics()">
                 <option value="" disabled selected>Choose a Subject...</option>
                 <option value="maths">Mathematics (IMO)</option>
@@ -129,20 +224,29 @@
         </div>
 
         <div class="form-group">
-            <div class="step-label"><span class="step-number">3</span> Select Topic</div>
+            <div class="step-label" id="topicStepLabel">
+                <span class="step-number">3</span>
+                Select Topic
+            </div>
             <select id="topicSelect">
                 <option value="" disabled selected>Select subject first...</option>
             </select>
         </div>
 
-        <button class="btn-start" onclick="startPractice()">Start Practice →</button>
+        <button class="btn-start" onclick="startPractice()">
+            Start Practice →
+        </button>
     </div>
 </div>
+
+<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { TOPIC_MASTER, SOF_CURRICULUM } from './topicMaster.js';
+    import { SOF_CURRICULUM } from './topicMaster.js';
 
     const firebaseConfig = {
         apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -160,23 +264,30 @@
         const selectedClass = document.getElementById("classSelect").value;
         const subject = document.getElementById("subjectSelect").value;
         const topicSelect = document.getElementById("topicSelect");
+        const topicStepLabel = document.getElementById("topicStepLabel");
 
-        topicSelect.innerHTML = "";
+        topicSelect.innerHTML = ""; 
 
-        const codes = SOF_CURRICULUM[selectedClass]?.[subject];
+        const topicMap = SOF_CURRICULUM[selectedClass]?.[subject];
 
-        if (codes) {
-            codes.forEach(code => {
+        if (topicMap) {
+            // Loop through the object entries [code, name]
+            Object.entries(topicMap).forEach(([code, name]) => {
                 const option = document.createElement("option");
-                option.value = code;
-                const name = TOPIC_MASTER[code] || "Untitled Topic";
+                option.value = code; 
                 option.textContent = `${code} - ${name}`;
                 topicSelect.appendChild(option);
             });
+            
+            const className = document.getElementById("classSelect").options[document.getElementById("classSelect").selectedIndex].text;
+            const subName = document.getElementById("subjectSelect").options[document.getElementById("subjectSelect").selectedIndex].text.split(' ')[0];
+            topicStepLabel.innerHTML = `<span class="step-number">3</span> Select topic of ${subName} for ${className}`;
         } else {
             const option = new Option("Select subject first...", "");
             option.disabled = true;
+            option.selected = true;
             topicSelect.add(option);
+            topicStepLabel.innerHTML = `<span class="step-number">3</span> Select Topic`;
         }
     };
 
@@ -186,7 +297,7 @@
         const topicSelect = document.getElementById("topicSelect");
 
         if(!selectedSubject || !topicSelect.value) {
-            alert("Please select both a subject and a topic.");
+            alert("Please select both a subject and a topic to proceed.");
             return;
         }
 
