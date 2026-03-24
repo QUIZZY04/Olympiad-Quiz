@@ -25,7 +25,6 @@
             --danger: #f43f5e;
             --success: #10b981;
             --warning: #f59e0b;
-            --glass: rgba(15, 23, 42, 0.7);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -36,135 +35,68 @@
             color: var(--text);
             display: flex;
             flex-direction: column;
-            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), 
-                              radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
             background-attachment: fixed;
         }
 
         nav {
-            background: rgba(2, 6, 23, 0.8); 
-            backdrop-filter: blur(12px); 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
             border-bottom: 1px solid var(--border); 
-            padding: 15px 5%; 
+            padding: 20px 5%; 
             display: flex; 
             align-items: center; 
             justify-content: space-between;
             position: sticky; top: 0; z-index: 1000;
         }
         
-        .brand { font-size: 1.4rem; font-weight: 700; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--brand); }
+        .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; }
+        .nav-links { display: flex; gap: 12px; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; text-transform: uppercase; }
 
-        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
+        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
 
         .selection-box {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
+            background: linear-gradient(145deg, #0f172a, #020617);
             border: 1px solid var(--border);
-            border-top: 4px solid var(--brand);
-            padding: 50px;
-            border-radius: 28px;
+            border-top: 2px solid var(--brand);
+            padding: 45px 40px;
+            border-radius: 24px;
             width: 100%;
-            max-width: 750px;
+            max-width: 550px;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        .selection-box h2 { font-size: 2rem; margin-bottom: 8px; font-weight: 800; }
-        .selection-box h2 span { color: var(--brand); }
-        .selection-box p { color: var(--muted); margin-bottom: 40px; font-size: 1.05rem; }
-
-        .form-group { 
-            text-align: left; 
-            margin-bottom: 20px; 
-            background: rgba(255, 255, 255, 0.02); 
-            padding: 24px; 
-            border-radius: 18px; 
-            border: 1px solid var(--border);
-            transition: transform 0.2s, border-color 0.2s;
-        }
+        .form-group { text-align: left; margin-bottom: 25px; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 16px; border: 1px solid var(--border); }
         
-        .form-group:focus-within {
-            border-color: var(--brand);
-            background: rgba(56, 189, 248, 0.04);
-        }
+        .step-label { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 12px; text-transform: uppercase; }
 
-        .step-label { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-            font-size: 12px; 
-            font-weight: 700; 
-            color: var(--brand); 
-            margin-bottom: 14px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        .step-number { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 22px; 
-            height: 22px; 
-            background: var(--brand); 
-            color: var(--bg); 
-            border-radius: 6px; 
-            font-size: 11px; 
-            font-weight: 800;
-        }
+        .step-number { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--brand); color: white; border-radius: 50%; font-size: 12px; }
 
         select {
             width: 100%;
-            padding: 14px 18px;
+            padding: 14px 20px;
             background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 10px;
             color: var(--text);
-            font-size: 1rem;
-            font-weight: 500;
             outline: none;
             appearance: none;
-            cursor: pointer;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 1.2rem center;
-            background-size: 1.1em;
-            transition: 0.2s;
+            background-position: right 1rem center;
+            background-size: 1.2em;
         }
-
-        select:hover { border-color: var(--muted); }
 
         .btn-start {
             width: 100%;
-            margin-top: 10px;
-            padding: 18px;
+            padding: 16px;
             background: var(--brand);
-            color: var(--bg);
+            color: #ffffff;
             border: none;
-            border-radius: 14px;
+            border-radius: 10px;
             font-weight: 800;
-            font-size: 1rem;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3);
-        }
-
-        .btn-start:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.4);
-            filter: brightness(1.1);
-        }
-
-        @media (max-width: 640px) {
-            .selection-box { padding: 35px 20px; border-radius: 20px; }
-            .selection-box h2 { font-size: 1.5rem; }
-            .form-group { padding: 18px; }
-            .container { padding: 20px 15px; }
         }
     </style>
 </head>
@@ -221,168 +153,14 @@
 
 <script>
     const sofTopics = {
-        class1: {
-            maths: [
-                { code: "M01", name: "Number Sense" },
-                { code: "M02", name: "Patterns" },
-                { code: "M03", name: "Measurements" },
-                { code: "M04", name: "Geometry" },
-                { code: "M05", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Plants Around Us" },
-                { code: "S02", name: "Animals Around Us" },
-                { code: "S03", name: "Food and Water" },
-                { code: "S04", name: "Our Body and Hygiene" },
-                { code: "S05", name: "Air, Water and Environment" }
-            ]
-        },
-        class2: {
-            maths: [
-                { code: "M01", name: "Numbers" },
-                { code: "M02", name: "Addition and Subtraction" },
-                { code: "M03", name: "Multiplication" },
-                { code: "M04", name: "Shapes and Patterns" },
-                { code: "M05", name: "Measurements and Data" }
-            ],
-            science: [
-                { code: "S01", name: "Living and Non-Living Things" },
-                { code: "S02", name: "Plants" },
-                { code: "S03", name: "Animals" },
-                { code: "S04", name: "Food, Water and Air" },
-                { code: "S05", name: "Our Body and Safety" }
-            ]
-        },
-        class3: {
-            maths: [
-                { code: "M01", name: "Numbers" },
-                { code: "M02", name: "Addition, Subtraction and Multiplication" },
-                { code: "M03", name: "Division" },
-                { code: "M04", name: "Fractions" },
-                { code: "M05", name: "Geometry and Measurement" },
-                { code: "M06", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Living World" },
-                { code: "S02", name: "Plants" },
-                { code: "S03", name: "Animals" },
-                { code: "S04", name: "Human Body" },
-                { code: "S05", name: "Food, Water and Air" },
-                { code: "S06", name: "Light, Sound and Force" }
-            ]
-        },
-        class4: {
-            maths: [
-                { code: "M01", name: "Numbers" },
-                { code: "M02", name: "Addition, Subtraction, Multiplication and Division" },
-                { code: "M03", name: "Factors and Multiples" },
-                { code: "M04", name: "Fractions and Decimals" },
-                { code: "M05", name: "Geometry" },
-                { code: "M06", name: "Measurement" },
-                { code: "M07", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Plants and Animals" },
-                { code: "S02", name: "Food and Digestion" },
-                { code: "S03", name: "Matter and Materials" },
-                { code: "S04", name: "Force, Work and Energy" },
-                { code: "S05", name: "Air, Water and Weather" },
-                { code: "S06", name: "Earth and Universe" }
-            ]
-        },
-        class5: {
-            maths: [
-                { code: "M01", name: "Large Numbers" },
-                { code: "M02", name: "Operations on Numbers" },
-                { code: "M03", name: "Factors and Multiples" },
-                { code: "M04", name: "Fractions and Decimals" },
-                { code: "M05", name: "Geometry" },
-                { code: "M06", name: "Measurement" },
-                { code: "M07", name: "Perimeter, Area and Volume" },
-                { code: "M08", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Plants and Animals" },
-                { code: "S02", name: "Human Body and Health" },
-                { code: "S03", name: "Matter and Materials" },
-                { code: "S04", name: "Force, Energy and Machines" },
-                { code: "S05", name: "Air, Water and Environment" },
-                { code: "S06", name: "Earth and Space" }
-            ]
-        },
-        class6: {
-            maths: [
-                { code: "M01", name: "Knowing Our Numbers" },
-                { code: "M02", name: "Whole Numbers" },
-                { code: "M03", name: "Playing with Numbers" },
-                { code: "M04", name: "Basic Geometrical Ideas" },
-                { code: "M05", name: "Understanding Elementary Shapes" },
-                { code: "M06", name: "Integers" },
-                { code: "M07", name: "Fractions" },
-                { code: "M08", name: "Decimals" },
-                { code: "M09", name: "Data Handling" },
-                { code: "M10", name: "Mensuration" },
-                { code: "M11", name: "Algebra" },
-                { code: "M12", name: "Ratio and Proportion" }
-            ],
-            science: [
-                { code: "S01", name: "Food" },
-                { code: "S02", name: "Components of Food" },
-                { code: "S03", name: "Fibre to Fabric" },
-                { code: "S04", name: "Sorting Materials into Groups" },
-                { code: "S05", name: "Separation of Substances" },
-                { code: "S06", name: "Changes Around Us" },
-                { code: "S07", name: "Getting to Know Plants" },
-                { code: "S08", name: "Body Movements" },
-                { code: "S09", name: "Living Organisms and Their Surroundings" },
-                { code: "S10", name: "Motion and Measurement of Distances" },
-                { code: "S11", name: "Light, Shadows and Reflections" },
-                { code: "S12", name: "Electricity and Circuits" },
-                { code: "S13", name: "Fun with Magnets" },
-                { code: "S14", name: "Water" },
-                { code: "S15", name: "Air Around Us" },
-                { code: "S16", name: "Garbage In, Garbage Out" }
-            ]
-        },
-        class7: {
-            maths: [
-                { code: "M01", name: "Integers" },
-                { code: "M02", name: "Fractions and Decimals" },
-                { code: "M03", name: "Data Handling" },
-                { code: "M04", name: "Simple Equations" },
-                { code: "M05", name: "Lines and Angles" },
-                { code: "M06", name: "The Triangle and its Properties" },
-                { code: "M07", name: "Congruence of Triangles" },
-                { code: "M08", name: "Comparing Quantities" },
-                { code: "M09", name: "Rational Numbers" },
-                { code: "M10", name: "Practical Geometry" },
-                { code: "M11", name: "Perimeter and Area" },
-                { code: "M12", name: "Algebraic Expressions" },
-                { code: "M13", name: "Exponents and Powers" },
-                { code: "M14", name: "Symmetry" },
-                { code: "M15", name: "Visualising Solid Shapes" }
-            ],
-            science: [
-                { code: "S01", name: "Nutrition in Plants" },
-                { code: "S02", name: "Nutrition in Animals" },
-                { code: "S03", name: "Fibre to Fabric" },
-                { code: "S04", name: "Heat" },
-                { code: "S05", name: "Acids, Bases and Salts" },
-                { code: "S06", name: "Physical and Chemical Changes" },
-                { code: "S07", name: "Weather, Climate and Adaptations" },
-                { code: "S08", name: "Winds, Storms and Cyclones" },
-                { code: "S09", name: "Soil" },
-                { code: "S10", name: "Respiration in Organisms" },
-                { code: "S11", name: "Transportation in Animals and Plants" },
-                { code: "S12", name: "Reproduction in Plants" },
-                { code: "S13", name: "Motion and Time" },
-                { code: "S14", name: "Electric Current and its Effects" },
-                { code: "S15", name: "Light" },
-                { code: "S16", name: "Water: A Precious Resource" },
-                { code: "S17", name: "Forests: Our Lifeline" },
-                { code: "S18", name: "Wastewater Story" }
-            ]
-        },
+        class1: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class2: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class3: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class4: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class5: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
+        class6: { maths: [{code:"M01", name:"Knowing our Numbers"}], science: [{code:"S01", name:"Food"}] },
+        class7: { maths: [{code:"M01", name:"Integers"}], science: [{code:"S01", name:"Nutrition"}] },
+        // GRADE 8 DATA
         class8: {
             maths: [
                 { code: "M01", name: "Rational Numbers" },
@@ -399,7 +177,7 @@
                 { code: "M12", name: "Exponents and Powers" },
                 { code: "M13", name: "Direct and Inverse Proportions" },
                 { code: "M14", name: "Factorisation" },
-                { code: "M15", name: "Introduction to Graphs" }
+                { code: "M15", name: "Intro to Graphs and Playing with Numbers" }
             ],
             science: [
                 { code: "S01", name: "Crop Production and Management" },
@@ -411,108 +189,56 @@
                 { code: "S07", name: "Conservation of Plants and Animals" },
                 { code: "S08", name: "Cell Structure and Functions" },
                 { code: "S09", name: "Reproduction and Adolescence" },
-                { code: "S10", name: "Force and Pressure" },
-                { code: "S11", name: "Friction" },
-                { code: "S12", name: "Sound" },
-                { code: "S13", name: "Chemical Effects of Electric Current" },
-                { code: "S14", name: "Some Natural Phenomena" },
-                { code: "S15", name: "Light" },
-                { code: "S16", name: "Stars and the Solar System" },
-                { code: "S17", name: "Pollution of Air and Water" }
+                { code: "S10", name: "Force, Pressure and Friction" },
+                { code: "S11", name: "Sound" },
+                { code: "S12", name: "Chemical Effects of Electric Current" },
+                { code: "S13", name: "Some Natural Phenomena" },
+                { code: "S14", name: "Light" },
+                { code: "S15", name: "Stars and Solar System" },
+                { code: "S16", name: "Pollution of Air and Water" }
             ]
         }
     };
 
     function updateTopics() {
-        const selectedClass = document.getElementById("classSelect").value;
-        const selectedSubject = document.getElementById("subjectSelect").value;
+        const subject = document.getElementById("subjectSelect").value;
         const topicSelect = document.getElementById("topicSelect");
+        const selectedClass = document.getElementById("classSelect").value; 
 
-        topicSelect.innerHTML = "";
-
-        if (!selectedClass || !selectedSubject || !sofTopics[selectedClass] || !sofTopics[selectedClass][selectedSubject]) {
+        topicSelect.innerHTML = ""; 
+        
+        if (selectedClass && subject && sofTopics[selectedClass] && sofTopics[selectedClass][subject]) {
+            sofTopics[selectedClass][subject].forEach(topic => {
+                const option = document.createElement("option");
+                option.value = topic.code; 
+                option.textContent = topic.code + " - " + topic.name;
+                topicSelect.appendChild(option);
+            });
+        } else {
             const option = document.createElement("option");
-            option.value = "";
             option.textContent = "Select subject first...";
             option.disabled = true;
             option.selected = true;
             topicSelect.appendChild(option);
-            return;
         }
-
-        const topicList = sofTopics[selectedClass][selectedSubject];
-
-        const defaultOption = document.createElement("option");
-        defaultOption.value = "";
-        defaultOption.textContent = "Choose a Topic...";
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-        topicSelect.appendChild(defaultOption);
-
-        topicList.forEach(topic => {
-            const option = document.createElement("option");
-            option.value = topic.code;
-            option.textContent = `${topic.code} - ${topic.name}`;
-            option.setAttribute("data-topic-name", topic.name);
-            option.setAttribute("data-topic-code", topic.code);
-            option.setAttribute("data-topic-full", `${topic.code} - ${topic.name}`);
-            topicSelect.appendChild(option);
-        });
     }
 
     function startPractice() {
-        const classSelect = document.getElementById("classSelect");
-        const subjectSelect = document.getElementById("subjectSelect");
-        const topicSelect = document.getElementById("topicSelect");
+        const selectedClass = document.getElementById("classSelect").value;
+        const selectedSubject = document.getElementById("subjectSelect").value;
+        const selectedTopic = document.getElementById("topicSelect").value;
 
-        const selectedClass = classSelect.value;
-        const selectedSubject = subjectSelect.value;
-        const selectedTopic = topicSelect.value;
-        const selectedTopicOption = topicSelect.options[topicSelect.selectedIndex];
-
-        if (!selectedSubject || !selectedTopic) {
+        if(!selectedSubject || !selectedTopic) {
             alert("Please select both a subject and a topic.");
             return;
         }
 
-        const selectedTopicName =
-            selectedTopicOption?.getAttribute("data-topic-name") ||
-            (selectedTopicOption?.textContent || "").replace(/^[A-Z]\d+\s*-\s*/i, "").trim();
-
-        const selectedTopicFull =
-            selectedTopicOption?.getAttribute("data-topic-full") ||
-            `${selectedTopic} - ${selectedTopicName}`;
-
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", selectedSubject);
         localStorage.setItem("selectedTopic", selectedTopic);
-        localStorage.setItem("selectedTopicName", selectedTopicName);
-        localStorage.setItem("selectedTopicText", selectedTopicFull);
-        localStorage.setItem("quizSource", "chapterwise");
-        localStorage.setItem("isChampionship", "false");
-
+        localStorage.setItem("isChampionship", "false"); 
         window.location.href = "quiz.html";
     }
-
-    window.addEventListener("DOMContentLoaded", () => {
-        const savedClass = localStorage.getItem("selectedClass");
-        const savedSubject = localStorage.getItem("selectedSubject");
-
-        if (savedClass && document.querySelector(`#classSelect option[value="${savedClass}"]`)) {
-            document.getElementById("classSelect").value = savedClass;
-        }
-
-        if (savedSubject && document.querySelector(`#subjectSelect option[value="${savedSubject}"]`)) {
-            document.getElementById("subjectSelect").value = savedSubject;
-        }
-
-        updateTopics();
-
-        const savedTopic = localStorage.getItem("selectedTopic");
-        if (savedTopic && document.querySelector(`#topicSelect option[value="${savedTopic}"]`)) {
-            document.getElementById("topicSelect").value = savedTopic;
-        }
-    });
 </script>
 
 <script type="module">
