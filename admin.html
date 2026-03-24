@@ -630,13 +630,18 @@ window.saveSessionEdit = async () => {
     const id = document.getElementById("editSessId").value;
     const date = document.getElementById("editSessDate").value;
     const time = document.getElementById("editSessTime").value;
+    const duration = document.getElementById("editSessDuration").value;
     const startDateTime = new Date(`${date}T${time}`);
+
+    const durationMs = parseInt(duration) * 60000;
+    const endDateTime = new Date(startDateTime.getTime() + durationMs);
 
     const updateData = {
         title: document.getElementById("editSessTitle").value,
         price: parseInt(document.getElementById("editSessPrice").value),
-        duration: parseInt(document.getElementById("editSessDuration").value),
-        startTime: Timestamp.fromDate(startDateTime)
+        duration: parseInt(duration),
+        startTime: Timestamp.fromDate(startDateTime),
+        endTime: Timestamp.fromDate(endDateTime)
     };
 
     await updateDoc(doc(db, "test_sessions", id), updateData);
@@ -658,9 +663,12 @@ window.createSession = async () => {
     const price = document.getElementById("sessPrice").value;
     const duration = document.getElementById("sessDuration").value;
 
-    if(!title || !date || !time || !startId) { alert("Fill all session fields"); return; }
+    if(!title || !date || !time || !startId || !duration) { alert("Fill all session fields including Duration"); return; }
 
     const startDateTime = new Date(`${date}T${time}`);
+
+    const durationMs = parseInt(duration) * 60000;
+    const endDateTime = new Date(startDateTime.getTime() + durationMs);
     
     const questionIds = [];
     const prefix = startId.replace(/\d+$/, "");
@@ -674,6 +682,7 @@ window.createSession = async () => {
     await addDoc(sessionsRef, {
         title, subject, class: cls,
         startTime: Timestamp.fromDate(startDateTime),
+        endTime: Timestamp.fromDate(endDateTime),
         questionIds,
         price: parseInt(price),
         duration: parseInt(duration),
