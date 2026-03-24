@@ -44,7 +44,7 @@ overflow-x:hidden;
 background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
 background-attachment: fixed;
 }
-nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
+nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index: 1000; flex-wrap: wrap; gap: 10px; }
 .brand{ font-size:1.3rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
 .nav-links{ display:flex; gap:15px; align-items:center; flex-wrap: wrap; justify-content: center; }
 .nav-links a{ color:var(--muted); text-decoration:none; font-size:0.85rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
@@ -178,6 +178,7 @@ footer {
             <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                 <span id="displayGradePill" style="background: rgba(56, 189, 248, 0.1); color: var(--brand); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2); text-transform: uppercase;">GRADE: --</span>
                 <span id="displaySubjectPill" style="background: rgba(129, 140, 248, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(129, 140, 248, 0.2); text-transform: uppercase;">SUBJECT: --</span>
+                <span id="displayTopicPill" style="display:none; background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.2); text-transform: uppercase;">TOPIC: --</span>
             </div>
             <p id="quizSubtitle" style="display: none;"></p>
         </div>
@@ -269,7 +270,7 @@ startTimer();
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
         localStorage.setItem("isChampionship", "false"); 
-        window.location.href = "mock.html"; 
+        window.location.href = isChampionship ? "mock.html" : "chapterwise.html"; 
     }
 }
 
@@ -277,18 +278,27 @@ async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
 const sId=localStorage.getItem("activeSessionId");
+const sTopicName = localStorage.getItem("selectedTopicName");
 
-// Handle visibility of Back to Selection button based on mode
+// Handle visibility and text of Title based on mode
 const navWrap = document.getElementById("selectionNavWrap");
 const titleText = document.getElementById("mainTitleText");
+const topicPill = document.getElementById("displayTopicPill");
 
 if (isChampionship) {
     if (navWrap) navWrap.style.display = "none";
     titleText.innerText = "Live Quiz";
+    topicPill.style.display = "none";
 } else {
     if (navWrap) navWrap.style.display = "block";
     const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
     titleText.innerText = `${subjectDisplayName} Practice`;
+    
+    // Show Topic Pill for Chapterwise Practice
+    if (sTopicName) {
+        topicPill.style.display = "inline-block";
+        topicPill.innerText = `TOPIC: ${sTopicName}`;
+    }
 }
 
 try {
@@ -301,14 +311,31 @@ try {
             const qSnaps = await Promise.all(qPromises);
             questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
             
-            document.getElementById("displayGradePill").innerText = `GRADE: ${sData.class || sClass.replace('class', '')}`;
+            document.getElementById("displayGradePill").innerText = `GRADE: ${sData.class ? sData.class.replace('class', '') : sClass.replace('class', '')}`;
             document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${(sData.subject || sSub).toUpperCase()}`;
         }
     } else {
-        let qBase = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
+        const sTopic = localStorage.getItem("selectedTopic");
+        let qBase;
+        if(sTopic) {
+            // For Chapterwise
+            qBase = query(collection(db, "questions"), 
+                where("class", "==", sClass), 
+                where("subject", "==", sSub),
+                where("topic", "==", sTopic)
+            );
+        } else {
+            // Fallback
+            qBase = query(collection(db, "questions"), 
+                where("class", "==", sClass), 
+                where("subject", "==", sSub)
+            );
+        }
+        
         const snap = await getDocs(qBase);
         questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
-        if(questions.length>30) questions=questions.slice(0,30);
+        // Slice for practice mode if needed, otherwise use all
+        if(questions.length>50) questions=questions.slice(0,50);
 
         document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
         document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${sSub.toUpperCase()}`;
@@ -398,12 +425,12 @@ async function submitQuiz(){
     if(quizSubmitted)return; quizSubmitted=true;
     let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
     const accuracy = ((score/questions.length)*100).toFixed(2);
-    const resultData = { score, total: questions.length, questions, answers: selectedAnswers, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") };
+    const resultData = { score, total: questions.length, questions, answers: selectedAnswers, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass"), topicName: localStorage.getItem("selectedTopicName") };
     localStorage.setItem("quizResult", JSON.stringify(resultData));
 
     try {
         await addDoc(collection(db,"leaderboard"),{ 
-          email:auth.currentUser.email, uid:auth.currentUser.uid, score: parseFloat(accuracy), rawScore: score, total: questions.length, accuracy: accuracy, timestamp: serverTimestamp(), isChampionship, sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") 
+          email:auth.currentUser.email, uid:auth.currentUser.uid, score: parseFloat(accuracy), rawScore: score, total: questions.length, accuracy: accuracy, timestamp: serverTimestamp(), isChampionship, sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass"), topicName: isChampionship ? null : localStorage.getItem("selectedTopicName")
         });
         window.location.href="result.html";
     } catch(e) { window.location.href="result.html"; }
@@ -411,7 +438,7 @@ async function submitQuiz(){
 
 window.deleteCurrentQuestion = async () => {
     const qId = questions[current].id;
-    if (confirm("Delete permanently?")) { await deleteDoc(doc(db, "questions", qId)); location.reload(); }
+    if (confirm("Delete permanently?")) { await deleteDoc(doc(db, \"questions\", qId)); location.reload(); }
 };
 
 window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("index.html"); } };
