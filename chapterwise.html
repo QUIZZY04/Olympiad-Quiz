@@ -181,7 +181,7 @@
 
     <div class="container">
         <div class="selection-box">
-            <h2>Grade 1 to 8 Chapterwise <span>Quiz</span></h2>
+            <h2>Grade 1 to 9 Chapterwise <span>Quiz</span></h2>
             <p>Select your details to start practicing.</p>
 
             <div class="form-group">
@@ -194,7 +194,8 @@
                     <option value="class5">Grade 5</option>
                     <option value="class6">Grade 6</option>
                     <option value="class7">Grade 7</option>
-                    <option value="class8" selected>Grade 8</option>
+                    <option value="class8">Grade 8</option>
+                    <option value="class9">Grade 9</option>
                 </select>
             </div>
 
@@ -420,6 +421,41 @@
                 { code: "S16", name: "Stars and the Solar System" },
                 { code: "S17", name: "Pollution of Air and Water" }
             ]
+        },
+        class9: {
+            maths: [
+                { code: "M01", name: "Number Systems" },
+                { code: "M02", name: "Polynomials" },
+                { code: "M03", name: "Coordinate Geometry" },
+                { code: "M04", name: "Linear Equations in Two Variables" },
+                { code: "M05", name: "Introduction to Euclid’s Geometry" },
+                { code: "M06", name: "Lines and Angles" },
+                { code: "M07", name: "Triangles" },
+                { code: "M08", name: "Quadrilaterals" },
+                { code: "M09", name: "Areas of Parallelograms and Triangles" },
+                { code: "M10", name: "Circles" },
+                { code: "M11", name: "Heron’s Formula" },
+                { code: "M12", name: "Surface Areas and Volumes" },
+                { code: "M13", name: "Statistics" },
+                { code: "M14", name: "Probability" }
+            ],
+            science: [
+                { code: "S01", name: "Matter in Our Surroundings" },
+                { code: "S02", name: "Is Matter Around Us Pure?" },
+                { code: "S03", name: "Atoms and Molecules" },
+                { code: "S04", name: "Structure of the Atom" },
+                { code: "S05", name: "The Fundamental Unit of Life" },
+                { code: "S06", name: "Tissues" },
+                { code: "S07", name: "Motion" },
+                { code: "S08", name: "Force and Laws of Motion" },
+                { code: "S09", name: "Gravitation" },
+                { code: "S10", name: "Work and Energy" },
+                { code: "S11", name: "Sound" },
+                { code: "S12", name: "Improvement in Food Resources" },
+                { code: "S13", name: "Diversity in Living Organisms" },
+                { code: "S14", name: "Natural Resources" },
+                { code: "S15", name: "Why Do We Fall Ill" }
+            ]
         }
     };
 
@@ -453,7 +489,8 @@
             const option = document.createElement("option");
             option.value = topic.code;
             option.textContent = `${topic.code} - ${topic.name}`;
-            option.setAttribute("data-topic-name", topic.name);
+            // Use dataset to store the name cleanly
+            option.dataset.topicName = topic.name;
             topicSelect.appendChild(option);
         });
     }
@@ -465,21 +502,20 @@
 
         const selectedClass = classSelect.value;
         const selectedSubject = subjectSelect.value;
-        const selectedTopic = topicSelect.value;
-        const selectedTopicOption = topicSelect.options[topicSelect.selectedIndex];
+        const selectedTopicCode = topicSelect.value;
+        const selectedOption = topicSelect.options[topicSelect.selectedIndex];
 
-        if (!selectedSubject || !selectedTopic) {
+        if (!selectedSubject || !selectedTopicCode) {
             alert("Please select both a subject and a topic.");
             return;
         }
 
-        const selectedTopicName =
-            selectedTopicOption?.getAttribute("data-topic-name") ||
-            (selectedTopicOption?.textContent || "").replace(/^[A-Z]\d+\s*-\s*/i, "").trim();
+        // Get actual name from dataset
+        const selectedTopicName = selectedOption.dataset.topicName;
 
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", selectedSubject);
-        localStorage.setItem("selectedTopic", selectedTopic);
+        localStorage.setItem("selectedTopic", selectedTopicCode);
         localStorage.setItem("selectedTopicName", selectedTopicName);
         localStorage.setItem("isChampionship", "false");
 
@@ -490,20 +526,13 @@
         const savedClass = localStorage.getItem("selectedClass");
         const savedSubject = localStorage.getItem("selectedSubject");
 
-        if (savedClass && document.querySelector(`#classSelect option[value="${savedClass}"]`)) {
-            document.getElementById("classSelect").value = savedClass;
-        }
-
-        if (savedSubject && document.querySelector(`#subjectSelect option[value="${savedSubject}"]`)) {
-            document.getElementById("subjectSelect").value = savedSubject;
-        }
+        if (savedClass) document.getElementById("classSelect").value = savedClass;
+        if (savedSubject) document.getElementById("subjectSelect").value = savedSubject;
 
         updateTopics();
 
         const savedTopic = localStorage.getItem("selectedTopic");
-        if (savedTopic && document.querySelector(`#topicSelect option[value="${savedTopic}"]`)) {
-            document.getElementById("topicSelect").value = savedTopic;
-        }
+        if (savedTopic) document.getElementById("topicSelect").value = savedTopic;
     });
 </script>
 
