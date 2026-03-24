@@ -17,8 +17,8 @@ window.onpopstate = function () { history.go(1); };
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>
-#main-app-container { 
-    display: block !important; 
+#main-app-container {
+    display: block !important;
 }
 
 :root {
@@ -92,14 +92,16 @@ box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 .options{display:grid;gap:12px;margin-top:15px}
 .opt{display:flex;align-items:center;gap:15px; padding:15px 20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.3s; font-size:15px;}
 .opt:hover{border-color:var(--brand); background:rgba(56, 189, 248, 0.05);}
-.quiz-buttons{display:flex;gap:15px;margin-top:auto;padding-top:30px;}
-.btn{flex:1;padding:14px 10px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase;font-size:14px; transition:0.3s;}
+.quiz-buttons{display:flex;gap:15px;margin-top:auto;padding-top:30px;flex-wrap:wrap;}
+.btn{flex:1;padding:14px 10px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase;font-size:14px; transition:0.3s; min-width: 130px;}
 .btn-save{background:#6366f1;color:#fff}
 .btn-save:hover{background:#4f46e5;}
 .btn-prev{background:var(--bg);color:var(--text); border:1px solid var(--border);}
 .btn-prev:hover{background:var(--border);}
 .btn-finish{background:#f43f5e;color:#fff}
 .btn-finish:hover{background:#e11d48;}
+.btn-danger{background:#dc2626;color:#fff}
+.btn-danger:hover{background:#b91c1c;}
 
 .bottom-nav-wrap {
     max-width: 1400px;
@@ -169,7 +171,7 @@ footer {
         </div>
     </nav>
 
-    <div style="max-width: 1400px; margin: 20px auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
+    <div style="max-width: 1400px; margin: 20px auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
         <div id="quizHeaderInfo" style="flex: 1; min-width: 0;">
             <h1 id="quizTitle" style="font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; margin-bottom: 8px; line-height: 1.2;">
                 <span style="color: #ef4444; margin-right: 10px;">⚡</span>
@@ -178,6 +180,7 @@ footer {
             <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                 <span id="displayGradePill" style="background: rgba(56, 189, 248, 0.1); color: var(--brand); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2); text-transform: uppercase;">GRADE: --</span>
                 <span id="displaySubjectPill" style="background: rgba(129, 140, 248, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(129, 140, 248, 0.2); text-transform: uppercase;">SUBJECT: --</span>
+                <span id="displayTopicPill" style="background: rgba(16, 185, 129, 0.12); color: #10b981; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.25); text-transform: uppercase;">TOPIC: --</span>
             </div>
             <p id="quizSubtitle" style="display: none;"></p>
         </div>
@@ -194,7 +197,7 @@ footer {
 
     <div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Loading...</div>
 
-    <div id="questionImage" style="display:none;"></div> 
+    <div id="questionImage" style="display:none;"></div>
 
     <div class="options" id="options"></div>
 
@@ -255,7 +258,7 @@ const storage = getStorage(app);
 
 let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
 const isChampionship=localStorage.getItem("isChampionship")==="true";
-let totalTime=1800; 
+let totalTime=1800;
 
 onAuthStateChanged(auth, async(user)=>{
 if(!user){ window.location.replace("login.html"); return; }
@@ -268,17 +271,33 @@ startTimer();
 
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
-        localStorage.setItem("isChampionship", "false"); 
-        window.location.href = "mock.html"; 
+        localStorage.setItem("isChampionship", "false");
+        window.location.href = "chapterwise.html";
     }
+}
+
+function normalizeValue(value) {
+    return String(value || "").trim().toLowerCase();
+}
+
+function getQuestionTopicCode(question) {
+    return (
+        question.topicCode ||
+        question.topic ||
+        question.chapterCode ||
+        question.chapter ||
+        question.code ||
+        ""
+    );
 }
 
 async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
+const sTopic=localStorage.getItem("selectedTopic")||"";
+const sTopicName=localStorage.getItem("selectedTopicName")||"";
 const sId=localStorage.getItem("activeSessionId");
 
-// Handle visibility of Back to Selection button based on mode
 const navWrap = document.getElementById("selectionNavWrap");
 const titleText = document.getElementById("mainTitleText");
 
@@ -291,6 +310,10 @@ if (isChampionship) {
     titleText.innerText = `${subjectDisplayName} Practice`;
 }
 
+document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
+document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${sSub.toUpperCase()}`;
+document.getElementById("displayTopicPill").innerText = `TOPIC: ${sTopic ? (sTopic + (sTopicName ? " - " + sTopicName : "")) : "--"}`;
+
 try {
     if (isChampionship && sId) {
         const sSnap = await getDoc(doc(db, "test_sessions", sId));
@@ -300,23 +323,42 @@ try {
             const qPromises = (sData.questionIds || []).map(id => getDoc(doc(db, "questions", id)));
             const qSnaps = await Promise.all(qPromises);
             questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
-            
+
             document.getElementById("displayGradePill").innerText = `GRADE: ${sData.class || sClass.replace('class', '')}`;
             document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${(sData.subject || sSub).toUpperCase()}`;
+            document.getElementById("displayTopicPill").innerText = `TOPIC: LIVE SESSION`;
         }
     } else {
-        let qBase = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
-        const snap = await getDocs(qBase);
-        questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
-        if(questions.length>30) questions=questions.slice(0,30);
+        let snap = await getDocs(
+            query(
+                collection(db, "questions"),
+                where("class", "==", sClass),
+                where("subject", "==", sSub)
+            )
+        );
 
-        document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
-        document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${sSub.toUpperCase()}`;
+        let allQuestions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+
+        if (sTopic) {
+            const filtered = allQuestions.filter(q =>
+                normalizeValue(getQuestionTopicCode(q)) === normalizeValue(sTopic)
+            );
+
+            questions = filtered;
+        } else {
+            questions = allQuestions;
+        }
+
+        if(questions.length>30) questions=questions.slice(0,30);
     }
-} catch (error) { console.error(error); }
+} catch (error) {
+    console.error("Question load error:", error);
+}
 
 if (questions.length === 0) {
-    document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found.</h3>";
+    document.getElementById("questionText").innerHTML = "<h3 style='color:var(--danger)'>No questions found for this selected chapter/topic.</h3>";
+    document.getElementById("options").innerHTML = "";
+    document.getElementById("questionNumber").innerText = "NO QUESTIONS";
     return;
 }
 
@@ -327,15 +369,17 @@ loadQuestion();
 }
 
 async function loadQuestion(){
-const q=questions[current]; visitedQuestions[current]=true;
+const q=questions[current];
+visitedQuestions[current]=true;
+
 document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
-document.getElementById("questionText").innerHTML=q.q;
+document.getElementById("questionText").innerHTML=q.q || "Question text not available.";
 
 const imgDiv = document.getElementById("questionImage");
-imgDiv.innerHTML = ""; 
+imgDiv.innerHTML = "";
 imgDiv.style.display = "none";
 
-const imageName = q.image_name || q.image_url; 
+const imageName = q.image_name || q.image_url || q.image;
 
 if (imageName) {
     try {
@@ -353,7 +397,7 @@ if (imageName) {
 }
 
 let html="";
-q.o.forEach((opt,i)=>{
+(q.o || []).forEach((opt,i)=>{
 html+=`<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current]===i?"checked":""} onchange="saveAnswer(${i})"/><span>${opt}</span></label>`;
 });
 document.getElementById("options").innerHTML=html;
@@ -366,14 +410,18 @@ function prevQuestion(){ if(current>0){current--; loadQuestion();} }
 function jumpTo(i){ current=i; loadQuestion(); }
 
 function generateGrid(){
-let html=""; for(let i=0;i<questions.length;i++) html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
+let html="";
+for(let i=0;i<questions.length;i++) {
+    html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
+}
 document.getElementById("questionGrid").innerHTML=html;
 }
 
 function updateGrid(){
 let ans=0;
 for(let i=0;i<questions.length;i++){
-const el=document.getElementById("q"+i); if(!el)continue;
+const el=document.getElementById("q"+i);
+if(!el) continue;
 el.className="cell";
 if(i===current) el.classList.add("current");
 else if(selectedAnswers[i]!==null) el.classList.add("answered");
@@ -395,28 +443,68 @@ if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 }
 
 async function submitQuiz(){
-    if(quizSubmitted)return; quizSubmitted=true;
-    let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+    if(quizSubmitted)return;
+    quizSubmitted=true;
+
+    let score=0;
+    questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+
     const accuracy = ((score/questions.length)*100).toFixed(2);
-    const resultData = { score, total: questions.length, questions, answers: selectedAnswers, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") };
+    const resultData = {
+        score,
+        total: questions.length,
+        questions,
+        answers: selectedAnswers,
+        subject: localStorage.getItem("selectedSubject"),
+        class: localStorage.getItem("selectedClass"),
+        topic: localStorage.getItem("selectedTopic"),
+        topicName: localStorage.getItem("selectedTopicName")
+    };
+
     localStorage.setItem("quizResult", JSON.stringify(resultData));
 
     try {
-        await addDoc(collection(db,"leaderboard"),{ 
-          email:auth.currentUser.email, uid:auth.currentUser.uid, score: parseFloat(accuracy), rawScore: score, total: questions.length, accuracy: accuracy, timestamp: serverTimestamp(), isChampionship, sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") 
+        await addDoc(collection(db,"leaderboard"),{
+          email:auth.currentUser.email,
+          uid:auth.currentUser.uid,
+          score: parseFloat(accuracy),
+          rawScore: score,
+          total: questions.length,
+          accuracy: accuracy,
+          timestamp: serverTimestamp(),
+          isChampionship,
+          sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null,
+          subject: localStorage.getItem("selectedSubject"),
+          class: localStorage.getItem("selectedClass"),
+          topic: localStorage.getItem("selectedTopic"),
+          topicName: localStorage.getItem("selectedTopicName")
         });
         window.location.href="result.html";
-    } catch(e) { window.location.href="result.html"; }
+    } catch(e) {
+        window.location.href="result.html";
+    }
 }
 
 window.deleteCurrentQuestion = async () => {
-    const qId = questions[current].id;
-    if (confirm("Delete permanently?")) { await deleteDoc(doc(db, "questions", qId)); location.reload(); }
+    const qId = questions[current]?.id;
+    if (!qId) return;
+    if (confirm("Delete permanently?")) {
+        await deleteDoc(doc(db, "questions", qId));
+        location.reload();
+    }
 };
 
-window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("index.html"); } };
-window.nextQuestion = nextQuestion; window.prevQuestion = prevQuestion;
-window.jumpTo = jumpTo; window.saveAnswer = saveAnswer;
+window.logout=async()=>{
+    if(confirm("Logout?")){
+        await signOut(auth);
+        window.location.replace("index.html");
+    }
+};
+
+window.nextQuestion = nextQuestion;
+window.prevQuestion = prevQuestion;
+window.jumpTo = jumpTo;
+window.saveAnswer = saveAnswer;
 window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
 </script>
 
