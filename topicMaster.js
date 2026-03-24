@@ -1,12 +1,30 @@
-// topicMaster.js - Final Nested Version
+// topicMaster.js - Centralized Source of Truth for all Grades
 export const SOF_CURRICULUM = {
     class1: {
         maths: { "M01": "Number Sense", "M02": "Addition", "M03": "Subtraction", "M04": "Lengths & Weights", "M05": "Time", "M06": "Money", "M07": "Geometrical Shapes" },
         science: { "S01": "Plants", "S02": "Animals", "S03": "Human Body", "S04": "Food", "S05": "Housing & Clothing", "S06": "Family & Festivals", "S07": "Habits & Safety", "S08": "Transport", "S09": "Air & Water", "S10": "Earth & Universe" }
     },
     class2: {
-        maths: { "M01": "Number Sense", "M02": "Computation Operations", "M03": "Length & Capacity", "M04": "Time & Money", "M05": "Shapes & Solids", "M06": "Pictographs" },
-        science: { "S01": "Plants", "S02": "Animals", "S03": "Human Body", "S04": "Food", "S05": "Housing", "S08": "Transport", "S09": "Air & Water", "S10": "Earth & Universe" }
+        maths: { 
+            "M01": "Number Sense", 
+            "M02": "Computation Operations", 
+            "M03": "Length, Weight, Capacity", 
+            "M04": "Time and Money", 
+            "M05": "Lines, Shapes and Solids", 
+            "M06": "Pictographs" 
+        },
+        science: { 
+            "S01": "Plants", 
+            "S02": "Animals", 
+            "S03": "Human Body", 
+            "S04": "Food", 
+            "S05": "Housing and Clothing", 
+            "S06": "Family and Festivals", 
+            "S07": "Good Habits and Safety", 
+            "S08": "Transport and Communication", 
+            "S09": "Air, Water and Weather", 
+            "S10": "Earth and Universe" 
+        }
     },
     class3: {
         maths: { "M01": "Number Sense", "M02": "Addition & Subtraction", "M03": "Division & Fractions", "M04": "Money", "M05": "Measurement", "M06": "Time & Calendar", "M07": "Geometry", "M08": "Data Handling" },
