@@ -1,50 +1,59 @@
-// topicMaster.js - The Single Source of Truth for Olympiad Portal
+// topicMaster.js - Cleaned & Separated Source of Truth
 
-export const TOPIC_MASTER = {
-    // MATHEMATICS (IMO)
+// 1. Define Subject-Specific Names
+const MATHS_NAMES = {
     "M01": "Number Sense",
-    "M02": "Addition / Computation Operations",
-    "M03": "Subtraction / Fractions",
+    "M02": "Addition",
+    "M03": "Subtraction",
     "M04": "Lengths, Weights and Comparisons",
     "M05": "Time",
     "M06": "Money",
     "M07": "Geometrical Shapes",
-    "M08": "Decimals / Data Handling",
-    "M09": "Data Handling / Rational Numbers",
-    "M10": "Mensuration / Practical Geometry",
-    "M11": "Algebra / Perimeter and Area",
-    "M12": "Ratio and Proportion / Algebraic Expressions",
-    "M13": "Symmetry / Exponents and Powers",
-    "M14": "Practical Geometry / Factorisation",
-    "M15": "Probability / Visualising Solid Shapes",
+    "M08": "Data Handling",
+    "M09": "Rational Numbers",
+    "M10": "Practical Geometry",
+    "M11": "Perimeter and Area",
+    "M12": "Algebraic Expressions",
+    "M13": "Exponents and Powers",
+    "M14": "Symmetry",
+    "M15": "Visualising Solid Shapes"
+};
 
-    // SCIENCE (NSO)
-    "S01": "Plants / Nutrition in Plants and Animals",
-    "S02": "Animals / Heat",
-    "S03": "Human Body / Acids, Bases and Salts",
-    "S04": "Food / Physical and Chemical Changes",
-    "S05": "Housing and Clothing / Respiration",
-    "S06": "Family and Festivals / Transportation",
-    "S07": "Good Habits / Reproduction in Plants",
-    "S08": "Transport / Motion and Time",
-    "S09": "Air and Water / Electric Current",
-    "S10": "Earth and Universe / Light",
-    "S11": "Air and Water / Forests",
+const SCIENCE_NAMES = {
+    "S01": "Plants",
+    "S02": "Animals",
+    "S03": "Human Body",
+    "S04": "Food",
+    "S05": "Housing and Clothing",
+    "S06": "Family and Festivals",
+    "S07": "Good Habits",
+    "S08": "Transport",
+    "S09": "Air and Water",
+    "S10": "Earth and Universe",
+    "S11": "Forests",
     "S12": "Chemical Effects of Current",
     "S13": "Natural Phenomena",
-    "S14": "Light (Advanced)",
+    "S14": "Light",
     "S15": "Stars and Solar System",
-    "S16": "Management of Natural Resources",
+    "S16": "Management of Natural Resources"
+};
 
-    // REASONING
-    "R01": "Patterns",
-    "R02": "Odd One Out / Analogy",
-    "R03": "Measuring Units / Coding-Decoding",
-    "R04": "Geometrical Shapes / Blood Relations",
-    "R05": "Spatial Understanding / Direction Sense",
-    "R06": "Grouping and Analogy / Venn Diagrams",
-    "R07": "Ranking Test / Paper Folding",
-    "R08": "Series Completion / Cubes and Dice"
+// 2. Grade-Specific Overrides (This fixes the "Mixing" problem)
+export const TOPIC_MASTER = {
+    ...MATHS_NAMES,
+    ...SCIENCE_NAMES,
+    // Add Grade 7 specific overrides here
+    "S01_7": "Nutrition in Plants and Animals",
+    "S02_7": "Heat",
+    "S03_7": "Acids, Bases and Salts",
+    "S04_7": "Physical and Chemical Changes",
+    "S05_7": "Respiration in Organisms",
+    "S06_7": "Transportation in Plants and Animals",
+    "S07_7": "Reproduction in Plants",
+    "S08_7": "Motion and Time",
+    "S09_7": "Electric Current",
+    "S10_7": "Light",
+    "S11_7": "Forests and Wastewater"
 };
 
 export const SOF_CURRICULUM = {
@@ -52,17 +61,9 @@ export const SOF_CURRICULUM = {
         maths: ["M01", "M02", "M03", "M04", "M05", "M06", "M07"],
         science: ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10"]
     },
-    class6: {
-        maths: ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12", "M13", "M14"],
-        science: ["S04", "S12", "S03", "S01", "S05", "S06", "S07", "S14", "S09", "S10", "S11"]
-    },
     class7: {
-        maths: ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12", "M13", "M14", "M15"],
-        science: ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11"]
-    },
-    class10: {
-        maths: ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12", "M13", "M14", "M15"],
-        science: ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14", "S15", "S16"]
+        maths: ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10"],
+        // Notice we use the _7 suffix to get the professional Grade 7 names
+        science: ["S01_7", "S02_7", "S03_7", "S04_7", "S05_7", "S06_7", "S07_7", "S08_7", "S09_7", "S10_7", "S11_7"]
     }
-    // You can continue adding class2 through class9 using the same pattern.
 };
