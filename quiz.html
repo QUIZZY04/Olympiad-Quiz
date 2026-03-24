@@ -17,6 +17,7 @@ window.onpopstate = function () { history.go(1); };
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>
+/* Content is visible by default for immediate loading */
 #main-app-container { 
     display: block !important; 
 }
@@ -246,231 +247,11 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 const storage = getStorage(app);
 
-const sofTopics = {
-    class1: {
-        maths: [
-            { code: "M01", name: "Number Sense" },
-            { code: "M02", name: "Patterns" },
-            { code: "M03", name: "Measurements" },
-            { code: "M04", name: "Geometry" },
-            { code: "M05", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Plants Around Us" },
-            { code: "S02", name: "Animals Around Us" },
-            { code: "S03", name: "Food and Water" },
-            { code: "S04", name: "Our Body and Hygiene" },
-            { code: "S05", name: "Air, Water and Environment" }
-        ]
-    },
-    class2: {
-        maths: [
-            { code: "M01", name: "Numbers" },
-            { code: "M02", name: "Addition and Subtraction" },
-            { code: "M03", name: "Multiplication" },
-            { code: "M04", name: "Shapes and Patterns" },
-            { code: "M05", name: "Measurements and Data" }
-        ],
-        science: [
-            { code: "S01", name: "Living and Non-Living Things" },
-            { code: "S02", name: "Plants" },
-            { code: "S03", name: "Animals" },
-            { code: "S04", name: "Food, Water and Air" },
-            { code: "S05", name: "Our Body and Safety" }
-        ]
-    },
-    class3: {
-        maths: [
-            { code: "M01", name: "Numbers" },
-            { code: "M02", name: "Addition, Subtraction and Multiplication" },
-            { code: "M03", name: "Division" },
-            { code: "M04", name: "Fractions" },
-            { code: "M05", name: "Geometry and Measurement" },
-            { code: "M06", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Living World" },
-            { code: "S02", name: "Plants" },
-            { code: "S03", name: "Animals" },
-            { code: "S04", name: "Human Body" },
-            { code: "S05", name: "Food, Water and Air" },
-            { code: "S06", name: "Light, Sound and Force" }
-        ]
-    },
-    class4: {
-        maths: [
-            { code: "M01", name: "Numbers" },
-            { code: "M02", name: "Addition, Subtraction, Multiplication and Division" },
-            { code: "M03", name: "Factors and Multiples" },
-            { code: "M04", name: "Fractions and Decimals" },
-            { code: "M05", name: "Geometry" },
-            { code: "M06", name: "Measurement" },
-            { code: "M07", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Plants and Animals" },
-            { code: "S02", name: "Food and Digestion" },
-            { code: "S03", name: "Matter and Materials" },
-            { code: "S04", name: "Force, Work and Energy" },
-            { code: "S05", name: "Air, Water and Weather" },
-            { code: "S06", name: "Earth and Universe" }
-        ]
-    },
-    class5: {
-        maths: [
-            { code: "M01", name: "Large Numbers" },
-            { code: "M02", name: "Operations on Numbers" },
-            { code: "M03", name: "Factors and Multiples" },
-            { code: "M04", name: "Fractions and Decimals" },
-            { code: "M05", name: "Geometry" },
-            { code: "M06", name: "Measurement" },
-            { code: "M07", name: "Perimeter, Area and Volume" },
-            { code: "M08", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Plants and Animals" },
-            { code: "S02", name: "Human Body and Health" },
-            { code: "S03", name: "Matter and Materials" },
-            { code: "S04", name: "Force, Energy and Machines" },
-            { code: "S05", name: "Air, Water and Environment" },
-            { code: "S06", name: "Earth and Space" }
-        ]
-    },
-    class6: {
-        maths: [
-            { code: "M01", name: "Knowing Our Numbers" },
-            { code: "M02", name: "Whole Numbers" },
-            { code: "M03", name: "Playing with Numbers" },
-            { code: "M04", name: "Basic Geometrical Ideas" },
-            { code: "M05", name: "Understanding Elementary Shapes" },
-            { code: "M06", name: "Integers" },
-            { code: "M07", name: "Fractions" },
-            { code: "M08", name: "Decimals" },
-            { code: "M09", name: "Data Handling" },
-            { code: "M10", name: "Mensuration" },
-            { code: "M11", name: "Algebra" },
-            { code: "M12", name: "Ratio and Proportion" }
-        ],
-        science: [
-            { code: "S01", name: "Food" },
-            { code: "S02", name: "Components of Food" },
-            { code: "S03", name: "Fibre to Fabric" },
-            { code: "S04", name: "Sorting Materials into Groups" },
-            { code: "S05", name: "Separation of Substances" },
-            { code: "S06", name: "Changes Around Us" },
-            { code: "S07", name: "Getting to Know Plants" },
-            { code: "S08", name: "Body Movements" },
-            { code: "S09", name: "Living Organisms and Their Surroundings" },
-            { code: "S10", name: "Motion and Measurement of Distances" },
-            { code: "S11", name: "Light, Shadows and Reflections" },
-            { code: "S12", name: "Electricity and Circuits" },
-            { code: "S13", name: "Fun with Magnets" },
-            { code: "S14", name: "Water" },
-            { code: "S15", name: "Air Around Us" },
-            { code: "S16", name: "Garbage In, Garbage Out" }
-        ]
-    },
-    class7: {
-        maths: [
-            { code: "M01", name: "Integers" },
-            { code: "M02", name: "Fractions and Decimals" },
-            { code: "M03", name: "Data Handling" },
-            { code: "M04", name: "Simple Equations" },
-            { code: "M05", name: "Lines and Angles" },
-            { code: "M06", name: "The Triangle and its Properties" },
-            { code: "M07", name: "Congruence of Triangles" },
-            { code: "M08", name: "Comparing Quantities" },
-            { code: "M09", name: "Rational Numbers" },
-            { code: "M10", name: "Practical Geometry" },
-            { code: "M11", name: "Perimeter and Area" },
-            { code: "M12", name: "Algebraic Expressions" },
-            { code: "M13", name: "Exponents and Powers" },
-            { code: "M14", name: "Symmetry" },
-            { code: "M15", name: "Visualising Solid Shapes" }
-        ],
-        science: [
-            { code: "S01", name: "Nutrition in Plants" },
-            { code: "S02", name: "Nutrition in Animals" },
-            { code: "S03", name: "Fibre to Fabric" },
-            { code: "S04", name: "Heat" },
-            { code: "S05", name: "Acids, Bases and Salts" },
-            { code: "S06", name: "Physical and Chemical Changes" },
-            { code: "S07", name: "Weather, Climate and Adaptations" },
-            { code: "S08", name: "Winds, Storms and Cyclones" },
-            { code: "S09", name: "Soil" },
-            { code: "S10", name: "Respiration in Organisms" },
-            { code: "S11", name: "Transportation in Animals and Plants" },
-            { code: "S12", name: "Reproduction in Plants" },
-            { code: "S13", name: "Motion and Time" },
-            { code: "S14", name: "Electric Current and its Effects" },
-            { code: "S15", name: "Light" },
-            { code: "S16", name: "Water: A Precious Resource" },
-            { code: "S17", name: "Forests: Our Lifeline" },
-            { code: "S18", name: "Wastewater Story" }
-        ]
-    },
-    class8: {
-        maths: [
-            { code: "M01", name: "Rational Numbers" },
-            { code: "M02", name: "Linear Equations in One Variable" },
-            { code: "M03", name: "Understanding Quadrilaterals" },
-            { code: "M04", name: "Practical Geometry" },
-            { code: "M05", name: "Data Handling" },
-            { code: "M06", name: "Squares and Square Roots" },
-            { code: "M07", name: "Cubes and Cube Roots" },
-            { code: "M08", name: "Comparing Quantities" },
-            { code: "M09", name: "Algebraic Expressions and Identities" },
-            { code: "M10", name: "Visualising Solid Shapes" },
-            { code: "M11", name: "Mensuration" },
-            { code: "M12", name: "Exponents and Powers" },
-            { code: "M13", name: "Direct and Inverse Proportions" },
-            { code: "M14", name: "Factorisation" },
-            { code: "M15", name: "Introduction to Graphs" }
-        ],
-        science: [
-            { code: "S01", name: "Crop Production and Management" },
-            { code: "S02", name: "Microorganisms" },
-            { code: "S03", name: "Synthetic Fibres and Plastics" },
-            { code: "S04", name: "Materials: Metals and Non-Metals" },
-            { code: "S05", name: "Coal and Petroleum" },
-            { code: "S06", name: "Combustion and Flame" },
-            { code: "S07", name: "Conservation of Plants and Animals" },
-            { code: "S08", name: "Cell Structure and Functions" },
-            { code: "S09", name: "Reproduction and Adolescence" },
-            { code: "S10", name: "Force and Pressure" },
-            { code: "S11", name: "Friction" },
-            { code: "S12", name: "Sound" },
-            { code: "S13", name: "Chemical Effects of Electric Current" },
-            { code: "S14", name: "Some Natural Phenomena" },
-            { code: "S15", name: "Light" },
-            { code: "S16", name: "Stars and the Solar System" },
-            { code: "S17", name: "Pollution of Air and Water" }
-        ]
-    }
-};
-
-function getTopicDisplayName(selectedClass, selectedSubject, selectedTopic) {
-    if (
-        selectedClass &&
-        selectedSubject &&
-        selectedTopic &&
-        sofTopics[selectedClass] &&
-        sofTopics[selectedClass][selectedSubject]
-    ) {
-        const foundTopic = sofTopics[selectedClass][selectedSubject].find(
-            topic => topic.code === selectedTopic
-        );
-        if (foundTopic) {
-            return `${foundTopic.code} - ${foundTopic.name}`;
-        }
-    }
-    return selectedTopic || "Mock Test";
-}
-
 let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 let totalTime=1800; 
 
+// Optimistic check: only redirect if definitely logged out
 onAuthStateChanged(auth, async(user)=>{
 if(!user){ window.location.replace("login.html"); return; }
 if (user.email === "madhhu52@gmail.com") {
@@ -480,6 +261,7 @@ await loadQuestions();
 startTimer();
 });
 
+// Dynamic redirect logic for Selection screen
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
         const sTopic = localStorage.getItem("selectedTopic");
@@ -497,6 +279,7 @@ async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
 let sTopic=localStorage.getItem("selectedTopic");
+const sTopicName=localStorage.getItem("selectedTopicName");
 const sId=localStorage.getItem("activeSessionId");
 
 const isMockMode = !sTopic || sTopic === "null" || sTopic === "";
@@ -542,14 +325,13 @@ if (isChampionship) {
 } else {
     const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
     quizTitleEl.innerHTML = `📖 ${subjectDisplayName} <span style="color: var(--brand);">Quiz</span>`;
-    if (sTopic) {
-        quizSubtitleEl.innerText = `Topic: ${getTopicDisplayName(sClass, sSub, sTopic)}`;
+    if (sTopic && sTopicName) {
+        quizSubtitleEl.innerText = `Topic: ${sTopicName}`;
     } else {
         quizSubtitleEl.innerText = `Mock Test`;
     }
     displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
 }
-
 selectedAnswers=new Array(questions.length).fill(null);
 visitedQuestions=new Array(questions.length).fill(false);
 generateGrid();
