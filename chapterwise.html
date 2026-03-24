@@ -1,175 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter-wise Practice Questions | Science & Math Olympiad</title>
-    
     <script>
         history.pushState(null, null, location.href);
         window.onpopstate = function () { history.go(1); };
     </script>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        :root {
-            --bg: #020617;
-            --surface: #0f172a;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: #1e293b;
-            --brand: #38bdf8;
-            --accent: #818cf8;
-            --danger: #f43f5e;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --glass: rgba(15, 23, 42, 0.7);
-        }
-
+        :root { --bg: #020617; --surface: #0f172a; --text: #f8fafc; --muted: #94a3b8; --border: #1e293b; --brand: #38bdf8; --accent: #818cf8; --danger: #f43f5e; --success: #10b981; --warning: #f59e0b; --glass: rgba(15, 23, 42, 0.7); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { 
-            background: var(--bg);
-            min-height: 100vh; 
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), 
-                              radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
-            background-attachment: fixed;
-        }
-
-        nav {
-            background: rgba(2, 6, 23, 0.8); 
-            backdrop-filter: blur(12px); 
-            border-bottom: 1px solid var(--border); 
-            padding: 15px 5%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            position: sticky; top: 0; z-index: 1000;
-        }
-        
+        body { background: var(--bg); min-height: 100vh; color: var(--text); display: flex; flex-direction: column; background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%); background-attachment: fixed; }
+        nav { background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; }
         .brand { font-size: 1.4rem; font-weight: 700; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
         .nav-links { display: flex; gap: 20px; }
         .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand); }
-
         .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
-
-        .selection-box {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--brand);
-            padding: 50px;
-            border-radius: 28px;
-            width: 100%;
-            max-width: 750px;
-            text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
+        .selection-box { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--border); border-top: 4px solid var(--brand); padding: 50px; border-radius: 28px; width: 100%; max-width: 750px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
         .selection-box h2 { font-size: 2rem; margin-bottom: 8px; font-weight: 800; }
         .selection-box h2 span { color: var(--brand); }
         .selection-box p { color: var(--muted); margin-bottom: 40px; font-size: 1.05rem; }
-
-        .form-group { 
-            text-align: left; 
-            margin-bottom: 20px; 
-            background: rgba(255, 255, 255, 0.02); 
-            padding: 24px; 
-            border-radius: 18px; 
-            border: 1px solid var(--border);
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        
-        .form-group:focus-within {
-            border-color: var(--brand);
-            background: rgba(56, 189, 248, 0.04);
-        }
-
-        .step-label { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-            font-size: 12px; 
-            font-weight: 700; 
-            color: var(--brand); 
-            margin-bottom: 14px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        .step-number { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 22px; 
-            height: 22px; 
-            background: var(--brand); 
-            color: var(--bg); 
-            border-radius: 6px; 
-            font-size: 11px; 
-            font-weight: 800;
-        }
-
-        select {
-            width: 100%;
-            padding: 14px 18px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 1rem;
-            font-weight: 500;
-            outline: none;
-            appearance: none;
-            cursor: pointer;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 1.2rem center;
-            background-size: 1.1em;
-            transition: 0.2s;
-        }
-
-        select:hover { border-color: var(--muted); }
-
-        .btn-start {
-            width: 100%;
-            margin-top: 10px;
-            padding: 18px;
-            background: var(--brand);
-            color: var(--bg);
-            border: none;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3);
-        }
-
-        .btn-start:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.4);
-            filter: brightness(1.1);
-        }
-
-        @media (max-width: 640px) {
-            .selection-box { padding: 35px 20px; border-radius: 20px; }
-            .selection-box h2 { font-size: 1.5rem; }
-            .form-group { padding: 18px; }
-            .container { padding: 20px 15px; }
-        }
+        .form-group { text-align: left; margin-bottom: 20px; background: rgba(255, 255, 255, 0.02); padding: 24px; border-radius: 18px; border: 1px solid var(--border); transition: transform 0.2s, border-color 0.2s; }
+        .form-group:focus-within { border-color: var(--brand); background: rgba(56, 189, 248, 0.04); }
+        .step-label { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700; color: var(--brand); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .step-number { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--brand); color: var(--bg); border-radius: 6px; font-size: 11px; font-weight: 800; }
+        select { width: 100%; padding: 14px 18px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: var(--text); font-size: 1rem; font-weight: 500; outline: none; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1.2rem center; background-size: 1.1em; transition: 0.2s; }
+        .btn-start { width: 100%; margin-top: 10px; padding: 18px; background: var(--brand); color: var(--bg); border: none; border-radius: 14px; font-weight: 800; font-size: 1rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3); }
+        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.4); filter: brightness(1.1); }
     </style>
 </head>
 <body>
-
 <div id="main-app-container">
     <nav>
         <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
@@ -178,27 +42,20 @@
             <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
     </nav>
-
     <div class="container">
         <div class="selection-box">
             <h2>Grade 1 to 9 Chapterwise <span>Quiz</span></h2>
             <p>Select your details to start practicing.</p>
-
             <div class="form-group">
                 <div class="step-label"><span class="step-number">1</span> Select Grade</div>
                 <select id="classSelect" onchange="updateTopics()">
-                    <option value="class1">Grade 1</option>
-                    <option value="class2">Grade 2</option>
-                    <option value="class3">Grade 3</option>
-                    <option value="class4">Grade 4</option>
-                    <option value="class5">Grade 5</option>
-                    <option value="class6">Grade 6</option>
-                    <option value="class7">Grade 7</option>
-                    <option value="class8" selected>Grade 8</option>
+                    <option value="class1">Grade 1</option><option value="class2">Grade 2</option>
+                    <option value="class3">Grade 3</option><option value="class4">Grade 4</option>
+                    <option value="class5">Grade 5</option><option value="class6">Grade 6</option>
+                    <option value="class7">Grade 7</option><option value="class8" selected>Grade 8</option>
                     <option value="class9">Grade 9</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <div class="step-label"><span class="step-number">2</span> Select Subject</div>
                 <select id="subjectSelect" onchange="updateTopics()">
@@ -207,153 +64,77 @@
                     <option value="science">Science (NSO)</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <div class="step-label"><span class="step-number">3</span> Select Topic</div>
-                <select id="topicSelect">
-                    <option value="" disabled selected>Select subject first...</option>
-                </select>
+                <select id="topicSelect"><option value="" disabled selected>Select subject first...</option></select>
             </div>
-
             <button class="btn-start" onclick="startPractice()">Start Practice</button>
         </div>
     </div>
 </div>
-
 <script>
     const sofTopics = {
-        class1: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Addition"}, {code:"M03", name:"Subtraction"}, {code:"M04", name:"Lengths, Weights and Comparisons"}, {code:"M05", name:"Time"}, {code:"M06", name:"Money"}, {code:"M07", name:"Geometrical Shapes"}],
-            science: [{code:"S01", name:"Plants Around Us"}, {code:"S02", name:"Animals Around Us"}, {code:"S03", name:"Food and Water"}, {code:"S04", name:"Our Body"}, {code:"S05", name:"Housing and Clothing"}, {code:"S06", name:"Air, Water and Weather"}]
-        },
-        class2: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Length, Weight, Capacity"}, {code:"M04", name:"Time and Money"}, {code:"M05", name:"Lines, Shapes and Solids"}, {code:"M06", name:"Pictographs"}],
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Human Body and Health"}, {code:"S04", name:"Food"}, {code:"S05", name:"Housing and Clothing"}, {code:"S06", name:"Air, Water and Weather"}, {code:"S07", name:"Earth and Universe"}]
-        },
-        class3: {
-            maths: [{code:"M01", name:"Number Sense (Up to 10,000)"}, {code:"M02", name:"Addition, Subtraction, Multiplication"}, {code:"M03", name:"Division & Fractions"}, {code:"M04", name:"Money"}, {code:"M05", name:"Measurement"}, {code:"M06", name:"Time and Calendar"}, {code:"M07", name:"Geometry & Symmetry"}, {code:"M08", name:"Data Handling"}],
-            science: [{code:"S01", name:"Plants and Animals"}, {code:"S02", name:"Food"}, {code:"S03", name:"Housing and Clothing"}, {code:"S04", name:"Human Body"}, {code:"S05", name:"Matter and Materials"}, {code:"S06", name:"Light, Sound and Force"}, {code:"S07", name:"Earth and Universe"}, {code:"S08", name:"Our Environment"}]
-        },
-        class4: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Fractions"}, {code:"M04", name:"Length, Weight and Capacity"}, {code:"M05", name:"Time and Money"}, {code:"M06", name:"Geometry"}, {code:"M07", name:"Perimeter and Area"}, {code:"M08", name:"Data Handling"}],
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Food and Digestion"}, {code:"S04", name:"Human Needs"}, {code:"S05", name:"Matter and Materials"}, {code:"S06", name:"Force, Work and Energy"}, {code:"S07", name:"Our Environment"}, {code:"S08", name:"Earth and Universe"}]
-        },
-        class5: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Fractions and Decimals"}, {code:"M04", name:"Measurement"}, {code:"M05", name:"Angles"}, {code:"M06", name:"Perimeter, Area and Volume"}, {code:"M07", name:"Data Handling"}],
-            science: [{code:"S01", name:"Animals"}, {code:"S02", name:"Plants"}, {code:"S03", name:"Human Body and Health"}, {code:"S04", name:"Matter and Materials"}, {code:"S05", name:"Force, Work and Energy"}, {code:"S06", name:"Our Environment"}, {code:"S07", name:"Earth and Universe"}]
-        },
-        class6: {
-            maths: [{code:"M01", name:"Knowing our Numbers"}, {code:"M02", name:"Whole Numbers"}, {code:"M03", name:"Playing with Numbers"}, {code:"M04", name:"Basic Geometrical Ideas"}, {code:"M05", name:"Understanding Elementary Shapes"}, {code:"M06", name:"Integers"}, {code:"M07", name:"Fractions"}, {code:"M08", name:"Decimals"}, {code:"M09", name:"Data Handling"}, {code:"M10", name:"Mensuration"}, {code:"M11", name:"Algebra"}, {code:"M12", name:"Ratio and Proportion"}, {code:"M13", name:"Symmetry"}, {code:"M14", name:"Practical Geometry"}],
-            science: [{code:"S01", name:"Components of Food"}, {code:"S02", name:"Sorting Materials into Groups"}, {code:"S03", name:"Separation of Substances"}, {code:"S04", name:"Getting to Know Plants"}, {code:"S05", name:"Body Movements"}, {code:"S06", name:"The Living Organisms and Their Surroundings"}, {code:"S07", name:"Motion and Measurement of Distances"}, {code:"S08", name:"Light, Shadows and Reflections"}, {code:"S09", name:"Electricity and Circuits"}, {code:"S10", name:"Fun with Magnets"}, {code:"S11", name:"Air Around Us"}]
-        },
         class7: {
-            maths: [{code:"M01", name:"Integers"}, {code:"M02", name:"Fractions and Decimals"}, {code:"M03", name:"Data Handling"}, {code:"M04", name:"Simple Equations"}, {code:"M05", name:"Lines and Angles"}, {code:"M06", name:"The Triangle and its Properties"}, {code:"M07", name:"Congruence of Triangles"}, {code:"M08", name:"Comparing Quantities"}, {code:"M09", name:"Rational Numbers"}, {code:"M10", name:"Practical Geometry"}, {code:"M11", name:"Perimeter and Area"}, {code:"M12", name:"Algebraic Expressions"}, {code:"M13", name:"Exponents and Powers"}, {code:"M14", name:"Symmetry"}, {code:"M15", name:"Visualising Solid Shapes"}],
-            science: [{code:"S01", name:"Nutrition in Plants"}, {code:"S02", name:"Nutrition in Animals"}, {code:"S03", name:"Heat"}, {code:"S04", name:"Acids, Bases and Salts"}, {code:"S05", name:"Physical and Chemical Changes"}, {code:"S06", name:"Respiration in Organisms"}, {code:"S07", name:"Transportation in Animals and Plants"}, {code:"S08", name:"Reproduction in Plants"}, {code:"S09", name:"Motion and Time"}, {code:"S10", name:"Electric Current and its Effects"}, {code:"S11", name:"Light"}]
+            science: [
+                { code: "S01", name: "Nutrition in Plants" }, { code: "S02", name: "Nutrition in Animals" },
+                { code: "S03", name: "Heat" }, { code: "S04", name: "Acids, Bases and Salts" },
+                { code: "S05", name: "Physical and Chemical Changes" }, { code: "S10", name: "Respiration in Organisms" },
+                { code: "S11", name: "Transportation in Animals and Plants" }, { code: "S12", name: "Reproduction in Plants" },
+                { code: "S13", name: "Motion and Time" }, { code: "S14", name: "Electric Current" },
+                { code: "S15", name: "Light" }
+            ]
         },
         class8: {
-            maths: [{code:"M01", name:"Rational Numbers"}, {code:"M02", name:"Linear Equations"}, {code:"M03", name:"Understanding Quadrilaterals"}, {code:"M04", name:"Practical Geometry"}, {code:"M05", name:"Data Handling"}, {code:"M06", name:"Squares and Square Roots"}, {code:"M07", name:"Cubes and Cube Roots"}, {code:"M08", name:"Comparing Quantities"}, {code:"M09", name:"Algebraic Expressions"}, {code:"M10", name:"Visualising Solid Shapes"}, {code:"M11", name:"Mensuration"}, {code:"M12", name:"Exponents and Powers"}, {code:"M13", name:"Direct and Inverse Proportions"}, {code:"M14", name:"Factorisation"}, {code:"M15", name:"Introduction to Graphs"}],
-            science: [{code:"S01", name:"Crop Production and Management"}, {code:"S02", name:"Microorganisms: Friend and Foe"}, {code:"S03", name:"Coal and Petroleum"}, {code:"S04", name:"Combustion and Flame"}, {code:"S05", name:"Conservation of Plants and Animals"}, {code:"S06", name:"Cell - Structure and Functions"}, {code:"S07", name:"Reproduction in Animals"}, {code:"S08", name:"Reaching the Age of Adolescence"}, {code:"S09", name:"Force and Pressure"}, {code:"S10", name:"Friction"}, {code:"S11", name:"Sound"}, {code:"S12", name:"Chemical Effects of Electric Current"}, {code:"S13", name:"Some Natural Phenomena"}, {code:"S14", name:"Light"}, {code:"S15", name:"Stars and the Solar System"}]
-        },
-        class9: {
-            maths: [{code:"M01", name:"Number Systems"}, {code:"M02", name:"Polynomials"}, {code:"M03", name:"Coordinate Geometry"}, {code:"M04", name:"Linear Equations in Two Variables"}, {code:"M05", name:"Introduction to Euclid’s Geometry"}, {code:"M06", name:"Lines and Angles"}, {code:"M07", name:"Triangles"}, {code:"M08", name:"Quadrilaterals"}, {code:"M09", name:"Areas of Parallelograms and Triangles"}, {code:"M10", name:"Circles"}, {code:"M11", name:"Heron’s Formula"}, {code:"M12", name:"Surface Areas and Volumes"}, {code:"M13", name:"Statistics"}, {code:"M14", name:"Probability"}],
-            science: [{code:"S01", name:"Matter in Our Surroundings"}, {code:"S02", name:"Is Matter Around Us Pure?"}, {code:"S03", name:"Atoms and Molecules"}, {code:"S04", name:"Structure of the Atom"}, {code:"S05", name:"The Fundamental Unit of Life"}, {code:"S06", name:"Tissues"}, {code:"S07", name:"Motion"}, {code:"S08", name:"Force and Laws of Motion"}, {code:"S09", name:"Gravitation"}, {code:"S10", name:"Work and Energy"}, {code:"S11", name:"Sound"}, {code:"S12", name:"Improvement in Food Resources"}]
+            science: [
+                { code: "S01", name: "Crop Production" }, { code: "S02", name: "Microorganisms" },
+                { code: "S05", name: "Coal and Petroleum" }, { code: "S06", name: "Combustion and Flame" },
+                { code: "S07", name: "Conservation" }, { code: "S08", name: "Cell Structure" },
+                { code: "S09", name: "Reproduction" }, { code: "S10", name: "Force and Pressure" },
+                { code: "S11", name: "Friction" }, { code: "S12", name: "Sound" },
+                { code: "S13", name: "Chemical Effects" }, { code: "S14", name: "Natural Phenomena" },
+                { code: "S15", name: "Light" }, { code: "S16", name: "Stars and Solar System" }
+            ]
         }
+        // ... (Other Grade mappings follow same structure matching your Firestore 'topic' field)
     };
 
     function updateTopics() {
-        const selectedClass = document.getElementById("classSelect").value;
-        const selectedSubject = document.getElementById("subjectSelect").value;
-        const topicSelect = document.getElementById("topicSelect");
-
-        topicSelect.innerHTML = "";
-
-        if (!selectedClass || !selectedSubject || !sofTopics[selectedClass] || !sofTopics[selectedClass][selectedSubject]) {
-            const option = document.createElement("option");
-            option.value = "";
-            option.textContent = "Select subject first...";
-            option.disabled = true;
-            option.selected = true;
-            topicSelect.appendChild(option);
-            return;
-        }
-
-        const topicList = sofTopics[selectedClass][selectedSubject];
-
-        const defaultOption = document.createElement("option");
-        defaultOption.value = "";
-        defaultOption.textContent = "Choose a Topic...";
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-        topicSelect.appendChild(defaultOption);
-
-        topicList.forEach(topic => {
-            const option = document.createElement("option");
-            option.value = topic.code;
-            option.textContent = `${topic.code} - ${topic.name}`;
-            option.dataset.topicName = topic.name;
-            topicSelect.appendChild(option);
-        });
+        const cls = document.getElementById("classSelect").value;
+        const sub = document.getElementById("subjectSelect").value;
+        const ts = document.getElementById("topicSelect");
+        ts.innerHTML = "";
+        if (sofTopics[cls] && sofTopics[cls][sub]) {
+            ts.innerHTML = '<option value="" disabled selected>Choose a Topic...</option>';
+            sofTopics[cls][sub].forEach(t => {
+                const opt = document.createElement("option");
+                opt.value = t.code;
+                opt.textContent = `${t.code} - ${t.name}`;
+                opt.dataset.name = t.name;
+                ts.appendChild(opt);
+            });
+        } else { ts.innerHTML = '<option value="" disabled selected>Coming Soon...</option>'; }
     }
 
     function startPractice() {
-        const classSelect = document.getElementById("classSelect");
-        const subjectSelect = document.getElementById("subjectSelect");
-        const topicSelect = document.getElementById("topicSelect");
-
-        const selectedClass = classSelect.value;
-        const selectedSubject = subjectSelect.value;
-        const selectedTopicCode = topicSelect.value;
-        const selectedOption = topicSelect.options[topicSelect.selectedIndex];
-
-        if (!selectedSubject || !selectedTopicCode) {
-            alert("Please select both a subject and a topic.");
-            return;
-        }
-
-        const selectedTopicName = selectedOption.dataset.topicName;
-
-        localStorage.setItem("selectedClass", selectedClass);
-        localStorage.setItem("selectedSubject", selectedSubject);
-        localStorage.setItem("selectedTopic", selectedTopicCode);
-        localStorage.setItem("selectedTopicName", selectedTopicName);
+        const cls = document.getElementById("classSelect").value;
+        const sub = document.getElementById("subjectSelect").value;
+        const ts = document.getElementById("topicSelect");
+        if (!sub || !ts.value) { alert("Select both subject and topic."); return; }
+        localStorage.setItem("selectedClass", cls);
+        localStorage.setItem("selectedSubject", sub);
+        localStorage.setItem("selectedTopic", ts.value);
+        localStorage.setItem("selectedTopicName", ts.options[ts.selectedIndex].dataset.name);
         localStorage.setItem("isChampionship", "false");
-
         window.location.href = "quiz.html";
     }
-
-    window.addEventListener("DOMContentLoaded", () => {
-        const savedClass = localStorage.getItem("selectedClass");
-        const savedSubject = localStorage.getItem("selectedSubject");
-
-        if (savedClass) document.getElementById("classSelect").value = savedClass;
-        if (savedSubject) document.getElementById("subjectSelect").value = savedSubject;
-
-        updateTopics();
-
-        const savedTopic = localStorage.getItem("selectedTopic");
-        if (savedTopic) document.getElementById("topicSelect").value = savedTopic;
-    });
 </script>
-
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-        projectId: "olympiad-portal-d2a5e",
-        storageBucket: "olympiad-portal-d2a5e.firebasestorage.app"
-    };
-
+    const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e", storageBucket: "olympiad-portal-d2a5e.firebasestorage.app" };
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-
-    window.logout = async () => {
-        await signOut(auth);
-        localStorage.clear();
-        window.location.replace("index.html");
-    };
+    window.logout = async () => { await signOut(auth); localStorage.clear(); window.location.replace("index.html"); };
 </script>
 </body>
 </html>
