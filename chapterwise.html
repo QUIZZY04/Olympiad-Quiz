@@ -113,7 +113,7 @@
 
     <div class="container">
         <div class="selection-box">
-            <h2>Grade 1 to 8 Chapterwise <span>Quiz</span></h2>
+            <h2>Grade 1 to 9 Chapterwise <span>Quiz</span></h2>
             <p>Select your details to start practicing.</p>
 
             <div class="form-group">
@@ -125,8 +125,9 @@
                     <option value="class4">Grade 4</option>
                     <option value="class5">Grade 5</option>
                     <option value="class6">Grade 6</option>
-                    <option value="class7">Grade 7</option>
-                    <option value="class8" selected>Grade 8</option>
+                    <option value="class7" selected>Grade 7</option>
+                    <option value="class8">Grade 8</option>
+                    <option value="class9">Grade 9</option>
                 </select>
             </div>
 
@@ -153,14 +154,38 @@
 
 <script>
     const sofTopics = {
-        class1: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class2: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class3: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class4: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class5: { maths: [{code:"M01", name:"Number Sense"}], science: [{code:"S01", name:"Plants"}] },
-        class6: { maths: [{code:"M01", name:"Knowing our Numbers"}], science: [{code:"S01", name:"Food"}] },
-        class7: { maths: [{code:"M01", name:"Integers"}], science: [{code:"S01", name:"Nutrition"}] },
-        // GRADE 8 DATA
+        class7: {
+            maths: [
+                { code: "M01", name: "Integers" },
+                { code: "M02", name: "Fractions and Decimals" },
+                { code: "M03", name: "Data Handling" },
+                { code: "M04", name: "Simple Equations" },
+                { code: "M05", name: "Lines and Angles" },
+                { code: "M06", name: "The Triangle and its Properties" },
+                { code: "M07", name: "Congruence of Triangles" },
+                { code: "M08", name: "Comparing Quantities" },
+                { code: "M09", name: "Rational Numbers" },
+                { code: "M10", name: "Practical Geometry" },
+                { code: "M11", name: "Perimeter and Area" },
+                { code: "M12", name: "Algebraic Expressions" },
+                { code: "M13", name: "Exponents and Powers" },
+                { code: "M14", name: "Symmetry" },
+                { code: "M15", name: "Visualising Solid Shapes" }
+            ],
+            science: [
+                { code: "S01", name: "Nutrition in Plants and Animals" },
+                { code: "S02", name: "Heat" },
+                { code: "S03", name: "Acids, Bases and Salts" },
+                { code: "S04", name: "Physical and Chemical Changes" },
+                { code: "S05", name: "Respiration in Organisms" },
+                { code: "S06", name: "Transportation in Plants and Animals" },
+                { code: "S07", name: "Reproduction in Plants" },
+                { code: "S08", name: "Motion and Time" },
+                { code: "S09", name: "Electric Current and its Effects" },
+                { code: "S10", name: "Light" },
+                { code: "S11", name: "Forests and Wastewater Story" }
+            ]
+        },
         class8: {
             maths: [
                 { code: "M01", name: "Rational Numbers" },
@@ -198,6 +223,7 @@
                 { code: "S16", name: "Pollution of Air and Water" }
             ]
         }
+        // ... include mappings for other grades if needed
     };
 
     function updateTopics() {
@@ -208,14 +234,23 @@
         topicSelect.innerHTML = ""; 
         
         if (selectedClass && subject && sofTopics[selectedClass] && sofTopics[selectedClass][subject]) {
+            const defaultOption = document.createElement("option");
+            defaultOption.value = "";
+            defaultOption.textContent = "Choose a Topic...";
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            topicSelect.appendChild(defaultOption);
+
             sofTopics[selectedClass][subject].forEach(topic => {
                 const option = document.createElement("option");
                 option.value = topic.code; 
                 option.textContent = topic.code + " - " + topic.name;
+                option.setAttribute("data-topic-name", topic.name);
                 topicSelect.appendChild(option);
             });
         } else {
             const option = document.createElement("option");
+            option.value = "";
             option.textContent = "Select subject first...";
             option.disabled = true;
             option.selected = true;
@@ -226,16 +261,20 @@
     function startPractice() {
         const selectedClass = document.getElementById("classSelect").value;
         const selectedSubject = document.getElementById("subjectSelect").value;
-        const selectedTopic = document.getElementById("topicSelect").value;
+        const topicSelect = document.getElementById("topicSelect");
+        const selectedOption = topicSelect.options[topicSelect.selectedIndex];
 
-        if(!selectedSubject || !selectedTopic) {
+        if(!selectedSubject || !topicSelect.value) {
             alert("Please select both a subject and a topic.");
             return;
         }
 
+        const selectedTopicName = selectedOption.getAttribute("data-topic-name");
+
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", selectedSubject);
-        localStorage.setItem("selectedTopic", selectedTopic);
+        localStorage.setItem("selectedTopic", topicSelect.value); // This is the Code (e.g., S01)
+        localStorage.setItem("selectedTopicName", selectedTopicName); // This is the Name
         localStorage.setItem("isChampionship", "false"); 
         window.location.href = "quiz.html";
     }
