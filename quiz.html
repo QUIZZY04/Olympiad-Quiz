@@ -173,7 +173,7 @@ footer {
         <div id="quizHeaderInfo" style="flex: 1; min-width: 0;">
             <h1 id="quizTitle" style="font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; margin-bottom: 8px; line-height: 1.2;">
                 <span style="color: #ef4444; margin-right: 10px;">⚡</span>
-                <span style="background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Live Quiz</span>
+                <span id="mainTitleText" style="background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Live Quiz</span>
             </h1>
             <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                 <span id="displayGradePill" style="background: rgba(56, 189, 248, 0.1); color: var(--brand); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2); text-transform: uppercase;">GRADE: --</span>
@@ -218,7 +218,7 @@ footer {
     </aside>
     </main>
 
-    <div class="bottom-nav-wrap">
+    <div id="selectionNavWrap" class="bottom-nav-wrap">
         <button class="btn-back-selection" onclick="backToSelection()">⬅ Back to Selection</button>
     </div>
 
@@ -253,17 +253,6 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 const storage = getStorage(app);
 
-const sofTopics = {
-    class1: { maths: [], science: [] },
-    class2: { maths: [], science: [] },
-    class3: { maths: [], science: [] },
-    class4: { maths: [], science: [] },
-    class5: { maths: [], science: [] },
-    class6: { maths: [], science: [] },
-    class7: { maths: [], science: [] },
-    class8: { maths: [], science: [] }
-};
-
 let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 let totalTime=1800; 
@@ -287,8 +276,20 @@ window.backToSelection = function() {
 async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
-let sTopic=localStorage.getItem("selectedTopic");
 const sId=localStorage.getItem("activeSessionId");
+
+// Handle visibility of Back to Selection button based on mode
+const navWrap = document.getElementById("selectionNavWrap");
+const titleText = document.getElementById("mainTitleText");
+
+if (isChampionship) {
+    if (navWrap) navWrap.style.display = "none";
+    titleText.innerText = "Live Quiz";
+} else {
+    if (navWrap) navWrap.style.display = "block";
+    const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
+    titleText.innerText = `${subjectDisplayName} Practice`;
+}
 
 try {
     if (isChampionship && sId) {
@@ -300,7 +301,6 @@ try {
             const qSnaps = await Promise.all(qPromises);
             questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
             
-            // Rebranded Pills
             document.getElementById("displayGradePill").innerText = `GRADE: ${sData.class || sClass.replace('class', '')}`;
             document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${(sData.subject || sSub).toUpperCase()}`;
         }
