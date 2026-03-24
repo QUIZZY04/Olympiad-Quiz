@@ -303,6 +303,30 @@ border-top:1px solid var(--border);
                 <tr><td colspan="6" style="text-align:center; color: var(--muted);">No chapter data loaded yet.</td></tr>
             </tbody>
         </table>
+
+        <div style="margin-top:28px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+            <div>
+                <h2 style="margin:0; color:var(--brand); font-size:22px;">📝 Question-wise Chapter Details</h2>
+                <div class="muted" style="margin-top:6px;">See each question with its class, subject, code and chapter name.</div>
+            </div>
+            <div class="badge" id="chapterDetailCount">0 Questions</div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Question ID</th>
+                    <th>Class</th>
+                    <th>Subject</th>
+                    <th>Code</th>
+                    <th>Chapter Name</th>
+                    <th>Question</th>
+                </tr>
+            </thead>
+            <tbody id="chapterQuestionTable">
+                <tr><td colspan="6" style="text-align:center; color: var(--muted);">No question details loaded yet.</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="panel">
@@ -625,13 +649,16 @@ window.loadChapterSummary = async function() {
     const fSubject = document.getElementById('chapterFilterSubject').value;
     const statusEl = document.getElementById('chapterSummaryStatus');
     const tableEl = document.getElementById('chapterSummaryTable');
+    const detailTableEl = document.getElementById('chapterQuestionTable');
 
     document.getElementById('chapterSelectedClass').innerText = formatPrettyLabel(fClass);
     document.getElementById('chapterSelectedSubject').innerText = formatPrettyLabel(fSubject);
     document.getElementById('chapterUniqueCount').innerText = '0';
     document.getElementById('chapterQuestionCount').innerText = '0';
+    document.getElementById('chapterDetailCount').innerText = '0 Questions';
 
     tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center;">Loading chapter data...</td></tr>`;
+    detailTableEl.innerHTML = `<tr><td colspan="6" style="text-align:center;">Loading question details...</td></tr>`;
     statusEl.innerText = 'Reading chapter code and chapter name from Firebase...';
 
     let qry = questionsRef;
@@ -642,12 +669,14 @@ window.loadChapterSummary = async function() {
         const snapshot = await getDocs(qry);
         if (snapshot.empty) {
             tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No questions found for selected filter.</td></tr>`;
+            detailTableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--muted);">No question details found for selected filter.</td></tr>`;
             statusEl.innerText = 'No data found.';
             return;
         }
 
         const chapterMap = new Map();
         let totalQuestions = 0;
+        const questionRows = [];
 
         snapshot.forEach((docSnap) => {
             const data = docSnap.data();
@@ -658,6 +687,15 @@ window.loadChapterSummary = async function() {
             const code = data.code || data.chapterCode || data.chapter_code || data.topicCode || data.topic_code || '—';
             const chapterName = data.chapter || data.chapterName || data.chapter_name || data.topic || data.topicName || data.topic_name || '—';
             const key = `${cls}__${subject}__${code}__${chapterName}`;
+            const questionText = data.q || data.question || '—';
+            questionRows.push({
+                id: docSnap.id,
+                class: cls,
+                subject,
+                code,
+                chapterName,
+                questionText
+            });
 
             if (!chapterMap.has(key)) {
                 chapterMap.set(key, {
@@ -694,12 +732,35 @@ window.loadChapterSummary = async function() {
         });
 
         tableEl.innerHTML = html;
+
+        questionRows.sort((a, b) => {
+            if (a.class !== b.class) return a.class.localeCompare(b.class, undefined, { numeric: true });
+            if (a.subject !== b.subject) return a.subject.localeCompare(b.subject);
+            if (a.code !== b.code) return a.code.localeCompare(b.code, undefined, { numeric: true });
+            return a.id.localeCompare(b.id, undefined, { numeric: true });
+        });
+
+        let detailHtml = '';
+        questionRows.forEach((item) => {
+            detailHtml += `<tr>
+                <td>${item.id}</td>
+                <td>${item.class}</td>
+                <td>${item.subject}</td>
+                <td><span class="badge">${item.code}</span></td>
+                <td>${item.chapterName}</td>
+                <td>${item.questionText}</td>
+            </tr>`;
+        });
+        detailTableEl.innerHTML = detailHtml;
+
         document.getElementById('chapterUniqueCount').innerText = rows.length;
         document.getElementById('chapterQuestionCount').innerText = totalQuestions;
+        document.getElementById('chapterDetailCount').innerText = `${questionRows.length} Questions`;
         statusEl.innerText = `Found ${rows.length} unique chapter entries from ${totalQuestions} questions.`;
     } catch (e) {
         console.error(e);
         tableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--danger);">Failed to load chapter data.</td></tr>`;
+        detailTableEl.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--danger);">Failed to load question details.</td></tr>`;
         statusEl.innerText = 'Error: ' + e.message;
     }
 };
