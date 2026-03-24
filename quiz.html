@@ -758,8 +758,9 @@ function goBackToSelection() {
     localStorage.removeItem("quizAnswers");
 
     const isMockTest = localStorage.getItem("isMockTest") === "true";
+    const selectionSource = localStorage.getItem("selectionSource");
 
-    if (isMockTest) {
+    if (isMockTest || selectionSource === "mock") {
         window.location.href = "mock.html";
     } else {
         window.location.href = "chapterwise.html";
