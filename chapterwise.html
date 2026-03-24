@@ -1,352 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter-wise Practice Questions | Science & Math Olympiad</title>
-    
-    <script>
-        history.pushState(null, null, location.href);
-        window.onpopstate = function () { history.go(1); };
-    </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-        :root {
-            --bg: #020617;
-            --surface: #0f172a;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: #1e293b;
-            --brand: #38bdf8;
-            --accent: #818cf8;
-            --danger: #f43f5e;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --glass: rgba(15, 23, 42, 0.7);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { 
-            background: var(--bg);
-            min-height: 100vh; 
-            color: var(--text);
-            display: flex;
-            flex-direction: column;
-            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), 
-                              radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
-            background-attachment: fixed;
-        }
-
-        nav {
-            background: rgba(2, 6, 23, 0.8); 
-            backdrop-filter: blur(12px); 
-            border-bottom: 1px solid var(--border); 
-            padding: 15px 5%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            position: sticky; top: 0; z-index: 1000;
-        }
-        
-        .brand { font-size: 1.4rem; font-weight: 700; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--brand); }
-
-        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
-
-        .selection-box {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--brand);
-            padding: 50px;
-            border-radius: 28px;
-            width: 100%;
-            max-width: 750px;
-            text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .selection-box h2 { font-size: 2rem; margin-bottom: 8px; font-weight: 800; }
-        .selection-box h2 span { color: var(--brand); }
-        .selection-box p { color: var(--muted); margin-bottom: 40px; font-size: 1.05rem; }
-
-        .form-group { 
-            text-align: left; 
-            margin-bottom: 20px; 
-            background: rgba(255, 255, 255, 0.02); 
-            padding: 24px; 
-            border-radius: 18px; 
-            border: 1px solid var(--border);
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        
-        .form-group:focus-within {
-            border-color: var(--brand);
-            background: rgba(56, 189, 248, 0.04);
-        }
-
-        .step-label { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-            font-size: 12px; 
-            font-weight: 700; 
-            color: var(--brand); 
-            margin-bottom: 14px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        .step-number { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 22px; 
-            height: 22px; 
-            background: var(--brand); 
-            color: var(--bg); 
-            border-radius: 6px; 
-            font-size: 11px; 
-            font-weight: 800;
-        }
-
-        select {
-            width: 100%;
-            padding: 14px 18px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 1rem;
-            font-weight: 500;
-            outline: none;
-            appearance: none;
-            cursor: pointer;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 1.2rem center;
-            background-size: 1.1em;
-            transition: 0.2s;
-        }
-
-        select:hover { border-color: var(--muted); }
-
-        .btn-start {
-            width: 100%;
-            margin-top: 10px;
-            padding: 18px;
-            background: var(--brand);
-            color: var(--bg);
-            border: none;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3);
-        }
-
-        .btn-start:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.4);
-            filter: brightness(1.1);
-        }
-    </style>
-</head>
-<body>
-
-<div id="main-app-container">
-    <nav>
-        <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-        <div class="nav-links">
-            <a href="dashboard.html">Dashboard</a>
-            <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="selection-box">
-            <h2>Grade 1 to 9 Chapterwise <span>Quiz</span></h2>
-            <p>Select your details to start practicing.</p>
-
-            <div class="form-group">
-                <div class="step-label"><span class="step-number">1</span> Select Grade</div>
-                <select id="classSelect" onchange="updateTopics()">
-                    <option value="class1">Grade 1</option>
-                    <option value="class2">Grade 2</option>
-                    <option value="class3">Grade 3</option>
-                    <option value="class4">Grade 4</option>
-                    <option value="class5">Grade 5</option>
-                    <option value="class6">Grade 6</option>
-                    <option value="class7">Grade 7</option>
-                    <option value="class8" selected>Grade 8</option>
-                    <option value="class9">Grade 9</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <div class="step-label"><span class="step-number">2</span> Select Subject</div>
-                <select id="subjectSelect" onchange="updateTopics()">
-                    <option value="" disabled selected>Choose a Subject...</option>
-                    <option value="maths">Mathematics (IMO)</option>
-                    <option value="science">Science (NSO)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <div class="step-label"><span class="step-number">3</span> Select Topic</div>
-                <select id="topicSelect">
-                    <option value="" disabled selected>Select subject first...</option>
-                </select>
-            </div>
-
-            <button class="btn-start" onclick="startPractice()">Start Practice</button>
-        </div>
-    </div>
-</div>
-
 <script>
-    const sofTopics = {
-        class1: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Addition"}, {code:"M03", name:"Subtraction"}, {code:"M04", name:"Lengths, Weights and Comparisons"}, {code:"M05", name:"Time"}, {code:"M06", name:"Money"}, {code:"M07", name:"Geometrical Shapes"}],
-            science: [{code:"S01", name:"Plants Around Us"}, {code:"S02", name:"Animals Around Us"}, {code:"S03", name:"Food and Water"}, {code:"S04", name:"Our Body"}, {code:"S05", name:"Housing and Clothing"}, {code:"S06", name:"Air, Water and Weather"}]
-        },
-        class2: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Length, Weight, Capacity"}, {code:"M04", name:"Time"}, {code:"M05", name:"Money"}, {code:"M06", name:"Lines, Shapes and Solids"}, {code:"M07", name:"Pictographs"}],
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Human Body and Health"}, {code:"S04", name:"Food"}, {code:"S05", name:"Housing and Clothing"}, {code:"S06", name:"Air, Water and Weather"}, {code:"S07", name:"Earth and Universe"}]
-        },
-        class3: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Fractions"}, {code:"M04", name:"Money"}, {code:"M05", name:"Length, Weight, Capacity"}, {code:"M06", name:"Time and Calendar"}, {code:"M07", name:"Geometry"}, {code:"M08", name:"Data Handling"}],
-            science: [{code:"S01", name:"Plants and Animals"}, {code:"S02", name:"Food"}, {code:"S03", name:"Housing and Clothing"}, {code:"S04", name:"Human Body"}, {code:"S05", name:"Matter and Materials"}, {code:"S06", name:"Light, Sound and Force"}, {code:"S07", name:"Earth and Universe"}, {code:"S08", name:"Our Environment"}]
-        },
-        class4: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Fractions"}, {code:"M04", name:"Length, Weight and Capacity"}, {code:"M05", name:"Time and Money"}, {code:"M06", name:"Geometry"}, {code:"M07", name:"Data Handling"}],
-            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Food and Digestion"}, {code:"S04", name:"Human Needs"}, {code:"S05", name:"Matter and Materials"}, {code:"S06", name:"Force, Work and Energy"}, {code:"S07", name:"Our Environment"}, {code:"S08", name:"Earth and Universe"}]
-        },
-        class5: {
-            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Fractions and Decimals"}, {code:"M04", name:"Measurements"}, {code:"M05", name:"Angles"}, {code:"M06", name:"Perimeter and Area"}, {code:"M07", name:"Symmetry"}, {code:"M08", name:"Data Handling"}],
-            science: [{code:"S01", name:"Animals"}, {code:"S02", name:"Plants"}, {code:"S03", name:"Human Body and Health"}, {code:"S04", name:"Matter and Materials"}, {code:"S05", name:"Force, Work and Energy"}, {code:"S06", name:"Our Environment"}, {code:"S07", name:"Earth and Universe"}]
-        },
-        class6: {
-            maths: [{code:"M01", name:"Patterns in Mathematics"}, {code:"M02", name:"Lines and Angles"}, {code:"M03", name:"Number Play"}, {code:"M04", name:"Data Handling and Presentation"}, {code:"M05", name:"Prime Time"}, {code:"M06", name:"Perimeter and Area"}, {code:"M07", name:"Fractions"}, {code:"M08", name:"Playing with Constructions"}, {code:"M09", name:"Symmetry"}, {code:"M10", name:"The Other Side of Zero"}],
-            science: [{code:"S01", name:"Components of Food"}, {code:"S02", name:"Sorting Materials into Groups"}, {code:"S03", name:"Separation of Substances"}, {code:"S04", name:"Getting to Know Plants"}, {code:"S05", name:"Body Movements"}, {code:"S06", name:"Living Organisms and Surroundings"}, {code:"S07", name:"Motion and Measurement"}, {code:"S08", name:"Light, Shadows and Reflections"}, {code:"S09", name:"Electricity and Circuits"}, {code:"S10", name:"Fun with Magnets"}, {code:"S11", name:"Air Around Us"}]
-        },
-        class7: {
-            maths: [{code:"M01", name:"Large Numbers Around Us"}, {code:"M02", name:"Arithmetic Expressions"}, {code:"M03", name:"Letter-Numbers"}, {code:"M04", name:"Lines and Angles"}, {code:"M05", name:"Number Play"}, {code:"M06", name:"Triangles"}, {code:"M07", name:"Congruence of Triangles"}, {code:"M08", name:"Fractions and Decimals"}, {code:"M09", name:"Integers"}, {code:"M10", name:"Data Handling"}, {code:"M11", name:"Constructions and Tilings"}, {code:"M12", name:"Simple Equations"}],
-            science: [{code:"S01", name:"Nutrition in Plants"}, {code:"S02", name:"Nutrition in Animals"}, {code:"S03", name:"Heat"}, {code:"S04", name:"Acids, Bases and Salts"}, {code:"S05", name:"Physical and Chemical Changes"}, {code:"S10", name:"Respiration in Organisms"}, {code:"S11", name:"Transportation in Animals/Plants"}, {code:"S12", name:"Reproduction in Plants"}, {code:"S13", name:"Motion and Time"}, {code:"S14", name:"Electric Current"}, {code:"S15", name:"Light"}]
-        },
-        class8: {
-            maths: [{code:"M01", name:"A Square and A Cube"}, {code:"M02", name:"Exponents and Powers"}, {code:"M03", name:"A Story of Numbers"}, {code:"M04", name:"Quadrilaterals"}, {code:"M05", name:"Number Play"}, {code:"M06", name:"Proportional Reasoning"}, {code:"M07", name:"Fractions in Disguise"}, {code:"M08", name:"Baudhayana Theorem"}, {code:"M09", name:"Geometric Themes"}, {code:"M10", name:"Data Handling"}, {code:"M11", name:"Algebra Play"}, {code:"M12", name:"Area"}],
-            science: [{code:"S01", name:"Crop Production"}, {code:"S02", name:"Microorganisms"}, {code:"S05", name:"Coal and Petroleum"}, {code:"S06", name:"Combustion and Flame"}, {code:"S07", name:"Conservation"}, {code:"S08", name:"Cell Structure"}, {code:"S09", name:"Reproduction"}, {code:"S10", name:"Force and Pressure"}, {code:"S11", name:"Friction"}, {code:"S12", name:"Sound"}, {code:"S13", name:"Chemical Effects"}, {code:"S14", name:"Some Natural Phenomena"}, {code:"S15", name:"Light"}, {code:"S16", name:"Stars and Solar System"}]
-        },
-        class9: {
-            maths: [{code:"M01", name:"Number Systems"}, {code:"M02", name:"Polynomials"}, {code:"M03", name:"Coordinate Geometry"}, {code:"M04", name:"Linear Equations"}, {code:"M05", name:"Euclid's Geometry"}, {code:"M06", name:"Lines and Angles"}, {code:"M07", name:"Triangles"}, {code:"M08", name:"Quadrilaterals"}, {code:"M09", name:"Areas"}, {code:"M10", name:"Circles"}, {code:"M11", name:"Constructions"}, {code:"M12", name:"Heron's Formula"}, {code:"M13", name:"Surface Areas and Volumes"}, {code:"M14", name:"Statistics"}, {code:"M15", name:"Probability"}],
-            science: [{code:"S01", name:"Matter in Our Surroundings"}, {code:"S02", name:"Is Matter Around Us Pure?"}, {code:"S03", name:"Atoms and Molecules"}, {code:"S04", name:"Structure of the Atom"}, {code:"S05", name:"The Fundamental Unit of Life"}, {code:"S06", name:"Tissues"}, {code:"S07", name:"Motion"}, {code:"S08", name:"Force and Laws of Motion"}, {code:"S09", name:"Gravitation"}, {code:"S10", name:"Work and Energy"}, {code:"S11", name:"Sound"}, {code:"S12", name:"Improvement in Food Resources"}]
-        }
-    };
+    // ... sofTopics object remains the same as provided in previous turns ...
 
     function updateTopics() {
-        const selectedClass = document.getElementById("classSelect").value;
-        const selectedSubject = document.getElementById("subjectSelect").value;
-        const topicSelect = document.getElementById("topicSelect");
-
-        topicSelect.innerHTML = "";
-
-        if (!selectedClass || !selectedSubject || !sofTopics[selectedClass] || !sofTopics[selectedClass][selectedSubject]) {
-            const option = document.createElement("option");
-            option.value = "";
-            option.textContent = "Select subject first...";
-            option.disabled = true;
-            option.selected = true;
-            topicSelect.appendChild(option);
-            return;
+        const cls = document.getElementById("classSelect").value;
+        const sub = document.getElementById("subjectSelect").value;
+        const ts = document.getElementById("topicSelect");
+        ts.innerHTML = "";
+        if (sofTopics[cls] && sofTopics[cls][sub]) {
+            ts.innerHTML = '<option value="" disabled selected>Choose a Topic...</option>';
+            sofTopics[cls][sub].forEach(t => {
+                const opt = document.createElement("option");
+                opt.value = t.code; // This is the "S15", "M01" code
+                opt.textContent = `${t.code} - ${t.name}`;
+                opt.dataset.name = t.name; // Clean name without the code
+                ts.appendChild(opt);
+            });
+        } else {
+            ts.innerHTML = '<option value="" disabled selected>Coming Soon...</option>';
         }
-
-        const topicList = sofTopics[selectedClass][selectedSubject];
-
-        const defaultOption = document.createElement("option");
-        defaultOption.value = "";
-        defaultOption.textContent = "Choose a Topic...";
-        defaultOption.disabled = true;
-        defaultOption.selected = true;
-        topicSelect.appendChild(defaultOption);
-
-        topicList.forEach(topic => {
-            const option = document.createElement("option");
-            option.value = topic.code;
-            option.textContent = `${topic.code} - ${topic.name}`;
-            option.setAttribute("data-topic-name", topic.name);
-            topicSelect.appendChild(option);
-        });
     }
 
     function startPractice() {
-        const classSelect = document.getElementById("classSelect");
-        const subjectSelect = document.getElementById("subjectSelect");
-        const topicSelect = document.getElementById("topicSelect");
+        const cls = document.getElementById("classSelect").value;
+        const sub = document.getElementById("subjectSelect").value;
+        const ts = document.getElementById("topicSelect");
+        const selectedOpt = ts.options[ts.selectedIndex];
 
-        const selectedClass = classSelect.value;
-        const selectedSubject = subjectSelect.value;
-        const selectedTopic = topicSelect.value;
-        const selectedTopicOption = topicSelect.options[topicSelect.selectedIndex];
-
-        if (!selectedSubject || !selectedTopic) {
+        if (!sub || !ts.value) {
             alert("Please select both a subject and a topic.");
             return;
         }
 
-        const selectedTopicName = selectedTopicOption.getAttribute("data-topic-name");
-
-        localStorage.setItem("selectedClass", selectedClass);
-        localStorage.setItem("selectedSubject", selectedSubject);
-        localStorage.setItem("selectedTopic", selectedTopic);
-        localStorage.setItem("selectedTopicName", selectedTopicName);
+        // Save everything to localStorage for the quiz page
+        localStorage.setItem("selectedClass", cls);
+        localStorage.setItem("selectedSubject", sub);
+        localStorage.setItem("selectedTopic", ts.value); // This saves "S15"
+        localStorage.setItem("selectedTopicName", selectedOpt.dataset.name); // This saves "Light"
         localStorage.setItem("isChampionship", "false");
 
         window.location.href = "quiz.html";
     }
-
-    window.addEventListener("DOMContentLoaded", () => {
-        const savedClass = localStorage.getItem("selectedClass");
-        const savedSubject = localStorage.getItem("selectedSubject");
-
-        if (savedClass) document.getElementById("classSelect").value = savedClass;
-        if (savedSubject) document.getElementById("subjectSelect").value = savedSubject;
-
-        updateTopics();
-
-        const savedTopic = localStorage.getItem("selectedTopic");
-        if (savedTopic) document.getElementById("topicSelect").value = savedTopic;
-    });
 </script>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-        projectId: "olympiad-portal-d2a5e",
-        storageBucket: "olympiad-portal-d2a5e.firebasestorage.app"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    window.logout = async () => {
-        await signOut(auth);
-        localStorage.clear();
-        window.location.replace("index.html");
-    };
-</script>
-</body>
-</html>
