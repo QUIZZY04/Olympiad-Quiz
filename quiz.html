@@ -158,9 +158,8 @@ footer {
 <div class="options" id="options"></div>
 
 <div class="quiz-buttons">
-<button class="btn btn-prev" onclick="prevQuestion()">Previous</button>f
+<button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
 <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
-
 <button class="btn btn-finish" onclick="confirmSubmit()">Finish Quiz</button>
 <button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete Question</button>
 </div>
@@ -177,11 +176,9 @@ footer {
 </div>
 </aside>
 </main>
-  <div style="max-width:1400px; margin:20px auto 0; padding:0 5%; text-align:left;">
-  <button
-    class="btn btn-prev"
-    style="max-width:240px;"
-    onclick="if(confirm('Go back to chapter selection? Your current quiz progress will be lost.')) window.location.href='chapterwise.html'">
+
+<div style="max-width:1400px; margin:20px auto 0; padding:0 5%; text-align:left;">
+  <button class="btn btn-prev" style="max-width:240px;" onclick="goBackToSelection()">
     Back to Selection
   </button>
 </div>
@@ -754,6 +751,21 @@ function getVerifiedTopicSelection() {
     };
 }
 
+function goBackToSelection() {
+    if (!confirm("Go back to selection? Your current quiz progress will be lost.")) return;
+
+    localStorage.removeItem("currentQuestionIndex");
+    localStorage.removeItem("quizAnswers");
+
+    const isMockTest = localStorage.getItem("isMockTest") === "true";
+
+    if (isMockTest) {
+        window.location.href = "mock.html";
+    } else {
+        window.location.href = "chapterwise.html";
+    }
+}
+
 onAuthStateChanged(auth, async(user)=>{
     if(!user){ window.location.href="login.html"; return; }
     if (user.email === "madhhu52@gmail.com") {
@@ -771,18 +783,19 @@ const sTopic = topicInfo.selectedTopicCode;
 const sTopicName = topicInfo.selectedTopicName;
 const sTopicDisplay = topicInfo.selectedTopicDisplay;
 const sId = localStorage.getItem("activeSessionId");
+const isMockTest = localStorage.getItem("isMockTest") === "true";
 
 if (!isChampionship) {
     if (!sClass || !sSub) {
         alert("Quiz selection is incomplete. Please select again.");
-        window.location.href = "chapterwise.html";
+        window.location.href = isMockTest ? "mock.html" : "chapterwise.html";
         return;
     }
 
     const parsedTopicData = safeParseJSON(localStorage.getItem("selectedTopicData") || "null", null);
     const hadStoredTopic = !!(localStorage.getItem("selectedTopic") || parsedTopicData?.code);
 
-    if (hadStoredTopic && !topicInfo.verifiedTopic) {
+    if (!isMockTest && hadStoredTopic && !topicInfo.verifiedTopic) {
         alert("Selected topic code does not match the chapter list. Please select topic again.");
         window.location.href = "chapterwise.html";
         return;
@@ -998,6 +1011,7 @@ window.nextQuestion = nextQuestion;
 window.prevQuestion = prevQuestion;
 window.jumpTo = jumpTo;
 window.saveAnswer = saveAnswer;
+window.goBackToSelection = goBackToSelection;
 window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
 </script>
 
