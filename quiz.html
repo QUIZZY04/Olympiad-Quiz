@@ -158,9 +158,9 @@ footer {
 <div class="options" id="options"></div>
 
 <div class="quiz-buttons">
-<button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
+<button class="btn btn-prev" onclick="prevQuestion()">Previous</button>f
 <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
-<button class="btn btn-prev" onclick="window.location.href='chapterwise.html'">Back to Selection</button>
+
 <button class="btn btn-finish" onclick="confirmSubmit()">Finish Quiz</button>
 <button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete Question</button>
 </div>
@@ -177,6 +177,14 @@ footer {
 </div>
 </aside>
 </main>
+  <div style="max-width:1400px; margin:20px auto 0; padding:0 5%; text-align:left;">
+  <button
+    class="btn btn-prev"
+    style="max-width:240px;"
+    onclick="if(confirm('Go back to chapter selection? Your current quiz progress will be lost.')) window.location.href='chapterwise.html'">
+    Back to Selection
+  </button>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
