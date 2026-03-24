@@ -695,13 +695,21 @@ let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmit
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 let totalTime=1800;
 
+function safeParseJSON(value, fallback = null) {
+    try {
+        return JSON.parse(value);
+    } catch (e) {
+        return fallback;
+    }
+}
+
 function getStoredTopicSelection() {
     const selectedClass = localStorage.getItem("selectedClass") || "class6";
     const selectedSubject = localStorage.getItem("selectedSubject") || "science";
     const selectedTopic = localStorage.getItem("selectedTopic") || "";
     const selectedTopicName = localStorage.getItem("selectedTopicName") || "";
     const selectedTopicDisplay = localStorage.getItem("selectedTopicDisplay") || "";
-    const selectedTopicData = JSON.parse(localStorage.getItem("selectedTopicData") || "null");
+    const selectedTopicData = safeParseJSON(localStorage.getItem("selectedTopicData") || "null", null);
 
     return {
         selectedClass,
@@ -762,7 +770,9 @@ if (!isChampionship) {
         return;
     }
 
-    const hadStoredTopic = !!(localStorage.getItem("selectedTopic") || JSON.parse(localStorage.getItem("selectedTopicData") || "null")?.code);
+    const parsedTopicData = safeParseJSON(localStorage.getItem("selectedTopicData") || "null", null);
+    const hadStoredTopic = !!(localStorage.getItem("selectedTopic") || parsedTopicData?.code);
+
     if (hadStoredTopic && !topicInfo.verifiedTopic) {
         alert("Selected topic code does not match the chapter list. Please select topic again.");
         window.location.href = "chapterwise.html";
@@ -795,12 +805,19 @@ try {
         if(questions.length>30) questions=questions.slice(0,30);
     }
 } catch (error) {
-    console.error(error);
+    console.error("Question loading failed:", error);
 }
 
 if (questions.length === 0) {
+    document.getElementById("quizTitle").innerHTML = `📖 Quiz`;
+    document.getElementById("quizSubtitle").innerText = sTopicDisplay ? `Topic: ${sTopicDisplay}` : "No questions found";
+    document.getElementById("displaySubject").innerText = `Grade: ${sClass.replace('class', '')}`;
     document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found.</h3>";
     document.getElementById("options").innerHTML = "";
+    document.getElementById("questionGrid").innerHTML = "";
+    document.getElementById("questionNumber").innerText = "QUESTION 0";
+    document.getElementById("progressBar").style.width = "0%";
+    document.getElementById("progressPercent").innerText = "0%";
     return;
 }
 
@@ -832,11 +849,13 @@ loadQuestion();
 }
 
 async function loadQuestion(){
+if (!questions.length) return;
+
 const q=questions[current];
 visitedQuestions[current]=true;
 
 document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
-document.getElementById("questionText").innerHTML=q.q;
+document.getElementById("questionText").innerHTML=q.q || "Question not available";
 
 const imgDiv = document.getElementById("questionImage");
 imgDiv.innerHTML = "";
@@ -861,7 +880,7 @@ if (imageName) {
 }
 
 let html="";
-q.o.forEach((opt,i)=>{
+(q.o || []).forEach((opt,i)=>{
 html+=`<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current]===i?"checked":""} onchange="saveAnswer(${i})"/><span>${opt}</span></label>`;
 });
 document.getElementById("options").innerHTML=html;
@@ -880,6 +899,8 @@ document.getElementById("questionGrid").innerHTML=html;
 }
 
 function updateGrid(){
+if (!questions.length) return;
+
 let ans=0;
 for(let i=0;i<questions.length;i++){
 const el=document.getElementById("q"+i);
@@ -905,7 +926,7 @@ if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 }
 
 async function submitQuiz(){
-    if(quizSubmitted) return;
+    if(quizSubmitted || !questions.length) return;
     quizSubmitted=true;
 
     let score=0;
@@ -949,6 +970,7 @@ async function submitQuiz(){
 }
 
 window.deleteCurrentQuestion = async () => {
+    if (!questions.length) return;
     const qId = questions[current].id;
     if (confirm("Delete this question permanently?")) {
         await deleteDoc(doc(db, "questions", qId));
