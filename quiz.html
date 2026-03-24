@@ -274,50 +274,29 @@ window.backToSelection = function() {
     }
 }
 
-function cleanText(value) {
-    if (!value) return "";
-    return String(value)
-        .replace(/[_-]+/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-}
+function getDisplayTopicName() {
+    const topicName =
+        localStorage.getItem("selectedTopicName") ||
+        localStorage.getItem("selectedChapterName") ||
+        localStorage.getItem("selectedTopicText") ||
+        localStorage.getItem("selectedChapterText") ||
+        localStorage.getItem("selectedTopic") ||
+        localStorage.getItem("selectedChapter") ||
+        "";
 
-function isLikelyCode(value) {
-    if (!value) return false;
-    const v = String(value).trim();
-    return /^[A-Z]{1,3}\d{1,3}$/i.test(v);
-}
-
-function getTopicNameFromQuestion(q, selectedCode = "") {
-    const possibleNames = [
-        q.topic_name,
-        q.topicName,
-        q.chapter_name,
-        q.chapterName,
-        q.chapter,
-        q.topic
-    ];
-
-    for (const item of possibleNames) {
-        if (item && String(item).trim() !== "") {
-            const cleaned = cleanText(item);
-            if (!isLikelyCode(cleaned) || cleaned.toLowerCase() !== String(selectedCode).trim().toLowerCase()) {
-                return cleaned;
-            }
-        }
-    }
-    return "";
+    return String(topicName).trim();
 }
 
 async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
 const sId=localStorage.getItem("activeSessionId");
-const selectedTopic = localStorage.getItem("selectedChapter") || localStorage.getItem("selectedTopic") || localStorage.getItem("selectedChapterName") || "";
 
+// Handle visibility of Back to Selection button based on mode
 const navWrap = document.getElementById("selectionNavWrap");
 const titleText = document.getElementById("mainTitleText");
 const topicPill = document.getElementById("displayTopicPill");
+const topicName = getDisplayTopicName();
 
 if (isChampionship) {
     if (navWrap) navWrap.style.display = "none";
@@ -340,67 +319,23 @@ try {
             
             document.getElementById("displayGradePill").innerText = `GRADE: ${sData.class || sClass.replace('class', '')}`;
             document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${(sData.subject || sSub).toUpperCase()}`;
-
-            const sessionTopicRaw = sData.topic_name || sData.topicName || sData.chapter_name || sData.chapterName || sData.chapter || sData.topic || selectedTopic;
-            let finalTopicName = cleanText(sessionTopicRaw);
-
-            if (isLikelyCode(finalTopicName) && questions.length > 0) {
-                const fromQuestion = getTopicNameFromQuestion(questions[0], finalTopicName);
-                if (fromQuestion) finalTopicName = fromQuestion;
-            }
-
-            if (finalTopicName) {
-                topicPill.innerText = `TOPIC: ${finalTopicName}`;
-                topicPill.style.display = "inline-block";
-            } else {
-                topicPill.style.display = "none";
-            }
         }
     } else {
         let qBase = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
         const snap = await getDocs(qBase);
         questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
-
-        if (selectedTopic) {
-            questions = questions.filter(q => {
-                const qValues = [
-                    q.topic_code,
-                    q.topicCode,
-                    q.chapter_code,
-                    q.chapterCode,
-                    q.topic,
-                    q.chapter,
-                    q.topic_name,
-                    q.topicName,
-                    q.chapter_name,
-                    q.chapterName
-                ].filter(Boolean).map(v => String(v).trim().toLowerCase());
-
-                return qValues.includes(String(selectedTopic).trim().toLowerCase());
-            });
-        }
-
         if(questions.length>30) questions=questions.slice(0,30);
 
         document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
         document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${sSub.toUpperCase()}`;
-
-        let finalTopicName = cleanText(selectedTopic);
-
-        if ((!finalTopicName || isLikelyCode(finalTopicName)) && questions.length > 0) {
-            const fromQuestion = getTopicNameFromQuestion(questions[0], finalTopicName);
-            if (fromQuestion) finalTopicName = fromQuestion;
-        }
-
-        if (finalTopicName) {
-            topicPill.innerText = `TOPIC: ${finalTopicName}`;
-            topicPill.style.display = "inline-block";
-        } else {
-            topicPill.style.display = "none";
-        }
     }
-} catch (error) { 
-    console.error(error); 
+} catch (error) { console.error(error); }
+
+if (!isChampionship && topicName) {
+    topicPill.innerText = `TOPIC: ${topicName}`;
+    topicPill.style.display = "inline-block";
+} else {
+    topicPill.style.display = "none";
 }
 
 if (questions.length === 0) {
@@ -415,8 +350,7 @@ loadQuestion();
 }
 
 async function loadQuestion(){
-const q=questions[current]; 
-visitedQuestions[current]=true;
+const q=questions[current]; visitedQuestions[current]=true;
 document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
 document.getElementById("questionText").innerHTML=q.q;
 
@@ -455,16 +389,14 @@ function prevQuestion(){ if(current>0){current--; loadQuestion();} }
 function jumpTo(i){ current=i; loadQuestion(); }
 
 function generateGrid(){
-let html=""; 
-for(let i=0;i<questions.length;i++) html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
+let html=""; for(let i=0;i<questions.length;i++) html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
 document.getElementById("questionGrid").innerHTML=html;
 }
 
 function updateGrid(){
 let ans=0;
 for(let i=0;i<questions.length;i++){
-const el=document.getElementById("q"+i); 
-if(!el)continue;
+const el=document.getElementById("q"+i); if(!el)continue;
 el.className="cell";
 if(i===current) el.classList.add("current");
 else if(selectedAnswers[i]!==null) el.classList.add("answered");
@@ -486,62 +418,29 @@ if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 }
 
 async function submitQuiz(){
-    if(quizSubmitted)return; 
-    quizSubmitted=true;
-    let score=0; 
-    questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+    if(quizSubmitted)return; quizSubmitted=true;
+    let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
     const accuracy = ((score/questions.length)*100).toFixed(2);
-    const resultData = { 
-        score, 
-        total: questions.length, 
-        questions, 
-        answers: selectedAnswers, 
-        subject: localStorage.getItem("selectedSubject"), 
-        class: localStorage.getItem("selectedClass") 
-    };
+    const resultData = { score, total: questions.length, questions, answers: selectedAnswers, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") };
     localStorage.setItem("quizResult", JSON.stringify(resultData));
 
     try {
         await addDoc(collection(db,"leaderboard"),{ 
-          email:auth.currentUser.email, 
-          uid:auth.currentUser.uid, 
-          score: parseFloat(accuracy), 
-          rawScore: score, 
-          total: questions.length, 
-          accuracy: accuracy, 
-          timestamp: serverTimestamp(), 
-          isChampionship, 
-          sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, 
-          subject: localStorage.getItem("selectedSubject"), 
-          class: localStorage.getItem("selectedClass") 
+          email:auth.currentUser.email, uid:auth.currentUser.uid, score: parseFloat(accuracy), rawScore: score, total: questions.length, accuracy: accuracy, timestamp: serverTimestamp(), isChampionship, sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") 
         });
         window.location.href="result.html";
-    } catch(e) { 
-        window.location.href="result.html"; 
-    }
+    } catch(e) { window.location.href="result.html"; }
 }
 
 window.deleteCurrentQuestion = async () => {
     const qId = questions[current].id;
-    if (confirm("Delete permanently?")) { 
-        await deleteDoc(doc(db, "questions", qId)); 
-        location.reload(); 
-    }
+    if (confirm("Delete permanently?")) { await deleteDoc(doc(db, "questions", qId)); location.reload(); }
 };
 
-window.logout=async()=>{ 
-    if(confirm("Logout?")){ 
-        await signOut(auth); 
-        window.location.replace("index.html"); 
-    } 
-};
-window.nextQuestion = nextQuestion; 
-window.prevQuestion = prevQuestion;
-window.jumpTo = jumpTo; 
-window.saveAnswer = saveAnswer;
-window.confirmSubmit = () => { 
-    if(confirm("Submit quiz?")) submitQuiz(); 
-};
+window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("index.html"); } };
+window.nextQuestion = nextQuestion; window.prevQuestion = prevQuestion;
+window.jumpTo = jumpTo; window.saveAnswer = saveAnswer;
+window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
 </script>
 
 </body>
