@@ -200,6 +200,8 @@
                     <option value="class6" selected>Grade 6</option>
                     <option value="class7">Grade 7</option>
                     <option value="class8">Grade 8</option>
+                    <option value="class9">Grade 9</option>
+                    <option value="class10">Grade 10</option>
                 </select>
             </div>
 
@@ -216,6 +218,14 @@
                     <div class="subject-card" onclick="startMock('science')">
                         <h3>Science (NSO)</h3>
                         <p>Physics, Chemistry, Biology</p>
+                    </div>
+                    <div class="subject-card" onclick="startMock('english')">
+                        <h3>English (IEO)</h3>
+                        <p>Grammar, Vocabulary, Reading</p>
+                    </div>
+                    <div class="subject-card" onclick="startMock('reasoning')">
+                        <h3>Reasoning</h3>
+                        <p>Patterns, Logic, Puzzles</p>
                     </div>
                 </div>
             </div>
@@ -239,13 +249,11 @@
     function startMock(subject) {
         const selectedClass = document.getElementById("classSelect").value;
 
-        // Clear all chapterwise topic data completely
         localStorage.removeItem("selectedTopic");
         localStorage.removeItem("selectedTopicName");
         localStorage.removeItem("selectedTopicDisplay");
         localStorage.removeItem("selectedTopicData");
 
-        // Save only mock test selection
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", subject);
         localStorage.setItem("isChampionship", "false");
