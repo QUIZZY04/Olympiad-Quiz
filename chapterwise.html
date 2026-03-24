@@ -25,6 +25,7 @@
             --danger: #f43f5e;
             --success: #10b981;
             --warning: #f59e0b;
+            --glass: rgba(15, 23, 42, 0.7);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -35,68 +36,135 @@
             color: var(--text);
             display: flex;
             flex-direction: column;
-            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), 
+                              radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
             background-attachment: fixed;
         }
 
         nav {
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            background: rgba(2, 6, 23, 0.8); 
+            backdrop-filter: blur(12px); 
             border-bottom: 1px solid var(--border); 
-            padding: 20px 5%; 
+            padding: 15px 5%; 
             display: flex; 
             align-items: center; 
             justify-content: space-between;
             position: sticky; top: 0; z-index: 1000;
         }
         
-        .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; }
-        .nav-links { display: flex; gap: 12px; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; text-transform: uppercase; }
+        .brand { font-size: 1.4rem; font-weight: 700; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
 
-        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
 
         .selection-box {
-            background: linear-gradient(145deg, #0f172a, #020617);
+            background: var(--glass);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--border);
-            border-top: 2px solid var(--brand);
-            padding: 45px 40px;
-            border-radius: 24px;
+            border-top: 4px solid var(--brand);
+            padding: 50px;
+            border-radius: 28px;
             width: 100%;
-            max-width: 550px;
+            max-width: 750px;
             text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        .form-group { text-align: left; margin-bottom: 25px; background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: 16px; border: 1px solid var(--border); }
-        
-        .step-label { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 12px; text-transform: uppercase; }
+        .selection-box h2 { font-size: 2rem; margin-bottom: 8px; font-weight: 800; }
+        .selection-box h2 span { color: var(--brand); }
+        .selection-box p { color: var(--muted); margin-bottom: 40px; font-size: 1.05rem; }
 
-        .step-number { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--brand); color: white; border-radius: 50%; font-size: 12px; }
+        .form-group { 
+            text-align: left; 
+            margin-bottom: 20px; 
+            background: rgba(255, 255, 255, 0.02); 
+            padding: 24px; 
+            border-radius: 18px; 
+            border: 1px solid var(--border);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .form-group:focus-within {
+            border-color: var(--brand);
+            background: rgba(56, 189, 248, 0.04);
+        }
+
+        .step-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            color: var(--brand); 
+            margin-bottom: 14px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        .step-number { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 22px; 
+            height: 22px; 
+            background: var(--brand); 
+            color: var(--bg); 
+            border-radius: 6px; 
+            font-size: 11px; 
+            font-weight: 800;
+        }
 
         select {
             width: 100%;
-            padding: 14px 20px;
+            padding: 14px 18px;
             background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             color: var(--text);
+            font-size: 1rem;
+            font-weight: 500;
             outline: none;
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            cursor: pointer;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.2em;
+            background-position: right 1.2rem center;
+            background-size: 1.1em;
+            transition: 0.2s;
         }
+
+        select:hover { border-color: var(--muted); }
 
         .btn-start {
             width: 100%;
-            padding: 16px;
+            margin-top: 10px;
+            padding: 18px;
             background: var(--brand);
-            color: #ffffff;
+            color: var(--bg);
             border: none;
-            border-radius: 10px;
+            border-radius: 14px;
             font-weight: 800;
+            font-size: 1rem;
             cursor: pointer;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(56, 189, 248, 0.4);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 640px) {
+            .selection-box { padding: 35px 20px; border-radius: 20px; }
+            .selection-box h2 { font-size: 1.5rem; }
+            .form-group { padding: 18px; }
+            .container { padding: 20px 15px; }
         }
     </style>
 </head>
@@ -169,7 +237,6 @@
                 { code: "S05", name: "Air, Water and Environment" }
             ]
         },
-
         class2: {
             maths: [
                 { code: "M01", name: "Numbers" },
@@ -186,7 +253,6 @@
                 { code: "S05", name: "Our Body and Safety" }
             ]
         },
-
         class3: {
             maths: [
                 { code: "M01", name: "Numbers" },
@@ -205,7 +271,6 @@
                 { code: "S06", name: "Light, Sound and Force" }
             ]
         },
-
         class4: {
             maths: [
                 { code: "M01", name: "Numbers" },
@@ -225,7 +290,6 @@
                 { code: "S06", name: "Earth and Universe" }
             ]
         },
-
         class5: {
             maths: [
                 { code: "M01", name: "Large Numbers" },
@@ -246,7 +310,6 @@
                 { code: "S06", name: "Earth and Space" }
             ]
         },
-
         class6: {
             maths: [
                 { code: "M01", name: "Knowing Our Numbers" },
@@ -281,7 +344,6 @@
                 { code: "S16", name: "Garbage In, Garbage Out" }
             ]
         },
-
         class7: {
             maths: [
                 { code: "M01", name: "Integers" },
@@ -321,7 +383,6 @@
                 { code: "S18", name: "Wastewater Story" }
             ]
         },
-
         class8: {
             maths: [
                 { code: "M01", name: "Rational Numbers" },
