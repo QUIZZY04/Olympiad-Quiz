@@ -178,6 +178,7 @@ footer {
             <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                 <span id="displayGradePill" style="background: rgba(56, 189, 248, 0.1); color: var(--brand); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2); text-transform: uppercase;">GRADE: --</span>
                 <span id="displaySubjectPill" style="background: rgba(129, 140, 248, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(129, 140, 248, 0.2); text-transform: uppercase;">SUBJECT: --</span>
+                <span id="displayTopicPill" style="display:none; background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.2); text-transform: uppercase;">TOPIC: --</span>
             </div>
             <p id="quizSubtitle" style="display: none;"></p>
         </div>
@@ -266,6 +267,47 @@ await loadQuestions();
 startTimer();
 });
 
+function getDisplayTopicName() {
+    return (
+        localStorage.getItem("selectedTopicName") ||
+        localStorage.getItem("selectedChapterName") ||
+        localStorage.getItem("selectedTopicText") ||
+        localStorage.getItem("selectedChapterText") ||
+        localStorage.getItem("selectedTopic") ||
+        localStorage.getItem("selectedChapter") ||
+        ""
+    ).trim();
+}
+
+function getSelectedTopicCode() {
+    return (
+        localStorage.getItem("selectedTopic") ||
+        localStorage.getItem("selectedChapter") ||
+        ""
+    ).trim();
+}
+
+function isSameTopic(q, selectedTopicCode) {
+    if (!selectedTopicCode) return true;
+
+    const valuesToCheck = [
+        q.topic_code,
+        q.topicCode,
+        q.chapter_code,
+        q.chapterCode,
+        q.topic,
+        q.chapter,
+        q.topic_id,
+        q.topicId,
+        q.chapter_id,
+        q.chapterId
+    ]
+    .filter(v => v !== undefined && v !== null)
+    .map(v => String(v).trim().toLowerCase());
+
+    return valuesToCheck.includes(String(selectedTopicCode).trim().toLowerCase());
+}
+
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
         localStorage.setItem("isChampionship", "false");
@@ -289,10 +331,12 @@ async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
 const sId=localStorage.getItem("activeSessionId");
+const topicName = getDisplayTopicName();
+const selectedTopicCode = getSelectedTopicCode();
 
-// Handle visibility of Back to Selection button based on mode
 const navWrap = document.getElementById("selectionNavWrap");
 const titleText = document.getElementById("mainTitleText");
+const topicPill = document.getElementById("displayTopicPill");
 
 if (isChampionship) {
     if (navWrap) navWrap.style.display = "none";
@@ -320,6 +364,11 @@ try {
         let qBase = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
         const snap = await getDocs(qBase);
         questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+
+        if (selectedTopicCode) {
+            questions = questions.filter(q => isSameTopic(q, selectedTopicCode));
+        }
+
         if(questions.length>30) questions=questions.slice(0,30);
 
         document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
@@ -327,8 +376,15 @@ try {
     }
 } catch (error) { console.error(error); }
 
+if (!isChampionship && topicName) {
+    topicPill.innerText = `TOPIC: ${topicName}`;
+    topicPill.style.display = "inline-block";
+} else {
+    topicPill.style.display = "none";
+}
+
 if (questions.length === 0) {
-    document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found.</h3>";
+    document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found for selected topic.</h3>";
     return;
 }
 
