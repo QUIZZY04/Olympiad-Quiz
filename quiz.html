@@ -92,16 +92,14 @@ box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 .options{display:grid;gap:12px;margin-top:15px}
 .opt{display:flex;align-items:center;gap:15px; padding:15px 20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.3s; font-size:15px;}
 .opt:hover{border-color:var(--brand); background:rgba(56, 189, 248, 0.05);}
-.quiz-buttons{display:flex;gap:15px;margin-top:auto;padding-top:30px;flex-wrap:wrap;}
-.btn{flex:1;padding:14px 10px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase;font-size:14px; transition:0.3s; min-width:120px;}
+.quiz-buttons{display:flex;gap:15px;margin-top:auto;padding-top:30px;}
+.btn{flex:1;padding:14px 10px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase;font-size:14px; transition:0.3s;}
 .btn-save{background:#6366f1;color:#fff}
 .btn-save:hover{background:#4f46e5;}
 .btn-prev{background:var(--bg);color:var(--text); border:1px solid var(--border);}
 .btn-prev:hover{background:var(--border);}
 .btn-finish{background:#f43f5e;color:#fff}
 .btn-finish:hover{background:#e11d48;}
-.btn-danger{background:#b91c1c;color:#fff}
-.btn-danger:hover{background:#991b1b}
 
 .bottom-nav-wrap {
     max-width: 1400px;
@@ -148,39 +146,6 @@ footer {
   margin-top:40px;
 }
 
-#questionDetailsModal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.7);
-  z-index:9999;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-#questionDetailsModalBox{
-  width:min(900px,95vw);
-  max-height:90vh;
-  overflow:auto;
-  background:#0f172a;
-  border:1px solid #1e293b;
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.5);
-}
-#questionDetailsContent{
-  white-space:pre-wrap;
-  word-break:break-word;
-  margin:0;
-  color:#f8fafc;
-  font-size:14px;
-  line-height:1.6;
-  background:#020617;
-  border:1px solid #1e293b;
-  border-radius:12px;
-  padding:15px;
-}
-
 @media (max-width:850px){
 .quiz-container{flex-direction:column;height:auto;padding:15px;gap:15px;}
 .question-section,.navigation-section{width:100%;flex:none;}
@@ -204,25 +169,17 @@ footer {
         </div>
     </nav>
 
-    <div style="max-width: 1400px; margin: 20px auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
+    <div style="max-width: 1400px; margin: 10px auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
         <div id="quizHeaderInfo" style="flex: 1; min-width: 0;">
-            <h1 id="quizTitle" style="font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; margin-bottom: 8px; line-height: 1.2;">
-                <span style="color: #ef4444; margin-right: 10px;">⚡</span>
-                <span id="mainTitleText" style="background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Live Quiz</span>
-            </h1>
-            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                <span id="displayGradePill" style="background: rgba(56, 189, 248, 0.1); color: var(--brand); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2); text-transform: uppercase;">GRADE: --</span>
-                <span id="displaySubjectPill" style="background: rgba(129, 140, 248, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(129, 140, 248, 0.2); text-transform: uppercase;">SUBJECT: --</span>
-                <span id="displayTopicPill" style="display:none; background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.2); text-transform: uppercase;">TOPIC: --</span>
-            </div>
-            <p id="quizSubtitle" style="display: none;"></p>
+            <h1 id="quizTitle" style="font-size: clamp(1.1rem, 4.5vw, 1.5rem); font-weight: 800; color: var(--text); margin: 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h1>
+            <p id="quizSubtitle" style="font-size: 0.8rem; color: var(--muted); margin: 2px 0 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></p>
         </div>
         <div id="timerWrap">⏳ <span id="timer">--:--</span></div>
     </div>
 
     <main class="quiz-container">
     <section class="question-section section">
-    <div style="display:flex;justify-content:space-between; font-weight:600; font-size:14px; color:var(--muted);"><span id="displayProgressLabel">Progress</span><span id="progressPercent">0%</span></div>
+    <div style="display:flex;justify-content:space-between; font-weight:600; font-size:14px; color:var(--muted);"><span id="displaySubject">Progress</span><span id="progressPercent">0%</span></div>
     <div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
         <div id="progressBar" style="width:0%; height:100%; background:var(--brand); transition:0.3s;"></div>
     </div>
@@ -238,7 +195,6 @@ footer {
     <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
     <button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
     <button class="btn btn-finish" onclick="confirmSubmit()">Finish</button>
-    <button class="btn btn-prev" id="questionDetailsBtn" style="display:none;" onclick="showQuestionDetails()">Details</button>
     <button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete</button>
     </div>
     </section>
@@ -255,7 +211,7 @@ footer {
     </aside>
     </main>
 
-    <div id="selectionNavWrap" class="bottom-nav-wrap">
+    <div class="bottom-nav-wrap">
         <button class="btn-back-selection" onclick="backToSelection()">⬅ Back to Selection</button>
     </div>
 
@@ -268,16 +224,6 @@ footer {
         </div>
         <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
     </footer>
-</div>
-
-<div id="questionDetailsModal">
-  <div id="questionDetailsModalBox">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; gap:10px;">
-      <h3 style="margin:0; color:#38bdf8;">Question Details</h3>
-      <button onclick="closeQuestionDetails()" style="background:#f43f5e; color:#fff; border:none; border-radius:8px; padding:8px 14px; font-weight:700; cursor:pointer;">Close</button>
-    </div>
-    <pre id="questionDetailsContent"></pre>
-  </div>
 </div>
 
 <script type="module">
@@ -300,6 +246,227 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 const storage = getStorage(app);
 
+const sofTopics = {
+    class1: {
+        maths: [
+            { code: "M01", name: "Number Sense" },
+            { code: "M02", name: "Patterns" },
+            { code: "M03", name: "Measurements" },
+            { code: "M04", name: "Geometry" },
+            { code: "M05", name: "Data Handling" }
+        ],
+        science: [
+            { code: "S01", name: "Plants Around Us" },
+            { code: "S02", name: "Animals Around Us" },
+            { code: "S03", name: "Food and Water" },
+            { code: "S04", name: "Our Body and Hygiene" },
+            { code: "S05", name: "Air, Water and Environment" }
+        ]
+    },
+    class2: {
+        maths: [
+            { code: "M01", name: "Numbers" },
+            { code: "M02", name: "Addition and Subtraction" },
+            { code: "M03", name: "Multiplication" },
+            { code: "M04", name: "Shapes and Patterns" },
+            { code: "M05", name: "Measurements and Data" }
+        ],
+        science: [
+            { code: "S01", name: "Living and Non-Living Things" },
+            { code: "S02", name: "Plants" },
+            { code: "S03", name: "Animals" },
+            { code: "S04", name: "Food, Water and Air" },
+            { code: "S05", name: "Our Body and Safety" }
+        ]
+    },
+    class3: {
+        maths: [
+            { code: "M01", name: "Numbers" },
+            { code: "M02", name: "Addition, Subtraction and Multiplication" },
+            { code: "M03", name: "Division" },
+            { code: "M04", name: "Fractions" },
+            { code: "M05", name: "Geometry and Measurement" },
+            { code: "M06", name: "Data Handling" }
+        ],
+        science: [
+            { code: "S01", name: "Living World" },
+            { code: "S02", name: "Plants" },
+            { code: "S03", name: "Animals" },
+            { code: "S04", name: "Human Body" },
+            { code: "S05", name: "Food, Water and Air" },
+            { code: "S06", name: "Light, Sound and Force" }
+        ]
+    },
+    class4: {
+        maths: [
+            { code: "M01", name: "Numbers" },
+            { code: "M02", name: "Addition, Subtraction, Multiplication and Division" },
+            { code: "M03", name: "Factors and Multiples" },
+            { code: "M04", name: "Fractions and Decimals" },
+            { code: "M05", name: "Geometry" },
+            { code: "M06", name: "Measurement" },
+            { code: "M07", name: "Data Handling" }
+        ],
+        science: [
+            { code: "S01", name: "Plants and Animals" },
+            { code: "S02", name: "Food and Digestion" },
+            { code: "S03", name: "Matter and Materials" },
+            { code: "S04", name: "Force, Work and Energy" },
+            { code: "S05", name: "Air, Water and Weather" },
+            { code: "S06", name: "Earth and Universe" }
+        ]
+    },
+    class5: {
+        maths: [
+            { code: "M01", name: "Large Numbers" },
+            { code: "M02", name: "Operations on Numbers" },
+            { code: "M03", name: "Factors and Multiples" },
+            { code: "M04", name: "Fractions and Decimals" },
+            { code: "M05", name: "Geometry" },
+            { code: "M06", name: "Measurement" },
+            { code: "M07", name: "Perimeter, Area and Volume" },
+            { code: "M08", name: "Data Handling" }
+        ],
+        science: [
+            { code: "S01", name: "Plants and Animals" },
+            { code: "S02", name: "Human Body and Health" },
+            { code: "S03", name: "Matter and Materials" },
+            { code: "S04", name: "Force, Energy and Machines" },
+            { code: "S05", name: "Air, Water and Environment" },
+            { code: "S06", name: "Earth and Space" }
+        ]
+    },
+    class6: {
+        maths: [
+            { code: "M01", name: "Knowing Our Numbers" },
+            { code: "M02", name: "Whole Numbers" },
+            { code: "M03", name: "Playing with Numbers" },
+            { code: "M04", name: "Basic Geometrical Ideas" },
+            { code: "M05", name: "Understanding Elementary Shapes" },
+            { code: "M06", name: "Integers" },
+            { code: "M07", name: "Fractions" },
+            { code: "M08", name: "Decimals" },
+            { code: "M09", name: "Data Handling" },
+            { code: "M10", name: "Mensuration" },
+            { code: "M11", name: "Algebra" },
+            { code: "M12", name: "Ratio and Proportion" }
+        ],
+        science: [
+            { code: "S01", name: "Food" },
+            { code: "S02", name: "Components of Food" },
+            { code: "S03", name: "Fibre to Fabric" },
+            { code: "S04", name: "Sorting Materials into Groups" },
+            { code: "S05", name: "Separation of Substances" },
+            { code: "S06", name: "Changes Around Us" },
+            { code: "S07", name: "Getting to Know Plants" },
+            { code: "S08", name: "Body Movements" },
+            { code: "S09", name: "Living Organisms and Their Surroundings" },
+            { code: "S10", name: "Motion and Measurement of Distances" },
+            { code: "S11", name: "Light, Shadows and Reflections" },
+            { code: "S12", name: "Electricity and Circuits" },
+            { code: "S13", name: "Fun with Magnets" },
+            { code: "S14", name: "Water" },
+            { code: "S15", name: "Air Around Us" },
+            { code: "S16", name: "Garbage In, Garbage Out" }
+        ]
+    },
+    class7: {
+        maths: [
+            { code: "M01", name: "Integers" },
+            { code: "M02", name: "Fractions and Decimals" },
+            { code: "M03", name: "Data Handling" },
+            { code: "M04", name: "Simple Equations" },
+            { code: "M05", name: "Lines and Angles" },
+            { code: "M06", name: "The Triangle and its Properties" },
+            { code: "M07", name: "Congruence of Triangles" },
+            { code: "M08", name: "Comparing Quantities" },
+            { code: "M09", name: "Rational Numbers" },
+            { code: "M10", name: "Practical Geometry" },
+            { code: "M11", name: "Perimeter and Area" },
+            { code: "M12", name: "Algebraic Expressions" },
+            { code: "M13", name: "Exponents and Powers" },
+            { code: "M14", name: "Symmetry" },
+            { code: "M15", name: "Visualising Solid Shapes" }
+        ],
+        science: [
+            { code: "S01", name: "Nutrition in Plants" },
+            { code: "S02", name: "Nutrition in Animals" },
+            { code: "S03", name: "Fibre to Fabric" },
+            { code: "S04", name: "Heat" },
+            { code: "S05", name: "Acids, Bases and Salts" },
+            { code: "S06", name: "Physical and Chemical Changes" },
+            { code: "S07", name: "Weather, Climate and Adaptations" },
+            { code: "S08", name: "Winds, Storms and Cyclones" },
+            { code: "S09", name: "Soil" },
+            { code: "S10", name: "Respiration in Organisms" },
+            { code: "S11", name: "Transportation in Animals and Plants" },
+            { code: "S12", name: "Reproduction in Plants" },
+            { code: "S13", name: "Motion and Time" },
+            { code: "S14", name: "Electric Current and its Effects" },
+            { code: "S15", name: "Light" },
+            { code: "S16", name: "Water: A Precious Resource" },
+            { code: "S17", name: "Forests: Our Lifeline" },
+            { code: "S18", name: "Wastewater Story" }
+        ]
+    },
+    class8: {
+        maths: [
+            { code: "M01", name: "Rational Numbers" },
+            { code: "M02", name: "Linear Equations in One Variable" },
+            { code: "M03", name: "Understanding Quadrilaterals" },
+            { code: "M04", name: "Practical Geometry" },
+            { code: "M05", name: "Data Handling" },
+            { code: "M06", name: "Squares and Square Roots" },
+            { code: "M07", name: "Cubes and Cube Roots" },
+            { code: "M08", name: "Comparing Quantities" },
+            { code: "M09", name: "Algebraic Expressions and Identities" },
+            { code: "M10", name: "Visualising Solid Shapes" },
+            { code: "M11", name: "Mensuration" },
+            { code: "M12", name: "Exponents and Powers" },
+            { code: "M13", name: "Direct and Inverse Proportions" },
+            { code: "M14", name: "Factorisation" },
+            { code: "M15", name: "Introduction to Graphs" }
+        ],
+        science: [
+            { code: "S01", name: "Crop Production and Management" },
+            { code: "S02", name: "Microorganisms" },
+            { code: "S03", name: "Synthetic Fibres and Plastics" },
+            { code: "S04", name: "Materials: Metals and Non-Metals" },
+            { code: "S05", name: "Coal and Petroleum" },
+            { code: "S06", name: "Combustion and Flame" },
+            { code: "S07", name: "Conservation of Plants and Animals" },
+            { code: "S08", name: "Cell Structure and Functions" },
+            { code: "S09", name: "Reproduction and Adolescence" },
+            { code: "S10", name: "Force and Pressure" },
+            { code: "S11", name: "Friction" },
+            { code: "S12", name: "Sound" },
+            { code: "S13", name: "Chemical Effects of Electric Current" },
+            { code: "S14", name: "Some Natural Phenomena" },
+            { code: "S15", name: "Light" },
+            { code: "S16", name: "Stars and the Solar System" },
+            { code: "S17", name: "Pollution of Air and Water" }
+        ]
+    }
+};
+
+function getTopicDisplayName(selectedClass, selectedSubject, selectedTopic) {
+    if (
+        selectedClass &&
+        selectedSubject &&
+        selectedTopic &&
+        sofTopics[selectedClass] &&
+        sofTopics[selectedClass][selectedSubject]
+    ) {
+        const foundTopic = sofTopics[selectedClass][selectedSubject].find(
+            topic => topic.code === selectedTopic
+        );
+        if (foundTopic) {
+            return `${foundTopic.code} - ${foundTopic.name}`;
+        }
+    }
+    return selectedTopic || "Mock Test";
+}
+
 let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 let totalTime=1800; 
@@ -308,40 +475,20 @@ onAuthStateChanged(auth, async(user)=>{
 if(!user){ window.location.replace("login.html"); return; }
 if (user.email === "madhhu52@gmail.com") {
     document.getElementById("deleteQuestionBtn").style.display = "inline-block";
-    document.getElementById("questionDetailsBtn").style.display = "inline-block";
 }
 await loadQuestions();
 startTimer();
 });
 
-function getDisplayTopicName() {
-    return (
-        localStorage.getItem("selectedTopicName") ||
-        localStorage.getItem("selectedChapterName") ||
-        localStorage.getItem("selectedTopicText") ||
-        localStorage.getItem("selectedChapterText") ||
-        localStorage.getItem("selectedTopic") ||
-        localStorage.getItem("selectedChapter") ||
-        ""
-    ).trim();
-}
-
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
-        localStorage.setItem("isChampionship", "false");
-
-        const quizSource = localStorage.getItem("quizSource");
-        const isChapterwiseQuiz = quizSource === "chapterwise" || !!(
-            localStorage.getItem("selectedTopic") ||
-            localStorage.getItem("selectedTopicName") ||
-            localStorage.getItem("selectedChapter") ||
-            localStorage.getItem("selectedChapterName")
-        );
-
-        if (isChapterwiseQuiz) {
+        const sTopic = localStorage.getItem("selectedTopic");
+        localStorage.setItem("isChampionship", "false"); 
+        
+        if (sTopic && sTopic !== "null" && sTopic !== "") {
             window.location.href = "chapterwise.html";
         } else {
-            window.location.href = "mock.html";
+            window.location.href = "mock.html"; 
         }
     }
 }
@@ -349,20 +496,15 @@ window.backToSelection = function() {
 async function loadQuestions(){
 const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
+let sTopic=localStorage.getItem("selectedTopic");
 const sId=localStorage.getItem("activeSessionId");
-const topicName = getDisplayTopicName();
 
-const navWrap = document.getElementById("selectionNavWrap");
-const titleText = document.getElementById("mainTitleText");
-const topicPill = document.getElementById("displayTopicPill");
+const isMockMode = !sTopic || sTopic === "null" || sTopic === "";
 
-if (isChampionship) {
-    if (navWrap) navWrap.style.display = "none";
-    titleText.innerText = "Live Quiz";
-} else {
-    if (navWrap) navWrap.style.display = "block";
-    const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
-    titleText.innerText = `${subjectDisplayName} Practice`;
+if (isMockMode && !isChampionship) {
+    localStorage.removeItem("selectedTopic");
+    localStorage.removeItem("selectedTopicName");
+    sTopic = null;
 }
 
 try {
@@ -374,35 +516,38 @@ try {
             const qPromises = (sData.questionIds || []).map(id => getDoc(doc(db, "questions", id)));
             const qSnaps = await Promise.all(qPromises);
             questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
-            
-            document.getElementById("displayGradePill").innerText = `GRADE: ${sData.class || sClass.replace('class', '')}`;
-            document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${(sData.subject || sSub).toUpperCase()}`;
         }
     } else {
-        let qBase = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
+        let qBase = sTopic ? query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub), where("topic", "==", sTopic))
+                           : query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
         const snap = await getDocs(qBase);
         questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
         if(questions.length>30) questions=questions.slice(0,30);
-
-        document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
-        document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${sSub.toUpperCase()}`;
     }
-} catch (error) { 
-    console.error(error); 
-}
-
-if (!isChampionship && topicName) {
-    topicPill.innerText = `TOPIC: ${topicName}`;
-    topicPill.style.display = "inline-block";
-} else {
-    topicPill.style.display = "none";
-}
+} catch (error) { console.error(error); }
 
 if (questions.length === 0) {
     document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found.</h3>";
-    document.getElementById("options").innerHTML="";
-    document.getElementById("questionGrid").innerHTML="";
     return;
+}
+
+const quizTitleEl = document.getElementById("quizTitle");
+const quizSubtitleEl = document.getElementById("quizSubtitle");
+const displayGradeEl = document.getElementById("displaySubject"); 
+
+if (isChampionship) {
+    quizTitleEl.innerHTML = `⚡ <span style="color: var(--brand);">Championship</span>`;
+    quizSubtitleEl.innerText = `Session ID: ${sId}`;
+    displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
+} else {
+    const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
+    quizTitleEl.innerHTML = `📖 ${subjectDisplayName} <span style="color: var(--brand);">Quiz</span>`;
+    if (sTopic) {
+        quizSubtitleEl.innerText = `Topic: ${getTopicDisplayName(sClass, sSub, sTopic)}`;
+    } else {
+        quizSubtitleEl.innerText = `Mock Test`;
+    }
+    displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
 }
 
 selectedAnswers=new Array(questions.length).fill(null);
@@ -432,7 +577,7 @@ if (imageName) {
         imgDiv.innerHTML = `<img src="${finalUrl}" alt="Question Diagram">`;
         imgDiv.style.display = "block";
     } catch (error) {
-        console.error("Image load failed", error);
+        console.error("Image load failed for:", imageName, error);
         imgDiv.style.display = "none";
     }
 }
@@ -482,13 +627,24 @@ if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 async function submitQuiz(){
     if(quizSubmitted)return; quizSubmitted=true;
     let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+    
     const accuracy = ((score/questions.length)*100).toFixed(2);
     const resultData = { score, total: questions.length, questions, answers: selectedAnswers, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") };
     localStorage.setItem("quizResult", JSON.stringify(resultData));
 
     try {
         await addDoc(collection(db,"leaderboard"),{ 
-          email:auth.currentUser.email, uid:auth.currentUser.uid, score: parseFloat(accuracy), rawScore: score, total: questions.length, accuracy: accuracy, timestamp: serverTimestamp(), isChampionship, sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") 
+          email:auth.currentUser.email, 
+          uid:auth.currentUser.uid, 
+          score: parseFloat(accuracy), 
+          rawScore: score,
+          total: questions.length, 
+          accuracy: accuracy, 
+          timestamp: serverTimestamp(), 
+          isChampionship, 
+          sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, 
+          subject: localStorage.getItem("selectedSubject"), 
+          class: localStorage.getItem("selectedClass") 
         });
         window.location.href="result.html";
     } catch(e) { window.location.href="result.html"; }
@@ -496,18 +652,10 @@ async function submitQuiz(){
 
 window.deleteCurrentQuestion = async () => {
     const qId = questions[current].id;
-    if (confirm("Delete permanently?")) { await deleteDoc(doc(db, "questions", qId)); location.reload(); }
-};
-
-window.showQuestionDetails = function () {
-    if (!questions[current]) return;
-    const q = questions[current];
-    document.getElementById("questionDetailsContent").textContent = JSON.stringify(q, null, 2);
-    document.getElementById("questionDetailsModal").style.display = "flex";
-};
-
-window.closeQuestionDetails = function () {
-    document.getElementById("questionDetailsModal").style.display = "none";
+    if (confirm("Delete this question permanently?")) {
+        await deleteDoc(doc(db, "questions", qId));
+        alert("Deleted."); location.reload();
+    }
 };
 
 window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("index.html"); } };
