@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+history.pushState(null, null, location.href);
+window.onpopstate = function () { history.go(1); };
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live Quiz - Olympiad Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #020617;
+  --surface: #0f172a;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: #1e293b;
+  --brand: #38bdf8;
+  --accent: #818cf8;
+  --danger: #f43f5e;
+  --success: #10b981;
+  --unseen-grey: #1e293b;
+}
+*{box-sizing:border-box}
+html,body{
+height:100%;
+margin:0;
+font-family:'Poppins',sans-serif;
+color:var(--text);
+background:var(--bg);
+overflow-x:hidden;
+background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+background-attachment: fixed;
+}
+nav{ background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
+.brand{ font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+.nav-links{ display:flex; gap:15px; align-items:center; flex-wrap: wrap; justify-content: center; }
+.nav-links a{ color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+.nav-links a:hover{ color: var(--brand); }
+#timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger); padding:8px 15px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2);}
+
+.quiz-container{
+display:flex;
+gap:25px;
+padding:0 5%;
+max-width:1400px;
+width:100%;
+margin:0 auto;
+}
+
+.section{
+background:linear-gradient(145deg, #0f172a, #020617);
+border:1px solid var(--border);
+border-top:2px solid var(--brand);
+border-radius:24px;
+padding:30px 35px;
+display:flex;
+flex-direction:column;
+overflow-y:auto;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.question-section{flex:2.8}
+.navigation-section{flex:0 0 320px;}
+#questionImage {
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+#questionImage img {
+    max-width: 100%;
+    max-height: 350px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    object-fit: contain;
+    background: rgba(255,255,255,0.02);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.options{display:grid;gap:12px;margin-top:15px}
+.opt{display:flex;align-items:center;gap:15px; padding:15px 20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.3s; font-size:15px;}
+.opt:hover{border-color:var(--brand); background:rgba(56, 189, 248, 0.05);}
+.quiz-buttons{display:flex;gap:15px;margin-top:auto;padding-top:30px;}
+.btn{flex:1;padding:14px 10px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase;font-size:14px; transition:0.3s;}
+.btn-save{background:#6366f1;color:#fff}
+.btn-save:hover{background:#4f46e5;}
+.btn-prev{background:var(--bg);color:var(--text); border:1px solid var(--border);}
+.btn-prev:hover{background:var(--border);}
+.btn-finish{background:#f43f5e;color:#fff}
+.btn-finish:hover{background:#e11d48;}
+
+.grid{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:15px; margin-bottom:20px; width:100%;}
+.cell{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); cursor:pointer; font-weight:600; font-size:13px; background:var(--bg); transition:0.2s;}
+.cell:hover{border-color:#6366f1;}
+
+.cell.current { background: #6366f1 !important; color: white !important; }
+.cell.answered { background: #14b8a6 !important; color: white !important; }
+.cell.visited { background: #f43f5e !important; color: white !important; }
+.cell.unseen { background: var(--unseen-grey) !important; color: var(--text) !important; }
+
+.palette-legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 20px; border-top: 1px solid var(--border); width: 100%; margin-top: auto; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
+.legend-box { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
+
+footer {
+  text-align:center;
+  padding:30px;
+  background:rgba(2, 6, 23, 0.8);
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  margin-top:40px;
+}
+
+@media (max-width:850px){
+.quiz-container{flex-direction:column;height:auto;padding:15px;gap:15px;}
+.question-section,.navigation-section{width:100%;flex:none;}
+.grid{grid-template-columns:repeat(auto-fill,minmax(45px,1fr))}
+}
+</style>
+</head>
+<body>
+<nav>
+<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="dashboard.html">Dashboard</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+</div>
+</nav>
+
+<div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;">
+    <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
+            <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 0; line-height: 1;"></h1>
+            <p id="quizSubtitle" style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;"></p>
+        </div>
+        <div id="timerWrap" style="display: inline-block;">⏳ <span id="timer">--:--</span></div>
+    </div>
+    <div style="flex: 0 0 320px;"></div>
+</div>
+<main class="quiz-container">
+<section class="question-section section">
+<div style="display:flex;justify-content:space-between; font-weight:600; font-size:14px; color:var(--muted);"><span id="displaySubject">Progress</span><span id="progressPercent">0%</span></div>
+<div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
+    <div id="progressBar" style="width:0%; height:100%; background:var(--brand); transition:0.3s;"></div>
+</div>
+<div id="questionNumber" style="margin-top:25px; font-weight:700; color:var(--brand); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
+
+<div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Loading...</div>
+
+<div id="questionImage" style="display:none;"></div> 
+
+<div class="options" id="options"></div>
+
+<div class="quiz-buttons">
+<button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
+<button class="btn btn-save" onclick="nextQuestion()">Save & Next</button>
+<button class="btn btn-finish" onclick="confirmSubmit()">Finish Quiz</button>
+<button class="btn btn-danger" id="deleteQuestionBtn" style="display:none;" onclick="deleteCurrentQuestion()">Delete Question</button>
+</div>
+</section>
+
+<aside class="navigation-section section">
+<h3 style="margin:0 0 15px 0;font-size:16px;color:var(--text); font-weight:700;">Question Palette</h3>
+<div class="grid" id="questionGrid"></div>
+<div class="palette-legend">
+<div class="legend-item"><div class="legend-box legend-current" style="background:#6366f1">1</div> Current</div>
+<div class="legend-item"><div class="legend-box legend-answered" style="background:#14b8a6">1</div> Answered</div>
+<div class="legend-item"><div class="legend-box legend-visited" style="background:#f43f5e">1</div> Visited</div>
+<div class="legend-item"><div class="legend-box legend-unseen" style="background:var(--unseen-grey)">1</div> Unseen</div>
+</div>
+</aside>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
+projectId:"olympiad-portal-d2a5e",
+storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+messagingSenderId:"341855557503",
+appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const storage = getStorage(app);
+
+let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
+const isChampionship=localStorage.getItem("isChampionship")==="true";
+let totalTime=1800; 
+
+onAuthStateChanged(auth, async(user)=>{
+if(!user){ window.location.href="login.html"; return; }
+if (user.email === "madhhu52@gmail.com") {
+    document.getElementById("deleteQuestionBtn").style.display = "inline-block";
+}
+await loadQuestions();
+startTimer();
+});
+
+async function loadQuestions(){
+const sClass=localStorage.getItem("selectedClass")||"class6";
+const sSub=localStorage.getItem("selectedSubject")||"science";
+const sTopic=localStorage.getItem("selectedTopic");
+const sTopicName=localStorage.getItem("selectedTopicName");
+const sId=localStorage.getItem("activeSessionId");
+
+try {
+    if (isChampionship && sId) {
+        const sSnap = await getDoc(doc(db, "test_sessions", sId));
+        if (sSnap.exists()) {
+            const sData = sSnap.data();
+            if(sData.duration) totalTime = sData.duration * 60;
+            const qPromises = (sData.questionIds || []).map(id => getDoc(doc(db, "questions", id)));
+            const qSnaps = await Promise.all(qPromises);
+            questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
+        }
+    } else {
+        let qBase = sTopic ? query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub), where("topic", "==", sTopic))
+                           : query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
+        const snap = await getDocs(qBase);
+        questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+        if(questions.length>30) questions=questions.slice(0,30);
+    }
+} catch (error) { console.error(error); }
+
+if (questions.length === 0) {
+    document.getElementById("questionText").innerHTML="<h3 style='color:var(--danger)'>No questions found.</h3>";
+    return;
+}
+
+// Update header based on quiz type
+const quizTitleEl = document.getElementById("quizTitle");
+const quizSubtitleEl = document.getElementById("quizSubtitle");
+const displayGradeEl = document.getElementById("displaySubject"); // Renamed to displayGrade in HTML, but using existing ID for now
+
+if (isChampionship) {
+    quizTitleEl.innerHTML = `⚡ Live <span style="color: var(--brand);">Championship</span>`;
+    quizSubtitleEl.innerText = `Session ID: ${sId}`;
+    displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
+} else {
+    // For Chapterwise or Mock Tests
+    const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1); // Capitalize subject
+    quizTitleEl.innerHTML = `📖 ${subjectDisplayName} <span style="color: var(--brand);">Quiz</span>`;
+    if (sTopic && sTopicName) {
+        quizSubtitleEl.innerText = `Topic: ${sTopicName}`;
+    } else {
+        quizSubtitleEl.innerText = `Mock Test`; // For mock tests, no specific topic
+    }
+    displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
+}
+selectedAnswers=new Array(questions.length).fill(null);
+visitedQuestions=new Array(questions.length).fill(false);
+generateGrid();
+loadQuestion();
+}
+
+async function loadQuestion(){
+const q=questions[current]; visitedQuestions[current]=true;
+document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
+document.getElementById("questionText").innerHTML=q.q;
+
+// UPDATED IMAGE LOGIC FOR IMAGE_NAME
+const imgDiv = document.getElementById("questionImage");
+imgDiv.innerHTML = ""; 
+imgDiv.style.display = "none";
+
+const imageName = q.image_name || q.image_url; 
+
+if (imageName) {
+    try {
+        let finalUrl = imageName;
+        // If it's a filename (doesn't start with http), fetch from Storage
+        if (typeof imageName === 'string' && !imageName.startsWith("http")) {
+            const storageRef = ref(storage, `question_images/${imageName}`);
+            finalUrl = await getDownloadURL(storageRef);
+        }
+
+        imgDiv.innerHTML = `<img src="${finalUrl}" alt="Question Diagram">`;
+        imgDiv.style.display = "block";
+    } catch (error) {
+        console.error("Image load failed for:", imageName, error);
+        imgDiv.style.display = "none";
+    }
+}
+
+let html="";
+q.o.forEach((opt,i)=>{
+html+=`<label class="opt"><input type="radio" name="option" value="${i}" ${selectedAnswers[current]===i?"checked":""} onchange="saveAnswer(${i})"/><span>${opt}</span></label>`;
+});
+document.getElementById("options").innerHTML=html;
+updateGrid();
+}
+
+function saveAnswer(v){ selectedAnswers[current]=v; updateGrid(); }
+function nextQuestion(){ if(current<questions.length-1){current++; loadQuestion();} }
+function prevQuestion(){ if(current>0){current--; loadQuestion();} }
+function jumpTo(i){ current=i; loadQuestion(); }
+
+function generateGrid(){
+let html=""; for(let i=0;i<questions.length;i++) html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
+document.getElementById("questionGrid").innerHTML=html;
+}
+
+function updateGrid(){
+let ans=0;
+for(let i=0;i<questions.length;i++){
+const el=document.getElementById("q"+i); if(!el)continue;
+el.className="cell";
+if(i===current) el.classList.add("current");
+else if(selectedAnswers[i]!==null) el.classList.add("answered");
+else if(visitedQuestions[i]) el.classList.add("visited");
+else el.classList.add("unseen");
+if(selectedAnswers[i]!==null) ans++;
+}
+const p=Math.round((ans/questions.length)*100);
+document.getElementById("progressBar").style.width=p+"%";
+document.getElementById("progressPercent").innerText=p+"%";
+}
+
+function startTimer(){
+const tInterval=setInterval(()=>{
+const m=Math.floor(totalTime/60), s=totalTime%60;
+document.getElementById("timer").innerText=`${m}:${s<10?"0":""}${s}`;
+if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
+},1000);
+}
+
+async function submitQuiz(){
+    if(quizSubmitted)return; quizSubmitted=true;
+    let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+    const resultData = { score, total: questions.length, questions, answers: selectedAnswers, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") };
+    localStorage.setItem("quizResult", JSON.stringify(resultData));
+    try {
+        await addDoc(collection(db,"leaderboard"),{ email:auth.currentUser.email, uid:auth.currentUser.uid, score, total:questions.length, accuracy:((score/questions.length)*100).toFixed(2), date:serverTimestamp(), isChampionship, sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, subject:localStorage.getItem("selectedSubject"), studentClass:localStorage.getItem("selectedClass") });
+        window.location.href="result.html";
+    } catch(e) { window.location.href="result.html"; }
+}
+
+window.deleteCurrentQuestion = async () => {
+    const qId = questions[current].id;
+    if (confirm("Delete this question permanently?")) {
+        await deleteDoc(doc(db, "questions", qId));
+        alert("Deleted."); location.reload();
+    }
+};
+
+window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("login.html"); } };
+window.nextQuestion = nextQuestion; window.prevQuestion = prevQuestion;
+window.jumpTo = jumpTo; window.saveAnswer = saveAnswer;
+window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
+</script>
+
+<footer>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
+</footer>
+</body>
+</html>
