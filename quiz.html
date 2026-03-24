@@ -179,7 +179,7 @@ footer {
                 <span id="displayGradePill" style="background: rgba(56, 189, 248, 0.1); color: var(--brand); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.2); text-transform: uppercase;">GRADE: --</span>
                 <span id="displaySubjectPill" style="background: rgba(129, 140, 248, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(129, 140, 248, 0.2); text-transform: uppercase;">SUBJECT: --</span>
             </div>
-            <p id="quizSubtitle" style="font-size: 0.75rem; color: var(--muted); margin: 8px 0 0 0; font-family: monospace;">Session ID: --</p>
+            <p id="quizSubtitle" style="display: none;"></p>
         </div>
         <div id="timerWrap">⏳ <span id="timer">--:--</span></div>
     </div>
@@ -254,226 +254,15 @@ const db=getFirestore(app);
 const storage = getStorage(app);
 
 const sofTopics = {
-    class1: {
-        maths: [
-            { code: "M01", name: "Number Sense" },
-            { code: "M02", name: "Patterns" },
-            { code: "M03", name: "Measurements" },
-            { code: "M04", name: "Geometry" },
-            { code: "M05", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Plants Around Us" },
-            { code: "S02", name: "Animals Around Us" },
-            { code: "S03", name: "Food and Water" },
-            { code: "S04", name: "Our Body and Hygiene" },
-            { code: "S05", name: "Air, Water and Environment" }
-        ]
-    },
-    class2: {
-        maths: [
-            { code: "M01", name: "Numbers" },
-            { code: "M02", name: "Addition and Subtraction" },
-            { code: "M03", name: "Multiplication" },
-            { code: "M04", name: "Shapes and Patterns" },
-            { code: "M05", name: "Measurements and Data" }
-        ],
-        science: [
-            { code: "S01", name: "Living and Non-Living Things" },
-            { code: "S02", name: "Plants" },
-            { code: "S03", name: "Animals" },
-            { code: "S04", name: "Food, Water and Air" },
-            { code: "S05", name: "Our Body and Safety" }
-        ]
-    },
-    class3: {
-        maths: [
-            { code: "M01", name: "Numbers" },
-            { code: "M02", name: "Addition, Subtraction and Multiplication" },
-            { code: "M03", name: "Division" },
-            { code: "M04", name: "Fractions" },
-            { code: "M05", name: "Geometry and Measurement" },
-            { code: "M06", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Living World" },
-            { code: "S02", name: "Plants" },
-            { code: "S03", name: "Animals" },
-            { code: "S04", name: "Human Body" },
-            { code: "S05", name: "Food, Water and Air" },
-            { code: "S06", name: "Light, Sound and Force" }
-        ]
-    },
-    class4: {
-        maths: [
-            { code: "M01", name: "Numbers" },
-            { code: "M02", name: "Addition, Subtraction, Multiplication and Division" },
-            { code: "M03", name: "Factors and Multiples" },
-            { code: "M04", name: "Fractions and Decimals" },
-            { code: "M05", name: "Geometry" },
-            { code: "M06", name: "Measurement" },
-            { code: "M07", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Plants and Animals" },
-            { code: "S02", name: "Food and Digestion" },
-            { code: "S03", name: "Matter and Materials" },
-            { code: "S04", name: "Force, Work and Energy" },
-            { code: "S05", name: "Air, Water and Weather" },
-            { code: "S06", name: "Earth and Universe" }
-        ]
-    },
-    class5: {
-        maths: [
-            { code: "M01", name: "Large Numbers" },
-            { code: "M02", name: "Operations on Numbers" },
-            { code: "M03", name: "Factors and Multiples" },
-            { code: "M04", name: "Fractions and Decimals" },
-            { code: "M05", name: "Geometry" },
-            { code: "M06", name: "Measurement" },
-            { code: "M07", name: "Perimeter, Area and Volume" },
-            { code: "M08", name: "Data Handling" }
-        ],
-        science: [
-            { code: "S01", name: "Plants and Animals" },
-            { code: "S02", name: "Human Body and Health" },
-            { code: "S03", name: "Matter and Materials" },
-            { code: "S04", name: "Force, Energy and Machines" },
-            { code: "S05", name: "Air, Water and Environment" },
-            { code: "S06", name: "Earth and Space" }
-        ]
-    },
-    class6: {
-        maths: [
-            { code: "M01", name: "Knowing Our Numbers" },
-            { code: "M02", name: "Whole Numbers" },
-            { code: "M03", name: "Playing with Numbers" },
-            { code: "M04", name: "Basic Geometrical Ideas" },
-            { code: "M05", name: "Understanding Elementary Shapes" },
-            { code: "M06", name: "Integers" },
-            { code: "M07", name: "Fractions" },
-            { code: "M08", name: "Decimals" },
-            { code: "M09", name: "Data Handling" },
-            { code: "M10", name: "Mensuration" },
-            { code: "M11", name: "Algebra" },
-            { code: "M12", name: "Ratio and Proportion" }
-        ],
-        science: [
-            { code: "S01", name: "Food" },
-            { code: "S02", name: "Components of Food" },
-            { code: "S03", name: "Fibre to Fabric" },
-            { code: "S04", name: "Sorting Materials into Groups" },
-            { code: "S05", name: "Separation of Substances" },
-            { code: "S06", name: "Changes Around Us" },
-            { code: "S07", name: "Getting to Know Plants" },
-            { code: "S08", name: "Body Movements" },
-            { code: "S09", name: "Living Organisms and Their Surroundings" },
-            { code: "S10", name: "Motion and Measurement of Distances" },
-            { code: "S11", name: "Light, Shadows and Reflections" },
-            { code: "S12", name: "Electricity and Circuits" },
-            { code: "S13", name: "Fun with Magnets" },
-            { code: "S14", name: "Water" },
-            { code: "S15", name: "Air Around Us" },
-            { code: "S16", name: "Garbage In, Garbage Out" }
-        ]
-    },
-    class7: {
-        maths: [
-            { code: "M01", name: "Integers" },
-            { code: "M02", name: "Fractions and Decimals" },
-            { code: "M03", name: "Data Handling" },
-            { code: "M04", name: "Simple Equations" },
-            { code: "M05", name: "Lines and Angles" },
-            { code: "M06", name: "The Triangle and its Properties" },
-            { code: "M07", name: "Congruence of Triangles" },
-            { code: "M08", name: "Comparing Quantities" },
-            { code: "M09", name: "Rational Numbers" },
-            { code: "M10", name: "Practical Geometry" },
-            { code: "M11", name: "Perimeter and Area" },
-            { code: "M12", name: "Algebraic Expressions" },
-            { code: "M13", name: "Exponents and Powers" },
-            { code: "M14", name: "Symmetry" },
-            { code: "M15", name: "Visualising Solid Shapes" }
-        ],
-        science: [
-            { code: "S01", name: "Nutrition in Plants" },
-            { code: "S02", name: "Nutrition in Animals" },
-            { code: "S03", name: "Fibre to Fabric" },
-            { code: "S04", name: "Heat" },
-            { code: "S05", name: "Acids, Bases and Salts" },
-            { code: "S06", name: "Physical and Chemical Changes" },
-            { code: "S07", name: "Weather, Climate and Adaptations" },
-            { code: "S08", name: "Winds, Storms and Cyclones" },
-            { code: "S09", name: "Soil" },
-            { code: "S10", name: "Respiration in Organisms" },
-            { code: "S11", name: "Transportation in Animals and Plants" },
-            { code: "S12", name: "Reproduction in Plants" },
-            { code: "S13", name: "Motion and Time" },
-            { code: "S14", name: "Electric Current and its Effects" },
-            { code: "S14", name: "Electric Current and its Effects" },
-            { code: "S15", name: "Light" },
-            { code: "S16", name: "Water: A Precious Resource" },
-            { code: "S17", name: "Forests: Our Lifeline" },
-            { code: "S18", name: "Wastewater Story" }
-        ]
-    },
-    class8: {
-        maths: [
-            { code: "M01", name: "Rational Numbers" },
-            { code: "M02", name: "Linear Equations in One Variable" },
-            { code: "M03", name: "Understanding Quadrilaterals" },
-            { code: "M04", name: "Practical Geometry" },
-            { code: "M05", name: "Data Handling" },
-            { code: "M06", name: "Squares and Square Roots" },
-            { code: "M07", name: "Cubes and Cube Roots" },
-            { code: "M08", name: "Comparing Quantities" },
-            { code: "M09", name: "Algebraic Expressions and Identities" },
-            { code: "M10", name: "Visualising Solid Shapes" },
-            { code: "M11", name: "Mensuration" },
-            { code: "M12", name: "Exponents and Powers" },
-            { code: "M13", name: "Direct and Inverse Proportions" },
-            { code: "M14", name: "Factorisation" },
-            { code: "M15", name: "Introduction to Graphs" }
-        ],
-        science: [
-            { code: "S01", name: "Crop Production and Management" },
-            { code: "S02", name: "Microorganisms" },
-            { code: "S03", name: "Synthetic Fibres and Plastics" },
-            { code: "S04", name: "Materials: Metals and Non-Metals" },
-            { code: "S05", name: "Coal and Petroleum" },
-            { code: "S06", name: "Combustion and Flame" },
-            { code: "S07", name: "Conservation of Plants and Animals" },
-            { code: "S08", name: "Cell Structure and Functions" },
-            { code: "S09", name: "Reproduction and Adolescence" },
-            { code: "S10", name: "Force and Pressure" },
-            { code: "S11", name: "Friction" },
-            { code: "S12", name: "Sound" },
-            { code: "S13", name: "Chemical Effects of Electric Current" },
-            { code: "S14", name: "Some Natural Phenomena" },
-            { code: "S15", name: "Light" },
-            { code: "S16", name: "Stars and the Solar System" },
-            { code: "S17", name: "Pollution of Air and Water" }
-        ]
-    }
+    class1: { maths: [], science: [] },
+    class2: { maths: [], science: [] },
+    class3: { maths: [], science: [] },
+    class4: { maths: [], science: [] },
+    class5: { maths: [], science: [] },
+    class6: { maths: [], science: [] },
+    class7: { maths: [], science: [] },
+    class8: { maths: [], science: [] }
 };
-
-function getTopicDisplayName(selectedClass, selectedSubject, selectedTopic) {
-    if (
-        selectedClass &&
-        selectedSubject &&
-        selectedTopic &&
-        sofTopics[selectedClass] &&
-        sofTopics[selectedClass][selectedSubject]
-    ) {
-        const foundTopic = sofTopics[selectedClass][selectedSubject].find(
-            topic => topic.code === selectedTopic
-        );
-        if (foundTopic) {
-            return `${foundTopic.code} - ${foundTopic.name}`;
-        }
-    }
-    return selectedTopic || "Mock Test";
-}
 
 let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
 const isChampionship=localStorage.getItem("isChampionship")==="true";
@@ -490,14 +279,8 @@ startTimer();
 
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
-        const sTopic = localStorage.getItem("selectedTopic");
         localStorage.setItem("isChampionship", "false"); 
-        
-        if (sTopic && sTopic !== "null" && sTopic !== "") {
-            window.location.href = "chapterwise.html";
-        } else {
-            window.location.href = "mock.html"; 
-        }
+        window.location.href = "mock.html"; 
     }
 }
 
@@ -506,14 +289,6 @@ const sClass=localStorage.getItem("selectedClass")||"class6";
 const sSub=localStorage.getItem("selectedSubject")||"science";
 let sTopic=localStorage.getItem("selectedTopic");
 const sId=localStorage.getItem("activeSessionId");
-
-const isMockMode = !sTopic || sTopic === "null" || sTopic === "";
-
-if (isMockMode && !isChampionship) {
-    localStorage.removeItem("selectedTopic");
-    localStorage.removeItem("selectedTopicName");
-    sTopic = null;
-}
 
 try {
     if (isChampionship && sId) {
@@ -525,26 +300,18 @@ try {
             const qSnaps = await Promise.all(qPromises);
             questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
             
-            // Branding Update
+            // Rebranded Pills
             document.getElementById("displayGradePill").innerText = `GRADE: ${sData.class || sClass.replace('class', '')}`;
             document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${(sData.subject || sSub).toUpperCase()}`;
-            document.getElementById("quizSubtitle").innerText = `Session ID: ${sId}`;
         }
     } else {
-        let qBase = sTopic ? query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub), where("topic", "==", sTopic))
-                           : query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
+        let qBase = query(collection(db, "questions"), where("class", "==", sClass), where("subject", "==", sSub));
         const snap = await getDocs(qBase);
         questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
         if(questions.length>30) questions=questions.slice(0,30);
 
-        // General Quiz Branding
         document.getElementById("displayGradePill").innerText = `GRADE: ${sClass.replace('class', '')}`;
         document.getElementById("displaySubjectPill").innerText = `SUBJECT: ${sSub.toUpperCase()}`;
-        if (sTopic) {
-            document.getElementById("quizSubtitle").innerText = `Topic: ${getTopicDisplayName(sClass, sSub, sTopic)}`;
-        } else {
-            document.getElementById("quizSubtitle").innerText = `Mock Test`;
-        }
     }
 } catch (error) { console.error(error); }
 
@@ -580,7 +347,7 @@ if (imageName) {
         imgDiv.innerHTML = `<img src="${finalUrl}" alt="Question Diagram">`;
         imgDiv.style.display = "block";
     } catch (error) {
-        console.error("Image load failed for:", imageName, error);
+        console.error("Image load failed", error);
         imgDiv.style.display = "none";
     }
 }
@@ -630,24 +397,13 @@ if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 async function submitQuiz(){
     if(quizSubmitted)return; quizSubmitted=true;
     let score=0; questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
-    
     const accuracy = ((score/questions.length)*100).toFixed(2);
     const resultData = { score, total: questions.length, questions, answers: selectedAnswers, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") };
     localStorage.setItem("quizResult", JSON.stringify(resultData));
 
     try {
         await addDoc(collection(db,"leaderboard"),{ 
-          email:auth.currentUser.email, 
-          uid:auth.currentUser.uid, 
-          score: parseFloat(accuracy), 
-          rawScore: score,
-          total: questions.length, 
-          accuracy: accuracy, 
-          timestamp: serverTimestamp(), 
-          isChampionship, 
-          sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, 
-          subject: localStorage.getItem("selectedSubject"), 
-          class: localStorage.getItem("selectedClass") 
+          email:auth.currentUser.email, uid:auth.currentUser.uid, score: parseFloat(accuracy), rawScore: score, total: questions.length, accuracy: accuracy, timestamp: serverTimestamp(), isChampionship, sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null, subject: localStorage.getItem("selectedSubject"), class: localStorage.getItem("selectedClass") 
         });
         window.location.href="result.html";
     } catch(e) { window.location.href="result.html"; }
@@ -655,10 +411,7 @@ async function submitQuiz(){
 
 window.deleteCurrentQuestion = async () => {
     const qId = questions[current].id;
-    if (confirm("Delete this question permanently?")) {
-        await deleteDoc(doc(db, "questions", qId));
-        alert("Deleted."); location.reload();
-    }
+    if (confirm("Delete permanently?")) { await deleteDoc(doc(db, "questions", qId)); location.reload(); }
 };
 
 window.logout=async()=>{ if(confirm("Logout?")){ await signOut(auth); window.location.replace("index.html"); } };
