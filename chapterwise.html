@@ -194,7 +194,7 @@
                     <option value="class5">Grade 5</option>
                     <option value="class6">Grade 6</option>
                     <option value="class7">Grade 7</option>
-                    <option value="class8">Grade 8</option>
+                    <option value="class8" selected>Grade 8</option>
                     <option value="class9">Grade 9</option>
                 </select>
             </div>
@@ -223,239 +223,40 @@
 <script>
     const sofTopics = {
         class1: {
-            maths: [
-                { code: "M01", name: "Number Sense" },
-                { code: "M02", name: "Patterns" },
-                { code: "M03", name: "Measurements" },
-                { code: "M04", name: "Geometry" },
-                { code: "M05", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Plants Around Us" },
-                { code: "S02", name: "Animals Around Us" },
-                { code: "S03", name: "Food and Water" },
-                { code: "S04", name: "Our Body and Hygiene" },
-                { code: "S05", name: "Air, Water and Environment" }
-            ]
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Addition"}, {code:"M03", name:"Subtraction"}, {code:"M04", name:"Lengths, Weights and Comparisons"}, {code:"M05", name:"Time"}, {code:"M06", name:"Money"}, {code:"M07", name:"Geometrical Shapes"}],
+            science: [{code:"S01", name:"Plants Around Us"}, {code:"S02", name:"Animals Around Us"}, {code:"S03", name:"Food and Water"}, {code:"S04", name:"Our Body"}, {code:"S05", name:"Housing and Clothing"}, {code:"S06", name:"Air, Water and Weather"}]
         },
         class2: {
-            maths: [
-                { code: "M01", name: "Numbers" },
-                { code: "M02", name: "Addition and Subtraction" },
-                { code: "M03", name: "Multiplication" },
-                { code: "M04", name: "Shapes and Patterns" },
-                { code: "M05", name: "Measurements and Data" }
-            ],
-            science: [
-                { code: "S01", name: "Living and Non-Living Things" },
-                { code: "S02", name: "Plants" },
-                { code: "S03", name: "Animals" },
-                { code: "S04", name: "Food, Water and Air" },
-                { code: "S05", name: "Our Body and Safety" }
-            ]
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Length, Weight, Capacity"}, {code:"M04", name:"Time and Money"}, {code:"M05", name:"Lines, Shapes and Solids"}, {code:"M06", name:"Pictographs"}],
+            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Human Body and Health"}, {code:"S04", name:"Food"}, {code:"S05", name:"Housing and Clothing"}, {code:"S06", name:"Air, Water and Weather"}, {code:"S07", name:"Earth and Universe"}]
         },
         class3: {
-            maths: [
-                { code: "M01", name: "Numbers" },
-                { code: "M02", name: "Addition, Subtraction and Multiplication" },
-                { code: "M03", name: "Division" },
-                { code: "M04", name: "Fractions" },
-                { code: "M05", name: "Geometry and Measurement" },
-                { code: "M06", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Living World" },
-                { code: "S02", name: "Plants" },
-                { code: "S03", name: "Animals" },
-                { code: "S04", name: "Human Body" },
-                { code: "S05", name: "Food, Water and Air" },
-                { code: "S06", name: "Light, Sound and Force" }
-            ]
+            maths: [{code:"M01", name:"Number Sense (Up to 10,000)"}, {code:"M02", name:"Addition, Subtraction, Multiplication"}, {code:"M03", name:"Division & Fractions"}, {code:"M04", name:"Money"}, {code:"M05", name:"Measurement"}, {code:"M06", name:"Time and Calendar"}, {code:"M07", name:"Geometry & Symmetry"}, {code:"M08", name:"Data Handling"}],
+            science: [{code:"S01", name:"Plants and Animals"}, {code:"S02", name:"Food"}, {code:"S03", name:"Housing and Clothing"}, {code:"S04", name:"Human Body"}, {code:"S05", name:"Matter and Materials"}, {code:"S06", name:"Light, Sound and Force"}, {code:"S07", name:"Earth and Universe"}, {code:"S08", name:"Our Environment"}]
         },
         class4: {
-            maths: [
-                { code: "M01", name: "Numbers" },
-                { code: "M02", name: "Addition, Subtraction, Multiplication and Division" },
-                { code: "M03", name: "Factors and Multiples" },
-                { code: "M04", name: "Fractions and Decimals" },
-                { code: "M05", name: "Geometry" },
-                { code: "M06", name: "Measurement" },
-                { code: "M07", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Plants and Animals" },
-                { code: "S02", name: "Food and Digestion" },
-                { code: "S03", name: "Matter and Materials" },
-                { code: "S04", name: "Force, Work and Energy" },
-                { code: "S05", name: "Air, Water and Weather" },
-                { code: "S06", name: "Earth and Universe" }
-            ]
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Fractions"}, {code:"M04", name:"Length, Weight and Capacity"}, {code:"M05", name:"Time and Money"}, {code:"M06", name:"Geometry"}, {code:"M07", name:"Perimeter and Area"}, {code:"M08", name:"Data Handling"}],
+            science: [{code:"S01", name:"Plants"}, {code:"S02", name:"Animals"}, {code:"S03", name:"Food and Digestion"}, {code:"S04", name:"Human Needs"}, {code:"S05", name:"Matter and Materials"}, {code:"S06", name:"Force, Work and Energy"}, {code:"S07", name:"Our Environment"}, {code:"S08", name:"Earth and Universe"}]
         },
         class5: {
-            maths: [
-                { code: "M01", name: "Large Numbers" },
-                { code: "M02", name: "Operations on Numbers" },
-                { code: "M03", name: "Factors and Multiples" },
-                { code: "M04", name: "Fractions and Decimals" },
-                { code: "M05", name: "Geometry" },
-                { code: "M06", name: "Measurement" },
-                { code: "M07", name: "Perimeter, Area and Volume" },
-                { code: "M08", name: "Data Handling" }
-            ],
-            science: [
-                { code: "S01", name: "Plants and Animals" },
-                { code: "S02", name: "Human Body and Health" },
-                { code: "S03", name: "Matter and Materials" },
-                { code: "S04", name: "Force, Energy and Machines" },
-                { code: "S05", name: "Air, Water and Environment" },
-                { code: "S06", name: "Earth and Space" }
-            ]
+            maths: [{code:"M01", name:"Number Sense"}, {code:"M02", name:"Computation Operations"}, {code:"M03", name:"Fractions and Decimals"}, {code:"M04", name:"Measurement"}, {code:"M05", name:"Angles"}, {code:"M06", name:"Perimeter, Area and Volume"}, {code:"M07", name:"Data Handling"}],
+            science: [{code:"S01", name:"Animals"}, {code:"S02", name:"Plants"}, {code:"S03", name:"Human Body and Health"}, {code:"S04", name:"Matter and Materials"}, {code:"S05", name:"Force, Work and Energy"}, {code:"S06", name:"Our Environment"}, {code:"S07", name:"Earth and Universe"}]
         },
         class6: {
-            maths: [
-                { code: "M01", name: "Knowing Our Numbers" },
-                { code: "M02", name: "Whole Numbers" },
-                { code: "M03", name: "Playing with Numbers" },
-                { code: "M04", name: "Basic Geometrical Ideas" },
-                { code: "M05", name: "Understanding Elementary Shapes" },
-                { code: "M06", name: "Integers" },
-                { code: "M07", name: "Fractions" },
-                { code: "M08", name: "Decimals" },
-                { code: "M09", name: "Data Handling" },
-                { code: "M10", name: "Mensuration" },
-                { code: "M11", name: "Algebra" },
-                { code: "M12", name: "Ratio and Proportion" }
-            ],
-            science: [
-                { code: "S01", name: "Food" },
-                { code: "S02", name: "Components of Food" },
-                { code: "S03", name: "Fibre to Fabric" },
-                { code: "S04", name: "Sorting Materials into Groups" },
-                { code: "S05", name: "Separation of Substances" },
-                { code: "S06", name: "Changes Around Us" },
-                { code: "S07", name: "Getting to Know Plants" },
-                { code: "S08", name: "Body Movements" },
-                { code: "S09", name: "Living Organisms and Their Surroundings" },
-                { code: "S10", name: "Motion and Measurement of Distances" },
-                { code: "S11", name: "Light, Shadows and Reflections" },
-                { code: "S12", name: "Electricity and Circuits" },
-                { code: "S13", name: "Fun with Magnets" },
-                { code: "S14", name: "Water" },
-                { code: "S15", name: "Air Around Us" },
-                { code: "S16", name: "Garbage In, Garbage Out" }
-            ]
+            maths: [{code:"M01", name:"Knowing our Numbers"}, {code:"M02", name:"Whole Numbers"}, {code:"M03", name:"Playing with Numbers"}, {code:"M04", name:"Basic Geometrical Ideas"}, {code:"M05", name:"Understanding Elementary Shapes"}, {code:"M06", name:"Integers"}, {code:"M07", name:"Fractions"}, {code:"M08", name:"Decimals"}, {code:"M09", name:"Data Handling"}, {code:"M10", name:"Mensuration"}, {code:"M11", name:"Algebra"}, {code:"M12", name:"Ratio and Proportion"}, {code:"M13", name:"Symmetry"}, {code:"M14", name:"Practical Geometry"}],
+            science: [{code:"S01", name:"Components of Food"}, {code:"S02", name:"Sorting Materials into Groups"}, {code:"S03", name:"Separation of Substances"}, {code:"S04", name:"Getting to Know Plants"}, {code:"S05", name:"Body Movements"}, {code:"S06", name:"The Living Organisms and Their Surroundings"}, {code:"S07", name:"Motion and Measurement of Distances"}, {code:"S08", name:"Light, Shadows and Reflections"}, {code:"S09", name:"Electricity and Circuits"}, {code:"S10", name:"Fun with Magnets"}, {code:"S11", name:"Air Around Us"}]
         },
         class7: {
-            maths: [
-                { code: "M01", name: "Integers" },
-                { code: "M02", name: "Fractions and Decimals" },
-                { code: "M03", name: "Data Handling" },
-                { code: "M04", name: "Simple Equations" },
-                { code: "M05", name: "Lines and Angles" },
-                { code: "M06", name: "The Triangle and its Properties" },
-                { code: "M07", name: "Congruence of Triangles" },
-                { code: "M08", name: "Comparing Quantities" },
-                { code: "M09", name: "Rational Numbers" },
-                { code: "M10", name: "Practical Geometry" },
-                { code: "M11", name: "Perimeter and Area" },
-                { code: "M12", name: "Algebraic Expressions" },
-                { code: "M13", name: "Exponents and Powers" },
-                { code: "M14", name: "Symmetry" },
-                { code: "M15", name: "Visualising Solid Shapes" }
-            ],
-            science: [
-                { code: "S01", name: "Nutrition in Plants" },
-                { code: "S02", name: "Nutrition in Animals" },
-                { code: "S03", name: "Fibre to Fabric" },
-                { code: "S04", name: "Heat" },
-                { code: "S05", name: "Acids, Bases and Salts" },
-                { code: "S06", name: "Physical and Chemical Changes" },
-                { code: "S07", name: "Weather, Climate and Adaptations" },
-                { code: "S08", name: "Winds, Storms and Cyclones" },
-                { code: "S09", name: "Soil" },
-                { code: "S10", name: "Respiration in Organisms" },
-                { code: "S11", name: "Transportation in Animals and Plants" },
-                { code: "S12", name: "Reproduction in Plants" },
-                { code: "S13", name: "Motion and Time" },
-                { code: "S14", name: "Electric Current and its Effects" },
-                { code: "S15", name: "Light" },
-                { code: "S16", name: "Water: A Precious Resource" },
-                { code: "S17", name: "Forests: Our Lifeline" },
-                { code: "S18", name: "Wastewater Story" }
-            ]
+            maths: [{code:"M01", name:"Integers"}, {code:"M02", name:"Fractions and Decimals"}, {code:"M03", name:"Data Handling"}, {code:"M04", name:"Simple Equations"}, {code:"M05", name:"Lines and Angles"}, {code:"M06", name:"The Triangle and its Properties"}, {code:"M07", name:"Congruence of Triangles"}, {code:"M08", name:"Comparing Quantities"}, {code:"M09", name:"Rational Numbers"}, {code:"M10", name:"Practical Geometry"}, {code:"M11", name:"Perimeter and Area"}, {code:"M12", name:"Algebraic Expressions"}, {code:"M13", name:"Exponents and Powers"}, {code:"M14", name:"Symmetry"}, {code:"M15", name:"Visualising Solid Shapes"}],
+            science: [{code:"S01", name:"Nutrition in Plants"}, {code:"S02", name:"Nutrition in Animals"}, {code:"S03", name:"Heat"}, {code:"S04", name:"Acids, Bases and Salts"}, {code:"S05", name:"Physical and Chemical Changes"}, {code:"S06", name:"Respiration in Organisms"}, {code:"S07", name:"Transportation in Animals and Plants"}, {code:"S08", name:"Reproduction in Plants"}, {code:"S09", name:"Motion and Time"}, {code:"S10", name:"Electric Current and its Effects"}, {code:"S11", name:"Light"}]
         },
         class8: {
-            maths: [
-                { code: "M01", name: "Rational Numbers" },
-                { code: "M02", name: "Linear Equations in One Variable" },
-                { code: "M03", name: "Understanding Quadrilaterals" },
-                { code: "M04", name: "Practical Geometry" },
-                { code: "M05", name: "Data Handling" },
-                { code: "M06", name: "Squares and Square Roots" },
-                { code: "M07", name: "Cubes and Cube Roots" },
-                { code: "M08", name: "Comparing Quantities" },
-                { code: "M09", name: "Algebraic Expressions and Identities" },
-                { code: "M10", name: "Visualising Solid Shapes" },
-                { code: "M11", name: "Mensuration" },
-                { code: "M12", name: "Exponents and Powers" },
-                { code: "M13", name: "Direct and Inverse Proportions" },
-                { code: "M14", name: "Factorisation" },
-                { code: "M15", name: "Introduction to Graphs" }
-            ],
-            science: [
-                { code: "S01", name: "Crop Production and Management" },
-                { code: "S02", name: "Microorganisms" },
-                { code: "S03", name: "Synthetic Fibres and Plastics" },
-                { code: "S04", name: "Materials: Metals and Non-Metals" },
-                { code: "S05", name: "Coal and Petroleum" },
-                { code: "S06", name: "Combustion and Flame" },
-                { code: "S07", name: "Conservation of Plants and Animals" },
-                { code: "S08", name: "Cell Structure and Functions" },
-                { code: "S09", name: "Reproduction and Adolescence" },
-                { code: "S10", name: "Force and Pressure" },
-                { code: "S11", name: "Friction" },
-                { code: "S12", name: "Sound" },
-                { code: "S13", name: "Chemical Effects of Electric Current" },
-                { code: "S14", name: "Some Natural Phenomena" },
-                { code: "S15", name: "Light" },
-                { code: "S16", name: "Stars and the Solar System" },
-                { code: "S17", name: "Pollution of Air and Water" }
-            ]
+            maths: [{code:"M01", name:"Rational Numbers"}, {code:"M02", name:"Linear Equations"}, {code:"M03", name:"Understanding Quadrilaterals"}, {code:"M04", name:"Practical Geometry"}, {code:"M05", name:"Data Handling"}, {code:"M06", name:"Squares and Square Roots"}, {code:"M07", name:"Cubes and Cube Roots"}, {code:"M08", name:"Comparing Quantities"}, {code:"M09", name:"Algebraic Expressions"}, {code:"M10", name:"Visualising Solid Shapes"}, {code:"M11", name:"Mensuration"}, {code:"M12", name:"Exponents and Powers"}, {code:"M13", name:"Direct and Inverse Proportions"}, {code:"M14", name:"Factorisation"}, {code:"M15", name:"Introduction to Graphs"}],
+            science: [{code:"S01", name:"Crop Production and Management"}, {code:"S02", name:"Microorganisms: Friend and Foe"}, {code:"S03", name:"Coal and Petroleum"}, {code:"S04", name:"Combustion and Flame"}, {code:"S05", name:"Conservation of Plants and Animals"}, {code:"S06", name:"Cell - Structure and Functions"}, {code:"S07", name:"Reproduction in Animals"}, {code:"S08", name:"Reaching the Age of Adolescence"}, {code:"S09", name:"Force and Pressure"}, {code:"S10", name:"Friction"}, {code:"S11", name:"Sound"}, {code:"S12", name:"Chemical Effects of Electric Current"}, {code:"S13", name:"Some Natural Phenomena"}, {code:"S14", name:"Light"}, {code:"S15", name:"Stars and the Solar System"}]
         },
         class9: {
-            maths: [
-                { code: "M01", name: "Number Systems" },
-                { code: "M02", name: "Polynomials" },
-                { code: "M03", name: "Coordinate Geometry" },
-                { code: "M04", name: "Linear Equations in Two Variables" },
-                { code: "M05", name: "Introduction to Euclid’s Geometry" },
-                { code: "M06", name: "Lines and Angles" },
-                { code: "M07", name: "Triangles" },
-                { code: "M08", name: "Quadrilaterals" },
-                { code: "M09", name: "Areas of Parallelograms and Triangles" },
-                { code: "M10", name: "Circles" },
-                { code: "M11", name: "Heron’s Formula" },
-                { code: "M12", name: "Surface Areas and Volumes" },
-                { code: "M13", name: "Statistics" },
-                { code: "M14", name: "Probability" }
-            ],
-            science: [
-                { code: "S01", name: "Matter in Our Surroundings" },
-                { code: "S02", name: "Is Matter Around Us Pure?" },
-                { code: "S03", name: "Atoms and Molecules" },
-                { code: "S04", name: "Structure of the Atom" },
-                { code: "S05", name: "The Fundamental Unit of Life" },
-                { code: "S06", name: "Tissues" },
-                { code: "S07", name: "Motion" },
-                { code: "S08", name: "Force and Laws of Motion" },
-                { code: "S09", name: "Gravitation" },
-                { code: "S10", name: "Work and Energy" },
-                { code: "S11", name: "Sound" },
-                { code: "S12", name: "Improvement in Food Resources" },
-                { code: "S13", name: "Diversity in Living Organisms" },
-                { code: "S14", name: "Natural Resources" },
-                { code: "S15", name: "Why Do We Fall Ill" }
-            ]
+            maths: [{code:"M01", name:"Number Systems"}, {code:"M02", name:"Polynomials"}, {code:"M03", name:"Coordinate Geometry"}, {code:"M04", name:"Linear Equations in Two Variables"}, {code:"M05", name:"Introduction to Euclid’s Geometry"}, {code:"M06", name:"Lines and Angles"}, {code:"M07", name:"Triangles"}, {code:"M08", name:"Quadrilaterals"}, {code:"M09", name:"Areas of Parallelograms and Triangles"}, {code:"M10", name:"Circles"}, {code:"M11", name:"Heron’s Formula"}, {code:"M12", name:"Surface Areas and Volumes"}, {code:"M13", name:"Statistics"}, {code:"M14", name:"Probability"}],
+            science: [{code:"S01", name:"Matter in Our Surroundings"}, {code:"S02", name:"Is Matter Around Us Pure?"}, {code:"S03", name:"Atoms and Molecules"}, {code:"S04", name:"Structure of the Atom"}, {code:"S05", name:"The Fundamental Unit of Life"}, {code:"S06", name:"Tissues"}, {code:"S07", name:"Motion"}, {code:"S08", name:"Force and Laws of Motion"}, {code:"S09", name:"Gravitation"}, {code:"S10", name:"Work and Energy"}, {code:"S11", name:"Sound"}, {code:"S12", name:"Improvement in Food Resources"}]
         }
     };
 
@@ -489,7 +290,6 @@
             const option = document.createElement("option");
             option.value = topic.code;
             option.textContent = `${topic.code} - ${topic.name}`;
-            // Use dataset to store the name cleanly
             option.dataset.topicName = topic.name;
             topicSelect.appendChild(option);
         });
@@ -510,7 +310,6 @@
             return;
         }
 
-        // Get actual name from dataset
         const selectedTopicName = selectedOption.dataset.topicName;
 
         localStorage.setItem("selectedClass", selectedClass);
