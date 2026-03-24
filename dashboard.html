@@ -102,17 +102,17 @@
     .card-live-special { 
         --c-accent: #f43f5e; 
         --c-bg: rgba(244, 63, 94, 0.15); 
-        border: 2px solid rgba(244, 63, 94, 0.4);
-        background: linear-gradient(145deg, #1e1b4b, #020617);
-        animation: livePulse 3s infinite;
+        border: 2px solid rgba(244, 63, 94, 0.4) !important;
+        background: linear-gradient(145deg, #1e1b4b, #020617) !important;
+        animation: livePulse 3s infinite !important;
     }
     .card-live-special .icon-wrapper {
-        background: #f43f5e;
-        color: white;
-        box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+        background: #f43f5e !important;
+        color: white !important;
+        box-shadow: 0 0 20px rgba(244, 63, 94, 0.4) !important;
     }
     .card-live-special:hover {
-        border-color: #f43f5e;
+        border-color: #f43f5e !important;
     }
 
     .card-blue { --c-accent: #38bdf8; --c-bg: rgba(56, 189, 248, 0.1); }
@@ -265,7 +265,7 @@ import { getFirestore, doc, getDoc, collection, query, orderBy, limit, getDocs }
 const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",authDomain:"olympiad-portal-d2a5e.firebaseapp.com",projectId:"olympiad-portal-d2a5e",storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",messagingSenderId:"341855557503",appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"};
 
 const app=initializeApp(firebaseConfig);
-const auth=getAuth(auth);
+const auth=getAuth(app);
 const db=getFirestore(app);
 
 // AUTH GUARD: Optimistic Redirect
