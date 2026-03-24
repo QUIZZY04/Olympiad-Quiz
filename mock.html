@@ -13,11 +13,6 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* Content is visible by default for immediate loading */
-        #main-app-container { 
-            display: block !important; 
-        }
-
         :root {
             --bg: #020617;
             --surface: #0f172a;
@@ -29,6 +24,7 @@
             --danger: #f43f5e;
             --success: #10b981;
             --warning: #f59e0b;
+            --glass: rgba(15, 23, 42, 0.7);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -39,128 +35,106 @@
             color: var(--text);
             display: flex;
             flex-direction: column;
-            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), 
+                              radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
             background-attachment: fixed;
         }
 
         nav {
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            background: rgba(2, 6, 23, 0.8); 
+            backdrop-filter: blur(12px); 
             border-bottom: 1px solid var(--border); 
-            padding: 20px 5%; 
+            padding: 15px 5%; 
             display: flex; 
             align-items: center; 
             justify-content: space-between;
             position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px;
         }
         
-        .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; white-space: nowrap; }
-        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
+        .brand { font-size: 1.4rem; font-weight: 700; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand); }
 
-        .container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+        .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
 
+        /* Professional Wider Selection Box */
         .selection-box {
-            background: linear-gradient(145deg, #0f172a, #020617);
+            background: var(--glass);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--border);
-            border-top: 2px solid var(--brand);
-            padding: 45px 40px;
-            border-radius: 24px;
+            border-top: 4px solid var(--brand);
+            padding: 50px;
+            border-radius: 28px;
             width: 100%;
-            max-width: 600px;
+            max-width: 750px; /* Increased width */
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        .selection-box h2 {
-            color: var(--text);
-            margin-bottom: 10px;
-            font-size: 30px;
-            font-weight: 800;
-        }
+        .selection-box h2 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 800; }
+        .selection-box h2 span { color: var(--brand); }
+        .selection-box p { color: var(--muted); margin-bottom: 40px; font-size: 1.05rem; line-height: 1.6; }
 
-        .selection-box h2 span {
-            color: var(--brand);
-        }
-
-        .selection-box p {
-            color: var(--muted);
-            margin-bottom: 35px;
-            font-size: 15px;
-        }
-
-        .form-group {
-            text-align: left;
-            margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
-            border-radius: 16px;
+        .form-group { 
+            text-align: left; 
+            margin-bottom: 25px; 
+            background: rgba(255, 255, 255, 0.02); 
+            padding: 24px; 
+            border-radius: 18px; 
             border: 1px solid var(--border);
             transition: 0.3s;
         }
         
-        .form-group:hover {
+        .form-group:focus-within {
             border-color: var(--brand);
-            background: rgba(56, 189, 248, 0.05);
+            background: rgba(56, 189, 248, 0.04);
         }
 
-        .step-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 15px;
-            text-transform: uppercase;
+        .step-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            color: var(--brand); 
+            margin-bottom: 15px; 
+            text-transform: uppercase; 
             letter-spacing: 1px;
         }
 
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            background: var(--brand);
-            color: white;
-            border-radius: 50%;
-            font-size: 12px;
+        .step-number { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 22px; 
+            height: 22px; 
+            background: var(--brand); 
+            color: var(--bg); 
+            border-radius: 6px; 
+            font-size: 11px; 
+            font-weight: 800;
         }
 
         select {
             width: 100%;
-            padding: 14px 20px;
+            padding: 14px 18px;
             background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             color: var(--text);
-            font-size: 15px;
+            font-size: 1rem;
             outline: none;
-            cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            cursor: pointer;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.2em;
+            background-position: right 1.2rem center;
+            background-size: 1.1em;
             transition: 0.2s;
         }
 
-        select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
-
+        /* Subject Grid Refinement */
         .subject-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -168,37 +142,31 @@
         }
 
         .subject-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 25px 20px;
             text-align: center;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .subject-card:hover {
             border-color: var(--brand);
             background: rgba(56, 189, 248, 0.05);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.3);
         }
 
-        .subject-card h3 {
-            color: var(--text);
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
+        .subject-card h3 { color: var(--text); font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; }
+        .subject-card p { color: var(--muted); font-size: 0.85rem; margin: 0; line-height: 1.4; }
 
-        .subject-card p {
-            color: var(--muted);
-            font-size: 12px;
-            margin: 0;
-        }
-
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
+            .selection-box { padding: 35px 20px; border-radius: 20px; }
+            .selection-box h2 { font-size: 1.6rem; }
             .subject-grid { grid-template-columns: 1fr; }
-            nav { flex-direction: column; padding: 15px; }
+            .form-group { padding: 20px; }
+            .container { padding: 20px 15px; }
         }
     </style>
 </head>
@@ -266,32 +234,27 @@
         </div>
     </div>
 
-    <footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
-        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-            <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-            <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
-            <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-            <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-            <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-            <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+    <footer style="text-align:center;padding:40px 20px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 15px;">
+            <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Home</a>
+            <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Features</a>
+            <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">About Us</a>
+            <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Contact Us</a>
+            <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Privacy Policy</a>
+            <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Terms</a>
         </div>
-        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+        <p style="margin-top:15px;font-size:13px;letter-spacing:0.5px;">© 2026 Olympiad Portal. All rights reserved.</p>
     </footer>
 </div>
 
 <script>
     function startMock(subject) {
         const selectedClass = document.getElementById("classSelect").value;
-        
-        // Clear out any topic filters from chapterwise
         localStorage.removeItem("selectedTopic");
         localStorage.removeItem("selectedTopicName");
-        
-        // Set the chosen mock test configuration
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", subject);
         localStorage.setItem("isChampionship", "false");
-        
         window.location.href = "quiz.html";
     }
 </script>
@@ -312,7 +275,6 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Optimistic check: only redirect if definitely logged out
     onAuthStateChanged(auth, (user) => {
         if (!user) {
             window.location.replace("index.html");
