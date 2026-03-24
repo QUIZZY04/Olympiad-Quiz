@@ -268,8 +268,20 @@ startTimer();
 
 window.backToSelection = function() {
     if(confirm("Exit this quiz and return to selection? Your progress will not be saved.")) {
-        localStorage.setItem("isChampionship", "false"); 
-        window.location.href = "mock.html"; 
+        localStorage.setItem("isChampionship", "false");
+
+        const isChapterwiseQuiz = !!(
+            localStorage.getItem("selectedTopic") ||
+            localStorage.getItem("selectedTopicName") ||
+            localStorage.getItem("selectedChapter") ||
+            localStorage.getItem("selectedChapterName")
+        );
+
+        if (isChapterwiseQuiz) {
+            window.location.href = "chapterwise.html";
+        } else {
+            window.location.href = "mock.html";
+        }
     }
 }
 
