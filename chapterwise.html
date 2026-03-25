@@ -815,6 +815,8 @@
             alert("Please select both a subject and a topic to proceed.");
             return;
         }
+        localStorage.setItem("selectionSource", "chapterwise"); 
+    localStorage.setItem("isMockTest", "false");
 
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", selectedSubject);
