@@ -5,9 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Olympiad Quiz | Free Olympiad Practice</title>
+<title>Olympiad Quiz | Complete Olympiad Learning Platform</title>
 
-<meta name="description" content="Prepare for Olympiad exams with chapter-wise quizzes, concept explanations, and mock tests for Class 1 to 10 students.">
+<meta name="description" content="Prepare for Olympiad exams with structured learning, chapter-wise quizzes, mock tests, and concept explanations for Class 1 to 10 students.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -21,148 +21,83 @@
 --border:#1e293b;
 --brand:#38bdf8;
 --accent:#818cf8;
---success:#10b981;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-body{
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-}
-
-/* PARTICLES */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-opacity:0.5;
-}
+body{background:var(--bg);color:var(--text);}
 
 /* NAV */
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
+display:flex;justify-content:space-between;align-items:center;
 padding:20px 5%;
 background:rgba(2,6,23,0.85);
-backdrop-filter:blur(12px);
 border-bottom:1px solid var(--border);
+flex-wrap:wrap;
 }
 
-.logo{font-size:20px;font-weight:800;color:#fff;}
+.logo{font-size:22px;font-weight:800;}
 
 .nav-links a{
+margin:8px 12px;
 color:var(--muted);
 text-decoration:none;
-margin-left:20px;
 font-size:14px;
 }
-
 .nav-links a:hover{color:var(--brand);}
 
 /* HERO */
-.hero{
-text-align:center;
-padding:90px 20px;
-}
-
-.hero h1{
-font-size:3.2rem;
-font-weight:800;
-}
-
+.hero{text-align:center;padding:100px 20px;}
+.hero h1{font-size:3.2rem;}
 .gradient{
 background:linear-gradient(135deg,#38bdf8,#818cf8);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
-
-.hero p{
-margin-top:15px;
-color:var(--muted);
-font-size:1.2rem;
-max-width:750px;
-margin-left:auto;
-margin-right:auto;
-}
+.hero p{margin-top:20px;color:var(--muted);max-width:800px;margin:auto;}
 
 /* BUTTONS */
-.btns{
-margin-top:25px;
-display:flex;
-gap:15px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.btn-primary{
-background:linear-gradient(135deg,#38bdf8,#2563eb);
-padding:12px 26px;
-border-radius:10px;
-color:white;
-font-weight:700;
-text-decoration:none;
-}
-
-.btn-secondary{
-border:1px solid var(--border);
-padding:12px 26px;
-border-radius:10px;
-color:var(--brand);
-text-decoration:none;
-}
+.btns{margin-top:25px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
+.btn{padding:12px 26px;border-radius:10px;font-weight:700;text-decoration:none;}
+.btn-primary{background:linear-gradient(135deg,#38bdf8,#2563eb);color:white;}
+.btn-secondary{border:1px solid var(--border);color:var(--brand);}
 
 /* SECTION */
 .section{
-max-width:1200px;
-margin:60px auto;
-padding:40px;
-background:linear-gradient(145deg,#0f172a,#020617);
-border-radius:24px;
-border:1px solid var(--border);
+max-width:1200px;margin:60px auto;padding:40px;
+background:rgba(15,23,42,0.9);
+border-radius:20px;
+border:1px solid rgba(56,189,248,0.2);
 }
 
 /* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:20px;
+gap:20px;margin-top:20px;
 }
 
 .card{
-background:rgba(15,23,42,0.9);
 padding:20px;
 border-radius:16px;
+background:rgba(15,23,42,0.9);
 border:1px solid var(--border);
 transition:0.3s;
+cursor:pointer;
 }
-
 .card:hover{
-transform:translateY(-6px);
+transform:translateY(-8px);
+border-color:#38bdf8;
 }
 
 /* FOOTER */
-footer{
-text-align:center;
-padding:30px;
-border-top:1px solid var(--border);
-color:var(--muted);
-}
+footer{text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted);}
 
 /* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:2rem;}
-.hero p{font-size:1rem;}
 .section{margin:20px 10px;padding:20px;}
 .grid{grid-template-columns:1fr;}
-nav{flex-direction:column;gap:10px;}
-.nav-links{display:flex;flex-wrap:wrap;justify-content:center;}
-.nav-links a{margin:5px 10px;}
-.btn-primary,.btn-secondary{width:100%;text-align:center;}
 }
 </style>
 
@@ -170,126 +105,95 @@ nav{flex-direction:column;gap:10px;}
 
 <body>
 
-<div id="particles-js"></div>
-
-<!-- NAV -->
 <nav>
 <div class="logo">Olympiad Portal</div>
 <div class="nav-links">
-<a href="#" onclick="secureNav('chapterwise.html')">Practice</a>
-<a href="#" onclick="secureNav('mock.html')">Mock Test</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
+<a href="#features">Features</a>
+<a href="#study">Study</a>
+<a href="#subjects">Subjects</a>
+<a href="#strategy">Strategy</a>
+<a href="#faq">FAQ</a>
 </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
 <h1>Master <span class="gradient">Olympiad Exams</span></h1>
-
 <p>
-Build strong concepts with chapter-wise practice, detailed explanations, and real exam-level mock tests for Class 1 to 10 students.
+A complete platform for students to learn concepts, practice questions, and excel in Olympiad exams.
 </p>
 
 <div class="btns">
-<a href="#" onclick="secureNav('chapterwise.html')" class="btn-primary">Start Practice</a>
-<a href="#" onclick="secureNav('mock.html')" class="btn-secondary">Take Mock Test</a>
+<a href="#" onclick="secureNav()" class="btn btn-primary">Start Practice</a>
+<a href="#" onclick="secureNav()" class="btn btn-secondary">Mock Test</a>
 </div>
-</section>
-
-<!-- SECTION -->
-<section class="section">
-<h2>What is Olympiad Quiz?</h2>
-<p style="color:var(--muted);margin-top:10px;">
-Olympiad Quiz is a complete learning platform designed for students preparing for competitive exams like IMO and NSO.
-It focuses on concept clarity, structured practice, and performance improvement through regular testing.
-</p>
 </section>
 
 <!-- FEATURES -->
-<section class="section">
-<h2>Key Features</h2>
-
+<section id="features" class="section">
+<h2>Platform Features</h2>
 <div class="grid">
-<div class="card">
-<h3>📖 Chapterwise Practice</h3>
-<p>Practice topic by topic and build strong understanding.</p>
-</div>
-
-<div class="card">
-<h3>📝 Mock Tests</h3>
-<p>Test yourself with real exam-level questions.</p>
-</div>
-
-<div class="card">
-<h3>⚡ Live Quiz Arena</h3>
-<p>Compete with students and improve your ranking.</p>
-</div>
+<div class="card" onclick="secureNav()">📖 Chapterwise Practice</div>
+<div class="card" onclick="secureNav()">📝 Mock Tests</div>
+<div class="card" onclick="secureNav()">⚡ Live Quiz Arena</div>
 </div>
 </section>
 
-<!-- SECTION -->
-<section class="section">
-<h2>Complete Olympiad Preparation</h2>
-
+<!-- STUDY -->
+<section id="study" class="section">
+<h2>Study Material</h2>
 <p style="color:var(--muted);margin-top:10px;">
-The platform covers Mathematics, Science, English, and Reasoning for Class 1 to 10 students.
-Regular practice improves accuracy, speed, and logical thinking.
+Students can learn concepts before attempting quizzes. This helps in building strong fundamentals.
 </p>
+</section>
 
-<ul style="margin-top:15px;color:var(--muted);line-height:1.8;">
-<li>Concept-based learning</li>
-<li>Instant feedback</li>
-<li>Performance tracking</li>
-<li>Exam-level difficulty</li>
+<!-- SUBJECTS -->
+<section id="subjects" class="section">
+<h2>Subjects Covered</h2>
+<div class="grid">
+<div class="card">Mathematics</div>
+<div class="card">Science</div>
+<div class="card">English</div>
+<div class="card">Reasoning</div>
+</div>
+</section>
+
+<!-- STRATEGY -->
+<section id="strategy" class="section">
+<h2>Preparation Strategy</h2>
+<ul style="color:var(--muted);margin-top:10px;">
+<li>Understand concepts first</li>
+<li>Practice daily</li>
+<li>Take mock tests regularly</li>
+<li>Analyze mistakes</li>
 </ul>
 </section>
 
-<!-- SECTION -->
-<section class="section">
-<h2>Why Olympiad Preparation Matters?</h2>
+<!-- FAQ -->
+<section id="faq" class="section">
+<h2>Frequently Asked Questions</h2>
 
-<p style="color:var(--muted);margin-top:10px;">
-Olympiad exams develop analytical thinking and problem-solving skills.
-They help students perform better in competitive exams and school academics.
-</p>
+<p><b>What is Olympiad?</b><br>
+Olympiad exams test conceptual understanding beyond school syllabus.</p>
+
+<p><b>How to prepare?</b><br>
+Practice regularly and focus on concept clarity.</p>
+
 </section>
 
-<!-- FOOTER -->
 <footer>
 <a href="about.html">About</a> |
 <a href="contact.html">Contact</a> |
 <a href="privacy-policy.html">Privacy Policy</a> |
 <a href="terms.html">Terms</a>
-<p style="margin-top:10px;">© 2026 Olympiad Portal</p>
+<p>© 2026 Olympiad Portal</p>
 </footer>
 
 <script>
-/* PARTICLES (SMALL & CLEAN) */
-particlesJS('particles-js',{
-particles:{
-number:{value:30},
-size:{value:2},
-opacity:{value:0.15},
-line_linked:{opacity:0.08},
-move:{speed:1.2}
-}
-});
-
-/* DISABLE PARTICLES ON MOBILE */
-if(window.innerWidth<768){
-document.getElementById("particles-js").style.display="none";
-}
-
-/* LOGIN PROTECTION */
-function secureNav(page){
+function secureNav(){
 const user = localStorage.getItem("user");
-if(!user){
-alert("Please login first");
-window.location.href="login.html";
-}else{
-window.location.href=page;
-}
+if(!user){window.location.href="signup.html";}
+else{window.location.href="chapterwise.html";}
 }
 </script>
 
