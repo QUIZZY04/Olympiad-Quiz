@@ -2,17 +2,32 @@
 <html lang="en">
 <head>
 
+<!-- ✅ Keep ONLY ONE meta description -->
+<meta name="description" content="Prepare for Olympiad exams with chapter-wise quizzes, mock tests, and concept-based learning for Class 1 to 10 students. Improve accuracy, speed, and problem-solving skills.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Olympiad Quiz",
+  "url": "https://olympiadquiz.org",
+  "description": "Free online practice portal for Class 1-10 Math and Science Olympiads."
+}
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
+ crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ✅ FIXED: Single meta -->
-<meta name="description" content="Prepare for Olympiad exams with chapter-wise quizzes, detailed explanations, and mock tests for Class 1 to 10 students. Improve concepts and problem-solving skills.">
-
-<title>Olympiad Quiz | Free Math & Science Practice</title>
+<title>Olympiad Quiz | Free Math & Science Practice for Class 1-10</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
+/* KEEP YOUR ORIGINAL CSS (no major change) */
 :root {
 --bg: #020617;
 --surface: #0f172a;
@@ -21,19 +36,75 @@
 --border: #1e293b;
 --brand: #38bdf8;
 --accent: #818cf8;
+--danger: #f43f5e;
+--success: #10b981;
+--warning: #f59e0b;
 }
 
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
 body {
-background: var(--bg);
+background-color: var(--bg);
 color: var(--text);
-font-family: 'Poppins', sans-serif;
-margin:0;
+overflow-x:hidden;
+display:flex;
+flex-direction:column;
+min-height:100vh;
+background-image:
+radial-gradient(circle at 15% 50%, rgba(56,189,248,0.08), transparent 25%),
+radial-gradient(circle at 85% 30%, rgba(129,140,248,0.08), transparent 25%);
+background-attachment:fixed;
 }
+
+#particles-js {
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* NAV */
+nav {
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 5%;
+background:rgba(2,6,23,0.8);
+backdrop-filter:blur(12px);
+position:sticky;
+top:0;
+z-index:100;
+border-bottom:1px solid var(--border);
+}
+
+.logo { font-size:1.5rem; font-weight:700; color:#fff; }
+
+.nav-links a {
+color:var(--muted);
+text-decoration:none;
+margin-left:20px;
+font-size:0.9rem;
+transition:0.3s;
+}
+.nav-links a:hover { color:var(--brand); }
 
 /* HERO */
 .hero {
 text-align:center;
 padding:80px 5%;
+}
+
+.hero h1 {
+font-size:3.5rem;
+margin-bottom:20px;
+}
+
+.hero p {
+font-size:1.2rem;
+color:var(--muted);
+max-width:750px;
+margin:0 auto;
+line-height:1.7;
 }
 
 /* FEATURES */
@@ -45,10 +116,35 @@ padding:0 5% 60px;
 }
 
 .feature-card {
-background:#0f172a;
-padding:30px;
-border-radius:20px;
+background:linear-gradient(145deg,#0f172a,#020617);
 border:1px solid var(--border);
+padding:30px;
+border-radius:24px;
+text-align:center;
+transition:0.3s;
+}
+
+.feature-card:hover {
+transform:translateY(-6px);
+}
+
+/* SECTION CARD */
+.section-box {
+max-width:1200px;
+margin:60px auto;
+padding:40px;
+border-radius:24px;
+background:linear-gradient(145deg,#0f172a,#020617);
+border:1px solid var(--border);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* FOOTER */
+footer {
+text-align:center;
+padding:30px;
+border-top:1px solid var(--border);
+color:var(--muted);
 }
 </style>
 
@@ -56,10 +152,12 @@ border:1px solid var(--border);
 
 <body>
 
+<div id="particles-js"></div>
+
 <!-- NAV -->
-<nav style="padding:20px 5%; display:flex; justify-content:space-between;">
-<a href="index.html" style="color:white;text-decoration:none;font-weight:700;">Olympiad Portal</a>
-<div>
+<nav>
+<a href="index.html" class="logo">Olympiad Portal</a>
+<div class="nav-links">
 <a href="chapterwise.html">Practice</a>
 <a href="mock.html">Mock Test</a>
 <a href="about.html">About</a>
@@ -72,60 +170,49 @@ border:1px solid var(--border);
 <h1>Unlock Your <span style="color:#38bdf8;">Olympiad Potential</span></h1>
 
 <p>
-Prepare for Olympiad exams with structured learning, chapter-wise quizzes, detailed explanations, and full-length mock tests designed for Class 1 to 10 students.
-Build strong concepts and improve problem-solving skills.
+Prepare for Olympiad exams with structured learning, chapter-wise quizzes, detailed explanations, and full-length mock tests.
+Build strong concepts, improve problem-solving skills, and boost confidence for competitive exams.
 </p>
-
-<div style="margin-top:20px;">
-<a href="chapterwise.html" style="color:#38bdf8;font-weight:600;">Start Practice →</a>
-</div>
 </section>
 
-<!-- 🔥 SECTION 1 -->
-<section style="max-width:1100px;margin:40px auto;padding:0 5%;line-height:1.9;">
-<h2 style="color:#38bdf8;">What is Olympiad Quiz?</h2>
+<!-- 🔥 NEW SECTION -->
+<section class="section-box">
+<h2 style="color:#38bdf8;text-align:center;margin-bottom:20px;">What is Olympiad Quiz?</h2>
 
-<p style="color:#94a3b8;">
-Olympiad Quiz is an online platform designed for students from Class 1 to 10 preparing for competitive exams like IMO, NSO, and IEO.
-It provides concept-based learning through structured quizzes and practice tests.
+<p style="color:#94a3b8;text-align:center;max-width:800px;margin:auto;">
+Olympiad Quiz is a learning platform for students from Class 1 to 10 preparing for IMO, NSO, and other competitive exams.
+It provides structured practice, concept-based learning, and performance tracking.
 </p>
 
-<p style="color:#94a3b8;">
-Students can practice chapter-wise questions, take mock exams, and improve accuracy and speed with regular learning.
-</p>
+<div style="text-align:center;margin-top:20px;">
+<a href="chapterwise.html" style="color:#38bdf8;font-weight:700;">Start Practice →</a>
+</div>
 </section>
 
 <!-- FEATURES -->
 <section class="features">
 <div class="feature-card">
 <h3>📖 Chapterwise Quiz</h3>
-<p>Practice topics and strengthen concepts step by step.</p>
+<p>Practice concepts topic by topic.</p>
 </div>
 
 <div class="feature-card">
 <h3>📝 Mock Tests</h3>
-<p>Test your preparation with real exam-level questions.</p>
+<p>Real exam-level preparation.</p>
 </div>
 
 <div class="feature-card">
 <h3>⚡ Live Quiz Arena</h3>
-<p>Compete with students and improve ranking.</p>
+<p>Compete and improve ranking.</p>
 </div>
 </section>
 
-<!-- 🔥 SECTION 2 -->
-<section style="max-width:1100px;margin:60px auto;padding:0 5%;line-height:1.9;">
-<h2 style="color:#818cf8;">Complete Olympiad Preparation Platform</h2>
+<!-- 🔥 BENEFITS -->
+<section class="section-box">
+<h2 style="color:#818cf8;text-align:center;margin-bottom:20px;">Why Students Love Olympiad Quiz</h2>
 
-<p style="color:#94a3b8;">
-This platform helps students build strong conceptual understanding and improve performance through regular practice.
-It focuses on developing logical thinking and problem-solving skills.
-</p>
-
-<h3 style="color:#38bdf8;margin-top:20px;">Key Benefits</h3>
-
-<ul style="color:#94a3b8;">
-<li>Concept-based learning</li>
+<ul style="color:#94a3b8;max-width:700px;margin:auto;line-height:1.8;">
+<li>Concept-based learning approach</li>
 <li>Chapter-wise structured practice</li>
 <li>Real exam-level mock tests</li>
 <li>Instant performance feedback</li>
@@ -133,22 +220,22 @@ It focuses on developing logical thinking and problem-solving skills.
 </ul>
 </section>
 
-<!-- 🔥 SECTION 3 -->
-<section style="max-width:1100px;margin:60px auto;padding:0 5%;line-height:1.9;">
-<h2 style="color:#38bdf8;">Why Olympiad Preparation Matters?</h2>
+<!-- 🔥 FINAL SECTION -->
+<section class="section-box">
+<h2 style="color:#38bdf8;text-align:center;margin-bottom:20px;">Why Olympiad Preparation Matters</h2>
 
-<p style="color:#94a3b8;">
-Olympiad exams help students develop deeper understanding beyond textbooks.
-They improve analytical thinking and confidence in solving complex problems.
+<p style="color:#94a3b8;text-align:center;max-width:800px;margin:auto;">
+Olympiad exams help students develop logical thinking, analytical skills, and confidence.
+Regular practice improves both competitive exam performance and school results.
 </p>
 
-<p style="color:#94a3b8;">
-Regular practice helps students perform better in both competitive exams and school academics.
-</p>
+<div style="text-align:center;margin-top:20px;">
+<a href="mock.html" style="color:#38bdf8;font-weight:700;">Take Mock Test →</a>
+</div>
 </section>
 
 <!-- FOOTER -->
-<footer style="text-align:center;padding:30px;border-top:1px solid #333;color:#aaa;">
+<footer>
 <a href="about.html">About</a> |
 <a href="contact.html">Contact</a> |
 <a href="privacy-policy.html">Privacy Policy</a> |
@@ -156,6 +243,13 @@ Regular practice helps students perform better in both competitive exams and sch
 
 <p style="margin-top:10px;">© 2026 Olympiad Portal</p>
 </footer>
+
+<script>
+particlesJS('particles-js', {
+particles:{number:{value:60},color:{value:"#38bdf8"},line_linked:{enable:true}},
+interactivity:{events:{onhover:{enable:true,mode:"repulse"}}}
+});
+</script>
 
 </body>
 </html>
