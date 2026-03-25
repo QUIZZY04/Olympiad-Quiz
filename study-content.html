@@ -157,136 +157,142 @@
     const studyDB = {
         maths: {
             primary: `
-                <div class="note-card">
-                    <h2>🔢 Number Sense & Operations</h2>
-                    <p>Understanding the properties of numbers is the first step to mastering mathematics. This includes place values, operations, and number patterns.</p>
-                    <h3>1. Place Value & Face Value</h3>
-                    <ul>
-                        <li><b>Face Value:</b> The digit itself (e.g., in 7,843, the face value of 8 is 8).</li>
-                        <li><b>Place Value:</b> The value based on position (e.g., in 7,843, the place value of 8 is 800).</li>
-                        <li><b>Expansion:</b> 7,843 = 7000 + 800 + 40 + 3.</li>
-                    </ul>
-                    <h3>2. Roman Numerals</h3>
-                    <p>Ancient number system using letters. Remember: No symbol repeats more than 3 times.</p>
-                    <div class="highlight-box">
-                        I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000.<br>
-                        Rule: Smaller before larger means subtract (IV = 4). Smaller after larger means add (VI = 6).
-                    </div>
-                    <h3>3. Divisibility Rules</h3>
-                    <ul>
-                        <li><b>Divisible by 2:</b> Ends in 0, 2, 4, 6, 8.</li>
-                        <li><b>Divisible by 3:</b> Sum of digits is divisible by 3.</li>
-                        <li><b>Divisible by 5:</b> Ends in 0 or 5.</li>
-                        <li><b>Divisible by 10:</b> Ends in 0.</li>
-                    </ul>
-                </div>
-                <div class="note-card">
-                    <h2>🍰 Fractions & Decimals</h2>
-                    <p>Fractions represent parts of a whole. A fraction has a Numerator (top) and a Denominator (bottom).</p>
-                    <ul>
-                        <li><b>Proper Fraction:</b> Numerator < Denominator (e.g., 3/4).</li>
-                        <li><b>Improper Fraction:</b> Numerator > Denominator (e.g., 5/2).</li>
-                        <li><b>Mixed Fraction:</b> Whole number + Proper fraction (e.g., 2 1/2).</li>
-                    </ul>
-                    <div class="formula-box">Equivalent Fractions: 1/2 = 2/4 = 3/6 = 4/8</div>
-                </div>
-                <div class="note-card">
-                    <h2>📐 Geometry & Measurement</h2>
-                    <h3>Basic Shapes & Properties</h3>
-                    <ul>
-                        <li><b>2D Shapes:</b> Square, Rectangle, Triangle, Circle. Properties of sides and corners.</li>
-                        <li><b>3D Shapes:</b> Cube, Cuboid, Sphere, Cylinder, Cone. Faces, Edges, and Vertices.</li>
-                    </ul>
-                    <h3>Measurement Formulas</h3>
-                    <div class="formula-box">Perimeter of Square = 4 × Side</div>
-                    <div class="formula-box">Perimeter of Rectangle = 2 × (Length + Breadth)</div>
-                    <div class="formula-box">Area of Square = Side × Side</div>
-                    <div class="formula-box">Area of Rectangle = Length × Breadth</div>
-                </div>
+        <div class="note-card">
+            <h2>🔢 Number Sense & Operations</h2>
+            <p>Foundation of mathematics involves understanding large numbers, place value, and basic arithmetic operations efficiently.</p>
+            <h3>1. Number Systems</h3>
+            <ul>
+                <li><b>Indian System:</b> Units, Tens, Hundreds, Thousands, Lakhs, Crores.</li>
+                <li><b>International System:</b> Units, Tens, Hundreds, Thousands, Millions, Billions.</li>
+                <li><b>Place Value vs Face Value:</b> In 543, face value of 4 is 4, but place value is 40.</li>
+            </ul>
+            <h3>2. Roman Numerals</h3>
+            <p>I=1, V=5, X=10, L=50, C=100, D=500, M=1000. No symbol repeats more than 3 times. A smaller value before a larger one means subtraction (e.g., IV = 4).</p>
+            <h3>3. Divisibility Rules</h3>
+            <ul>
+                <li><b>By 2:</b> Last digit is even.</li>
+                <li><b>By 3:</b> Sum of digits is divisible by 3.</li>
+                <li><b>By 4:</b> Last two digits form a number divisible by 4.</li>
+                <li><b>By 5:</b> Last digit is 0 or 5.</li>
+                <li><b>By 9:</b> Sum of digits is divisible by 9.</li>
+                <li><b>By 10:</b> Last digit is 0.</li>
+            </ul>
+        </div>
+        <div class="note-card">
+            <h2>🍰 Fractions & Decimals</h2>
+            <p>Fractions represent parts of a whole. A fraction has a Numerator (top) and a Denominator (bottom).</p>
+            <ul>
+                <li><b>Proper Fraction:</b> Numerator < Denominator (e.g., 3/4).</li>
+                <li><b>Improper Fraction:</b> Numerator > Denominator (e.g., 5/2).</li>
+                <li><b>Mixed Fraction:</b> Whole number + Proper fraction (e.g., 2 1/2).</li>
+            </ul>
+            <div class="formula-box">Comparing Fractions (a/b and c/d): Cross-multiply. If ad > bc, then a/b > c/d.</div>
+        </div>
+        <div class="note-card">
+            <h2>📐 Geometry & Measurement</h2>
+            <h3>Basic Shapes & Properties</h3>
+            <ul>
+                <li><b>Lines:</b> Line, Line Segment, Ray. Parallel vs Intersecting lines.</li>
+                <li><b>Angles:</b> Acute (<90°), Right (=90°), Obtuse (>90°).</li>
+                <li><b>2D Shapes:</b> Square (4 equal sides), Rectangle (opposite sides equal), Triangle, Circle.</li>
+                <li><b>3D Shapes:</b> Cube, Cuboid, Sphere, Cylinder, Cone. Faces, Edges, and Vertices.</li>
+            </ul>
+            <h3>Measurement Formulas</h3>
+            <div class="formula-box">Perimeter of Square = 4 × Side</div>
+            <div class="formula-box">Perimeter of Rectangle = 2 × (Length + Breadth)</div>
+            <div class="formula-box">Area of Square = Side × Side</div>
+            <div class="formula-box">Area of Rectangle = Length × Breadth</div>
+        </div>
             `,
             middle: `
-                <div class="note-card">
-                    <h2>📊 Algebra & Integers</h2>
-                    <p>Algebra introduces the concept of variables (unknowns) to solve general problems.</p>
-                    <h3>1. Integer Operations</h3>
-                    <ul>
-                        <li>(+) × (+) = +</li>
-                        <li>(-) × (-) = +</li>
-                        <li>(+) × (-) = -</li>
-                        <li><b>BODMAS Rule:</b> Bracket, Order (Powers), Division, Multiplication, Addition, Subtraction.</li>
-                    </ul>
-                    <h3>2. Solving Linear Equations</h3>
-                    <p>Isolate the variable on one side.</p>
-                    <div class="formula-box">Equation: 2x + 5 = 15  ➜  2x = 10  ➜  x = 5</div>
-                </div>
-                <div class="note-card">
-                    <h2>📐 Ratio, Proportion & Geometry</h2>
-                    <h3>Comparing Quantities</h3>
-                    <ul>
-                        <li><b>Ratio:</b> Comparison by division (a:b).</li>
-                        <li><b>Proportion:</b> Equality of two ratios (a:b :: c:d implies a×d = b×c).</li>
-                        <li><b>Percentage:</b> Ratio with denominator 100.</li>
-                    </ul>
-                    <h3>Triangle Properties</h3>
-                    <ul>
-                        <li><b>Angle Sum Property:</b> Sum of all angles is 180°.</li>
-                        <li><b>Exterior Angle Property:</b> Exterior angle = Sum of two interior opposite angles.</li>
-                        <li><b>Equilateral:</b> All sides equal (60° each).</li>
-                        <li><b>Isosceles:</b> Two sides equal (angles opposite to them are equal).</li>
-                    </ul>
-                </div>
-                <div class="note-card">
-                    <h2>📉 Exponents & Powers</h2>
-                    <p>Repeated multiplication is written in exponential form.</p>
-                    <div class="formula-box">aᵐ × aⁿ = a⁽ᵐ⁺ⁿ⁾</div>
-                    <div class="formula-box">aᵐ ÷ aⁿ = a⁽ᵐ⁻ⁿ⁾</div>
-                    <div class="formula-box">(aᵐ)ⁿ = a⁽ᵐⁿ⁾</div>
-                    <div class="formula-box">a⁰ = 1</div>
-                </div>
+        <div class="note-card">
+            <h2>📊 Number System & Algebra</h2>
+            <p>This level introduces negative numbers and the use of variables to represent unknown quantities.</p>
+            <h3>1. Integers & Rational Numbers</h3>
+            <ul>
+                <li><b>Integers:</b> All whole numbers and their negatives (...-2, -1, 0, 1, 2...).</li>
+                <li><b>Rational Numbers:</b> Any number that can be written as a fraction p/q, where q is not zero.</li>
+                <li><b>Integer Operations:</b> (+)×(+)=+, (-)×(-)=+, (+)×(-)=-.</li>
+            </ul>
+            <h3>2. Algebraic Expressions & Linear Equations</h3>
+            <p>An expression combines variables and constants (e.g., 2x + 5). An equation has an equals sign (e.g., 2x + 5 = 15).</p>
+            <div class="formula-box">Solving Linear Equation: Isolate the variable. If 3y - 7 = 14, then 3y = 21, so y = 7.</div>
+        </div>
+        <div class="note-card">
+            <h2>📐 Geometry & Mensuration</h2>
+            <h3>Triangle Properties</h3>
+            <ul>
+                <li><b>Angle Sum Property:</b> Sum of all angles in a triangle is 180°.</li>
+                <li><b>Pythagoras Theorem (for right-angled triangles):</b> a² + b² = c² (where c is the hypotenuse).</li>
+                <li><b>Congruence Rules:</b> SSS, SAS, ASA, RHS.</li>
+            </ul>
+            <h3>Mensuration (Area)</h3>
+            <div class="formula-box">Area of Triangle = 1/2 × base × height</div>
+            <div class="formula-box">Area of Parallelogram = base × height</div>
+            <div class="formula-box">Area of Circle = πr²</div>
+            <div class="formula-box">Circumference of Circle = 2πr</div>
+        </div>
+        <div class="note-card">
+            <h2>📉 Exponents, Powers & Commercial Maths</h2>
+            <h3>Laws of Exponents</h3>
+            <div class="formula-box">aᵐ × aⁿ = a⁽ᵐ⁺ⁿ⁾</div>
+            <div class="formula-box">aᵐ ÷ aⁿ = a⁽ᵐ⁻ⁿ⁾</div>
+            <div class="formula-box">(aᵐ)ⁿ = a⁽ᵐⁿ⁾</div>
+            <div class="formula-box">a⁰ = 1</div>
+            <h3>Commercial Mathematics</h3>
+            <ul>
+                <li><b>Percentage Change:</b> ((New - Old) / Old) × 100.</li>
+                <li><b>Profit %:</b> (Profit / Cost Price) × 100.</li>
+                <li><b>Simple Interest (SI):</b> (Principal × Rate × Time) / 100.</li>
+            </ul>
+        </div>
             `,
             secondary: `
-                <div class="note-card">
-                    <h2>📉 Polynomials & Quadratic Equations</h2>
-                    <p>Polynomials are algebraic expressions with variables having non-negative integer powers.</p>
-                    <h3>Important Algebraic Identities</h3>
-                    <div class="formula-box">(a + b)² = a² + 2ab + b²</div>
-                    <div class="formula-box">(a - b)² = a² - 2ab + b²</div>
-                    <div class="formula-box">a² - b² = (a - b)(a + b)</div>
-                    <div class="formula-box">(x + a)(x + b) = x² + (a + b)x + ab</div>
-                    <h3>Solving Quadratic Equations (ax² + bx + c = 0)</h3>
-                    <div class="formula-box">x = [-b ± √(b² - 4ac)] / 2a</div>
-                </div>
-                <div class="note-card">
-                    <h2>📐 Trigonometry & Surface Area</h2>
-                    <h3>Trigonometric Ratios (Right-angled Triangle)</h3>
-                    <ul>
-                        <li><b>sin θ</b> = Opposite / Hypotenuse</li>
-                        <li><b>cos θ</b> = Adjacent / Hypotenuse</li>
-                        <li><b>tan θ</b> = Opposite / Adjacent (or sin/cos)</li>
-                    </ul>
-                    <div class="highlight-box">
-                        <strong>Pythagoras Theorem:</strong> Hypotenuse² = Base² + Perpendicular²
-                    </div>
-                    <h3>Surface Area & Volumes</h3>
-                    <ul>
-                        <li><b>Cylinder:</b> Vol = πr²h, CSA = 2πrh</li>
-                        <li><b>Cone:</b> Vol = 1/3 πr²h, CSA = πrl</li>
-                        <li><b>Sphere:</b> Vol = 4/3 πr³, SA = 4πr²</li>
-                    </ul>
-                </div>
-                <div class="note-card">
-                    <h2>📊 Statistics & Probability</h2>
-                    <h3>Measures of Central Tendency</h3>
-                    <ul>
-                        <li><b>Mean:</b> Sum of observations / Total number of observations.</li>
-                        <li><b>Median:</b> Middle value when sorted.</li>
-                        <li><b>Mode:</b> Most frequently occurring value.</li>
-                    </ul>
-                    <h3>Probability</h3>
-                    <div class="highlight-box">
-                        P(Event) = Number of Favorable Outcomes / Total Possible Outcomes
-                    </div>
-                </div>
+        <div class="note-card">
+            <h2>📉 Polynomials & Quadratic Equations</h2>
+            <p>Polynomials are algebraic expressions with variables having non-negative integer powers.</p>
+            <h3>Important Algebraic Identities</h3>
+            <div class="formula-box">(a + b)² = a² + 2ab + b²</div>
+            <div class="formula-box">(a - b)² = a² - 2ab + b²</div>
+            <div class="formula-box">a² - b² = (a - b)(a + b)</div>
+            <div class="formula-box">(a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ca</div>
+            <h3>Solving Quadratic Equations (ax² + bx + c = 0)</h3>
+            <p>The roots of the equation can be found using the quadratic formula. The nature of roots depends on the discriminant (D = b² - 4ac).</p>
+            <ul>
+                <li>If D > 0, two distinct real roots.</li>
+                <li>If D = 0, two equal real roots.</li>
+                <li>If D < 0, no real roots.</li>
+            </ul>
+            <div class="formula-box">Quadratic Formula: x = [-b ± √(b² - 4ac)] / 2a</div>
+        </div>
+        <div class="note-card">
+            <h2>📐 Trigonometry & Coordinate Geometry</h2>
+            <h3>Trigonometric Ratios & Identities</h3>
+            <ul>
+                <li><b>Ratios:</b> sin θ = P/H, cos θ = B/H, tan θ = P/B.</li>
+                <li><b>Fundamental Identity:</b> sin²θ + cos²θ = 1.</li>
+                <li><b>Heights and Distances:</b> Angle of Elevation (looking up) vs Angle of Depression (looking down).</li>
+            </ul>
+            <h3>Coordinate Geometry Formulas</h3>
+            <div class="formula-box">Distance Formula: √[(x₂ - x₁)² + (y₂ - y₁)²]</div>
+            <div class="formula-box">Section Formula (Internal): [(mx₂ + nx₁)/(m+n), (my₂ + ny₁)/(m+n)]</div>
+            <div class="formula-box">Area of Triangle: 1/2 |x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)|</div>
+        </div>
+        <div class="note-card">
+            <h2>📊 Statistics & Probability</h2>
+            <h3>Measures of Central Tendency (Grouped Data)</h3>
+            <ul>
+                <li><b>Mean (Direct Method):</b> Σ(fᵢxᵢ) / Σfᵢ</li>
+                <li><b>Median:</b> l + [((n/2) - cf) / f] × h</li>
+                <li><b>Mode:</b> l + [(f₁ - f₀) / (2f₁ - f₀ - f₂)] × h</li>
+            </ul>
+            <h3>Probability</h3>
+            <p>The theoretical probability of an event E, written as P(E), is defined as:</p>
+            <div class="highlight-box">
+                P(E) = Number of outcomes favorable to E / Total number of possible outcomes
+            </div>
+            <p>The probability of a sure event is 1. The probability of an impossible event is 0. For any event E, 0 ≤ P(E) ≤ 1.</p>
+        </div>
             `
         },
         science: {
