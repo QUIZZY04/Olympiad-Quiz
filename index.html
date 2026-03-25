@@ -2,32 +2,19 @@
 <html lang="en">
 <head>
 
-<!-- ✅ Keep ONLY ONE meta description -->
-<meta name="description" content="Prepare for Olympiad exams with chapter-wise quizzes, mock tests, and concept-based learning for Class 1 to 10 students. Improve accuracy, speed, and problem-solving skills.">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Olympiad Quiz",
-  "url": "https://olympiadquiz.org",
-  "description": "Free online practice portal for Class 1-10 Math and Science Olympiads."
-}
-</script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
- crossorigin="anonymous"></script>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Olympiad Quiz | Free Math & Science Practice for Class 1-10</title>
+<meta name="description" content="Prepare for Olympiad exams with chapter-wise quizzes, detailed explanations, and mock tests for Class 1 to 10 students.">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Olympiad Quiz | Free Olympiad Practice</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-/* KEEP YOUR ORIGINAL CSS (no major change) */
+
+/* ===== ROOT ===== */
 :root {
 --bg: #020617;
 --surface: #0f172a;
@@ -36,116 +23,191 @@
 --border: #1e293b;
 --brand: #38bdf8;
 --accent: #818cf8;
---danger: #f43f5e;
---success: #10b981;
---warning: #f59e0b;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+/* ===== BASE ===== */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
+}
 
 body {
-background-color: var(--bg);
+background: var(--bg);
 color: var(--text);
-overflow-x:hidden;
-display:flex;
-flex-direction:column;
-min-height:100vh;
-background-image:
-radial-gradient(circle at 15% 50%, rgba(56,189,248,0.08), transparent 25%),
-radial-gradient(circle at 85% 30%, rgba(129,140,248,0.08), transparent 25%);
-background-attachment:fixed;
+overflow-x: hidden;
 }
 
+/* ===== PARTICLES ===== */
 #particles-js {
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: -1;
+opacity: 0.6;
 }
 
-/* NAV */
+/* ===== NAV ===== */
 nav {
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 5%;
-background:rgba(2,6,23,0.8);
-backdrop-filter:blur(12px);
-position:sticky;
-top:0;
-z-index:100;
-border-bottom:1px solid var(--border);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 5%;
+background: rgba(2, 6, 23, 0.8);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border);
 }
 
-.logo { font-size:1.5rem; font-weight:700; color:#fff; }
+.logo {
+font-weight: 800;
+font-size: 20px;
+color: white;
+}
 
 .nav-links a {
-color:var(--muted);
-text-decoration:none;
-margin-left:20px;
-font-size:0.9rem;
-transition:0.3s;
+color: var(--muted);
+text-decoration: none;
+margin-left: 20px;
+font-size: 14px;
 }
-.nav-links a:hover { color:var(--brand); }
 
-/* HERO */
+.nav-links a:hover {
+color: var(--brand);
+}
+
+/* ===== HERO ===== */
 .hero {
-text-align:center;
-padding:80px 5%;
+text-align: center;
+padding: 80px 20px;
 }
 
 .hero h1 {
-font-size:3.5rem;
-margin-bottom:20px;
+font-size: 3rem;
+font-weight: 800;
+}
+
+.gradient {
+background: linear-gradient(135deg, #38bdf8, #818cf8);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .hero p {
-font-size:1.2rem;
-color:var(--muted);
-max-width:750px;
-margin:0 auto;
-line-height:1.7;
+margin-top: 15px;
+color: var(--muted);
+font-size: 1.1rem;
+max-width: 650px;
+margin-left: auto;
+margin-right: auto;
 }
 
-/* FEATURES */
+/* ===== BUTTONS ===== */
+.btns {
+margin-top: 25px;
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, #38bdf8, #2563eb);
+padding: 12px 24px;
+border-radius: 10px;
+color: white;
+font-weight: 700;
+text-decoration: none;
+}
+
+.btn-secondary {
+border: 1px solid #334155;
+padding: 12px 24px;
+border-radius: 10px;
+color: #38bdf8;
+text-decoration: none;
+}
+
+/* ===== SECTION ===== */
+.section-box {
+max-width: 1100px;
+margin: 50px auto;
+padding: 30px;
+border-radius: 20px;
+background: rgba(15, 23, 42, 0.9);
+border: 1px solid var(--border);
+}
+
+/* ===== FEATURES ===== */
 .features {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-padding:0 5% 60px;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 20px;
+padding: 0 5% 50px;
 }
 
 .feature-card {
-background:linear-gradient(145deg,#0f172a,#020617);
-border:1px solid var(--border);
-padding:30px;
-border-radius:24px;
-text-align:center;
-transition:0.3s;
+background: rgba(15, 23, 42, 0.85);
+padding: 25px;
+border-radius: 18px;
+border: 1px solid var(--border);
+transition: 0.3s;
 }
 
 .feature-card:hover {
-transform:translateY(-6px);
+transform: translateY(-6px);
 }
 
-/* SECTION CARD */
-.section-box {
-max-width:1200px;
-margin:60px auto;
-padding:40px;
-border-radius:24px;
-background:linear-gradient(145deg,#0f172a,#020617);
-border:1px solid var(--border);
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer {
-text-align:center;
-padding:30px;
-border-top:1px solid var(--border);
-color:var(--muted);
+text-align: center;
+padding: 25px;
+border-top: 1px solid var(--border);
+color: var(--muted);
 }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+.hero h1 {
+font-size: 1.8rem;
+}
+
+.hero p {
+font-size: 0.95rem;
+}
+
+.features {
+grid-template-columns: 1fr;
+padding: 0 10px;
+}
+
+.section-box {
+margin: 20px 10px;
+padding: 20px;
+}
+
+nav {
+flex-direction: column;
+gap: 10px;
+}
+
+.nav-links {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.nav-links a {
+margin: 5px 10px;
+}
+
+.btn-primary, .btn-secondary {
+width: 100%;
+text-align: center;
+}
+}
+
 </style>
 
 </head>
@@ -156,7 +218,7 @@ color:var(--muted);
 
 <!-- NAV -->
 <nav>
-<a href="index.html" class="logo">Olympiad Portal</a>
+<div class="logo">Olympiad Portal</div>
 <div class="nav-links">
 <a href="chapterwise.html">Practice</a>
 <a href="mock.html">Mock Test</a>
@@ -167,71 +229,50 @@ color:var(--muted);
 
 <!-- HERO -->
 <section class="hero">
-<h1>Unlock Your <span style="color:#38bdf8;">Olympiad Potential</span></h1>
+<h1>Unlock Your <span class="gradient">Olympiad Potential</span></h1>
 
 <p>
-Prepare for Olympiad exams with structured learning, chapter-wise quizzes, detailed explanations, and full-length mock tests.
-Build strong concepts, improve problem-solving skills, and boost confidence for competitive exams.
+Practice chapter-wise quizzes, learn with explanations, and take real exam-level mock tests for Class 1 to 10.
 </p>
+
+<div class="btns">
+<a href="chapterwise.html" class="btn-primary">Start Practice</a>
+<a href="mock.html" class="btn-secondary">Take Mock Test</a>
+</div>
 </section>
 
-<!-- 🔥 NEW SECTION -->
+<!-- SECTION -->
 <section class="section-box">
-<h2 style="color:#38bdf8;text-align:center;margin-bottom:20px;">What is Olympiad Quiz?</h2>
-
-<p style="color:#94a3b8;text-align:center;max-width:800px;margin:auto;">
-Olympiad Quiz is a learning platform for students from Class 1 to 10 preparing for IMO, NSO, and other competitive exams.
-It provides structured practice, concept-based learning, and performance tracking.
+<h2>What is Olympiad Quiz?</h2>
+<p style="color:#94a3b8;margin-top:10px;">
+Olympiad Quiz helps students prepare for competitive exams like IMO and NSO through structured practice and concept-based learning.
 </p>
-
-<div style="text-align:center;margin-top:20px;">
-<a href="chapterwise.html" style="color:#38bdf8;font-weight:700;">Start Practice →</a>
-</div>
 </section>
 
 <!-- FEATURES -->
 <section class="features">
 <div class="feature-card">
-<h3>📖 Chapterwise Quiz</h3>
-<p>Practice concepts topic by topic.</p>
+<h3>📖 Chapterwise Practice</h3>
+<p>Learn topics step by step.</p>
 </div>
 
 <div class="feature-card">
 <h3>📝 Mock Tests</h3>
-<p>Real exam-level preparation.</p>
+<p>Real exam-level questions.</p>
 </div>
 
 <div class="feature-card">
-<h3>⚡ Live Quiz Arena</h3>
+<h3>⚡ Live Competition</h3>
 <p>Compete and improve ranking.</p>
 </div>
 </section>
 
-<!-- 🔥 BENEFITS -->
+<!-- SECTION -->
 <section class="section-box">
-<h2 style="color:#818cf8;text-align:center;margin-bottom:20px;">Why Students Love Olympiad Quiz</h2>
-
-<ul style="color:#94a3b8;max-width:700px;margin:auto;line-height:1.8;">
-<li>Concept-based learning approach</li>
-<li>Chapter-wise structured practice</li>
-<li>Real exam-level mock tests</li>
-<li>Instant performance feedback</li>
-<li>Improves speed and accuracy</li>
-</ul>
-</section>
-
-<!-- 🔥 FINAL SECTION -->
-<section class="section-box">
-<h2 style="color:#38bdf8;text-align:center;margin-bottom:20px;">Why Olympiad Preparation Matters</h2>
-
-<p style="color:#94a3b8;text-align:center;max-width:800px;margin:auto;">
-Olympiad exams help students develop logical thinking, analytical skills, and confidence.
-Regular practice improves both competitive exam performance and school results.
+<h2>Why Olympiad Preparation Matters</h2>
+<p style="color:#94a3b8;margin-top:10px;">
+Olympiad exams improve logical thinking, problem-solving ability, and confidence.
 </p>
-
-<div style="text-align:center;margin-top:20px;">
-<a href="mock.html" style="color:#38bdf8;font-weight:700;">Take Mock Test →</a>
-</div>
 </section>
 
 <!-- FOOTER -->
@@ -240,15 +281,24 @@ Regular practice improves both competitive exam performance and school results.
 <a href="contact.html">Contact</a> |
 <a href="privacy-policy.html">Privacy Policy</a> |
 <a href="terms.html">Terms</a>
-
 <p style="margin-top:10px;">© 2026 Olympiad Portal</p>
 </footer>
 
 <script>
 particlesJS('particles-js', {
-particles:{number:{value:60},color:{value:"#38bdf8"},line_linked:{enable:true}},
-interactivity:{events:{onhover:{enable:true,mode:"repulse"}}}
+particles:{
+number:{value:35},
+size:{value:2},
+opacity:{value:0.15},
+line_linked:{opacity:0.08},
+move:{speed:1.2}
+}
 });
+
+// Disable on mobile
+if (window.innerWidth < 768) {
+document.getElementById("particles-js").style.display = "none";
+}
 </script>
 
 </body>
