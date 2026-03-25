@@ -760,6 +760,7 @@ function goBackToSelection() {
     const isMockTest = localStorage.getItem("isMockTest") === "true";
     const selectionSource = localStorage.getItem("selectionSource");
 
+    // This logic ensures users return to the correct page based on the source tag
     if (isMockTest || selectionSource === "mock") {
         window.location.href = "mock.html";
     } else {
