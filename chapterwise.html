@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapterwise Quiz - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+            --accent: #818cf8;
+            --danger: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background: var(--bg);
+            min-height: 100vh; 
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav {
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid var(--border); 
+            padding: 20px 5%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px;
+        }
+        
+        .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; white-space: nowrap; }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .selection-box {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--brand);
+            padding: 45px 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .selection-box h2 {
+            color: var(--text);
+            margin-bottom: 10px;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .selection-box h2 span {
+            color: var(--brand);
+        }
+
+        .selection-box p {
+            color: var(--muted);
+            margin-bottom: 35px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        
+        .form-group:hover {
+            border-color: var(--brand);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .step-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--brand);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+            transition: 0.2s;
+        }
+
+        select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+
+        .btn-start {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: var(--brand);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-start:hover { 
+            background: var(--accent); 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); 
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="selection-box">
+        <h2>📖 Chapterwise <span>Quiz</span></h2>
+        <p>Master every concept by practicing specific topics from your school curriculum.</p>
+
+        <div class="form-group">
+            <div class="step-label">
+                <span class="step-number">1</span>
+                Select Grade
+            </div>
+            <select id="classSelect" onchange="updateTopics()">
+                <option value="class1">Grade 1</option>
+                <option value="class2">Grade 2</option>
+                <option value="class3">Grade 3</option>
+                <option value="class4">Grade 4</option>
+                <option value="class5">Grade 5</option>
+                <option value="class6" selected>Grade 6</option>
+                <option value="class7">Grade 7</option>
+                <option value="class8">Grade 8</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="step-label">
+                <span class="step-number">2</span>
+                Select Subject
+            </div>
+            <select id="subjectSelect" onchange="updateTopics()">
+                <option value="" disabled selected>Choose a Subject...</option>
+                <option value="maths">Mathematics (IMO)</option>
+                <option value="science">Science (NSO)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="step-label" id="topicStepLabel">
+                <span class="step-number">3</span>
+                Select Topic
+            </div>
+            <select id="topicSelect">
+                <option value="" disabled selected>Select subject first...</option>
+            </select>
+        </div>
+
+        <button class="btn-start" onclick="startPractice()">
+            Start Practice 
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+        <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
+        <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
+        <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
+        <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+<script>
+    const sofTopics = {
+        class1: {
+            maths: [
+                { code: "M01", name: "Number Sense" },
+                { code: "M02", name: "Addition" },
+                { code: "M03", name: "Subtraction" },
+                { code: "M04", name: "Lengths, Weights and Comparisons" },
+                { code: "M05", name: "Time" },
+                { code: "M06", name: "Money" },
+                { code: "M07", name: "Geometrical Shapes" }
+            ],
+            science: [
+                { code: "S01", name: "Plants" },
+                { code: "S02", name: "Animals" },
+                { code: "S03", name: "Human Body" },
+                { code: "S04", name: "Food" },
+                { code: "S05", name: "Housing and Clothing" },
+                { code: "S06", name: "Family and Festivals" },
+                { code: "S07", name: "Good Habits and Safety Rules" },
+                { code: "S08", name: "Transport and Communication" },
+                { code: "S09", name: "Air, Water and Weather" },
+                { code: "S10", name: "Earth and Universe" }
+            ],
+            english: [
+                { code: "E01", name: "Word Power (Letters & Words)" },
+                { code: "E02", name: "Nouns and Pronouns" },
+                { code: "E03", name: "Verbs and Adjectives" },
+                { code: "E04", name: "Prepositions and Articles" },
+                { code: "E05", name: "Tenses and Punctuation" },
+                { code: "E06", name: "Reading Comprehension" },
+                { code: "E07", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Patterns" },
+                { code: "R02", name: "Odd One Out" },
+                { code: "R03", name: "Measuring Units" },
+                { code: "R04", name: "Geometrical Shapes" },
+                { code: "R05", name: "Spatial Understanding" },
+                { code: "R06", name: "Grouping and Analogy" },
+                { code: "R07", name: "Ranking Test" }
+            ]
+        },
+        class2: {
+            maths: [
+                { code: "M01", name: "Number Sense" },
+                { code: "M02", name: "Computation Operations" },
+                { code: "M03", name: "Length, Weight, Capacity" },
+                { code: "M04", name: "Time and Money" },
+                { code: "M05", name: "Lines, Shapes and Solids" },
+                { code: "M06", name: "Pictographs" }
+            ],
+            science: [
+                { code: "S01", name: "Plants" },
+                { code: "S02", name: "Animals" },
+                { code: "S03", name: "Human Body" },
+                { code: "S04", name: "Food" },
+                { code: "S05", name: "Housing and Clothing" },
+                { code: "S06", name: "Family and Festivals" },
+                { code: "S07", name: "Good Habits and Safety Rules" },
+                { code: "S08", name: "Transport and Communication" },
+                { code: "S09", name: "Air, Water and Weather" },
+                { code: "S10", name: "Earth and Universe" }
+            ],
+            english: [
+                { code: "E01", name: "Word Power" },
+                { code: "E02", name: "Nouns and Pronouns" },
+                { code: "E03", name: "Verbs, Adjectives and Adverbs" },
+                { code: "E04", name: "Prepositions and Conjunctions" },
+                { code: "E05", name: "Articles and Tenses" },
+                { code: "E06", name: "Punctuation and Jumbled Words" },
+                { code: "E07", name: "Reading Comprehension" },
+                { code: "E08", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Patterns" },
+                { code: "R02", name: "Measuring Units" },
+                { code: "R03", name: "Odd One Out" },
+                { code: "R04", name: "Series Completion" },
+                { code: "R05", name: "Geometrical Shapes" },
+                { code: "R06", name: "Analogy and Ranking Test" },
+                { code: "R07", name: "Grouping and Coding-Decoding" }
+            ]
+        },
+        class3: {
+            maths: [
+                { code: "M01", name: "Number Sense (Up to 10,000)" },
+                { code: "M02", name: "Addition, Subtraction, Multiplication" },
+                { code: "M03", name: "Division & Fractions (Basic)" },
+                { code: "M04", name: "Money (Indian Currency)" },
+                { code: "M05", name: "Measurement (Length, Weight, Capacity)" },
+                { code: "M06", name: "Time, Money & Calendar" },
+                { code: "M07", name: "Geometry & Symmetry" },
+                { code: "M08", name: "Data Handling (Bar Graphs)" }
+            ],
+            science: [
+                { code: "S01", name: "Plants and Animals" },
+                { code: "S02", name: "Birds" },
+                { code: "S03", name: "Food" },
+                { code: "S04", name: "Housing, Clothing and Occupation" },
+                { code: "S05", name: "Transport and Communication" },
+                { code: "S06", name: "Human Body" },
+                { code: "S07", name: "Earth and Universe" },
+                { code: "S08", name: "Matter and Materials" },
+                { code: "S09", name: "Light, Sound and Force" },
+                { code: "S10", name: "Our Environment" }
+            ],
+            english: [
+                { code: "E01", name: "Word Power" },
+                { code: "E02", name: "Synonyms and Antonyms" },
+                { code: "E03", name: "Nouns, Pronouns and Verbs" },
+                { code: "E04", name: "Adverbs and Adjectives" },
+                { code: "E05", name: "Articles and Prepositions" },
+                { code: "E06", name: "Conjunctions and Tenses" },
+                { code: "E07", name: "Punctuation and Jumbled Words" },
+                { code: "E08", name: "Reading Comprehension" },
+                { code: "E09", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Patterns" },
+                { code: "R02", name: "Analogy and Classification" },
+                { code: "R03", name: "Alphabet Test" },
+                { code: "R04", name: "Coding-Decoding" },
+                { code: "R05", name: "Ranking Test" },
+                { code: "R06", name: "Grouping and Figure Matrix" },
+                { code: "R07", name: "Mirror Images and Geometrical Shapes" },
+                { code: "R08", name: "Days, Dates and Combinations" }
+            ]
+        },
+        class4: {
+            maths: [
+                { code: "M01", name: "Number Sense" },
+                { code: "M02", name: "Computation Operations" },
+                { code: "M03", name: "Fractions" },
+                { code: "M04", name: "Length, Weight and Capacity" },
+                { code: "M05", name: "Time and Money" },
+                { code: "M06", name: "Geometry" },
+                { code: "M07", name: "Perimeter and Area" },
+                { code: "M08", name: "Data Handling" }
+            ],
+            science: [
+                { code: "S01", name: "Plants" },
+                { code: "S02", name: "Animals" },
+                { code: "S03", name: "Food and Digestion" },
+                { code: "S04", name: "Human Needs" },
+                { code: "S05", name: "Matter and Materials" },
+                { code: "S06", name: "Force, Work and Energy" },
+                { code: "S07", name: "Our Environment" },
+                { code: "S08", name: "Earth and Universe" }
+            ],
+            english: [
+                { code: "E01", name: "Word Power" },
+                { code: "E02", name: "Synonyms and Antonyms" },
+                { code: "E03", name: "Nouns, Pronouns and Verbs" },
+                { code: "E04", name: "Adverbs and Adjectives" },
+                { code: "E05", name: "Articles and Prepositions" },
+                { code: "E06", name: "Conjunctions and Tenses" },
+                { code: "E07", name: "Punctuation and Jumbled Words" },
+                { code: "E08", name: "Reading Comprehension" },
+                { code: "E09", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Patterns" },
+                { code: "R02", name: "Alphabet Test" },
+                { code: "R03", name: "Coding-Decoding" },
+                { code: "R04", name: "Ranking Test" },
+                { code: "R05", name: "Mirror Images" },
+                { code: "R06", name: "Geometrical Shapes" },
+                { code: "R07", name: "Direction Sense" },
+                { code: "R08", name: "Analogy and Classification" }
+            ]
+        },
+        class5: {
+            maths: [
+                { code: "M01", name: "Number Sense" },
+                { code: "M02", name: "Computation Operations" },
+                { code: "M03", name: "Fractions and Decimals" },
+                { code: "M04", name: "Measurement" },
+                { code: "M05", name: "Angles" },
+                { code: "M06", name: "Perimeter, Area and Volume" },
+                { code: "M07", name: "Data Handling" }
+            ],
+            science: [
+                { code: "S01", name: "Animals" },
+                { code: "S02", name: "Plants" },
+                { code: "S03", name: "Human Body and Health" },
+                { code: "S04", name: "Water" },
+                { code: "S05", name: "Matter and Materials" },
+                { code: "S06", name: "Force, Work and Energy" },
+                { code: "S07", name: "Our Environment" },
+                { code: "S08", name: "Earth and Universe" }
+            ],
+            english: [
+                { code: "E01", name: "Word Power" },
+                { code: "E02", name: "Synonyms and Antonyms" },
+                { code: "E03", name: "Idioms and Phrases" },
+                { code: "E04", name: "Nouns, Pronouns and Verbs" },
+                { code: "E05", name: "Adverbs and Adjectives" },
+                { code: "E06", name: "Articles, Prepositions and Conjunctions" },
+                { code: "E07", name: "Tenses" },
+                { code: "E08", name: "Active/Passive and Direct/Indirect" },
+                { code: "E09", name: "Reading Comprehension" },
+                { code: "E10", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Patterns" },
+                { code: "R02", name: "Analogy and Classification" },
+                { code: "R03", name: "Geometrical Shapes" },
+                { code: "R04", name: "Mirror and Water Images" },
+                { code: "R05", name: "Direction Sense" },
+                { code: "R06", name: "Ranking Test and Alphabet Test" },
+                { code: "R07", name: "Logical Sequence and Puzzle Test" },
+                { code: "R08", name: "Coding-Decoding" }
+            ]
+        },
+        class6: {
+            maths: [
+                { code: "M01", name: "Knowing our Numbers" },
+                { code: "M02", name: "Whole Numbers" },
+                { code: "M03", name: "Playing with Numbers" },
+                { code: "M04", name: "Basic Geometrical Ideas" },
+                { code: "M05", name: "Understanding Elementary Shapes" },
+                { code: "M06", name: "Integers" },
+                { code: "M07", name: "Fractions" },
+                { code: "M08", name: "Decimals" },
+                { code: "M09", name: "Data Handling" },
+                { code: "M10", name: "Mensuration" },
+                { code: "M11", name: "Algebra" },
+                { code: "M12", name: "Ratio and Proportion" },
+                { code: "M13", name: "Symmetry" },
+                { code: "M14", name: "Practical Geometry" }
+            ],
+            science: [
+                { code: "S01", name: "Food and Its Components" },
+                { code: "S02", name: "Sorting Materials" },
+                { code: "S03", name: "Separation of Substances" },
+                { code: "S04", name: "Getting to Know Plants" },
+                { code: "S05", name: "Body Movements" },
+                { code: "S06", name: "Living Organisms and Surroundings" },
+                { code: "S07", name: "Motion and Measurement" },
+                { code: "S08", name: "Light, Shadows and Reflections" },
+                { code: "S09", name: "Electricity and Circuits" },
+                { code: "S10", name: "Fun with Magnets" },
+                { code: "S11", name: "Air and Water" }
+            ],
+            english: [
+                { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+                { code: "E02", name: "One Word Substitutions" },
+                { code: "E03", name: "Idioms and Phrases" },
+                { code: "E04", name: "Parts of Speech" },
+                { code: "E05", name: "Articles and Tenses" },
+                { code: "E06", name: "Active/Passive and Direct/Indirect" },
+                { code: "E07", name: "Punctuation" },
+                { code: "E08", name: "Reading Comprehension" },
+                { code: "E09", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Series Completion" },
+                { code: "R02", name: "Analogy and Classification" },
+                { code: "R03", name: "Coding-Decoding" },
+                { code: "R04", name: "Blood Relations" },
+                { code: "R05", name: "Direction Sense Test" },
+                { code: "R06", name: "Logical Venn Diagrams" },
+                { code: "R07", name: "Mirror/Water Images and Paper Folding" },
+                { code: "R08", name: "Figure Matrix and Cubes/Dice" }
+            ]
+        },
+        class7: {
+            maths: [
+                { code: "M01", name: "Integers" },
+                { code: "M02", name: "Fractions and Decimals" },
+                { code: "M03", name: "Data Handling" },
+                { code: "M04", name: "Simple Equations" },
+                { code: "M05", name: "Lines and Angles" },
+                { code: "M06", name: "The Triangle and its Properties" },
+                { code: "M07", name: "Congruence of Triangles" },
+                { code: "M08", name: "Comparing Quantities" },
+                { code: "M09", name: "Rational Numbers" },
+                { code: "M10", name: "Practical Geometry" },
+                { code: "M11", name: "Perimeter and Area" },
+                { code: "M12", name: "Algebraic Expressions" },
+                { code: "M13", name: "Exponents and Powers" },
+                { code: "M14", name: "Symmetry" },
+                { code: "M15", name: "Visualising Solid Shapes" }
+            ],
+            science: [
+                { code: "S01", name: "Nutrition in Plants and Animals" },
+                { code: "S02", name: "Heat" },
+                { code: "S03", name: "Acids, Bases and Salts" },
+                { code: "S04", name: "Physical and Chemical Changes" },
+                { code: "S05", name: "Respiration in Organisms" },
+                { code: "S06", name: "Transportation in Plants and Animals" },
+                { code: "S07", name: "Reproduction in Plants" },
+                { code: "S08", name: "Motion and Time" },
+                { code: "S09", name: "Electric Current and its Effects" },
+                { code: "S10", name: "Light" },
+                { code: "S11", name: "Forests and Wastewater Story" }
+            ],
+            english: [
+                { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+                { code: "E02", name: "Spellings and One Word Substitutions" },
+                { code: "E03", name: "Idioms and Phrases" },
+                { code: "E04", name: "Parts of Speech" },
+                { code: "E05", name: "Articles and Tenses" },
+                { code: "E06", name: "Active/Passive and Direct/Indirect" },
+                { code: "E07", name: "Punctuation" },
+                { code: "E08", name: "Reading Comprehension" },
+                { code: "E09", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Series Completion" },
+                { code: "R02", name: "Analogy and Classification" },
+                { code: "R03", name: "Coding-Decoding" },
+                { code: "R04", name: "Blood Relations" },
+                { code: "R05", name: "Direction Sense Test" },
+                { code: "R06", name: "Logical Venn Diagrams" },
+                { code: "R07", name: "Mirror/Water Images and Paper Folding" },
+                { code: "R08", name: "Cubes, Dice and Figure Matrix" }
+            ]
+        },
+        class8: {
+            maths: [
+                { code: "M01", name: "Rational Numbers" },
+                { code: "M02", name: "Linear Equations in One Variable" },
+                { code: "M03", name: "Understanding Quadrilaterals" },
+                { code: "M04", name: "Practical Geometry" },
+                { code: "M05", name: "Data Handling" },
+                { code: "M06", name: "Squares and Square Roots" },
+                { code: "M07", name: "Cubes and Cube Roots" },
+                { code: "M08", name: "Comparing Quantities" },
+                { code: "M09", name: "Algebraic Expressions and Identities" },
+                { code: "M10", name: "Visualising Solid Shapes" },
+                { code: "M11", name: "Mensuration" },
+                { code: "M12", name: "Exponents and Powers" },
+                { code: "M13", name: "Direct and Inverse Proportions" },
+                { code: "M14", name: "Factorisation" },
+                { code: "M15", name: "Intro to Graphs and Playing with Numbers" }
+            ],
+            science: [
+                { code: "S01", name: "Crop Production and Management" },
+                { code: "S02", name: "Microorganisms" },
+                { code: "S03", name: "Synthetic Fibres and Plastics" },
+                { code: "S04", name: "Materials: Metals and Non-Metals" },
+                { code: "S05", name: "Coal and Petroleum" },
+                { code: "S06", name: "Combustion and Flame" },
+                { code: "S07", name: "Conservation of Plants and Animals" },
+                { code: "S08", name: "Cell Structure and Functions" },
+                { code: "S09", name: "Reproduction and Adolescence" },
+                { code: "S10", name: "Force, Pressure and Friction" },
+                { code: "S11", name: "Sound" },
+                { code: "S12", name: "Chemical Effects of Electric Current" },
+                { code: "S13", name: "Some Natural Phenomena" },
+                { code: "S14", name: "Light" },
+                { code: "S15", name: "Stars and Solar System" },
+                { code: "S16", name: "Pollution of Air and Water" }
+            ],
+            english: [
+                { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+                { code: "E02", name: "Spellings and One Word Substitutions" },
+                { code: "E03", name: "Idioms and Phrases" },
+                { code: "E04", name: "Parts of Speech" },
+                { code: "E05", name: "Articles and Tenses" },
+                { code: "E06", name: "Active/Passive and Direct/Indirect" },
+                { code: "E07", name: "Punctuation" },
+                { code: "E08", name: "Reading Comprehension" },
+                { code: "E09", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Series Completion" },
+                { code: "R02", name: "Analogy and Classification" },
+                { code: "R03", name: "Coding-Decoding" },
+                { code: "R04", name: "Blood Relations" },
+                { code: "R05", name: "Direction Sense Test" },
+                { code: "R06", name: "Logical Venn Diagrams" },
+                { code: "R07", name: "Alphabet and Ranking Test" },
+                { code: "R08", name: "Mirror/Water Images and Figure Matrix" }
+            ]
+        },
+        class9: {
+            maths: [
+                { code: "M01", name: "Number Systems" },
+                { code: "M02", name: "Polynomials" },
+                { code: "M03", name: "Coordinate Geometry" },
+                { code: "M04", name: "Linear Equations in Two Variables" },
+                { code: "M05", name: "Introduction to Euclid's Geometry" },
+                { code: "M06", name: "Lines and Angles" },
+                { code: "M07", name: "Triangles" },
+                { code: "M08", name: "Quadrilaterals" },
+                { code: "M09", name: "Areas of Parallelograms and Triangles" },
+                { code: "M10", name: "Circles" },
+                { code: "M11", name: "Constructions" },
+                { code: "M12", name: "Heron's Formula" },
+                { code: "M13", name: "Surface Areas and Volumes" },
+                { code: "M14", name: "Statistics" },
+                { code: "M15", name: "Probability" }
+            ],
+            science: [
+                { code: "S01", name: "Matter in Our Surroundings" },
+                { code: "S02", name: "Is Matter Around Us Pure" },
+                { code: "S03", name: "Atoms and Molecules" },
+                { code: "S04", name: "Structure of the Atom" },
+                { code: "S05", name: "The Fundamental Unit of Life" },
+                { code: "S06", name: "Tissues" },
+                { code: "S07", name: "Diversity in Living Organisms" },
+                { code: "S08", name: "Motion" },
+                { code: "S09", name: "Force and Laws of Motion" },
+                { code: "S10", name: "Gravitation" },
+                { code: "S11", name: "Work and Energy" },
+                { code: "S12", name: "Sound" },
+                { code: "S13", name: "Why Do We Fall Ill" },
+                { code: "S14", name: "Natural Resources" },
+                { code: "S15", name: "Improvement in Food Resources" }
+            ],
+            english: [
+                { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+                { code: "E02", name: "Spellings and One Word Substitutions" },
+                { code: "E03", name: "Idioms and Phrases" },
+                { code: "E04", name: "Parts of Speech" },
+                { code: "E05", name: "Articles and Tenses" },
+                { code: "E06", name: "Active/Passive and Direct/Indirect" },
+                { code: "E07", name: "Clauses" },
+                { code: "E08", name: "Reading Comprehension" },
+                { code: "E09", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Series Completion" },
+                { code: "R02", name: "Analogy and Classification" },
+                { code: "R03", name: "Coding-Decoding" },
+                { code: "R04", name: "Blood Relations" },
+                { code: "R05", name: "Direction Sense Test" },
+                { code: "R06", name: "Logical Venn Diagrams" },
+                { code: "R07", name: "Alphabet and Ranking Test" },
+                { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }
+            ]
+        },
+        class10: {
+            maths: [
+                { code: "M01", name: "Real Numbers" },
+                { code: "M02", name: "Polynomials" },
+                { code: "M03", name: "Pair of Linear Equations in Two Variables" },
+                { code: "M04", name: "Quadratic Equations" },
+                { code: "M05", name: "Arithmetic Progressions" },
+                { code: "M06", name: "Triangles" },
+                { code: "M07", name: "Coordinate Geometry" },
+                { code: "M08", name: "Introduction to Trigonometry" },
+                { code: "M09", name: "Some Applications of Trigonometry" },
+                { code: "M10", name: "Circles" },
+                { code: "M11", name: "Constructions" },
+                { code: "M12", name: "Areas Related to Circles" },
+                { code: "M13", name: "Surface Areas and Volumes" },
+                { code: "M14", name: "Statistics" },
+                { code: "M15", name: "Probability" }
+            ],
+            science: [
+                { code: "S01", name: "Chemical Reactions and Equations" },
+                { code: "S02", name: "Acids, Bases and Salts" },
+                { code: "S03", name: "Metals and Non-Metals" },
+                { code: "S04", name: "Carbon and Its Compounds" },
+                { code: "S05", name: "Periodic Classification of Elements" },
+                { code: "S06", name: "Life Processes" },
+                { code: "S07", name: "Control and Coordination" },
+                { code: "S08", name: "How Do Organisms Reproduce" },
+                { code: "S09", name: "Heredity and Evolution" },
+                { code: "S10", name: "Light - Reflection and Refraction" },
+                { code: "S11", name: "Human Eye and Colourful World" },
+                { code: "S12", name: "Electricity" },
+                { code: "S13", name: "Magnetic Effects of Electric Current" },
+                { code: "S14", name: "Sources of Energy" },
+                { code: "S15", name: "Our Environment" },
+                { code: "S16", name: "Management of Natural Resources" }
+            ],
+            english: [
+                { code: "E01", name: "Synonyms, Antonyms, Analogies" },
+                { code: "E02", name: "Spellings and One Word Substitutions" },
+                { code: "E03", name: "Idioms and Phrases" },
+                { code: "E04", name: "Parts of Speech" },
+                { code: "E05", name: "Articles and Tenses" },
+                { code: "E06", name: "Active/Passive and Direct/Indirect" },
+                { code: "E07", name: "Clauses" },
+                { code: "E08", name: "Reading Comprehension" },
+                { code: "E09", name: "Spoken and Written Expression" }
+            ],
+            reasoning: [
+                { code: "R01", name: "Series Completion" },
+                { code: "R02", name: "Analogy and Classification" },
+                { code: "R03", name: "Coding-Decoding" },
+                { code: "R04", name: "Blood Relations" },
+                { code: "R05", name: "Direction Sense Test" },
+                { code: "R06", name: "Logical Venn Diagrams" },
+                { code: "R07", name: "Alphabet and Ranking Test" },
+                { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }
+            ]
+        }
+    };
+
+    function updateTopics() {
+        const classSelect = document.getElementById("classSelect");
+        const subjectSelect = document.getElementById("subjectSelect");
+        const topicSelect = document.getElementById("topicSelect");
+        const topicStepLabel = document.getElementById("topicStepLabel");
+
+        const selectedClass = classSelect.value;
+        const selectedSubject = subjectSelect.value;
+        const selectedClassName = classSelect.options[classSelect.selectedIndex].text;
+        const subjectName = selectedSubject
+            ? subjectSelect.options[subjectSelect.selectedIndex].text.split(" (")[0]
+            : "";
+
+        topicSelect.innerHTML = "";
+
+        if (sofTopics[selectedClass] && sofTopics[selectedClass][selectedSubject]) {
+            const defaultOption = document.createElement("option");
+            defaultOption.value = "";
+            defaultOption.textContent = "Choose a topic...";
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            topicSelect.appendChild(defaultOption);
+
+            sofTopics[selectedClass][selectedSubject].forEach(topic => {
+                const option = document.createElement("option");
+                option.value = topic.code;
+                option.textContent = `${topic.code} - ${topic.name}`;
+                option.dataset.code = topic.code;
+                option.dataset.name = topic.name;
+                topicSelect.appendChild(option);
+            });
+        } else {
+            const option = document.createElement("option");
+            option.value = "";
+            option.textContent = "No topics available for this selection";
+            option.disabled = true;
+            option.selected = true;
+            topicSelect.appendChild(option);
+        }
+
+        if (selectedSubject && selectedClass) {
+            topicStepLabel.innerHTML = `<span class="step-number">3</span> Select topic of ${subjectName} for ${selectedClassName}`;
+        } else if (selectedSubject) {
+            topicStepLabel.innerHTML = `<span class="step-number">3</span> Select topic of ${subjectName}`;
+        } else {
+            topicStepLabel.innerHTML = `<span class="step-number">3</span> Select Topic`;
+        }
+    }
+
+    function getSelectedTopicObject() {
+        const selectedClass = document.getElementById("classSelect").value;
+        const selectedSubject = document.getElementById("subjectSelect").value;
+        const selectedTopicCode = document.getElementById("topicSelect").value;
+
+        const topics = sofTopics[selectedClass]?.[selectedSubject] || [];
+        return topics.find(topic => topic.code === selectedTopicCode) || null;
+    }
+
+    function startPractice() {
+        const selectedClass = document.getElementById("classSelect").value;
+        const selectedSubject = document.getElementById("subjectSelect").value;
+        const selectedTopicObj = getSelectedTopicObject();
+
+        if (!selectedSubject || !selectedTopicObj) {
+            alert("Please select both a subject and a topic to proceed.");
+            return;
+        }
+
+        localStorage.setItem("selectedClass", selectedClass);
+        localStorage.setItem("selectedSubject", selectedSubject);
+        localStorage.setItem("selectedTopic", selectedTopicObj.code);
+        localStorage.setItem("selectedTopicName", selectedTopicObj.name);
+        localStorage.setItem("selectedTopicDisplay", `${selectedTopicObj.code} - ${selectedTopicObj.name}`);
+        localStorage.setItem("selectedTopicData", JSON.stringify(selectedTopicObj));
+        localStorage.setItem("isChampionship", "false");
+
+        window.location.href = "quiz.html";
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+        projectId: "olympiad-portal-d2a5e",
+        storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+        messagingSenderId: "341855557503",
+        appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            console.log("User not logged in, but page remains visible.");
+        }
+    });
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            window.location.href = "login.html";
+        }
+    };
+</script>
+</body>
+</html>
