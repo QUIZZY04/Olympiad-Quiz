@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Class - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+        nav { 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
+            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+        }
+        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; }
+        .nav-links { display:flex; gap:12px; align-items:center; }
+        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container { width: 100%; max-width: 1000px; margin: 60px auto; padding: 0 20px; flex: 1; text-align: center; }
+
+        .back-link {
+            display: inline-block; margin-bottom: 20px; color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+        }
+        .back-link:hover { color: var(--brand); }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--text); font-weight: 800; }
+        h1 span { text-transform: capitalize; color: var(--brand); }
+        p { color: var(--muted); margin-bottom: 40px; font-size: 1.1rem; }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .class-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .class-card:hover {
+            border-color: var(--brand);
+            transform: translateY(-5px);
+            background: rgba(56, 189, 248, 0.05);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .class-badge {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: 800;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.4);
+        }
+
+        .class-name { font-size: 1.2rem; font-weight: 700; }
+        .class-sub { font-size: 0.8rem; color: var(--muted); margin-top: 5px; }
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="study.html">Study Material</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<div class="container">
+    <a href="study.html" class="back-link">← Back to Subjects</a>
+    <h1>Select Class for <span id="subjectName">Subject</span></h1>
+    <p>Choose your grade to view curated notes and formulas.</p>
+
+    <div class="class-grid" id="classGrid">
+        <!-- Generated via JS -->
+    </div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const subject = urlParams.get('subject') || 'maths';
+    
+    // Set Subject Title
+    document.getElementById('subjectName').innerText = subject;
+    
+    // Subject specific colors
+    const colors = {
+        maths: '#38bdf8',
+        science: '#10b981',
+        english: '#f43f5e',
+        reasoning: '#f59e0b'
+    };
+    
+    const accent = colors[subject] || colors.maths;
+    document.documentElement.style.setProperty('--brand', accent);
+
+    // Generate Class Cards
+    const grid = document.getElementById('classGrid');
+    for (let i = 1; i <= 10; i++) {
+        const card = document.createElement('a');
+        card.className = 'class-card';
+        // For now, this links to chapterwise.html, but you can create specific content pages later
+        // Or link to a content viewer page passing class & subject
+        card.href = `study-content.html?subject=${subject}&class=class${i}`; 
+        
+        card.innerHTML = `
+            <div class="class-badge" style="background: ${accent}; box-shadow: 0 4px 10px ${accent}66;">${i}</div>
+            <div class="class-name">Class ${i}</div>
+            <div class="class-sub">Olympiad Prep</div>
+        `;
+        grid.appendChild(card);
+    }
+</script>
+
+<footer style="text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Notes | Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+            --accent: #818cf8;
+            --success: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom:1px solid var(--border); padding:20px 5%; 
+            display:flex; align-items:center; justify-content:space-between; 
+            position:sticky; top:0; z-index:1000;
+        }
+        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; }
+        .nav-links { display:flex; gap:12px; }
+        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; transition:0.3s; }
+        .nav-links a:hover { color:var(--brand); }
+
+        .container { width: 100%; max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; }
+
+        .header-section { margin-bottom: 40px; }
+        .breadcrumb { color: var(--muted); font-size: 0.9rem; margin-bottom: 10px; font-weight: 500; }
+        .breadcrumb a { color: var(--brand); text-decoration: none; }
+        
+        h1 { font-size: 2.5rem; font-weight: 800; color: var(--text); margin-bottom: 15px; }
+        h1 span { color: var(--brand); text-transform: capitalize; }
+
+        .note-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--brand);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .note-card h2 { color: var(--brand); font-size: 1.8rem; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .note-card h3 { color: var(--text); font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .note-card p { color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin-bottom: 15px; }
+        
+        .note-card ul { padding-left: 20px; margin-bottom: 20px; color: #cbd5e1; }
+        .note-card li { margin-bottom: 10px; line-height: 1.6; }
+        .note-card strong { color: var(--text); }
+
+        .highlight-box {
+            background: rgba(56, 189, 248, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            color: #e2e8f0;
+        }
+
+        .formula-box {
+            background: #1e293b;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            color: var(--brand);
+            margin: 10px 0;
+            border: 1px dashed var(--border);
+        }
+
+        .action-area { text-align: center; margin-top: 50px; }
+        .btn-practice {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-practice:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4); }
+
+        @media (max-width: 768px) {
+            .note-card { padding: 25px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="study.html">Subjects</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header-section">
+        <div class="breadcrumb">
+            <a href="study.html">Study Material</a> > <span id="breadSubject">Subject</span>
+        </div>
+        <h1><span id="pageTitle">Mathematics</span> - <span id="pageClass" style="color:var(--text)">Class 6</span></h1>
+        <p style="color:var(--muted)">Curated high-performance notes for Olympiad aspirants.</p>
+    </div>
+
+    <div id="contentInjection">
+        <!-- Content loads here -->
+    </div>
+
+    <div class="action-area">
+        <a href="chapterwise.html" class="btn-practice">Start Practice Quiz 🚀</a>
+    </div>
+</div>
+
+<footer style="text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const subject = urlParams.get('subject') || 'maths';
+    const classStr = urlParams.get('class') || 'class6';
+    const classNum = parseInt(classStr.replace('class', ''));
+
+    // Set Titles
+    document.getElementById('breadSubject').innerText = subject.charAt(0).toUpperCase() + subject.slice(1);
+    document.getElementById('pageTitle').innerText = subject;
+    document.getElementById('pageClass').innerText = `Class ${classNum}`;
+
+    // --- CONTENT DATABASE ---
+    const studyDB = {
+        maths: {
+            primary: `
+                <div class="note-card">
+                    <h2>🔢 Number Sense & Operations</h2>
+                    <p>Understanding the properties of numbers is the first step to mastering mathematics. This includes place values, operations, and number patterns.</p>
+                    <h3>1. Place Value & Face Value</h3>
+                    <ul>
+                        <li><b>Face Value:</b> The digit itself (e.g., in 7,843, the face value of 8 is 8).</li>
+                        <li><b>Place Value:</b> The value based on position (e.g., in 7,843, the place value of 8 is 800).</li>
+                        <li><b>Expansion:</b> 7,843 = 7000 + 800 + 40 + 3.</li>
+                    </ul>
+                    <h3>2. Roman Numerals</h3>
+                    <p>Ancient number system using letters. Remember: No symbol repeats more than 3 times.</p>
+                    <div class="highlight-box">
+                        I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000.<br>
+                        Rule: Smaller before larger means subtract (IV = 4). Smaller after larger means add (VI = 6).
+                    </div>
+                    <h3>3. Divisibility Rules</h3>
+                    <ul>
+                        <li><b>Divisible by 2:</b> Ends in 0, 2, 4, 6, 8.</li>
+                        <li><b>Divisible by 3:</b> Sum of digits is divisible by 3.</li>
+                        <li><b>Divisible by 5:</b> Ends in 0 or 5.</li>
+                        <li><b>Divisible by 10:</b> Ends in 0.</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h2>🍰 Fractions & Decimals</h2>
+                    <p>Fractions represent parts of a whole. A fraction has a Numerator (top) and a Denominator (bottom).</p>
+                    <ul>
+                        <li><b>Proper Fraction:</b> Numerator < Denominator (e.g., 3/4).</li>
+                        <li><b>Improper Fraction:</b> Numerator > Denominator (e.g., 5/2).</li>
+                        <li><b>Mixed Fraction:</b> Whole number + Proper fraction (e.g., 2 1/2).</li>
+                    </ul>
+                    <div class="formula-box">Equivalent Fractions: 1/2 = 2/4 = 3/6 = 4/8</div>
+                </div>
+                <div class="note-card">
+                    <h2>📐 Geometry & Measurement</h2>
+                    <h3>Basic Shapes & Properties</h3>
+                    <ul>
+                        <li><b>2D Shapes:</b> Square, Rectangle, Triangle, Circle. Properties of sides and corners.</li>
+                        <li><b>3D Shapes:</b> Cube, Cuboid, Sphere, Cylinder, Cone. Faces, Edges, and Vertices.</li>
+                    </ul>
+                    <h3>Measurement Formulas</h3>
+                    <div class="formula-box">Perimeter of Square = 4 × Side</div>
+                    <div class="formula-box">Perimeter of Rectangle = 2 × (Length + Breadth)</div>
+                    <div class="formula-box">Area of Square = Side × Side</div>
+                    <div class="formula-box">Area of Rectangle = Length × Breadth</div>
+                </div>
+            `,
+            middle: `
+                <div class="note-card">
+                    <h2>📊 Algebra & Integers</h2>
+                    <p>Algebra introduces the concept of variables (unknowns) to solve general problems.</p>
+                    <h3>1. Integer Operations</h3>
+                    <ul>
+                        <li>(+) × (+) = +</li>
+                        <li>(-) × (-) = +</li>
+                        <li>(+) × (-) = -</li>
+                        <li><b>BODMAS Rule:</b> Bracket, Order (Powers), Division, Multiplication, Addition, Subtraction.</li>
+                    </ul>
+                    <h3>2. Solving Linear Equations</h3>
+                    <p>Isolate the variable on one side.</p>
+                    <div class="formula-box">Equation: 2x + 5 = 15  ➜  2x = 10  ➜  x = 5</div>
+                </div>
+                <div class="note-card">
+                    <h2>📐 Ratio, Proportion & Geometry</h2>
+                    <h3>Comparing Quantities</h3>
+                    <ul>
+                        <li><b>Ratio:</b> Comparison by division (a:b).</li>
+                        <li><b>Proportion:</b> Equality of two ratios (a:b :: c:d implies a×d = b×c).</li>
+                        <li><b>Percentage:</b> Ratio with denominator 100.</li>
+                    </ul>
+                    <h3>Triangle Properties</h3>
+                    <ul>
+                        <li><b>Angle Sum Property:</b> Sum of all angles is 180°.</li>
+                        <li><b>Exterior Angle Property:</b> Exterior angle = Sum of two interior opposite angles.</li>
+                        <li><b>Equilateral:</b> All sides equal (60° each).</li>
+                        <li><b>Isosceles:</b> Two sides equal (angles opposite to them are equal).</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h2>📉 Exponents & Powers</h2>
+                    <p>Repeated multiplication is written in exponential form.</p>
+                    <div class="formula-box">aᵐ × aⁿ = a⁽ᵐ⁺ⁿ⁾</div>
+                    <div class="formula-box">aᵐ ÷ aⁿ = a⁽ᵐ⁻ⁿ⁾</div>
+                    <div class="formula-box">(aᵐ)ⁿ = a⁽ᵐⁿ⁾</div>
+                    <div class="formula-box">a⁰ = 1</div>
+                </div>
+            `,
+            secondary: `
+                <div class="note-card">
+                    <h2>📉 Polynomials & Quadratic Equations</h2>
+                    <p>Polynomials are algebraic expressions with variables having non-negative integer powers.</p>
+                    <h3>Important Algebraic Identities</h3>
+                    <div class="formula-box">(a + b)² = a² + 2ab + b²</div>
+                    <div class="formula-box">(a - b)² = a² - 2ab + b²</div>
+                    <div class="formula-box">a² - b² = (a - b)(a + b)</div>
+                    <div class="formula-box">(x + a)(x + b) = x² + (a + b)x + ab</div>
+                    <h3>Solving Quadratic Equations (ax² + bx + c = 0)</h3>
+                    <div class="formula-box">x = [-b ± √(b² - 4ac)] / 2a</div>
+                </div>
+                <div class="note-card">
+                    <h2>📐 Trigonometry & Surface Area</h2>
+                    <h3>Trigonometric Ratios (Right-angled Triangle)</h3>
+                    <ul>
+                        <li><b>sin θ</b> = Opposite / Hypotenuse</li>
+                        <li><b>cos θ</b> = Adjacent / Hypotenuse</li>
+                        <li><b>tan θ</b> = Opposite / Adjacent (or sin/cos)</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <strong>Pythagoras Theorem:</strong> Hypotenuse² = Base² + Perpendicular²
+                    </div>
+                    <h3>Surface Area & Volumes</h3>
+                    <ul>
+                        <li><b>Cylinder:</b> Vol = πr²h, CSA = 2πrh</li>
+                        <li><b>Cone:</b> Vol = 1/3 πr²h, CSA = πrl</li>
+                        <li><b>Sphere:</b> Vol = 4/3 πr³, SA = 4πr²</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h2>📊 Statistics & Probability</h2>
+                    <h3>Measures of Central Tendency</h3>
+                    <ul>
+                        <li><b>Mean:</b> Sum of observations / Total number of observations.</li>
+                        <li><b>Median:</b> Middle value when sorted.</li>
+                        <li><b>Mode:</b> Most frequently occurring value.</li>
+                    </ul>
+                    <h3>Probability</h3>
+                    <div class="highlight-box">
+                        P(Event) = Number of Favorable Outcomes / Total Possible Outcomes
+                    </div>
+                </div>
+            `
+        },
+        science: {
+            primary: `
+                <div class="note-card">
+                    <h2>🌿 The Living World</h2>
+                    <h3>1. Plants Life</h3>
+                    <ul>
+                        <li><b>Photosynthesis:</b> Process by which leaves make food using Sunlight, Water, Carbon Dioxide, and Chlorophyll.</li>
+                        <li><b>Roots:</b> Hold plant in soil and absorb water/nutrients.</li>
+                        <li><b>Stems:</b> Carry water from roots to leaves and food from leaves to other parts.</li>
+                    </ul>
+                    <h3>2. Animals & Habitats</h3>
+                    <ul>
+                        <li><b>Herbivores:</b> Eat only plants (Cow, Deer).</li>
+                        <li><b>Carnivores:</b> Eat only flesh (Lion, Tiger).</li>
+                        <li><b>Omnivores:</b> Eat both (Bear, Human).</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h2>⚛️ Matter, Force & Energy</h2>
+                    <h3>States of Matter</h3>
+                    <ul>
+                        <li><b>Solids:</b> Fixed shape and volume (Wood, Stone).</li>
+                        <li><b>Liquids:</b> Fixed volume but no fixed shape (Water, Milk).</li>
+                        <li><b>Gases:</b> No fixed shape or volume (Air, Oxygen).</li>
+                    </ul>
+                    <h3>Force & Energy</h3>
+                    <p><b>Force</b> is a push or pull. <b>Friction</b> stops moving objects. <b>Gravity</b> pulls objects to Earth.</p>
+                </div>
+                <div class="note-card">
+                    <h2>🌍 Earth & Universe</h2>
+                    <ul>
+                        <li><b>Rotation:</b> Earth spinning on axis (Causes Day/Night).</li>
+                        <li><b>Revolution:</b> Earth moving around Sun (Causes Seasons).</li>
+                        <li><b>Solar System:</b> Sun is a star. There are 8 planets. Mercury is closest, Neptune is farthest.</li>
+                    </ul>
+                </div>
+            `,
+            middle: `
+                <div class="note-card">
+                    <h2>⚛️ Chemistry: Changes & Substances</h2>
+                    <ul>
+                        <li><b>Acids:</b> Sour taste, turn blue litmus red (Lemon, Curd).</li>
+                        <li><b>Bases:</b> Bitter taste, soapy touch, turn red litmus blue (Soap, Baking soda).</li>
+                        <li><b>Physical Change:</b> No new substance formed, usually reversible (Melting Ice).</li>
+                        <li><b>Chemical Change:</b> New substance formed, irreversible (Rusting Iron).</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h2>⚡ Physics: Light & Electricity</h2>
+                    <h3>Light</h3>
+                    <ul>
+                        <li><b>Rectilinear Propagation:</b> Light travels in straight lines.</li>
+                        <li><b>Reflection:</b> Bouncing back of light from a surface.</li>
+                        <li><b>Spherical Mirrors:</b> Concave (converging) and Convex (diverging).</li>
+                    </ul>
+                    <h3>Electricity</h3>
+                    <ul>
+                        <li><b>Conductors:</b> Allow current (Copper, Aluminum).</li>
+                        <li><b>Insulators:</b> Block current (Rubber, Plastic).</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h2>🧬 Biology: Life Functions</h2>
+                    <ul>
+                        <li><b>Nutrition:</b> Autotrophic (Plants) vs Heterotrophic (Animals).</li>
+                        <li><b>Respiration:</b> Breakdown of food to release energy (Aerobic uses oxygen, Anaerobic doesn't).</li>
+                        <li><b>Transportation:</b> Xylem (Water) and Phloem (Food) in plants. Arteries and Veins in humans.</li>
+                    </ul>
+                </div>
+            `,
+            secondary: `
+                <div class="note-card">
+                    <h2>🧪 Chemical Reactions & Equations</h2>
+                    <p>Substances react to form new substances with different properties.</p>
+                    <ul>
+                        <li><b>Combination:</b> A + B → AB</li>
+                        <li><b>Decomposition:</b> AB → A + B</li>
+                        <li><b>Displacement:</b> A + BC → AC + B (A is more reactive than B)</li>
+                        <li><b>Double Displacement:</b> Exchange of ions between reactants.</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <strong>Balancing Equations:</strong> Number of atoms of each element must be same on Reactant and Product side.
+                    </div>
+                </div>
+                <div class="note-card">
+                    <h2>🔭 Physics: Motion & Force</h2>
+                    <ul>
+                        <li><b>Newton's 1st Law:</b> Law of Inertia. Object stays at rest/motion unless acted upon.</li>
+                        <li><b>Newton's 2nd Law:</b> F = ma (Force = mass × acceleration).</li>
+                        <li><b>Newton's 3rd Law:</b> For every action, there is an equal and opposite reaction.</li>
+                    </ul>
+                    <div class="formula-box">Work = Force × Displacement</div>
+                    <div class="formula-box">Kinetic Energy = 1/2 mv²</div>
+                </div>
+                <div class="note-card">
+                    <h2>🧬 Biology: Cell & Life Processes</h2>
+                    <p><b>The Cell</b> is the fundamental unit of life.</p>
+                    <ul>
+                        <li><b>Mitochondria:</b> Powerhouse of the cell (ATP production).</li>
+                        <li><b>Nucleus:</b> Control center containing DNA.</li>
+                        <li><b>Ribosomes:</b> Protein synthesis.</li>
+                    </ul>
+                    <p><b>Heredity:</b> Transfer of traits from parents to offspring via Genes/DNA.</p>
+                </div>
+            `
+        },
+        english: {
+            general: `
+                <div class="note-card">
+                    <h2>📖 Grammar Essentials</h2>
+                    <h3>1. Parts of Speech</h3>
+                    <ul>
+                        <li><b>Noun:</b> Naming words (Proper, Common, Collective, Abstract).</li>
+                        <li><b>Pronoun:</b> Replaces noun (He, She, They, It).</li>
+                        <li><b>Verb:</b> Action or state of being (Run, Is, Have).</li>
+                        <li><b>Adjective:</b> Describes noun (Tall, Red, Beautiful).</li>
+                        <li><b>Adverb:</b> Describes verb/adjective (Quickly, Very).</li>
+                        <li><b>Preposition:</b> Position/Relation (In, On, Under, Between).</li>
+                        <li><b>Conjunction:</b> Joining words (And, But, Because).</li>
+                    </ul>
+                    <h3>2. Tenses Overview</h3>
+                    <ul>
+                        <li><b>Simple Present:</b> I eat. (Habit/Fact)</li>
+                        <li><b>Present Continuous:</b> I am eating. (Happening now)</li>
+                        <li><b>Present Perfect:</b> I have eaten. (Just finished)</li>
+                        <li><b>Simple Past:</b> I ate. (Finished action)</li>
+                    </ul>
+                </div>
+                <div class="note-card">
+                    <h2>🗣️ Vocabulary & Idioms</h2>
+                    <ul>
+                        <li><b>Synonyms:</b> Words with similar meanings (Happy = Joyful).</li>
+                        <li><b>Antonyms:</b> Words with opposite meanings (Hot ≠ Cold).</li>
+                        <li><b>Homophones:</b> Same sound, different meaning (Bear vs Bare).</li>
+                    </ul>
+                    <h3>Common Idioms</h3>
+                    <div class="highlight-box">
+                        "Piece of cake" = Very easy.<br>
+                        "Break a leg" = Good luck.<br>
+                        "Once in a blue moon" = Very rarely.
+                    </div>
+                </div>
+                <div class="note-card">
+                    <h2>📝 Active & Passive Voice</h2>
+                    <p><b>Active:</b> Subject does the action. (Ram ate an apple)<br>
+                    <b>Passive:</b> Action is done to the subject. (An apple was eaten by Ram)</p>
+                </div>
+            `
+        },
+        reasoning: {
+            general: `
+                <div class="note-card">
+                    <h2>🧩 Verbal Reasoning</h2>
+                    <h3>1. Series Completion</h3>
+                    <p>Look for patterns in numbers or letters.</p>
+                    <ul>
+                        <li><b>Difference Pattern:</b> 2, 5, 8, 11 (+3 each time).</li>
+                        <li><b>Multiple Pattern:</b> 3, 6, 12, 24 (×2 each time).</li>
+                        <li><b>Square Pattern:</b> 1, 4, 9, 16 (Squares of 1, 2, 3, 4).</li>
+                    </ul>
+                    <h3>2. Coding-Decoding</h3>
+                    <p><b>Tip:</b> Write A to Z and number them 1 to 26.</p>
+                    <div class="formula-box">EJOTY Rule: E=5, J=10, O=15, T=20, Y=25</div>
+                    
+                    <h3>3. Blood Relations</h3>
+                    <p>Use a family tree diagram. Use (+) for male, (-) for female, (=) for spouse, (|) for generation gap.</p>
+                </div>
+                <div class="note-card">
+                    <h2>🖼 Non-Verbal Reasoning</h2>
+                    <h3>1. Mirror & Water Images</h3>
+                    <ul>
+                        <li><b>Mirror Image:</b> Left becomes Right. (b becomes d).</li>
+                        <li><b>Water Image:</b> Top becomes Bottom. (M becomes W).</li>
+                    </ul>
+                    <h3>2. Figure Matrix</h3>
+                    <p>Observe row-wise and column-wise patterns. Is the shape rotating? Is a part being added or removed?</p>
+                    <h3>3. Paper Folding</h3>
+                    <p>Visualize the symmetry. If you punch a hole in a folded paper, unfolding it reflects the hole across the fold line.</p>
+                </div>
+            `
+        }
+    };
+
+    // --- LOGIC TO SELECT CONTENT ---
+    let content = "";
+
+    if (subject === 'english') content = studyDB.english.general;
+    else if (subject === 'reasoning') content = studyDB.reasoning.general;
+    else {
+        // For Maths and Science, split by grade levels
+        const subDB = studyDB[subject];
+        if (classNum <= 5) content = subDB.primary;
+        else if (classNum <= 8) content = subDB.middle;
+        else content = subDB.secondary;
+    }
+
+    document.getElementById('contentInjection').innerHTML = content || "<div class='note-card'><h3>Content updating soon...</h3><p>Our experts are curating detailed notes for this section.</p></div>";
+
+</script>
+
+</body>
+</html>

@@ -1,77 +1,256 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Study Material - Olympiad Quiz</title>
-<meta name="description" content="Detailed Olympiad study material for Maths, Science, English and Reasoning for Class 1 to 10 students.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Material - Olympiad Portal</title>
+    <meta name="description" content="Detailed Olympiad study material for Maths, Science, English and Reasoning for Class 1 to 10 students. Build a strong conceptual foundation before attempting quizzes.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+            --brand: #38bdf8;
+            --accent: #818cf8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg);
+            min-height: 100vh; 
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            border-bottom:1px solid var(--border); 
+            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
+            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+        }
+        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-text h1 {
+            font-size: 3rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        .header-text h1 span { color: var(--brand); }
+        .header-text p {
+            color: var(--muted);
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content-card {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--brand);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+        
+        .content-card h2 {
+            color: var(--brand);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .content-card p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .content-card ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            margin-top: 10px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header-text h1 { font-size: 2.2rem; }
+            .content-card { padding: 30px 20px; }
+            nav { flex-direction: column; padding: 15px; }
+        }
+
+        /* New Subject Grid Styles */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .subject-card {
+            background: linear-gradient(145deg, #0f172a, #020617);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .subject-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .subject-card:hover .subject-icon { transform: scale(1.2) rotate(10deg); }
+
+        .subject-title { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+        .subject-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
+
+        .card-btn {
+            margin-top: auto;
+            padding: 10px 25px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .maths-card { border-top: 4px solid #38bdf8; } .maths-card:hover .card-btn { background: #38bdf8; border-color: #38bdf8; }
+        .science-card { border-top: 4px solid #10b981; } .science-card:hover .card-btn { background: #10b981; border-color: #10b981; }
+        .english-card { border-top: 4px solid #f43f5e; } .english-card:hover .card-btn { background: #f43f5e; border-color: #f43f5e; }
+        .reasoning-card { border-top: 4px solid #f59e0b; } .reasoning-card:hover .card-btn { background: #f59e0b; border-color: #f59e0b; }
+    </style>
 </head>
 <body>
 
-<h1>Study Material for Olympiad Preparation</h1>
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
 
-<p>
-Olympiad exams are designed to test deeper understanding and problem-solving ability beyond regular school exams. 
-Students preparing for Olympiads need a strong conceptual foundation along with regular practice. 
-This study section provides structured learning content to help students understand topics clearly before attempting quizzes.
-</p>
+<div class="container">
+    <div class="header-text">
+        <h1>Study <span>Material</span></h1>
+        <p>Build a strong conceptual foundation before attempting quizzes. This section provides structured learning content to help you understand topics clearly.</p>
+    </div>
 
-<h2>Why Study Material is Important?</h2>
-<p>
-Many students directly start solving questions without understanding the concepts. 
-This leads to confusion and mistakes. Proper study material helps students:
-</p>
+    <div class="subject-grid">
+        <a href="study-material.html?subject=maths" class="subject-card maths-card">
+            <div class="subject-icon">📐</div>
+            <h3 class="subject-title">Mathematics</h3>
+            <p class="subject-desc">Master formulas, theorems, and problem-solving techniques for IMO.</p>
+            <span class="card-btn">Explore Maths →</span>
+        </a>
+        
+        <a href="study-material.html?subject=science" class="subject-card science-card">
+            <div class="subject-icon">🔬</div>
+            <h3 class="subject-title">Science</h3>
+            <p class="subject-desc">Deep dive into Physics, Chemistry, and Biology concepts for NSO.</p>
+            <span class="card-btn">Explore Science →</span>
+        </a>
 
-<ul>
-<li>Build strong conceptual understanding</li>
-<li>Improve accuracy in solving problems</li>
-<li>Develop logical thinking skills</li>
-<li>Reduce mistakes in exams</li>
-</ul>
+        <a href="study-material.html?subject=english" class="subject-card english-card">
+            <div class="subject-icon">📚</div>
+            <h3 class="subject-title">English</h3>
+            <p class="subject-desc">Enhance grammar, vocabulary, and comprehension skills for IEO.</p>
+            <span class="card-btn">Explore English →</span>
+        </a>
 
-<h2>Subjects Covered</h2>
+        <a href="study-material.html?subject=reasoning" class="subject-card reasoning-card">
+            <div class="subject-icon">🧠</div>
+            <h3 class="subject-title">Reasoning</h3>
+            <p class="subject-desc">Sharpen logical thinking, patterns, and analytical ability.</p>
+            <span class="card-btn">Explore Reasoning →</span>
+        </a>
+    </div>
 
-<h3>Mathematics</h3>
-<p>
-Mathematics Olympiad focuses on concepts like number systems, algebra, geometry, and data handling. 
-Students need to understand formulas, patterns, and logical approaches to solve problems efficiently.
-</p>
+    <div class="content-card">
+        <h2>Why Study Material is Important?</h2>
+        <p>Many students jump directly into solving questions without a firm grasp of the underlying concepts. This often leads to confusion, guesswork, and repeated mistakes. Our study material is designed to prevent this by helping you:</p>
+        <ul>
+            <li>Build a strong and clear conceptual understanding from the ground up.</li>
+            <li>Improve your accuracy and confidence when solving complex problems.</li>
+            <li>Develop the logical thinking skills required to tackle unfamiliar question types.</li>
+            <li>Reduce common errors and improve your overall score in competitive exams.</li>
+        </ul>
+    </div>
 
-<h3>Science</h3>
-<p>
-Science includes Physics, Chemistry, and Biology topics. 
-Students learn about light, force, matter, life processes, and natural phenomena.
-Understanding concepts is more important than memorization.
-</p>
+    <div class="content-card" style="text-align: center;">
+        <h2>Ready to Test Your Knowledge?</h2>
+        <p>Once you've reviewed the concepts, head over to our practice section to apply what you've learned.</p>
+        <a href="signup.html" class="cta-btn">Start Chapterwise Practice</a>
+    </div>
+</div>
 
-<h3>English</h3>
-<p>
-English Olympiad improves grammar, vocabulary, and reading comprehension. 
-Students should focus on sentence structure, word meanings, and language usage.
-</p>
-
-<h3>Reasoning</h3>
-<p>
-Reasoning develops analytical thinking through puzzles, patterns, coding-decoding, and logical sequences.
-It is essential for improving problem-solving speed.
-</p>
-
-<h2>How to Use This Study Section</h2>
-
-<ol>
-<li>Start with concept reading</li>
-<li>Understand examples</li>
-<li>Practice chapterwise quizzes</li>
-<li>Review mistakes and improve</li>
-</ol>
-
-<h2>Tips for Better Learning</h2>
-<ul>
-<li>Practice daily for at least 30 minutes</li>
-<li>Focus on weak topics</li>
-<li>Revise regularly</li>
-<li>Take mock tests weekly</li>
-</ul>
-
-<a href="chapterwise.html">Start Chapterwise Practice</a>
+<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
