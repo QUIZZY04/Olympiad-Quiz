@@ -1,324 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Olympiad Quiz",
-  "url": "https://olympiadquiz.org",
-  "description": "Free online practice portal for Class 1-10 Math and Science Olympiads.",
-  "applicationCategory": "EducationalApplication"
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ✅ FIXED: Single meta -->
+<meta name="description" content="Prepare for Olympiad exams with chapter-wise quizzes, detailed explanations, and mock tests for Class 1 to 10 students. Improve concepts and problem-solving skills.">
+
+<title>Olympiad Quiz | Free Math & Science Practice</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+--bg: #020617;
+--surface: #0f172a;
+--text: #f8fafc;
+--muted: #94a3b8;
+--border: #1e293b;
+--brand: #38bdf8;
+--accent: #818cf8;
 }
-</script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prepare for SOF, SilverZone, and CREST Olympiads with our interactive chapter-wise quizzes, free mock tests, and live quiz arena for Class 4 to 10.">
-    <meta name="keywords" content="Olympiad preparation, mock tests, SOF, IMO, NSO, IEO, Class 4 to 10, online quiz, practice questions, Olympiad tricks">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Olympiad Portal | Free Mock Tests & Practice for Class 4-10">
-    <meta property="og:description" content="Master your school syllabus and win Olympiads with our interactive chapter-wise quests and full-length mock exams.">
-    <meta property="og:type" content="website">
-    <title>Olympiad Quiz | Free Math & Science Practice for Class 1-10</title>
-    <meta name="description" content="Master your foundations with Olympiad Quiz. Premium interactive practice portal for Class 1-10 students preparing for IMO, NSO, and competitive school exams." />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <style>
-        :root {
-            --bg: #020617;
-            --surface: #0f172a;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: #1e293b;
-            --brand: #38bdf8;
-            --accent: #818cf8;
-            --danger: #f43f5e;
-            --success: #10b981;
-            --warning: #f59e0b;
-        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+body {
+background: var(--bg);
+color: var(--text);
+font-family: 'Poppins', sans-serif;
+margin:0;
+}
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
-            background-attachment: fixed;
-        }
+/* HERO */
+.hero {
+text-align:center;
+padding:80px 5%;
+}
 
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+/* FEATURES */
+.features {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+padding:0 5% 60px;
+}
 
-        /* Navbar */
-        nav { /* Existing styles for navbar */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-        }
+.feature-card {
+background:#0f172a;
+padding:30px;
+border-radius:20px;
+border:1px solid var(--border);
+}
+</style>
 
-        .logo {
-            font-size: 1.5rem; /* Keep existing font size */
-            font-weight: 700; /* Keep existing font weight */
-            color: #ffffff; /* Keep existing color */
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--brand);
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 80px 5%;
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            margin-bottom: 20px;
-            color: #ffffff;
-            letter-spacing: -2px;
-        }
-        .hero h1 span {
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text; /* Keep existing text styling */
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
-        }
-
-        .hero p {
-            font-size: 1.25rem; /* Slightly larger for readability */
-            color: var(--muted);
-            max-width: 700px; /* Keep existing max-width */
-            margin: 0 auto 40px;
-            line-height: 1.7; /* Improved line height */
-        }
-
-        .hero-cta-buttons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        /* Feature Grid */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 0 5% 60px;
-        }
-
-        .feature-card {
-            background: linear-gradient(145deg, #0f172a, #020617);
-            border: 1px solid var(--border);
-            border-top: 2px solid var(--brand);
-            padding: 35px 30px;
-            border-radius: 24px;
-            text-align: center;
-            transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
-            z-index: 1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #334155;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 20px rgba(56, 189, 248, 0.1);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 12px;
-            color: #ffffff;
-            font-size: 1.4rem;
-            font-weight: 800;
-        }
-        .feature-card p {
-            color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Live Badge */
-        .live-ticker {
-            background: rgba(244, 63, 94, 0.1);
-            color: var(--danger);
-            border-bottom: 1px solid rgba(244, 63, 94, 0.3);
-            padding: 10px;
-            text-align: center;
-            font-weight: 800;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .nav-links { display: none; }
-        }
-
-        /* New Button Styles for Hero Section */
-        .hero-btn {
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .hero-btn-primary { background: linear-gradient(135deg, var(--brand), #2563eb); color: white; }
-        .hero-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4); filter: brightness(1.1); }
-        .hero-btn-secondary { background: var(--surface); color: var(--brand); border: 1px solid var(--border); }
-        .hero-btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); border-color: var(--brand); }
-    </style>
 </head>
+
 <body>
 
-    <div class="live-ticker">
-        🔥 LIVE NOW: Weekly Math Challenge! Join the Arena and test your skills!
-    </div>
+<!-- NAV -->
+<nav style="padding:20px 5%; display:flex; justify-content:space-between;">
+<a href="index.html" style="color:white;text-decoration:none;font-weight:700;">Olympiad Portal</a>
+<div>
+<a href="chapterwise.html">Practice</a>
+<a href="mock.html">Mock Test</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+</nav>
 
-    <div id="particles-js"></div>
+<!-- HERO -->
+<section class="hero">
+<h1>Unlock Your <span style="color:#38bdf8;">Olympiad Potential</span></h1>
 
-    <header>
-        <nav>
-            <a href="index.html" class="logo" style="text-decoration: none;">Olympiad Portal</a>
-            <div class="nav-links">
-                <a href="features.html">Features</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
-                <div style="display: inline-block; margin-left: 15px; border-left: 2px solid var(--border); padding-left: 15px;">
-                    <a href="login.html" style="margin-left: 5px; font-weight: 600; color: var(--text);">Log in</a>
-                    <a href="signup.html" style="background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; margin-left: 15px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);">Get Started Free</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+<p>
+Prepare for Olympiad exams with structured learning, chapter-wise quizzes, detailed explanations, and full-length mock tests designed for Class 1 to 10 students.
+Build strong concepts and improve problem-solving skills.
+</p>
 
-    <main style="flex: 1;">
-        <section class="hero">
-            <h1>Unlock Your <span>Olympiad Potential</span></h1>
-            <p>Transform your learning journey with engaging chapter-wise quests, realistic mock exams, and a vibrant live arena designed to build deep understanding and a competitive edge.</p>
-            <div class="hero-cta-buttons">
-                <a href="signup.html" class="hero-btn hero-btn-primary">Start Your Free Journey</a>
-                <a href="features.html" class="hero-btn hero-btn-secondary">Explore Features</a>
-            </div>
-        </section>
-
-        <section id="features" class="features">
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
-                <h3>📖 Chapterwise Quiz</h3>
-                <p>Practice specific topics from your science and math books. Master every concept one by one.</p>
-            </div>
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
-                <h3>📝 Free Mock Tests</h3>
-                <p>Full-length papers designed like real Olympiad exams to test your speed and accuracy.</p>
-            </div>
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
-                <h3>⚡ Live Quiz Arena</h3>
-                <p>Compete in real-time battles against students across the country and top the leaderboard.</p>
-            </div>
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
-                <h3>💡 Olympiad Tricks</h3>
-                <p>Learn shortcut methods and smart strategies to solve complex Olympiad problems faster.</p>
-            </div>
-        </section>
-    </main>
-    <section style="max-width: 1200px; margin: 60px auto; padding: 0 5%; line-height: 1.8;">
-    <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-size: 2rem; color: var(--brand); font-weight: 800;">Comprehensive Olympiad Preparation</h2>
-        <p style="color: var(--muted); max-width: 800px; margin: 10px auto;">Master the foundations of competitive excellence with our curated test series designed for global standards.</p>
-    </div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-        <div style="background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border);">
-            <h3 style="color: var(--accent); margin-bottom: 15px;">Mathematics Olympiad (IMO)</h3>
-            <p style="font-size: 0.9rem; color: var(--muted);">Our Math portal covers critical topics including Number Systems, Algebra, Geometry, Data Handling, and Trigonometry. Perfect for students preparing for IMO, SASMO, and regional math competitions.</p>
-        </div>
-
-        <div style="background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border);">
-            <h3 style="color: var(--brand); margin-bottom: 15px;">Science Olympiad (NSO)</h3>
-            <p style="font-size: 0.9rem; color: var(--muted);">Explore interactive questions in Physics, Chemistry, and Biology. From 'Matter in our Surroundings' to 'Advanced Mechanics,' our syllabus aligns with NSO, iOS, and school board curriculums.</p>
-        </div>
-
-        <div style="background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border);">
-            <h3 style="color: #10b981; margin-bottom: 15px;">Logical Reasoning & Aptitude</h3>
-            <p style="font-size: 0.9rem; color: var(--muted);">Boost mental ability with patterns, series, coding-decoding, and spatial recognition tests. Essential for NTSE preparation and developing a competitive edge in STEM subjects.</p>
-        </div>
-    </div>
-
-    <div style="margin-top: 50px; background: rgba(56, 189, 248, 0.05); padding: 40px; border-radius: 24px; border: 1px dashed var(--border);">
-        <h3 style="color: var(--text); text-align: center;">Why Choose Olympiad Quiz?</h3>
-        <p style="color: var(--muted); font-size: 1rem; text-align: center; max-width: 900px; margin: 15px auto;">
-            Our platform provides a **high-performance testing environment** that mimics real-world competitive exams. With an emphasis on conceptual clarity and time management, <strong>OlympiadQuiz.org</strong> helps students from Class 1 to Class 10 transition from classroom learning to international excellence. 
-        </p>
-    </div>
+<div style="margin-top:20px;">
+<a href="chapterwise.html" style="color:#38bdf8;font-weight:600;">Start Practice →</a>
+</div>
 </section>
 
-    <footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
-        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-            <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-            <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
-            <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-            <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-            <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-            <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
-        </div>
-        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
-    </footer>
+<!-- 🔥 SECTION 1 -->
+<section style="max-width:1100px;margin:40px auto;padding:0 5%;line-height:1.9;">
+<h2 style="color:#38bdf8;">What is Olympiad Quiz?</h2>
 
-    <script>
-        /* Initialize Particles */
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#38bdf8" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }
-            },
-            "retina_detect": true
-        });
-    </script>
+<p style="color:#94a3b8;">
+Olympiad Quiz is an online platform designed for students from Class 1 to 10 preparing for competitive exams like IMO, NSO, and IEO.
+It provides concept-based learning through structured quizzes and practice tests.
+</p>
+
+<p style="color:#94a3b8;">
+Students can practice chapter-wise questions, take mock exams, and improve accuracy and speed with regular learning.
+</p>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+<div class="feature-card">
+<h3>📖 Chapterwise Quiz</h3>
+<p>Practice topics and strengthen concepts step by step.</p>
+</div>
+
+<div class="feature-card">
+<h3>📝 Mock Tests</h3>
+<p>Test your preparation with real exam-level questions.</p>
+</div>
+
+<div class="feature-card">
+<h3>⚡ Live Quiz Arena</h3>
+<p>Compete with students and improve ranking.</p>
+</div>
+</section>
+
+<!-- 🔥 SECTION 2 -->
+<section style="max-width:1100px;margin:60px auto;padding:0 5%;line-height:1.9;">
+<h2 style="color:#818cf8;">Complete Olympiad Preparation Platform</h2>
+
+<p style="color:#94a3b8;">
+This platform helps students build strong conceptual understanding and improve performance through regular practice.
+It focuses on developing logical thinking and problem-solving skills.
+</p>
+
+<h3 style="color:#38bdf8;margin-top:20px;">Key Benefits</h3>
+
+<ul style="color:#94a3b8;">
+<li>Concept-based learning</li>
+<li>Chapter-wise structured practice</li>
+<li>Real exam-level mock tests</li>
+<li>Instant performance feedback</li>
+<li>Improves speed and accuracy</li>
+</ul>
+</section>
+
+<!-- 🔥 SECTION 3 -->
+<section style="max-width:1100px;margin:60px auto;padding:0 5%;line-height:1.9;">
+<h2 style="color:#38bdf8;">Why Olympiad Preparation Matters?</h2>
+
+<p style="color:#94a3b8;">
+Olympiad exams help students develop deeper understanding beyond textbooks.
+They improve analytical thinking and confidence in solving complex problems.
+</p>
+
+<p style="color:#94a3b8;">
+Regular practice helps students perform better in both competitive exams and school academics.
+</p>
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align:center;padding:30px;border-top:1px solid #333;color:#aaa;">
+<a href="about.html">About</a> |
+<a href="contact.html">Contact</a> |
+<a href="privacy-policy.html">Privacy Policy</a> |
+<a href="terms.html">Terms</a>
+
+<p style="margin-top:10px;">© 2026 Olympiad Portal</p>
+</footer>
+
 </body>
 </html>
