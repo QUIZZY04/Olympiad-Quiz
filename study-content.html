@@ -812,32 +812,7 @@
 
     const db = studyDB[subject];
     if (db) {
-        let classContent = db[`class${classNum}`] || "";
-        let tierContent = "";
-
-        if (classNum >= 1 && classNum <= 5) {
-            tierContent = db.primary || "";
-        } else if (classNum >= 6 && classNum <= 8) {
-            tierContent = db.middle || "";
-        } else if (classNum >= 9 && classNum <= 10) {
-            tierContent = db.secondary || "";
-        }
-
-        let generalContent = db.general || "";
-
-        if (classContent) {
-            content += classContent;
-        }
-        
-        if (tierContent) {
-            if (classContent) content += `<div style="margin-top: 40px; padding-top: 20px; border-top: 3px dashed var(--border);"><h2 style="color: var(--text); font-size: 1.8rem; margin-bottom: 20px;">📘 Foundational Concepts</h2></div>`;
-            content += tierContent;
-        }
-
-        if (generalContent) {
-            if (classContent || tierContent) content += `<div style="margin-top: 40px; padding-top: 20px; border-top: 3px dashed var(--border);"><h2 style="color: var(--text); font-size: 1.8rem; margin-bottom: 20px;">📘 General Concepts</h2></div>`;
-            content += generalContent;
-        }
+        content = db[`class${classNum}`] || "";
 
         if (!content) {
             content = `<div class='note-card'><h3>Content updating soon...</h3><p>Our experts are curating detailed notes for Class ${classNum} ${subject.charAt(0).toUpperCase() + subject.slice(1)}.</p></div>`;
