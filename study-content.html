@@ -148,11 +148,11 @@
     const urlParams = new URLSearchParams(window.location.search);
     const subject = urlParams.get('subject') || 'maths';
     const classStr = urlParams.get('class') || 'class6';
-    const classNum = parseInt(classStr.replace('class', ''));
+    const classNum = parseInt(classStr.toLowerCase().replace('class', ''));
 
     // Set Titles
     document.getElementById('breadSubject').innerText = subject.charAt(0).toUpperCase() + subject.slice(1);
-    document.getElementById('pageTitle').innerText = subject;
+    document.getElementById('pageTitle').innerText = subject.charAt(0).toUpperCase() + subject.slice(1);
     document.getElementById('pageClass').innerText = `Class ${classNum}`;
 
     // --- CONTENT DATABASE ---
@@ -723,20 +723,12 @@
     let content = "";
 
     if (subject === 'maths') {
-        if (classNum === 1) content = studyDB.maths.class1;
-        else if (classNum === 2) content = studyDB.maths.class2;
-        else if (classNum === 3) content = studyDB.maths.class3;
-        else if (classNum === 4) content = studyDB.maths.class4;
-        else if (classNum === 5) content = studyDB.maths.class5;
-        else if (classNum <= 8) content = studyDB.maths.middle;
+        if (classNum >= 1 && classNum <= 5) content = studyDB.maths[`class${classNum}`];
+        else if (classNum >= 6 && classNum <= 8) content = studyDB.maths.middle;
         else content = studyDB.maths.secondary;
     } else if (subject === 'science') {
-        if (classNum === 1) content = studyDB.science.class1;
-        else if (classNum === 2) content = studyDB.science.class2;
-        else if (classNum === 3) content = studyDB.science.class3;
-        else if (classNum === 4) content = studyDB.science.class4;
-        else if (classNum === 5) content = studyDB.science.class5;
-        else if (classNum <= 8) content = studyDB.science.middle;
+        if (classNum >= 1 && classNum <= 5) content = studyDB.science[`class${classNum}`] + "\n" + studyDB.science.primary;
+        else if (classNum >= 6 && classNum <= 8) content = studyDB.science.middle;
         else content = studyDB.science.secondary;
     } else if (subject === 'english') {
         content = studyDB.english.general;
