@@ -675,14 +675,28 @@
     // --- LOGIC TO SELECT CONTENT ---
     let content = "";
 
-    if (subject === 'english') content = studyDB.english.general;
-    else if (subject === 'reasoning') content = studyDB.reasoning.general;
-    else {
-        // For Maths and Science, split by grade levels
-        const subDB = studyDB[subject];
-        if (classNum <= 5) content = subDB.primary;
-        else if (classNum <= 8) content = subDB.middle;
-        else content = subDB.secondary;
+    if (subject === 'maths') {
+        if (classNum === 1) content = studyDB.maths.class1;
+        else if (classNum === 2) content = studyDB.maths.class2;
+        else if (classNum === 3) content = studyDB.maths.class3;
+        else if (classNum === 4) content = studyDB.maths.class4;
+        else if (classNum === 5) content = studyDB.maths.class5;
+        else if (classNum <= 8) content = studyDB.maths.middle;
+        else content = studyDB.maths.secondary;
+    } else if (subject === 'science') {
+        if (classNum === 1) content = studyDB.science.class1;
+        else if (classNum === 2) content = studyDB.science.class2;
+        else if (classNum === 3) content = studyDB.science.class3;
+        else if (classNum === 4) content = studyDB.science.class4;
+        else if (classNum === 5) content = studyDB.science.class5;
+        else if (classNum <= 8) content = studyDB.science.middle;
+        else content = studyDB.science.secondary;
+    } else if (subject === 'english') {
+        content = studyDB.english.general;
+    } else if (subject === 'reasoning') {
+        content = studyDB.reasoning.general;
+    } else {
+        content = "<div class='note-card'><h3>Content updating soon...</h3><p>Our experts are curating detailed notes for this section.</p></div>";
     }
 
     document.getElementById('contentInjection').innerHTML = content || "<div class='note-card'><h3>Content updating soon...</h3><p>Our experts are curating detailed notes for this section.</p></div>";
