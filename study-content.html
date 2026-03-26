@@ -3,37 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter-Wise Study Material | Olympiad Portal</title>
+    <title>Comprehensive Study Material | Olympiad Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --muted: #475569;
+            --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --muted: #64748b;
             --border: #e2e8f0; --brand: #4f46e5; --accent: #8b5cf6;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); line-height: 1.8; }
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 25px; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.8; }
         
-        .study-section { background: white; border-radius: 24px; padding: 50px; margin-bottom: 40px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
-        
-        .chapter-tag { display: inline-block; background: var(--accent); color: white; padding: 4px 12px; border-radius: 6px; font-weight: 800; margin-bottom: 10px; font-size: 0.9rem; }
-        h1 { font-size: 2.4rem; color: var(--brand); margin-bottom: 30px; font-weight: 800; border-bottom: 4px solid var(--brand); padding-bottom: 10px; }
-        h2 { font-size: 1.8rem; color: #1e1b4b; margin: 40px 0 20px 0; display: flex; align-items: center; gap: 10px; }
-        h2::before { content: ''; width: 6px; height: 30px; background: var(--brand); border-radius: 3px; display: inline-block; }
-        
-        p { margin-bottom: 20px; font-size: 1.1rem; color: #334155; text-align: justify; }
+        nav { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .brand { font-weight: 800; color: var(--brand); text-decoration: none; font-size: 1.4rem; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; margin-left: 20px; font-size: 0.9rem; }
 
-        .formula-card { background: #fdf2f8; border: 1px solid #fbcfe8; padding: 25px; border-radius: 15px; color: #be185d; font-family: 'Courier New', monospace; font-weight: 700; margin: 25px 0; text-align: center; font-size: 1.3rem; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         
-        .method-box { background: #f0f9ff; border-left: 6px solid #0ea5e9; padding: 25px; border-radius: 0 15px 15px 0; margin: 20px 0; }
-        .method-box b { color: #0369a1; display: block; margin-bottom: 5px; }
+        .page-header { margin-bottom: 40px; }
+        .page-header h1 { font-size: 2.5rem; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+        .page-header span { color: var(--brand); text-transform: capitalize; }
 
-        .science-fact { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 12px; margin: 20px 0; color: #166534; }
+        .note-card { background: white; border-radius: 20px; padding: 45px; margin-bottom: 35px; border: 1px solid var(--border); border-top: 8px solid var(--brand); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.05); }
+        .chapter-tag { background: #eef2ff; color: var(--brand); padding: 5px 15px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; margin-bottom: 15px; display: inline-block; border: 1px solid #c7d2fe; }
+        
+        h2 { font-size: 2rem; color: #1e293b; margin-bottom: 25px; font-weight: 700; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        h3 { font-size: 1.4rem; color: var(--brand); margin-top: 30px; margin-bottom: 15px; font-weight: 700; }
+        
+        p { margin-bottom: 20px; color: #334155; text-align: justify; font-size: 1.1rem; }
+        ul { margin-bottom: 20px; padding-left: 25px; }
+        li { margin-bottom: 12px; color: #475569; }
+
+        .formula-box { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; padding: 30px; border-radius: 15px; font-family: 'Courier New', monospace; font-weight: 700; margin: 30px 0; text-align: center; font-size: 1.4rem; box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2); }
+        .method-step { background: #f0fdf4; border-left: 6px solid #22c55e; padding: 25px; border-radius: 0 15px 15px 0; margin: 25px 0; }
+        .method-step b { color: #166534; font-size: 1.2rem; display: block; margin-bottom: 5px; }
+        .important-note { background: #fff7ed; border: 1px solid #ffedd5; padding: 20px; border-radius: 12px; color: #9a3412; margin: 20px 0; font-style: italic; }
     </style>
 </head>
 <body>
 
+<nav>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="study.html">Subjects</a>
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
 <div class="container">
+    <div class="page-header">
+        <h1><span id="displaySubject">Subject</span> - <span id="displayClass" style="color:var(--text)">Class</span></h1>
+        <p style="color:var(--muted)">Deep-dive conceptual notes for advanced Olympiad preparation.</p>
+    </div>
+
     <div id="contentInjection"></div>
 </div>
 
@@ -41,85 +62,87 @@
     const urlParams = new URLSearchParams(window.location.search);
     const subject = (urlParams.get('subject') || 'maths').toLowerCase();
     const classStr = (urlParams.get('class') || 'class5').toLowerCase();
+    const classNum = parseInt(classStr.replace('class', ''));
+
+    document.getElementById('displaySubject').innerText = subject;
+    document.getElementById('displayClass').innerText = `Class ${classNum}`;
 
     const studyDB = {
         maths: {
-            class5: `
-                <h1>Mathematics - Class 5</h1>
-                <div class="study-section">
-                    <span class="chapter-tag">M01</span>
-                    <h2>Number Sense & Computation</h2>
-                    <p>In Class 5, we master numbers up to 8 digits. This involves understanding the <b>Indian vs. International Systems</b>. The Indian system uses Lakhs/Crores, while the International system uses Millions/Billions.</p>
-                    <div class="method-box"><b>BODMAS Rule:</b> Always prioritize Brackets (B) and 'Of' (O) before basic arithmetic like Division (D) or Addition (A).</div>
+            primary: `
+                <div class="note-card">
+                    <span class="chapter-tag">M01 - Number Systems</span>
+                    <h2>Understanding Large Numbers</h2>
+                    <p>In the primary years, we transition from basic counting to mastering 5, 6, and 7-digit numbers. The <b>Indian Place Value System</b> uses periods like Crores, Lakhs, Thousands, and Ones to help us read numbers like 75,42,301.</p>
+                    <div class="formula-box">Place Value = Face Value × Position Value</div>
+                    <h3>Successor and Predecessor</h3>
+                    <p>Every number has a successor (the number that comes immediately after, found by adding 1) and a predecessor (the number that comes before, found by subtracting 1).</p>
                 </div>
-
-                <div class="study-section">
-                    <span class="chapter-tag">M05</span>
-                    <h2>Perimeter & Area</h2>
-                    <p>Perimeter is the total boundary of a figure, while Area is the space inside. For a square, we multiply the side by 4 for perimeter and by itself for area.</p>
-                    <div class="formula-card">Perimeter (Rect) = 2(L+B) | Area (Rect) = L × B</div>
+                <div class="note-card">
+                    <span class="chapter-tag">M05 - Mensuration</span>
+                    <h2>Perimeter and Area</h2>
+                    <p><b>Perimeter</b> is the total length of the boundary of a closed figure. Imagine walking around the edge of a park—that distance is the perimeter. <b>Area</b> is the amount of surface covered by that park.</p>
+                    <div class="method-step"><b>Rectangle Formula:</b> To find the perimeter, add the length and breadth and multiply by 2. To find the area, simply multiply length by breadth.</div>
+                    <div class="formula-box">Area = L × B | Perimeter = 2 × (L + B)</div>
                 </div>`,
-
-            class6: `
-                <h1>Mathematics - Class 6</h1>
-                <div class="study-section">
-                    <span class="chapter-tag">M01 - M03</span>
-                    <h2>Knowing Our Numbers & Integers</h2>
-                    <p>Integers introduce <b>negative values</b>. On a number line, zero acts as the center. Numbers to the right are positive, and numbers to the left are negative. Adding a negative number is equivalent to moving left.</p>
-                    <div class="method-box"><b>Rule of Signs:</b> (-) × (-) = (+) | (+) × (-) = (-)</div>
-                </div>
-
-                <div class="study-section">
-                    <span class="chapter-tag">M05 - M06</span>
-                    <h2>Algebra & Ratio/Proportion</h2>
-                    <p>Algebra uses <b>Variables</b> (letters like x) to represent unknowns. Ratio is a comparison of two quantities by division, expressed as a:b.</p>
-                    <div class="formula-box">Proportion: Product of Extremes = Product of Means</div>
+            middle: `
+                <div class="note-card">
+                    <span class="chapter-tag">M01 - Integers</span>
+                    <h2>Positive and Negative Numbers</h2>
+                    <p>Integers expand our number world to include values below zero. On a number line, zero is the neutral point. Positive integers are to the right, and negative integers are to the left.</p>
+                    <div class="important-note">Remember: The further a negative number is from zero, the smaller its value is (e.g., -10 is smaller than -2).</div>
+                    <div class="method-step"><b>Multiplication Rule:</b> Two negatives multiplied together always result in a positive answer. (-5 × -4 = +20).</div>
                 </div>`,
-
-            class7: `
-                <h1>Mathematics - Class 7</h1>
-                <div class="study-section">
-                    <span class="chapter-tag">M01 - M02</span>
-                    <h2>Integers, Fractions & Decimals</h2>
-                    <p>Fractions are parts of a whole. To add <b>Unlike Fractions</b>, you must first find the Least Common Multiple (LCM) of the denominators to make them equivalent.</p>
-                    <div class="method-box"><b>Decimal Multiplication:</b> Multiply the numbers as whole numbers first, then count the total decimal places from the right.</div>
+            secondary: `
+                <div class="note-card">
+                    <span class="chapter-tag">M08 - Trigonometry</span>
+                    <h2>Introduction to Trigonometric Ratios</h2>
+                    <p>Trigonometry is the study of the relationship between the sides and angles of a right-angled triangle. We use three primary ratios: <b>Sine, Cosine, and Tangent</b>.</p>
+                    <div class="formula-box">sin²θ + cos²θ = 1</div>
+                    <p>These ratios are essential for calculating heights and distances that cannot be measured directly, such as the height of a mountain or the distance of a ship from a lighthouse.</p>
                 </div>`
         },
         science: {
             class5: `
-                <h1>Science - Class 5</h1>
-                <div class="study-section">
-                    <span class="chapter-tag">S01 - S02</span>
-                    <h2>Animals & Plants</h2>
-                    <p>Animals are classified by their breathing organs: Mammals use lungs, insects use spiracles, and fish use gills. Plants produce food through <b>Photosynthesis</b> using chlorophyll in their leaves.</p>
-                    <div class="science-fact"><b>Seed Dispersal:</b> Seeds can travel by Wind (Dandelion), Water (Coconut), or Animals (Xanthium).</div>
+                <div class="note-card">
+                    <span class="chapter-tag">S01 - Animals</span>
+                    <h2>Breathing and Movement</h2>
+                    <p>Animals must take in oxygen to survive. Different animals have evolved different organs based on where they live. For instance, fish use <b>Gills</b> to take oxygen from water, while mammals use <b>Lungs</b> to breathe air.</p>
                 </div>
-
-                <div class="study-section">
-                    <span class="chapter-tag">S03</span>
-                    <h2>Human Body & Health</h2>
-                    <p>The <b>Nervous System</b> is the body's command center. The brain has three parts: The Cerebrum (thinking), Cerebellum (balance), and Medulla (involuntary actions like breathing).</p>
+                <div class="note-card">
+                    <span class="chapter-tag">S03 - Human Body</span>
+                    <h2>The Nervous System</h2>
+                    <p>The nervous system is the most complex system in the body, acting as a high-speed communication network. It consists of the brain, spinal cord, and millions of nerves.</p>
+                    <h3>The Human Brain</h3>
+                    <ul>
+                        <li><b>Cerebrum:</b> The thinking part. It controls memory, intelligence, and the five senses.</li>
+                        <li><b>Cerebellum:</b> The balancing part. It coordinates muscle movements.</li>
+                        <li><b>Medulla:</b> The life-support part. It controls involuntary actions like breathing and heartbeat.</li>
+                    </ul>
                 </div>`,
-
-            class6: `
-                <h1>Science - Class 6</h1>
-                <div class="study-section">
-                    <span class="chapter-tag">S01 - S04</span>
-                    <h2>Food & Body Movements</h2>
-                    <p>Nutrients include Carbohydrates, Proteins, and Vitamins. Deficiency of Vitamin A causes Night Blindness. Body movement is enabled by <b>Joints</b> like Ball-and-Socket (Shoulder) and Hinge (Elbow).</p>
-                </div>
-
-                <div class="study-section">
-                    <span class="chapter-tag">S06 - S08</span>
-                    <h2>Light, Shadows & Electricity</h2>
-                    <p>Light travels in a straight line (Rectilinear Propagation). A <b>Shadow</b> is formed when an opaque object blocks light. Electricity flows in a <b>Closed Circuit</b>.</p>
+            middle: `
+                <div class="note-card">
+                    <span class="chapter-tag">S01 - Food</span>
+                    <h2>Components of Food</h2>
+                    <p>Our body requires five main nutrients to stay healthy: Carbohydrates, Fats, Proteins, Vitamins, and Minerals. A <b>Balanced Diet</b> contains all these in the right proportions.</p>
                 </div>`
         }
     };
 
     function loadContent() {
-        const sub = studyDB[subject] || studyDB.maths;
-        let content = sub[classStr] || "<h1>Content for this Class</h1><div class='study-section'><p>Detailed chapter-wise notes are being finalized by our experts. Please check back shortly!</p></div>";
+        const subData = studyDB[subject] || studyDB.maths;
+        let content = "";
+
+        if (subData[`class${classNum}`]) {
+            content = subData[`class${classNum}`];
+        } else if (classNum <= 5) {
+            content = subData.primary;
+        } else if (classNum <= 8) {
+            content = subData.middle;
+        } else {
+            content = subData.secondary;
+        }
+
         document.getElementById('contentInjection').innerHTML = content;
     }
     loadContent();
