@@ -240,9 +240,7 @@
 </head>
 <body>
 
-    <div class="live-ticker">
-        🔥 LIVE NOW: Weekly Math Challenge! Join the Arena and test your skills!
-    </div>
+    <div class="live-ticker" id="liveTicker" style="display: none;"></div>
 
     <div id="particles-js"></div>
 
@@ -462,6 +460,44 @@
         </div>
         <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = { 
+            apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+            authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+            projectId: "olympiad-portal-d2a5e",
+            storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+            messagingSenderId: "341855557503",
+            appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function checkLiveSessions() {
+            const ticker = document.getElementById("liveTicker");
+            try {
+                const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(5));
+                const snap = await getDocs(q);
+                const now = new Date();
+                
+                let activeSession = null;
+                snap.forEach(d => {
+                    const s = d.data();
+                    if (now < s.endTime.toDate()) { activeSession = s; }
+                });
+
+                if (activeSession) {
+                    ticker.innerHTML = `🔥 LIVE NOW: ${activeSession.title}! <a href="signup.html" style="color: inherit; font-weight: 800; text-decoration: underline;">Join the Arena</a> and test your skills!`;
+                    ticker.style.display = "block";
+                }
+            } catch (e) { console.error("Ticker sync failed:", e); }
+        }
+        checkLiveSessions();
+    </script>
 
     <script>
         /* Initialize Particles */
