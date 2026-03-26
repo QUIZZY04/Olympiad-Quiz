@@ -3,331 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Notes | Olympiad Portal</title>
+    <title>Chapter-Wise Study Material | Olympiad Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --subtle: #f1f5f9;
-            --text: #0f172a;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --brand: #4f46e5;
-            --accent: #8b5cf6;
-            --success: #10b981;
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+            --bg: #f8fafc; --surface: #ffffff; --text: #1e293b; --muted: #475569;
+            --border: #e2e8f0; --brand: #4f46e5; --accent: #8b5cf6;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.8; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 25px; }
         
-        body { 
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
-            background-attachment: fixed;
-        }
-
-        nav { 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
-            border-bottom:1px solid var(--border); padding:20px 5%; 
-            display:flex; align-items:center; justify-content:space-between; 
-            position:sticky; top:0; z-index:1000;
-        }
-        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; }
-        .nav-links { display:flex; gap:12px; }
-        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; transition:0.3s; }
-
-        .container { width: 100%; max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; }
-
-        .header-section { margin-bottom: 40px; }
-        .breadcrumb { color: var(--muted); font-size: 0.9rem; margin-bottom: 10px; font-weight: 500; }
-        .breadcrumb a { color: var(--brand); text-decoration: none; }
+        .study-section { background: white; border-radius: 24px; padding: 50px; margin-bottom: 40px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
         
-        h1 { font-size: 2.5rem; font-weight: 800; color: var(--text); margin-bottom: 15px; }
-        h1 span { color: var(--brand); text-transform: capitalize; }
-
-        .note-card {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-top: 5px solid var(--brand);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: var(--shadow-lg);
-            margin-bottom: 30px;
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .note-card h2 { color: var(--brand); font-size: 1.8rem; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-        .note-card h3 { color: var(--text); font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--accent); padding-left: 15px; }
-        .note-card p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 15px; }
+        .chapter-tag { display: inline-block; background: var(--accent); color: white; padding: 4px 12px; border-radius: 6px; font-weight: 800; margin-bottom: 10px; font-size: 0.9rem; }
+        h1 { font-size: 2.4rem; color: var(--brand); margin-bottom: 30px; font-weight: 800; border-bottom: 4px solid var(--brand); padding-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: #1e1b4b; margin: 40px 0 20px 0; display: flex; align-items: center; gap: 10px; }
+        h2::before { content: ''; width: 6px; height: 30px; background: var(--brand); border-radius: 3px; display: inline-block; }
         
-        .note-card ul { padding-left: 20px; margin-bottom: 20px; color: var(--muted); }
-        .note-card li { margin-bottom: 10px; line-height: 1.6; }
-        .note-card strong { color: var(--text); font-weight: 700; }
+        p { margin-bottom: 20px; font-size: 1.1rem; color: #334155; text-align: justify; }
 
-        .formula-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
+        .formula-card { background: #fdf2f8; border: 1px solid #fbcfe8; padding: 25px; border-radius: 15px; color: #be185d; font-family: 'Courier New', monospace; font-weight: 700; margin: 25px 0; text-align: center; font-size: 1.3rem; }
+        
+        .method-box { background: #f0f9ff; border-left: 6px solid #0ea5e9; padding: 25px; border-radius: 0 15px 15px 0; margin: 20px 0; }
+        .method-box b { color: #0369a1; display: block; margin-bottom: 5px; }
 
-        .formula-box {
-            background: #fdf2f8;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #fbcfe8;
-            font-family: 'Courier New', monospace;
-            color: #be185d;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .concept-highlight {
-            background: #f0f9ff;
-            border: 1px solid #bae6fd;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-
-        .concept-highlight h4 { color: #0369a1; margin-bottom: 10px; font-size: 1.1rem; }
-
-        .action-area { text-align: center; margin-top: 50px; }
-        .btn-practice {
-            background: linear-gradient(135deg, #38bdf8, #2563eb);
-            color: white; padding: 15px 35px; border-radius: 50px;
-            font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: 0.3s;
-            display: inline-block;
-        }
-
-        footer { text-align:center; padding:30px; border-top:1px solid var(--border); color:var(--muted); margin-top:auto; }
+        .science-fact { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 12px; margin: 20px 0; color: #166534; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
-    <div class="nav-links">
-        <a href="study.html">Subjects</a>
-        <a href="index.html">Home</a>
-    </div>
-</nav>
-
 <div class="container">
-    <div class="header-section">
-        <div class="breadcrumb">
-            <a href="study.html">Study Material</a> > <span id="breadSubject">Subject</span>
-        </div>
-        <h1><span id="pageTitle">Mathematics</span> - <span id="pageClass" style="color:var(--text)">Class 6</span></h1>
-    </div>
-
-    <div id="contentInjection">
-        </div>
-
-    <div class="action-area">
-        <a href="chapterwise.html" class="btn-practice">Master the Quiz 🚀</a>
-    </div>
+    <div id="contentInjection"></div>
 </div>
-
-<footer>
-    <p>© 2026 Olympiad Portal. Expert-Curated Learning Materials.</p>
-</footer>
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const subject = urlParams.get('subject') || 'maths';
-    const classStr = urlParams.get('class') || 'class5';
-    const classNum = parseInt(classStr.replace('class', ''));
-
-    document.getElementById('breadSubject').innerText = subject.charAt(0).toUpperCase() + subject.slice(1);
-    document.getElementById('pageTitle').innerText = subject;
-    document.getElementById('pageClass').innerText = `Class ${classNum}`;
+    const subject = (urlParams.get('subject') || 'maths').toLowerCase();
+    const classStr = (urlParams.get('class') || 'class5').toLowerCase();
 
     const studyDB = {
         maths: {
-            class4: `
-                <div class="note-card">
-                    <h2>🔢 Advanced Arithmetic & Number Systems</h2>
-                    <p>Olympiads often test the relationship between numbers rather than just calculations.</p>
-                    
-                    <h3>1. Large Numbers & Place Value</h3>
-                    <ul>
-                        <li><strong>Place Value vs Face Value:</strong> In 7,432, Face Value of 4 is 4. Place Value is 400.</li>
-                        <li><strong>Expanded Form:</strong> (Digit × Place Value) + (Digit × Place Value)...</li>
-                    </ul>
-                    <div class="formula-grid">
-                        <div class="formula-box">Successor = Number + 1</div>
-                        <div class="formula-box">Predecessor = Number - 1</div>
-                    </div>
-
-                    <h3>2. Factors, Multiples & Divisibility</h3>
-                    <div class="concept-highlight">
-                        <h4>Divisibility Rules (Must Know):</h4>
-                        <ul>
-                            <li><strong>Rule for 3:</strong> Sum of digits is divisible by 3.</li>
-                            <li><strong>Rule for 4:</strong> Last two digits are divisible by 4.</li>
-                            <li><strong>Rule for 6:</strong> Number is divisible by both 2 and 3.</li>
-                            <li><strong>Rule for 9:</strong> Sum of digits is divisible by 9.</li>
-                        </ul>
-                    </div>
-
-                    <h3>3. Perimeter & Area Foundations</h3>
-                    <div class="formula-grid">
-                        <div class="formula-box">P (Rectangle) = 2(L + B)</div>
-                        <div class="formula-box">P (Square) = 4 × Side</div>
-                        <div class="formula-box">Area (Square) = Side × Side</div>
-                    </div>
-                </div>
-            `,
             class5: `
-                <div class="note-card">
-                    <h2>📈 Mastery of Computation & Geometry</h2>
-                    
-                    <h3>1. The BODMAS / PEMDAS Rule</h3>
-                    <p>Vital for solving multi-step equations without errors.</p>
-                    <div class="formula-box">B(rackets) > O(f) > D(ivision) > M(ultiplication) > A(ddition) > S(ubtraction)</div>
-
-                    <h3>2. HCF and LCM Applications</h3>
-                    <p>Used in word problems involving "least time", "smallest quantity", or "equal groups".</p>
-                    <div class="formula-grid">
-                        <div class="formula-box">LCM × HCF = Product of 2 Numbers</div>
-                        <div class="formula-box">HCF = (Product) / LCM</div>
-                    </div>
-
-                    <h3>3. Fractions, Decimals & Percentages</h3>
-                    <ul>
-                        <li><strong>Like Fractions:</strong> Same denominator. Easy to add/subtract.</li>
-                        <li><strong>Unit Fraction:</strong> Numerator is always 1 (e.g., 1/5, 1/9).</li>
-                        <li><strong>Decimal Shift:</strong> Multiplying by 10 moves decimal 1 place Right. Dividing by 10 moves it 1 place Left.</li>
-                    </ul>
-                    <div class="formula-box">Percentage = (Value / Total) × 100</div>
-
-                    <h3>4. Geometry: Angles & Symmetry</h3>
-                    <div class="concept-highlight">
-                        <h4>Angle Classification:</h4>
-                        <ul>
-                            <li><strong>Acute:</strong> 0° < x < 90°</li>
-                            <li><strong>Right:</strong> Exactly 90°</li>
-                            <li><strong>Obtuse:</strong> 90° < x < 180°</li>
-                            <li><strong>Reflex:</strong> 180° < x < 360°</li>
-                        </ul>
-                    </div>
+                <h1>Mathematics - Class 5</h1>
+                <div class="study-section">
+                    <span class="chapter-tag">M01</span>
+                    <h2>Number Sense & Computation</h2>
+                    <p>In Class 5, we master numbers up to 8 digits. This involves understanding the <b>Indian vs. International Systems</b>. The Indian system uses Lakhs/Crores, while the International system uses Millions/Billions.</p>
+                    <div class="method-box"><b>BODMAS Rule:</b> Always prioritize Brackets (B) and 'Of' (O) before basic arithmetic like Division (D) or Addition (A).</div>
                 </div>
-            `,
+
+                <div class="study-section">
+                    <span class="chapter-tag">M05</span>
+                    <h2>Perimeter & Area</h2>
+                    <p>Perimeter is the total boundary of a figure, while Area is the space inside. For a square, we multiply the side by 4 for perimeter and by itself for area.</p>
+                    <div class="formula-card">Perimeter (Rect) = 2(L+B) | Area (Rect) = L × B</div>
+                </div>`,
+
             class6: `
-                <div class="note-card">
-                    <h2>📐 Algebra, Ratio & Proportion</h2>
-                    
-                    <h3>1. Introduction to Algebra</h3>
-                    <p>Using variables (x, y, z) to represent unknown values.</p>
-                    <ul>
-                        <li><strong>Constants:</strong> Fixed values (5, -10, 1/2).</li>
-                        <li><strong>Variables:</strong> Symbols that can take different values.</li>
-                        <li><strong>Linear Equation:</strong> An equation where the highest power of the variable is 1.</li>
-                    </ul>
-                    <div class="formula-box">Expression: 2x + 5 | Equation: 2x + 5 = 15</div>
-
-                    <h3>2. Ratio, Proportion & Unitary Method</h3>
-                    <p>Comparing two quantities of the same kind.</p>
-                    <div class="formula-grid">
-                        <div class="formula-box">Ratio a:b = a/b</div>
-                        <div class="formula-box">Proportion: a/b = c/d (ad = bc)</div>
-                    </div>
-                    <div class="concept-highlight">
-                        <h4>Unitary Method:</h4>
-                        <p>1. Find the value of <strong>one</strong> unit (Divide).<br>2. Find the value of <strong>required</strong> units (Multiply).</p>
-                    </div>
-
-                    <h3>3. Integers & Number Line</h3>
-                    <ul>
-                        <li><strong>Absolute Value:</strong> |x| is the distance from zero. |-7| = 7.</li>
-                        <li><strong>Rules:</strong> (-) + (-) = Add and keep sign. (-) × (-) = Positive.</li>
-                    </ul>
+                <h1>Mathematics - Class 6</h1>
+                <div class="study-section">
+                    <span class="chapter-tag">M01 - M03</span>
+                    <h2>Knowing Our Numbers & Integers</h2>
+                    <p>Integers introduce <b>negative values</b>. On a number line, zero acts as the center. Numbers to the right are positive, and numbers to the left are negative. Adding a negative number is equivalent to moving left.</p>
+                    <div class="method-box"><b>Rule of Signs:</b> (-) × (-) = (+) | (+) × (-) = (-)</div>
                 </div>
-            `
+
+                <div class="study-section">
+                    <span class="chapter-tag">M05 - M06</span>
+                    <h2>Algebra & Ratio/Proportion</h2>
+                    <p>Algebra uses <b>Variables</b> (letters like x) to represent unknowns. Ratio is a comparison of two quantities by division, expressed as a:b.</p>
+                    <div class="formula-box">Proportion: Product of Extremes = Product of Means</div>
+                </div>`,
+
+            class7: `
+                <h1>Mathematics - Class 7</h1>
+                <div class="study-section">
+                    <span class="chapter-tag">M01 - M02</span>
+                    <h2>Integers, Fractions & Decimals</h2>
+                    <p>Fractions are parts of a whole. To add <b>Unlike Fractions</b>, you must first find the Least Common Multiple (LCM) of the denominators to make them equivalent.</p>
+                    <div class="method-box"><b>Decimal Multiplication:</b> Multiply the numbers as whole numbers first, then count the total decimal places from the right.</div>
+                </div>`
         },
         science: {
             class5: `
-                <div class="note-card">
-                    <h2>🧬 Human Physiology & Natural Science</h2>
-                    
-                    <h3>1. The Nervous System</h3>
-                    <p>The body's communication network.</p>
-                    <ul>
-                        <li><strong>Cerebrum:</strong> Controls thinking, memory, and logic.</li>
-                        <li><strong>Cerebellum:</strong> Controls balance and muscle coordination.</li>
-                        <li><strong>Medulla:</strong> Controls involuntary actions (Heartbeat, Breathing).</li>
-                    </ul>
-
-                    <h3>2. Simple Machines & Force</h3>
-                    <p>Work is done only when force moves an object.</p>
-                    <div class="formula-grid">
-                        <div class="formula-box">Work = Force × Distance</div>
-                        <div class="formula-box">Force = Mass × Acceleration</div>
-                    </div>
-                    <div class="concept-highlight">
-                        <h4>Types of Levers:</h4>
-                        <ul>
-                            <li><strong>Class 1:</strong> Fulcrum in middle (Scissors, Seesaw).</li>
-                            <li><strong>Class 2:</strong> Load in middle (Wheelbarrow, Nutcracker).</li>
-                            <li><strong>Class 3:</strong> Effort in middle (Tweezers, Fishing rod).</li>
-                        </ul>
-                    </div>
-
-                    <h3>3. Space and Eclipses</h3>
-                    <ul>
-                        <li><strong>Solar Eclipse:</strong> Moon comes between Sun and Earth.</li>
-                        <li><strong>Lunar Eclipse:</strong> Earth comes between Sun and Moon.</li>
-                    </ul>
+                <h1>Science - Class 5</h1>
+                <div class="study-section">
+                    <span class="chapter-tag">S01 - S02</span>
+                    <h2>Animals & Plants</h2>
+                    <p>Animals are classified by their breathing organs: Mammals use lungs, insects use spiracles, and fish use gills. Plants produce food through <b>Photosynthesis</b> using chlorophyll in their leaves.</p>
+                    <div class="science-fact"><b>Seed Dispersal:</b> Seeds can travel by Wind (Dandelion), Water (Coconut), or Animals (Xanthium).</div>
                 </div>
-            `
-        },
-        reasoning: {
-            general: `
-                <div class="note-card">
-                    <h2>🧠 Logical Reasoning Strategies</h2>
-                    
-                    <h3>1. Coding & Decoding</h3>
-                    <p>Rules to transform letters/numbers into different forms.</p>
-                    <div class="formula-box">Alphabet Rank: A=1, B=2 ... Z=26 | Reverse: Z=1, Y=2</div>
 
-                    <h3>2. Direction Sense Test</h3>
-                    <p>Always draw a '+' sign representing N, S, E, W before starting.</p>
-                    <div class="formula-box">Pythagoras: c² = a² + b² (For shortest distance)</div>
+                <div class="study-section">
+                    <span class="chapter-tag">S03</span>
+                    <h2>Human Body & Health</h2>
+                    <p>The <b>Nervous System</b> is the body's command center. The brain has three parts: The Cerebrum (thinking), Cerebellum (balance), and Medulla (involuntary actions like breathing).</p>
+                </div>`,
 
-                    <h3>3. Number Series Logic</h3>
-                    <ul>
-                        <li><strong>Arithmetic:</strong> Adding/Subtracting a constant.</li>
-                        <li><strong>Geometric:</strong> Multiplying/Dividing by a constant.</li>
-                        <li><strong>Squares/Cubes:</strong> 1, 4, 9, 16... or 1, 8, 27, 64...</li>
-                    </ul>
+            class6: `
+                <h1>Science - Class 6</h1>
+                <div class="study-section">
+                    <span class="chapter-tag">S01 - S04</span>
+                    <h2>Food & Body Movements</h2>
+                    <p>Nutrients include Carbohydrates, Proteins, and Vitamins. Deficiency of Vitamin A causes Night Blindness. Body movement is enabled by <b>Joints</b> like Ball-and-Socket (Shoulder) and Hinge (Elbow).</p>
                 </div>
-            `
+
+                <div class="study-section">
+                    <span class="chapter-tag">S06 - S08</span>
+                    <h2>Light, Shadows & Electricity</h2>
+                    <p>Light travels in a straight line (Rectilinear Propagation). A <b>Shadow</b> is formed when an opaque object blocks light. Electricity flows in a <b>Closed Circuit</b>.</p>
+                </div>`
         }
     };
 
-    function injectContent() {
-        let content = "";
-        if (subject === 'maths') {
-            content = studyDB.maths[classStr] || studyDB.maths.class6;
-        } else if (subject === 'science') {
-            content = studyDB.science[classStr] || studyDB.science.class5;
-        } else if (subject === 'reasoning') {
-            content = studyDB.reasoning.general;
-        } else {
-            content = studyDB.maths.class5; // Fallback
-        }
+    function loadContent() {
+        const sub = studyDB[subject] || studyDB.maths;
+        let content = sub[classStr] || "<h1>Content for this Class</h1><div class='study-section'><p>Detailed chapter-wise notes are being finalized by our experts. Please check back shortly!</p></div>";
         document.getElementById('contentInjection').innerHTML = content;
     }
-
-    injectContent();
+    loadContent();
 </script>
 
 </body>
