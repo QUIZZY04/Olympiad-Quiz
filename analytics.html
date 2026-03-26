@@ -11,16 +11,20 @@
 
 <style>
 :root {
-  --bg: #020617;
-  --surface: #0f172a;
-  --text: #f8fafc;
-  --muted: #94a3b8;
-  --border: #334155;
-  --brand: #38bdf8;
-  --accent: #818cf8;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --subtle: #f1f5f9;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --brand: #4f46e5;
+  --accent: #8b5cf6;
+  --danger: #ef4444;
   --success: #10b981;
   --warning: #f59e0b;
-  --danger: #f43f5e;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
 }
 
 body {
@@ -34,7 +38,7 @@ body {
 }
 
 nav {
-  background: rgba(2, 6, 23, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 15px 5%;
@@ -44,7 +48,7 @@ nav {
   position: sticky; top: 0; z-index: 1000;
 }
 
-.brand { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; }
+.brand { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; }
 
 .container { width: 95%; max-width: 1200px; margin: 30px auto; }
 
@@ -57,6 +61,7 @@ nav {
   border: 1px solid var(--border);
   text-align: center;
   transition: transform 0.3s ease;
+  box-shadow: var(--shadow-sm);
 }
 .stat-card:hover { transform: translateY(-5px); border-color: var(--brand); }
 .stat-val { display: block; font-size: 28px; font-weight: 800; color: var(--brand); }
@@ -70,7 +75,7 @@ nav {
   padding: 25px;
   border-radius: 24px;
   border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .topic-list { list-style: none; padding: 0; margin-top: 20px; }
@@ -79,14 +84,14 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
-  background: rgba(255,255,255,0.03);
+  background: var(--bg);
   border-radius: 12px;
   margin-bottom: 10px;
   border: 1px solid transparent;
 }
 .topic-item:hover { border-color: var(--border); background: rgba(255,255,255,0.05); }
 
-.progress-bar { height: 8px; background: #1e293b; border-radius: 10px; width: 100px; overflow: hidden; }
+.progress-bar { height: 8px; background: var(--border); border-radius: 10px; width: 100px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--brand); border-radius: 10px; }
 
 @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }

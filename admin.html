@@ -14,16 +14,20 @@ window.onpopstate = function () {
 
 <style>
 :root{
---bg: #020617;
---surface: #0f172a;
---text:#f8fafc;
---muted:#94a3b8;
---border:#334155;
---brand: #38bdf8;
---accent: #818cf8;
---danger: #f43f5e;
+--bg: #f8fafc;
+--surface: #ffffff;
+--subtle: #f1f5f9;
+--text: #0f172a;
+--muted: #64748b;
+--border: #e2e8f0;
+--brand: #4f46e5;
+--accent: #8b5cf6;
+--danger: #ef4444;
 --success: #10b981;
 --warning: #f59e0b;
+--shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+--shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+--shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
 }
 body{
 font-family:'Inter',sans-serif;
@@ -34,7 +38,7 @@ background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), t
 background-attachment: fixed;
 }
 nav{
-background:rgba(2, 6, 23, 0.8);
+background: rgba(255, 255, 255, 0.95);
 backdrop-filter: blur(12px);
 border-bottom:1px solid var(--border);
 padding:15px 5%;
@@ -46,7 +50,7 @@ position: sticky; top: 0; z-index: 1000;
 .brand{
 font-size:22px;
 font-weight:800;
-color:#ffffff;
+color:var(--text);
 text-decoration:none;
 }
 .nav-links{
@@ -54,7 +58,7 @@ display:flex;
 gap:12px;
 }
 .nav-links a{
-color:white;
+color:var(--text);
 text-decoration:none;
 font-size:11px;
 font-weight:800;
@@ -69,13 +73,13 @@ max-width:1200px;
 margin:30px auto;
 }
 .panel{
-background: linear-gradient(145deg, #0f172a, #020617);
+background: var(--surface);
 padding:25px 30px;
 border-radius:24px;
 margin-bottom:30px;
 border:1px solid var(--border);
 border-top:2px solid var(--brand);
-box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+box-shadow: var(--shadow-md);
 }
 h2{
 color:var(--warning);
@@ -86,9 +90,9 @@ width:100%;
 padding:10px;
 margin-top:10px;
 border-radius:8px;
-border:none;
-background:#020617;
-color:white;
+border:1px solid var(--border);
+background:var(--bg);
+color:var(--text);
 box-sizing:border-box;
 }
 textarea{
@@ -154,7 +158,7 @@ border-radius:6px;
 footer{
 text-align:center;
 padding:30px;
-background:rgba(2, 6, 23, 0.8);
+background:var(--surface);
 color:#94a3b8;
 border-top:1px solid var(--border);
 }
@@ -168,7 +172,7 @@ border-top:1px solid var(--border);
     margin-top:16px;
 }
 .summary-card{
-    background: rgba(15, 23, 42, 0.9);
+    background: var(--bg);
     border:1px solid var(--border);
     border-radius:16px;
     padding:16px;

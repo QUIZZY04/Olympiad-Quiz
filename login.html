@@ -11,15 +11,19 @@
 
   <style>
     :root {
-      --bg: #020617;
-      --surface: #0f172a;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --border: #1e293b;
-      --brand: #38bdf8;
-      --accent: #818cf8;
-      --danger: #f43f5e;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --subtle: #f1f5f9;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --brand: #4f46e5;
+      --accent: #8b5cf6;
+      --danger: #ef4444;
       --success: #10b981;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -27,7 +31,7 @@
     body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%); background-attachment: fixed; }
 
     nav {
-      background: rgba(2, 6, 23, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 20px 5%;
@@ -37,12 +41,12 @@
       z-index: 1000;
     }
     
-    .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; }
+    .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; }
     
     nav div a {
-      color: var(--muted);
+      color: var(--text);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       margin-left: 25px;
       font-size: 14px;
       text-transform: uppercase;
@@ -59,7 +63,7 @@
     }
 
     .login-box {
-      background: linear-gradient(145deg, #0f172a, #020617);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-top: 2px solid var(--brand);
       padding: 45px;
@@ -67,7 +71,7 @@
       width: 100%;
       max-width: 420px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-lg);
     }
 
     h2 { font-size: 28px; font-weight: 800; margin-bottom: 30px; color: var(--text); }
@@ -76,7 +80,7 @@
       width: 100%;
       padding: 14px 18px;
       margin-bottom: 15px;
-      background: var(--bg);
+      background: var(--subtle);
       border: 1px solid var(--border);
       border-radius: 10px;
       color: var(--text);
@@ -105,7 +109,7 @@
     button.google-btn {
       width: 100%;
       padding: 12px;
-      background: var(--bg) !important;
+      background: var(--surface) !important;
       color: var(--text) !important;
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -118,7 +122,7 @@
       gap: 10px;
       margin-top: 15px;
     }
-    button.google-btn:hover { background: rgba(255,255,255,0.05) !important; }
+    button.google-btn:hover { background: var(--subtle) !important; }
 
     .link-group { margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
     .link-btn {
@@ -287,14 +291,14 @@ document.getElementById("changeForm").addEventListener("submit", async (e) => {
     } catch (err) { alert(err.message); }
 });
 </script>
-<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+<footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-        <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
-        <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+        <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Home</a>
+        <a href="features.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Features</a>
+        <a href="about.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">About Us</a>
+        <a href="contact.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
     </div>
     <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>

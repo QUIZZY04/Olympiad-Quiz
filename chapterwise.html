@@ -7,16 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #020617;
-            --surface: #0f172a;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: #1e293b;
-            --brand: #38bdf8;
-            --accent: #818cf8;
-            --danger: #f43f5e;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --subtle: #f1f5f9;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --brand: #4f46e5;
+            --accent: #8b5cf6;
+            --danger: #ef4444;
             --success: #10b981;
             --warning: #f59e0b;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -32,7 +36,7 @@
         }
 
         nav {
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
             border-bottom: 1px solid var(--border); 
             padding: 20px 5%; 
             display: flex; 
@@ -41,12 +45,12 @@
             position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px;
         }
         
-        .brand { font-size: 1.5rem; font-weight: 700; color: #ffffff; text-decoration: none; white-space: nowrap; }
+        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; white-space: nowrap; }
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
         .nav-links a {
-            color: var(--muted);
+            color: var(--text);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9rem;
             text-transform: uppercase;
             transition: 0.3s;
@@ -62,15 +66,15 @@
         }
 
         .selection-box {
-            background: linear-gradient(145deg, #0f172a, #020617);
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-top: 2px solid var(--brand);
+            border-top: 3px solid var(--brand);
             padding: 45px 40px;
             border-radius: 24px;
             width: 100%;
-            max-width: 550px;
+            max-width: 700px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-lg);
         }
 
         .selection-box h2 {
@@ -93,7 +97,7 @@
         .form-group {
             text-align: left;
             margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--subtle);
             padding: 20px;
             border-radius: 16px;
             border: 1px solid var(--border);
@@ -102,7 +106,7 @@
         
         .form-group:hover {
             border-color: var(--brand);
-            background: rgba(56, 189, 248, 0.05);
+            background: var(--surface);
         }
 
         .step-label {
@@ -132,7 +136,7 @@
         select {
             width: 100%;
             padding: 14px 20px;
-            background: var(--bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 10px;
             color: var(--text);
@@ -241,14 +245,14 @@
     </div>
 </div>
 
-<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+<footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-        <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Features</a>
-        <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+        <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Home</a>
+        <a href="features.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Features</a>
+        <a href="about.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">About Us</a>
+        <a href="contact.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
     </div>
     <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>

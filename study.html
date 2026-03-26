@@ -8,13 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #020617;
-            --surface: #0f172a;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: #1e293b;
-            --brand: #38bdf8;
-            --accent: #818cf8;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --subtle: #f1f5f9;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --brand: #4f46e5;
+            --accent: #8b5cf6;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -30,14 +33,14 @@
         }
 
         nav { 
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
             border-bottom:1px solid var(--border); 
             padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
             position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
         }
-        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; white-space: nowrap; }
+        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
         .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
+        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand); }
 
         .container {
@@ -69,12 +72,12 @@
         }
 
         .content-card {
-            background: linear-gradient(145deg, #0f172a, #020617);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-top: 2px solid var(--brand);
             border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-md);
             margin-bottom: 30px;
         }
         
@@ -132,7 +135,7 @@
         }
 
         .subject-card {
-            background: linear-gradient(145deg, #0f172a, #020617);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 40px 30px;
@@ -141,7 +144,7 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-md);
             text-decoration: none;
             display: flex;
             flex-direction: column;
@@ -150,7 +153,7 @@
 
         .subject-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: var(--shadow-lg);
         }
 
         .subject-icon {
@@ -168,18 +171,18 @@
             margin-top: auto;
             padding: 10px 25px;
             border-radius: 50px;
-            background: rgba(255,255,255,0.05);
-            color: #fff;
+            background: var(--bg);
+            color: var(--brand);
             font-weight: 600;
             font-size: 0.9rem;
             transition: 0.3s;
             border: 1px solid var(--border);
         }
 
-        .maths-card { border-top: 4px solid #38bdf8; } .maths-card:hover .card-btn { background: #38bdf8; border-color: #38bdf8; }
-        .science-card { border-top: 4px solid #10b981; } .science-card:hover .card-btn { background: #10b981; border-color: #10b981; }
-        .english-card { border-top: 4px solid #f43f5e; } .english-card:hover .card-btn { background: #f43f5e; border-color: #f43f5e; }
-        .reasoning-card { border-top: 4px solid #f59e0b; } .reasoning-card:hover .card-btn { background: #f59e0b; border-color: #f59e0b; }
+        .maths-card { border-top: 4px solid #38bdf8; } .maths-card:hover .card-btn { background: #38bdf8; border-color: #38bdf8; color: #fff; }
+        .science-card { border-top: 4px solid #10b981; } .science-card:hover .card-btn { background: #10b981; border-color: #10b981; color: #fff; }
+        .english-card { border-top: 4px solid #f43f5e; } .english-card:hover .card-btn { background: #f43f5e; border-color: #f43f5e; color: #fff; }
+        .reasoning-card { border-top: 4px solid #f59e0b; } .reasoning-card:hover .card-btn { background: #f59e0b; border-color: #f59e0b; color: #fff; }
     </style>
 </head>
 <body>
@@ -248,7 +251,7 @@
     </div>
 </div>
 
-<footer style="text-align:center;padding:30px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+<footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 

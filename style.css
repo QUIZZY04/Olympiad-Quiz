@@ -10,9 +10,14 @@
 /* ================= DEFAULT BODY (Dashboard/Quiz/Result) ================= */
 
 body {
-    background: #f8fafc; /* Changed to a lighter, solid background */
-    color: #1e293b;
+    background: #f8fafc;
+    color: #0f172a;
     min-height: 100vh;
+}
+
+:root {
+    --brand: #4f46e5;
+    --accent: #8b5cf6;
 }
 
 /* ================= CONTAINER COMMON ================= */

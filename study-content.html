@@ -7,14 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #020617;
-            --surface: #0f172a;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: #1e293b;
-            --brand: #38bdf8;
-            --accent: #818cf8;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --subtle: #f1f5f9;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --brand: #4f46e5;
+            --accent: #8b5cf6;
             --success: #10b981;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -30,14 +32,14 @@
         }
 
         nav { 
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(12px); 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
             border-bottom:1px solid var(--border); padding:20px 5%; 
             display:flex; align-items:center; justify-content:space-between; 
             position:sticky; top:0; z-index:1000;
         }
-        .brand { font-size:1.5rem; font-weight:700; color:#ffffff; text-decoration:none; }
+        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; }
         .nav-links { display:flex; gap:12px; }
-        .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:600; transition:0.3s; }
+        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; transition:0.3s; }
         .nav-links a:hover { color:var(--brand); }
 
         .container { width: 100%; max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; }
@@ -50,12 +52,12 @@
         h1 span { color: var(--brand); text-transform: capitalize; }
 
         .note-card {
-            background: var(--surface);
+            background: #ffffff;
             border: 1px solid var(--border);
-            border-top: 4px solid var(--brand);
+            border-top: 5px solid var(--brand);
             border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-lg);
             margin-bottom: 30px;
             animation: fadeInUp 0.5s ease-out forwards;
         }
@@ -64,23 +66,23 @@
 
         .note-card h2 { color: var(--brand); font-size: 1.8rem; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         .note-card h3 { color: var(--text); font-size: 1.3rem; margin-top: 30px; margin-bottom: 15px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .note-card p { color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin-bottom: 15px; }
+        .note-card p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 15px; }
         
-        .note-card ul { padding-left: 20px; margin-bottom: 20px; color: #cbd5e1; }
+        .note-card ul { padding-left: 20px; margin-bottom: 20px; color: var(--muted); }
         .note-card li { margin-bottom: 10px; line-height: 1.6; }
-        .note-card strong { color: var(--text); }
+        .note-card strong { color: var(--text); font-weight: 700; }
 
         .highlight-box {
-            background: rgba(56, 189, 248, 0.05);
+            background: var(--subtle);
             border-left: 4px solid var(--accent);
             padding: 20px;
             border-radius: 8px;
             margin: 25px 0;
-            color: #e2e8f0;
+            color: var(--text);
         }
 
         .formula-box {
-            background: #1e293b;
+            background: var(--bg);
             padding: 15px 20px;
             border-radius: 10px;
             font-family: 'Courier New', monospace;

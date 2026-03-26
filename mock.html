@@ -14,17 +14,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #020617;
-            --surface: #0f172a;
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: #1e293b;
-            --brand: #38bdf8;
-            --accent: #818cf8;
-            --danger: #f43f5e;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --subtle: #f1f5f9;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --brand: #4f46e5;
+            --accent: #8b5cf6;
+            --danger: #ef4444;
             --success: #10b981;
             --warning: #f59e0b;
-            --glass: rgba(15, 23, 42, 0.7);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -41,7 +44,7 @@
         }
 
         nav {
-            background: rgba(2, 6, 23, 0.8); 
+            background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(12px); 
             border-bottom: 1px solid var(--border); 
             padding: 15px 5%; 
@@ -51,24 +54,23 @@
             position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px;
         }
         
-        .brand { font-size: 1.4rem; font-weight: 700; color: #ffffff; text-decoration: none; letter-spacing: -0.5px; }
+        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.5px; }
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a { color: var(--text); text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand); }
 
         .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
 
         .selection-box {
-            background: var(--glass);
-            backdrop-filter: blur(16px);
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-top: 4px solid var(--brand);
+            border-top: 3px solid var(--brand);
             padding: 50px;
             border-radius: 28px;
             width: 100%;
             max-width: 750px;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: var(--shadow-lg);
         }
 
         .selection-box h2 { font-size: 2.2rem; margin-bottom: 10px; font-weight: 800; }
@@ -78,7 +80,7 @@
         .form-group { 
             text-align: left; 
             margin-bottom: 25px; 
-            background: rgba(255, 255, 255, 0.02); 
+            background: var(--subtle); 
             padding: 24px; 
             border-radius: 18px; 
             border: 1px solid var(--border);
@@ -87,7 +89,7 @@
         
         .form-group:focus-within {
             border-color: var(--brand);
-            background: rgba(56, 189, 248, 0.04);
+            background: var(--surface);
         }
 
         .step-label { 
@@ -118,7 +120,7 @@
         select {
             width: 100%;
             padding: 14px 18px;
-            background: var(--bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
             color: var(--text);
@@ -140,7 +142,7 @@
         }
 
         .subject-card {
-            background: var(--bg);
+            background: var(--subtle);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 25px 20px;
@@ -151,9 +153,9 @@
 
         .subject-card:hover {
             border-color: var(--brand);
-            background: rgba(56, 189, 248, 0.05);
+            background: var(--surface);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.3);
+            box-shadow: var(--shadow-md);
         }
 
         .subject-card h3 { color: var(--text); font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; }
@@ -232,14 +234,14 @@
         </div>
     </div>
 
-    <footer style="text-align:center;padding:40px 20px;background:rgba(2, 6, 23, 0.8);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <footer style="text-align:center;padding:40px 20px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
         <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 15px;">
-            <a href="index.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Home</a>
-            <a href="features.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Features</a>
-            <a href="about.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">About Us</a>
-            <a href="contact.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Contact Us</a>
-            <a href="privacy-policy.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Privacy Policy</a>
-            <a href="term.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;text-transform:uppercase;">Terms</a>
+            <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Home</a>
+            <a href="features.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Features</a>
+            <a href="about.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">About Us</a>
+            <a href="contact.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Contact Us</a>
+            <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Privacy Policy</a>
+            <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Terms</a>
         </div>
         <p style="margin-top:15px;font-size:13px;letter-spacing:0.5px;">© 2026 Olympiad Portal. All rights reserved.</p>
     </footer>
