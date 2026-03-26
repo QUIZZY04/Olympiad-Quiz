@@ -79,22 +79,21 @@
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .logo {
-            font-size: 1.5rem; /* Keep existing font size */
-            font-weight: 800;
-            color: #0f172a;
-        }
+        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
 
+        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
         .nav-links a {
             color: var(--text);
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
-            margin-left: 20px;
             font-size: 0.9rem;
+            text-transform: uppercase;
             transition: 0.3s;
         }
 
@@ -218,12 +217,8 @@
         }
 
         @media (max-width: 768px) {
-            nav { flex-direction: column; padding: 15px; gap: 15px; }
+            nav { flex-direction: column; padding: 15px; }
             .hero h1 { font-size: 2.2rem; }
-            .nav-links { display: flex; flex-direction: column; gap: 12px; width: 100%; align-items: center; }
-            .nav-links a { margin-left: 0; font-size: 0.85rem; }
-            .nav-links > div { margin-left: 0 !important; border-left: none !important; padding-left: 0 !important; display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%; }
-            .nav-links > div a { margin-left: 0 !important; }
         }
 
         /* New Button Styles for Hero Section */
@@ -250,14 +245,15 @@
 
     <header>
         <nav>
-            <a href="index.html" class="logo" style="text-decoration: none;">Olympiad Portal</a>
+            <a href="index.html" class="brand">🎓 Olympiad Portal</a>
             <div class="nav-links">
+                <a href="index.html" style="color:var(--brand); border-bottom: 2px solid var(--brand); padding-bottom: 2px;">Home</a>
                 <a href="features.html">Features</a>
                 <a href="about.html">About Us</a>
                 <a href="contact.html">Contact</a>
                 <div style="display: inline-block; margin-left: 15px; border-left: 2px solid var(--border); padding-left: 15px;">
-                    <a href="login.html" style="margin-left: 5px; font-weight: 600; color: var(--text);">Log in</a>
-                    <a href="signup.html" style="background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; margin-left: 15px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);">Get Started Free</a>
+                    <a href="login.html" style="margin-left: 5px; font-weight: 600; color: var(--text); text-transform:none;">Log in</a>
+                    <a href="signup.html" style="background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; margin-left: 15px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); text-transform:none;">Get Started Free</a>
                 </div>
             </div>
         </nav>
