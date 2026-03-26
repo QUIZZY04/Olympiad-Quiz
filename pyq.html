@@ -7,20 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #f8fafc;                  
+            --bg: #f8fafc;
+            --subtle: #f1f5f9;
             --surface: #ffffff;            
-            --text: #1e293b;                
-            --muted: #475569;              
+            --text: #0f172a;                
+            --muted: #64748b;              
             --border: #e2e8f0;             
-            --brand: #2563eb;              
-            --accent: #3b82f6;              
+            --brand: #4f46e5;              
+            --accent: #8b5cf6;              
             --danger: #ef4444;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
         body { 
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: var(--bg);
             min-height: 100vh; 
             color: var(--text);
             display: flex;
@@ -28,20 +30,20 @@
         }
 
         nav {
-            background: var(--surface); 
-            border-bottom: 2px solid var(--border);
-            padding: 15px 40px; 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
+            border-bottom: 1px solid var(--border); 
+            padding: 20px 5%; 
             display: flex; 
             align-items: center; 
             justify-content: space-between;
         }
         
-        .brand { font-size: 24px; font-weight: 800; color: var(--brand); text-decoration: none; }
+        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; }
         .nav-links { display: flex; align-items: center; gap: 20px;}
         .nav-links a {
             color: var(--muted);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
             transition: 0.2s;
@@ -57,7 +59,7 @@
         }
 
         .selection-box {
-            background: linear-gradient(145deg, #0f172a, #020617);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-top: 2px solid var(--brand);
             padding: 45px 40px;
@@ -65,7 +67,7 @@
             width: 100%;
             max-width: 550px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-lg);
         }
 
         .selection-box h2 {
@@ -88,7 +90,7 @@
         .form-group {
             text-align: left;
             margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--subtle);
             padding: 20px;
             border-radius: 16px;
             border: 1px solid var(--border);
