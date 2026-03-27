@@ -1098,7 +1098,11 @@ window.addStudyContent = async function() {
             lastUpdated: serverTimestamp()
         });
         alert(`Study content for ${cls} - ${subject} has been added/updated successfully!`);
-        document.getElementById('studyContent').innerHTML = ''; // Clear content area
+        
+        // Clear content area and reset dropdowns completely
+        document.getElementById('studyContent').innerHTML = ''; 
+        document.getElementById('studyClass').selectedIndex = 0;
+        document.getElementById('studySubject').selectedIndex = 0;
     } catch (e) {
         alert("Error adding study content: " + e.message);
         console.error(e);
