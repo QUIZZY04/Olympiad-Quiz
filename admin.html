@@ -435,10 +435,10 @@ border-top:1px solid var(--border);
             <div id="studyContent" contenteditable="true" style="width:100%; min-height:200px; padding:10px; margin-top:10px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); box-sizing:border-box; overflow-y:auto;" placeholder="Paste your study content here. Rich text formatting (bold, underline, etc.) will be preserved."></div>
         </div>
 
-        <button class="upload" onclick="addStudyContent()">Save Study Content</button>
-        <button class="edit-btn" onclick="loadExistingStudyContent()" style="background: var(--brand);">Load Existing Content</button>
+        <button class="upload" onclick="pasteStudyContent()" style="background: var(--warning); color: #000;">Paste</button>
+    <button class="upload" onclick="addStudyContent()">Upload</button>
         <button onclick="clearStudyContent()" style="background: var(--muted); color: white;">Clear</button>
-        <button class="delete" onclick="deleteStudyContent()">Delete Content</button>
+    <button class="delete" onclick="deleteStudyContent()">Delete</button>
     </div>
 
 <div class="panel">
@@ -1160,6 +1160,17 @@ window.deleteStudyContent = async function() {
         console.error(e);
     }
 };
+
+    window.pasteStudyContent = async function() {
+        try {
+            const text = await navigator.clipboard.readText();
+            const contentArea = document.getElementById('studyContent');
+            contentArea.focus();
+            document.execCommand('insertText', false, text);
+        } catch (err) {
+            alert("Failed to read clipboard. Please paste manually using Ctrl+V or Cmd+V.");
+        }
+    };
 
 window.clearStudyContent = function() {
     document.getElementById('studyContent').innerHTML = '';
