@@ -78,23 +78,23 @@
         }
         
         .session-card { 
-            background: var(--surface);
-            border: 1px solid var(--border); 
-            border-top: 3px solid var(--brand);
+            background: linear-gradient(to right, #e0f2fe, #bae6fd);
+            border: 2px solid var(--border); 
+            border-top: 6px solid #3b82f6; /* Using a more vibrant blue accent */
             border-radius: 24px; 
-            padding: 25px 30px; 
+            padding: 30px; 
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             display: flex; flex-direction: column; 
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15); /* Stronger shadow */
             position: relative;
             min-height: 320px;
             z-index: 1;
         }
 
         .session-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: var(--shadow-lg); 
-            border-color: var(--brand);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Enhanced hover shadow */
+            border-color: #3b82f6; /* Consistent accent color */
         }
 
         .card-highlight {
@@ -134,31 +134,36 @@
         .session-title { font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 12px; line-height: 1.3; }
         
         .session-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
-        .meta-item { background: var(--bg); padding: 10px; border-radius: 8px; border: 1px solid var(--border); font-size: 12px; color: var(--muted); display: flex; align-items: center; }
-        .meta-item:last-child { grid-column: 1 / -1; justify-content: center; background: rgba(79, 70, 229, 0.05); border-color: var(--border); color: var(--brand); font-weight: 700; }
-        .meta-item b { color: var(--text); font-weight: 600; margin-right: 6px; }
+        .meta-item { background: #f0f4f8; padding: 10px; border-radius: 8px; border: 1px solid #dbe2ea; font-size: 12px; color: #334155; display: flex; align-items: center; }
+        .meta-item:last-child { grid-column: 1 / -1; justify-content: center; background: rgba(79, 70, 229, 0.08); border-color: #c7d2fe; color: var(--brand); font-weight: 700; }
+        .meta-item b { color: #0f172a; font-weight: 600; margin-right: 6px; }
 
         .countdown-timer {
             font-weight: 800; color: var(--brand); font-size: 22px; margin-bottom: 15px; text-align: center; font-family: 'Inter', monospace;
             background: var(--bg); padding: 12px; border-radius: 12px; letter-spacing: 3px; border: 1px solid var(--border);
             text-shadow: 0 0 10px rgba(79, 70, 229, 0.1);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 0 15px rgba(79, 70, 229, 0.1); /* Enhanced shadow */
         }
 
         .rules-box {
-            background: rgba(0,0,0,0.2); border-radius: 12px; padding: 12px 15px; margin-bottom: 15px;
-            font-size: 12px; color: var(--muted); border: 1px solid var(--border);
+            background: var(--subtle);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--brand);
         }
-        .rules-box b { color: #e2e8f0; display: block; margin-bottom: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .rules-box b { color: var(--brand); display: block; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
         .rules-box ul { padding-left: 20px; margin: 0; }
-        .rules-box li { margin-bottom: 5px; line-height: 1.5; }
+        .rules-box li { margin-bottom: 8px; line-height: 1.6; color: var(--text); font-weight: 500; }
 
         .info-btn {
-            background: transparent; color: var(--muted); border: 1px solid var(--border);
+            background: #e0f2fe; color: var(--brand); border: 1px solid var(--brand);
             padding: 10px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer; transition: 0.3s;
             margin-bottom: 10px; width: 100%; text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .info-btn:hover { color: var(--brand); border-color: var(--brand); background: rgba(56, 189, 248, 0.05); }
+        .info-btn:hover { color: white; border-color: #3b82f6; background: #3b82f6; }
 
         .join-btn { 
             margin-top: auto; width: 100%; padding: 12px; border-radius: 12px; border: none; 
@@ -167,9 +172,9 @@
         .btn-unlocked { background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
         .btn-unlocked:hover { background: linear-gradient(135deg, #0ea5e9, #1d4ed8); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4); }
         .btn-locked { background: transparent; color: var(--warning); border: 2px solid var(--warning); }
-        .btn-locked:hover { background: rgba(245, 158, 11, 0.1); transform: translateY(-2px); }
+        .btn-locked:hover { background: rgba(245, 158, 11, 0.1); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2); }
         .btn-ready { background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2); cursor: not-allowed; opacity: 0.9; }
-        .btn-disabled { background: #1e293b; color: #64748b; border: 1px solid #334155; cursor: not-allowed; }
+        .btn-disabled { background: #e2e8f0; color: #64748b; border: 1px solid #cbd5e1; cursor: not-allowed; }
 
         #loader { text-align: center; padding: 50px; font-weight: 600; color: var(--brand); }
 
@@ -351,10 +356,10 @@
                     <span id="pill-${sDoc.id}" class="status-pill">Checking...</span>
                 <h3 class="session-title">${s.title}</h3>
                 <div class="session-meta">
-                    <div class="meta-item">📅 <b style="color: #94a3b8;">Date:</b> <span style="color: #fbbf24; font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
-                    <div class="meta-item">⏰ <b style="color: #94a3b8;">Starts:</b> <span style="color: #fbbf24; font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div>
-                    <div class="meta-item">⌛ <b style="color: #94a3b8;">Duration:</b> <span style="color: #f8fafc; font-weight: 600;">${s.duration} Min</span></div>
-                    <div class="meta-item">📖 <b style="color: #94a3b8;">Subject:</b> <span style="color: #f8fafc; font-weight: 600;">${s.subject.toUpperCase()}</span></div>
+                    <div class="meta-item">📅 <b style="color: var(--muted);">Date:</b> <span style="color: var(--text); font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                    <div class="meta-item">⏰ <b style="color: var(--muted);">Starts:</b> <span style="color: var(--text); font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div>
+                    <div class="meta-item">⌛ <b style="color: var(--muted);">Duration:</b> <span style="color: var(--text); font-weight: 600;">${s.duration} Min</span></div>
+                    <div class="meta-item">📖 <b style="color: var(--muted);">Subject:</b> <span style="color: var(--text); font-weight: 600;">${s.subject.toUpperCase()}</span></div>
                     <div class="meta-item">🎓 <b>Grade:</b> ${s.class}</div>
                 </div>
                 <div id="timer-${sDoc.id}" class="countdown-timer">00:00:00</div>
@@ -434,8 +439,8 @@
                     btn.innerText = "Test Unlocked"; btn.className = "join-btn btn-ready"; btn.disabled = true;
                 } else {
                     pill.innerText = "LIVE NOW"; pill.className = "status-pill status-live";
-                    if (highlight) highlight.innerHTML = "⚡ JOIN BATTLE NOW";
-                    timerEl.innerText = "Battle is Live!";
+                    if (highlight) highlight.innerHTML = "⚡ JOIN QUIZ NOW";
+                    timerEl.innerText = "QUIZ is Live!";
                     btn.innerText = "Join Quiz"; btn.className = "join-btn btn-unlocked"; btn.disabled = false;
                     btn.onclick = () => handleJoin(s.id);
                 }
