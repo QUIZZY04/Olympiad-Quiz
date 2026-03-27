@@ -68,8 +68,11 @@
 
         /* Ensure images are responsive within the note card */
         .note-card img {
-            max-width: 100%;
+            max-width: 60%; /* Further reduce image size */
             height: auto;
+            display: block; /* Necessary for centering with margin */
+            margin-left: auto;
+            margin-right: auto;
         }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -204,6 +207,14 @@
             if (content) {
                 // Inject the HTML content directly. This allows for tags like <h2>, <p>, <ul> to be rendered.
                 contentInjectionDiv.innerHTML = `<div class="note-card">${content}</div>`;
+
+                // Now that content is in the DOM, find images and attach the error handler
+                const images = contentInjectionDiv.querySelectorAll('.note-card img');
+                images.forEach(img => {
+                    img.onerror = function() {
+                        this.style.display = 'none';
+                    };
+                });
             } else {
                 // Fallback message if document doesn't exist or content is empty
                 contentInjectionDiv.innerHTML = `<div class='note-card'><h3>Content updating soon...</h3><p>Our experts are curating detailed notes for Class ${classNum} ${subject.charAt(0).toUpperCase() + subject.slice(1)}.</p></div>`;
