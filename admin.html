@@ -429,6 +429,7 @@ border-top:1px solid var(--border);
 
         <button class="upload" onclick="addStudyContent()">Save Study Content</button>
         <button class="edit-btn" onclick="loadExistingStudyContent()" style="background: var(--brand);">Load Existing Content</button>
+        <button onclick="clearStudyContent()" style="background: var(--muted); color: white;">Clear</button>
         <button class="delete" onclick="deleteStudyContent()">Delete Content</button>
     </div>
 
@@ -1151,7 +1152,11 @@ window.deleteStudyContent = async function() {
         alert("Error deleting study content: " + e.message);
         console.error(e);
     }
-}
+};
+
+window.clearStudyContent = function() {
+    document.getElementById('studyContent').value = '';
+};
 </script>
 </body>
 </html>
