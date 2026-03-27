@@ -210,6 +210,14 @@ border-top:1px solid var(--border);
 @media (max-width: 768px){
     .chapter-tools{ grid-template-columns: 1fr; }
 }
+
+/* Placeholder for contenteditable div */
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block; /* For Firefox */
+  color: var(--muted);
+}
 </style>
 </head>
 <body>
@@ -424,7 +432,7 @@ border-top:1px solid var(--border);
 
         <div>
             <label for="studyContent" style="display: block; margin-top: 15px;">Study Content</label>
-            <textarea id="studyContent" rows="15" placeholder="Paste your study content here. Newlines will be preserved."></textarea>
+            <div id="studyContent" contenteditable="true" style="width:100%; min-height:200px; padding:10px; margin-top:10px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); box-sizing:border-box; overflow-y:auto;" placeholder="Paste your study content here. Rich text formatting (bold, underline, etc.) will be preserved."></div>
         </div>
 
         <button class="upload" onclick="addStudyContent()">Save Study Content</button>
@@ -1072,16 +1080,12 @@ window.createSession = async () => {
 window.addStudyContent = async function() {
     const cls = document.getElementById('studyClass').value;
     const subject = document.getElementById('studySubject').value;
-    let content = document.getElementById('studyContent').value;
+    let content = document.getElementById('studyContent').innerHTML;
 
     if (!cls || !subject || !content.trim()) {
         alert("Please select class, subject, and add some content.");
         return;
     }
-
-    // To preserve line breaks from simple text, convert newlines to <br> tags.
-    // This is a simple approach. A more robust solution for mixed content would be a WYSIWYG editor.
-    content = content.replace(/\n/g, '<br />');
 
     const docId = `${cls}_${subject}`;
     const studyContentRef = collection(db, "study_content");
@@ -1094,7 +1098,7 @@ window.addStudyContent = async function() {
             lastUpdated: serverTimestamp()
         });
         alert(`Study content for ${cls} - ${subject} has been added/updated successfully!`);
-        document.getElementById('studyContent').value = ''; // Clear textarea
+        document.getElementById('studyContent').innerHTML = ''; // Clear content area
     } catch (e) {
         alert("Error adding study content: " + e.message);
         console.error(e);
@@ -1116,11 +1120,10 @@ window.loadExistingStudyContent = async function() {
         const docSnap = await getDoc(doc(db, "study_content", docId));
         if (docSnap.exists()) {
             const htmlContent = docSnap.data().htmlContent || '';
-            // Convert <br> tags back to newlines for clean editing in textarea.
-            contentArea.value = htmlContent.replace(/<br\s*\/?>/gi, '\n');
+            contentArea.innerHTML = htmlContent;
             alert(`Loaded existing content for ${cls} - ${subject}.`);
         } else {
-            contentArea.value = '';
+            contentArea.innerHTML = '';
             alert(`No existing content found for ${cls} - ${subject}. You can create new content now.`);
         }
     } catch (e) {
@@ -1147,7 +1150,7 @@ window.deleteStudyContent = async function() {
     try {
         await deleteDoc(doc(db, "study_content", docId));
         alert(`Study content for ${cls} - ${subject} has been deleted successfully!`);
-        document.getElementById('studyContent').value = ''; // Clear textarea
+        document.getElementById('studyContent').innerHTML = ''; // Clear content area
     } catch (e) {
         alert("Error deleting study content: " + e.message);
         console.error(e);
@@ -1155,7 +1158,7 @@ window.deleteStudyContent = async function() {
 };
 
 window.clearStudyContent = function() {
-    document.getElementById('studyContent').value = '';
+    document.getElementById('studyContent').innerHTML = '';
 };
 </script>
 </body>
