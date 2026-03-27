@@ -401,7 +401,7 @@ border-top:1px solid var(--border);
 
     <div class="panel" style="border-top: 2px solid var(--success);">
         <h2 style="color: var(--success);">✍️ Add/Edit Study Content</h2>
-        <p class="muted">Add class-wise and subject-wise study material. This will be visible in the Study Material section. If content for a class/subject already exists, the new content will be appended to it.</p>
+        <p class="muted">Manage class-wise and subject-wise study material. Use <b>Load Existing</b> to edit current notes, <b>Save (Overwrite)</b> to save edits, or <b>Append Content</b> to add to the bottom.</p>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
             <div>
@@ -436,9 +436,11 @@ border-top:1px solid var(--border);
         </div>
 
         <button class="upload" onclick="pasteStudyContent()" style="background: var(--warning); color: #000;">Paste</button>
-    <button class="upload" onclick="addStudyContent()">Upload</button>
+        <button class="upload" onclick="appendStudyContent()" style="background: var(--success);">➕ Append Content</button>
+        <button class="upload" onclick="saveStudyContent()">💾 Save (Overwrite)</button>
+        <button class="upload" onclick="loadExistingStudyContent()" style="background: var(--brand);">📥 Load Existing</button>
         <button onclick="clearStudyContent()" style="background: var(--muted); color: white;">Clear</button>
-    <button class="delete" onclick="deleteStudyContent()">Delete</button>
+        <button class="delete" onclick="deleteStudyContent()">Delete</button>
     </div>
 
 <div class="panel">
@@ -1077,7 +1079,7 @@ window.createSession = async () => {
     loadSessions();
 };
 
-window.addStudyContent = async function() {
+window.appendStudyContent = async function() {
     const cls = document.getElementById('studyClass').value;
     const subject = document.getElementById('studySubject').value;
     let newContent = document.getElementById('studyContent').innerHTML;
@@ -1106,7 +1108,7 @@ window.addStudyContent = async function() {
             lastUpdated: serverTimestamp()
         }, { merge: true });
         
-        alert(`Study content for ${cls} - ${subject} has been appended/updated successfully!`);
+        alert(`Study content appended for ${cls} - ${subject} successfully!`);
         
         // Clear content area and reset dropdowns completely
         document.getElementById('studyContent').innerHTML = ''; 
@@ -1114,6 +1116,34 @@ window.addStudyContent = async function() {
         document.getElementById('studySubject').selectedIndex = 0;
     } catch (e) {
         alert("Error adding study content: " + e.message);
+        console.error(e);
+    }
+}
+
+window.saveStudyContent = async function() {
+    const cls = document.getElementById('studyClass').value;
+    const subject = document.getElementById('studySubject').value;
+    let content = document.getElementById('studyContent').innerHTML;
+
+    if (!cls || !subject || !content.trim()) {
+        alert("Please select class, subject, and add some content.");
+        return;
+    }
+
+    const docId = `${cls}_${subject}`;
+    const docRef = doc(db, "study_content", docId);
+
+    try {
+        await setDoc(docRef, {
+            class: cls,
+            subject: subject,
+            htmlContent: content,
+            lastUpdated: serverTimestamp()
+        }, { merge: true });
+        
+        alert(`Study content saved/overwritten for ${cls} - ${subject} successfully!`);
+    } catch (e) {
+        alert("Error saving study content: " + e.message);
         console.error(e);
     }
 }
