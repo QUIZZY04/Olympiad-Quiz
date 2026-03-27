@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Study Content</title>
+</head>
+<body>
+    <h1>Add Study Content</h1>
+
+    <form id="studyContentForm">
+        <div>
+            <label for="class">Class:</label>
+            <select id="class" name="class" required>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="maths">Maths</option>
+                <option value="science">Science</option>
+                <option value="english">English</option>
+                <option value="reasoning">Reasoning</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="studyContent">Study Content:</label>
+            <textarea id="studyContent" name="studyContent" rows="10" cols="80" required></textarea>
+        </div>
+
+        <button type="submit">Add Content</button>
+    </form>
+
+    <script>
+        document.getElementById('studyContentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const classValue = document.getElementById('class').value;
+            const subjectValue = document.getElementById('subject').value;
+            const studyContentValue = document.getElementById('studyContent').value;
+
+            // You would typically send this data to your server here
+            // For demonstration purposes, we'll just log the data
+            console.log({
+                class: classValue,
+                subject: subjectValue,
+                studyContent: studyContentValue
+            });
+
+            // Here, you would add code to send this data to your backend
+            // which would then update the questions.js file or a database
+
+            alert('Study content added! Check console for data.');
+        });
+    </script>
+</body>
+</html>

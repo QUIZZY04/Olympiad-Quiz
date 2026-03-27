@@ -391,6 +391,47 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <div class="panel" style="border-top: 2px solid var(--success);">
+        <h2 style="color: var(--success);">✍️ Add/Edit Study Content</h2>
+        <p class="muted">Add class-wise and subject-wise study material. This will be visible in the Study Material section. If content for a class/subject already exists, it will be overwritten.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+            <div>
+                <label for="studyClass">Class</label>
+                <select id="studyClass">
+                    <option value="class1">Class 1</option>
+                    <option value="class2">Class 2</option>
+                    <option value="class3">Class 3</option>
+                    <option value="class4">Class 4</option>
+                    <option value="class5">Class 5</option>
+                    <option value="class6">Class 6</option>
+                    <option value="class7">Class 7</option>
+                    <option value="class8">Class 8</option>
+                    <option value="class9">Class 9</option>
+                    <option value="class10">Class 10</option>
+                </select>
+            </div>
+            <div>
+                <label for="studySubject">Subject</label>
+                <select id="studySubject">
+                    <option value="maths">Maths</option>
+                    <option value="science">Science</option>
+                    <option value="english">English</option>
+                    <option value="reasoning">Reasoning</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <label for="studyContent" style="display: block; margin-top: 15px;">Study Content</label>
+            <textarea id="studyContent" rows="15" placeholder="Paste your study content here. Newlines will be preserved."></textarea>
+        </div>
+
+        <button class="upload" onclick="addStudyContent()">Save Study Content</button>
+        <button class="edit-btn" onclick="loadExistingStudyContent()" style="background: var(--brand);">Load Existing Content</button>
+        <button class="delete" onclick="deleteStudyContent()">Delete Content</button>
+    </div>
+
 <div class="panel">
 <h2>Step 2: Upload JSON File</h2>
 <input type="file" id="jsonFile">
@@ -1026,6 +1067,91 @@ window.createSession = async () => {
     alert("Session Created!");
     loadSessions();
 };
+
+window.addStudyContent = async function() {
+    const cls = document.getElementById('studyClass').value;
+    const subject = document.getElementById('studySubject').value;
+    let content = document.getElementById('studyContent').value;
+
+    if (!cls || !subject || !content.trim()) {
+        alert("Please select class, subject, and add some content.");
+        return;
+    }
+
+    // To preserve line breaks from simple text, convert newlines to <br> tags.
+    // This is a simple approach. A more robust solution for mixed content would be a WYSIWYG editor.
+    content = content.replace(/\n/g, '<br />');
+
+    const docId = `${cls}_${subject}`;
+    const studyContentRef = collection(db, "study_content");
+
+    try {
+        await setDoc(doc(studyContentRef, docId), {
+            class: cls,
+            subject: subject,
+            htmlContent: content,
+            lastUpdated: serverTimestamp()
+        });
+        alert(`Study content for ${cls} - ${subject} has been added/updated successfully!`);
+        document.getElementById('studyContent').value = ''; // Clear textarea
+    } catch (e) {
+        alert("Error adding study content: " + e.message);
+        console.error(e);
+    }
+}
+
+window.loadExistingStudyContent = async function() {
+    const cls = document.getElementById('studyClass').value;
+    const subject = document.getElementById('studySubject').value;
+    const contentArea = document.getElementById('studyContent');
+
+    if (!cls || !subject) {
+        alert("Please select a class and subject to load.");
+        return;
+    }
+
+    const docId = `${cls}_${subject}`;
+    try {
+        const docSnap = await getDoc(doc(db, "study_content", docId));
+        if (docSnap.exists()) {
+            const htmlContent = docSnap.data().htmlContent || '';
+            // Convert <br> tags back to newlines for clean editing in textarea.
+            contentArea.value = htmlContent.replace(/<br\s*\/?>/gi, '\n');
+            alert(`Loaded existing content for ${cls} - ${subject}.`);
+        } else {
+            contentArea.value = '';
+            alert(`No existing content found for ${cls} - ${subject}. You can create new content now.`);
+        }
+    } catch (e) {
+        alert("Error loading content: " + e.message);
+        console.error(e);
+    }
+}
+
+window.deleteStudyContent = async function() {
+    const cls = document.getElementById('studyClass').value;
+    const subject = document.getElementById('studySubject').value;
+
+    if (!cls || !subject) {
+        alert("Please select a class and subject to delete.");
+        return;
+    }
+
+    if (!confirm(`Are you sure you want to delete all study content for ${cls} - ${subject}? This action cannot be undone.`)) {
+        return;
+    }
+
+    const docId = `${cls}_${subject}`;
+    
+    try {
+        await deleteDoc(doc(db, "study_content", docId));
+        alert(`Study content for ${cls} - ${subject} has been deleted successfully!`);
+        document.getElementById('studyContent').value = ''; // Clear textarea
+    } catch (e) {
+        alert("Error deleting study content: " + e.message);
+        console.error(e);
+    }
+}
 </script>
 </body>
 </html>
