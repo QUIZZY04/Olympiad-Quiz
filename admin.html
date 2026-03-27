@@ -1163,12 +1163,35 @@ window.deleteStudyContent = async function() {
 
     window.pasteStudyContent = async function() {
         try {
-            const text = await navigator.clipboard.readText();
             const contentArea = document.getElementById('studyContent');
             contentArea.focus();
+            
+            // Try to read rich text (HTML) or Image files
+            if (navigator.clipboard && navigator.clipboard.read) {
+                const clipboardItems = await navigator.clipboard.read();
+                for (const item of clipboardItems) {
+                    if (item.types.includes('text/html')) {
+                        const blob = await item.getType('text/html');
+                        const html = await blob.text();
+                        document.execCommand('insertHTML', false, html);
+                        return;
+                    } else if (item.types.some(t => t.startsWith('image/'))) {
+                        const imgType = item.types.find(t => t.startsWith('image/'));
+                        const blob = await item.getType(imgType);
+                        const reader = new FileReader();
+                        reader.onload = (e) => document.execCommand('insertImage', false, e.target.result);
+                        reader.readAsDataURL(blob);
+                        return;
+                    }
+                }
+            }
+
+            // Fallback for plain text if no rich text/images are found
+            const text = await navigator.clipboard.readText();
             document.execCommand('insertText', false, text);
         } catch (err) {
-            alert("Failed to read clipboard. Please paste manually using Ctrl+V or Cmd+V.");
+            console.error(err);
+            alert("Failed to read clipboard. Please paste manually using Ctrl+V or Cmd+V (Your browser may block auto-pasting images).");
         }
     };
 
