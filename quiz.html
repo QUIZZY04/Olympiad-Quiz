@@ -713,6 +713,9 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 const storage = getStorage(app);
 
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+
 let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmitted=false;
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 let totalTime=1800;

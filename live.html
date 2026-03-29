@@ -79,7 +79,7 @@
         
         .session-card { 
             background: linear-gradient(to right, #e0f2fe, #bae6fd);
-            border: 2px solid var(--border); 
+            border: 2px solid var(--brand); 
             border-top: 6px solid #3b82f6; /* Using a more vibrant blue accent */
             border-radius: 24px; 
             padding: 30px; 
@@ -94,7 +94,7 @@
         .session-card:hover { 
             transform: translateY(-8px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Enhanced hover shadow */
-            border-color: #3b82f6; /* Consistent accent color */
+            border-color: var(--brand); 
         }
 
         .card-highlight {
@@ -355,11 +355,11 @@
                     <span id="pill-${sDoc.id}" class="status-pill">Checking...</span>
                 <h3 class="session-title">${s.title}</h3>
                 <div class="session-meta">
-                    <div class="meta-item">📅 <b style="color: var(--muted);">Date:</b> <span style="color: var(--text); font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
-                    <div class="meta-item">⏰ <b style="color: var(--muted);">Starts:</b> <span style="color: var(--text); font-weight: 800; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div>
-                    <div class="meta-item">⌛ <b style="color: var(--muted);">Duration:</b> <span style="color: var(--text); font-weight: 600;">${s.duration} Min</span></div>
-                    <div class="meta-item">📖 <b style="color: var(--muted);">Subject:</b> <span style="color: var(--text); font-weight: 600;">${s.subject.toUpperCase()}</span></div>
-                    <div class="meta-item">🎓 <b>Grade:</b> ${s.class}</div>
+                    <div class="meta-item">📅 <b style="color: var(--muted);">Date:</b> <span style="color: var(--text); font-weight: 700; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                    <div class="meta-item">⏰ <b style="color: var(--muted);">Starts:</b> <span style="color: var(--text); font-weight: 700; font-size: 13.5px; letter-spacing: 0.5px;">${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div>
+                    <div class="meta-item">⌛ <b style="color: var(--muted);">Duration:</b> <span style="color: var(--text); font-weight: 700; font-size: 13.5px; letter-spacing: 0.5px;">${s.duration} Min</span></div>
+                    <div class="meta-item">📖 <b style="color: var(--muted);">Subject:</b> <span style="color: var(--text); font-weight: 700; font-size: 13.5px; letter-spacing: 0.5px;">${s.subject.toUpperCase()}</span></div>
+                    <div class="meta-item">🎓 <b>Grade:</b> <span style="color: var(--text); font-weight: 700; font-size: 13.5px; letter-spacing: 0.5px;">${s.class}</span></div>
                 </div>
                 <div id="timer-${sDoc.id}" class="countdown-timer">00:00:00</div>
                 <div class="rules-box">
