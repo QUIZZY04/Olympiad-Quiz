@@ -149,7 +149,7 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-top: 3px solid var(--brand);
-            padding: 35px 30px;
+            padding: 25px 20px;
             border-radius: 24px;
             text-align: center;
             transition: all 0.3s ease;
@@ -201,6 +201,31 @@
             color: var(--muted);
             font-size: 0.95rem;
             line-height: 1.6;
+        }
+
+        /* Attention-grabbing high-contrast style for Live Arena card */
+        .feature-card.live-arena-highlight {
+            background: linear-gradient(-45deg, var(--brand), var(--accent), #6366f1, #a855f7);
+            background-size: 400% 400%;
+            animation: liveGradient 8s ease infinite;
+            border: 2px solid #facc15;
+            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.2);
+        }
+        .feature-card.live-arena-highlight h3 {
+            color: #facc15;
+        }
+        .feature-card.live-arena-highlight p {
+            color: rgba(255, 255, 255, 0.95);
+        }
+        .feature-card.live-arena-highlight:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.3);
+        }
+
+        @keyframes liveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Live Badge */
@@ -278,9 +303,10 @@
                 <h3>📝 Free Mock Tests</h3>
                 <p>Full-length papers designed like real Olympiad exams to test your speed and accuracy.</p>
             </div>
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
+            <div class="feature-card live-arena-highlight" onclick="location.href='signup.html'" style="cursor: pointer;">
                 <h3>⚡ Live Quiz Arena</h3>
                 <p>Compete in real-time battles against students across the country and top the leaderboard.</p>
+                <p style="margin-top: 10px; font-size: 0.95rem;"><a href="instructions.html" onclick="event.stopPropagation()" style="color: #facc15; font-weight: 800; text-decoration: underline;">How to Register for Live Quiz</a></p>
             </div>
             <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
                 <h3>💡 Olympiad Tricks</h3>
