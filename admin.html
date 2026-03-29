@@ -484,9 +484,19 @@ border-top:1px solid var(--border);
         <div><label>Range End ID</label><input type="text" id="sessEndId" placeholder="e.g. Q050"></div>
         <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
         <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
-        <div style="grid-column: 1 / -1;"><label><b>OR</b> Paste Specific Question IDs (Comma or Newline separated)</label><textarea id="sessManualIds" style="height: 100px;" placeholder="Paste exactly 50 IDs here..."></textarea></div>
+        <div style="grid-column: 1 / -1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                <label style="margin: 0;"><b>OR</b> Paste Questions (Full JSON Questions or List of IDs)</label>
+                <div style="display: flex; gap: 8px;">
+                    <button class="upload" onclick="pasteSessManualIds()" style="background: var(--brand); color: #000; margin-top: 0; padding: 5px 12px; font-size: 11px;">Paste</button>
+                    <button class="delete" onclick="clearSessManualIds()" style="margin-top: 0; padding: 5px 12px; font-size: 11px;">Clear</button>
+                </div>
+            </div>
+            <textarea id="sessManualIds" style="height: 100px; margin-top: 0;" placeholder="Paste full question JSON array or a list of IDs..."></textarea>
+        </div>
     </div>
     <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session & Link Questions</button>
+    <div id="sessionStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600; white-space: pre-wrap; padding: 12px; border-radius: 8px; display: none; border: 1px solid transparent;"></div>
 </div>
 
 <div class="panel">
@@ -636,6 +646,19 @@ window.pasteClipboard = async function() {
 
 window.clearPaste = function() {
     document.getElementById("jsonPaste").value = "";
+};
+
+window.pasteSessManualIds = async function() {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("sessManualIds").value = text;
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually.");
+    }
+};
+
+window.clearSessManualIds = function() {
+    document.getElementById("sessManualIds").value = "";
 };
 
 window.uploadImageFolder = async function() {
@@ -1043,6 +1066,16 @@ window.deleteSession = async (id) => { if(confirm("Delete session?")) { await de
 
 window.createSession = async () => {
     const btn = document.querySelector('button[onclick="createSession()"]');
+    const statusDiv = document.getElementById("sessionStatus");
+    
+    function setStatus(msg, type = 'error') {
+        statusDiv.style.display = "block";
+        statusDiv.innerText = msg;
+        statusDiv.style.color = type === 'error' ? 'var(--danger)' : (type === 'success' ? 'var(--success)' : 'var(--brand)');
+        statusDiv.style.background = type === 'error' ? 'rgba(239, 68, 68, 0.1)' : (type === 'success' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(79, 70, 229, 0.1)');
+        statusDiv.style.borderColor = type === 'error' ? 'var(--danger)' : (type === 'success' ? 'var(--success)' : 'var(--brand)');
+    }
+
     try {
         const title = document.getElementById("sessTitle").value.trim();
         const subject = document.getElementById("sessSubject").value;
@@ -1056,12 +1089,13 @@ window.createSession = async () => {
         const duration = document.getElementById("sessDuration").value;
 
         if(!title || !date || !time || !duration) { 
-            alert("Please fill basic session fields (Title, Date, Time, Duration)"); 
+            setStatus("⚠️ Please fill basic session fields (Title, Date, Time, Duration)"); 
             return; 
         }
 
+        statusDiv.style.display = "none";
         btn.disabled = true;
-        btn.innerText = "⏳ Verifying IDs...";
+        btn.innerText = "⏳ Processing...";
 
         let questionIds = [];
 
@@ -1069,30 +1103,46 @@ window.createSession = async () => {
             // 1. Process manual IDs (Smart parsing for JSON arrays or plain text lists)
             try {
                 const parsed = JSON.parse(manualIdsRaw);
-                if (Array.isArray(parsed)) {
-                    // Extract 'id' property if objects, otherwise use strings
-                    questionIds = parsed.map(item => (typeof item === 'string' ? item : item.id)).filter(id => !!id);
-                } else if (parsed && parsed.id) {
-                    questionIds = [parsed.id];
+                const items = Array.isArray(parsed) ? parsed : [parsed];
+                
+                // All-in-One: If pasting full question objects, upload them to Firebase first
+                const isFullObject = items.length > 0 && typeof items[0] === 'object' && items[0].id && items[0].q;
+
+                if (isFullObject) {
+                    btn.innerText = "⏳ Syncing Questions...";
+                    for (let q of items) {
+                        // Apply images if a folder was recently uploaded in memory
+                        if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+                        // Save/Update in Firestore
+                        await setDoc(doc(questionsRef, q.id), q);
+                    }
+                    questionIds = items.map(i => i.id);
+                } else {
+                    // It's just a list of IDs or strings
+                    questionIds = items.map(item => (typeof item === 'string' ? item : item.id)).filter(id => !!id);
                 }
             } catch (e) {
-                // Not valid JSON, fallback to splitting text by common separators and stripping artifacts
-                // This removes quotes, brackets, and ignores keys like "id" or "questionId"
-                questionIds = manualIdsRaw.split(/[\s,\n,\[\]"]+/)
-                    .map(id => id.trim())
-                    .filter(id => id.length > 0 && id !== 'id' && id !== 'questionId');
+                // If JSON.parse fails, extract IDs from the raw text using specific patterns
+                let extractedIds = [];
+
+                // First, look for "id": "value" patterns (most reliable for JSON-like text)
+                const jsonIdPattern = /"id"\s*:\s*"([^"]+)"/g;
+                let match;
+                while ((match = jsonIdPattern.exec(manualIdsRaw)) !== null) {
+                    extractedIds.push(match[1]);
+                }
+
+                // Then, look for the specific ID format (e.g., math_c5_v2_M01_001)
+                const specificIdPattern = /([a-z]+_c[0-9]+(?:_v[0-9]+)?_[A-Z][0-9]+_[0-9]+)/g;
+                while ((match = specificIdPattern.exec(manualIdsRaw)) !== null) {
+                    extractedIds.push(match[1]);
+                }
+                
+                questionIds = extractedIds;
             }
 
-            // Deduplicate IDs to ensure unique questions
-            questionIds = [...new Set(questionIds)];
-
-            // Pre-validation: Check for slashes which break Firestore document paths
-            const invalidIds = questionIds.filter(id => id.includes('/'));
-            if (invalidIds.length > 0) {
-                alert(`❌ Invalid ID Format: The following IDs contain slashes ('/'), which are not allowed in Firestore document names:\n\n${invalidIds.join(", ")}\n\nPlease correct these IDs in your list.`);
-                resetBtn();
-                return;
-            }
+            // Global safety: Deduplicate and strictly remove anything with slashes before Firebase calls
+            questionIds = [...new Set(questionIds)].filter(id => id && !id.includes('/'));
 
             // 2. Verify manual IDs exist before continuing
             const qPromises = questionIds.map(id => getDoc(doc(db, "questions", id)));
@@ -1100,20 +1150,20 @@ window.createSession = async () => {
             const missingIds = questionIds.filter((id, index) => !qSnaps[index].exists());
 
             if (missingIds.length > 0) {
-                alert(`❌ The following IDs were not found in the database:\n\n${missingIds.join(", ")}\n\nPlease correct them before creating the session.`);
+                setStatus(`❌ The following IDs were not found in the database:\n\n${missingIds.join(", ")}\n\nPlease correct them before creating the session.`);
                 resetBtn();
                 return;
             }
         } else {
             // 3. Fallback to Range Logic if manual paste area is empty
-            if(!startId || !endId) { alert("Please either provide a Range OR paste specific IDs."); resetBtn(); return; }
+            if(!startId || !endId) { setStatus("⚠️ Please either provide a Range OR paste specific IDs."); resetBtn(); return; }
 
             const qClass = "class" + cls;
             const qry = query(collection(db, "questions"), where("class", "==", qClass), where("subject", "in", [subject, subject.replace(/s$/, "")]));
             const snap = await getDocs(qry);
             
             if (snap.empty) {
-                alert(`❌ No questions found for ${qClass} ${subject} to check range.`);
+                setStatus(`❌ No questions found for ${qClass} ${subject} to check range.`);
                 resetBtn();
                 return;
             }
@@ -1126,7 +1176,7 @@ window.createSession = async () => {
         }
 
         if (questionIds.length === 0) {
-            alert(`❌ No valid questions identified. Check your IDs.`);
+            setStatus(`❌ No valid questions identified. Check your IDs.`);
             resetBtn();
             return;
         }
@@ -1150,11 +1200,11 @@ window.createSession = async () => {
             createdAt: serverTimestamp()
         });
 
-        alert("✅ Session Created Successfully!");
+        setStatus("✅ Session Created Successfully!", "success");
         location.reload(); // Refresh to show the new session in the managed list
     } catch (err) {
         console.error("Session Creation Error:", err);
-        alert("❌ Error: " + err.message);
+        setStatus("❌ Critical Error: " + err.message);
         resetBtn();
     }
 
