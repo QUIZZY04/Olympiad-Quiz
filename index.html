@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
         :root {
-            --bg: #f8fafc;
+            --bg: #eef2f6; /* Increased contrast for surface cards */
             --surface: #ffffff;
             --subtle: #f1f5f9;
             --text: #0f172a;
@@ -50,15 +50,15 @@
         }
 
         body {
-            background-color: var(--bg);
+            background-color: #eef2f6; /* High contrast background */
             color: var(--text);
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+                radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
             background-attachment: fixed;
         }
 

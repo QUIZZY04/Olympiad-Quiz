@@ -11,7 +11,7 @@ window.onpopstate = function () { history.go(1); };
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>
 :root {
-  --bg: #f8fafc;
+  --bg: #eef2f6; /* Higher contrast for surface cards */
   --surface: #ffffff;
   --text: #0f172a;
   --muted: #64748b;
@@ -33,7 +33,7 @@ font-family:'Poppins',sans-serif;
 color:var(--text);
 background:var(--bg);
 overflow-x:hidden;
-background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+background-image: radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 40%), radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
 background-attachment: fixed;
 }
 nav{ background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
@@ -795,8 +795,8 @@ onAuthStateChanged(auth, async(user)=>{
 
 async function loadQuestions(){
 const topicInfo = getVerifiedTopicSelection();
-const sClass = topicInfo.selectedClass;
-const sSub = topicInfo.selectedSubject;
+let sClass = topicInfo.selectedClass;
+let sSub = topicInfo.selectedSubject;
 const sTopic = topicInfo.selectedTopicCode;
 const sTopicName = topicInfo.selectedTopicName;
 const sTopicDisplay = topicInfo.selectedTopicDisplay;
@@ -825,10 +825,32 @@ try {
         const sSnap = await getDoc(doc(db, "test_sessions", sId));
         if (sSnap.exists()) {
             const sData = sSnap.data();
+            localStorage.setItem("activeSessionTitle", sData.title || "Live Championship");
+            
+            // Sync local state with actual session data from database
+            sClass = "class" + sData.class;
+            sSub = sData.subject;
+            localStorage.setItem("selectedClass", sClass);
+            localStorage.setItem("selectedSubject", sSub);
+
             if(sData.duration) totalTime = sData.duration * 60;
             const qPromises = (sData.questionIds || []).map(id => getDoc(doc(db, "questions", id)));
             const qSnaps = await Promise.all(qPromises);
-            questions = qSnaps.filter(snap => snap.exists()).map(snap => ({ ...snap.data(), id: snap.id }));
+            
+            questions = [];
+            const missingIds = [];
+            qSnaps.forEach((snap, index) => {
+                if (snap.exists()) {
+                    questions.push({ ...snap.data(), id: snap.id });
+                } else {
+                    missingIds.push(sData.questionIds[index]);
+                }
+            });
+
+            if (missingIds.length > 0 && auth.currentUser.email === "madhhu52@gmail.com") {
+                console.error("❌ Missing Question IDs in Firestore:", missingIds);
+                alert(`⚠️ Admin Warning: ${missingIds.length} questions failed to load because their IDs don't match Firestore. Check the console (F12) for the list.`);
+            }
         }
     } else {
         let qBase = sTopic
@@ -866,8 +888,9 @@ const quizSubtitleEl = document.getElementById("quizSubtitle");
 const displayGradeEl = document.getElementById("displaySubject");
 
 if (isChampionship) {
-    quizTitleEl.innerHTML = `⚡ Live <span style="color: var(--brand);">Championship</span>`;
-    quizSubtitleEl.innerText = `Session ID: ${sId}`;
+    const sTitle = localStorage.getItem("activeSessionTitle") || "Live Championship";
+    quizTitleEl.innerHTML = `⚡ ${sTitle}`;
+    quizSubtitleEl.innerText = `Live Tournament Mode`;
     displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
 } else {
     const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);

@@ -14,7 +14,7 @@ window.onpopstate = function () {
 
 <style>
 :root{
---bg: #f8fafc;
+--bg: #eef2f6; /* Higher contrast for surface cards */
 --surface: #ffffff;
 --subtle: #f1f5f9;
 --text: #0f172a;
@@ -34,7 +34,7 @@ font-family:'Inter',sans-serif;
 background:var(--bg);
 color:var(--text);
 margin:0;
-background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+background-image: radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 40%), radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
 background-attachment: fixed;
 }
 nav{
@@ -480,11 +480,13 @@ border-top:1px solid var(--border);
         </div>
         <div><label>Test Date</label><input type="date" id="sessDate"></div>
         <div><label>Start Time</label><input type="time" id="sessTime"></div>
-        <div><label>Starting Question ID</label><input type="text" id="sessStartId"></div>
+        <div><label>Range Start ID</label><input type="text" id="sessStartId" placeholder="e.g. Q001"></div>
+        <div><label>Range End ID</label><input type="text" id="sessEndId" placeholder="e.g. Q050"></div>
         <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
         <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
+        <div style="grid-column: 1 / -1;"><label><b>OR</b> Paste Specific Question IDs (Comma or Newline separated)</label><textarea id="sessManualIds" style="height: 100px;" placeholder="Paste exactly 50 IDs here..."></textarea></div>
     </div>
-    <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session & Auto-Link 50 IDs</button>
+    <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session & Link Questions</button>
 </div>
 
 <div class="panel">
@@ -1040,43 +1042,126 @@ window.closeSessEdit = () => document.getElementById("editSessModal").style.disp
 window.deleteSession = async (id) => { if(confirm("Delete session?")) { await deleteDoc(doc(db, "test_sessions", id)); loadSessions(); } };
 
 window.createSession = async () => {
-    const title = document.getElementById("sessTitle").value;
-    const subject = document.getElementById("sessSubject").value;
-    const cls = document.getElementById("sessClass").value;
-    const date = document.getElementById("sessDate").value;
-    const time = document.getElementById("sessTime").value;
-    const startId = document.getElementById("sessStartId").value;
-    const price = document.getElementById("sessPrice").value;
-    const duration = document.getElementById("sessDuration").value;
+    const btn = document.querySelector('button[onclick="createSession()"]');
+    try {
+        const title = document.getElementById("sessTitle").value.trim();
+        const subject = document.getElementById("sessSubject").value;
+        const cls = document.getElementById("sessClass").value;
+        const date = document.getElementById("sessDate").value;
+        const time = document.getElementById("sessTime").value;
+        const startId = document.getElementById("sessStartId").value.trim();
+        const endId = document.getElementById("sessEndId").value.trim();
+        const manualIdsRaw = document.getElementById("sessManualIds").value.trim();
+        const price = document.getElementById("sessPrice").value;
+        const duration = document.getElementById("sessDuration").value;
 
-    if(!title || !date || !time || !startId || !duration) { alert("Fill all session fields including Duration"); return; }
+        if(!title || !date || !time || !duration) { 
+            alert("Please fill basic session fields (Title, Date, Time, Duration)"); 
+            return; 
+        }
 
-    const startDateTime = new Date(`${date}T${time}`);
+        btn.disabled = true;
+        btn.innerText = "⏳ Verifying IDs...";
 
-    const durationMs = parseInt(duration) * 60000;
-    const endDateTime = new Date(startDateTime.getTime() + durationMs);
-    
-    const questionIds = [];
-    const prefix = startId.replace(/\d+$/, "");
-    const startNum = parseInt(startId.match(/\d+$/)[0]);
+        let questionIds = [];
 
-    for(let i=0; i<50; i++) {
-        const num = (startNum + i).toString().padStart(3, '0');
-        questionIds.push(prefix + num);
+        if (manualIdsRaw) {
+            // 1. Process manual IDs (Smart parsing for JSON arrays or plain text lists)
+            try {
+                const parsed = JSON.parse(manualIdsRaw);
+                if (Array.isArray(parsed)) {
+                    // Extract 'id' property if objects, otherwise use strings
+                    questionIds = parsed.map(item => (typeof item === 'string' ? item : item.id)).filter(id => !!id);
+                } else if (parsed && parsed.id) {
+                    questionIds = [parsed.id];
+                }
+            } catch (e) {
+                // Not valid JSON, fallback to splitting text by common separators and stripping artifacts
+                // This removes quotes, brackets, and ignores keys like "id" or "questionId"
+                questionIds = manualIdsRaw.split(/[\s,\n,\[\]"]+/)
+                    .map(id => id.trim())
+                    .filter(id => id.length > 0 && id !== 'id' && id !== 'questionId');
+            }
+
+            // Deduplicate IDs to ensure unique questions
+            questionIds = [...new Set(questionIds)];
+
+            // Pre-validation: Check for slashes which break Firestore document paths
+            const invalidIds = questionIds.filter(id => id.includes('/'));
+            if (invalidIds.length > 0) {
+                alert(`❌ Invalid ID Format: The following IDs contain slashes ('/'), which are not allowed in Firestore document names:\n\n${invalidIds.join(", ")}\n\nPlease correct these IDs in your list.`);
+                resetBtn();
+                return;
+            }
+
+            // 2. Verify manual IDs exist before continuing
+            const qPromises = questionIds.map(id => getDoc(doc(db, "questions", id)));
+            const qSnaps = await Promise.all(qPromises);
+            const missingIds = questionIds.filter((id, index) => !qSnaps[index].exists());
+
+            if (missingIds.length > 0) {
+                alert(`❌ The following IDs were not found in the database:\n\n${missingIds.join(", ")}\n\nPlease correct them before creating the session.`);
+                resetBtn();
+                return;
+            }
+        } else {
+            // 3. Fallback to Range Logic if manual paste area is empty
+            if(!startId || !endId) { alert("Please either provide a Range OR paste specific IDs."); resetBtn(); return; }
+
+            const qClass = "class" + cls;
+            const qry = query(collection(db, "questions"), where("class", "==", qClass), where("subject", "in", [subject, subject.replace(/s$/, "")]));
+            const snap = await getDocs(qry);
+            
+            if (snap.empty) {
+                alert(`❌ No questions found for ${qClass} ${subject} to check range.`);
+                resetBtn();
+                return;
+            }
+
+            const bounds = [startId, endId].sort();
+            questionIds = snap.docs
+                .map(d => d.id)
+                .filter(id => id >= bounds[0] && id <= bounds[1])
+                .sort();
+        }
+
+        if (questionIds.length === 0) {
+            alert(`❌ No valid questions identified. Check your IDs.`);
+            resetBtn();
+            return;
+        }
+
+        if (!confirm(`✅ Session linked with ${questionIds.length} unique questions.\n\nCreate session now?`)) {
+            resetBtn();
+            return;
+        }
+
+        const startDateTime = new Date(`${date}T${time}`);
+        const durationMs = parseInt(duration) * 60000;
+        const endDateTime = new Date(startDateTime.getTime() + durationMs);
+
+        await addDoc(sessionsRef, {
+            title, subject, class: parseInt(cls),
+            startTime: Timestamp.fromDate(startDateTime),
+            endTime: Timestamp.fromDate(endDateTime),
+            questionIds,
+            price: parseInt(price),
+            duration: parseInt(duration),
+            createdAt: serverTimestamp()
+        });
+
+        alert("✅ Session Created Successfully!");
+        location.reload(); // Refresh to show the new session in the managed list
+    } catch (err) {
+        console.error("Session Creation Error:", err);
+        alert("❌ Error: " + err.message);
+        resetBtn();
     }
 
-    await addDoc(sessionsRef, {
-        title, subject, class: cls,
-        startTime: Timestamp.fromDate(startDateTime),
-        endTime: Timestamp.fromDate(endDateTime),
-        questionIds,
-        price: parseInt(price),
-        duration: parseInt(duration),
-        createdAt: serverTimestamp()
-    });
-
-    alert("Session Created!");
-    loadSessions();
+    function resetBtn() {
+        btn.disabled = false;
+        btn.innerText = "Create Session & Link Questions";
+    }
 };
 
 window.appendStudyContent = async function() {

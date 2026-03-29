@@ -71,6 +71,7 @@ window.uploadBulk = async function () {
         // Add a basic validation for 'id' field
         function validateQuestionId(item, index) {
             if (!item.id) throw new Error(`Question ${index + 1} is missing an 'id' field. Each question must have a unique ID.`);
+            if (typeof item.id === 'string' && item.id.includes('/')) throw new Error(`Question ${index + 1} has an invalid ID "${item.id}". Document IDs cannot contain slashes ('/').`);
         }
 
     if(!currentUser || currentUser.email !== adminEmail) {
@@ -89,11 +90,6 @@ window.uploadBulk = async function () {
         if (!Array.isArray(data)) { throw new Error("JSON data must be an array of question objects."); }
         statusDiv.innerText = "⏳ Uploading " + data.length + " questions...";
 
-        for (let item of data) {
-            // Use the 'id' from JSON as the Firestore Document ID
-            // If 'id' is missing, it creates a temporary one to avoid errors
-            const docId = item.id || `temp_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
-            await setDoc(doc(db, "questions", docId), item);
         for (let i = 0; i < data.length; i++) {
             validateQuestionId(data[i], i); // Validate each item has an ID
             await setDoc(doc(db, "questions", data[i].id), data[i]); // CRITICAL CHANGE: Use item.id as doc ID

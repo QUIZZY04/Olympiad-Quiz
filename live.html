@@ -304,7 +304,11 @@
 
             const sessionList = [];
             // Process sessions and check access
-            for (const sDoc of sessionDocs) {
+            const accessPromises = sessionDocs.map(sDoc => getDoc(doc(db, "users", user.uid, "purchases", sDoc.id)));
+            const accessSnaps = await Promise.all(accessPromises);
+
+            for (let i = 0; i < sessionDocs.length; i++) {
+                const sDoc = sessionDocs[i];
                 const s = sDoc.data();
                 // Basic validation for essential fields
                 const isMalformed = !s.startTime || !s.endTime || !s.title || s.class === undefined || s.subject === undefined;
@@ -330,13 +334,7 @@
                 console.log(`  - Session End Time (Local): ${end.toLocaleString()}`);
                 
                 const sessionPrice = s.price === undefined ? 99 : s.price; // Ensure price is always defined for logic
-                let hasAccess = false; // Start with false, only true if a purchase record exists
-
-                // Check if a purchase record exists for this session (regardless of price)
-                const pSnap = await getDoc(doc(db, "users", user.uid, "purchases", sDoc.id));
-                if (pSnap.exists()) {
-                    hasAccess = true;
-                } 
+                const hasAccess = accessSnaps[i].exists();
 
                 // Check if the session has already ended
                 if (now > end) {
@@ -442,7 +440,7 @@
                     if (highlight) highlight.innerHTML = "⚡ JOIN QUIZ NOW";
                     timerEl.innerText = "QUIZ is Live!";
                     btn.innerText = "Join Quiz"; btn.className = "join-btn btn-unlocked"; btn.disabled = false;
-                    btn.onclick = () => handleJoin(s.id);
+                    btn.onclick = () => handleJoin(s.id, s.class, s.subject);
                 }
             }
         });
@@ -506,8 +504,10 @@
         }
     };
 
-    window.handleJoin = (sessionId, hasAccess, isLive) => {
+    window.handleJoin = (sessionId, studentClass, subject) => {
         localStorage.setItem("activeSessionId", sessionId);
+        localStorage.setItem("selectedClass", "class" + studentClass);
+        localStorage.setItem("selectedSubject", subject);
         localStorage.setItem("isChampionship", "true");
         window.location.href = "quiz.html";
     };
