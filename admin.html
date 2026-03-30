@@ -74,16 +74,54 @@ margin:30px auto;
 }
 .panel{
 background: var(--surface);
-padding:25px 30px;
 border-radius:24px;
-margin-bottom:30px;
+margin-bottom:12px;
 border:1px solid var(--border);
-border-top:2px solid var(--brand);
 box-shadow: var(--shadow-md);
+overflow: hidden;
+transition: all 0.3s ease;
+}
+.panel-header {
+    padding: 20px 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    transition: background 0.2s;
+}
+.panel-header:hover {
+    background: var(--subtle);
+}
+.panel.active .panel-header {
+    background: var(--subtle);
+    border-bottom: 1px solid var(--border);
+}
+.panel-header h2 {
+    font-size: 1.15rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.panel-content {
+    padding: 30px;
+    display: none;
+}
+.panel.active .panel-content {
+    display: block;
+}
+.panel-header::after {
+    content: '▼';
+    font-size: 12px;
+    color: var(--muted);
+    transition: transform 0.3s;
+}
+.panel.active .panel-header::after {
+    transform: rotate(180deg);
 }
 h2{
-color:var(--warning);
-margin-top:0;
+    color: var(--text);
 }
 input,select,textarea{
 width:100%;
@@ -134,16 +172,6 @@ max-width:80px;
 border-radius:6px;
 }
 
-.collapse-btn {
-    background: transparent;
-    color: var(--brand);
-    border: 1px solid var(--brand);
-    padding: 4px 10px;
-    font-size: 10px;
-    margin-top: 0;
-    cursor: pointer;
-}
-.collapse-btn:hover { background: var(--brand); color: #000; }
 .hidden-content { display: none; }
 
 .modal {
@@ -237,127 +265,67 @@ border-top:1px solid var(--border);
 
 <div class="container">
     <div class="panel" style="border-top: 2px solid var(--accent);">
-        <h2>🖼 Step 1: Bulk Image Folder Upload</h2>
-        <p style="font-size: 12px; color: var(--muted); margin-bottom: 10px;">
-            Select a folder containing images. Images must be named exactly like the Question ID (e.g., <code>math_c7_001.png</code>).
-        </p>
-        <input type="file" id="imageFolderInput" webkitdirectory directory multiple>
-        <button class="upload" style="background: var(--accent);" onclick="uploadImageFolder()">Upload Folder Images</button>
-        <div id="imageUploadStatus" style="margin-top:10px; font-size: 13px; font-weight: 600;"></div>
+        <div class="panel-header">
+            <h2 style="color:var(--accent);">🖼 Step 1: Bulk Image Folder Upload</h2>
+        </div>
+        <div class="panel-content">
+            <p style="font-size: 12px; color: var(--muted); margin-bottom: 10px;">
+                Select a folder containing images. Images must be named exactly like the Question ID (e.g., <code>math_c7_001.png</code>).
+            </p>
+            <input type="file" id="imageFolderInput" webkitdirectory directory multiple>
+            <button class="upload" style="background: var(--accent);" onclick="uploadImageFolder()">Upload Folder Images</button>
+            <div id="imageUploadStatus" style="margin-top:10px; font-size: 13px; font-weight: 600;"></div>
+        </div>
     </div>
 
     <div class="panel" style="border-top:2px solid var(--warning);">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap;">
-            <div>
-                <h2 style="margin-bottom:6px;">📚 Grade / Subject Chapter-Code Checker</h2>
-                <div class="muted">Check chapter code and chapter name class-wise and subject-wise directly from Firebase questions.</div>
-            </div>
-            <button class="upload" onclick="loadChapterSummary()">Refresh Chapter Data</button>
+        <div class="panel-header">
+            <h2 style="color:var(--warning);">📚 Chapter-Code Checker</h2>
         </div>
+        <div class="panel-content">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap;">
+                <div class="muted">Check chapter code and chapter name class-wise and subject-wise directly from Firebase.</div>
+                <button class="upload" onclick="loadChapterSummary()">Refresh Data</button>
+            </div>
 
-        <div class="summary-grid">
-            <div class="summary-card">
-                <div class="label">Selected Class</div>
-                <div class="value" id="chapterSelectedClass">All</div>
+            <div class="summary-grid">
+                <div class="summary-card"><div class="label">Class</div><div class="value" id="chapterSelectedClass">All</div></div>
+                <div class="summary-card"><div class="label">Subject</div><div class="value" id="chapterSelectedSubject">All</div></div>
+                <div class="summary-card"><div class="label">Unique Chapters</div><div class="value" id="chapterUniqueCount">0</div></div>
+                <div class="summary-card"><div class="label">Questions</div><div class="value" id="chapterQuestionCount">0</div></div>
             </div>
-            <div class="summary-card">
-                <div class="label">Selected Subject</div>
-                <div class="value" id="chapterSelectedSubject">All</div>
+
+            <div class="chapter-tools" style="margin-top:18px;">
+                <div><label>Class</label><select id="chapterFilterClass"><option value="">All Classes</option><option value="class1">Class 1</option><option value="class2">Class 2</option><option value="class3">Class 3</option><option value="class4">Class 4</option><option value="class5">Class 5</option><option value="class6">Class 6</option><option value="class7">Class 7</option><option value="class8">Class 8</option><option value="class9">Class 9</option><option value="class10">Class 10</option></select></div>
+                <div><label>Subject</label><select id="chapterFilterSubject"><option value="">All Subjects</option><option value="maths">Maths</option><option value="science">Science</option><option value="english">English</option><option value="reasoning">Reasoning</option></select></div>
+                <div><button class="upload" onclick="loadChapterSummary()">Check</button></div>
             </div>
-            <div class="summary-card">
-                <div class="label">Unique Chapters</div>
-                <div class="value" id="chapterUniqueCount">0</div>
+
+            <table style="margin-top:20px;">
+                <thead><tr><th>Class</th><th>Subject</th><th>Code</th><th>Chapter Name</th><th>Questions</th><th>Sample IDs</th></tr></thead>
+                <tbody id="chapterSummaryTable"><tr><td colspan="6" style="text-align:center; color: var(--muted);">No data loaded.</td></tr></tbody>
+            </table>
+
+            <div style="margin-top:28px; display:flex; justify-content:space-between; align-items:center;">
+                <h2 style="margin:0; font-size:18px;">📝 Question-wise Details</h2>
+                <div class="badge" id="chapterDetailCount">0 Questions</div>
             </div>
-            <div class="summary-card">
-                <div class="label">Questions Count</div>
-                <div class="value" id="chapterQuestionCount">0</div>
+            <div style="display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:end; margin-top:12px;">
+                <input type="text" id="chapterNameSearch" placeholder="Filter by chapter name..." oninput="filterQuestionWiseChapterDetails()">
+                <button class="delete" onclick="clearQuestionWiseChapterFilter()">Clear</button>
             </div>
+            <table>
+                <thead><tr><th>ID</th><th>Class</th><th>Subject</th><th>Code</th><th>Chapter</th><th>Question</th></tr></thead>
+                <tbody id="chapterQuestionTable"><tr><td colspan="6" style="text-align:center; color: var(--muted);">No details loaded.</td></tr></tbody>
+            </table>
         </div>
-
-        <div class="chapter-tools" style="margin-top:18px;">
-            <div>
-                <label>Class</label>
-                <select id="chapterFilterClass">
-                    <option value="">All Classes</option>
-                    <option value="class1">Class 1</option><option value="class2">Class 2</option>
-                    <option value="class3">Class 3</option><option value="class4">Class 4</option>
-                    <option value="class5">Class 5</option><option value="class6">Class 6</option>
-                    <option value="class7">Class 7</option><option value="class8">Class 8</option>
-                    <option value="class9">Class 9</option><option value="class10">Class 10</option>
-                </select>
-            </div>
-            <div>
-                <label>Subject</label>
-                <select id="chapterFilterSubject">
-                    <option value="">All Subjects</option>
-                    <option value="maths">Maths</option><option value="science">Science</option>
-                    <option value="english">English</option><option value="reasoning">Reasoning</option>
-                </select>
-            </div>
-            <div>
-                <button class="upload" onclick="loadChapterSummary()">Check</button>
-            </div>
-        </div>
-
-        <div id="chapterSummaryStatus" class="muted" style="margin-top:12px;">Select class and subject, then click Check.</div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Class</th>
-                    <th>Subject</th>
-                    <th>Code</th>
-                    <th>Chapter Name</th>
-                    <th>Questions</th>
-                    <th>Sample IDs</th>
-                </tr>
-            </thead>
-            <tbody id="chapterSummaryTable">
-                <tr><td colspan="6" style="text-align:center; color: var(--muted);">No chapter data loaded yet.</td></tr>
-            </tbody>
-        </table>
-
-        <div style="margin-top:28px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-            <div>
-                <h2 style="margin:0; color:var(--brand); font-size:22px;">📝 Question-wise Chapter Details</h2>
-                <div class="muted" style="margin-top:6px;">See each question with its class, subject, code and chapter name.</div>
-            </div>
-            <div class="badge" id="chapterDetailCount">0 Questions</div>
-        </div>
-
-        <div style="display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:end; margin-top:16px;">
-            <div>
-                <label>Filter by Chapter Name</label>
-                <input type="text" id="chapterNameSearch" placeholder="Type chapter name to filter question-wise details..." oninput="filterQuestionWiseChapterDetails()">
-            </div>
-            <div>
-                <button class="delete" onclick="clearQuestionWiseChapterFilter()">Clear Filter</button>
-            </div>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Question ID</th>
-                    <th>Class</th>
-                    <th>Subject</th>
-                    <th>Code</th>
-                    <th>Chapter Name</th>
-                    <th>Question</th>
-                </tr>
-            </thead>
-            <tbody id="chapterQuestionTable">
-                <tr><td colspan="6" style="text-align:center; color: var(--muted);">No question details loaded yet.</td></tr>
-            </tbody>
-        </table>
     </div>
 
     <div class="panel">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>🚩 User Feedback & Error Reports</h2>
-            <button class="collapse-btn" onclick="toggleSection('errTable')">SHOW/HIDE</button>
+        <div class="panel-header">
+            <h2 style="color:var(--danger);">🚩 Error Reports</h2>
         </div>
-        <div id="errTable" class="hidden-content">
+        <div class="panel-content">
             <table>
                 <thead>
                     <tr>
@@ -374,15 +342,14 @@ border-top:1px solid var(--border);
     </div>
 
     <div class="panel" style="border-left: 5px solid var(--success);">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2 style="margin-bottom:0;">💬 User Experience Feedback</h2>
+        <div class="panel-header">
+            <h2 style="color:var(--success);">💬 Experience Feedback</h2>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <div id="expCount" style="background: var(--brand); color: #000; padding: 2px 10px; border-radius: 20px; font-weight: 800; font-size: 10px;">0 Reports</div>
-                <button class="collapse-btn" onclick="toggleSection('expTable')">SHOW/HIDE</button>
             </div>
         </div>
-        <div id="expTable">
-            <table>
+        <div class="panel-content">
+            <table style="width:100%">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -401,11 +368,13 @@ border-top:1px solid var(--border);
     </div>
 
     <div class="panel" style="border-top: 2px solid var(--success);">
-        <h2 style="color: var(--success);">✍️ Add/Edit Study Content</h2>
-        <p class="muted">Manage class-wise and subject-wise study material. Use <b>Load Existing</b> to edit current notes, <b>Save (Overwrite)</b> to save edits, or <b>Append Content</b> to add to the bottom.</p>
+        <div class="panel-header">
+            <h2 style="color: var(--success);">✍️ Study Content Management</h2>
+        </div>
+        <div class="panel-content">
+        <p class="muted">Manage study material. Use <b>Load Existing</b> to edit current notes.</p>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-            <div>
                 <label for="studyClass">Class</label>
                 <select id="studyClass">
                     <option value="class1">Class 1</option>
@@ -419,8 +388,6 @@ border-top:1px solid var(--border);
                     <option value="class9">Class 9</option>
                     <option value="class10">Class 10</option>
                 </select>
-            </div>
-            <div>
                 <label for="studySubject">Subject</label>
                 <select id="studySubject">
                     <option value="maths">Maths</option>
@@ -428,7 +395,6 @@ border-top:1px solid var(--border);
                     <option value="english">English</option>
                     <option value="reasoning">Reasoning</option>
                 </select>
-            </div>
         </div>
 
         <div>
@@ -442,11 +408,14 @@ border-top:1px solid var(--border);
         <button class="upload" onclick="loadExistingStudyContent()" style="background: var(--brand);">📥 Load Existing</button>
         <button onclick="clearStudyContent()" style="background: var(--muted); color: white;">Clear</button>
         <button class="delete" onclick="deleteStudyContent()">Delete</button>
+        </div>
     </div>
 
     <div id="coupon-section" class="panel" style="border-top: 2px solid var(--danger);">
-        <h2 style="color: var(--danger);">🎫 Coupon Management</h2>
-        <p class="muted" style="font-size: 12px;">Create coupon codes to allow users to unlock live quizzes for free. Coupons are case-insensitive and converted to uppercase.</p>
+        <div class="panel-header">
+            <h2 style="color: var(--danger);">🎫 Coupon Management</h2>
+        </div>
+        <div class="panel-content">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
             <div>
                 <label>Coupon Code</label>
@@ -469,26 +438,33 @@ border-top:1px solid var(--border);
             </thead>
             <tbody id="couponsTable"></tbody>
         </table>
+        </div>
     </div>
 
-<div class="panel">
-<h2>Step 2: Upload JSON File</h2>
-<input type="file" id="jsonFile">
-<button class="upload" onclick="uploadFile()">Upload File</button>
-</div>
+    <div class="panel" style="border-top: 2px solid var(--brand);">
+        <div class="panel-header">
+            <h2 style="color: var(--brand);">📤 Question Import (JSON)</h2>
+        </div>
+        <div class="panel-content">
+            <h4 style="margin-bottom:10px;">Option A: Upload JSON File</h4>
+            <input type="file" id="jsonFile">
+            <button class="upload" onclick="uploadFile()">Upload File</button>
+            <hr style="margin:25px 0; border:0; border-top:1px solid var(--border);">
+            <h4 style="margin-bottom:10px;">Option B: Paste JSON Questions</h4>
+            <textarea id="jsonPaste" placeholder="Paste JSON array here..."></textarea>
+            <button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
+            <button class="upload" onclick="pasteClipboard()" style="background: var(--brand); color: #fff;">Paste from Clipboard</button>
+            <button class="delete" onclick="clearPaste()">Clear</button>
+        </div>
+    </div>
 
-<div class="panel">
-<h2>OR Paste JSON Questions</h2>
-<textarea id="jsonPaste"></textarea>
-<button class="upload" onclick="uploadPaste()">Upload Pasted Questions</button>
-<button class="upload" onclick="pasteClipboard()" style="background: var(--brand); color: #000;">Paste</button>
-<button class="delete" onclick="clearPaste()">Clear</button>
-</div>
-
-<div class="panel" style="border: 2px solid var(--warning);">
-    <h2>📅 Schedule Weekly Test Session</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div><label>Test Title</label><input type="text" id="sessTitle"></div>
+    <div class="panel" style="border-top: 2px solid var(--warning);">
+        <div class="panel-header">
+            <h2 style="color: var(--warning);">📅 Schedule Weekly Test</h2>
+        </div>
+        <div class="panel-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div style="grid-column: 1 / -1;"><label>Test Title</label><input type="text" id="sessTitle"></div>
         <div><label>Subject</label>
             <select id="sessSubject">
                 <option value="maths">Mathematics</option>
@@ -523,13 +499,14 @@ border-top:1px solid var(--border);
             <textarea id="sessManualIds" style="height: 100px; margin-top: 0;" placeholder="Paste full question JSON array or a list of IDs..."></textarea>
         </div>
     </div>
-    <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session & Link Questions</button>
+    <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session</button>
     <div id="sessionStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600; white-space: pre-wrap; padding: 12px; border-radius: 8px; display: none; border: 1px solid transparent;"></div>
+    </div>
 </div>
 
 <div class="panel">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h2>📅 Managed Test Sessions</h2>
+    <div class="panel-header">
+        <h2 style="color:var(--accent);">📋 Managed Test Sessions</h2>
         <button class="upload" onclick="loadSessions()">Refresh List</button>
     </div>
     <table style="margin-top: 15px;">
@@ -543,44 +520,45 @@ border-top:1px solid var(--border);
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody id="sessionsTable"></tbody>
+        <tbody id="sessionsTable" class="panel-content"></tbody>
     </table>
 </div>
 
 <div class="panel">
-<h2>Filter Questions</h2>
-<select id="filterClass">
-<option value="">All Classes</option>
-<option value="class1">Class 1</option><option value="class2">Class 2</option>
-<option value="class3">Class 3</option><option value="class4">Class 4</option>
-<option value="class5">Class 5</option><option value="class6">Class 6</option>
-<option value="class7">Class 7</option><option value="class8">Class 8</option>
-<option value="class9">Class 9</option><option value="class10">Class 10</option>
-</select>
-<select id="filterSubject">
-<option value="">All Subjects</option>
-<option value="maths">Maths</option><option value="science">Science</option>
-<option value="english">English</option><option value="reasoning">Reasoning</option>
-</select>
-<button class="upload" onclick="loadQuestions()">Apply Filter</button>
-</div>
+    <div class="panel-header">
+        <h2 style="color:var(--brand);">🔍 Search & Manage Questions</h2>
+        <div style="background:var(--brand); color:#fff; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:800;">
+            Total: <span id="count">0</span>
+        </div>
+    </div>
+    <div class="panel-content">
+        <div style="display:grid; grid-template-columns: 1fr 1fr auto; gap:10px; align-items:end; margin-bottom:20px;">
+            <div>
+                <label>Class</label>
+                <select id="filterClass"><option value="">All Classes</option><option value="class1">Class 1</option><option value="class2">Class 2</option><option value="class3">Class 3</option><option value="class4">Class 4</option><option value="class5">Class 5</option><option value="class6">Class 6</option><option value="class7">Class 7</option><option value="class8">Class 8</option><option value="class9">Class 9</option><option value="class10">Class 10</option></select>
+            </div>
+            <div>
+                <label>Subject</label>
+                <select id="filterSubject"><option value="">All Subjects</option><option value="maths">Maths</option><option value="science">Science</option><option value="english">English</option><option value="reasoning">Reasoning</option></select>
+            </div>
+            <button class="upload" onclick="loadQuestions()">Search</button>
+        </div>
 
-<div class="panel">
-<h2>Total Questions: <span id="count">0</span></h2>
-<table>
-<thead>
-<tr>
-<th>Class</th>
-<th>Subject</th>
-<th>Question</th>
-<th>Image</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="questionsTable">
-    <tr><td colspan="5" style="text-align:center; color: var(--muted);">Click Apply Filter to load questions...</td></tr>
-</tbody>
-</table>
+        <table>
+        <thead>
+        <tr>
+        <th>Class</th>
+        <th>Subject</th>
+        <th>Question</th>
+        <th>Image</th>
+        <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="questionsTable">
+            <tr><td colspan="5" style="text-align:center; color: var(--muted);">Search to load questions...</td></tr>
+        </tbody>
+        </table>
+    </div>
 </div>
 </div>
 
@@ -674,7 +652,25 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-window.toggleSection = (id) => document.getElementById(id).classList.toggle('hidden-content');
+// --- ACCORDION INITIALIZATION ---
+document.addEventListener('DOMContentLoaded', () => {
+    const headers = document.querySelectorAll('.panel-header');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const panel = header.parentElement;
+            const wasActive = panel.classList.contains('active');
+
+            // Close all panels
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+
+            // Open the clicked one if it wasn't already active
+            if (!wasActive) panel.classList.add('active');
+        });
+    });
+    // Open the search section by default for convenience
+    const lastPanel = document.querySelector('.panel:last-child');
+    if(lastPanel) lastPanel.classList.add('active');
+});
 
 window.pasteClipboard = async function() {
     try {
@@ -736,6 +732,12 @@ window.uploadPaste = async function() {
         }
 
         const data = JSON.parse(text);
+        const idsInBatch = data.map(q => q.id).filter(id => !!id);
+        const uniqueIds = new Set(idsInBatch);
+        if (idsInBatch.length !== uniqueIds.size) {
+            if (!confirm(`⚠️ Warning: Detected ${idsInBatch.length - uniqueIds.size} duplicate IDs in this batch. Firestore will only keep the last version of each. Continue?`)) return;
+        }
+
         let successCount = 0;
 
         for (let q of data) {
@@ -766,6 +768,12 @@ window.uploadFile = async function() {
     const text = await file.text();
     try {
         const data = JSON.parse(text);
+        const idsInBatch = data.map(q => q.id).filter(id => !!id);
+        const uniqueIds = new Set(idsInBatch);
+        if (idsInBatch.length !== uniqueIds.size) {
+            if (!confirm(`⚠️ Warning: Detected ${idsInBatch.length - uniqueIds.size} duplicate IDs in this file. Firestore will only keep the last version of each. Continue?`)) return;
+        }
+
         let successCount = 0;
 
         for (let q of data) {

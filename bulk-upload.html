@@ -88,6 +88,13 @@ window.uploadBulk = async function () {
 
         const data = JSON.parse(rawData);
         if (!Array.isArray(data)) { throw new Error("JSON data must be an array of question objects."); }
+
+        const idsInBatch = data.map(q => q.id).filter(id => !!id);
+        const uniqueIds = new Set(idsInBatch);
+        if (idsInBatch.length !== uniqueIds.size) {
+            if (!confirm(`⚠️ Warning: Detected ${idsInBatch.length - uniqueIds.size} duplicate IDs in this batch. Only the last occurrence of each will be saved. Continue?`)) return;
+        }
+
         statusDiv.innerText = "⏳ Uploading " + data.length + " questions...";
 
         for (let i = 0; i < data.length; i++) {
