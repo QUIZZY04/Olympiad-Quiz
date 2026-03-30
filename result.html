@@ -323,6 +323,20 @@ outline:none;
     </div>
 </div>
 
+<!-- Hint & Solution Modal -->
+<div id="hintSolutionModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 id="hintSolutionModalTitle" style="color:var(--brand); margin-bottom:15px;">Hint & Solution</h2>
+        <div style="text-align:left; margin-bottom: 20px;">
+            <label style="color:var(--muted); font-size:12px; font-weight:700;">HINT</label>
+            <p id="modalHintText" style="font-size:14px; color:var(--text); margin-bottom:10px;"></p>
+            <label style="color:var(--muted); font-size:12px; font-weight:700;">SOLUTION</label>
+            <p id="modalSolutionText" style="font-size:14px; color:var(--text);"></p>
+        </div>
+        <button class="action-btn" style="background:var(--brand); color:#fff; width:100%;" onclick="closeHintSolutionModal()">CLOSE</button>
+    </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore,collection,addDoc,serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -343,6 +357,29 @@ window.logout=async()=>{
         await signOut(auth);
         window.location.href="login.html";
     }
+};
+
+// Helper function to escape HTML for passing strings to onclick
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+window.openHintSolutionModal = (hint, solution, questionNumber) => {
+    document.getElementById("hintSolutionModalTitle").innerText = `Question ${questionNumber} Details`;
+    document.getElementById("modalHintText").innerHTML = hint; // Use innerHTML as hint/sol might contain HTML
+    document.getElementById("modalSolutionText").innerHTML = solution; // Use innerHTML
+    document.getElementById("hintSolutionModal").style.display = "flex";
+};
+
+window.closeHintSolutionModal = () => {
+    document.getElementById("hintSolutionModal").style.display = "none";
 };
 
 window.openFeedback = () => document.getElementById("feedbackModal").style.display = "flex";
@@ -429,7 +466,7 @@ document.addEventListener("DOMContentLoaded",function(){
     // Updated Header with high-contrast instruction box
     let html=`
     <div style="display: flex; justify-content: space-between; align-items: flex-end; margin: 40px 0 20px 0; flex-wrap: wrap; gap: 15px;">
-        <h2 style="font-weight: 800; margin: 0; color: var(--text);">DETAILED ANALYSIS</h2>
+        <h2 style="font-weight: 800; margin: 0; color: var(--text);">DETAILED ANALYSIS (${res.questions.length} Questions)</h2>
         <div style="background: #eff6ff; border-left: 4px solid var(--brand); padding: 10px 20px; border-radius: 8px; font-size: 13px; color: var(--text); max-width: 600px; line-height: 1.5;">
             💡 If there are any discrepancies in the quiz, report to the admin by clicking on the <strong>Flag</strong> button next to the question.
         </div>
@@ -438,21 +475,20 @@ document.addEventListener("DOMContentLoaded",function(){
 
     res.questions.forEach((q,i)=>{
         const userAns = answersArray[i] ?? null;
-        const isCorrect = userAns == q.a;
+        const isCorrect = userAns == q.a; // Loose comparison is fine here as q.a is usually a number string
 
         html+=`<tr class="${isCorrect?'correct-row':'wrong-row'}">
             <td>${i+1}</td>
             <td style="min-width: 250px; font-weight: 500;">${q.q}</td>
             <td style="font-weight: 700;">${userAns!==null ? q.o[userAns] : "Not Attempted"}</td>
             <td style="color:var(--success);font-weight:800;">${q.o[q.a]}</td>
-            <td><span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span></td>
             <td>
-                <div class="sol-box">
-                    <span class="sol-label">Hint</span>
-                    <div class="sol-item">${q.hint || "N/A"}</div>
-                    <span class="sol-label" style="margin-top:8px;">Solution</span>
-                    <div class="sol-item">${q.sol || "N/A"}</div>
-                </div>
+                <span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">
+                <button class="action-btn" style="background:var(--brand);color:#fff; padding: 8px 15px; font-size: 12px; margin: 0;" onclick="openHintSolutionModal('${escapeHtml(q.hint || "N/A")}', '${escapeHtml(q.sol || "N/A")}', ${i + 1})">
+                    View Solution
+                </button>
             </td>
             <td style="text-align: center; vertical-align: middle;">
                 <div class="report-btn" onclick="openReport('${q.id}', '${res.class}', '${res.subject}')">
