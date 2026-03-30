@@ -176,6 +176,36 @@
         .btn-ready { background: linear-gradient(135deg, #10b981, #059669); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2); cursor: not-allowed; opacity: 0.9; }
         .btn-disabled { background: #e2e8f0; color: #64748b; border: 1px solid #cbd5e1; cursor: not-allowed; }
 
+
+        /* Success Modal Styles */
+        .congrats-modal {
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); justify-content: center; align-items: center;
+        }
+        .congrats-content {
+            background: var(--surface); padding: 40px; border-radius: 32px; text-align: center;
+            max-width: 450px; width: 90%; border: 3px solid var(--brand);
+            box-shadow: 0 0 50px rgba(79, 70, 229, 0.3);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Pulsing Unlock for Free Button */
+        .btn-free-unlock {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            color: white !important;
+            animation: pulseFree 2s infinite;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+        @keyframes pulseFree {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
         #loader { text-align: center; padding: 50px; font-weight: 600; color: var(--brand); }
 
         footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); color: var(--muted); margin-top: auto; background: rgba(2, 6, 23, 0.8); }
@@ -213,6 +243,16 @@
 
     <div id="loader">Syncing live sessions...</div>
     <div id="sessionContainer" class="session-grid"></div>
+</div>
+
+<!-- Congratulation Modal -->
+<div id="congratsModal" class="congrats-modal">
+    <div class="congrats-content">
+        <div style="font-size: 60px; margin-bottom: 20px;">🎊</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; font-size: 24px;">Coupon Applied!</h2>
+        <p style="color: var(--text); line-height: 1.6; margin-bottom: 30px; font-weight: 500; font-size: 16px;">Congratulations! Your coupon is valid. Now click on the <b style="color:var(--success)">'Unlock for Free'</b> button on the test card to complete your registration.</p>
+        <button onclick="closeCongratsModal()" style="background: var(--brand); color: white; padding: 14px 30px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">Got it!</button>
+    </div>
 </div>
 
 <footer><p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p></footer>
@@ -254,6 +294,7 @@
 
     let timerInterval;
     let appliedCoupons = {}; // Tracks sessions with successfully applied coupons
+    let currentSessionList = []; // Reference for forced updates
 
     async function loadSessions(user) {
         const container = document.getElementById("sessionContainer");
@@ -390,11 +431,11 @@
                 container.appendChild(wrapper);
             }
             // Sort sessionList by startTime (descending) after all data is gathered
-            sessionList.sort((a, b) => b.start.getTime() - a.start.getTime());
+            currentSessionList = sessionList.sort((a, b) => b.start.getTime() - a.start.getTime());
 
             if (timerInterval) clearInterval(timerInterval);
-            timerInterval = setInterval(() => updateTick(sessionList), 1000);
-            updateTick(sessionList);
+            timerInterval = setInterval(() => updateTick(currentSessionList), 1000);
+            updateTick(currentSessionList);
 
         } catch (e) {
             console.error("Lobby Load Error:", e);
@@ -435,7 +476,7 @@
                 timerEl.innerText = "Registration Open";
 
                 if (appliedCoupons[s.id]) {
-                    btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-unlocked";
+                    btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-free-unlock";
                     btn.onclick = () => handleUnlock(s.id, 0, s.title);
                 } else {
                     btn.innerText = `Unlock for ₹${s.price}`; btn.className = "join-btn btn-locked";
@@ -486,13 +527,18 @@
             const expiry = couponData.expiry.toDate();
             if (new Date() > expiry) { msg.innerText = "⏰ Coupon Expired"; msg.style.color = "var(--danger)"; return; }
 
-            msg.innerText = "🎉 Congratulations! Coupon applied. Click 'Unlock for Free' to complete registration.";
-            msg.style.color = "var(--success)";
-            
-            // Update local state so updateTick preserves this button transformation
+            // 1. Mark as applied in local state so the background timer preserves the transformation
             appliedCoupons[sessionId] = true;
-
             localStorage.setItem("appliedCoupon", code);
+
+            // 2. Force the UI to refresh the specific button immediately
+            updateTick(currentSessionList);
+
+            // 3. Show Success Modal (The Attractive Pop)
+            document.getElementById("congratsModal").style.display = "flex";
+
+            // 4. Clear status message in the quiz card
+            msg.innerText = ""; 
         } catch (e) {
             msg.innerText = "❌ Error: " + e.message; msg.style.color = "var(--danger)";
         }
@@ -564,6 +610,8 @@
         localStorage.setItem("isChampionship", "true");
         window.location.href = "quiz.html";
     };
+
+    window.closeCongratsModal = () => document.getElementById("congratsModal").style.display = "none";
 
     window.logout = async () => {
         if (confirm("Logout?")) {
