@@ -253,6 +253,7 @@
     };
 
     let timerInterval;
+    let appliedCoupons = {}; // Tracks sessions with successfully applied coupons
 
     async function loadSessions(user) {
         const container = document.getElementById("sessionContainer");
@@ -372,6 +373,15 @@
                 </div>
                 <button onclick="window.location.href='instructions.html'" class="info-btn">❓ How to start Quiz</button>
                 ${isAdmin ? `<button onclick="deleteSession('${sDoc.id}')" style="margin-bottom:10px; background:var(--danger); color:white; border:none; padding:8px; border-radius:8px; font-size:10px; cursor:pointer; width:100%;">🗑 DELETE SESSION</button>` : ''}
+                
+                <div id="coupon-area-${sDoc.id}" style="display: none; margin-bottom: 12px; background: rgba(79, 70, 229, 0.05); padding: 10px; border-radius: 12px; border: 1px dashed var(--brand);">
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="coupon-input-${sDoc.id}" onkeydown="if(event.key==='Enter') applyCoupon('${sDoc.id}', '${s.title}')" placeholder="Enter Coupon Code" style="flex: 1; padding: 8px; border-radius: 8px; border: 1px solid var(--border); font-size: 12px; font-weight: 600; text-transform: uppercase;">
+                        <button onclick="applyCoupon('${sDoc.id}', '${s.title}')" style="background: var(--brand); color: white; border: none; padding: 0 15px; border-radius: 8px; font-weight: 800; font-size: 11px; cursor: pointer; text-transform: uppercase;">Apply</button>
+                    </div>
+                    <div id="coupon-msg-${sDoc.id}" style="font-size: 10px; margin-top: 5px; font-weight: 700; text-align: center;"></div>
+                </div>
+
                 <button id="btn-${sDoc.id}" class="join-btn btn-disabled" disabled>
                     Please Wait
                 </button>
@@ -423,10 +433,23 @@
             } else if (!s.hasAccess) {
                 pill.innerText = "Locked"; pill.className = "status-pill status-upcoming";
                 timerEl.innerText = "Registration Open";
-                btn.innerText = `Unlock for ₹${s.price}`; btn.className = "join-btn btn-locked"; btn.disabled = false;
-                btn.onclick = () => handleUnlock(s.id, s.price, s.title);
+
+                if (appliedCoupons[s.id]) {
+                    btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-unlocked";
+                    btn.onclick = () => handleUnlock(s.id, 0, s.title);
+                } else {
+                    btn.innerText = `Unlock for ₹${s.price}`; btn.className = "join-btn btn-locked";
+                    btn.onclick = () => handleUnlock(s.id, s.price, s.title);
+                }
+                btn.disabled = false;
+
+                // Show coupon area for paid locked sessions
+                const cpArea = document.getElementById(`coupon-area-${s.id}`);
+                if (cpArea) cpArea.style.display = (s.price > 0) ? "block" : "none";
             } else {
                 // User has access
+                const cpArea = document.getElementById(`coupon-area-${s.id}`);
+                if (cpArea) cpArea.style.display = "none";
                 if (now < s.start) {
                     const diff = s.start - now;
                     const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
@@ -447,6 +470,34 @@
         });
     }
 
+    window.applyCoupon = async (sessionId, title) => {
+        const input = document.getElementById(`coupon-input-${sessionId}`);
+        const msg = document.getElementById(`coupon-msg-${sessionId}`);
+        const code = input.value.trim().toUpperCase();
+        if (!code) { msg.innerText = "⚠️ Enter code"; msg.style.color = "var(--danger)"; return; }
+
+        msg.innerText = "⌛ Verifying..."; msg.style.color = "var(--brand)";
+        try {
+            const q = query(collection(db, "coupons"), where("name", "==", code));
+            const snap = await getDocs(q);
+            if (snap.empty) { msg.innerText = "❌ Invalid Coupon"; msg.style.color = "var(--danger)"; return; }
+
+            const couponData = snap.docs[0].data();
+            const expiry = couponData.expiry.toDate();
+            if (new Date() > expiry) { msg.innerText = "⏰ Coupon Expired"; msg.style.color = "var(--danger)"; return; }
+
+            msg.innerText = "🎉 Congratulations! Coupon applied. Click 'Unlock for Free' to complete registration.";
+            msg.style.color = "var(--success)";
+            
+            // Update local state so updateTick preserves this button transformation
+            appliedCoupons[sessionId] = true;
+
+            localStorage.setItem("appliedCoupon", code);
+        } catch (e) {
+            msg.innerText = "❌ Error: " + e.message; msg.style.color = "var(--danger)";
+        }
+    };
+
     window.handleUnlock = async (sessionId, price, title) => {
         const sessionPrice = parseInt(price); // Ensure price is a number
 
@@ -465,7 +516,8 @@
                             paid: true,
                             time: serverTimestamp(),
                             amount: 0,
-                            sessionId: sessionId
+                            sessionId: sessionId,
+                            couponUsed: localStorage.getItem("appliedCoupon") || null
                         }
                     );
                     alert("Quiz unlocked for free!");

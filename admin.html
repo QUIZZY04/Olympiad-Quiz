@@ -230,6 +230,7 @@ border-top:1px solid var(--border);
 <a href="quiz.html">Take Quiz</a>
 <a href="leaderboard.html">Leaderboard</a>
 <a href="admin.html" class="active">Admin</a>
+<a href="#coupon-section" style="color:var(--warning);">Coupons</a>
 <a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
 </div>
 </nav>
@@ -443,6 +444,33 @@ border-top:1px solid var(--border);
         <button class="delete" onclick="deleteStudyContent()">Delete</button>
     </div>
 
+    <div id="coupon-section" class="panel" style="border-top: 2px solid var(--danger);">
+        <h2 style="color: var(--danger);">🎫 Coupon Management</h2>
+        <p class="muted" style="font-size: 12px;">Create coupon codes to allow users to unlock live quizzes for free. Coupons are case-insensitive and converted to uppercase.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+            <div>
+                <label>Coupon Code</label>
+                <input type="text" id="couponName" placeholder="e.g. FREE100">
+            </div>
+            <div>
+                <label>Expiry Date</label>
+                <input type="date" id="couponExpiry">
+            </div>
+        </div>
+        <button class="upload" onclick="createCoupon()" style="background: var(--danger);">Create Coupon</button>
+        
+        <table style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Expiry</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="couponsTable"></tbody>
+        </table>
+    </div>
+
 <div class="panel">
 <h2>Step 2: Upload JSON File</h2>
 <input type="file" id="jsonFile">
@@ -598,6 +626,19 @@ border-top:1px solid var(--border);
     </div>
 </div>
 
+<div id="editCouponModal" class="modal">
+    <div class="modal-content">
+        <h2>Edit Coupon</h2>
+        <input type="hidden" id="editCouponId">
+        <label>Coupon Code</label>
+        <input type="text" id="editCouponName">
+        <label>Expiry Date</label>
+        <input type="date" id="editCouponExpiry">
+        <button class="upload" onclick="saveCouponEdit()">Save Changes</button>
+        <button class="delete" onclick="closeCouponEdit()">Cancel</button>
+    </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -627,7 +668,7 @@ let allQuestionWiseChapterRows = [];
 
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
-        loadFeedback(); loadExpFeedback(); loadSessions();
+        loadFeedback(); loadExpFeedback(); loadSessions(); loadCoupons();
     } else {
         window.location.href = "login.html";
     }
@@ -1063,6 +1104,76 @@ window.saveSessionEdit = async () => {
 window.closeSessEdit = () => document.getElementById("editSessModal").style.display = "none";
 
 window.deleteSession = async (id) => { if(confirm("Delete session?")) { await deleteDoc(doc(db, "test_sessions", id)); loadSessions(); } };
+
+const couponsRef = collection(db, "coupons");
+window.loadCoupons = () => {
+    onSnapshot(couponsRef, (snap) => {
+        let html = "";
+        snap.forEach(d => {
+            const c = d.data();
+            const expiry = c.expiry instanceof Timestamp ? c.expiry.toDate().toLocaleDateString() : c.expiry;
+            html += `<tr>
+                <td><b>${c.name}</b></td>
+                <td>${expiry}</td>
+                <td>
+                    <button class="edit-btn" onclick="openCouponEdit('${d.id}')">Edit</button>
+                    <button class="delete" onclick="deleteCoupon('${d.id}')">🗑</button>
+                </td>
+            </tr>`;
+        });
+        if (html === "") html = '<tr><td colspan="3" style="text-align:center; color: var(--muted);">No coupons created yet.</td></tr>';
+        document.getElementById("couponsTable").innerHTML = html;
+    }, (e) => console.error("Coupon listener error:", e));
+};
+window.createCoupon = async () => {
+    try {
+        const nameInput = document.getElementById("couponName");
+        const expiryInput = document.getElementById("couponExpiry");
+        const name = nameInput.value.trim().toUpperCase();
+        const expiryDate = expiryInput.value;
+        if (!name || !expiryDate) { alert("Fill all fields."); return; }
+        
+        await addDoc(couponsRef, {
+            name,
+            expiry: Timestamp.fromDate(new Date(expiryDate + "T23:59:59")),
+            createdAt: serverTimestamp()
+        });
+        alert(`✅ Success: Coupon "${name}" created successfully!`);
+        nameInput.value = "";
+        expiryInput.value = "";
+    } catch (e) {
+        alert("❌ Error creating coupon: " + e.message);
+    }
+};
+window.openCouponEdit = async (id) => {
+    const docSnap = await getDoc(doc(db, "coupons", id));
+    if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById("editCouponId").value = id;
+        document.getElementById("editCouponName").value = data.name;
+        if (data.expiry instanceof Timestamp) {
+            const dt = data.expiry.toDate();
+            document.getElementById("editCouponExpiry").value = dt.toISOString().split('T')[0];
+        }
+        document.getElementById("editCouponModal").style.display = "flex";
+    }
+};
+window.saveCouponEdit = async () => {
+    const id = document.getElementById("editCouponId").value;
+    const name = document.getElementById("editCouponName").value.trim().toUpperCase();
+    const expiryDate = document.getElementById("editCouponExpiry").value;
+    if (!name || !expiryDate) { alert("Fill all fields."); return; }
+    await updateDoc(doc(db, "coupons", id), {
+        name,
+        expiry: Timestamp.fromDate(new Date(expiryDate + "T23:59:59"))
+    });
+    alert("✅ Coupon updated successfully!");
+    closeCouponEdit();
+};
+window.closeCouponEdit = () => document.getElementById("editCouponModal").style.display = "none";
+window.deleteCoupon = async (id) => {
+    if (confirm("Delete coupon?")) { await deleteDoc(doc(db, "coupons", id)); loadCoupons(); }
+};
 
 window.createSession = async () => {
     const btn = document.querySelector('button[onclick="createSession()"]');

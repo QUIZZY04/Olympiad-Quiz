@@ -83,6 +83,7 @@ onAuthStateChanged(auth, async (user) => {
     const statusMsg = document.getElementById("statusMsg");
     const sessionId = localStorage.getItem("activeSessionId");
     const sessionPrice = localStorage.getItem("activeSessionPrice");
+    const appliedCoupon = localStorage.getItem("appliedCoupon");
 
     if (user && sessionId) {
         try {
@@ -99,10 +100,13 @@ onAuthStateChanged(auth, async (user) => {
                 {
                     paid: true,
                     time: serverTimestamp(),
-                    amount: parseInt(sessionPrice) || 99, // Use the actual session price
-                    sessionId: sessionId
-                }
+                    amount: Number(sessionPrice), 
+                    sessionId: sessionId,
+                    couponUsed: appliedCoupon || null
+                },
+                { merge: true }
             );
+            localStorage.removeItem("appliedCoupon"); // Clean up
 
             statusMsg.innerText = "Account and purchase updated! You can now go to the dashboard.";
             statusMsg.style.color = "#22c55e";
