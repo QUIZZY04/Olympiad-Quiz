@@ -259,6 +259,7 @@ border-top:1px solid var(--border);
 <a href="leaderboard.html">Leaderboard</a>
 <a href="admin.html" class="active">Admin</a>
 <a href="#coupon-section" style="color:var(--warning);">Coupons</a>
+<a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
 <a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
 </div>
 </nav>
@@ -523,6 +524,38 @@ border-top:1px solid var(--border);
         <tbody id="sessionsTable" class="panel-content"></tbody>
     </table>
 </div>
+
+    <div id="bulk-delete-section" class="panel" style="border-top: 2px solid var(--danger);">
+        <div class="panel-header">
+            <h2 style="color:var(--danger);">🗑 Bulk Question Deleter</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Warning: This tool permanently deletes questions matching the filters below from Firestore.</p>
+            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:10px; align-items:end; margin-top:15px;">
+                <div>
+                    <label>Class</label>
+                    <select id="bulkDelClass"><option value="">All Classes</option><option value="class1">Class 1</option><option value="class2">Class 2</option><option value="class3">Class 3</option><option value="class4">Class 4</option><option value="class5">Class 5</option><option value="class6">Class 6</option><option value="class7">Class 7</option><option value="class8">Class 8</option><option value="class9">Class 9</option><option value="class10">Class 10</option></select>
+                </div>
+                <div>
+                    <label>Subject</label>
+                    <select id="bulkDelSubject"><option value="">All Subjects</option><option value="maths">Maths</option><option value="science">Science</option><option value="english">English</option><option value="reasoning">Reasoning</option></select>
+                </div>
+                <div>
+                    <label>Topic Code/Name</label>
+                    <input type="text" id="bulkDelTopic" placeholder="e.g. M01" style="margin-top:0;">
+                </div>
+                <div>
+                    <label>Question ID</label>
+                    <input type="text" id="bulkDelId" placeholder="Exact ID" style="margin-top:0;">
+                </div>
+            </div>
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+                <button class="upload" style="background: var(--brand);" onclick="previewBulkDelete()">🔍 Preview Count</button>
+                <button class="delete" onclick="executeBulkDelete()">🗑 Delete Matching Questions</button>
+            </div>
+            <div id="bulkDelStatus" style="margin-top:15px; font-weight:700;"></div>
+        </div>
+    </div>
 
 <div class="panel">
     <div class="panel-header">
@@ -1182,6 +1215,69 @@ window.closeCouponEdit = () => document.getElementById("editCouponModal").style.
 window.deleteCoupon = async (id) => {
     if (confirm("Delete coupon?")) { await deleteDoc(doc(db, "coupons", id)); loadCoupons(); }
 };
+
+window.previewBulkDelete = async function() {
+    const fClass = document.getElementById("bulkDelClass").value;
+    const fSubject = document.getElementById("bulkDelSubject").value;
+    const fTopic = document.getElementById("bulkDelTopic").value.trim();
+    const fId = document.getElementById("bulkDelId").value.trim();
+    const status = document.getElementById("bulkDelStatus");
+
+    if (!fClass && !fSubject && !fTopic && !fId) {
+        status.innerHTML = "⚠️ Please select at least one filter.";
+        return;
+    }
+
+    let qry = questionsRef;
+    if (fClass) qry = query(qry, where("class", "==", fClass));
+    if (fSubject) qry = query(qry, where("subject", "==", fSubject));
+    if (fTopic) qry = query(qry, where("topic", "==", fTopic));
+    if (fId) qry = query(qry, where("id", "==", fId));
+
+    try {
+        const snap = await getDocs(qry);
+        status.innerHTML = `Found <b>${snap.size}</b> questions matching these criteria.`;
+    } catch (e) {
+        status.innerHTML = `<span style="color:var(--danger)">Error: ${e.message}</span>`;
+    }
+}
+
+window.executeBulkDelete = async function() {
+    const fClass = document.getElementById("bulkDelClass").value;
+    const fSubject = document.getElementById("bulkDelSubject").value;
+    const fTopic = document.getElementById("bulkDelTopic").value.trim();
+    const fId = document.getElementById("bulkDelId").value.trim();
+    const status = document.getElementById("bulkDelStatus");
+
+    if (!fClass && !fSubject && !fTopic && !fId) {
+        alert("Select filters first.");
+        return;
+    }
+
+    let qry = questionsRef;
+    if (fClass) qry = query(qry, where("class", "==", fClass));
+    if (fSubject) qry = query(qry, where("subject", "==", fSubject));
+    if (fTopic) qry = query(qry, where("topic", "==", fTopic));
+    if (fId) qry = query(qry, where("id", "==", fId));
+
+    try {
+        const snap = await getDocs(qry);
+        if (snap.empty) {
+            status.innerHTML = "No questions found to delete.";
+            return;
+        }
+
+        if (confirm(`⚠️ DANGER: You are about to delete ${snap.size} questions. This is IRREVERSIBLE. Proceed?`)) {
+            status.innerHTML = `Deleting ${snap.size} questions...`;
+            const promises = snap.docs.map(d => deleteDoc(doc(db, "questions", d.id)));
+            await Promise.all(promises);
+            status.innerHTML = `<span style="color:var(--success)">✅ Successfully deleted ${snap.size} questions.</span>`;
+            if (typeof loadQuestions === 'function') loadQuestions();
+        }
+    } catch (e) {
+        status.innerHTML = `<span style="color:var(--danger)">Delete failed: ${e.message}</span>`;
+    }
+}
 
 window.createSession = async () => {
     const btn = document.querySelector('button[onclick="createSession()"]');
