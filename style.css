@@ -281,6 +281,20 @@ body.auth-page {
     color: #2563eb;
 }
 
+.olympiad-tagline {
+    display: block;
+    margin: 12px 0;
+    font-weight: 800;
+    color: #c2410c; /* High-contrast bold orange */
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background: #fff7ed; /* Light orange tint background */
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ffedd5;
+}
+
 /* Improve dropdown look */
 .dashboard-card select {
     padding: 12px;
