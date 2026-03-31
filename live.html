@@ -5,7 +5,10 @@
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Olympiad Quiz Arena: Compete Nationwide | Olympiad Portal</title>
+    <title>Free IMO & NSO Mock Tests | Live Olympiad Quiz Arena | Olympiad Portal</title>
+    <meta name="description" content="Take free IMO (International Mathematics Olympiad) and NSO (National Science Olympiad) mock tests for Class 4, Class 5 and more. Compete nationwide in our live arena and boost your ranking.">
+    <meta name="keywords" content="IMO free mock test, NSO free mock test, Olympiad practice, math olympiad class 5, science olympiad class 4, free online olympiad quiz">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
@@ -225,14 +228,36 @@
     </style>
     <!-- Add Inter font for better numbers -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationEvent",
+      "name": "Live Olympiad Mock Test Arena",
+      "description": "Nationwide free mock tests for IMO (Maths) and NSO (Science) Olympiads.",
+      "performer": {
+        "@type": "Organization",
+        "name": "Olympiad Portal"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://yourdomain.com/live.html",
+        "price": "0",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
 </head>
 <body>
 
 <nav>
-    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <a href="dashboard.html" class="brand" aria-label="Olympiad Portal Home">🎓 Olympiad Portal</a>
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
+        <a href="mock.html">Mock Tests</a>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html" style="color:var(--brand); border-bottom: 2px solid var(--brand); padding-bottom: 2px;">Live Arena</a>
         <a href="leaderboard.html">Leaderboard</a>
         <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
     </div>
@@ -240,8 +265,8 @@
 
 <div class="container">
     <div class="arena-header">
-        <h1>Live Quiz <span>Arena</span></h1>
-        <p>Compete in nationwide championships and earn your place on the leaderboard.</p>
+        <h1>IMO & NSO Free <span>Mock Test Arena</span></h1>
+        <p>Prepare for your International Mathematics Olympiad (IMO) and National Science Olympiad (NSO) with our free nationwide mock tests.</p>
         <div class="header-meta">
             <span id="userClassInfo"></span>
             <span id="currentTimeDisplay"></span>
@@ -262,7 +287,15 @@
     </div>
 </div>
 
-<footer><p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p></footer>
+<footer style="text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted);margin-top:auto;background:rgba(2, 6, 23, 0.8);">
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+        <a href="index.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">Home</a>
+        <a href="imo-free-mock-test.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">IMO Test</a>
+        <a href="nso-free-mock-test.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">NSO Test</a>
+        <a href="leaderboard.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">Leaderboard</a>
+    </div>
+    <p style="font-size:14px; margin-top:10px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
