@@ -8,6 +8,7 @@ window.onpopstate = function () { history.go(1); };
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Live Quiz - Olympiad Portal</title>
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>
 :root {
@@ -36,11 +37,6 @@ overflow-x:hidden;
 background-image: radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 40%), radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
 background-attachment: fixed;
 }
-nav{ background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
-.brand{ font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-.nav-links{ display:flex; gap:15px; align-items:center; flex-wrap: wrap; justify-content: center; }
-.nav-links a{ color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
-.nav-links a:hover{ color: var(--brand); opacity: 0.8; }
 #timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger); padding:8px 15px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2);}
 
 .quiz-container{
@@ -140,9 +136,6 @@ footer {
 }
 
 @media (max-width:850px){
-nav { padding: 8px 5% !important; gap: 5px !important; }
-.brand { font-size: 1.2rem !important; }
-.nav-links { gap: 8px !important; }
 .quiz-top-bar { margin-top: 5px !important; margin-bottom: 5px !important; }
 .quiz-container{flex-direction:column;height:auto;padding:15px;gap:15px;}
 .question-section,.navigation-section{width:100%;flex:none;}
@@ -162,11 +155,16 @@ nav { padding: 8px 5% !important; gap: 5px !important; }
 <nav>
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 <div class="nav-links">
-<a href="index.html">Home</a>
 <a href="dashboard.html">Dashboard</a>
-<a href="study.html">Study Material</a>
+<a href="mock.html">Mock Tests</a>
+<a href="chapterwise.html">Chapterwise</a>
+<a href="live.html">Live Arena</a>
 <a href="leaderboard.html">Leaderboard</a>
-<a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+<a href="study.html">Study Material</a>
+<div class="nav-actions">
+    <a id="adminTab" href="admin.html" style="display:none; color:var(--success);">Admin</a>
+    <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
+</div>
 </div>
 </nav>
 
@@ -817,6 +815,7 @@ function goBackToSelection() {
 onAuthStateChanged(auth, async(user)=>{
     if(!user){ window.location.href="login.html"; return; }
     if (user.email === "madhhu52@gmail.com") {
+        document.getElementById("adminTab").style.display="inline";
         document.getElementById("deleteQuestionBtn").style.display = "inline-block";
     }
     await loadQuestions();
