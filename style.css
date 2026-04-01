@@ -334,7 +334,7 @@ nav {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 15px 5%;
+    padding: 8px 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -356,7 +356,7 @@ nav {
     font-size: 0.75rem;
     color: var(--brand);
     background: rgba(79, 70, 229, 0.08);
-    padding: 6px 10px;
+    padding: 4px 8px;
     border-radius: 8px;
     text-transform: uppercase;
 }
@@ -486,19 +486,20 @@ nav {
 
 @media (max-width: 768px) {
     nav {
-        padding: 12px 15px;
+        padding: 6px 12px;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         position: sticky;
     }
     .brand {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-left: 8px;
         flex: 1;
     }
     .nav-important {
         display: flex;
-        margin-right: 15px;
+        margin-right: 0;
     }
     .menu-toggle {
         display: flex;
