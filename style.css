@@ -437,9 +437,77 @@ nav {
 
 .login-link {
     font-weight: 700;
-    color: var(--text);
+    color: white !important;
     text-decoration: none;
     font-size: 0.9rem;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+    padding: 10px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    transition: 0.3s;
+}
+.login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4); filter: brightness(1.1); }
+
+/* Dropdown Menu Styles */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--surface);
+    min-width: 200px;
+    box-shadow: var(--shadow-lg);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 100%;
+    left: 0;
+    border: 1px solid var(--border);
+    padding: 8px 0;
+}
+
+.nav-dropdown-content a {
+    color: var(--text) !important;
+    padding: 12px 20px !important;
+    text-decoration: none !important;
+    display: block !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    border-bottom: none !important;
+    transition: background 0.2s !important;
+    border-radius: 0 !important;
+    text-align: left;
+}
+
+.nav-dropdown-content a:hover {
+    background-color: var(--subtle) !important;
+    color: var(--brand) !important;
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+}
+
+.dropbtn::after {
+    content: ' ▾';
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .nav-dropdown { width: 100%; }
+    .nav-dropdown-content {
+        position: static;
+        display: block;
+        box-shadow: none;
+        border: none;
+        background: var(--subtle);
+        padding-left: 20px;
+        border-radius: 0;
+        min-width: 100%;
+    }
 }
 
 .signup-btn-nav {
