@@ -11,6 +11,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <style>
         :root {
@@ -166,10 +167,10 @@
             <a href="live.html">Live Arena</a>
             <a href="leaderboard.html">Leaderboard</a>
             <a href="study.html">Study Material</a>
-            <div class="nav-actions">
-                <a id="adminTab" href="admin.html" style="display:none; color:var(--success);">Admin</a>
-                <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
-            </div>
+        </div>
+        <div class="nav-actions">
+            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
     </nav>
 
@@ -275,6 +276,10 @@
     onAuthStateChanged(auth, (user) => {
         if (!user) {
             window.location.replace("index.html");
+            return;
+        }
+        if (user.email === "madhhu52@gmail.com") {
+            document.getElementById("adminTab").style.display = "inline";
         }
     });
 
