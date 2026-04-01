@@ -52,51 +52,6 @@ background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), t
 background-attachment: fixed;
 }
 
-nav{
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(12px);
-border-bottom:1px solid var(--border);
-padding:20px 5%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:1000;
-}
-
-.brand{
-font-size:1.5rem;
-font-weight:800;
-color:var(--text);
-text-decoration:none;
-}
-
-.nav-links{
-display:flex;
-gap:20px;
-align-items:center;
-}
-
-.nav-links a{
-color:var(--text);
-text-decoration:none;
-font-size:14px;
-font-weight:700;
-text-transform:uppercase;
-transition:0.3s;
-}
-
-.nav-links a:hover{
-color:var(--brand);
-}
-
-.nav-links a.active{
-color:var(--brand);
-border-bottom:2px solid var(--brand);
-padding-bottom:2px;
-}
-
 .container{
 width:98%;
 max-width:1400px;
@@ -272,6 +227,7 @@ font-size:14px;
     <a href="chapterwise.html">Chapterwise</a>
     <a href="live.html">Live Arena</a>
     <a href="leaderboard.html" class="active">Leaderboard</a>
+    <a href="study.html">Study Material</a>
     <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
     </div>
     </nav>

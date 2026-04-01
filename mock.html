@@ -43,22 +43,6 @@
             background-attachment: fixed;
         }
 
-        nav {
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(12px); 
-            border-bottom: 1px solid var(--border); 
-            padding: 15px 5%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px;
-        }
-        
-        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.5px; }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { color: var(--text); text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--brand); }
-
         .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
 
         .selection-box {
@@ -176,12 +160,12 @@
     <nav>
         <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-links">
-            <a href="index.html">Home</a>
             <a href="dashboard.html">Dashboard</a>
-            <a href="mock.html" style="color:var(--brand); border-bottom: 2px solid var(--brand); padding-bottom: 2px;">Mock Tests</a>
+            <a href="mock.html" class="active">Mock Tests</a>
             <a href="chapterwise.html">Chapterwise</a>
             <a href="live.html">Live Arena</a>
             <a href="leaderboard.html">Leaderboard</a>
+            <a href="study.html">Study Material</a>
             <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
     </nav>

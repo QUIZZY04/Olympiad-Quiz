@@ -20,8 +20,11 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: var(--text); line-height: 1.6; }
-        nav { background: #fff; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px; }
         .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; }
+        .nav-links { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--brand); background: rgba(16, 185, 129, 0.05); }
         .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
         .hero { text-align: center; margin-bottom: 60px; }
         .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: var(--brand); }
@@ -63,13 +66,13 @@
     <nav>
         <a href="index.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-links">
-            <a href="index.html" style="text-decoration:none; font-weight:600; color:var(--text);">Home</a>
-            <a href="imo-free-mock-test.html" style="text-decoration:none; font-weight:600; color:var(--text);">IMO Test</a>
-            <a href="nso-free-mock-test.html" style="text-decoration:none; font-weight:600; color:var(--brand); border-bottom: 2px solid var(--brand);">NSO Test</a>
-            <a href="ieo-free-mock-test.html" style="text-decoration:none; font-weight:600; color:var(--text);">IEO Test</a>
-            <a href="iro-free-mock-test.html" style="text-decoration:none; font-weight:600; color:var(--text);">IRO Test</a>
-            <a href="features.html" style="text-decoration:none; font-weight:600; color:var(--text);">Features</a>
-            <a href="login.html" id="navAuthLink" style="text-decoration:none; font-weight:600; color:var(--text);">Login</a>
+            <a href="index.html">Home</a>
+            <a href="imo-free-mock-test.html">IMO Test</a>
+            <a href="nso-free-mock-test.html" style="color:var(--brand); background: rgba(16, 185, 129, 0.05);">NSO Test</a>
+            <a href="ieo-free-mock-test.html">IEO Test</a>
+            <a href="iro-free-mock-test.html">IRO Test</a>
+            <a href="features.html">Features</a>
+            <a href="login.html" id="navAuthLink">Login</a>
         </div>
     </nav>
 

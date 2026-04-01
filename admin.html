@@ -55,17 +55,25 @@ text-decoration:none;
 }
 .nav-links{
 display:flex;
-gap:12px;
+gap:15px;
+flex-wrap: wrap;
 }
 .nav-links a{
 color:var(--text);
 text-decoration:none;
-font-size:11px;
+font-size:12px;
 font-weight:800;
 text-transform:uppercase;
+padding: 8px 12px;
+border-radius: 8px;
+transition: 0.3s;
+}
+.nav-links a:hover {
+    background: rgba(79, 70, 229, 0.05);
 }
 .nav-links a.active{
-color:var(--success);
+color:var(--brand);
+background: rgba(79, 70, 229, 0.1);
 }
 .container{
 width:95%;

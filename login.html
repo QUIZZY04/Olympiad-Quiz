@@ -43,16 +43,22 @@
     
     .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; }
     
-    nav div a {
+    .nav-links { display: flex; gap: 10px; align-items: center; }
+    
+    .nav-links a {
       color: var(--text);
       text-decoration: none;
       font-weight: 700;
-      margin-left: 25px;
-      font-size: 14px;
+      font-size: 13px;
       text-transform: uppercase;
       transition: 0.3s;
+      padding: 8px 12px;
+      border-radius: 8px;
     }
-    nav div a:hover { color: var(--brand); }
+    .nav-links a:hover { 
+      color: var(--brand); 
+      background: rgba(79, 70, 229, 0.05);
+    }
 
     .container {
       flex: 1;
@@ -151,7 +157,7 @@
 
 <nav>
     <a href="index.html" class="brand">🎓 Olympiad Portal</a>
-    <div>
+    <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="imo-free-mock-test.html">IMO Test</a>
         <a href="nso-free-mock-test.html">NSO Test</a>

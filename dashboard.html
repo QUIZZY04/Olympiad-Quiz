@@ -12,13 +12,9 @@
   <meta http-equiv="Expires" content="0" />
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Content is visible by default for immediate loading */
-    #main-app-container { 
-        display: block; 
-    }
-
     :root {
       --bg: #f8fafc;
       --surface: #ffffff;
@@ -36,17 +32,6 @@
     
     *{box-sizing:border-box;margin:0;padding:0;}
     body{ font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; overflow-x: hidden; background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%); background-attachment: fixed; }
-    
-    nav{ 
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
-      border-bottom:1px solid var(--border); 
-      padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
-      position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
-    }
-    .brand{ font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-    .nav-links{ display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-    .nav-links a{ color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:600; text-transform:uppercase; transition: 0.3s; }
-    .nav-links a:hover{ color: var(--brand); }
 
     .container{ width:100%; max-width:1200px; margin:30px auto; padding:0 20px; flex:1; }
     
@@ -167,10 +152,6 @@
     .stat-box p { font-size: 0.85rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 0; }
     
     @media (max-width:768px){
-        nav { flex-direction: column; padding: 15px; gap: 15px; }
-        .brand { font-size: 1.3rem; }
-        .nav-links { gap: 10px; }
-        .nav-links a { font-size: 0.8rem; }
         .hero-panel { padding: 25px; flex-direction: column; align-items: flex-start; }
         .hero-left h1 { font-size: 1.8rem; }
         .hero-right { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
@@ -186,19 +167,23 @@
 <body>
 
 <div id="main-app-container">
-    <nav>
-        <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-        <div class="nav-links">
-            <a href="index.html" style="color:var(--muted);">Home</a>
-            <a href="dashboard.html" style="color:var(--brand); border-bottom: 2px solid var(--brand); padding-bottom: 2px;">Dashboard</a>
-            <a href="mock.html">Mock Tests</a>
-            <a href="chapterwise.html">Chapterwise</a>
-            <a href="study.html">Study Material</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a id="adminTab" href="admin.html" style="display:none;color:var(--green);">Admin</a>
-            <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="mock.html">Mock Tests</a>
+                <a href="chapterwise.html">Chapterwise</a>
+                <a href="live.html">Live Arena</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <a href="study.html">Study Material</a>
+                <div style="display: inline-block; margin-left: 10px; border-left: 2px solid var(--border); padding-left: 15px;">
+                    <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
+                    <a onclick="logout()" style="margin-left: 5px; font-weight: 600; color: var(--danger); text-transform:none; cursor:pointer;">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <main class="container">
         <div class="hero-panel animate-up">

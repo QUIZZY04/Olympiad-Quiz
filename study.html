@@ -32,17 +32,6 @@
             background-attachment: fixed;
         }
 
-        nav { 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
-            border-bottom:1px solid var(--border); 
-            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
-            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
-        }
-        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--brand); }
-
         .container {
             width: 100%;
             max-width: 1000px;
@@ -190,11 +179,13 @@
 <nav>
     <a href="index.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-links">
-        <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="features.html">Features</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="mock.html">Mock Tests</a>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html">Live Arena</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="study.html" class="active">Study Material</a>
+        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
     </div>
 </nav>
 

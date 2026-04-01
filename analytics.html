@@ -37,19 +37,6 @@ body {
   background-attachment: fixed;
 }
 
-nav {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 15px 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky; top: 0; z-index: 1000;
-}
-
-.brand { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; }
-
 .container { width: 95%; max-width: 1200px; margin: 30px auto; }
 
 /* --- Analytics Header --- */
@@ -100,9 +87,15 @@ nav {
 <body>
 
 <nav>
-  <a href="dashboard.html" class="brand">🎓 Performance Analytics</a>
-  <div style="display: flex; gap: 15px;">
-    <a href="dashboard.html" style="color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 700;">Back to Dashboard</a>
+  <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="mock.html">Mock Tests</a>
+    <a href="chapterwise.html">Chapterwise</a>
+    <a href="live.html">Live Arena</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="study.html">Study Material</a>
+    <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
   </div>
 </nav>
 
