@@ -169,6 +169,10 @@
 <div id="main-app-container">
     <nav>
         <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+        <div class="nav-important">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="mock.html">Mock</a>
+        </div>
         <div class="nav-links">
             <a href="dashboard.html" class="active">Dashboard</a>
             <a href="mock.html">Mock Tests</a>
@@ -176,11 +180,16 @@
             <a href="live.html">Live Arena</a>
             <a href="leaderboard.html">Leaderboard</a>
             <a href="study.html">Study Material</a>
+            <div class="nav-actions">
+                <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
+                <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+            </div>
         </div>
-        <div class="nav-actions">
-            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
-        </div>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
     <main class="container">

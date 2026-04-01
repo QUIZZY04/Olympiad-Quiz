@@ -154,6 +154,10 @@ footer {
 <body>
 <nav>
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+<div class="nav-important">
+    <a href="dashboard.html">Dash</a>
+    <a href="mock.html">Mock</a>
+</div>
 <div class="nav-links">
 <a href="dashboard.html">Dashboard</a>
 <a href="mock.html">Mock Tests</a>
@@ -161,11 +165,16 @@ footer {
 <a href="live.html">Live Arena</a>
 <a href="leaderboard.html">Leaderboard</a>
 <a href="study.html">Study Material</a>
-</div>
 <div class="nav-actions">
     <a id="adminTab" href="admin.html" style="display:none; color:var(--success);">Admin</a>
     <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
 </div>
+</div>
+<button class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
 </nav>
 
 <div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;" class="quiz-top-bar">
