@@ -486,23 +486,31 @@ nav {
 
 @media (max-width: 768px) {
     nav {
-        padding: 6px 12px;
+        padding: 4px 10px;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         position: sticky;
     }
     .brand {
-        font-size: 1rem;
-        margin-left: 8px;
+        font-size: 0.9rem;
+        margin-left: 6px;
         flex: 1;
     }
     .nav-important {
         display: flex;
         margin-right: 0;
+        gap: 6px;
+    }
+    .nav-important a {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        background: rgba(79, 70, 229, 0.1);
     }
     .menu-toggle {
         display: flex;
+        padding: 4px;
+        margin-right: 2px;
     }
     .nav-links {
         display: none;
@@ -522,6 +530,11 @@ nav {
     }
     .nav-links.active {
         display: flex;
+    }
+    /* Hide links that are already visible on the main screen */
+    .nav-links a[href="about.html"], 
+    .nav-links .login-link {
+        display: none !important;
     }
     .nav-links a {
         width: 100%;
