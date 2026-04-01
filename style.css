@@ -368,8 +368,8 @@ nav {
     font-weight: 800;
     text-transform: uppercase;
     transition: 0.3s;
-    padding: 10px 12px;
-    border-radius: 8px 8px 0 0;
+    padding: 8px 12px;
+    border-radius: 8px;
     border-bottom: 3px solid transparent;
     white-space: nowrap;
 }
@@ -381,7 +381,7 @@ nav {
 
 .nav-links a.active {
     color: var(--brand);
-    background: rgba(79, 70, 229, 0.08);
+    background: rgba(79, 70, 229, 0.06);
     border-bottom-color: var(--brand);
 }
 
@@ -446,30 +446,42 @@ nav {
 
 @media (max-width: 768px) {
     nav {
+        padding: 8px 12px;
+        gap: 8px;
         flex-direction: column;
-        padding: 15px 5%;
+        align-items: center;
+    }
+    .brand {
+        font-size: 1.2rem;
+        margin-bottom: 2px;
     }
     .nav-links {
-        width: 100%;
+        width: 100vw;
+        margin: 0 -12px;
+        padding: 0 12px;
         overflow-x: auto;
         justify-content: flex-start;
-        padding: 5px 0;
         scrollbar-width: none; /* Firefox */
         -webkit-overflow-scrolling: touch;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
     }
     .nav-links::-webkit-scrollbar { display: none; } /* Chrome/Safari */
     .nav-links a {
-        padding: 8px 10px;
-        font-size: 0.8rem;
+        padding: 10px 12px;
+        font-size: 0.75rem;
+        border-bottom-width: 2px;
     }
     .nav-actions {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid var(--border);
-        padding-top: 10px;
-        width: 100%;
-        margin-left: 0;
-        justify-content: center;
+        border: none;
+        padding: 0;
+        margin: 0;
+        gap: 10px;
+    }
+    .signup-btn-nav {
+        padding: 6px 14px;
+        font-size: 0.8rem;
     }
     .tabs-nav {
         justify-content: flex-start !important;
@@ -477,6 +489,11 @@ nav {
         overflow-x: auto;
         padding: 0 15px;
         scrollbar-width: none;
+        margin: 15px 0 25px;
+    }
+    .tab-item {
+        padding: 10px 16px;
+        font-size: 0.85rem;
     }
     .tabs-nav::-webkit-scrollbar { display: none; }
 }
