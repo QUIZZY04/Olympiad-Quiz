@@ -24,6 +24,7 @@
     <meta property="og:description" content="The ultimate free platform for Olympiad preparation. Access chapter-wise quizzes, full-length mock tests, and live competitions for SOF, SilverZone, and CREST exams.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
         :root {
@@ -68,38 +69,6 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-        }
-
-        /* Navbar */
-        nav { /* Existing styles for navbar */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-
-        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a {
-            color: var(--text);
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--brand);
         }
 
         /* Hero Section */
@@ -273,17 +242,14 @@
         <nav>
             <a href="index.html" class="brand">🎓 Olympiad Portal</a>
             <div class="nav-links">
-                <a href="index.html" style="color:var(--brand); border-bottom: 2px solid var(--brand); padding-bottom: 2px;">Home</a>
+                <a href="index.html" class="active">Home</a>
+                <a href="chapterwise.html">Chapterwise</a>
                 <a href="imo-free-mock-test.html">IMO Test</a>
                 <a href="nso-free-mock-test.html">NSO Test</a>
-                <a href="ieo-free-mock-test.html">IEO Test</a>
-                <a href="iro-free-mock-test.html">IRO Test</a>
-                <a href="features.html">Features</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
-                <div style="display: inline-block; margin-left: 15px; border-left: 2px solid var(--border); padding-left: 15px;">
-                    <a href="login.html" style="margin-left: 5px; font-weight: 600; color: var(--text); text-transform:none;">Log in</a>
-                    <a href="signup.html" style="background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 10px 20px; border-radius: 8px; font-weight: 600; margin-left: 15px; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); text-transform:none;">Get Started Free</a>
+                <a href="leaderboard.html">Leaderboard</a>
+                <div class="nav-actions">
+                    <a href="login.html" class="login-link">Log in</a>
+                    <a href="signup.html" class="signup-btn-nav">Get Started Free</a>
                 </div>
             </div>
         </nav>

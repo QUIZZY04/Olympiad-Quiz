@@ -7,36 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Performance Analytics & Dashboard | Olympiad Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-:root {
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --subtle: #f1f5f9;
-  --text: #0f172a;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --brand: #4f46e5;
-  --accent: #8b5cf6;
-  --danger: #ef4444;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  margin: 0;
-  background-image: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05), transparent 30%), 
-                    radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05), transparent 30%);
-  background-attachment: fixed;
-}
-
 .container { width: 95%; max-width: 1200px; margin: 30px auto; }
 
 /* --- Analytics Header --- */
@@ -95,7 +69,10 @@ body {
     <a href="live.html">Live Arena</a>
     <a href="leaderboard.html">Leaderboard</a>
     <a href="study.html">Study Material</a>
-    <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+    <div class="nav-actions">
+        <a id="adminTab" href="admin.html" class="login-link" style="display:none; color:var(--success);">Admin</a>
+        <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+    </div>
   </div>
 </nav>
 
@@ -154,6 +131,11 @@ const auth = getAuth(app);
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
+    // Admin Access
+    if(user.email === "madhhu52@gmail.com") {
+        const adminTab = document.getElementById("adminTab");
+        if(adminTab) adminTab.style.display = "inline";
+    }
     await fetchPerformanceData(user.uid);
   } else {
     window.location.href = "login.html";

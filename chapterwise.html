@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapterwise Olympiad Quiz for Class 1 to 10 | Olympiad Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --bg: #f8fafc;
@@ -160,7 +161,7 @@
 <body>
 
 <nav>
-    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-links">
         <a href="dashboard.html">Dashboard</a>
         <a href="mock.html">Mock Tests</a>
@@ -168,7 +169,10 @@
         <a href="live.html">Live Arena</a>
         <a href="leaderboard.html">Leaderboard</a>
         <a href="study.html">Study Material</a>
-        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+        <div class="nav-actions">
+            <a id="adminTab" href="admin.html" style="display:none; color:var(--success);">Admin</a>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        </div>
     </div>
 </nav>
 
@@ -838,6 +842,11 @@
     onAuthStateChanged(auth, (user) => {
         if (!user) {
             console.log("User not logged in, but page remains visible.");
+            window.location.replace("login.html");
+            return;
+        }
+        if (user.email === "madhhu52@gmail.com") {
+            document.getElementById("adminTab").style.display = "inline";
         }
     });
 

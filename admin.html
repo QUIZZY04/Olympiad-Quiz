@@ -11,6 +11,7 @@ window.onpopstate = function () {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Panel - Olympiad Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 <style>
 :root{
@@ -36,44 +37,6 @@ color:var(--text);
 margin:0;
 background-image: radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 40%), radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
 background-attachment: fixed;
-}
-nav{
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(12px);
-border-bottom:1px solid var(--border);
-padding:15px 5%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-position: sticky; top: 0; z-index: 1000;
-}
-.brand{
-font-size:22px;
-font-weight:800;
-color:var(--text);
-text-decoration:none;
-}
-.nav-links{
-display:flex;
-gap:15px;
-flex-wrap: wrap;
-}
-.nav-links a{
-color:var(--text);
-text-decoration:none;
-font-size:12px;
-font-weight:800;
-text-transform:uppercase;
-padding: 8px 12px;
-border-radius: 8px;
-transition: 0.3s;
-}
-.nav-links a:hover {
-    background: rgba(79, 70, 229, 0.05);
-}
-.nav-links a.active{
-color:var(--brand);
-background: rgba(79, 70, 229, 0.1);
 }
 .container{
 width:95%;
@@ -259,17 +222,17 @@ border-top:1px solid var(--border);
 <body>
 
 <nav>
-<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="quiz.html">Take Quiz</a>
-<a href="leaderboard.html">Leaderboard</a>
-<a href="admin.html" class="active">Admin</a>
-<a href="#coupon-section" style="color:var(--warning);">Coupons</a>
-<a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
-<a onclick="logout()" style="color:#ef4444;cursor:pointer;">Logout</a>
-</div>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="admin.html" class="active">Admin</a>
+        <a href="#coupon-section" style="color:var(--warning);">Coupons</a>
+        <a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
+        <div class="nav-actions">
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        </div>
+    </div>
 </nav>
 
 <div class="container">

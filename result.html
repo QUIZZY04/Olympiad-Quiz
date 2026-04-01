@@ -12,6 +12,7 @@ window.onpopstate = function () { history.go(1); };
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Quiz Results & Analysis | Olympiad Portal</title>
 
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
 <style>
@@ -260,11 +261,17 @@ outline:none;
 <body>
 
 <nav>
-<a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 <div class="nav-links">
-<a href="dashboard.html">Dashboard</a>
-<a href="leaderboard.html">Leaderboard</a>
-<a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mock.html">Mock Tests</a>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html">Live Arena</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="study.html">Study Material</a>
+        <div class="nav-actions">
+            <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
+        </div>
 </div>
 </nav>
 

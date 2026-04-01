@@ -17,6 +17,7 @@ window.onpopstate=function(){history.go(1);}
 <title>Top Performers | Olympiad Quiz Global Leaderboard</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
 
 <style>
 /* Content is visible by default for immediate loading */
@@ -228,7 +229,9 @@ font-size:14px;
     <a href="live.html">Live Arena</a>
     <a href="leaderboard.html" class="active">Leaderboard</a>
     <a href="study.html">Study Material</a>
-    <a onclick="logout()" style="color:var(--danger);cursor:pointer;">Logout</a>
+    <div class="nav-actions">
+        <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
+    </div>
     </div>
     </nav>
 

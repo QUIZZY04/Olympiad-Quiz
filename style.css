@@ -18,6 +18,11 @@ body {
 :root {
     --brand: #4f46e5;
     --accent: #8b5cf6;
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
 }
 
 /* ================= CONTAINER COMMON ================= */
@@ -358,12 +363,14 @@ nav {
 .nav-links a {
     color: var(--text);
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 800;
     text-transform: uppercase;
     transition: 0.3s;
-    padding: 8px 12px;
-    border-radius: 8px;
+    padding: 10px 12px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -373,19 +380,104 @@ nav {
 
 .nav-links a.active {
     color: var(--brand);
-    background: rgba(79, 70, 229, 0.1);
+    background: rgba(79, 70, 229, 0.08);
+    border-bottom-color: var(--brand);
+}
+
+/* ================= NAV ACTIONS (Login/Signup) ================= */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 2px solid var(--border);
+    padding-left: 15px;
+    margin-left: 10px;
+}
+
+.login-link {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.signup-btn-nav {
+    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* ================= TABS NAVIGATION (For Chapterwise/Leaderboard) ================= */
+.tabs-nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0 40px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0;
+    flex-wrap: wrap;
+}
+
+.tab-item {
+    padding: 12px 24px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--muted);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-item:hover {
+    color: var(--brand);
+}
+
+.tab-item.active {
+    color: var(--brand);
+    border-bottom-color: var(--brand);
+    background: rgba(79, 70, 229, 0.05);
 }
 
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
-        padding: 15px;
+        padding: 15px 5%;
     }
-}
-
-/* Add spacing so content doesn't hide under navbar */
-body {
-    padding-top: 70px;
+    .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 5px 0;
+        scrollbar-width: none; /* Firefox */
+        -webkit-overflow-scrolling: touch;
+    }
+    .nav-links::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+    .nav-links a {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    .nav-actions {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--border);
+        padding-top: 10px;
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
+    }
+    .tabs-nav {
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        padding: 0 15px;
+        scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
 }
 
 /* Content is visible by default for immediate loading */

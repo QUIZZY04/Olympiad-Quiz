@@ -6,6 +6,7 @@
     <title>Study Material - Olympiad Portal</title>
     <meta name="description" content="Detailed Olympiad study material for Maths, Science, English and Reasoning for Class 1 to 10 students. Build a strong conceptual foundation before attempting quizzes.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --bg: #f8fafc;
@@ -177,7 +178,7 @@
 <body>
 
 <nav>
-    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-links">
         <a href="dashboard.html">Dashboard</a>
         <a href="mock.html">Mock Tests</a>
@@ -185,7 +186,9 @@
         <a href="live.html">Live Arena</a>
         <a href="leaderboard.html">Leaderboard</a>
         <a href="study.html" class="active">Study Material</a>
-        <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
+        <div class="nav-actions">
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        </div>
     </div>
 </nav>
 
