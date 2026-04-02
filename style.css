@@ -579,8 +579,8 @@ nav {
         flex-shrink: 0;
     }
     .nav-important a {
-        font-size: 0.7rem;
-        padding: 5px 8px; 
+        font-size: 0.65rem; /* Slightly smaller font for very narrow screens */
+        padding: 4px 6px; /* Reduced padding for compactness */
         background: var(--brand) !important;
         color: white !important;
         font-weight: 800;
