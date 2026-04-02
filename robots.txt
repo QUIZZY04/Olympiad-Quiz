@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /user/
+Disallow: /api/
+
+Sitemap: https://olympiadquiz.org/sitemap.xml
