@@ -130,14 +130,14 @@
       margin: 0 10px;
     }
 
-    .already-member {
+    .already-member { /* Desktop styles for this section */
       margin-top: 25px;
       padding-top: 20px;
       border-top: 1px solid var(--border);
-      font-size: 15px;
+      font-size: 14px; /* Slightly smaller for desktop */
       color: var(--muted);
     }
-    .already-member a { color: var(--brand); text-decoration: none; font-weight: 700; }
+    .already-member a { color: var(--brand); text-decoration: none; font-weight: 700; } /* Desktop link style */
 
     /* CUSTOM THEMATIC MODAL */
     #customModal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center; }
@@ -165,32 +165,43 @@
     @media (max-width: 768px) {
       .main-wrapper { flex-direction: column; text-align: center; padding: 15px; gap: 25px; width: 100%; overflow: hidden; }
       .signup-container { order: 1; width: 100%; }
-      .intro-section { order: 2; text-align: center; width: 100%; margin-top: 10px; }
+      .intro-section { order: 2; text-align: center; width: 100%; margin-top: 10px; display: none; } /* Hide intro section on mobile for cleaner look */
       
-      .intro-section h1 { font-size: 1.8rem; }
-      .intro-section p { font-size: 0.95rem; margin-bottom: 20px; }
-      .spec-item { padding: 12px; text-align: left; width: 100%; word-break: break-word; }
-      .signup-box { padding: 25px 15px; width: 100% !important; }
-      .signup-box h2 { font-size: 20px; margin-bottom: 15px; }
-      .already-member { 
-        display: flex; /* Make it a flex container to keep contents inline */
-        justify-content: center; /* Center the text and link */
-        align-items: center; /* Vertically align */
-        gap: 8px; /* Small gap between text and link */
-        color: var(--text) !important; /* Darker color for high visibility */
-        font-weight: 600; 
-        margin-top: 30px; border-top: 1px solid var(--border); padding-top: 25px; font-size: 0.95rem; 
+      /* Align signup-box to login-box mobile styles */
+      .signup-box { 
+        padding: 35px 20px; /* Match login-box padding */
+        border-radius: 20px; /* Match login-box border-radius */
+        width: 100% !important; 
       }
-      .already-member a {
-        display: inline-flex; /* Keep it inline with text */
-        padding: 5px 12px; /* Compact padding */
-        background: var(--brand);
-        color: #ffffff !important;
-        font-weight: 800; /* Bolder for visibility */
-        text-decoration: none;
-        border-radius: 8px; /* Rounded corners */
-        font-size: 0.85rem;
-        white-space: nowrap; /* Prevent "Sign In" from wrapping */
+      .signup-box h2 { 
+        font-size: 22px; /* Match login h2 font-size */
+        margin-bottom: 20px; /* Match login h2 margin-bottom */
+      }
+      .signup-box input,
+      .signup-box select {
+        padding: 12px 15px; /* Match login input padding */
+        font-size: 14px; /* Match login input font-size */
+        border-radius: 10px; /* Match login input border-radius */
+      }
+      .signup-box button { /* For the "Join Now" button */
+        padding: 12px; /* Match login main-btn padding */
+        font-size: 14px; /* Match login main-btn font-size */
+      }
+
+      /* Revert .already-member to be like .signup-text in login.html */
+      .already-member { 
+        margin-top: 20px; /* Match login signup-text margin-top */
+        padding-top: 20px; /* Match login signup-text padding-top */
+        color: var(--text) !important; /* Ensure high contrast */
+        font-weight: 500; /* Match login signup-text font-weight */
+        font-size: 14px; /* Match login signup-text font-size */
+        display: block; /* Ensure it behaves like a paragraph */
+        text-align: center; /* Center the text */
+      }
+      .already-member a { 
+        color: var(--brand) !important; /* Brand color for the link */
+        font-weight: 800; /* Bold for emphasis */
+        text-decoration: underline; /* Underline to clearly mark as link */
       }
     }
   </style>
