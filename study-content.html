@@ -198,7 +198,16 @@ footer{
 
 <!-- NAVBAR -->
 <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+    </div>
     <div class="nav-links">
         <a href="dashboard.html">Dashboard</a>
         <a href="mock.html">Mock Tests</a>
@@ -301,6 +310,17 @@ async function loadStudyContent(){
 }
 
 loadStudyContent();
+
+/* Mobile Menu Toggle */
+window.toggleMenu = function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
+
+window.logout = function() {
+    if(confirm("Logout?")) {
+        window.location.href = "login.html";
+    }
+}
 </script>
 
 </body>
