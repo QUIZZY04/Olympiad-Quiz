@@ -354,21 +354,24 @@ nav {
 }
 
 @media (min-width: 769px) {
-    /* Hide mobile-specific helper links in navbar on laptop/desktop to avoid redundancy */
-    .nav-important a {
+    /* Hide mobile-specific helper links (Home, Logout, etc) in navbar on desktop */
+    .nav-important a:not(.timer) {
         display: none !important;
     }
 
-    /* Move the timer to float over the quiz container on the right for laptop layout */
+    /* Position the timer on the right side, floating above the quiz content */
     .timer {
+        display: block !important;
         position: fixed;
-        top: 100px;
-        right: 40px;
-        z-index: 2000;
+        top: 85px;
+        right: 5%;
+        z-index: 2001;
         font-size: 1.4rem;
-        padding: 8px 20px;
+        padding: 10px 25px;
         box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15);
-        border: 2px solid #fecaca;
+        border: 2px solid var(--danger);
+        background-color: #fee2e2 !important;
+        border-radius: 12px;
     }
 }
 
