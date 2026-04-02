@@ -348,16 +348,27 @@ nav {
 }
 
 .nav-important {
-    display: flex; /* Always show the container so the timer is visible */
+    display: flex;
     gap: 8px;
     align-items: center;
 }
 
-/* Hide only the mobile-specific links on desktop, but allow the timer to show */
 @media (min-width: 769px) {
-    .nav-important a[href="about.html"], 
-    .nav-important a[href="login.html"] {
-        display: none;
+    /* Hide mobile-specific helper links in navbar on laptop/desktop to avoid redundancy */
+    .nav-important a {
+        display: none !important;
+    }
+
+    /* Move the timer to float over the quiz container on the right for laptop layout */
+    .timer {
+        position: fixed;
+        top: 100px;
+        right: 40px;
+        z-index: 2000;
+        font-size: 1.4rem;
+        padding: 8px 20px;
+        box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15);
+        border: 2px solid #fecaca;
     }
 }
 
