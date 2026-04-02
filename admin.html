@@ -222,7 +222,16 @@ border-top:1px solid var(--border);
 <body>
 
 <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+    </div>
     <div class="nav-links">
         <a href="dashboard.html">Dashboard</a>
         <a href="leaderboard.html">Leaderboard</a>
@@ -1557,6 +1566,11 @@ window.deleteStudyContent = async function() {
 window.clearStudyContent = function() {
     document.getElementById('studyContent').innerHTML = '';
 };
+
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
 </script>
 </body>
 </html>

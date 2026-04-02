@@ -159,7 +159,7 @@
     <a href="index.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-important">
         <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
     </div>
     <div class="nav-links">
         <a href="index.html">Home</a>
@@ -178,7 +178,7 @@
         <a href="about.html" class="active">About Us</a>
         <a href="contact.html">Contact</a>
         <div class="nav-actions">
-            <a href="login.html" class="login-link">Log in</a>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
     </div>
 </nav>
@@ -264,6 +264,12 @@
 /* Mobile Menu Toggle */
 function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('active');
+}
+
+function logout() {
+    if (confirm("Logout?")) {
+        window.location.href = "login.html";
+    }
 }
 </script>
 </body>
