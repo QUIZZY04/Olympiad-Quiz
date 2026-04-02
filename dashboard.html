@@ -11,6 +11,14 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
+  <!-- INSTANT AUTHENTICATION CHECK -->
+  <!-- Runs instantly before the page renders to block the back button -->
+  <script>
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.replace("login.html");
+    }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
   <style>body{visibility: hidden;}</style>
@@ -366,13 +374,14 @@ async function checkLiveSessions() {
 
 // LOGOUT: Clean History Kill
 window.logout = () => {
-    signOut(auth).then(() => {
-        localStorage.clear();
-        sessionStorage.clear();
-        window.history.pushState(null, null, window.location.href);
-        window.onpopstate = () => window.history.go(1);
-        window.location.replace("index.html");
-    });
+    if (confirm("Are you sure you want to logout?")) {
+        signOut(auth).then(() => {
+            localStorage.removeItem("isLoggedIn"); // Explicitly remove the auth flag
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html"); // Replace history state
+        });
+    }
 };
 </script>
 <script>
