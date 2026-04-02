@@ -176,7 +176,7 @@
         box-shadow:0 0 30px rgba(37, 99, 235, 0.2);
     }
 
-    @media (max-width: 968px) {
+    @media (max-width: 768px) {
       .main-wrapper { flex-direction: column; text-align: center; padding: 20px 15px; gap: 30px; }
       .intro-section { text-align: center; }
       .intro-section h1 { font-size: 2rem; }
@@ -185,18 +185,6 @@
       .spec-item { text-align: left; }
       .signup-container { width: 100%; max-width: 420px; }
       .signup-box { padding: 30px 20px; }
-
-      /* Header Compression for Mobile */
-      nav { padding: 0 8px !important; gap: 4px !important; height: 50px !important; flex-wrap: nowrap !important; justify-content: space-between !important; width: 100% !important; box-sizing: border-box !important; }
-      .brand { font-size: 0.75rem !important; margin-left: 2px !important; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-      .nav-important { display: flex !important; gap: 4px !important; flex-shrink: 0; }
-      .nav-important a { font-size: 0.65rem !important; padding: 4px 6px !important; white-space: nowrap; }
-      .menu-toggle { display: flex !important; padding: 5px !important; order: -1; flex-shrink: 0; }
-
-      /* Clean up side drawer for mobile to avoid redundant links */
-      .nav-links a[href="index.html"],
-      .nav-links a[href="login.html"],
-      .nav-links .login-link { display: none !important; }
     }
   </style>
 </head>
@@ -212,7 +200,7 @@
         </button>
         <a href="index.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-important">
-            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
             <a href="login.html">Login</a>
         </div>
         <div class="nav-links">
