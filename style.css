@@ -239,7 +239,8 @@ body.auth-page {
     background: linear-gradient(135deg, #dbeafe, #e0f2fe, #f0f9ff);
 }
 .signup-box {
-    width: 380px;
+    width: 100%;
+    max-width: 400px;
     border-radius: 18px;
 }
 
@@ -564,22 +565,25 @@ nav {
         height: 50px !important; /* Slim, fixed height */
     }
     .brand {
-        font-size: 0.85rem !important; /* More compact for very small screens */
-        margin-left: 8px !important;
+        font-size: 0.95rem !important;
+        margin-left: 5px !important;
         flex: 1;
+        min-width: 0;
         overflow: hidden;
-        text-overflow: ellipsis;
+        text-overflow: ellipsis; /* Prevents pushing buttons off-screen */
     }
     .nav-important {
         display: flex;
         margin-right: 0;
-        gap: 6px; /* Slightly more space for buttons */
+        gap: 4px; /* Tighten for small screens */
         flex-shrink: 0;
     }
     .nav-important a {
-        font-size: 0.75rem; /* Slightly larger for readability */
-        padding: 6px 10px; /* Slightly more padding */
-        background: rgba(79, 70, 229, 0.1);
+        font-size: 0.75rem;
+        padding: 6px 10px; 
+        background: var(--brand);
+        color: white !important;
+        border-radius: 8px;
     }
     .menu-toggle {
         display: flex;
