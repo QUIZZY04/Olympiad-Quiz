@@ -556,13 +556,13 @@ nav {
 
 @media (max-width: 768px) {
     nav {
-        padding: 0 12px !important;
+        padding: 8px 12px !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         justify-content: space-between !important;
         align-items: center !important;
         position: sticky;
-        min-height: 50px !important; /* Changed from height to min-height to prevent vertical overflow */
+        min-height: 60px !important; /* Increased from 50px to better contain navigation items */
     }
     .brand {
         font-size: 0.95rem !important;
