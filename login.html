@@ -121,13 +121,32 @@
     }
 
     .hidden { display: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 15px; }
+      .login-box { padding: 35px 20px; border-radius: 20px; width: 100% !important; }
+      h2 { font-size: 22px; margin-bottom: 20px; }
+      input { padding: 12px 15px; font-size: 14px; }
+      button.main-btn { padding: 12px; font-size: 14px; }
+      .signup-text { margin-top: 20px; padding-top: 20px; color: var(--text) !important; font-weight: 500; }
+      .signup-text a { color: var(--brand) !important; font-weight: 800; text-decoration: underline; }
+    }
   </style>
 </head>
 
 <body>
 
 <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="index.html">Home</a>
+        <a href="signup.html">Signup</a>
+    </div>
     <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="imo-free-mock-test.html">IMO Test</a>
@@ -142,7 +161,7 @@
     <div class="login-box">
         
         <div id="loginSection">
-            <h2>Welcome Back</h2>
+            <h2>Welcome in Olympiad portal</h2>
             <form id="loginForm">
                 <input type="email" id="loginEmail" placeholder="Email Address" required>
                 <input type="password" id="loginPassword" placeholder="Password" required>
@@ -271,6 +290,12 @@ document.getElementById("changeForm").addEventListener("submit", async (e) => {
         toggleView('loginSection');
     } catch (err) { alert(err.message); }
 });
+</script>
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
 </script>
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
