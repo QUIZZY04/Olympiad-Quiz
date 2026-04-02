@@ -6,6 +6,7 @@
     <title>Chapterwise Olympiad Quiz for Class 1 to 10 | Olympiad Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+<style>body{visibility: hidden;}</style>
     <style>
         :root {
             --bg: #f8fafc;
@@ -899,6 +900,7 @@
             window.location.replace("login.html");
             return;
         }
+        document.body.style.visibility = 'visible';
         if (user.email === "madhhu52@gmail.com") {
             document.getElementById("adminTab").style.display = "inline";
         }
@@ -910,6 +912,11 @@
             window.location.href = "login.html";
         }
     };
+
+    // Kill BFCache to prevent showing page after logout
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) window.location.reload();
+    });
 </script>
 <script>
 /* Mobile Menu Toggle */

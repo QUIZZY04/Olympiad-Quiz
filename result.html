@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
-<script>
-history.pushState(null, null, location.href);
-window.onpopstate = function () { history.go(1); };
-</script>
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Quiz Results & Analysis | Olympiad Portal</title>
 
 <link rel="stylesheet" href="style.css">
+<style>body{visibility: hidden;}</style>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
 <style>
@@ -351,8 +346,8 @@ outline:none;
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore,collection,addDoc,serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getAuth,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -364,12 +359,27 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
 
-window.logout=async()=>{
-    if(confirm("Logout?")){
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        window.location.replace("login.html");
+    } else {
+        document.body.style.visibility = 'visible';
+    }
+});
+
+window.logout = async () => {
+    if (confirm("Logout?")) {
         await signOut(auth);
-        window.location.href="login.html";
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.replace("index.html");
     }
 };
+
+// Kill BFCache to prevent showing page after logout
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) window.location.reload();
+});
 
 // Helper function to escape HTML for passing strings to onclick
 function escapeHtml(text) {

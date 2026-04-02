@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-history.pushState(null, null, location.href);
-window.onpopstate = function () {
-  history.go(1);
-};
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Panel - Olympiad Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>body{visibility: hidden;}</style>
 <link rel="stylesheet" href="style.css">
 
 <style>
@@ -660,6 +655,7 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         loadFeedback(); loadExpFeedback(); loadSessions(); loadCoupons();
+        document.body.style.visibility = 'visible';
     } else {
         window.location.href = "login.html";
     }
@@ -1039,7 +1035,14 @@ window.closeEdit = () => document.getElementById("editModal").style.display = "n
 
 window.deleteQuestion=async (id) => { if(confirm("Delete?")) { await deleteDoc(doc(db,"questions",id)); loadQuestions(); } };
 
-window.logout=async () => { await signOut(auth); window.location.href="login.html"; };
+window.logout = async () => {
+    if (confirm("Logout?")) {
+        await signOut(auth);
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.replace("index.html");
+    }
+};
 
 function loadFeedback() {
     onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), (snap) => {
@@ -1566,6 +1569,11 @@ window.deleteStudyContent = async function() {
 window.clearStudyContent = function() {
     document.getElementById('studyContent').innerHTML = '';
 };
+
+/* Kill BFCache to prevent showing page after logout */
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) window.location.reload();
+});
 
 /* Mobile Menu Toggle */
 function toggleMenu() {

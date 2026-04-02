@@ -209,7 +209,8 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { 
-    getAuth, 
+    getAuth,
+    onAuthStateChanged,
     signInWithEmailAndPassword, 
     sendPasswordResetEmail, 
     updatePassword, 
@@ -232,6 +233,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+// Auto-redirect if already logged in
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.replace("dashboard.html");
+    }
+});
+
 // Logic to switch between Login, Forgot, and Change views
 window.toggleView = function(sectionId) {
     document.getElementById('loginSection').classList.add('hidden');
@@ -245,7 +254,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
     try {
         await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
-        
+        localStorage.setItem("isLoggedIn", "true");
         window.location.href="dashboard.html";
     } catch(err) { alert(err.message); }
 });
@@ -254,7 +263,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
     try {
         await signInWithPopup(auth, provider);
-        
+        localStorage.setItem("isLoggedIn", "true");
         window.location.href = "dashboard.html";
     } catch (err) { alert(err.message); }
 });

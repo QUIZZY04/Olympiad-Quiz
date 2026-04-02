@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>body{visibility: hidden;}</style>
     <style>
         :root {
             --bg: #f8fafc;
@@ -338,6 +339,7 @@
             window.location.replace("index.html");
             return;
         }
+        document.body.style.visibility = 'visible';
         if (user.email === "madhhu52@gmail.com") {
             document.getElementById("adminTab").style.display = "inline";
         }
@@ -349,6 +351,11 @@
             window.location.replace("index.html");
         }
     };
+
+    // Kill BFCache to prevent showing page after logout
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) window.location.reload();
+    });
 
     /* Mobile Menu Toggle */
     window.toggleMenu = function() {

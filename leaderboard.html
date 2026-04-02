@@ -2,11 +2,6 @@
 <html lang="en">
 <head>
 
-<script>
-history.pushState(null,null,location.href);
-window.onpopstate=function(){history.go(1);}
-</script>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,6 +13,7 @@ window.onpopstate=function(){history.go(1);}
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css">
+<style>body{visibility: hidden;}</style>
 
 <style>
 /* Content is visible by default for immediate loading */
@@ -397,6 +393,7 @@ if(!user){
 window.location.replace("login.html")
 return
 }
+document.body.style.visibility = 'visible';
 if (user.email === "madhhu52@gmail.com") {
     document.getElementById("adminTab").style.display = "inline";
 }
@@ -515,13 +512,18 @@ document.getElementById("weeklySession").addEventListener("change",refreshWeekly
 document.getElementById("dailyGrade").addEventListener("change",refreshDaily)
 document.getElementById("dailySubject").addEventListener("change",refreshDaily)
 
-window.logout=function(){
-if(confirm("Logout?")){
-signOut(auth).then(()=>{
-window.location.replace("login.html")
-})
-}
-}
+window.logout = async () => {
+    if (confirm("Logout?")) {
+        await signOut(auth);
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.replace("index.html");
+    }
+};
+
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) window.location.reload();
+});
 
 /* Mobile Menu Toggle */
 window.toggleMenu = function() {
