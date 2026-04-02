@@ -28,6 +28,7 @@
     body { 
         background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%); 
         background-attachment: fixed;
+        overflow-x: hidden;
     }
 
     /* MAIN LAYOUT */
@@ -176,7 +177,7 @@
     }
 
     @media (max-width: 968px) {
-      .main-wrapper { flex-direction: column-reverse; text-align: center; padding: 20px 15px; gap: 30px; }
+      .main-wrapper { flex-direction: column; text-align: center; padding: 20px 15px; gap: 30px; }
       .intro-section { text-align: center; }
       .intro-section h1 { font-size: 2rem; }
       .intro-section p { font-size: 1rem; margin-bottom: 30px; }
@@ -186,10 +187,10 @@
       .signup-box { padding: 30px 20px; }
 
       /* Header Compression for Mobile */
-      nav { padding: 0 10px !important; gap: 5px !important; height: 50px !important; flex-wrap: nowrap !important; }
-      .brand { font-size: 0.85rem !important; margin-left: 5px !important; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-      .nav-important { display: flex !important; gap: 6px !important; flex-shrink: 0; }
-      .nav-important a { font-size: 0.7rem !important; padding: 5px 8px !important; white-space: nowrap; }
+      nav { padding: 0 8px !important; gap: 4px !important; height: 50px !important; flex-wrap: nowrap !important; justify-content: space-between !important; width: 100% !important; box-sizing: border-box !important; }
+      .brand { font-size: 0.75rem !important; margin-left: 2px !important; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .nav-important { display: flex !important; gap: 4px !important; flex-shrink: 0; }
+      .nav-important a { font-size: 0.65rem !important; padding: 4px 6px !important; white-space: nowrap; }
       .menu-toggle { display: flex !important; padding: 5px !important; order: -1; flex-shrink: 0; }
 
       /* Clean up side drawer for mobile to avoid redundant links */
