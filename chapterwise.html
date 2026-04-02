@@ -161,7 +161,16 @@
 <body>
 
 <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a href="mock.html">Mock</a>
+    </div>
     <div class="nav-links">
         <a href="dashboard.html">Dashboard</a>
         <a href="mock.html">Mock Tests</a>
@@ -169,10 +178,10 @@
         <a href="live.html">Live Arena</a>
         <a href="leaderboard.html">Leaderboard</a>
         <a href="study.html">Study Material</a>
-    </div>
-    <div class="nav-actions">
-        <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-        <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        <div class="nav-actions">
+            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        </div>
     </div>
 </nav>
 
@@ -856,6 +865,12 @@
             window.location.href = "login.html";
         }
     };
+</script>
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
 </script>
 </body>
 </html>
