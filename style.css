@@ -579,10 +579,11 @@ nav {
         flex-shrink: 0;
     }
     .nav-important a {
-        font-size: 0.75rem;
-        padding: 6px 10px; 
-        background: var(--brand);
+        font-size: 0.7rem;
+        padding: 5px 8px; 
+        background: var(--brand) !important;
         color: white !important;
+        font-weight: 800;
         border-radius: 8px;
     }
     .menu-toggle {
