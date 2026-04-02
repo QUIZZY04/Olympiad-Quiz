@@ -354,24 +354,29 @@ nav {
 }
 
 @media (min-width: 769px) {
-    /* Hide mobile-specific helper links (Home, Logout, etc) in navbar on desktop */
-    .nav-important a:not(.timer) {
+    /* Hide the mobile navbar helper on desktop to remove redundant Home/Logout buttons */
+    .nav-important {
         display: none !important;
     }
 
-    /* Position the timer on the right side, floating above the quiz content */
-    .timer {
-        display: block !important;
-        position: fixed;
-        top: 85px;
-        right: 5%;
-        z-index: 2001;
-        font-size: 1.4rem;
-        padding: 10px 25px;
-        box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15);
-        border: 2px solid var(--danger);
+    /* Floating Timer for Desktop Layout */
+    .desktop-timer {
+        display: flex !important;
+        font-size: 1.2rem;
+        padding: 8px 16px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        color: var(--danger);
         background-color: #fee2e2 !important;
         border-radius: 12px;
+        font-weight: 700;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Hide the mobile-specific timer on desktop */
+    .mobile-timer {
+        display: none !important;
     }
 }
 
@@ -660,6 +665,11 @@ nav {
     .tab-item {
         padding: 10px 16px;
         font-size: 0.85rem;
+    }
+
+    /* Hide the floating desktop timer on mobile devices */
+    .desktop-timer {
+        display: none !important;
     }
     .tabs-nav::-webkit-scrollbar { display: none; }
 }

@@ -158,7 +158,7 @@ footer {
     <span></span>
 </button>
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
-<div class="nav-important">
+<div class="nav-important mobile-timer">
     <a id="timerWrap" style="background: rgba(239, 68, 68, 0.1) !important; color: var(--danger) !important; border: 1px solid rgba(239, 68, 68, 0.2); pointer-events: none; display: flex; align-items: center; gap: 4px; font-size: 0.75rem !important;">⏳ <span id="timer">--:--</span></a>
     <a onclick="logout()" style="cursor:pointer; background: var(--brand) !important; color: white !important;">Logout</a>
 </div>
@@ -177,11 +177,13 @@ footer {
 </nav>
 
 <div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;" class="quiz-top-bar">
-    <div style="flex: 2.8; display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-info-timer">
+    <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-info-timer">
         <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
             <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 0; line-height: 1;"></h1>
             <p id="quizSubtitle" style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;"></p>
         </div>
+        <!-- Floating Desktop Timer (Visible only on Laptop/Desktop) -->
+        <div class="desktop-timer">⏳ <span id="timer-desktop">--:--</span></div>
     </div>
     <div style="flex: 0 0 320px;" class="nav-spacer"></div>
 </div>
@@ -1022,7 +1024,11 @@ document.getElementById("progressPercent").innerText=p+"%";
 function startTimer(){
 const tInterval=setInterval(()=>{
 const m=Math.floor(totalTime/60), s=totalTime%60;
-document.getElementById("timer").innerText=`${m}:${s<10?"0":""}${s}`;
+const timeStr = `${m}:${s<10?"0":""}${s}`;
+const tMobile = document.getElementById("timer");
+const tDesktop = document.getElementById("timer-desktop");
+if(tMobile) tMobile.innerText = timeStr;
+if(tDesktop) tDesktop.innerText = timeStr;
 if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 },1000);
 }
