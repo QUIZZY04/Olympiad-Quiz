@@ -562,6 +562,8 @@ nav {
         justify-content: space-between !important;
         align-items: center !important;
         position: sticky;
+        top: 0;
+        z-index: 1000;
         min-height: 60px !important; /* Increased from 50px to better contain navigation items */
     }
     .brand {
