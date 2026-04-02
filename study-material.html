@@ -81,7 +81,16 @@
 <body>
 
 <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+    </div>
     <div class="nav-links">
         <a href="dashboard.html">Dashboard</a>
         <a href="mock.html">Mock Tests</a>
@@ -146,5 +155,11 @@
     <p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
+</script>
 </body>
 </html>

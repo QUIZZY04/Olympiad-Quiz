@@ -286,10 +286,24 @@
 <body>
 
 <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+    </div>
     <div class="nav-links">
-        <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
+        <a href="mock.html">Mock Tests</a>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html">Live Arena</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="study.html">Study Material</a>
+        <a href="tricks.html" class="active">Olympiad Tricks</a>
         <a onclick="logout()" style="color: var(--danger); cursor: pointer;">Logout</a>
     </div>
 </nav>
@@ -636,6 +650,12 @@
             window.location.href = "login.html";
         }
     };
+</script>
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
 </script>
 </body>
 </html>
