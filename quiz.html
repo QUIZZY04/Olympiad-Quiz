@@ -142,12 +142,18 @@ footer {
 .grid{grid-template-columns:repeat(auto-fill,minmax(45px,1fr))}
 .quiz-buttons{flex-wrap:nowrap !important; gap:8px !important; padding-top:20px !important;}
 .btn{min-width:0 !important; font-size:11px !important; padding:12px 5px !important;}
-.quiz-info-timer{flex-wrap:nowrap !important;}
+.quiz-info-timer{
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+}
 .nav-spacer{display:none;}
-#quizHeaderInfo{min-width:0;}
+#quizHeaderInfo{min-width:0; width: 100%;}
 #quizTitle{font-size:1.1rem !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #quizSubtitle{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .section { padding: 20px !important; }
+#timerWrap { order: -1; margin-bottom: 2px; }
 }
 </style>
 </head>
