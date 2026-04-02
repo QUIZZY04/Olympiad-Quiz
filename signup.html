@@ -130,14 +130,14 @@
       margin: 0 10px;
     }
 
-    .login-link {
+    .already-member {
       margin-top: 25px;
       padding-top: 20px;
       border-top: 1px solid var(--border);
-      font-size: 14px;
+      font-size: 15px;
       color: var(--muted);
     }
-    .login-link a { color: var(--brand); text-decoration: none; font-weight: 700; }
+    .already-member a { color: var(--brand); text-decoration: none; font-weight: 700; }
 
     /* CUSTOM THEMATIC MODAL */
     #customModal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center; }
@@ -172,24 +172,24 @@
       .spec-item { padding: 12px; text-align: left; width: 100%; word-break: break-word; }
       .signup-box { padding: 25px 15px; width: 100% !important; }
       .signup-box h2 { font-size: 20px; margin-bottom: 15px; }
-      .login-link { 
+      .already-member { 
         display: flex; /* Make it a flex container to keep contents inline */
         justify-content: center; /* Center the text and link */
         align-items: center; /* Vertically align */
-        gap: 5px; /* Small gap between text and link */
-        color: var(--muted) !important; /* Use muted for the "Already a member?" part */
-        font-weight: 500; /* Slightly less bold than the link */
-        margin-top: 30px; border-top: 1px solid var(--border); padding-top: 25px; font-size: 0.9rem; 
+        gap: 8px; /* Small gap between text and link */
+        color: var(--text) !important; /* Darker color for high visibility */
+        font-weight: 600; 
+        margin-top: 30px; border-top: 1px solid var(--border); padding-top: 25px; font-size: 0.95rem; 
       }
-      .login-link a {
-        display: inline-block; /* Keep it inline with text */
-        padding: 6px 12px; /* Smaller padding for a link-button feel */
+      .already-member a {
+        display: inline-flex; /* Keep it inline with text */
+        padding: 5px 12px; /* Compact padding */
         background: var(--brand);
         color: #ffffff !important;
-        font-weight: 700; /* Bolder for visibility */
+        font-weight: 800; /* Bolder for visibility */
         text-decoration: none;
         border-radius: 8px; /* Rounded corners */
-        font-size: 0.85rem; /* Match parent font size or slightly smaller */
+        font-size: 0.85rem;
         white-space: nowrap; /* Prevent "Sign In" from wrapping */
       }
     }
@@ -265,7 +265,7 @@
                 Sign in with Google
             </button>
 
-            <p class="login-link">Already a member? <a href="login.html">Sign In</a></p>
+            <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
         </div>
     </div>
 

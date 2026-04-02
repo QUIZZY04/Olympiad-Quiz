@@ -556,7 +556,7 @@ nav {
 
 @media (max-width: 768px) {
     nav {
-        padding: 8px 12px !important;
+        padding: 0 12px !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         justify-content: space-between !important;
@@ -565,7 +565,7 @@ nav {
         min-height: 60px !important; /* Increased from 50px to better contain navigation items */
     }
     .brand {
-        font-size: 0.95rem !important;
+        font-size: 0.9rem !important;
         margin-left: 0 !important; /* Removed to give more horizontal space to the brand */
         flex: 1;
         min-width: 0;
@@ -575,7 +575,7 @@ nav {
     .nav-important {
         display: flex;
         margin-right: 0;
-        gap: 2px; /* Further tighten spacing between quick links */
+        gap: 5px; /* Comfortable spacing */
         flex-shrink: 0;
     }
     .nav-important a {
