@@ -348,7 +348,10 @@
     window.logout = async () => {
         if (confirm("Logout?")) {
             await signOut(auth);
-            window.location.replace("index.html");
+            localStorage.removeItem("isLoggedIn"); // Explicitly remove the auth flag
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html"); // Replace history state
         }
     };
 
