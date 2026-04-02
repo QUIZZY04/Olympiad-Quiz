@@ -63,7 +63,7 @@
     .spec-text span { color: var(--muted); font-size: 14px; }
 
     /* SIGNUP BOX */
-    .signup-container { flex: 0 0 420px; }
+    .signup-container { flex: 0 1 420px; width: 100%; }
     .signup-box {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -175,10 +175,13 @@
     }
 
     @media (max-width: 968px) {
-      .main-wrapper { flex-direction: column; text-align: center; padding-top: 20px; }
+      .main-wrapper { flex-direction: column-reverse; text-align: center; padding: 20px 15px; gap: 40px; }
       .intro-section { text-align: center; }
+      .intro-section h1 { font-size: 2.2rem; }
+      .intro-section p { font-size: 1rem; margin-bottom: 30px; }
       .spec-item { text-align: left; }
       .signup-container { width: 100%; max-width: 420px; }
+      .signup-box { padding: 30px 20px; }
     }
   </style>
 </head>
@@ -368,10 +371,12 @@ document.getElementById("googleBtn").addEventListener("click", async () => {
     }
 });
 
-/* Mobile Menu Toggle */
-window.toggleMenu = function() {
+</script>
+<script>
+/* Mobile Menu Toggle - Defined globally for inline onclick */
+function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('active');
-};
+}
 </script>
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
