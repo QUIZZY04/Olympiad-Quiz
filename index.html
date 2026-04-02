@@ -272,7 +272,7 @@
     </header>
 
     <main style="flex: 1;">
-        <!-- Laptop/Desktop Version of the Hero -->
+        <!-- DESKTOP HERO -->
         <section class="hero desktop-only">
             <h1>Unlock Your <span>Olympiad Potential</span></h1>
             <p>Transform your learning journey with engaging chapter-wise quests, realistic mock exams, and a vibrant live arena designed to build deep understanding and a competitive edge.</p>
@@ -282,13 +282,31 @@
             </div>
         </section>
 
-        <!-- Mobile-Specific Design Version -->
-        <section class="hero mobile-only" style="padding: 40px 20px; background: rgba(79, 70, 229, 0.05); border-radius: 0 0 30px 30px;">
-            <h1 style="font-size: 2rem;">Master <span>Olympiads</span> on the Go</h1>
-            <p style="font-size: 1rem; margin-bottom: 25px;">The #1 practice arena now in your pocket. Quizzes, mocks, and live battles.</p>
-            <a href="signup.html" class="hero-btn hero-btn-primary" style="width: 100%; display: block; text-align: center;">Get Started Free</a>
+        <!-- MOBILE HERO -->
+        <section class="hero mobile-only" style="padding: 50px 20px; background: linear-gradient(135deg, var(--brand), var(--accent)); color: white; border-radius: 0 0 30px 30px; text-align: center;">
+            <h1 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 15px;">Your Path to <span>Olympiad Success</span></h1>
+            <p style="font-size: 1rem; margin-bottom: 30px; opacity: 0.9;">Practice smart, compete live, and master every concept on the go.</p>
+            <a href="signup.html" class="hero-btn hero-btn-primary" style="width: 100%; display: block; text-align: center; background: white; color: var(--brand); box-shadow: 0 8px 20px rgba(0,0,0,0.2);">Get Started Free</a>
         </section>
 
+        <!-- NEW MOBILE QUICK START CARDS -->
+        <section class="mobile-only quick-start-cards" style="padding: 20px; display: flex; flex-direction: column; gap: 15px; margin-top: -20px;">
+            <a href="mock.html" style="text-decoration: none;">
+                <div style="background: linear-gradient(45deg, #38bdf8, #2563eb); color: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: var(--shadow-md);">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">📝 Free Mock Tests</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">Simulate real exams & test your readiness.</p>
+                </div>
+            </a>
+            <a href="chapterwise.html" style="text-decoration: none;">
+                <div style="background: linear-gradient(45deg, #10b981, #059669); color: white; padding: 25px; border-radius: 20px; text-align: center; box-shadow: var(--shadow-md);">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">📖 Chapterwise Quizzes</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">Master specific topics one by one.</p>
+                </div>
+            </a>
+        </section>
+
+
+        <!-- DESKTOP FEATURES -->
         <section id="features" class="features desktop-only">
             <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
                 <h3>📖 Chapterwise Quiz</h3>
@@ -298,7 +316,7 @@
                 <h3>📝 Free Mock Tests</h3>
                 <p>Full-length papers designed like real <b style="color: #c2410c;">SOF (NSO, IMO, IEO, IRO)</b> and <b style="color: #c2410c;">Silverzone (IOS, IOM)</b> exams to test your speed and accuracy.</p>
             </div>
-            <div class="feature-card live-arena-highlight" onclick="location.href='signup.html'" style="cursor: pointer;">
+            <div class="feature-card live-arena-highlight" onclick="location.href='live.html'" style="cursor: pointer;">
                 <h3>⚡ Live Quiz Arena</h3>
                 <p>Compete in real-time battles against students across the country and top the leaderboard.</p>
                 <p style="margin-top: 10px; font-size: 0.95rem;"><a href="instructions.html" onclick="event.stopPropagation()" style="color: #facc15; font-weight: 800; text-decoration: underline;">How to Register for Live Quiz</a></p>
@@ -311,26 +329,6 @@
                 <h3>📚 Study Material</h3>
                 <p>Build a strong foundation with our curated notes, concepts, and important formulas.</p>
             </div>
-        </section>
-
-        <!-- MOBILE FEATURES -->
-        <section class="features mobile-only" style="padding: 30px 20px; display: flex; flex-direction: column; gap: 12px;">
-            <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; text-align: left;">Select Learning Mode</h2>
-            <div class="feature-card" onclick="location.href='signup.html'" style="display: flex; align-items: center; text-align: left; padding: 18px; border-top: none; border-left: 4px solid var(--brand); gap: 15px; margin: 0;">
-                <div style="font-size: 24px;">📖</div>
-                <div>
-                    <h3 style="font-size: 1rem; margin-bottom: 2px;">Chapterwise Quiz</h3>
-                    <p style="font-size: 0.85rem;">Master school topics one by one.</p>
-                </div>
-            </div>
-            <div class="feature-card live-arena-highlight" onclick="location.href='signup.html'" style="display: flex; align-items: center; text-align: left; padding: 18px; gap: 15px; margin: 0;">
-                <div style="font-size: 24px;">⚡</div>
-                <div>
-                    <h3 style="font-size: 1rem; margin-bottom: 2px; color: #facc15;">Live Quiz Arena</h3>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9);">Compete nationwide in real-time.</p>
-                </div>
-            </div>
-            <a href="features.html" style="text-align: center; font-weight: 700; color: var(--brand); text-decoration: none; padding: 10px; font-size: 0.95rem;">+ View All Features</a>
         </section>
     </main>
 
