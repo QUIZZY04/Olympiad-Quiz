@@ -348,8 +348,17 @@ nav {
 }
 
 .nav-important {
-    display: none;
+    display: flex; /* Always show the container so the timer is visible */
     gap: 8px;
+    align-items: center;
+}
+
+/* Hide only the mobile-specific links on desktop, but allow the timer to show */
+@media (min-width: 769px) {
+    .nav-important a[href="about.html"], 
+    .nav-important a[href="login.html"] {
+        display: none;
+    }
 }
 
 .nav-important a {
@@ -574,19 +583,10 @@ nav {
         overflow: hidden;
         text-overflow: ellipsis; /* Prevents pushing buttons off-screen */
     }
-    .nav-important {
-        display: flex;
-        margin-right: 0;
-        gap: 5px; /* Comfortable spacing */
-        flex-shrink: 0;
-    }
     .nav-important a {
-        font-size: 0.65rem; /* Slightly smaller font for very narrow screens */
-        padding: 4px 6px; /* Reduced padding for compactness */
         background: var(--brand) !important;
         color: white !important;
-        font-weight: 800;
-        border-radius: 8px;
+        display: inline-block;
     }
     .menu-toggle {
         display: flex;
