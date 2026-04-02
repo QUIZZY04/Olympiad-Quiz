@@ -20,8 +20,6 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background: var(--bg); color: var(--text); line-height: 1.6; }
-        nav { background: #fff; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-        .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; }
         .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
         .hero { text-align: center; margin-bottom: 60px; }
         .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: var(--brand); }
@@ -86,6 +84,33 @@
     </nav>
 
     <div class="container">
+        <!-- Quiz Confirmation Modal -->
+        <div id="quizModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Ready to Start?</h2>
+                </div>
+                <div class="quiz-details">
+                    <p><strong>Subject:</strong> <span id="confirmSubject">-</span></p>
+                    <p id="gradeRow"><strong>Grade:</strong> <span id="confirmGrade">-</span></p>
+                    <p id="topicRow"><strong>Topic:</strong> <span id="confirmTopic">-</span></p>
+                </div>
+                <div class="quiz-rules">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text);">Quiz Rules:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;">✅ Multiple choice questions with one correct answer.</li>
+                        <li style="margin-bottom: 8px;">⏱️ The timer will start immediately after clicking Start.</li>
+                        <li style="margin-bottom: 8px;">🚫 Do not refresh or exit the page during the test.</li>
+                        <li style="margin-bottom: 8px;">📊 Real-time analysis available after submission.</li>
+                    </ul>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 25px;">
+                    <button onclick="window.closeModal()" style="flex: 1; padding: 12px; font-size: 1rem; cursor: pointer; background: var(--border); color: var(--text); border-radius: 12px; border: none; font-weight: 600;">Cancel</button>
+                    <button id="confirmStartBtn" class="cta-btn" style="flex: 1; padding: 12px; font-size: 1rem; border: none; cursor: pointer; margin-top: 0; box-shadow: none;">Start Now</button>
+                </div>
+            </div>
+        </div>
+
         <section class="hero">
             <h1>Free IEO Mock Tests</h1>
             <p>Enhance your linguistic skills and excel in the International English Olympiad with our expertly designed mock papers.</p>
@@ -165,13 +190,63 @@
                 const footerCta = document.getElementById('footerCta');
                 const chapterwiseCta = document.getElementById('chapterwiseCta');
 
-                if (authLink) { authLink.innerText = "Dashboard"; authLink.href = "dashboard.html"; }
-                if (authLinkMobile) { authLinkMobile.innerText = "Dash"; authLinkMobile.href = "dashboard.html"; }
-                if (heroCta) { heroCta.innerText = "Start IEO Mock Test"; heroCta.href = "mock.html"; }
-                if (footerCta) { footerCta.innerText = "Access IEO Papers"; footerCta.href = "mock.html"; }
-                if (chapterwiseCta) { chapterwiseCta.innerText = "Start IEO Chapterwise Practice"; chapterwiseCta.href = "chapterwise.html"; }
+                if (authLink) { 
+                    authLink.innerText = "Dashboard"; 
+                    authLink.href = "dashboard.html"; 
+                }
+                if (authLinkMobile) { 
+                    authLinkMobile.innerText = "Dash"; 
+                    authLinkMobile.href = "dashboard.html"; 
+                }
+                if (heroCta) { 
+                    heroCta.innerText = "Start IEO Mock Test"; 
+                    heroCta.href = "#";
+                    heroCta.onclick = (e) => { e.preventDefault(); window.openQuizPopup('mock', 'English (IEO)'); };
+                }
+                if (footerCta) { 
+                    footerCta.innerText = "Access IEO Papers"; 
+                    footerCta.href = "#";
+                    footerCta.onclick = (e) => { e.preventDefault(); window.openQuizPopup('mock', 'English (IEO)'); };
+                }
+                if (chapterwiseCta) { 
+                    chapterwiseCta.innerText = "Start IEO Chapterwise Practice"; 
+                    chapterwiseCta.href = "#";
+                    chapterwiseCta.onclick = (e) => { e.preventDefault(); window.openQuizPopup('chapter', 'English (IEO)'); };
+                }
             }
         });
+
+        window.openQuizPopup = function(type, subject, grade = null, topic = null) {
+            const modal = document.getElementById('quizModal');
+            document.getElementById('confirmSubject').innerText = subject;
+            
+            const gradeRow = document.getElementById('gradeRow');
+            if(grade) { gradeRow.style.display = 'block'; document.getElementById('confirmGrade').innerText = grade; }
+            else gradeRow.style.display = 'none';
+
+            const topicRow = document.getElementById('topicRow');
+            if(topic) { topicRow.style.display = 'block'; document.getElementById('confirmTopic').innerText = topic; }
+            else topicRow.style.display = 'none';
+
+            const startBtn = document.getElementById('confirmStartBtn');
+            if (type === 'mock') {
+                document.getElementById('modalTitle').innerText = "Start IEO Mock Test";
+                startBtn.onclick = () => window.location.href = 'mock.html';
+            } else {
+                document.getElementById('modalTitle').innerText = "Start IEO Chapterwise Test";
+                startBtn.onclick = () => window.location.href = 'chapterwise.html';
+            }
+            modal.style.display = 'flex';
+        };
+
+        window.closeModal = function() {
+            document.getElementById('quizModal').style.display = 'none';
+        };
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('quizModal');
+            if (event.target == modal) window.closeModal();
+        };
     </script>
     <script>
     /* Mobile Menu Toggle */
