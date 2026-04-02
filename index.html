@@ -272,7 +272,8 @@
     </header>
 
     <main style="flex: 1;">
-        <section class="hero">
+        <!-- Laptop/Desktop Version of the Hero -->
+        <section class="hero desktop-only">
             <h1>Unlock Your <span>Olympiad Potential</span></h1>
             <p>Transform your learning journey with engaging chapter-wise quests, realistic mock exams, and a vibrant live arena designed to build deep understanding and a competitive edge.</p>
             <div class="hero-cta-buttons">
@@ -281,7 +282,14 @@
             </div>
         </section>
 
-        <section id="features" class="features">
+        <!-- Mobile-Specific Design Version -->
+        <section class="hero mobile-only" style="padding: 40px 20px; background: rgba(79, 70, 229, 0.05); border-radius: 0 0 30px 30px;">
+            <h1 style="font-size: 2rem;">Master <span>Olympiads</span> on the Go</h1>
+            <p style="font-size: 1rem; margin-bottom: 25px;">The #1 practice arena now in your pocket. Quizzes, mocks, and live battles.</p>
+            <a href="signup.html" class="hero-btn hero-btn-primary" style="width: 100%; display: block; text-align: center;">Get Started Free</a>
+        </section>
+
+        <section id="features" class="features desktop-only">
             <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
                 <h3>📖 Chapterwise Quiz</h3>
                 <p>Practice specific topics from your science and math books curated for <b style="color: #c2410c;">SOF NSO, IMO, IEO, IRO</b> and <b style="color: #c2410c;">Silverzone IOS, IOM</b>. Master every concept one by one.</p>
@@ -304,12 +312,38 @@
                 <p>Build a strong foundation with our curated notes, concepts, and important formulas.</p>
             </div>
         </section>
+
+        <!-- MOBILE FEATURES -->
+        <section class="features mobile-only" style="padding: 30px 20px; display: flex; flex-direction: column; gap: 12px;">
+            <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; text-align: left;">Select Learning Mode</h2>
+            <div class="feature-card" onclick="location.href='signup.html'" style="display: flex; align-items: center; text-align: left; padding: 18px; border-top: none; border-left: 4px solid var(--brand); gap: 15px; margin: 0;">
+                <div style="font-size: 24px;">📖</div>
+                <div>
+                    <h3 style="font-size: 1rem; margin-bottom: 2px;">Chapterwise Quiz</h3>
+                    <p style="font-size: 0.85rem;">Master school topics one by one.</p>
+                </div>
+            </div>
+            <div class="feature-card live-arena-highlight" onclick="location.href='signup.html'" style="display: flex; align-items: center; text-align: left; padding: 18px; gap: 15px; margin: 0;">
+                <div style="font-size: 24px;">⚡</div>
+                <div>
+                    <h3 style="font-size: 1rem; margin-bottom: 2px; color: #facc15;">Live Quiz Arena</h3>
+                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9);">Compete nationwide in real-time.</p>
+                </div>
+            </div>
+            <a href="features.html" style="text-align: center; font-weight: 700; color: var(--brand); text-decoration: none; padding: 10px; font-size: 0.95rem;">+ View All Features</a>
+        </section>
     </main>
-    <section style="max-width: 1200px; margin: 60px auto; padding: 0 5%; line-height: 1.8;">
+
+    <!-- DESKTOP PREP SECTION -->
+    <section class="desktop-only" style="max-width: 1200px; margin: 60px auto; padding: 0 5%; line-height: 1.8;">
     <div style="text-align: center; margin-bottom: 40px;">
         <h2 style="font-size: 2rem; color: var(--brand); font-weight: 800;">Comprehensive Olympiad Preparation</h2>
         <p style="color: var(--muted); max-width: 800px; margin: 10px auto;">Master the foundations of competitive excellence with our curated test series designed for global standards.</p>
     </div>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2rem; color: var(--brand); font-weight: 800;">Comprehensive Olympiad Preparation</h2>
+            <p style="color: var(--muted); max-width: 800px; margin: 10px auto;">Master the foundations of competitive excellence with our curated test series.</p>
+        </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
         <div class="interactive-card interactive-card--surface">
@@ -334,6 +368,7 @@
     </div>
 </section>
 
+    <!-- SHARED ROADMAP SECTION (Adapts via CSS) -->
     <section style="background: var(--subtle); padding: 80px 5%; text-align: center;">
         <h2 style="font-size: 2rem; color: var(--text); font-weight: 800; margin-bottom: 40px;">Get Started in 3 Simple Steps</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1000px; margin: auto;">
@@ -355,7 +390,8 @@
         </div>
     </section>
 
-    <section style="max-width: 1200px; margin: 60px auto; padding: 0 5%; line-height: 1.8;">
+    <!-- DESKTOP ABOUT OLYMPIADS -->
+    <section class="desktop-only" style="max-width: 1200px; margin: 60px auto; padding: 0 5%; line-height: 1.8;">
         <div style="text-align: center; margin-bottom: 40px;">
             <h2 style="font-size: 2rem; color: var(--text); font-weight: 800;">About Major Olympiads</h2>
             <p style="color: var(--muted); max-width: 800px; margin: 10px auto;">Our platform helps you prepare for the most prestigious Olympiad examinations conducted in India and worldwide.</p>
@@ -374,7 +410,19 @@
         </div>
     </section>
 
-    <section style="max-width: 1200px; margin: 60px auto; padding: 0 5%;">
+    <!-- Mobile Simplified About Section -->
+    <!-- MOBILE EXAM CHIPS -->
+    <section class="mobile-only" style="padding: 40px 20px;">
+        <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 15px;">Supported Exams</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <span style="background: var(--surface); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">SOF NSO</span>
+            <span style="background: var(--surface); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">SOF IMO</span>
+            <span style="background: var(--surface); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">SilverZone iOM</span>
+            <span style="background: var(--surface); border: 1px solid var(--border); padding: 8px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;">CREST CSO</span>
+        </div>
+    </section>
+
+    <section class="desktop-only" style="max-width: 1200px; margin: 60px auto; padding: 0 5%;">
         <div style="text-align: center; margin-bottom: 40px;">
             <h2 style="font-size: 2rem; color: var(--text); font-weight: 800;">What Our Students Say</h2>
             <p style="color: var(--muted); max-width: 800px; margin: 10px auto;">We are proud to have helped thousands of students achieve their goals.</p>

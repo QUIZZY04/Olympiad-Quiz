@@ -730,3 +730,11 @@ select {
 .leaderboard-btn:hover {
     background: #2563eb;
 }
+
+/* Visibility helpers for different designs */
+@media (min-width: 769px) {
+    .mobile-only { display: none !important; }
+}
+@media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+}
