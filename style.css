@@ -564,7 +564,7 @@ nav {
         height: 50px !important; /* Slim, fixed height */
     }
     .brand {
-        font-size: 1rem !important;
+        font-size: 0.85rem !important; /* More compact for very small screens */
         margin-left: 8px !important;
         flex: 1;
         overflow: hidden;
@@ -573,12 +573,12 @@ nav {
     .nav-important {
         display: flex;
         margin-right: 0;
-        gap: 4px;
+        gap: 6px; /* Slightly more space for buttons */
         flex-shrink: 0;
     }
     .nav-important a {
-        font-size: 0.7rem;
-        padding: 4px 8px;
+        font-size: 0.75rem; /* Slightly larger for readability */
+        padding: 6px 10px; /* Slightly more padding */
         background: rgba(79, 70, 229, 0.1);
     }
     .menu-toggle {
@@ -609,7 +609,8 @@ nav {
     }
     /* Hide links that are already visible on the main screen */
     .nav-links a[href="about.html"], 
-    .nav-links .login-link {
+    .nav-links .login-link,
+    .nav-links a[href="index.html"] { /* Hide Home if it's in nav-important */
         display: none !important;
     }
     .nav-links a {
