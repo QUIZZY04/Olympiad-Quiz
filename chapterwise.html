@@ -243,6 +243,33 @@
     </div>
 </div>
 
+<!-- Confirmation Modal -->
+<div id="quizConfirmModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 style="color: var(--brand); font-weight: 800;">Ready to Begin?</h2>
+        </div>
+        <div class="quiz-details" style="background: var(--subtle); padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: left;">
+            <p style="margin-bottom: 5px;"><strong>Grade:</strong> <span id="modalGrade"></span></p>
+            <p style="margin-bottom: 5px;"><strong>Subject:</strong> <span id="modalSubject"></span></p>
+            <p><strong>Topic:</strong> <span id="modalTopic"></span></p>
+        </div>
+        <div class="quiz-rules" style="text-align: left; margin-bottom: 25px;">
+            <h3 style="font-size: 1rem; margin-bottom: 10px; color: var(--text);">Quiz Rules:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">✅ Practice test for your selected chapter.</li>
+                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">⏱️ The timer will start as soon as you begin.</li>
+                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">🚫 Do not refresh or exit during the test.</li>
+                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">📝 Review your answers before finishing.</li>
+            </ul>
+        </div>
+        <div style="display: flex; gap: 15px; margin-top: 20px;">
+            <button onclick="closeQuizModal()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--border); color: var(--text); font-weight: 700; border: none; cursor: pointer;">Cancel</button>
+            <button onclick="confirmStartQuiz()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--brand); color: white; font-weight: 700; border: none; cursor: pointer;">Start Test</button>
+        </div>
+    </div>
+</div>
+
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
         <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Home</a>
@@ -817,9 +844,27 @@
             alert("Please select both a subject and a topic to proceed.");
             return;
         }
-        localStorage.setItem("selectionSource", "chapterwise"); 
-    localStorage.setItem("isMockTest", "false");
 
+        // Update modal content
+        document.getElementById('modalGrade').innerText = document.getElementById("classSelect").options[document.getElementById("classSelect").selectedIndex].text;
+        document.getElementById('modalSubject').innerText = document.getElementById("subjectSelect").options[document.getElementById("subjectSelect").selectedIndex].text;
+        document.getElementById('modalTopic').innerText = `${selectedTopicObj.code} - ${selectedTopicObj.name}`;
+
+        // Show the modal
+        document.getElementById('quizConfirmModal').style.display = 'flex';
+    }
+
+    function closeQuizModal() {
+        document.getElementById('quizConfirmModal').style.display = 'none';
+    }
+
+    function confirmStartQuiz() {
+        const selectedClass = document.getElementById("classSelect").value;
+        const selectedSubject = document.getElementById("subjectSelect").value;
+        const selectedTopicObj = getSelectedTopicObject();
+
+        localStorage.setItem("selectionSource", "chapterwise");
+        localStorage.setItem("isMockTest", "false");
         localStorage.setItem("selectedClass", selectedClass);
         localStorage.setItem("selectedSubject", selectedSubject);
         localStorage.setItem("selectedTopic", selectedTopicObj.code);
