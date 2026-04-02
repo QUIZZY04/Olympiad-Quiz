@@ -184,13 +184,18 @@
       .spec-item { text-align: left; }
       .signup-container { width: 100%; max-width: 420px; }
       .signup-box { padding: 30px 20px; }
-      
+
       /* Header Compression for Mobile */
-      nav { padding: 0 8px !important; gap: 5px !important; }
-      .brand { font-size: 0.75rem !important; margin-left: 4px !important; }
-      .nav-important { gap: 4px !important; }
-      .nav-important a { font-size: 0.65rem !important; padding: 4px 6px !important; }
-      .menu-toggle { padding: 10px 2px !important; }
+      nav { padding: 0 10px !important; gap: 5px !important; height: 50px !important; flex-wrap: nowrap !important; }
+      .brand { font-size: 0.85rem !important; margin-left: 5px !important; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .nav-important { display: flex !important; gap: 6px !important; flex-shrink: 0; }
+      .nav-important a { font-size: 0.7rem !important; padding: 5px 8px !important; white-space: nowrap; }
+      .menu-toggle { display: flex !important; padding: 5px !important; order: -1; flex-shrink: 0; }
+
+      /* Clean up side drawer for mobile to avoid redundant links */
+      .nav-links a[href="index.html"],
+      .nav-links a[href="login.html"],
+      .nav-links .login-link { display: none !important; }
     }
   </style>
 </head>
