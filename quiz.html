@@ -4,6 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Live Quiz - Olympiad Portal</title>
+
+<!-- INSTANT AUTHENTICATION CHECK -->
+<!-- Runs instantly before the page renders to block the back button -->
+<script>
+  if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.replace("login.html");
+  }
+</script>
+
 <link rel="stylesheet" href="style.css">
 <style>body{visibility: hidden;}</style>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
@@ -1099,9 +1108,10 @@ window.closeMagnifier = () => {
 window.logout = async () => {
     if (confirm("Logout?")) {
         await signOut(auth);
+        localStorage.removeItem("isLoggedIn"); // Explicitly remove the auth flag
         localStorage.clear();
         sessionStorage.clear();
-        window.location.replace("index.html");
+        window.location.replace("login.html"); // Replace history state
     }
 };
 
