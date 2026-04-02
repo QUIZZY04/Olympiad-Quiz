@@ -562,7 +562,7 @@ nav {
         justify-content: space-between !important;
         align-items: center !important;
         position: sticky;
-        height: 50px !important; /* Slim, fixed height */
+        min-height: 50px !important; /* Changed from height to min-height to prevent vertical overflow */
     }
     .brand {
         font-size: 0.95rem !important;
