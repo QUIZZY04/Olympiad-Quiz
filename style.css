@@ -566,7 +566,7 @@ nav {
     }
     .brand {
         font-size: 0.95rem !important;
-        margin-left: 5px !important;
+        margin-left: 0 !important; /* Removed to give more horizontal space to the brand */
         flex: 1;
         min-width: 0;
         overflow: hidden;
@@ -575,7 +575,7 @@ nav {
     .nav-important {
         display: flex;
         margin-right: 0;
-        gap: 4px; /* Tighten for small screens */
+        gap: 2px; /* Further tighten spacing between quick links */
         flex-shrink: 0;
     }
     .nav-important a {
