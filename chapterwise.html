@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapterwise Olympiad Quiz for Class 1 to 10 | Olympiad Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- INSTANT AUTHENTICATION CHECK -->
+    <!-- Runs instantly before the page renders to block the back button -->
+    <script>
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+          window.location.replace("login.html");
+      }
+    </script>
     <link rel="stylesheet" href="style.css">
 <style>body{visibility: hidden;}</style>
     <style>
@@ -909,7 +917,10 @@
     window.logout = async () => {
         if (confirm("Logout?")) {
             await signOut(auth);
-            window.location.href = "login.html";
+            localStorage.removeItem("isLoggedIn"); // Explicitly remove the auth flag
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html"); // Replace history state
         }
     };
 
