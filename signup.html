@@ -63,13 +63,14 @@
     .spec-text span { color: var(--muted); font-size: 14px; }
 
     /* SIGNUP BOX */
-    .signup-container { flex: 0 1 420px; width: 100%; }
+    .signup-container { flex: 0 1 420px; width: 100%; max-width: 420px; }
     .signup-box {
       background: var(--surface);
       border: 1px solid var(--border);
       border-top: 3px solid var(--brand);
       padding: 40px;
       border-radius: 24px;
+      width: 100% !important; /* Overriding fixed width from style.css */
       text-align: center;
       box-shadow: var(--shadow-lg);
     }
@@ -175,10 +176,11 @@
     }
 
     @media (max-width: 968px) {
-      .main-wrapper { flex-direction: column-reverse; text-align: center; padding: 20px 15px; gap: 40px; }
+      .main-wrapper { flex-direction: column-reverse; text-align: center; padding: 20px 15px; gap: 30px; }
       .intro-section { text-align: center; }
-      .intro-section h1 { font-size: 2.2rem; }
+      .intro-section h1 { font-size: 2rem; }
       .intro-section p { font-size: 1rem; margin-bottom: 30px; }
+      .spec-item { padding: 12px; }
       .spec-item { text-align: left; }
       .signup-container { width: 100%; max-width: 420px; }
       .signup-box { padding: 30px 20px; }
@@ -197,7 +199,7 @@
         </button>
         <a href="index.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-important">
-            <a href="about.html">About</a>
+            <a href="index.html">Home</a>
             <a href="login.html">Login</a>
         </div>
         <div class="nav-links">
