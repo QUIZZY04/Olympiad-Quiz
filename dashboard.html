@@ -168,6 +168,11 @@
 
 <div id="main-app-container">
     <nav>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-important">
             <a href="dashboard.html">Dashboard</a>
@@ -185,11 +190,6 @@
                 <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
             </div>
         </div>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </nav>
 
     <main class="container">
@@ -372,6 +372,12 @@ window.logout = () => {
         window.location.replace("index.html");
     });
 };
+</script>
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
 </script>
 
 </body>

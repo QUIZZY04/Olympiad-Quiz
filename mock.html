@@ -159,7 +159,16 @@
 
 <div id="main-app-container">
     <nav>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+        <div class="nav-important">
+            <a href="dashboard.html">Dash</a>
+            <a href="mock.html">Mock</a>
+        </div>
         <div class="nav-links">
             <a href="dashboard.html">Dashboard</a>
             <a href="mock.html" class="active">Mock Tests</a>
@@ -289,6 +298,11 @@
             window.location.replace("index.html");
         }
     };
+
+    /* Mobile Menu Toggle */
+    window.toggleMenu = function() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
 </script>
 </body>
 </html>
