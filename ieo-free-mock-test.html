@@ -61,8 +61,8 @@
         </button>
         <a href="index.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-important">
-            <a href="index.html">Home</a>
-            <a onclick="logout()" style="cursor:pointer;">Logout</a>
+            <a href="about.html">About</a>
+            <a href="login.html" id="navAuthLinkMobile">Login</a>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -78,8 +78,9 @@
             <a href="live.html">Live Arena</a>
             <a href="study.html">Study Material</a>
             <a href="features.html">Features</a>
+            <a href="about.html">About Us</a>
             <div class="nav-actions">
-                <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+                <a href="login.html" id="navAuthLink" class="login-link">Log in</a>
             </div>
         </div>
     </nav>
@@ -159,11 +160,13 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const authLink = document.getElementById('navAuthLink');
+                const authLinkMobile = document.getElementById('navAuthLinkMobile');
                 const heroCta = document.getElementById('heroCta');
                 const footerCta = document.getElementById('footerCta');
                 const chapterwiseCta = document.getElementById('chapterwiseCta');
 
                 if (authLink) { authLink.innerText = "Dashboard"; authLink.href = "dashboard.html"; }
+                if (authLinkMobile) { authLinkMobile.innerText = "Dash"; authLinkMobile.href = "dashboard.html"; }
                 if (heroCta) { heroCta.innerText = "Start IEO Mock Test"; heroCta.href = "mock.html"; }
                 if (footerCta) { footerCta.innerText = "Access IEO Papers"; footerCta.href = "mock.html"; }
                 if (chapterwiseCta) { chapterwiseCta.innerText = "Start IEO Chapterwise Practice"; chapterwiseCta.href = "chapterwise.html"; }
