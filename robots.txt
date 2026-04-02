@@ -1,9 +1,7 @@
 User-agent: *
+Disallow: /dashboard.html
+Disallow: /quiz.html
+Disallow: /admin.html
+Disallow: /checkout.html
 Allow: /
-
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /user/
-Disallow: /api/
-
 Sitemap: https://olympiadquiz.org/sitemap.xml
