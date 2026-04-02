@@ -272,7 +272,7 @@
     </header>
 
     <main style="flex: 1;">
-        <!-- DESKTOP HERO -->
+        <!-- DESKTOP HERO (Kept original as requested) -->
         <section class="hero desktop-only">
             <h1>Unlock Your <span>Olympiad Potential</span></h1>
             <p>Transform your learning journey with engaging chapter-wise quests, realistic mock exams, and a vibrant live arena designed to build deep understanding and a competitive edge.</p>
@@ -282,25 +282,40 @@
             </div>
         </section>
 
-        <!-- MOBILE HERO -->
-        <section class="hero mobile-only" style="padding: 60px 20px; background: linear-gradient(135deg, var(--brand), var(--accent)); color: white; border-radius: 0 0 40px 40px; text-align: center; box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);">
-            <h1 style="font-size: 2.6rem; line-height: 1.1; margin-bottom: 15px; font-weight: 800; color: #fff;">Your Path to <span style="color: #facc15; -webkit-text-fill-color: #facc15; text-shadow: none;">Olympiad Success</span></h1>
-            <p style="font-size: 1.05rem; margin-bottom: 30px; opacity: 0.95; font-weight: 500;">Practice smart, compete live, and master every concept on the go.</p>
-            <a href="signup.html" class="hero-btn hero-btn-primary" style="width: 100%; display: block; text-align: center; background: #fff; color: var(--brand); box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: none; padding: 18px;">Get Started Free</a>
+        <!-- NEW PROFESSIONAL MOBILE HERO (Compact for First Screen) -->
+        <section class="hero mobile-only" style="padding: 40px 20px; background: linear-gradient(135deg, #4f46e5, #3730a3); color: white; border-radius: 0 0 35px 35px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+            <h1 style="font-size: 2.2rem; line-height: 1.1; margin-bottom: 12px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">Master Your <span style="color: #facc15;">Olympiads</span></h1>
+            <p style="font-size: 0.95rem; margin-bottom: 20px; color: rgba(255,255,255,0.9); font-weight: 500; line-height: 1.4;">The #1 Practice Arena for Class 1-10 students preparing for SOF & SilverZone.</p>
+            <a href="signup.html" class="hero-btn hero-btn-primary" style="display: inline-block; background: #facc15; color: #000; box-shadow: 0 8px 20px rgba(250, 204, 21, 0.3); border: none; padding: 12px 25px; font-size: 0.9rem; font-weight: 800; border-radius: 10px; text-decoration: none;">Start Free Journey →</a>
         </section>
 
-        <!-- NEW MOBILE QUICK START CARDS -->
-        <section class="mobile-only quick-start-cards" style="padding: 25px 20px; display: flex; flex-direction: column; gap: 18px; margin-top: -30px;">
+        <!-- FIRST SCREEN MOBILE CARDS -->
+        <section class="mobile-only quick-start-cards" style="padding: 20px; display: flex; flex-direction: column; gap: 12px; margin-top: -25px;">
             <a href="mock.html" style="text-decoration: none; display: block;">
-                <div style="background: linear-gradient(45deg, #38bdf8, #2563eb); color: white; padding: 28px 20px; border-radius: 24px; text-align: center; box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25); border: 1px solid rgba(255,255,255,0.1);">
-                    <h3 style="font-size: 1.6rem; margin-bottom: 8px; font-weight: 800; color: #fff;">📝 Free Mock Tests</h3>
-                    <p style="font-size: 0.95rem; opacity: 0.9; font-weight: 500;">Simulate real exams & test your readiness.</p>
+                <div style="background: #ffffff; border: 1px solid var(--border); border-left: 5px solid #0ea5e9; color: var(--text); padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow-md);">
+                    <div style="font-size: 28px; background: rgba(14, 165, 233, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">📝</div>
+                    <div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 2px; font-weight: 800; color: #0f172a;">Free Mock Tests</h3>
+                        <p style="font-size: 0.8rem; color: #64748b;">Full-length simulated exam papers.</p>
+                    </div>
                 </div>
             </a>
             <a href="chapterwise.html" style="text-decoration: none; display: block;">
-                <div style="background: linear-gradient(45deg, #10b981, #059669); color: white; padding: 28px 20px; border-radius: 24px; text-align: center; box-shadow: 0 15px 30px rgba(16, 185, 129, 0.25); border: 1px solid rgba(255,255,255,0.1);">
-                    <h3 style="font-size: 1.6rem; margin-bottom: 8px; font-weight: 800; color: #fff;">📖 Chapterwise Quizzes</h3>
-                    <p style="font-size: 0.95rem; opacity: 0.9; font-weight: 500;">Master specific topics one by one.</p>
+                <div style="background: #ffffff; border: 1px solid var(--border); border-left: 5px solid #10b981; color: var(--text); padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow-md);">
+                    <div style="font-size: 28px; background: rgba(16, 185, 129, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">📖</div>
+                    <div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 2px; font-weight: 800; color: #0f172a;">Chapterwise Quizzes</h3>
+                        <p style="font-size: 0.8rem; color: #64748b;">Master concepts topic-by-topic.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="live.html" style="text-decoration: none; display: block;">
+                <div style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 20px rgba(234, 88, 12, 0.2);">
+                    <div style="font-size: 28px; background: rgba(255, 255, 255, 0.2); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">⚡</div>
+                    <div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 2px; font-weight: 800; color: #ffffff;">Live Quiz Arena</h3>
+                        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.9);">Compete in nationwide championships.</p>
+                    </div>
                 </div>
             </a>
         </section>
@@ -332,12 +347,8 @@
         </section>
     </main>
 
-    <!-- DESKTOP PREP SECTION -->
+    <!-- DESKTOP PREP SECTION (Cleaning up duplicated code) -->
     <section class="desktop-only" style="max-width: 1200px; margin: 60px auto; padding: 0 5%; line-height: 1.8;">
-    <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-size: 2rem; color: var(--brand); font-weight: 800;">Comprehensive Olympiad Preparation</h2>
-        <p style="color: var(--muted); max-width: 800px; margin: 10px auto;">Master the foundations of competitive excellence with our curated test series designed for global standards.</p>
-    </div>
         <div style="text-align: center; margin-bottom: 40px;">
             <h2 style="font-size: 2rem; color: var(--brand); font-weight: 800;">Comprehensive Olympiad Preparation</h2>
             <p style="color: var(--muted); max-width: 800px; margin: 10px auto;">Master the foundations of competitive excellence with our curated test series.</p>
