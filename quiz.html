@@ -153,10 +153,15 @@ footer {
 </head>
 <body>
 <nav>
+<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
 <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
 <div class="nav-important">
     <a href="dashboard.html">Dash</a>
-    <a href="mock.html">Mock</a>
+    <a onclick="logout()" style="cursor:pointer;">Logout</a>
 </div>
 <div class="nav-links">
 <a href="dashboard.html">Dashboard</a>
@@ -170,11 +175,6 @@ footer {
     <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
 </div>
 </div>
-<button class="menu-toggle" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
 </nav>
 
 <div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;" class="quiz-top-bar">
@@ -1103,6 +1103,11 @@ window.jumpTo = jumpTo;
 window.saveAnswer = saveAnswer;
 window.goBackToSelection = goBackToSelection;
 window.confirmSubmit = () => { if(confirm("Submit quiz?")) submitQuiz(); };
+
+/* Mobile Menu Toggle */
+window.toggleMenu = function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
 </script>
 
 <footer>
