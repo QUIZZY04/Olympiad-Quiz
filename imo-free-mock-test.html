@@ -67,7 +67,7 @@
         <a href="index.html" class="brand">🎓 Olympiad Portal</a>
         <div class="nav-important">
             <a href="about.html">About</a>
-            <a href="login.html">Login</a>
+            <a href="login.html" id="navAuthLinkMobile">Login</a>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -91,6 +91,33 @@
     </nav>
 
     <div class="container">
+        <!-- Quiz Confirmation Modal -->
+        <div id="quizModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Ready to Start?</h2>
+                </div>
+                <div class="quiz-details">
+                    <p><strong>Subject:</strong> <span id="confirmSubject">-</span></p>
+                    <p id="gradeRow"><strong>Grade:</strong> <span id="confirmGrade">-</span></p>
+                    <p id="topicRow"><strong>Topic:</strong> <span id="confirmTopic">-</span></p>
+                </div>
+                <div class="quiz-rules">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text);">Quiz Rules:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;">✅ Multiple choice questions with one correct answer.</li>
+                        <li style="margin-bottom: 8px;">⏱️ The timer will start immediately after clicking Start.</li>
+                        <li style="margin-bottom: 8px;">🚫 Do not refresh or exit the page during the test.</li>
+                        <li style="margin-bottom: 8px;">📊 Real-time analysis available after submission.</li>
+                    </ul>
+                </div>
+                <div style="display: flex; gap: 12px; margin-top: 25px;">
+                    <button onclick="window.closeModal()" style="flex: 1; padding: 12px; font-size: 1rem; cursor: pointer; background: var(--border); color: var(--text); border-radius: 12px; border: none; font-weight: 600;">Cancel</button>
+                    <button id="confirmStartBtn" class="cta-btn" style="flex: 1; padding: 12px; font-size: 1rem; border: none; cursor: pointer; margin-top: 0; box-shadow: none;">Start Now</button>
+                </div>
+            </div>
+        </div>
+
         <section class="hero">
             <h1>Free IMO Mock Tests</h1>
             <p>Ace the International Mathematics Olympiad with our comprehensive, timed mock papers designed by subject experts.</p>
@@ -165,16 +192,68 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const authLink = document.getElementById('navAuthLink');
+                const authLinkMobile = document.getElementById('navAuthLinkMobile');
                 const heroCta = document.getElementById('heroCta');
                 const footerCta = document.getElementById('footerCta');
                 const chapterwiseCta = document.getElementById('chapterwiseCta');
 
-                if (authLink) { authLink.innerText = "Dashboard"; authLink.href = "dashboard.html"; }
-                if (heroCta) { heroCta.innerText = "Start IMO Mock Test"; heroCta.href = "mock.html"; }
-                if (footerCta) { footerCta.innerText = "Access IMO Papers"; footerCta.href = "mock.html"; }
-                if (chapterwiseCta) { chapterwiseCta.innerText = "Start IMO Chapterwise Practice"; chapterwiseCta.href = "chapterwise.html"; }
+                if (authLink) { 
+                    authLink.innerText = "Dashboard"; 
+                    authLink.href = "dashboard.html"; 
+                }
+                if (authLinkMobile) { 
+                    authLinkMobile.innerText = "Dash"; 
+                    authLinkMobile.href = "dashboard.html"; 
+                }
+                if (heroCta) { 
+                    heroCta.innerText = "Start IMO Mock Test"; 
+                    heroCta.href = "#";
+                    heroCta.onclick = (e) => { e.preventDefault(); window.openQuizPopup('mock', 'Mathematics (IMO)'); };
+                }
+                if (footerCta) { 
+                    footerCta.innerText = "Access IMO Papers"; 
+                    footerCta.href = "#";
+                    footerCta.onclick = (e) => { e.preventDefault(); window.openQuizPopup('mock', 'Mathematics (IMO)'); };
+                }
+                if (chapterwiseCta) { 
+                    chapterwiseCta.innerText = "Start IMO Chapterwise Practice"; 
+                    chapterwiseCta.href = "#";
+                    chapterwiseCta.onclick = (e) => { e.preventDefault(); window.openQuizPopup('chapter', 'Mathematics (IMO)'); };
+                }
             }
         });
+
+        window.openQuizPopup = function(type, subject, grade = null, topic = null) {
+            const modal = document.getElementById('quizModal');
+            document.getElementById('confirmSubject').innerText = subject;
+            
+            const gradeRow = document.getElementById('gradeRow');
+            if(grade) { gradeRow.style.display = 'block'; document.getElementById('confirmGrade').innerText = grade; }
+            else gradeRow.style.display = 'none';
+
+            const topicRow = document.getElementById('topicRow');
+            if(topic) { topicRow.style.display = 'block'; document.getElementById('confirmTopic').innerText = topic; }
+            else topicRow.style.display = 'none';
+
+            const startBtn = document.getElementById('confirmStartBtn');
+            if (type === 'mock') {
+                document.getElementById('modalTitle').innerText = "Start IMO Mock Test";
+                startBtn.onclick = () => window.location.href = 'mock.html';
+            } else {
+                document.getElementById('modalTitle').innerText = "Start IMO Chapterwise Test";
+                startBtn.onclick = () => window.location.href = 'chapterwise.html';
+            }
+            modal.style.display = 'flex';
+        };
+
+        window.closeModal = function() {
+            document.getElementById('quizModal').style.display = 'none';
+        };
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('quizModal');
+            if (event.target == modal) window.closeModal();
+        };
     </script>
     <script>
     /* Mobile Menu Toggle */
