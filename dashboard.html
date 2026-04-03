@@ -43,7 +43,7 @@
     *{box-sizing:border-box;margin:0;padding:0;}
     body{ font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; overflow-x: hidden; background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%); background-attachment: fixed; }
 
-    .container{ width:100%; max-width:1200px; margin:30px auto; padding:0 20px; flex:1; }
+    .container{ width:100%; max-width:1400px; margin:30px auto; padding:0 20px; flex:1; }
     
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -73,7 +73,7 @@
     .sleek-banner a { color: var(--brand); font-weight: 700; text-decoration: none; font-size: 0.9rem; }
     .sleek-banner a:hover { text-decoration: underline; }
 
-    .main-menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 50px; }
+    .main-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 50px; }
     .modern-card { background: var(--surface); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
     .modern-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--c-accent); }
     .modern-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, var(--c-bg), transparent); opacity: 0; transition: 0.3s; z-index: 0; }
@@ -161,16 +161,37 @@
     .stat-box h3 { font-size: 2.2rem; font-weight: 800; color: var(--brand); margin-bottom: 5px; }
     .stat-box p { font-size: 0.85rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 0; }
     
+    @media (max-width:1024px){
+        .main-menu-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width:768px){
         .hero-panel { padding: 25px; flex-direction: column; align-items: flex-start; }
         .hero-left h1 { font-size: 1.8rem; }
         .hero-right { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
         .stat-badge { justify-content: center; padding: 12px; }
+        .main-menu-grid { grid-template-columns: 1fr; }
         .modern-card { flex-direction: column-reverse; text-align: center; align-items: center; padding: 25px 20px; }
         .icon-wrapper { margin-bottom: 10px; }
         .stats-section { grid-template-columns: 1fr; gap: 15px; }
         .stat-box h3 { font-size: 2rem; }
+        
+        .study-banner { flex-direction: column; text-align: left; align-items: flex-start; padding: 25px 20px; }
+        .study-banner-btn { width: 100%; text-align: center; margin-top: 10px; }
     }
+
+    .study-banner { background: var(--surface); border: 1px solid var(--border); border-left: 6px solid var(--brand); border-radius: 20px; padding: 30px; margin-bottom: 50px; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; transition: all 0.3s ease; }
+    .study-banner:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--brand); }
+    .study-banner-content h2 { font-size: 1.6rem; color: var(--text); margin-bottom: 10px; font-weight: 800; }
+    .study-banner-content p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 15px; }
+    .study-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+    .study-chip { padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .study-chip.imo { background: rgba(56, 189, 248, 0.1); color: #0284c7; }
+    .study-chip.nso { background: rgba(52, 211, 153, 0.1); color: #059669; }
+    .study-chip.ieo { background: rgba(244, 63, 94, 0.1); color: #e11d48; }
+    .study-chip.iro { background: rgba(251, 146, 60, 0.1); color: #d97706; }
+    .study-banner-btn { background: var(--brand); color: white; padding: 12px 24px; border-radius: 12px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); white-space: nowrap; transition: 0.3s; }
+    .study-banner:hover .study-banner-btn { background: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
   </style>
 </head>
 
@@ -270,6 +291,48 @@
                     <p>Track your growth, identify weak areas, and monitor your progress over time.</p>
                 </div>
                 <div class="icon-wrapper">📊</div>
+            </div>
+        </section>
+
+        <section class="study-banner animate-up delay-6" onclick="location.href='study.html'">
+            <div class="study-banner-content">
+                <h2>📚 Comprehensive Study Material</h2>
+                <p>Build a strong foundation before you practice. Access expertly curated notes, important formulas, and core concepts for your upcoming exams.</p>
+                <div class="study-chips">
+                    <span class="study-chip imo">📐 IMO (Maths)</span>
+                    <span class="study-chip nso">🔬 NSO (Science)</span>
+                    <span class="study-chip ieo">📖 IEO (English)</span>
+                    <span class="study-chip iro">🧠 IRO (Reasoning)</span>
+                </div>
+            </div>
+            <div class="study-banner-btn">Explore Notes &rarr;</div>
+        </section>
+
+        <section class="info-section animate-up delay-6" style="margin-bottom: 50px;">
+            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-md);">
+                <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <h2 style="font-size: 1.8rem; color: var(--text); margin-bottom: 15px; font-weight: 800;">Master Your Olympiad Journey</h2>
+                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px;">Success in Olympiads like SOF, SilverZone, and CREST requires more than just reading textbooks. It demands a strategic approach to problem-solving, time management, and conceptual clarity.</p>
+                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">Start by taking a <strong style="color: var(--brand);">Free Mock Test</strong> to benchmark your current standing. Then, use the <strong style="color: var(--brand);">Chapterwise Quizzes</strong> to target specific weak areas, and explore our <strong style="color: var(--brand);">Olympiad Tricks</strong> to learn time-saving shortcuts!</p>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; display: grid; gap: 15px;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s;" onmouseover="this.style.borderColor='var(--brand)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateX(0)';">
+                            <div style="font-size: 24px; background: rgba(56, 189, 248, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #0284c7; flex-shrink: 0;">🎯</div>
+                            <div>
+                                <h4 style="font-size: 1.1rem; color: var(--text); margin-bottom: 5px; font-weight: 700;">Targeted Practice</h4>
+                                <p style="font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.5;">Focus heavily on chapters with lower accuracy to maximize your overall score improvement.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s;" onmouseover="this.style.borderColor='var(--warning)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateX(0)';">
+                            <div style="font-size: 24px; background: rgba(250, 204, 21, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #d97706; flex-shrink: 0;">⚡</div>
+                            <div>
+                                <h4 style="font-size: 1.1rem; color: var(--text); margin-bottom: 5px; font-weight: 700;">Live Competition</h4>
+                                <p style="font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.5;">Join weekend arenas regularly to experience real exam pressure and benchmark against peers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

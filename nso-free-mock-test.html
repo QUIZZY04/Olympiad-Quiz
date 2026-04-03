@@ -36,7 +36,6 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
         .feature-card { padding: 20px; border: 1px solid var(--border); border-radius: 16px; text-align: center; }
         .feature-card h3 { color: var(--brand); margin-bottom: 10px; }
-        footer { text-align: center; padding: 40px; color: var(--muted); border-top: 1px solid var(--border); }
         
         .hero-cta-buttons {
             margin-top: 30px;
@@ -199,8 +198,16 @@
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 Olympiad Portal. All rights reserved.</p>
+    <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+            <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Home</a>
+            <a href="features.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Features</a>
+            <a href="about.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">About Us</a>
+            <a href="contact.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Contact Us</a>
+            <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
+            <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
+        </div>
+        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
     </footer>
 
     <script type="module">
