@@ -390,7 +390,7 @@
 
         <!-- FIRST SCREEN MOBILE CARDS -->
         <section class="mobile-only quick-start-cards" style="padding: 20px; display: flex; flex-direction: column; gap: 12px; margin-top: -25px;">
-            <a href="mock.html" style="text-decoration: none; display: block;">
+            <a href="mock.html" onclick="if(localStorage.getItem('isLoggedIn') !== 'true') { window.location.href='login.html'; return false; }" style="text-decoration: none; display: block;">
                 <div style="background: #ffffff; border: 1px solid var(--border); border-left: 5px solid #0ea5e9; color: var(--text); padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow-md);">
                     <div style="font-size: 28px; background: rgba(14, 165, 233, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">📝</div>
                     <div>
@@ -399,7 +399,7 @@
                     </div>
                 </div>
             </a>
-            <a href="chapterwise.html" style="text-decoration: none; display: block;">
+            <a href="chapterwise.html" onclick="if(localStorage.getItem('isLoggedIn') !== 'true') { window.location.href='login.html'; return false; }" style="text-decoration: none; display: block;">
                 <div style="background: #ffffff; border: 1px solid var(--border); border-left: 5px solid #10b981; color: var(--text); padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow-md);">
                     <div style="font-size: 28px; background: rgba(16, 185, 129, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">📖</div>
                     <div>
@@ -408,7 +408,7 @@
                     </div>
                 </div>
             </a>
-            <a href="live.html" style="text-decoration: none; display: block;">
+            <a href="live.html" onclick="if(localStorage.getItem('isLoggedIn') !== 'true') { window.location.href='login.html'; return false; }" style="text-decoration: none; display: block;">
                 <div style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 20px rgba(234, 88, 12, 0.2);">
                     <div style="font-size: 28px; background: rgba(255, 255, 255, 0.2); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">⚡</div>
                     <div>
@@ -422,19 +422,19 @@
 
         <!-- ALIGNED ACTION CARDS FOR DESKTOP (Overlaps the vibrant hero) -->
         <section id="explore" class="overlapping-cards-container desktop-only">
-            <a href="mock.html" class="overlap-card" style="border-top-color: #3b82f6;">
+            <a href="mock.html" class="overlap-card" style="border-top-color: #3b82f6;" onclick="if(localStorage.getItem('isLoggedIn') !== 'true') { window.location.href='login.html'; return false; }">
                 <div class="overlap-icon" style="background: #eff6ff; color: #3b82f6;">📝</div>
                 <h3>Free Mock Tests</h3>
                 <p>Simulate the real exam experience with full-length SOF & SilverZone mock papers.</p>
                 <div class="overlap-link" style="color: #3b82f6;">Take a Test &rarr;</div>
             </a>
-            <a href="chapterwise.html" class="overlap-card" style="border-top-color: #10b981;">
+            <a href="chapterwise.html" class="overlap-card" style="border-top-color: #10b981;" onclick="if(localStorage.getItem('isLoggedIn') !== 'true') { window.location.href='login.html'; return false; }">
                 <div class="overlap-icon" style="background: #ecfdf5; color: #10b981;">📖</div>
                 <h3>Chapterwise Quiz</h3>
                 <p>Master core concepts step-by-step with targeted practice quizzes for every chapter.</p>
                 <div class="overlap-link" style="color: #10b981;">Practice Now &rarr;</div>
             </a>
-            <a href="live.html" class="overlap-card" style="border-top-color: #facc15;">
+            <a href="live.html" class="overlap-card" style="border-top-color: #facc15;" onclick="if(localStorage.getItem('isLoggedIn') !== 'true') { window.location.href='login.html'; return false; }">
                 <div class="overlap-icon" style="background: #fffbeb; color: #f59e0b;">⚡</div>
                 <h3>Live Quiz Arena</h3>
                 <p>Compete with students nationwide in real-time championships and top the leaderboard.</p>
