@@ -140,13 +140,19 @@
         .mobile-topics-container.reasoning .start-btn-mobile:hover { background: #d97706; }
 
         @media (max-width: 768px) {
-            .header-text h1 { font-size: 2.2rem; }
-            .grade-selector-bar { padding: 15px 20px; flex-direction: column; align-items: flex-start; }
+            /* Reorder Layout on Mobile to show dropdowns first */
+            .container { display: flex; flex-direction: column; }
+            .header-text { display: contents; } /* Unboxes the header to reorder its children */
+            
+            .header-text h1 { order: 1; font-size: 2.2rem; margin-bottom: 20px; text-align: center; }
+            .grade-selector-bar { order: 2; padding: 15px 20px; flex-direction: column; align-items: flex-start; margin-bottom: 15px; }
             .grade-selector-bar select { max-width: 100%; }
-            .topics-grid { display: none !important; }
-            .mobile-topics-container { display: block !important; }
-            .subject-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+            .subject-tabs { order: 3; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
             .subject-tab { padding: 12px 10px; font-size: 0.95rem; }
+            .mobile-topics-container { order: 4; display: block !important; margin-bottom: 30px; }
+            .header-text p { order: 5; margin-bottom: 30px; text-align: center; font-size: 1rem; padding: 0 10px; }
+            .topics-grid { order: 6; display: none !important; }
+            .seo-section { order: 7; }
         }
     </style>
 </head>
