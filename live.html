@@ -604,43 +604,36 @@
     };
 
     window.handleUnlock = async (sessionId, price, title) => {
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "signup.html";
+        const user = auth.currentUser;
+        if (!user) {
+            alert("Please log in or create an account to unlock this quiz.");
+            window.location.href = "login.html";
             return;
         }
         const sessionPrice = parseInt(price); // Ensure price is a number
 
         if (sessionPrice === 0) {
             // --- Handle Free Unlock ---
-            localStorage.setItem("activeSessionId", sessionId);
-            localStorage.setItem("activeSessionPrice", 0);
-
             try {
-                const user = auth.currentUser;
-                if (user) {
-                    // Create a 0-cost purchase record in Firestore
-                    await setDoc(
-                        doc(db, "users", user.uid, "purchases", sessionId),
-                        {
-                            paid: true,
-                            time: serverTimestamp(),
-                            amount: 0,
-                            sessionId: sessionId,
-                            couponUsed: localStorage.getItem("appliedCoupon") || null
-                        }
-                    );
-                    alert("Quiz unlocked for free!");
-                    window.location.href = "payment-success.html"; // Redirect to success page
-                } else {
-                    alert("Error: User not logged in. Please log in to unlock.");
-                    window.location.href = "login.html";
-                    return; // Stop execution if user not logged in
-                }
+                // Create a 0-cost purchase record in Firestore
+                await setDoc(
+                    doc(db, "users", user.uid, "purchases", sessionId),
+                    {
+                        paid: true,
+                        time: serverTimestamp(),
+                        amount: 0,
+                        sessionId: sessionId,
+                        couponUsed: localStorage.getItem("appliedCoupon") || null
+                    }
+                );
+                localStorage.setItem("activeSessionId", sessionId);
+                localStorage.setItem("activeSessionPrice", 0);
+                alert("Quiz unlocked for free!");
+                window.location.href = "payment-success.html"; // Redirect to success page
             } catch (e) {
                 console.error("Error recording free unlock:", e);
                 alert("Error unlocking quiz: " + e.message + ". Please try again or contact support.");
             }
-
         } else {
             // --- Handle Paid Unlock (Existing Razorpay flow) ---
             const options = {
@@ -649,26 +642,28 @@
                 "currency": "INR",
                 "name": "Olympiad Portal",
                 "description": "Unlock: " + title,
-                "handler": function (response) {
+                "handler": function(response) {
                     localStorage.setItem("activeSessionId", sessionId);
                     localStorage.setItem("activeSessionPrice", sessionPrice);
                     window.location.href = "payment-success.html";
                 },
                 "prefill": { 
-                    "name": auth.currentUser?.displayName || "Student", 
-                    "email": auth.currentUser?.email || "" 
+                    "name": user.displayName || "Student", 
+                    "email": user.email || "" 
                 },
                 "theme": { "color": "#38bdf8" }
             };
             const rzp = new Razorpay(options);
-            rzp.on('payment.failed', function (response) { alert("Payment Failed: " + response.error.description); });
+            rzp.on('payment.failed', function(response) { alert("Payment Failed: " + response.error.description); });
             rzp.open();
         }
     };
 
     window.handleJoin = (sessionId, studentClass, subject) => {
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "signup.html";
+        const user = auth.currentUser;
+        if (!user) {
+            alert("Please log in to join the quiz.");
+            window.location.href = "login.html";
             return;
         }
         localStorage.setItem("activeSessionId", sessionId);
