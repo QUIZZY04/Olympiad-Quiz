@@ -4,11 +4,36 @@
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Olympiad Quiz",
-  "url": "https://olympiadquiz.org",
-  "description": "Free online practice portal for Class 1-10 Math and Science Olympiads.",
-  "applicationCategory": "EducationalApplication"
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "Olympiad Quiz",
+      "url": "https://olympiadquiz.org",
+      "description": "Free online practice portal for Class 1-10 Math and Science Olympiads.",
+      "applicationCategory": "EducationalApplication"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Olympiad Quiz really free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, our core features, including chapter-wise practice quizzes and full-length mock tests, are completely free. This allows every student to build a strong foundation without any cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Olympiads do you prepare students for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our content is aligned with the syllabus and question patterns of major Olympiads, including those conducted by the Science Olympiad Foundation (SOF) like NSO, IMO, and IEO, as well as exams from SilverZone Foundation and CREST Olympiads."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"

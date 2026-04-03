@@ -1,7 +1,18 @@
 User-agent: *
+Allow: /
+
+# Disallow private/authenticated pages to save crawl budget
 Disallow: /dashboard.html
 Disallow: /quiz.html
+Disallow: /result.html
 Disallow: /admin.html
 Disallow: /checkout.html
-Allow: /
+Disallow: /payment-success.html
+
+# Disallow utility and admin tool pages
+Disallow: /forgot-password.html
+Disallow: /instructions.html
+Disallow: /bulk-upload.html
+Disallow: /add_study_content.html
+
 Sitemap: https://olympiadquiz.org/sitemap.xml
