@@ -99,19 +99,45 @@
         .seo-feature p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
 
         /* Mobile Topics Dropdown styling */
-        .mobile-topics-container { display: none; background: var(--surface); border: 1px solid var(--border); padding: 20px 25px; border-radius: 20px; box-shadow: var(--shadow-sm); margin-bottom: 40px; }
-        .mobile-topics-container label { font-weight: 800; color: var(--text); font-size: 1.1rem; white-space: nowrap; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .mobile-topics-container { display: none; background: var(--surface); border: 2px solid var(--border); padding: 25px; border-radius: 24px; box-shadow: var(--shadow-md); margin-bottom: 40px; transition: all 0.4s ease; }
+        .mobile-topics-container label { font-weight: 800; color: var(--text); font-size: 1.15rem; white-space: nowrap; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; transition: 0.3s; }
         .mobile-topics-container select { 
-            width: 100%; padding: 14px 20px; font-size: 1rem; border-radius: 12px; 
-            border: 2px solid var(--border); outline: none; transition: 0.3s; background: var(--bg); font-weight: 600;
+            width: 100%; padding: 16px 20px; font-size: 1rem; border-radius: 14px; 
+            border: 2px solid var(--border); outline: none; transition: 0.3s; background: #ffffff; font-weight: 700; color: var(--text);
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2em;
             margin-bottom: 20px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
         .mobile-topics-container select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1); }
-        .mobile-topics-container .start-btn-mobile { width: 100%; padding: 14px; background: var(--brand); color: white; border: none; border-radius: 12px; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
+        .mobile-topics-container .start-btn-mobile { width: 100%; padding: 16px; background: var(--brand); color: white; border: none; border-radius: 14px; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
         .mobile-topics-container .start-btn-mobile:hover { background: var(--accent); transform: translateY(-2px); }
+
+        /* Dynamic Mobile Container Themes */
+        .mobile-topics-container.maths { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe; }
+        .mobile-topics-container.maths label { color: #1e3a8a; }
+        .mobile-topics-container.maths select { border-color: #93c5fd; color: #1e3a8a; }
+        .mobile-topics-container.maths .start-btn-mobile { background: #3b82f6; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+        .mobile-topics-container.maths .start-btn-mobile:hover { background: #2563eb; }
+
+        .mobile-topics-container.science { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #a7f3d0; }
+        .mobile-topics-container.science label { color: #064e3b; }
+        .mobile-topics-container.science select { border-color: #6ee7b7; color: #064e3b; }
+        .mobile-topics-container.science .start-btn-mobile { background: #10b981; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+        .mobile-topics-container.science .start-btn-mobile:hover { background: #059669; }
+
+        .mobile-topics-container.english { background: linear-gradient(135deg, #fef2f2, #ffe4e6); border-color: #fecdd3; }
+        .mobile-topics-container.english label { color: #881337; }
+        .mobile-topics-container.english select { border-color: #fda4af; color: #881337; }
+        .mobile-topics-container.english .start-btn-mobile { background: #f43f5e; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
+        .mobile-topics-container.english .start-btn-mobile:hover { background: #e11d48; }
+
+        .mobile-topics-container.reasoning { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; }
+        .mobile-topics-container.reasoning label { color: #78350f; }
+        .mobile-topics-container.reasoning select { border-color: #fcd34d; color: #78350f; }
+        .mobile-topics-container.reasoning .start-btn-mobile { background: #f59e0b; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
+        .mobile-topics-container.reasoning .start-btn-mobile:hover { background: #d97706; }
 
         @media (max-width: 768px) {
             .header-text h1 { font-size: 2.2rem; }
@@ -181,8 +207,8 @@
     </div>
 
     <!-- Mobile Topics Dropdown (Hidden on Desktop) -->
-    <div class="mobile-topics-container" id="mobileTopicsContainer">
-        <label for="topicSelectMobile"><span>📑</span> Select Chapter/Topic:</label>
+    <div class="mobile-topics-container maths" id="mobileTopicsContainer">
+        <label for="topicSelectMobile"><span id="mobileTopicIcon">📐</span> Select Chapter/Topic:</label>
         <select id="topicSelectMobile">
             <option value="" disabled selected>Loading topics...</option>
         </select>
@@ -766,12 +792,19 @@
         const classSelect = document.getElementById("classSelect");
         const topicsGrid = document.getElementById("topicsGrid");
         const topicSelectMobile = document.getElementById("topicSelectMobile");
+        const mobileTopicsContainer = document.getElementById("mobileTopicsContainer");
+        const mobileTopicIcon = document.getElementById("mobileTopicIcon");
 
         const selectedClass = classSelect.value;
         const selectedSubject = currentSubject;
 
         topicsGrid.innerHTML = "";
         topicSelectMobile.innerHTML = "";
+
+        // Update mobile container theme
+        mobileTopicsContainer.className = `mobile-topics-container ${selectedSubject}`;
+        const icons = { maths: '📐', science: '🔬', english: '📚', reasoning: '🧠' };
+        if (mobileTopicIcon) mobileTopicIcon.innerText = icons[selectedSubject] || '📑';
 
         if (sofTopics[selectedClass] && sofTopics[selectedClass][selectedSubject]) {
             const topics = sofTopics[selectedClass][selectedSubject];
