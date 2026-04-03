@@ -258,6 +258,70 @@
         .hero-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 20px -10px rgba(79, 70, 229, 0.5); filter: brightness(1.05); }
         .hero-btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
         .hero-btn-secondary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--brand); color: var(--brand); }
+
+        /* NEW VIBRANT DESKTOP HERO & ALIGNED CARDS */
+        .colorful-hero-desktop {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+            padding: 40px 5% 120px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        .colorful-hero-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1350px;
+            margin: 0 auto;
+            gap: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-text-col { flex: 1; max-width: 650px; text-align: left; }
+        .hero-text-col h1 { font-size: 4rem; font-weight: 800; line-height: 1.15; margin-bottom: 15px; letter-spacing: -0.02em; }
+        .hero-text-col h1 span { color: #fde047; }
+        .hero-text-col p { font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 25px; line-height: 1.7; }
+        .hero-img-col { flex: 1; position: relative; text-align: right; }
+        .hero-main-img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 6px solid rgba(255,255,255,0.2);
+            object-fit: cover;
+            aspect-ratio: 4/3;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s ease;
+            display: block;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .hero-main-img:hover { transform: perspective(1000px) rotateY(0deg); }
+        .overlapping-cards-container {
+            max-width: 1300px;
+            margin: -110px auto 60px;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0 5%;
+        }
+        .overlap-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: var(--text);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 8px solid var(--brand);
+        }
+        .overlap-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+        .overlap-icon { font-size: 3.5rem; margin-bottom: 20px; display: inline-block; padding: 15px 20px; border-radius: 20px; }
+        .overlap-card h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 15px; color: #0f172a; }
+        .overlap-card p { color: var(--muted); font-size: 1.05rem; margin-bottom: 25px; line-height: 1.6; }
+        .overlap-link { font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -299,13 +363,21 @@
     </nav>
 
     <main style="flex: 1;">
-        <!-- DESKTOP HERO (Kept original as requested) -->
-        <section class="hero desktop-only">
-            <h1>Unlock Your <span>Olympiad Potential</span></h1>
-            <p>Transform your learning journey with engaging chapter-wise quests, realistic mock exams, and a vibrant live arena designed to build deep understanding and a competitive edge.</p>
-            <div class="hero-cta-buttons">
-                <a href="signup.html" class="hero-btn hero-btn-primary">Start Your Free Journey</a>
-                <a href="features.html" class="hero-btn hero-btn-secondary">Explore Features</a>
+        <!-- VIBRANT FULL-WIDTH DESKTOP HERO -->
+        <section class="colorful-hero-desktop desktop-only">
+            <div class="colorful-hero-inner">
+                <div class="hero-text-col">
+                    <div style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.2); color: #fff; font-weight: 700; border-radius: 50px; margin-bottom: 25px; font-size: 0.95rem; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);">🏆 India's #1 Olympiad Practice Portal</div>
+                    <h1>Master <span>Olympiads</span> With Confidence</h1>
+                    <p>Your ultimate practice portal. Achieve excellence with expert-curated chapter-wise quests, full-length mock exams, and a vibrant live competitive arena designed for Class 1-10.</p>
+                    <div class="hero-cta-buttons" style="justify-content: flex-start; margin-top: 0;">
+                        <a href="signup.html" class="hero-btn" style="background: #ffffff; color: #4f46e5; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">Start Practicing Free &rarr;</a>
+                        <a href="#explore" class="hero-btn" style="background: rgba(0,0,0,0.2); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px);">Explore Features</a>
+                    </div>
+                </div>
+                <div class="hero-img-col">
+                    <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="One young student studying at a table with books and smiling" class="hero-main-img">
+                </div>
             </div>
         </section>
 
@@ -348,28 +420,43 @@
         </section>
 
 
-        <!-- DESKTOP FEATURES -->
-        <section id="features" class="features desktop-only">
-            <a href="chapterwise.html" class="feature-card">
-                <h3>📖 Chapterwise Quiz</h3>
-                <p>Practice specific topics from your science and math books curated for <b style="color: #c2410c;">SOF NSO, IMO, IEO, IRO</b> and <b style="color: #c2410c;">Silverzone IOS, IOM</b>. Master every concept one by one.</p>
+        <!-- ALIGNED ACTION CARDS FOR DESKTOP (Overlaps the vibrant hero) -->
+        <section id="explore" class="overlapping-cards-container desktop-only">
+            <a href="mock.html" class="overlap-card" style="border-top-color: #3b82f6;">
+                <div class="overlap-icon" style="background: #eff6ff; color: #3b82f6;">📝</div>
+                <h3>Free Mock Tests</h3>
+                <p>Simulate the real exam experience with full-length SOF & SilverZone mock papers.</p>
+                <div class="overlap-link" style="color: #3b82f6;">Take a Test &rarr;</div>
             </a>
-            <a href="mock.html" class="feature-card">
-                <h3>📝 Free Mock Tests</h3>
-                <p>Full-length papers designed like real <b style="color: #c2410c;">SOF (NSO, IMO, IEO, IRO)</b> and <b style="color: #c2410c;">Silverzone (IOS, IOM)</b> exams to test your speed and accuracy.</p>
+            <a href="chapterwise.html" class="overlap-card" style="border-top-color: #10b981;">
+                <div class="overlap-icon" style="background: #ecfdf5; color: #10b981;">📖</div>
+                <h3>Chapterwise Quiz</h3>
+                <p>Master core concepts step-by-step with targeted practice quizzes for every chapter.</p>
+                <div class="overlap-link" style="color: #10b981;">Practice Now &rarr;</div>
             </a>
-            <a href="live.html" class="feature-card live-arena-highlight">
-                <h3>⚡ Live Quiz Arena</h3>
-                <p>Compete in real-time battles against students across the country and top the leaderboard.</p>
-                <p style="margin-top: 10px; font-size: 0.95rem;"><span onclick="window.location.href='instructions.html'; event.preventDefault();" style="color: #facc15; font-weight: 800; text-decoration: underline; cursor: pointer;">How to Register for Live Quiz</span></p>
+            <a href="live.html" class="overlap-card" style="border-top-color: #facc15;">
+                <div class="overlap-icon" style="background: #fffbeb; color: #f59e0b;">⚡</div>
+                <h3>Live Quiz Arena</h3>
+                <p>Compete with students nationwide in real-time championships and top the leaderboard.</p>
+                <div class="overlap-link" style="color: #f59e0b;">Join Arena &rarr;</div>
             </a>
-            <a href="tricks.html" class="feature-card">
-                <h3>💡 Olympiad Tricks</h3>
-                <p>Learn shortcut methods and smart strategies for <b style="color: #c2410c;">SOF NSO, IMO, IEO, IRO</b> and <b style="color: #c2410c;">Silverzone IOS, IOM</b> to solve complex problems faster.</p>
+        </section>
+
+        <!-- SECONDARY FEATURES FOR DESKTOP -->
+        <section class="features desktop-only" style="max-width: 1300px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); padding-top: 0; gap: 30px;">
+            <a href="tricks.html" class="feature-card" style="padding: 30px; display: flex; align-items: center; gap: 20px; text-align: left; text-decoration: none;">
+                <div style="font-size: 3rem; background: #fff7ed; padding: 15px; border-radius: 16px;">💡</div>
+                <div>
+                    <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; color: #0f172a;">Olympiad Tricks</h3>
+                    <p style="font-size: 0.95rem; margin: 0; color: var(--muted);">Learn shortcut methods and smart elimination strategies to solve complex problems faster.</p>
+                </div>
             </a>
-            <a href="study.html" class="feature-card">
-                <h3>📚 Study Material</h3>
-                <p>Build a strong foundation with our curated notes, concepts, and important formulas.</p>
+            <a href="study.html" class="feature-card" style="padding: 30px; display: flex; align-items: center; gap: 20px; text-align: left; text-decoration: none;">
+                <div style="font-size: 3rem; background: #f3e8ff; padding: 15px; border-radius: 16px;">📚</div>
+                <div>
+                    <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; color: #0f172a;">Study Material</h3>
+                    <p style="font-size: 0.95rem; margin: 0; color: var(--muted);">Build a strong foundation with our curated notes, core concepts, and important formulas.</p>
+                </div>
             </a>
         </section>
     </main>
