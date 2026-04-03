@@ -261,6 +261,10 @@
     let pendingSubject = "";
 
     function startMock(subject) {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "login.html";
+            return;
+        }
         pendingSubject = subject;
         
         // Update modal content
@@ -285,7 +289,7 @@
 
     function confirmStartQuiz() {
         if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "signup.html";
+            window.location.href = "login.html";
             return;
         }
         const selectedClass = document.getElementById("classSelect").value;
