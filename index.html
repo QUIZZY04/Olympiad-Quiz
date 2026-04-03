@@ -127,6 +127,9 @@
             box-shadow: var(--shadow-md);
             position: relative;
             z-index: 1;
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
 
         .feature-card:hover {
@@ -290,7 +293,7 @@
 
         <!-- FIRST SCREEN MOBILE CARDS -->
         <section class="mobile-only quick-start-cards" style="padding: 20px; display: flex; flex-direction: column; gap: 12px; margin-top: -25px;">
-            <a href="signup.html" style="text-decoration: none; display: block;">
+            <a href="mock.html" style="text-decoration: none; display: block;">
                 <div style="background: #ffffff; border: 1px solid var(--border); border-left: 5px solid #0ea5e9; color: var(--text); padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow-md);">
                     <div style="font-size: 28px; background: rgba(14, 165, 233, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">📝</div>
                     <div>
@@ -299,7 +302,7 @@
                     </div>
                 </div>
             </a>
-            <a href="signup.html" style="text-decoration: none; display: block;">
+            <a href="chapterwise.html" style="text-decoration: none; display: block;">
                 <div style="background: #ffffff; border: 1px solid var(--border); border-left: 5px solid #10b981; color: var(--text); padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: var(--shadow-md);">
                     <div style="font-size: 28px; background: rgba(16, 185, 129, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">📖</div>
                     <div>
@@ -308,7 +311,7 @@
                     </div>
                 </div>
             </a>
-            <a href="signup.html" style="text-decoration: none; display: block;">
+            <a href="live.html" style="text-decoration: none; display: block;">
                 <div style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 20px rgba(234, 88, 12, 0.2);">
                     <div style="font-size: 28px; background: rgba(255, 255, 255, 0.2); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">⚡</div>
                     <div>
@@ -322,27 +325,27 @@
 
         <!-- DESKTOP FEATURES -->
         <section id="features" class="features desktop-only">
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
+            <a href="chapterwise.html" class="feature-card">
                 <h3>📖 Chapterwise Quiz</h3>
                 <p>Practice specific topics from your science and math books curated for <b style="color: #c2410c;">SOF NSO, IMO, IEO, IRO</b> and <b style="color: #c2410c;">Silverzone IOS, IOM</b>. Master every concept one by one.</p>
-            </div>
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
+            </a>
+            <a href="mock.html" class="feature-card">
                 <h3>📝 Free Mock Tests</h3>
                 <p>Full-length papers designed like real <b style="color: #c2410c;">SOF (NSO, IMO, IEO, IRO)</b> and <b style="color: #c2410c;">Silverzone (IOS, IOM)</b> exams to test your speed and accuracy.</p>
-            </div>
-            <div class="feature-card live-arena-highlight" onclick="location.href='signup.html'" style="cursor: pointer;">
+            </a>
+            <a href="live.html" class="feature-card live-arena-highlight">
                 <h3>⚡ Live Quiz Arena</h3>
                 <p>Compete in real-time battles against students across the country and top the leaderboard.</p>
-                <p style="margin-top: 10px; font-size: 0.95rem;"><a href="instructions.html" onclick="event.stopPropagation()" style="color: #facc15; font-weight: 800; text-decoration: underline;">How to Register for Live Quiz</a></p>
-            </div>
-            <div class="feature-card" onclick="location.href='signup.html'" style="cursor: pointer;">
+                <p style="margin-top: 10px; font-size: 0.95rem;"><span onclick="window.location.href='instructions.html'; event.preventDefault();" style="color: #facc15; font-weight: 800; text-decoration: underline; cursor: pointer;">How to Register for Live Quiz</span></p>
+            </a>
+            <a href="tricks.html" class="feature-card">
                 <h3>💡 Olympiad Tricks</h3>
                 <p>Learn shortcut methods and smart strategies for <b style="color: #c2410c;">SOF NSO, IMO, IEO, IRO</b> and <b style="color: #c2410c;">Silverzone IOS, IOM</b> to solve complex problems faster.</p>
-            </div>
-            <div class="feature-card" onclick="location.href='study.html'" style="cursor: pointer;">
+            </a>
+            <a href="study.html" class="feature-card">
                 <h3>📚 Study Material</h3>
                 <p>Build a strong foundation with our curated notes, concepts, and important formulas.</p>
-            </div>
+            </a>
         </section>
     </main>
 
@@ -618,7 +621,7 @@
                 });
 
                 if (activeSession) {
-                    ticker.innerHTML = `🔥 LIVE NOW: ${activeSession.title}! <a href="signup.html" style="color: inherit; font-weight: 800; text-decoration: underline;">Join the Arena</a> and test your skills!`;
+                    ticker.innerHTML = `🔥 LIVE NOW: ${activeSession.title}! <a href="live.html" style="color: inherit; font-weight: 800; text-decoration: underline;">Join the Arena</a> and test your skills!`;
                     ticker.style.display = "block";
                 }
             } catch (e) { console.error("Ticker sync failed:", e); }

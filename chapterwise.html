@@ -6,13 +6,6 @@
     <title>Chapterwise Olympiad Quiz for Class 1 to 10 | Olympiad Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
     
-    <!-- INSTANT AUTHENTICATION CHECK -->
-    <!-- Runs instantly before the page renders to block the back button -->
-    <script>
-      if (localStorage.getItem("isLoggedIn") !== "true") {
-          window.location.replace("login.html");
-      }
-    </script>
     <link rel="stylesheet" href="style.css">
 <style>body{visibility: hidden;}</style>
     <style>
@@ -868,6 +861,10 @@
     }
 
     function confirmStartQuiz() {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "signup.html";
+            return;
+        }
         const selectedClass = document.getElementById("classSelect").value;
         const selectedSubject = document.getElementById("subjectSelect").value;
         const selectedTopicObj = getSelectedTopicObject();
@@ -903,12 +900,18 @@
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
+        document.body.style.visibility = 'visible';
         if (!user) {
-            console.log("User not logged in, but page remains visible.");
-            window.location.replace("login.html");
+            document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
+                el.onclick = null;
+                el.innerText = "Login";
+                el.href = "login.html";
+                if(el.classList.contains("login-link")) {
+                    el.style.color = "white";
+                }
+            });
             return;
         }
-        document.body.style.visibility = 'visible';
         if (user.email === "madhhu52@gmail.com") {
             document.getElementById("adminTab").style.display = "inline";
         }

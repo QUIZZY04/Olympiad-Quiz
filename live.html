@@ -8,6 +8,11 @@
     <title>Free IMO & NSO Mock Tests | Live Olympiad Quiz Arena | Olympiad Portal</title>
     <meta name="description" content="Take free IMO (International Mathematics Olympiad) and NSO (National Science Olympiad) mock tests for Class 4, Class 5 and more. Compete nationwide in our live arena and boost your ranking.">
     <meta name="keywords" content="IMO free mock test, NSO free mock test, Olympiad practice, math olympiad class 5, science olympiad class 4, free online olympiad quiz">
+    <link rel="canonical" href="https://olympiadquiz.org/live.html">
+    <meta property="og:title" content="Free IMO & NSO Mock Tests | Live Olympiad Quiz Arena">
+    <meta property="og:description" content="Take free IMO and NSO mock tests. Compete nationwide in our live arena and boost your ranking.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
@@ -311,14 +316,21 @@
     const db = getFirestore(app);
 
     onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-            window.location.href = "login.html";
-            return;
-        }
         document.body.style.visibility = 'visible';
-        if (user.email === "madhhu52@gmail.com") {
-            const adminTab = document.getElementById("adminTab");
-            if (adminTab) adminTab.style.display = "inline";
+        if (!user) {
+            document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
+                el.onclick = null;
+                el.innerText = "Login";
+                el.href = "login.html";
+                if(el.classList.contains("login-link")) {
+                    el.style.color = "white";
+                }
+            });
+        } else {
+            if (user.email === "madhhu52@gmail.com") {
+                const adminTab = document.getElementById("adminTab");
+                if (adminTab) adminTab.style.display = "inline";
+            }
         }
         loadSessions(user);
     });
@@ -394,8 +406,11 @@
 
             const sessionList = [];
             // Process sessions and check access
+        let accessSnaps = [];
+        if (user) {
             const accessPromises = sessionDocs.map(sDoc => getDoc(doc(db, "users", user.uid, "purchases", sDoc.id)));
-            const accessSnaps = await Promise.all(accessPromises);
+            accessSnaps = await Promise.all(accessPromises);
+        }
 
             for (let i = 0; i < sessionDocs.length; i++) {
                 const sDoc = sessionDocs[i];
@@ -597,6 +612,10 @@
     };
 
     window.handleUnlock = async (sessionId, price, title) => {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "signup.html";
+            return;
+        }
         const sessionPrice = parseInt(price); // Ensure price is a number
 
         if (sessionPrice === 0) {
@@ -656,6 +675,10 @@
     };
 
     window.handleJoin = (sessionId, studentClass, subject) => {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "signup.html";
+            return;
+        }
         localStorage.setItem("activeSessionId", sessionId);
         localStorage.setItem("selectedClass", "class" + studentClass);
         localStorage.setItem("selectedSubject", subject);

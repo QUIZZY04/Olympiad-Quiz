@@ -302,6 +302,10 @@
     }
 
     function confirmStartQuiz() {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "signup.html";
+            return;
+        }
         const selectedClass = document.getElementById("classSelect").value;
         const subject = pendingSubject;
 
@@ -335,11 +339,18 @@
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
+        document.body.style.visibility = 'visible';
         if (!user) {
-            window.location.replace("index.html");
+            document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
+                el.onclick = null;
+                el.innerText = "Login";
+                el.href = "login.html";
+                if(el.classList.contains("login-link")) {
+                    el.style.color = "white";
+                }
+            });
             return;
         }
-        document.body.style.visibility = 'visible';
         if (user.email === "madhhu52@gmail.com") {
             document.getElementById("adminTab").style.display = "inline";
         }
