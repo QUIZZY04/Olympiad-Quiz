@@ -500,6 +500,39 @@ border-top:1px solid var(--border);
     </table>
 </div>
 
+<div class="panel" style="border-top: 2px solid var(--brand);">
+    <div class="panel-header">
+        <h2 style="color:var(--brand);">👥 Live Quiz Registrations</h2>
+    </div>
+    <div class="panel-content">
+        <div style="display:flex; gap:10px; align-items:end; margin-bottom:15px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:250px;">
+                <label>Select Session</label>
+                <select id="regSessionSelect" style="margin-top:5px;">
+                    <option value="">Loading sessions...</option>
+                </select>
+            </div>
+            <button class="upload" style="background: var(--brand);" onclick="loadRegistrations()">Load Users</button>
+        </div>
+        <div id="regSummary" style="margin-bottom:15px; font-weight:800; color:var(--brand);"></div>
+        <table style="margin-top:0;">
+            <thead>
+                <tr>
+                    <th>Registration Date</th>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>Type</th>
+                    <th>Amount (₹)</th>
+                    <th>Coupon Used</th>
+                </tr>
+            </thead>
+            <tbody id="registrationsTable">
+                <tr><td colspan="6" style="text-align:center; color:var(--muted);">Select a session and click Load Users.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
     <div id="bulk-delete-section" class="panel" style="border-top: 2px solid var(--danger);">
         <div class="panel-header">
             <h2 style="color:var(--danger);">🗑 Bulk Question Deleter</h2>
@@ -640,7 +673,7 @@ border-top:1px solid var(--border);
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc, onSnapshot, orderBy, getDoc, updateDoc, setDoc, serverTimestamp, Timestamp, runTransaction }
+import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc, onSnapshot, orderBy, getDoc, updateDoc, setDoc, serverTimestamp, Timestamp, runTransaction, collectionGroup }
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
@@ -666,8 +699,8 @@ let allQuestionWiseChapterRows = [];
 
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
-        loadFeedback(); loadExpFeedback(); loadSessions(); loadCoupons();
         document.body.style.visibility = 'visible';
+        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList();
     } else {
         window.location.href = "login.html";
     }
@@ -1580,6 +1613,95 @@ window.deleteStudyContent = async function() {
 
 window.clearStudyContent = function() {
     document.getElementById('studyContent').innerHTML = '';
+};
+
+window.loadRegSessionsList = async () => {
+    const select = document.getElementById("regSessionSelect");
+    try {
+        const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
+        let html = '<option value="">-- Select a Session --</option>';
+        snap.forEach(d => {
+            const s = d.data();
+            const date = s.startTime && s.startTime.toDate ? s.startTime.toDate().toLocaleDateString() : '';
+            html += `<option value="${d.id}">${s.title} (${date})</option>`;
+        });
+        select.innerHTML = html;
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+window.loadRegistrations = async () => {
+    const sid = document.getElementById("regSessionSelect").value;
+    const tbody = document.getElementById("registrationsTable");
+    const summary = document.getElementById("regSummary");
+    
+    if (!sid) {
+        alert("Please select a session first.");
+        return;
+    }
+
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Loading...</td></tr>';
+    summary.innerText = '';
+
+    try {
+        const q = query(collectionGroup(db, "purchases"), where("sessionId", "==", sid));
+        const snap = await getDocs(q);
+        
+        if (snap.empty) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--muted);">No registrations found for this session.</td></tr>';
+            summary.innerText = 'Total Registrations: 0';
+            return;
+        }
+
+        let html = '';
+        let totalAmount = 0;
+        let count = 0;
+        let freeCount = 0;
+
+        for (const purchaseDoc of snap.docs) {
+            const pData = purchaseDoc.data();
+            const userRef = purchaseDoc.ref.parent.parent; 
+            let userName = "Unknown";
+            let userEmail = "Unknown";
+            
+            if (userRef) {
+                const userSnap = await getDoc(userRef);
+                if (userSnap.exists()) {
+                    userName = userSnap.data().name || "Unknown";
+                    userEmail = userSnap.data().email || "Unknown";
+                }
+            }
+
+            const dateStr = pData.time && pData.time.toDate ? pData.time.toDate().toLocaleString() : 'N/A';
+            const amt = pData.amount || 0;
+            totalAmount += amt;
+            count++;
+            if (amt === 0 || pData.couponUsed) freeCount++;
+            const coupon = pData.couponUsed || 'None';
+            const typeLabel = (amt === 0) ? '<span style="color:var(--success);font-weight:800;">Free</span>' : '<span style="color:var(--brand);font-weight:800;">Paid</span>';
+
+            html += `<tr>
+                <td>${dateStr}</td>
+                <td>${userName}</td>
+                <td>${userEmail}</td>
+                <td>${typeLabel}</td>
+                <td>₹${amt}</td>
+                <td><span class="badge" style="background:var(--subtle); color:var(--text); border:1px solid var(--border);">${coupon}</span></td>
+            </tr>`;
+        }
+
+        tbody.innerHTML = html;
+        summary.innerHTML = `Total Registrations: ${count} &nbsp;|&nbsp; <span style="color:var(--success);">Free (Coupon): ${freeCount}</span> &nbsp;|&nbsp; Paid: ${count - freeCount} &nbsp;|&nbsp; Total Revenue: ₹${totalAmount}`;
+
+    } catch (e) {
+        console.error("Error loading registrations:", e);
+        if (e.message.includes("requires an index")) {
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--danger);"><b>Setup Required:</b> Your database requires an index to run this query. Check the browser console (F12) for the direct link to create it.</td></tr>`;
+        } else {
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--danger);">Error: ${e.message}</td></tr>`;
+        }
+    }
 };
 
 /* Kill BFCache to prevent showing page after logout */
