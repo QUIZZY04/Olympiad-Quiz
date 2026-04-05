@@ -256,14 +256,21 @@ font-size:14px;
     <div class="filter-container">
 
     <div class="filter-box weekly-filter">
-    <h3>Weekly Championship Filters</h3>
+    <h3>Live Quiz Session Filters</h3>
 
     <div class="filter-row">
 
     <select id="weeklyGrade">
+    <option value="class1">Grade 1</option>
+    <option value="class2">Grade 2</option>
+    <option value="class3">Grade 3</option>
+    <option value="class4">Grade 4</option>
+    <option value="class5" selected>Grade 5</option>
     <option value="class6">Grade 6</option>
     <option value="class7">Grade 7</option>
     <option value="class8">Grade 8</option>
+    <option value="class9">Grade 9</option>
+    <option value="class10">Grade 10</option>
     </select>
 
     <select id="weeklySubject">
@@ -295,6 +302,9 @@ font-size:14px;
     <option value="class5">Grade 5</option>
     <option value="class6">Grade 6</option>
     <option value="class7">Grade 7</option>
+    <option value="class8">Grade 8</option>
+    <option value="class9">Grade 9</option>
+    <option value="class10">Grade 10</option>
     </select>
 
     <select id="dailySubject">
@@ -315,8 +325,8 @@ font-size:14px;
     <div class="lb-card weekly-card">
 
     <div class="card-header">
-    <h2>⭐ Weekly Quiz</h2>
-    <span id="weeklyLabel">MAR 15</span>
+    <h2>⭐ Live Quiz Results</h2>
+    <span id="weeklyLabel">Select Session</span>
     </div>
 
     <table>
@@ -420,98 +430,164 @@ async function loadSessionsList() {
     const classNum = parseInt(grade.replace("class", ""));
 
     try {
-        const q = query(collection(db, "test_sessions"), 
-            where("class", "==", classNum),
-            where("subject", "==", subject),
-            orderBy("startTime", "desc"), 
-            limit(20));
-            
+        // Fetch all recent sessions and filter in JS to bypass missing composite index requirement
+        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(100));
         const snap = await getDocs(q);
         
         let html = "";
         snap.forEach(doc => {
-            const label = `${doc.data().title} (${doc.data().startTime.toDate().toLocaleDateString()})`;
-            html += `<option value="${doc.id}">${label}</option>`;
+            const data = doc.data();
+            if (data.class === classNum && data.subject === subject) {
+                const label = `${data.title} (${data.startTime.toDate().toLocaleDateString()})`;
+                html += `<option value="${doc.id}">${label}</option>`;
+            }
         });
         if (html === "") html = '<option value="" disabled selected>No sessions found</option>';
         sessSelect.innerHTML = html;
     } catch(e) {
-        console.error("Session List Error:", e);
+        console.warn("Session List OrderBy Error, attempting basic fetch:", e);
+        try {
+            const fallbackSnap = await getDocs(collection(db, "test_sessions"));
+            let html = "";
+            fallbackSnap.forEach(doc => {
+                const data = doc.data();
+                if (data.class === classNum && data.subject === subject) {
+                    html += `<option value="${doc.id}">${data.title}</option>`;
+                }
+            });
+            if (html === "") html = '<option value="" disabled selected>No sessions found</option>';
+            sessSelect.innerHTML = html;
+        } catch (err2) {
         sessSelect.innerHTML = `<option value="">Error loading</option>`;
+        }
     }
 }
 
 async function refreshWeekly(){
+    const tbody=document.getElementById("weeklyBody");
+    const sessSelect = document.getElementById("weeklySession");
+    const sessionId = sessSelect.value;
+    const labelEl = document.getElementById("weeklyLabel");
 
-const tbody=document.getElementById("weeklyBody")
-const sessionId = document.getElementById("weeklySession").value;
-if(!sessionId) return;
+    if(!sessionId) {
+        tbody.innerHTML="<tr><td colspan='4'>No session selected</td></tr>";
+        labelEl.innerText = "N/A";
+        return;
+    }
 
-tbody.innerHTML="<tr><td colspan='4'>Loading...</td></tr>"
+    labelEl.innerText = sessSelect.options[sessSelect.selectedIndex].text;
+    tbody.innerHTML="<tr><td colspan='4'>Loading...</td></tr>";
 
-try {
-    const q=query(collection(db,"leaderboard"),
-    where("sessionId","==",sessionId),
-    orderBy("score","desc"),
-    limit(10))
+    let finalDocs = [];
 
-    const snap=await getDocs(q)
-    renderWeekly(snap,tbody)
-} catch (e) {
-    console.error(e);
-    tbody.innerHTML = "<tr><td colspan='4'>Error loading rankings.</td></tr>";
-}
+    try {
+        const q=query(collection(db,"leaderboard"),
+        where("sessionId","==",sessionId),
+        orderBy("score","desc"),
+        limit(20));
 
+        const snap=await getDocs(q);
+        finalDocs = snap.docs;
+    } catch (e) {
+        console.warn("Index missing for score order. Falling back to basic fetch:", e);
+        try {
+            const fallbackQ = query(collection(db, "leaderboard"), where("sessionId", "==", sessionId));
+            const fallbackSnap = await getDocs(fallbackQ);
+            let allDocs = fallbackSnap.docs;
+            allDocs.sort((a, b) => (b.data().score || 0) - (a.data().score || 0));
+            finalDocs = allDocs.slice(0, 20);
+        } catch (fallbackErr) {
+            console.error(fallbackErr);
+            tbody.innerHTML = "<tr><td colspan='4'>Error loading rankings.</td></tr>";
+            return;
+        }
+    }
+
+    if(finalDocs.length === 0) {
+        tbody.innerHTML="<tr><td colspan='4'>No results yet for this session.</td></tr>";
+        return;
+    }
+    renderWeekly(finalDocs, tbody);
 }
 
 async function refreshDaily(){
+    const tbody=document.getElementById("dailyBody");
+    const gradeFilter = document.getElementById("dailyGrade").value;
+    const subjectFilter = document.getElementById("dailySubject").value;
 
-const tbody=document.getElementById("dailyBody")
-tbody.innerHTML="<tr><td colspan='6'>Loading...</td></tr>"
+    tbody.innerHTML="<tr><td colspan='6'>Loading...</td></tr>";
 
-try {
-    const q=query(collection(db,"leaderboard"),
-    orderBy("score","desc"),
-    limit(30))
+    try {
+        const q=query(collection(db,"leaderboard"),
+        orderBy("score","desc"),
+        limit(100));
 
-    const snap=await getDocs(q)
-    renderDaily(snap,tbody)
-} catch (e) {
-    console.error(e);
-    tbody.innerHTML = "<tr><td colspan='6'>Error loading practice scores.</td></tr>";
+        const snap=await getDocs(q);
+        let filteredDocs = [];
+        
+        snap.forEach(doc => {
+            const d = doc.data();
+            if (gradeFilter !== "all" && d.studentClass !== gradeFilter) return;
+            if (subjectFilter !== "all" && d.subject !== subjectFilter) return;
+            if (d.isChampionship === true) return; // Exclude live quiz results
+            filteredDocs.push(doc);
+        });
+
+        if (filteredDocs.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='6'>No practice results found.</td></tr>";
+            return;
+        }
+        
+        renderDaily(filteredDocs.slice(0, 30), tbody);
+    } catch (e) {
+        console.error(e);
+        tbody.innerHTML = "<tr><td colspan='6'>Error loading practice scores.</td></tr>";
+    }
 }
 
-}
-
-function renderWeekly(snap,tbody){
+function renderWeekly(docs,tbody){
 tbody.innerHTML=""
 let rank=1
-snap.forEach(doc=>{
+docs.forEach(doc=>{
 const d=doc.data()
+let rankIcon = rank;
+let rowStyle = "";
+if(rank === 1) { rankIcon = "🏆"; rowStyle = "background: rgba(250, 204, 21, 0.15); font-weight: bold;"; }
+else if(rank === 2) { rankIcon = "🥈"; }
+else if(rank === 3) { rankIcon = "🥉"; }
+
 tbody.innerHTML+=`
-<tr>
-<td><span class="rank-circle">${rank++}</span></td>
-<td>${d.email}</td>
+<tr style="${rowStyle}">
+<td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px;':''}">${rankIcon}</span></td>
+<td>${rank===1 ? '⭐ ' : ''}${d.email}</td>
 <td style="color:var(--brand);font-weight:700">${d.score}/${d.total || 50}</td>
 <td>${d.timeTaken?Math.floor(d.timeTaken/60)+"m":"60m"}</td>
 </tr>`
+rank++;
 })
 }
 
-function renderDaily(snap,tbody){
+function renderDaily(docs,tbody){
 tbody.innerHTML=""
 let rank=1
-snap.forEach(doc=>{
+docs.forEach(doc=>{
 const d=doc.data()
+let rankIcon = rank;
+let rowStyle = "";
+if(rank === 1) { rankIcon = "🏆"; rowStyle = "background: rgba(250, 204, 21, 0.15); font-weight: bold;"; }
+else if(rank === 2) { rankIcon = "🥈"; }
+else if(rank === 3) { rankIcon = "🥉"; }
+
 tbody.innerHTML+=`
-<tr>
-<td><span class="rank-circle">${rank++}</span></td>
-<td>${d.email||"Student"}</td>
+<tr style="${rowStyle}">
+<td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px;':''}">${rankIcon}</span></td>
+<td>${rank===1 ? '⭐ ' : ''}${d.email||"Student"}</td>
 <td style="color:var(--brand);font-weight:700">${d.score}/${d.total||30}</td>
 <td>${d.subject||"NA"}</td>
 <td>${(d.studentClass||"").replace("class","G")}</td>
 <td>${d.date?d.date.toDate().toLocaleDateString("en-GB"):"NA"}</td>
 </tr>`
+rank++;
 })
 }
 
