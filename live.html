@@ -50,16 +50,39 @@
             text-align: center;
             margin-bottom: 30px;
             position: relative;
-            padding: 10px 20px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(139, 92, 246, 0.05));
+            border-radius: 24px;
+            border: 1px solid rgba(79, 70, 229, 0.1);
         }
-        .arena-header h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 10px; color: var(--text); letter-spacing: -0.04em; }
+        .arena-header h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 15px; color: var(--text); letter-spacing: -0.04em; }
         .arena-header h1 span { 
-            background: linear-gradient(135deg, var(--brand), var(--accent)); 
+            background: linear-gradient(135deg, #f43f5e, #8b5cf6, #3b82f6); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            text-shadow: 0 10px 30px rgba(79, 70, 229, 0.1);
+            text-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
         }
-        .arena-header p { color: #475569; font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.6; font-weight: 500; }
+        .arena-header p { color: #475569; font-size: 1.15rem; max-width: 750px; margin: 0 auto; line-height: 1.7; font-weight: 500; }
+        
+        .pulse-badge {
+            background: linear-gradient(45deg, #ff007a, #7928ca, #00d4ff, #ff007a);
+            background-size: 300% 300%;
+            color: #ffffff; font-weight: 900; 
+            padding: 14px 35px; border-radius: 50px; font-size: 1.1rem; border: none; display: inline-block; 
+            box-shadow: 0 4px 20px rgba(121, 40, 202, 0.5); 
+            animation: pulseColorful 2s infinite, bgShift 4s linear infinite;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes pulseColorful {
+            0% { box-shadow: 0 0 0 0 rgba(121, 40, 202, 0.6); }
+            70% { box-shadow: 0 0 0 20px rgba(121, 40, 202, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(121, 40, 202, 0); }
+        }
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
         
         .header-meta { margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
         #userClassInfo { font-size: 24px; font-weight: 800; color: #020617; text-transform: uppercase; padding: 10px 24px; background: var(--brand); border-radius: 20px; box-shadow: 0 0 15px rgba(56,189,248,0.4); }
@@ -266,17 +289,10 @@
 
 <div class="container">
     <div class="arena-header">
-        <h1>IMO & NSO Free <span>Mock Test Arena</span></h1>
-        <p>Prepare for your International Mathematics Olympiad (IMO) and National Science Olympiad (NSO) with our free nationwide mock tests.</p>
-        <div style="margin-top: 15px;">
-            <span style="background: rgba(79, 70, 229, 0.1); color: var(--brand); font-weight: 700; padding: 8px 16px; border-radius: 50px; font-size: 0.9rem; border: 1px solid rgba(79, 70, 229, 0.2);">Select your grade for live quiz and Registered</span>
-        </div>
-        <div style="margin-top: 20px;">
-            <span style="background: rgba(245, 158, 11, 0.15); color: #d97706; font-weight: 800; padding: 10px 25px; border-radius: 12px; font-size: 1.1rem; border: 1px solid rgba(245, 158, 11, 0.3); display: inline-block;">⏳ Next Live quiz coming soon</span>
-        </div>
-        <div class="header-meta">
-            <span id="userClassInfo"></span>
-            <span id="currentTimeDisplay"></span>
+        <h1>Ultimate <span>Live Olympiad Arena</span></h1>
+        <p>Step into the ultimate competitive zone! Compete in real-time nationwide quizzes for <b>IMO (Maths)</b>, <b>NSO (Science)</b>, <b>IEO (English)</b>, and <b>IRO (Reasoning)</b>. Claim your spot on the global leaderboard.</p>
+        <div style="margin-top: 25px;">
+            <span class="pulse-badge">⏳ Next Live Quiz coming soon</span>
         </div>
     </div>
 
@@ -359,8 +375,6 @@
     async function loadSessions(user) {
         const container = document.getElementById("sessionContainer");
         const loader = document.getElementById("loader");
-        document.getElementById("userClassInfo").innerText = `Live Arena Dashboard`; // You can change this text
-        document.getElementById("currentTimeDisplay").innerText = `Your Local Time: ${new Date().toLocaleTimeString()}`;
 
         try {
             const isAdmin = user && user.email === "madhhu52@gmail.com";
@@ -532,13 +546,13 @@
             if (now > s.end) {
                 pill.innerText = "Ended"; pill.className = "status-pill status-ended";
                 timerEl.innerText = "00:00:00";
-                timerEl.style.fontSize = "30px"; timerEl.style.letterSpacing = "4px";
+                timerEl.style.fontSize = "22px"; timerEl.style.letterSpacing = "3px";
                 if (highlight) highlight.style.display = "none";
                 btn.innerText = "Session Ended"; btn.className = "join-btn btn-disabled"; btn.disabled = true;
             } else if (!s.hasAccess) {
                 pill.innerText = "Locked"; pill.className = "status-pill status-upcoming";
                 timerEl.innerText = "Registration Open";
-                timerEl.style.fontSize = "16px"; timerEl.style.letterSpacing = "1px";
+                timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
 
                 if (appliedCoupons[s.id]) {
                     btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-free-unlock";
@@ -564,13 +578,13 @@
                     
                     pill.innerText = "Access Granted"; pill.className = "status-pill status-unlocked";
                     timerEl.innerText = `${h}:${m}:${sec}`;
-                    timerEl.style.fontSize = "30px"; timerEl.style.letterSpacing = "4px";
+                    timerEl.style.fontSize = "22px"; timerEl.style.letterSpacing = "3px";
                     btn.innerText = "Test Unlocked"; btn.className = "join-btn btn-ready"; btn.disabled = true;
                 } else {
                     pill.innerText = "LIVE NOW"; pill.className = "status-pill status-live";
                     if (highlight) highlight.innerHTML = "⚡ JOIN QUIZ NOW";
                     timerEl.innerText = "QUIZ is Live!";
-                    timerEl.style.fontSize = "18px"; timerEl.style.letterSpacing = "2px";
+                    timerEl.style.fontSize = "16px"; timerEl.style.letterSpacing = "2px";
                     btn.innerText = "Join Quiz"; btn.className = "join-btn btn-unlocked"; btn.disabled = false;
                     btn.onclick = () => handleJoin(s.id, s.class, s.subject);
                 }
