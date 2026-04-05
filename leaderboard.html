@@ -108,6 +108,7 @@ letter-spacing:1px;
 .filter-row{
 display:flex;
 gap:15px;
+flex-wrap: wrap;
 }
 
 .filter-row select{
@@ -131,6 +132,11 @@ transition:0.2s;
 .filter-row select:focus {
 border-color:var(--brand);
 box-shadow:0 0 0 2px rgba(37,99,235,0.1);
+}
+
+/* Force selects to take at least some space before wrapping */
+.filter-row select {
+    min-width: 120px;
 }
 
 /* GRID */
@@ -205,6 +211,21 @@ font-size:14px;
 font-weight:500;
 }
 
+th:nth-child(2), td:nth-child(2) {
+text-align: left;
+max-width: 160px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+table tbody tr {
+transition: background 0.2s, transform 0.2s;
+}
+table tbody tr:hover {
+background: rgba(0,0,0,0.02) !important;
+}
+
 .rank-circle{
 background:var(--subtle);
 color:var(--brand);
@@ -216,6 +237,22 @@ justify-content:center;
 border-radius:50%;
 font-weight:800;
 font-size:14px;
+}
+
+@media (max-width: 950px) {
+    .filter-container, .leaderboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .card-header h2 { font-size: 16px; }
+    th, td { padding: 10px 5px; font-size: 12px; }
+    th:nth-child(2), td:nth-child(2) { max-width: 100px; }
+    .rank-circle { width: 28px; height: 28px; font-size: 13px; }
+    .filter-row select { font-size: 13px; padding: 10px 12px; }
+    .filter-box { padding: 20px; }
+    .lb-card { padding: 20px 10px; }
 }
 
 </style>
@@ -257,6 +294,7 @@ font-size:14px;
 
     <div class="filter-box weekly-filter">
     <h3>Live Quiz Session Filters</h3>
+    <p style="font-size: 0.95rem; color: #1e3a8a; font-weight: bold; line-height: 1.5; margin-top: -5px; margin-bottom: 5px;">Please select your grade and subject of live quiz to see the Rank.</p>
 
     <div class="filter-row">
 
