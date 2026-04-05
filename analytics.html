@@ -56,6 +56,16 @@
 .progress-bar { height: 8px; background: var(--border); border-radius: 10px; width: 100px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--brand); border-radius: 10px; }
 
+/* --- Insights Panel --- */
+.insight-item { display: flex; align-items: center; gap: 15px; padding: 12px 15px; border-radius: 14px; margin-bottom: 12px; border: 1px solid var(--border); background: var(--bg); box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: 0.3s; }
+.insight-item:hover { transform: translateX(5px); background: var(--surface); box-shadow: var(--shadow-sm); }
+.insight-item.strength { border-left: 4px solid var(--success); }
+.insight-item.weakness { border-left: 4px solid var(--danger); }
+.insight-icon { font-size: 24px; }
+.insight-text { display: flex; flex-direction: column; }
+.insight-text b { font-size: 13px; color: var(--text); text-transform: capitalize; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+.insight-text span { font-size: 11px; font-weight: 700; margin-top: 2px; }
+
 @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -122,6 +132,60 @@
         </div>
     </div>
   </div>
+
+  <div class="main-grid" style="margin-top: 30px; grid-template-columns: 2fr 1fr;">
+    <div class="chart-panel">
+      <h3 style="margin-top: 0; color: var(--brand);">⚡ Live Quiz Performance</h3>
+      <div style="overflow-x: auto;">
+          <table style="width:100%; border-collapse:collapse; margin-top:15px; font-size:14px; text-align:left;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); color: var(--muted); background: var(--bg);">
+                <th style="padding:12px 10px; border-top-left-radius: 8px;">Date</th>
+                <th style="padding:12px 10px;">Subject / Topic</th>
+                <th style="padding:12px 10px;">Score</th>
+                <th style="padding:12px 10px; border-top-right-radius: 8px;">Accuracy</th>
+              </tr>
+            </thead>
+            <tbody id="liveQuizHistory">
+              <tr><td colspan="4" style="text-align:center; padding:15px; color:var(--muted);">Loading history...</td></tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <div class="chart-panel">
+      <h3 style="margin-top: 0; color: var(--accent);">🔬 Live Quiz Insights</h3>
+      <p style="color: var(--muted); font-size: 12px; margin-bottom: 20px;">Chapter & Subject analysis</p>
+      
+      <h4 style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--success); margin-bottom: 10px;">Top Strengths</h4>
+      <div id="liveStrengths"></div>
+      
+      <h4 style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--danger); margin-top: 25px; margin-bottom: 10px;">Areas to Improve</h4>
+      <div id="liveWeaknesses"></div>
+    </div>
+  </div>
+
+  <div class="main-grid" style="margin-top: 30px; grid-template-columns: 1fr;">
+    <div class="chart-panel">
+      <h3 style="margin-top: 0; color: var(--accent);">� Mock Tests & Practice</h3>
+      <div style="overflow-x: auto;">
+          <table style="width:100%; border-collapse:collapse; margin-top:15px; font-size:14px; text-align:left;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); color: var(--muted); background: var(--bg);">
+                <th style="padding:12px 10px; border-top-left-radius: 8px;">Date</th>
+                <th style="padding:12px 10px;">Subject</th>
+                <th style="padding:12px 10px;">Type</th>
+                <th style="padding:12px 10px;">Score</th>
+                <th style="padding:12px 10px; border-top-right-radius: 8px;">Accuracy</th>
+              </tr>
+            </thead>
+            <tbody id="practiceHistory">
+              <tr><td colspan="4" style="text-align:center; padding:15px; color:var(--muted);">Loading history...</td></tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
@@ -139,7 +203,7 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, where, getDocs, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -168,36 +232,145 @@ onAuthStateChanged(auth, async (user) => {
 
 async function fetchPerformanceData(uid) {
   const resultsRef = collection(db, "leaderboard");
-  const q = query(resultsRef, where("uid", "==", uid), orderBy("timestamp", "desc"));
+  const q = query(resultsRef, where("uid", "==", uid));
   const snap = await getDocs(q);
 
-  if (snap.empty) return;
+  if (snap.empty) {
+      document.getElementById("liveQuizHistory").innerHTML = "<tr><td colspan='4' style='text-align:center; padding:15px; color:var(--muted);'>No live quiz history found.</td></tr>";
+      document.getElementById("practiceHistory").innerHTML = "<tr><td colspan='4' style='text-align:center; padding:15px; color:var(--muted);'>No practice history found.</td></tr>";
+      return;
+  }
+
+  let allResults = [];
+  snap.forEach(doc => {
+      allResults.push(doc.data());
+  });
+
+  // Sort descending by date locally to avoid Firestore index requirements
+  allResults.sort((a, b) => {
+      const dateA = a.date || a.timestamp;
+      const dateB = b.date || b.timestamp;
+      if (!dateA) return 1;
+      if (!dateB) return -1;
+      return dateB.toDate() - dateA.toDate();
+  });
 
   let scores = [];
   let labels = [];
   let subjectData = { maths: 0, science: 0, english: 0, reasoning: 0 };
   let subjectCounts = { maths: 0, science: 0, english: 0, reasoning: 0 };
+  let liveHistoryHtml = "";
+  let liveCount = 0;
+  let practiceHistoryHtml = "";
+  let practiceCount = 0;
 
-  snap.forEach(doc => {
-    const data = doc.data();
-    const scoreVal = parseFloat(data.score) || 0;
-    scores.unshift(scoreVal);
-    labels.unshift(new Date(data.timestamp.toDate()).toLocaleDateString());
+  let liveTopics = {};
 
-    // Group by Subject (Assuming subject is stored in leaderboard entry)
+  const getBadgeHtml = (pct) => {
+      let color, bg;
+      if(pct >= 80) { color = 'var(--success)'; bg = 'rgba(16, 185, 129, 0.1)'; }
+      else if (pct >= 50) { color = 'var(--warning)'; bg = 'rgba(245, 158, 11, 0.1)'; }
+      else { color = 'var(--danger)'; bg = 'rgba(239, 68, 68, 0.1)'; }
+      return `<span style="display:inline-block; padding:4px 8px; border-radius:6px; font-size:12px; font-weight:700; color:${color}; background:${bg};">${pct.toFixed(1)}%</span>`;
+  };
+
+  // For trend chart, take last 10 chronologically
+  const recentResults = allResults.slice(0, 10).reverse();
+
+  recentResults.forEach(data => {
+    const percentage = parseFloat(data.accuracy) || ((data.score / (data.total || 30)) * 100) || 0;
+    scores.push(percentage.toFixed(1));
+    const d = data.date || data.timestamp;
+    labels.push(d ? new Date(d.toDate()).toLocaleDateString() : 'N/A');
+  });
+
+  let totalPercentageSum = 0;
+  let highestPercentage = 0;
+
+  allResults.forEach(data => {
+    const percentage = parseFloat(data.accuracy) || ((data.score / (data.total || 30)) * 100) || 0;
+    totalPercentageSum += percentage;
+    if (percentage > highestPercentage) highestPercentage = percentage;
+
+    // Group by Subject
     const sub = data.subject || 'maths';
     if (subjectData[sub] !== undefined) {
-      subjectData[sub] += scoreVal;
+      subjectData[sub] += percentage;
       subjectCounts[sub]++;
+    }
+
+    // Populate History Tables
+    if (data.isChampionship === true) {
+        if (liveCount < 10) {
+            const d = data.date || data.timestamp;
+            const dateStr = d ? new Date(d.toDate()).toLocaleDateString() : 'N/A';
+            liveHistoryHtml += `
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding:10px;">${dateStr}</td>
+                    <td style="padding:10px; text-transform:capitalize;">${sub}</td>
+                    <td style="padding:10px; font-weight:bold; color:var(--brand);">${data.score}/${data.total || 50}</td>
+                    <td style="padding:10px;">${percentage.toFixed(1)}%</td>
+                </tr>
+            `;
+            liveCount++;
+        }
+    } else {
+        if (practiceCount < 10) {
+            const d = data.date || data.timestamp;
+            const dateStr = d ? new Date(d.toDate()).toLocaleDateString() : 'N/A';
+            const typeStr = data.topicName ? `<span style="font-size:11px; padding:4px 8px; background:var(--subtle); border-radius:6px; color:var(--muted);" title="${data.topicName}">${data.topicName.length > 15 ? data.topicName.substring(0, 15) + '...' : data.topicName}</span>` : '<span style="font-size:11px; padding:4px 8px; background:rgba(16, 185, 129, 0.1); border-radius:6px; color:var(--success); font-weight:700;">Full Mock Test</span>';
+            practiceHistoryHtml += `
+                <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding:10px;">${dateStr}</td>
+                    <td style="padding:10px; text-transform:capitalize;">${sub}</td>
+                    <td style="padding:10px;">${typeStr}</td>
+                    <td style="padding:10px; font-weight:bold; color:var(--accent);">${data.score}/${data.total || 30}</td>
+                </tr>
+            `;
+            practiceCount++;
+        }
     }
   });
 
+  if(liveHistoryHtml === "") {
+      liveHistoryHtml = "<tr><td colspan='4' style='text-align:center; padding:15px; color:var(--muted);'>No live quiz history found.</td></tr>";
+  }
+  document.getElementById("liveQuizHistory").innerHTML = liveHistoryHtml;
+
+  if(practiceHistoryHtml === "") {
+      practiceHistoryHtml = "<tr><td colspan='4' style='text-align:center; padding:15px; color:var(--muted);'>No practice history found.</td></tr>";
+  }
+  document.getElementById("practiceHistory").innerHTML = practiceHistoryHtml;
+
+  // Generate Insights
+  let topicAverages = Object.keys(liveTopics).map(k => ({ name: k, avg: liveTopics[k].sum / liveTopics[k].count }));
+  topicAverages.sort((a, b) => b.avg - a.avg);
+
+  let strengthsHtml = "";
+  let weaknessesHtml = "";
+  let strengths = topicAverages.filter(t => t.avg >= 60).slice(0, 3);
+  let weaknesses = topicAverages.filter(t => t.avg < 60).reverse().slice(0, 3);
+
+  if(strengths.length > 0) {
+      strengthsHtml = strengths.map(t => `<div class="insight-item strength"><span class="insight-icon">💪</span><div class="insight-text"><b>${t.name}</b><span style="color:var(--success)">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
+  } else {
+      strengthsHtml = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">Keep practicing live quizzes to uncover your strengths!</div>`;
+  }
+
+  if(weaknesses.length > 0) {
+      weaknessesHtml = weaknesses.map(t => `<div class="insight-item weakness"><span class="insight-icon">⚠️</span><div class="insight-text"><b>${t.name}</b><span style="color:var(--danger)">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
+  } else {
+      weaknessesHtml = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">No major weaknesses detected!</div>`;
+  }
+  document.getElementById("liveStrengths").innerHTML = strengthsHtml;
+  document.getElementById("liveWeaknesses").innerHTML = weaknessesHtml;
+
   // Calculate Averages for Summary
-  const avg = (scores.reduce((a,b) => a+b, 0) / scores.length).toFixed(1);
+  const avg = allResults.length > 0 ? (totalPercentageSum / allResults.length).toFixed(1) : "0";
   document.getElementById("avgScore").innerText = avg + "%";
-  document.getElementById("testsTaken").innerText = snap.size;
-  document.getElementById("highestScore").innerText = Math.max(...scores) + "%";
-  document.getElementById("totalTime").innerText = (snap.size * 0.8).toFixed(1) + "h";
+  document.getElementById("testsTaken").innerText = allResults.length;
+  document.getElementById("highestScore").innerText = highestPercentage.toFixed(1) + "%";
+  document.getElementById("totalTime").innerText = (allResults.length * 0.8).toFixed(1) + "h";
 
   renderTrendChart(labels, scores);
   renderSubjectProficiency(subjectData, subjectCounts);
