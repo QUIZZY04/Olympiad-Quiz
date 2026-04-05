@@ -67,11 +67,14 @@
     .stat-badge .val { display: block; font-size: 1.2rem; font-weight: 800; line-height: 1; color: white; }
     .stat-badge .label { display: block; font-size: 0.75rem; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; font-weight: 600; }
 
-    .sleek-banner { background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--text); padding: 16px 25px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 15px; }
-    .sleek-banner .badge { background: var(--danger); color: white; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; margin-right: 12px; }
-    .sleek-banner p { margin: 0; font-weight: 600; font-size: 0.95rem; }
-    .sleek-banner a { color: var(--brand); font-weight: 700; text-decoration: none; font-size: 0.9rem; }
-    .sleek-banner a:hover { text-decoration: underline; }
+    .sleek-banner { background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--text); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: nowrap; gap: 15px; overflow: hidden; position: relative; }
+    .sleek-banner .badge { background: var(--danger); color: white; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; z-index: 2; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    .scrolling-text-container { flex: 1; overflow: hidden; white-space: nowrap; display: flex; align-items: center; }
+    .scrolling-text { display: inline-block; font-weight: 700; font-size: 1.05rem; padding-left: 100%; animation: scroll-left 25s linear infinite; color: #ffd700; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+    .scrolling-text strong { color: #ffffff; }
+    .sleek-banner a { color: white; font-weight: 800; text-decoration: none; font-size: 0.95rem; z-index: 2; flex-shrink: 0; background: rgba(0,0,0,0.2); padding: 8px 16px; border-radius: 8px; transition: 0.3s; }
+    .sleek-banner a:hover { background: rgba(0,0,0,0.4); transform: translateY(-2px); }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
     .main-menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 50px; }
     .modern-card { background: var(--surface); border: 1px solid var(--border); padding: 30px; border-radius: 20px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
@@ -242,9 +245,9 @@
         </div>
 
         <div id="liveSessionBanner" class="sleek-banner animate-up delay-1" style="display:none;">
-            <div id="bannerText">
-                <span class="badge">Live</span>
-                <p style="display:inline;"><strong id="sessionTitle">Weekly Championship:</strong> <span id="sessionDetails">Loading details...</span></p>
+            <span class="badge" id="bannerBadge">Live</span>
+            <div class="scrolling-text-container">
+                <div class="scrolling-text">Loading details...</div>
             </div>
             <a href="live.html">Join Arena ↗</a>
         </div>
@@ -418,18 +421,55 @@ async function checkLiveSessions() {
         const snap = await getDocs(q);
         const now = new Date();
         
-        let activeSession = null;
+        let activeSessions = [];
+        let upcomingSessions = [];
+        
         snap.forEach(d => {
             const s = d.data();
-            if (now < s.endTime.toDate()) { 
-                activeSession = s;
+            const start = s.startTime.toDate();
+            const end = s.endTime.toDate();
+            if (now < end) { 
+                if (now >= start) {
+                    activeSessions.push(s);
+                } else {
+                    upcomingSessions.push(s);
+                }
             }
         });
 
-        if (activeSession) {
+        if (activeSessions.length > 0 || upcomingSessions.length > 0) {
             banner.style.display = "flex";
-            document.getElementById("sessionTitle").innerText = activeSession.title + ":";
-            document.getElementById("sessionDetails").innerText = `Starting at ${activeSession.startTime.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} for Grade ${activeSession.class}`;
+            const badge = document.getElementById("bannerBadge");
+            let isLive = activeSessions.length > 0;
+            
+            if (isLive) {
+                banner.style.background = "linear-gradient(90deg, #1e3a8a, #0f172a)";
+                banner.style.borderColor = "#020617";
+                banner.style.boxShadow = "0 10px 25px rgba(30, 58, 138, 0.5)";
+                badge.innerText = "LIVE NOW";
+                badge.style.background = "#ffffff";
+                badge.style.color = "#b91c1c";
+            } else {
+                banner.style.background = "linear-gradient(90deg, #1e3a8a, #0f172a)";
+                banner.style.borderColor = "#020617";
+                banner.style.boxShadow = "0 10px 25px rgba(30, 58, 138, 0.5)";
+                badge.innerText = "UPCOMING";
+                badge.style.background = "#ffffff";
+                badge.style.color = "#b45309";
+            }
+            
+            let messageParts = [];
+            activeSessions.forEach(s => {
+                const subj = s.subject ? s.subject.charAt(0).toUpperCase() + s.subject.slice(1) : "";
+                messageParts.push(`🔥 <strong>${s.title}</strong> (Grade ${s.class} ${subj}) is LIVE NOW!`);
+            });
+            upcomingSessions.forEach(s => {
+                const subj = s.subject ? s.subject.charAt(0).toUpperCase() + s.subject.slice(1) : "";
+                const timeStr = s.startTime.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                messageParts.push(`⏳ <strong>${s.title}</strong> (Grade ${s.class} ${subj}) starts at ${timeStr}`);
+            });
+            
+            document.querySelector("#liveSessionBanner .scrolling-text").innerHTML = messageParts.join(" &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; ");
         }
     } catch (e) {
         console.error("Banner sync failed:", e);
