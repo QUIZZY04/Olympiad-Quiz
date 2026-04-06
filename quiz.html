@@ -264,11 +264,18 @@ footer {
     <div style="background: var(--surface); padding: 40px; border-radius: 20px; max-width: 600px; border: 1px solid var(--border); box-shadow: var(--shadow-lg);">
         <div style="font-size: 50px; margin-bottom: 20px;">🖥️</div>
         <h2 style="color: var(--brand); margin-bottom: 20px; font-size: 2rem; font-weight: 800;">Enter Full Screen</h2>
-        <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6;">
-            To maintain the integrity of this exam, you must take it in full-screen mode.<br><br>
-            <strong style="color: var(--danger);">WARNING:</strong> Switching tabs, minimizing the browser, losing focus, or exiting full screen will result in a strike. <b>After 3 strikes, your quiz will automatically submit.</b>
+            <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6; text-align: left;">
+                To maintain a fair and secure testing environment, this quiz requires full-screen mode. Please ensure you are fully prepared before proceeding.<br><br>
+                <strong style="color: var(--danger);">STRICT RULES:</strong><br>
+                • Do not switch tabs or open new windows.<br>
+                • Do not minimize the browser or lose window focus.<br>
+                • Do not exit full-screen mode manually.<br><br>
+                Any of these actions will result in a strike. <b style="color: var(--danger);">After 3 strikes, your quiz will automatically submit and end immediately.</b>
         </p>
-        <button id="enterFullscreenBtn" class="btn-save" style="padding: 15px 40px; font-size: 1.1rem; width: 100%; cursor: pointer; border: none; border-radius: 10px;">Start Quiz</button>
+            <div style="display: flex; gap: 15px; width: 100%;">
+                <button onclick="goBackToSelection()" class="btn-prev" style="padding: 15px; font-size: 1.1rem; flex: 1; cursor: pointer; border-radius: 10px; border: 1px solid var(--border);">Cancel & Go Back</button>
+                <button id="enterFullscreenBtn" class="btn-save" style="padding: 15px; font-size: 1.1rem; flex: 1; cursor: pointer; border: none; border-radius: 10px;">Start Quiz</button>
+            </div>
     </div>
 </div>
 
