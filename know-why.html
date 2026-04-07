@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            --bg: #f8fafc;
+            --bg: #FFD700; /* Golden yellow */
             --surface: #ffffff;
             --subtle: #f1f5f9;
             --text: #0f172a;
@@ -32,28 +32,12 @@
             color: var(--text);
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
             background: linear-gradient(135deg, #f0f9ff, #e0e7ff, #fae8ff, #ffe4e6, #fffbeb);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             background-attachment: fixed;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        nav { 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
-            border-bottom:1px solid var(--border); 
-            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
-            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
-        }
-        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--brand); }
-
         .container { width: 100%; max-width: 1400px; margin: 20px auto 60px; padding: 0 20px; flex: 1; }
 
         /* NEW VIBRANT HERO SECTION */
@@ -120,7 +104,7 @@
 
         .fact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
