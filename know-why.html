@@ -28,13 +28,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
         body { 
-            background: var(--bg);
             min-height: 100vh; 
             color: var(--text);
             display: flex;
             flex-direction: column;
-            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background: linear-gradient(135deg, #f0f9ff, #e0e7ff, #fae8ff, #ffe4e6, #fffbeb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             background-attachment: fixed;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         nav { 
@@ -48,12 +54,69 @@
         .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--brand); }
 
-        .container { width: 100%; max-width: 1400px; margin: 60px auto; padding: 0 20px; flex: 1; }
+        .container { width: 100%; max-width: 1400px; margin: 20px auto 60px; padding: 0 20px; flex: 1; }
 
-        .header-text { text-align: center; margin-bottom: 50px; }
-        .header-text h1 { font-size: 3.5rem; color: var(--text); margin-bottom: 15px; font-weight: 800; line-height: 1.2; letter-spacing: -0.03em;}
-        .header-text h1 span { background: linear-gradient(135deg, #f43f5e, #8b5cf6, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header-text p { color: var(--muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        /* NEW VIBRANT HERO SECTION */
+        .vibrant-hero {
+            position: relative;
+            background: linear-gradient(135deg, #4f46e5, #d946ef, #f43f5e);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+            z-index: 1;
+        }
+        .vibrant-hero h1 { font-size: 3.8rem; font-weight: 800; margin-bottom: 15px; position: relative; z-index: 2; text-shadow: 2px 4px 10px rgba(0,0,0,0.2); letter-spacing: -0.03em; line-height: 1.1; }
+        .vibrant-hero h1 span { color: #fde047; }
+        .vibrant-hero p { font-size: 1.25rem; max-width: 800px; margin: 0; position: relative; z-index: 2; color: rgba(255,255,255,0.95); line-height: 1.6; text-shadow: 1px 2px 5px rgba(0,0,0,0.2); }
+        
+        .vibrant-hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+        .hero-text { flex: 1; }
+        .hero-image { flex: 1; max-width: 350px; }
+        .hero-image img { 
+            width: 100%; 
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 24px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
+            transform: rotate(3deg); 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+        .hero-image img:hover { transform: rotate(0deg) scale(1.05); border-color: rgba(255,255,255,0.5); }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.7;
+            z-index: 1;
+            animation: floatAnim 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+        .fi-1 { top: 15%; left: 10%; animation-delay: 0s; font-size: 4rem; }
+        .fi-2 { top: 60%; left: 18%; animation-delay: 1.5s; font-size: 2.5rem; }
+        .fi-3 { top: 20%; right: 12%; animation-delay: 2.5s; font-size: 3.5rem; }
+        .fi-4 { top: 65%; right: 8%; animation-delay: 0.5s; font-size: 5rem; }
+        .fi-5 { top: 30%; left: 50%; animation-delay: 4s; font-size: 2.5rem; opacity: 0.4; }
+        .fi-6 { top: 75%; left: 40%; animation-delay: 3s; font-size: 3rem; opacity: 0.5; }
+        
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(15deg); }
+        }
 
         .fact-grid {
             display: grid;
@@ -63,25 +126,31 @@
         }
 
         .fact-card {
-            background: var(--surface);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border);
-            border-top: 4px solid var(--accent);
+            border-top: 6px solid var(--accent);
             border-radius: 20px;
             padding: 30px;
             box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
         }
-        .fact-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--brand); }
+        .fact-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.12); border-color: transparent; }
 
-        .fact-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .fact-icon { 
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 65px; height: 65px; border-radius: 18px; background: rgba(0,0,0,0.04);
+            font-size: 2.2rem; margin-bottom: 20px; transition: 0.4s ease;
+        }
+        .fact-card:hover .fact-icon { transform: rotate(15deg) scale(1.15); }
+        
         .fact-question { font-size: 1.2rem; font-weight: 800; color: var(--text); line-height: 1.4; margin-bottom: 20px; flex-grow: 1; }
         
         .know-why-btn {
-            background: linear-gradient(135deg, var(--brand), var(--accent));
             color: white; border: none; padding: 12px 20px; border-radius: 12px;
             font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s;
             display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
@@ -103,8 +172,11 @@
         }
 
         @media (max-width: 768px) {
-            .header-text h1 { font-size: 2.5rem; }
+            .vibrant-hero h1 { font-size: 2.5rem; }
             nav { flex-direction: column; padding: 15px; }
+            .vibrant-hero-content { flex-direction: column; text-align: center; }
+            .vibrant-hero p { margin: 0 auto; }
+            .vibrant-hero-content .hero-text { text-align: center; }
         }
     </style>
 </head>
@@ -134,12 +206,26 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="header-text">
-        <h1>Know <span>Why ??</span></h1>
-        <p>Science is everywhere! Explore these 50 mind-bending questions about the universe, biology, and everyday phenomena. Click the button to uncover the hidden science behind the magic.</p>
+<section class="vibrant-hero">
+    <div class="floating-icon fi-1">🧠</div>
+    <div class="floating-icon fi-2">❓</div>
+    <div class="floating-icon fi-3">💡</div>
+    <div class="floating-icon fi-4">🤔</div>
+    <div class="floating-icon fi-5">🔬</div>
+    <div class="floating-icon fi-6">🔭</div>
+    
+    <div class="vibrant-hero-content">
+        <div class="hero-text">
+            <h1>Know <span>Why ??</span></h1>
+            <p>Science is everywhere! Explore these mind-bending questions about the universe, biology, and everyday phenomena. Click the button to uncover the hidden science behind the magic.</p>
+        </div>
+        <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800&q=80" alt="Vibrant Glowing Brain Science">
+        </div>
     </div>
+</section>
 
+<div class="container">
     <div class="fact-grid" id="factGrid">
         <!-- Facts will be dynamically injected here -->
     </div>
@@ -213,14 +299,27 @@
 
     const grid = document.getElementById('factGrid');
 
+    // Vibrant Color Palette for Dynamic Cards
+    const colors = [
+        { main: '#3b82f6', bg: 'rgba(59, 130, 246, 0.1)' },   // Blue
+        { main: '#10b981', bg: 'rgba(16, 185, 129, 0.1)' },   // Green
+        { main: '#f59e0b', bg: 'rgba(245, 158, 11, 0.1)' },   // Orange
+        { main: '#ef4444', bg: 'rgba(239, 68, 68, 0.1)' },    // Red
+        { main: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.1)' },   // Purple
+        { main: '#ec4899', bg: 'rgba(236, 72, 153, 0.1)' },   // Pink
+        { main: '#06b6d4', bg: 'rgba(6, 182, 212, 0.1)' }     // Cyan
+    ];
+
     factsData.forEach((fact, index) => {
+        const colorObj = colors[index % colors.length];
         const card = document.createElement('div');
         card.className = 'fact-card';
+        card.style.borderTopColor = colorObj.main;
         card.innerHTML = `
-            <div class="fact-icon">${fact.icon}</div>
+            <div class="fact-icon" style="background: ${colorObj.bg};">${fact.icon}</div>
             <div class="fact-question">${fact.q}</div>
-            <button class="know-why-btn" onclick="toggleAnswer(${index})">Know Why 💡</button>
-            <div class="fact-answer" id="answer-${index}">${fact.a}</div>
+            <button class="know-why-btn" style="background: ${colorObj.main}; box-shadow: 0 4px 15px ${colorObj.bg};" onclick="toggleAnswer(${index})">Know Why 💡</button>
+            <div class="fact-answer" id="answer-${index}" style="border-left-color: ${colorObj.main}; background: ${colorObj.bg};">${fact.a}</div>
         `;
         grid.appendChild(card);
     });
@@ -228,11 +327,12 @@
     function toggleAnswer(index) {
         const answerDiv = document.getElementById(`answer-${index}`);
         const btn = answerDiv.previousElementSibling;
+        const colorObj = colors[index % colors.length];
         
         if (answerDiv.style.display === "block") {
             answerDiv.style.display = "none";
             btn.innerHTML = "Know Why 💡";
-            btn.style.background = "linear-gradient(135deg, var(--brand), var(--accent))";
+            btn.style.background = colorObj.main;
         } else {
             answerDiv.style.display = "block";
             btn.innerHTML = "Hide Answer ✖";
