@@ -103,6 +103,7 @@
     .modern-card:hover .icon-wrapper { transform: scale(1.1) rotate(5deg); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
 
     .card-blue { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe; --c-accent: #1e3a8a; --c-bg: #3b82f6; }
+    .card-indigo { background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-color: #c7d2fe; --c-accent: #312e81; --c-bg: #6366f1; }
     .card-purple { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-color: #e9d5ff; --c-accent: #581c87; --c-bg: #a855f7; }
     .live-quiz-card {
       background: linear-gradient(-45deg, var(--brand), var(--accent), #6366f1, #a855f7);
@@ -173,6 +174,13 @@
         .card-blue {
             background: linear-gradient(135deg, #06b6d4, #3b82f6);
             border-color: #3b82f6;
+            --c-accent: #ffffff;
+            --c-bg: rgba(255, 255, 255, 0.25);
+        }
+        
+        .card-indigo {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            border-color: #4f46e5;
             --c-accent: #ffffff;
             --c-bg: rgba(255, 255, 255, 0.25);
         }
@@ -341,6 +349,13 @@
                     <p>Track your growth, identify weak areas, and monitor your progress over time.</p>
                 </div>
                 <div class="icon-wrapper">📊</div>
+            </div>
+            <div class="modern-card card-indigo animate-up delay-6" onclick="location.href='video-tutorials.html'">
+                <div class="card-content">
+                    <h3>Video Tutorials</h3>
+                    <p>Master complex topics visually. Watch expertly curated video lessons for <b style="color: var(--brand);">Math, Science, English & Reasoning</b>.</p>
+                </div>
+                <div class="icon-wrapper">📺</div>
             </div>
         </section>
 
