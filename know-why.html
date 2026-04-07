@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Why ?? - Mind-Blowing Scientific Facts | Olympiad Portal</title>
+    <meta name="description" content="Discover 25 mind-blowing scientific facts that will make you curious. Click 'Know Why' to uncover the incredible science behind everyday phenomena.">
+    <link rel="canonical" href="https://olympiadquiz.org/know-why.html">
+    <meta property="og:title" content="Know Why ?? - Scientific Facts | Olympiad Portal">
+    <meta property="og:description" content="Discover 25 mind-blowing scientific facts that will make you curious.">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --subtle: #f1f5f9;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --brand: #4f46e5;
+            --accent: #8b5cf6;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: var(--bg);
+            min-height: 100vh; 
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        nav { 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
+            border-bottom:1px solid var(--border); 
+            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
+            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
+        }
+        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
+        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        .container { width: 100%; max-width: 1400px; margin: 60px auto; padding: 0 20px; flex: 1; }
+
+        .header-text { text-align: center; margin-bottom: 50px; }
+        .header-text h1 { font-size: 3.5rem; color: var(--text); margin-bottom: 15px; font-weight: 800; line-height: 1.2; letter-spacing: -0.03em;}
+        .header-text h1 span { background: linear-gradient(135deg, #f43f5e, #8b5cf6, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-text p { color: var(--muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+        .fact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .fact-card {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fact-card:nth-child(5n+1) { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-top: 4px solid #3b82f6; }
+        .fact-card:nth-child(5n+2) { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-top: 4px solid #10b981; }
+        .fact-card:nth-child(5n+3) { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-top: 4px solid #a855f7; }
+        .fact-card:nth-child(5n+4) { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-top: 4px solid #f59e0b; }
+        .fact-card:nth-child(5n+5) { background: linear-gradient(135deg, #fff1f2, #ffe4e6); border-top: 4px solid #f43f5e; }
+        .fact-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        .fact-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .fact-question { font-size: 1.2rem; font-weight: 800; color: var(--text); line-height: 1.4; margin-bottom: 20px; flex-grow: 1; }
+        
+        .know-why-btn {
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            color: white; border: none; padding: 12px 20px; border-radius: 12px;
+            font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+        .know-why-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        
+        .fact-answer {
+            margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px; border-left: 4px solid var(--text);
+            font-size: 0.95rem; color: var(--text); line-height: 1.6; font-weight: 500;
+            display: none; /* Hidden by default */
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .header-text h1 { font-size: 2.5rem; }
+            nav { flex-direction: column; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+    </div>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mock.html">Mock Tests</a>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html">Live Arena</a>
+        <a href="study.html">Study Material</a>
+        <a href="know-why.html" class="active" style="color: #f43f5e;">Know Why??</a>
+        <div class="nav-actions">
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header-text">
+        <h1>Know <span>Why ??</span></h1>
+        <p>Science is everywhere! Explore these 25 mind-bending questions about the universe, biology, and everyday phenomena. Click the button to uncover the hidden science behind the magic.</p>
+    </div>
+
+    <div class="fact-grid" id="factGrid">
+        <!-- Facts will be dynamically injected here -->
+    </div>
+</div>
+
+<footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
+        <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Home</a>
+        <a href="features.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Features</a>
+        <a href="about.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">About Us</a>
+        <a href="contact.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+<script>
+    const factsData = [
+        { icon: "🌌", q: "Why is the sky blue?", a: "The light from the Sun looks white, but it is actually made up of all the colors of the rainbow. When sunlight reaches Earth's atmosphere, gases and particles in the air scatter this light in all directions.<br><br>This phenomenon is called <b>Rayleigh scattering</b>. Because blue light travels as shorter, smaller waves, it is scattered much more strongly than longer waves like red or yellow. Even though violet light is scattered even more than blue, our eyes are naturally more sensitive to blue light, which is why the sky appears beautifully blue to us!" },
+        { icon: "🥱", q: "Why do we yawn when we see someone else yawn?", a: "Contagious yawning is deeply linked to social empathy and bonding. Scientists believe it is triggered by <b>mirror neurons</b> in our brain—the same neurons that make us wince when we see someone get hurt.<br><br>Evolutionarily, contagious yawning helped pack animals synchronize their sleep schedules and remain alert as a group. A newer biological theory also suggests that yawning draws in cool air to regulate brain temperature, like a fan cooling down a computer processor." },
+        { icon: "🧊", q: "Why does water expand when it freezes?", a: "Most substances shrink and become denser when they freeze, but water is famously weird. Water molecules are shaped like a 'V' (one oxygen atom and two hydrogen atoms).<br><br>As water cools down and freezes into ice, the <b>hydrogen bonds</b> between these molecules force them into a rigid, hexagonal crystalline structure. This specific shape actually pushes the molecules further apart, leaving empty space between them. This makes ice less dense than liquid water, which is exactly why ice cubes float in your drink!" },
+        { icon: "✨", q: "Why do fireflies glow?", a: "Fireflies produce light through a highly efficient chemical reaction called <b>bioluminescence</b>. Inside their abdomen, a pigment called <i>luciferin</i> mixes with oxygen, calcium, and ATP (an energy-carrying molecule), all catalyzed by an enzyme called <i>luciferase</i>.<br><br>Unlike a normal light bulb which loses 90% of its energy as heat, the firefly's reaction is almost 100% efficient, creating a 'cold light'. They use this magical glow primarily to attract mates and warn predators that they taste terrible." },
+        { icon: "🤫", q: "Why is space completely silent?", a: "To understand this, you need to know how sound works: it travels as a mechanical wave by vibrating molecules (like dominoes knocking into each other). Sound needs a <b>medium</b> like air, water, or metal to move.<br><br>Space is a vast vacuum. Because there is virtually no matter or air molecules in the empty space between stars and planets, there is nothing for the sound waves to travel through. This is why astronauts use radios to communicate, because radio waves are electromagnetic and don't need air to travel!" },
+        { icon: "⭐", q: "Why do stars twinkle?", a: "Stars do not actually twinkle; their light shines constantly. This illusion is caused by Earth's atmosphere in a process called <b>astronomical scintillation</b>.<br><br>As starlight travels down to your eyes, it must pass through miles of Earth's atmosphere, which is full of moving layers of hot and cold air. These shifting temperature layers act like moving lenses, constantly bending (refracting) the starlight in slightly different directions. By the time the narrow beam of starlight hits your eye, it seems to shift and change brightness rapidly, creating a twinkle." },
+        { icon: "🥶", q: "Why do we get goosebumps?", a: "Goosebumps are a fascinating evolutionary leftover known as the <b>pilomotor reflex</b>. Underneath your skin, tiny muscles called <i>arrector pili</i> are attached to the base of every hair follicle.<br><br>When you get cold or experience a strong emotion (like fear), your nervous system releases adrenaline. This causes these tiny muscles to contract, pulling the hair straight up. In our furry mammalian ancestors, puffing up their fur trapped a layer of air for insulation against the cold, and made them look larger and more intimidating to predators!" },
+        { icon: "🍂", q: "Why do leaves change color in autumn?", a: "During the summer, leaves are green because they are full of <b>chlorophyll</b>, the pigment that helps plants absorb sunlight for photosynthesis.<br><br>As autumn arrives and the days get shorter and colder, trees prepare for winter dormancy. They stop making chlorophyll, causing the green color to fade away. When the green disappears, other pigments that were hidden in the leaf all along suddenly become visible! <i>Carotenoids</i> reveal bright yellows and oranges, while trapped sugars produce <i>anthocyanins</i>, creating brilliant reds and purples." },
+        { icon: "🧅", q: "Why does chopping onions make you cry?", a: "Onions are brilliant chemists. When you slice into an onion, you rupture its cells, releasing an enzyme called alliinase and sulfur-rich compounds.<br><br>These two chemicals mix to form a volatile gas called <b>syn-propanethial-S-oxide</b>. This gas drifts upward and dissolves into the natural water protecting your eyes, forming a very mild sulfuric acid! Your eyes' sensory nerves detect this burning irritation, prompting your tear glands (lachrymal glands) to flush the chemical out with a sudden flood of tears." },
+        { icon: "🫱", q: "Why do our fingers get wrinkly in water?", a: "For a long time, people thought our skin was simply absorbing water and swelling up like a sponge. However, scientists discovered it is actually an active response by our <b>autonomic nervous system</b>!<br><br>When your hands are submerged for an extended period, your nervous system triggers blood vessels in your fingers to constrict (shrink). This loss of volume pulls the overlying skin down into wrinkles. Evolutionary biologists believe this is an adaptation that gave our ancestors a 'rain-tread' grip, helping them gather food in wet environments." },
+        { icon: "🍯", q: "Why is honey the only food that never spoils?", a: "Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly safe to eat! Honey's immortality comes from its unique chemistry.<br><br>First, it is incredibly hygroscopic, meaning it has very little water and sucks moisture out of any bacteria or fungus that tries to grow in it. Second, it is highly acidic (pH between 3 and 4.5). Finally, bees add an enzyme called glucose oxidase to the nectar, which produces a constant, small amount of <b>hydrogen peroxide</b>—acting as a natural antibacterial shield!" },
+        { icon: "🐈", q: "Why do cats purr?", a: "A cat's purr begins in the brain, sending rhythmic signals to the laryngeal (voice box) muscles, causing them to twitch rapidly. While cats purr when they are happy, they also purr when frightened or injured.<br><br>Scientists believe purring is an internal healing mechanism. The frequency of a domestic cat's purr ranges exactly between <b>25 and 150 Hertz</b>. In human medicine, these exact sound frequencies have been proven to improve bone density, repair tendons, and ease breathing. Your cat is basically a self-healing vibrator!" },
+        { icon: "🐦", q: "Why don't woodpeckers get concussions?", a: "Woodpeckers slam their beaks into trees at 15 mph, enduring a force of 1,200 Gs—enough to give a human a severe brain injury. They survive this thanks to incredible anatomical shock absorbers.<br><br>They have thick, spongy bone in their skulls that absorbs the impact. More incredibly, they have a specialized bone called the <b>hyoid apparatus</b>. The woodpecker's incredibly long tongue wraps all the way around the back of its skull and anchors between its eyes, acting like a built-in seatbelt that holds the brain tightly in place during impact!" },
+        { icon: "🌊", q: "Why is the ocean salty?", a: "The salt in the ocean originally comes from rocks on land. Rainwater dissolves carbon dioxide from the atmosphere, making it slightly acidic. As this rain falls, it slowly breaks down rocks through chemical weathering.<br><br>This process releases dissolved mineral ions (mostly sodium and chloride) which are carried by streams and rivers into the ocean. While the sun evaporates ocean water to form new clouds, the heavy salt ions are left behind. Over billions of years, this process—along with minerals spewing from underwater volcanic vents—has built up the ocean's saltiness." },
+        { icon: "💤", q: "Why do we dream?", a: "While the exact purpose of dreaming is still heavily debated, neuroscientists believe it serves several vital functions. Dreams mostly occur during the <b>REM (Rapid Eye Movement)</b> stage of sleep.<br><br>One leading theory is <i>memory consolidation</i>: your brain replays the day's events, throwing away useless information and hardwiring important memories into your long-term storage. Another fascinating idea is the <i>Threat Simulation Theory</i>, suggesting that dreams are a safe, virtual-reality environment where our brains practice how to survive dangerous or stressful situations." },
+        { icon: "🪃", q: "Why does a boomerang return?", a: "A returning boomerang works by combining two physics principles: <b>aerodynamic lift</b> and <b>gyroscopic precession</b>.<br><br>The arms of a boomerang are shaped exactly like airplane wings (airfoils). As it spins through the air, it generates lift. However, because it is spinning while moving forward, the top arm moves faster through the air than the bottom arm, creating uneven lift. This uneven force on a spinning object triggers gyroscopic precession, pushing the boomerang in a continuous curved circle until it returns to the thrower." },
+        { icon: "🧲", q: "Why do magnets attract iron?", a: "Atoms have electrons orbiting their nuclei, and these electrons have a property called 'spin', which creates a tiny magnetic field. In most materials, these spins point in random directions and cancel each other out.<br><br>Iron is a <b>ferromagnetic</b> metal. It is divided into microscopic neighborhoods called 'magnetic domains'. When a magnet comes near iron, the magnetic field forces all these domains to quickly line up in the exact same direction. The iron instantly turns into a temporary magnet, causing the opposite poles to attract and snap together!" },
+        { icon: "🦎", q: "Why do chameleons change color?", a: "Contrary to popular belief, chameleons do not change color primarily to blend into their background. They change color to regulate their body temperature or express their mood (like aggression or mating readiness).<br><br>They achieve this magic using a specialized layer of skin cells called <b>iridophores</b>, which are packed with microscopic guanine nanocrystals. By relaxing or tightening their skin, the chameleon changes the spacing between these crystals. Tight crystals reflect blue light (making them look green), while stretched crystals reflect longer wavelengths like yellow, orange, or red!" },
+        { icon: "🎈", q: "Why does helium make your voice squeaky?", a: "Your voice is created by vocal cords vibrating, pushing sound waves through the vocal tract (your throat and mouth). The air we normally breathe is mostly dense nitrogen and oxygen.<br><br><b>Helium</b> is an incredibly light, low-density gas. Because it is so light, sound waves travel through helium almost three times faster than through normal air! This increased speed changes the resonant frequencies (formants) of your vocal tract, making the high-pitched components of your voice dramatically louder and giving you that famous cartoon-character squeak." },
+        { icon: "🩸", q: "Why is blood red?", a: "Our blood's primary job is to deliver oxygen to every cell in the body. Floating in our blood are millions of Red Blood Cells, which are packed with a complex, oxygen-carrying protein called <b>hemoglobin</b>.<br><br>Each hemoglobin molecule contains a 'heme' group—a molecular ring holding a single iron atom at its center. When you breathe in, oxygen binds directly to this iron. This chemical bond alters the physical shape of the molecule, causing it to absorb blue and green light, while reflecting bright, brilliant red light back to our eyes." },
+        { icon: "🌍", q: "Why do earthquakes happen?", a: "The Earth's outer crust isn't one solid shell; it is cracked into massive puzzle pieces called <b>tectonic plates</b> that float on a sea of hot, semi-liquid rock called the mantle.<br><br>Driven by extreme heat deep inside the Earth, these plates are constantly, slowly moving. When the rough edges of two plates grind past each other, friction causes them to get stuck. Over decades, immense stress builds up. When the rock can no longer handle the pressure, it snaps. The plates jolt into a new position, violently releasing the stored energy as seismic waves that shake the ground." },
+        { icon: "✈️", q: "Why do airplanes leave white trails in the sky?", a: "Those white lines are called <b>contrails</b> (short for condensation trails), and they are essentially artificial clouds created by the airplane's engines.<br><br>Jet fuel combustion releases a large amount of hot water vapor and tiny soot particles out of the exhaust. Cruising altitudes (around 35,000 feet) are incredibly freezing, often dropping below -40°C. When the boiling hot water vapor hits this frigid air, it instantly condenses and freezes around the soot particles, leaving a long trail of floating ice crystals in the sky." },
+        { icon: "🦎", q: "Why can geckos walk on glass ceilings?", a: "Geckos defy gravity without using sticky slime or suction cups. If you look closely at a gecko's toes under an electron microscope, you will see millions of microscopic, hair-like structures called <i>setae</i>, which branch off into even tinier pads called <i>spatulae</i>.<br><br>Because these structures are so incredibly small, they interact with molecules of the wall at the quantum level. They utilize <b>van der Waals forces</b>—a weak, temporary electromagnetic attraction between electrons. Multiplied across millions of hairs, this atomic attraction is strong enough to hang the gecko's entire body weight from a single toe!" },
+        { icon: "🥛", q: "Why does milk boil over but water doesn't?", a: "Water is a simple liquid, so when it boils, the steam bubbles rise to the surface, pop easily, and escape. Milk, however, is a complex emulsion containing water, fats, and proteins.<br><br>As milk heats up, its proteins and fats separate, float to the top, and coagulate into a thick, sticky layer (often called a 'skin' or film). As the water beneath boils and turns into steam, the steam bubbles get trapped under this tough skin. The pressure builds up rapidly, lifting the entire layer of foam up and over the rim of your pot!" },
+        { icon: "🐕", q: "Why do dogs pant?", a: "When humans get hot, our millions of sweat glands release water onto our skin, which evaporates and cools us down. Dogs, however, have thick fur and only possess a few sweat glands on the bottom of their paws.<br><br>To regulate their body temperature, dogs rely on <b>evaporative cooling</b> via panting. By taking rapid, shallow breaths, they move air quickly over the moist surfaces of their tongue, mouth, and lungs. As this moisture evaporates, it draws latent heat out of the dog's bloodstream, effectively cooling them from the inside out." }
+    ];
+
+    const grid = document.getElementById('factGrid');
+
+    factsData.forEach((fact, index) => {
+        const card = document.createElement('div');
+        card.className = 'fact-card';
+        card.innerHTML = `
+            <div class="fact-icon">${fact.icon}</div>
+            <div class="fact-question">${fact.q}</div>
+            <button class="know-why-btn" onclick="toggleAnswer(${index})">Know Why 💡</button>
+            <div class="fact-answer" id="answer-${index}">${fact.a}</div>
+        `;
+        grid.appendChild(card);
+    });
+
+    function toggleAnswer(index) {
+        const answerDiv = document.getElementById(`answer-${index}`);
+        const btn = answerDiv.previousElementSibling;
+        
+        if (answerDiv.style.display === "block") {
+            answerDiv.style.display = "none";
+            btn.innerHTML = "Know Why 💡";
+            btn.style.background = "linear-gradient(135deg, var(--brand), var(--accent))";
+        } else {
+            answerDiv.style.display = "block";
+            btn.innerHTML = "Hide Answer ✖";
+            btn.style.background = "var(--muted)";
+        }
+    }
+
+    /* Mobile Menu Toggle */
+    function toggleMenu() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            document.querySelectorAll('.login-link').forEach(el => {
+                el.onclick = null;
+                el.innerText = "Login";
+                el.href = "login.html";
+            });
+        }
+    });
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("index.html");
+        }
+    };
+</script>
+</body>
+</html>
