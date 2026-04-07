@@ -33,9 +33,12 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #f0f9ff, #e0e7ff, #fae8ff, #ffe4e6, #fffbeb);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: var(--bg);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
             background-attachment: fixed;
         }
         .container { width: 100%; max-width: 1400px; margin: 20px auto 60px; padding: 0 20px; flex: 1; }
