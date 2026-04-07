@@ -78,6 +78,7 @@
         .subject-tab.active[data-subject="science"] { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #10b981; color: #064e3b; box-shadow: 0 10px 20px rgba(16,185,129,0.15); transform: translateY(-4px); }
         .subject-tab.active[data-subject="english"] { background: linear-gradient(135deg, #fef2f2, #ffe4e6); border-color: #f43f5e; color: #881337; box-shadow: 0 10px 20px rgba(244,63,94,0.15); transform: translateY(-4px); }
         .subject-tab.active[data-subject="reasoning"] { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #f59e0b; color: #78350f; box-shadow: 0 10px 20px rgba(245,158,11,0.15); transform: translateY(-4px); }
+        .subject-tab.active[data-subject="igko"] { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-color: #a855f7; color: #581c87; box-shadow: 0 10px 20px rgba(168,85,247,0.15); transform: translateY(-4px); }
 
         .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
         
@@ -100,6 +101,7 @@
         .topic-card.science { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #a7f3d0; color: #064e3b; } .topic-card.science h3 { color: #064e3b; } .topic-card.science:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(16,185,129,0.15); border-color: #6ee7b7; } .topic-card.science::before { background: #10b981; } .topic-card.science .topic-code { color: #064e3b; background: #a7f3d0; } .topic-card.science .start-btn { background: #10b981; color: white; box-shadow: 0 4px 10px rgba(16,185,129,0.2); } .topic-card.science:hover .start-btn { background: #059669; }
         .topic-card.english { background: linear-gradient(135deg, #fef2f2, #ffe4e6); border-color: #fecdd3; color: #881337; } .topic-card.english h3 { color: #881337; } .topic-card.english:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(244,63,94,0.15); border-color: #fda4af; } .topic-card.english::before { background: #f43f5e; } .topic-card.english .topic-code { color: #881337; background: #fecdd3; } .topic-card.english .start-btn { background: #f43f5e; color: white; box-shadow: 0 4px 10px rgba(244,63,94,0.2); } .topic-card.english:hover .start-btn { background: #e11d48; }
         .topic-card.reasoning { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; color: #78350f; } .topic-card.reasoning h3 { color: #78350f; } .topic-card.reasoning:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(245,158,11,0.15); border-color: #fcd34d; } .topic-card.reasoning::before { background: #f59e0b; } .topic-card.reasoning .topic-code { color: #78350f; background: #fde68a; } .topic-card.reasoning .start-btn { background: #f59e0b; color: white; box-shadow: 0 4px 10px rgba(245,158,11,0.2); } .topic-card.reasoning:hover .start-btn { background: #d97706; }
+        .topic-card.igko { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-color: #e9d5ff; color: #581c87; } .topic-card.igko h3 { color: #581c87; } .topic-card.igko:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(168,85,247,0.15); border-color: #d8b4fe; } .topic-card.igko::before { background: #a855f7; } .topic-card.igko .topic-code { color: #581c87; background: #e9d5ff; } .topic-card.igko .start-btn { background: #a855f7; color: white; box-shadow: 0 4px 10px rgba(168,85,247,0.2); } .topic-card.igko:hover .start-btn { background: #9333ea; }
 
         .seo-section { background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 40px; }
         .seo-section h2 { color: var(--text); font-size: 1.8rem; margin-bottom: 25px; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
@@ -147,6 +149,12 @@
         .mobile-topics-container.reasoning select { border-color: #fcd34d; color: #78350f; }
         .mobile-topics-container.reasoning .start-btn-mobile { background: #f59e0b; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
         .mobile-topics-container.reasoning .start-btn-mobile:hover { background: #d97706; }
+
+        .mobile-topics-container.igko { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-color: #e9d5ff; }
+        .mobile-topics-container.igko label { color: #581c87; }
+        .mobile-topics-container.igko select { border-color: #d8b4fe; color: #581c87; }
+        .mobile-topics-container.igko .start-btn-mobile { background: #a855f7; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3); }
+        .mobile-topics-container.igko .start-btn-mobile:hover { background: #9333ea; }
 
         /* Desktop Wrapper (Invisible) */
         .subject-selector-card { display: contents; }
@@ -227,6 +235,7 @@
             <div class="subject-tab" data-subject="science" onclick="selectSubject('science')">🔬 Science (NSO)</div>
             <div class="subject-tab" data-subject="english" onclick="selectSubject('english')">📚 English (IEO)</div>
             <div class="subject-tab" data-subject="reasoning" onclick="selectSubject('reasoning')">🧠 Logical Reasoning</div>
+            <div class="subject-tab" data-subject="igko" onclick="selectSubject('igko')" style="display: none;">🌍 General Knowledge</div>
         </div>
     </div>
 
@@ -347,6 +356,18 @@
                 { code: "R05", name: "Spatial Understanding" },
                 { code: "R06", name: "Grouping and Analogy" },
                 { code: "R07", name: "Ranking Test" }
+            ],
+            igko: [
+                { code: "G01", name: "Me and My Surroundings" },
+                { code: "G02", name: "Plants and Animals" },
+                { code: "G03", name: "India and the World" },
+                { code: "G04", name: "Science and Technology" },
+                { code: "G05", name: "Language and Literature" },
+                { code: "G06", name: "Earth and Its Environment" },
+                { code: "G07", name: "Sports" },
+                { code: "G08", name: "Math Fun" },
+                { code: "G09", name: "Life Skills" },
+                { code: "G10", name: "Current Affairs" }
             ]
         },
         class2: {
@@ -388,6 +409,19 @@
                 { code: "R05", name: "Geometrical Shapes" },
                 { code: "R06", name: "Analogy and Ranking Test" },
                 { code: "R07", name: "Grouping and Coding-Decoding" }
+            ],
+            igko: [
+                { code: "G01", name: "Me and My Surroundings" },
+                { code: "G02", name: "Plants and Animals" },
+                { code: "G03", name: "India and the World" },
+                { code: "G04", name: "Science and Technology" },
+                { code: "G05", name: "Language and Literature" },
+                { code: "G06", name: "Earth and Its Environment" },
+                { code: "G07", name: "Transport and Communication" },
+                { code: "G08", name: "Sports" },
+                { code: "G09", name: "Math Fun" },
+                { code: "G10", name: "Life Skills" },
+                { code: "G11", name: "Current Affairs" }
             ]
         },
         class3: {
@@ -433,6 +467,19 @@
                 { code: "R06", name: "Grouping and Figure Matrix" },
                 { code: "R07", name: "Mirror Images and Geometrical Shapes" },
                 { code: "R08", name: "Days, Dates and Combinations" }
+            ],
+            igko: [
+                { code: "G01", name: "Me and My Surroundings" },
+                { code: "G02", name: "Plants and Animals" },
+                { code: "G03", name: "India and the World" },
+                { code: "G04", name: "Science and Technology" },
+                { code: "G05", name: "Language and Literature" },
+                { code: "G06", name: "Earth and Its Environment" },
+                { code: "G07", name: "Transport and Communication" },
+                { code: "G08", name: "Sports" },
+                { code: "G09", name: "Math Fun" },
+                { code: "G10", name: "Life Skills" },
+                { code: "G11", name: "Current Affairs" }
             ]
         },
         class4: {
@@ -476,6 +523,19 @@
                 { code: "R06", name: "Geometrical Shapes" },
                 { code: "R07", name: "Direction Sense" },
                 { code: "R08", name: "Analogy and Classification" }
+            ],
+            igko: [
+                { code: "G01", name: "Our Body and Health" },
+                { code: "G02", name: "Plants and Animals" },
+                { code: "G03", name: "India and the World" },
+                { code: "G04", name: "Science and Technology" },
+                { code: "G05", name: "Environment and its Conservation" },
+                { code: "G06", name: "Language and Literature" },
+                { code: "G07", name: "Entertainment" },
+                { code: "G08", name: "Sports" },
+                { code: "G09", name: "Math Fun" },
+                { code: "G10", name: "Life Skills" },
+                { code: "G11", name: "Current Affairs" }
             ]
         },
         class5: {
@@ -519,6 +579,19 @@
                 { code: "R06", name: "Ranking Test and Alphabet Test" },
                 { code: "R07", name: "Logical Sequence and Puzzle Test" },
                 { code: "R08", name: "Coding-Decoding" }
+            ],
+            igko: [
+                { code: "G01", name: "Our Body and Health" },
+                { code: "G02", name: "Plants and Animals" },
+                { code: "G03", name: "India and the World" },
+                { code: "G04", name: "Science and Technology" },
+                { code: "G05", name: "Environment and its Conservation" },
+                { code: "G06", name: "Language and Literature" },
+                { code: "G07", name: "Entertainment" },
+                { code: "G08", name: "Sports" },
+                { code: "G09", name: "Quantitative Aptitude and Reasoning" },
+                { code: "G10", name: "Life Skills" },
+                { code: "G11", name: "Current Affairs" }
             ]
         },
         class6: {
@@ -571,6 +644,20 @@
                 { code: "R06", name: "Logical Venn Diagrams" },
                 { code: "R07", name: "Mirror/Water Images and Paper Folding" },
                 { code: "R08", name: "Figure Matrix and Cubes/Dice" }
+            ],
+            igko: [
+                { code: "G01", name: "Plants and Animals" },
+                { code: "G02", name: "India and the World" },
+                { code: "G03", name: "Science and Technology" },
+                { code: "G04", name: "Earth and Its Environment" },
+                { code: "G05", name: "Universe" },
+                { code: "G06", name: "Language and Literature" },
+                { code: "G07", name: "Entertainment" },
+                { code: "G08", name: "Social Studies" },
+                { code: "G09", name: "Sports" },
+                { code: "G10", name: "Quantitative Aptitude and Reasoning" },
+                { code: "G11", name: "Life Skills" },
+                { code: "G12", name: "Current Affairs" }
             ]
         },
         class7: {
@@ -624,6 +711,20 @@
                 { code: "R06", name: "Logical Venn Diagrams" },
                 { code: "R07", name: "Mirror/Water Images and Paper Folding" },
                 { code: "R08", name: "Cubes, Dice and Figure Matrix" }
+            ],
+            igko: [
+                { code: "G01", name: "Plants and Animals" },
+                { code: "G02", name: "India and the World" },
+                { code: "G03", name: "Science and Technology" },
+                { code: "G04", name: "Earth and Its Environment" },
+                { code: "G05", name: "Universe" },
+                { code: "G06", name: "Language and Literature" },
+                { code: "G07", name: "Entertainment" },
+                { code: "G08", name: "Social Studies" },
+                { code: "G09", name: "Sports" },
+                { code: "G10", name: "Quantitative Aptitude and Reasoning" },
+                { code: "G11", name: "Life Skills" },
+                { code: "G12", name: "Current Affairs" }
             ]
         },
         class8: {
@@ -682,6 +783,20 @@
                 { code: "R06", name: "Logical Venn Diagrams" },
                 { code: "R07", name: "Alphabet and Ranking Test" },
                 { code: "R08", name: "Mirror/Water Images and Figure Matrix" }
+            ],
+            igko: [
+                { code: "G01", name: "Plants and Animals" },
+                { code: "G02", name: "India and the World" },
+                { code: "G03", name: "Science and Technology" },
+                { code: "G04", name: "Earth and Its Environment" },
+                { code: "G05", name: "Universe" },
+                { code: "G06", name: "Language and Literature" },
+                { code: "G07", name: "Entertainment" },
+                { code: "G08", name: "Social Studies" },
+                { code: "G09", name: "Sports" },
+                { code: "G10", name: "Quantitative Aptitude and Reasoning" },
+                { code: "G11", name: "Life Skills" },
+                { code: "G12", name: "Current Affairs" }
             ]
         },
         class9: {
@@ -739,6 +854,20 @@
                 { code: "R06", name: "Logical Venn Diagrams" },
                 { code: "R07", name: "Alphabet and Ranking Test" },
                 { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }
+            ],
+            igko: [
+                { code: "G01", name: "Plants and Animals" },
+                { code: "G02", name: "India and the World" },
+                { code: "G03", name: "Science and Technology" },
+                { code: "G04", name: "Earth and Its Environment" },
+                { code: "G05", name: "Universe" },
+                { code: "G06", name: "Language and Literature" },
+                { code: "G07", name: "Entertainment" },
+                { code: "G08", name: "Social Studies" },
+                { code: "G09", name: "Sports" },
+                { code: "G10", name: "Quantitative Aptitude and Reasoning" },
+                { code: "G11", name: "Life Skills" },
+                { code: "G12", name: "Current Affairs" }
             ]
         },
         class10: {
@@ -797,6 +926,20 @@
                 { code: "R06", name: "Logical Venn Diagrams" },
                 { code: "R07", name: "Alphabet and Ranking Test" },
                 { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }
+            ],
+            igko: [
+                { code: "G01", name: "Plants and Animals" },
+                { code: "G02", name: "India and the World" },
+                { code: "G03", name: "Science and Technology" },
+                { code: "G04", name: "Earth and Its Environment" },
+                { code: "G05", name: "Universe" },
+                { code: "G06", name: "Language and Literature" },
+                { code: "G07", name: "Entertainment" },
+                { code: "G08", name: "Social Studies" },
+                { code: "G09", name: "Sports" },
+                { code: "G10", name: "Quantitative Aptitude and Reasoning" },
+                { code: "G11", name: "Life Skills" },
+                { code: "G12", name: "Current Affairs" }
             ]
         }
     };
@@ -827,7 +970,7 @@
 
         // Update mobile container theme
         mobileTopicsContainer.className = `mobile-topics-container ${selectedSubject}`;
-        const icons = { maths: '📐', science: '🔬', english: '📚', reasoning: '🧠' };
+        const icons = { maths: '📐', science: '🔬', english: '📚', reasoning: '🧠', igko: '🌍' };
         if (mobileTopicIcon) mobileTopicIcon.innerText = icons[selectedSubject] || '📑';
 
         if (sofTopics[selectedClass] && sofTopics[selectedClass][selectedSubject]) {
@@ -896,7 +1039,8 @@
             'maths': 'Mathematics (IMO)',
             'science': 'Science (NSO)',
             'english': 'English (IEO)',
-            'reasoning': 'Logical Reasoning'
+            'reasoning': 'Logical Reasoning',
+            'igko': 'General Knowledge (IGKO)'
         };
 
         // Update modal content
