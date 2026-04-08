@@ -156,7 +156,13 @@ footer {
 #quizTitle{font-size:1.1rem !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #quizSubtitle{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .section { padding: 20px !important; }
-.popup-box { transform: scale(0.8); transform-origin: center; }
+#fullscreenOverlay, #warningModal { padding: 10px !important; }
+.popup-box { padding: 20px 15px !important; border-radius: 16px !important; max-height: 98vh !important; }
+.popup-box h2 { font-size: 1.25rem !important; margin-bottom: 10px !important; }
+.popup-box p { font-size: 0.85rem !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
+.popup-box div[style*="font-size: 40px"] { font-size: 32px !important; margin-bottom: 10px !important; }
+.popup-box button { padding: 12px !important; font-size: 0.95rem !important; margin-bottom: 5px !important; }
+.popup-actions { flex-direction: column; gap: 8px !important; }
 }
 
 /* Adjustments to fit properly on laptop screens */
@@ -276,7 +282,7 @@ footer {
                 • Do not exit full-screen mode manually.<br><br>
                 Any of these actions will result in a strike. <b style="color: var(--danger);">After 3 strikes, your quiz will automatically submit and end immediately.</b>
         </p>
-            <div style="display: flex; gap: 10px; width: 100%; flex-wrap: wrap;">
+            <div class="popup-actions" style="display: flex; gap: 10px; width: 100%; flex-wrap: wrap;">
                 <button onclick="goBackToSelection()" class="btn-prev" style="padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border-radius: 10px; border: 1px solid var(--border);">Cancel & Go Back</button>
                 <button id="enterFullscreenBtn" class="btn-save" style="padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border: none; border-radius: 10px;">Start Quiz</button>
             </div>
