@@ -108,7 +108,7 @@
 
         .seo-section { background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 40px; }
         .seo-section h2 { color: var(--text); font-size: 1.8rem; margin-bottom: 25px; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 30px; }
         .seo-feature h4 { color: var(--brand); font-size: 1.15rem; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         .seo-feature p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
 
@@ -119,10 +119,18 @@
         .rich-text-section li { color: var(--text); font-size: 1rem; line-height: 1.6; margin-bottom: 10px; font-weight: 500; }
         .rich-text-section .highlight { color: var(--brand); font-weight: 700; }
 
-        @media (max-width: 640px) {
+        .mock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 30px; margin-bottom: 60px; }
+
+        @media (max-width: 768px) {
             .header-text h1 { font-size: 2.2rem; }
-            .grade-selector-bar { padding: 15px 20px; flex-direction: column; align-items: flex-start; }
-            .grade-selector-bar select { max-width: 100%; }
+            .grade-selector-bar { padding: 20px; flex-direction: column; align-items: flex-start; gap: 15px; }
+            .grade-selector-bar select { max-width: 100%; width: 100%; }
+            .subject-card-large { padding: 25px 20px; }
+            .subject-card-large h3 { font-size: 1.5rem; }
+            .subject-card-large .icon-bg { font-size: 90px; right: -5px; bottom: -10px; }
+            .seo-section, .rich-text-section { padding: 25px 20px; }
+            .seo-section h2, .rich-text-section h2 { font-size: 1.5rem; }
+            .modal-content { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -177,7 +185,7 @@
             </select>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 60px;">
+        <div class="mock-grid">
             <!-- IMO -->
             <div class="subject-card-large card-maths" onclick="startMock('maths')">
                 <div class="icon-bg">📐</div>
