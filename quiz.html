@@ -263,11 +263,11 @@ footer {
 </div>
 
 <!-- Anti-Cheat Overlays -->
-<div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 10000; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;">
-    <div style="background: var(--surface); padding: 40px; border-radius: 20px; max-width: 600px; border: 1px solid var(--border); box-shadow: var(--shadow-lg);">
-        <div style="font-size: 50px; margin-bottom: 20px;">🖥️</div>
-        <h2 style="color: var(--brand); margin-bottom: 20px; font-size: 2rem; font-weight: 800;">Enter Full Screen</h2>
-            <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6; text-align: left;">
+<div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 10000; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow-y: auto;">
+    <div style="background: var(--surface); padding: 25px; border-radius: 20px; width: 100%; max-width: 600px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); max-height: 95vh; overflow-y: auto;">
+        <div style="font-size: 40px; margin-bottom: 15px;">🖥️</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-size: 1.5rem; font-weight: 800;">Enter Full Screen</h2>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; text-align: left;">
                 To maintain a fair and secure testing environment, this quiz requires full-screen mode. Please ensure you are fully prepared before proceeding.<br><br>
                 <strong style="color: var(--danger);">STRICT RULES:</strong><br>
                 • Do not switch tabs or open new windows.<br>
@@ -275,19 +275,19 @@ footer {
                 • Do not exit full-screen mode manually.<br><br>
                 Any of these actions will result in a strike. <b style="color: var(--danger);">After 3 strikes, your quiz will automatically submit and end immediately.</b>
         </p>
-            <div style="display: flex; gap: 15px; width: 100%;">
-                <button onclick="goBackToSelection()" class="btn-prev" style="padding: 15px; font-size: 1.1rem; flex: 1; cursor: pointer; border-radius: 10px; border: 1px solid var(--border);">Cancel & Go Back</button>
-                <button id="enterFullscreenBtn" class="btn-save" style="padding: 15px; font-size: 1.1rem; flex: 1; cursor: pointer; border: none; border-radius: 10px;">Start Quiz</button>
+            <div style="display: flex; gap: 10px; width: 100%; flex-wrap: wrap;">
+                <button onclick="goBackToSelection()" class="btn-prev" style="padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border-radius: 10px; border: 1px solid var(--border);">Cancel & Go Back</button>
+                <button id="enterFullscreenBtn" class="btn-save" style="padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border: none; border-radius: 10px;">Start Quiz</button>
             </div>
     </div>
 </div>
 
-<div id="warningModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 10001; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; backdrop-filter: blur(5px);">
-    <div style="background: var(--surface); padding: 40px; border-radius: 20px; max-width: 500px; border: 2px solid var(--danger); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);">
-        <div style="font-size: 50px; margin-bottom: 10px;">⚠️</div>
-        <h2 style="color: var(--danger); margin-bottom: 15px; font-weight: 800;">Warning <span id="warningCountDisplay"></span>/3</h2>
-        <p id="warningMessageDisplay" style="color: var(--text); margin-bottom: 25px; font-size: 1.1rem; line-height: 1.5; font-weight: 500;"></p>
-        <button id="resumeQuizBtn" class="btn-save" style="background: var(--danger); padding: 15px 30px; font-size: 1.1rem; width: 100%; cursor: pointer; border: none; border-radius: 10px;">I Understand, Resume Quiz</button>
+<div id="warningModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); z-index: 10001; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; backdrop-filter: blur(5px); overflow-y: auto;">
+    <div style="background: var(--surface); padding: 30px 20px; border-radius: 20px; width: 100%; max-width: 500px; border: 2px solid var(--danger); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3); max-height: 95vh; overflow-y: auto;">
+        <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
+        <h2 style="color: var(--danger); margin-bottom: 15px; font-size: 1.5rem; font-weight: 800;">Warning <span id="warningCountDisplay"></span>/3</h2>
+        <p id="warningMessageDisplay" style="color: var(--text); margin-bottom: 25px; font-size: 1rem; line-height: 1.5; font-weight: 500;"></p>
+        <button id="resumeQuizBtn" class="btn-save" style="background: var(--danger); padding: 12px 20px; font-size: 1rem; width: 100%; cursor: pointer; border: none; border-radius: 10px;">I Understand, Resume Quiz</button>
     </div>
 </div>
 
