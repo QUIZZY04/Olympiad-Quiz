@@ -70,15 +70,29 @@
         .subject-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 40px; }
         .subject-tab { 
             padding: 20px 25px; border-radius: 18px; cursor: pointer; font-weight: 800; font-size: 1.15rem;
-            border: 2px solid var(--border); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); background: var(--surface); color: var(--muted);
+            border: 2px solid transparent; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
             box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; gap: 12px;
         }
-        .subject-tab:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); color: var(--text); }
-        .subject-tab.active[data-subject="maths"] { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #3b82f6; color: #1e3a8a; box-shadow: 0 10px 20px rgba(59,130,246,0.15); transform: translateY(-4px); }
-        .subject-tab.active[data-subject="science"] { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #10b981; color: #064e3b; box-shadow: 0 10px 20px rgba(16,185,129,0.15); transform: translateY(-4px); }
-        .subject-tab.active[data-subject="english"] { background: linear-gradient(135deg, #fef2f2, #ffe4e6); border-color: #f43f5e; color: #881337; box-shadow: 0 10px 20px rgba(244,63,94,0.15); transform: translateY(-4px); }
-        .subject-tab.active[data-subject="reasoning"] { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #f59e0b; color: #78350f; box-shadow: 0 10px 20px rgba(245,158,11,0.15); transform: translateY(-4px); }
-        .subject-tab.active[data-subject="igko"] { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-color: #a855f7; color: #581c87; box-shadow: 0 10px 20px rgba(168,85,247,0.15); transform: translateY(-4px); }
+        
+        .subject-tab[data-subject="maths"] { background: #eff6ff; border-color: #bfdbfe; color: #1e3a8a; }
+        .subject-tab[data-subject="maths"]:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #3b82f6; }
+        .subject-tab.active[data-subject="maths"] { background: linear-gradient(135deg, #3b82f6, #1e40af); border-color: #2563eb; color: #ffffff; box-shadow: 0 10px 20px rgba(59,130,246,0.3); transform: translateY(-4px); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+        .subject-tab[data-subject="science"] { background: #ecfdf5; border-color: #a7f3d0; color: #064e3b; }
+        .subject-tab[data-subject="science"]:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #10b981; }
+        .subject-tab.active[data-subject="science"] { background: linear-gradient(135deg, #10b981, #047857); border-color: #059669; color: #ffffff; box-shadow: 0 10px 20px rgba(16,185,129,0.3); transform: translateY(-4px); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+        .subject-tab[data-subject="english"] { background: #fef2f2; border-color: #fecdd3; color: #881337; }
+        .subject-tab[data-subject="english"]:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #f43f5e; }
+        .subject-tab.active[data-subject="english"] { background: linear-gradient(135deg, #f43f5e, #be123c); border-color: #e11d48; color: #ffffff; box-shadow: 0 10px 20px rgba(244,63,94,0.3); transform: translateY(-4px); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+        .subject-tab[data-subject="reasoning"] { background: #fffbeb; border-color: #fde68a; color: #78350f; }
+        .subject-tab[data-subject="reasoning"]:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #f59e0b; }
+        .subject-tab.active[data-subject="reasoning"] { background: linear-gradient(135deg, #f59e0b, #b45309); border-color: #d97706; color: #ffffff; box-shadow: 0 10px 20px rgba(245,158,11,0.3); transform: translateY(-4px); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+        .subject-tab[data-subject="igko"] { background: #faf5ff; border-color: #e9d5ff; color: #581c87; }
+        .subject-tab[data-subject="igko"]:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #8b5cf6; }
+        .subject-tab.active[data-subject="igko"] { background: linear-gradient(135deg, #8b5cf6, #5b21b6); border-color: #7c3aed; color: #ffffff; box-shadow: 0 10px 20px rgba(139,92,246,0.3); transform: translateY(-4px); text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
         .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
         
@@ -127,34 +141,34 @@
 
         /* Dynamic Mobile Container Themes */
         .mobile-topics-container.maths { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe; }
-        .mobile-topics-container.maths label { color: #1e3a8a; }
+        .mobile-topics-container.maths label { color: #1e3a8a; text-shadow: none; }
         .mobile-topics-container.maths select { border-color: #93c5fd; color: #1e3a8a; }
-        .mobile-topics-container.maths .start-btn-mobile { background: #3b82f6; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
-        .mobile-topics-container.maths .start-btn-mobile:hover { background: #2563eb; }
+        .mobile-topics-container.maths .start-btn-mobile { background: #3b82f6; color: white; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+        .mobile-topics-container.maths .start-btn-mobile:hover { background: #2563eb; transform: translateY(-2px); }
 
         .mobile-topics-container.science { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border-color: #a7f3d0; }
-        .mobile-topics-container.science label { color: #064e3b; }
+        .mobile-topics-container.science label { color: #064e3b; text-shadow: none; }
         .mobile-topics-container.science select { border-color: #6ee7b7; color: #064e3b; }
-        .mobile-topics-container.science .start-btn-mobile { background: #10b981; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
-        .mobile-topics-container.science .start-btn-mobile:hover { background: #059669; }
+        .mobile-topics-container.science .start-btn-mobile { background: #10b981; color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
+        .mobile-topics-container.science .start-btn-mobile:hover { background: #059669; transform: translateY(-2px); }
 
         .mobile-topics-container.english { background: linear-gradient(135deg, #fef2f2, #ffe4e6); border-color: #fecdd3; }
-        .mobile-topics-container.english label { color: #881337; }
+        .mobile-topics-container.english label { color: #881337; text-shadow: none; }
         .mobile-topics-container.english select { border-color: #fda4af; color: #881337; }
-        .mobile-topics-container.english .start-btn-mobile { background: #f43f5e; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
-        .mobile-topics-container.english .start-btn-mobile:hover { background: #e11d48; }
+        .mobile-topics-container.english .start-btn-mobile { background: #f43f5e; color: white; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); }
+        .mobile-topics-container.english .start-btn-mobile:hover { background: #e11d48; transform: translateY(-2px); }
 
         .mobile-topics-container.reasoning { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; }
-        .mobile-topics-container.reasoning label { color: #78350f; }
+        .mobile-topics-container.reasoning label { color: #78350f; text-shadow: none; }
         .mobile-topics-container.reasoning select { border-color: #fcd34d; color: #78350f; }
-        .mobile-topics-container.reasoning .start-btn-mobile { background: #f59e0b; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
-        .mobile-topics-container.reasoning .start-btn-mobile:hover { background: #d97706; }
+        .mobile-topics-container.reasoning .start-btn-mobile { background: #f59e0b; color: white; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
+        .mobile-topics-container.reasoning .start-btn-mobile:hover { background: #d97706; transform: translateY(-2px); }
 
         .mobile-topics-container.igko { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-color: #e9d5ff; }
-        .mobile-topics-container.igko label { color: #581c87; }
+        .mobile-topics-container.igko label { color: #581c87; text-shadow: none; }
         .mobile-topics-container.igko select { border-color: #d8b4fe; color: #581c87; }
-        .mobile-topics-container.igko .start-btn-mobile { background: #a855f7; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3); }
-        .mobile-topics-container.igko .start-btn-mobile:hover { background: #9333ea; }
+        .mobile-topics-container.igko .start-btn-mobile { background: #a855f7; color: white; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3); }
+        .mobile-topics-container.igko .start-btn-mobile:hover { background: #9333ea; transform: translateY(-2px); }
 
         /* Desktop Wrapper (Invisible) */
         .subject-selector-card { display: contents; }
