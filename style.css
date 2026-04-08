@@ -628,7 +628,7 @@ nav {
         display: flex;
         position: fixed;
         top: 0;
-        right: 0;
+        right: -280px;
         height: 100vh;
         width: 280px;
         background: var(--surface);
@@ -639,11 +639,10 @@ nav {
         align-items: flex-start;
         justify-content: flex-start;
         margin: 0;
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .nav-links.active {
-        transform: translateX(0);
+        right: 0;
     }
     .close-menu {
         display: flex;
