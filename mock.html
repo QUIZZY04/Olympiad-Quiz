@@ -102,6 +102,10 @@
         .card-reasoning .btn-start-mock { background: #f59e0b; color: #fff; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
         .card-reasoning:hover .btn-start-mock { background: #d97706; transform: translateY(-2px); }
 
+        .card-igko { background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-color: #e9d5ff; color: #581c87; }
+        .card-igko .btn-start-mock { background: #a855f7; color: #fff; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3); }
+        .card-igko:hover .btn-start-mock { background: #9333ea; transform: translateY(-2px); }
+
         .seo-section { background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 40px; }
         .seo-section h2 { color: var(--text); font-size: 1.8rem; margin-bottom: 25px; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 15px; }
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
@@ -201,6 +205,13 @@
                 <p>Sharpen your Mental Aptitude, Patterns, Logic, and Non-Verbal reasoning capabilities for top ranks.</p>
                 <button class="btn-start-mock">Start IRO Test →</button>
             </div>
+            <!-- IGKO -->
+            <div class="subject-card-large card-igko" onclick="startMock('igko')">
+                <div class="icon-bg">🌍</div>
+                <h3>IGKO - General Knowledge</h3>
+                <p>Test your awareness with our general knowledge mock tests covering current affairs, life skills, and more.</p>
+                <button class="btn-start-mock">Start IGKO Test →</button>
+            </div>
         </div>
 
         <!-- Rich Text Section -->
@@ -298,7 +309,8 @@
             'maths': 'Mathematics (IMO)',
             'science': 'Science (NSO)',
             'english': 'English (IEO)',
-            'reasoning': 'Reasoning'
+            'reasoning': 'Reasoning',
+            'igko': 'General Knowledge (IGKO)'
         };
         document.getElementById('modalSubject').innerText = subjectNames[subject] || subject;
 

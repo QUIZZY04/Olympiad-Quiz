@@ -235,7 +235,7 @@
             <div class="subject-tab" data-subject="science" onclick="selectSubject('science')">🔬 Science (NSO)</div>
             <div class="subject-tab" data-subject="english" onclick="selectSubject('english')">📚 English (IEO)</div>
             <div class="subject-tab" data-subject="reasoning" onclick="selectSubject('reasoning')">🧠 Logical Reasoning</div>
-            <div class="subject-tab" data-subject="igko" onclick="selectSubject('igko')" style="display: none;">🌍 General Knowledge</div>
+            <div class="subject-tab" data-subject="igko" onclick="selectSubject('igko')">🌍 General Knowledge</div>
         </div>
     </div>
 
@@ -976,8 +976,8 @@
         if (sofTopics[selectedClass] && sofTopics[selectedClass][selectedSubject]) {
             const topics = sofTopics[selectedClass][selectedSubject];
             if (topics.length === 0) {
-                topicsGrid.innerHTML = '<div class="placeholder-msg">No chapters available for this selection yet.</div>';
-                topicSelectMobile.innerHTML = '<option value="" disabled selected>No chapters available yet</option>';
+                topicsGrid.innerHTML = '<div class="placeholder-msg">Coming soon! No chapters available for this selection yet.</div>';
+                topicSelectMobile.innerHTML = '<option value="" disabled selected>Coming soon!</option>';
                 return;
             }
             
@@ -1004,8 +1004,8 @@
                 topicSelectMobile.appendChild(option);
             });
         } else {
-            topicsGrid.innerHTML = '<div class="placeholder-msg">No chapters available for this selection.</div>';
-            topicSelectMobile.innerHTML = '<option value="" disabled selected>No chapters available</option>';
+            topicsGrid.innerHTML = '<div class="placeholder-msg">Coming soon! No chapters available for this selection.</div>';
+            topicSelectMobile.innerHTML = '<option value="" disabled selected>Coming soon!</option>';
         }
     }
 
