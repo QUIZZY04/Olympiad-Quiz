@@ -517,6 +517,10 @@ nav {
     text-align: left;
 }
 
+.close-menu {
+    display: none;
+}
+
 .nav-dropdown-content a:hover {
     background-color: var(--subtle) !important;
     color: var(--brand) !important;
@@ -621,7 +625,7 @@ nav {
         flex-shrink: 0;
     }
     .nav-links {
-        display: none;
+        display: flex;
         position: fixed;
         top: 0;
         right: 0;
@@ -635,9 +639,33 @@ nav {
         align-items: flex-start;
         justify-content: flex-start;
         margin: 0;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .nav-links.active {
+        transform: translateX(0);
+    }
+    .close-menu {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0,0,0,0.05);
+        border: none;
+        font-size: 28px;
+        color: var(--text);
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: 0.3s;
+        padding: 0;
+    }
+    .close-menu:hover {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--danger);
     }
     /* Hide links that are already visible on the main screen */
     .nav-links a[href="about.html"], 
