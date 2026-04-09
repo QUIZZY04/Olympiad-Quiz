@@ -386,11 +386,16 @@ border-top:1px solid var(--border);
             </div>
             <button class="upload" style="background: var(--brand); width: 100%; margin-top: 20px;" onclick="saveVideo()">Save Video Tutorial</button>
             
-            <h3 style="margin-top: 30px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Managed Videos</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+                <h3 style="margin: 0;">Managed Videos</h3>
+                <button class="upload" onclick="loadVideos()" style="margin: 0; padding: 6px 12px; font-size: 13px;">Load Videos</button>
+            </div>
             <div style="overflow-x:auto;">
             <table style="margin-top: 10px; width: 100%;">
                 <thead><tr><th>Class</th><th>Subject</th><th>Topic Code</th><th>Video ID</th><th>Actions</th></tr></thead>
-                <tbody id="videosTable"></tbody>
+                <tbody id="videosTable">
+                    <tr><td colspan='5' style='text-align:center; color:var(--muted);'>Click "Load Videos" to view managed videos.</td></tr>
+                </tbody>
             </table>
             </div>
         </div>
@@ -828,7 +833,7 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
-        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.loadVideos(); window.updateVidTopics();
+        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics();
     } else {
         window.location.href = "login.html";
     }
