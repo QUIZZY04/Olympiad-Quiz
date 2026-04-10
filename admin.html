@@ -611,13 +611,15 @@ border-top:1px solid var(--border);
                     <th>Registration Date</th>
                     <th>User Name</th>
                     <th>User Email</th>
+                    <th>Class</th>
+                    <th>Session</th>
                     <th>Type</th>
                     <th>Amount (₹)</th>
                     <th>Coupon Used</th>
                 </tr>
             </thead>
             <tbody id="registrationsTable">
-                <tr><td colspan="6" style="text-align:center; color:var(--muted);">Select a session and click Load Users.</td></tr>
+                <tr><td colspan="8" style="text-align:center; color:var(--muted);">Select a session and click Load Users.</td></tr>
             </tbody>
         </table>
     </div>
@@ -1896,6 +1898,7 @@ window.loadRegSessionsList = async () => {
     try {
         const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
         let html = '<option value="">-- Select a Session --</option>';
+        html += '<option value="all">All Live/Upcoming Sessions</option>';
         snap.forEach(d => {
             const s = d.data();
             const date = s.startTime && s.startTime.toDate ? s.startTime.toDate().toLocaleDateString() : '';
@@ -1917,18 +1920,36 @@ window.loadRegistrations = async () => {
         return;
     }
 
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Loading...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Loading...</td></tr>';
     summary.innerText = '';
 
     try {
-        const q = query(collectionGroup(db, "purchases"), where("sessionId", "==", sid));
+        let q;
+        if (sid === "all") {
+            q = query(collectionGroup(db, "purchases"));
+        } else {
+            q = query(collectionGroup(db, "purchases"), where("sessionId", "==", sid));
+        }
         const snap = await getDocs(q);
         
         if (snap.empty) {
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--muted);">No registrations found for this session.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:var(--muted);">No registrations found for this selection.</td></tr>';
             summary.innerText = 'Total Registrations: 0';
             return;
         }
+
+        // Cache sessions for title lookup
+        const sessionsCache = {};
+        const activeSessionIds = new Set();
+        const now = new Date();
+        const sessSnap = await getDocs(collection(db, "test_sessions"));
+        sessSnap.forEach(d => {
+            const sData = d.data();
+            sessionsCache[d.id] = sData.title || "Unknown Session";
+            if (sData.endTime && sData.endTime.toDate() >= now) {
+                activeSessionIds.add(d.id);
+            }
+        });
 
         let html = '';
         let totalAmount = 0;
@@ -1937,18 +1958,39 @@ window.loadRegistrations = async () => {
 
         for (const purchaseDoc of snap.docs) {
             const pData = purchaseDoc.data();
+
+            // If "All Sessions" is selected, ONLY show active/upcoming sessions
+            if (sid === "all" && !activeSessionIds.has(pData.sessionId)) {
+                continue;
+            }
+
             const userRef = purchaseDoc.ref.parent.parent; 
             let userName = "Unknown";
             let userEmail = "Unknown";
+            let userClass = "Unknown";
             
             if (userRef) {
                 const userSnap = await getDoc(userRef);
                 if (userSnap.exists()) {
-                    userName = userSnap.data().name || "Unknown";
-                    userEmail = userSnap.data().email || "Unknown";
+                    const uData = userSnap.data();
+                    userName = uData.name || "Unknown";
+                    userEmail = uData.email || "Unknown";
+                    
+                    let rawClass = uData.class || uData.studentClass || uData.grade;
+                    if (rawClass !== undefined && rawClass !== null) {
+                        let classStr = String(rawClass).trim();
+                        if (classStr.toLowerCase().startsWith("class")) {
+                            userClass = classStr.replace(/^class\s*/i, "Class ");
+                        } else {
+                            userClass = "Class " + classStr;
+                        }
+                    } else {
+                        userClass = "Unknown";
+                    }
                 }
             }
 
+            const sessionName = sessionsCache[pData.sessionId] || "Unknown Session";
             const dateStr = pData.time && pData.time.toDate ? pData.time.toDate().toLocaleString() : 'N/A';
             const amt = pData.amount || 0;
             totalAmount += amt;
@@ -1961,6 +2003,8 @@ window.loadRegistrations = async () => {
                 <td>${dateStr}</td>
                 <td>${userName}</td>
                 <td>${userEmail}</td>
+                <td>${userClass}</td>
+                <td>${sessionName}</td>
                 <td>${typeLabel}</td>
                 <td>₹${amt}</td>
                 <td><span class="badge" style="background:var(--subtle); color:var(--text); border:1px solid var(--border);">${coupon}</span></td>
@@ -1973,9 +2017,9 @@ window.loadRegistrations = async () => {
     } catch (e) {
         console.error("Error loading registrations:", e);
         if (e.message.includes("requires an index")) {
-            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--danger);"><b>Setup Required:</b> Your database requires an index to run this query. Check the browser console (F12) for the direct link to create it.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--danger);"><b>Setup Required:</b> Your database requires an index to run this query. Check the browser console (F12) for the direct link to create it.</td></tr>`;
         } else {
-            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--danger);">Error: ${e.message}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--danger);">Error: ${e.message}</td></tr>`;
         }
     }
 };
