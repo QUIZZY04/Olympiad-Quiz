@@ -1265,9 +1265,12 @@ if (!questions.length) return;
 const q=questions[current];
 visitedQuestions[current]=true;
 
-let qTypeBadge = q.isAchiever 
-    ? `<span style="background: var(--brand); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(79,70,229,0.3);">🏆 Achievers Section (2 Marks)</span>`
-    : `<span style="background: var(--muted); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle;">📝 Regular Section (1 Mark)</span>`;
+let qTypeBadge = "";
+if (q.isAchiever) {
+    qTypeBadge = `<span style="background: var(--brand); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(79,70,229,0.3);">🏆 Achievers Section (2 Marks)</span>`;
+} else if (isChampionship) {
+    qTypeBadge = `<span style="background: var(--muted); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle;">📝 Regular Section (1 Mark)</span>`;
+}
 
 document.getElementById("questionNumber").innerHTML=`QUESTION ${current+1} ${qTypeBadge}`;
 document.getElementById("questionText").innerHTML=q.q || "Question not available";
@@ -1325,12 +1328,14 @@ for(let i=0;i<questions.length;i++) {
 }
 let finalHtml = "";
 if (regularHtml) {
-    finalHtml += `
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 10px;">
-        <div style="font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase;">📝 Regular Section</div>
-        <div style="font-size: 10px; background: var(--bg); padding: 3px 8px; border-radius: 6px; font-weight: 800; color: var(--text);">${regCount} Qs × 1M</div>
-    </div>
-    <div class="grid" style="margin-top:0;">${regularHtml}</div>`;
+    if (isChampionship) {
+        finalHtml += `
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 10px;">
+            <div style="font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase;">📝 Regular Section</div>
+            <div style="font-size: 10px; background: var(--bg); padding: 3px 8px; border-radius: 6px; font-weight: 800; color: var(--text);">${regCount} Qs × 1M</div>
+        </div>`;
+    }
+    finalHtml += `<div class="grid" style="margin-top:0;">${regularHtml}</div>`;
 }
 if (achieverHtml) {
     finalHtml += `
@@ -1406,7 +1411,8 @@ async function submitQuiz(){
         class: localStorage.getItem("selectedClass"),
         topic: topicInfo.selectedTopicCode,
         topicName: topicInfo.selectedTopicName,
-        topicDisplay: topicInfo.selectedTopicDisplay
+        topicDisplay: topicInfo.selectedTopicDisplay,
+        isChampionship
     };
 
     localStorage.setItem("quizResult", JSON.stringify(resultData));

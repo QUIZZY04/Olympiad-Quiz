@@ -507,9 +507,12 @@ document.addEventListener("DOMContentLoaded",function(){
         const userAns = answersArray[i] ?? null;
         const isCorrect = userAns == q.a; // Loose comparison is fine here as q.a is usually a number string
 
-        let typeBadge = q.isAchiever 
-            ? `<span style="background:var(--brand); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; font-weight:bold; white-space:nowrap;">Achiever (2M)</span>`
-            : `<span style="background:var(--muted); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; font-weight:bold; white-space:nowrap;">Regular (1M)</span>`;
+        let typeBadge = "";
+        if (q.isAchiever) {
+            typeBadge = `<span style="background:var(--brand); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; font-weight:bold; white-space:nowrap;">Achiever (2M)</span>`;
+        } else if (res.isChampionship) {
+            typeBadge = `<span style="background:var(--muted); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; font-weight:bold; white-space:nowrap;">Regular (1M)</span>`;
+        }
 
         let opts = q.o || q.options || [];
         if (typeof opts === 'string') {
