@@ -485,10 +485,11 @@ document.addEventListener("DOMContentLoaded",function(){
 
     const res=JSON.parse(data);
     const answersArray = res.answers || res.userAnswers || [];
-    const accuracy=((res.score/res.total)*100).toFixed(2);
+    let maxScore = res.totalScore || res.total;
+    const accuracy=((res.score/maxScore)*100).toFixed(2);
 
     document.getElementById("summary").innerHTML=`
-        <h2 style="font-size:42px;color:var(--brand);margin-bottom:10px;">${res.score} / ${res.total}</h2>
+        <h2 style="font-size:42px;color:var(--brand);margin-bottom:10px;">${res.score} / ${maxScore}</h2>
         <h3 style="color:var(--muted);font-size:14px;">Accuracy: ${accuracy}%</h3>
     `;
 
@@ -500,17 +501,40 @@ document.addEventListener("DOMContentLoaded",function(){
             💡 If there are any discrepancies in the quiz, report to the admin by clicking on the <strong>Flag</strong> button next to the question.
         </div>
     </div>
-    <table><thead><tr><th>#</th><th>Question</th><th>Your Ans</th><th>Correct Ans</th><th>Status</th><th>Solution</th><th style="text-align:center;">Action</th></tr></thead><tbody>`;
+    <table><thead><tr><th>#</th><th>Type</th><th>Question</th><th>Your Ans</th><th>Correct Ans</th><th>Status</th><th>Solution</th><th style="text-align:center;">Action</th></tr></thead><tbody>`;
 
     res.questions.forEach((q,i)=>{
         const userAns = answersArray[i] ?? null;
         const isCorrect = userAns == q.a; // Loose comparison is fine here as q.a is usually a number string
 
+        let typeBadge = q.isAchiever 
+            ? `<span style="background:var(--brand); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; font-weight:bold; white-space:nowrap;">Achiever (2M)</span>`
+            : `<span style="background:var(--muted); color:#fff; font-size:10px; padding:2px 6px; border-radius:4px; font-weight:bold; white-space:nowrap;">Regular (1M)</span>`;
+
+        let opts = q.o || q.options || [];
+        if (typeof opts === 'string') {
+            try { opts = JSON.parse(opts); } catch(e) { opts = []; }
+        }
+        if (!Array.isArray(opts) && typeof opts === 'object' && opts !== null) {
+            opts = Object.values(opts);
+        }
+
+        let userAnsText = "Not Attempted";
+        if (userAns !== null && opts[userAns] !== undefined) {
+            userAnsText = opts[userAns];
+        }
+
+        let correctAnsText = q.a !== undefined ? q.a : "N/A";
+        if (q.a !== undefined && opts[q.a] !== undefined) {
+            correctAnsText = opts[q.a];
+        }
+
         html+=`<tr class="${isCorrect?'correct-row':'wrong-row'}">
             <td>${i+1}</td>
+            <td>${typeBadge}</td>
             <td style="min-width: 250px; font-weight: 500;">${q.q}</td>
-            <td style="font-weight: 700;">${userAns!==null ? q.o[userAns] : "Not Attempted"}</td>
-            <td style="color:var(--success);font-weight:800;">${q.o[q.a]}</td>
+            <td style="font-weight: 700;">${userAnsText}</td>
+            <td style="color:var(--success);font-weight:800;">${correctAnsText}</td>
             <td>
                 <span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
             </td>

@@ -1179,9 +1179,19 @@ try {
             const missingIds = [];
             qSnaps.forEach((snap, index) => {
                 if (snap.exists()) {
-                    questions.push({ ...snap.data(), id: snap.id });
+                    questions.push({ ...snap.data(), id: snap.id, isAchiever: false });
                 } else {
                     missingIds.push(sData.questionIds[index]);
+                }
+            });
+
+            const aqPromises = (sData.achieverQuestionIds || []).map(id => getDoc(doc(db, "questions", id)));
+            const aqSnaps = await Promise.all(aqPromises);
+            aqSnaps.forEach((snap, index) => {
+                if (snap.exists()) {
+                    questions.push({ ...snap.data(), id: snap.id, isAchiever: true });
+                } else {
+                    missingIds.push(sData.achieverQuestionIds[index]);
                 }
             });
 
@@ -1201,7 +1211,7 @@ try {
                 where("subject", "==", sSub));
 
         const snap = await getDocs(qBase);
-        questions = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+        questions = snap.docs.map(d => ({ ...d.data(), id: d.id, isAchiever: d.data().isAchiever === true }));
         if(questions.length>30) questions=questions.slice(0,30);
     }
 } catch (error) {
@@ -1255,7 +1265,11 @@ if (!questions.length) return;
 const q=questions[current];
 visitedQuestions[current]=true;
 
-document.getElementById("questionNumber").innerText=`QUESTION ${current+1}`;
+let qTypeBadge = q.isAchiever 
+    ? `<span style="background: var(--brand); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(79,70,229,0.3);">🏆 Achievers Section (2 Marks)</span>`
+    : `<span style="background: var(--muted); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle;">📝 Regular Section (1 Mark)</span>`;
+
+document.getElementById("questionNumber").innerHTML=`QUESTION ${current+1} ${qTypeBadge}`;
 document.getElementById("questionText").innerHTML=q.q || "Question not available";
 
 const imgDiv = document.getElementById("questionImage");
@@ -1264,7 +1278,7 @@ imgDiv.style.display = "none";
 
 const imageName = q.image_name || q.image_url;
 
-if (imageName) {
+if (imageName && imageName.toLowerCase() !== "none" && imageName.toLowerCase() !== "null") {
     try {
         let finalUrl = imageName;
         if (typeof imageName === 'string' && !imageName.startsWith("http")) {
@@ -1294,9 +1308,41 @@ function prevQuestion(){ if(current>0){current--; loadQuestion();} }
 function jumpTo(i){ current=i; loadQuestion(); }
 
 function generateGrid(){
-let html="";
-for(let i=0;i<questions.length;i++) html+=`<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
-document.getElementById("questionGrid").innerHTML=html;
+let regularHtml="";
+let achieverHtml="";
+let regCount = 0;
+let achCount = 0;
+
+for(let i=0;i<questions.length;i++) {
+    let html = `<div class="cell" id="q${i}" onclick="jumpTo(${i})">${i+1}</div>`;
+    if (questions[i].isAchiever) {
+        achieverHtml += html;
+        achCount++;
+    } else {
+        regularHtml += html;
+        regCount++;
+    }
+}
+let finalHtml = "";
+if (regularHtml) {
+    finalHtml += `
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 10px;">
+        <div style="font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase;">📝 Regular Section</div>
+        <div style="font-size: 10px; background: var(--bg); padding: 3px 8px; border-radius: 6px; font-weight: 800; color: var(--text);">${regCount} Qs × 1M</div>
+    </div>
+    <div class="grid" style="margin-top:0;">${regularHtml}</div>`;
+}
+if (achieverHtml) {
+    finalHtml += `
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 20px 0 10px;">
+        <div style="font-size: 12px; color: var(--brand); font-weight: 800; text-transform: uppercase;">🏆 Achievers Section</div>
+        <div style="font-size: 10px; background: var(--brand); color: white; padding: 3px 8px; border-radius: 6px; font-weight: 800; box-shadow: 0 2px 5px rgba(79,70,229,0.3);">${achCount} Qs × 2M</div>
+    </div>
+    <div class="grid" style="margin-top:0;">${achieverHtml}</div>`;
+}
+const qGrid = document.getElementById("questionGrid");
+qGrid.innerHTML = finalHtml;
+qGrid.classList.remove("grid");
 }
 
 function updateGrid(){
@@ -1341,13 +1387,19 @@ async function submitQuiz(){
     }
 
     let score=0;
-    questions.forEach((q,i)=>{ if(selectedAnswers[i] == q.a) score++; });
+    let maxScore=0;
+    questions.forEach((q,i)=>{ 
+        let questionMarks = q.isAchiever ? 2 : 1;
+        maxScore += questionMarks;
+        if(selectedAnswers[i] == q.a) score += questionMarks; 
+    });
 
     const topicInfo = getVerifiedTopicSelection();
 
     const resultData = {
         score,
         total: questions.length,
+        totalScore: maxScore,
         questions,
         answers: selectedAnswers,
         subject: localStorage.getItem("selectedSubject"),
@@ -1364,8 +1416,9 @@ async function submitQuiz(){
             email:auth.currentUser.email,
             uid:auth.currentUser.uid,
             score,
-            total:questions.length,
-            accuracy:((score/questions.length)*100).toFixed(2),
+            total: maxScore,
+            totalQuestions: questions.length,
+            accuracy:((score/maxScore)*100).toFixed(2),
             date:serverTimestamp(),
             isChampionship,
             sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null,

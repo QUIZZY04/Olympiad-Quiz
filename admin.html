@@ -493,6 +493,20 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <div class="panel" style="border-top: 2px solid var(--accent);">
+        <div class="panel-header">
+            <h2 style="color: var(--accent);">🏆 Achiever Question Import (JSON)</h2>
+        </div>
+        <div class="panel-content">
+            <h4 style="margin-bottom:10px;">Paste JSON specifically for Achievers Section</h4>
+            <p class="muted" style="margin-bottom:15px; font-size:12px;">Questions uploaded here will automatically be tagged as Achiever questions in the database, awarding 2 marks wherever they appear.</p>
+            <textarea id="achJsonPaste" placeholder="Paste Achiever JSON array here..."></textarea>
+            <button class="upload" style="background: var(--accent);" onclick="uploadAchPaste()">Upload Achiever Questions</button>
+            <button class="upload" onclick="pasteAchClipboard()" style="background: var(--brand); color: #fff;">Paste from Clipboard</button>
+            <button class="delete" onclick="clearAchPaste()">Clear</button>
+        </div>
+    </div>
+
     <div class="panel" style="border-top: 2px solid var(--warning);">
         <div class="panel-header">
             <h2 style="color: var(--warning);">📅 Schedule Weekly Test</h2>
@@ -520,19 +534,35 @@ border-top:1px solid var(--border);
         </div>
         <div><label>Test Date</label><input type="date" id="sessDate"></div>
         <div><label>Start Time</label><input type="time" id="sessTime"></div>
-        <div><label>Range Start ID</label><input type="text" id="sessStartId" placeholder="e.g. Q001"></div>
-        <div><label>Range End ID</label><input type="text" id="sessEndId" placeholder="e.g. Q050"></div>
+        <div><label>Range Start ID (Regular)</label><input type="text" id="sessStartId" placeholder="e.g. Q001"></div>
+        <div><label>Range End ID (Regular)</label><input type="text" id="sessEndId" placeholder="e.g. Q050"></div>
         <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
         <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
         <div style="grid-column: 1 / -1;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                <label style="margin: 0;"><b>OR</b> Paste Questions (Full JSON Questions or List of IDs)</label>
+                <label style="margin: 0;"><b>OR</b> Paste Regular Questions (Full JSON Questions or List of IDs)</label>
                 <div style="display: flex; gap: 8px;">
                     <button class="upload" onclick="pasteSessManualIds()" style="background: var(--brand); color: #000; margin-top: 0; padding: 5px 12px; font-size: 11px;">Paste</button>
                     <button class="delete" onclick="clearSessManualIds()" style="margin-top: 0; padding: 5px 12px; font-size: 11px;">Clear</button>
                 </div>
             </div>
             <textarea id="sessManualIds" style="height: 100px; margin-top: 0;" placeholder="Paste full question JSON array or a list of IDs..."></textarea>
+        </div>
+        
+        <div style="grid-column: 1 / -1; margin-top: 15px; border-top: 1px solid var(--border); padding-top: 15px;">
+            <h3 style="margin-bottom: 10px; font-size: 16px; color: var(--brand);">🏆 Achievers Section (2 Marks Each)</h3>
+        </div>
+        <div><label>Achiever Range Start ID</label><input type="text" id="sessAchStartId" placeholder="e.g. A001"></div>
+        <div><label>Achiever Range End ID</label><input type="text" id="sessAchEndId" placeholder="e.g. A010"></div>
+        <div style="grid-column: 1 / -1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                <label style="margin: 0;"><b>OR</b> Paste Achievers Questions (Full JSON or List of IDs)</label>
+                <div style="display: flex; gap: 8px;">
+                    <button class="upload" onclick="pasteSessAchManualIds()" style="background: var(--brand); color: #000; margin-top: 0; padding: 5px 12px; font-size: 11px;">Paste</button>
+                    <button class="delete" onclick="clearSessAchManualIds()" style="margin-top: 0; padding: 5px 12px; font-size: 11px;">Clear</button>
+                </div>
+            </div>
+            <textarea id="sessAchManualIds" style="height: 100px; margin-top: 0;" placeholder="Paste full question JSON array or a list of IDs..."></textarea>
         </div>
     </div>
     <button class="upload" style="width: 100%; margin-top: 20px;" onclick="createSession()">Create Session</button>
@@ -872,6 +902,54 @@ window.clearPaste = function() {
     document.getElementById("jsonPaste").value = "";
 };
 
+window.uploadAchPaste = async function() {
+    try {
+        const text = document.getElementById("achJsonPaste").value.trim();
+        if (!text) {
+            alert("Please paste some JSON data first.");
+            return;
+        }
+
+        const data = JSON.parse(text);
+        const idsInBatch = data.map(q => q.id).filter(id => !!id);
+        const uniqueIds = new Set(idsInBatch);
+        if (idsInBatch.length !== uniqueIds.size) {
+            if (!confirm(`⚠️ Warning: Detected ${idsInBatch.length - uniqueIds.size} duplicate IDs in this batch. Firestore will only keep the last version of each. Continue?`)) return;
+        }
+
+        let successCount = 0;
+
+        for (let q of data) {
+            if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+            q.isAchiever = true; // Auto-tag as achiever
+            await setDoc(doc(questionsRef, q.id), q);
+            successCount++;
+        }
+
+        if (confirm(`✅ Successfully uploaded ${successCount} Achiever questions!\n\nClick OK to clear the area for the next batch.`)) {
+            document.getElementById("achJsonPaste").value = "";
+            uploadedImageUrls = {}; 
+            document.getElementById('imageUploadStatus').innerHTML = "";
+            document.getElementById('imageFolderInput').value = "";
+        }
+    } catch (e) { 
+        alert("❌ Error: " + e.message); 
+    }
+};
+
+window.pasteAchClipboard = async function() {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("achJsonPaste").value = text;
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually.");
+    }
+};
+
+window.clearAchPaste = function() {
+    document.getElementById("achJsonPaste").value = "";
+};
+
 window.pasteSessManualIds = async function() {
     try {
         const text = await navigator.clipboard.readText();
@@ -879,6 +957,19 @@ window.pasteSessManualIds = async function() {
     } catch (err) {
         alert("Failed to read clipboard. Please paste manually.");
     }
+};
+
+window.pasteSessAchManualIds = async function() {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("sessAchManualIds").value = text;
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually.");
+    }
+};
+
+window.clearSessAchManualIds = function() {
+    document.getElementById("sessAchManualIds").value = "";
 };
 
 window.clearSessManualIds = function() {
@@ -1458,9 +1549,17 @@ window.createSession = async () => {
         const cls = document.getElementById("sessClass").value;
         const date = document.getElementById("sessDate").value;
         const time = document.getElementById("sessTime").value;
+        
+        // Regular Section
         const startId = document.getElementById("sessStartId").value.trim();
         const endId = document.getElementById("sessEndId").value.trim();
         const manualIdsRaw = document.getElementById("sessManualIds").value.trim();
+        
+        // Achievers Section
+        const achStartId = document.getElementById("sessAchStartId").value.trim();
+        const achEndId = document.getElementById("sessAchEndId").value.trim();
+        const achManualIdsRaw = document.getElementById("sessAchManualIds").value.trim();
+        
         const price = document.getElementById("sessPrice").value;
         const duration = document.getElementById("sessDuration").value;
 
@@ -1474,41 +1573,35 @@ window.createSession = async () => {
         btn.innerText = "⏳ Processing...";
 
         let questionIds = [];
+        let achieverQuestionIds = [];
 
+        // 1. Process Regular Questions
         if (manualIdsRaw) {
-            // 1. Process manual IDs (Smart parsing for JSON arrays or plain text lists)
             try {
                 const parsed = JSON.parse(manualIdsRaw);
                 const items = Array.isArray(parsed) ? parsed : [parsed];
                 
-                // All-in-One: If pasting full question objects, upload them to Firebase first
                 const isFullObject = items.length > 0 && typeof items[0] === 'object' && items[0].id && items[0].q;
 
                 if (isFullObject) {
                     btn.innerText = "⏳ Syncing Questions...";
                     for (let q of items) {
-                        // Apply images if a folder was recently uploaded in memory
                         if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
-                        // Save/Update in Firestore
                         await setDoc(doc(questionsRef, q.id), q);
                     }
                     questionIds = items.map(i => i.id);
                 } else {
-                    // It's just a list of IDs or strings
                     questionIds = items.map(item => (typeof item === 'string' ? item : item.id)).filter(id => !!id);
                 }
             } catch (e) {
-                // If JSON.parse fails, extract IDs from the raw text using specific patterns
                 let extractedIds = [];
 
-                // First, look for "id": "value" patterns (most reliable for JSON-like text)
                 const jsonIdPattern = /"id"\s*:\s*"([^"]+)"/g;
                 let match;
                 while ((match = jsonIdPattern.exec(manualIdsRaw)) !== null) {
                     extractedIds.push(match[1]);
                 }
 
-                // Then, look for the specific ID format (e.g., math_c5_v2_M01_001)
                 const specificIdPattern = /([a-z]+_c[0-9]+(?:_v[0-9]+)?_[A-Z][0-9]+_[0-9]+)/g;
                 while ((match = specificIdPattern.exec(manualIdsRaw)) !== null) {
                     extractedIds.push(match[1]);
@@ -1517,10 +1610,8 @@ window.createSession = async () => {
                 questionIds = extractedIds;
             }
 
-            // Global safety: Deduplicate and strictly remove anything with slashes before Firebase calls
             questionIds = [...new Set(questionIds)].filter(id => id && !id.includes('/'));
 
-            // 2. Verify manual IDs exist before continuing
             const qPromises = questionIds.map(id => getDoc(doc(db, "questions", id)));
             const qSnaps = await Promise.all(qPromises);
             const missingIds = questionIds.filter((id, index) => !qSnaps[index].exists());
@@ -1531,33 +1622,84 @@ window.createSession = async () => {
                 return;
             }
         } else {
-            // 3. Fallback to Range Logic if manual paste area is empty
-            if(!startId || !endId) { setStatus("⚠️ Please either provide a Range OR paste specific IDs."); resetBtn(); return; }
-
+            if(startId && endId) {
             const qClass = "class" + cls;
             const qry = query(collection(db, "questions"), where("class", "==", qClass), where("subject", "in", [subject, subject.replace(/s$/, "")]));
             const snap = await getDocs(qry);
             
-            if (snap.empty) {
-                setStatus(`❌ No questions found for ${qClass} ${subject} to check range.`);
-                resetBtn();
-                return;
-            }
-
+            if (!snap.empty) {
             const bounds = [startId, endId].sort();
             questionIds = snap.docs
                 .map(d => d.id)
                 .filter(id => id >= bounds[0] && id <= bounds[1])
                 .sort();
+            }
+            }
         }
 
-        if (questionIds.length === 0) {
+        // 2. Process Achievers Questions
+        if (achManualIdsRaw) {
+            try {
+                const parsed = JSON.parse(achManualIdsRaw);
+                const items = Array.isArray(parsed) ? parsed : [parsed];
+                
+                const isFullObject = items.length > 0 && typeof items[0] === 'object' && items[0].id && items[0].q;
+
+                if (isFullObject) {
+                    btn.innerText = "⏳ Syncing Achiever Questions...";
+                    for (let q of items) {
+                        if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+                        await setDoc(doc(questionsRef, q.id), q);
+                    }
+                    achieverQuestionIds = items.map(i => i.id);
+                } else {
+                    achieverQuestionIds = items.map(item => (typeof item === 'string' ? item : item.id)).filter(id => !!id);
+                }
+            } catch (e) {
+                let extractedIds = [];
+                const jsonIdPattern = /"id"\s*:\s*"([^"]+)"/g;
+                let match;
+                while ((match = jsonIdPattern.exec(achManualIdsRaw)) !== null) {
+                    extractedIds.push(match[1]);
+                }
+                const specificIdPattern = /([a-z]+_c[0-9]+(?:_v[0-9]+)?_[A-Z][0-9]+_[0-9]+)/g;
+                while ((match = specificIdPattern.exec(achManualIdsRaw)) !== null) {
+                    extractedIds.push(match[1]);
+                }
+                achieverQuestionIds = extractedIds;
+            }
+            achieverQuestionIds = [...new Set(achieverQuestionIds)].filter(id => id && !id.includes('/'));
+
+            const aqPromises = achieverQuestionIds.map(id => getDoc(doc(db, "questions", id)));
+            const aqSnaps = await Promise.all(aqPromises);
+            const aMissingIds = achieverQuestionIds.filter((id, index) => !aqSnaps[index].exists());
+
+            if (aMissingIds.length > 0) {
+                setStatus(`❌ The following Achiever IDs were not found in the database:\n\n${aMissingIds.join(", ")}\n\nPlease correct them before creating the session.`);
+                resetBtn();
+                return;
+            }
+        } else if (achStartId && achEndId) {
+            const qClass = "class" + cls;
+            const qry = query(collection(db, "questions"), where("class", "==", qClass), where("subject", "in", [subject, subject.replace(/s$/, "")]));
+            const snap = await getDocs(qry);
+            
+            if (!snap.empty) {
+                const bounds = [achStartId, achEndId].sort();
+                achieverQuestionIds = snap.docs
+                    .map(d => d.id)
+                    .filter(id => id >= bounds[0] && id <= bounds[1])
+                    .sort();
+            }
+        }
+
+        if (questionIds.length === 0 && achieverQuestionIds.length === 0) {
             setStatus(`❌ No valid questions identified. Check your IDs.`);
             resetBtn();
             return;
         }
 
-        if (!confirm(`✅ Session linked with ${questionIds.length} unique questions.\n\nCreate session now?`)) {
+        if (!confirm(`✅ Session linked with ${questionIds.length} regular questions and ${achieverQuestionIds.length} achiever questions.\n\nCreate session now?`)) {
             resetBtn();
             return;
         }
@@ -1571,6 +1713,7 @@ window.createSession = async () => {
             startTime: Timestamp.fromDate(startDateTime),
             endTime: Timestamp.fromDate(endDateTime),
             questionIds,
+            achieverQuestionIds,
             price: parseInt(price),
             duration: parseInt(duration),
             createdAt: serverTimestamp()
