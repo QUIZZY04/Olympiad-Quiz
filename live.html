@@ -50,14 +50,14 @@
 
         .arena-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
-            padding: 40px 20px;
+            padding: 20px;
             background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(139, 92, 246, 0.05));
             border-radius: 24px;
             border: 1px solid rgba(79, 70, 229, 0.1);
         }
-        .arena-header h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 15px; color: var(--text); letter-spacing: -0.04em; }
+        .arena-header h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 10px; color: var(--text); letter-spacing: -0.04em; }
         .arena-header h1 span { 
             background: linear-gradient(135deg, #f43f5e, #8b5cf6, #3b82f6); 
             -webkit-background-clip: text; 
@@ -234,6 +234,9 @@
         #loader { text-align: center; padding: 50px; font-weight: 600; color: var(--brand); }
 
         footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); color: var(--muted); margin-top: auto; background: rgba(2, 6, 23, 0.8); }
+        
+        #gradeFilter:focus { border-color: #4f46e5 !important; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2) !important; }
+        #subjectFilter:focus { border-color: #8b5cf6 !important; box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2) !important; }
 
         @media (max-width: 768px) {
             nav { flex-direction: column; padding: 15px; gap: 15px; }
@@ -294,8 +297,24 @@
     <div class="arena-header">
         <h1>Ultimate <span>Live Olympiad Arena</span></h1>
         <p>Step into the ultimate competitive zone! Compete in real-time nationwide quizzes for <b>IMO (Maths)</b>, <b>NSO (Science)</b>, <b>IEO (English)</b>, and <b>IRO (Reasoning)</b>. Claim your spot on the global leaderboard.</p>
-        <div style="margin-top: 25px;">
-            <span class="pulse-badge">⏳ Next Live Quiz coming soon</span>
+        <div style="margin-top: 15px;">
+            <span id="arenaBadge" class="pulse-badge">⏳ Next Live Quiz coming soon</span>
+        </div>
+        <p id="permanentInstruction" style="display: none; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text);">Select your grade and subject to Register.</p>
+    </div>
+
+    <div id="filterContainer" style="display: none; justify-content: center; gap: 30px; margin-bottom: 25px; flex-wrap: wrap; background: linear-gradient(135deg, #f5f3ff, #f0f9ff); padding: 25px; border-radius: 24px; border: 1px solid #e0e7ff; box-shadow: 0 20px 40px rgba(0,0,0,0.07);">
+        <div style="flex: 1; min-width: 250px; position: relative;">
+            <label style="position: absolute; top: -14px; left: 20px; background: linear-gradient(135deg, #4f46e5, #8b5cf6); color: white; padding: 4px 14px; font-size: 13px; font-weight: 800; border-radius: 10px; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);">🎓 SELECT GRADE</label>
+            <select id="gradeFilter" onchange="window.renderFilteredSessions()" style="width: 100%; padding: 18px 24px; border-radius: 14px; border: 2px solid #c7d2fe; font-size: 18px; font-weight: 700; outline: none; background: #ffffff; color: #312e81; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%234f46e5%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 1.5rem center; background-size: 1.2em;">
+                <option value="" selected disabled>Choose your grade...</option>
+            </select>
+        </div>
+        <div style="flex: 1; min-width: 250px; position: relative;">
+            <label style="position: absolute; top: -14px; left: 20px; background: linear-gradient(135deg, #a855f7, #ec4899); color: white; padding: 4px 14px; font-size: 13px; font-weight: 800; border-radius: 10px; box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3);">📚 SELECT SUBJECT</label>
+            <select id="subjectFilter" onchange="window.renderFilteredSessions()" style="width: 100%; padding: 18px 24px; border-radius: 14px; border: 2px solid #e9d5ff; font-size: 18px; font-weight: 700; outline: none; background: #ffffff; color: #581c87; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23a855f7%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 1.5rem center; background-size: 1.2em;">
+                <option value="" selected disabled>Choose your subject...</option>
+            </select>
         </div>
     </div>
 
@@ -376,13 +395,16 @@
     let timerInterval;
     let appliedCoupons = {}; // Tracks sessions with successfully applied coupons
     let currentSessionList = []; // Reference for forced updates
+    let allFetchedSessionDocs = [];
+    let userAccessSnaps = [];
+    let isAdminUser = false;
 
     async function loadSessions(user) {
         const container = document.getElementById("sessionContainer");
         const loader = document.getElementById("loader");
 
         try {
-            const isAdmin = user && user.email === "madhhu52@gmail.com";
+            isAdminUser = user && user.email === "madhhu52@gmail.com";
             
             let sessionDocs = [];
             // Step 1: Resilient Query - Try ordered query first
@@ -417,107 +439,93 @@
             }
             
             loader.style.display = "none";
-            container.innerHTML = "";
+            const filterContainer = document.getElementById("filterContainer");
 
             if (sessionDocs.length === 0) {
                 container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.2rem; font-weight: 600;">Live quiz is coming very soon.</div>`;
+                const arenaBadge = document.getElementById("arenaBadge");
+                if (arenaBadge) arenaBadge.innerText = "⏳ Next Live Quiz coming soon";
+                if (filterContainer) filterContainer.style.display = "none";
+                return;
+            }
+            if (filterContainer) filterContainer.style.display = "flex";
+
+            allFetchedSessionDocs = sessionDocs;
+
+            const uniqueGrades = new Set();
+            const uniqueSubjects = new Set();
+            const now = new Date();
+            let nextSessionDate = null;
+
+            allFetchedSessionDocs.forEach(sDoc => {
+                const s = sDoc.data();
+                const isMalformed = !s.startTime || !s.endTime || !s.title || s.class === undefined || s.subject === undefined;
+                if (!isMalformed && now <= s.endTime.toDate()) {
+                    uniqueGrades.add(s.class.toString());
+                    uniqueSubjects.add(s.subject);
+                    const startDate = s.startTime.toDate();
+                    if (!nextSessionDate || startDate < nextSessionDate) {
+                        nextSessionDate = startDate;
+                    }
+                }
+            });
+
+            if (nextSessionDate) {
+                const day = nextSessionDate.getDate();
+                let suffix = "th";
+                if (day === 1 || day === 21 || day === 31) suffix = "st";
+                else if (day === 2 || day === 22) suffix = "nd";
+                else if (day === 3 || day === 23) suffix = "rd";
+                const month = nextSessionDate.toLocaleString('default', { month: 'long' });
+                const year = nextSessionDate.getFullYear();
+                window.nextSessionDateStr = `${day}${suffix} ${month} ${year}`;
+            } else {
+                window.nextSessionDateStr = null;
+            }
+
+            if (uniqueGrades.size === 0) {
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.2rem; font-weight: 600;">Live quiz is coming very soon.</div>`;
+                const arenaBadge = document.getElementById("arenaBadge");
+                if (arenaBadge) arenaBadge.innerText = "⏳ Next Live Quiz coming soon";
+                if (filterContainer) filterContainer.style.display = "none";
+                const permInstr = document.getElementById("permanentInstruction");
+                if (permInstr) permInstr.style.display = "none";
                 return;
             }
 
-            const sessionList = [];
-            // Process sessions and check access
-        let accessSnaps = [];
-        if (user) {
-            const accessPromises = sessionDocs.map(sDoc => getDoc(doc(db, "users", user.uid, "purchases", sDoc.id)));
-            accessSnaps = await Promise.all(accessPromises);
-        }
+            const permInstr = document.getElementById("permanentInstruction");
+            if (permInstr) permInstr.style.display = "block";
 
-            for (let i = 0; i < sessionDocs.length; i++) {
-                const sDoc = sessionDocs[i];
-                const s = sDoc.data();
-                // Basic validation for essential fields
-                const isMalformed = !s.startTime || !s.endTime || !s.title || s.class === undefined || s.subject === undefined;
-                
-                if (isMalformed) {
-                    console.warn(`[ARENA DEBUG] Skipping malformed session ${sDoc.id}: Missing essential data.`, {
-                        startTime: s.startTime, endTime: s.endTime, title: s.title, class: s.class, subject: s.subject
-                    });
-                    if (isAdmin) {
-                        container.innerHTML += `<div style="border:1px dashed var(--danger); padding:10px; margin-bottom:10px; font-size:11px; color:var(--danger);">⚠️ Admin: Session ${sDoc.id} is missing fields (Time, Title, or Class).</div>`;
-                    }
-                    console.warn(`[ARENA DEBUG] Skipping malformed session ${sDoc.id}: Missing essential data.`, s);
-                    continue;
-                }
-
-                const start = s.startTime.toDate();
-                const end = s.endTime.toDate();
-                const now = new Date(); // Get current time inside the loop for precise comparison
-
-                console.log(`[ARENA DEBUG] Processing session ${s.title} (${sDoc.id}):`);
-                console.log(`  - Current Time (Local): ${now.toLocaleString()}`);
-                console.log(`  - Session Start Time (Local): ${start.toLocaleString()}`);
-                console.log(`  - Session End Time (Local): ${end.toLocaleString()}`);
-                
-                const sessionPrice = s.price === undefined ? 99 : s.price; // Ensure price is always defined for logic
-                const hasAccess = accessSnaps[i] ? accessSnaps[i].exists() : false;
-
-                // Check if the session has already ended
-                if (now > end) {
-                    console.log(`  - Session ${s.title} has ended. Skipping.`);
-                    continue; // Skip rendering sessions that have already ended
-                }
-
-                sessionList.push({ id: sDoc.id, start, end, hasAccess, price: sessionPrice, title: s.title, duration: s.duration, subject: s.subject, class: s.class });
-
-                const wrapper = document.createElement("div");
-                wrapper.className = "card-wrapper";
-                wrapper.style.display = "flex";
-                wrapper.style.flexDirection = "column";
-                wrapper.innerHTML = `
-                <div id="highlight-${sDoc.id}" class="card-highlight">🔥 Upcoming Live Quiz</div>
-                <div class="session-card" style="flex: 1; width: 100%;">
-                    <span id="pill-${sDoc.id}" class="status-pill">Checking...</span>
-                <h3 class="session-title">${s.title}</h3>
-                <div class="session-meta">
-                    <div class="meta-item"><b>📅 Date</b> <span>${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
-                    <div class="meta-item"><b>⏰ Starts</b> <span>${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div>
-                    <div class="meta-item"><b>⌛ Duration</b> <span>${s.duration} Min</span></div>
-                    <div class="meta-item"><b>📖 Subject</b> <span>${s.subject.toUpperCase()}</span></div>
-                    <div class="meta-item"><b>🎓 Grade</b> <span>Class ${s.class}</span></div>
-                </div>
-                <div id="timer-${sDoc.id}" class="countdown-timer">00:00:00</div>
-                <div class="rules-box">
-                    <b>📜 Quiz Guidelines:</b>
-                    <ul>
-                            <li>Total Questions: 50</li>
-                            <li>Access restricted to registered participants.</li>
-                            <li>One attempt only. Auto-submits on timeout.</li>
-                    </ul>
-                </div>
-                <button onclick="window.location.href='instructions.html'" class="info-btn">❓ How to start Quiz</button>
-                ${isAdmin ? `<button onclick="deleteSession('${sDoc.id}')" style="margin-bottom:10px; background:var(--danger); color:white; border:none; padding:8px; border-radius:8px; font-size:10px; cursor:pointer; width:100%;">🗑 DELETE SESSION</button>` : ''}
-                
-                <button id="btn-${sDoc.id}" class="join-btn btn-disabled" disabled>
-                    Please Wait
-                </button>
-
-                <div id="coupon-area-${sDoc.id}" style="display: none; margin-top: 10px; background: rgba(79, 70, 229, 0.05); padding: 8px; border-radius: 8px; border: 1px dashed var(--brand); width: 100%; align-self: center;">
-                    <div style="display: flex; gap: 6px;">
-                        <input type="text" id="coupon-input-${sDoc.id}" onkeydown="if(event.key==='Enter') applyCoupon('${sDoc.id}', '${s.title}')" placeholder="Enter Coupon code if You have" style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 12px; font-weight: 600; text-transform: uppercase; text-align: center;">
-                        <button onclick="applyCoupon('${sDoc.id}', '${s.title}')" style="background: var(--brand); color: white; border: none; padding: 0 12px; border-radius: 6px; font-weight: 800; font-size: 12px; cursor: pointer; text-transform: uppercase;">Apply</button>
-                    </div>
-                    <div id="coupon-msg-${sDoc.id}" style="font-size: 11px; margin-top: 6px; font-weight: 700; text-align: center;"></div>
-                </div>
-                </div>
-                `;
-                container.appendChild(wrapper);
+            const gradeFilter = document.getElementById("gradeFilter");
+            if (gradeFilter) {
+                gradeFilter.innerHTML = '<option value="" selected disabled>Choose your grade...</option>';
+                Array.from(uniqueGrades).sort((a, b) => parseInt(a) - parseInt(b)).forEach(g => {
+                    gradeFilter.innerHTML += `<option value="${g}">Class ${g}</option>`;
+                });
             }
-            // Sort sessionList by startTime (descending) after all data is gathered
-            currentSessionList = sessionList.sort((a, b) => b.start.getTime() - a.start.getTime());
 
-            if (timerInterval) clearInterval(timerInterval);
-            timerInterval = setInterval(() => updateTick(currentSessionList), 1000);
-            updateTick(currentSessionList);
+            const subjectFilter = document.getElementById("subjectFilter");
+            if (subjectFilter) {
+                const subjectMap = {
+                    maths: "Mathematics",
+                    science: "Science",
+                    english: "English",
+                    reasoning: "Reasoning",
+                    igko: "General Knowledge"
+                };
+                subjectFilter.innerHTML = '<option value="" selected disabled>Choose your subject...</option>';
+                Array.from(uniqueSubjects).sort().forEach(s => {
+                    const displayName = subjectMap[s.toLowerCase()] || s.charAt(0).toUpperCase() + s.slice(1);
+                    subjectFilter.innerHTML += `<option value="${s}">${displayName}</option>`;
+                });
+            }
+
+            if (user) {
+                const accessPromises = sessionDocs.map(sDoc => getDoc(doc(db, "users", user.uid, "purchases", sDoc.id)));
+                userAccessSnaps = await Promise.all(accessPromises);
+            }
+
+            window.renderFilteredSessions();
 
         } catch (e) {
             console.error("Lobby Load Error:", e);
@@ -539,6 +547,116 @@
             }
         }
     }
+
+    window.renderFilteredSessions = function() {
+        const container = document.getElementById("sessionContainer");
+        const gradeFilter = document.getElementById("gradeFilter").value;
+        const subjectFilter = document.getElementById("subjectFilter").value;
+        
+        container.innerHTML = "";
+
+        if (!gradeFilter || !subjectFilter) {
+            const arenaBadge = document.getElementById("arenaBadge");
+            if (arenaBadge) {
+                arenaBadge.innerText = window.nextSessionDateStr ? `Registration is open Live Quiz on ${window.nextSessionDateStr}` : "⏳ Next Live Quiz coming soon";
+            }
+            if (timerInterval) clearInterval(timerInterval);
+            return;
+        }
+
+        const sessionList = [];
+
+        for (let i = 0; i < allFetchedSessionDocs.length; i++) {
+            const sDoc = allFetchedSessionDocs[i];
+            const s = sDoc.data();
+
+            if (s.class.toString() !== gradeFilter || s.subject !== subjectFilter) {
+                continue;
+            }
+
+            const isMalformed = !s.startTime || !s.endTime || !s.title || s.class === undefined || s.subject === undefined;
+            if (isMalformed) {
+                if (isAdminUser) {
+                    container.innerHTML += `<div style="border:1px dashed var(--danger); padding:10px; margin-bottom:10px; font-size:11px; color:var(--danger); width:100%;">⚠️ Admin: Session ${sDoc.id} is missing fields (Time, Title, or Class).</div>`;
+                }
+                continue;
+            }
+
+            const start = s.startTime.toDate();
+            const end = s.endTime.toDate();
+            const now = new Date();
+            
+            if (now > end) {
+                continue; 
+            }
+
+            const sessionPrice = s.price === undefined ? 99 : s.price;
+            const hasAccess = userAccessSnaps[i] ? userAccessSnaps[i].exists() : false;
+
+            sessionList.push({ id: sDoc.id, start, end, hasAccess, price: sessionPrice, title: s.title, duration: s.duration, subject: s.subject, class: s.class });
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "card-wrapper";
+            wrapper.style.display = "flex";
+            wrapper.style.flexDirection = "column";
+            wrapper.innerHTML = `
+            <div id="highlight-${sDoc.id}" class="card-highlight">🔥 Upcoming Live Quiz</div>
+            <div class="session-card" style="flex: 1; width: 100%;">
+                <span id="pill-${sDoc.id}" class="status-pill">Checking...</span>
+            <h3 class="session-title">${s.title}</h3>
+            <div class="session-meta">
+                <div class="meta-item"><b>📅 Date</b> <span>${start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></div>
+                <div class="meta-item"><b>⏰ Starts</b> <span>${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div>
+                <div class="meta-item"><b>⌛ Duration</b> <span>${s.duration} Min</span></div>
+                <div class="meta-item"><b>📖 Subject</b> <span>${s.subject.toUpperCase()}</span></div>
+                <div class="meta-item"><b>🎓 Grade</b> <span>Class ${s.class}</span></div>
+            </div>
+            <div id="timer-${sDoc.id}" class="countdown-timer">00:00:00</div>
+            <div class="rules-box">
+                <b>📜 Quiz Guidelines:</b>
+                <ul>
+                        <li>Total Questions: 50</li>
+                        <li>Access restricted to registered participants.</li>
+                        <li>One attempt only. Auto-submits on timeout.</li>
+                </ul>
+            </div>
+            <button onclick="window.location.href='instructions.html'" class="info-btn">❓ How to start Quiz</button>
+            ${isAdminUser ? `<button onclick="deleteSession('${sDoc.id}')" style="margin-bottom:10px; background:var(--danger); color:white; border:none; padding:8px; border-radius:8px; font-size:10px; cursor:pointer; width:100%;">🗑 DELETE SESSION</button>` : ''}
+            
+            <button id="btn-${sDoc.id}" class="join-btn btn-disabled" disabled>
+                Please Wait
+            </button>
+
+            <div id="coupon-area-${sDoc.id}" style="display: none; margin-top: 10px; background: rgba(79, 70, 229, 0.05); padding: 8px; border-radius: 8px; border: 1px dashed var(--brand); width: 100%; align-self: center;">
+                <div style="display: flex; gap: 6px;">
+                    <input type="text" id="coupon-input-${sDoc.id}" onkeydown="if(event.key==='Enter') applyCoupon('${sDoc.id}', '${s.title}')" placeholder="Enter Coupon code if You have" style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 12px; font-weight: 600; text-transform: uppercase; text-align: center;">
+                    <button onclick="applyCoupon('${sDoc.id}', '${s.title}')" style="background: var(--brand); color: white; border: none; padding: 0 12px; border-radius: 6px; font-weight: 800; font-size: 12px; cursor: pointer; text-transform: uppercase;">Apply</button>
+                </div>
+                <div id="coupon-msg-${sDoc.id}" style="font-size: 11px; margin-top: 6px; font-weight: 700; text-align: center;"></div>
+            </div>
+            </div>
+            `;
+            container.appendChild(wrapper);
+        }
+
+        currentSessionList = sessionList.sort((a, b) => b.start.getTime() - a.start.getTime());
+
+        const arenaBadge = document.getElementById("arenaBadge");
+        if (currentSessionList.length > 0) {
+            if (arenaBadge) {
+                arenaBadge.innerText = window.nextSessionDateStr ? `Registration is open Live Quiz on ${window.nextSessionDateStr}` : "Register for Live Quiz Now";
+            }
+        } else {
+            if (arenaBadge) arenaBadge.innerText = "⏳ No live quizzes for this selection";
+            container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.1rem; font-weight: 600; background: var(--surface); border: 1px dashed var(--border); border-radius: 16px; width: 100%;">No active or upcoming live quizzes found for Class ${gradeFilter} ${subjectFilter.charAt(0).toUpperCase() + subjectFilter.slice(1)}.</div>`;
+        }
+
+        if (timerInterval) clearInterval(timerInterval);
+        if (currentSessionList.length > 0) {
+            timerInterval = setInterval(() => updateTick(currentSessionList), 1000);
+            updateTick(currentSessionList);
+        }
+    };
 
     function updateTick(sessions) {
         const now = new Date();
