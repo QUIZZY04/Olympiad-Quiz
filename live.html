@@ -248,6 +248,12 @@
             nav { flex-direction: column; padding: 15px; gap: 15px; }
             .arena-header h1 { font-size: 2.2rem; }
             .session-grid { gap: 30px; }
+            .congrats-content { padding: 30px 20px; border-radius: 24px; width: 95%; }
+            .congrats-content h2 { font-size: 20px !important; }
+            .congrats-content p { font-size: 14px !important; margin-bottom: 20px !important; }
+            .congrats-content > div[style*="display: flex"] { flex-direction: column; gap: 10px !important; }
+            .congrats-content button { padding: 12px 20px !important; font-size: 14px !important; }
+            .congrats-content > div[style*="font-size: 60px"] { font-size: 45px !important; margin-bottom: 10px !important; }
         }
     </style>
     <!-- Add Inter font for better numbers -->
@@ -335,6 +341,19 @@
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; font-size: 24px;">Coupon Applied!</h2>
         <p style="color: var(--text); line-height: 1.6; margin-bottom: 30px; font-weight: 500; font-size: 16px;">Congratulations! Your coupon is valid. Now click on the <b style="color:var(--success)">'Unlock for Free'</b> button on the test card to complete your registration.</p>
         <button onclick="closeCongratsModal()" style="background: var(--brand); color: white; padding: 14px 30px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">Got it!</button>
+    </div>
+</div>
+
+<!-- Login Prompt Modal -->
+<div id="loginPromptModal" class="congrats-modal">
+    <div class="congrats-content">
+        <div style="font-size: 60px; margin-bottom: 20px;">🔒</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; font-size: 24px;">Login Required</h2>
+        <p style="color: var(--text); line-height: 1.6; margin-bottom: 30px; font-weight: 500; font-size: 16px;">You are not logged in. First get logged in to register for live quiz.</p>
+        <div style="display: flex; gap: 15px;">
+            <button onclick="document.getElementById('loginPromptModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; transition: 0.2s;">No Thanks</button>
+            <button onclick="redirectToLogin()" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">OK</button>
+        </div>
     </div>
 </div>
 
@@ -723,6 +742,12 @@
     }
 
     window.applyCoupon = async (sessionId, title) => {
+        const user = auth.currentUser;
+        if (!user) {
+            document.getElementById('loginPromptModal').style.display = 'flex';
+            return;
+        }
+        
         const input = document.getElementById(`coupon-input-${sessionId}`);
         const msg = document.getElementById(`coupon-msg-${sessionId}`);
         const code = input.value.trim().toUpperCase();
@@ -758,9 +783,7 @@
     window.handleUnlock = async (sessionId, price, title) => {
         const user = auth.currentUser;
         if (!user) {
-            alert("Please log in or create an account to unlock this quiz.");
-            sessionStorage.setItem("redirectAfterLogin", window.location.href);
-            window.location.href = "login.html";
+            document.getElementById('loginPromptModal').style.display = 'flex';
             return;
         }
         const sessionPrice = parseInt(price); // Ensure price is a number
@@ -815,9 +838,7 @@
     window.handleJoin = (sessionId, studentClass, subject) => {
         const user = auth.currentUser;
         if (!user) {
-            alert("Please log in to join the quiz.");
-            sessionStorage.setItem("redirectAfterLogin", window.location.href);
-            window.location.href = "login.html";
+            document.getElementById('loginPromptModal').style.display = 'flex';
             return;
         }
         localStorage.setItem("activeSessionId", sessionId);
@@ -825,6 +846,11 @@
         localStorage.setItem("selectedSubject", subject);
         localStorage.setItem("isChampionship", "true");
         window.location.href = "quiz.html";
+    };
+
+    window.redirectToLogin = () => {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.href = "login.html";
     };
 
     window.closeCongratsModal = () => document.getElementById("congratsModal").style.display = "none";
