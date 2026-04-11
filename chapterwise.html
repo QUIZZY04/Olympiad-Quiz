@@ -1035,6 +1035,7 @@ change            max-width: 100%;
 
     function startMobilePractice() {
         if (localStorage.getItem("isLoggedIn") !== "true") {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.href = "login.html";
             return;
         }
@@ -1051,6 +1052,7 @@ change            max-width: 100%;
 
     function startPractice(topicCode, topicName) {
         if (localStorage.getItem("isLoggedIn") !== "true") {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.href = "login.html";
             return;
         }
@@ -1082,6 +1084,7 @@ change            max-width: 100%;
 
     function confirmStartQuiz() {
         if (localStorage.getItem("isLoggedIn") !== "true") {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.href = "login.html";
             return;
         }

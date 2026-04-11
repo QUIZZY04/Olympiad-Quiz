@@ -759,6 +759,7 @@
         const user = auth.currentUser;
         if (!user) {
             alert("Please log in or create an account to unlock this quiz.");
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.href = "login.html";
             return;
         }
@@ -815,6 +816,7 @@
         const user = auth.currentUser;
         if (!user) {
             alert("Please log in to join the quiz.");
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.href = "login.html";
             return;
         }

@@ -244,11 +244,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+const redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
+
 // Auto-redirect if already logged in
 onAuthStateChanged(auth, (user) => {
     if (user) {
         localStorage.setItem("isLoggedIn", "true");
-        window.location.replace("dashboard.html");
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.replace(redirectUrl);
     }
 });
 
@@ -266,7 +269,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     try {
         await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href="dashboard.html";
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.href = redirectUrl;
     } catch(err) { alert(err.message); }
 });
 
@@ -275,7 +279,8 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
     try {
         await signInWithPopup(auth, provider);
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "dashboard.html";
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.href = redirectUrl;
     } catch (err) { alert(err.message); }
 });
 
