@@ -1940,12 +1940,14 @@ window.loadRegistrations = async () => {
 
         // Cache sessions for title lookup
         const sessionsCache = {};
+        const sessionClassCache = {};
         const activeSessionIds = new Set();
         const now = new Date();
         const sessSnap = await getDocs(collection(db, "test_sessions"));
         sessSnap.forEach(d => {
             const sData = d.data();
             sessionsCache[d.id] = sData.title || "Unknown Session";
+            sessionClassCache[d.id] = sData.class || "";
             if (sData.endTime && sData.endTime.toDate() >= now) {
                 activeSessionIds.add(d.id);
             }
@@ -1968,26 +1970,33 @@ window.loadRegistrations = async () => {
             let userName = "Unknown";
             let userEmail = "Unknown";
             let userClass = "Unknown";
+            let rawClass = null;
             
             if (userRef) {
                 const userSnap = await getDoc(userRef);
                 if (userSnap.exists()) {
                     const uData = userSnap.data();
-                    userName = uData.name || "Unknown";
+                    userName = uData.name || uData.displayName || "Unknown";
                     userEmail = uData.email || "Unknown";
                     
-                    let rawClass = uData.class || uData.studentClass || uData.grade;
-                    if (rawClass !== undefined && rawClass !== null) {
-                        let classStr = String(rawClass).trim();
-                        if (classStr.toLowerCase().startsWith("class")) {
-                            userClass = classStr.replace(/^class\s*/i, "Class ");
-                        } else {
-                            userClass = "Class " + classStr;
-                        }
-                    } else {
-                        userClass = "Unknown";
-                    }
+                    rawClass = uData.class || uData.studentClass || uData.grade || uData.Class;
                 }
+            }
+
+            // Fallback: If user profile lacks class, use the class from the session they registered for
+            if (!rawClass || String(rawClass).trim() === "") {
+                rawClass = sessionClassCache[pData.sessionId] || pData.class || pData.studentClass;
+            }
+
+            if (rawClass !== undefined && rawClass !== null && String(rawClass).trim() !== "") {
+                let classStr = String(rawClass).trim();
+                if (classStr.toLowerCase().startsWith("class")) {
+                    userClass = classStr.replace(/^class\s*/i, "Class ");
+                } else {
+                    userClass = "Class " + classStr;
+                }
+            } else {
+                userClass = "Unknown";
             }
 
             const sessionName = sessionsCache[pData.sessionId] || "Unknown Session";
