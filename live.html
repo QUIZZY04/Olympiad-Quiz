@@ -691,6 +691,7 @@
             const timerEl = document.getElementById(`timer-${s.id}`);
             const pill = document.getElementById(`pill-${s.id}`);
             const highlight = document.getElementById(`highlight-${s.id}`);
+            const cpArea = document.getElementById(`coupon-area-${s.id}`);
 
             if (now > s.end) {
                 pill.innerText = "Ended"; pill.className = "status-pill status-ended";
@@ -698,26 +699,34 @@
                 timerEl.style.fontSize = "22px"; timerEl.style.letterSpacing = "3px";
                 if (highlight) highlight.style.display = "none";
                 btn.innerText = "Session Ended"; btn.className = "join-btn btn-disabled"; btn.disabled = true;
+                if (cpArea) cpArea.style.display = "none";
             } else if (!s.hasAccess) {
-                pill.innerText = "Locked"; pill.className = "status-pill status-upcoming";
-                timerEl.innerText = "Registration Open";
-                timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
-
-                if (appliedCoupons[s.id]) {
-                    btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-free-unlock";
-                    btn.onclick = () => handleUnlock(s.id, 0, s.title);
+                const regCloseTime = new Date(s.start.getTime() - 5 * 60000);
+                if (now >= regCloseTime) {
+                    pill.innerText = "Closed"; pill.className = "status-pill status-ended";
+                    timerEl.innerText = "Registration Closed";
+                    timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
+                    btn.innerText = "Registration Closed"; btn.className = "join-btn btn-disabled"; btn.disabled = true;
+                    if (cpArea) cpArea.style.display = "none";
                 } else {
-                    btn.innerText = `Unlock for ₹${s.price}`; btn.className = "join-btn btn-locked";
-                    btn.onclick = () => handleUnlock(s.id, s.price, s.title);
+                    pill.innerText = "Locked"; pill.className = "status-pill status-upcoming";
+                    timerEl.innerText = "Registration Open";
+                    timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
+    
+                    if (appliedCoupons[s.id]) {
+                        btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-free-unlock";
+                        btn.onclick = () => handleUnlock(s.id, 0, s.title);
+                    } else {
+                        btn.innerText = `Unlock for ₹${s.price}`; btn.className = "join-btn btn-locked";
+                        btn.onclick = () => handleUnlock(s.id, s.price, s.title);
+                    }
+                    btn.disabled = false;
+    
+                    // Show coupon area for paid locked sessions
+                    if (cpArea) cpArea.style.display = (s.price > 0) ? "block" : "none";
                 }
-                btn.disabled = false;
-
-                // Show coupon area for paid locked sessions
-                const cpArea = document.getElementById(`coupon-area-${s.id}`);
-                if (cpArea) cpArea.style.display = (s.price > 0) ? "block" : "none";
             } else {
                 // User has access
-                const cpArea = document.getElementById(`coupon-area-${s.id}`);
                 if (cpArea) cpArea.style.display = "none";
                 if (now < s.start) {
                     const diff = s.start - now;
@@ -748,6 +757,15 @@
             return;
         }
         
+        const session = currentSessionList.find(s => s.id === sessionId);
+        if (session) {
+            const regCloseTime = new Date(session.start.getTime() - 5 * 60000);
+            if (new Date() >= regCloseTime) {
+                alert("Registration for this live quiz is closed now.");
+                return;
+            }
+        }
+
         const input = document.getElementById(`coupon-input-${sessionId}`);
         const msg = document.getElementById(`coupon-msg-${sessionId}`);
         const code = input.value.trim().toUpperCase();
@@ -786,6 +804,16 @@
             document.getElementById('loginPromptModal').style.display = 'flex';
             return;
         }
+
+        const session = currentSessionList.find(s => s.id === sessionId);
+        if (session) {
+            const regCloseTime = new Date(session.start.getTime() - 5 * 60000);
+            if (new Date() >= regCloseTime) {
+                alert("Registration for this live quiz is closed now.");
+                return;
+            }
+        }
+
         const sessionPrice = parseInt(price); // Ensure price is a number
 
         if (sessionPrice === 0) {
