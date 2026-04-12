@@ -306,11 +306,13 @@ font-size:14px;
     <div class="filter-row">
 
     <select id="weeklyGrade" style="flex: 1;">
+    <option value="all" selected>All Grades</option>
     <option value="class1">Grade 1</option>
     <option value="class2">Grade 2</option>
     <option value="class3">Grade 3</option>
     <option value="class4">Grade 4</option>
     <option value="class5" selected>Grade 5</option>
+    <option value="class5">Grade 5</option>
     <option value="class6">Grade 6</option>
     <option value="class7">Grade 7</option>
     <option value="class8">Grade 8</option>
@@ -319,8 +321,10 @@ font-size:14px;
     </select>
 
     <select id="weeklySubject" style="flex: 1;">
+    <option value="all" selected>All Subjects</option>
     <option value="maths">Maths</option>
     <option value="science" selected>Science</option>
+    <option value="science">Science</option>
     <option value="english">English</option>
     <option value="reasoning">Reasoning</option>
     </select>
@@ -380,7 +384,10 @@ font-size:14px;
     <th>Rank</th>
     <th>Participant</th>
     <th>Score</th>
-    <th>Time</th>
+    <th>Accuracy</th>
+    <th>Sub</th>
+    <th>Grd</th>
+    <th>Date</th>
     </tr>
     </thead>
 
@@ -472,40 +479,36 @@ async function loadSessionsList() {
     const sessSelect = document.getElementById("weeklySession");
     const grade = document.getElementById("weeklyGrade").value;
     const subject = document.getElementById("weeklySubject").value;
-    const classNum = parseInt(grade.replace("class", ""));
 
-    try {
-        // Fetch all recent sessions and filter in JS to bypass missing composite index requirement
-        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(100));
-        const snap = await getDocs(q);
-        
-        let html = "";
-        snap.forEach(doc => {
-            const data = doc.data();
-            if (data.class === classNum && data.subject === subject) {
-                const label = `${data.title} (${data.startTime.toDate().toLocaleDateString()})`;
-                html += `<option value="${doc.id}">${label}</option>`;
-            }
-        });
-        if (html === "") html = '<option value="" disabled selected>No sessions found</option>';
-        sessSelect.innerHTML = html;
-    } catch(e) {
-        console.warn("Session List OrderBy Error, attempting basic fetch:", e);
+    let html = '<option value="all_live">All Time Live Quizzes</option>';
+
+    if (grade !== "all" && subject !== "all") {
+        const classNum = parseInt(grade.replace("class", ""));
         try {
             const fallbackSnap = await getDocs(collection(db, "test_sessions"));
-            let html = "";
+            let sessionOptions = "";
             fallbackSnap.forEach(doc => {
                 const data = doc.data();
                 if (data.class === classNum && data.subject === subject) {
-                    html += `<option value="${doc.id}">${data.title}</option>`;
+                    const archiveTag = data.archived ? " [Archived]" : "";
+                    const dateStr = data.startTime && data.startTime.toDate ? data.startTime.toDate().toLocaleDateString() : "";
+                    sessionOptions += `<option value="${doc.id}">${data.title} (${dateStr})${archiveTag}</option>`;
                 }
             });
-            if (html === "") html = '<option value="" disabled selected>No sessions found</option>';
-            sessSelect.innerHTML = html;
-        } catch (err2) {
-        sessSelect.innerHTML = `<option value="">Error loading</option>`;
+            if (sessionOptions !== "") {
+                html += sessionOptions;
+            } else {
+                html += '<option value="" disabled>No past sessions found for this selection</option>';
+            }
+        } catch (e) {
+            console.error(e);
         }
+    } else {
+        html += '<option value="" disabled>Select Grade & Subject to see past sessions</option>';
     }
+    
+    sessSelect.innerHTML = html;
+    sessSelect.value = "all_live";
 }
 
 async function refreshWeekly(){
@@ -515,41 +518,51 @@ async function refreshWeekly(){
     const labelEl = document.getElementById("weeklyLabel");
 
     if(!sessionId) {
-        tbody.innerHTML="<tr><td colspan='4'>No session selected</td></tr>";
+        tbody.innerHTML="<tr><td colspan='7'>No session selected</td></tr>";
         labelEl.innerText = "N/A";
         return;
     }
 
     labelEl.innerText = sessSelect.options[sessSelect.selectedIndex].text;
-    tbody.innerHTML="<tr><td colspan='4'>Loading...</td></tr>";
+    tbody.innerHTML="<tr><td colspan='7'>Loading...</td></tr>";
 
     let finalDocs = [];
 
     try {
-        const q=query(collection(db,"leaderboard"),
-        where("sessionId","==",sessionId),
-        orderBy("score","desc"),
-        limit(20));
-
-        const snap=await getDocs(q);
-        finalDocs = snap.docs;
-    } catch (e) {
-        console.warn("Index missing for score order. Falling back to basic fetch:", e);
-        try {
+        if (sessionId === "all_live") {
+            const q = query(collection(db, "leaderboard"), where("isChampionship", "==", true));
+            const snap = await getDocs(q);
+            
+            let todayDocs = [];
+            snap.forEach(doc => {
+                const d = doc.data();
+                const grade = document.getElementById("weeklyGrade").value;
+                const subject = document.getElementById("weeklySubject").value;
+                
+                let matchesGrade = grade === "all" || d.studentClass === grade;
+                let matchesSubject = subject === "all" || d.subject === subject;
+                
+                if (matchesGrade && matchesSubject) {
+                    todayDocs.push(doc);
+                }
+            });
+            todayDocs.sort((a,b) => (b.data().score || 0) - (a.data().score || 0));
+            finalDocs = todayDocs;
+        } else {
             const fallbackQ = query(collection(db, "leaderboard"), where("sessionId", "==", sessionId));
             const fallbackSnap = await getDocs(fallbackQ);
             let allDocs = fallbackSnap.docs;
             allDocs.sort((a, b) => (b.data().score || 0) - (a.data().score || 0));
-            finalDocs = allDocs.slice(0, 20);
-        } catch (fallbackErr) {
-            console.error(fallbackErr);
-            tbody.innerHTML = "<tr><td colspan='4'>Error loading rankings.</td></tr>";
-            return;
+            finalDocs = allDocs;
         }
+    } catch (e) {
+        console.error(e);
+        tbody.innerHTML = "<tr><td colspan='7'>Error loading rankings.</td></tr>";
+        return;
     }
 
     if(finalDocs.length === 0) {
-        tbody.innerHTML="<tr><td colspan='4'>No results yet for this session.</td></tr>";
+        tbody.innerHTML="<tr><td colspan='7'>No results yet for this selection.</td></tr>";
         return;
     }
     renderWeekly(finalDocs, tbody);
@@ -563,30 +576,30 @@ async function refreshDaily(){
     tbody.innerHTML="<tr><td colspan='6'>Loading...</td></tr>";
 
     try {
-        const q=query(collection(db,"leaderboard"),
-        orderBy("score","desc"),
-        limit(100));
-
-        const snap=await getDocs(q);
-        let filteredDocs = [];
+        let constraints = [];
+        if (gradeFilter !== "all") constraints.push(where("studentClass", "==", gradeFilter));
+        if (subjectFilter !== "all") constraints.push(where("subject", "==", subjectFilter));
         
+        const q = constraints.length > 0 ? query(collection(db, "leaderboard"), ...constraints) : collection(db, "leaderboard");
+        const snap=await getDocs(q);
+        
+        let allDocs = [];
         snap.forEach(doc => {
             const d = doc.data();
-            if (gradeFilter !== "all" && d.studentClass !== gradeFilter) return;
-            if (subjectFilter !== "all" && d.subject !== subjectFilter) return;
             if (d.isChampionship === true) return; // Exclude live quiz results
-            filteredDocs.push(doc);
+            allDocs.push(doc);
         });
 
-        if (filteredDocs.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='6'>No practice results found.</td></tr>";
+        if (allDocs.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No practice results found.</td></tr>";
             return;
         }
         
-        renderDaily(filteredDocs.slice(0, 30), tbody);
+        allDocs.sort((a, b) => (b.data().score || 0) - (a.data().score || 0));
+        renderDaily(allDocs.slice(0, 30), tbody);
     } catch (e) {
         console.error(e);
-        tbody.innerHTML = "<tr><td colspan='6'>Error loading practice scores.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--danger);'>Error loading practice scores.</td></tr>";
     }
 }
 
@@ -604,9 +617,12 @@ else if(rank === 3) { rankIcon = "🥉"; }
 tbody.innerHTML+=`
 <tr style="${rowStyle}">
 <td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px;':''}">${rankIcon}</span></td>
-<td>${rank===1 ? '⭐ ' : ''}${d.email}</td>
+<td>${rank===1 ? '⭐ ' : ''}${d.email ? d.email.split('@')[0] : "Student"}</td>
 <td style="color:var(--brand);font-weight:700">${d.score}/${d.total || 50}</td>
-<td>${d.timeTaken?Math.floor(d.timeTaken/60)+"m":"60m"}</td>
+<td>${d.accuracy ? d.accuracy + '%' : '--'}</td>
+<td style="text-transform:capitalize;">${d.subject||"NA"}</td>
+<td>${(d.studentClass||"").replace("class","G")}</td>
+<td>${d.date ? d.date.toDate().toLocaleDateString("en-GB") : "NA"}</td>
 </tr>`
 rank++;
 })
@@ -626,9 +642,9 @@ else if(rank === 3) { rankIcon = "🥉"; }
 tbody.innerHTML+=`
 <tr style="${rowStyle}">
 <td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px;':''}">${rankIcon}</span></td>
-<td>${rank===1 ? '⭐ ' : ''}${d.email||"Student"}</td>
+<td>${rank===1 ? '⭐ ' : ''}${d.email ? d.email.split('@')[0] : "Student"}</td>
 <td style="color:var(--brand);font-weight:700">${d.score}/${d.total||30}</td>
-<td>${d.subject||"NA"}</td>
+<td style="text-transform:capitalize;">${d.subject||"NA"}</td>
 <td>${(d.studentClass||"").replace("class","G")}</td>
 <td>${d.date?d.date.toDate().toLocaleDateString("en-GB"):"NA"}</td>
 </tr>`

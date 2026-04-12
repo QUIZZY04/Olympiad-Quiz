@@ -406,13 +406,13 @@
         location.reload();
     };
 
-    window.deleteSession = async (id) => {
-        if(confirm("⚠️ ADMIN ACTION: Are you sure you want to permanently delete this session? This will remove it for all students.")) {
+    window.archiveSession = async (id) => {
+        if(confirm("⚠️ ADMIN ACTION: Archive this session? It will be hidden here, but Leaderboards will remain intact.")) {
             try {
-                await deleteDoc(doc(db, "test_sessions", id));
+                await updateDoc(doc(db, "test_sessions", id), { archived: true });
                 location.reload();
             } catch (e) {
-                alert("Delete failed: " + e.message);
+                alert("Archive failed: " + e.message);
             }
         }
     };
@@ -603,8 +603,8 @@
             }
 
             const isMalformed = !s.startTime || !s.endTime || !s.title || s.class === undefined || s.subject === undefined;
-            if (isMalformed) {
-                if (isAdminUser) {
+        if (isMalformed || s.archived) {
+            if (isAdminUser && isMalformed) {
                     container.innerHTML += `<div style="border:1px dashed var(--danger); padding:10px; margin-bottom:10px; font-size:11px; color:var(--danger); width:100%;">⚠️ Admin: Session ${sDoc.id} is missing fields (Time, Title, or Class).</div>`;
                 }
                 continue;
@@ -651,7 +651,7 @@
                 </ul>
             </div>
             <button onclick="window.location.href='instructions.html'" class="info-btn">❓ How to start Quiz</button>
-            ${isAdminUser ? `<button onclick="deleteSession('${sDoc.id}')" style="margin-bottom:10px; background:var(--danger); color:white; border:none; padding:8px; border-radius:8px; font-size:10px; cursor:pointer; width:100%;">🗑 DELETE SESSION</button>` : ''}
+            ${isAdminUser ? `<button onclick="archiveSession('${sDoc.id}')" style="margin-bottom:10px; background:var(--warning); color:#000; border:none; padding:8px; border-radius:8px; font-size:10px; font-weight:bold; cursor:pointer; width:100%;">📦 ARCHIVE SESSION</button>` : ''}
             
             <button id="btn-${sDoc.id}" class="join-btn btn-disabled" disabled>
                 Please Wait

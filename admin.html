@@ -315,6 +315,7 @@ border-top:1px solid var(--border);
                     <tr>
                         <th>Date</th>
                         <th>Question ID</th>
+                        <th>Question Info</th>
                         <th>Message</th>
                         <th>Context</th>
                         <th>Action</th>
@@ -712,8 +713,17 @@ border-top:1px solid var(--border);
         <h2>Edit Question</h2>
         <input type="hidden" id="editId">
         <textarea id="editQ" style="height:80px;"></textarea>
-        <input id="editO0" placeholder="Option 0 (Correct)"><input id="editO1" placeholder="Option 1">
+        <input id="editO0" placeholder="Option 0"><input id="editO1" placeholder="Option 1">
         <input id="editO2" placeholder="Option 2"><input id="editO3" placeholder="Option 3">
+        <div style="display:flex; gap:10px; align-items:center; margin-top:10px;">
+            <label style="color:var(--text); font-weight:700; font-size:14px; margin:0;">Correct Answer:</label>
+            <select id="editCorrectA" style="margin:0; width:150px; padding:8px;">
+                <option value="0">Option 0</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+        </div>
         <textarea id="editSol" placeholder="Solution" style="height:60px;"></textarea>
         <button class="upload" onclick="saveEdit()">Save</button>
         <button class="delete" onclick="closeEdit()">Cancel</button>
@@ -1280,8 +1290,11 @@ window.openEdit = async (id) => {
         document.getElementById("editO1").value = data.o[1];
         document.getElementById("editO2").value = data.o[2];
         document.getElementById("editO3").value = data.o[3];
+        document.getElementById("editCorrectA").value = data.a !== undefined ? data.a : 0;
         document.getElementById("editSol").value = data.sol || "";
         document.getElementById("editModal").style.display = "flex";
+    } else {
+        alert("Question not found. It might have been deleted already.");
     }
 };
 
@@ -1295,6 +1308,7 @@ window.saveEdit = async () => {
             document.getElementById("editO2").value,
             document.getElementById("editO3").value
         ],
+        a: parseInt(document.getElementById("editCorrectA").value),
         sol: document.getElementById("editSol").value
     };
     await updateDoc(doc(db, "questions", id), updateData);
@@ -1316,12 +1330,34 @@ window.logout = async () => {
 };
 
 function loadFeedback() {
-    onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), (snap) => {
-        let html=""; snap.forEach(d => { 
-            const f=d.data(); 
+    onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), async (snap) => {
+        document.getElementById("feedbackTable").innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>Loading question details...</td></tr>";
+        
+        const rowsData = await Promise.all(snap.docs.map(async (d) => {
+            const f = d.data();
             const date = f.timestamp ? f.timestamp.toDate().toLocaleDateString() : 'N/A';
-            html+=`<tr><td>${date}</td><td>${f.questionId}</td><td>${f.message}</td><td>${f.context || ''}</td><td><button class="delete" onclick="deleteFB('${d.id}')">🗑</button></td></tr>`; 
+            let qText = "N/A";
+            let qDetails = "";
+            if (f.questionId) {
+                try {
+                    const qSnap = await getDoc(doc(db, "questions", f.questionId));
+                    if (qSnap.exists()) {
+                        const qData = qSnap.data();
+                        qText = qData.q || "No text";
+                        qDetails = `<span style="font-size:11px;color:var(--muted);">${qData.class || f.class || ''} | ${qData.subject || f.subject || ''}</span>`;
+                    } else {
+                        qText = "<span style='color:var(--danger); font-weight: 600;'>Question missing/deleted</span>";
+                    }
+                } catch(e) { qText = "Error loading details"; }
+            }
+            return { id: d.id, f, date, qText, qDetails };
+        }));
+        
+        let html="";
+        rowsData.forEach(row => { 
+            html+=`<tr><td>${row.date}</td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;"><button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button><button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button></td></tr>`; 
         });
+        if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No error reports found.</td></tr>";
         document.getElementById("feedbackTable").innerHTML=html;
     });
 }
@@ -1344,10 +1380,12 @@ window.loadSessions = async () => {
     const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
     let html=""; snap.forEach(d => { 
         const s=d.data(); 
+        if (s.archived) return; // Hide archived sessions from this list
         const time = s.startTime instanceof Timestamp ? s.startTime.toDate().toLocaleString() : s.startTime;
         html+=`<tr><td>${time}</td><td>${s.title}</td><td>${s.class}</td><td>${s.subject}</td><td>₹${s.price}</td><td>
             <button class="edit-btn" onclick="openSessionEdit('${d.id}')">Edit</button>
-            <button class="delete" onclick="deleteSession('${d.id}')">🗑</button>
+            <button class="delete" onclick="archiveSession('${d.id}')" style="background: var(--warning); color: #000;">📦 Archive</button>
+            <button class="delete" onclick="deleteSession('${d.id}')">🗑 Delete</button>
         </td></tr>`; 
     });
     document.getElementById("sessionsTable").innerHTML=html;
@@ -1398,7 +1436,8 @@ window.saveSessionEdit = async () => {
 
 window.closeSessEdit = () => document.getElementById("editSessModal").style.display = "none";
 
-window.deleteSession = async (id) => { if(confirm("Delete session?")) { await deleteDoc(doc(db, "test_sessions", id)); loadSessions(); } };
+window.archiveSession = async (id) => { if(confirm("Archive this session? It will be hidden from the Admin Panel, but the Leaderboard will still work perfectly.")) { await updateDoc(doc(db, "test_sessions", id), { archived: true }); loadSessions(); } };
+window.deleteSession = async (id) => { if(confirm("DANGER: Permanently delete this session? This WILL break the leaderboard dropdown for this test.")) { await deleteDoc(doc(db, "test_sessions", id)); loadSessions(); } };
 
 const couponsRef = collection(db, "coupons");
 window.loadCoupons = () => {
@@ -1902,7 +1941,8 @@ window.loadRegSessionsList = async () => {
         snap.forEach(d => {
             const s = d.data();
             const date = s.startTime && s.startTime.toDate ? s.startTime.toDate().toLocaleDateString() : '';
-            html += `<option value="${d.id}">${s.title} (${date})</option>`;
+            const archiveTag = s.archived ? " [Archived]" : "";
+            html += `<option value="${d.id}">${s.title} (${date})${archiveTag}</option>`;
         });
         select.innerHTML = html;
     } catch (e) {
