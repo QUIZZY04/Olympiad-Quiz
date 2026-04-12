@@ -147,17 +147,42 @@
         }
         .know-why-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
         
-        .fact-answer {
-            margin-top: 20px; padding: 15px; background: rgba(139, 92, 246, 0.05);
+        /* Fact Popover Styles */
+        .fact-popover {
+            display: none;
+            position: absolute;
+            background: var(--surface);
+            padding: 25px 25px 20px;
+            border-radius: 16px;
+            width: 350px;
+            max-width: 90vw;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            border: 2px solid var(--brand);
+            z-index: 2000;
+            animation: popIn 0.2s ease-out;
+            text-align: left;
+        }
+        .fact-popover-close {
+            position: absolute;
+            top: 8px; right: 15px;
+            font-size: 26px;
+            cursor: pointer;
+            color: var(--muted);
+            transition: 0.3s;
+            line-height: 1;
+            font-weight: 600;
+        }
+        .fact-popover-close:hover { color: var(--danger); }
+        .fact-popover-a {
+            padding: 15px; background: rgba(139, 92, 246, 0.05);
             border-radius: 12px; border-left: 4px solid var(--brand);
             font-size: 0.95rem; color: var(--text); line-height: 1.6; font-weight: 500;
-            display: none; /* Hidden by default */
-            animation: slideDown 0.3s ease-out;
+            margin-top: 5px;
         }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -218,6 +243,12 @@
     <div class="fact-grid" id="factGrid">
         <!-- Facts will be dynamically injected here -->
     </div>
+</div>
+
+<!-- Fact Popover -->
+<div id="factPopover" class="fact-popover">
+    <span class="fact-popover-close" onclick="closeFactPopover()">&times;</span>
+    <div id="popoverAnswer" class="fact-popover-a"></div>
 </div>
 
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
@@ -307,27 +338,58 @@
         card.innerHTML = `
             <div class="fact-icon" style="background: ${colorObj.bg};">${fact.icon}</div>
             <div class="fact-question">${fact.q}</div>
-            <button class="know-why-btn" style="background: ${colorObj.main}; box-shadow: 0 4px 15px ${colorObj.bg};" onclick="toggleAnswer(${index})">Know Why 💡</button>
-            <div class="fact-answer" id="answer-${index}" style="border-left-color: ${colorObj.main}; background: ${colorObj.bg};">${fact.a}</div>
+            <button class="know-why-btn" style="background: ${colorObj.main}; box-shadow: 0 4px 15px ${colorObj.bg};" onclick="openFactPopover(event, ${index})">Know Why 💡</button>
         `;
         grid.appendChild(card);
     });
 
-    function toggleAnswer(index) {
-        const answerDiv = document.getElementById(`answer-${index}`);
-        const btn = answerDiv.previousElementSibling;
+    function openFactPopover(event, index) {
+        event.stopPropagation();
+        const fact = factsData[index];
         const colorObj = colors[index % colors.length];
         
-        if (answerDiv.style.display === "block") {
-            answerDiv.style.display = "none";
-            btn.innerHTML = "Know Why 💡";
-            btn.style.background = colorObj.main;
-        } else {
-            answerDiv.style.display = "block";
-            btn.innerHTML = "Hide Answer ✖";
-            btn.style.background = "var(--muted)";
+        const popover = document.getElementById('factPopover');
+        const answerEl = document.getElementById('popoverAnswer');
+        
+        answerEl.innerHTML = fact.a;
+        popover.style.borderColor = colorObj.main;
+        answerEl.style.borderLeftColor = colorObj.main;
+        answerEl.style.background = colorObj.bg;
+        
+        popover.style.display = 'block';
+        
+        // Calculate absolute position relative to the clicked button
+        const btnRect = event.target.getBoundingClientRect();
+        let top = btnRect.bottom + window.scrollY + 10;
+        let left = btnRect.left + window.scrollX;
+        
+        // Adjust if it bleeds out the right edge of the screen
+        const popRect = popover.getBoundingClientRect();
+        if (left + popRect.width > window.innerWidth - 20) {
+            left = window.innerWidth - popRect.width - 20;
+            if (left < 20) left = 20; // Prevent pushing off-screen on very small mobile views
         }
+        
+        // Adjust if it bleeds below the visible window
+        if (top + popRect.height - window.scrollY > window.innerHeight - 20) {
+            top = btnRect.top + window.scrollY - popRect.height - 10;
+        }
+        
+        popover.style.top = top + 'px';
+        popover.style.left = left + 'px';
     }
+
+    function closeFactPopover() {
+        document.getElementById('factPopover').style.display = 'none';
+    }
+
+    // Close popover when clicking anywhere else outside of it
+    window.addEventListener('click', function(event) {
+        const popover = document.getElementById('factPopover');
+        if (popover.style.display === 'block' && !popover.contains(event.target)) {
+            closeFactPopover();
+        }
+    });
 
     /* Mobile Menu Toggle */
     function toggleMenu() {
