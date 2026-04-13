@@ -260,7 +260,10 @@
                 <h2>Mobile Verification</h2>
                 <p class="subtitle">Enter your mobile number to begin.</p>
                 <form id="phoneSignupForm">
-                    <input type="tel" id="pNumber" placeholder="Mobile Number (+91...)" required>
+                    <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                        <input type="text" value="+91" readonly style="width: 70px; margin-bottom: 0; text-align: center; font-weight: 700; background: var(--border); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border);">
+                        <input type="tel" id="pNumber" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" required style="margin-bottom: 0; flex: 1;">
+                    </div>
                     <div id="recaptcha-signup"></div>
                     <button type="submit" id="pSendBtn">Send OTP</button>
                 </form>
@@ -377,8 +380,8 @@ let signupConfirmation;
 
 document.getElementById("phoneSignupForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const phone = document.getElementById("pNumber").value.trim();
-    if (!phone.startsWith('+')) { alert("Please include country code (e.g. +91)!"); return; }
+    let phone = document.getElementById("pNumber").value.trim();
+    phone = "+91" + phone;
 
     const btn = document.getElementById("pSendBtn");
     btn.disabled = true;

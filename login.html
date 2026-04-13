@@ -202,7 +202,10 @@
             <p class="subtitle">Enter your mobile number to sign in securely.</p>
             <div id="recaptcha-container"></div>
             <form id="phoneForm">
-                <input type="tel" id="phoneNumber" placeholder="Phone Number (+91...)" required>
+                <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                    <input type="text" value="+91" readonly style="width: 70px; margin-bottom: 0; text-align: center; font-weight: 700; background: var(--border); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border);">
+                    <input type="tel" id="phoneNumber" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" required style="margin-bottom: 0; flex: 1;">
+                </div>
                 <button type="submit" id="sendOtpBtn" class="main-btn">Send OTP</button>
             </form>
             <form id="otpForm" class="hidden">
@@ -260,7 +263,10 @@
         <p class="subtitle" style="margin-bottom: 20px;">To maintain a secure platform, you must verify a mobile number before accessing your account.</p>
         <div id="recaptcha-link"></div>
         <form id="linkPhoneForm">
-            <input type="tel" id="linkPhoneNumber" placeholder="Mobile Number (+91...)" required>
+            <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+                <input type="text" value="+91" readonly style="width: 70px; margin-bottom: 0; text-align: center; font-weight: 700; background: var(--border); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border);">
+                <input type="tel" id="linkPhoneNumber" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" required style="margin-bottom: 0; flex: 1;">
+            </div>
             <button type="submit" id="linkSendBtn" class="main-btn">Send OTP</button>
         </form>
         <form id="linkOtpForm" class="hidden">
@@ -364,11 +370,8 @@ let confirmationResult;
 
 document.getElementById("phoneForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const phone = document.getElementById("phoneNumber").value.trim();
-    if (!phone.startsWith('+')) {
-        alert("Please include country code (e.g., +91 for India).");
-        return;
-    }
+    let phone = document.getElementById("phoneNumber").value.trim();
+    phone = "+91" + phone;
 
     const btn = document.getElementById("sendOtpBtn");
     btn.disabled = true;
@@ -422,8 +425,8 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
 let linkConfirmationResult;
 document.getElementById("linkPhoneForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const phone = document.getElementById("linkPhoneNumber").value.trim();
-    if (!phone.startsWith('+')) { alert("Please include country code (e.g., +91)."); return; }
+    let phone = document.getElementById("linkPhoneNumber").value.trim();
+    phone = "+91" + phone;
     
     const btn = document.getElementById("linkSendBtn");
     btn.disabled = true; btn.innerText = "Sending...";
