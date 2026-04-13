@@ -1,78 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login | Olympiad Portal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login to Olympiad Portal | Student Dashboard</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-<style>
-body { font-family: Inter; background:#FFD700; display:flex; justify-content:center; align-items:center; height:100vh;}
-.box { background:#fff; padding:30px; border-radius:12px; width:320px; text-align:center;}
-input,button { width:100%; padding:10px; margin:8px 0;}
-.hidden{display:none;}
-#recaptcha-container,#link-recaptcha-container{display:none;}
-</style>
+  <style>
+    :root {
+      --bg: #FFD700;
+      --surface: #ffffff;
+      --subtle: #f1f5f9;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --brand: #4f46e5;
+      --accent: #8b5cf6;
+      --danger: #ef4444;
+      --success: #10b981;
+    }
+    body { background: var(--bg); font-family: 'Inter', sans-serif; }
+    .hidden { display:none; }
+    #recaptcha-container,#link-recaptcha-container { display:none; }
+  </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
+<div class="login-box">
 
-<!-- LOGIN -->
 <div id="loginSection">
-<h2>Login</h2>
+<h1>Welcome in Olympiad portal</h1>
+
 <form id="loginForm">
-<input type="email" id="loginEmail" placeholder="Email" required>
+<input type="email" id="loginEmail" placeholder="Email Address" required>
 <input type="password" id="loginPassword" placeholder="Password" required>
-<button type="submit">Login</button>
+<button type="submit" class="main-btn">Sign In</button>
 </form>
 
-<button id="googleSignInBtn">Google Login</button>
-<button onclick="show('otpSection')">Login with OTP</button>
+<button id="googleSignInBtn" class="google-btn">Sign in with Google</button>
+
+<button onclick="toggleView('otpSection')" class="google-btn">
+📱 Sign in with Phone (OTP)
+</button>
 </div>
 
-<!-- OTP LOGIN -->
 <div id="otpSection" class="hidden">
-<h3>Phone Login</h3>
+<h2>Phone Login</h2>
 <div id="recaptcha-container"></div>
 
 <form id="phoneForm">
-<input type="text" id="phoneNumber" placeholder="+91..." required>
-<button>Send OTP</button>
+<input type="tel" id="phoneNumber" placeholder="+91..." required>
+<button type="submit" class="main-btn">Send OTP</button>
 </form>
 
 <form id="verifyOtpForm" class="hidden">
-<input type="text" id="otpCode" placeholder="OTP">
-<button>Verify</button>
+<input type="text" id="otpCode" placeholder="Enter OTP">
+<button type="submit" class="main-btn">Verify</button>
 </form>
 
-<button onclick="show('loginSection')">Back</button>
+<button onclick="toggleView('loginSection')">Back</button>
 </div>
 
-<!-- LINK PHONE -->
 <div id="linkPhoneSection" class="hidden">
-<h3>Verify Mobile</h3>
+<h2>Verify Mobile</h2>
 <div id="link-recaptcha-container"></div>
 
 <form id="linkPhoneForm">
-<input type="text" id="linkPhoneNumber" placeholder="+91..." required>
-<button>Send OTP</button>
+<input type="tel" id="linkPhoneNumber" placeholder="+91..." required>
+<button type="submit" class="main-btn">Send OTP</button>
 </form>
 
 <form id="verifyLinkOtpForm" class="hidden">
-<input type="text" id="linkOtpCode" placeholder="OTP">
-<button>Verify</button>
+<input type="text" id="linkOtpCode" placeholder="Enter OTP">
+<button type="submit" class="main-btn">Verify</button>
 </form>
 </div>
 
 </div>
+</div>
 
 <script>
-function show(id){
-document.querySelectorAll(".box > div").forEach(d=>d.classList.add("hidden"));
-document.getElementById(id).classList.remove("hidden");
+function toggleView(id){
+document.querySelectorAll('.login-box > div').forEach(d=>d.classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
 }
 </script>
 
@@ -87,16 +101,15 @@ linkWithPhoneNumber
 
 import { getFirestore,doc,getDoc,setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-/* 🔥 YOUR CONFIG */
 const firebaseConfig = {
-apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
-projectId:"olympiad-portal-d2a5e",
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
   storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
   messagingSenderId: "341855557503",
   appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-
 };
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -104,33 +117,31 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 const redirectUrl="dashboard.html";
-let lastOtpTime = 0;
+let isHandlingLogin=false;
 
-/* ===============================
-   AUTH STATE
-================================ */
-onAuthStateChanged(auth, async (user)=>{
-if(user){
+/* AUTH STATE */
+onAuthStateChanged(auth, (user)=>{
+if(user && !isHandlingLogin){
 if(!user.phoneNumber){
-alert("Mobile verification required (one-time)");
-show("linkPhoneSection");
+alert("Please verify mobile (one-time)");
+toggleView("linkPhoneSection");
 }else{
 window.location=redirectUrl;
 }
 }
 });
 
-/* ===============================
-   EMAIL LOGIN
-================================ */
+/* EMAIL LOGIN */
 loginForm.addEventListener("submit", async(e)=>{
 e.preventDefault();
+isHandlingLogin=true;
+
 try{
 const cred=await signInWithEmailAndPassword(auth,loginEmail.value,loginPassword.value);
 
 if(!cred.user.phoneNumber){
 alert("Verify mobile to continue");
-show("linkPhoneSection");
+toggleView("linkPhoneSection");
 }else{
 window.location=redirectUrl;
 }
@@ -138,12 +149,14 @@ window.location=redirectUrl;
 }catch(err){
 alert(err.code+"\n"+err.message);
 }
+
+isHandlingLogin=false;
 });
 
-/* ===============================
-   GOOGLE LOGIN
-================================ */
+/* GOOGLE LOGIN */
 googleSignInBtn.onclick=async ()=>{
+isHandlingLogin=true;
+
 try{
 const res=await signInWithPopup(auth,provider);
 const user=res.user;
@@ -155,33 +168,25 @@ await setDoc(doc(db,"users",user.uid),{email:user.email});
 
 if(!user.phoneNumber){
 alert("Verify mobile to continue");
-show("linkPhoneSection");
+toggleView("linkPhoneSection");
 }else{
 window.location=redirectUrl;
 }
 
 }catch(e){alert(e.message);}
+
+isHandlingLogin=false;
 };
 
-/* ===============================
-   PHONE LOGIN (INVISIBLE CAPTCHA)
-================================ */
+/* PHONE LOGIN */
 phoneForm.addEventListener("submit", async(e)=>{
 e.preventDefault();
-
-if(Date.now()-lastOtpTime<30000){
-alert("Wait before requesting another OTP");
-return;
-}
-lastOtpTime=Date.now();
 
 let phone=phoneNumber.value;
 if(!phone.startsWith("+")) phone="+91"+phone;
 
 if(!window.recaptchaVerifier){
-window.recaptchaVerifier=new RecaptchaVerifier(auth,"recaptcha-container",{
-size:"invisible"
-});
+window.recaptchaVerifier=new RecaptchaVerifier(auth,"recaptcha-container",{size:"invisible"});
 }
 
 try{
@@ -207,9 +212,7 @@ alert("Invalid OTP");
 }
 });
 
-/* ===============================
-   LINK PHONE (INVISIBLE CAPTCHA)
-================================ */
+/* LINK PHONE */
 linkPhoneForm.addEventListener("submit", async(e)=>{
 e.preventDefault();
 
@@ -217,9 +220,7 @@ let phone=linkPhoneNumber.value;
 if(!phone.startsWith("+")) phone="+91"+phone;
 
 if(!window.linkRecaptchaVerifier){
-window.linkRecaptchaVerifier=new RecaptchaVerifier(auth,"link-recaptcha-container",{
-size:"invisible"
-});
+window.linkRecaptchaVerifier=new RecaptchaVerifier(auth,"link-recaptcha-container",{size:"invisible"});
 }
 
 try{
@@ -252,7 +253,6 @@ window.location=redirectUrl;
 alert("Invalid OTP");
 }
 });
-
 </script>
 
 </body>
