@@ -239,6 +239,7 @@ border-top:1px solid var(--border);
         <a href="admin.html" class="active">Admin</a>
         <a href="#video-section" style="color:var(--brand);">Videos</a>
         <a href="#coupon-section" style="color:var(--warning);">Coupons</a>
+        <a href="#email-section" style="color:var(--brand);">Broadcast</a>
         <a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
         <div class="nav-actions">
             <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
@@ -474,6 +475,31 @@ border-top:1px solid var(--border);
             </thead>
             <tbody id="couponsTable"></tbody>
         </table>
+        </div>
+    </div>
+
+    <div id="email-section" class="panel" style="border-top: 2px solid var(--brand);">
+        <div class="panel-header">
+            <h2 style="color:var(--brand);">📧 Bulk Email Broadcast</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Send promotional or informative emails to all registered students using the Brevo SMTP API. Your Firebase function handles batching to prevent rate limits.</p>
+            <form id="bulkEmailForm">
+                <div>
+                    <label>Sender Email</label>
+                    <input type="email" id="senderEmail" value="admin@olympiadquiz.org" required>
+                </div>
+                <div>
+                    <label>Subject Line</label>
+                    <input type="text" id="emailSubject" placeholder="e.g., Live Quiz Starting This Weekend!" required>
+                </div>
+                <div>
+                    <label>Email Message (Simple Text)</label>
+                    <textarea id="emailContent" placeholder="Hello Students!&#10;&#10;We are excited to announce that..." required></textarea>
+                </div>
+                <button type="submit" id="sendEmailBtn" class="upload" style="background: var(--brand); width: 100%; margin-top: 20px;">🚀 Send Broadcast</button>
+                <div id="emailStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600; padding: 12px; border-radius: 8px; display: none; border: 1px solid transparent;"></div>
+            </form>
         </div>
     </div>
 
@@ -778,6 +804,7 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 import { getFirestore, collection, getDocs, deleteDoc, doc, query, where, addDoc, onSnapshot, orderBy, getDoc, updateDoc, setDoc, serverTimestamp, Timestamp, runTransaction, collectionGroup }
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
 const sofTopics = {
     class1: {
@@ -863,6 +890,7 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
 const storage = getStorage(app);
+const functions = getFunctions(app);
 
 const questionsRef=collection(db,"questions");
 const feedbackRef=collection(db,"feedback");
@@ -1773,6 +1801,65 @@ window.createSession = async () => {
         btn.innerText = "Create Session & Link Questions";
     }
 };
+
+document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("sendEmailBtn");
+    const status = document.getElementById("emailStatus");
+    
+    const senderEmail = document.getElementById("senderEmail").value;
+    const subject = document.getElementById("emailSubject").value;
+    let content = document.getElementById("emailContent").value;
+
+    // Convert simple text newlines to HTML <br> tags for email formatting
+    content = content.replace(/\n/g, "<br>");
+
+    if (!confirm("⚠️ WARNING: You are about to send an email to ALL registered users. Proceed?")) return;
+
+    btn.disabled = true;
+    btn.innerText = "⏳ Processing...";
+    status.style.display = "block";
+    status.style.background = "rgba(79, 70, 229, 0.1)";
+    status.style.color = "var(--brand)";
+    status.style.borderColor = "var(--brand)";
+    status.innerText = "Initiating bulk email function. Do not close this page...";
+
+    try {
+        const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmail');
+        const result = await sendBulkEmailFn({ senderEmail, subject, content });
+        
+        status.style.background = "rgba(16, 185, 129, 0.1)";
+        status.style.color = "var(--success)";
+        status.style.borderColor = "var(--success)";
+        
+        let msg = `Broadcast completed.\n\nSent: ${result.data.successCount}\nFailed: ${result.data.failCount}`;
+        
+        if (result.data.failCount > 0 && result.data.message) {
+            msg += `\n\nReason: ${result.data.message}`;
+            status.style.background = "rgba(239, 68, 68, 0.1)";
+            status.style.color = "var(--danger)";
+            status.style.borderColor = "var(--danger)";
+        }
+        
+        status.innerText = msg;
+        alert(msg);
+        
+        document.getElementById("emailSubject").value = "";
+        document.getElementById("emailContent").value = "";
+    } catch (error) {
+        console.error("Email Broadcast Error:", error);
+        status.style.background = "rgba(239, 68, 68, 0.1)";
+        status.style.color = "var(--danger)";
+        status.style.borderColor = "var(--danger)";
+        
+        const errMsg = "❌ Failed: " + error.message;
+        status.innerText = errMsg;
+        alert(errMsg);
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "🚀 Send Broadcast";
+    }
+});
 
 window.appendStudyContent = async function() {
     const cls = document.getElementById('studyClass').value;
