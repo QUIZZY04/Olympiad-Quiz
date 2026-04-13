@@ -504,10 +504,14 @@ onAuthStateChanged(auth, async (user) => {
     // Background UI Updates
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().name) {
-            document.getElementById("userGreeting").innerText = `Welcome, ${userDoc.data().name}!`;
-        } else if (user.displayName) {
-            document.getElementById("userGreeting").innerText = `Welcome, ${user.displayName}!`;
+        if (userDoc.exists()) {
+            if (!userDoc.data().phone) {
+                window.location.replace("login.html");
+                return;
+            }
+            if (userDoc.data().name) {
+                document.getElementById("userGreeting").innerText = `Welcome, ${userDoc.data().name}!`;
+            }
         }
     } catch (e) {
         console.error("Error fetching user data:", e);
