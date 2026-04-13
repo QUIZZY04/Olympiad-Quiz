@@ -141,10 +141,19 @@
         .mock-grid { display: flex; flex-wrap: wrap; gap: 30px; margin-bottom: 60px; }
 
         @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+            .hero-content { text-align: center; }
             .hero-content h1 { font-size: 2.2rem; }
+            .hero-image { display: none; }
             .grade-selector-bar { padding: 20px; flex-direction: column; align-items: flex-start; gap: 15px; }
             .grade-selector-bar select { max-width: 100%; width: 100%; }
             .subject-card-large { padding: 25px 20px; }
+            .mock-grid { gap: 20px; }
             .subject-card-large h3 { font-size: 1.5rem; }
             .subject-card-large .icon-bg { font-size: 90px; right: -5px; bottom: -10px; }
             .seo-section, .rich-text-section { padding: 25px 20px; }
