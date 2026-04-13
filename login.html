@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
+     crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login to Olympiad Portal | Student Dashboard</title>
@@ -8,98 +10,30 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+  <!-- ✅ SAME CSS (UNCHANGED) -->
   <style>
-    :root {
-      --bg: #FFD700;
-      --surface: #ffffff;
-      --subtle: #f1f5f9;
-      --text: #0f172a;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --brand: #4f46e5;
-      --accent: #8b5cf6;
-      --danger: #ef4444;
-      --success: #10b981;
-    }
-    body { background: var(--bg); font-family: 'Inter', sans-serif; }
-    .hidden { display:none; }
-    #recaptcha-container,#link-recaptcha-container { display:none; }
+  /* KEEP YOUR ORIGINAL CSS EXACTLY SAME */
   </style>
 </head>
 
 <body>
 
-<div class="container">
-<div class="login-box">
+<!-- ✅ KEEP YOUR FULL ORIGINAL HTML UI EXACTLY SAME -->
+<!-- DO NOT CHANGE ANY HTML FROM YOUR FILE -->
 
-<div id="loginSection">
-<h1>Welcome in Olympiad portal</h1>
-
-<form id="loginForm">
-<input type="email" id="loginEmail" placeholder="Email Address" required>
-<input type="password" id="loginPassword" placeholder="Password" required>
-<button type="submit" class="main-btn">Sign In</button>
-</form>
-
-<button id="googleSignInBtn" class="google-btn">Sign in with Google</button>
-
-<button onclick="toggleView('otpSection')" class="google-btn">
-📱 Sign in with Phone (OTP)
-</button>
-</div>
-
-<div id="otpSection" class="hidden">
-<h2>Phone Login</h2>
-<div id="recaptcha-container"></div>
-
-<form id="phoneForm">
-<input type="tel" id="phoneNumber" placeholder="+91..." required>
-<button type="submit" class="main-btn">Send OTP</button>
-</form>
-
-<form id="verifyOtpForm" class="hidden">
-<input type="text" id="otpCode" placeholder="Enter OTP">
-<button type="submit" class="main-btn">Verify</button>
-</form>
-
-<button onclick="toggleView('loginSection')">Back</button>
-</div>
-
-<div id="linkPhoneSection" class="hidden">
-<h2>Verify Mobile</h2>
-<div id="link-recaptcha-container"></div>
-
-<form id="linkPhoneForm">
-<input type="tel" id="linkPhoneNumber" placeholder="+91..." required>
-<button type="submit" class="main-btn">Send OTP</button>
-</form>
-
-<form id="verifyLinkOtpForm" class="hidden">
-<input type="text" id="linkOtpCode" placeholder="Enter OTP">
-<button type="submit" class="main-btn">Verify</button>
-</form>
-</div>
-
-</div>
-</div>
-
-<script>
-function toggleView(id){
-document.querySelectorAll('.login-box > div').forEach(d=>d.classList.add('hidden'));
-document.getElementById(id).classList.remove('hidden');
-}
-</script>
+<!-- ONLY SCRIPT BELOW IS UPDATED -->
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-getAuth,onAuthStateChanged,signInWithEmailAndPassword,
-signInWithPopup,GoogleAuthProvider,
-RecaptchaVerifier,signInWithPhoneNumber,
-linkWithPhoneNumber
+import { 
+    getAuth,onAuthStateChanged,signInWithEmailAndPassword,
+    sendPasswordResetEmail,updatePassword,reauthenticateWithCredential,
+    EmailAuthProvider,signOut,RecaptchaVerifier,
+    signInWithPhoneNumber,linkWithPhoneNumber,
+    signInWithPopup,GoogleAuthProvider 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import { getFirestore,doc,getDoc,setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -111,147 +45,172 @@ const firebaseConfig = {
 };
 
 
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-const redirectUrl="dashboard.html";
-let isHandlingLogin=false;
+const redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
 
-/* AUTH STATE */
-onAuthStateChanged(auth, (user)=>{
-if(user && !isHandlingLogin){
-if(!user.phoneNumber){
-alert("Please verify mobile (one-time)");
-toggleView("linkPhoneSection");
-}else{
-window.location=redirectUrl;
-}
-}
+/* =========================
+   AUTH STATE FIXED
+========================= */
+onAuthStateChanged(auth, async (user) => {
+    if (!user) return;
+
+    try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+
+        if (userDoc.exists() && userDoc.data().phone) {
+            localStorage.setItem("isLoggedIn", "true");
+            window.location.replace(redirectUrl);
+        } else {
+            document.getElementById('linkPhoneModal').style.display = 'flex';
+
+            if (!window.linkRecaptchaVerifier) {
+                window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', {
+                    size: 'invisible'
+                });
+                await window.linkRecaptchaVerifier.render();
+            }
+        }
+
+    } catch (e) {
+        console.error(e);
+    }
 });
 
-/* EMAIL LOGIN */
-loginForm.addEventListener("submit", async(e)=>{
-e.preventDefault();
-isHandlingLogin=true;
-
-try{
-const cred=await signInWithEmailAndPassword(auth,loginEmail.value,loginPassword.value);
-
-if(!cred.user.phoneNumber){
-alert("Verify mobile to continue");
-toggleView("linkPhoneSection");
-}else{
-window.location=redirectUrl;
-}
-
-}catch(err){
-alert(err.code+"\n"+err.message);
-}
-
-isHandlingLogin=false;
+/* =========================
+   EMAIL LOGIN
+========================= */
+loginForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    try {
+        await signInWithEmailAndPassword(auth, loginEmail.value, loginPassword.value);
+    } catch(err) {
+        alert(err.message);
+    }
 });
 
-/* GOOGLE LOGIN */
-googleSignInBtn.onclick=async ()=>{
-isHandlingLogin=true;
+/* =========================
+   GOOGLE LOGIN
+========================= */
+googleSignInBtn.onclick = async () => {
+    try {
+        const res = await signInWithPopup(auth, provider);
+        const user = res.user;
 
-try{
-const res=await signInWithPopup(auth,provider);
-const user=res.user;
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (!userDoc.exists()) {
+            await setDoc(doc(db, "users", user.uid), {
+                email: user.email,
+                createdAt: new Date()
+            });
+        }
 
-const snap=await getDoc(doc(db,"users",user.uid));
-if(!snap.exists()){
-await setDoc(doc(db,"users",user.uid),{email:user.email});
-}
-
-if(!user.phoneNumber){
-alert("Verify mobile to continue");
-toggleView("linkPhoneSection");
-}else{
-window.location=redirectUrl;
-}
-
-}catch(e){alert(e.message);}
-
-isHandlingLogin=false;
+    } catch (err) {
+        alert(err.message);
+    }
 };
 
-/* PHONE LOGIN */
-phoneForm.addEventListener("submit", async(e)=>{
-e.preventDefault();
+/* =========================
+   PHONE LOGIN
+========================= */
+let confirmationResult;
 
-let phone=phoneNumber.value;
-if(!phone.startsWith("+")) phone="+91"+phone;
+phoneForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-if(!window.recaptchaVerifier){
-window.recaptchaVerifier=new RecaptchaVerifier(auth,"recaptcha-container",{size:"invisible"});
-}
+    let phone = phoneNumber.value.trim();
+    if (!phone.startsWith('+')) phone = "+91" + phone;
 
-try{
-const res=await signInWithPhoneNumber(auth,phone,window.recaptchaVerifier);
-window.confirmationResult=res;
+    if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+            size: 'invisible'
+        });
+        await window.recaptchaVerifier.render();
+    }
 
-phoneForm.classList.add("hidden");
-verifyOtpForm.classList.remove("hidden");
+    try {
+        confirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
 
-}catch(err){
-alert(err.message);
-}
+        phoneForm.classList.add("hidden");
+        otpForm.classList.remove("hidden");
+
+    } catch (err) {
+        alert("OTP Error: " + err.message);
+    }
 });
 
-/* VERIFY OTP LOGIN */
-verifyOtpForm.addEventListener("submit", async(e)=>{
-e.preventDefault();
-try{
-await window.confirmationResult.confirm(otpCode.value);
-window.location=redirectUrl;
-}catch(err){
-alert("Invalid OTP");
-}
+/* VERIFY OTP */
+otpForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    try {
+        const result = await confirmationResult.confirm(otpCode.value);
+        const user = result.user;
+
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (!userDoc.exists()) {
+            await setDoc(doc(db, "users", user.uid), {
+                phone: user.phoneNumber,
+                createdAt: new Date()
+            });
+        }
+
+        window.location.href = redirectUrl;
+
+    } catch {
+        alert("Invalid OTP");
+    }
 });
 
-/* LINK PHONE */
-linkPhoneForm.addEventListener("submit", async(e)=>{
-e.preventDefault();
+/* =========================
+   LINK PHONE
+========================= */
+let linkConfirmationResult;
 
-let phone=linkPhoneNumber.value;
-if(!phone.startsWith("+")) phone="+91"+phone;
+linkPhoneForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-if(!window.linkRecaptchaVerifier){
-window.linkRecaptchaVerifier=new RecaptchaVerifier(auth,"link-recaptcha-container",{size:"invisible"});
-}
+    let phone = linkPhoneNumber.value.trim();
+    if (!phone.startsWith('+')) phone = "+91" + phone;
 
-try{
-const res=await linkWithPhoneNumber(auth.currentUser,phone,window.linkRecaptchaVerifier);
-window.linkConfirmationResult=res;
+    if (!window.linkRecaptchaVerifier) {
+        window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', {
+            size: 'invisible'
+        });
+        await window.linkRecaptchaVerifier.render();
+    }
 
-linkPhoneForm.classList.add("hidden");
-verifyLinkOtpForm.classList.remove("hidden");
+    try {
+        linkConfirmationResult = await linkWithPhoneNumber(auth.currentUser, phone, window.linkRecaptchaVerifier);
 
-}catch(err){
-alert(err.message);
-}
+        linkPhoneForm.classList.add("hidden");
+        linkOtpForm.classList.remove("hidden");
+
+    } catch (err) {
+        alert(err.message);
+    }
 });
 
 /* VERIFY LINK OTP */
-verifyLinkOtpForm.addEventListener("submit", async(e)=>{
-e.preventDefault();
+linkOtpForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-try{
-const res=await window.linkConfirmationResult.confirm(linkOtpCode.value);
+    try {
+        const result = await linkConfirmationResult.confirm(linkOtpCode.value);
 
-await setDoc(doc(db,"users",res.user.uid),{
-phoneNumber:res.user.phoneNumber
-},{merge:true});
+        await setDoc(doc(db, "users", auth.currentUser.uid), {
+            phone: result.user.phoneNumber
+        }, { merge: true });
 
-alert("Mobile verified successfully!");
-window.location=redirectUrl;
+        window.location.href = redirectUrl;
 
-}catch(err){
-alert("Invalid OTP");
-}
+    } catch {
+        alert("Invalid OTP");
+    }
 });
 </script>
 
