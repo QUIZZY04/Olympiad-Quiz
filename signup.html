@@ -63,27 +63,34 @@
     .signup-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-top: 3px solid var(--brand);
-      padding: 40px;
+      border-top: 4px solid var(--brand);
+      padding: 45px 35px;
       border-radius: 24px;
       width: 100% !important; /* Overriding fixed width from style.css */
       text-align: center;
       box-shadow: var(--shadow-lg);
     }
 
-    .signup-box h2 { font-size: 24px; margin-bottom: 25px; color: var(--text); }
+    .signup-box h2 { font-size: 26px; margin-bottom: 10px; color: var(--text); font-weight: 800; letter-spacing: -0.5px; }
+    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
+
+    .auth-tabs { display: flex; background: var(--subtle); border-radius: 12px; padding: 5px; margin-bottom: 20px; }
+    .auth-tab { flex: 1; padding: 12px; border: none; background: transparent; border-radius: 8px; font-weight: 700; color: var(--muted); cursor: pointer; transition: 0.3s; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .auth-tab.active { background: var(--surface); color: var(--brand); box-shadow: var(--shadow-sm); }
 
     input, select {
       width: 100%;
-      padding: 14px 18px;
-      margin-bottom: 15px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
       background: var(--subtle);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       color: var(--text);
       font-size: 15px;
       outline: none;
+      transition: 0.2s;
     }
+    input:focus, select:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); background: var(--surface); }
 
     select {
       cursor: pointer;
@@ -96,41 +103,33 @@
 
     .signup-box button, .modal-box button {
       width: 100%;
-      padding: 14px;
+      padding: 16px;
       background: var(--brand);
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: 800;
       font-size: 15px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       cursor: pointer;
       transition: 0.2s;
       margin-top: 10px;
     }
+    button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
 
-    button:hover { background: var(--accent); transform: translateY(-2px); }
-
-    .google-btn {
-      background: var(--surface) !important;
-      color: var(--text) !important;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 15px;
-      text-transform: none;
-      border: 1px solid var(--border);
-    }
-    .google-btn:hover { background: var(--subtle) !important; }
-    .google-btn img { width: 20px; height: 20px; display: block; }
+    .social-btn { width: 100%; padding: 14px; background: #ffffff; color: #334155; border: 1px solid var(--border); border-radius: 12px; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-bottom: 20px; }
+    .social-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .social-btn img { width: 22px; height: 22px; }
 
     .divider {
-      margin: 20px 0;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       color: var(--muted);
       font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
     .divider::before, .divider::after {
       content: "";
@@ -148,6 +147,8 @@
       color: var(--muted);
     }
     .already-member a { color: var(--brand); text-decoration: none; font-weight: 700; } /* Desktop link style */
+
+    .hidden { display: none !important; }
 
     /* CUSTOM THEMATIC MODAL */
     #customModal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center; }
@@ -179,13 +180,13 @@
       
       /* Align signup-box to login-box mobile styles */
       .signup-box { 
-        padding: 35px 20px; /* Match login-box padding */
+        padding: 40px 25px; /* Match login-box padding */
         border-radius: 20px; /* Match login-box border-radius */
         width: 100% !important; 
       }
       .signup-box h2 { 
-        font-size: 22px; /* Match login h2 font-size */
-        margin-bottom: 20px; /* Match login h2 margin-bottom */
+        font-size: 24px; 
+        margin-bottom: 10px; 
       }
       .signup-box input,
       .signup-box select {
@@ -254,37 +255,55 @@
 <div class="main-wrapper">
     <div class="signup-container">
         <div class="signup-box">
-            <h2>Create Account</h2>
-            <form id="signupForm">
-                <input type="text" id="name" placeholder="Full Name" required>
-                <input type="email" id="email" placeholder="Email Address" required>
-                <input type="password" id="password" placeholder="Create Password" required>
+            
+            <div id="phoneSignupSection">
+                <h2>Mobile Verification</h2>
+                <p class="subtitle">Enter your mobile number to begin.</p>
+                <form id="phoneSignupForm">
+                    <input type="tel" id="pNumber" placeholder="Mobile Number (+91...)" required>
+                    <div id="recaptcha-signup"></div>
+                    <button type="submit" id="pSendBtn">Send OTP</button>
+                </form>
+                <form id="pOtpForm" class="hidden">
+                    <input type="text" id="pOtpCode" placeholder="Enter 6-digit OTP" required>
+                    <button type="submit" class="main-btn" style="width:100%; padding:16px; background:var(--brand); color:white; border:none; border-radius:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">Verify Mobile</button>
+                </form>
+                <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
+            </div>
 
-                <select id="classSelect" required>
-                    <option value="" disabled selected>Select Your Grade</option>
-                    <option value="class1">Grade 1</option>
-                    <option value="class2">Grade 2</option>
-                    <option value="class3">Grade 3</option>
-                    <option value="class4">Grade 4</option>
-                    <option value="class5">Grade 5</option>
-                    <option value="class6">Grade 6</option>
-                    <option value="class7">Grade 7</option>
-                    <option value="class8">Grade 8</option>
-                    <option value="class9">Grade 9</option>
-                    <option value="class10">Grade 10</option>
-                </select>
+            <div id="completeProfileSection" class="hidden">
+                <h2>Complete Profile</h2>
+                <p class="subtitle">Mobile verified! Link an account to continue.</p>
+                
+                <button type="button" class="social-btn" id="linkGoogleBtn">
+                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
+                    Complete with Google
+                </button>
 
-                <button type="submit">Join Now</button>
-            </form>
+                <div class="divider">or use email</div>
 
-            <div class="divider">OR</div>
+                <form id="completeEmailForm">
+                    <input type="text" id="cName" placeholder="Full Name" required>
+                    <input type="email" id="cEmail" placeholder="Email Address" required>
+                    <input type="password" id="cPassword" placeholder="Create Password" required>
 
-            <button type="button" class="google-btn" id="googleBtn">
-                <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
-                Sign in with Google
-            </button>
+                    <select id="cClassSelect" required>
+                        <option value="" disabled selected>Select Your Grade</option>
+                        <option value="class1">Grade 1</option>
+                        <option value="class2">Grade 2</option>
+                        <option value="class3">Grade 3</option>
+                        <option value="class4">Grade 4</option>
+                        <option value="class5">Grade 5</option>
+                        <option value="class6">Grade 6</option>
+                        <option value="class7">Grade 7</option>
+                        <option value="class8">Grade 8</option>
+                        <option value="class9">Grade 9</option>
+                        <option value="class10">Grade 10</option>
+                    </select>
 
-            <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
+                    <button type="submit" style="width:100%; padding:16px; background:var(--brand); color:white; border:none; border-radius:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; margin-top:10px; cursor:pointer; transition:0.2s;">Create Account</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -329,13 +348,12 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updatePassword, linkWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
   authDomain: "olympiad-portal-d2a5e.firebaseapp.com", 
-
   projectId: "olympiad-portal-d2a5e",
   storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
   messagingSenderId: "341855557503",
@@ -347,59 +365,133 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// Standard Email Signup
-document.getElementById("signupForm").addEventListener("submit", async (e)=>{
+window.onload = () => {
+    window.signupRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-signup', {
+        'size': 'invisible'
+    });
+    window.signupRecaptchaVerifier.render().catch(console.error);
+};
+
+// Phone Signup Logic
+let signupConfirmation;
+
+document.getElementById("phoneSignupForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const name=document.getElementById("name").value.trim();
-    const email=document.getElementById("email").value.trim();
-    const password=document.getElementById("password").value;
-    const classSelect=document.getElementById("classSelect").value;
+    const phone = document.getElementById("pNumber").value.trim();
+    if (!phone.startsWith('+')) { alert("Please include country code (e.g. +91)!"); return; }
+
+    const btn = document.getElementById("pSendBtn");
+    btn.disabled = true;
+    btn.innerText = "Sending...";
 
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        
-        // Save user profile data
-        await setDoc(doc(db, "users", userCredential.user.uid), {
-            name, email, class: classSelect, createdAt: new Date()
-        });
-
-        // Force logout immediately to clear the auto-login session
-        await signOut(auth);
-
-        // Show the custom thematic modal instead of a browser alert
-        document.getElementById("customModal").style.display = "flex";
-
-    } catch(error) { 
-        alert("Registration Issue: " + error.message); 
+        signupConfirmation = await signInWithPhoneNumber(auth, phone, window.signupRecaptchaVerifier);
+        console.log("Signup OTP Sent to:", phone);
+        document.getElementById("phoneSignupForm").classList.add("hidden");
+        document.getElementById("pOtpForm").classList.remove("hidden");
+    } catch (err) {
+        alert("Error: " + err.message);
+        btn.disabled = false; btn.innerText = "Send OTP";
+        if (window.signupRecaptchaVerifier) {
+            window.signupRecaptchaVerifier.clear();
+            window.signupRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-signup', {
+                'size': 'invisible'
+            });
+            window.signupRecaptchaVerifier.render();
+        }
     }
 });
 
-// Google Sign-In Logic
-document.getElementById("googleBtn").addEventListener("click", async () => {
+document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const code = document.getElementById("pOtpCode").value.trim();
+    const btn = e.target.querySelector('button');
+    btn.disabled = true;
+    btn.innerText = "Verifying...";
+
     try {
-        const result = await signInWithPopup(auth, provider);
+        const result = await signupConfirmation.confirm(code);
         const user = result.user;
 
+        // Check if user already exists
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        
-        if (!userDoc.exists()) {
-            const userClass = prompt("Welcome! Please enter your grade (e.g., class5):") || "class1";
-            
-            await setDoc(doc(db, "users", user.uid), {
-                name: user.displayName,
-                email: user.email,
-                class: userClass,
-                createdAt: new Date()
-            });
+        if (userDoc.exists() && userDoc.data().name) {
+            alert("Account already exists with this mobile number. Please log in.");
+            await signOut(auth);
+            window.location.href = "login.html";
+            return;
         }
-        
-        alert("Signed in successfully!");
-        window.location.href = "dashboard.html";
-    } catch (error) {
-        alert("Authentication failed: " + error.message);
+
+        // Show complete profile section
+        document.getElementById("phoneSignupSection").classList.add("hidden");
+        document.getElementById("completeProfileSection").classList.remove("hidden");
+    } catch (err) {
+        alert("Verification failed: " + err.message);
+        btn.disabled = false;
+        btn.innerText = "Verify Mobile";
     }
 });
 
+// Complete Profile via Email
+document.getElementById("completeEmailForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const name = document.getElementById("cName").value.trim();
+    const email = document.getElementById("cEmail").value.trim();
+    const password = document.getElementById("cPassword").value;
+    const classSelect = document.getElementById("cClassSelect").value;
+    const btn = e.target.querySelector('button');
+    
+    btn.disabled = true;
+    btn.innerText = "Creating...";
+
+    try {
+        const user = auth.currentUser;
+        await updateEmail(user, email);
+        await updatePassword(user, password);
+        
+        await setDoc(doc(db, "users", user.uid), {
+            name: name, 
+            email: email, 
+            phone: user.phoneNumber,
+            class: classSelect, 
+            createdAt: new Date()
+        });
+
+        await signOut(auth);
+        document.getElementById("customModal").style.display = "flex";
+    } catch(error) { 
+        alert("Issue creating account: " + error.message); 
+        btn.disabled = false;
+        btn.innerText = "Create Account";
+    }
+});
+
+// Complete Profile via Google
+document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
+    const btn = document.getElementById("linkGoogleBtn");
+    btn.disabled = true;
+    
+    try {
+        const result = await linkWithPopup(auth.currentUser, provider);
+        const user = result.user;
+
+        let userClass = prompt("Welcome! Please enter your grade (e.g., class5):") || "class1";
+        
+        await setDoc(doc(db, "users", user.uid), {
+            name: user.displayName || "Student",
+            email: user.email,
+            phone: user.phoneNumber,
+            class: userClass,
+            createdAt: new Date()
+        });
+        
+        await signOut(auth);
+        document.getElementById("customModal").style.display = "flex";
+    } catch (error) {
+        alert("Google link failed: " + error.message);
+        btn.disabled = false;
+    }
+});
 </script>
 <script>
 /* Mobile Menu Toggle - Defined globally for inline onclick */
