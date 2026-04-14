@@ -81,7 +81,7 @@
     button.main-btn {
       width: 100%;
       padding: 16px;
-      background: var(--brand);
+      background: linear-gradient(to right, var(--brand), var(--accent));
       color: white;
       border: none;
       border-radius: 12px;
@@ -90,19 +90,21 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.3s ease;
       margin-top: 10px;
+      box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
     }
-    button.main-btn:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+    button.main-btn:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 7px 25px rgba(79, 70, 229, 0.4); 
+      filter: brightness(1.1);
+    }
 
     .social-btn {
       width: 100%;
       padding: 14px;
-      background: #ffffff;
-      color: #334155;
-      border: 1px solid var(--border);
       border-radius: 12px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 15px;
       cursor: pointer;
       display: flex;
@@ -110,14 +112,39 @@
       justify-content: center;
       gap: 12px;
       margin-bottom: 20px;
-      transition: 0.2s;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
     }
-    .social-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
     .social-btn img { width: 22px; height: 22px; }
 
-    .divider { display: flex; align-items: center; text-align: center; color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; }
-    .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border); }
+    #googleSignInBtn { 
+      background: #ffffff; 
+      color: #1e293b; 
+      border: 1px solid #d1d5db; 
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    #googleSignInBtn:hover { 
+      background: #f9fafb; 
+      transform: translateY(-2px); 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
+    }
+
+    #btnShowEmail { 
+      background: linear-gradient(to right, #3b82f6, #6366f1); 
+      color: white; border: none; 
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35); 
+    }
+    #btnShowEmail:hover { transform: translateY(-3px); box-shadow: 0 7px 25px rgba(59, 130, 246, 0.45); filter: brightness(1.1); }
+
+    #btnShowMobile { 
+      background: linear-gradient(to right, #10b981, #22c55e); 
+      color: white; 
+      border: none; 
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35); 
+    }
+    #btnShowMobile:hover { transform: translateY(-3px); box-shadow: 0 7px 25px rgba(16, 185, 129, 0.45); filter: brightness(1.1); }
+
+    .divider { display: flex; align-items: center; text-align: center; color: #475569; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; }
+    .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #94a3b8; }
     .divider::before { margin-right: 15px; } .divider::after { margin-left: 15px; }
 
     .auth-tabs { display: flex; background: var(--subtle); border-radius: 12px; padding: 5px; margin-bottom: 25px; }
@@ -146,12 +173,15 @@
     .hidden { display: none; }
 
     @media (max-width: 768px) {
-      .container { padding: 15px; }
-      .login-box { padding: 40px 25px; border-radius: 20px; width: 100% !important; }
-      h1, h2 { font-size: 22px; margin-bottom: 20px; }
-      input { padding: 14px 18px; font-size: 14px; }
-      button.main-btn { padding: 14px; font-size: 14px; }
-      .signup-text { margin-top: 20px; padding-top: 20px; color: var(--text) !important; font-weight: 500; }
+      .container { padding: 15px; align-items: flex-start; padding-top: 30px; }
+      .login-box { padding: 30px 20px; border-radius: 20px; width: 100%; max-width: 400px; margin: 0 auto; }
+      h1, h2 { font-size: 20px; margin-bottom: 12px; }
+      .subtitle { font-size: 13px; margin-bottom: 20px; }
+      input { padding: 14px 16px; font-size: 14px; margin-bottom: 12px; }
+      button.main-btn, .social-btn { padding: 14px; font-size: 14px; }
+      .social-btn { margin-bottom: 15px; }
+      .divider { margin-bottom: 15px; }
+      .signup-text { margin-top: 20px; padding-top: 20px; color: var(--text) !important; font-weight: 500; font-size: 14px; }
       .signup-text a { color: var(--brand) !important; font-weight: 800; text-decoration: underline; }
     }
   </style>
@@ -190,15 +220,36 @@
             Continue with Google
         </button>
 
-        <div class="divider">or continue with</div>
+        <div class="divider" id="divider1">or</div>
 
-        <div class="auth-tabs">
-            <button class="auth-tab active" id="tabMobile" onclick="switchLoginTab('phoneSection')">Mobile</button>
-            <button class="auth-tab" id="tabEmail" onclick="switchLoginTab('loginSection')">Email</button>
+        <button id="btnShowEmail" class="social-btn hidden" onclick="showEmailSection()">
+            ✉️ Sign in with your Email
+        </button>
+
+        <div id="loginSection">
+            <h2>Sign In with Email</h2>
+            <p class="subtitle">Enter your email and password to access your account.</p>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email Address" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="main-btn">Sign In</button>
+            </form>
+
+            <div class="link-group">
+                <button class="link-btn" onclick="toggleView('forgotSection')">Forgot Password?</button>
+                <span>|</span>
+                <button class="link-btn" onclick="toggleView('changeSection')">Change Password</button>
+            </div>
         </div>
 
-        <div id="phoneSection">
-            <h2>Welcome Back</h2>
+        <div class="divider" id="divider2">or</div>
+
+        <button id="btnShowMobile" class="social-btn" onclick="showMobileSection()">
+            📱 Sign in with Mobile
+        </button>
+
+        <div id="phoneSection" class="hidden">
+            <h2>Mobile Sign In</h2>
             <p class="subtitle">Enter your mobile number to sign in securely.</p>
             <div id="recaptcha-container"></div>
             <form id="phoneForm">
@@ -214,28 +265,12 @@
             </form>
         </div>
 
-        <div id="loginSection" class="hidden">
-            <h2>Sign In</h2>
-            <p class="subtitle">Enter your email and password to access your account.</p>
-            <form id="loginForm">
-                <input type="email" id="loginEmail" placeholder="Email Address" required>
-                <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="submit" class="main-btn">Sign In</button>
-            </form>
-
-            <div class="link-group">
-                <button class="link-btn" onclick="toggleView('forgotSection')">Forgot Password?</button>
-                <span>|</span>
-                <button class="link-btn" onclick="toggleView('changeSection')">Change Password</button>
-            </div>
-        </div>
-
         <div id="forgotSection" class="hidden">
             <h2>Reset Access</h2>
             <form id="forgotForm">
                 <input type="email" id="resetEmail" placeholder="Email Address" required>
                 <button type="submit" class="main-btn">Send Link</button>
-                <button type="button" class="link-btn" style="margin-top:15px;" onclick="toggleView('loginSection')">Back to Login</button>
+                <button type="button" class="link-btn" style="margin-top:15px;" onclick="showEmailSection()">Back to Login</button>
             </form>
         </div>
 
@@ -245,13 +280,26 @@
                 <input type="password" id="currentPassword" placeholder="Current Password" required>
                 <input type="password" id="newPassword" placeholder="New Password" required>
                 <button type="submit" class="main-btn">Update Password</button>
-                <button type="button" class="link-btn" style="margin-top:15px;" onclick="toggleView('loginSection')">Back to Login</button>
+                <button type="button" class="link-btn" style="margin-top:15px;" onclick="showEmailSection()">Back to Login</button>
             </form>
         </div>
 
         <p class="signup-text">
             New to the portal? <a href="signup.html" style="color: var(--brand); text-decoration: none;">Create an Account</a>
         </p>
+    </div>
+</div>
+
+<!-- Not Registered Modal -->
+<div id="notRegisteredModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="max-width: 440px; text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Not a Registered User</h2>
+        <p class="subtitle" style="margin-bottom: 20px;">We couldn't find an account associated with these details. Please create your account on the signup page.</p>
+        <div style="display: flex; gap: 10px;">
+            <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; transition: 0.2s;">No Thanks</button>
+            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">OK</button>
+        </div>
     </div>
 </div>
 
@@ -287,6 +335,7 @@ import {
     updatePassword, 
     reauthenticateWithCredential, 
     EmailAuthProvider,
+    deleteUser,
     signOut,
     RecaptchaVerifier,
     signInWithPhoneNumber,
@@ -317,47 +366,100 @@ onAuthStateChanged(auth, async (user) => {
     if (user) {
         try {
             const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (userDoc.exists() && userDoc.data().phone) {
-                localStorage.setItem("isLoggedIn", "true");
-                sessionStorage.removeItem("redirectAfterLogin");
-                window.location.replace(redirectUrl);
-            } else {
-                document.getElementById('linkPhoneModal').style.display = 'flex';
-                if (!window.linkRecaptchaVerifier) {
-                    window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', {
-                        'size': 'invisible'
-                    });
-                    window.linkRecaptchaVerifier.render().catch(console.error);
+                if (userDoc.exists()) {
+                    if (userDoc.data().phone) {
+                        localStorage.setItem("isLoggedIn", "true");
+                        sessionStorage.removeItem("redirectAfterLogin");
+                        window.location.replace(redirectUrl);
+                    } else {
+                        document.getElementById('linkPhoneModal').style.display = 'flex';
+                        if (!window.linkRecaptchaVerifier) {
+                            window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', {
+                                'size': 'invisible'
+                            });
+                            window.linkRecaptchaVerifier.render().catch(console.error);
+                        }
+                    }
+                } else {
+                    // Not registered logic
+                    await deleteUser(user);
+                    await signOut(auth);
+                    document.getElementById('notRegisteredModal').style.display = 'flex';
+                    
+                    // Reset UI for phone form if it was used
+                    document.getElementById("phoneForm").classList.remove("hidden");
+                    document.getElementById("otpForm").classList.add("hidden");
+                    const verifyBtn = document.getElementById("verifyOtpBtn");
+                    if(verifyBtn) {
+                        verifyBtn.disabled = false;
+                        verifyBtn.innerText = "Verify & Sign In";
+                    }
+                    
+                    // Reset UI for login form if it was used
+                    const loginBtn = document.querySelector("#loginForm button");
+                    if(loginBtn) {
+                        loginBtn.disabled = false;
+                        loginBtn.innerText = "Sign In";
+                    }
                 }
-            }
         } catch(e) {
             console.error("Auth State Check Error:", e);
         }
     }
 });
 
-window.toggleView = function(sectionId) {
-    document.getElementById('loginSection').classList.add('hidden');
+window.showEmailSection = function() {
+    document.getElementById('loginSection').classList.remove('hidden');
+    document.getElementById('btnShowEmail').classList.add('hidden');
+    
+    document.getElementById('phoneSection').classList.add('hidden');
+    document.getElementById('btnShowMobile').classList.remove('hidden');
+    
+    document.getElementById('divider1').classList.remove('hidden');
+    document.getElementById('divider2').classList.remove('hidden');
+    document.getElementById('googleSignInBtn').classList.remove('hidden');
+
     document.getElementById('forgotSection').classList.add('hidden');
     document.getElementById('changeSection').classList.add('hidden');
-    document.getElementById('phoneSection').classList.add('hidden');
-    document.getElementById(sectionId).classList.remove('hidden');
+};
 
-    if (sectionId === 'phoneSection' && !window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-            'size': 'invisible'
-        });
+window.showMobileSection = function() {
+    document.getElementById('phoneSection').classList.remove('hidden');
+    document.getElementById('btnShowMobile').classList.add('hidden');
+    
+    document.getElementById('loginSection').classList.add('hidden');
+    document.getElementById('btnShowEmail').classList.remove('hidden');
+    
+    document.getElementById('divider1').classList.remove('hidden');
+    document.getElementById('divider2').classList.remove('hidden');
+    document.getElementById('googleSignInBtn').classList.remove('hidden');
+
+    document.getElementById('forgotSection').classList.add('hidden');
+    document.getElementById('changeSection').classList.add('hidden');
+
+    if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { 'size': 'invisible' });
         window.recaptchaVerifier.render().catch(console.error);
     }
 };
 
-// Logic to switch between Mobile and Email tabs cleanly
-window.switchLoginTab = function(sectionId) {
-    toggleView(sectionId);
-    document.getElementById('tabMobile').classList.remove('active');
-    document.getElementById('tabEmail').classList.remove('active');
-    if (sectionId === 'phoneSection') document.getElementById('tabMobile').classList.add('active');
-    if (sectionId === 'loginSection') document.getElementById('tabEmail').classList.add('active');
+window.toggleView = function(sectionId) {
+    document.getElementById('loginSection').classList.add('hidden');
+    document.getElementById('phoneSection').classList.add('hidden');
+    document.getElementById('forgotSection').classList.add('hidden');
+    document.getElementById('changeSection').classList.add('hidden');
+    
+    document.getElementById('btnShowEmail').classList.add('hidden');
+    document.getElementById('btnShowMobile').classList.add('hidden');
+    document.getElementById('divider1').classList.add('hidden');
+    document.getElementById('divider2').classList.add('hidden');
+    document.getElementById('googleSignInBtn').classList.add('hidden');
+
+    document.getElementById(sectionId).classList.remove('hidden');
+    
+    if (sectionId === 'loginSection') {
+        showEmailSection();
+    }
 };
 
 window.logoutAndCancel = async function() {
@@ -392,32 +494,16 @@ document.getElementById("phoneForm").addEventListener("submit", async (e) => {
 document.getElementById("otpForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const code = document.getElementById("otpCode").value.trim();
+    const btn = document.getElementById("verifyOtpBtn");
+    btn.disabled = true;
+    btn.innerText = "Verifying...";
     try {
-        const result = await confirmationResult.confirm(code);
-        const user = result.user;
-
-        // Profile Robustness: Check if Firestore record exists
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (!userDoc.exists()) {
-            const name = prompt("Welcome! Please enter your full name:") || "Student";
-            const userClass = prompt("Please enter your grade (e.g., class5):") || "class1";
-            
-            await setDoc(doc(db, "users", user.uid), {
-                name: name,
-                phone: user.phoneNumber,
-                class: userClass,
-                createdAt: new Date()
-            });
-        } else if (!userDoc.data().phone) {
-            // Fallback: If document exists but phone is somehow missing, update it
-            await setDoc(doc(db, "users", user.uid), { phone: user.phoneNumber }, { merge: true });
-        }
-
-        localStorage.setItem("isLoggedIn", "true");
-        sessionStorage.removeItem("redirectAfterLogin");
-        window.location.href = redirectUrl;
+        await confirmationResult.confirm(code);
+        // onAuthStateChanged will handle the rest (checking DB, routing, etc.)
     } catch (err) {
         alert("Incorrect OTP or session expired. Please try again.");
+        btn.disabled = false;
+        btn.innerText = "Verify & Sign In";
     }
 });
 
@@ -448,6 +534,8 @@ document.getElementById("linkPhoneForm").addEventListener("submit", async (e) =>
 document.getElementById("linkOtpForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const code = document.getElementById("linkOtpCode").value.trim();
+    const btn = document.getElementById("linkVerifyBtn");
+    btn.disabled = true; btn.innerText = "Verifying...";
     try {
         const result = await linkConfirmationResult.confirm(code);
         // Save the phone to Firestore
@@ -458,35 +546,35 @@ document.getElementById("linkOtpForm").addEventListener("submit", async (e) => {
         window.location.href = redirectUrl;
     } catch (err) {
         alert("Incorrect OTP. Please try again.");
+        btn.disabled = false; btn.innerText = "Verify & Continue";
     }
 });
 
 // Login Logic
 document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.disabled = true;
+    btn.innerText = "Signing In...";
     try {
         await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
         // Successful email login will trigger onAuthStateChanged which handles the phone check and routing.
-    } catch(err) { alert(err.message); }
+    } catch(err) { 
+        if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') {
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+        } else {
+            alert(err.message); 
+        }
+        btn.disabled = false;
+        btn.innerText = "Sign In";
+    }
 });
 
 // Google Sign-In Logic
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
     try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (!userDoc.exists()) {
-            // Initialize minimal profile for new Google user
-            await setDoc(doc(db, "users", user.uid), {
-                name: user.displayName || "Student",
-                email: user.email,
-                class: "class6", // Default fallback
-                createdAt: new Date()
-            });
-        }
-        // The onAuthStateChanged listener will automatically trap them to verify mobile
+        await signInWithPopup(auth, provider);
+        // The onAuthStateChanged listener will automatically check DB and trap them to verify mobile
     } catch (err) { alert(err.message); }
 });
 
@@ -497,7 +585,7 @@ document.getElementById("forgotForm").addEventListener("submit", async (e) => {
     try {
         await sendPasswordResetEmail(auth, email);
         alert("Password reset email sent!");
-        toggleView('loginSection');
+        showEmailSection();
     } catch (err) { alert(err.message); }
 });
 
@@ -510,7 +598,7 @@ document.getElementById("changeForm").addEventListener("submit", async (e) => {
 
     if (!user) {
         alert("Please log in first to change your password.");
-        toggleView('loginSection');
+        showEmailSection();
         return;
     }
 
@@ -519,7 +607,7 @@ document.getElementById("changeForm").addEventListener("submit", async (e) => {
         await reauthenticateWithCredential(user, credential);
         await updatePassword(user, newPass);
         alert("Password updated successfully!");
-        toggleView('loginSection');
+        showEmailSection();
     } catch (err) { alert(err.message); }
 });
 </script>
