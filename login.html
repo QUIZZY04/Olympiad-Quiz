@@ -343,7 +343,7 @@ import {
     signInWithPopup, 
     GoogleAuthProvider 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -480,6 +480,24 @@ document.getElementById("phoneForm").addEventListener("submit", async (e) => {
     btn.innerText = "Sending...";
 
     try {
+        // Pre-verification check: Check if user exists in the database
+        try {
+            const q = query(collection(db, "users"), where("phone", "==", phone));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                document.getElementById('notRegisteredModal').style.display = 'flex';
+                btn.disabled = false; btn.innerText = "Send OTP";
+                return;
+            }
+        } catch (dbErr) {
+            if (dbErr.code === 'permission-denied' || dbErr.message.includes('Missing or insufficient permissions')) {
+                document.getElementById('notRegisteredModal').style.display = 'flex';
+                btn.disabled = false; btn.innerText = "Send OTP";
+                return;
+            }
+            throw dbErr;
+        }
+
         confirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
         console.log("OTP Sent Successfully to:", phone);
         document.getElementById("phoneForm").classList.add("hidden");
