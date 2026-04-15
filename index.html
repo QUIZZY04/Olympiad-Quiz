@@ -327,6 +327,15 @@
             .live-ticker { flex-direction: column; padding: 15px; text-align: center; gap: 10px; }
             .ticker-badge { align-self: center; }
             .ticker-btn { width: 100%; text-align: center; box-sizing: border-box; }
+
+            /* Mobile adjustments for vertical leaderboard */
+            .vertical-leaderboard-container { width: 95%; padding: 5px 10px; height: 400px; }
+            .vertical-leaderboard-item { padding: 12px 12px; gap: 5px; }
+            .vertical-lb-rank { width: 35px; height: 35px; font-size: 1.1rem; border-radius: 8px; }
+            .vertical-lb-details { padding: 0 5px; }
+            .vertical-lb-name { font-size: 0.95rem; }
+            .vertical-lb-grade { font-size: 0.75rem; }
+            .vertical-lb-score { font-size: 0.95rem; padding: 6px 12px; border-radius: 8px; }
         }
 
         /* New Button Styles for Hero Section */
@@ -432,6 +441,69 @@
             50% { box-shadow: 0 0 35px rgba(121, 40, 202, 0.9); }
             100% { box-shadow: 0 0 15px rgba(121, 40, 202, 0.4); }
         }
+
+        /* Home Page Vertical Leaderboard */
+        .vertical-leaderboard-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--brand);
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            height: 460px; 
+            overflow: hidden;
+            position: relative;
+            padding: 10px 15px;
+        }
+        .vertical-leaderboard-container::before,
+        .vertical-leaderboard-container::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; height: 50px;
+            z-index: 2; pointer-events: none;
+        }
+        .vertical-leaderboard-container::before { top: 0; background: linear-gradient(to bottom, var(--surface) 20%, transparent); }
+        .vertical-leaderboard-container::after { bottom: 0; background: linear-gradient(to top, var(--surface) 20%, transparent); }
+
+        .vertical-leaderboard-track {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 10px 5px;
+            animation: scroll-vertical 35s linear infinite;
+        }
+        .vertical-leaderboard-container:hover .vertical-leaderboard-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-vertical {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+
+        .vertical-leaderboard-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .vertical-leaderboard-item:hover { 
+            transform: scale(1.02) translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .vertical-lb-rank { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(0,0,0,0.04); font-size: 1.4rem; font-weight: 800; color: var(--muted); }
+        .vertical-lb-details { flex: 1; display: flex; flex-direction: column; padding: 0 15px; min-width: 0; text-align: left; }
+        .vertical-lb-name { font-weight: 800; color: var(--text); font-size: 1.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .vertical-lb-grade { font-size: 0.8rem; color: var(--muted); font-weight: 700; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .vertical-lb-score { font-size: 1.15rem; font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--brand), var(--accent)); padding: 8px 16px; border-radius: 10px; white-space: nowrap; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3); }
     </style>
 </head>
 <body>
@@ -596,6 +668,21 @@
         </section>
         
     </main>
+
+    <!-- HOME PAGE LEADERBOARD SCROLLER -->
+    <section id="home-leaderboard-section" style="padding: 60px 0 40px; background: var(--subtle);">
+        <div style="text-align: center; margin-bottom: 40px; padding: 0 20px;">
+            <h2 style="font-size: 2.2rem; color: var(--text); font-weight: 800;">🏆 Hall of Fame</h2>
+            <p style="color: var(--muted); max-width: 800px; margin: 10px auto; font-size: 1.1rem;">
+                Celebrating our top performers from daily practice and live quizzes. Keep practicing to see your name here!
+            </p>
+        </div>
+        <div class="vertical-leaderboard-container">
+            <div class="vertical-leaderboard-track" id="leaderboard-track">
+                <!-- Leaderboard items are dynamically injected here -->
+            </div>
+        </div>
+    </section>
 
     <!-- DESKTOP PREP SECTION (Cleaning up duplicated code) -->
     <section class="desktop-only" style="width: 90%; max-width: 1400px; margin: 80px auto; line-height: 1.8;">
@@ -927,6 +1014,82 @@
             } catch (e) { console.error("Ticker sync failed:", e); }
         }
         checkLiveSessions();
+
+        async function loadHomePageLeaderboard() {
+            const track = document.getElementById("leaderboard-track");
+            const section = document.getElementById('home-leaderboard-section');
+            if (!track || !section) return;
+
+            try {
+                // Fetch top 20 performers based on score
+                const q = query(collection(db, "leaderboard"), orderBy("score", "desc"), limit(20));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    section.innerHTML = `<div style="text-align: center; padding: 40px 20px; color: var(--muted); font-style: italic;">The Hall of Fame is awaiting its first champion. Be the first!</div>`;
+                    return;
+                }
+
+                let itemsHtml = "";
+                let rank = 1;
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    const name = d.email ? d.email.split('@')[0] : "Anonymous";
+                    const score = d.score || 0;
+                    const total = d.total || (d.isChampionship ? 50 : 30);
+                    const gradeRaw = d.studentClass || "N/A";
+                    const grade = gradeRaw.replace(/class/i, 'Grade ');
+                    
+                    let rankDisplay = `#${rank}`;
+                    let cardStyle = "border-left: 5px solid var(--brand);";
+                    let rankStyle = "";
+
+                    if (rank === 1) { 
+                        rankDisplay = "🥇"; 
+                        cardStyle = "background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; border-left: 5px solid #f59e0b;";
+                        rankStyle = "background: #fef08a; color: #b45309;";
+                    }
+                    else if (rank === 2) { 
+                        rankDisplay = "🥈"; 
+                        cardStyle = "background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-color: #e2e8f0; border-left: 5px solid #94a3b8;";
+                        rankStyle = "background: #e2e8f0; color: #475569;";
+                    }
+                    else if (rank === 3) { 
+                        rankDisplay = "🥉"; 
+                        cardStyle = "background: linear-gradient(135deg, #fff7ed, #ffedd5); border-color: #fed7aa; border-left: 5px solid #d97706;";
+                        rankStyle = "background: #fed7aa; color: #9a3412;";
+                    }
+                    else if (rank % 3 === 0) {
+                        cardStyle = "border-left: 5px solid var(--accent);";
+                    } else if (rank % 2 === 0) {
+                        cardStyle = "border-left: 5px solid #0ea5e9;";
+                    }
+
+                    itemsHtml += `
+                        <div class="vertical-leaderboard-item" style="${cardStyle}">
+                            <div class="vertical-lb-rank" style="${rankStyle}">${rankDisplay}</div>
+                            <div class="vertical-lb-details"><div class="vertical-lb-name">${name}</div><div class="vertical-lb-grade">${grade}</div></div>
+                            <div class="vertical-lb-score">${score} <span style="font-size: 0.8rem; opacity: 0.8; font-weight: 600;">/ ${total}</span></div>
+                        </div>
+                    `;
+                    rank++;
+                });
+
+                track.innerHTML = itemsHtml + itemsHtml;
+
+            } catch (e) {
+                console.error("Home page leaderboard load failed:", e);
+                // Provide a more user-friendly message and a hint for the developer
+                let errorMsg = "Could not load the Hall of Fame at this time.";
+                if (e.message.includes("requires an index")) {
+                    errorMsg += "<br><small style='color: var(--danger); font-weight: 600;'>Developer Hint: A Firestore index is required for this query. Please check the browser console (F12) for a direct link to create it.</small>";
+                } else if (e.message.includes("permission-denied") || e.message.includes("insufficient permissions")) {
+                    errorMsg += "<br><small style='color: var(--danger); font-weight: 600;'>Developer Hint: Check your Firestore security rules. The 'leaderboard' collection may not be publicly readable.</small>";
+                }
+                section.innerHTML = `<div style="text-align: center; padding: 40px 20px; color: var(--muted);">${errorMsg}</div>`;
+            }
+        }
+        loadHomePageLeaderboard();
     </script>
 
     <script>
