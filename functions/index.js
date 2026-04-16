@@ -24,7 +24,7 @@ function getBrevoClient() {
 // Define a consistent sender for all emails.
 // IMPORTANT: Replace with an email address you have verified in your Brevo account.
 const SENDER = {
-  email: "your-verified-brevo-sender@example.com",
+  email: "admin@olympiadquiz.org",
   name: "Olympiad Portal",
 };
 
@@ -53,7 +53,7 @@ exports.createuser = onUserCreate({secrets: ["BREVO_API_KEY"]}, async (user) => 
         sender: SENDER,
         to: [{email, name: displayName || "Student"}],
         subject: "Welcome to Olympiad Portal! 🎓",
-        html: `
+        htmlContent: `
           <div style="font-family: sans-serif; padding: 20px;">
             <h2 style="color: #4f46e5;">Welcome to Olympiad Portal!</h2>
             <p>Hi ${displayName || 'Student'},</p>
@@ -168,6 +168,9 @@ exports.sendBulkEmails = onCall({secrets: ["BREVO_API_KEY"]}, async (request) =>
   }
 
   try {
+    // Helper function to introduce a delay between API calls
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
     const brevoApi = getBrevoClient();
     const usersSnap = await db.collection("users").get();
     const emails = [];
@@ -190,29 +193,28 @@ exports.sendBulkEmails = onCall({secrets: ["BREVO_API_KEY"]}, async (request) =>
       emailBatches.push(emails.slice(i, i + batchSize));
     }
 
-    const sendPromises = emailBatches.map((batch) => {
-      const bcc = batch.map((email) => ({email}));
-      return brevoApi.sendTransacEmail({
-        sender: { ...SENDER, email: senderEmail || SENDER.email },
-        subject,
-        htmlContent,
-        bcc,
-      });
-    });
-
-    const results = await Promise.allSettled(sendPromises);
-
     let successCount = 0;
     let failCount = 0;
-    results.forEach((result, index) => {
-      if (result.status === "fulfilled") {
-        successCount += emailBatches[index].length;
-      } else {
-        failCount += emailBatches[index].length;
-        logger.error(`Bulk email batch ${index + 1} failed`, result.reason);
-      }
-    });
 
+    for (const batch of emailBatches) {
+      try {
+        const bcc = batch.map((email) => ({email}));
+        await brevoApi.sendTransacEmail({
+          sender: { ...SENDER, email: senderEmail || SENDER.email },
+          subject,
+          htmlContent,
+          bcc,
+        });
+        successCount += batch.length;
+        logger.info(`Successfully sent bulk email batch to ${batch.length} users.`);
+      } catch (batchError) {
+        failCount += batch.length;
+        logger.error(`Bulk email batch failed for ${batch.length} users`, batchError);
+      }
+      // Add a delay between batches to avoid hitting API rate limits
+      if (emailBatches.length > 1) await delay(400);
+    }
+    
     const message = `Bulk email process finished. Sent: ${successCount}, Failed: ${failCount}.`;
     logger.info(message);
     return { success: failCount === 0, message, successCount, failCount };
