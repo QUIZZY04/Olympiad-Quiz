@@ -3,29 +3,35 @@ const {onCall, HttpsError} = require("firebase-functions/v2/https");
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
 const logger = require("firebase-functions/logger");
-const nodemailer = require("nodemailer");
+const SibApiV3Sdk = require("sib-api-v3-sdk");
 
 // Initialize the Firebase Admin SDK.
 initializeApp();
 const db = getFirestore();
 
-// Configure your SMTP transporter for sending emails
-// Use Brevo (formerly Sendinblue) for reliable email delivery.
-// IMPORTANT: Replace with your Brevo login email and your Brevo SMTP API Key.
-const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587,
-  secure: false, // leave this as false
-  auth: {
-    user: "your-brevo-login-email@example.com", // The email address you use to log in to Brevo
-    pass: "YOUR_BREVO_SMTP_API_KEY", // Your Brevo SMTP API Key
-  },
-});
+/**
+ * Securely initializes and returns the Brevo API client.
+ * It uses the BREVO_API_KEY stored in Firebase Secrets.
+ * @returns {SibApiV3Sdk.TransactionalEmailsApi}
+ */
+function getBrevoClient() {
+  const client = SibApiV3Sdk.ApiClient.instance;
+  const apiKey = client.authentications["api-key"];
+  apiKey.apiKey = process.env.BREVO_API_KEY;
+  return new SibApiV3Sdk.TransactionalEmailsApi();
+}
+
+// Define a consistent sender for all emails.
+// IMPORTANT: Replace with an email address you have verified in your Brevo account.
+const SENDER = {
+  email: "your-verified-brevo-sender@example.com",
+  name: "Olympiad Portal",
+};
 
 /**
  * 1. Creates a user document in Firestore AND sends a Welcome Email
  */
-exports.createuser = onUserCreate(async (user) => {
+exports.createuser = onUserCreate({secrets: ["BREVO_API_KEY"]}, async (user) => {
   const {uid, email, displayName, phoneNumber} = user;
 
   try {
@@ -44,8 +50,8 @@ exports.createuser = onUserCreate(async (user) => {
     // Send Welcome Email if the user signed up with an email address
     if (email) {
       const mailOptions = {
-        from: '"Olympiad Portal" <your-verified-brevo-sender@example.com>',
-        to: email,
+        sender: SENDER,
+        to: [{email, name: displayName || "Student"}],
         subject: "Welcome to Olympiad Portal! 🎓",
         html: `
           <div style="font-family: sans-serif; padding: 20px;">
@@ -60,8 +66,13 @@ exports.createuser = onUserCreate(async (user) => {
         `
       };
       
-      await transporter.sendMail(mailOptions);
-      logger.info(`Welcome email sent to ${email}`);
+      try {
+        const brevoApi = getBrevoClient();
+        await brevoApi.sendTransacEmail(mailOptions);
+        logger.info(`Welcome email sent to ${email}`);
+      } catch (emailError) {
+        logger.error(`Failed to send welcome email to ${email}`, emailError);
+      }
     }
   } catch (error) {
     logger.error(`Error in createuser function for UID: ${uid}`, error);
@@ -71,7 +82,7 @@ exports.createuser = onUserCreate(async (user) => {
 /**
  * 2. OTP Verification Functions (Generate & Verify)
  */
-exports.generateOtp = onCall(async (request) => {
+exports.generateOtp = onCall({secrets: ["BREVO_API_KEY"]}, async (request) => {
   const { email, phone } = request.data;
   if (!email && !phone) {
     throw new HttpsError("invalid-argument", "Email or phone number is required.");
@@ -89,11 +100,12 @@ exports.generateOtp = onCall(async (request) => {
 
     // Send OTP via Email
     if (email) {
-      await transporter.sendMail({
-        from: '"Olympiad Portal Support" <your-verified-brevo-sender@example.com>',
-        to: email,
+      const brevoApi = getBrevoClient();
+      await brevoApi.sendTransacEmail({
+        sender: {...SENDER, name: "Olympiad Portal Support"},
+        to: [{email}],
         subject: "Your Account Verification OTP",
-        html: `<p>Your verification code is: <strong style="font-size: 24px; color: #4f46e5;">${otp}</strong></p><p>This code will expire in 10 minutes.</p>`
+        htmlContent: `<p>Your verification code is: <strong style="font-size: 24px; color: #4f46e5;">${otp}</strong></p><p>This code will expire in 10 minutes.</p>`,
       });
     }
     
@@ -139,7 +151,7 @@ exports.verifyOtp = onCall(async (request) => {
 /**
  * 3. Bulk Email Sending System (Admin Only)
  */
-exports.sendBulkEmails = onCall(async (request) => {
+exports.sendBulkEmails = onCall({secrets: ["BREVO_API_KEY"]}, async (request) => {
   // Security Check: Ensure caller is authenticated
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "You must be logged in to send bulk emails.");
@@ -150,12 +162,13 @@ exports.sendBulkEmails = onCall(async (request) => {
     throw new HttpsError("permission-denied", "Only administrators can send bulk emails.");
   }
 
-  const { subject, htmlContent } = request.data;
+  const { subject, htmlContent, senderEmail } = request.data;
   if (!subject || !htmlContent) {
     throw new HttpsError("invalid-argument", "Subject and HTML content are required.");
   }
 
   try {
+    const brevoApi = getBrevoClient();
     const usersSnap = await db.collection("users").get();
     const emails = [];
 
@@ -170,18 +183,39 @@ exports.sendBulkEmails = onCall(async (request) => {
       return { success: true, message: "No users with emails found." };
     }
 
-    // Send via BCC to protect user privacy and avoid sending thousands of individual API requests
-    const mailOptions = {
-      from: '"Olympiad Portal" <your-verified-brevo-sender@example.com>',
-      bcc: emails, 
-      subject: subject,
-      html: htmlContent
-    };
+    // Batch emails to stay within API limits (e.g., 900 per call)
+    const batchSize = 900;
+    const emailBatches = [];
+    for (let i = 0; i < emails.length; i += batchSize) {
+      emailBatches.push(emails.slice(i, i + batchSize));
+    }
 
-    await transporter.sendMail(mailOptions);
-    logger.info(`Bulk email sent successfully to ${emails.length} users.`);
+    const sendPromises = emailBatches.map((batch) => {
+      const bcc = batch.map((email) => ({email}));
+      return brevoApi.sendTransacEmail({
+        sender: { ...SENDER, email: senderEmail || SENDER.email },
+        subject,
+        htmlContent,
+        bcc,
+      });
+    });
 
-    return { success: true, message: `Successfully sent bulk emails to ${emails.length} users.` };
+    const results = await Promise.allSettled(sendPromises);
+
+    let successCount = 0;
+    let failCount = 0;
+    results.forEach((result, index) => {
+      if (result.status === "fulfilled") {
+        successCount += emailBatches[index].length;
+      } else {
+        failCount += emailBatches[index].length;
+        logger.error(`Bulk email batch ${index + 1} failed`, result.reason);
+      }
+    });
+
+    const message = `Bulk email process finished. Sent: ${successCount}, Failed: ${failCount}.`;
+    logger.info(message);
+    return { success: failCount === 0, message, successCount, failCount };
   } catch (error) {
     logger.error("Error sending bulk emails", error);
     throw new HttpsError("internal", "Failed to send bulk emails.");
@@ -192,7 +226,7 @@ exports.sendBulkEmails = onCall(async (request) => {
  * 4. Test Result Email System
  * Sends a formatted email to the user with their score after submitting a test.
  */
-exports.sendTestResultEmail = onCall(async (request) => {
+exports.sendTestResultEmail = onCall({secrets: ["BREVO_API_KEY"]}, async (request) => {
   const { email, name, subject, score, total, grade } = request.data;
   
   if (!email) {
@@ -201,11 +235,12 @@ exports.sendTestResultEmail = onCall(async (request) => {
 
   try {
     const percentage = Math.round((score / total) * 100);
+    const brevoApi = getBrevoClient();
     const mailOptions = {
-      from: '"Olympiad Portal" <your-verified-brevo-sender@example.com>',
-      to: email,
+      sender: SENDER,
+      to: [{email, name: name || "Student"}],
       subject: `Your ${subject.toUpperCase()} Olympiad Mock Test Result 📊`,
-      html: `
+      htmlContent: `
         <div style="font-family: sans-serif; padding: 20px;">
           <h2 style="color: #4f46e5;">Test Submitted Successfully!</h2>
           <p>Hi ${name || 'Student'},</p>
@@ -222,7 +257,7 @@ exports.sendTestResultEmail = onCall(async (request) => {
       `
     };
 
-    await transporter.sendMail(mailOptions);
+    await brevoApi.sendTransacEmail(mailOptions);
     logger.info(`Test result email sent successfully to ${email}`);
     
     return { success: true, message: "Result email sent successfully." };
