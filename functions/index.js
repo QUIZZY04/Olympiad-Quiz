@@ -35,43 +35,68 @@ const SENDER_INFO = {
 };
 
 // =================================================================
-// 1. WELCOME EMAIL SYSTEM (V1 AUTH TRIGGER)
+// 1. WELCOME EMAIL SYSTEM (V1 AUTH + V2 FIRESTORE)
 // =================================================================
 
 /**
  * Triggered when a new user is created in Firebase Authentication.
- * 1. Creates a corresponding user document in Firestore.
- * 2. Sends a welcome email to the user.
+ * This 1st Gen function's only job is to create a user document in Firestore.
+ * Its name and type are preserved to avoid a V1-to-V2 deployment conflict.
+ * The creation of the document will then trigger `triggerWelcomeEmail`.
  */
-exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"] }).auth.user().onCreate(async (user) => {
-     // The user object from the event
-    const { uid, email, displayName } = user;
+exports.sendWelcomeEmailOnSignup = functions.auth.user().onCreate(async (user) => {
+  const { uid, email, displayName } = user;
+  try {
+    await db.collection("users").doc(uid).set({
+      uid: uid,
+      email: email || null,
+      name: displayName || "Student",
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    console.log(`User document created for UID: ${uid}. This will trigger the welcome email function.`);
+  } catch (error) {
+    console.error(`Error creating user document for UID ${uid}:`, error.message);
+  }
+});
+
+/**
+ * Triggered when a user document is created or updated in Firestore.
+ * - Sends a welcome email to the user once an email address is available.
+ * - Avoids duplicate emails using a 'welcomeEmailSent' flag.
+ */
+exports.triggerWelcomeEmail = onDocumentWritten(
+  {
+    document: "users/{uid}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    const uid = event.params.uid;
+    const afterData = event.data?.after.data();
+
+    // Exit if document was deleted or has no data
+    if (!afterData) {
+      return;
+    }
+
+    const { email, name, welcomeEmailSent } = afterData;
+
+    // Exit if email already sent or no email exists
+    if (welcomeEmailSent || !email) {
+      return;
+    }
+
+    console.log(`Welcome trigger fired for: ${email}`);
 
     try {
-      // 1. Save user profile to Firestore
-      await db.collection("users").doc(uid).set({
-        uid: uid,
-        email: email || null,
-        name: displayName || "Student",
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      }, { merge: true });
-      console.log(`User document created for UID: ${uid}`);
-
-      // 2. Send welcome email if an email address exists
-      if (!email) {
-        console.log(`Skipping welcome email for user ${uid} (no email address).`);
-        return;
-      }
-
       const brevoApi = getBrevoClient();
       const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
       sendSmtpEmail.sender = SENDER_INFO;
-      sendSmtpEmail.to = [{ email: email, name: displayName || "Student" }];
+      sendSmtpEmail.to = [{ email: email, name: name || "Student" }];
       sendSmtpEmail.subject = "Welcome to Olympiad Portal! 🎓";
       sendSmtpEmail.htmlContent = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-            <h2>Welcome, ${displayName || "Student"}!</h2>
+            <h2>Welcome, ${name || "Student"}!</h2>
             <p>Thank you for joining the Olympiad Portal, your ultimate destination for mastering competitive exams.</p>
             <p>You're all set to start your journey. Here's what you can do next:</p>
             <ul>
@@ -88,12 +113,15 @@ exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"
         `;
 
       await brevoApi.sendTransacEmail(sendSmtpEmail);
-      console.log(`Welcome email successfully sent to: ${email}`);
-    } catch (error) {
-      console.error(`Error in sendWelcomeEmailOnSignup for user ${uid}:`, error.message);
-    }
-});
+      console.log(`Welcome email sent to: ${email}`);
 
+      // Set flag to prevent sending email again
+      await event.data.after.ref.update({ welcomeEmailSent: true });
+    } catch (error) {
+      console.error(`Error in triggerWelcomeEmail for user ${uid}:`, error.message);
+    }
+  },
+);
 
 // =================================================================
 // 2. BULK EMAIL SYSTEM (V2 ONCALL FUNCTION)
