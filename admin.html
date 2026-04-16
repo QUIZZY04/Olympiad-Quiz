@@ -1850,7 +1850,7 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
     status.innerText = "Initiating bulk email function. Do not close this page...";
 
     try {
-        const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmail');
+        const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmails');
         const result = await sendBulkEmailFn({ senderEmail, subject, content });
         
         status.style.background = "rgba(16, 185, 129, 0.1)";
