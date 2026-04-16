@@ -1,10 +1,10 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
-const { onUserCreated } = require("firebase-functions/v2/auth");
+
 const { onDocumentWritten } = require("firebase-functions/v2/firestore");
-rm -rf node_modules package-lock.json
-const Brevo = require("@getbrevo/brevo");
+
+const SibApiV3Sdk = require("sib-api-v3-sdk");
 
 // Initialize Firebase Admin SDK
 admin.initializeApp();
@@ -22,10 +22,11 @@ const db = admin.firestore();
  */
 function getBrevoClient() {
   // Configure API key authorization: api-key
-  const defaultClient = Brevo.ApiClient.instance;
+  const defaultClient = SibApiV3Sdk.ApiClient.instance;
   const apiKey = defaultClient.authentications["api-key"];
+  // Use the secret managed by Firebase, using environment variables
   apiKey.apiKey = process.env.BREVO_API_KEY;
-  return new Brevo.TransactionalEmailsApi();
+  return new SibApiV3Sdk.TransactionalEmailsApi();
 }
 
 const SENDER_INFO = {
@@ -42,8 +43,8 @@ const SENDER_INFO = {
  * 1. Creates a corresponding user document in Firestore.
  * 2. Sends a welcome email to the user.
  */
-exports.sendWelcomeEmailOnSignup = onUserCreated({ secrets: ["BREVO_API_KEY"] }, async (event) => {
-    const user = event.data; // The user object from the event
+exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"] }).auth.user().onCreate(async (user) => {
+     // The user object from the event
     const { uid, email, displayName } = user;
 
     try {
@@ -63,7 +64,7 @@ exports.sendWelcomeEmailOnSignup = onUserCreated({ secrets: ["BREVO_API_KEY"] },
       }
 
       const brevoApi = getBrevoClient();
-      const sendSmtpEmail = new Brevo.SendSmtpEmail();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: email, name: displayName || "Student" }];
@@ -144,7 +145,7 @@ exports.sendBulkEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) =
 
       console.log(`Sending batch ${i / batchSize + 1} of ${Math.ceil(uniqueEmails.length / batchSize)}...`);
 
-      const sendSmtpEmail = new Brevo.SendSmtpEmail();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: SENDER_INFO.email, name: SENDER_INFO.name }];
       sendSmtpEmail.bcc = bccList;
@@ -185,6 +186,7 @@ exports.sendResultEmail = onDocumentWritten(
     const beforeData = event.data?.before.data();
 
     console.log(`Leaderboard trigger fired for document: ${resultId}`);
+    console.log(`[DEBUG] sendResultEmail trigger is successfully working for resultId: ${resultId}`);
 
     // Exit if the document was deleted
     if (!afterData) {
@@ -192,10 +194,16 @@ exports.sendResultEmail = onDocumentWritten(
       return;
     }
 
-    // Exit if score hasn't changed on an update, to prevent duplicate emails
-    if (beforeData && beforeData.score === afterData.score) {
-      console.log("Score is unchanged. No email sent.");
-      return;
+    // Exit if this is an update and neither the score nor the timestamp has changed.
+    // This ensures an email is sent if a student retakes a test and gets the EXACT SAME score.
+    if (beforeData) {
+      const scoreUnchanged = beforeData.score === afterData.score;
+      const dateUnchanged = beforeData.date?.toMillis() === afterData.date?.toMillis();
+
+      if (scoreUnchanged && dateUnchanged) {
+        console.log("Score and date are unchanged. Treating as a background update. No email sent.");
+        return;
+      }
     }
 
     const { uid, score, total } = afterData;
@@ -228,7 +236,7 @@ exports.sendResultEmail = onDocumentWritten(
             }
 
             // The 'name' from the Firestore doc is the most up-to-date display name.
-            if (userDoc.exists() && userDoc.data().name) {
+            if (userDoc.exists && userDoc.data().name) {
                 userName = userDoc.data().name;
             } else if (userRecord.displayName) {
                 // Fallback to the Auth display name if Firestore one isn't set.
@@ -250,7 +258,7 @@ exports.sendResultEmail = onDocumentWritten(
 
     try {
       const brevoApi = getBrevoClient();
-      const sendSmtpEmail = new Brevo.SendSmtpEmail();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: userEmail, name: userName }];
