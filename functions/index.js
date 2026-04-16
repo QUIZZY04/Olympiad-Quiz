@@ -8,7 +8,9 @@ const SibApiV3Sdk = require("sib-api-v3-sdk");
 initializeApp();
 const db = getFirestore();
 
-// Brevo Client
+// ==========================
+// BREVO CLIENT
+// ==========================
 function getBrevoClient() {
 const client = SibApiV3Sdk.ApiClient.instance;
 const apiKey = client.authentications["api-key"];
@@ -16,9 +18,11 @@ apiKey.apiKey = process.env.BREVO_API_KEY;
 return new SibApiV3Sdk.TransactionalEmailsApi();
 }
 
-// Verified Sender
+// ==========================
+// SENDER
+// ==========================
 const SENDER = {
-email: "admin@olympiadquiz.org",
+email: "[admin@olympiadquiz.org](mailto:admin@olympiadquiz.org)",
 name: "Olympiad Portal",
 };
 
@@ -26,14 +30,11 @@ name: "Olympiad Portal",
 // USER CREATE + WELCOME EMAIL
 // ==========================
 exports.createuser = functions.auth.user().onCreate(async (user) => {
-const uid = user.uid;
-const email = user.email;
-const displayName = user.displayName;
-const phoneNumber = user.phoneNumber;
+const { uid, email, displayName, phoneNumber } = user;
 
 try {
 await db.collection("users").doc(uid).set({
-uid: uid,
+uid,
 email: email || null,
 phone: phoneNumber || null,
 name: displayName || (email ? email.split("@")[0] : "New User"),
@@ -41,24 +42,24 @@ createdAt: new Date(),
 });
 
 ```
-logger.info("User created: " + uid);
+logger.info("User created:", uid);
 
 if (email) {
   const brevoApi = getBrevoClient();
 
   await brevoApi.sendTransacEmail({
     sender: SENDER,
-    to: [{ email: email }],
+    to: [{ email }],
     subject: "Welcome to Olympiad Portal!",
-    htmlContent: "<h2>Welcome!</h2><p>Your account has been created successfully.</p>"
+    htmlContent: "<h2>Welcome!</h2><p>Your account has been created successfully.</p>",
   });
 
-  logger.info("Welcome email sent to " + email);
+  logger.info("Welcome email sent:", email);
 }
 ```
 
 } catch (error) {
-logger.error("Error in createuser", error);
+logger.error("createuser error:", error);
 }
 });
 
@@ -76,7 +77,7 @@ const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
 try {
 await db.collection("otps").doc(email).set({
-otp: otp,
+otp,
 expiresAt: new Date(Date.now() + 10 * 60 * 1000),
 });
 
@@ -85,16 +86,18 @@ const brevoApi = getBrevoClient();
 
 await brevoApi.sendTransacEmail({
   sender: SENDER,
-  to: [{ email: email }],
+  to: [{ email }],
   subject: "Your OTP Code",
-  htmlContent: "<h2>Your OTP is: " + otp + "</h2>"
+  htmlContent: "<h2>Your OTP is: " + otp + "</h2>",
 });
+
+logger.info("OTP sent:", email);
 
 return { success: true };
 ```
 
 } catch (error) {
-logger.error(error);
+logger.error("OTP error:", error);
 throw new HttpsError("internal", "OTP failed");
 }
 });
@@ -103,8 +106,7 @@ throw new HttpsError("internal", "OTP failed");
 // VERIFY OTP
 // ==========================
 exports.verifyOtp = onCall(async (request) => {
-const email = request.data.email;
-const otp = request.data.otp;
+const { email, otp } = request.data;
 
 const doc = await db.collection("otps").doc(email).get();
 
@@ -126,12 +128,11 @@ return { success: false };
 exports.sendBulkEmails = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
 if (!request.auth) throw new HttpsError("unauthenticated");
 
-if (request.auth.token.email !== "madhhu52@gmail.com") {
+if (request.auth.token.email !== "[madhhu52@gmail.com](mailto:madhhu52@gmail.com)") {
 throw new HttpsError("permission-denied");
 }
 
-const subject = request.data.subject;
-const htmlContent = request.data.htmlContent;
+const { subject, htmlContent } = request.data;
 
 const users = await db.collection("users").get();
 const emails = [];
@@ -150,8 +151,8 @@ const batch = emails.slice(i, i + batchSize);
 ```
 await brevoApi.sendTransacEmail({
   sender: SENDER,
-  subject: subject,
-  htmlContent: htmlContent,
+  subject,
+  htmlContent,
   bcc: batch.map(e => ({ email: e })),
 });
 
@@ -160,35 +161,49 @@ await new Promise(resolve => setTimeout(resolve, 500));
 
 }
 
+logger.info("Bulk email sent");
+
 return { success: true };
 });
 
 // ==========================
-// RESULT EMAIL
+// RESULT EMAIL (FIXED + DEBUG)
 // ==========================
 exports.sendTestResultEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
-  const { email, score, total } = request.data;
+const { email, score, total } = request.data;
 
-  if (!email || typeof score !== "number" || typeof total !== "number" || total === 0) {
-    logger.error("Invalid arguments for sendTestResultEmail", { email, score, total });
-    throw new HttpsError("invalid-argument", "Missing or invalid parameters: email, score, and total are required, and total cannot be zero.");
-  }
+logger.info("Result email triggered", { email, score, total });
 
-  const percentage = Math.round((score / total) * 100);
-  const brevoApi = getBrevoClient();
+// 🔴 STRICT VALIDATION
+if (!email || isNaN(score) || isNaN(total) || Number(total) === 0) {
+logger.error("Invalid result email data", request.data);
+throw new HttpsError("invalid-argument", "Invalid data");
+}
 
-  try {
-    await brevoApi.sendTransacEmail({
-      sender: SENDER,
-      to: [{ email: email }],
-      subject: "Your Olympiad Quiz Result",
-      htmlContent: `<h2>Your Score: ${score}/${total}</h2><p>Accuracy: ${percentage}%</p>`,
-    });
+const scoreNum = Number(score);
+const totalNum = Number(total);
+const percentage = Math.round((scoreNum / totalNum) * 100);
 
-    logger.info(`Result email successfully sent to ${email}`);
-    return { success: true };
-  } catch (error) {
-    logger.error("Failed to send result email to " + email, error);
-    throw new HttpsError("internal", "There was an error sending the result email.");
-  }
+try {
+const brevoApi = getBrevoClient();
+
+```
+await brevoApi.sendTransacEmail({
+  sender: SENDER,
+  to: [{ email }],
+  subject: "Your Olympiad Quiz Result",
+  htmlContent:
+    "<h2>Your Score: " + scoreNum + "/" + totalNum + "</h2>" +
+    "<p>Accuracy: " + percentage + "%</p>",
+});
+
+logger.info("Result email sent:", email);
+
+return { success: true };
+```
+
+} catch (error) {
+logger.error("Result email error:", error);
+throw new HttpsError("internal", "Email failed");
+}
 });
