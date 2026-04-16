@@ -1,201 +1,271 @@
 const functions = require("firebase-functions");
+const admin = require("firebase-admin");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
-const { initializeApp } = require("firebase-admin/app");
-const { getFirestore } = require("firebase-admin/firestore");
-const logger = require("firebase-functions/logger");
+const { onDocumentWritten } = require("firebase-functions/v2/firestore");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 
-initializeApp();
-const db = getFirestore();
+// Initialize Firebase Admin SDK
+admin.initializeApp();
+const db = admin.firestore();
 
-// ==========================
-// BREVO CLIENT
-// ==========================
+
+// =================================================================
+// BREVO (SENDINBLUE) CONFIGURATION
+// =================================================================
+
+/**
+ * Initializes and returns the Brevo Transactional Emails API client.
+ * It uses the API key stored in Firebase Secrets.
+ * @returns {SibApiV3Sdk.TransactionalEmailsApi} The Brevo API client.
+ */
 function getBrevoClient() {
-const client = SibApiV3Sdk.ApiClient.instance;
-const apiKey = client.authentications["api-key"];
-apiKey.apiKey = process.env.BREVO_API_KEY;
-return new SibApiV3Sdk.TransactionalEmailsApi();
+  const client = SibApiV3Sdk.ApiClient.instance;
+  const apiKey = client.authentications["api-key"];
+  apiKey.apiKey = process.env.BREVO_API_KEY;
+  return new SibApiV3Sdk.TransactionalEmailsApi();
 }
 
-// ==========================
-// SENDER
-// ==========================
-const SENDER = {
-email: "admin@olympiadquiz.org",
-name: "Olympiad Portal",
+const SENDER_INFO = {
+  email: "admin@olympiadquiz.org",
+  name: "Olympiad Portal",
 };
 
-// ==========================
-// USER CREATE + WELCOME EMAIL
-// ==========================
-exports.createuser = functions.runWith({ secrets: ["BREVO_API_KEY"] }).auth.user().onCreate(async (user) => {
-const { uid, email, displayName, phoneNumber } = user;
+// =================================================================
+// 1. WELCOME EMAIL SYSTEM (V1 AUTH TRIGGER)
+// =================================================================
 
-try {
-await db.collection("users").doc(uid).set({
-uid,
-email: email || null,
-phone: phoneNumber || null,
-name: displayName || (email ? email.split("@")[0] : "New User"),
-createdAt: new Date(),
+/**
+ * Triggered when a new user is created in Firebase Authentication.
+ * 1. Creates a corresponding user document in Firestore.
+ * 2. Sends a welcome email to the user.
+ */
+exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"] })
+  .auth.user().onCreate(async (user) => {
+    const { uid, email, displayName } = user;
+
+    try {
+      // 1. Save user profile to Firestore
+      await db.collection("users").doc(uid).set({
+        uid: uid,
+        email: email || null,
+        name: displayName || "Student",
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      console.log(`User document created for UID: ${uid}`);
+
+      // 2. Send welcome email if an email address exists
+      if (!email) {
+        console.log(`Skipping welcome email for user ${uid} (no email address).`);
+        return;
+      }
+
+      const brevoApi = getBrevoClient();
+      await brevoApi.sendTransacEmail({
+        sender: SENDER_INFO,
+        to: [{ email: email, name: displayName || "Student" }],
+        subject: "Welcome to Olympiad Portal! 🎓",
+        htmlContent: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+            <h2>Welcome, ${displayName || "Student"}!</h2>
+            <p>Thank you for joining the Olympiad Portal, your ultimate destination for mastering competitive exams.</p>
+            <p>You're all set to start your journey. Here's what you can do next:</p>
+            <ul>
+              <li>Take a <strong>Full Mock Test</strong> to simulate the real exam experience.</li>
+              <li>Practice specific topics with our <strong>Chapter-wise Quizzes</strong>.</li>
+              <li>Compete with students nationwide in the <strong>Live Quiz Arena</strong>.</li>
+            </ul>
+            <p>Ready to begin? Head over to your dashboard and start practicing!</p>
+            <p><strong><a href="https://olympiadquiz.org/dashboard.html" style="color: #4f46e5;">Go to Dashboard</a></strong></p>
+            <br>
+            <p>Happy learning, and may the best minds win! 🚀</p>
+            <p>Best regards,<br>The Olympiad Portal Team</p>
+          </div>
+        `,
+      });
+
+      console.log(`Welcome email successfully sent to: ${email}`);
+    } catch (error) {
+      console.error(`Error in sendWelcomeEmailOnSignup for user ${uid}:`, error.message);
+    }
 });
 
-logger.info("User created:", uid);
 
-if (email) {
-  const brevoApi = getBrevoClient();
+// =================================================================
+// 2. BULK EMAIL SYSTEM (V2 ONCALL FUNCTION)
+// =================================================================
 
-  await brevoApi.sendTransacEmail({
-    sender: SENDER,
-    to: [{ email }],
-    subject: "Welcome to Olympiad Portal!",
-    htmlContent: "<h2>Welcome!</h2><p>Your account has been created successfully.</p>",
-  });
+/**
+ * An admin-only callable function to send bulk emails to all users.
+ * - Authenticates the caller as an admin.
+ * - Fetches all users, de-duplicates emails.
+ * - Sends emails in batches using BCC to avoid exposing user emails.
+ */
+exports.sendBulkEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
+  // 1. Admin Authentication
+  if (request.auth?.token.email !== "madhhu52@gmail.com") {
+    console.error("Permission denied for sendBulkEmail. Caller:", request.auth?.token.email);
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
 
-  logger.info("Welcome email sent:", email);
-}
+  const { subject, htmlContent } = request.data;
 
-} catch (error) {
-logger.error("createuser error:", error);
-}
+  // 2. Input Validation
+  if (!subject || !htmlContent) {
+    throw new HttpsError("invalid-argument", "The function must be called with 'subject' and 'htmlContent' arguments.");
+  }
+
+  console.log("Starting bulk email process...");
+
+  try {
+    // 3. Fetch and clean email list
+    const usersSnapshot = await db.collection("users").get();
+    const allEmails = usersSnapshot.docs.map((doc) => doc.data().email).filter((email) => email && typeof email === "string");
+    const uniqueEmails = [...new Set(allEmails)];
+
+    console.log(`Found ${uniqueEmails.length} unique emails to send to.`);
+
+    if (uniqueEmails.length === 0) {
+      console.log("No emails found. Aborting bulk send.");
+      return { success: true, message: "No users with emails found." };
+    }
+
+    // 4. Send emails in batches
+    const brevoApi = getBrevoClient();
+    const batchSize = 50; // Brevo allows up to 1000, but smaller is safer
+    const delayBetweenBatches = 400; // ms
+
+    for (let i = 0; i < uniqueEmails.length; i += batchSize) {
+      const batch = uniqueEmails.slice(i, i + batchSize);
+      const bccList = batch.map((email) => ({ email }));
+
+      console.log(`Sending batch ${i / batchSize + 1} of ${Math.ceil(uniqueEmails.length / batchSize)}...`);
+
+      await brevoApi.sendTransacEmail({
+        sender: SENDER_INFO,
+        to: [{ email: SENDER_INFO.email, name: SENDER_INFO.name }], // Send to self
+        bcc: bccList,
+        subject: subject,
+        htmlContent: htmlContent,
+      });
+
+      // Add a delay to respect rate limits
+      await new Promise((resolve) => setTimeout(resolve, delayBetweenBatches));
+    }
+
+    console.log("Bulk email process completed successfully.");
+    return { success: true, message: `Successfully sent emails to ${uniqueEmails.length} users.` };
+  } catch (error) {
+    console.error("Error during bulk email sending:", error.message);
+    throw new HttpsError("internal", "An error occurred while sending bulk emails.", error.message);
+  }
 });
 
-// ==========================
-// OTP SYSTEM
-// ==========================
-exports.generateOtp = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
-const email = request.data.email;
 
-if (!email) {
-throw new HttpsError("invalid-argument", "Email required");
-}
+// =================================================================
+// 3. RESULT EMAIL SYSTEM (V2 FIRESTORE TRIGGER)
+// =================================================================
 
-const otp = Math.floor(100000 + Math.random() * 900000).toString();
+/**
+ * Triggered on create or update of a document in the 'leaderboard' collection.
+ * Sends a test result email to the user.
+ */
+exports.sendResultEmail = onDocumentWritten(
+  {
+    document: "leaderboard/{resultId}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    const resultId = event.params.resultId;
+    const afterData = event.data?.after.data();
+    const beforeData = event.data?.before.data();
 
-try {
-await db.collection("otps").doc(email).set({
-otp,
-expiresAt: new Date(Date.now() + 10 * 60 * 1000),
-});
+    console.log(`Leaderboard trigger fired for document: ${resultId}`);
 
-const brevoApi = getBrevoClient();
+    // Exit if the document was deleted
+    if (!afterData) {
+      console.log("Document deleted. No email sent.");
+      return;
+    }
 
-await brevoApi.sendTransacEmail({
-  sender: SENDER,
-  to: [{ email }],
-  subject: "Your OTP Code",
-  htmlContent: "<h2>Your OTP is: " + otp + "</h2>",
-});
+    // Exit if score hasn't changed on an update, to prevent duplicate emails
+    if (beforeData && beforeData.score === afterData.score) {
+      console.log("Score is unchanged. No email sent.");
+      return;
+    }
 
-logger.info("OTP sent:", email);
+    const { uid, score, total } = afterData;
 
-return { success: true };
+    // Validate essential data
+    if (typeof score === "undefined" || typeof total === "undefined") {
+      console.error("Invalid score/total data in leaderboard document:", resultId);
+      return;
+    }
 
-} catch (error) {
-logger.error("OTP error:", error);
-throw new HttpsError("internal", "OTP failed");
-}
-});
+    let userEmail = null;
+    let userName = "Student";
 
-// ==========================
-// VERIFY OTP
-// ==========================
-exports.verifyOtp = onCall(async (request) => {
-const { email, otp } = request.data;
+    // Robustly fetch user details
+    if (uid) {
+      try {
+        // 1. Primary Source: Firebase Auth user record.
+        const userRecord = await admin.auth().getUser(uid);
+        userEmail = userRecord.email;
+        userName = userRecord.displayName || "Student";
+      } catch (error) {
+        console.warn(`Auth user not found for UID: ${uid}. Falling back to Firestore.`, error.message);
+        // 2. Fallback Source: The 'users' collection in Firestore.
+        const userDoc = await db.collection("users").doc(uid).get();
+        if (userDoc.exists()) {
+          userEmail = userDoc.data().email; // Can be undefined
+          userName = userDoc.data().name || userDoc.data().displayName || "Student";
+        }
+      }
+    }
 
-const doc = await db.collection("otps").doc(email).get();
+    // 3. Last Resort: Use email from the result document itself if still not found.
+    if (!userEmail && afterData.email) {
+      userEmail = afterData.email;
+    }
 
-if (!doc.exists) return { success: false };
+    if (!userEmail) {
+      console.error(`Could not find an email for result processing: ${resultId}`);
+      return;
+    }
 
-const data = doc.data();
+    const accuracy = Math.round((Number(score) / Number(total)) * 100);
+    const testType = afterData.isChampionship ? "Live Quiz Arena" : (afterData.topicName ? "Chapterwise Practice" : "Full Mock Test");
+    const subject = afterData.subject ? afterData.subject.charAt(0).toUpperCase() + afterData.subject.slice(1) : "General";
 
-if (data.otp === otp) {
-await db.collection("otps").doc(email).delete();
-return { success: true };
-}
-
-return { success: false };
-});
-
-// ==========================
-// BULK EMAIL
-// ==========================
-exports.sendBulkEmails = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
-if (!request.auth) throw new HttpsError("unauthenticated");
-
-if (request.auth.token.email !== "madhhu52@gmail.com") {
-throw new HttpsError("permission-denied");
-}
-
-const { subject, htmlContent } = request.data;
-
-const users = await db.collection("users").get();
-const emails = [];
-
-users.forEach(doc => {
-const user = doc.data();
-if (user.email) emails.push(user.email);
-});
-
-const brevoApi = getBrevoClient();
-const batchSize = 500;
-
-for (let i = 0; i < emails.length; i += batchSize) {
-const batch = emails.slice(i, i + batchSize);
-
-await brevoApi.sendTransacEmail({
-  sender: SENDER,
-  subject,
-  htmlContent,
-  bcc: batch.map(e => ({ email: e })),
-});
-
-await new Promise(resolve => setTimeout(resolve, 500));
-
-}
-
-logger.info("Bulk email sent");
-
-return { success: true };
-});
-
-// ==========================
-// RESULT EMAIL (FIXED + DEBUG)
-// ==========================
-exports.sendTestResultEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
-const { email, score, total } = request.data;
-
-if (!email || typeof email !== 'string' || score == null || total == null || isNaN(Number(score)) || isNaN(Number(total)) || Number(total) === 0) {
-    logger.error("Invalid arguments for sendTestResultEmail. Data received:", request.data);
-    throw new HttpsError("invalid-argument", "Missing or invalid parameters. 'email' (string), 'score' (number), and 'total' (number) are required, and 'total' cannot be zero.");
-}
-
-logger.info("Processing result email for:", { email, score, total });
-
-const scoreNum = Number(score);
-const totalNum = Number(total);
-const percentage = Math.round((scoreNum / totalNum) * 100);
-
-try {
-const brevoApi = getBrevoClient();
-
-await brevoApi.sendTransacEmail({
-  sender: SENDER,
-  to: [{ email }],
-  subject: "Your Olympiad Quiz Result",
-  htmlContent: `<h2>Your Score: ${scoreNum}/${totalNum}</h2><p>Accuracy: ${percentage}%</p>`,
-});
-
-logger.info(`Result email successfully sent to ${email}`);
-
-return { success: true };
-
-} catch (error) {
-    logger.error("Error sending result email to " + email, {
-        // Log the specific error message from Brevo if available
-        brevoError: error.response ? error.response.body : error.message,
-    });
-    throw new HttpsError("internal", "There was an error sending the result email. Please check the function logs for details.");
-}
-});
+    try {
+      const brevoApi = getBrevoClient();
+      await brevoApi.sendTransacEmail({
+        sender: SENDER_INFO,
+        to: [{ email: userEmail, name: userName }],
+        subject: `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`,
+        htmlContent: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+            <h2 style="color: #4f46e5;">Hello ${userName},</h2>
+            <p>Your test result is ready! Here's how you performed:</p>
+            <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; text-align: center;">
+              <p style="margin: 0; font-size: 16px; color: #64748b;">${testType} - ${subject}</p>
+              <p style="margin: 10px 0; font-size: 36px; font-weight: bold; color: #0f172a;">
+                ${score} <span style="font-size: 24px; color: #64748b;">/ ${total}</span>
+              </p>
+              <p style="margin: 0; font-size: 18px; font-weight: bold; color: ${accuracy >= 80 ? "#10b981" : (accuracy >= 50 ? "#f59e0b" : "#ef4444")};">
+                Accuracy: ${accuracy}%
+              </p>
+            </div>
+            <p style="margin-top: 20px;">Keep practicing to sharpen your skills and climb the leaderboard. Every attempt is a step towards excellence!</p>
+            <p><strong><a href="https://olympiadquiz.org/dashboard.html" style="color: #4f46e5;">Practice More Quizzes</a></strong></p>
+            <br>
+            <p>Best of luck, and see you at the top! 🚀</p>
+            <p>The Olympiad Portal Team</p>
+          </div>
+        `,
+      });
+      console.log(`Result email successfully sent to: ${userEmail} for result ID: ${resultId}`);
+    } catch (error) {
+      console.error(`Failed to send result email to ${userEmail}. Error:`, error.message);
+    }
+  }
+);
