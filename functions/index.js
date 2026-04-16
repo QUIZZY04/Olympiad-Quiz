@@ -18,7 +18,7 @@ return new SibApiV3Sdk.TransactionalEmailsApi();
 
 // Verified Sender
 const SENDER = {
-email: "[admin@olympiadquiz.org](mailto:admin@olympiadquiz.org)",
+email: "admin@olympiadquiz.org",
 name: "Olympiad Portal",
 };
 
@@ -126,7 +126,7 @@ return { success: false };
 exports.sendBulkEmails = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
 if (!request.auth) throw new HttpsError("unauthenticated");
 
-if (request.auth.token.email !== "[madhhu52@gmail.com](mailto:madhhu52@gmail.com)") {
+if (request.auth.token.email !== "madhhu52@gmail.com") {
 throw new HttpsError("permission-denied");
 }
 
@@ -167,22 +167,28 @@ return { success: true };
 // RESULT EMAIL
 // ==========================
 exports.sendTestResultEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
-const email = request.data.email;
-const score = request.data.score;
-const total = request.data.total;
+  const { email, score, total } = request.data;
 
-const percentage = Math.round((score / total) * 100);
+  if (!email || typeof score !== "number" || typeof total !== "number" || total === 0) {
+    logger.error("Invalid arguments for sendTestResultEmail", { email, score, total });
+    throw new HttpsError("invalid-argument", "Missing or invalid parameters: email, score, and total are required, and total cannot be zero.");
+  }
 
-const brevoApi = getBrevoClient();
+  const percentage = Math.round((score / total) * 100);
+  const brevoApi = getBrevoClient();
 
-await brevoApi.sendTransacEmail({
-sender: SENDER,
-to: [{ email: email }],
-subject: "Your Test Result",
-htmlContent:
-"<h2>Your Score: " + score + "/" + total + "</h2>" +
-"<p>Accuracy: " + percentage + "%</p>"
-});
+  try {
+    await brevoApi.sendTransacEmail({
+      sender: SENDER,
+      to: [{ email: email }],
+      subject: "Your Olympiad Quiz Result",
+      htmlContent: `<h2>Your Score: ${score}/${total}</h2><p>Accuracy: ${percentage}%</p>`,
+    });
 
-return { success: true };
+    logger.info(`Result email successfully sent to ${email}`);
+    return { success: true };
+  } catch (error) {
+    logger.error("Failed to send result email to " + email, error);
+    throw new HttpsError("internal", "There was an error sending the result email.");
+  }
 });
