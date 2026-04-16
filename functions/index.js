@@ -264,23 +264,78 @@ exports.sendResultEmail = onDocumentWritten(
       sendSmtpEmail.to = [{ email: userEmail, name: userName }];
       sendSmtpEmail.subject = `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`;
       sendSmtpEmail.htmlContent = `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
-            <h2 style="color: #4f46e5;">Hello ${userName},</h2>
-            <p>Your test result is ready! Here's how you performed:</p>
-            <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; text-align: center;">
-              <p style="margin: 0; font-size: 16px; color: #64748b;">${testType} - ${subject}</p>
-              <p style="margin: 10px 0; font-size: 36px; font-weight: bold; color: #0f172a;">
-                ${score} <span style="font-size: 24px; color: #64748b;">/ ${total}</span>
-              </p>
-              <p style="margin: 0; font-size: 18px; font-weight: bold; color: ${accuracy >= 80 ? "#10b981" : (accuracy >= 50 ? "#f59e0b" : "#ef4444")};">
-                Accuracy: ${accuracy}%
-              </p>
+          <div style="font-family: Arial, sans-serif; background-color: #f1f5f9; padding: 20px 10px;">
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
+              
+              <!-- Header -->
+              <div style="background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%); color: #ffffff; padding: 30px 25px; text-align: center;">
+                <h1 style="margin: 0; font-size: 28px; font-weight: 800;">Test Result Ready!</h1>
+              </div>
+
+              <!-- Body -->
+              <div style="padding: 30px 25px; color: #0f172a;">
+                <h2 style="font-size: 22px; margin: 0 0 20px 0; font-weight: 700;">Hello ${userName},</h2>
+                <p style="font-size: 16px; color: #64748b; margin: 0 0 25px 0; line-height: 1.6;">
+                  Your result for the <strong>${testType} - ${subject}</strong> is in. Here's a summary of your performance:
+                </p>
+
+                <!-- Result Card -->
+                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; text-align: center;">
+                  
+                  <!-- Score -->
+                  <div style="margin-bottom: 20px;">
+                    <span style="font-size: 16px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Your Score 🏆</span>
+                    <p style="margin: 8px 0 0 0; font-size: 52px; font-weight: 800; color: #1e293b; line-height: 1;">
+                      ${score}<span style="font-size: 28px; color: #94a3b8; font-weight: 600;"> / ${total}</span>
+                    </p>
+                  </div>
+
+                  <!-- Accuracy -->
+                  <div>
+                    <span style="font-size: 16px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Accuracy 🎯</span>
+                    <p style="margin: 8px 0 15px 0; font-size: 36px; font-weight: 800; color: ${accuracy >= 80 ? "#10b981" : (accuracy >= 50 ? "#f59e0b" : "#ef4444")};">
+                      ${accuracy}%
+                    </p>
+                    
+                    <!-- Progress Bar -->
+                    <div style="background-color: #e2e8f0; border-radius: 50px; height: 12px; width: 100%; overflow: hidden;">
+                      <div style="width: ${accuracy}%; height: 100%; background-color: ${accuracy >= 80 ? "#10b981" : (accuracy >= 50 ? "#f59e0b" : "#ef4444")}; border-radius: 50px; transition: width 0.5s ease-in-out;"></div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Motivational Message -->
+                <p style="font-size: 16px; color: #64748b; text-align: center; margin: 25px 0; font-style: italic;">
+                  "${accuracy >= 80 ? "Excellent work! You're on the path to mastery." : (accuracy >= 50 ? "Good effort! Keep practicing to reach the top." : "Every master was once a beginner. Keep practicing, and you will improve!")}"
+                </p>
+
+                <!-- CTA Button -->
+                <div style="text-align: center; margin: 30px 0;">
+                  <a href="https://olympiadquiz.org/dashboard.html" target="_blank" style="background-color: #4f46e5; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; display: inline-block;">
+                    Practice More Tests
+                  </a>
+                </div>
+
+                <p style="font-size: 16px; color: #64748b; line-height: 1.6;">
+                  Every attempt is a step towards excellence. Keep practicing to sharpen your skills and climb the leaderboard!
+                </p>
+                
+                <p style="font-size: 16px; color: #64748b; margin-top: 30px; line-height: 1.6;">
+                  Best of luck, and see you at the top! 🚀<br>
+                  The Olympiad Portal Team
+                </p>
+              </div>
+
+              <!-- Footer -->
+              <div style="background-color: #f8fafc; padding: 20px 25px; text-align: center; border-top: 1px solid #e2e8f0;">
+                <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                  © 2024 Olympiad Portal. All rights reserved.<br>
+                  You are receiving this email because you completed a test on our platform.
+                </p>
+              </div>
+
             </div>
-            <p style="margin-top: 20px;">Keep practicing to sharpen your skills and climb the leaderboard. Every attempt is a step towards excellence!</p>
-            <p><strong><a href="https://olympiadquiz.org/dashboard.html" style="color: #4f46e5;">Practice More Quizzes</a></strong></p>
-            <br>
-            <p>Best of luck, and see you at the top! 🚀</p>
-            <p>The Olympiad Portal Team</p>
           </div>
         `;
 
