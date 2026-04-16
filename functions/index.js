@@ -1,8 +1,10 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const { onUserCreated } = require("firebase-functions/v2/auth");
 const { onDocumentWritten } = require("firebase-functions/v2/firestore");
-const SibApiV3Sdk = require("sib-api-v3-sdk");
+rm -rf node_modules package-lock.json
+const Brevo = require("@getbrevo/brevo");
 
 // Initialize Firebase Admin SDK
 admin.initializeApp();
@@ -19,10 +21,11 @@ const db = admin.firestore();
  * @returns {SibApiV3Sdk.TransactionalEmailsApi} The Brevo API client.
  */
 function getBrevoClient() {
-  const client = SibApiV3Sdk.ApiClient.instance;
-  const apiKey = client.authentications["api-key"];
+  // Configure API key authorization: api-key
+  const defaultClient = Brevo.ApiClient.instance;
+  const apiKey = defaultClient.authentications["api-key"];
   apiKey.apiKey = process.env.BREVO_API_KEY;
-  return new SibApiV3Sdk.TransactionalEmailsApi();
+  return new Brevo.TransactionalEmailsApi();
 }
 
 const SENDER_INFO = {
@@ -39,8 +42,8 @@ const SENDER_INFO = {
  * 1. Creates a corresponding user document in Firestore.
  * 2. Sends a welcome email to the user.
  */
-exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"] })
-  .auth.user().onCreate(async (user) => {
+exports.sendWelcomeEmailOnSignup = onUserCreated({ secrets: ["BREVO_API_KEY"] }, async (event) => {
+    const user = event.data; // The user object from the event
     const { uid, email, displayName } = user;
 
     try {
@@ -50,7 +53,7 @@ exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"
         email: email || null,
         name: displayName || "Student",
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
+      }, { merge: true });
       console.log(`User document created for UID: ${uid}`);
 
       // 2. Send welcome email if an email address exists
@@ -60,11 +63,12 @@ exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"
       }
 
       const brevoApi = getBrevoClient();
-      await brevoApi.sendTransacEmail({
-        sender: SENDER_INFO,
-        to: [{ email: email, name: displayName || "Student" }],
-        subject: "Welcome to Olympiad Portal! 🎓",
-        htmlContent: `
+      const sendSmtpEmail = new Brevo.SendSmtpEmail();
+
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: email, name: displayName || "Student" }];
+      sendSmtpEmail.subject = "Welcome to Olympiad Portal! 🎓";
+      sendSmtpEmail.htmlContent = `
           <div style="font-family: Arial, sans-serif; line-height: 1.6;">
             <h2>Welcome, ${displayName || "Student"}!</h2>
             <p>Thank you for joining the Olympiad Portal, your ultimate destination for mastering competitive exams.</p>
@@ -80,9 +84,9 @@ exports.sendWelcomeEmailOnSignup = functions.runWith({ secrets: ["BREVO_API_KEY"
             <p>Happy learning, and may the best minds win! 🚀</p>
             <p>Best regards,<br>The Olympiad Portal Team</p>
           </div>
-        `,
-      });
+        `;
 
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
       console.log(`Welcome email successfully sent to: ${email}`);
     } catch (error) {
       console.error(`Error in sendWelcomeEmailOnSignup for user ${uid}:`, error.message);
@@ -140,14 +144,15 @@ exports.sendBulkEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) =
 
       console.log(`Sending batch ${i / batchSize + 1} of ${Math.ceil(uniqueEmails.length / batchSize)}...`);
 
-      await brevoApi.sendTransacEmail({
-        sender: SENDER_INFO,
-        to: [{ email: SENDER_INFO.email, name: SENDER_INFO.name }], // Send to self
-        bcc: bccList,
-        subject: subject,
-        htmlContent: htmlContent,
-      });
+      const sendSmtpEmail = new Brevo.SendSmtpEmail();
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: SENDER_INFO.email, name: SENDER_INFO.name }];
+      sendSmtpEmail.bcc = bccList;
+      sendSmtpEmail.subject = subject;
+      sendSmtpEmail.htmlContent = htmlContent;
 
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
+      
       // Add a delay to respect rate limits
       await new Promise((resolve) => setTimeout(resolve, delayBetweenBatches));
     }
@@ -204,31 +209,38 @@ exports.sendResultEmail = onDocumentWritten(
     let userEmail = null;
     let userName = "Student";
 
-    // Robustly fetch user details
-    if (uid) {
-      try {
-        // 1. Primary Source: Firebase Auth user record.
-        const userRecord = await admin.auth().getUser(uid);
-        userEmail = userRecord.email;
-        userName = userRecord.displayName || "Student";
-      } catch (error) {
-        console.warn(`Auth user not found for UID: ${uid}. Falling back to Firestore.`, error.message);
-        // 2. Fallback Source: The 'users' collection in Firestore.
-        const userDoc = await db.collection("users").doc(uid).get();
-        if (userDoc.exists()) {
-          userEmail = userDoc.data().email; // Can be undefined
-          userName = userDoc.data().name || userDoc.data().displayName || "Student";
-        }
-      }
-    }
-
-    // 3. Last Resort: Use email from the result document itself if still not found.
-    if (!userEmail && afterData.email) {
+    // Start with the email from the trigger data as a baseline/fallback.
+    if (afterData.email) {
       userEmail = afterData.email;
     }
 
+    if (uid) {
+        try {
+            // Fetch both Auth and Firestore user data in parallel for efficiency.
+            const [userRecord, userDoc] = await Promise.all([
+                admin.auth().getUser(uid),
+                db.collection("users").doc(uid).get(),
+            ]);
+
+            // The email from the Auth record is the most reliable source.
+            if (userRecord.email) {
+                userEmail = userRecord.email;
+            }
+
+            // The 'name' from the Firestore doc is the most up-to-date display name.
+            if (userDoc.exists() && userDoc.data().name) {
+                userName = userDoc.data().name;
+            } else if (userRecord.displayName) {
+                // Fallback to the Auth display name if Firestore one isn't set.
+                userName = userRecord.displayName;
+            }
+        } catch (error) {
+            console.warn(`Could not fully resolve user data for UID ${uid}. Proceeding with available data. Error:`, error.message);
+        }
+    }
+
     if (!userEmail) {
-      console.error(`Could not find an email for result processing: ${resultId}`);
+      console.error(`Could not find a valid email for result processing: ${resultId}`);
       return;
     }
 
@@ -238,11 +250,12 @@ exports.sendResultEmail = onDocumentWritten(
 
     try {
       const brevoApi = getBrevoClient();
-      await brevoApi.sendTransacEmail({
-        sender: SENDER_INFO,
-        to: [{ email: userEmail, name: userName }],
-        subject: `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`,
-        htmlContent: `
+      const sendSmtpEmail = new Brevo.SendSmtpEmail();
+
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: userEmail, name: userName }];
+      sendSmtpEmail.subject = `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`;
+      sendSmtpEmail.htmlContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
             <h2 style="color: #4f46e5;">Hello ${userName},</h2>
             <p>Your test result is ready! Here's how you performed:</p>
@@ -261,8 +274,9 @@ exports.sendResultEmail = onDocumentWritten(
             <p>Best of luck, and see you at the top! 🚀</p>
             <p>The Olympiad Portal Team</p>
           </div>
-        `,
-      });
+        `;
+
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
       console.log(`Result email successfully sent to: ${userEmail} for result ID: ${resultId}`);
     } catch (error) {
       console.error(`Failed to send result email to ${userEmail}. Error:`, error.message);
