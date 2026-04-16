@@ -544,8 +544,17 @@ document.getElementById("linkOtpForm").addEventListener("submit", async (e) => {
     btn.disabled = true; btn.innerText = "Verifying...";
     try {
         const result = await linkConfirmationResult.confirm(code);
-        // Save the phone to Firestore
-        await setDoc(doc(db, "users", auth.currentUser.uid), { phone: result.user.phoneNumber }, { merge: true });
+        const user = result.user;
+
+        // Create a complete user data object to ensure all info is saved.
+        // This prevents creating a partial document if a race condition occurs.
+        const userData = {
+            phone: user.phoneNumber,
+            email: user.email,
+            name: user.displayName || 'Student',
+            uid: user.uid
+        };
+        await setDoc(doc(db, "users", user.uid), userData, { merge: true });
         
         localStorage.setItem("isLoggedIn", "true");
         sessionStorage.removeItem("redirectAfterLogin");
