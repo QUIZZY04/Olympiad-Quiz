@@ -335,7 +335,6 @@ import {
     updatePassword, 
     reauthenticateWithCredential, 
     EmailAuthProvider,
-    deleteUser,
     signOut,
     RecaptchaVerifier,
     signInWithPhoneNumber,
@@ -381,25 +380,14 @@ onAuthStateChanged(auth, async (user) => {
                         }
                     }
                 } else {
-                    // Not registered logic
-                    await deleteUser(user);
-                    await signOut(auth);
-                    document.getElementById('notRegisteredModal').style.display = 'flex';
-                    
-                    // Reset UI for phone form if it was used
-                    document.getElementById("phoneForm").classList.remove("hidden");
-                    document.getElementById("otpForm").classList.add("hidden");
-                    const verifyBtn = document.getElementById("verifyOtpBtn");
-                    if(verifyBtn) {
-                        verifyBtn.disabled = false;
-                        verifyBtn.innerText = "Verify & Sign In";
-                    }
-                    
-                    // Reset UI for login form if it was used
-                    const loginBtn = document.querySelector("#loginForm button");
-                    if(loginBtn) {
-                        loginBtn.disabled = false;
-                        loginBtn.innerText = "Sign In";
+                    // New user, document is being created by the Cloud Function.
+                    // Proceed to phone linking as the new document won't have a phone number.
+                    document.getElementById('linkPhoneModal').style.display = 'flex';
+                    if (!window.linkRecaptchaVerifier) {
+                        window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', {
+                            'size': 'invisible'
+                        });
+                        window.linkRecaptchaVerifier.render().catch(console.error);
                     }
                 }
         } catch(e) {
