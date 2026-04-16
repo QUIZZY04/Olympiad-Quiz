@@ -170,10 +170,14 @@ exports.triggerWelcomeEmail = onDocumentWritten(
  * - Fetches all users, de-duplicates emails.
  * - Sends emails in batches using BCC to avoid exposing user emails.
  */
-exports.sendBulkEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
+exports.sendBulkEmail = onCall({
+  secrets: ["BREVO_API_KEY"],
+  timeoutSeconds: 540,
+  memory: "1GiB"
+}, async (request) => {
   // 1. Admin Authentication
-  if (request.auth?.token.email !== "madhhu52@gmail.com") {
-    console.error("Permission denied for sendBulkEmail. Caller:", request.auth?.token.email);
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    console.error("Permission denied for sendBulkEmail. Caller:", request.auth?.token?.email);
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 
@@ -187,28 +191,51 @@ exports.sendBulkEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) =
   console.log("Starting bulk email process...");
 
   try {
-    // 3. Fetch and clean email list
-    const usersSnapshot = await db.collection("users").get();
-    const allEmails = usersSnapshot.docs.map((doc) => doc.data().email).filter((email) => email && typeof email === "string");
-    const uniqueEmails = [...new Set(allEmails)];
+    // 3. Fetch and clean email list using pagination to avoid memory overflow
+    const uniqueEmails = new Set();
+    let lastDoc = null;
+    let hasMore = true;
 
-    console.log(`Found ${uniqueEmails.length} unique emails to send to.`);
+    while (hasMore) {
+      let usersQuery = db.collection("users").select("email").limit(500);
+      if (lastDoc) {
+        usersQuery = usersQuery.startAfter(lastDoc);
+      }
+      const snapshot = await usersQuery.get();
 
-    if (uniqueEmails.length === 0) {
+      if (snapshot.empty) {
+        hasMore = false;
+        break;
+      }
+
+      snapshot.docs.forEach((doc) => {
+        const email = doc.data().email;
+        if (email && typeof email === "string" && email.includes("@")) {
+          uniqueEmails.add(email.trim());
+        }
+      });
+
+      lastDoc = snapshot.docs[snapshot.docs.length - 1];
+    }
+
+    const emailList = Array.from(uniqueEmails);
+    console.log(`Found ${emailList.length} unique valid emails to send to.`);
+
+    if (emailList.length === 0) {
       console.log("No emails found. Aborting bulk send.");
       return { success: true, message: "No users with emails found." };
     }
 
     // 4. Send emails in batches
     const brevoApi = getBrevoClient();
-    const batchSize = 50; // Brevo allows up to 1000, but smaller is safer
-    const delayBetweenBatches = 400; // ms
+    const batchSize = 50; // Keep batch size safe for API limits
+    const delayBetweenBatches = 500; // ms
 
-    for (let i = 0; i < uniqueEmails.length; i += batchSize) {
-      const batch = uniqueEmails.slice(i, i + batchSize);
+    for (let i = 0; i < emailList.length; i += batchSize) {
+      const batch = emailList.slice(i, i + batchSize);
       const bccList = batch.map((email) => ({ email }));
 
-      console.log(`Sending batch ${i / batchSize + 1} of ${Math.ceil(uniqueEmails.length / batchSize)}...`);
+      console.log(`Sending batch ${Math.floor(i / batchSize) + 1} of ${Math.ceil(emailList.length / batchSize)}...`);
 
       const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
       sendSmtpEmail.sender = SENDER_INFO;
@@ -219,15 +246,26 @@ exports.sendBulkEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) =
 
       await brevoApi.sendTransacEmail(sendSmtpEmail);
       
-      // Add a delay to respect rate limits
-      await new Promise((resolve) => setTimeout(resolve, delayBetweenBatches));
+      // Delay to respect rate limits
+      if (i + batchSize < emailList.length) {
+        await new Promise((resolve) => setTimeout(resolve, delayBetweenBatches));
+      }
     }
 
     console.log("Bulk email process completed successfully.");
-    return { success: true, message: `Successfully sent emails to ${uniqueEmails.length} users.` };
+    return { success: true, message: `Successfully sent emails to ${emailList.length} users.` };
   } catch (error) {
-    console.error("Error during bulk email sending:", error.message);
-    throw new HttpsError("internal", "An error occurred while sending bulk emails.", error.message);
+    // Detailed error logging
+    const errorDetails = error.response ? error.response.text : error.message;
+    console.error("Error during bulk email sending:", errorDetails);
+    
+    // Return a proper JSON response instead of a generic HttpsError("internal")
+    // This avoids the "❌ Error: Failed: internal" masking issue on the frontend
+    return { 
+      success: false, 
+      message: "An error occurred while sending bulk emails.", 
+      errorDetails: errorDetails 
+    };
   }
 });
 
