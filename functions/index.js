@@ -1,9 +1,14 @@
-const {onUserCreate} = require("firebase-functions/v2/auth");
-const {onCall, HttpsError} = require("firebase-functions/v2/https");
+const functions = require("firebase-functions");
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
-const logger = require("firebase-functions/logger");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
+
+// Destructure v2 functions and logger from the main 'firebase-functions' module
+// to work around a module resolution error with recent Node.js versions.
+const { onUserCreate } = functions.v2.auth;
+const { onCall, HttpsError } = functions.v2.https;
+const logger = functions.logger;
+
 
 // Initialize the Firebase Admin SDK.
 initializeApp();
