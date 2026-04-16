@@ -94,23 +94,60 @@ exports.triggerWelcomeEmail = onDocumentWritten(
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: email, name: name || "Student" }];
       sendSmtpEmail.subject = "Welcome to Olympiad Portal! 🎓";
-      sendSmtpEmail.htmlContent = `
-          <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-            <h2>Welcome, ${name || "Student"}!</h2>
-            <p>Thank you for joining the Olympiad Portal, your ultimate destination for mastering competitive exams.</p>
-            <p>You're all set to start your journey. Here's what you can do next:</p>
-            <ul>
-              <li>Take a <strong>Full Mock Test</strong> to simulate the real exam experience.</li>
-              <li>Practice specific topics with our <strong>Chapter-wise Quizzes</strong>.</li>
-              <li>Compete with students nationwide in the <strong>Live Quiz Arena</strong>.</li>
-            </ul>
-            <p>Ready to begin? Head over to your dashboard and start practicing!</p>
-            <p><strong><a href="https://olympiadquiz.org/dashboard.html" style="color: #4f46e5;">Go to Dashboard</a></strong></p>
-            <br>
-            <p>Happy learning, and may the best minds win! 🚀</p>
-            <p>Best regards,<br>The Olympiad Portal Team</p>
-          </div>
-        `;
+      sendSmtpEmail.htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding: 20px;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
+          <!-- Header -->
+          <tr>
+            <td align="center" style="background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%); padding: 40px 20px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 800;">Welcome, ${name || 'Student'}! 🎉</h1>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding: 35px 30px; color: #0f172a; line-height: 1.6;">
+              <p style="font-size: 16px; margin: 0 0 20px;">Thank you for joining <strong>Olympiad Portal</strong>, your ultimate destination for mastering competitive exams. You're all set to start your journey!</p>
+              
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <p style="margin: 0 0 10px; font-size: 14px; color: #64748b;">Your account has been created with the following email:</p>
+                <p style="margin: 0; font-size: 16px; font-weight: bold; color: #4f46e5; word-break: break-all;">${email}</p>
+              </div>
+
+              <p style="font-size: 16px; margin: 0 0 30px;">🔐 Please keep your login details safe. Here's what you can do next:</p>
+              <ul style="padding-left: 20px; margin: 0 0 30px; font-size: 16px;">
+                <li style="margin-bottom: 10px;">📚 Take a <strong>Full Mock Test</strong> to simulate the real exam experience.</li>
+                <li style="margin-bottom: 10px;">📖 Practice specific topics with our <strong>Chapter-wise Quizzes</strong>.</li>
+                <li style="margin-bottom: 10px;">⚡ Compete with students nationwide in the <strong>Live Quiz Arena</strong>.</li>
+              </ul>
+
+              <!-- CTA Button -->
+              <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <a href="https://olympiadquiz.org/dashboard.html" target="_blank" style="background-color: #4f46e5; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; display: inline-block;">
+                      Start Your First Test
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                © 2024 Olympiad Portal. All rights reserved.<br>
+                If you did not sign up for this account, you can safely ignore this email.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>`;
 
       await brevoApi.sendTransacEmail(sendSmtpEmail);
       console.log(`Welcome email sent to: ${email}`);
@@ -291,81 +328,87 @@ exports.sendResultEmail = onDocumentWritten(
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: userEmail, name: userName }];
       sendSmtpEmail.subject = `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`;
-      sendSmtpEmail.htmlContent = `
-          <div style="font-family: Arial, sans-serif; background-color: #f1f5f9; padding: 20px 10px;">
-            <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
-              
-              <!-- Header -->
-              <div style="background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%); color: #ffffff; padding: 30px 25px; text-align: center;">
-                <h1 style="margin: 0; font-size: 28px; font-weight: 800;">Test Result Ready!</h1>
-              </div>
+      sendSmtpEmail.htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding: 20px;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
+          <!-- Header -->
+          <tr>
+            <td align="center" style="background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%); padding: 40px 20px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 800;">Your Test Result 🎯</h1>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding: 35px 30px; color: #0f172a; line-height: 1.6;">
+              <h2 style="font-size: 22px; margin: 0 0 20px 0; font-weight: 700;">Hello ${userName},</h2>
+              <p style="font-size: 16px; color: #64748b; margin: 0 0 25px 0;">
+                Your result for the <strong>${testType} - ${subject}</strong> is in. Here's a summary of your performance:
+              </p>
 
-              <!-- Body -->
-              <div style="padding: 30px 25px; color: #0f172a;">
-                <h2 style="font-size: 22px; margin: 0 0 20px 0; font-weight: 700;">Hello ${userName},</h2>
-                <p style="font-size: 16px; color: #64748b; margin: 0 0 25px 0; line-height: 1.6;">
-                  Your result for the <strong>${testType} - ${subject}</strong> is in. Here's a summary of your performance:
-                </p>
-
-                <!-- Result Card -->
-                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; text-align: center;">
-                  
-                  <!-- Score -->
-                  <div style="margin-bottom: 20px;">
-                    <span style="font-size: 16px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Your Score 🏆</span>
-                    <p style="margin: 8px 0 0 0; font-size: 52px; font-weight: 800; color: #1e293b; line-height: 1;">
-                      ${score}<span style="font-size: 28px; color: #94a3b8; font-weight: 600;"> / ${total}</span>
-                    </p>
-                  </div>
-
-                  <!-- Accuracy -->
-                  <div>
-                    <span style="font-size: 16px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Accuracy 🎯</span>
-                    <p style="margin: 8px 0 15px 0; font-size: 36px; font-weight: 800; color: ${accuracy >= 80 ? "#10b981" : (accuracy >= 50 ? "#f59e0b" : "#ef4444")};">
-                      ${accuracy}%
-                    </p>
-                    
-                    <!-- Progress Bar -->
-                    <div style="background-color: #e2e8f0; border-radius: 50px; height: 12px; width: 100%; overflow: hidden;">
-                      <div style="width: ${accuracy}%; height: 100%; background-color: ${accuracy >= 80 ? "#10b981" : (accuracy >= 50 ? "#f59e0b" : "#ef4444")}; border-radius: 50px; transition: width 0.5s ease-in-out;"></div>
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- Motivational Message -->
-                <p style="font-size: 16px; color: #64748b; text-align: center; margin: 25px 0; font-style: italic;">
-                  "${accuracy >= 80 ? "Excellent work! You're on the path to mastery." : (accuracy >= 50 ? "Good effort! Keep practicing to reach the top." : "Every master was once a beginner. Keep practicing, and you will improve!")}"
-                </p>
-
-                <!-- CTA Button -->
-                <div style="text-align: center; margin: 30px 0;">
-                  <a href="https://olympiadquiz.org/dashboard.html" target="_blank" style="background-color: #4f46e5; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; display: inline-block;">
-                    Practice More Tests
-                  </a>
-                </div>
-
-                <p style="font-size: 16px; color: #64748b; line-height: 1.6;">
-                  Every attempt is a step towards excellence. Keep practicing to sharpen your skills and climb the leaderboard!
-                </p>
+              <!-- Result Card -->
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; text-align: center;">
                 
-                <p style="font-size: 16px; color: #64748b; margin-top: 30px; line-height: 1.6;">
-                  Best of luck, and see you at the top! 🚀<br>
-                  The Olympiad Portal Team
-                </p>
+                <!-- Score -->
+                <div style="margin-bottom: 20px;">
+                  <span style="font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Your Score</span>
+                  <p style="margin: 8px 0 0 0; font-size: 52px; font-weight: 800; color: #1e293b; line-height: 1;">
+                    ${score}<span style="font-size: 28px; color: #94a3b8; font-weight: 600;"> / ${total}</span>
+                  </p>
+                </div>
+
+                <!-- Accuracy -->
+                <div>
+                  <span style="font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Accuracy</span>
+                  <p style="margin: 8px 0 15px 0; font-size: 36px; font-weight: 800; color: ${accuracy >= 80 ? '#10b981' : (accuracy >= 50 ? '#f59e0b' : '#ef4444')};">
+                    ${accuracy}%
+                  </p>
+                  
+                  <!-- Progress Bar -->
+                  <div style="background-color: #e2e8f0; border-radius: 50px; height: 12px; width: 100%; overflow: hidden;">
+                    <div style="width: ${accuracy}%; height: 100%; background-color: ${accuracy >= 80 ? '#10b981' : (accuracy >= 50 ? '#f59e0b' : '#ef4444')}; border-radius: 50px; transition: width 0.5s ease-in-out;"></div>
+                  </div>
+                </div>
+
               </div>
 
-              <!-- Footer -->
-              <div style="background-color: #f8fafc; padding: 20px 25px; text-align: center; border-top: 1px solid #e2e8f0;">
-                <p style="margin: 0; font-size: 12px; color: #94a3b8;">
-                  © 2024 Olympiad Portal. All rights reserved.<br>
-                  You are receiving this email because you completed a test on our platform.
-                </p>
-              </div>
+              <!-- Motivational Message -->
+              <p style="font-size: 16px; color: #64748b; text-align: center; margin: 25px 0; font-style: italic;">
+                "${accuracy >= 80 ? 'Excellent performance! You are on the path to mastery. 🏆' : (accuracy >= 50 ? 'Good effort! Keep practicing to reach the top. 👍' : 'Every master was once a beginner. Keep practicing, and you will improve! 💪')}"
+              </p>
 
-            </div>
-          </div>
-        `;
+              <!-- CTA Button -->
+              <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                  <td align="center" style="padding: 15px 0;">
+                    <a href="https://olympiadquiz.org/dashboard.html" target="_blank" style="background-color: #4f46e5; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; display: inline-block;">
+                      Practice More Tests
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              
+              <p style="font-size: 16px; color: #64748b; margin-top: 15px;">
+                Best of luck, and see you at the top! 🚀<br>
+                The Olympiad Portal Team
+              </p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                © 2024 Olympiad Portal. All rights reserved.<br>
+                You are receiving this email because you completed a test on our platform.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>`;
 
       await brevoApi.sendTransacEmail(sendSmtpEmail);
       console.log(`Result email successfully sent to: ${userEmail} for result ID: ${resultId}`);
