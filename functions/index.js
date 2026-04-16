@@ -22,14 +22,14 @@ return new SibApiV3Sdk.TransactionalEmailsApi();
 // SENDER
 // ==========================
 const SENDER = {
-email: "[admin@olympiadquiz.org](mailto:admin@olympiadquiz.org)",
+email: "admin@olympiadquiz.org",
 name: "Olympiad Portal",
 };
 
 // ==========================
 // USER CREATE + WELCOME EMAIL
 // ==========================
-exports.createuser = functions.auth.user().onCreate(async (user) => {
+exports.createuser = functions.runWith({ secrets: ["BREVO_API_KEY"] }).auth.user().onCreate(async (user) => {
 const { uid, email, displayName, phoneNumber } = user;
 
 try {
@@ -41,7 +41,6 @@ name: displayName || (email ? email.split("@")[0] : "New User"),
 createdAt: new Date(),
 });
 
-```
 logger.info("User created:", uid);
 
 if (email) {
@@ -56,7 +55,6 @@ if (email) {
 
   logger.info("Welcome email sent:", email);
 }
-```
 
 } catch (error) {
 logger.error("createuser error:", error);
@@ -81,7 +79,6 @@ otp,
 expiresAt: new Date(Date.now() + 10 * 60 * 1000),
 });
 
-```
 const brevoApi = getBrevoClient();
 
 await brevoApi.sendTransacEmail({
@@ -94,7 +91,6 @@ await brevoApi.sendTransacEmail({
 logger.info("OTP sent:", email);
 
 return { success: true };
-```
 
 } catch (error) {
 logger.error("OTP error:", error);
@@ -128,7 +124,7 @@ return { success: false };
 exports.sendBulkEmails = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
 if (!request.auth) throw new HttpsError("unauthenticated");
 
-if (request.auth.token.email !== "[madhhu52@gmail.com](mailto:madhhu52@gmail.com)") {
+if (request.auth.token.email !== "madhhu52@gmail.com") {
 throw new HttpsError("permission-denied");
 }
 
@@ -148,7 +144,6 @@ const batchSize = 500;
 for (let i = 0; i < emails.length; i += batchSize) {
 const batch = emails.slice(i, i + batchSize);
 
-```
 await brevoApi.sendTransacEmail({
   sender: SENDER,
   subject,
@@ -157,7 +152,6 @@ await brevoApi.sendTransacEmail({
 });
 
 await new Promise(resolve => setTimeout(resolve, 500));
-```
 
 }
 
@@ -172,13 +166,12 @@ return { success: true };
 exports.sendTestResultEmail = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
 const { email, score, total } = request.data;
 
-logger.info("Result email triggered", { email, score, total });
-
-// 🔴 STRICT VALIDATION
-if (!email || isNaN(score) || isNaN(total) || Number(total) === 0) {
-logger.error("Invalid result email data", request.data);
-throw new HttpsError("invalid-argument", "Invalid data");
+if (!email || typeof email !== 'string' || score == null || total == null || isNaN(Number(score)) || isNaN(Number(total)) || Number(total) === 0) {
+    logger.error("Invalid arguments for sendTestResultEmail. Data received:", request.data);
+    throw new HttpsError("invalid-argument", "Missing or invalid parameters. 'email' (string), 'score' (number), and 'total' (number) are required, and 'total' cannot be zero.");
 }
+
+logger.info("Processing result email for:", { email, score, total });
 
 const scoreNum = Number(score);
 const totalNum = Number(total);
@@ -187,23 +180,22 @@ const percentage = Math.round((scoreNum / totalNum) * 100);
 try {
 const brevoApi = getBrevoClient();
 
-```
 await brevoApi.sendTransacEmail({
   sender: SENDER,
   to: [{ email }],
   subject: "Your Olympiad Quiz Result",
-  htmlContent:
-    "<h2>Your Score: " + scoreNum + "/" + totalNum + "</h2>" +
-    "<p>Accuracy: " + percentage + "%</p>",
+  htmlContent: `<h2>Your Score: ${scoreNum}/${totalNum}</h2><p>Accuracy: ${percentage}%</p>`,
 });
 
-logger.info("Result email sent:", email);
+logger.info(`Result email successfully sent to ${email}`);
 
 return { success: true };
-```
 
 } catch (error) {
-logger.error("Result email error:", error);
-throw new HttpsError("internal", "Email failed");
+    logger.error("Error sending result email to " + email, {
+        // Log the specific error message from Brevo if available
+        brevoError: error.response ? error.response.body : error.message,
+    });
+    throw new HttpsError("internal", "There was an error sending the result email. Please check the function logs for details.");
 }
 });
