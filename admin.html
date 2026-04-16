@@ -1850,27 +1850,31 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
     status.innerText = "Initiating bulk email function. Do not close this page...";
 
     try {
-        const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmails');
-        const result = await sendBulkEmailFn({ senderEmail, subject, content });
+        // FIX 1: Correct function name from 'sendBulkEmails' to 'sendBulkEmail'
+        const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmail');
+        // FIX 2: Correct payload keys from 'content' to 'htmlContent' as expected by the backend
+        const result = await sendBulkEmailFn({ subject: subject, htmlContent: content });
         
-        status.style.background = "rgba(16, 185, 129, 0.1)";
-        status.style.color = "var(--success)";
-        status.style.borderColor = "var(--success)";
-        
-        let msg = `Broadcast completed.\n\nSent: ${result.data.successCount}\nFailed: ${result.data.failCount}`;
-        
-        if (result.data.failCount > 0 && result.data.message) {
-            msg += `\n\nReason: ${result.data.message}`;
+        // FIX 3: Handle the new JSON response structure from the backend function
+        if (result.data.success) {
+            status.style.background = "rgba(16, 185, 129, 0.1)";
+            status.style.color = "var(--success)";
+            status.style.borderColor = "var(--success)";
+            status.innerText = result.data.message;
+            alert(result.data.message);
+            
+            document.getElementById("emailSubject").value = "";
+            quill.setContents([]); // Clear the Quill editor
+        } else {
+            // Handle failures gracefully returned by the function
             status.style.background = "rgba(239, 68, 68, 0.1)";
             status.style.color = "var(--danger)";
             status.style.borderColor = "var(--danger)";
+            const errorMessage = `❌ Error: ${result.data.message}\n\nDetails: ${result.data.errorDetails || 'No additional details.'}`;
+            status.innerText = errorMessage;
+            alert(errorMessage);
         }
-        
-        status.innerText = msg;
-        alert(msg);
-        
-        document.getElementById("emailSubject").value = "";
-        quill.setContents([]); // Clear the Quill editor
+
     } catch (error) {
         console.error("Email Broadcast Error:", error);
         status.style.background = "rgba(239, 68, 68, 0.1)";
