@@ -316,7 +316,7 @@
         <h1>Live <span>Olympiad Online Test Free</span> Arena</h1>
         <p>Step into the ultimate competitive zone! Compete in real-time nationwide quizzes for <b>IMO (Maths)</b>, <b>NSO (Science)</b>, <b>IEO (English)</b>, and <b>IRO (Reasoning)</b>. Claim your spot on the global leaderboard.</p>
         <div style="margin-top: 15px;">
-            <span id="arenaBadge" class="pulse-badge">⏳ Next Live Quiz coming soon</span>
+            <span id="arenaBadge" class="pulse-badge">🏆 Grand Championship on 19th April 2026</span>
         </div>
         <p id="permanentInstruction" style="display: none; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text);">Select your grade and subject to Register.</p>
     </div>
@@ -481,7 +481,7 @@
             if (sessionDocs.length === 0) {
                 container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.2rem; font-weight: 600;">Live quiz is coming very soon.</div>`;
                 const arenaBadge = document.getElementById("arenaBadge");
-                if (arenaBadge) arenaBadge.innerText = "⏳ Next Live Quiz coming soon";
+                if (arenaBadge) arenaBadge.innerText = "🏆 Grand Championship on 19th April 2026";
                 if (filterContainer) filterContainer.style.display = "none";
                 return;
             }
@@ -523,7 +523,7 @@
             if (uniqueGrades.size === 0) {
                 container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.2rem; font-weight: 600;">Live quiz is coming very soon.</div>`;
                 const arenaBadge = document.getElementById("arenaBadge");
-                if (arenaBadge) arenaBadge.innerText = "⏳ Next Live Quiz coming soon";
+                if (arenaBadge) arenaBadge.innerText = "🏆 Grand Championship on 19th April 2026";
                 if (filterContainer) filterContainer.style.display = "none";
                 const permInstr = document.getElementById("permanentInstruction");
                 if (permInstr) permInstr.style.display = "none";
@@ -598,7 +598,9 @@
         if (!gradeFilter || !subjectFilter) {
             const arenaBadge = document.getElementById("arenaBadge");
             if (arenaBadge) {
-                arenaBadge.innerText = window.nextSessionDateStr ? `Registration is open Live Quiz on ${window.nextSessionDateStr}` : "⏳ Next Live Quiz coming soon";
+                const dynamicDateText = window.nextSessionDateStr ? `Next Live Quiz on ${window.nextSessionDateStr}` : "";
+                const staticDateText = "🏆 Grand Championship on 19th April 2026";
+                arenaBadge.innerText = dynamicDateText ? `${dynamicDateText} | ${staticDateText}` : staticDateText;
             }
             if (timerInterval) clearInterval(timerInterval);
             return;
@@ -686,10 +688,15 @@
         const arenaBadge = document.getElementById("arenaBadge");
         if (currentSessionList.length > 0) {
             if (arenaBadge) {
-                arenaBadge.innerText = window.nextSessionDateStr ? `Registration is open Live Quiz on ${window.nextSessionDateStr}` : "Register for Live Quiz Now";
+                const dynamicDateText = window.nextSessionDateStr ? `Next Live Quiz on ${window.nextSessionDateStr}` : "Register for Live Quiz Now";
+                const staticDateText = "🏆 Grand Championship on 19th April 2026";
+                arenaBadge.innerText = `${dynamicDateText} | ${staticDateText}`;
             }
         } else {
-            if (arenaBadge) arenaBadge.innerText = "⏳ No live quizzes for this selection";
+            if (arenaBadge) {
+                const staticDateText = "🏆 Grand Championship on 19th April 2026";
+                arenaBadge.innerText = `⏳ No live quizzes for this selection | ${staticDateText}`;
+            }
             container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.1rem; font-weight: 600; background: var(--surface); border: 1px dashed var(--border); border-radius: 16px; width: 100%;">No active or upcoming live quizzes found for Class ${gradeFilter} ${subjectFilter.charAt(0).toUpperCase() + subjectFilter.slice(1)}.</div>`;
         }
 
