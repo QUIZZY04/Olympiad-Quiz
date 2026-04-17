@@ -120,15 +120,21 @@ border-top:2px solid var(--brand);
 box-shadow: var(--shadow-lg);
 }
 
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 25px;
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:25px;
 font-size:14px;
-background:var(--surface);
-border-radius:12px;
-overflow:hidden;
-border:1px solid var(--border);
+min-width: 900px;
 }
 
 th,td{
@@ -259,6 +265,17 @@ font-size:14px;
 outline:none;
 }
 .modal-input:focus { border-color:var(--brand); box-shadow:0 0 0 3px rgba(37,99,235,0.1); }
+
+@media (max-width: 768px) {
+    .summary-card { padding: 25px 20px; }
+    .action-btn { 
+        width: 100%; 
+        margin: 10px 0 !important; 
+        display: block; 
+        box-sizing: border-box; 
+    }
+    .container > h1 { font-size: 1.8rem; margin-bottom: 20px !important; }
+}
 </style>
 </head>
 
@@ -503,6 +520,7 @@ document.addEventListener("DOMContentLoaded",function(){
             💡 If there are any discrepancies in the quiz, report to the admin by clicking on the <strong>Flag</strong> button next to the question.
         </div>
     </div>
+    <div class="table-wrapper">
     <table><thead><tr><th>#</th><th>Type</th><th>Question</th><th>Your Ans</th><th>Correct Ans</th><th>Status</th><th>Solution</th><th style="text-align:center;">Action</th></tr></thead><tbody>`;
 
     res.questions.forEach((q,i)=>{
@@ -556,7 +574,7 @@ document.addEventListener("DOMContentLoaded",function(){
         </tr>`;
     });
 
-    document.getElementById("details").innerHTML = html + "</tbody></table>";
+    document.getElementById("details").innerHTML = html + "</tbody></table></div>";
 });
 </script>
 
