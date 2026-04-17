@@ -616,12 +616,14 @@ exports.sendLiveQuizRegistrationEmail = onDocumentCreated(
       const grade = sessionData.class || "1-10";
 
       // Format Date and Time
-      let testDate = "19 April 2026";
-      let testTime = "To be announced";
+      let istDateTime = "19 April 2026, To be announced";
       if (sessionData.startTime) {
         const startDate = sessionData.startTime.toDate();
-        testDate = startDate.toLocaleDateString("en-GB", { day: 'numeric', month: 'long', year: 'numeric' });
-        testTime = startDate.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit' });
+        istDateTime = startDate.toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          dateStyle: "medium",
+          timeStyle: "short",
+        });
       }
 
       // Prepare Brevo Email
@@ -649,8 +651,7 @@ exports.sendLiveQuizRegistrationEmail = onDocumentCreated(
               <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 25px 0;">
                 <h3 style="margin: 0 0 15px; color: #4f46e5; font-size: 18px;">📝 Test Details</h3>
                 <p style="margin: 0 0 8px; font-size: 15px;"><strong>Test Name:</strong> ${sessionTitle} (Class ${grade} ${subject})</p>
-                <p style="margin: 0 0 8px; font-size: 15px;"><strong>Date:</strong> ${testDate}</p>
-                <p style="margin: 0 0 0; font-size: 15px;"><strong>Time:</strong> ${testTime}</p>
+                <p style="margin: 0 0 0; font-size: 15px;"><strong>Date & Time (IST):</strong> ${istDateTime}</p>
               </div>
 
               <h3 style="margin: 25px 0 10px; color: #0f172a; font-size: 18px;">🔑 Login Instructions</h3>
