@@ -199,6 +199,16 @@
     </div>
 </div>
 
+<!-- Coming Soon Modal -->
+<div id="comingSoonModal" class="modal-overlay">
+    <div class="modal-content" style="text-align: center; max-width: 400px;">
+        <div style="font-size: 50px; margin-bottom: 15px;">🚧</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px;">Coming Soon</h2>
+        <p style="color: var(--muted); margin-bottom: 25px; line-height: 1.6;">The video tutorial for this topic is currently under production and will be available soon.</p>
+        <button onclick="document.getElementById('comingSoonModal').style.display='none'" style="background: var(--brand); color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: 700; width: 100%; cursor: pointer;">Got it!</button>
+    </div>
+</div>
+
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
         <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Home</a>
@@ -343,12 +353,19 @@
                 const vId = customVideos[topic.code] || topic.videoId || fallbacks[index % fallbacks.length];
                 const thumbUrl = `https://img.youtube.com/vi/${vId}/hqdefault.jpg`;
                 const containerId = `vw-${vId}-${index}`;
+                const vId = customVideos[topic.code] || topic.videoId;
+                const isAvailable = !!vId;
+                const displayId = vId || fallbacks[index % fallbacks.length];
+                const thumbUrl = `https://img.youtube.com/vi/${displayId}/hqdefault.jpg`;
+                const containerId = `vw-${displayId}-${index}`;
+                const onClickAction = isAvailable ? `playVideo('${containerId}', '${vId}')` : `showComingSoon()`;
 
                 const card = document.createElement('div');
                 card.className = `video-card`;
                 card.innerHTML = `
                     <div class="video-wrapper" id="${containerId}">
                         <div class="video-thumbnail" onclick="playVideo('${containerId}', '${vId}')" style="background-image: url('${thumbUrl}')">
+                        <div class="video-thumbnail" onclick="${onClickAction}" style="background-image: url('${thumbUrl}')">
                             <div class="play-btn">▶</div>
                         </div>
                     </div>
@@ -367,6 +384,10 @@
     window.playVideo = function(containerId, videoId) {
         const container = document.getElementById(containerId);
         container.innerHTML = `<iframe loading="lazy" src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+    };
+
+    window.showComingSoon = function() {
+        document.getElementById('comingSoonModal').style.display = 'flex';
     };
 
     // Load initial selection on script run once db is ready
