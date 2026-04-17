@@ -570,6 +570,7 @@ border-top:1px solid var(--border);
         <div><label>Range Start ID (Regular)</label><input type="text" id="sessStartId" placeholder="e.g. Q001"></div>
         <div><label>Range End ID (Regular)</label><input type="text" id="sessEndId" placeholder="e.g. Q050"></div>
         <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
+        <div><label>Price After Coupon (Optional ₹)</label><input type="number" id="sessPriceAfterCoupon" placeholder="e.g. 29"></div>
         <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
         <div style="grid-column: 1 / -1;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
@@ -781,6 +782,7 @@ border-top:1px solid var(--border);
             <option value="10">Class 10</option>
         </select>
         <label>Price (INR)</label><input type="number" id="editSessPrice">
+        <label>Price After Coupon (Optional ₹)</label><input type="number" id="editSessPriceAfterCoupon">
         <label>Duration (Min)</label><input type="number" id="editSessDuration">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
             <div><label>Date</label><input type="date" id="editSessDate"></div>
@@ -1455,6 +1457,7 @@ window.openSessionEdit = async (id) => {
         document.getElementById("editSessClass").value = data.class;
         document.getElementById("editSessTitle").value = data.title;
         document.getElementById("editSessPrice").value = data.price;
+        document.getElementById("editSessPriceAfterCoupon").value = (data.priceAfterCoupon !== undefined && data.priceAfterCoupon !== null) ? data.priceAfterCoupon : "";
         document.getElementById("editSessDuration").value = data.duration;
         
         if (data.startTime instanceof Timestamp) {
@@ -1476,10 +1479,14 @@ window.saveSessionEdit = async () => {
     const durationMs = parseInt(duration) * 60000;
     const endDateTime = new Date(startDateTime.getTime() + durationMs);
 
+    const editPriceAfterCouponInput = document.getElementById("editSessPriceAfterCoupon").value;
+    const editPriceAfterCoupon = editPriceAfterCouponInput ? parseFloat(editPriceAfterCouponInput) : null;
+
     const updateData = {
         title: document.getElementById("editSessTitle").value,
         class: parseInt(document.getElementById("editSessClass").value),
         price: parseInt(document.getElementById("editSessPrice").value),
+        priceAfterCoupon: editPriceAfterCoupon,
         duration: parseInt(duration),
         startTime: Timestamp.fromDate(startDateTime),
         endTime: Timestamp.fromDate(endDateTime)
@@ -1658,6 +1665,8 @@ window.createSession = async () => {
         const achManualIdsRaw = document.getElementById("sessAchManualIds").value.trim();
         
         const price = document.getElementById("sessPrice").value;
+        const priceAfterCouponInput = document.getElementById("sessPriceAfterCoupon").value;
+        const priceAfterCoupon = priceAfterCouponInput ? parseFloat(priceAfterCouponInput) : null;
         const duration = document.getElementById("sessDuration").value;
 
         if(!title || !date || !time || !duration) { 
@@ -1812,6 +1821,7 @@ window.createSession = async () => {
             questionIds,
             achieverQuestionIds,
             price: parseInt(price),
+            priceAfterCoupon: priceAfterCoupon,
             duration: parseInt(duration),
             createdAt: serverTimestamp()
         });

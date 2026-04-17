@@ -632,11 +632,12 @@
                 continue; 
             }
 
-            const sessionPrice = s.price === undefined ? 99 : s.price;
+            const originalPrice = s.price === undefined ? 99 : s.price;
+            const discountedPrice = s.priceAfterCoupon; // This will be undefined, null, or a number
             const hasAccess = userAccessSnaps[i] ? userAccessSnaps[i].exists() : false;
             const hasAttempted = window.userAttemptSnaps && window.userAttemptSnaps[i] ? !window.userAttemptSnaps[i].empty : false;
 
-            sessionList.push({ id: sDoc.id, start, end, hasAccess, hasAttempted, price: sessionPrice, title: s.title, duration: s.duration, subject: s.subject, class: s.class });
+            sessionList.push({ id: sDoc.id, start, end, hasAccess, hasAttempted, price: originalPrice, priceAfterCoupon: discountedPrice, title: s.title, duration: s.duration, subject: s.subject, class: s.class });
 
             const wrapper = document.createElement("div");
             wrapper.className = "card-wrapper";
@@ -740,13 +741,38 @@
                         btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-free-unlock";
                         btn.onclick = () => handleUnlock(s.id, 0, s.title);
                     } else {
-                        btn.innerText = `Unlock for ₹${s.price}`; btn.className = "join-btn btn-locked";
-                        btn.onclick = () => handleUnlock(s.id, s.price, s.title);
+                        const originalPrice = s.price;
+                        const discountedPrice = s.priceAfterCoupon;
+
+                        let finalPrice;
+                        let priceDisplayHtml;
+
+                        if (typeof discountedPrice === 'number' && discountedPrice >= 0) {
+                            finalPrice = discountedPrice;
+                            if (originalPrice > discountedPrice) {
+                                priceDisplayHtml = `<s style="opacity: 0.7; font-size: 0.9em; margin-right: 5px;">₹${originalPrice}</s> ₹${finalPrice}`;
+                            } else {
+                                priceDisplayHtml = `₹${finalPrice}`;
+                            }
+                        } else {
+                            finalPrice = originalPrice;
+                            priceDisplayHtml = `₹${finalPrice}`;
+                        }
+
+                        if (finalPrice === 0) {
+                            btn.innerText = "Unlock for Free";
+                            btn.className = "join-btn btn-free-unlock";
+                        } else {
+                            btn.innerHTML = `Unlock for ${priceDisplayHtml}`;
+                            btn.className = "join-btn btn-locked";
+                        }
+                        btn.onclick = () => handleUnlock(s.id, finalPrice, s.title);
                     }
                     btn.disabled = false;
     
                     // Show coupon area for paid locked sessions
-                    if (cpArea) cpArea.style.display = (s.price > 0) ? "block" : "none";
+                    const finalPriceForCouponCheck = (typeof s.priceAfterCoupon === 'number' && s.priceAfterCoupon >= 0) ? s.priceAfterCoupon : s.price;
+                    if (cpArea) cpArea.style.display = (finalPriceForCouponCheck > 0 && !appliedCoupons[s.id]) ? "block" : "none";
                 }
             } else {
                 // User has access
