@@ -517,7 +517,7 @@ exports.verifyRazorpayPayment = onCall({
     throw new HttpsError("unauthenticated", "User must be logged in.");
   }
 
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature, sessionId } = request.data;
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature, sessionId, amount } = request.data;
 
   if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !sessionId) {
     throw new HttpsError("invalid-argument", "Missing payment verification details.");
@@ -540,6 +540,8 @@ exports.verifyRazorpayPayment = onCall({
         sessionId: sessionId,
         paymentId: razorpay_payment_id,
         orderId: razorpay_order_id,
+        amount: amount || 0,
+        email: request.auth.token.email || null,
         status: "CAPTURED",
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       }, { merge: true });

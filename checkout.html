@@ -50,6 +50,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -62,6 +63,7 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const functions = getFunctions(app);
 
         const sId = localStorage.getItem("checkoutSessionId");
         const price = localStorage.getItem("checkoutPrice");
@@ -84,25 +86,63 @@
             }
         });
 
-        document.getElementById("payButton").addEventListener("click", () => {
-            const options = {
-                "key": "rzp_live_SSiYcJa8TB4OIC", // Active Razorpay Key
-                "amount": parseInt(price) * 100, 
-                "currency": "INR",
-                "name": "Olympiad Portal",
-                "description": "Unlock: " + title,
-                "handler": function (response) {
-                    // Payment Successful, finalize data and route to success screen
-                    localStorage.setItem("activeSessionId", sId);
-                    localStorage.setItem("activeSessionPrice", price);
-                    window.location.href = "payment-success.html";
-                },
-                "prefill": { "name": userName, "email": userEmail },
-                "theme": { "color": "#38bdf8" }
-            };
-            const rzp = new Razorpay(options);
-            rzp.on('payment.failed', function (response) { alert("Payment Failed: " + response.error.description); });
-            rzp.open();
+        document.getElementById("payButton").addEventListener("click", async () => {
+            const payBtn = document.getElementById("payButton");
+            const originalText = payBtn.innerText;
+            payBtn.innerText = "Processing...";
+            payBtn.disabled = true;
+
+            try {
+                const createRazorpayOrder = httpsCallable(functions, 'createRazorpayOrder');
+                const verifyRazorpayPayment = httpsCallable(functions, 'verifyRazorpayPayment');
+
+                const orderResponse = await createRazorpayOrder({ amount: parseInt(price), sessionId: sId });
+                const order = orderResponse.data;
+
+                const options = {
+                    "key": "rzp_live_SSiYcJa8TB4OIC", // Active Razorpay Key
+                    "amount": order.amount,
+                    "currency": order.currency,
+                    "order_id": order.id,
+                    "name": "Olympiad Portal",
+                    "description": "Unlock: " + title,
+                    "handler": async function (response) {
+                        payBtn.innerText = "Verifying...";
+                        try {
+                            const verifyResponse = await verifyRazorpayPayment({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature,
+                                sessionId: sId,
+                                amount: parseInt(price)
+                            });
+                            
+                            if (verifyResponse.data.success) {
+                                localStorage.setItem("activeSessionId", sId);
+                                localStorage.setItem("activeSessionPrice", price);
+                                window.location.href = "payment-success.html";
+                            }
+                        } catch (verifyErr) {
+                            alert("Payment verification failed: " + verifyErr.message);
+                            payBtn.innerText = originalText;
+                            payBtn.disabled = false;
+                        }
+                    },
+                    "prefill": { "name": userName, "email": userEmail },
+                    "theme": { "color": "#38bdf8" }
+                };
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (response) { 
+                    alert("Payment Failed: " + response.error.description); 
+                    payBtn.innerText = originalText;
+                    payBtn.disabled = false;
+                });
+                rzp.open();
+            } catch (err) {
+                alert("Failed to initiate payment: " + err.message);
+                payBtn.innerText = originalText;
+                payBtn.disabled = false;
+            }
         });
     </script>
 </body>
