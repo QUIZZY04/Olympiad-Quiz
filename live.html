@@ -351,7 +351,7 @@
     <div class="congrats-content">
         <div style="font-size: 60px; margin-bottom: 20px;">🎊</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; text-transform: uppercase; font-size: 24px;">Coupon Applied!</h2>
-        <p style="color: var(--text); line-height: 1.6; margin-bottom: 30px; font-weight: 500; font-size: 16px;">Congratulations! Your coupon is valid. Now click on the <b style="color:var(--success)">'Unlock for Free'</b> button on the test card to complete your registration.</p>
+        <p style="color: var(--text); line-height: 1.6; margin-bottom: 30px; font-weight: 500; font-size: 16px;">Congratulations! Your coupon is valid. Now click on the <b style="color:var(--success)">'Unlock'</b> button on the test card to complete your registration.</p>
         <button onclick="closeCongratsModal()" style="background: var(--brand); color: white; padding: 14px 30px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">Got it!</button>
     </div>
 </div>
@@ -737,42 +737,40 @@
                     timerEl.innerText = "Registration Open";
                     timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
     
+                    const originalPrice = s.price;
+                    const discountedPrice = s.priceAfterCoupon;
+
                     if (appliedCoupons[s.id]) {
-                        btn.innerText = "Unlock for Free"; btn.className = "join-btn btn-free-unlock";
-                        btn.onclick = () => handleUnlock(s.id, 0, s.title);
-                    } else {
-                        const originalPrice = s.price;
-                        const discountedPrice = s.priceAfterCoupon;
-
-                        let finalPrice;
-                        let priceDisplayHtml;
-
+                        // Coupon Applied
+                        let finalPrice = 0; // Default to free if no specific discount price is set
                         if (typeof discountedPrice === 'number' && discountedPrice >= 0) {
                             finalPrice = discountedPrice;
-                            if (originalPrice > discountedPrice) {
-                                priceDisplayHtml = `<s style="opacity: 0.7; font-size: 0.9em; margin-right: 5px;">₹${originalPrice}</s> ₹${finalPrice}`;
-                            } else {
-                                priceDisplayHtml = `₹${finalPrice}`;
-                            }
-                        } else {
-                            finalPrice = originalPrice;
-                            priceDisplayHtml = `₹${finalPrice}`;
                         }
-
+                        
                         if (finalPrice === 0) {
                             btn.innerText = "Unlock for Free";
                             btn.className = "join-btn btn-free-unlock";
                         } else {
+                            const priceDisplayHtml = originalPrice > finalPrice ? `<s style="opacity: 0.7; font-size: 0.9em; margin-right: 5px;">₹${originalPrice}</s> ₹${finalPrice}` : `₹${finalPrice}`;
                             btn.innerHTML = `Unlock for ${priceDisplayHtml}`;
-                            btn.className = "join-btn btn-locked";
+                            btn.className = "join-btn btn-free-unlock"; // Keep pulsing class for successful coupon
                         }
                         btn.onclick = () => handleUnlock(s.id, finalPrice, s.title);
+                    } else {
+                        // No Coupon Applied
+                        if (originalPrice === 0) {
+                            btn.innerText = "Unlock for Free";
+                            btn.className = "join-btn btn-free-unlock";
+                        } else {
+                            btn.innerText = `Unlock for ₹${originalPrice}`;
+                            btn.className = "join-btn btn-locked";
+                        }
+                        btn.onclick = () => handleUnlock(s.id, originalPrice, s.title);
                     }
                     btn.disabled = false;
     
                     // Show coupon area for paid locked sessions
-                    const finalPriceForCouponCheck = (typeof s.priceAfterCoupon === 'number' && s.priceAfterCoupon >= 0) ? s.priceAfterCoupon : s.price;
-                    if (cpArea) cpArea.style.display = (finalPriceForCouponCheck > 0 && !appliedCoupons[s.id]) ? "block" : "none";
+                    if (cpArea) cpArea.style.display = (originalPrice > 0 && !appliedCoupons[s.id]) ? "block" : "none";
                 }
             } else {
                 // User has access
