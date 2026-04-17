@@ -1,6 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const crypto = require("crypto");
 
 const { onDocumentWritten, onDocumentCreated } = require("firebase-functions/v2/firestore");
 
@@ -455,6 +456,103 @@ exports.sendResultEmail = onDocumentWritten(
     }
   }
 );
+
+// =================================================================
+// 5. RAZORPAY PAYMENT INTEGRATION
+// =================================================================
+
+/**
+ * Creates a Razorpay order with auto-capture enabled.
+ */
+exports.createRazorpayOrder = onCall({
+  secrets: ["RAZORPAY_KEY_ID", "RAZORPAY_KEY_SECRET"]
+}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "User must be logged in to initiate payment.");
+  }
+
+  const { amount, sessionId } = request.data;
+  if (!amount || !sessionId) {
+    throw new HttpsError("invalid-argument", "Missing required amount or sessionId.");
+  }
+
+  try {
+    const response = await fetch("https://api.razorpay.com/v1/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic " + Buffer.from(process.env.RAZORPAY_KEY_ID + ":" + process.env.RAZORPAY_KEY_SECRET).toString("base64")
+      },
+      body: JSON.stringify({
+        amount: amount * 100, // Convert to paise
+        currency: "INR",
+        receipt: `rcpt_${request.auth.uid.substring(0,5)}_${sessionId.substring(0,5)}`,
+        payment_capture: 1 // Forces Razorpay to Auto-Capture the payment immediately
+      })
+    });
+
+    const order = await response.json();
+    if (order.error) {
+      throw new Error(order.error.description);
+    }
+
+    return {
+      id: order.id,
+      amount: order.amount,
+      currency: order.currency
+    };
+  } catch (error) {
+    console.error("Error creating Razorpay order:", error);
+    throw new HttpsError("internal", "Failed to create payment order.");
+  }
+});
+
+/**
+ * Verifies the Razorpay payment signature securely and marks as success.
+ */
+exports.verifyRazorpayPayment = onCall({
+  secrets: ["RAZORPAY_KEY_SECRET"]
+}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "User must be logged in.");
+  }
+
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature, sessionId } = request.data;
+
+  if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !sessionId) {
+    throw new HttpsError("invalid-argument", "Missing payment verification details.");
+  }
+
+  const secret = process.env.RAZORPAY_KEY_SECRET;
+  
+  // Generate HMAC SHA256 signature
+  const generated_signature = crypto.createHmac('sha256', secret)
+    .update(razorpay_order_id + "|" + razorpay_payment_id)
+    .digest('hex');
+
+  // Verify if signatures match
+  if (generated_signature === razorpay_signature) {
+    const uid = request.auth.uid;
+    try {
+      // Signature is valid. Create the purchase document.
+      // ⚠️ IMPORTANT: This database write is what triggers `sendLiveQuizRegistrationEmail`
+      await db.collection("users").doc(uid).collection("purchases").doc(sessionId).set({
+        sessionId: sessionId,
+        paymentId: razorpay_payment_id,
+        orderId: razorpay_order_id,
+        status: "CAPTURED",
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true });
+
+      return { success: true, message: "Payment verified successfully." };
+    } catch (error) {
+      console.error("Error saving purchase to Firestore:", error);
+      throw new HttpsError("internal", "Payment verified but failed to save record.");
+    }
+  } else {
+    throw new HttpsError("permission-denied", "Invalid payment signature. Verification failed.");
+  }
+});
 
 // =================================================================
 // 4. LIVE QUIZ REGISTRATION ACKNOWLEDGEMENT EMAIL
