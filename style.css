@@ -154,6 +154,9 @@ button {
     border-radius: 20px;
     margin-bottom: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 .correct {
@@ -176,6 +179,18 @@ button {
     border-color: #ef4444;
     color: white !important;
     font-weight: 600;
+}
+
+/* Mobile Responsiveness for Result Page */
+@media (max-width: 768px) {
+    .result-summary {
+        padding: 15px 20px;
+        border-radius: 15px;
+    }
+    .options label {
+        font-size: 15px;
+        padding: 12px 15px;
+    }
 }
 
 /* ===================================================== */
