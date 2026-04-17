@@ -2,7 +2,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
 
-const { onDocumentWritten } = require("firebase-functions/v2/firestore");
+const { onDocumentWritten, onDocumentCreated } = require("firebase-functions/v2/firestore");
 
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 
@@ -452,6 +452,162 @@ exports.sendResultEmail = onDocumentWritten(
       console.log(`Result email successfully sent to: ${userEmail} for result ID: ${resultId}`);
     } catch (error) {
       console.error(`Failed to send result email to ${userEmail}. Error:`, error.message);
+    }
+  }
+);
+
+// =================================================================
+// 4. LIVE QUIZ REGISTRATION ACKNOWLEDGEMENT EMAIL
+// =================================================================
+
+/**
+ * Triggered when a new document is created in a user's 'purchases' subcollection.
+ * This indicates a successful registration for a live quiz.
+ */
+exports.sendLiveQuizRegistrationEmail = onDocumentCreated(
+  {
+    document: "users/{uid}/purchases/{sessionId}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    const snapshot = event.data;
+    if (!snapshot) {
+      console.log("No data associated with the event");
+      return;
+    }
+
+    const purchaseData = snapshot.data();
+    const uid = event.params.uid;
+    const sessionId = event.params.sessionId;
+
+    // Prevent duplicate sending if already flagged
+    if (purchaseData.ackEmailSent) {
+      console.log(`Ack email already sent for user ${uid}, session ${sessionId}`);
+      return;
+    }
+
+    console.log(`Registration trigger fired for user: ${uid}, session: ${sessionId}`);
+
+    try {
+      // Fetch User Data
+      const userDoc = await db.collection("users").doc(uid).get();
+      if (!userDoc.exists) {
+        console.error(`User ${uid} not found.`);
+        return;
+      }
+      const userData = userDoc.data();
+      const userEmail = userData.email;
+      const userName = userData.name || "Student";
+
+      if (!userEmail) {
+        console.error(`No email found for user ${uid}`);
+        return;
+      }
+
+      // Fetch Session Data
+      const sessionDoc = await db.collection("test_sessions").doc(sessionId).get();
+      if (!sessionDoc.exists) {
+        console.error(`Session ${sessionId} not found.`);
+        return;
+      }
+      const sessionData = sessionDoc.data();
+      const sessionTitle = sessionData.title || "LIVE Olympiad Test";
+      const subject = sessionData.subject ? sessionData.subject.charAt(0).toUpperCase() + sessionData.subject.slice(1) : "General";
+      const grade = sessionData.class || "1-10";
+
+      // Format Date and Time
+      let testDate = "19 April 2026";
+      let testTime = "To be announced";
+      if (sessionData.startTime) {
+        const startDate = sessionData.startTime.toDate();
+        testDate = startDate.toLocaleDateString("en-GB", { day: 'numeric', month: 'long', year: 'numeric' });
+        testTime = startDate.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit' });
+      }
+
+      // Prepare Brevo Email
+      const brevoApi = getBrevoClient();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: userEmail, name: userName }];
+      sendSmtpEmail.subject = `✅ Registration Confirmed – ${sessionTitle}`;
+      sendSmtpEmail.htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding: 20px;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
+          <tr>
+            <td align="center" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 40px 20px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 800;">Registration Confirmed! ✅</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 35px 30px; color: #0f172a; line-height: 1.6;">
+              <p style="font-size: 16px; margin: 0 0 20px;">Hello <strong>${userName}</strong>,</p>
+              <p style="font-size: 16px; margin: 0 0 20px;">You have successfully registered for the upcoming LIVE Quiz. Get ready to compete and showcase your skills!</p>
+              
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <h3 style="margin: 0 0 15px; color: #4f46e5; font-size: 18px;">📝 Test Details</h3>
+                <p style="margin: 0 0 8px; font-size: 15px;"><strong>Test Name:</strong> ${sessionTitle} (Class ${grade} ${subject})</p>
+                <p style="margin: 0 0 8px; font-size: 15px;"><strong>Date:</strong> ${testDate}</p>
+                <p style="margin: 0 0 0; font-size: 15px;"><strong>Time:</strong> ${testTime}</p>
+              </div>
+
+              <h3 style="margin: 25px 0 10px; color: #0f172a; font-size: 18px;">🔑 Login Instructions</h3>
+              <ul style="padding-left: 20px; margin: 0 0 20px; font-size: 15px; color: #475569;">
+                <li style="margin-bottom: 8px;">Visit the Live Arena: <a href="https://olympiadquiz.org/live.html" style="color: #4f46e5; text-decoration: none; font-weight: bold;">olympiadquiz.org/live.html</a></li>
+                <li style="margin-bottom: 8px;">Login using your registered email ID.</li>
+                <li style="margin-bottom: 8px;">Click "Join Quiz" when the countdown timer ends.</li>
+              </ul>
+
+              <h3 style="margin: 25px 0 10px; color: #0f172a; font-size: 18px;">⚠️ Test Rules</h3>
+              <ul style="padding-left: 20px; margin: 0 0 20px; font-size: 15px; color: #475569;">
+                <li style="margin-bottom: 8px;">The test is strictly time-bound.</li>
+                <li style="margin-bottom: 8px;">There is <strong>no negative marking</strong>.</li>
+                <li style="margin-bottom: 8px;">Do <strong>NOT</strong> refresh the page during the test.</li>
+                <li style="margin-bottom: 8px;">Ensure a stable internet connection before starting.</li>
+              </ul>
+
+              <h3 style="margin: 25px 0 10px; color: #0f172a; font-size: 18px;">🌟 Post-Test Features</h3>
+              <ul style="padding-left: 20px; margin: 0 0 30px; font-size: 15px; color: #475569;">
+                <li style="margin-bottom: 8px;">Instant results and performance analytics.</li>
+                <li style="margin-bottom: 8px;">Detailed step-by-step solutions for every question.</li>
+                <li style="margin-bottom: 8px;">Global leaderboard ranking.</li>
+              </ul>
+
+              <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <a href="https://olympiadquiz.org/live.html" target="_blank" style="background-color: #10b981; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; display: inline-block;">
+                      Go to Live Arena
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                © 2024 Olympiad Portal. All rights reserved.<br>
+                Prepare well, and best of luck! 🚀
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>`;
+
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
+      console.log(`Registration email successfully sent to: ${userEmail} for session: ${sessionId}`);
+
+      // Mark as sent in the document to prevent duplicate emails from accidental retries
+      await snapshot.ref.update({ ackEmailSent: true });
+
+    } catch (error) {
+      console.error(`Failed to send registration email to user ${uid} for session ${sessionId}. Error:`, error.message);
     }
   }
 );
