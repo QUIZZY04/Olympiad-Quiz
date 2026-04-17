@@ -350,21 +350,17 @@
 
             topics.forEach((topic, index) => {
                 // Overrides: Firestore -> Hardcoded mapped videoId -> Generic fallback
-                const vId = customVideos[topic.code] || topic.videoId || fallbacks[index % fallbacks.length];
-                const thumbUrl = `https://img.youtube.com/vi/${vId}/hqdefault.jpg`;
-                const containerId = `vw-${vId}-${index}`;
-                const vId = customVideos[topic.code] || topic.videoId;
-                const isAvailable = !!vId;
-                const displayId = vId || fallbacks[index % fallbacks.length];
+                const actualVId = customVideos[topic.code] || topic.videoId;
+                const isAvailable = !!actualVId;
+                const displayId = actualVId || fallbacks[index % fallbacks.length];
                 const thumbUrl = `https://img.youtube.com/vi/${displayId}/hqdefault.jpg`;
                 const containerId = `vw-${displayId}-${index}`;
-                const onClickAction = isAvailable ? `playVideo('${containerId}', '${vId}')` : `showComingSoon()`;
+                const onClickAction = isAvailable ? `playVideo('${containerId}', '${actualVId}')` : `showComingSoon()`;
 
                 const card = document.createElement('div');
                 card.className = `video-card`;
                 card.innerHTML = `
                     <div class="video-wrapper" id="${containerId}">
-                        <div class="video-thumbnail" onclick="playVideo('${containerId}', '${vId}')" style="background-image: url('${thumbUrl}')">
                         <div class="video-thumbnail" onclick="${onClickAction}" style="background-image: url('${thumbUrl}')">
                             <div class="play-btn">▶</div>
                         </div>
