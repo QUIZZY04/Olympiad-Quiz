@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Advanced Mock Test | Live Environment</title>
+    
+    <script>
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+          window.location.replace("login.html");
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>body{visibility: hidden;}</style>
+    <style>
+        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .top-bar { background: var(--surface); padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; }
+        .top-bar h1 { font-size: 1.2rem; margin: 0; color: var(--brand); font-weight: 800; }
+        .timer-box { background: #fee2e2; color: #dc2626; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-family: monospace; font-size: 1.1rem; border: 1px solid #fca5a5; }
+        
+        .quiz-layout { display: flex; gap: 20px; max-width: 1200px; margin: 20px auto; padding: 0 20px; flex: 1; width: 100%; }
+        .q-section { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 30px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; }
+        .nav-section { width: 300px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-md); height: fit-content; }
+        
+        .q-meta { font-size: 0.85rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; display: flex; justify-content: space-between; }
+        .q-type-badge { background: var(--subtle); color: var(--brand); padding: 4px 10px; border-radius: 6px; }
+        .q-text { font-size: 1.2rem; font-weight: 600; margin-bottom: 25px; line-height: 1.6; }
+        
+        .opt-row { display: flex; align-items: center; gap: 12px; padding: 15px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; cursor: pointer; transition: 0.2s; background: var(--bg); }
+        .opt-row:hover { border-color: var(--brand); background: #eff6ff; }
+        .opt-row input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--brand); }
+        .opt-row span { font-size: 1.05rem; font-weight: 500; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
+        .btn { flex: 1; padding: 12px; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
+        .btn-prev { background: var(--subtle); color: var(--text); border: 1px solid var(--border); }
+        .btn-prev:hover { background: var(--border); }
+        .btn-next { background: var(--brand); color: white; }
+        .btn-next:hover { background: var(--accent); }
+        .btn-submit { background: var(--danger); color: white; }
+        .btn-submit:hover { opacity: 0.9; }
+
+        .palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 15px; }
+        .p-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: 0.2s; }
+        .p-cell:hover { border-color: var(--brand); }
+        .p-cell.current { background: var(--brand); color: white; border-color: var(--brand); }
+        .p-cell.answered { background: #10b981; color: white; border-color: #10b981; }
+        .p-cell.visited { background: #ef4444; color: white; border-color: #ef4444; }
+
+        @media (max-width: 768px) {
+            .quiz-layout { flex-direction: column; }
+            .nav-section { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <h1 id="testTitle">Loading Test...</h1>
+    <div style="display:flex; align-items:center; gap: 15px;">
+        <div class="timer-box" id="timer">--:--:--</div>
+        <button onclick="goBack()" style="background:var(--surface); border:1px solid var(--border); padding:8px 12px; border-radius:8px; font-weight:600; cursor:pointer;">Exit</button>
+    </div>
+</div>
+
+<div class="quiz-layout">
+    <div class="q-section">
+        <div class="q-meta">
+            <span id="qNumber">Question 1</span>
+            <span id="qTypeBadge" class="q-type-badge">Type</span>
+        </div>
+        <div id="qText" class="q-text">Loading question...</div>
+        <div id="optionsContainer"></div>
+        
+        <div class="btn-group">
+            <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
+            <button class="btn btn-next" onclick="nextQuestion()">Save & Next</button>
+            <button class="btn btn-submit" onclick="submitTest()">Submit Test</button>
+        </div>
+    </div>
+    
+    <div class="nav-section">
+        <h3 style="margin-bottom: 10px; font-size: 1rem;">Question Palette</h3>
+        <div class="palette-grid" id="paletteGrid"></div>
+        <div style="margin-top: 20px; font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;"><div style="width:12px; height:12px; background:var(--brand); border-radius:3px;"></div> Current</div>
+            <div style="display: flex; align-items: center; gap: 8px;"><div style="width:12px; height:12px; background:#10b981; border-radius:3px;"></div> Answered</div>
+            <div style="display: flex; align-items: center; gap: 8px;"><div style="width:12px; height:12px; background:#ef4444; border-radius:3px;"></div> Visited (Not Answered)</div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+        projectId: "olympiad-portal-d2a5e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, (user) => {
+        document.body.style.visibility = 'visible';
+        if (!user) {
+            window.location.replace("login.html");
+        }
+    });
+
+    let testData = null;
+    let currentQ = 0;
+    let selectedAnswers = []; // Array of Arrays to support multi-correct: [ ["A", "C"], [], ["B"] ]
+    let visited = [];
+    let timeLeft = 0;
+    let timerInterval;
+
+    async function initTest() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const testId = urlParams.get('id');
+        
+        if (!testId) { alert("Invalid Test ID"); window.location.href = "jee-list.html"; return; }
+
+        try {
+            const docSnap = await getDoc(doc(db, "jeeMockTests", testId));
+            if (!docSnap.exists()) {
+                alert("Test not found"); window.location.href = "jee-list.html"; return;
+            }
+            testData = docSnap.data();
+            document.getElementById("testTitle").innerText = testData.title;
+            
+            // Initialize state arrays
+            selectedAnswers = new Array(testData.questions.length).fill(null).map(() => []);
+            visited = new Array(testData.questions.length).fill(false);
+            
+            timeLeft = testData.duration * 60;
+            startTimer();
+            buildPalette();
+            renderQuestion();
+        } catch(e) {
+            console.error(e);
+            alert("Failed to load test data.");
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitTest(true);
+                return;
+            }
+            timeLeft--;
+            const h = Math.floor(timeLeft / 3600).toString().padStart(2, '0');
+            const m = Math.floor((timeLeft % 3600) / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById("timer").innerText = `${h}:${m}:${s}`;
+        }, 1000);
+    }
+
+    function renderQuestion() {
+        if (!testData || !testData.questions.length) return;
+        visited[currentQ] = true;
+        
+        const q = testData.questions[currentQ];
+        document.getElementById("qNumber").innerText = `Question ${currentQ + 1} of ${testData.questions.length}`;
+        document.getElementById("qTypeBadge").innerText = q.type === "multi" ? "Multi Correct (+4/0)" : "Single Correct (+4/0)";
+        document.getElementById("qText").innerText = q.questionText;
+        
+        const container = document.getElementById("optionsContainer");
+        container.innerHTML = "";
+        
+        const isMulti = q.type === "multi";
+        const inputType = isMulti ? "checkbox" : "radio";
+        const currentAns = selectedAnswers[currentQ];
+
+        q.options.forEach((opt) => {
+            if (!opt) return;
+            const isChecked = currentAns.includes(opt);
+            
+            const label = document.createElement("label");
+            label.className = "opt-row";
+            label.innerHTML = `
+                <input type="${inputType}" name="q_opt" value="${opt}" ${isChecked ? 'checked' : ''}>
+                <span>${opt}</span>
+            `;
+            
+            // Handle selection event
+            label.querySelector("input").addEventListener("change", (e) => {
+                if (isMulti) {
+                    if (e.target.checked) selectedAnswers[currentQ].push(opt);
+                    else selectedAnswers[currentQ] = selectedAnswers[currentQ].filter(val => val !== opt);
+                } else {
+                    selectedAnswers[currentQ] = [opt];
+                }
+                updatePalette();
+            });
+            
+            container.appendChild(label);
+        });
+        
+        updatePalette();
+    }
+
+    function buildPalette() {
+        const grid = document.getElementById("paletteGrid");
+        grid.innerHTML = "";
+        testData.questions.forEach((_, i) => {
+            const cell = document.createElement("div");
+            cell.className = "p-cell unseen";
+            cell.id = "pcell-" + i;
+            cell.innerText = i + 1;
+            cell.onclick = () => { currentQ = i; renderQuestion(); };
+            grid.appendChild(cell);
+        });
+    }
+
+    function updatePalette() {
+        testData.questions.forEach((_, i) => {
+            const cell = document.getElementById("pcell-" + i);
+            if (!cell) return;
+            cell.className = "p-cell";
+            if (i === currentQ) cell.classList.add("current");
+            else if (selectedAnswers[i].length > 0) cell.classList.add("answered");
+            else if (visited[i]) cell.classList.add("visited");
+            else cell.classList.add("unseen");
+        });
+    }
+
+    window.prevQuestion = () => { if (currentQ > 0) { currentQ--; renderQuestion(); } };
+    window.nextQuestion = () => { if (currentQ < testData.questions.length - 1) { currentQ++; renderQuestion(); } };
+    
+    window.submitTest = (auto = false) => {
+        if (!auto && !confirm("Are you sure you want to submit the test?")) return;
+        clearInterval(timerInterval);
+        
+        const resultObj = {
+            testTitle: testData.title,
+            totalMarks: testData.totalMarks,
+            questions: testData.questions,
+            userAnswers: selectedAnswers
+        };
+        
+        localStorage.setItem("jeeQuizResult", JSON.stringify(resultObj));
+        window.location.href = "jee-result.html";
+    };
+
+    window.goBack = () => {
+        if(confirm("Are you sure you want to exit? Your progress will not be saved.")) { window.location.href = "jee-list.html"; }
+    };
+
+    initTest();
+</script>
+</body>
+</html>

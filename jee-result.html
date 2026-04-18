@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Mock Test Results | Olympiad Portal</title>
+    
+    <script>
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+          window.location.replace("login.html");
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>body{visibility: hidden;}</style>
+    <style>
+        :root {
+            --bg: #FFD700;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --brand: #4f46e5;
+            --accent: #8b5cf6;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
+        .summary-card { background: var(--surface); padding: 40px; border-radius: 20px; text-align: center; box-shadow: var(--shadow-lg); border-top: 5px solid var(--brand); margin-bottom: 40px; }
+        .summary-card h1 { font-size: 2.5rem; color: var(--brand); margin-bottom: 10px; }
+        .summary-card p { font-size: 1.1rem; color: var(--muted); }
+        
+        .solution-block { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 25px; margin-bottom: 25px; box-shadow: var(--shadow-sm); }
+        .q-text { font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; }
+        .q-meta { font-size: 0.8rem; background: var(--bg); padding: 4px 10px; border-radius: 6px; font-weight: bold; margin-bottom: 15px; display: inline-block; color: var(--muted); border: 1px solid var(--border); }
+        
+        .opt-box { padding: 12px 15px; margin-bottom: 8px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.95rem; background: var(--bg); color: var(--muted); }
+        .opt-correct-selected { background: #dcfce3; border-color: #10b981; color: #059669; font-weight: bold; }
+        .opt-wrong-selected { background: #fee2e2; border-color: #ef4444; color: #dc2626; text-decoration: line-through; }
+        .opt-missed-correct { background: #eff6ff; border-color: #3b82f6; color: #2563eb; text-decoration: underline; font-weight: bold; }
+        
+        .exp-box { margin-top: 20px; padding: 15px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 8px; font-size: 0.95rem; }
+        .exp-box b { color: #d97706; display: block; margin-bottom: 5px; }
+        
+        .nav-btn { display: inline-block; background: var(--brand); color: white; padding: 12px 30px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 20px; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-btn:hover { background: var(--accent); transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+<nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+    </div>
+    <div class="nav-links">
+        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mock.html">Mock Tests</a>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html">Live Arena</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <div class="nav-actions">
+            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        </div>
+    </div>
+</nav>
+
+    <div class="container">
+        <div class="summary-card">
+            <h1 id="scoreDisplay">Loading...</h1>
+            <p id="testTitleDisplay">Calculating your performance</p>
+            <a href="jee-list.html" class="nav-btn">Back to JEE Dashboard</a>
+        </div>
+        
+        <h2>Detailed Solutions</h2>
+        <div id="solutionsContainer"></div>
+    </div>
+
+    <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            document.body.style.visibility = 'visible';
+            if (!user) {
+                window.location.replace("login.html");
+                return;
+            }
+            if (user.email === "madhhu52@gmail.com") {
+                document.getElementById("adminTab").style.display = "inline";
+            }
+
+            const resultData = JSON.parse(localStorage.getItem("jeeQuizResult"));
+            if (!resultData) {
+                alert("No result data found!");
+                window.location.href = "jee-list.html";
+                return;
+            }
+
+            document.getElementById("testTitleDisplay").innerText = resultData.testTitle;
+            
+            let totalScoreEarned = 0;
+            let html = "";
+            
+            // Calculate score assuming +4 for exact full match, 0 otherwise (Strict JEE format implemented safely)
+            const perQuestionMark = resultData.totalMarks / resultData.questions.length || 4;
+
+            resultData.questions.forEach((q, idx) => {
+                const userAns = resultData.userAnswers[idx] || [];
+                const correctAns = q.correctAnswers || [];
+                
+                let isAllCorrect = true;
+                let hasWrong = false;
+                
+                userAns.forEach(ua => {
+                    if (!correctAns.includes(ua)) hasWrong = true;
+                });
+                correctAns.forEach(ca => {
+                    if (!userAns.includes(ca)) isAllCorrect = false;
+                });
+                
+                let earned = 0;
+                let statusTag = "";
+                
+                if (userAns.length === 0) {
+                    statusTag = "⚪ Unattempted";
+                } else if (hasWrong) {
+                    earned = 0;
+                    statusTag = "❌ Incorrect (Wrong option selected)";
+                } else if (isAllCorrect) {
+                    earned = perQuestionMark;
+                    statusTag = "✅ Fully Correct (+ Marks)";
+                } else {
+                    // Partially correct logic safely capped to zero as instructed for strict logic, unless specified.
+                    // Implementing Strict ZERO if partial.
+                    earned = 0;
+                    statusTag = "⚠️ Partially Correct (Marks Lost)";
+                }
+                
+                totalScoreEarned += earned;
+
+                let optionsHtml = "";
+                q.options.forEach(opt => {
+                    if(!opt) return;
+                    let styleClass = "opt-box";
+                    const isUserSelected = userAns.includes(opt);
+                    const isTrueCorrect = correctAns.includes(opt);
+                    
+                    if (isUserSelected && isTrueCorrect) styleClass += " opt-correct-selected";
+                    else if (isUserSelected && !isTrueCorrect) styleClass += " opt-wrong-selected";
+                    else if (!isUserSelected && isTrueCorrect) styleClass += " opt-missed-correct";
+                    
+                    optionsHtml += `<div class="${styleClass}">${opt}</div>`;
+                });
+                
+                html += `
+                <div class="solution-block">
+                    <div class="q-meta">Q${idx + 1} | ${q.type === 'multi' ? 'Multi-Correct' : 'Single Correct'} | ${statusTag}</div>
+                    <div class="q-text">${q.questionText}</div>
+                    <div style="margin-bottom: 15px;">
+                        <p style="font-size: 13px; color: var(--muted); margin-bottom: 5px;"><strong>Your Answer:</strong> ${userAns.length > 0 ? userAns.join(", ") : "None"}</p>
+                        <p style="font-size: 13px; color: var(--success); margin-bottom: 10px;"><strong>Correct Answer:</strong> ${correctAns.join(", ")}</p>
+                    </div>
+                    <div>${optionsHtml}</div>
+                    <div class="exp-box">
+                        <b>Explanation:</b> ${q.explanation ? q.explanation : "Self-explanatory based on the correct options."}
+                    </div>
+                </div>`;
+            });
+
+            document.getElementById("scoreDisplay").innerText = `${totalScoreEarned} / ${resultData.totalMarks}`;
+            document.getElementById("solutionsContainer").innerHTML = html;
+        });
+
+        window.logout = async () => {
+            if (confirm("Logout?")) {
+                await signOut(auth);
+                localStorage.clear();
+                sessionStorage.clear();
+                window.location.replace("login.html");
+            }
+        };
+    </script>
+    <script>
+    /* Mobile Menu Toggle */
+    function toggleMenu() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
+    </script>
+</body>
+</html>

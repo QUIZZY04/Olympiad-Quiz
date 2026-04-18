@@ -96,8 +96,16 @@
                 const createRazorpayOrder = httpsCallable(functions, 'createRazorpayOrder');
                 const verifyRazorpayPayment = httpsCallable(functions, 'verifyRazorpayPayment');
 
+                console.log("Initiating order creation with amount (INR):", price);
                 const orderResponse = await createRazorpayOrder({ amount: parseInt(price), sessionId: sId });
+                console.log("Razorpay Order Response:", orderResponse);
+                
                 const order = orderResponse.data;
+
+                // Ensure popup opens ONLY after successful order creation
+                if (!order || !order.id || !order.amount) {
+                    throw new Error("Invalid order data received from server.");
+                }
 
                 const options = {
                     "key": "rzp_live_SSiYcJa8TB4OIC", // Active Razorpay Key
@@ -106,24 +114,43 @@
                     "order_id": order.id,
                     "name": "Olympiad Portal",
                     "description": "Unlock: " + title,
-                    "handler": function (response) {
-                        localStorage.setItem("activeSessionId", sId);
-                        localStorage.setItem("activeSessionPrice", price);
-                        localStorage.setItem("paymentData", JSON.stringify(response));
-                        window.location.href = "payment-success.html";
+                    "handler": async function (response) {
+                        console.log("Payment Success Response:", response);
+                        try {
+                            payBtn.innerText = "Verifying...";
+                            await verifyRazorpayPayment({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature,
+                                sessionId: sId,
+                                amount: parseInt(price)
+                            });
+                            
+                            localStorage.setItem("activeSessionId", sId);
+                            localStorage.setItem("activeSessionPrice", price);
+                            localStorage.setItem("paymentData", JSON.stringify(response));
+                            window.location.href = "payment-success.html";
+                        } catch (verifyErr) {
+                            console.error("Payment Verification Error:", verifyErr);
+                            alert("Payment verification failed. If amount was deducted, please contact support.");
+                            payBtn.innerText = originalText;
+                            payBtn.disabled = false;
+                        }
                     },
                     "prefill": { "name": userName, "email": userEmail },
                     "theme": { "color": "#38bdf8" }
                 };
                 const rzp = new Razorpay(options);
                 rzp.on('payment.failed', function (response) { 
+                    console.error("Razorpay Payment Error Object:", response.error);
                     alert("Payment Failed: " + response.error.description); 
                     payBtn.innerText = originalText;
                     payBtn.disabled = false;
                 });
                 rzp.open();
             } catch (err) {
-                alert("Failed to initiate payment: " + err.message);
+                console.error("Order Creation Error:", err);
+                alert("Unable to initiate payment. Please try again.");
                 payBtn.innerText = originalText;
                 payBtn.disabled = false;
             }

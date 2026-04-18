@@ -872,7 +872,17 @@
             }
         }
 
+        // Add debugging logs for price and coupon
+        console.log("Unlock requested for Session:", sessionId);
+        console.log("Original/Coupon Price passed:", price);
+
         const sessionPrice = parseInt(price); // Ensure price is a number
+        console.log("Parsed Numeric Price (INR):", sessionPrice);
+
+        if (isNaN(sessionPrice) || sessionPrice < 0) {
+            alert("Invalid price detected. Please refresh and try again.");
+            return;
+        }
 
         if (sessionPrice === 0) {
             // --- Handle Free Unlock ---
@@ -907,8 +917,16 @@
                 const createRazorpayOrder = httpsCallable(functions, 'createRazorpayOrder');
                 const verifyRazorpayPayment = httpsCallable(functions, 'verifyRazorpayPayment');
 
+                console.log("Initiating order creation with amount (INR):", sessionPrice);
                 const orderResponse = await createRazorpayOrder({ amount: sessionPrice, sessionId: sessionId });
+                console.log("Razorpay Order Response:", orderResponse);
+                
                 const order = orderResponse.data;
+
+                // Ensure popup opens ONLY after successful order creation
+                if (!order || !order.id || !order.amount) {
+                    throw new Error("Invalid order data received from server.");
+                }
 
                 const options = {
                     "key": "rzp_live_SSiYcJa8TB4OIC", // Your active Razorpay Live Key
@@ -917,11 +935,28 @@
                     "order_id": order.id,
                     "name": "Olympiad Portal",
                     "description": "Unlock: " + title,
-                    "handler": function(response) {
-                        localStorage.setItem("activeSessionId", sessionId);
-                        localStorage.setItem("activeSessionPrice", sessionPrice);
-                        localStorage.setItem("paymentData", JSON.stringify(response));
-                        window.location.href = "payment-success.html";
+                    "handler": async function(response) {
+                        console.log("Payment Success Response:", response);
+                        try {
+                            btn.innerText = "Verifying...";
+                            await verifyRazorpayPayment({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature,
+                                sessionId: sessionId,
+                                amount: sessionPrice
+                            });
+                            
+                            localStorage.setItem("activeSessionId", sessionId);
+                            localStorage.setItem("activeSessionPrice", sessionPrice);
+                            localStorage.setItem("paymentData", JSON.stringify(response));
+                            window.location.href = "payment-success.html";
+                        } catch (verifyErr) {
+                            console.error("Payment Verification Error:", verifyErr);
+                            alert("Payment verification failed. If amount was deducted, please contact support.");
+                            btn.innerText = originalText;
+                            btn.disabled = false;
+                        }
                     },
                     "prefill": { 
                         "name": user.displayName || "Student", 
@@ -931,13 +966,15 @@
                 };
                 const rzp = new Razorpay(options);
                 rzp.on('payment.failed', function(response) { 
+                    console.error("Razorpay Payment Error Object:", response.error);
                     alert("Payment Failed: " + response.error.description); 
                     btn.innerText = originalText;
                     btn.disabled = false;
                 });
                 rzp.open();
             } catch (err) {
-                alert("Failed to initiate payment: " + err.message);
+                console.error("Order Creation Error:", err);
+                alert("Unable to initiate payment. Please try again.");
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
