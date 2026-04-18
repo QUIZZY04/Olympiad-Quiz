@@ -917,27 +917,11 @@
                     "order_id": order.id,
                     "name": "Olympiad Portal",
                     "description": "Unlock: " + title,
-                    "handler": async function(response) {
-                        btn.innerText = "Verifying...";
-                        try {
-                            const verifyResponse = await verifyRazorpayPayment({
-                                razorpay_order_id: response.razorpay_order_id,
-                                razorpay_payment_id: response.razorpay_payment_id,
-                                razorpay_signature: response.razorpay_signature,
-                                sessionId: sessionId,
-                                amount: sessionPrice
-                            });
-                            
-                            if (verifyResponse.data.success) {
-                                localStorage.setItem("activeSessionId", sessionId);
-                                localStorage.setItem("activeSessionPrice", sessionPrice);
-                                window.location.href = "payment-success.html";
-                            }
-                        } catch (verifyErr) {
-                            alert("Payment verification failed: " + verifyErr.message);
-                            btn.innerText = originalText;
-                            btn.disabled = false;
-                        }
+                    "handler": function(response) {
+                        localStorage.setItem("activeSessionId", sessionId);
+                        localStorage.setItem("activeSessionPrice", sessionPrice);
+                        localStorage.setItem("paymentData", JSON.stringify(response));
+                        window.location.href = "payment-success.html";
                     },
                     "prefill": { 
                         "name": user.displayName || "Student", 
@@ -997,6 +981,36 @@
 function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('active');
 }
+</script>
+
+<!-- Registration Success Modal -->
+<div id="paymentSuccessModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 10000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(4px);">
+    <div style="background: #ffffff; padding: 35px 30px; border-radius: 20px; max-width: 420px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-top: 5px solid #10b981;">
+        <div style="font-size: 45px; margin-bottom: 15px;">🎉</div>
+        <h2 style="color: #10b981; margin-bottom: 15px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.6rem;">Registration Successful!</h2>
+        <p style="color: #475569; margin-bottom: 15px; line-height: 1.6; font-size: 0.95rem;">
+            You are now registered for Live Test for <strong id="popupClassText" style="color: #1e293b;">your Class</strong>.<br>
+            <strong>Date:</strong> Upcoming Weekend<br>
+            <strong>Time:</strong> As scheduled
+        </p>
+        <div style="background: #f1f5f9; padding: 15px; border-radius: 12px; margin-bottom: 25px;">
+            <p style="color: #64748b; margin: 0; font-size: 0.85rem;">You can explore mock tests and chapter-wise tests on our portal to prepare.</p>
+        </div>
+        <button onclick="document.getElementById('paymentSuccessModal').style.display='none'" style="background: #4f46e5; color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; font-size: 1rem;">Let's Go!</button>
+    </div>
+</div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("paymentData")) {
+            const className = localStorage.getItem("selectedClass") || "your Class";
+            const formattedClass = className.toLowerCase().replace('class', 'Class ');
+            const popupClassEl = document.getElementById("popupClassText");
+            if(popupClassEl) popupClassEl.innerText = formattedClass;
+            const modal = document.getElementById("paymentSuccessModal");
+            if(modal) modal.style.display = "flex";
+            localStorage.removeItem("paymentData");
+        }
+    });
 </script>
 </body>
 </html>

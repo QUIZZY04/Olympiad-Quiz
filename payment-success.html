@@ -60,17 +60,19 @@ button:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(16, 185,
 <body>
 
 <div class="box">
-<h1>✅ Payment Successful</h1>
-<p>Your quiz has been unlocked.</p>
-<p id="statusMsg">Updating your account details...</p>
+<h1 id="statusTitle">Processing Payment...</h1>
+<p id="statusMessage">Your payment is being processed. Please do not refresh or press back.</p>
+<p id="statusMsg" style="display:none;">Updating your account details...</p>
 
-<button onclick="goDashboard()">Go to Dashboard</button>
+<a id="fallbackLink" href="live.html" style="display: none; margin-top: 25px; color: #2563eb; text-decoration: none; font-weight: bold; background: rgba(37, 99, 235, 0.1); padding: 10px 15px; border-radius: 8px;">If not redirected within 1 minute, click here</a>
+<button id="dashboardBtn" onclick="goDashboard()" style="display:none;">Go to Dashboard</button>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -84,6 +86,8 @@ appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
+const functions = getFunctions(app);
+const verifyPaymentEndpoint = httpsCallable(functions, 'verifyRazorpayPayment');
 
 // Wait for Firebase to confirm the user is logged in
 onAuthStateChanged(auth, async (user) => {
@@ -91,42 +95,105 @@ onAuthStateChanged(auth, async (user) => {
     const sessionId = localStorage.getItem("activeSessionId");
     const sessionPrice = localStorage.getItem("activeSessionPrice");
     const appliedCoupon = localStorage.getItem("appliedCoupon");
+    const paymentDataStr = localStorage.getItem("paymentData");
 
-    if (user && sessionId) {
+    if (!user) {
+        document.getElementById("statusTitle").innerText = "Error";
+        document.getElementById("statusMessage").innerText = "Error: User not logged in.";
+        return;
+    }
+
+    if (!paymentDataStr && sessionPrice > 0) {
+        document.getElementById("statusTitle").innerText = "Error";
+        document.getElementById("statusMessage").innerText = "No payment data found.";
+        return;
+    }
+
+    const safetyTimeout = setTimeout(() => {
+        document.getElementById("statusMessage").innerText = "Payment is still being processed. Please wait or use the link below.";
+        document.getElementById("fallbackLink").style.display = "inline-block";
+    }, 60000);
+
+    let verified = false;
+    let attempts = 0;
+    const maxAttempts = 20; // 60 seconds (20 * 3s)
+    
+    let paymentData = {};
+    if (paymentDataStr) paymentData = JSON.parse(paymentDataStr);
+
+    while (!verified && attempts < maxAttempts) {
+        attempts++;
         try {
-            // 1. UPDATE USER PROFILE (Makes the user document visible in Firestore)
-            await setDoc(doc(db, "users", user.uid), {
-                name: user.displayName || "Student",
-                email: user.email,
-                lastPurchaseAt: serverTimestamp()
-            }, { merge: true });
-
-            // 2. SAVE THE PURCHASE RECORD
-            await setDoc(
-                doc(db, "users", user.uid, "purchases", sessionId),
-                {
-                    paid: true,
-                    time: serverTimestamp(),
-                    amount: Number(sessionPrice), 
+            let isSuccess = false;
+            if (sessionPrice == 0) {
+                isSuccess = true; // Skip Razorpay verify for free unlocked quizzes
+            } else {
+                const result = await verifyPaymentEndpoint({
+                    razorpay_order_id: paymentData.razorpay_order_id,
+                    razorpay_payment_id: paymentData.razorpay_payment_id,
+                    razorpay_signature: paymentData.razorpay_signature,
                     sessionId: sessionId,
-                    couponUsed: appliedCoupon || null
-                },
-                { merge: true }
-            );
-            localStorage.removeItem("appliedCoupon"); // Clean up
+                    amount: parseInt(sessionPrice)
+                });
+                isSuccess = result.data && result.data.success;
+            }
 
-            statusMsg.innerText = "Account and purchase updated! You can now go to the dashboard.";
-            statusMsg.style.color = "#22c55e";
-            console.log("User details and purchase saved for:", user.email);
+            if (isSuccess) {
+                verified = true;
+                clearTimeout(safetyTimeout);
+
+                // Original Firestore updates
+                if (sessionId) {
+                    try {
+                        await setDoc(doc(db, "users", user.uid), {
+                            name: user.displayName || "Student",
+                            email: user.email,
+                            lastPurchaseAt: serverTimestamp()
+                        }, { merge: true });
+
+                        await setDoc(
+                            doc(db, "users", user.uid, "purchases", sessionId),
+                            {
+                                paid: true,
+                                time: serverTimestamp(),
+                                amount: Number(sessionPrice), 
+                                sessionId: sessionId,
+                                couponUsed: appliedCoupon || null
+                            },
+                            { merge: true }
+                        );
+                        localStorage.removeItem("appliedCoupon");
+                    } catch (error) {
+                        console.error("Error saving data:", error);
+                    }
+                }
+
+                // Dynamic UI Update
+                document.getElementById("statusTitle").innerText = "✅ Payment Successful";
+                document.getElementById("statusTitle").style.color = "#10b981";
+                document.getElementById("statusMessage").innerText = "You are being redirected to Live Test page...";
+                document.getElementById("fallbackLink").style.display = "inline-block";
+                document.getElementById("fallbackLink").innerText = "Click here if not redirected automatically";
+                
+                setTimeout(() => {
+                    window.location.href = "live.html"; 
+                }, 4000);
+                break;
+            }
         } catch (error) {
-            console.error("Error saving data:", error);
-            statusMsg.innerText = "Error updating account. Please contact support.";
-            statusMsg.style.color = "#ef4444";
+            console.log(`Verification attempt ${attempts} failed, retrying in 3 seconds...`, error);
         }
-    } else if (!user) {
-        statusMsg.innerText = "Error: User not logged in.";
-    } else if (!sessionId) {
-        statusMsg.innerText = "Error: Session information missing.";
+
+        if (!verified) {
+            await new Promise(resolve => setTimeout(resolve, 3000));
+        }
+    }
+
+    if (!verified) {
+        document.getElementById("statusTitle").innerText = "Verification Delayed";
+        document.getElementById("statusTitle").style.color = "#f59e0b";
+        document.getElementById("statusMessage").innerText = "We are taking longer than expected to verify the payment. Please proceed to the Live Arena and check your status.";
+        document.getElementById("fallbackLink").style.display = "inline-block";
     }
 });
 
