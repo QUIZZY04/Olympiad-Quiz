@@ -919,24 +919,38 @@
 
                 console.log("Initiating order creation with amount (INR):", sessionPrice);
                 const orderResponse = await createRazorpayOrder({ amount: sessionPrice, sessionId: sessionId });
-                console.log("Razorpay Order Response:", orderResponse);
+                console.log("Razorpay Order Response from Backend:", orderResponse);
                 
                 const order = orderResponse.data;
 
                 // Ensure popup opens ONLY after successful order creation
                 if (!order || !order.id || !order.amount) {
-                    throw new Error("Invalid order data received from server.");
+                    console.error("Invalid order object received:", order);
+                    throw new Error("Invalid order data received from server. Missing order_id or amount.");
                 }
 
+                if (!order.keyId) {
+                    console.error("Missing Razorpay Key ID from backend response.");
+                    alert("Payment configuration error. Please try later.");
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    return;
+                }
+
+                console.log("✅ Order Creation Successful.");
+                console.log("👉 Order ID:", order.id);
+                console.log("👉 Amount (Paise):", order.amount);
+                console.log("👉 Key ID from Backend:", order.keyId);
+
                 const options = {
-                    "key": "rzp_live_SSiYcJa8TB4OIC", // Your active Razorpay Live Key
+                    "key": order.keyId,
                     "amount": order.amount,
-                    "currency": order.currency,
+                    "currency": order.currency || "INR",
                     "order_id": order.id,
                     "name": "Olympiad Portal",
-                    "description": "Unlock: " + title,
+                    "description": "Unlock: " + (title || "Live Session"),
                     "handler": async function(response) {
-                        console.log("Payment Success Response:", response);
+                        console.log("✅ Payment Success Response:", response);
                         try {
                             btn.innerText = "Verifying...";
                             await verifyRazorpayPayment({
@@ -947,12 +961,13 @@
                                 amount: sessionPrice
                             });
                             
+                            console.log("✅ Payment Verified Successfully.");
                             localStorage.setItem("activeSessionId", sessionId);
                             localStorage.setItem("activeSessionPrice", sessionPrice);
                             localStorage.setItem("paymentData", JSON.stringify(response));
                             window.location.href = "payment-success.html";
                         } catch (verifyErr) {
-                            console.error("Payment Verification Error:", verifyErr);
+                            console.error("❌ Payment Verification Error:", verifyErr);
                             alert("Payment verification failed. If amount was deducted, please contact support.");
                             btn.innerText = originalText;
                             btn.disabled = false;
@@ -960,20 +975,31 @@
                     },
                     "prefill": { 
                         "name": user.displayName || "Student", 
-                        "email": user.email || "" 
+                        "email": user.email || "support@olympiadquiz.org",
+                        "contact": user.phoneNumber || ""
                     },
                     "theme": { "color": "#38bdf8" }
                 };
+
+                console.log("🚀 Opening Razorpay Checkout with Options:", options);
+
                 const rzp = new Razorpay(options);
                 rzp.on('payment.failed', function(response) { 
-                    console.error("Razorpay Payment Error Object:", response.error);
-                    alert("Payment Failed: " + response.error.description); 
+                    console.error("❌ Razorpay Payment Error Object:", response.error);
+                    console.error("Code:", response.error.code);
+                    console.error("Description:", response.error.description);
+                    console.error("Source:", response.error.source);
+                    console.error("Step:", response.error.step);
+                    console.error("Reason:", response.error.reason);
+                    console.error("Metadata:", response.error.metadata);
+                    
+                    alert("Payment Failed: " + response.error.description + "\nReason: " + (response.error.reason || 'Unknown')); 
                     btn.innerText = originalText;
                     btn.disabled = false;
                 });
                 rzp.open();
             } catch (err) {
-                console.error("Order Creation Error:", err);
+                console.error("❌ Order Creation Error:", err);
                 alert("Unable to initiate payment. Please try again.");
                 btn.innerText = originalText;
                 btn.disabled = false;

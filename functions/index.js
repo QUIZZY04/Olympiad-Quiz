@@ -484,10 +484,9 @@ exports.createRazorpayOrder = onCall({
         "Authorization": "Basic " + Buffer.from(process.env.RAZORPAY_KEY_ID + ":" + process.env.RAZORPAY_KEY_SECRET).toString("base64")
       },
       body: JSON.stringify({
-        amount: amount * 100, // Convert to paise
+        amount: Math.round(Number(amount) * 100), // Secure conversion to paise
         currency: "INR",
-        receipt: `rcpt_${request.auth.uid.substring(0,5)}_${sessionId.substring(0,5)}`,
-        payment_capture: 1 // Forces Razorpay to Auto-Capture the payment immediately
+        receipt: `rcpt_${request.auth.uid.substring(0,5)}_${sessionId.substring(0,5)}`
       })
     });
 
@@ -496,10 +495,13 @@ exports.createRazorpayOrder = onCall({
       throw new Error(order.error.description);
     }
 
+    console.log("Returning Razorpay Key ID");
     return {
       id: order.id,
       amount: order.amount,
-      currency: order.currency
+      currency: order.currency,
+      keyId: process.env.RAZORPAY_KEY_ID, // Ensures frontend uses the exact same key as backend
+      key: process.env.RAZORPAY_KEY_ID
     };
   } catch (error) {
     console.error("Error creating Razorpay order:", error);

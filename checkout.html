@@ -98,24 +98,38 @@
 
                 console.log("Initiating order creation with amount (INR):", price);
                 const orderResponse = await createRazorpayOrder({ amount: parseInt(price), sessionId: sId });
-                console.log("Razorpay Order Response:", orderResponse);
+                console.log("Razorpay Order Response from Backend:", orderResponse);
                 
                 const order = orderResponse.data;
 
                 // Ensure popup opens ONLY after successful order creation
                 if (!order || !order.id || !order.amount) {
-                    throw new Error("Invalid order data received from server.");
+                    console.error("Invalid order object received:", order);
+                    throw new Error("Invalid order data received from server. Missing order_id or amount.");
                 }
 
+                if (!order.keyId) {
+                    console.error("Missing Razorpay Key ID from backend response.");
+                    alert("Payment configuration error. Please try later.");
+                    payBtn.innerText = originalText;
+                    payBtn.disabled = false;
+                    return;
+                }
+
+                console.log("✅ Order Creation Successful.");
+                console.log("👉 Order ID:", order.id);
+                console.log("👉 Amount (Paise):", order.amount);
+                console.log("👉 Key ID from Backend:", order.keyId);
+
                 const options = {
-                    "key": "rzp_live_SSiYcJa8TB4OIC", // Active Razorpay Key
+                    "key": order.keyId,
                     "amount": order.amount,
-                    "currency": order.currency,
+                    "currency": order.currency || "INR",
                     "order_id": order.id,
                     "name": "Olympiad Portal",
-                    "description": "Unlock: " + title,
+                    "description": "Unlock: " + (title || "Live Session"),
                     "handler": async function (response) {
-                        console.log("Payment Success Response:", response);
+                        console.log("✅ Payment Success Response:", response);
                         try {
                             payBtn.innerText = "Verifying...";
                             await verifyRazorpayPayment({
@@ -126,12 +140,13 @@
                                 amount: parseInt(price)
                             });
                             
+                            console.log("✅ Payment Verified Successfully.");
                             localStorage.setItem("activeSessionId", sId);
                             localStorage.setItem("activeSessionPrice", price);
                             localStorage.setItem("paymentData", JSON.stringify(response));
                             window.location.href = "payment-success.html";
                         } catch (verifyErr) {
-                            console.error("Payment Verification Error:", verifyErr);
+                            console.error("❌ Payment Verification Error:", verifyErr);
                             alert("Payment verification failed. If amount was deducted, please contact support.");
                             payBtn.innerText = originalText;
                             payBtn.disabled = false;
