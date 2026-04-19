@@ -36,6 +36,13 @@
     </style>
 </head>
 <body>
+    <!-- Processing Screen -->
+    <div id="paymentProcessingScreen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999; background: #ffffff; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <div class="spinner" id="processingSpinner" style="border: 4px solid rgba(79, 70, 229, 0.2); border-top: 4px solid #4f46e5; border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+        <h1 id="processingTitle" style="color: #0f172a; font-size: 24px; margin-bottom: 10px; font-weight: 800;">Payment Processing...</h1>
+        <p id="processingMsg" style="color: #64748b; font-size: 16px;">Your payment is being processed.<br>Please do not press Back or Refresh button.</p>
+    </div>
+    <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
     <div class="checkout-card">
         <h1>🔒 Secure Checkout</h1>
         <div class="order-summary">
@@ -64,6 +71,23 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const functions = getFunctions(app);
+
+        window.showProcessingScreen = function() {
+            const screen = document.getElementById("paymentProcessingScreen");
+            if (screen) {
+                screen.style.display = "flex";
+                const title = document.getElementById("processingTitle");
+                const msg = document.getElementById("processingMsg");
+                const spinner = document.getElementById("processingSpinner");
+                if(title) title.innerText = "Payment Processing...";
+                if(msg) msg.innerHTML = "Your payment is being processed.<br>Please do not press Back or Refresh button.";
+                if(spinner) spinner.style.display = "block";
+            }
+        };
+        window.hideProcessingScreen = function() {
+            const screen = document.getElementById("paymentProcessingScreen");
+            if (screen) screen.style.display = "none";
+        };
 
         const sId = localStorage.getItem("checkoutSessionId");
         const price = localStorage.getItem("checkoutPrice");
@@ -127,26 +151,67 @@
                     "order_id": order.id,
                     "name": "Olympiad Portal",
                     "description": "Unlock: " + (title || "Live Session"),
-                    "handler": function (response) {
-                        console.log("✅ Payment Success Response:", response);
-                        
-                        response.sessionId = sId;
-                        response.amount = parseInt(price);
-                        response.sessionDate = localStorage.getItem("checkoutDate") || "Upcoming Weekend";
-                        response.sessionTime = localStorage.getItem("checkoutTime") || "As scheduled";
-
-                        localStorage.setItem("activeSessionId", sId);
-                        localStorage.setItem("activeSessionPrice", price);
-                        localStorage.setItem("paymentData", JSON.stringify(response));
-                        window.location.href = "payment-success.html";
+                    "handler": async function (response) {
+                        window.showProcessingScreen();
+                        const verifyRazorpayPayment = httpsCallable(functions, 'verifyRazorpayPayment');
+                        let attempts = 0;
+                        const maxAttempts = 20;
+                        let verified = false;
+                        const verifyPayload = {
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature,
+                            sessionId: sId,
+                            amount: parseInt(price)
+                        };
+                        while(attempts < maxAttempts && !verified) {
+                            attempts++;
+                            try {
+                                await verifyRazorpayPayment(verifyPayload);
+                                verified = true;
+                            } catch(e) {
+                                await new Promise(r => setTimeout(r, 2500));
+                            }
+                        }
+                        if (verified) {
+                            document.getElementById("processingTitle").innerText = "Payment Successful!";
+                            document.getElementById("processingMsg").innerText = "Redirecting to Live Test Page...";
+                            const spinner = document.getElementById("processingSpinner");
+                            if(spinner) spinner.style.display = "none";
+                            
+                            response.sessionId = sId;
+                            response.amount = parseInt(price);
+                            response.sessionDate = localStorage.getItem("checkoutDate") || "Upcoming Weekend";
+                            response.sessionTime = localStorage.getItem("checkoutTime") || "As scheduled";
+                            localStorage.setItem("activeSessionId", sId);
+                            localStorage.setItem("activeSessionPrice", price);
+                            localStorage.setItem("paymentData", JSON.stringify(response));
+                            setTimeout(() => {
+                                window.location.href = "/live.html";
+                            }, 2000);
+                        } else {
+                            window.hideProcessingScreen();
+                            alert("Payment was not completed.");
+                            payBtn.innerText = originalText;
+                            payBtn.disabled = false;
+                        }
+                    },
+                    "modal": {
+                        "ondismiss": function() {
+                            window.hideProcessingScreen();
+                            alert("Payment was not completed.");
+                            const payBtn = document.getElementById("payButton");
+                            payBtn.innerText = originalText;
+                            payBtn.disabled = false;
+                        }
                     },
                     "prefill": { "name": userName, "email": userEmail },
                     "theme": { "color": "#38bdf8" }
                 };
                 const rzp = new Razorpay(options);
                 rzp.on('payment.failed', function (response) { 
-                    console.error("Razorpay Payment Error Object:", response.error);
-                    alert("Payment Failed: " + response.error.description); 
+                    window.hideProcessingScreen();
+                    alert("Payment was not completed.");
                     payBtn.innerText = originalText;
                     payBtn.disabled = false;
                 });
