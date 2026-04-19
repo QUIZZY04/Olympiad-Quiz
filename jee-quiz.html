@@ -16,86 +16,194 @@
     <link rel="stylesheet" href="style.css">
     <style>body{visibility: hidden;}</style>
     <style>
-        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
-        .top-bar { background: var(--surface); padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; }
-        .top-bar h1 { font-size: 1.2rem; margin: 0; color: var(--brand); font-weight: 800; }
-        .timer-box { background: #fee2e2; color: #dc2626; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-family: monospace; font-size: 1.1rem; border: 1px solid #fca5a5; }
+        /* JEE Advanced Realistic Interface Styles */
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; height: 100vh; display: flex; flex-direction: column; width: 100%; }
         
-        .quiz-layout { display: flex; gap: 20px; max-width: 1200px; margin: 20px auto; padding: 0 20px; flex: 1; width: 100%; }
-        .q-section { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 30px; box-shadow: var(--shadow-md); display: flex; flex-direction: column; }
-        .nav-section { width: 300px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-md); height: fit-content; }
+        .header { background: #1a73e8; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; height: 50px; }
+        .header-title { font-size: 1.1rem; font-weight: bold; }
+        .header-info { display: flex; align-items: center; gap: 20px; }
+        .timer-box { font-size: 1.1rem; font-weight: bold; font-family: monospace; }
         
-        .q-meta { font-size: 0.85rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; display: flex; justify-content: space-between; }
-        .q-type-badge { background: var(--subtle); color: var(--brand); padding: 4px 10px; border-radius: 6px; }
-        .q-text { font-size: 1.2rem; font-weight: 600; margin-bottom: 25px; line-height: 1.6; }
+        .main-container { display: flex; flex: 1; overflow: hidden; }
         
-        .opt-row { display: flex; align-items: center; gap: 12px; padding: 15px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; cursor: pointer; transition: 0.2s; background: var(--bg); }
-        .opt-row:hover { border-color: var(--brand); background: #eff6ff; }
-        .opt-row input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--brand); }
-        .opt-row span { font-size: 1.05rem; font-weight: 500; }
+        .left-panel { flex: 1; display: flex; flex-direction: column; border-right: 1px solid #ccc; overflow: hidden; min-width: 0; }
+        .question-header { background: #f1f3f4; padding: 10px 20px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; font-weight: bold; font-size: 14px; color: #333; }
+        .question-body { flex: 1; padding: 20px; overflow-y: auto; font-size: 15px; line-height: 1.6; color: #000; }
         
-        .btn-group { display: flex; gap: 10px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
-        .btn { flex: 1; padding: 12px; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
-        .btn-prev { background: var(--subtle); color: var(--text); border: 1px solid var(--border); }
-        .btn-prev:hover { background: var(--border); }
-        .btn-next { background: var(--brand); color: white; }
-        .btn-next:hover { background: var(--accent); }
-        .btn-submit { background: var(--danger); color: white; }
-        .btn-submit:hover { opacity: 0.9; }
+        .options-container { margin-top: 25px; display: flex; flex-direction: column; gap: 12px; width: 100%; }
+        .option-row { display: flex; align-items: flex-start; gap: 15px; cursor: pointer; padding: 12px 15px; border-radius: 6px; transition: 0.2s; border: 1px solid #d1d5db; width: 100%; background: #fff; }
+        .option-row:hover { background: #f8f9fa; border-color: #d1d5db; }
+        .option-row input { margin-top: 3px; cursor: pointer; transform: scale(1.2); flex-shrink: 0; }
+        .option-row span { font-size: 15px; color: #111; line-height: 1.5; }
+        
+        .footer { background: #f1f3f4; padding: 12px 20px; border-top: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; }
+        .footer-left { display: flex; gap: 10px; }
+        .footer-right { display: flex; gap: 10px; }
+        
+        .btn { padding: 8px 16px; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 13px; color: #333; transition: 0.2s; }
+        .btn:hover { background: #e0e0e0; }
+        .btn-primary { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+        .btn-primary:hover { background: #1557b0; }
+        .btn-success { background: #34a853; color: #fff; border-color: #34a853; }
+        .btn-success:hover { background: #28803e; }
+        
+        .right-panel { width: 320px; display: flex; flex-direction: column; background: #eef2f5; overflow: hidden; flex-shrink: 0; }
+        
+        .profile-section { display: flex; align-items: center; gap: 15px; padding: 15px; background: #fff; border-bottom: 1px solid #ccc; }
+        .profile-img { width: 60px; height: 60px; background: #ddd; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 30px; border: 1px solid #ccc; }
+        .profile-name { font-weight: bold; font-size: 14px; color: #333; }
+        
+        .legend-section { padding: 10px 15px; font-size: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-bottom: 1px solid #ccc; background: #fff; color: #333; }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        
+        .palette-section { padding: 15px; flex: 1; overflow-y: auto; background: #eef2f5; }
+        .palette-title { font-weight: bold; margin-bottom: 10px; font-size: 14px; color: #333; }
+        .palette-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        
+        .p-btn { width: 38px; height: 32px; border: 1px solid #999; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; cursor: pointer; color: #333; position: relative; transition: 0.1s; }
+        .p-btn:active { transform: scale(0.95); }
+        
+        /* JEE Advanced Realistic Status Colors and Shapes */
+        .p-unseen { background: #f0f0f0; border-color: #ccc; }
+        .p-not-answered { background: #ed5565; color: #fff; border-color: #da4453; border-radius: 4px 4px 15px 15px; }
+        .p-answered { background: #1ab394; color: #fff; border-color: #18a689; border-radius: 15px 15px 4px 4px; }
+        .p-review { background: #9b59b6; color: #fff; border-color: #9055a2; border-radius: 50%; width: 35px; height: 35px; }
+        .p-answered-review { background: #9b59b6; color: #fff; border-color: #9055a2; border-radius: 50%; width: 35px; height: 35px; position: relative; }
+        .p-answered-review::after { content: ''; position: absolute; bottom: 0px; right: 0px; width: 10px; height: 10px; background: #1ab394; border-radius: 50%; border: 1px solid #fff; }
 
-        .palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 15px; }
-        .p-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: 0.2s; }
-        .p-cell:hover { border-color: var(--brand); }
-        .p-cell.current { background: var(--brand); color: white; border-color: var(--brand); }
-        .p-cell.answered { background: #10b981; color: white; border-color: #10b981; }
-        .p-cell.visited { background: #ef4444; color: white; border-color: #ef4444; }
+        .submit-section { padding: 15px; background: #fff; border-top: 1px solid #ccc; text-align: center; }
 
         @media (max-width: 768px) {
-            .quiz-layout { flex-direction: column; }
-            .nav-section { width: 100%; }
+            body { height: auto; overflow-y: auto; display: block; }
+            .header { padding: 10px 15px; }
+            .header-title { font-size: 1rem; }
+            .header-info { gap: 10px; font-size: 14px; }
+            .timer-box { font-size: 14px; }
+            .main-container { flex-direction: column; height: auto; display: flex; }
+            .left-panel { overflow: visible; border-right: none; height: auto; min-height: 50vh; }
+            .question-body { overflow-y: visible; padding: 15px; }
+            .right-panel { width: 100%; overflow: visible; border-top: 2px solid #ccc; height: auto; }
+            .palette-section { overflow-y: visible; padding: 15px; }
+            .footer { flex-direction: column; gap: 10px; padding: 15px; }
+            .footer-left, .footer-right { width: 100%; display: flex; justify-content: space-between; gap: 10px; }
+            .footer .btn { flex: 1; text-align: center; padding: 10px 5px; font-size: 12px; white-space: normal; }
         }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    <h1 id="testTitle">Loading Test...</h1>
-    <div style="display:flex; align-items:center; gap: 15px;">
-        <div class="timer-box" id="timer">--:--:--</div>
-        <button onclick="goBack()" style="background:var(--surface); border:1px solid var(--border); padding:8px 12px; border-radius:8px; font-weight:600; cursor:pointer;">Exit</button>
+<nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="dashboard.html">Dash</a>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+    </div>
+    <div class="nav-links">
+        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mock.html">Mock Tests</a>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html">Live Arena</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="study.html">Study Material</a>
+        <div class="nav-actions">
+            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); font-weight:600; text-decoration:none;">Admin</a>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Instructions Modal -->
+<div id="instructionsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+    <div style="background: #fff; width: 100%; max-width: 650px; border-radius: 8px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto;">
+        <h2 style="color: #1a73e8; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.5rem;">Please read the instructions carefully</h2>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; border: 1px solid #ddd;">
+            <div><b>Test Name:</b> <span id="instTestTitle">...</span></div>
+            <div><b>Subject:</b> <span id="instSubject">...</span></div>
+            <div><b>Duration:</b> <span id="instDuration">...</span></div>
+            <div><b>Total Marks:</b> <span id="instMarks">...</span></div>
+            <div><b>Total Questions:</b> <span id="instTotalQ">...</span></div>
+        </div>
+        
+        <ul style="font-size: 14px; line-height: 1.7; color: #333; padding-left: 20px; margin-bottom: 30px;">
+            <li>The countdown timer at the top right of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself.</li>
+            <li>There are multiple types of questions: <b>Single Correct Option</b> and <b>Multiple Correct Options</b>.</li>
+            <li><b>Marking Scheme:</b> Standard JEE Advanced marking pattern is followed (Partial marking applies for Multi-Correct depending on exact rules, negative marking for incorrect answers).</li>
+            <li>You can mark questions for review using the <b>Mark for Review & Next</b> button to revisit them later.</li>
+            <li>To change your answer, you can select another option, or click <b>Clear Response</b> to remove your selection.</li>
+            <li><b style="color: #d32f2f;">STRICT RULE:</b> Do NOT refresh the page or switch browser tabs. Doing so may cause you to lose your progress and auto-submit the exam.</li>
+        </ul>
+        
+        <div style="display: flex; gap: 15px;">
+            <button onclick="window.location.href='jee-list.html'" class="btn" style="flex: 1; padding: 12px; text-align: center; border: 1px solid #ccc;">Cancel</button>
+            <button onclick="beginQuiz()" class="btn btn-primary" style="flex: 2; padding: 12px; text-align: center; font-size: 15px;">I am ready, Start Test</button>
+        </div>
     </div>
 </div>
 
-<div class="quiz-layout">
-    <div class="q-section">
-        <div class="q-meta">
-            <span id="qNumber">Question 1</span>
-            <span id="qTypeBadge" class="q-type-badge">Type</span>
+<div class="header">
+    <div class="header-title" id="testTitle">JEE Advanced Mock Test</div>
+    <div class="header-info">
+        <div>Time Left:</div>
+        <div class="timer-box" id="timer">--:--:--</div>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="left-panel">
+        <div class="question-header">
+            <span id="qNumber">Question No. 1</span>
+            <span id="qTypeBadge">Single Correct Option</span>
         </div>
-        <div id="qText" class="q-text">Loading question...</div>
-        <div id="optionsContainer"></div>
+        <div class="question-body">
+            <div id="qText">Loading question...</div>
+            <div id="optionsContainer" class="options-container"></div>
+        </div>
         
-        <div class="btn-group">
-            <button class="btn btn-prev" onclick="prevQuestion()">Previous</button>
-            <button class="btn btn-next" onclick="nextQuestion()">Save & Next</button>
-            <button class="btn btn-submit" onclick="submitTest()">Submit Test</button>
+        <div class="footer">
+            <div class="footer-left">
+                <button class="btn" onclick="markForReview()">Mark for Review & Next</button>
+                <button class="btn" onclick="clearResponse()">Clear Response</button>
+            </div>
+            <div class="footer-right">
+                <button class="btn" onclick="prevQuestion()"><< Back</button>
+                <button class="btn btn-success" onclick="saveAndNext()">Save & Next</button>
+            </div>
         </div>
     </div>
     
-    <div class="nav-section">
-        <h3 style="margin-bottom: 10px; font-size: 1rem;">Question Palette</h3>
+    <div class="right-panel">
+        <div class="profile-section">
+            <div class="profile-img">👤</div>
+            <div class="profile-name" id="studentName">Candidate Name</div>
+        </div>
+        <div class="legend-section">
+            <div class="legend-item"><div class="p-btn p-unseen" style="width:22px;height:22px;font-size:11px;" id="cntUnseen">0</div> Not Visited</div>
+            <div class="legend-item"><div class="p-btn p-not-answered" style="width:22px;height:22px;font-size:11px;" id="cntNotAnswered">0</div> Not Answered</div>
+            <div class="legend-item"><div class="p-btn p-answered" style="width:22px;height:22px;font-size:11px;" id="cntAnswered">0</div> Answered</div>
+            <div class="legend-item"><div class="p-btn p-review" style="width:22px;height:22px;font-size:11px;" id="cntReview">0</div> Marked for Review</div>
+            <div class="legend-item" style="grid-column: 1 / -1;"><div class="p-btn p-answered-review" style="width:22px;height:22px;font-size:11px;" id="cntAnsweredReview">0</div> Answered & Marked for Review</div>
+        </div>
+        <div class="palette-section">
+            <div class="palette-title">Question Palette:</div>
         <div class="palette-grid" id="paletteGrid"></div>
-        <div style="margin-top: 20px; font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; align-items: center; gap: 8px;"><div style="width:12px; height:12px; background:var(--brand); border-radius:3px;"></div> Current</div>
-            <div style="display: flex; align-items: center; gap: 8px;"><div style="width:12px; height:12px; background:#10b981; border-radius:3px;"></div> Answered</div>
-            <div style="display: flex; align-items: center; gap: 8px;"><div style="width:12px; height:12px; background:#ef4444; border-radius:3px;"></div> Visited (Not Answered)</div>
+        </div>
+        <div class="submit-section">
+            <button class="btn btn-primary" style="width: 100%; padding: 10px;" onclick="submitTest()">Submit Test</button>
         </div>
     </div>
 </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -112,6 +220,11 @@
         document.body.style.visibility = 'visible';
         if (!user) {
             window.location.replace("login.html");
+        } else {
+            if (user.email === "madhhu52@gmail.com") {
+                document.getElementById("adminTab").style.display = "inline";
+            }
+            document.getElementById("studentName").innerText = user.displayName || user.email.split('@')[0];
         }
     });
 
@@ -119,6 +232,7 @@
     let currentQ = 0;
     let selectedAnswers = []; // Array of Arrays to support multi-correct: [ ["A", "C"], [], ["B"] ]
     let visited = [];
+    let markedForReview = [];
     let timeLeft = 0;
     let timerInterval;
 
@@ -139,15 +253,30 @@
             // Initialize state arrays
             selectedAnswers = new Array(testData.questions.length).fill(null).map(() => []);
             visited = new Array(testData.questions.length).fill(false);
+            markedForReview = new Array(testData.questions.length).fill(false);
             
             timeLeft = testData.duration * 60;
-            startTimer();
-            buildPalette();
-            renderQuestion();
+            
+            // Populate Instructions Modal
+            document.getElementById("instTestTitle").innerText = testData.title;
+            document.getElementById("instSubject").innerText = testData.subject || "Full Syllabus";
+            document.getElementById("instDuration").innerText = testData.duration + " Minutes";
+            document.getElementById("instMarks").innerText = testData.totalMarks;
+            document.getElementById("instTotalQ").innerText = testData.questions.length;
+            
+            // Show Instructions
+            document.getElementById("instructionsModal").style.display = "flex";
         } catch(e) {
             console.error(e);
             alert("Failed to load test data.");
         }
+    }
+
+    window.beginQuiz = () => {
+        document.getElementById("instructionsModal").style.display = "none";
+        startTimer();
+        buildPalette();
+        renderQuestion();
     }
 
     function startTimer() {
@@ -170,9 +299,9 @@
         visited[currentQ] = true;
         
         const q = testData.questions[currentQ];
-        document.getElementById("qNumber").innerText = `Question ${currentQ + 1} of ${testData.questions.length}`;
-        document.getElementById("qTypeBadge").innerText = q.type === "multi" ? "Multi Correct (+4/0)" : "Single Correct (+4/0)";
-        document.getElementById("qText").innerText = q.questionText;
+        document.getElementById("qNumber").innerText = `Question No. ${currentQ + 1}`;
+        document.getElementById("qTypeBadge").innerText = q.type === "multi" ? "Multiple Correct Options" : "Single Correct Option";
+        document.getElementById("qText").innerHTML = q.questionText; // Allow HTML rendering in JSON
         
         const container = document.getElementById("optionsContainer");
         container.innerHTML = "";
@@ -214,31 +343,65 @@
         grid.innerHTML = "";
         testData.questions.forEach((_, i) => {
             const cell = document.createElement("div");
-            cell.className = "p-cell unseen";
+            cell.className = "p-btn p-unseen";
             cell.id = "pcell-" + i;
             cell.innerText = i + 1;
             cell.onclick = () => { currentQ = i; renderQuestion(); };
             grid.appendChild(cell);
         });
+        updatePalette();
     }
 
     function updatePalette() {
+        let unseenCount = 0, notAnsweredCount = 0, answeredCount = 0, reviewCount = 0, answeredReviewCount = 0;
+        
         testData.questions.forEach((_, i) => {
             const cell = document.getElementById("pcell-" + i);
             if (!cell) return;
-            cell.className = "p-cell";
-            if (i === currentQ) cell.classList.add("current");
-            else if (selectedAnswers[i].length > 0) cell.classList.add("answered");
-            else if (visited[i]) cell.classList.add("visited");
-            else cell.classList.add("unseen");
+            
+            let className = "p-btn ";
+            const isAnswered = selectedAnswers[i].length > 0;
+            const isMarked = markedForReview[i];
+            const isVisited = visited[i];
+            
+            if (!isVisited) {
+                className += "p-unseen";
+                unseenCount++;
+            } else if (isAnswered && isMarked) {
+                className += "p-answered-review";
+                answeredReviewCount++;
+            } else if (isAnswered) {
+                className += "p-answered";
+                answeredCount++;
+            } else if (isMarked) {
+                className += "p-review";
+                reviewCount++;
+            } else {
+                className += "p-not-answered";
+                notAnsweredCount++;
+            }
+            
+            cell.className = className;
         });
+        
+        document.getElementById("cntUnseen").innerText = unseenCount;
+        document.getElementById("cntNotAnswered").innerText = notAnsweredCount;
+        document.getElementById("cntAnswered").innerText = answeredCount;
+        document.getElementById("cntReview").innerText = reviewCount;
+        document.getElementById("cntAnsweredReview").innerText = answeredReviewCount;
     }
 
+    window.saveAndNext = () => { markedForReview[currentQ] = false; if (currentQ < testData.questions.length - 1) { currentQ++; renderQuestion(); } else { updatePalette(); } };
+    window.clearResponse = () => { selectedAnswers[currentQ] = []; renderQuestion(); };
+    window.markForReview = () => { markedForReview[currentQ] = true; if (currentQ < testData.questions.length - 1) { currentQ++; renderQuestion(); } else { updatePalette(); } };
     window.prevQuestion = () => { if (currentQ > 0) { currentQ--; renderQuestion(); } };
-    window.nextQuestion = () => { if (currentQ < testData.questions.length - 1) { currentQ++; renderQuestion(); } };
     
     window.submitTest = (auto = false) => {
-        if (!auto && !confirm("Are you sure you want to submit the test?")) return;
+        if (!auto) {
+            let answered = selectedAnswers.filter(ans => ans.length > 0).length;
+            let msg = `You have answered ${answered} out of ${testData.questions.length} questions.\n\nAre you sure you want to submit the test?`;
+            if (!confirm(msg)) return;
+        }
         clearInterval(timerInterval);
         
         const resultObj = {
@@ -257,6 +420,20 @@
     };
 
     initTest();
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            localStorage.removeItem("isLoggedIn");
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html");
+        }
+    };
+
+    window.toggleMenu = function() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    };
 </script>
 </body>
 </html>
