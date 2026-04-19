@@ -126,10 +126,8 @@
             document.getElementById("testTitleDisplay").innerText = resultData.testTitle;
             
             let totalScoreEarned = 0;
+            let maxScorePossible = 0;
             let html = "";
-            
-            // Calculate score assuming +4 for exact full match, 0 otherwise (Strict JEE format implemented safely)
-            const perQuestionMark = resultData.totalMarks / resultData.questions.length || 4;
 
             resultData.questions.forEach((q, idx) => {
                 const userAns = resultData.userAnswers[idx] || [];
@@ -147,20 +145,27 @@
                 
                 let earned = 0;
                 let statusTag = "";
+                let markClass = "";
+                
+                const qMaxMarks = q.type === 'multi' ? 4 : 3;
+                maxScorePossible += qMaxMarks;
                 
                 if (userAns.length === 0) {
+                    earned = 0;
                     statusTag = "⚪ Unattempted";
+                    markClass = "var(--muted)";
                 } else if (hasWrong) {
-                    earned = 0;
-                    statusTag = "❌ Incorrect (Wrong option selected)";
+                    earned = q.type === 'multi' ? -2 : -1;
+                    statusTag = "❌ Incorrect";
+                    markClass = "var(--danger)";
                 } else if (isAllCorrect) {
-                    earned = perQuestionMark;
-                    statusTag = "✅ Fully Correct (+ Marks)";
+                    earned = q.type === 'multi' ? 4 : 3;
+                    statusTag = "✅ Fully Correct";
+                    markClass = "var(--success)";
                 } else {
-                    // Partially correct logic safely capped to zero as instructed for strict logic, unless specified.
-                    // Implementing Strict ZERO if partial.
-                    earned = 0;
-                    statusTag = "⚠️ Partially Correct (Marks Lost)";
+                    earned = userAns.length; // Partial marking: +1 per correct option chosen
+                    statusTag = "⚠️ Partially Correct";
+                    markClass = "#d97706";
                 }
                 
                 totalScoreEarned += earned;
@@ -179,9 +184,13 @@
                     optionsHtml += `<div class="${styleClass}">${opt}</div>`;
                 });
                 
+                let qIdText = q.id ? ` | ID: ${q.id}` : "";
                 html += `
                 <div class="solution-block">
-                    <div class="q-meta">Q${idx + 1} | ${q.type === 'multi' ? 'Multi-Correct' : 'Single Correct'} | ${statusTag}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+                        <div class="q-meta" style="margin-bottom:0;">Q${idx + 1}${qIdText} | ${q.type === 'multi' ? 'Multi-Correct (+4, -2)' : 'Single Correct (+3, -1)'} | ${statusTag}</div>
+                        <div style="font-size: 1.1rem; font-weight: 800; color: ${markClass}; background: var(--bg); padding: 4px 12px; border-radius: 8px; border: 1px solid var(--border);">Marks: ${earned > 0 ? '+' : ''}${earned}</div>
+                    </div>
                     <div class="q-text">${q.questionText}</div>
                     <div style="margin-bottom: 15px;">
                         <p style="font-size: 13px; color: var(--muted); margin-bottom: 5px;"><strong>Your Answer:</strong> ${userAns.length > 0 ? userAns.join(", ") : "None"}</p>
@@ -194,7 +203,7 @@
                 </div>`;
             });
 
-            document.getElementById("scoreDisplay").innerText = `${totalScoreEarned} / ${resultData.totalMarks}`;
+            document.getElementById("scoreDisplay").innerHTML = `<span style="color: ${totalScoreEarned >= 0 ? 'var(--brand)' : 'var(--danger)'}">${totalScoreEarned}</span> / ${maxScorePossible}`;
             document.getElementById("solutionsContainer").innerHTML = html;
         });
 

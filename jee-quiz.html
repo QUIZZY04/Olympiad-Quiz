@@ -135,7 +135,12 @@
         <ul style="font-size: 14px; line-height: 1.7; color: #333; padding-left: 20px; margin-bottom: 30px;">
             <li>The countdown timer at the top right of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself.</li>
             <li>There are multiple types of questions: <b>Single Correct Option</b> and <b>Multiple Correct Options</b>.</li>
-            <li><b>Marking Scheme:</b> Standard JEE Advanced marking pattern is followed (Partial marking applies for Multi-Correct depending on exact rules, negative marking for incorrect answers).</li>
+            <li><b>Marking Scheme:</b> Standard JEE Advanced marking pattern is followed:
+                <ul style="margin-top: 5px; margin-bottom: 5px;">
+                    <li><b>Single Correct:</b> +3 for correct, -1 for incorrect, 0 for unattempted.</li>
+                    <li><b>Multi Correct:</b> +4 for all correct, +1 per correct (partial), -2 for incorrect, 0 for unattempted.</li>
+                </ul>
+            </li>
             <li>You can mark questions for review using the <b>Mark for Review & Next</b> button to revisit them later.</li>
             <li>To change your answer, you can select another option, or click <b>Clear Response</b> to remove your selection.</li>
             <li><b style="color: #d32f2f;">STRICT RULE:</b> Do NOT refresh the page or switch browser tabs. Doing so may cause you to lose your progress and auto-submit the exam.</li>
@@ -241,6 +246,7 @@
         const testId = urlParams.get('id');
         
         if (!testId) { alert("Invalid Test ID"); window.location.href = "jee-list.html"; return; }
+        const skipModal = urlParams.get('skipModal') === 'true';
 
         try {
             const docSnap = await getDoc(doc(db, "jeeMockTests", testId));
@@ -249,6 +255,12 @@
             }
             testData = docSnap.data();
             document.getElementById("testTitle").innerText = testData.title;
+            
+            // Calculate strict JEE total marks
+            let strictTotalMarks = 0;
+            testData.questions.forEach(q => {
+                strictTotalMarks += (q.type === "multi" ? 4 : 3);
+            });
             
             // Initialize state arrays
             selectedAnswers = new Array(testData.questions.length).fill(null).map(() => []);
@@ -261,11 +273,18 @@
             document.getElementById("instTestTitle").innerText = testData.title;
             document.getElementById("instSubject").innerText = testData.subject || "Full Syllabus";
             document.getElementById("instDuration").innerText = testData.duration + " Minutes";
-            document.getElementById("instMarks").innerText = testData.totalMarks;
+            document.getElementById("instMarks").innerText = strictTotalMarks;
             document.getElementById("instTotalQ").innerText = testData.questions.length;
             
-            // Show Instructions
-            document.getElementById("instructionsModal").style.display = "flex";
+            if (skipModal) {
+                document.getElementById("instructionsModal").style.display = "none";
+                startTimer();
+                buildPalette();
+                renderQuestion();
+            } else {
+                // Show Instructions
+                document.getElementById("instructionsModal").style.display = "flex";
+            }
         } catch(e) {
             console.error(e);
             alert("Failed to load test data.");
@@ -299,7 +318,8 @@
         visited[currentQ] = true;
         
         const q = testData.questions[currentQ];
-        document.getElementById("qNumber").innerText = `Question No. ${currentQ + 1}`;
+        let qIdText = q.id ? ` <span style="color: #666; font-size: 12px; margin-left: 10px;">| ID: ${q.id}</span>` : "";
+        document.getElementById("qNumber").innerHTML = `Question No. ${currentQ + 1}${qIdText}`;
         document.getElementById("qTypeBadge").innerText = q.type === "multi" ? "Multiple Correct Options" : "Single Correct Option";
         document.getElementById("qText").innerHTML = q.questionText; // Allow HTML rendering in JSON
         
