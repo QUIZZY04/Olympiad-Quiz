@@ -703,7 +703,20 @@ border-top:1px solid var(--border);
             <h2 style="color:#059669;">🎓 JEE Advanced Mock Test Management</h2>
         </div>
         <div class="panel-content">
-            <p class="muted">Create isolated JEE Advanced tests supporting Multi-Correct questions.</p>
+            <p class="muted">Create or Edit isolated JEE Advanced tests supporting Multi-Correct questions.</p>
+            
+            <div style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px; margin-bottom:20px;">
+                <h4 style="margin-bottom:10px;">Bulk Import Questions (JSON)</h4>
+                <p class="muted" style="margin-bottom:10px; font-size:12px;">Format: [{"questionText":"...","type":"single","options":["A","B","C","D"],"correctAnswers":["A"],"explanation":"..."}]</p>
+                <textarea id="jeeJsonPaste" placeholder="Paste JSON array of questions here..." style="height: 120px;"></textarea>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="upload" onclick="pasteJeeClipboard()" style="background: var(--brand); color: #fff;">📋 Paste from Clipboard</button>
+                    <button class="delete" onclick="clearJeePaste()">🗑️ Clear</button>
+                </div>
+                <button class="upload" onclick="loadJeeJson()" style="background: #0ea5e9; width: 100%; margin-top: 15px;">⬇️ Load JSON into Form</button>
+            </div>
+            
+            <input type="hidden" id="editJeeTestId">
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
                 <div><label>Test Title</label><input type="text" id="jeeTitle" placeholder="e.g. JEE Adv Mock Test 1"></div>
                 <div>
@@ -715,11 +728,11 @@ border-top:1px solid var(--border);
             </div>
             
             <div id="jeeQuestionsContainer"></div>
-            <button class="upload" onclick="addJeeQuestionBlock()" style="background:#0ea5e9; width:100%; margin-top:15px;">+ Add New Question</button>
-            <button class="upload" onclick="saveJeeTest()" style="background:#059669; width:100%; margin-top:15px;">💾 Save JEE Mock Test</button>
+            <button class="upload" onclick="addJeeQuestionBlock()" style="background:#0ea5e9; width:100%; margin-top:15px;">+ Add New Question Manually</button>
+            <button class="upload" id="jeeSaveBtn" onclick="saveJeeTest()" style="background:#059669; width:100%; margin-top:15px;">💾 Save JEE Mock Test</button>
             
             <hr style="margin: 25px 0; border: 0; border-top: 1px solid var(--border);">
-            <h3 style="margin-bottom: 15px; font-size: 16px;">🗑️ Manage Existing JEE Tests</h3>
+            <h3 style="margin-bottom: 15px; font-size: 16px;">📝 Manage Existing JEE Tests</h3>
             <button class="upload" onclick="loadJeeTestsList()" style="background: var(--brand);">Load Existing JEE Tests</button>
             <table style="margin-top: 15px;">
                 <thead>
@@ -1677,11 +1690,24 @@ window.executeBulkDelete = async function() {
 }
 
 // ADDED SECTION: JEE ADMIN LOGIC
-window.addJeeQuestionBlock = function() {
+window.addJeeQuestionBlock = function(qData = null) {
     const container = document.getElementById("jeeQuestionsContainer");
-    const qId = Date.now();
+    const qId = Date.now() + Math.random().toString().slice(2,8);
+    
+    let text = qData ? qData.questionText || qData.q || "" : "";
+    let type = qData ? qData.type || "single" : "single";
+    let exp = qData ? qData.explanation || qData.sol || "" : "";
+    let opts = qData ? qData.options || qData.o || ["", "", "", ""] : ["", "", "", ""];
+    let corrs = qData ? qData.correctAnswers || [] : [];
+    
+    if (qData && typeof qData.a === 'number' && corrs.length === 0) {
+        corrs = [opts[qData.a]];
+    }
+
+    while(opts.length < 4) opts.push("");
+
     const blockHtml = `
-    <div class="jee-q-block" style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px; margin-bottom:15px;">
+    <div class="jee-q-block" id="jq-${qId}" style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px; margin-bottom:15px;">
         <label>Question Text</label>
         <textarea class="jq-text" style="height:60px;" placeholder="Enter question here..."></textarea>
         <label>Type</label>
@@ -1699,10 +1725,27 @@ window.addJeeQuestionBlock = function() {
         <textarea class="jq-exp" style="height:60px;" placeholder="Explanation for the solution..."></textarea>
         <button class="delete" onclick="this.parentElement.remove()" style="margin-top:10px;">Remove Question</button>
     </div>`;
+    
     container.insertAdjacentHTML('beforeend', blockHtml);
+
+    const block = document.getElementById(`jq-${qId}`);
+    block.querySelector(".jq-text").value = text;
+    block.querySelector(".jq-type").value = type;
+    block.querySelector(".jq-exp").value = exp;
+    
+    const optInputs = block.querySelectorAll(".jq-opt");
+    const corrInputs = block.querySelectorAll(".jq-corr");
+    
+    optInputs.forEach((inp, idx) => {
+        inp.value = opts[idx] || "";
+        if (corrs.includes(opts[idx]) && opts[idx] !== "") {
+            corrInputs[idx].checked = true;
+        }
+    });
 };
 
 window.saveJeeTest = async function() {
+    const id = document.getElementById("editJeeTestId").value;
     const title = document.getElementById("jeeTitle").value.trim();
     const subject = document.getElementById("jeeSubject").value;
     const duration = parseInt(document.getElementById("jeeDuration").value);
@@ -1726,10 +1769,21 @@ window.saveJeeTest = async function() {
     });
     
     try {
-        await addDoc(collection(db, "jeeMockTests"), { title, subject, duration, totalMarks, difficulty: "Advanced", questions, createdAt: serverTimestamp() });
-        alert("✅ JEE Mock Test Saved Successfully!");
+        if (id) {
+            await updateDoc(doc(db, "jeeMockTests", id), { title, subject, duration, totalMarks, questions, updatedAt: serverTimestamp() });
+            alert("✅ JEE Mock Test Updated Successfully!");
+        } else {
+            await addDoc(collection(db, "jeeMockTests"), { title, subject, duration, totalMarks, difficulty: "Advanced", questions, createdAt: serverTimestamp() });
+            alert("✅ JEE Mock Test Saved Successfully!");
+        }
+        
         document.getElementById("jeeQuestionsContainer").innerHTML = "";
         document.getElementById("jeeTitle").value = "";
+        document.getElementById("editJeeTestId").value = "";
+        const saveBtn = document.getElementById("jeeSaveBtn");
+        if(saveBtn) saveBtn.innerText = "💾 Save JEE Mock Test";
+        
+        if(typeof loadJeeTestsList === 'function') loadJeeTestsList();
     } catch(e) { alert("Error saving test: " + e.message); }
 };
 
@@ -1741,17 +1795,77 @@ window.loadJeeTestsList = async function() {
         let html = "";
         snap.forEach(doc => {
             const data = doc.data();
-            html += `<tr><td>${data.title}</td><td>${data.subject}</td><td>${data.questions ? data.questions.length : 0}</td><td><button class="delete" onclick="deleteJeeTest('${doc.id}')">Delete</button></td></tr>`;
+            html += `<tr><td>${data.title}</td><td>${data.subject}</td><td>${data.questions ? data.questions.length : 0}</td><td>
+                <div style="display:flex; gap:5px;">
+                    <button class="edit-btn" onclick="editJeeTest('${doc.id}')">Edit</button>
+                    <button class="delete" onclick="deleteJeeTest('${doc.id}')">Delete</button>
+                </div>
+            </td></tr>`;
         });
         if (!html) html = "<tr><td colspan='4' style='text-align:center; color:var(--muted);'>No JEE tests found.</td></tr>";
         tbody.innerHTML = html;
     } catch(e) { tbody.innerHTML = `<tr><td colspan='4' style='color:var(--danger);'>Error: ${e.message}</td></tr>`; }
 };
 
+window.editJeeTest = async function(id) {
+    try {
+        const docSnap = await getDoc(doc(db, "jeeMockTests", id));
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            document.getElementById("editJeeTestId").value = id;
+            document.getElementById("jeeTitle").value = data.title;
+            document.getElementById("jeeSubject").value = data.subject;
+            document.getElementById("jeeDuration").value = data.duration;
+            document.getElementById("jeeTotalMarks").value = data.totalMarks;
+            
+            document.getElementById("jeeQuestionsContainer").innerHTML = "";
+            if (data.questions && data.questions.length > 0) {
+                data.questions.forEach(q => addJeeQuestionBlock(q));
+            }
+            
+            document.getElementById("jee-admin-section").scrollIntoView({behavior: "smooth"});
+            
+            const saveBtn = document.getElementById("jeeSaveBtn");
+            if(saveBtn) saveBtn.innerText = "💾 Update JEE Mock Test";
+        }
+    } catch(e) {
+        alert("Error loading test: " + e.message);
+    }
+};
+
 window.deleteJeeTest = async function(id) {
     if (confirm("Are you sure you want to permanently delete this JEE Mock Test?")) {
         await deleteDoc(doc(db, "jeeMockTests", id));
         loadJeeTestsList();
+    }
+};
+
+window.pasteJeeClipboard = async function() {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("jeeJsonPaste").value = text;
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually.");
+    }
+};
+
+window.clearJeePaste = function() {
+    document.getElementById("jeeJsonPaste").value = "";
+};
+
+window.loadJeeJson = function() {
+    try {
+        const text = document.getElementById("jeeJsonPaste").value.trim();
+        if (!text) { alert("Please paste JSON first."); return; }
+        const data = JSON.parse(text);
+        if (!Array.isArray(data)) throw new Error("JSON must be an array of question objects");
+        data.forEach(q => {
+            addJeeQuestionBlock(q);
+        });
+        document.getElementById("jeeJsonPaste").value = "";
+        alert(`Loaded ${data.length} questions into the form. Please review and save.`);
+    } catch(e) {
+        alert("Invalid JSON format: " + e.message);
     }
 };
 
