@@ -316,7 +316,7 @@
         <h1>Live <span>Olympiad Online Test Free</span> Arena</h1>
         <p>Step into the ultimate competitive zone! Compete in real-time nationwide quizzes for <b>IMO (Maths)</b>, <b>NSO (Science)</b>, <b>IEO (English)</b>, and <b>IRO (Reasoning)</b>. Claim your spot on the global leaderboard.</p>
         <div style="margin-top: 15px;">
-            <span id="arenaBadge" class="pulse-badge">🏆 Grand Championship on 19th April 2026</span>
+            <span id="arenaBadge" class="pulse-badge">Live Test Coming Soon</span>
         </div>
         <p id="permanentInstruction" style="display: none; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text);">Select your grade and subject to Register.</p>
     </div>
@@ -483,7 +483,7 @@
             if (sessionDocs.length === 0) {
                 container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.2rem; font-weight: 600;">Live quiz is coming very soon.</div>`;
                 const arenaBadge = document.getElementById("arenaBadge");
-                if (arenaBadge) arenaBadge.innerText = "🏆 Grand Championship on 19th April 2026";
+                if (arenaBadge) arenaBadge.innerText = "Live Test Coming Soon";
                 if (filterContainer) filterContainer.style.display = "none";
                 return;
             }
@@ -499,7 +499,7 @@
             allFetchedSessionDocs.forEach(sDoc => {
                 const s = sDoc.data();
                 const isMalformed = !s.startTime || !s.endTime || !s.title || s.class === undefined || s.subject === undefined;
-                if (!isMalformed && now <= s.endTime.toDate()) {
+                if (!isMalformed && !s.archived && now <= s.endTime.toDate()) {
                     uniqueGrades.add(s.class.toString());
                     uniqueSubjects.add(s.subject);
                     const startDate = s.startTime.toDate();
@@ -510,22 +510,26 @@
             });
 
             if (nextSessionDate) {
-                const day = nextSessionDate.getDate();
-                let suffix = "th";
-                if (day === 1 || day === 21 || day === 31) suffix = "st";
-                else if (day === 2 || day === 22) suffix = "nd";
-                else if (day === 3 || day === 23) suffix = "rd";
-                const month = nextSessionDate.toLocaleString('default', { month: 'long' });
-                const year = nextSessionDate.getFullYear();
-                window.nextSessionDateStr = `${day}${suffix} ${month} ${year}`;
+                const formattedDate = nextSessionDate.toLocaleDateString("en-IN", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                });
+                const formattedTime = nextSessionDate.toLocaleTimeString("en-IN", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true
+                }).toUpperCase();
+                window.globalHeadingText = `Upcoming Live Test on ${formattedDate} at ${formattedTime}`;
             } else {
-                window.nextSessionDateStr = null;
+                window.globalHeadingText = "Live Test Coming Soon";
             }
+
+            const arenaBadge = document.getElementById("arenaBadge");
+            if (arenaBadge) arenaBadge.innerText = window.globalHeadingText;
 
             if (uniqueGrades.size === 0) {
                 container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.2rem; font-weight: 600;">Live quiz is coming very soon.</div>`;
-                const arenaBadge = document.getElementById("arenaBadge");
-                if (arenaBadge) arenaBadge.innerText = "🏆 Grand Championship on 19th April 2026";
                 if (filterContainer) filterContainer.style.display = "none";
                 const permInstr = document.getElementById("permanentInstruction");
                 if (permInstr) permInstr.style.display = "none";
@@ -600,9 +604,7 @@
         if (!gradeFilter || !subjectFilter) {
             const arenaBadge = document.getElementById("arenaBadge");
             if (arenaBadge) {
-                const dynamicDateText = window.nextSessionDateStr ? `Next Live Quiz on ${window.nextSessionDateStr}` : "";
-                const staticDateText = "🏆 Grand Championship on 19th April 2026";
-                arenaBadge.innerText = dynamicDateText ? `${dynamicDateText} | ${staticDateText}` : staticDateText;
+                arenaBadge.innerText = window.globalHeadingText || "Live Test Coming Soon";
             }
             if (timerInterval) clearInterval(timerInterval);
             return;
@@ -691,14 +693,23 @@
         const arenaBadge = document.getElementById("arenaBadge");
         if (currentSessionList.length > 0) {
             if (arenaBadge) {
-                const dynamicDateText = window.nextSessionDateStr ? `Next Live Quiz on ${window.nextSessionDateStr}` : "Register for Live Quiz Now";
-                const staticDateText = "🏆 Grand Championship on 19th April 2026";
-                arenaBadge.innerText = `${dynamicDateText} | ${staticDateText}`;
+                let earliestSession = currentSessionList.reduce((prev, curr) => (curr.start < prev.start ? curr : prev));
+                const startDate = earliestSession.start;
+                const formattedDate = startDate.toLocaleDateString("en-IN", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                });
+                const formattedTime = startDate.toLocaleTimeString("en-IN", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true
+                }).toUpperCase();
+                arenaBadge.innerText = `Upcoming Live Test on ${formattedDate} at ${formattedTime}`;
             }
         } else {
             if (arenaBadge) {
-                const staticDateText = "🏆 Grand Championship on 19th April 2026";
-                arenaBadge.innerText = `⏳ No live quizzes for this selection | ${staticDateText}`;
+                arenaBadge.innerText = "Live Test Coming Soon";
             }
             container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding:40px; font-size: 1.1rem; font-weight: 600; background: var(--surface); border: 1px dashed var(--border); border-radius: 16px; width: 100%;">No active or upcoming live quizzes found for Class ${gradeFilter} ${subjectFilter.charAt(0).toUpperCase() + subjectFilter.slice(1)}.</div>`;
         }
