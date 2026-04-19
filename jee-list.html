@@ -119,10 +119,19 @@
             <ul style="font-size: 14px; line-height: 1.7; color: #333; padding-left: 20px; margin-bottom: 30px;">
                 <li>The countdown timer at the top right of screen will display the remaining time available. When the timer reaches zero, the examination will end by itself.</li>
                 <li>There are multiple types of questions: <b>Single Correct Option</b> and <b>Multiple Correct Options</b>.</li>
-                <li><b>Marking Scheme:</b> Standard JEE Advanced marking pattern is followed:
+                <li><b>Marking Scheme for Single Correct Option:</b>
                     <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
-                        <li><b>Single Correct:</b> +3 for correct, -1 for incorrect, 0 for unattempted.</li>
-                        <li><b>Multi Correct:</b> +4 for all correct, +1 per correct option (partial marking), -2 for incorrect, 0 for unattempted.</li>
+                        <li><b>Full Marks:</b> +3 If only the correct option is chosen.</li>
+                        <li><b>Zero Marks:</b> 0 If none of the options is chosen (i.e. the question is unanswered).</li>
+                        <li><b>Negative Marks:</b> -1 In all other cases.</li>
+                    </ul>
+                </li>
+                <li><b>Marking Scheme for Multiple Correct Options:</b>
+                    <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                        <li><b>Full Marks:</b> +4 If only (all) the correct option(s) is(are) chosen.</li>
+                        <li><b>Partial Marks:</b> +1 For each correct option chosen, provided NO incorrect option is chosen.</li>
+                        <li><b>Zero Marks:</b> 0 If none of the options is chosen (i.e. the question is unanswered).</li>
+                        <li><b>Negative Marks:</b> -2 In all other cases (e.g., if any incorrect option is selected).</li>
                     </ul>
                 </li>
                 <li>You can mark questions for review to revisit them later.</li>
