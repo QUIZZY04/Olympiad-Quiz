@@ -94,7 +94,6 @@
 
             try {
                 const createRazorpayOrder = httpsCallable(functions, 'createRazorpayOrder');
-                const verifyRazorpayPayment = httpsCallable(functions, 'verifyRazorpayPayment');
 
                 console.log("Initiating order creation with amount (INR):", price);
                 const orderResponse = await createRazorpayOrder({ amount: parseInt(price), sessionId: sId });
@@ -128,29 +127,18 @@
                     "order_id": order.id,
                     "name": "Olympiad Portal",
                     "description": "Unlock: " + (title || "Live Session"),
-                    "handler": async function (response) {
+                    "handler": function (response) {
                         console.log("✅ Payment Success Response:", response);
-                        try {
-                            payBtn.innerText = "Verifying...";
-                            await verifyRazorpayPayment({
-                                razorpay_order_id: response.razorpay_order_id,
-                                razorpay_payment_id: response.razorpay_payment_id,
-                                razorpay_signature: response.razorpay_signature,
-                                sessionId: sId,
-                                amount: parseInt(price)
-                            });
-                            
-                            console.log("✅ Payment Verified Successfully.");
-                            localStorage.setItem("activeSessionId", sId);
-                            localStorage.setItem("activeSessionPrice", price);
-                            localStorage.setItem("paymentData", JSON.stringify(response));
-                            window.location.href = "payment-success.html";
-                        } catch (verifyErr) {
-                            console.error("❌ Payment Verification Error:", verifyErr);
-                            alert("Payment verification failed. If amount was deducted, please contact support.");
-                            payBtn.innerText = originalText;
-                            payBtn.disabled = false;
-                        }
+                        
+                        response.sessionId = sId;
+                        response.amount = parseInt(price);
+                        response.sessionDate = localStorage.getItem("checkoutDate") || "Upcoming Weekend";
+                        response.sessionTime = localStorage.getItem("checkoutTime") || "As scheduled";
+
+                        localStorage.setItem("activeSessionId", sId);
+                        localStorage.setItem("activeSessionPrice", price);
+                        localStorage.setItem("paymentData", JSON.stringify(response));
+                        window.location.href = "payment-success.html";
                     },
                     "prefill": { "name": userName, "email": userEmail },
                     "theme": { "color": "#38bdf8" }

@@ -900,8 +900,24 @@
                 );
                 localStorage.setItem("activeSessionId", sessionId);
                 localStorage.setItem("activeSessionPrice", 0);
-                alert("Quiz unlocked for free!");
-                window.location.href = "payment-success.html"; // Redirect to success page
+                
+                const session = currentSessionList.find(s => s.id === sessionId);
+                let sDate = "Upcoming Weekend";
+                let sTime = "As scheduled";
+                if (session) {
+                    sDate = session.start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                    sTime = session.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                }
+                
+                const freePaymentData = {
+                    isFree: true,
+                    sessionId: sessionId,
+                    amount: 0,
+                    sessionDate: sDate,
+                    sessionTime: sTime
+                };
+                localStorage.setItem("paymentData", JSON.stringify(freePaymentData));
+                window.location.href = "payment-success.html";
             } catch (e) {
                 console.error("Error recording free unlock:", e);
                 alert("Error unlocking quiz: " + e.message + ". Please try again or contact support.");
@@ -949,29 +965,21 @@
                     "order_id": order.id,
                     "name": "Olympiad Portal",
                     "description": "Unlock: " + (title || "Live Session"),
-                    "handler": async function(response) {
+                    "handler": function(response) {
                         console.log("✅ Payment Success Response:", response);
-                        try {
-                            btn.innerText = "Verifying...";
-                            await verifyRazorpayPayment({
-                                razorpay_order_id: response.razorpay_order_id,
-                                razorpay_payment_id: response.razorpay_payment_id,
-                                razorpay_signature: response.razorpay_signature,
-                                sessionId: sessionId,
-                                amount: sessionPrice
-                            });
-                            
-                            console.log("✅ Payment Verified Successfully.");
-                            localStorage.setItem("activeSessionId", sessionId);
-                            localStorage.setItem("activeSessionPrice", sessionPrice);
-                            localStorage.setItem("paymentData", JSON.stringify(response));
-                            window.location.href = "payment-success.html";
-                        } catch (verifyErr) {
-                            console.error("❌ Payment Verification Error:", verifyErr);
-                            alert("Payment verification failed. If amount was deducted, please contact support.");
-                            btn.innerText = originalText;
-                            btn.disabled = false;
+                        
+                        const session = currentSessionList.find(s => s.id === sessionId);
+                        if (session) {
+                            response.sessionDate = session.start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                            response.sessionTime = session.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                         }
+                        response.sessionId = sessionId;
+                        response.amount = sessionPrice;
+
+                        localStorage.setItem("activeSessionId", sessionId);
+                        localStorage.setItem("activeSessionPrice", sessionPrice);
+                        localStorage.setItem("paymentData", JSON.stringify(response));
+                        window.location.href = "payment-success.html";
                     },
                     "prefill": { 
                         "name": user.displayName || "Student", 
@@ -1053,8 +1061,8 @@ function toggleMenu() {
         <h2 style="color: #10b981; margin-bottom: 15px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.6rem;">Registration Successful!</h2>
         <p style="color: #475569; margin-bottom: 15px; line-height: 1.6; font-size: 0.95rem;">
             You are now registered for Live Test for <strong id="popupClassText" style="color: #1e293b;">your Class</strong>.<br>
-            <strong>Date:</strong> Upcoming Weekend<br>
-            <strong>Time:</strong> As scheduled
+            <strong>Date:</strong> <span id="popupDateText">Upcoming Weekend</span><br>
+            <strong>Time:</strong> <span id="popupTimeText">As scheduled</span>
         </p>
         <div style="background: #f1f5f9; padding: 15px; border-radius: 12px; margin-bottom: 25px;">
             <p style="color: #64748b; margin: 0; font-size: 0.85rem;">You can explore mock tests and chapter-wise tests on our portal to prepare.</p>
@@ -1069,6 +1077,15 @@ function toggleMenu() {
             const formattedClass = className.toLowerCase().replace('class', 'Class ');
             const popupClassEl = document.getElementById("popupClassText");
             if(popupClassEl) popupClassEl.innerText = formattedClass;
+            
+            const pData = JSON.parse(localStorage.getItem("paymentData") || "{}");
+            if (pData && pData.sessionDate) {
+                document.getElementById("popupDateText").innerText = pData.sessionDate;
+            }
+            if (pData && pData.sessionTime) {
+                document.getElementById("popupTimeText").innerText = pData.sessionTime;
+            }
+            
             const modal = document.getElementById("paymentSuccessModal");
             if(modal) modal.style.display = "flex";
             localStorage.removeItem("paymentData");
