@@ -58,6 +58,18 @@
         .btn-success { background: #34a853; color: #fff; border-color: #34a853; }
         .btn-success:hover { background: #28803e; }
         
+        .numerical-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .numerical-input:focus { border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2); }
+        
         .right-panel { width: 320px; display: flex; flex-direction: column; background: #eef2f5; overflow: hidden; flex-shrink: 0; }
         
         .profile-section { display: flex; align-items: center; gap: 15px; padding: 15px; background: #fff; border-bottom: 1px solid #ccc; }
@@ -144,7 +156,7 @@
         
         <ul style="font-size: 14px; line-height: 1.7; color: #333; padding-left: 20px; margin-bottom: 30px;">
             <li>The countdown timer at the top right of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself.</li>
-            <li>There are multiple types of questions: <b>Single Correct Option</b> and <b>Multiple Correct Options</b>.</li>
+            <li>There are multiple types of questions: <b>Single Correct Option</b>, <b>Multiple Correct Options</b>, and <b>Numerical Value Type</b>.</li>
             <li><b>Marking Scheme for Single Correct Option:</b>
                 <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
                     <li><b>Full Marks:</b> +3 If only the correct option is chosen.</li>
@@ -158,6 +170,12 @@
                     <li><b>Partial Marks:</b> +1 For each correct option chosen, provided NO incorrect option is chosen.</li>
                     <li><b>Zero Marks:</b> 0 If none of the options is chosen (i.e. the question is unanswered).</li>
                     <li><b>Negative Marks:</b> -2 In all other cases (e.g., if any incorrect option is selected).</li>
+                </ul>
+            </li>
+            <li><b>Marking Scheme for Numerical Value Type:</b>
+                <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                    <li><b>Full Marks:</b> +3 If the entered numerical value is correct.</li>
+                    <li><b>Zero Marks:</b> 0 If unanswered or incorrectly answered (no negative marking).</li>
                 </ul>
             </li>
             <li>You can mark questions for review using the <b>Mark for Review & Next</b> button to revisit them later.</li>
@@ -339,40 +357,68 @@
         const q = testData.questions[currentQ];
         let qIdText = q.id ? ` <span style="color: #666; font-size: 12px; margin-left: 10px;">| ID: ${q.id}</span>` : "";
         document.getElementById("qNumber").innerHTML = `Question No. ${currentQ + 1}${qIdText}`;
-        document.getElementById("qTypeBadge").innerText = q.type === "multi" ? "Multiple Correct Options" : "Single Correct Option";
+        
+        const isMulti = q.type === "multi";
+        const isNumerical = q.type === "numerical";
+        
+        if (isNumerical) {
+            document.getElementById("qTypeBadge").innerText = "Numerical Value Type";
+        } else {
+            document.getElementById("qTypeBadge").innerText = isMulti ? "Multiple Correct Options" : "Single Correct Option";
+        }
+        
         document.getElementById("qText").innerHTML = q.questionText; // Allow HTML rendering in JSON
         
         const container = document.getElementById("optionsContainer");
         container.innerHTML = "";
         
-        const isMulti = q.type === "multi";
-        const inputType = isMulti ? "checkbox" : "radio";
-        const currentAns = selectedAnswers[currentQ];
+        const currentAns = selectedAnswers[currentQ] || [];
 
-        q.options.forEach((opt) => {
-            if (!opt) return;
-            const isChecked = currentAns.includes(opt);
-            
-            const label = document.createElement("label");
-            label.className = "opt-row";
-            label.innerHTML = `
-                <input type="${inputType}" name="q_opt" value="${opt}" ${isChecked ? 'checked' : ''}>
-                <span>${opt}</span>
-            `;
-            
-            // Handle selection event
-            label.querySelector("input").addEventListener("change", (e) => {
-                if (isMulti) {
-                    if (e.target.checked) selectedAnswers[currentQ].push(opt);
-                    else selectedAnswers[currentQ] = selectedAnswers[currentQ].filter(val => val !== opt);
+        if (isNumerical) {
+            const inputField = document.createElement("input");
+            inputField.type = "text";
+            inputField.className = "numerical-input";
+            inputField.placeholder = "Enter your numerical answer here...";
+            if (currentAns && currentAns.length > 0) {
+                inputField.value = currentAns[0];
+            }
+            inputField.addEventListener("input", (e) => {
+                const val = e.target.value.trim();
+                if (val) {
+                    selectedAnswers[currentQ] = [val];
                 } else {
-                    selectedAnswers[currentQ] = [opt];
+                    selectedAnswers[currentQ] = [];
                 }
                 updatePalette();
             });
-            
-            container.appendChild(label);
-        });
+            container.appendChild(inputField);
+        } else {
+            const inputType = isMulti ? "checkbox" : "radio";
+            (q.options || []).forEach((opt) => {
+                if (!opt) return;
+                const isChecked = currentAns.includes(opt);
+                
+                const label = document.createElement("label");
+                label.className = "option-row";
+                label.innerHTML = `
+                    <input type="${inputType}" name="q_opt" value="${opt}" ${isChecked ? 'checked' : ''}>
+                    <span>${opt}</span>
+                `;
+                
+                // Handle selection event
+                label.querySelector("input").addEventListener("change", (e) => {
+                    if (isMulti) {
+                        if (e.target.checked) selectedAnswers[currentQ].push(opt);
+                        else selectedAnswers[currentQ] = selectedAnswers[currentQ].filter(val => val !== opt);
+                    } else {
+                        selectedAnswers[currentQ] = [opt];
+                    }
+                    updatePalette();
+                });
+                
+                container.appendChild(label);
+            });
+        }
         
         updatePalette();
     }

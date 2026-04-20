@@ -174,6 +174,7 @@
                 
                 let isAllCorrect = true;
                 let hasWrong = false;
+                const isNumerical = q.type === 'numerical';
                 
                 userAns.forEach(ua => {
                     if (!correctAns.includes(ua)) hasWrong = true;
@@ -181,12 +182,31 @@
                 correctAns.forEach(ca => {
                     if (!userAns.includes(ca)) isAllCorrect = false;
                 });
+                if (isNumerical) {
+                    if (userAns.length > 0 && correctAns.length > 0) {
+                        if (userAns[0] !== correctAns[0]) hasWrong = true;
+                    } else if (userAns.length > 0 && correctAns.length === 0) {
+                        hasWrong = true;
+                    } else {
+                        isAllCorrect = false; // unattempted
+                    }
+                } else {
+                    userAns.forEach(ua => {
+                        if (!correctAns.includes(ua)) hasWrong = true;
+                    });
+                    correctAns.forEach(ca => {
+                        if (!userAns.includes(ca)) isAllCorrect = false;
+                    });
+                }
                 
                 let earned = 0;
                 let statusTag = "";
                 let markClass = "";
                 
-                const qMaxMarks = q.type === 'multi' ? 4 : 3;
+                let qMaxMarks = 3;
+                if (q.type === 'multi') qMaxMarks = 4;
+                else if (q.type === 'numerical') qMaxMarks = 3;
+                
                 maxScorePossible += qMaxMarks;
                 
                 if (userAns.length === 0) {
@@ -194,6 +214,18 @@
                     statusTag = "Unattempted";
                     markClass = "zero";
                     unattemptedCount++;
+                } else if (isNumerical) {
+                    if (!hasWrong) {
+                        earned = 3;
+                        statusTag = "Fully Correct";
+                        markClass = "positive";
+                        correctCount++;
+                    } else {
+                        earned = 0; 
+                        statusTag = "Incorrect";
+                        markClass = "negative";
+                        incorrectCount++;
+                    }
                 } else if (hasWrong) {
                     earned = q.type === 'multi' ? -2 : -1;
                     statusTag = "Incorrect";
@@ -214,39 +246,69 @@
                 totalScoreEarned += earned;
 
                 let optionsHtml = "";
-                q.options.forEach(opt => {
-                    if(!opt) return;
+                if (isNumerical) {
+                    const uaText = userAns.length > 0 ? userAns[0] : "Not Attempted";
+                    const caText = correctAns.length > 0 ? correctAns[0] : "N/A";
                     let styleClass = "opt-box";
                     let iconHtml = "";
-                    const isUserSelected = userAns.includes(opt);
-                    const isTrueCorrect = correctAns.includes(opt);
-                    
-                    if (isUserSelected && isTrueCorrect) {
-                        styleClass += " opt-correct-selected";
-                        iconHtml = `<div class="opt-icon">✅ <span>Your Ans & Correct</span></div>`;
+                    if (userAns.length > 0) {
+                        if (!hasWrong) {
+                            styleClass += " opt-correct-selected";
+                            iconHtml = `<div class="opt-icon">✅ <span>Correct</span></div>`;
+                        } else {
+                            styleClass += " opt-wrong-selected";
+                            iconHtml = `<div class="opt-icon">❌ <span>Incorrect</span></div>`;
+                        }
                     }
-                    else if (isUserSelected && !isTrueCorrect) {
-                        styleClass += " opt-wrong-selected";
-                        iconHtml = `<div class="opt-icon">❌ <span>Your Ans</span></div>`;
-                    }
-                    else if (!isUserSelected && isTrueCorrect) {
-                        styleClass += " opt-missed-correct";
-                        iconHtml = `<div class="opt-icon">🎯 <span>Correct Ans</span></div>`;
-                    }
-                    
-                    optionsHtml += `<div class="${styleClass}">
-                        <div style="flex: 1;">${opt}</div>
-                        ${iconHtml}
+                    optionsHtml = `<div class="${styleClass}" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                            <strong>Your Answer:</strong> <span>${uaText}</span>
+                            ${iconHtml}
+                        </div>
+                        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 4px;">
+                            <strong>Correct Answer:</strong> <span style="color: var(--success); font-weight: 800;">${caText}</span>
+                        </div>
                     </div>`;
-                });
+                } else {
+                    (q.options || []).forEach(opt => {
+                        if(!opt) return;
+                        let styleClass = "opt-box";
+                        let iconHtml = "";
+                        const isUserSelected = userAns.includes(opt);
+                        const isTrueCorrect = correctAns.includes(opt);
+                        
+                        if (isUserSelected && isTrueCorrect) {
+                            styleClass += " opt-correct-selected";
+                            iconHtml = `<div class="opt-icon">✅ <span>Your Ans & Correct</span></div>`;
+                        }
+                        else if (isUserSelected && !isTrueCorrect) {
+                            styleClass += " opt-wrong-selected";
+                            iconHtml = `<div class="opt-icon">❌ <span>Your Ans</span></div>`;
+                        }
+                        else if (!isUserSelected && isTrueCorrect) {
+                            styleClass += " opt-missed-correct";
+                            iconHtml = `<div class="opt-icon">🎯 <span>Correct Ans</span></div>`;
+                        }
+                        
+                        optionsHtml += `<div class="${styleClass}">
+                            <div style="flex: 1;">${opt}</div>
+                            ${iconHtml}
+                        </div>`;
+                    });
+                }
                 
                 let qIdText = q.id ? ` | ID: ${q.id}` : "";
+                let typeBadgeText = "";
+                if (q.type === 'multi') typeBadgeText = "Multi-Correct (+4, -2)";
+                else if (q.type === 'numerical') typeBadgeText = "Numerical Value (+3, 0)";
+                else typeBadgeText = "Single Correct (+3, -1)";
+
                 html += `
                 <div class="solution-block">
                     <div class="q-header">
                         <div class="q-title-wrap">
-                            <div class="q-title">Question ${idx + 1}</div>
-                            <div class="q-badge">${q.type === 'multi' ? 'Multi-Correct (+4, -2)' : 'Single Correct (+3, -1)'}</div>
+                            <div class="q-title">Question ${idx + 1}${qIdText}</div>
+                            <div class="q-badge">${typeBadgeText}</div>
                             <div class="q-badge">${statusTag}</div>
                         </div>
                         <div class="q-marks ${markClass}">Marks: ${earned > 0 ? '+' : ''}${earned}</div>
