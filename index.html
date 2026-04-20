@@ -464,6 +464,28 @@
             100% { box-shadow: 0 0 15px rgba(121, 40, 202, 0.4); }
         }
 
+        /* Enhanced JEE Advanced Card Styles */
+        .home-jee-card {
+            background: linear-gradient(-45deg, #059669, #0284c7, #4f46e5, #059669) !important;
+            background-size: 300% 300% !important;
+            animation: liveGradient 6s ease infinite, pulseGlowJee 2s infinite !important;
+            border: 3px solid #6ee7b7 !important;
+            color: #ffffff !important;
+        }
+        .home-jee-card h3, .home-jee-card p {
+            color: #ffffff !important;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+        }
+        .home-jee-card:hover {
+            transform: translateY(-10px) scale(1.02) !important;
+            box-shadow: 0 30px 60px rgba(5, 150, 105, 0.4) !important;
+        }
+        @keyframes pulseGlowJee {
+            0% { box-shadow: 0 0 15px rgba(5, 150, 105, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(5, 150, 105, 0.9); }
+            100% { box-shadow: 0 0 15px rgba(5, 150, 105, 0.4); }
+        }
+
         /* Home Page Vertical Leaderboard */
         .vertical-leaderboard-container {
             width: 90%;
@@ -631,6 +653,15 @@
                     </div>
                 </div>
             </a>
+            <a href="jee-list.html" style="text-decoration: none; display: block;">
+                <div class="home-jee-card" style="padding: 18px; border-radius: 16px; text-align: left; display: flex; align-items: center; gap: 15px;">
+                    <div style="font-size: 28px; background: rgba(255, 255, 255, 0.2); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #a7f3d0;">🎓</div>
+                    <div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 2px; font-weight: 800; color: #ffffff;">JEE Advanced Mocks</h3>
+                        <p style="font-size: 0.9rem; color: #a7f3d0; font-weight: 800;">Multi-Correct Practice 🎯</p>
+                    </div>
+                </div>
+            </a>
         </section>
 
 
@@ -678,6 +709,13 @@
                 <div>
                     <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; color: #881337;">Know Why ??</h3>
                     <p style="font-size: 0.95rem; margin: 0; color: var(--muted);">Discover mind-blowing scientific facts that will make you completely crazy to know more.</p>
+                </div>
+            </a>
+            <a href="jee-list.html" class="feature-card home-jee-card" style="padding: 30px; display: flex; align-items: center; gap: 20px; text-align: left; text-decoration: none;">
+                <div style="font-size: 3rem; background: rgba(255,255,255,0.2); padding: 15px; border-radius: 16px; color: #a7f3d0;">🎓</div>
+                <div>
+                    <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; color: #ffffff;">JEE Advanced Mocks</h3>
+                    <p style="font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.95);">Practice with Multi-Correct questions and strict grading to crack the toughest engineering entrance.</p>
                 </div>
             </a>
         </section>
