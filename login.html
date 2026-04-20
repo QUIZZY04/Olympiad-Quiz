@@ -295,10 +295,10 @@
     <div class="modal-content" style="max-width: 440px; text-align: center;">
         <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Not a Registered User</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">We couldn't find an account associated with these details. Please create your account on the signup page.</p>
+        <p class="subtitle" style="margin-bottom: 20px;">Please verify mobile number and create account first.</p>
         <div style="display: flex; gap: 10px;">
-            <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; transition: 0.2s;">No Thanks</button>
-            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">OK</button>
+            <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; transition: 0.2s;">Cancel</button>
+            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">Sign Up</button>
         </div>
     </div>
 </div>
@@ -340,7 +340,8 @@ import {
     signInWithPhoneNumber,
     linkWithPhoneNumber,
     signInWithPopup, 
-    GoogleAuthProvider 
+    GoogleAuthProvider,
+    getAdditionalUserInfo
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -588,8 +589,14 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
 // Google Sign-In Logic
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
     try {
-        await signInWithPopup(auth, provider);
-        // The onAuthStateChanged listener will automatically check DB and trap them to verify mobile
+        const result = await signInWithPopup(auth, provider);
+        const additionalInfo = getAdditionalUserInfo(result);
+        if (additionalInfo && additionalInfo.isNewUser) {
+            document.getElementById('linkPhoneModal').style.display = 'none';
+            await result.user.delete();
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            return;
+        }
     } catch (err) { alert(err.message); }
 });
 
