@@ -390,33 +390,35 @@ function initLinkRecaptcha() {
     window.linkRecaptchaVerifier.render().catch(console.error);
 }
 
+let isManualLogin = false;
+
+async function checkUserAndRedirect(user) {
+    try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+            if (userDoc.data().phone) {
+                localStorage.setItem("isLoggedIn", "true");
+                sessionStorage.removeItem("redirectAfterLogin");
+                window.location.replace(redirectUrl);
+            } else {
+                document.getElementById('linkPhoneModal').style.display = 'flex';
+                if (!window.linkRecaptchaVerifier) {
+                    initLinkRecaptcha();
+                }
+            }
+        } else {
+            await signOut(auth);
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+        }
+    } catch(e) {
+        console.error("Auth State Check Error:", e);
+    }
+}
+
 // Robust Guard: Force mobile verification for existing sessions
 onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        try {
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-                if (userDoc.exists()) {
-                    if (userDoc.data().phone) {
-                        localStorage.setItem("isLoggedIn", "true");
-                        sessionStorage.removeItem("redirectAfterLogin");
-                        window.location.replace(redirectUrl);
-                    } else {
-                        document.getElementById('linkPhoneModal').style.display = 'flex';
-                        if (!window.linkRecaptchaVerifier) {
-                            initLinkRecaptcha();
-                        }
-                    }
-                } else {
-                    // New user, document is being created by the Cloud Function.
-                    // Proceed to phone linking as the new document won't have a phone number.
-                    document.getElementById('linkPhoneModal').style.display = 'flex';
-                    if (!window.linkRecaptchaVerifier) {
-                        initLinkRecaptcha();
-                    }
-                }
-        } catch(e) {
-            console.error("Auth State Check Error:", e);
-        }
+    if (user && !isManualLogin) {
+        checkUserAndRedirect(user);
     }
 });
 
@@ -537,10 +539,12 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
     const btn = document.getElementById("verifyOtpBtn");
     btn.disabled = true;
     btn.innerText = "Verifying...";
+    isManualLogin = true;
     try {
-        await confirmationResult.confirm(code);
-        // onAuthStateChanged will handle the rest (checking DB, routing, etc.)
+        const result = await confirmationResult.confirm(code);
+        checkUserAndRedirect(result.user);
     } catch (err) {
+        isManualLogin = false;
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-verification-code') errorMsg = "Incorrect OTP. Please try again.";
         else if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
@@ -618,10 +622,12 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     const btn = e.target.querySelector('button');
     btn.disabled = true;
     btn.innerText = "Signing In...";
+    isManualLogin = true;
     try {
-        await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
-        // Successful email login will trigger onAuthStateChanged which handles the phone check and routing.
+        const result = await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
+        checkUserAndRedirect(result.user);
     } catch(err) { 
+        isManualLogin = false;
         if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') {
             document.getElementById('notRegisteredModal').style.display = 'flex';
         } else {
@@ -634,6 +640,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
 
 // Google Sign-In Logic
 document.getElementById("googleSignInBtn").addEventListener("click", async () => {
+    isManualLogin = true;
     try {
         const result = await signInWithPopup(auth, provider);
         const additionalInfo = getAdditionalUserInfo(result);
@@ -641,9 +648,14 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
             document.getElementById('linkPhoneModal').style.display = 'none';
             await result.user.delete();
             document.getElementById('notRegisteredModal').style.display = 'flex';
+            isManualLogin = false;
             return;
         }
-    } catch (err) { alert(err.message); }
+        checkUserAndRedirect(result.user);
+    } catch (err) { 
+        alert(err.message); 
+        isManualLogin = false;
+    }
 });
 
 // Forgot Password Logic
