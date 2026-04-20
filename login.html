@@ -372,6 +372,24 @@ try {
     redirectUrl = "dashboard.html";
 }
 
+function initLoginRecaptcha() {
+    if (window.recaptchaVerifier) {
+        try { window.recaptchaVerifier.clear(); } catch (e) {}
+        window.recaptchaVerifier = null;
+    }
+    window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { 'size': 'invisible' });
+    window.recaptchaVerifier.render().catch(console.error);
+}
+
+function initLinkRecaptcha() {
+    if (window.linkRecaptchaVerifier) {
+        try { window.linkRecaptchaVerifier.clear(); } catch (e) {}
+        window.linkRecaptchaVerifier = null;
+    }
+    window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', { 'size': 'invisible' });
+    window.linkRecaptchaVerifier.render().catch(console.error);
+}
+
 // Robust Guard: Force mobile verification for existing sessions
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -385,10 +403,7 @@ onAuthStateChanged(auth, async (user) => {
                     } else {
                         document.getElementById('linkPhoneModal').style.display = 'flex';
                         if (!window.linkRecaptchaVerifier) {
-                            window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', {
-                                'size': 'invisible'
-                            });
-                            window.linkRecaptchaVerifier.render().catch(console.error);
+                            initLinkRecaptcha();
                         }
                     }
                 } else {
@@ -396,10 +411,7 @@ onAuthStateChanged(auth, async (user) => {
                     // Proceed to phone linking as the new document won't have a phone number.
                     document.getElementById('linkPhoneModal').style.display = 'flex';
                     if (!window.linkRecaptchaVerifier) {
-                        window.linkRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-link', {
-                            'size': 'invisible'
-                        });
-                        window.linkRecaptchaVerifier.render().catch(console.error);
+                        initLinkRecaptcha();
                     }
                 }
         } catch(e) {
@@ -438,8 +450,7 @@ window.showMobileSection = function() {
     document.getElementById('changeSection').classList.add('hidden');
 
     if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { 'size': 'invisible' });
-        window.recaptchaVerifier.render().catch(console.error);
+        initLoginRecaptcha();
     }
 };
 
@@ -498,14 +509,25 @@ document.getElementById("phoneForm").addEventListener("submit", async (e) => {
             throw dbErr;
         }
 
+        // JIT Guard: Ensure verifier is completely initialized before Firebase executes
+        if (!window.recaptchaVerifier) {
+            initLoginRecaptcha();
+        }
+
         confirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
         console.log("OTP Sent Successfully to:", phone);
+        alert("OTP sent successfully to " + phone);
         document.getElementById("phoneForm").classList.add("hidden");
         document.getElementById("otpForm").classList.remove("hidden");
     } catch (err) {
-        alert("Failed to send OTP: " + err.message);
+        let errorMsg = "Verification failed. Please try again.";
+        if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
+        else if (err.code === 'auth/too-many-requests') errorMsg = "Too many attempts. Please try again later.";
+        else if (err.code === 'auth/network-request-failed') errorMsg = "Network error. Please check your internet connection.";
+        
+        alert(errorMsg);
         btn.disabled = false; btn.innerText = "Send OTP";
-        if (window.recaptchaVerifier) window.recaptchaVerifier.render().then(id => window.recaptchaVerifier.reset(id));
+        initLoginRecaptcha();
     }
 });
 
@@ -519,7 +541,10 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
         await confirmationResult.confirm(code);
         // onAuthStateChanged will handle the rest (checking DB, routing, etc.)
     } catch (err) {
-        alert("Incorrect OTP or session expired. Please try again.");
+        let errorMsg = "Verification failed. Please try again.";
+        if (err.code === 'auth/invalid-verification-code') errorMsg = "Incorrect OTP. Please try again.";
+        else if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
+        alert(errorMsg);
         btn.disabled = false;
         btn.innerText = "Verify & Sign In";
     }
@@ -536,16 +561,24 @@ document.getElementById("linkPhoneForm").addEventListener("submit", async (e) =>
     btn.disabled = true; btn.innerText = "Sending...";
     
     try {
+        // JIT Guard: Ensure verifier is completely initialized before Firebase executes
+        if (!window.linkRecaptchaVerifier) {
+            initLinkRecaptcha();
+        }
+
         linkConfirmationResult = await linkWithPhoneNumber(auth.currentUser, phone, window.linkRecaptchaVerifier);
+        alert("OTP sent successfully to " + phone);
         document.getElementById("linkPhoneForm").classList.add("hidden");
         document.getElementById("linkOtpForm").classList.remove("hidden");
     } catch (err) {
-        if (err.code === 'auth/credential-already-in-use') {
-            alert("This mobile number is already registered to another account. Please use a different number.");
-        } else {
-            alert("Failed to send verification: " + err.message);
-        }
-        btn.disabled = false; btn.innerText = "Send Verification Code";
+        let errorMsg = "Failed to send verification. Please try again.";
+        if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
+        else if (err.code === 'auth/too-many-requests') errorMsg = "Too many attempts. Please try again later.";
+        else if (err.code === 'auth/credential-already-in-use') errorMsg = "This mobile number is already linked to another account.";
+        else if (err.code === 'auth/network-request-failed') errorMsg = "Network error. Please check your connection.";
+        alert(errorMsg);
+        btn.disabled = false; btn.innerText = "Send OTP";
+        initLinkRecaptcha();
     }
 });
 
@@ -572,7 +605,9 @@ document.getElementById("linkOtpForm").addEventListener("submit", async (e) => {
         sessionStorage.removeItem("redirectAfterLogin");
         window.location.href = redirectUrl;
     } catch (err) {
-        alert("Incorrect OTP. Please try again.");
+        let errorMsg = "Incorrect OTP. Please try again.";
+        if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
+        alert(errorMsg);
         btn.disabled = false; btn.innerText = "Verify & Continue";
     }
 });

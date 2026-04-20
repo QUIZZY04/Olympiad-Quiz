@@ -257,7 +257,7 @@
         <div class="signup-box">
             
             <div id="phoneSignupSection">
-nge                <h2>Create your Account Now</h2>
+                <h2>Create your Account Now</h2>
                 <p class="subtitle">Enter your mobile number to begin.</p>
                 <form id="phoneSignupForm">
                     <div style="display: flex; gap: 10px; margin-bottom: 16px;">
@@ -368,12 +368,18 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-window.onload = () => {
+// Initialize Invisible reCAPTCHA directly (DOM is already loaded for module scripts)
+function initRecaptcha() {
+    if (window.signupRecaptchaVerifier) {
+        try { window.signupRecaptchaVerifier.clear(); } catch (e) {}
+        window.signupRecaptchaVerifier = null;
+    }
     window.signupRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-signup', {
         'size': 'invisible'
     });
     window.signupRecaptchaVerifier.render().catch(console.error);
-};
+}
+initRecaptcha();
 
 // Phone Signup Logic
 let signupConfirmation;
@@ -387,21 +393,26 @@ document.getElementById("phoneSignupForm").addEventListener("submit", async (e) 
     btn.disabled = true;
     btn.innerText = "Sending...";
 
+    // JIT Guard: Ensure verifier is completely initialized before Firebase executes
+    if (!window.signupRecaptchaVerifier) {
+        initRecaptcha();
+    }
+
     try {
         signupConfirmation = await signInWithPhoneNumber(auth, phone, window.signupRecaptchaVerifier);
         console.log("Signup OTP Sent to:", phone);
+        alert("OTP sent successfully to " + phone);
         document.getElementById("phoneSignupForm").classList.add("hidden");
         document.getElementById("pOtpForm").classList.remove("hidden");
     } catch (err) {
-        alert("Error: " + err.message);
+        let errorMsg = "Verification failed. Please try again.";
+        if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
+        else if (err.code === 'auth/too-many-requests') errorMsg = "Too many attempts. Please try again later.";
+        else if (err.code === 'auth/network-request-failed') errorMsg = "Network error. Please check your internet connection.";
+        
+        alert(errorMsg);
         btn.disabled = false; btn.innerText = "Send OTP";
-        if (window.signupRecaptchaVerifier) {
-            window.signupRecaptchaVerifier.clear();
-            window.signupRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-signup', {
-                'size': 'invisible'
-            });
-            window.signupRecaptchaVerifier.render();
-        }
+        initRecaptcha(); // Safely reset recaptcha
     }
 });
 
@@ -429,7 +440,11 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
         document.getElementById("phoneSignupSection").classList.add("hidden");
         document.getElementById("completeProfileSection").classList.remove("hidden");
     } catch (err) {
-        alert("Verification failed: " + err.message);
+        let errorMsg = "Verification failed. Please try again.";
+        if (err.code === 'auth/invalid-verification-code') errorMsg = "Incorrect OTP. Please check and try again.";
+        else if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
+        
+        alert(errorMsg);
         btn.disabled = false;
         btn.innerText = "Verify Mobile";
     }
