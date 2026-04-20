@@ -387,6 +387,7 @@ const auth=getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
     if (!user) {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
         window.location.replace("login.html");
     } else {
         document.body.style.visibility = 'visible';

@@ -359,7 +359,18 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-const redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
+let redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
+try {
+    // Only allow same-origin redirects to prevent Open Redirect vulnerabilities
+    const parsedUrl = new URL(redirectUrl, window.location.origin);
+    if (parsedUrl.origin !== window.location.origin) {
+        redirectUrl = "dashboard.html";
+    } else {
+        redirectUrl = parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
+    }
+} catch (e) {
+    redirectUrl = "dashboard.html";
+}
 
 // Robust Guard: Force mobile verification for existing sessions
 onAuthStateChanged(auth, async (user) => {

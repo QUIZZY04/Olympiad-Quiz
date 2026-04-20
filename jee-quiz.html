@@ -18,6 +18,7 @@
     
     <script>
       if (localStorage.getItem("isLoggedIn") !== "true") {
+              sessionStorage.setItem("redirectAfterLogin", window.location.href);
           window.location.replace("login.html");
       }
     </script>
@@ -261,6 +262,7 @@
     onAuthStateChanged(auth, (user) => {
         document.body.style.visibility = 'visible';
         if (!user) {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.replace("login.html");
         } else {
             if (user.email === "madhhu52@gmail.com") {
