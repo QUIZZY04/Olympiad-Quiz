@@ -349,18 +349,9 @@
     </div>
 </div>
 
-<div id="customModal">
-    <div class="modal-box">
-        <div style="font-size:50px; margin-bottom:20px;">🎓</div>
-        <h2 style="color:var(--brand); margin-bottom:15px; font-weight:800; text-transform:uppercase;">Account Created</h2>
-        <p style="color:var(--muted); line-height:1.6; margin-bottom:25px;">Account setup completed successfully. Please use your credentials to log in on the next screen to start your journey.</p>
-        <button onclick="window.location.href='login.html'" style="background:var(--brand); color:white; padding:12px 30px; border:none; border-radius:10px; font-weight:800; cursor:pointer; width:100%;">PROCEED TO LOGIN</button>
-    </div>
-</div>
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updatePassword, linkWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -376,6 +367,18 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists() && userDoc.data().signupCompleted) {
+            window.location.href = "dashboard.html";
+        } else {
+            document.getElementById("phoneSignupSection").classList.add("hidden");
+            document.getElementById("completeProfileSection").classList.remove("hidden");
+        }
+    }
+});
 
 // Initialize Invisible reCAPTCHA directly (DOM is already loaded for module scripts)
 function initRecaptcha() {
@@ -445,6 +448,15 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
             return;
         }
 
+        await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
+            phoneNumber: user.phoneNumber,
+            phoneVerified: true,
+            signupCompleted: false,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }, { merge: true });
+
         // Show complete profile section
         document.getElementById("phoneSignupSection").classList.add("hidden");
         document.getElementById("completeProfileSection").classList.remove("hidden");
@@ -473,11 +485,10 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
 
     try {
         const user = auth.currentUser;
-        await updateEmail(user, email);
-        await updatePassword(user, password);
+        const credential = EmailAuthProvider.credential(email, password);
+        await linkWithCredential(user, credential);
         
         const providerIds = user.providerData.map(p => p.providerId);
-        if (!providerIds.includes("password")) providerIds.push("password");
 
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
@@ -488,14 +499,14 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
             phoneVerified: true,
             authProviders: providerIds,
             class: classSelect, 
-            createdAt: new Date(),
+            createdAt: user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date(),
             updatedAt: new Date(),
             signupCompleted: true,
             hasPassword: true
         }, { merge: true });
 
-        await signOut(auth);
-        document.getElementById("customModal").style.display = "flex";
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "dashboard.html";
     } catch(error) { 
         alert("Issue creating account: " + error.message); 
         btn.disabled = false;
@@ -525,14 +536,14 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
             phoneVerified: true,
             authProviders: providerIds,
             class: userClass,
-            createdAt: new Date(),
+            createdAt: user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date(),
             updatedAt: new Date(),
             signupCompleted: true,
             googleLinked: true
         }, { merge: true });
         
-        await signOut(auth);
-        document.getElementById("customModal").style.display = "flex";
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "dashboard.html";
     } catch (error) {
         alert("Google link failed: " + error.message);
         btn.disabled = false;

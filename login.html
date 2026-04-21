@@ -339,21 +339,8 @@
     <div class="modal-content" style="max-width: 440px; text-align: center;">
         <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Profile Incomplete</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">Please link an Email & Password or a Google account to secure your profile.</p>
-        
-        <button type="button" class="social-btn" id="forceLinkGoogleBtn">
-            <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
-            Complete with Google
-        </button>
-
-        <div class="divider">or use email</div>
-
-        <form id="forceLinkEmailForm">
-            <input type="text" id="forceName" placeholder="Full Name" required style="width: 100%; padding: 12px 16px; margin-bottom: 12px; background: var(--subtle); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; outline: none; color: var(--text);">
-            <input type="email" id="forceEmail" placeholder="Email Address" required style="width: 100%; padding: 12px 16px; margin-bottom: 12px; background: var(--subtle); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; outline: none; color: var(--text);">
-            <input type="password" id="forcePassword" placeholder="Create Password" required style="width: 100%; padding: 12px 16px; margin-bottom: 12px; background: var(--subtle); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; outline: none; color: var(--text);">
-            <button type="submit" class="main-btn" style="width: 100%; padding: 14px; background: var(--brand); color: white; border: none; border-radius: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer;">Save Profile</button>
-        </form>
+        <p class="subtitle" style="margin-bottom: 20px;">Please complete signup by adding Email/Password or Google account.</p>
+        <button type="button" onclick="window.location.href='signup.html'" class="main-btn" style="width: 100%; padding: 14px; background: var(--brand); color: white; border: none; border-radius: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer;">Complete Signup</button>
         <button type="button" onclick="logoutAndCancel()" style="background: none; border: none; color: var(--danger); font-weight: 700; margin-top: 20px; cursor: pointer;">Cancel & Logout</button>
     </div>
 </div>
@@ -450,7 +437,7 @@ async function checkUserAndRedirect(user) {
         }
 
         const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-        if (!hasEmailOrGoogle) {
+        if (!hasEmailOrGoogle || data.signupCompleted === false) {
             document.getElementById('forceEmailGoogleModal').style.display = 'flex';
             return;
         }
@@ -671,58 +658,6 @@ document.getElementById("linkOtpForm").addEventListener("submit", async (e) => {
         if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
         alert(errorMsg);
         btn.disabled = false; btn.innerText = "Verify & Continue";
-    }
-});
-
-document.getElementById("forceLinkEmailForm")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = document.getElementById("forceName").value.trim();
-    const email = document.getElementById("forceEmail").value.trim();
-    const password = document.getElementById("forcePassword").value;
-    const btn = e.target.querySelector('button');
-    btn.disabled = true; btn.innerText = "Saving...";
-    try {
-        const user = auth.currentUser;
-        await updateEmail(user, email);
-        await updatePassword(user, password);
-        
-        const providerIds = user.providerData.map(p => p.providerId);
-        if (!providerIds.includes("password")) providerIds.push("password");
-
-        const userData = {
-            uid: user.uid,
-            name: name,
-            fullName: name,
-            email: email,
-            phoneNumber: user.phoneNumber,
-            phoneVerified: true,
-            authProviders: providerIds,
-            signupCompleted: true,
-            updatedAt: new Date()
-        };
-        await setDoc(doc(db, "users", user.uid), userData, { merge: true });
-        document.getElementById('forceEmailGoogleModal').style.display = 'none';
-        checkUserAndRedirect(user);
-    } catch(error) { 
-        alert("Error saving profile: " + error.message); 
-        btn.disabled = false; btn.innerText = "Save Profile";
-    }
-});
-
-document.getElementById("forceLinkGoogleBtn")?.addEventListener("click", async () => {
-    const btn = document.getElementById("forceLinkGoogleBtn");
-    btn.disabled = true;
-    try {
-        const result = await linkWithPopup(auth.currentUser, provider);
-        const user = result.user;
-        const providerIds = user.providerData.map(p => p.providerId);
-        const userData = { uid: user.uid, name: user.displayName || "Student", fullName: user.displayName || "Student", email: user.email, phoneNumber: user.phoneNumber, phoneVerified: true, authProviders: providerIds, signupCompleted: true, updatedAt: new Date() };
-        await setDoc(doc(db, "users", user.uid), userData, { merge: true });
-        document.getElementById('forceEmailGoogleModal').style.display = 'none';
-        checkUserAndRedirect(user);
-    } catch (error) {
-        alert("Google link failed: " + error.message);
-        btn.disabled = false;
     }
 });
 
