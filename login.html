@@ -413,8 +413,10 @@ function initLinkRecaptcha() {
 }
 
 let isManualLogin = false;
+let isRedirecting = false;
 
 async function checkUserAndRedirect(user) {
+    if (isRedirecting) return;
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         
@@ -442,15 +444,31 @@ async function checkUserAndRedirect(user) {
             return;
         }
 
-        if (!data.signupCompleted) {
-            await setDoc(doc(db, "users", user.uid), { signupCompleted: true, phoneVerified: true, authProviders: providerIds, updatedAt: new Date() }, { merge: true });
+        let updates = {};
+        
+        // Guard: Ensure 'phone' field exists to prevent dashboard bounce-back loop
+        if (!data.phone && hasPhone) {
+            updates.phone = user.phoneNumber || data.phoneNumber;
         }
 
+        if (!data.signupCompleted) {
+            updates.signupCompleted = true;
+            updates.phoneVerified = true;
+            updates.authProviders = providerIds;
+            updates.updatedAt = new Date();
+        }
+
+        if (Object.keys(updates).length > 0) {
+            await setDoc(doc(db, "users", user.uid), updates, { merge: true });
+        }
+
+        isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");
         sessionStorage.removeItem("redirectAfterLogin");
         window.location.replace(redirectUrl);
     } catch(e) {
         console.error("Auth State Check Error:", e);
+        isRedirecting = false;
     }
 }
 

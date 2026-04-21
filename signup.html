@@ -462,6 +462,7 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
 
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
+            phone: user.phoneNumber,
             phoneNumber: user.phoneNumber,
             phoneVerified: true,
             signupCompleted: false,
@@ -487,10 +488,13 @@ function showSuccessAndRedirect() {
     const modal = document.getElementById('customModal');
     if (modal) {
         modal.style.display = 'flex';
+        setTimeout(() => {
+            window.location.replace('dashboard.html');
+        }, 2000);
     } else {
         // Fallback if modal is not found
         alert("Account created successfully! Redirecting to dashboard...");
-        window.location.href = 'dashboard.html';
+        window.location.replace('dashboard.html');
     }
 }
 
