@@ -304,10 +304,10 @@
     <div class="modal-content" style="max-width: 440px; text-align: center;">
         <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Registration Required</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">No account found. Please sign up first.</p>
+        <p class="subtitle" style="margin-bottom: 20px;">Please complete signup first with mobile verification.</p>
         <div style="display: flex; gap: 10px;">
             <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; transition: 0.2s;">Cancel</button>
-            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">Sign Up</button>
+            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; flex: 1; text-transform: uppercase; letter-spacing: 1px; transition: 0.2s;">Go to Signup</button>
         </div>
     </div>
 </div>
@@ -334,6 +334,30 @@
     </div>
 </div>
 
+<!-- Force Email/Google Completion Popup -->
+<div id="forceEmailGoogleModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="max-width: 440px; text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Profile Incomplete</h2>
+        <p class="subtitle" style="margin-bottom: 20px;">Please link an Email & Password or a Google account to secure your profile.</p>
+        
+        <button type="button" class="social-btn" id="forceLinkGoogleBtn">
+            <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
+            Complete with Google
+        </button>
+
+        <div class="divider">or use email</div>
+
+        <form id="forceLinkEmailForm">
+            <input type="text" id="forceName" placeholder="Full Name" required style="width: 100%; padding: 12px 16px; margin-bottom: 12px; background: var(--subtle); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; outline: none; color: var(--text);">
+            <input type="email" id="forceEmail" placeholder="Email Address" required style="width: 100%; padding: 12px 16px; margin-bottom: 12px; background: var(--subtle); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; outline: none; color: var(--text);">
+            <input type="password" id="forcePassword" placeholder="Create Password" required style="width: 100%; padding: 12px 16px; margin-bottom: 12px; background: var(--subtle); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; outline: none; color: var(--text);">
+            <button type="submit" class="main-btn" style="width: 100%; padding: 14px; background: var(--brand); color: white; border: none; border-radius: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer;">Save Profile</button>
+        </form>
+        <button type="button" onclick="logoutAndCancel()" style="background: none; border: none; color: var(--danger); font-weight: 700; margin-top: 20px; cursor: pointer;">Cancel & Logout</button>
+    </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { 
@@ -350,7 +374,9 @@ import {
     linkWithPhoneNumber,
     signInWithPopup, 
     GoogleAuthProvider,
-    getAdditionalUserInfo
+    getAdditionalUserInfo,
+    linkWithPopup,
+    updateEmail
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -404,21 +430,38 @@ let isManualLogin = false;
 async function checkUserAndRedirect(user) {
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists()) {
-            if (userDoc.data().phone) {
-                localStorage.setItem("isLoggedIn", "true");
-                sessionStorage.removeItem("redirectAfterLogin");
-                window.location.replace(redirectUrl);
-            } else {
-                document.getElementById('linkPhoneModal').style.display = 'flex';
-                if (!window.linkRecaptchaVerifier) {
-                    initLinkRecaptcha();
-                }
-            }
-        } else {
+        
+        if (!userDoc.exists()) {
             await signOut(auth);
             document.getElementById('notRegisteredModal').style.display = 'flex';
+            return;
         }
+
+        const data = userDoc.data();
+        const providerIds = user.providerData.map(p => p.providerId);
+        
+        const hasPhone = !!user.phoneNumber || !!data.phone || !!data.phoneNumber;
+        if (!hasPhone) {
+            document.getElementById('linkPhoneModal').style.display = 'flex';
+            if (!window.linkRecaptchaVerifier) {
+                initLinkRecaptcha();
+            }
+            return;
+        }
+
+        const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+        if (!hasEmailOrGoogle) {
+            document.getElementById('forceEmailGoogleModal').style.display = 'flex';
+            return;
+        }
+
+        if (!data.signupCompleted) {
+            await setDoc(doc(db, "users", user.uid), { signupCompleted: true, phoneVerified: true, authProviders: providerIds, updatedAt: new Date() }, { merge: true });
+        }
+
+        localStorage.setItem("isLoggedIn", "true");
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.replace(redirectUrl);
     } catch(e) {
         console.error("Auth State Check Error:", e);
     }
@@ -504,9 +547,11 @@ document.getElementById("phoneForm").addEventListener("submit", async (e) => {
     try {
         // Pre-verification check: Check if user exists in the database
         try {
-            const q = query(collection(db, "users"), where("phone", "==", phone));
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.empty) {
+            const q1 = query(collection(db, "users"), where("phone", "==", phone));
+            const snap1 = await getDocs(q1);
+            const q2 = query(collection(db, "users"), where("phoneNumber", "==", phone));
+            const snap2 = await getDocs(q2);
+            if (snap1.empty && snap2.empty) {
                 document.getElementById('notRegisteredModal').style.display = 'flex';
                 btn.disabled = false; btn.innerText = "Send OTP";
                 return;
@@ -604,26 +649,80 @@ document.getElementById("linkOtpForm").addEventListener("submit", async (e) => {
         const result = await linkConfirmationResult.confirm(code);
         const user = result.user;
 
-        // Create a complete user data object to ensure all info is saved.
-        // This prevents creating a partial document if a race condition occurs.
+        const providerIds = user.providerData.map(p => p.providerId);
         const userData = {
+            uid: user.uid,
             phone: user.phoneNumber,
-            email: user.email,
+            phoneNumber: user.phoneNumber,
+            email: user.email || null,
             name: user.displayName || 'Student',
-                uid: user.uid,
-                phoneVerified: true,
-                signupCompleted: true
+            fullName: user.displayName || 'Student',
+            phoneVerified: true,
+            authProviders: providerIds,
+            signupCompleted: true,
+            updatedAt: new Date()
         };
         await setDoc(doc(db, "users", user.uid), userData, { merge: true });
         
-        localStorage.setItem("isLoggedIn", "true");
-        sessionStorage.removeItem("redirectAfterLogin");
-        window.location.href = redirectUrl;
+        document.getElementById('linkPhoneModal').style.display = 'none';
+        checkUserAndRedirect(user);
     } catch (err) {
         let errorMsg = "Incorrect OTP. Please try again.";
         if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
         alert(errorMsg);
         btn.disabled = false; btn.innerText = "Verify & Continue";
+    }
+});
+
+document.getElementById("forceLinkEmailForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("forceName").value.trim();
+    const email = document.getElementById("forceEmail").value.trim();
+    const password = document.getElementById("forcePassword").value;
+    const btn = e.target.querySelector('button');
+    btn.disabled = true; btn.innerText = "Saving...";
+    try {
+        const user = auth.currentUser;
+        await updateEmail(user, email);
+        await updatePassword(user, password);
+        
+        const providerIds = user.providerData.map(p => p.providerId);
+        if (!providerIds.includes("password")) providerIds.push("password");
+
+        const userData = {
+            uid: user.uid,
+            name: name,
+            fullName: name,
+            email: email,
+            phoneNumber: user.phoneNumber,
+            phoneVerified: true,
+            authProviders: providerIds,
+            signupCompleted: true,
+            updatedAt: new Date()
+        };
+        await setDoc(doc(db, "users", user.uid), userData, { merge: true });
+        document.getElementById('forceEmailGoogleModal').style.display = 'none';
+        checkUserAndRedirect(user);
+    } catch(error) { 
+        alert("Error saving profile: " + error.message); 
+        btn.disabled = false; btn.innerText = "Save Profile";
+    }
+});
+
+document.getElementById("forceLinkGoogleBtn")?.addEventListener("click", async () => {
+    const btn = document.getElementById("forceLinkGoogleBtn");
+    btn.disabled = true;
+    try {
+        const result = await linkWithPopup(auth.currentUser, provider);
+        const user = result.user;
+        const providerIds = user.providerData.map(p => p.providerId);
+        const userData = { uid: user.uid, name: user.displayName || "Student", fullName: user.displayName || "Student", email: user.email, phoneNumber: user.phoneNumber, phoneVerified: true, authProviders: providerIds, signupCompleted: true, updatedAt: new Date() };
+        await setDoc(doc(db, "users", user.uid), userData, { merge: true });
+        document.getElementById('forceEmailGoogleModal').style.display = 'none';
+        checkUserAndRedirect(user);
+    } catch (error) {
+        alert("Google link failed: " + error.message);
+        btn.disabled = false;
     }
 });
 
@@ -663,14 +762,14 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
             return;
         }
             
-            // Verify if user actually exists in Firestore (prevent bypassing via orphaned Google Auth account)
-            const userDoc = await getDoc(doc(db, "users", result.user.uid));
-            if (!userDoc.exists()) {
-                await result.user.delete().catch(e => console.error(e));
-                document.getElementById('notRegisteredModal').style.display = 'flex';
-                isManualLogin = false;
-                return;
-            }
+        // Verify if user actually exists in Firestore (prevent bypassing via orphaned Google Auth account)
+        const userDoc = await getDoc(doc(db, "users", result.user.uid));
+        if (!userDoc.exists()) {
+            await result.user.delete().catch(e => console.error(e));
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            isManualLogin = false;
+            return;
+        }
         checkUserAndRedirect(result.user);
     } catch (err) { 
         alert(err.message); 

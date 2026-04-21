@@ -438,7 +438,7 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
 
         // Check if user already exists
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().name) {
+        if (userDoc.exists() && userDoc.data().signupCompleted) {
             alert("Account already exists with this mobile number. Please log in.");
             await signOut(auth);
             window.location.href = "login.html";
@@ -476,16 +476,23 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
         await updateEmail(user, email);
         await updatePassword(user, password);
         
+        const providerIds = user.providerData.map(p => p.providerId);
+        if (!providerIds.includes("password")) providerIds.push("password");
+
         await setDoc(doc(db, "users", user.uid), {
-            name: name, 
+            uid: user.uid,
+            name: name,
+            fullName: name,
             email: email, 
-            phone: user.phoneNumber,
+            phoneNumber: user.phoneNumber,
+            phoneVerified: true,
+            authProviders: providerIds,
             class: classSelect, 
             createdAt: new Date(),
-            phoneVerified: true,
+            updatedAt: new Date(),
             signupCompleted: true,
             hasPassword: true
-        });
+        }, { merge: true });
 
         await signOut(auth);
         document.getElementById("customModal").style.display = "flex";
@@ -507,16 +514,22 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
 
         let userClass = prompt("Welcome! Please enter your grade (e.g., class5):") || "class1";
         
+        const providerIds = user.providerData.map(p => p.providerId);
+
         await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
             name: user.displayName || "Student",
+            fullName: user.displayName || "Student",
             email: user.email,
-            phone: user.phoneNumber,
+            phoneNumber: user.phoneNumber,
+            phoneVerified: true,
+            authProviders: providerIds,
             class: userClass,
             createdAt: new Date(),
-            phoneVerified: true,
+            updatedAt: new Date(),
             signupCompleted: true,
             googleLinked: true
-        });
+        }, { merge: true });
         
         await signOut(auth);
         document.getElementById("customModal").style.display = "flex";
