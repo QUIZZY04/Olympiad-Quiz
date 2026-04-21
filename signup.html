@@ -353,7 +353,7 @@
     <div class="modal-box">
         <div style="font-size:50px; margin-bottom:20px;">🎓</div>
         <h2 style="color:var(--brand); margin-bottom:15px; font-weight:800; text-transform:uppercase;">Account Created</h2>
-        <p style="color:var(--muted); line-height:1.6; margin-bottom:25px;">Your profile is now active. Please use your credentials to log in on the next screen to start your journey.</p>
+        <p style="color:var(--muted); line-height:1.6; margin-bottom:25px;">Account setup completed successfully. Please use your credentials to log in on the next screen to start your journey.</p>
         <button onclick="window.location.href='login.html'" style="background:var(--brand); color:white; padding:12px 30px; border:none; border-radius:10px; font-weight:800; cursor:pointer; width:100%;">PROCEED TO LOGIN</button>
     </div>
 </div>
@@ -481,7 +481,10 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
             email: email, 
             phone: user.phoneNumber,
             class: classSelect, 
-            createdAt: new Date()
+            createdAt: new Date(),
+            phoneVerified: true,
+            signupCompleted: true,
+            hasPassword: true
         });
 
         await signOut(auth);
@@ -509,7 +512,10 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
             email: user.email,
             phone: user.phoneNumber,
             class: userClass,
-            createdAt: new Date()
+            createdAt: new Date(),
+            phoneVerified: true,
+            signupCompleted: true,
+            googleLinked: true
         });
         
         await signOut(auth);
