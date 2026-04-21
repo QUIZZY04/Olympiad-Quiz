@@ -3,55 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Checkout - Olympiad Portal</title>
-    <meta name="robots" content="noindex, nofollow">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Processing Payment - Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
     <style>
-        body { background: #FFD700; color: #0f172a; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
-            background-attachment: fixed; }
-        .checkout-card { 
-            background: #ffffff; 
-            padding: 40px; 
-            border-radius: 24px; 
-            border: 1px solid #e2e8f0; 
-            border-top: 3px solid #4f46e5;
-            width: 100%; 
-            max-width: 450px; 
-            text-align: center; 
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08); 
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body {
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #0f172a;
         }
-        h1 { color: #4f46e5; font-weight: 800; font-size: 24px; margin-bottom: 30px; }
-        .order-summary { background: #f1f5f9; padding: 20px; border-radius: 12px; margin-bottom: 30px; text-align: left; }
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: #64748b; }
-        .summary-row.total { font-weight: 800; font-size: 18px; color: #0f172a; margin-top: 20px; padding-top: 15px; border-top: 1px dashed #cbd5e1; margin-bottom: 0; }
-        .pay-btn { background: #10b981; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 800; font-size: 16px; width: 100%; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        .pay-btn:hover { background: #059669; transform: translateY(-2px); }
-        .cancel-link { display: block; margin-top: 20px; color: #ef4444; text-decoration: none; font-size: 13px; font-weight: 600; }
+        .status-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            border-top: 5px solid #4f46e5;
+            transition: 0.3s;
+        }
+        .spinner {
+            border: 4px solid rgba(79, 70, 229, 0.2);
+            border-top: 4px solid #4f46e5;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: block;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #475569;
+            font-size: 15px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        a.fallback-btn {
+            display: none;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            width: 100%;
+        }
+        a.fallback-btn:hover {
+            background: #3b82f6;
+        }
     </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18108080300"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18108080300');
+</script>
 </head>
 <body>
-    <!-- Processing Screen -->
-    <div id="paymentProcessingScreen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999; background: #ffffff; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-        <div class="spinner" id="processingSpinner" style="border: 4px solid rgba(79, 70, 229, 0.2); border-top: 4px solid #4f46e5; border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
-        <h1 id="processingTitle" style="color: #0f172a; font-size: 24px; margin-bottom: 10px; font-weight: 800;">Payment Processing...</h1>
-        <p id="processingMsg" style="color: #64748b; font-size: 16px;">Your payment is being processed.<br>Please do not press Back or Refresh button.</p>
-    </div>
-    <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
-    <div class="checkout-card">
-        <h1>🔒 Secure Checkout</h1>
-        <div class="order-summary">
-            <div class="summary-row"><span>Test Session:</span> <span id="itemTitle" style="font-weight:600; color:#fff; text-align:right; max-width:60%;">Loading...</span></div>
-            <div class="summary-row"><span>Access:</span> <span>1 Attempt / Unlimited Prep</span></div>
-            <div class="summary-row total"><span>Total Payable:</span> <span id="itemPrice">₹0</span></div>
-        </div>
-        <button id="payButton" class="pay-btn">Proceed to Pay</button>
-        <a href="live.html" class="cancel-link">Cancel and return to Arena</a>
+    <div class="status-card">
+        <div id="statusIcon" class="spinner"></div>
+        <h1 id="statusTitle">Processing Payment...</h1>
+        <p id="statusMessage">Your payment is being processed. Please do not refresh or press back.</p>
+        <a id="fallbackLink" href="live.html" class="fallback-btn">If not redirected within 1 minute, click here</a>
     </div>
 
     <script type="module">
@@ -59,123 +99,92 @@
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-            authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-            projectId: "olympiad-portal-d2a5e",
-            storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
-            messagingSenderId: "341855557503",
-            appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
-        };
-
+        const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const functions = getFunctions(app);
 
-        window.showProcessingScreen = function() {
-            const screen = document.getElementById("paymentProcessingScreen");
-            if (screen) {
-                screen.style.display = "flex";
-                const title = document.getElementById("processingTitle");
-                const msg = document.getElementById("processingMsg");
-                const spinner = document.getElementById("processingSpinner");
-                if(title) title.innerText = "Payment Processing...";
-                if(msg) msg.innerHTML = "Your payment is being processed.<br>Please do not press Back or Refresh button.";
-                if(spinner) spinner.style.display = "block";
+        const statusIcon = document.getElementById("statusIcon");
+        const statusTitle = document.getElementById("statusTitle");
+        const statusMessage = document.getElementById("statusMessage");
+        const fallbackLink = document.getElementById("fallbackLink");
+
+        let verificationAttempts = 0;
+        const maxAttempts = 20; // up to ~60s
+        let isSuccess = false;
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.replace("login.html");
+                return;
             }
-        };
-        window.hideProcessingScreen = function() {
-            const screen = document.getElementById("paymentProcessingScreen");
-            if (screen) screen.style.display = "none";
-        };
-
-        const sId = localStorage.getItem("checkoutSessionId");
-        const price = localStorage.getItem("checkoutPrice");
-        const title = localStorage.getItem("checkoutTitle");
-
-        if(!sId) window.location.href = "live.html";
-
-        document.getElementById("itemTitle").innerText = title;
-        document.getElementById("itemPrice").innerText = "₹" + price;
-
-        let userEmail = "";
-        let userName = "Student";
-
-        onAuthStateChanged(auth, (user) => {
-            if(user) {
-                userEmail = user.email;
-                userName = user.displayName || "Student";
-            } else {
-                window.location.href = "login.html";
+            
+            const paymentDataStr = localStorage.getItem("paymentData");
+            if (!paymentDataStr) {
+                window.location.replace("live.html");
+                return;
             }
+            
+            const paymentData = JSON.parse(paymentDataStr);
+
+            if (paymentData.isFree) {
+                handleSuccess();
+                return;
+            }
+
+            pollVerification(paymentData);
         });
 
-        document.getElementById("payButton").addEventListener("click", async () => {
-            const payBtn = document.getElementById("payButton");
-            const originalText = payBtn.innerText;
-            payBtn.innerText = "Processing...";
-            payBtn.disabled = true;
-
+        async function pollVerification(paymentData) {
+            if (isSuccess) return;
+            
+            verificationAttempts++;
+            
             try {
-                const createRazorpayOrder = httpsCallable(functions, 'createRazorpayOrder');
-
-                console.log("Initiating order creation with amount (INR):", price);
-                const orderResponse = await createRazorpayOrder({ amount: parseInt(price), sessionId: sId });
-                console.log("Razorpay Order Response from Backend:", orderResponse);
+                const verifyRazorpayPayment = httpsCallable(functions, 'verifyRazorpayPayment');
+                await verifyRazorpayPayment({
+                    razorpay_order_id: paymentData.razorpay_order_id,
+                    razorpay_payment_id: paymentData.razorpay_payment_id,
+                    razorpay_signature: paymentData.razorpay_signature,
+                    sessionId: paymentData.sessionId,
+                    amount: paymentData.amount
+                });
                 
-                const order = orderResponse.data;
-
-                // Ensure popup opens ONLY after successful order creation
-                if (!order || !order.id || !order.amount) {
-                    console.error("Invalid order object received:", order);
-                    throw new Error("Invalid order data received from server. Missing order_id or amount.");
+                isSuccess = true;
+                handleSuccess();
+            } catch (error) {
+                console.error("Verification attempt failed:", error);
+                
+                if (verificationAttempts >= maxAttempts) {
+                    statusMessage.innerText = "Payment is still being processed. Please wait or use the link below.";
+                    fallbackLink.style.display = "inline-block";
+                    fallbackLink.innerText = "Click here to proceed to Live Test";
+                    // keep polling slower if it's still taking time
+                    setTimeout(() => pollVerification(paymentData), 5000);
+                } else {
+                    setTimeout(() => pollVerification(paymentData), 3000);
                 }
+            }
+        }
 
-                if (!order.keyId) {
-                    console.error("Missing Razorpay Key ID from backend response.");
-                    alert("Payment configuration error. Please try later.");
-                    payBtn.innerText = originalText;
-                    payBtn.disabled = false;
-                    return;
-                }
-
-                console.log("✅ Order Creation Successful.");
-                console.log("👉 Order ID:", order.id);
-                console.log("👉 Amount (Paise):", order.amount);
-                console.log("👉 Key ID from Backend:", order.keyId);
-
-                const options = {
-                    "key": order.keyId,
-                    "amount": order.amount,
-                    "currency": order.currency || "INR",
-                    "order_id": order.id,
-                    "name": "Olympiad Portal",
-                    "description": "Unlock: " + (title || "Live Session"),
-                    "handler": async function (response) {
-                        window.showProcessingScreen();
-                        const verifyRazorpayPayment = httpsCallable(functions, 'verifyRazorpayPayment');
-                        let attempts = 0;
-                        const maxAttempts = 20;
-                        let verified = false;
-                        const verifyPayload = {
-                            razorpay_order_id: response.razorpay_order_id,
-                            razorpay_payment_id: response.razorpay_payment_id,
-                            razorpay_signature: response.razorpay_signature,
-                            sessionId: sId,
-                            amount: parseInt(price)
-                        };
-                        while(attempts < maxAttempts && !verified) {
-                            attempts++;
-                            try {
-                                await verifyRazorpayPayment(verifyPayload);
-                                verified = true;
-                            } catch(e) {
-                                await new Promise(r => setTimeout(r, 2500));
-                            }
-                        }
-                        if (verified) {
-                            document.getElementById("processingTitle").innerText = "Payment Successful!";
-                            document.getElementById("processingMsg").innerText = "Redirecting to Live Test Page...";
+        function handleSuccess() {
+            statusIcon.className = "success-icon";
+            statusIcon.innerHTML = "✅";
+            statusTitle.innerText = "Payment Successful";
+            statusMessage.innerText = "You are being redirected to Live Test page";
+            
+            fallbackLink.style.display = "inline-block";
+            fallbackLink.innerText = "If not redirected within 1 minute, click here";
+            
+            document.querySelector('.status-card').style.borderTopColor = "#10b981";
+            
+            setTimeout(() => {
+                window.location.href = "live.html";
+            }, 3000); // 3-5 seconds redirection
+        }
+    </script>
+</body>
+</html>                     document.getElementById("processingMsg").innerText = "Redirecting to Live Test Page...";
                             const spinner = document.getElementById("processingSpinner");
                             if(spinner) spinner.style.display = "none";
                             
