@@ -349,6 +349,16 @@
     </div>
 </div>
 
+<!-- CUSTOM THEMATIC MODAL -->
+<div id="customModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center;">
+    <div class="modal-box" style="background:var(--surface); border:2px solid var(--brand); padding:40px; border-radius:24px; text-align:center; max-width:420px; width:90%; box-shadow:0 0 30px rgba(37, 99, 235, 0.2);">
+        <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Account Created Successfully!</h2>
+        <p class="subtitle" style="margin-bottom: 20px;">Your profile is complete. Welcome to the Olympiad Portal!</p>
+        <button type="button" onclick="window.location.replace('dashboard.html')" style="width: 100%; padding: 16px; background: var(--brand); color: white; border: none; border-radius: 12px; font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: 0.2s; margin-top: 10px;">Go to Dashboard</button>
+    </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -368,8 +378,10 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
+let isCompletingSignup = false;
+
 onAuthStateChanged(auth, async (user) => {
-    if (user) {
+    if (user && !isCompletingSignup) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists() && userDoc.data().signupCompleted) {
             window.location.href = "dashboard.html";
@@ -471,6 +483,17 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
     }
 });
 
+function showSuccessAndRedirect() {
+    const modal = document.getElementById('customModal');
+    if (modal) {
+        modal.style.display = 'flex';
+    } else {
+        // Fallback if modal is not found
+        alert("Account created successfully! Redirecting to dashboard...");
+        window.location.href = 'dashboard.html';
+    }
+}
+
 // Complete Profile via Email
 document.getElementById("completeEmailForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
@@ -482,6 +505,7 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
     
     btn.disabled = true;
     btn.innerText = "Creating...";
+    isCompletingSignup = true;
 
     try {
         const user = auth.currentUser;
@@ -490,12 +514,16 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
         
         const providerIds = user.providerData.map(p => p.providerId);
 
+        const existingDoc = await getDoc(doc(db, "users", user.uid));
+        const currentPhone = user.phoneNumber || (existingDoc.exists() ? (existingDoc.data().phoneNumber || existingDoc.data().phone) : null);
+
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             name: name,
             fullName: name,
-            email: email, 
-            phoneNumber: user.phoneNumber,
+            email: email,
+            phone: currentPhone,
+            phoneNumber: currentPhone,
             phoneVerified: true,
             authProviders: providerIds,
             class: classSelect, 
@@ -506,11 +534,12 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
         }, { merge: true });
 
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "dashboard.html";
+        showSuccessAndRedirect();
     } catch(error) { 
         alert("Issue creating account: " + error.message); 
         btn.disabled = false;
         btn.innerText = "Create Account";
+        isCompletingSignup = false;
     }
 });
 
@@ -518,6 +547,7 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
 document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
     const btn = document.getElementById("linkGoogleBtn");
     btn.disabled = true;
+    isCompletingSignup = true;
     
     try {
         const result = await linkWithPopup(auth.currentUser, provider);
@@ -527,12 +557,16 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
         
         const providerIds = user.providerData.map(p => p.providerId);
 
+        const existingDoc = await getDoc(doc(db, "users", user.uid));
+        const currentPhone = user.phoneNumber || (existingDoc.exists() ? (existingDoc.data().phoneNumber || existingDoc.data().phone) : null);
+
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             name: user.displayName || "Student",
             fullName: user.displayName || "Student",
             email: user.email,
-            phoneNumber: user.phoneNumber,
+            phone: currentPhone,
+            phoneNumber: currentPhone,
             phoneVerified: true,
             authProviders: providerIds,
             class: userClass,
@@ -543,10 +577,11 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
         }, { merge: true });
         
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "dashboard.html";
+        showSuccessAndRedirect();
     } catch (error) {
         alert("Google link failed: " + error.message);
         btn.disabled = false;
+        isCompletingSignup = false;
     }
 });
 </script>
