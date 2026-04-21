@@ -155,7 +155,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, deleteDoc, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
@@ -164,19 +164,36 @@
         const auth = getAuth(app);
 
         let allRecords = [];
+        let isAdmin = false;
+        let currentUserUid = null;
 
         onAuthStateChanged(auth, (user) => {
             if (!user) { window.location.replace("login.html"); return; }
+            currentUserUid = user.uid;
+            if (user.email === "madhhu52@gmail.com") {
+                isAdmin = true;
+                // Add Action column header for Admin
+                const theadTr = document.querySelector("table thead tr");
+                if (theadTr && !theadTr.innerHTML.includes("Action")) {
+                    theadTr.innerHTML += "<th>Action</th>";
+                }
+            }
             document.body.style.visibility = 'visible';
             fetchLeaderboard();
         });
 
         async function fetchLeaderboard() {
             try {
-                // Grabbing a large chunk to process dynamically without complex composite indexes
-                const snap = await getDocs(collection(db, "jee_leaderboard"));
+                // Fetch from unified leaderboard and filter for JEE to avoid data duplication and missing analytics
+                const snap = await getDocs(collection(db, "leaderboard"));
                 allRecords = [];
-                snap.forEach(doc => allRecords.push(doc.data()));
+                snap.forEach(doc => {
+                    const data = doc.data();
+                    // Backward compatibility: Support old tests that had JEE in title or new tests with examType
+                    if (data.examType === "JEE" || (data.testTitle && data.testTitle.toUpperCase().includes("JEE"))) {
+                        allRecords.push({ ...data, id: doc.id });
+                    }
+                });
                 renderLeaderboard();
             } catch (e) {
                 console.error(e);
@@ -215,7 +232,7 @@
 
             const tbody = document.getElementById("leaderboardBody");
             if (filtered.length === 0) {
-                tbody.innerHTML = "<tr><td colspan='7' style='padding:40px; color:var(--muted);'>No rankings found for these filters. Be the first to compete!</td></tr>";
+                tbody.innerHTML = `<tr><td colspan='${isAdmin ? 8 : 7}' style='padding:40px; color:var(--muted);'>No rankings found for these filters. Be the first to compete!</td></tr>`;
                 return;
             }
 
@@ -228,8 +245,15 @@
                 else if(rank === 2) { rankIcon = "🥈"; rowStyle = "background: rgba(241, 245, 249, 0.5);"; }
                 else if(rank === 3) { rankIcon = "🥉"; rowStyle = "background: rgba(254, 237, 213, 0.5);"; }
 
+                if (d.uid === currentUserUid) {
+                    rowStyle += " border-left: 4px solid var(--brand);";
+                    if (rank > 3) rowStyle += " background: rgba(79, 70, 229, 0.05);";
+                }
+
                 const dateStr = d.date ? d.date.toDate().toLocaleString("en-GB", {day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'}) : "N/A";
                 
+                const adminCell = isAdmin ? `<td><button onclick="deleteRecord('${d.id}')" style="background:var(--danger);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:bold;box-shadow:0 2px 4px rgba(0,0,0,0.1);">Delete</button></td>` : "";
+
                 html += `
                     <tr style="${rowStyle}">
                         <td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px; box-shadow:0 4px 10px rgba(250,204,21,0.3);':''}">${rankIcon}</span></td>
@@ -239,6 +263,7 @@
                         <td><span style="color:var(--success);font-weight:800;">${d.correctCount||0}</span> / <span style="color:var(--danger);font-weight:800;">${d.incorrectCount||0}</span></td>
                         <td><span class="subj-badge">${d.subject || "Full Syllabus"}</span></td>
                         <td style="color:var(--muted); font-size:13px; font-weight:500;">${dateStr}</td>
+                        ${adminCell}
                     </tr>
                 `;
             });
@@ -247,6 +272,19 @@
 
         document.getElementById("timeFilter").addEventListener("change", renderLeaderboard);
         document.getElementById("subjectFilter").addEventListener("change", renderLeaderboard);
+
+        window.deleteRecord = async (docId) => {
+            if (!isAdmin) return;
+            if (confirm("Are you sure you want to permanently delete this result from the JEE leaderboard?")) {
+                try {
+                    await deleteDoc(doc(db, "leaderboard", docId));
+                    fetchLeaderboard();
+                } catch (error) {
+                    console.error("Error deleting document: ", error);
+                    alert("Failed to delete the record.");
+                }
+            }
+        };
 
         window.logout = async () => {
             if (confirm("Logout?")) {

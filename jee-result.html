@@ -339,12 +339,12 @@
             let attempted = correctCount + incorrectCount + partialCount;
             let accuracy = attempted > 0 ? ((correctCount + partialCount) / attempted * 100).toFixed(1) : 0;
 
-            // Save cleanly into the dedicated JEE leaderboard collection
+            // Save cleanly into the unified leaderboard collection with a JEE tag
             if (!resultData.savedToDb) {
-                addDoc(collection(db, "jee_leaderboard"), {
+                addDoc(collection(db, "leaderboard"), {
                     uid: user.uid,
-                    email: user.email,
-                    name: user.displayName || user.email.split('@')[0],
+                    email: user.email || null,
+                    name: user.displayName || (user.email ? user.email.split('@')[0] : "Student"),
                     testTitle: resultData.testTitle || "JEE Mock Test",
                     subject: resultData.subject || "Full Syllabus",
                     score: totalScoreEarned,
@@ -352,6 +352,7 @@
                     accuracy: Number(accuracy),
                     correctCount: correctCount,
                     incorrectCount: incorrectCount,
+                    examType: "JEE",
                     date: serverTimestamp()
                 }).catch(e => console.error("Error saving result:", e));
                 
