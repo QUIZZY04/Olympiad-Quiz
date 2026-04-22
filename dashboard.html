@@ -311,6 +311,7 @@
             <div class="hero-left">
                 <h1 id="userGreeting">Welcome to Dashboard</h1>
                 <p>Select a learning mode below to start your Olympiad preparation.</p>
+                <button id="enableNotificationsBtn" style="display:none; margin-top:15px; background:#ffffff; color:var(--brand); padding:10px 20px; border-radius:10px; border:none; font-weight:800; cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:0.3s;">🔔 Enable Push Notifications</button>
             </div>
             <div class="desktop-only" style="flex: 0 0 480px; height: 180px; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.25); border: 3px solid rgba(255,255,255,0.3);">
                 <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Free Olympiad mock test for class 6 students practicing online" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
@@ -537,6 +538,22 @@ onAuthStateChanged(auth, async (user) => {
     }
     checkLiveSessions();
     initNotifications(user);
+    
+    // Handle Push Notifications Responsibly (Requires User Gesture)
+    if ('Notification' in window) {
+        if (Notification.permission === 'default') {
+            const notifyBtn = document.getElementById("enableNotificationsBtn");
+            if (notifyBtn) {
+                notifyBtn.style.display = "inline-block";
+                notifyBtn.onclick = async () => {
+                    await initNotifications(user);
+                    notifyBtn.style.display = "none";
+                };
+            }
+        } else if (Notification.permission === 'granted') {
+            initNotifications(user); // Silently grab token if already permitted
+        }
+    }
 });
 
 // Push Notifications Initialization
