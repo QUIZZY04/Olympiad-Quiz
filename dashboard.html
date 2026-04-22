@@ -497,7 +497,8 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
 
 const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",authDomain:"olympiad-portal-d2a5e.firebaseapp.com",projectId:"olympiad-portal-d2a5e",storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",messagingSenderId:"341855557503",appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"};
 
@@ -535,7 +536,40 @@ onAuthStateChanged(auth, async (user) => {
         console.error("Error fetching user data:", e);
     }
     checkLiveSessions();
+    initNotifications(user);
 });
+
+// Push Notifications Initialization
+async function initNotifications(user) {
+    try {
+        const messaging = getMessaging(app);
+        const permission = await Notification.requestPermission();
+        console.log("[Push Notifications] Permission status:", permission);
+        
+        if (permission === 'granted') {
+            // NOTE: Replace the vapidKey with your Web Push Key from Firebase Console -> Project Settings -> Cloud Messaging
+            const currentToken = await getToken(messaging, { vapidKey: "BDDMnm9al3df0zmBX5DAhJtLd61v4z7CJ4ZptN4A08Ks2vuJvfKJQ5IZlYuDnEDQbvmwi7LUd1w_46c44CcZFYE" });
+            if (currentToken) {
+                console.log("[Push Notifications] FCM Token generated successfully.");
+                await setDoc(doc(db, "userTokens", user.uid), {
+                    uid: user.uid,
+                    email: user.email || "",
+                    fullName: user.displayName || "Student",
+                    token: currentToken,
+                    deviceType: navigator.platform || "Unknown",
+                    userAgent: navigator.userAgent,
+                    notificationsEnabled: true,
+                    updatedAt: serverTimestamp()
+                }, { merge: true });
+                console.log("[Push Notifications] Token saved to Firestore (userTokens).");
+            }
+        } else {
+            console.log("[Push Notifications] Permission denied by user.");
+        }
+    } catch (error) {
+        console.error("[Push Notifications] Error during notification initialization:", error);
+    }
+}
 
 // Kill BFCache (Back-Button Cache)
 window.addEventListener('pageshow', (event) => {

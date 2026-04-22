@@ -458,6 +458,103 @@ exports.sendResultEmail = onDocumentWritten(
 );
 
 // =================================================================
+// 6. PUSH NOTIFICATION SYSTEM
+// =================================================================
+
+/**
+ * Sends push notifications to users. Admin only.
+ */
+exports.sendPushNotification = onCall({
+  timeoutSeconds: 300,
+  memory: "512MiB"
+}, async (request) => {
+  // 1. Admin Authorization
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to send notifications.");
+  }
+
+  const { title, body, link, targetType } = request.data;
+  if (!title || !body) {
+    throw new HttpsError("invalid-argument", "Notification title and body are required.");
+  }
+
+  try {
+    console.log(`Preparing to send push notification. Target: ${targetType}`);
+    const tokens = [];
+    const tokensDocs = []; // Kept to remove inactive tokens
+
+    // Fetch all active tokens
+    const tokensSnapshot = await db.collection("userTokens").where("notificationsEnabled", "==", true).get();
+    
+    tokensSnapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.token) {
+        tokens.push(data.token);
+        tokensDocs.push({ id: doc.id, token: data.token });
+      }
+    });
+
+    if (tokens.length === 0) {
+      console.log("No registered device tokens found.");
+      return { success: true, message: "No active user tokens found to receive notifications." };
+    }
+
+    const message = {
+      notification: { title, body },
+      data: { url: link || "/" },
+      tokens: tokens
+    };
+
+    const response = await admin.messaging().sendEachForMulticast(message);
+    console.log(`Successfully sent ${response.successCount} notifications. Failed: ${response.failureCount}`);
+
+    // Safe Cleanup: Remove bad/expired tokens
+    if (response.failureCount > 0) {
+      const failedTokens = [];
+      response.responses.forEach((resp, idx) => {
+        if (!resp.success) {
+          const errCode = resp.error?.code;
+          if (errCode === 'messaging/invalid-registration-token' || errCode === 'messaging/registration-token-not-registered') {
+            failedTokens.push(tokensDocs[idx].id);
+          }
+        }
+      });
+      
+      if (failedTokens.length > 0) {
+        const batch = db.batch();
+        failedTokens.forEach(id => batch.delete(db.collection("userTokens").doc(id)));
+        await batch.commit();
+        console.log(`Purged ${failedTokens.length} invalid tokens from database.`);
+      }
+    }
+
+    // Logging
+    await db.collection("notificationLogs").add({
+      title,
+      body,
+      link: link || "",
+      targetType: targetType || "All Users",
+      totalTokens: tokens.length,
+      successCount: response.successCount,
+      failedCount: response.failureCount,
+      sentBy: request.auth.token.email,
+      createdAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    return {
+      success: true,
+      totalTokens: tokens.length,
+      successCount: response.successCount,
+      failedCount: response.failureCount
+    };
+
+  } catch (error) {
+    console.error("Push Notification Error:", error);
+    throw new HttpsError("internal", "Failed to send push notifications.");
+  }
+});
+
+// =================================================================
 // 5. RAZORPAY PAYMENT INTEGRATION
 // =================================================================
 
