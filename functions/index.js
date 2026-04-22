@@ -30,6 +30,18 @@ function getBrevoClient() {
   return new SibApiV3Sdk.TransactionalEmailsApi();
 }
 
+/**
+ * Initializes and returns the Brevo Transactional SMS API client.
+ * @returns {SibApiV3Sdk.TransactionalSMSApi} The Brevo SMS API client.
+ */
+function getBrevoSMSClient() {
+  const defaultClient = SibApiV3Sdk.ApiClient.instance;
+  const apiKey = defaultClient.authentications["api-key"];
+  // Use the same secret managed by Firebase
+  apiKey.apiKey = process.env.BREVO_API_KEY;
+  return new SibApiV3Sdk.TransactionalSMSApi();
+}
+
 const SENDER_INFO = {
   email: "admin@olympiadquiz.org",
   name: "Olympiad Portal",
@@ -456,6 +468,98 @@ exports.sendResultEmail = onDocumentWritten(
     }
   }
 );
+
+// =================================================================
+// 7. BULK SMS SYSTEM (BREVO)
+// =================================================================
+
+/**
+ * An admin-only callable function to send transactional SMS alerts.
+ */
+exports.sendBulkSMS = onCall({
+  secrets: ["BREVO_API_KEY"],
+  timeoutSeconds: 540,
+  memory: "512MiB"
+}, async (request) => {
+  // 1. Admin Authentication
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
+
+  const { message, targetType, targetValue } = request.data;
+  if (!message || !targetType) {
+    throw new HttpsError("invalid-argument", "Message and targetType are required.");
+  }
+
+  try {
+    const snapshot = await db.collection("users").get();
+    const uniqueNumbers = new Set();
+    const now = new Date().getTime();
+
+    snapshot.docs.forEach(doc => {
+      const data = doc.data();
+      let add = false;
+      
+      if (targetType === "All Users") {
+        add = true;
+      } else if (targetType === "By Class" && targetValue) {
+        if (String(data.class) === String(targetValue) || String(data.studentClass) === String(targetValue)) {
+          add = true;
+        }
+      } else if (targetType === "Recent Registrations") {
+        if (data.createdAt && data.createdAt.toDate) {
+          const diff = now - data.createdAt.toDate().getTime();
+          if (diff <= 7 * 24 * 60 * 60 * 1000) add = true; // Last 7 days
+        }
+      } else if (targetType === "Selected Users" && targetValue) {
+        const targets = targetValue.split(",").map(t => t.trim().toLowerCase());
+        if (targets.includes(String(data.email).toLowerCase()) || targets.includes(String(data.phone))) {
+          add = true;
+        }
+      }
+
+      // Format and deduplicate phone numbers safely
+      if (add && data.phone) {
+        let phone = String(data.phone).replace(/\D/g, '');
+        if (phone.length === 10) phone = '91' + phone; // Add Indian country code default if 10 digits
+        if (phone.length >= 11) uniqueNumbers.add('+' + phone);
+      }
+    });
+
+    const phoneList = Array.from(uniqueNumbers);
+    if (phoneList.length === 0) {
+      return { success: true, sentCount: 0, failedCount: 0, message: "No valid phone numbers found for the selected target." };
+    }
+
+    const smsApi = getBrevoSMSClient();
+    let sentCount = 0;
+    let failedCount = 0;
+
+    // Send SMS one by one (Brevo SMS API doesn't support bulk arrays natively in transactional endpoint)
+    for (const phone of phoneList) {
+      const sendTransacSms = new SibApiV3Sdk.SendTransacSms();
+      sendTransacSms.sender = "Olympiad"; // Max 11 alphanumeric characters allowed by Brevo
+      sendTransacSms.recipient = phone;
+      sendTransacSms.content = message;
+
+      try {
+        await smsApi.sendTransacSms(sendTransacSms);
+        sentCount++;
+      } catch (err) {
+        console.error(`Failed to send SMS to ${phone}:`, err.response ? err.response.text : err.message);
+        failedCount++;
+      }
+      await new Promise(r => setTimeout(r, 50)); // Tiny delay to respect API rate limits
+    }
+
+    // Safely log the results in Firestore
+    await db.collection("smsLogs").add({ message, targetType, targetValue: targetValue || "", totalUsers: phoneList.length, sentCount, failedCount, sentBy: request.auth.token.email, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+    return { success: true, sentCount, failedCount, totalUsers: phoneList.length, message: `Successfully sent ${sentCount} SMS. Failed: ${failedCount}.` };
+  } catch (error) {
+    console.error("SMS Broadcast Error:", error);
+    throw new HttpsError("internal", "Failed to send SMS broadcast.");
+  }
+});
 
 // =================================================================
 // 6. PUSH NOTIFICATION SYSTEM

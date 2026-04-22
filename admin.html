@@ -243,6 +243,7 @@ border-top:1px solid var(--border);
         <a href="#video-section" style="color:var(--brand);">Videos</a>
         <a href="#coupon-section" style="color:var(--warning);">Coupons</a>
         <a href="#email-section" style="color:var(--brand);">Broadcast</a>
+        <a href="#sms-section" style="color:var(--success);">SMS Alerts</a>
         <a href="#push-section" style="color:var(--accent);">Push Notifications</a>
         <a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
         <a href="#jee-admin-section" style="color:var(--success);">JEE Tests</a>
@@ -543,6 +544,39 @@ border-top:1px solid var(--border);
                 </div>
                 <button type="submit" id="sendEmailBtn" class="upload" style="background: var(--brand); width: 100%; margin-top: 20px;">🚀 Send Broadcast</button>
                 <div id="emailStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600; padding: 12px; border-radius: 8px; display: none; border: 1px solid transparent;"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="sms-section" class="panel" style="border-top: 2px solid var(--success);">
+        <div class="panel-header">
+            <h2 style="color:var(--success);">📱 SMS Alerts (Brevo)</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Send transactional SMS alerts directly to users' mobile phones.</p>
+            <form id="smsForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label>Send To</label>
+                        <select id="smsTargetType" onchange="toggleSmsTargetValue()">
+                            <option value="All Users">All Users</option>
+                            <option value="By Class">By Class</option>
+                            <option value="Recent Registrations">Recent Registrations (Last 7 Days)</option>
+                            <option value="Selected Users">Selected Users (Emails/Phones)</option>
+                        </select>
+                    </div>
+                    <div id="smsTargetValueContainer" style="display:none;">
+                        <label id="smsTargetValueLabel">Target Value</label>
+                        <input type="text" id="smsTargetValue" placeholder="e.g. 6 or comma separated emails">
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <label>SMS Message <span id="smsCharCount" style="float: right; font-size: 12px; color: var(--muted);">0 chars (1 SMS)</span></label>
+                    <textarea id="smsMessage" placeholder="e.g., Dear student, the Live Quiz Arena is now open! Join now." style="height: 100px;" oninput="updateSmsCharCount()" required></textarea>
+                </div>
+                <div style="margin-top: 10px; background: var(--subtle); padding: 10px; border-radius: 8px; border: 1px solid var(--border);"><strong style="font-size: 12px;">Preview:</strong><p id="smsPreview" style="font-size: 13px; margin: 5px 0 0 0; color: var(--text); word-wrap: break-word;">...</p></div>
+                <button type="submit" id="sendSmsBtn" class="upload" style="background: var(--success); width: 100%; margin-top: 20px;">📲 Send SMS Alerts</button>
+                <div id="smsStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600; padding: 12px; border-radius: 8px; display: none; border: 1px solid transparent;"></div>
             </form>
         </div>
     </div>
@@ -2124,6 +2158,57 @@ document.getElementById("pushNotificationForm")?.addEventListener("submit", asyn
     } finally {
         btn.disabled = false;
         btn.innerText = "🚀 Send Notification";
+    }
+});
+
+window.toggleSmsTargetValue = function() {
+    const type = document.getElementById("smsTargetType").value;
+    const container = document.getElementById("smsTargetValueContainer");
+    const label = document.getElementById("smsTargetValueLabel");
+    const input = document.getElementById("smsTargetValue");
+    
+    if (type === "By Class") { container.style.display = "block"; label.innerText = "Class Number"; input.placeholder = "e.g. 6"; } 
+    else if (type === "Selected Users") { container.style.display = "block"; label.innerText = "Emails or Phones (Comma separated)"; input.placeholder = "e.g. user@gmail.com, 9876543210"; } 
+    else { container.style.display = "none"; input.value = ""; }
+};
+
+window.updateSmsCharCount = function() {
+    const msg = document.getElementById("smsMessage").value;
+    const count = msg.length;
+    const smsCount = Math.ceil(count / 160) || 1;
+    document.getElementById("smsCharCount").innerText = `${count} chars (${smsCount} SMS)`;
+    document.getElementById("smsPreview").innerText = msg || "...";
+};
+
+document.getElementById("smsForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("sendSmsBtn");
+    const status = document.getElementById("smsStatus");
+    
+    const message = document.getElementById("smsMessage").value;
+    const targetType = document.getElementById("smsTargetType").value;
+    const targetValue = document.getElementById("smsTargetValue").value;
+
+    if (!confirm(`⚠️ WARNING: You are about to send SMS to ${targetType}. This uses Brevo credits. Proceed?`)) return;
+
+    btn.disabled = true; btn.innerText = "⏳ Sending..."; status.style.display = "block"; status.style.background = "rgba(79, 70, 229, 0.1)"; status.style.color = "var(--brand)"; status.style.borderColor = "var(--brand)"; status.innerText = "Initiating SMS broadcast...";
+
+    try {
+        const sendSmsFn = httpsCallable(functions, 'sendBulkSMS');
+        const result = await sendSmsFn({ message, targetType, targetValue });
+        
+        if (result.data.success) {
+            status.style.background = "rgba(16, 185, 129, 0.1)"; status.style.color = "var(--success)"; status.style.borderColor = "var(--success)"; status.innerText = `✅ ${result.data.message}`;
+            if (result.data.sentCount > 0) { document.getElementById("smsMessage").value = ""; updateSmsCharCount(); }
+        } else {
+            status.style.background = "rgba(239, 68, 68, 0.1)"; status.style.color = "var(--danger)"; status.style.borderColor = "var(--danger)"; status.innerText = `❌ Error: ${result.data.message}`;
+        }
+    } catch (error) {
+        console.error("SMS Error:", error);
+        status.style.background = "rgba(239, 68, 68, 0.1)"; status.style.color = "var(--danger)"; status.style.borderColor = "var(--danger)"; status.innerText = "❌ Failed: " + error.message;
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "📲 Send SMS Alerts";
     }
 });
 
