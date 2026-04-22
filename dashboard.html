@@ -510,8 +510,8 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, orderBy, limit, getDocs, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
 
 const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",authDomain:"olympiad-portal-d2a5e.firebaseapp.com",projectId:"olympiad-portal-d2a5e",storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",messagingSenderId:"341855557503",appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"};
 
@@ -595,13 +595,34 @@ async function initNotifications(user) {
                     uid: user.uid,
                     email: user.email || "",
                     fullName: user.displayName || "Student",
-                    token: currentToken,
-                    deviceType: navigator.platform || "Unknown",
+                    // Store multiple tokens in an array to support desktop + mobile simultaneously
+                    tokens: arrayUnion(currentToken),
+                    deviceType: /Mobi|Android|iPhone/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
                     userAgent: navigator.userAgent,
                     notificationsEnabled: true,
                     updatedAt: serverTimestamp()
                 }, { merge: true });
                 console.log("[Push Notifications] Token saved to Firestore (userTokens).");
+
+                // Handle Foreground Notifications
+                onMessage(messaging, (payload) => {
+                    console.log("[Push Notifications] Foreground message received:", payload);
+                    if (Notification.permission === 'granted') {
+                        const notificationTitle = payload.notification.title;
+                        const notificationOptions = {
+                            body: payload.notification.body,
+                            icon: '/favicon.png',
+                            data: payload.data
+                        };
+                        const notify = new Notification(notificationTitle, notificationOptions);
+                        notify.onclick = function(event) {
+                            event.preventDefault();
+                            const targetUrl = payload.data?.url || payload.fcmOptions?.link || "/";
+                            window.open(targetUrl, '_blank');
+                            this.close();
+                        };
+                    }
+                });
             } else {
                 console.warn("[Push Notifications] No registration token available.");
             }

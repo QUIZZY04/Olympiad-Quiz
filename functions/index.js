@@ -488,9 +488,17 @@ exports.sendPushNotification = onCall({
     
     tokensSnapshot.forEach(doc => {
       const data = doc.data();
+      // Legacy support for older devices with single token strings
       if (data.token) {
         tokens.push(data.token);
-        tokensDocs.push({ id: doc.id, token: data.token });
+        tokensDocs.push({ id: doc.id, token: data.token, isArray: false });
+      }
+      // Support for modern multi-device token arrays
+      if (data.tokens && Array.isArray(data.tokens)) {
+        data.tokens.forEach(t => {
+          tokens.push(t);
+          tokensDocs.push({ id: doc.id, token: t, isArray: true });
+        });
       }
     });
 
@@ -501,6 +509,12 @@ exports.sendPushNotification = onCall({
 
     const message = {
       notification: { title, body },
+      webpush: {
+        notification: {
+          icon: "https://olympiadquiz.org/favicon.png",
+          click_action: link || "https://olympiadquiz.org/dashboard.html"
+        }
+      },
       data: { url: link || "/" },
       tokens: tokens
     };
@@ -510,21 +524,29 @@ exports.sendPushNotification = onCall({
 
     // Safe Cleanup: Remove bad/expired tokens
     if (response.failureCount > 0) {
-      const failedTokens = [];
+      const batch = db.batch();
+      let purgeCount = 0;
+
       response.responses.forEach((resp, idx) => {
         if (!resp.success) {
           const errCode = resp.error?.code;
           if (errCode === 'messaging/invalid-registration-token' || errCode === 'messaging/registration-token-not-registered') {
-            failedTokens.push(tokensDocs[idx].id);
+            const badTokenInfo = tokensDocs[idx];
+            if (badTokenInfo.isArray) {
+              batch.update(db.collection("userTokens").doc(badTokenInfo.id), {
+                tokens: admin.firestore.FieldValue.arrayRemove(badTokenInfo.token)
+              });
+            } else {
+              batch.delete(db.collection("userTokens").doc(badTokenInfo.id));
+            }
+            purgeCount++;
           }
         }
       });
       
-      if (failedTokens.length > 0) {
-        const batch = db.batch();
-        failedTokens.forEach(id => batch.delete(db.collection("userTokens").doc(id)));
+      if (purgeCount > 0) {
         await batch.commit();
-        console.log(`Purged ${failedTokens.length} invalid tokens from database.`);
+        console.log(`Purged ${purgeCount} invalid tokens from database.`);
       }
     }
 
