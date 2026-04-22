@@ -558,8 +558,8 @@ onAuthStateChanged(auth, async (user) => {
             if (pushModal && allowPushBtn) {
                 pushModal.style.display = "flex";
                 allowPushBtn.onclick = async () => {
-                    await initNotifications(user);
                     pushModal.style.display = "none";
+                    await initNotifications(user);
                 };
             }
         } else if (Notification.permission === 'granted') {
@@ -572,12 +572,23 @@ onAuthStateChanged(auth, async (user) => {
 async function initNotifications(user) {
     try {
         const messaging = getMessaging(app);
+        
+        // Explicitly register the Service Worker to avoid scope/path issues in Dev environments
+        let swReg = null;
+        if ('serviceWorker' in navigator) {
+            swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+            console.log("[Push Notifications] Service Worker Registered successfully.");
+        }
+
         const permission = await Notification.requestPermission();
         console.log("[Push Notifications] Permission status:", permission);
         
         if (permission === 'granted') {
             // NOTE: Replace the vapidKey with your Web Push Key from Firebase Console -> Project Settings -> Cloud Messaging
-            const currentToken = await getToken(messaging, { vapidKey: "BDDMnm9al3df0zmBX5DAhJtLd61v4z7CJ4ZptN4A08Ks2vuJvfKJQ5IZlYuDnEDQbvmwi7LUd1w_46c44CcZFYE" });
+            const currentToken = await getToken(messaging, { 
+                vapidKey: "BDDMnm9al3df0zmBX5DAhJtLd61v4z7CJ4ZptN4A08Ks2vuJvfKJQ5IZlYuDnEDQbvmwi7LUd1w_46c44CcZFYE",
+                serviceWorkerRegistration: swReg
+            });
             if (currentToken) {
                 console.log("[Push Notifications] FCM Token generated successfully.");
                 await setDoc(doc(db, "userTokens", user.uid), {
@@ -591,12 +602,15 @@ async function initNotifications(user) {
                     updatedAt: serverTimestamp()
                 }, { merge: true });
                 console.log("[Push Notifications] Token saved to Firestore (userTokens).");
+            } else {
+                console.warn("[Push Notifications] No registration token available.");
             }
         } else {
             console.log("[Push Notifications] Permission denied by user.");
         }
     } catch (error) {
         console.error("[Push Notifications] Error during notification initialization:", error);
+        alert("Failed to setup Push Notifications:\n\n" + error.message + "\n\n(Make sure you are testing on HTTPS/localhost and your VAPID Key is correct)");
     }
 }
 

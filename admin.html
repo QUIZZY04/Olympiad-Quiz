@@ -243,6 +243,7 @@ border-top:1px solid var(--border);
         <a href="#video-section" style="color:var(--brand);">Videos</a>
         <a href="#coupon-section" style="color:var(--warning);">Coupons</a>
         <a href="#email-section" style="color:var(--brand);">Broadcast</a>
+        <a href="#push-section" style="color:var(--accent);">Push Notifications</a>
         <a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
         <a href="#jee-admin-section" style="color:var(--success);">JEE Tests</a>
         <div class="nav-actions">
@@ -542,6 +543,33 @@ border-top:1px solid var(--border);
                 </div>
                 <button type="submit" id="sendEmailBtn" class="upload" style="background: var(--brand); width: 100%; margin-top: 20px;">🚀 Send Broadcast</button>
                 <div id="emailStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600; padding: 12px; border-radius: 8px; display: none; border: 1px solid transparent;"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="push-section" class="panel" style="border-top: 2px solid var(--accent);">
+        <div class="panel-header">
+            <h2 style="color:var(--accent);">🔔 Push Notifications</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Send push notifications to all users who have opted in via their dashboard.</p>
+            <form id="pushNotificationForm">
+                <div>
+                    <label>Notification Title</label>
+                    <input type="text" id="pushTitle" placeholder="e.g., New Live Quiz Available!" required>
+                </div>
+                <div>
+                    <label>Notification Body</label>
+                    <textarea id="pushBody" placeholder="e.g., Join the live arena now to test your skills." style="height: 100px;" required></textarea>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label>Action Link (Optional)</label>
+                        <input type="text" id="pushLink" placeholder="e.g., /live.html" value="/live.html">
+                    </div>
+                </div>
+                <button type="submit" id="sendPushBtn" class="upload" style="background: var(--accent); width: 100%; margin-top: 20px;">🚀 Send Notification</button>
+                <div id="pushStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600; padding: 12px; border-radius: 8px; display: none; border: 1px solid transparent;"></div>
             </form>
         </div>
     </div>
@@ -2056,6 +2084,46 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
     } finally {
         btn.disabled = false;
         btn.innerText = "🚀 Send Broadcast";
+    }
+});
+
+document.getElementById("pushNotificationForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("sendPushBtn");
+    const status = document.getElementById("pushStatus");
+    
+    const title = document.getElementById("pushTitle").value;
+    const body = document.getElementById("pushBody").value;
+    const link = document.getElementById("pushLink").value;
+
+    if (!confirm("⚠️ WARNING: You are about to send a push notification to all opted-in users. Proceed?")) return;
+
+    btn.disabled = true;
+    btn.innerText = "⏳ Sending...";
+    status.style.display = "block";
+    status.style.background = "rgba(79, 70, 229, 0.1)";
+    status.style.color = "var(--brand)";
+    status.style.borderColor = "var(--brand)";
+    status.innerText = "Initiating push notification broadcast...";
+
+    try {
+        const sendPushFn = httpsCallable(functions, 'sendPushNotification');
+        const result = await sendPushFn({ title, body, link, targetType: "All Users" });
+        
+        status.style.background = "rgba(16, 185, 129, 0.1)";
+        status.style.color = "var(--success)";
+        status.style.borderColor = "var(--success)";
+        status.innerText = `✅ Success: Sent ${result.data.successCount} notifications. (Failed/Purged: ${result.data.failedCount}, Total Subscribed: ${result.data.totalTokens})`;
+        
+    } catch (error) {
+        console.error("Push Notification Error:", error);
+        status.style.background = "rgba(239, 68, 68, 0.1)";
+        status.style.color = "var(--danger)";
+        status.style.borderColor = "var(--danger)";
+        status.innerText = "❌ Failed: " + error.message;
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "🚀 Send Notification";
     }
 });
 
