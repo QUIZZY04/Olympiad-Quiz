@@ -391,8 +391,23 @@
     <div class="modal-content" style="max-width: 440px; text-align: center;">
         <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Profile Incomplete</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">Please complete signup by adding Email/Password or Google account.</p>
-        <button type="button" onclick="window.location.href='signup.html'" class="main-btn" style="width: 100%; padding: 14px; background: var(--brand); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer;">Complete Signup</button>
+        <p class="subtitle" style="margin-bottom: 20px;">Please complete your account by linking an Email/Password or Google account.</p>
+        
+        <!-- Google Linking Button (Case 1) -->
+        <button type="button" id="linkGoogleAccountBtn" class="social-btn" style="border: 1px solid var(--border); box-shadow: var(--shadow-sm); width: 100%; margin-bottom: 15px; background: #ffffff; color: #1e293b; justify-content: center;">
+            <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
+            Link Google Account
+        </button>
+
+        <div class="divider" style="margin-bottom: 15px;">or link email</div>
+
+        <!-- Email/Password Linking Form (Case 1) -->
+        <form id="linkEmailPasswordForm" style="text-align: left;">
+            <input type="email" id="linkNewEmail" placeholder="Email Address" required style="width: 100%; padding: 14px 16px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: 12px; background: #f8fafc; font-size: 14px; color: var(--text); outline: none;">
+            <input type="password" id="linkNewPassword" placeholder="New Password" required style="width: 100%; padding: 14px 16px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 12px; background: #f8fafc; font-size: 14px; color: var(--text); outline: none;">
+            <button type="submit" id="linkEmailSubmitBtn" class="main-btn" style="width: 100%; padding: 14px; background: var(--brand); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer;">Link Email & Password</button>
+        </form>
+
         <button type="button" onclick="logoutAndCancel()" style="background: none; border: none; color: var(--danger); font-weight: 700; margin-top: 20px; cursor: pointer;">Cancel & Logout</button>
     </div>
 </div>
@@ -728,6 +743,73 @@ document.getElementById("linkOtpForm").addEventListener("submit", async (e) => {
         if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
         alert(errorMsg);
         btn.disabled = false; btn.innerText = "Verify & Continue";
+    }
+});
+
+// Link Google Account Logic (Forced Completion - Case 1)
+// securely links a Google Auth provider to the existing mobile-only account.
+document.getElementById("linkGoogleAccountBtn").addEventListener("click", async () => {
+    const btn = document.getElementById("linkGoogleAccountBtn");
+    const originalText = btn.innerHTML;
+    btn.innerHTML = "Linking...";
+    btn.disabled = true;
+
+    try {
+        const result = await linkWithPopup(auth.currentUser, provider);
+        const user = result.user;
+        const providerIds = user.providerData.map(p => p.providerId);
+        
+        // Update Firestore profile
+        await setDoc(doc(db, "users", user.uid), {
+            email: user.email || null,
+            name: user.displayName || 'Student',
+            authProviders: providerIds,
+            signupCompleted: true,
+            updatedAt: new Date()
+        }, { merge: true });
+
+        document.getElementById('forceEmailGoogleModal').style.display = 'none';
+        checkUserAndRedirect(user); // Resume login flow
+    } catch (err) {
+        let errorMsg = "Failed to link Google account. Please try again.";
+        if (err.code === 'auth/credential-already-in-use') errorMsg = "This Google account is already linked to another account.";
+        alert(errorMsg);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+});
+
+// Link Email/Password Logic (Forced Completion - Case 1)
+// Securely links a new email and password to the existing mobile-only account.
+document.getElementById("linkEmailPasswordForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("linkNewEmail").value.trim();
+    const password = document.getElementById("linkNewPassword").value;
+    const btn = document.getElementById("linkEmailSubmitBtn");
+    
+    btn.disabled = true;
+    btn.innerText = "Linking...";
+
+    try {
+        const user = auth.currentUser;
+        await updateEmail(user, email);
+        await updatePassword(user, password);
+        
+        // Pull down the newly appended provider data
+        await user.reload();
+        const providerIds = auth.currentUser.providerData.map(p => p.providerId);
+        
+        await setDoc(doc(db, "users", user.uid), { email: email, authProviders: providerIds, signupCompleted: true, updatedAt: new Date() }, { merge: true });
+        document.getElementById('forceEmailGoogleModal').style.display = 'none';
+        checkUserAndRedirect(auth.currentUser); // Resume login flow
+    } catch (err) {
+        let errorMsg = "Failed to link email/password. Please try again.";
+        if (err.code === 'auth/email-already-in-use') errorMsg = "This email is already registered to another account.";
+        else if (err.code === 'auth/weak-password') errorMsg = "Password is too weak. Please use a stronger password.";
+        else if (err.code === 'auth/requires-recent-login') errorMsg = "Please logout and login again to perform this action.";
+        alert(errorMsg);
+        btn.disabled = false;
+        btn.innerText = "Link Email & Password";
     }
 });
 
