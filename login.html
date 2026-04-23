@@ -356,10 +356,10 @@
     <div class="modal-content" style="max-width: 440px; text-align: center;">
         <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Registration Required</h2>
-        <p class="subtitle" id="notRegisteredMsg" style="margin-bottom: 20px;">Please complete signup first with mobile verification.</p>
+        <p class="subtitle" id="notRegisteredMsg" style="margin-bottom: 20px;">No complete account found. Please sign up first to continue.</p>
         <div style="display: flex; gap: 10px;">
-            <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Cancel</button>
-            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Go to Signup</button>
+            <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">No Thanks</button>
+            <button type="button" onclick="window.location.href='signup.html?from=login'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Yes, Sign Up</button>
         </div>
     </div>
 </div>
@@ -692,9 +692,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
         const result = await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
         
         if (!checkUserEligibility(result.user)) {
-            document.getElementById('notRegisteredMsg').innerText = "No registered account found. Please sign up first.";
+            document.getElementById('notRegisteredMsg').innerText = "No complete account found. Please sign up first to continue.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
-            setTimeout(() => { window.location.href = "signup.html"; }, 1500);
             return;
         }
         
@@ -702,9 +701,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     } catch(err) { 
         isManualLogin = false;
         if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') {
-            document.getElementById('notRegisteredMsg').innerText = "No registered account found. Please sign up first.";
+            document.getElementById('notRegisteredMsg').innerText = "No complete account found. Please sign up first to continue.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
-            setTimeout(() => { window.location.href = "signup.html"; }, 1500);
         } else {
             alert(err.message); 
         }
@@ -721,9 +719,8 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         const additionalInfo = getAdditionalUserInfo(result);
         
         if ((additionalInfo && additionalInfo.isNewUser) || !checkUserEligibility(result.user)) {
-            document.getElementById('notRegisteredMsg').innerText = "Welcome! Please complete sign up to continue.";
+            document.getElementById('notRegisteredMsg').innerText = "No complete account found. Please sign up first to continue.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
-            setTimeout(() => { window.location.href = "signup.html"; }, 1500);
             return;
         }
         

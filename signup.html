@@ -327,7 +327,10 @@ onAuthStateChanged(auth, async (user) => {
     if (user && !isCompletingSignup) {
         const eligibility = checkUserEligibility(user);
         
-        if (eligibility.isEligible) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const isFullyRegistered = userDoc.exists() && userDoc.data().signupCompleted === true && userDoc.data().class;
+        
+        if (eligibility.isEligible && isFullyRegistered) {
             // Completely valid users shouldn't be here, return to dashboard
             window.location.href = "dashboard.html";
         } else {
@@ -340,6 +343,16 @@ onAuthStateChanged(auth, async (user) => {
             } else {
                 document.getElementById("phoneSignupSection").classList.add("hidden");
                 document.getElementById("completeProfileSection").classList.remove("hidden");
+                
+                if (user.displayName) document.getElementById("cName").value = user.displayName;
+                if (user.email) document.getElementById("cEmail").value = user.email;
+                
+                if (eligibility.hasGoogle) {
+                    document.getElementById("linkGoogleBtn").classList.add("hidden");
+                    document.querySelector(".divider").classList.add("hidden");
+                    document.getElementById("cPassword").required = false;
+                    document.getElementById("cPassword").placeholder = "Create Password (Optional)";
+                }
             }
         }
     }
@@ -425,17 +438,28 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
             phone: user.phoneNumber,
             phoneNumber: user.phoneNumber,
             phoneVerified: true,
-            signupCompleted: eligibility.isEligible,
+            signupCompleted: userDoc.exists() ? (userDoc.data().signupCompleted || false) : false,
             createdAt: userDoc.exists() ? userDoc.data().createdAt : new Date(),
             updatedAt: new Date()
         }, { merge: true });
 
         // Direct to dashboard if linking completed their eligibility profile
-        if (eligibility.isEligible) {
+        const isFullyRegisteredAfterOTP = userDoc.exists() && userDoc.data().signupCompleted === true && userDoc.data().class;
+        if (eligibility.isEligible && isFullyRegisteredAfterOTP) {
             window.location.href = "dashboard.html";
         } else {
             document.getElementById("phoneSignupSection").classList.add("hidden");
             document.getElementById("completeProfileSection").classList.remove("hidden");
+            
+            if (user.displayName) document.getElementById("cName").value = user.displayName;
+            if (user.email) document.getElementById("cEmail").value = user.email;
+            
+            if (eligibility.hasGoogle) {
+                document.getElementById("linkGoogleBtn").classList.add("hidden");
+                document.querySelector(".divider").classList.add("hidden");
+                document.getElementById("cPassword").required = false;
+                document.getElementById("cPassword").placeholder = "Create Password (Optional)";
+            }
         }
     } catch (err) {
         let errorMsg = "Verification failed. Please try again.";
@@ -477,8 +501,17 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
 
     try {
         const user = auth.currentUser;
-        const credential = EmailAuthProvider.credential(email, password);
-        await linkWithCredential(user, credential);
+        
+        if (password) {
+            try {
+                const credential = EmailAuthProvider.credential(email, password);
+                await linkWithCredential(user, credential);
+            } catch (linkErr) {
+                if (linkErr.code !== 'auth/credential-already-in-use' && linkErr.code !== 'auth/email-already-in-use' && linkErr.code !== 'auth/provider-already-linked') {
+                    throw linkErr;
+                }
+            }
+        }
         
         const providerIds = user.providerData.map(p => p.providerId);
 
