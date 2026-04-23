@@ -544,11 +544,47 @@ onAuthStateChanged(auth, async (user) => {
             if (userDoc.data().name) {
                 document.getElementById("userGreeting").innerText = `Welcome, ${userDoc.data().name}!`;
             }
+            
+            // --- Dashboard Visibility Logic for Grade 11 & 12 ---
+            const data = userDoc.data();
+            uClass = data.class || data.studentClass || "";
+            uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
+            
+            if (uClass) {
+                if (uClass >= 11) {
+                    // Grade 11 & 12: Show only JEE, Analytics, Study Material
+                    document.querySelectorAll('.modern-card:not(.card-indigo):not(.card-teal)').forEach(el => { if (el) el.style.display = 'none'; });
+                    
+                    const studyChips = document.querySelector('.study-chips');
+                    if (studyChips) {
+                        studyChips.innerHTML = `
+                            <span class="study-chip imo" style="background: rgba(56, 189, 248, 0.1); color: #0284c7;">📐 Physics</span>
+                            <span class="study-chip nso" style="background: rgba(52, 211, 153, 0.1); color: #059669;">🔬 Chemistry</span>
+                            <span class="study-chip ieo" style="background: rgba(244, 63, 94, 0.1); color: #e11d48;">📖 Maths</span>
+                        `;
+                    }
+                    const studyDesc = document.querySelector('.study-banner-content p');
+                    if (studyDesc) studyDesc.innerText = "Access expertly curated notes and core concepts for JEE preparation.";
+                    
+                    const liveBanner = document.getElementById('liveSessionBanner');
+                    if (liveBanner) liveBanner.style.display = 'none';
+                    const infoSection = document.querySelector('.info-section');
+                    if (infoSection) infoSection.style.display = 'none';
+                    const richText = document.querySelector('.rich-text-section');
+                    if (richText) richText.style.display = 'none';
+                    
+                    document.querySelectorAll('.nav-dropdown, a[href="mock.html"], a[href="chapterwise.html"], a[href="live.html"], a[href="leaderboard.html"], a[href="olympiads.html"]').forEach(el => { if (el) el.style.display = 'none'; });
+                } else {
+                    // Grade 1-10: Hide JEE card
+                    const jeeCard = document.querySelector('.card-indigo');
+                    if (jeeCard) jeeCard.style.display = 'none';
+                }
+            }
         }
     } catch (e) {
         console.error("Error fetching user data:", e);
     }
-    checkLiveSessions();
+    checkLiveSessions(uClass);
     
     // Handle Push Notifications Responsibly (Requires User Gesture)
     if ('Notification' in window) {
@@ -642,10 +678,11 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 
-async function checkLiveSessions() {
+async function checkLiveSessions(userClass) {
     const banner = document.getElementById("liveSessionBanner");
+    if (!banner) return;
     try {
-        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(5));
+        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(15));
         const snap = await getDocs(q);
         const now = new Date();
         
@@ -654,6 +691,9 @@ async function checkLiveSessions() {
         
         snap.forEach(d => {
             const s = d.data();
+            // Only show material of their selected class
+            if (userClass && parseInt(s.class) !== parseInt(userClass)) return;
+            
             const start = s.startTime.toDate();
             const end = s.endTime.toDate();
             if (now < end) { 
