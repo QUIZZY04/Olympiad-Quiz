@@ -435,14 +435,16 @@
             });
             return;
         }
-        if (user.email === "madhhu52@gmail.com") {
-            document.getElementById("adminTab").style.display = "inline";
+    const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+        if (isAdmin) {
+        const adminTab = document.getElementById("adminTab");
+        if (adminTab) adminTab.style.display = "inline";
         }
         try {
             const userDoc = await getDoc(doc(db, "users", user.uid));
             if (userDoc.exists()) {
                 let uClass = userDoc.data().class || userDoc.data().studentClass;
-                if (uClass) {
+            if (uClass && !isAdmin) {
                     if (!uClass.toString().startsWith('class')) uClass = 'class' + uClass;
                     const classSelect = document.getElementById("classSelect");
                     if (classSelect) {

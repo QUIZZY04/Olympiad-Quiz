@@ -57,6 +57,8 @@ const adminEmail = "madhhu52@gmail.com";
 onAuthStateChanged(auth, (user) => {
     if (user) {
         if (user.email === adminEmail) {
+        const isAdmin = user.email && user.email.trim().toLowerCase() === adminEmail;
+        if (isAdmin) {
             currentUser = user;
             document.getElementById("userInfo").innerText = "Logged in as Admin: " + user.email;
             document.getElementById("status").innerText = "✅ System ready for upload.";
@@ -81,6 +83,8 @@ window.uploadBulk = async function () {
         }
 
     if(!currentUser || currentUser.email !== adminEmail) {
+    const isCurrentUserAdmin = currentUser && currentUser.email && currentUser.email.trim().toLowerCase() === adminEmail;
+    if(!isCurrentUserAdmin) {
         statusDiv.innerText = "❌ Unauthorized: You must be logged in as " + adminEmail;
         return;
     }

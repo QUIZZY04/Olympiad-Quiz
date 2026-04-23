@@ -528,8 +528,10 @@ onAuthStateChanged(auth, async (user) => {
     }
     document.body.style.visibility = 'visible';
 
+    const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+
     // Admin Access
-    if(user.email==="madhhu52@gmail.com") {
+    if(isAdmin) {
         document.getElementById("adminTab").style.display="inline";
     }
     
@@ -538,7 +540,7 @@ onAuthStateChanged(auth, async (user) => {
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
-            if (!userDoc.data().phone) {
+            if (!userDoc.data().phone && !isAdmin) {
                 window.location.replace("login.html");
                 return;
             }
@@ -551,7 +553,7 @@ onAuthStateChanged(auth, async (user) => {
             uClass = data.class || data.studentClass || "";
             uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
             
-            if (uClass) {
+            if (uClass && !isAdmin) {
                 if (uClass >= 11) {
                     // Grade 11 & 12: Show ONLY JEE Advance section
                     document.querySelectorAll('.modern-card:not(.card-indigo)').forEach(el => { if (el) el.style.display = 'none'; });
@@ -579,7 +581,7 @@ onAuthStateChanged(auth, async (user) => {
     } catch (e) {
         console.error("Error fetching user data:", e);
     }
-    checkLiveSessions(uClass);
+    checkLiveSessions(isAdmin ? null : uClass);
     
     // Handle Push Notifications Responsibly (Requires User Gesture)
     if ('Notification' in window) {
