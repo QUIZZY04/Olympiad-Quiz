@@ -310,16 +310,52 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         if (!user) {
             window.location.replace("login.html");
         } else {
             document.body.style.visibility = 'visible';
+            try {
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    let uClass = userDoc.data().class || userDoc.data().studentClass;
+                    if (uClass) {
+                        uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
+                        if (uClass >= 11) {
+                            const grid = document.querySelector('.subject-grid');
+                            if (grid) {
+                                grid.innerHTML = `
+                                    <a href="study-material.html?subject=physics" class="subject-card maths-card" style="border-top-color: #38bdf8;">
+                                        <div class="subject-icon">📐</div>
+                                        <h3 class="subject-title">Physics</h3>
+                                        <p class="subject-desc">Master core concepts for JEE Advanced.</p>
+                                        <span class="card-btn" style="color: #38bdf8; border-color: #38bdf8;">Explore Physics →</span>
+                                    </a>
+                                    <a href="study-material.html?subject=chemistry" class="subject-card science-card" style="border-top-color: #10b981;">
+                                        <div class="subject-icon">🔬</div>
+                                        <h3 class="subject-title">Chemistry</h3>
+                                        <p class="subject-desc">Deep dive into physical, organic, and inorganic chemistry.</p>
+                                        <span class="card-btn" style="color: #10b981; border-color: #10b981;">Explore Chemistry →</span>
+                                    </a>
+                                    <a href="study-material.html?subject=maths" class="subject-card english-card" style="border-top-color: #3b82f6;">
+                                        <div class="subject-icon">🔢</div>
+                                        <h3 class="subject-title">Mathematics</h3>
+                                        <p class="subject-desc">Enhance problem-solving skills for JEE.</p>
+                                        <span class="card-btn" style="color: #3b82f6; border-color: #3b82f6;">Explore Maths →</span>
+                                    </a>
+                                `;
+                            }
+                        }
+                    }
+                }
+            } catch(e) {}
         }
     });
 

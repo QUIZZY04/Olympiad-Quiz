@@ -153,35 +153,52 @@
     const accent = colors[subject] || colors.maths;
     document.documentElement.style.setProperty('--brand', accent);
 
-    // Generate Class Cards
-    const grid = document.getElementById('classGrid');
-    for (let i = 1; i <= 12; i++) {
-        const card = document.createElement('a');
-        card.className = 'class-card';
-        // For now, this links to chapterwise.html, but you can create specific content pages later
-        // Or link to a content viewer page passing class & subject
-        card.href = `study-content.html?subject=${subject}&class=class${i}`; 
-        
-        card.innerHTML = `
-            <div class="class-badge" style="background: ${accent}; box-shadow: 0 4px 10px ${accent}66;">${i}</div>
-            <div class="class-name">Class ${i}</div>
-            <div class="class-sub">Olympiad Prep</div>
-        `;
-        grid.appendChild(card);
-    }
 </script>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    onAuthStateChanged(auth, (user) => {
-        if (!user) Storage.setItem("redirectAfterLogin", window.location.href);
+    onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.replace("login.html");
+            return;
+        }
+        try {
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                let uClass = userDoc.data().class || userDoc.data().studentClass;
+                if (uClass) {
+                    uClass = String(uClass).replace(/[^0-9]/g, '');
+                    const grid = document.getElementById('classGrid');
+                    grid.innerHTML = '';
+                    const i = parseInt(uClass);
+                    
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const subject = urlParams.get('subject') || 'maths';
+                    const colors = { maths: '#38bdf8', science: '#10b981', english: '#f43f5e', reasoning: '#f59e0b', physics: '#38bdf8', chemistry: '#10b981' };
+                    const accent = colors[subject] || colors.maths;
+
+                    const card = document.createElement('a');
+                    card.className = 'class-card';
+                    card.href = `study-content.html?subject=${subject}&class=class${i}`; 
+                    card.innerHTML = `
+                        <div class="class-badge" style="background: ${accent}; box-shadow: 0 4px 10px ${accent}66;">${i}</div>
+                        <div class="class-name">Class ${i}</div>
+                        <div class="class-sub">${i >= 11 ? 'JEE Prep' : 'Olympiad Prep'}</div>
+                    `;
+                    grid.appendChild(card);
+                }
+            }
+        } catch (e) {
+            console.error(e);
         }
     });
 

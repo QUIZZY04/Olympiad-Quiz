@@ -574,6 +574,24 @@
             }
 
             if (user) {
+                try {
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    if (userDoc.exists()) {
+                        let uClass = userDoc.data().class || userDoc.data().studentClass;
+                        if (uClass) {
+                            uClass = String(uClass).replace(/[^0-9]/g, '');
+                            if (gradeFilter) {
+                                if (!Array.from(gradeFilter.options).some(opt => opt.value === uClass)) {
+                                    gradeFilter.innerHTML += `<option value="${uClass}">Class ${uClass}</option>`;
+                                }
+                                gradeFilter.value = uClass;
+                            }
+                        }
+                    }
+                } catch(e) {
+                    console.error("Error setting user class restriction:", e);
+                }
+
                 const accessPromises = sessionDocs.map(sDoc => getDoc(doc(db, "users", user.uid, "purchases", sDoc.id)));
                 userAccessSnaps = await Promise.all(accessPromises);
 

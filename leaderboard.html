@@ -325,15 +325,12 @@ font-size:14px;
     <option value="class2">Grade 2</option>
     <option value="class3">Grade 3</option>
     <option value="class4">Grade 4</option>
-    <option value="class5" selected>Grade 5</option>
     <option value="class5">Grade 5</option>
     <option value="class6">Grade 6</option>
     <option value="class7">Grade 7</option>
     <option value="class8">Grade 8</option>
     <option value="class9">Grade 9</option>
     <option value="class10">Grade 10</option>
-    <option value="class11">Grade 11</option>
-    <option value="class12">Grade 12</option>
     <option value="class11">Grade 11</option>
     <option value="class12">Grade 12</option>
     </select>
@@ -372,6 +369,8 @@ font-size:14px;
     <option value="class8">Grade 8</option>
     <option value="class9">Grade 9</option>
     <option value="class10">Grade 10</option>
+    <option value="class11">Grade 11</option>
+    <option value="class12">Grade 12</option>
     </select>
 
     <select id="dailySubject">
@@ -466,7 +465,7 @@ font-size:14px;
 
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"
 import {getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
-import {getFirestore,collection,query,where,orderBy,limit,getDocs,doc,deleteDoc} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"
+import {getFirestore,collection,query,where,orderBy,limit,getDocs,doc,deleteDoc,getDoc} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -483,7 +482,7 @@ const db=getFirestore(app)
 
 let isAdmin = false;
 
-onAuthStateChanged(auth,(user)=>{
+onAuthStateChanged(auth,async (user)=>{
 if(!user){
 sessionStorage.setItem("redirectAfterLogin", window.location.href);
 window.location.replace("login.html")
