@@ -534,6 +534,7 @@ onAuthStateChanged(auth, async (user) => {
     }
     
     // Background UI Updates
+    let uClass = null;
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
@@ -552,19 +553,13 @@ onAuthStateChanged(auth, async (user) => {
             
             if (uClass) {
                 if (uClass >= 11) {
-                    // Grade 11 & 12: Show only JEE, Analytics, Study Material
-                    document.querySelectorAll('.modern-card:not(.card-indigo):not(.card-teal)').forEach(el => { if (el) el.style.display = 'none'; });
+                    // Grade 11 & 12: Show ONLY JEE Advance section
+                    document.querySelectorAll('.modern-card:not(.card-indigo)').forEach(el => { if (el) el.style.display = 'none'; });
                     
-                    const studyChips = document.querySelector('.study-chips');
-                    if (studyChips) {
-                        studyChips.innerHTML = `
-                            <span class="study-chip imo" style="background: rgba(56, 189, 248, 0.1); color: #0284c7;">📐 Physics</span>
-                            <span class="study-chip nso" style="background: rgba(52, 211, 153, 0.1); color: #059669;">🔬 Chemistry</span>
-                            <span class="study-chip ieo" style="background: rgba(244, 63, 94, 0.1); color: #e11d48;">📖 Maths</span>
-                        `;
-                    }
-                    const studyDesc = document.querySelector('.study-banner-content p');
-                    if (studyDesc) studyDesc.innerText = "Access expertly curated notes and core concepts for JEE preparation.";
+                    const studyBanner = document.querySelector('.study-banner');
+                    if (studyBanner) studyBanner.style.display = 'none';
+                    const statsSection = document.querySelector('.stats-section');
+                    if (statsSection) statsSection.style.display = 'none';
                     
                     const liveBanner = document.getElementById('liveSessionBanner');
                     if (liveBanner) liveBanner.style.display = 'none';
