@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>OlympiadQuiz.org | Premium Olympiad & JEE Platform</title>
+<title>Free Olympiad Mock Test for Class 1 to 12 | OlympiadQuiz.org</title>
 
-<meta name="description" content="Premium Olympiad and JEE preparation platform with free mock tests, chapterwise quizzes, rankings and live tests.">
+<meta name="description" content="Practice Olympiad Maths, Science and JEE with free mock tests, chapterwise quizzes, live tests, rankings and instant results for Class 1 to 12 students.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -35,12 +34,10 @@ margin:auto;
 padding:0 22px;
 }
 
-/* Vedantu Style Colors */
 :root{
 --orange:#ff6b00;
 --dark:#111827;
 --light:#f8fafc;
---blue:#2563eb;
 --muted:#64748b;
 }
 
@@ -72,45 +69,35 @@ font-weight:600;
 color:#334155;
 }
 
-.menu a:hover{
-color:var(--orange);
-}
-
 /* BUTTON */
 .btn{
 display:inline-block;
 padding:15px 28px;
 border-radius:14px;
 font-weight:700;
-transition:.3s;
 }
 
 .btn-main{
 background:var(--orange);
 color:#fff;
-box-shadow:0 14px 35px rgba(255,107,0,.28);
-}
-
-.btn-main:hover{
-transform:translateY(-3px);
 }
 
 .btn-light{
-background:#ffffff;
-color:#111827;
+background:#fff;
 border:1px solid #e2e8f0;
+color:#111827;
 }
 
 /* HERO */
 .hero{
-padding:90px 0;
+padding:85px 0;
 background:linear-gradient(135deg,#fff7ed,#ffffff);
 }
 
 .hero-grid{
 display:grid;
-grid-template-columns:1.05fr 1fr;
-gap:55px;
+grid-template-columns:1.2fr .8fr;
+gap:40px;
 align-items:center;
 }
 
@@ -125,11 +112,10 @@ font-weight:700;
 }
 
 .hero h1{
-font-size:64px;
+font-size:60px;
 line-height:1.05;
 font-weight:800;
-margin:20px 0;
-letter-spacing:-2px;
+margin:18px 0;
 }
 
 .hero h1 span{
@@ -150,63 +136,45 @@ gap:16px;
 flex-wrap:wrap;
 }
 
+.hero-card{
+background:#ffffff;
+padding:18px;
+border-radius:28px;
+box-shadow:0 18px 40px rgba(0,0,0,.07);
+}
+
+.hero-card img{
+width:100%;
+height:390px;
+object-fit:cover;
+border-radius:20px;
+}
+
+/* STATS */
 .stats{
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:16px;
-margin-top:36px;
+margin-top:34px;
 }
 
 .stat{
-background:#ffffff;
-padding:20px;
+background:#fff;
+padding:18px;
 border-radius:18px;
 text-align:center;
-box-shadow:0 12px 30px rgba(0,0,0,.05);
+box-shadow:0 10px 25px rgba(0,0,0,.05);
 }
 
 .stat h3{
-font-size:30px;
-font-weight:800;
+font-size:28px;
 color:var(--orange);
-margin-bottom:6px;
+font-weight:800;
 }
 
 .stat p{
 font-size:14px;
 color:var(--muted);
-}
-
-/* HERO IMAGE */
-.hero-card{
-position:relative;
-background:#ffffff;
-padding:24px;
-border-radius:30px;
-box-shadow:0 25px 60px rgba(0,0,0,.08);
-}
-
-.hero-card img{
-width:100%;
-border-radius:22px;
-height:560px;
-object-fit:cover;
-}
-
-.floating{
-position:absolute;
-bottom:24px;
-left:24px;
-right:24px;
-background:#ffffff;
-padding:18px;
-border-radius:18px;
-box-shadow:0 12px 28px rgba(0,0,0,.08);
-}
-
-.floating h4{
-font-size:18px;
-margin-bottom:8px;
 }
 
 /* SECTION */
@@ -215,10 +183,9 @@ padding:90px 0;
 }
 
 .title{
-font-size:46px;
+font-size:44px;
 font-weight:800;
 text-align:center;
-letter-spacing:-1px;
 }
 
 .sub{
@@ -227,7 +194,6 @@ max-width:760px;
 margin:14px auto 48px;
 color:var(--muted);
 line-height:1.8;
-font-size:17px;
 }
 
 .grid{
@@ -241,12 +207,7 @@ background:#ffffff;
 border:1px solid #f1f5f9;
 padding:28px;
 border-radius:24px;
-box-shadow:0 14px 35px rgba(0,0,0,.04);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-7px);
+box-shadow:0 12px 30px rgba(0,0,0,.04);
 }
 
 .card h3{
@@ -259,23 +220,44 @@ color:var(--muted);
 line-height:1.8;
 }
 
-/* LIVE BOX */
+/* SEO TEXT SECTION */
+.seo-box{
+background:#f8fafc;
+padding:38px;
+border-radius:24px;
+line-height:1.9;
+color:#334155;
+}
+
+.seo-box h2{
+font-size:32px;
+margin-bottom:18px;
+color:#111827;
+}
+
+.seo-box h3{
+font-size:24px;
+margin-top:24px;
+margin-bottom:10px;
+color:#111827;
+}
+
+/* LIVE */
 .live-box{
 background:linear-gradient(135deg,#ff6b00,#ff8c1a);
-padding:55px;
-border-radius:30px;
-color:#ffffff;
+padding:52px;
+border-radius:28px;
+color:#fff;
 text-align:center;
-box-shadow:0 25px 60px rgba(255,107,0,.22);
 }
 
 .live-box h2{
-font-size:48px;
+font-size:44px;
 font-weight:800;
 }
 
 .live-box p{
-margin:16px 0 28px;
+margin:14px 0 24px;
 font-size:18px;
 }
 
@@ -287,20 +269,6 @@ color:#cbd5e1;
 text-align:center;
 }
 
-/* FLOAT BUTTON */
-.float-btn{
-position:fixed;
-right:18px;
-bottom:18px;
-background:var(--orange);
-color:#ffffff;
-padding:15px 20px;
-border-radius:999px;
-font-weight:700;
-box-shadow:0 15px 35px rgba(0,0,0,.18);
-z-index:1000;
-}
-
 /* MOBILE */
 @media(max-width:950px){
 
@@ -309,15 +277,19 @@ grid-template-columns:1fr;
 }
 
 .hero h1{
-font-size:42px;
+font-size:40px;
+}
+
+.menu{
+display:none;
 }
 
 .stats{
 grid-template-columns:repeat(2,1fr);
 }
 
-.menu{
-display:none;
+.hero-card img{
+height:280px;
 }
 
 .title{
@@ -325,15 +297,10 @@ font-size:34px;
 }
 
 .live-box h2{
-font-size:30px;
-}
-
-.hero-card img{
-height:420px;
+font-size:28px;
 }
 
 }
-
 </style>
 </head>
 
@@ -362,13 +329,13 @@ height:420px;
 
 <div>
 
-<div class="badge">India's Smart Olympiad Learning Platform</div>
+<div class="badge">India's Smart Olympiad Platform</div>
 
-<h1>Prepare for <span>Olympiads & JEE</span> Like Toppers</h1>
+<h1>Free <span>Olympiad Mock Test</span> for Class 1 to 12</h1>
 
 <p>
-Join thousands of students using premium mock tests, chapterwise quizzes,
-instant results, rankings, live tests and detailed solutions.
+Practice Olympiad Maths, Science, English and JEE with chapterwise quizzes,
+mock tests, instant results, rankings and live competitions.
 </p>
 
 <div class="hero-btns">
@@ -403,16 +370,7 @@ instant results, rankings, live tests and detailed solutions.
 </div>
 
 <div class="hero-card">
-
-<img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1200" alt="Happy student studying online">
-
-<div class="floating">
-<h4>Trusted by Students & Parents</h4>
-<p style="font-size:14px;color:#64748b;">
-Premium exam-like experience with rankings & instant reports.
-</p>
-</div>
-
+<img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=900" alt="Student learning online">
 </div>
 
 </div>
@@ -423,32 +381,77 @@ Premium exam-like experience with rankings & instant reports.
 <div class="container">
 
 <h2 class="title">Everything You Need to Win</h2>
-
-<p class="sub">
-Built for students aiming for Olympiad medals, school success and JEE excellence.
-</p>
+<p class="sub">Built for Olympiad toppers and JEE aspirants.</p>
 
 <div class="grid">
 
-<a href="mock.html" class="card">
-<h3>📝 Mock Tests</h3>
-<p>Real exam simulation with timer, results and solutions.</p>
-</a>
+<div class="card">
+<h3>📝 Olympiad Mock Tests</h3>
+<p>Real exam simulation with timer and instant results.</p>
+</div>
 
-<a href="chapterwise.html" class="card">
-<h3>📘 Chapterwise Practice</h3>
-<p>Master every topic with smart practice.</p>
-</a>
+<div class="card">
+<h3>📘 Chapterwise Tests</h3>
+<p>Master every concept with topic-wise quizzes.</p>
+</div>
 
-<a href="jee-list.html" class="card">
-<h3>🎯 JEE Advanced</h3>
-<p>Advanced level multi-correct tests.</p>
-</a>
+<div class="card">
+<h3>🎯 JEE Advanced Tests</h3>
+<p>Advanced multi-correct questions and mocks.</p>
+</div>
 
-<a href="study.html" class="card">
+<div class="card">
 <h3>📚 Study Material</h3>
-<p>Revision notes, formulas and resources.</p>
-</a>
+<p>Revision notes, formulas and important concepts.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- SEO CONTENT -->
+<section class="section">
+<div class="container">
+
+<div class="seo-box">
+
+<h2>Best Free Olympiad Practice Platform in India</h2>
+
+<p>
+OlympiadQuiz.org helps students prepare for major Olympiad exams such as IMO,
+NSO, IEO and other school competitive tests. Our platform provides free online
+Olympiad mock tests for Class 1 to 12 students with instant result and ranking.
+</p>
+
+<h3>Free IMO Mock Test Online</h3>
+
+<p>
+Students preparing for International Mathematics Olympiad can practice IMO mock
+tests with chapterwise maths quizzes, previous pattern questions and detailed
+solutions.
+</p>
+
+<h3>Free NSO Mock Test Online</h3>
+
+<p>
+Prepare for National Science Olympiad with science mock tests, concept-based
+questions and chapterwise practice designed for school students.
+</p>
+
+<h3>JEE Foundation & JEE Advanced Practice</h3>
+
+<p>
+Grade 11 and 12 students can strengthen their maths, physics and chemistry
+concepts with advanced tests and practice quizzes.
+</p>
+
+<h3>Why Choose OlympiadQuiz.org?</h3>
+
+<p>
+Free tests, fast results, mobile-friendly dashboard, live tests, detailed
+solutions and trusted by thousands of students across India.
+</p>
 
 </div>
 
@@ -476,8 +479,6 @@ Built for students aiming for Olympiad medals, school success and JEE excellence
 <footer>
 © OlympiadQuiz.org • India's Premium Olympiad & JEE Platform
 </footer>
-
-<a href="signup.html" class="float-btn">Start Free 🚀</a>
 
 </body>
 </html>
