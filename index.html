@@ -3,257 +3,279 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>OlympiadQuiz.org | Free Olympiad & JEE Mock Tests</title>
-<meta name="description" content="Premium platform for Olympiad and JEE preparation with free mock tests, chapterwise practice, live exams, rankings and instant results.">
+<meta name="description" content="India's premium Olympiad preparation platform for Classes 1 to 12 with free mock tests, chapterwise practice, instant results and live tests.">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:#ffffff;
-  color:#0f172a;
+font-family:'Poppins',sans-serif;
+background:#ffffff;
+color:#111827;
 }
 
 a{
-  text-decoration:none;
+text-decoration:none;
 }
 
 .container{
-  max-width:1240px;
-  margin:auto;
-  padding:0 20px;
+max-width:1280px;
+margin:auto;
+padding:0 20px;
 }
 
 /* NAVBAR */
 .navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#ffffff;
-  border-bottom:1px solid #e2e8f0;
+background:#ffffff;
+border-bottom:1px solid #e5e7eb;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
 .nav-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
 }
 
 .logo{
-  font-size:30px;
-  font-weight:800;
-  color:#2563eb;
+font-size:30px;
+font-weight:800;
+color:#2563eb;
 }
 
 .menu a{
-  margin-left:22px;
-  color:#334155;
-  font-weight:600;
+margin-left:24px;
+font-weight:600;
+color:#334155;
 }
 
 /* HERO */
 .hero{
-  padding:75px 0;
-  background:linear-gradient(135deg,#eff6ff,#ffffff);
+padding:80px 0;
+background:linear-gradient(135deg,#eef2ff,#ffffff);
 }
 
 .hero-grid{
-  display:grid;
-  grid-template-columns:1.15fr 1fr;
-  gap:40px;
-  align-items:center;
+display:grid;
+grid-template-columns:1.1fr 1fr;
+gap:50px;
+align-items:center;
 }
 
 .badge{
-  display:inline-block;
-  background:#dbeafe;
-  color:#1d4ed8;
-  padding:8px 14px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:700;
+display:inline-block;
+background:#dbeafe;
+color:#1d4ed8;
+padding:8px 14px;
+border-radius:999px;
+font-size:13px;
+font-weight:700;
 }
 
 .hero h1{
-  font-size:54px;
-  line-height:1.08;
-  margin:18px 0;
+font-size:56px;
+line-height:1.08;
+margin:18px 0;
+font-weight:800;
 }
 
 .hero p{
-  font-size:18px;
-  color:#475569;
-  line-height:1.7;
+font-size:18px;
+line-height:1.8;
+color:#475569;
 }
 
-.btns{
-  margin-top:25px;
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
+.btn-row{
+margin-top:28px;
+display:flex;
+gap:16px;
+flex-wrap:wrap;
 }
 
 .btn{
-  padding:14px 24px;
-  border-radius:12px;
-  font-weight:700;
-  display:inline-block;
+padding:14px 26px;
+border-radius:12px;
+font-weight:700;
+display:inline-block;
 }
 
 .primary{
-  background:#2563eb;
-  color:#ffffff;
+background:#2563eb;
+color:#ffffff;
 }
 
 .secondary{
-  border:1px solid #cbd5e1;
-  color:#0f172a;
+background:#ffffff;
+color:#111827;
+border:1px solid #cbd5e1;
 }
 
-/* HERO CARD */
-.hero-card{
-  background:#ffffff;
-  padding:28px;
-  border-radius:24px;
-  box-shadow:0 20px 40px rgba(0,0,0,.08);
+.hero-image{
+background:#ffffff;
+padding:30px;
+border-radius:28px;
+box-shadow:0 20px 50px rgba(0,0,0,.08);
 }
 
-/* STATS */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin-top:28px;
+.hero-image img{
+width:100%;
+border-radius:20px;
 }
 
-.stat{
-  background:#ffffff;
-  padding:18px;
-  border-radius:18px;
-  text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,.05);
+/* COUNTERS */
+.counter-box{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
+margin-top:35px;
+}
+
+.counter{
+background:#ffffff;
+padding:18px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.counter h3{
+font-size:28px;
+color:#2563eb;
 }
 
 /* SECTION */
 .section{
-  padding:75px 0;
+padding:80px 0;
 }
 
 .title{
-  text-align:center;
-  font-size:40px;
-  font-weight:800;
+font-size:42px;
+font-weight:800;
+text-align:center;
 }
 
 .sub{
-  text-align:center;
-  color:#64748b;
-  max-width:760px;
-  margin:12px auto 40px;
+text-align:center;
+color:#64748b;
+max-width:760px;
+margin:12px auto 45px;
+line-height:1.7;
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:22px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:24px;
 }
 
 .card{
-  background:#ffffff;
-  border:1px solid #e2e8f0;
-  padding:24px;
-  border-radius:22px;
-  box-shadow:0 10px 25px rgba(0,0,0,.04);
+background:#ffffff;
+border:1px solid #e5e7eb;
+padding:26px;
+border-radius:22px;
+box-shadow:0 10px 30px rgba(0,0,0,.04);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
 }
 
 .card h3{
-  margin-bottom:10px;
+margin-bottom:12px;
+font-size:22px;
 }
 
 .card p{
-  color:#64748b;
-  line-height:1.6;
+color:#64748b;
+line-height:1.7;
 }
 
-/* LIVE BANNER */
-.banner{
-  background:linear-gradient(135deg,#2563eb,#4f46e5);
-  color:#ffffff;
-  padding:42px;
-  border-radius:28px;
-  text-align:center;
+/* BANNER */
+.live-banner{
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:#ffffff;
+padding:48px;
+border-radius:28px;
+text-align:center;
 }
 
-.banner h2{
-  font-size:42px;
+.live-banner h2{
+font-size:42px;
 }
 
-.banner p{
-  margin:14px 0 22px;
-  font-size:18px;
+.live-banner p{
+margin:16px 0 24px;
+font-size:18px;
 }
 
 /* TESTIMONIAL */
 .testimonial{
-  font-style:italic;
+font-style:italic;
 }
 
 /* FOOTER */
 footer{
-  background:#0f172a;
-  color:#cbd5e1;
-  padding:35px 0;
-  text-align:center;
+background:#0f172a;
+color:#cbd5e1;
+padding:40px 0;
+text-align:center;
 }
 
-/* STICKY BUTTON */
-.sticky-btn{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:#16a34a;
-  color:#ffffff;
-  padding:14px 18px;
-  border-radius:999px;
-  font-weight:700;
-  box-shadow:0 15px 30px rgba(0,0,0,.18);
+/* WHATSAPP */
+.float-btn{
+position:fixed;
+right:18px;
+bottom:18px;
+background:#22c55e;
+color:#ffffff;
+padding:14px 18px;
+border-radius:999px;
+font-weight:700;
+box-shadow:0 15px 30px rgba(0,0,0,.18);
 }
 
 /* MOBILE */
 @media(max-width:900px){
 
 .hero-grid{
-  grid-template-columns:1fr;
+grid-template-columns:1fr;
 }
 
 .hero h1{
-  font-size:38px;
+font-size:38px;
 }
 
-.stats{
-  grid-template-columns:repeat(2,1fr);
+.counter-box{
+grid-template-columns:repeat(2,1fr);
 }
 
 .menu{
-  display:none;
-}
-
-.banner h2{
-  font-size:30px;
+display:none;
 }
 
 .title{
-  font-size:32px;
+font-size:32px;
+}
+
+.live-banner h2{
+font-size:30px;
 }
 
 }
+
 </style>
 </head>
 
@@ -262,6 +284,7 @@ footer{
 <!-- NAVBAR -->
 <div class="navbar">
 <div class="container nav-inner">
+
 <div class="logo">OlympiadQuiz</div>
 
 <div class="menu">
@@ -271,6 +294,7 @@ footer{
 <a href="live.html">Live Test</a>
 <a href="login.html">Login</a>
 </div>
+
 </div>
 </div>
 
@@ -279,84 +303,104 @@ footer{
 <div class="container hero-grid">
 
 <div>
-<span class="badge">India's Elite Olympiad Practice Platform</span>
+
+<span class="badge">India's Premium Olympiad Learning Platform</span>
 
 <h1>Free Olympiad & JEE Practice Tests for Classes 1 to 12</h1>
 
 <p>
-Prepare smarter with mock tests, chapterwise quizzes, instant results,
-live exams, global rankings and detailed solutions.
+Prepare smarter with chapterwise practice, mock tests, instant results,
+global ranking, detailed solutions and exciting live competitions.
 </p>
 
-<div class="btns">
+<div class="btn-row">
 <a href="signup.html" class="btn primary">Start Free</a>
 <a href="live.html" class="btn secondary">Upcoming Live Test</a>
 </div>
 
-<div class="stats">
-<div class="stat"><h3>10K+</h3><p>Students</p></div>
-<div class="stat"><h3>50K+</h3><p>Attempts</p></div>
-<div class="stat"><h3>24x7</h3><p>Access</p></div>
-<div class="stat"><h3>100%</h3><p>Online</p></div>
+<div class="counter-box">
+
+<div class="counter">
+<h3>10K+</h3>
+<p>Students</p>
+</div>
+
+<div class="counter">
+<h3>50K+</h3>
+<p>Attempts</p>
+</div>
+
+<div class="counter">
+<h3>24x7</h3>
+<p>Access</p>
+</div>
+
+<div class="counter">
+<h3>100%</h3>
+<p>Online</p>
 </div>
 
 </div>
 
-<div class="hero-card">
-<h2 style="margin-bottom:18px;">Why Students Choose Us</h2>
+</div>
 
-<p>✅ Instant Results</p>
-<p>✅ Detailed Solutions</p>
-<p>✅ Global Ranking</p>
-<p>✅ Chapterwise Practice</p>
-<p>✅ Live Tests</p>
-<p>✅ JEE Advanced Practice</p>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=900" alt="Student learning">
 </div>
 
 </div>
 </section>
 
-<!-- PRACTICE ZONES -->
+<!-- FEATURES -->
 <section class="section">
+
 <div class="container">
 
-<h2 class="title">Explore Practice Zones</h2>
-<p class="sub">Choose the best learning mode for your preparation.</p>
+<h2 class="title">Choose Your Learning Zone</h2>
+<p class="sub">
+Practice with the smartest tools designed for Olympiad and JEE success.
+</p>
 
 <div class="grid">
 
 <a href="mock.html" class="card">
-<h3>Free Mock Tests</h3>
-<p>Full exam simulations with instant results.</p>
+<h3>📝 Free Mock Tests</h3>
+<p>Real exam simulation with instant score and solutions.</p>
 </a>
 
 <a href="chapterwise.html" class="card">
-<h3>Chapterwise Practice</h3>
-<p>Topic-wise concept mastery tests.</p>
+<h3>📘 Chapterwise Practice</h3>
+<p>Topic-wise mastery to strengthen weak concepts.</p>
 </a>
 
 <a href="jee-list.html" class="card">
-<h3>JEE Advanced</h3>
-<p>Advanced level multi-correct mock tests.</p>
+<h3>🎯 JEE Advanced</h3>
+<p>Advanced level multi-correct questions and mocks.</p>
 </a>
 
 <a href="study.html" class="card">
-<h3>Study Material</h3>
-<p>Notes, formulas and concept revision.</p>
+<h3>📚 Study Material</h3>
+<p>Revision notes, formulas and learning resources.</p>
 </a>
 
 </div>
+
 </div>
 </section>
 
-<!-- LIVE TEST -->
+<!-- LIVE BANNER -->
 <section class="section">
+
 <div class="container">
 
-<div class="banner">
-<h2>LIVE IMO Test • 26 April • 11 AM</h2>
-<p>Price ₹99 • Use Coupon FREE60 • Get it for ₹39 only</p>
-<a href="live.html" class="btn primary" style="background:#ffffff;color:#2563eb;">Register Now</a>
+<div class="live-banner">
+
+<h2>LIVE IMO TEST • 26 APRIL • 11 AM</h2>
+
+<p>Price ₹99 • Coupon FREE60 • Pay only ₹39</p>
+
+<a href="live.html" class="btn secondary">Register Now</a>
+
 </div>
 
 </div>
@@ -364,31 +408,35 @@ live exams, global rankings and detailed solutions.
 
 <!-- TESTIMONIAL -->
 <section class="section">
+
 <div class="container">
 
-<h2 class="title">Student Success Stories</h2>
-<p class="sub">Loved by students across India.</p>
+<h2 class="title">What Students Say</h2>
+
+<p class="sub">Thousands of students trust OlympiadQuiz.org</p>
 
 <div class="grid">
 
 <div class="card testimonial">
-“The best Olympiad practice website I found.”
+“This is the best Olympiad website I found. My score improved fast.”
 </div>
 
 <div class="card testimonial">
-“My IMO score improved after chapterwise practice.”
+“Live ranking tests are fun and motivating.”
 </div>
 
 <div class="card testimonial">
-“Live rankings make learning fun and competitive.”
+“Chapterwise practice helped me crack IMO.”
 </div>
 
 </div>
+
 </div>
 </section>
 
 <!-- FAQ -->
 <section class="section" style="background:#f8fafc;">
+
 <div class="container">
 
 <h2 class="title">Frequently Asked Questions</h2>
@@ -406,8 +454,8 @@ live exams, global rankings and detailed solutions.
 </div>
 
 <div class="card">
-<h3>Do I get instant result?</h3>
-<p>Yes, immediately after submission.</p>
+<h3>Do I get results?</h3>
+<p>Yes, instantly after submission.</p>
 </div>
 
 </div>
@@ -417,11 +465,10 @@ live exams, global rankings and detailed solutions.
 
 <!-- FOOTER -->
 <footer>
-© OlympiadQuiz.org • Elite learning platform for Olympiad & JEE aspirants.
+© OlympiadQuiz.org • Premium Learning Platform for Olympiad & JEE Aspirants
 </footer>
 
-<!-- STICKY BUTTON -->
-<a href="signup.html" class="sticky-btn">Start Free 🚀</a>
+<a href="signup.html" class="float-btn">Start Free 🚀</a>
 
 </body>
 </html>
