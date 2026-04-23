@@ -14,206 +14,144 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
   <style>
-    body { 
-        background: #FFD700;
-        background-image: 
-            radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%); 
-        background-attachment: fixed;
-        overflow-x: clip;
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --subtle: #fff7ed;
+      --text: #111827;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --brand: #ff6b00;
+      --accent: #ff8c1a;
+      --danger: #ef4444;
+      --success: #10b981;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
     }
 
-    /* MAIN LAYOUT */
-    .main-wrapper {
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    
+    body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; overflow-x: clip;
+        background-image: 
+            radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 100% 100%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%); background-attachment: fixed; }
+
+    .container {
       flex: 1;
       display: flex;
-      width: 100%; 
-      max-width: 1200px;
-      margin: 0 auto;
+      justify-content: center;
       align-items: center;
-      padding: 40px 20px;
-      gap: 60px;
+      padding: 10px 20px;
     }
 
-    .intro-section { flex: 1; text-align: left; }
-    .intro-section h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
-    .intro-section h1 span { color: var(--brand); }
-    .intro-section p { color: var(--muted); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; }
-
-    .spec-list { list-style: none; }
-    .spec-item {
+    .auth-layout {
       display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
+      width: 100%;
+      max-width: 900px;
       background: var(--surface);
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .spec-icon { color: var(--accent); font-size: 20px; font-weight: 800; }
-    .spec-text b { color: var(--text); display: block; margin-bottom: 2px; }
-    .spec-text span { color: var(--muted); font-size: 14px; }
-
-    /* SIGNUP BOX */
-    .signup-container { flex: 0 1 420px; width: 100%; max-width: 420px; }
-    .signup-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-top: 4px solid var(--brand);
-      padding: 45px 35px;
       border-radius: 24px;
-      width: 100% !important; /* Overriding fixed width from style.css */
-      text-align: center;
       box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
 
-    .signup-box h2 { font-size: 26px; margin-bottom: 10px; color: var(--text); font-weight: 800; letter-spacing: -0.5px; }
-    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
+    .auth-info {
+      flex: 1;
+      background: linear-gradient(135deg, #fff7ed, #ffffff);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
 
-    .auth-tabs { display: flex; background: var(--subtle); border-radius: 12px; padding: 5px; margin-bottom: 20px; }
-    .auth-tab { flex: 1; padding: 12px; border: none; background: transparent; border-radius: 8px; font-weight: 700; color: var(--muted); cursor: pointer; transition: 0.3s; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .auth-tab.active { background: var(--surface); color: var(--brand); box-shadow: var(--shadow-sm); }
+    .auth-info h1 { font-size: 32px; color: var(--text); margin-bottom: 10px; font-weight: 800; line-height: 1.2; }
+    .auth-info h1 span { color: var(--brand); }
+    .auth-info p { color: var(--muted); font-size: 16px; margin-bottom: 30px; line-height: 1.6; }
+
+    .feature-item {
+        display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600;
+        color: var(--text); margin-bottom: 15px; background: #ffffff; padding: 14px 20px;
+        border-radius: 14px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    }
+    .feature-icon {
+        background: var(--subtle); color: var(--brand); width: 32px; height: 32px;
+        display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 14px;
+    }
+
+    .signup-box {
+      flex: 1;
+      padding: 40px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: var(--text); letter-spacing: -0.5px; }
+    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 15px; line-height: 1.4; }
 
     input, select {
       width: 100%;
-      padding: 16px 20px;
-      margin-bottom: 16px;
-      background: var(--subtle);
+      padding: 14px 16px;
+      margin-bottom: 15px;
+      background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: 12px;
       color: var(--text);
-      font-size: 15px;
+      font-size: 14px;
       outline: none;
       transition: 0.2s;
     }
-    input:focus, select:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); background: var(--surface); }
+    input:focus, select:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1); background: var(--surface); }
 
-    select {
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 1em;
-    }
-
-    .signup-box button, .modal-box button {
+    .main-btn {
       width: 100%;
-      padding: 16px;
+      padding: 14px 16px;
       background: var(--brand);
       color: white;
       border: none;
       border-radius: 12px;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: 0.2s;
-      margin-top: 10px;
+      transition: all 0.3s ease;
+      margin-top: 5px;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
     }
-    button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+    .main-btn:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4); }
 
-    .social-btn { width: 100%; padding: 14px; background: #ffffff; color: #334155; border: 1px solid var(--border); border-radius: 12px; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-bottom: 20px; }
-    .social-btn:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .social-btn { width: 100%; padding: 12px; background: #ffffff; color: var(--text); border: 1px solid var(--border); border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; transition: 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .social-btn:hover { background: #f9fafb; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); border-color: var(--brand); color: var(--brand); }
     .social-btn img { width: 22px; height: 22px; }
 
-    .divider {
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .divider::before, .divider::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      margin: 0 10px;
-    }
+    .divider { margin-bottom: 15px; display: flex; align-items: center; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+    .divider::before, .divider::after { content: ""; flex: 1; border-bottom: 1px solid var(--border); }
+    .divider::before { margin-right: 15px; } .divider::after { margin-left: 15px; }
 
-    .already-member { /* Desktop styles for this section */
-      margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      font-size: 14px; /* Slightly smaller for desktop */
-      color: var(--muted);
-    }
-    .already-member a { color: var(--brand); text-decoration: none; font-weight: 700; } /* Desktop link style */
+    .already-member { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); display: block; text-align: center; }
+    .already-member a { color: var(--brand); text-decoration: none; font-weight: 800; }
 
     .hidden { display: none !important; }
 
     /* CUSTOM THEMATIC MODAL */
     #customModal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center; }
-    #customModal {
-        display:none; 
-        position:fixed; 
-        z-index:9999; 
-        left:0; top:0; 
-        width:100%; height:100%; 
-        background:rgba(15, 23, 42, 0.9); 
-        justify-content:center; 
-        align-items:center;
-    }
-    .modal-box {
-        background:var(--surface); 
-        border:2px solid var(--brand); 
-        padding:40px; 
-        border-radius:24px; 
-        text-align:center; 
-        max-width:420px; 
-        width:90%; 
-        box-shadow:0 0 30px rgba(37, 99, 235, 0.2);
-    }
+    .modal-box { background:var(--surface); border:2px solid var(--brand); padding:40px; border-radius:24px; text-align:center; max-width:420px; width:90%; box-shadow:0 0 30px rgba(255, 107, 0, 0.2); }
 
     @media (max-width: 768px) {
-      .main-wrapper { flex-direction: column; text-align: center; padding: 15px; gap: 25px; width: 100%; overflow: hidden; }
-      .signup-container { order: 1; width: 100%; }
-      .intro-section { order: 2; text-align: center; width: 100%; margin-top: 10px; display: none; } /* Hide intro section on mobile for cleaner look */
-      
-      /* Align signup-box to login-box mobile styles */
-      .signup-box { 
-        padding: 40px 25px; /* Match login-box padding */
-        border-radius: 20px; /* Match login-box border-radius */
-        width: 100% !important; 
-      }
-      .signup-box h2 { 
-        font-size: 24px; 
-        margin-bottom: 10px; 
-      }
-      .signup-box input,
-      .signup-box select {
-        padding: 12px 15px; /* Match login input padding */
-        font-size: 14px; /* Match login input font-size */
-        border-radius: 10px; /* Match login input border-radius */
-      }
-      .signup-box button { /* For the "Join Now" button */
-        padding: 12px; /* Match login main-btn padding */
-        font-size: 14px; /* Match login main-btn font-size */
-      }
-
-      /* Revert .already-member to be like .signup-text in login.html */
-      .already-member { 
-        margin-top: 20px; /* Match login signup-text margin-top */
-        padding-top: 20px; /* Match login signup-text padding-top */
-        color: var(--text) !important; /* Ensure high contrast */
-        font-weight: 500; /* Match login signup-text font-weight */
-        font-size: 14px; /* Match login signup-text font-size */
-        display: block; /* Ensure it behaves like a paragraph */
-        text-align: center; /* Center the text */
-      }
-      .already-member a { 
-        color: var(--brand) !important; /* Brand color for the link */
-        font-weight: 800; /* Bold for emphasis */
-        text-decoration: underline; /* Underline to clearly mark as link */
-      }
+      .auth-info { display: none; }
+      .auth-layout { border-radius: 20px; border-top: 4px solid var(--brand); flex-direction: column; }
+      .signup-box { padding: 30px 20px; }
+      .container { padding: 15px; padding-top: 30px; align-items: flex-start; }
+      h1, h2 { font-size: 20px; margin-bottom: 12px; }
+      .subtitle { font-size: 13px; margin-bottom: 20px; }
+      input, select { padding: 14px 16px; font-size: 14px; margin-bottom: 15px; }
+      .main-btn, .social-btn { padding: 14px 16px; font-size: 14px; }
+      .social-btn { margin-bottom: 15px; }
+      .divider { margin-bottom: 15px; }
+      .already-member { margin-top: 20px; padding-top: 20px; color: var(--text) !important; font-weight: 500; }
+      .already-member a { text-decoration: underline; }
     }
   </style>
 <!-- Google tag (gtag.js) -->
@@ -261,24 +199,46 @@
      </div>
  </nav>
 
-<div class="main-wrapper">
-    <div class="signup-container">
+<div class="container">
+    <div class="auth-layout">
+        <div class="auth-info">
+            <h1>Start Your <span>Excellence</span> Today</h1>
+            <p>Join thousands of students globally in the most advanced practice arena for competitive Olympiads.</p>
+            
+            <div class="feature-item">
+                <div class="feature-icon">✅</div>
+                High-Difficulty Question Bank
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">✅</div>
+                Real-Exam Environment
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">✅</div>
+                Global Leaderboards
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">✅</div>
+                Instant Detailed Solutions
+            </div>
+        </div>
+
         <div class="signup-box">
             
             <div id="phoneSignupSection">
                 <h2>Create your Account Now</h2>
                 <p class="subtitle">Enter your mobile number to begin.</p>
                 <form id="phoneSignupForm">
-                    <div style="display: flex; gap: 10px; margin-bottom: 16px;">
-                        <input type="text" value="+91" readonly style="width: 70px; margin-bottom: 0; text-align: center; font-weight: 700; background: var(--border); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border);">
-                        <input type="tel" id="pNumber" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" required style="margin-bottom: 0; flex: 1;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <input type="text" value="+91" readonly style="width: 70px; margin-bottom: 0; text-align: center; font-weight: 700; background: var(--border); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border); border-radius: 12px;">
+                        <input type="tel" id="pNumber" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" title="Please enter exactly 10 digits" required style="margin-bottom: 0; flex: 1; border-radius: 12px;">
                     </div>
                     <div id="recaptcha-signup"></div>
-                    <button type="submit" id="pSendBtn">Send OTP</button>
+                    <button type="submit" id="pSendBtn" class="main-btn">Send OTP</button>
                 </form>
                 <form id="pOtpForm" class="hidden">
                     <input type="text" id="pOtpCode" placeholder="Enter 6-digit OTP" required>
-                    <button type="submit" class="main-btn" style="width:100%; padding:16px; background:var(--brand); color:white; border:none; border-radius:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">Verify Mobile</button>
+                    <button type="submit" class="main-btn">Verify Mobile</button>
                 </form>
                 <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
             </div>
@@ -315,49 +275,20 @@
                         <option value="class12">Grade 12</option>
                     </select>
 
-                    <button type="submit" style="width:100%; padding:16px; background:var(--brand); color:white; border:none; border-radius:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; margin-top:10px; cursor:pointer; transition:0.2s;">Create Account</button>
+                    <button type="submit" class="main-btn" style="margin-top:5px;">Create Account</button>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="intro-section">
-        <h1>Start Your <span>Excellence</span> Today</h1>
-        <p>Join thousands of students globally in the most advanced practice arena for competitive Olympiads.</p>
-        
-        <div class="spec-list">
-            <div class="spec-item">
-                <div class="spec-icon">✓</div>
-                <div class="spec-text">
-                    <b>High-Difficulty Question Bank</b>
-                    <span>Curated problems matching SOF and international standards.</span>
-                </div>
-            </div>
-            <div class="spec-item">
-                <div class="spec-icon">✓</div>
-                <div class="spec-text">
-                    <b>Real-Exam Environment</b>
-                    <span>Interactive palette, time tracking, and progress indicators.</span>
-                </div>
-            </div>
-            <div class="spec-item">
-                <div class="spec-icon">✓</div>
-                <div class="spec-text">
-                    <b>Global Leaderboards</b>
-                    <span>Compete with peers and track your standing across subjects.</span>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
 <!-- CUSTOM THEMATIC MODAL -->
-<div id="customModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center;">
-    <div class="modal-box" style="background:var(--surface); border:2px solid var(--brand); padding:40px; border-radius:24px; text-align:center; max-width:420px; width:90%; box-shadow:0 0 30px rgba(37, 99, 235, 0.2);">
+<div id="customModal" class="modal-overlay">
+    <div class="modal-box">
         <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
-        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Account Created Successfully!</h2>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">Account Created Successfully!</h2>
         <p class="subtitle" style="margin-bottom: 20px;">Your profile is complete. Welcome to the Olympiad Portal!</p>
-        <button type="button" onclick="window.location.replace('dashboard.html')" style="width: 100%; padding: 16px; background: var(--brand); color: white; border: none; border-radius: 12px; font-weight: 800; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: 0.2s; margin-top: 10px;">Go to Dashboard</button>
+        <button type="button" onclick="window.location.replace('dashboard.html')" class="main-btn">Go to Dashboard</button>
     </div>
 </div>
 

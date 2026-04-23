@@ -198,7 +198,10 @@ button {
 /* ===================================================== */
 
 body.auth-page {
-    background: linear-gradient(135deg, #dbeafe, #e0f2fe, #f0f9ff);
+    background: #f8fafc;
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -209,12 +212,14 @@ body.auth-page {
 .auth-container, .signup-box {
     background: #ffffff;
     padding: 40px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     color: #1e293b;
+    border: 1px solid #e2e8f0;
 }
 .auth-container {
     width: 400px;
-    border-radius: 20px;
+    border-radius: 24px;
+    border-top: 4px solid #ff6b00;
 }
 
 /* Input Group */
@@ -226,19 +231,21 @@ body.auth-page {
 .auth-container input,
 .auth-container select {
     width: 100%;
-    padding: 14px;
+    padding: 14px 16px;
     border-radius: 12px;
-    border: 1px solid #cbd5e1;
-    font-size: 16px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
     outline: none;
     background: #f8fafc;
     color: #1e293b;
+    transition: 0.2s;
 }
 
 .auth-container input:focus,
 .auth-container select:focus {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    border-color: #ff6b00;
+    background: #ffffff;
 }
 
 .auth-link {
@@ -247,7 +254,7 @@ body.auth-page {
 }
 
 .auth-link a {
-    color: #2563eb;
+    color: #ff6b00;
     text-decoration: none;
     font-weight: bold;
 }
@@ -264,48 +271,69 @@ body.auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #dbeafe, #e0f2fe, #f0f9ff);
+    background: #f8fafc;
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
 }
 .signup-box {
     width: 100%;
-    max-width: 400px;
-    border-radius: 18px;
+    max-width: 440px;
+    border-radius: 24px;
+    border-top: 4px solid #ff6b00;
 }
 
 .auth-container h2, .signup-box h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    font-size: 24px;
     color: #1e293b;
+    font-weight: 800;
 }
 
 .signup-box .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .signup-box input,
 .signup-box select {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #cbd5e1;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
     outline: none;
     background: #f8fafc;
     color: #1e293b;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.signup-box input:focus,
+.signup-box select:focus {
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    border-color: #ff6b00;
+    background: #ffffff;
 }
 
 .signup-btn {
     width: 100%;
-    padding: 12px;
-    background: #3b82f6;
+    padding: 14px 16px;
+    background: #ff6b00;
     border: none;
-    border-radius: 8px;
-    font-weight: bold;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
     cursor: pointer;
     color: white;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
 }
 
 .signup-btn:hover {
-    background: #2563eb;
+    background: #ff8c1a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
 }
 
 /* ================= SAFE DASHBOARD ENHANCEMENT ================= */
