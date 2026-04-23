@@ -6,7 +6,7 @@
 
 <title>Free Olympiad Mock Test for Class 1 to 12 | OlympiadQuiz.org</title>
 
-<meta name="description" content="Practice Olympiad Maths, Science and JEE with free mock tests, chapterwise quizzes, live tests, rankings and instant results for Class 1 to 12 students.">
+<meta name="description" content="Practice Olympiad Maths, Science, English and JEE with free mock tests, chapterwise quizzes, rankings and live tests for Class 1 to 12 students.">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -26,6 +26,7 @@ overflow-x:hidden;
 
 a{
 text-decoration:none;
+color:inherit;
 }
 
 .container{
@@ -37,7 +38,6 @@ padding:0 22px;
 :root{
 --orange:#ff6b00;
 --dark:#111827;
---light:#f8fafc;
 --muted:#64748b;
 }
 
@@ -112,7 +112,7 @@ font-weight:700;
 }
 
 .hero h1{
-font-size:60px;
+font-size:58px;
 line-height:1.05;
 font-weight:800;
 margin:18px 0;
@@ -145,7 +145,7 @@ box-shadow:0 18px 40px rgba(0,0,0,.07);
 
 .hero-card img{
 width:100%;
-height:390px;
+height:380px;
 object-fit:cover;
 border-radius:20px;
 }
@@ -179,7 +179,7 @@ color:var(--muted);
 
 /* SECTION */
 .section{
-padding:90px 0;
+padding:85px 0;
 }
 
 .title{
@@ -208,6 +208,13 @@ border:1px solid #f1f5f9;
 padding:28px;
 border-radius:24px;
 box-shadow:0 12px 30px rgba(0,0,0,.04);
+transition:.3s;
+display:block;
+}
+
+.card:hover{
+transform:translateY(-7px);
+box-shadow:0 20px 45px rgba(0,0,0,.08);
 }
 
 .card h3{
@@ -220,7 +227,7 @@ color:var(--muted);
 line-height:1.8;
 }
 
-/* SEO TEXT SECTION */
+/* TEXT SEO */
 .seo-box{
 background:#f8fafc;
 padding:38px;
@@ -230,16 +237,14 @@ color:#334155;
 }
 
 .seo-box h2{
-font-size:32px;
+font-size:34px;
 margin-bottom:18px;
-color:#111827;
 }
 
 .seo-box h3{
 font-size:24px;
 margin-top:24px;
 margin-bottom:10px;
-color:#111827;
 }
 
 /* LIVE */
@@ -252,7 +257,7 @@ text-align:center;
 }
 
 .live-box h2{
-font-size:44px;
+font-size:42px;
 font-weight:800;
 }
 
@@ -344,27 +349,10 @@ mock tests, instant results, rankings and live competitions.
 </div>
 
 <div class="stats">
-
-<div class="stat">
-<h3>10K+</h3>
-<p>Students</p>
-</div>
-
-<div class="stat">
-<h3>50K+</h3>
-<p>Attempts</p>
-</div>
-
-<div class="stat">
-<h3>24x7</h3>
-<p>Access</p>
-</div>
-
-<div class="stat">
-<h3>100%</h3>
-<p>Online</p>
-</div>
-
+<div class="stat"><h3>10K+</h3><p>Students</p></div>
+<div class="stat"><h3>50K+</h3><p>Attempts</p></div>
+<div class="stat"><h3>24x7</h3><p>Access</p></div>
+<div class="stat"><h3>100%</h3><p>Online</p></div>
 </div>
 
 </div>
@@ -376,81 +364,73 @@ mock tests, instant results, rankings and live competitions.
 </div>
 </section>
 
-<!-- FEATURES -->
+<!-- CLICKABLE TEST CARDS -->
 <section class="section">
 <div class="container">
 
-<h2 class="title">Everything You Need to Win</h2>
-<p class="sub">Built for Olympiad toppers and JEE aspirants.</p>
+<h2 class="title">Choose Your Practice Zone</h2>
+<p class="sub">All cards below are clickable.</p>
 
 <div class="grid">
 
-<div class="card">
-<h3>📝 Olympiad Mock Tests</h3>
-<p>Real exam simulation with timer and instant results.</p>
-</div>
+<a href="mock.html" class="card">
+<h3>📝 Free Mock Tests</h3>
+<p>Attempt full Olympiad mock tests with timer and result.</p>
+</a>
 
-<div class="card">
-<h3>📘 Chapterwise Tests</h3>
-<p>Master every concept with topic-wise quizzes.</p>
-</div>
+<a href="chapterwise.html" class="card">
+<h3>📘 Chapterwise Practice</h3>
+<p>Practice each chapter topic-wise and improve weak areas.</p>
+</a>
 
-<div class="card">
+<a href="jee-list.html" class="card">
 <h3>🎯 JEE Advanced Tests</h3>
-<p>Advanced multi-correct questions and mocks.</p>
-</div>
+<p>Advanced level multi-correct practice tests.</p>
+</a>
 
-<div class="card">
+<a href="study.html" class="card">
 <h3>📚 Study Material</h3>
-<p>Revision notes, formulas and important concepts.</p>
-</div>
+<p>Notes, formulas and revision material.</p>
+</a>
 
 </div>
 
 </div>
 </section>
 
-<!-- SEO CONTENT -->
+<!-- SEO SECTION 1 -->
 <section class="section">
 <div class="container">
 
 <div class="seo-box">
 
-<h2>Best Free Olympiad Practice Platform in India</h2>
+<h2>Best Free Olympiad Practice Website in India</h2>
 
 <p>
-OlympiadQuiz.org helps students prepare for major Olympiad exams such as IMO,
-NSO, IEO and other school competitive tests. Our platform provides free online
-Olympiad mock tests for Class 1 to 12 students with instant result and ranking.
+OlympiadQuiz.org is one of the best free Olympiad preparation websites for
+students of Class 1 to 12. Students can practice IMO mock test, NSO mock test,
+IEO mock test and chapterwise tests online.
 </p>
 
-<h3>Free IMO Mock Test Online</h3>
+<h3>Free IMO Mock Test with Answers</h3>
 
 <p>
-Students preparing for International Mathematics Olympiad can practice IMO mock
-tests with chapterwise maths quizzes, previous pattern questions and detailed
-solutions.
+Prepare for International Mathematics Olympiad using maths quizzes,
+logical reasoning questions and full mock tests with answers.
 </p>
 
 <h3>Free NSO Mock Test Online</h3>
 
 <p>
-Prepare for National Science Olympiad with science mock tests, concept-based
-questions and chapterwise practice designed for school students.
+Science Olympiad students can practice chapterwise science tests,
+mock papers and concept-based quizzes.
 </p>
 
-<h3>JEE Foundation & JEE Advanced Practice</h3>
+<h3>Olympiad Test Series for Class 1 to 12</h3>
 
 <p>
-Grade 11 and 12 students can strengthen their maths, physics and chemistry
-concepts with advanced tests and practice quizzes.
-</p>
-
-<h3>Why Choose OlympiadQuiz.org?</h3>
-
-<p>
-Free tests, fast results, mobile-friendly dashboard, live tests, detailed
-solutions and trusted by thousands of students across India.
+Students from Class 1 to 12 can practice subject-wise tests according
+to school level and Olympiad syllabus.
 </p>
 
 </div>
@@ -469,6 +449,50 @@ solutions and trusted by thousands of students across India.
 <p>Price ₹99 • Use Coupon FREE60 • Get it for ₹39 only</p>
 
 <a href="live.html" class="btn btn-light">Register Now</a>
+
+</div>
+
+</div>
+</section>
+
+<!-- SEO SECTION 2 -->
+<section class="section">
+<div class="container">
+
+<div class="seo-box">
+
+<h2>Why Students Choose OlympiadQuiz.org</h2>
+
+<p>
+Thousands of students use our platform because it is easy to use,
+mobile friendly and gives instant result after test submission.
+</p>
+
+<h3>Instant Results with Ranking</h3>
+
+<p>
+After completing your test, you can instantly see your marks,
+accuracy and ranking.
+</p>
+
+<h3>Chapterwise Practice for Better Score</h3>
+
+<p>
+If your concepts are weak, chapterwise tests help improve specific topics.
+</p>
+
+<h3>JEE Foundation & Advanced Preparation</h3>
+
+<p>
+Grade 11 and 12 students can practice JEE level questions for better preparation.
+</p>
+
+<h3>Online Learning Platform for Smart Students</h3>
+
+<p>
+Whether you prepare for Olympiad, scholarship exams or JEE,
+our platform supports your journey.
+</p>
 
 </div>
 
