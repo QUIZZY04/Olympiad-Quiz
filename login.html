@@ -450,65 +450,54 @@ function initLoginRecaptcha() {
 let isManualLogin = false;
 let isRedirecting = false;
 
-async function checkUserAndRedirect(user) {
+// Central Eligibility Validator
+function checkUserEligibility(user) {
+    if (!user) return false;
+    const providerIds = user.providerData.map(p => p.providerId);
+    const hasPhone = !!user.phoneNumber;
+    const hasGoogle = providerIds.includes("google.com");
+    const hasPassword = providerIds.includes("password");
+    
+    // Rule: Must have phone AND (Google OR Password)
+    return hasPhone && (hasGoogle || hasPassword);
+}
+
+function redirectToSignupCompletion() {
+    isRedirecting = true;
+    window.location.href = "signup.html";
+}
+
+async function handleAuthSuccess(user) {
     if (isRedirecting) return;
-    try {
-        const userDoc = await getDoc(doc(db, "users", user.uid));
+    
+    if (checkUserEligibility(user)) {
+        // Eligible User: Ensure Firestore is synced and allow login
+        try {
+            const providerIds = user.providerData.map(p => p.providerId);
+            await setDoc(doc(db, "users", user.uid), {
+                phone: user.phoneNumber || null,
+                phoneNumber: user.phoneNumber || null,
+                authProviders: providerIds,
+                phoneVerified: true,
+                signupCompleted: true,
+                updatedAt: new Date()
+            }, { merge: true });
+        } catch(e) { console.error("Firestore sync error:", e); }
         
-        if (!userDoc.exists()) {
-            await signOut(auth);
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            return;
-        }
-
-        const data = userDoc.data();
-        const providerIds = user.providerData.map(p => p.providerId);
-        
-        const hasPhone = !!user.phoneNumber || !!data.phone || !!data.phoneNumber;
-        if (!hasPhone) {
-            await signOut(auth);
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            return;
-        }
-
-        const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-        if (!hasEmailOrGoogle || data.signupCompleted === false) {
-            document.getElementById('forceEmailGoogleModal').style.display = 'flex';
-            return;
-        }
-
-        let updates = {};
-        
-        // Guard: Ensure 'phone' field exists to prevent dashboard bounce-back loop
-        if (!data.phone && hasPhone) {
-            updates.phone = user.phoneNumber || data.phoneNumber;
-        }
-
-        if (!data.signupCompleted) {
-            updates.signupCompleted = true;
-            updates.phoneVerified = true;
-            updates.authProviders = providerIds;
-            updates.updatedAt = new Date();
-        }
-
-        if (Object.keys(updates).length > 0) {
-            await setDoc(doc(db, "users", user.uid), updates, { merge: true });
-        }
-
         isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");
         sessionStorage.removeItem("redirectAfterLogin");
         window.location.replace(redirectUrl);
-    } catch(e) {
-        console.error("Auth State Check Error:", e);
-        isRedirecting = false;
+    } else {
+        // Ineligible User: Missing a mandatory credential, keep session active for linking and redirect.
+        redirectToSignupCompletion();
     }
 }
 
 // Robust Guard: Force mobile verification for existing sessions
 onAuthStateChanged(auth, async (user) => {
     if (user && !isManualLogin) {
-        checkUserAndRedirect(user);
+        handleAuthSuccess(user);
     }
 });
 
@@ -614,19 +603,7 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
     isManualLogin = true;
     try {
         const result = await confirmationResult.confirm(code);
-            
-            const userDoc = await getDoc(doc(db, "users", result.user.uid));
-            if (!userDoc.exists()) {
-                await result.user.delete().catch(e => console.error(e));
-                await signOut(auth);
-                document.getElementById('notRegisteredModal').style.display = 'flex';
-                isManualLogin = false;
-                btn.disabled = false;
-                btn.innerText = "Verify & Sign In";
-                return;
-            }
-            
-        checkUserAndRedirect(result.user);
+        handleAuthSuccess(result.user);
     } catch (err) {
         isManualLogin = false;
         let errorMsg = "Verification failed. Please try again.";
@@ -692,8 +669,7 @@ document.getElementById("linkEmailPasswordForm").addEventListener("submit", asyn
         const providerIds = auth.currentUser.providerData.map(p => p.providerId);
         
         await setDoc(doc(db, "users", user.uid), { email: email, authProviders: providerIds, signupCompleted: true, updatedAt: new Date() }, { merge: true });
-        document.getElementById('forceEmailGoogleModal').style.display = 'none';
-        checkUserAndRedirect(auth.currentUser); // Resume login flow
+        handleAuthSuccess(auth.currentUser);
     } catch (err) {
         let errorMsg = "Failed to link email/password. Please try again.";
         if (err.code === 'auth/email-already-in-use') errorMsg = "This email is already registered to another account.";
@@ -714,7 +690,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     isManualLogin = true;
     try {
         const result = await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
-        checkUserAndRedirect(result.user);
+        handleAuthSuccess(result.user);
     } catch(err) { 
         isManualLogin = false;
         if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') {
@@ -732,25 +708,10 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
     isManualLogin = true;
     try {
         const result = await signInWithPopup(auth, provider);
-        const additionalInfo = getAdditionalUserInfo(result);
-        if (additionalInfo && additionalInfo.isNewUser) {
-            await result.user.delete();
-            await signOut(auth);
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            isManualLogin = false;
-            return;
-        }
-            
-        // Verify if user actually exists in Firestore (prevent bypassing via orphaned Google Auth account)
-        const userDoc = await getDoc(doc(db, "users", result.user.uid));
-        if (!userDoc.exists()) {
-            await result.user.delete().catch(e => console.error(e));
-            await signOut(auth);
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            isManualLogin = false;
-            return;
-        }
-        checkUserAndRedirect(result.user);
+        
+        // Do not delete new users. Pass them directly to eligibility check. 
+        // It will detect missing phone numbers and securely redirect to signup linking.
+        handleAuthSuccess(result.user);
     } catch (err) { 
         alert(err.message); 
         isManualLogin = false;

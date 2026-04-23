@@ -294,7 +294,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -313,14 +313,34 @@ const provider = new GoogleAuthProvider();
 
 let isCompletingSignup = false;
 
+// Check Eligibility utility (same strictly enforced rule)
+function checkUserEligibility(user) {
+    if (!user) return { isEligible: false };
+    const providerIds = user.providerData.map(p => p.providerId);
+    const hasPhone = !!user.phoneNumber;
+    const hasGoogle = providerIds.includes("google.com");
+    const hasPassword = providerIds.includes("password");
+    return { isEligible: hasPhone && (hasGoogle || hasPassword), hasPhone, hasGoogle, hasPassword };
+}
+
 onAuthStateChanged(auth, async (user) => {
     if (user && !isCompletingSignup) {
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().signupCompleted) {
+        const eligibility = checkUserEligibility(user);
+        
+        if (eligibility.isEligible) {
+            // Completely valid users shouldn't be here, return to dashboard
             window.location.href = "dashboard.html";
         } else {
-            document.getElementById("phoneSignupSection").classList.add("hidden");
-            document.getElementById("completeProfileSection").classList.remove("hidden");
+            // Auto-route to the missing provider linking step
+            if (!eligibility.hasPhone) {
+                document.getElementById("phoneSignupSection").classList.remove("hidden");
+                document.getElementById("completeProfileSection").classList.add("hidden");
+                document.querySelector("#phoneSignupSection h2").innerText = "Link Mobile Number";
+                document.querySelector("#phoneSignupSection .subtitle").innerText = "A verified mobile number is mandatory to continue.";
+            } else {
+                document.getElementById("phoneSignupSection").classList.add("hidden");
+                document.getElementById("completeProfileSection").classList.remove("hidden");
+            }
         }
     }
 });
@@ -356,7 +376,12 @@ document.getElementById("phoneSignupForm").addEventListener("submit", async (e) 
     }
 
     try {
-        signupConfirmation = await signInWithPhoneNumber(auth, phone, window.signupRecaptchaVerifier);
+        // Safe Linking: If logged in but lacking a phone, link it instead of creating a new session
+        if (auth.currentUser && !auth.currentUser.phoneNumber) {
+            signupConfirmation = await linkWithPhoneNumber(auth.currentUser, phone, window.signupRecaptchaVerifier);
+        } else {
+            signupConfirmation = await signInWithPhoneNumber(auth, phone, window.signupRecaptchaVerifier);
+        }
         console.log("Signup OTP Sent to:", phone);
         alert("OTP sent successfully to " + phone);
         document.getElementById("phoneSignupForm").classList.add("hidden");
@@ -384,9 +409,11 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
         const result = await signupConfirmation.confirm(code);
         const user = result.user;
 
-        // Check if user already exists
+        const eligibility = checkUserEligibility(user);
+
+        // Prevent creating duplicate completely valid accounts over existing phone numbers
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().signupCompleted) {
+        if (userDoc.exists() && userDoc.data().signupCompleted && eligibility.isEligible) {
             alert("Account already exists with this mobile number. Please log in.");
             await signOut(auth);
             window.location.href = "login.html";
@@ -398,14 +425,18 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
             phone: user.phoneNumber,
             phoneNumber: user.phoneNumber,
             phoneVerified: true,
-            signupCompleted: false,
-            createdAt: new Date(),
+            signupCompleted: eligibility.isEligible,
+            createdAt: userDoc.exists() ? userDoc.data().createdAt : new Date(),
             updatedAt: new Date()
         }, { merge: true });
 
-        // Show complete profile section
-        document.getElementById("phoneSignupSection").classList.add("hidden");
-        document.getElementById("completeProfileSection").classList.remove("hidden");
+        // Direct to dashboard if linking completed their eligibility profile
+        if (eligibility.isEligible) {
+            window.location.href = "dashboard.html";
+        } else {
+            document.getElementById("phoneSignupSection").classList.add("hidden");
+            document.getElementById("completeProfileSection").classList.remove("hidden");
+        }
     } catch (err) {
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-verification-code') errorMsg = "Incorrect OTP. Please check and try again.";
