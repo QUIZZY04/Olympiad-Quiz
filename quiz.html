@@ -22,19 +22,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>
 :root {
-  --bg: #f8fafc; /* Crisp, clean, distraction-free slate background */
+  --bg: #f8fafc;
   --surface: #ffffff;
-  --text: #1e293b; /* Slightly softer dark text for easier reading */
+  --text: #111827;
   --muted: #64748b;
   --border: #e2e8f0;
-  --brand: #2563eb; /* Professional academic blue */
-  --accent: #4f46e5; /* Indigo accent */
+  --brand: #ff6b00;
+  --accent: #ff8c1a;
   --danger: #ef4444;
   --success: #10b981;
+  --warning: #f59e0b;
   --unseen-grey: #f1f5f9;
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
 }
 *{box-sizing:border-box}
 html { overflow-x: clip; width: 100%; max-width: 100%; }
@@ -46,7 +47,11 @@ color:var(--text);
 background:var(--bg);
 overflow-x:clip;
 max-width: 100%;
-background-image: radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 40%), radial-gradient(circle at 100% 100%, rgba(79, 70, 229, 0.06) 0%, transparent 40%);
+background-image: 
+    radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
 background-attachment: fixed;
 }
 #timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger); padding:8px 15px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2);}
@@ -113,7 +118,16 @@ box-shadow: var(--shadow-md);
 
 .options{display:grid;gap:12px;margin-top:15px}
 .opt{display:flex;align-items:center;gap:15px; padding:15px 20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.3s; font-size:15px; color: var(--text); font-weight: 500;}
-.opt:hover{border-color:var(--brand); background:#eff6ff;} /* Soft blue tint on hover */
+.opt:hover{border-color:var(--brand); background:#fff7ed;} 
+
+/* Aligning Navbar with Orange Theme */
+.nav-important a { background: rgba(255, 107, 0, 0.08) !important; }
+.nav-links a:hover { background: rgba(255, 107, 0, 0.05) !important; }
+.nav-links a.active { background: rgba(255, 107, 0, 0.06) !important; }
+.login-link { background: var(--brand) !important; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3) !important; }
+.login-link:hover { box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4) !important; filter: brightness(1.1); }
+.nav-dropdown-content a:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
+
 .quiz-buttons{display:flex;gap:15px;margin-top:auto;padding-top:30px;flex-wrap:wrap;}
 .btn{flex:1;padding:14px 10px;border-radius:10px; font-weight:700;cursor:pointer;border:none; text-transform:uppercase;font-size:14px; transition:0.3s; min-width:140px;}
 .btn-save{background:linear-gradient(135deg, var(--brand), var(--accent));color:#fff; box-shadow: var(--shadow-sm);}
@@ -1293,7 +1307,7 @@ visitedQuestions[current]=true;
 
 let qTypeBadge = "";
 if (q.isAchiever) {
-    qTypeBadge = `<span style="background: var(--brand); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(79,70,229,0.3);">🏆 Achievers Section (2 Marks)</span>`;
+    qTypeBadge = `<span style="background: var(--brand); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(255,107,0,0.3);">🏆 Achievers Section (2 Marks)</span>`;
 } else if (isChampionship) {
     qTypeBadge = `<span style="background: var(--muted); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle;">📝 Regular Section (1 Mark)</span>`;
 }
@@ -1367,7 +1381,7 @@ if (achieverHtml) {
     finalHtml += `
     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 20px 0 10px;">
         <div style="font-size: 12px; color: var(--brand); font-weight: 800; text-transform: uppercase;">🏆 Achievers Section</div>
-        <div style="font-size: 10px; background: var(--brand); color: white; padding: 3px 8px; border-radius: 6px; font-weight: 800; box-shadow: 0 2px 5px rgba(79,70,229,0.3);">${achCount} Qs × 2M</div>
+            <div style="font-size: 10px; background: var(--brand); color: white; padding: 3px 8px; border-radius: 6px; font-weight: 800; box-shadow: 0 2px 5px rgba(255,107,0,0.3);">${achCount} Qs × 2M</div>
     </div>
     <div class="grid" style="margin-top:0;">${achieverHtml}</div>`;
 }
