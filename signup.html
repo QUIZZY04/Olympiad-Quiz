@@ -313,29 +313,16 @@ const provider = new GoogleAuthProvider();
 
 let isCompletingSignup = false;
 
-// Check Eligibility utility (same strictly enforced rule)
-function checkUserEligibility(user) {
-    if (!user) return { isEligible: false };
-    const providerIds = user.providerData.map(p => p.providerId);
-    const hasPhone = !!user.phoneNumber;
-    const hasGoogle = providerIds.includes("google.com");
-    const hasPassword = providerIds.includes("password");
-    return { isEligible: hasPhone && (hasGoogle || hasPassword), hasPhone, hasGoogle, hasPassword };
-}
-
 onAuthStateChanged(auth, async (user) => {
     if (user && !isCompletingSignup) {
-        const eligibility = checkUserEligibility(user);
-        
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const isFullyRegistered = userDoc.exists() && userDoc.data().signupCompleted === true && userDoc.data().class;
         
-        if (eligibility.isEligible && isFullyRegistered) {
-            // Completely valid users shouldn't be here, return to dashboard
+        if (isFullyRegistered) {
             window.location.href = "dashboard.html";
         } else {
-            // Auto-route to the missing provider linking step
-            if (!eligibility.hasPhone) {
+            const hasPhone = !!user.phoneNumber;
+            if (!hasPhone) {
                 document.getElementById("phoneSignupSection").classList.remove("hidden");
                 document.getElementById("completeProfileSection").classList.add("hidden");
                 document.querySelector("#phoneSignupSection h2").innerText = "Link Mobile Number";
@@ -347,7 +334,8 @@ onAuthStateChanged(auth, async (user) => {
                 if (user.displayName) document.getElementById("cName").value = user.displayName;
                 if (user.email) document.getElementById("cEmail").value = user.email;
                 
-                if (eligibility.hasGoogle) {
+                const providerIds = user.providerData.map(p => p.providerId);
+                if (providerIds.includes("google.com")) {
                     document.getElementById("linkGoogleBtn").classList.add("hidden");
                     document.querySelector(".divider").classList.add("hidden");
                     document.getElementById("cPassword").required = false;
@@ -422,44 +410,27 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
         const result = await signupConfirmation.confirm(code);
         const user = result.user;
 
-        const eligibility = checkUserEligibility(user);
-
-        // Prevent creating duplicate completely valid accounts over existing phone numbers
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().signupCompleted && eligibility.isEligible) {
+        if (userDoc.exists() && userDoc.data().signupCompleted === true) {
             alert("Account already exists with this mobile number. Please log in.");
             await signOut(auth);
             window.location.href = "login.html";
             return;
         }
 
-        await setDoc(doc(db, "users", user.uid), {
-            uid: user.uid,
-            phone: user.phoneNumber,
-            phoneNumber: user.phoneNumber,
-            phoneVerified: true,
-            signupCompleted: userDoc.exists() ? (userDoc.data().signupCompleted || false) : false,
-            createdAt: userDoc.exists() ? userDoc.data().createdAt : new Date(),
-            updatedAt: new Date()
-        }, { merge: true });
-
-        // Direct to dashboard if linking completed their eligibility profile
-        const isFullyRegisteredAfterOTP = userDoc.exists() && userDoc.data().signupCompleted === true && userDoc.data().class;
-        if (eligibility.isEligible && isFullyRegisteredAfterOTP) {
-            window.location.href = "dashboard.html";
-        } else {
-            document.getElementById("phoneSignupSection").classList.add("hidden");
-            document.getElementById("completeProfileSection").classList.remove("hidden");
-            
-            if (user.displayName) document.getElementById("cName").value = user.displayName;
-            if (user.email) document.getElementById("cEmail").value = user.email;
-            
-            if (eligibility.hasGoogle) {
-                document.getElementById("linkGoogleBtn").classList.add("hidden");
-                document.querySelector(".divider").classList.add("hidden");
-                document.getElementById("cPassword").required = false;
-                document.getElementById("cPassword").placeholder = "Create Password (Optional)";
-            }
+        // Show profile completion strictly without writing incomplete users to Firestore.
+        document.getElementById("phoneSignupSection").classList.add("hidden");
+        document.getElementById("completeProfileSection").classList.remove("hidden");
+        
+        if (user.displayName) document.getElementById("cName").value = user.displayName;
+        if (user.email) document.getElementById("cEmail").value = user.email;
+        
+        const providerIds = user.providerData.map(p => p.providerId);
+        if (providerIds.includes("google.com")) {
+            document.getElementById("linkGoogleBtn").classList.add("hidden");
+            document.querySelector(".divider").classList.add("hidden");
+            document.getElementById("cPassword").required = false;
+            document.getElementById("cPassword").placeholder = "Create Password (Optional)";
         }
     } catch (err) {
         let errorMsg = "Verification failed. Please try again.";
@@ -495,6 +466,14 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
     const classSelect = document.getElementById("cClassSelect").value;
     const btn = e.target.querySelector('button');
     
+    if (!name || !classSelect) {
+        alert("Name and Grade are required.");
+        btn.disabled = false;
+        btn.innerText = "Create Account";
+        isCompletingSignup = false;
+        return;
+    }
+
     btn.disabled = true;
     btn.innerText = "Creating...";
     isCompletingSignup = true;
@@ -554,7 +533,16 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
         const result = await linkWithPopup(auth.currentUser, provider);
         const user = result.user;
 
-        let userClass = prompt("Welcome! Please enter your grade (e.g., class5):") || "class1";
+        let userClass = prompt("Welcome! Please enter your grade (e.g., class5):");
+        while (!userClass || userClass.trim() === "") {
+            userClass = prompt("Grade is required to complete registration. Please enter your grade (e.g., class5):");
+            if (userClass === null) {
+                alert("Registration incomplete. You must provide a grade.");
+                btn.disabled = false;
+                isCompletingSignup = false;
+                return;
+            }
+        }
         
         const providerIds = user.providerData.map(p => p.providerId);
 

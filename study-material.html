@@ -15,22 +15,29 @@
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            --bg: #FFD700;
+            --bg: #f8fafc;
             --surface: #ffffff;
-            --text: #0f172a;
+            --subtle: #fff7ed;
+            --text: #111827;
             --muted: #64748b;
             --border: #e2e8f0;
-            --brand: #4f46e5;
+            --brand: #ff6b00;
+            --accent: #ff8c1a;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { 
             background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column;
             background-image: 
-                radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
+                radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
             background-attachment: fixed;
         }
 
@@ -75,18 +82,25 @@
 
         .class-badge {
             width: 50px; height: 50px;
-            background: linear-gradient(135deg, #38bdf8, #2563eb);
+            background: var(--brand);
             color: white;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.5rem; font-weight: 800;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .class-name { font-size: 1.2rem; font-weight: 700; }
         .class-sub { font-size: 0.8rem; color: var(--muted); margin-top: 5px; }
 
+        /* Aligning Navbar with Orange Theme */
+        .nav-important a { background: rgba(255, 107, 0, 0.08) !important; color: #ff6b00 !important; }
+        .nav-links a:hover { background: rgba(255, 107, 0, 0.05) !important; color: #ff6b00 !important; }
+        .nav-links a.active { background: rgba(255, 107, 0, 0.06) !important; color: #ff6b00 !important; }
+        .login-link { background: #ff6b00 !important; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3) !important; color: white !important; }
+        .login-link:hover { box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4) !important; filter: brightness(1.1); }
+        .nav-dropdown-content a:hover { background-color: #fff7ed !important; color: #ff6b00 !important; }
     </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18108080300"></script>
@@ -172,20 +186,21 @@
             return;
         }
         try {
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (userDoc.exists()) {
-                let uClass = userDoc.data().class || userDoc.data().studentClass;
-                if (uClass) {
-                    uClass = String(uClass).replace(/[^0-9]/g, '');
-                    const grid = document.getElementById('classGrid');
-                    grid.innerHTML = '';
-                    const i = parseInt(uClass);
-                    
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const subject = urlParams.get('subject') || 'maths';
-                    const colors = { maths: '#38bdf8', science: '#10b981', english: '#f43f5e', reasoning: '#f59e0b', physics: '#38bdf8', chemistry: '#10b981' };
-                    const accent = colors[subject] || colors.maths;
+            const isAdmin = user.email === "madhhu52@gmail.com";
+            if (isAdmin) {
+                const adminTab = document.getElementById("adminTab");
+                if (adminTab) adminTab.style.display = "inline";
+            }
 
+            const urlParams = new URLSearchParams(window.location.search);
+            const subject = urlParams.get('subject') || 'maths';
+            const colors = { maths: '#38bdf8', science: '#10b981', english: '#f43f5e', reasoning: '#f59e0b', physics: '#38bdf8', chemistry: '#10b981' };
+            const accent = colors[subject] || colors.maths;
+            const grid = document.getElementById('classGrid');
+            grid.innerHTML = '';
+
+            if (isAdmin) {
+                for (let i = 1; i <= 12; i++) {
                     const card = document.createElement('a');
                     card.className = 'class-card';
                     card.href = `study-content.html?subject=${subject}&class=class${i}`; 
@@ -195,6 +210,25 @@
                         <div class="class-sub">${i >= 11 ? 'JEE Prep' : 'Olympiad Prep'}</div>
                     `;
                     grid.appendChild(card);
+                }
+            } else {
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    let uClass = userDoc.data().class || userDoc.data().studentClass;
+                    if (uClass) {
+                        uClass = String(uClass).replace(/[^0-9]/g, '');
+                        const i = parseInt(uClass);
+                        
+                        const card = document.createElement('a');
+                        card.className = 'class-card';
+                        card.href = `study-content.html?subject=${subject}&class=class${i}`; 
+                        card.innerHTML = `
+                            <div class="class-badge" style="background: ${accent}; box-shadow: 0 4px 10px ${accent}66;">${i}</div>
+                            <div class="class-name">Class ${i}</div>
+                            <div class="class-sub">${i >= 11 ? 'JEE Prep' : 'Olympiad Prep'}</div>
+                        `;
+                        grid.appendChild(card);
+                    }
                 }
             }
         } catch (e) {

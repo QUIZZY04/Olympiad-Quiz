@@ -356,37 +356,11 @@
     <div class="modal-content" style="max-width: 440px; text-align: center;">
         <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Registration Required</h2>
-        <p class="subtitle" id="notRegisteredMsg" style="margin-bottom: 20px;">No complete account found. Please sign up first to continue.</p>
+        <p class="subtitle" id="notRegisteredMsg" style="margin-bottom: 20px;">Account not found. Please create your account first.</p>
         <div style="display: flex; gap: 10px;">
-            <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">No Thanks</button>
-            <button type="button" onclick="window.location.href='signup.html?from=login'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Yes, Sign Up</button>
+            <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Cancel</button>
+            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Go to Signup</button>
         </div>
-    </div>
-</div>
-
-<!-- Force Email/Google Completion Popup -->
-<div id="forceEmailGoogleModal" class="modal-overlay" style="display:none;">
-    <div class="modal-content" style="max-width: 440px; text-align: center;">
-        <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
-        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Profile Incomplete</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">Please complete your account by linking an Email/Password or Google account.</p>
-        
-        <!-- Google Linking Button (Case 1) -->
-        <button type="button" id="linkGoogleAccountBtn" class="social-btn" style="border: 1px solid var(--border); box-shadow: var(--shadow-sm); width: 100%; margin-bottom: 15px; background: #ffffff; color: #1e293b; justify-content: center;">
-            <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
-            Link Google Account
-        </button>
-
-        <div class="divider" style="margin-bottom: 15px;">or link email</div>
-
-        <!-- Email/Password Linking Form (Case 1) -->
-        <form id="linkEmailPasswordForm" style="text-align: left;">
-            <input type="email" id="linkNewEmail" placeholder="Email Address" required style="width: 100%; padding: 14px 16px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: 12px; background: #f8fafc; font-size: 14px; color: var(--text); outline: none;">
-            <input type="password" id="linkNewPassword" placeholder="New Password" required style="width: 100%; padding: 14px 16px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 12px; background: #f8fafc; font-size: 14px; color: var(--text); outline: none;">
-            <button type="submit" id="linkEmailSubmitBtn" class="main-btn" style="width: 100%; padding: 14px; background: var(--brand); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer;">Link Email & Password</button>
-        </form>
-
-        <button type="button" onclick="logoutAndCancel()" style="background: none; border: none; color: var(--danger); font-weight: 700; margin-top: 20px; cursor: pointer;">Cancel & Logout</button>
     </div>
 </div>
 
@@ -406,10 +380,8 @@ import {
     signInWithPopup, 
     GoogleAuthProvider,
     getAdditionalUserInfo,
-    linkWithPopup,
-    updateEmail
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -450,48 +422,24 @@ function initLoginRecaptcha() {
 let isManualLogin = false;
 let isRedirecting = false;
 
-// Central Eligibility Validator
-function checkUserEligibility(user) {
-    if (!user) return false;
-    const providerIds = user.providerData.map(p => p.providerId);
-    const hasPhone = !!user.phoneNumber;
-    const hasGoogle = providerIds.includes("google.com");
-    const hasPassword = providerIds.includes("password");
-    
-    // Rule: Must have phone AND (Google OR Password)
-    return hasPhone && (hasGoogle || hasPassword);
-}
-
-function redirectToSignupCompletion() {
-    isRedirecting = true;
-    window.location.href = "signup.html";
-}
-
 async function handleAuthSuccess(user) {
     if (isRedirecting) return;
     
-    if (checkUserEligibility(user)) {
-        // Eligible User: Ensure Firestore is synced and allow login
-        try {
-            const providerIds = user.providerData.map(p => p.providerId);
-            await setDoc(doc(db, "users", user.uid), {
-                phone: user.phoneNumber || null,
-                phoneNumber: user.phoneNumber || null,
-                authProviders: providerIds,
-                phoneVerified: true,
-                signupCompleted: true,
-                updatedAt: new Date()
-            }, { merge: true });
-        } catch(e) { console.error("Firestore sync error:", e); }
-        
-        isRedirecting = true;
-        localStorage.setItem("isLoggedIn", "true");
-        sessionStorage.removeItem("redirectAfterLogin");
-        window.location.replace(redirectUrl);
-    } else {
-        // Ineligible User: Missing a mandatory credential, keep session active for linking and redirect.
-        redirectToSignupCompletion();
-    }
+    try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists() && userDoc.data().signupCompleted === true) {
+            isRedirecting = true;
+            localStorage.setItem("isLoggedIn", "true");
+            sessionStorage.removeItem("redirectAfterLogin");
+            window.location.replace(redirectUrl);
+            return;
+        }
+    } catch (e) { console.error("Firestore access error:", e); }
+    
+    // If we reach here, it's not a completely registered account
+    await signOut(auth);
+    document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
+    document.getElementById('notRegisteredModal').style.display = 'flex';
 }
 
 // Robust Guard: Force mobile verification for existing sessions
@@ -615,72 +563,6 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
     }
 });
 
-// Link Google Account Logic (Forced Completion - Case 1)
-// securely links a Google Auth provider to the existing mobile-only account.
-document.getElementById("linkGoogleAccountBtn").addEventListener("click", async () => {
-    const btn = document.getElementById("linkGoogleAccountBtn");
-    const originalText = btn.innerHTML;
-    btn.innerHTML = "Linking...";
-    btn.disabled = true;
-
-    try {
-        const result = await linkWithPopup(auth.currentUser, provider);
-        const user = result.user;
-        const providerIds = user.providerData.map(p => p.providerId);
-        
-        // Update Firestore profile
-        await setDoc(doc(db, "users", user.uid), {
-            email: user.email || null,
-            name: user.displayName || 'Student',
-            authProviders: providerIds,
-            signupCompleted: true,
-            updatedAt: new Date()
-        }, { merge: true });
-
-        document.getElementById('forceEmailGoogleModal').style.display = 'none';
-        checkUserAndRedirect(user); // Resume login flow
-    } catch (err) {
-        let errorMsg = "Failed to link Google account. Please try again.";
-        if (err.code === 'auth/credential-already-in-use') errorMsg = "This Google account is already linked to another account.";
-        alert(errorMsg);
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-    }
-});
-
-// Link Email/Password Logic (Forced Completion - Case 1)
-// Securely links a new email and password to the existing mobile-only account.
-document.getElementById("linkEmailPasswordForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("linkNewEmail").value.trim();
-    const password = document.getElementById("linkNewPassword").value;
-    const btn = document.getElementById("linkEmailSubmitBtn");
-    
-    btn.disabled = true;
-    btn.innerText = "Linking...";
-
-    try {
-        const user = auth.currentUser;
-        await updateEmail(user, email);
-        await updatePassword(user, password);
-        
-        // Pull down the newly appended provider data
-        await user.reload();
-        const providerIds = auth.currentUser.providerData.map(p => p.providerId);
-        
-        await setDoc(doc(db, "users", user.uid), { email: email, authProviders: providerIds, signupCompleted: true, updatedAt: new Date() }, { merge: true });
-        handleAuthSuccess(auth.currentUser);
-    } catch (err) {
-        let errorMsg = "Failed to link email/password. Please try again.";
-        if (err.code === 'auth/email-already-in-use') errorMsg = "This email is already registered to another account.";
-        else if (err.code === 'auth/weak-password') errorMsg = "Password is too weak. Please use a stronger password.";
-        else if (err.code === 'auth/requires-recent-login') errorMsg = "Please logout and login again to perform this action.";
-        alert(errorMsg);
-        btn.disabled = false;
-        btn.innerText = "Link Email & Password";
-    }
-});
-
 // Login Logic
 document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
@@ -690,18 +572,11 @@ document.getElementById("loginForm").addEventListener("submit", async (e)=>{
     isManualLogin = true;
     try {
         const result = await signInWithEmailAndPassword(auth, document.getElementById("loginEmail").value, document.getElementById("loginPassword").value);
-        
-        if (!checkUserEligibility(result.user)) {
-            document.getElementById('notRegisteredMsg').innerText = "No complete account found. Please sign up first to continue.";
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            return;
-        }
-        
         handleAuthSuccess(result.user);
     } catch(err) { 
         isManualLogin = false;
         if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') {
-            document.getElementById('notRegisteredMsg').innerText = "No complete account found. Please sign up first to continue.";
+            document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
         } else {
             alert(err.message); 
@@ -716,14 +591,6 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
     isManualLogin = true;
     try {
         const result = await signInWithPopup(auth, provider);
-        const additionalInfo = getAdditionalUserInfo(result);
-        
-        if ((additionalInfo && additionalInfo.isNewUser) || !checkUserEligibility(result.user)) {
-            document.getElementById('notRegisteredMsg').innerText = "No complete account found. Please sign up first to continue.";
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            return;
-        }
-        
         handleAuthSuccess(result.user);
     } catch (err) { 
         alert(err.message); 
