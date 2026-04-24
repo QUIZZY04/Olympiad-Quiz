@@ -427,7 +427,8 @@ async function handleAuthSuccess(user) {
     
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().signupCompleted === true) {
+        const data = userDoc.exists() ? userDoc.data() : null;
+        if (data && (data.signupCompleted === true || data.registrationCompleted === true)) {
             isRedirecting = true;
             localStorage.setItem("isLoggedIn", "true");
             sessionStorage.removeItem("redirectAfterLogin");
@@ -551,6 +552,14 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
     isManualLogin = true;
     try {
         const result = await confirmationResult.confirm(code);
+        const additionalInfo = getAdditionalUserInfo(result);
+        if (additionalInfo && additionalInfo.isNewUser) {
+            // Immediately sign out to prevent temporary auth session
+            await signOut(auth);
+            document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            return;
+        }
         handleAuthSuccess(result.user);
     } catch (err) {
         isManualLogin = false;
@@ -591,6 +600,14 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
     isManualLogin = true;
     try {
         const result = await signInWithPopup(auth, provider);
+        const additionalInfo = getAdditionalUserInfo(result);
+        if (additionalInfo && additionalInfo.isNewUser) {
+            // Immediately sign out to prevent temporary auth session
+            await signOut(auth);
+            document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            return;
+        }
         handleAuthSuccess(result.user);
     } catch (err) { 
         alert(err.message); 

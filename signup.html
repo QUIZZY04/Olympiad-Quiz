@@ -510,6 +510,7 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
             createdAt: user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date(),
             updatedAt: new Date(),
             signupCompleted: true,
+            registrationCompleted: true,
             hasPassword: true
         }, { merge: true });
 
@@ -562,6 +563,7 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
             createdAt: user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date(),
             updatedAt: new Date(),
             signupCompleted: true,
+            registrationCompleted: true,
             googleLinked: true
         }, { merge: true });
         
