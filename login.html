@@ -365,17 +365,41 @@
 </div>
 
 <!-- Google Intent Modal -->
-<div id="googleIntentModal" class="modal-overlay" style="display:none;">
-    <div class="modal-content" style="max-width: 440px; text-align: center;">
-        <div style="font-size: 40px; margin-bottom: 10px;">🤔</div>
-        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Are you already registered?</h2>
-        <p class="subtitle" style="margin-bottom: 20px;">Please confirm your account status to continue with Google.</p>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-            <button type="button" onclick="proceedWithGoogleLogin()" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s;">Existing User → Continue Login</button>
-            <button type="button" onclick="window.location.href='signup.html'" style="background: #ffffff; color: var(--brand); border: 2px solid var(--brand); padding: 14px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s;">New User → Go to Signup</button>
-            <button type="button" onclick="document.getElementById('googleIntentModal').style.display='none'" style="background: transparent; color: var(--muted); padding: 10px; border: none; font-weight: 600; cursor: pointer; margin-top: 5px;">Cancel</button>
-        </div>
+<d<div id="googleIntentModal" class="modal-overlay" style="display:none;">
+  <div class="modal-content" style="max-width:440px; text-align:center;">
+
+    <div style="font-size:40px; margin-bottom:10px;">🤔</div>
+
+    <h2 style="color:var(--brand); margin-bottom:15px; font-weight:800; font-size:22px;">
+      Are you already registered?
+    </h2>
+
+    <p class="subtitle" style="margin-bottom:20px;">
+      Please confirm your account status to continue with Google.
+    </p>
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+
+      <button type="button"
+        onclick="proceedWithGoogleLogin()"
+        style="background:var(--brand); color:white; padding:14px 20px; border:none; border-radius:10px; font-weight:700; cursor:pointer;">
+        Existing User → Continue Login
+      </button>
+
+      <button type="button"
+        onclick="goGoogleSignup()"
+        style="background:#ffffff; color:var(--brand); border:2px solid var(--brand); padding:14px 20px; border-radius:10px; font-weight:700; cursor:pointer;">
+        New User → Go to Signup
+      </button>
+
+      <button type="button"
+        onclick="document.getElementById('googleIntentModal').style.display='none'"
+        style="background:transparent; color:var(--muted); padding:10px; border:none; font-weight:600; cursor:pointer;">
+        Cancel
+      </button>
+
     </div>
+  </div>
 </div>
 
 <script type="module">
@@ -391,9 +415,7 @@ import {
     signOut,
     RecaptchaVerifier,
     signInWithPhoneNumber,
-    signInWithPopup, 
-    GoogleAuthProvider,
-    getAdditionalUserInfo
+    
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -409,7 +431,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const provider = new GoogleAuthProvider();
 
 let redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
 try {
@@ -613,23 +634,20 @@ document.getElementById("googleSignInBtn").addEventListener("click", () => {
     document.getElementById("googleIntentModal").style.display = "flex";
 });
 
-window.proceedWithGoogleLogin = async function() {
-    document.getElementById("googleIntentModal").style.display = "none";
-    isManualLogin = true;
-    try {
-        const result = await signInWithPopup(auth, provider);
-        const additionalInfo = getAdditionalUserInfo(result);
-        if (additionalInfo && additionalInfo.isNewUser) {
-            await signOut(auth);
-            document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            return;
-        }
-        handleAuthSuccess(result.user);
-    } catch (err) { 
-        alert(err.message); 
-        isManualLogin = false;
-    }
+/* GOOGLE SAFE LOGIN */
+
+document.getElementById("googleSignInBtn").addEventListener("click", () => {
+    document.getElementById("googleIntentModal").style.display = "flex";
+});
+
+/* Existing User */
+window.proceedWithGoogleLogin = function () {
+    window.location.href = "signup.html?mode=google-login";
+};
+
+/* New User */
+window.goGoogleSignup = function () {
+    window.location.href = "signup.html?mode=google-signup";
 };
 
 // Forgot Password Logic
