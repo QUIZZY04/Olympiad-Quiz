@@ -17,11 +17,17 @@ padding:0;
 box-sizing:border-box;
 }
 
+html {
+overflow-x: clip;
+max-width: 100%;
+}
+
 body{
 font-family:'Poppins',sans-serif;
 background:#ffffff;
 color:#111827;
-overflow-x:hidden;
+overflow-x:clip;
+max-width: 100%;
 }
 
 a{
@@ -39,34 +45,63 @@ padding:0 22px;
 --orange:#ff6b00;
 --dark:#111827;
 --muted:#64748b;
+/* Navbar variables matching mock page */
+--brand: #ff6b00;
+--border: #e2e8f0;
+--text: #111827;
+--surface: #ffffff;
+--danger: #ef4444;
 }
 
 /* NAVBAR */
-.navbar{
-position:sticky;
-top:0;
-z-index:1000;
-background:#ffffff;
-border-bottom:1px solid #f1f5f9;
+nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-
-.nav-wrap{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
-}
-
-.logo{
-font-size:32px;
-font-weight:800;
-color:var(--orange);
-}
-
-.menu a{
-margin-left:26px;
-font-weight:600;
-color:#334155;
+.nav-important { display: flex; gap: 8px; align-items: center; }
+@media (min-width: 769px) { .nav-important { display: none !important; } }
+.nav-important a { text-decoration: none; font-weight: 700; font-size: 0.75rem; color: var(--brand); background: rgba(255, 107, 0, 0.08); padding: 4px 8px; border-radius: 8px; text-transform: uppercase; }
+.menu-toggle { display: none; flex-direction: column; gap: 5px; background: transparent; border: none; cursor: pointer; padding: 5px; z-index: 1001; }
+.menu-toggle span { display: block; width: 25px; height: 3px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+.brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; white-space: nowrap; transition: 0.3s; }
+.brand:hover { color: var(--brand); }
+.nav-links { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; border-bottom: 3px solid transparent; white-space: nowrap; }
+.nav-links a:hover { color: var(--brand); background: rgba(255, 107, 0, 0.05); }
+.nav-links a.active { color: var(--brand); background: rgba(255, 107, 0, 0.06); border-bottom-color: var(--brand); }
+.nav-actions { display: flex; align-items: center; gap: 15px; border-left: 2px solid var(--border); padding-left: 15px; margin-left: 10px; }
+.login-link { font-weight: 700; color: white !important; text-decoration: none; font-size: 0.9rem; background: var(--brand); padding: 10px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
+.login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4); filter: brightness(1.1); }
+.nav-dropdown { position: relative; display: inline-block; }
+.nav-dropdown-content { display: none; position: absolute; background-color: var(--surface); min-width: 200px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08); border-radius: 12px; z-index: 1001; top: 100%; left: 0; border: 1px solid var(--border); padding: 8px 0; }
+.nav-dropdown-content a { color: var(--text) !important; padding: 12px 20px !important; text-decoration: none !important; display: block !important; font-size: 0.85rem !important; font-weight: 700 !important; border-bottom: none !important; transition: background 0.2s !important; border-radius: 0 !important; text-align: left; }
+.close-menu { display: none; }
+.nav-dropdown-content a:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
+.nav-dropdown:hover .nav-dropdown-content { display: block; }
+.dropbtn::after { content: ' ▾'; font-size: 0.8rem; opacity: 0.7; }
+@media (max-width: 768px) {
+    .nav-dropdown { width: 100%; }
+    .nav-dropdown-content { position: static; display: block; box-shadow: none; border: none; background: #fff7ed; padding-left: 20px; border-radius: 0; min-width: 100%; }
+    nav { padding: 0 12px !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; align-items: center !important; min-height: 60px !important; position: sticky !important; top: 0 !important; z-index: 1000 !important; }
+    .brand { font-size: 0.9rem !important; margin-left: 0 !important; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .nav-important a { background: var(--brand) !important; color: white !important; display: inline-block; }
+    .menu-toggle { display: flex; padding: 10px 4px; margin-right: 0; order: -1; flex-shrink: 0; }
+    .nav-links { display: flex; position: fixed; top: 0; right: 0; transform: translateX(100%); height: 100vh; width: 280px; background: var(--surface); flex-direction: column; padding: 80px 25px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.15); z-index: 1000; align-items: flex-start; justify-content: flex-start; margin: 0; visibility: hidden; opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s, visibility 0.4s; }
+    .nav-links.active { transform: translateX(0); visibility: visible; opacity: 1; pointer-events: auto; }
+    .close-menu { display: flex; align-items: center; justify-content: center; position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.05); border: none; font-size: 28px; color: var(--text); cursor: pointer; width: 40px; height: 40px; border-radius: 50%; transition: 0.3s; padding: 0; }
+    .close-menu:hover { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+    .nav-links a { width: 100%; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; text-align: left; }
+    .nav-actions { border: none; padding: 0; margin: 20px 0 0 0; gap: 15px; flex-direction: column; align-items: flex-start; }
 }
 
 /* BUTTON */
@@ -329,10 +364,6 @@ grid-template-columns:1fr;
 font-size:40px;
 }
 
-.menu{
-display:none;
-}
-
 .stats{
 grid-template-columns:repeat(2,1fr);
 }
@@ -356,21 +387,38 @@ font-size:28px;
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
-<div class="container nav-wrap">
-
-<div class="logo">OlympiadQuiz</div>
-
-<div class="menu">
-<a href="index.html">Home</a>
-<a href="mock.html">Mock Tests</a>
-<a href="chapterwise.html">Chapterwise</a>
-<a href="live.html">Live Test</a>
-<a href="login.html">Login</a>
-</div>
-
-</div>
-</div>
+<nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <a href="index.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-important">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </div>
+    <div class="nav-links">
+        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+        <a href="index.html" class="active">Home</a>
+        <div class="nav-dropdown">
+            <a href="#" class="dropbtn">Free Mock Test</a>
+            <div class="nav-dropdown-content">
+                <a href="imo-free-mock-test.html">IMO Test</a>
+                <a href="nso-free-mock-test.html">NSO Test</a>
+                <a href="ieo-free-mock-test.html">IEO Test</a>
+                <a href="iro-free-mock-test.html">IRO Test</a>
+                <a href="igko-free-mock-test.html">IGKO Test</a>
+            </div>
+        </div>
+        <a href="chapterwise.html">Chapterwise</a>
+        <a href="live.html">Live Arena</a>
+        <a href="study.html">Study Material</a>
+        <div class="nav-actions">
+            <a href="login.html" class="login-link">Log in</a>
+        </div>
+    </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -561,6 +609,13 @@ Thousands of students and parents trust our platform for comprehensive Olympiad 
     </div>
     <p style="font-size:14px; margin: 0;">© 2026 OlympiadQuiz.org • India's Premium Olympiad & JEE Platform. All rights reserved.</p>
 </footer>
+
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('active');
+}
+</script>
 
 </body>
 </html>
