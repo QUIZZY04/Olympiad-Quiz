@@ -294,7 +294,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, deleteUser } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -380,19 +380,27 @@ onAuthStateChanged(auth, async (user) => {
             window.location.href = "dashboard.html";
         } else {
             const hasPhone = !!user.phoneNumber || !!(data && data.phone);
+            const providerIds = user.providerData.map(p => p.providerId);
+            
+            const initGoogleBtn = document.getElementById("initGoogleBtn");
+            if (initGoogleBtn) initGoogleBtn.classList.add("hidden");
+            
             if (!hasPhone) {
                 document.getElementById("phoneSignupSection").classList.remove("hidden");
                 document.getElementById("completeProfileSection").classList.add("hidden");
                 document.querySelector("#phoneSignupSection h2").innerText = "Link Mobile Number";
+                document.querySelector("#phoneSignupSection h2").innerText = "Verify Mobile Number";
                 document.querySelector("#phoneSignupSection .subtitle").innerText = "A verified mobile number is mandatory to continue.";
                 document.getElementById("phoneSignupForm").classList.remove("hidden");
                 if (document.getElementById("initGoogleBtn")) document.getElementById("initGoogleBtn").classList.add("hidden");
+                document.querySelector(".already-member").classList.add("hidden");
             } else {
                 document.getElementById("phoneSignupSection").classList.add("hidden");
                 document.getElementById("completeProfileSection").classList.remove("hidden");
                 
                 if (user.displayName || (data && data.name)) document.getElementById("cName").value = user.displayName || (data && data.name) || "";
                 if (user.email || (data && data.email)) document.getElementById("cEmail").value = user.email || (data && data.email) || "";
+                if (data && data.class) document.getElementById("cClassSelect").value = data.class;
                 
                 const providerIds = user.providerData.map(p => p.providerId);
                 if (providerIds.includes("google.com")) {
@@ -400,6 +408,10 @@ onAuthStateChanged(auth, async (user) => {
                     document.querySelector(".divider").classList.add("hidden");
                     document.getElementById("cPassword").required = false;
                     document.getElementById("cPassword").placeholder = "Create Password (Optional)";
+                    if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
+                } else if (providerIds.includes("password")) {
+                    document.getElementById("cPassword").required = false;
+                    document.getElementById("cPassword").placeholder = "Update Password (Optional)";
                     if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
                 }
             }
@@ -495,6 +507,10 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
             document.getElementById("cPassword").required = false;
             document.getElementById("cPassword").placeholder = "Create Password (Optional)";
             if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
+        } else if (providerIds.includes("password")) {
+            document.getElementById("cPassword").required = false;
+            document.getElementById("cPassword").placeholder = "Update Password (Optional)";
+            if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
         }
         
         btn.disabled = false;
@@ -550,13 +566,21 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
         const user = auth.currentUser;
         const providerIds = user.providerData.map(p => p.providerId);
         
-        if (password && !providerIds.includes("google.com")) {
-            try {
-                const credential = EmailAuthProvider.credential(email, password);
-                await linkWithCredential(user, credential);
-            } catch (linkErr) {
-                if (linkErr.code !== 'auth/credential-already-in-use' && linkErr.code !== 'auth/email-already-in-use' && linkErr.code !== 'auth/provider-already-linked') {
-                    throw linkErr;
+        if (password) {
+            if (!providerIds.includes("password")) {
+                try {
+                    const credential = EmailAuthProvider.credential(email, password);
+                    await linkWithCredential(user, credential);
+                } catch (linkErr) {
+                    if (linkErr.code !== 'auth/credential-already-in-use' && linkErr.code !== 'auth/email-already-in-use' && linkErr.code !== 'auth/provider-already-linked') {
+                        throw linkErr;
+                    }
+                }
+            } else {
+                try {
+                    await updatePassword(user, password);
+                } catch (updateErr) {
+                    console.warn("Password update failed, might need re-auth:", updateErr);
                 }
             }
         }

@@ -347,9 +347,7 @@ async function validateAndRedirect(user, btn, originalText) {
             let redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
             window.location.replace(redirectUrl);
         } else {
-            await signOut(auth);
-            document.getElementById("notRegisteredModal").style.display = "flex";
-            if(btn) { btn.disabled = false; btn.innerText = originalText; }
+            window.location.href = "signup.html";
         }
     } catch (e) {
         console.error(e);
