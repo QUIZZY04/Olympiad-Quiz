@@ -380,6 +380,7 @@ import {
     signInWithPopup, 
     GoogleAuthProvider,
     getAdditionalUserInfo,
+    deleteUser
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -554,8 +555,11 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
         const result = await confirmationResult.confirm(code);
         const additionalInfo = getAdditionalUserInfo(result);
         if (additionalInfo && additionalInfo.isNewUser) {
-            // Immediately sign out to prevent temporary auth session
-            await signOut(auth);
+            // Immediately delete the mistakenly created credential
+            const userToDelete = auth.currentUser;
+            if (userToDelete) {
+                await deleteUser(userToDelete).catch(() => signOut(auth));
+            }
             document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
             return;
@@ -602,8 +606,11 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         const result = await signInWithPopup(auth, provider);
         const additionalInfo = getAdditionalUserInfo(result);
         if (additionalInfo && additionalInfo.isNewUser) {
-            // Immediately sign out to prevent temporary auth session
-            await signOut(auth);
+            // Immediately delete the mistakenly created credential
+            const userToDelete = auth.currentUser;
+            if (userToDelete) {
+                await deleteUser(userToDelete).catch(() => signOut(auth));
+            }
             document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
             return;
