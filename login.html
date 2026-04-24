@@ -556,10 +556,10 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
         const additionalInfo = getAdditionalUserInfo(result);
         if (additionalInfo && additionalInfo.isNewUser) {
             // Immediately delete the mistakenly created credential
-            const userToDelete = auth.currentUser;
-            if (userToDelete) {
-                await deleteUser(userToDelete).catch(() => signOut(auth));
-            }
+            await deleteUser(result.user).catch((err) => {
+                console.error("Failed to delete unused credential:", err);
+            });
+            await signOut(auth);
             document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
             return;
@@ -607,10 +607,10 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         const additionalInfo = getAdditionalUserInfo(result);
         if (additionalInfo && additionalInfo.isNewUser) {
             // Immediately delete the mistakenly created credential
-            const userToDelete = auth.currentUser;
-            if (userToDelete) {
-                await deleteUser(userToDelete).catch(() => signOut(auth));
-            }
+            await deleteUser(result.user).catch((err) => {
+                console.error("Failed to delete unused credential:", err);
+            });
+            await signOut(auth);
             document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
             return;
