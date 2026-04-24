@@ -293,7 +293,8 @@ import {
     signOut,
     RecaptchaVerifier,
     signInWithPhoneNumber,
-    getAdditionalUserInfo
+    getAdditionalUserInfo,
+    deleteUser
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -420,8 +421,9 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
         const result = await confirmationResult.confirm(code);
         const additionalInfo = getAdditionalUserInfo(result);
         
-        // Block new users from completing login without deleting any credentials
+        // Block new users and instantly clean up the empty credential Firebase just created
         if (additionalInfo && additionalInfo.isNewUser) {
+            await deleteUser(result.user).catch(console.error);
             await signOut(auth);
             document.getElementById("notRegisteredModal").style.display = "flex";
             btn.disabled = false;
