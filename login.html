@@ -434,12 +434,7 @@ async function handleAuthSuccess(user) {
             localStorage.setItem("isLoggedIn", "true");
             sessionStorage.removeItem("redirectAfterLogin");
             window.location.replace(redirectUrl);
-<<<<<<< HEAD
-        } else {
-            window.location.href = "signup.html";
-=======
             return;
->>>>>>> 144c7e31230f1ca625117111e95345826026e784
         }
     } catch (e) { console.error("Firestore access error:", e); }
     
