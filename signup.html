@@ -459,7 +459,8 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
         const user = result.user;
 
         const userDoc = await getDoc(doc(db, "users", user.uid));
-        if (userDoc.exists() && userDoc.data().registrationCompleted === true) {
+        const data = userDoc.exists() ? userDoc.data() : null;
+        if (data && data.registrationCompleted === true) {
             alert("Account already exists with this mobile number. Please log in.");
             await signOut(auth);
             window.location.href = "login.html";
@@ -467,6 +468,25 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
         }
 
         // Let onAuthStateChanged handle the transition to Profile section
+        // Force UI transition manually to prevent getting stuck
+        document.getElementById("phoneSignupSection").classList.add("hidden");
+        document.getElementById("completeProfileSection").classList.remove("hidden");
+        
+        if (user.displayName || (data && data.name)) document.getElementById("cName").value = user.displayName || (data && data.name) || "";
+        if (user.email || (data && data.email)) document.getElementById("cEmail").value = user.email || (data && data.email) || "";
+        
+        const providerIds = user.providerData.map(p => p.providerId);
+        if (providerIds.includes("google.com")) {
+            document.getElementById("linkGoogleBtn").classList.add("hidden");
+            document.querySelector(".divider").classList.add("hidden");
+            document.getElementById("cPassword").required = false;
+            document.getElementById("cPassword").placeholder = "Create Password (Optional)";
+            if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
+        }
+        
+        btn.disabled = false;
+        btn.innerText = "Verify Mobile";
+
     } catch (err) {
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-verification-code') errorMsg = "Incorrect OTP. Please check and try again.";
