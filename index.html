@@ -13,7 +13,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Free Olympiad Mock Test for Class 1 to 12 | OlympiadQuiz.org</title>
+<!-- SEO IMPROVEMENT: High-intent title tag -->
+<title>Free IMO, NSO & Olympiad Mock Tests for Class 1-10 | OlympiadQuiz</title>
 
 <meta name="description" content="Practice Olympiad Maths, Science, English and JEE with free mock tests, chapterwise quizzes, rankings and live tests for Class 1 to 12 students.">
 
@@ -362,6 +363,49 @@ margin-top: 15px;
 margin-bottom: 10px;
 }
 
+/* MOBILE UX & CONVERSION OPTIMIZATIONS */
+.mobile-trust-badges { display: none; }
+@media(max-width: 768px) {
+    .section { padding: 40px 0; }
+    .hero { padding: 40px 0 30px; }
+    .hero h1 { font-size: 32px; line-height: 1.25; margin: 15px 0; }
+    .hero p { font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+    
+    /* Thumb-friendly full-width buttons */
+    .hero-btns { flex-direction: column; width: 100%; gap: 12px; margin-top: 15px; }
+    .hero-btns .btn { width: 100%; text-align: center; padding: 14px 20px; font-size: 16px; }
+    
+    /* Scannable layout */
+    .stats { gap: 10px; margin-top: 24px; }
+    .stat { padding: 15px 10px; border-radius: 12px; }
+    .stat h3 { font-size: 20px; }
+    .stat p { font-size: 12px; }
+    
+    .title { font-size: 26px; line-height: 1.3; }
+    .sub { font-size: 14px; margin-bottom: 30px; }
+    .grid { gap: 16px; }
+    .card { padding: 20px 16px; border-width: 2px; }
+    .card h3 { font-size: 18px; margin-bottom: 8px; }
+    .card p { font-size: 13px; line-height: 1.5; }
+    
+    .seo-box { padding: 24px 20px; }
+    .seo-box h2 { font-size: 22px; line-height: 1.3; margin-bottom: 12px; }
+    .seo-box h3 { font-size: 18px; margin-top: 20px; }
+    .seo-box p { font-size: 14px; line-height: 1.6; }
+    
+    .live-box { padding: 30px 20px; border-radius: 20px; }
+    .live-box h2 { font-size: 24px; line-height: 1.3; }
+    .live-box p { font-size: 14px; margin: 10px 0 20px; }
+    .live-box .btn { width: 100%; padding: 14px 20px; font-size: 16px; }
+    
+    /* Trust Boosters Mobile Only */
+    .mobile-trust-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 20px; }
+    .mobile-trust-badge { background: #fff7ed; color: var(--orange); border: 1px solid #ffedd5; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+}
+@media(min-width: 769px) {
+    .mobile-trust-badges { display: none; }
+}
+
 /* MOBILE */
 @media(max-width:950px){
 
@@ -440,8 +484,15 @@ font-size:28px;
 <h1>Free IMO, NSO & <span>Olympiad Mock Tests</span></h1>
 
 <p>
-Experience an exam-like practice environment for Class 1 to 10 students. Learn faster with performance analysis, get instant results with detailed solutions, and secure your All India Ranking in our live arenas.
+Experience an exam-like practice environment for <strong>Class 1 to 10</strong> students. Learn faster with performance analysis, get instant results with detailed solutions, and secure your All India Ranking in our live arenas.
 </p>
+
+<!-- CONVERSION IMPROVEMENT: Mobile Trust Badges Above CTAs -->
+<div class="mobile-trust-badges">
+<span class="mobile-trust-badge">⚡ Instant Results</span>
+<span class="mobile-trust-badge">💡 Detailed Solutions</span>
+<span class="mobile-trust-badge">🏆 All India Ranking</span>
+</div>
 
 <div class="hero-btns">
 <a href="signup.html" class="btn btn-main">Start Free</a>
