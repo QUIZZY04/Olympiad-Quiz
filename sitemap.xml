@@ -85,6 +85,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://olympiadquiz.org/study-content.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://olympiadquiz.org/olympiads.html</loc>
     <lastmod>2024-05-22</lastmod>
     <changefreq>monthly</changefreq>
