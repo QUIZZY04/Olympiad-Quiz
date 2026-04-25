@@ -352,6 +352,16 @@
     </div>
 </div>
 
+<!-- Incomplete Profile Modal -->
+<div id="incompleteProfileModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="max-width: 440px; text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
+        <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Profile Incomplete</h2>
+        <p class="subtitle" style="margin-bottom: 20px;">Please complete your account details to continue.</p>
+        <button type="button" onclick="window.location.href='signup.html?mode=completion'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.2s;">Complete Profile</button>
+    </div>
+</div>
+
 <!-- Not Registered Modal -->
 <div id="notRegisteredModal" class="modal-overlay" style="display:none;">
     <div class="modal-content" style="max-width: 440px; text-align: center;">
@@ -439,10 +449,9 @@ async function handleAuthSuccess(user) {
         }
     } catch (e) { console.error("Firestore access error:", e); }
     
-    // If we reach here, it's not a completely registered account
-    await signOut(auth);
-    document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
-    document.getElementById('notRegisteredModal').style.display = 'flex';
+    // INCOMPLETE USER FLOW
+    // Do not sign out. Prompt them to complete their profile.
+    document.getElementById('incompleteProfileModal').style.display = 'flex';
 }
 
 // Robust Guard: Force mobile verification for existing sessions

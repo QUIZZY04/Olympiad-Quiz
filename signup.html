@@ -389,7 +389,6 @@ onAuthStateChanged(auth, async (user) => {
             if (!hasPhone) {
                 document.getElementById("phoneSignupSection").classList.remove("hidden");
                 document.getElementById("completeProfileSection").classList.add("hidden");
-                document.querySelector("#phoneSignupSection h2").innerText = "Link Mobile Number";
                 document.querySelector("#phoneSignupSection h2").innerText = "Verify Mobile Number";
                 document.querySelector("#phoneSignupSection .subtitle").innerText = "A verified mobile number is mandatory to continue.";
                 document.getElementById("phoneSignupForm").classList.remove("hidden");
@@ -399,6 +398,15 @@ onAuthStateChanged(auth, async (user) => {
                 document.getElementById("phoneSignupSection").classList.add("hidden");
                 document.getElementById("completeProfileSection").classList.remove("hidden");
                 
+                // Dynamic UI updates for completion flow
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('mode') === 'completion') {
+                    document.querySelector("#completeProfileSection h2").innerText = "Complete Profile";
+                    document.querySelector("#completeProfileSection .subtitle").innerText = "Please provide the missing details to continue.";
+                    const completeBtn = document.querySelector("#completeEmailForm button[type='submit']");
+                    if (completeBtn) completeBtn.innerText = "Save Details & Continue";
+                }
+
                 if (user.displayName || (data && data.name)) document.getElementById("cName").value = user.displayName || (data && data.name) || "";
                 if (user.email || (data && data.email)) document.getElementById("cEmail").value = user.email || (data && data.email) || "";
                 if (data && data.class) document.getElementById("cClassSelect").value = data.class;

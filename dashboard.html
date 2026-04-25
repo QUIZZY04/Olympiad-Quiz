@@ -485,16 +485,20 @@ onAuthStateChanged(auth, async (user) => {
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
-            if (!userDoc.data().phone && !isAdmin) {
-                window.location.replace("login.html");
+            const data = userDoc.data();
+            if ((!data.registrationCompleted && !data.signupCompleted) && !isAdmin) {
+                window.location.replace("signup.html?mode=completion");
                 return;
             }
-            if (userDoc.data().name) {
-                document.getElementById("userGreeting").innerText = `Welcome, ${userDoc.data().name}!`;
+            if (!data.phone && !isAdmin) {
+                window.location.replace("signup.html?mode=completion");
+                return;
+            }
+            if (data.name) {
+                document.getElementById("userGreeting").innerText = `Welcome, ${data.name}!`;
             }
             
             // --- Dashboard Visibility Logic for Grade 11 & 12 ---
-            const data = userDoc.data();
             uClass = data.class || data.studentClass || "";
             uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
             
