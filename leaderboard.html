@@ -23,7 +23,7 @@
   }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css">
 <style>body{visibility: hidden;}</style>
 
@@ -36,20 +36,20 @@
 :root{
 --bg: #f8fafc;
 --surface: #ffffff;
---subtle: #f1f5f9;
---text: #0f172a;
+--subtle: #fff7ed;
+--text: #111827;
 --muted: #64748b;
 --border: #e2e8f0;
---brand: #4f46e5;
---accent: #8b5cf6;
---danger: #f43f5e;
+--brand: #ff6b00;
+--accent: #ff8c1a;
+--danger: #ef4444;
 --success: #10b981;
 --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
 --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 
 body{
 background:var(--bg);
@@ -58,10 +58,10 @@ display:flex;
 flex-direction:column;
 min-height:100vh;
 background-image: 
-    radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
+    radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
 background-attachment: fixed;
 }
 
@@ -139,7 +139,7 @@ transition:0.2s;
 
 .filter-row select:focus {
 border-color:var(--brand);
-box-shadow:0 0 0 2px rgba(37,99,235,0.1);
+box-shadow:0 0 0 2px rgba(255, 107, 0, 0.1);
 }
 
 /* GRID */
@@ -290,11 +290,12 @@ font-size:14px;
     </button>
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-important">
-        <a href="dashboard.html">Dash</a>
+        <a href="index.html">Home</a>
         <a onclick="logout()" style="cursor:pointer;">Logout</a>
     </div>
     <div class="nav-links">
     <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+    <a href="index.html">Home</a>
     <a href="dashboard.html">Dashboard</a>
     <a href="mock.html">Mock Tests</a>
     <a href="chapterwise.html">Chapterwise</a>
@@ -302,8 +303,8 @@ font-size:14px;
     <a href="leaderboard.html" class="active">Leaderboard</a>
     <a href="study.html">Study Material</a>
     <div class="nav-actions">
-        <a id="adminTab" href="admin.html" style="display:none; color:var(--success);">Admin</a>
-        <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
+        <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
+        <a onclick="logout()" class="login-link" style="color:var(--danger); cursor:pointer;">Logout</a>
     </div>
     </div>
     </nav>
@@ -316,7 +317,7 @@ font-size:14px;
 
     <div class="filter-box weekly-filter">
     <h3>Live Quiz Session Filters</h3>
-    <p style="font-size: 0.95rem; color: #1e3a8a; font-weight: bold; line-height: 1.5; margin-top: -5px; margin-bottom: 5px;">Please select your grade and subject of live quiz to see the Rank.</p>
+    <p style="font-size: 0.95rem; color: var(--brand); font-weight: bold; line-height: 1.5; margin-top: -5px; margin-bottom: 5px;">Please select your grade and subject of live quiz to see the Rank.</p>
 
     <div class="filter-row">
 
@@ -382,7 +383,7 @@ font-size:14px;
     <option value="reasoning">Reasoning</option>
     </select>
 
-    <input type="date" id="dailyDate" style="flex:1; background:var(--surface); color:var(--text); border:1px solid var(--border); padding:12px 15px; border-radius:10px; font-weight:600; outline:none; transition:0.2s; cursor:pointer; font-family: 'Inter', sans-serif;" title="Filter by Date">
+    <input type="date" id="dailyDate" style="flex:1; background:var(--surface); color:var(--text); border:1px solid var(--border); padding:12px 15px; border-radius:10px; font-weight:600; outline:none; transition:0.2s; cursor:pointer; font-family: 'Poppins', sans-serif;" title="Filter by Date">
     </div>
     </div>
 
@@ -459,7 +460,7 @@ font-size:14px;
             <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
             <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
         </div>
-        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
     </footer>
 </div>
 
