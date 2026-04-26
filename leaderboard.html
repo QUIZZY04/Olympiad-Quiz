@@ -382,6 +382,7 @@ font-size:14px;
     <option value="reasoning">Reasoning</option>
     </select>
 
+    <input type="date" id="dailyDate" style="flex:1; background:var(--surface); color:var(--text); border:1px solid var(--border); padding:12px 15px; border-radius:10px; font-weight:600; outline:none; transition:0.2s; cursor:pointer; font-family: 'Inter', sans-serif;" title="Filter by Date">
     </div>
     </div>
 
@@ -605,6 +606,7 @@ async function refreshDaily(){
     const tbody=document.getElementById("dailyBody");
     const gradeFilter = document.getElementById("dailyGrade").value;
     const subjectFilter = document.getElementById("dailySubject").value;
+    const dateFilter = document.getElementById("dailyDate").value;
 
     tbody.innerHTML="<tr><td colspan='6'>Loading...</td></tr>";
 
@@ -620,6 +622,19 @@ async function refreshDaily(){
         snap.forEach(doc => {
             const d = doc.data();
             if (d.isChampionship === true) return; // Exclude live quiz results
+            
+            if (dateFilter && d.date) {
+                const docDate = d.date.toDate();
+                const [year, month, day] = dateFilter.split("-").map(Number);
+                if (docDate.getFullYear() !== year || 
+                    docDate.getMonth() !== (month - 1) || 
+                    docDate.getDate() !== day) {
+                    return;
+                }
+            } else if (dateFilter && !d.date) {
+                return; // Exclude documents without a date if a date filter is applied
+            }
+
             allDocs.push(doc);
         });
 
@@ -628,7 +643,13 @@ async function refreshDaily(){
             return;
         }
         
-        allDocs.sort((a, b) => (b.data().score || 0) - (a.data().score || 0));
+        allDocs.sort((a, b) => {
+            const scoreDiff = (b.data().score || 0) - (a.data().score || 0);
+            if (scoreDiff !== 0) return scoreDiff;
+            const dateA = a.data().date ? a.data().date.toMillis() : 0;
+            const dateB = b.data().date ? b.data().date.toMillis() : 0;
+            return dateB - dateA;
+        });
         renderDaily(allDocs.slice(0, 30), tbody);
     } catch (e) {
         console.error(e);
@@ -696,6 +717,7 @@ document.getElementById("weeklySubject").addEventListener("change", () => loadSe
 document.getElementById("weeklySession").addEventListener("change",refreshWeekly)
 document.getElementById("dailyGrade").addEventListener("change",refreshDaily)
 document.getElementById("dailySubject").addEventListener("change",refreshDaily)
+document.getElementById("dailyDate").addEventListener("change",refreshDaily)
 
 window.logout = async () => {
     if (confirm("Logout?")) {
