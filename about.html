@@ -38,13 +38,14 @@
 </script>
 <style>
     :root {
-        --bg: #FFD700;
+        --bg: #f8fafc;
         --surface: #ffffff;
-        --text: #0f172a;
+        --subtle: #fff7ed;
+        --text: #111827;
         --muted: #64748b;
         --border: #e2e8f0;
-        --brand: #4f46e5;
-        --accent: #8b5cf6;
+        --brand: #ff6b00;
+        --accent: #ff8c1a;
         --danger: #ef4444;
         --success: #10b981;
         --warning: #f59e0b;
@@ -62,10 +63,10 @@
         display: flex;
         flex-direction: column;
         background-image: 
-            radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
+            radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 100% 100%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
         background-attachment: fixed;
     }
 
@@ -148,8 +149,8 @@
     
     .grid-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 20px rgba(56, 189, 248, 0.1); 
-        border-color: #334155;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 0 20px rgba(255, 107, 0, 0.1); 
+        border-color: var(--brand);
     }
 
     .grid-card h3 {
@@ -296,7 +297,7 @@
                 <div style="color: var(--warning); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px;">★★★★★</div>
                 <p style="font-style: italic; color: var(--text); font-size: 1rem; margin-bottom: 25px; line-height: 1.7;">"The Live Arena helped me manage my time better. When I sat for the actual SOF IMO exam, it felt like just another weekend practice session. I scored an international rank of 42!"</p>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="width: 45px; height: 45px; background: rgba(79, 70, 229, 0.1); color: var(--brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">A</div>
+                    <div style="width: 45px; height: 45px; background: rgba(255, 107, 0, 0.1); color: var(--brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">A</div>
                     <div><strong style="color: var(--text); display: block; font-size: 0.95rem;">Arnav M.</strong><span style="color: var(--muted); font-size: 0.85rem;">Class 7 Student</span></div>
                 </div>
             </div>
