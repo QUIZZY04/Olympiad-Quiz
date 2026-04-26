@@ -328,22 +328,47 @@ outline:none;
 </div>
 
 <div id="feedbackModal" class="modal-overlay">
-    <div class="modal-content">
-        <h2 style="color:var(--brand); margin-bottom:20px;">Share Feedback</h2>
+    <div class="modal-content" style="max-width: 450px; text-align: left;">
+        <h2 style="color:var(--brand); margin-bottom:10px; text-align:center; font-weight:800; font-size:22px;">⭐ How was your experience?</h2>
+        <p style="color:var(--muted); font-size:13px; margin-bottom:20px; text-align:center;">Your feedback helps us improve OlympiadQuiz.org</p>
+        
         <div style="text-align:left;">
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING</label>
-            <select id="fbRating" class="modal-input">
-                <option value="Excellent">Excellent</option>
-                <option value="Good">Good</option>
-                <option value="Average">Average</option>
-                <option value="Poor">Poor</option>
+            <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING <span style="color:var(--danger)">*</span></label>
+            <select id="fbRating" class="modal-input" style="margin-bottom: 15px;">
+                <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                <option value="4">⭐⭐⭐⭐ Good</option>
+                <option value="3">⭐⭐⭐ Average</option>
+                <option value="2">⭐⭐ Poor</option>
+                <option value="1">⭐ Very Poor</option>
             </select>
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">SUGGESTIONS</label>
-            <textarea id="fbText" class="modal-input" rows="4" style="height:100px; resize:none;" placeholder="How can we improve?"></textarea>
+
+            <label style="color:var(--muted); font-size:12px; font-weight:700;">CATEGORY <span style="color:var(--danger)">*</span></label>
+            <select id="fbCategory" class="modal-input" style="margin-bottom: 15px;">
+                <option value="" disabled selected>Select what your feedback is about...</option>
+                <optgroup label="What you liked">
+                    <option value="Questions quality">Questions quality</option>
+                    <option value="Instant result">Instant result</option>
+                    <option value="Detailed solutions">Detailed solutions</option>
+                    <option value="Easy interface">Easy interface</option>
+                    <option value="Performance analysis">Performance analysis</option>
+                    <option value="Live tests">Live tests</option>
+                </optgroup>
+                <optgroup label="Problems faced">
+                    <option value="Slow loading">Slow loading</option>
+                    <option value="Difficult UI">Difficult UI</option>
+                    <option value="Mobile issue">Mobile issue</option>
+                    <option value="Payment issue">Payment issue</option>
+                    <option value="Question error">Question error</option>
+                    <option value="Other">Other</option>
+                </optgroup>
+            </select>
+
+            <label style="color:var(--muted); font-size:12px; font-weight:700;">MESSAGE / SUGGESTION</label>
+            <textarea id="fbText" class="modal-input" rows="3" style="height:80px; resize:none; margin-bottom: 20px;" placeholder="Optional details..."></textarea>
         </div>
         <div style="display:flex; gap:10px;">
-            <button class="action-btn" style="flex:1; margin:0; background:var(--success); color:#fff;" onclick="submitFeedback()">SUBMIT</button>
-            <button class="action-btn" style="flex:1; margin:0; background:var(--danger); color:white;" onclick="closeFeedback()">CANCEL</button>
+            <button class="action-btn" style="flex:1; margin:0; background:var(--border); color:var(--text); padding: 12px; font-size: 14px;" onclick="closeFeedback()">CANCEL</button>
+            <button id="fbSubmitBtn" class="action-btn" style="flex:2; margin:0; background:var(--brand); color:#fff; padding: 12px; font-size: 14px;" onclick="submitFeedback()">SUBMIT FEEDBACK</button>
         </div>
     </div>
 </div>
@@ -446,26 +471,39 @@ window.closeFeedback = () => document.getElementById("feedbackModal").style.disp
 
 window.submitFeedback = async () => {
     const rating = document.getElementById("fbRating").value;
+    const category = document.getElementById("fbCategory").value;
     const comment = document.getElementById("fbText").value;
+    const btn = document.getElementById("fbSubmitBtn");
     const resultData = JSON.parse(localStorage.getItem("quizResult"));
     const currentUser = auth.currentUser;
 
-    if(!comment.trim()) { alert("Please write a suggestion."); return; }
+    if(!category) { alert("Please select a feedback category."); return; }
+
+    btn.disabled = true;
+    btn.innerText = "Submitting...";
 
     try {
         await addDoc(collection(db, "feedbacks"), {
+            uid: currentUser?.uid || "anonymous",
             name: currentUser?.displayName || "Guest",
             email: currentUser?.email || "N/A",
-            rating: rating,
+            rating: rating + " Star",
+            category: category,
             suggestion: comment,
-            score: resultData ? `${resultData.score}/${resultData.total}` : "N/A",
+            score: resultData ? `${resultData.score}/${resultData.totalScore || resultData.total}` : "N/A",
+            quizName: resultData ? (resultData.testTitle || resultData.subject || "Unknown Quiz") : "N/A",
+            pageSource: "Result Page",
             date: new Date().toLocaleString(),
             timestamp: serverTimestamp()
         });
+        localStorage.setItem("feedbackGiven", "true");
         alert("Thank you for your feedback!");
         window.closeFeedback();
     } catch (e) {
         alert("Error: " + e.message);
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "SUBMIT FEEDBACK";
     }
 };
 
@@ -586,6 +624,15 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 
     document.getElementById("details").innerHTML = html + "</tbody></table></div>";
+
+    // Smart Feedback Auto-Popup Logic
+    setTimeout(() => {
+        const count = parseInt(localStorage.getItem("quizCompletedCount") || "0");
+        const feedbackGiven = localStorage.getItem("feedbackGiven");
+        if (count >= 2 && !feedbackGiven) {
+            window.openFeedback();
+        }
+    }, 2500); // Pops up 2.5 seconds after results are displayed
 });
 </script>
 

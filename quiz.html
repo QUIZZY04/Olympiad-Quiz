@@ -1463,6 +1463,10 @@ async function submitQuiz(){
     };
 
     localStorage.setItem("quizResult", JSON.stringify(resultData));
+    
+    // Track number of completed quizzes for smart feedback popup
+    let count = parseInt(localStorage.getItem("quizCompletedCount") || "0");
+    localStorage.setItem("quizCompletedCount", count + 1);
 
     try {
         await addDoc(collection(db,"leaderboard"),{

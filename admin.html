@@ -391,8 +391,8 @@ border-top:1px solid var(--border);
                     <tr>
                         <th>Date</th>
                         <th>User Details</th>
-                        <th>Rating</th>
-                        <th>Score</th>
+                        <th>Rating & Category</th>
+                        <th>Score & Source</th>
                         <th>Suggestion</th>
                         <th>Action</th>
                     </tr>
@@ -1554,8 +1554,13 @@ function loadExpFeedback() {
         let html=""; snap.forEach(d => { 
             const f=d.data(); 
             const dateStr = f.date instanceof Timestamp ? f.date.toDate().toLocaleDateString() : f.date;
-            html+=`<tr><td>${dateStr}</td><td>${f.userEmail || 'User'}</td><td>${f.rating}⭐</td><td>${f.score || 0}</td><td>${f.suggestion}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')">🗑</button></td></tr>`; 
+            
+            const ratingCat = `<div><b>${f.rating || 'N/A'}</b></div><div style="font-size:11px; color:var(--brand);">${f.category || 'General'}</div>`;
+            const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
+            
+            html+=`<tr><td>${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td>${f.suggestion || '-'}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')">🗑</button></td></tr>`; 
         });
+        if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No feedback reports found.</td></tr>";
         document.getElementById("expFeedbackTable").innerHTML=html;
         document.getElementById("expCount").innerText = snap.size + " Reports";
     });
