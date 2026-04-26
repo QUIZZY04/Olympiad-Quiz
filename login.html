@@ -437,6 +437,14 @@ let isRedirecting = false;
 async function handleAuthSuccess(user) {
     if (isRedirecting) return;
     
+    // Require Email/Password or Google Credential
+    const providerIds = user.providerData.map(p => p.providerId);
+    const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+    if (!hasEmailOrGoogle && (!user.email || user.email.trim().toLowerCase() !== "madhhu52@gmail.com")) {
+        document.getElementById('incompleteProfileModal').style.display = 'flex';
+        return;
+    }
+
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const data = userDoc.exists() ? userDoc.data() : null;

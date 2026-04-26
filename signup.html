@@ -377,7 +377,10 @@ onAuthStateChanged(auth, async (user) => {
         const data = userDoc.exists() ? userDoc.data() : null;
         const isFullyRegistered = data && data.registrationCompleted === true;
         
-        if (isFullyRegistered) {
+        const providerIds = user.providerData.map(p => p.providerId);
+        const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+
+        if (isFullyRegistered && hasEmailOrGoogle) {
             window.location.href = "dashboard.html";
         } else {
             const hasPhone = !!user.phoneNumber || !!(data && data.phone);
@@ -494,7 +497,11 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
 
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const data = userDoc.exists() ? userDoc.data() : null;
-        if (data && data.registrationCompleted === true) {
+        
+        const providerIds = user.providerData.map(p => p.providerId);
+        const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+
+        if (data && data.registrationCompleted === true && hasEmailOrGoogle) {
             alert("Account already exists with this mobile number. Please log in.");
             await signOut(auth);
             window.location.href = "login.html";

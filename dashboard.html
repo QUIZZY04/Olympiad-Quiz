@@ -486,6 +486,14 @@ onAuthStateChanged(auth, async (user) => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
             const data = userDoc.data();
+
+                const providerIds = user.providerData.map(p => p.providerId);
+                const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+                if (!hasEmailOrGoogle && !isAdmin) {
+                    window.location.replace("signup.html?mode=completion");
+                    return;
+                }
+
             if ((!data.registrationCompleted && !data.signupCompleted) && !isAdmin) {
                 window.location.replace("signup.html?mode=completion");
                 return;
