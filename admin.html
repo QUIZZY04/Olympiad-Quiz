@@ -2469,10 +2469,17 @@ window.loadRegistrations = async () => {
                 const userSnap = await getDoc(userRef);
                 if (userSnap.exists()) {
                     const uData = userSnap.data();
-                    userName = uData.name || uData.displayName || "Unknown";
-                    userEmail = uData.email || "Unknown";
+                    userName = uData.name || uData.fullName || uData.displayName || "Unknown";
+                    userEmail = uData.email || pData.email || "Unknown";
                     
                     rawClass = uData.class || uData.studentClass || uData.grade || uData.Class;
+                } else {
+                    userEmail = pData.email || "Unknown";
+                }
+                
+                // If name is still unknown, display the UID so you can identify the account in Firebase
+                if (userName === "Unknown" && userRef.id) {
+                    userName = `UID: ${userRef.id.substring(0, 8)}...`;
                 }
             }
 
