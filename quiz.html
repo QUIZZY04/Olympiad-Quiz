@@ -1253,6 +1253,12 @@ try {
 
         const snap = await getDocs(qBase);
         questions = snap.docs.map(d => ({ ...d.data(), id: d.id, isAchiever: d.data().isAchiever === true }));
+            
+            // Shuffle questions to ensure random selection and order for mock and chapterwise tests
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
         if(questions.length>30) questions=questions.slice(0,30);
     }
 } catch (error) {
