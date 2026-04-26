@@ -627,9 +627,8 @@ document.addEventListener("DOMContentLoaded",function(){
 
     // Smart Feedback Auto-Popup Logic
     setTimeout(() => {
-        const count = parseInt(localStorage.getItem("quizCompletedCount") || "0");
         const feedbackGiven = localStorage.getItem("feedbackGiven");
-        if (count >= 2 && !feedbackGiven) {
+        if (feedbackGiven !== "true") {
             window.openFeedback();
         }
     }, 2500); // Pops up 2.5 seconds after results are displayed

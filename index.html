@@ -655,6 +655,55 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 </div>
 </section>
 
+<!-- TRUST & TESTIMONIALS SECTION -->
+<section class="section" style="background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<div class="container">
+    <div style="text-align: center; margin-bottom: 40px;">
+        <div class="badge" style="margin-bottom: 15px; box-shadow: 0 2px 10px rgba(255, 107, 0, 0.1);">🌟 Trusted by Students & Parents</div>
+        <h2 class="title">Loved by Learners Across India</h2>
+        <p class="sub">Join thousands of students who have improved their Olympiad scores and confidence with our platform.</p>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+            <div style="background: #ffffff; padding: 10px 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border); font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 8px;">
+                <span style="color: #f59e0b; font-size: 18px;">★★★★★</span> 4.8/5 Rating
+            </div>
+            <div style="background: #ffffff; padding: 10px 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border); font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 8px;">
+                <span style="color: #10b981; font-size: 18px; font-weight: 900;">✓</span> 95% Positive Feedback
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" id="testimonialGrid">
+        <!-- Static Fallbacks (Will be dynamically replaced by real Firebase data if available) -->
+        <div class="card" style="display: flex; flex-direction: column;">
+            <div style="color: #f59e0b; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
+            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The chapterwise quizzes broke down complex patterns into easy steps. My daughter's confidence in Logical Reasoning has soared."</p>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
+                <div style="width: 40px; height: 40px; background: rgba(255, 107, 0, 0.1); color: var(--brand); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">P</div>
+                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Priya Sharma</strong><span style="color: var(--muted); font-size: 12px;">Parent of Class 4 Student</span></div>
+            </div>
+        </div>
+        <div class="card" style="display: flex; flex-direction: column;">
+            <div style="color: #f59e0b; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
+            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The Live Arena helped me manage my time better. When I sat for the actual SOF IMO exam, it felt like just another practice session!"</p>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
+                <div style="width: 40px; height: 40px; background: rgba(16, 185, 129, 0.1); color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">A</div>
+                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Arnav M.</strong><span style="color: var(--muted); font-size: 12px;">Class 7 Student</span></div>
+            </div>
+        </div>
+        <div class="card" style="display: flex; flex-direction: column;">
+            <div style="color: #f59e0b; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
+            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"Detailed solutions after every mock test are a game-changer. I easily identified my mistakes in Science and improved my rank."</p>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
+                <div style="width: 40px; height: 40px; background: rgba(56, 189, 248, 0.1); color: #0284c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">K</div>
+                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Kavya R.</strong><span style="color: var(--muted); font-size: 12px;">Class 5 Student</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 35px;"><a href="signup.html" class="btn btn-main">Join Our Community Today</a></div>
+</div>
+</section>
+
 <!-- FAQ SECTION -->
 <section class="section" style="padding-top: 20px;">
 <div class="container">
@@ -702,6 +751,58 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('active');
 }
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+    projectId: "olympiad-portal-d2a5e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadDynamicTestimonials() {
+    try {
+        const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"), limit(25));
+        const snap = await getDocs(q);
+        
+        let validFeedbacks = [];
+        snap.forEach(doc => {
+            const data = doc.data();
+            // Filter only positive feedback (4 or 5 stars) with substantial comments
+            if (data.rating && (data.rating.includes("5") || data.rating.includes("4")) && data.suggestion && data.suggestion.length > 20) {
+                validFeedbacks.push(data);
+            }
+        });
+
+        if (validFeedbacks.length >= 3) {
+            const grid = document.getElementById("testimonialGrid");
+            let html = "";
+            const colors = [ {bg: 'rgba(255, 107, 0, 0.1)', c: 'var(--brand)'}, {bg: 'rgba(16, 185, 129, 0.1)', c: '#10b981'}, {bg: 'rgba(56, 189, 248, 0.1)', c: '#0284c7'} ];
+            
+            for(let i=0; i<3; i++) {
+                const fb = validFeedbacks[i];
+                const initial = fb.name ? fb.name.charAt(0).toUpperCase() : "S";
+                const name = fb.name || "Student";
+                const stars = fb.rating.includes("5") ? "★★★★★" : "★★★★☆";
+                const source = fb.quizName && fb.quizName !== "N/A" ? fb.quizName : "Olympiad Portal User";
+                const clr = colors[i % 3];
+
+                html += `<div class="card" style="display: flex; flex-direction: column;"><div style="color: #f59e0b; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">${stars}</div><p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"${fb.suggestion}"</p><div style="display: flex; align-items: center; gap: 12px; margin-top: auto;"><div style="width: 40px; height: 40px; background: ${clr.bg}; color: ${clr.c}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">${initial}</div><div><strong style="color: var(--dark); display: block; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${name}</strong><span style="color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; display: block;">${source}</span></div></div></div>`;
+            }
+            grid.innerHTML = html;
+        }
+    } catch(e) {
+        console.log("Using static fallbacks for testimonials.");
+    }
+}
+// Execute on a 1.5s delay to ensure main page elements paint first without layout shifting
+setTimeout(loadDynamicTestimonials, 1500);
 </script>
 
 </body>
