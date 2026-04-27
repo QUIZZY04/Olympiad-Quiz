@@ -155,9 +155,9 @@
     </div>
 
     <!-- Feedback Modal -->
-    <div id="feedbackModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.8); backdrop-filter:blur(5px); z-index:2000; justify-content:center; align-items:center; padding:20px;">
+    <div id="feedbackModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.98); backdrop-filter:blur(15px); z-index:2000; justify-content:center; align-items:center; padding:20px;">
         <div style="background:var(--surface); padding:30px; border-radius:24px; width:100%; max-width:450px; border:1px solid var(--border); text-align:left; box-shadow: var(--shadow-lg);">
-            <h2 style="color:var(--brand); margin-bottom:10px; text-align:center; font-weight:800; font-size:22px;">⭐ How was your experience?</h2>
+            <h2 style="color:var(--brand); margin-bottom:10px; text-align:center; font-weight:800; font-size:22px;">⭐ Please Share Your Experience</h2>
             <p style="color:var(--muted); font-size:13px; margin-bottom:20px; text-align:center; line-height: 1.5;">We truly value your time and experience! 🌟 Please take a brief moment to share your feedback so we can continue to improve. Completing this quick form will instantly unlock your detailed results and analytics!</p>
             
             <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING <span style="color:var(--danger)">*</span></label>
@@ -193,10 +193,7 @@
             <label style="color:var(--muted); font-size:12px; font-weight:700;">MESSAGE / SUGGESTION</label>
             <textarea id="fbText" rows="3" style="width:100%; padding:12px; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; margin:5px 0 20px 0; outline:none; resize:none; font-family:inherit;" placeholder="Optional details..."></textarea>
             
-            <div style="display:flex; gap:10px;">
-                <button style="flex:1; padding:12px; border-radius:10px; background:var(--border); color:var(--text); border:none; font-weight:700; cursor:pointer;" onclick="closeFeedback()">CANCEL</button>
-                <button id="fbSubmitBtn" style="flex:2; padding:12px; border-radius:10px; background:var(--brand); color:#fff; border:none; font-weight:700; cursor:pointer;" onclick="submitFeedback()">SUBMIT FEEDBACK</button>
-            </div>
+            <button id="fbSubmitBtn" style="width:100%; padding:14px; border-radius:10px; background:var(--brand); color:#fff; border:none; font-weight:700; font-size:15px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px;" onclick="submitFeedback()">Unlock My Results 🚀</button>
         </div>
     </div>
 
@@ -498,13 +495,11 @@
 
             document.getElementById("solutionsContainer").innerHTML = html;
             
-            // Smart Feedback Auto-Popup Logic
-            setTimeout(() => {
-                const feedbackGiven = localStorage.getItem("feedbackGiven");
-                if (feedbackGiven !== "true") {
-                    window.openFeedback();
-                }
-            }, 2500); // Pops up 2.5 seconds after results are displayed
+            // Compulsory Feedback Logic
+            const feedbackGiven = localStorage.getItem("feedbackGiven");
+            if (feedbackGiven !== "true") {
+                window.openFeedback();
+            }
         });
 
         window.logout = async () => {
