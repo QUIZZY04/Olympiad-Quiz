@@ -984,9 +984,10 @@
                     {
                         paid: true,
                         time: serverTimestamp(),
+                        createdAt: serverTimestamp(),
                         amount: 0,
                         sessionId: sessionId,
-                        couponUsed: localStorage.getItem("appliedCoupon") || null
+                        couponUsed: appliedCoupons[sessionId] ? localStorage.getItem("appliedCoupon") : null
                     }
                 );
                 localStorage.setItem("activeSessionId", sessionId);
@@ -1070,7 +1071,8 @@
                             razorpay_payment_id: response.razorpay_payment_id,
                             razorpay_signature: response.razorpay_signature,
                             sessionId: sessionId,
-                            amount: sessionPrice
+                            amount: sessionPrice,
+                            couponUsed: appliedCoupons[sessionId] ? localStorage.getItem("appliedCoupon") : null
                         };
                         while(attempts < maxAttempts && !verified) {
                             attempts++;
