@@ -305,6 +305,7 @@ h1 span{
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -314,6 +315,20 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
+            el.onclick = null;
+            el.innerText = "Login";
+            el.href = "login.html";
+            if(el.classList.contains("login-link")) {
+                el.style.color = "white";
+            }
+        });
+    }
+});
 
 const urlParams = new URLSearchParams(window.location.search);
 const subject = urlParams.get('subject') || 'maths';

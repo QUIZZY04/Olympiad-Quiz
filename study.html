@@ -332,10 +332,17 @@
     const db = getFirestore(app);
 
     onAuthStateChanged(auth, async (user) => {
+        document.body.style.visibility = 'visible';
         if (!user) {
-            window.location.replace("login.html");
+            document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
+                el.onclick = null;
+                el.innerText = "Login";
+                el.href = "login.html";
+                if(el.classList.contains("login-link")) {
+                    el.style.color = "white";
+                }
+            });
         } else {
-            document.body.style.visibility = 'visible';
             try {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {

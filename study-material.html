@@ -181,9 +181,39 @@
     const db = getFirestore(app);
 
     onAuthStateChanged(auth, async (user) => {
+        document.body.style.visibility = 'visible';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject') || 'maths';
+        const colors = { maths: '#38bdf8', science: '#10b981', english: '#f43f5e', reasoning: '#f59e0b', physics: '#38bdf8', chemistry: '#10b981' };
+        const accent = colors[subject] || colors.maths;
+        const grid = document.getElementById('classGrid');
+        grid.innerHTML = '';
+
+        const renderAllClasses = () => {
+            for (let i = 1; i <= 12; i++) {
+                const card = document.createElement('a');
+                card.className = 'class-card';
+                card.href = `study-content.html?subject=${subject}&class=class${i}`; 
+                card.innerHTML = `
+                    <div class="class-badge" style="background: ${accent}; box-shadow: 0 4px 10px ${accent}66;">${i}</div>
+                    <div class="class-name">Class ${i}</div>
+                    <div class="class-sub">${i >= 11 ? 'JEE Prep' : 'Olympiad Prep'}</div>
+                `;
+                grid.appendChild(card);
+            }
+        };
+
         if (!user) {
-            sessionStorage.setItem("redirectAfterLogin", window.location.href);
-            window.location.replace("login.html");
+            document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
+                el.onclick = null;
+                el.innerText = "Login";
+                el.href = "login.html";
+                if(el.classList.contains("login-link")) {
+                    el.style.color = "white";
+                }
+            });
+            renderAllClasses();
             return;
         }
         try {
@@ -191,27 +221,7 @@
             if (isAdmin) {
                 const adminTab = document.getElementById("adminTab");
                 if (adminTab) adminTab.style.display = "inline";
-            }
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const subject = urlParams.get('subject') || 'maths';
-            const colors = { maths: '#38bdf8', science: '#10b981', english: '#f43f5e', reasoning: '#f59e0b', physics: '#38bdf8', chemistry: '#10b981' };
-            const accent = colors[subject] || colors.maths;
-            const grid = document.getElementById('classGrid');
-            grid.innerHTML = '';
-
-            if (isAdmin) {
-                for (let i = 1; i <= 12; i++) {
-                    const card = document.createElement('a');
-                    card.className = 'class-card';
-                    card.href = `study-content.html?subject=${subject}&class=class${i}`; 
-                    card.innerHTML = `
-                        <div class="class-badge" style="background: ${accent}; box-shadow: 0 4px 10px ${accent}66;">${i}</div>
-                        <div class="class-name">Class ${i}</div>
-                        <div class="class-sub">${i >= 11 ? 'JEE Prep' : 'Olympiad Prep'}</div>
-                    `;
-                    grid.appendChild(card);
-                }
+                renderAllClasses();
             } else {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
@@ -229,11 +239,16 @@
                             <div class="class-sub">${i >= 11 ? 'JEE Prep' : 'Olympiad Prep'}</div>
                         `;
                         grid.appendChild(card);
+                    } else {
+                        renderAllClasses();
                     }
+                } else {
+                    renderAllClasses();
                 }
             }
         } catch (e) {
             console.error(e);
+            renderAllClasses();
         }
     });
 
