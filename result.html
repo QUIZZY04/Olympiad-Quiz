@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    color: #4f46e5;
+    color: #ff6b00;
     font-family: sans-serif;
     text-align: center;
 }
@@ -32,23 +32,23 @@
 .spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid rgba(79, 70, 229, 0.1);
-    border-left-color: #4f46e5;
+    border: 4px solid rgba(255, 107, 0, 0.1);
+    border-left-color: #ff6b00;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 10px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 :root{
---bg: #FFD700;
+--bg: #f8fafc;
 --surface: #ffffff;
---subtle: #f1f5f9;
---text: #0f172a;
+--subtle: #fff7ed;
+--text: #111827;
 --muted: #64748b;
 --border: #e2e8f0;
---brand: #4f46e5;
---accent: #8b5cf6;
---danger: #f43f5e;
+--brand: #ff6b00;
+--accent: #ff8c1a;
+--danger: #ef4444;
 --success: #10b981;
 --warning: #f59e0b;
 --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
@@ -57,10 +57,10 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:var(--bg);color:var(--text);display:flex;flex-direction:column;min-height:100vh;
 background-image: 
-    radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
+    radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
 background-attachment: fixed;}
 
 nav{
@@ -264,7 +264,7 @@ margin:10px 0 20px 0;
 font-size:14px;
 outline:none;
 }
-.modal-input:focus { border-color:var(--brand); box-shadow:0 0 0 3px rgba(37,99,235,0.1); }
+.modal-input:focus { border-color:var(--brand); box-shadow:0 0 0 3px rgba(255, 107, 0, 0.1); }
 
 @media (max-width: 768px) {
     .summary-card { padding: 25px 20px; }
@@ -313,7 +313,7 @@ outline:none;
         <div class="nav-actions">
             <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
         </div>
-</nav>
+    </div>
 </nav>
 
 <div class="container">
@@ -327,10 +327,10 @@ outline:none;
 <div id="details"></div>
 </div>
 
-<div id="feedbackModal" class="modal-overlay">
+<div id="feedbackModal" class="modal-overlay" style="background:rgba(15, 23, 42, 0.98); backdrop-filter:blur(15px);">
     <div class="modal-content" style="max-width: 450px; text-align: left;">
-        <h2 style="color:var(--brand); margin-bottom:10px; text-align:center; font-weight:800; font-size:22px;">⭐ How was your experience?</h2>
-        <p style="color:var(--muted); font-size:13px; margin-bottom:20px; text-align:center;">Your feedback helps us improve OlympiadQuiz.org</p>
+        <h2 style="color:var(--brand); margin-bottom:10px; text-align:center; font-weight:800; font-size:22px;">⭐ Please Share Your Experience</h2>
+        <p style="color:var(--muted); font-size:13px; margin-bottom:20px; text-align:center; line-height: 1.5;">We truly value your time and experience! 🌟 Please take a brief moment to share your feedback so we can continue to improve. Completing this quick form will instantly unlock your detailed results and analytics!</p>
         
         <div style="text-align:left;">
             <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING <span style="color:var(--danger)">*</span></label>
@@ -366,10 +366,7 @@ outline:none;
             <label style="color:var(--muted); font-size:12px; font-weight:700;">MESSAGE / SUGGESTION</label>
             <textarea id="fbText" class="modal-input" rows="3" style="height:80px; resize:none; margin-bottom: 20px;" placeholder="Optional details..."></textarea>
         </div>
-        <div style="display:flex; gap:10px;">
-            <button class="action-btn" style="flex:1; margin:0; background:var(--border); color:var(--text); padding: 12px; font-size: 14px;" onclick="closeFeedback()">CANCEL</button>
-            <button id="fbSubmitBtn" class="action-btn" style="flex:2; margin:0; background:var(--brand); color:#fff; padding: 12px; font-size: 14px;" onclick="submitFeedback()">SUBMIT FEEDBACK</button>
-        </div>
+        <button id="fbSubmitBtn" class="action-btn" style="width:100%; margin:0; background:var(--brand); color:#fff; padding: 14px; font-size: 15px; letter-spacing: 0.5px;" onclick="submitFeedback()">Unlock My Results 🚀</button>
     </div>
 </div>
 
@@ -565,7 +562,7 @@ document.addEventListener("DOMContentLoaded",function(){
     let html=`
     <div style="display: flex; justify-content: space-between; align-items: flex-end; margin: 40px 0 20px 0; flex-wrap: wrap; gap: 15px;">
         <h2 style="font-weight: 800; margin: 0; color: var(--text);">DETAILED ANALYSIS (${res.questions.length} Questions)</h2>
-        <div style="background: #eff6ff; border-left: 4px solid var(--brand); padding: 10px 20px; border-radius: 8px; font-size: 13px; color: var(--text); max-width: 600px; line-height: 1.5;">
+        <div style="background: #fff7ed; border-left: 4px solid var(--brand); padding: 10px 20px; border-radius: 8px; font-size: 13px; color: var(--text); max-width: 600px; line-height: 1.5;">
             💡 If there are any discrepancies in the quiz, report to the admin by clicking on the <strong>Flag</strong> button next to the question.
         </div>
     </div>
@@ -625,13 +622,11 @@ document.addEventListener("DOMContentLoaded",function(){
 
     document.getElementById("details").innerHTML = html + "</tbody></table></div>";
 
-    // Smart Feedback Auto-Popup Logic
-    setTimeout(() => {
-        const feedbackGiven = localStorage.getItem("feedbackGiven");
-        if (feedbackGiven !== "true") {
-            window.openFeedback();
-        }
-    }, 2500); // Pops up 2.5 seconds after results are displayed
+    // Compulsory Feedback Logic
+    const feedbackGiven = localStorage.getItem("feedbackGiven");
+    if (feedbackGiven !== "true") {
+        window.openFeedback();
+    }
 });
 </script>
 

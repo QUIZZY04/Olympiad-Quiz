@@ -436,7 +436,7 @@
     <div id="dashboardFeedbackModal" class="modal-overlay" style="display:none; z-index: 4000;">
         <div class="modal-content" style="max-width: 450px; text-align: left;">
             <h2 style="color: var(--brand); margin-bottom: 10px; font-weight: 800; font-size: 22px; text-align: center;">⭐ How was your experience?</h2>
-            <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; text-align: center;" id="feedbackSubtitle">Your feedback helps us improve OlympiadQuiz.org</p>
+            <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; text-align: center;" id="feedbackSubtitle">We truly value your time! Please take a brief moment to share your experience so we can serve you better.</p>
             
             <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING <span style="color:var(--danger)">*</span></label>
             <select id="dbFbRating" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); margin:5px 0 15px; outline:none;">
@@ -599,7 +599,7 @@ onAuthStateChanged(auth, async (user) => {
         const count = parseInt(localStorage.getItem("quizCompletedCount") || "0");
         const feedbackGiven = localStorage.getItem("feedbackGiven");
         if (count >= 2 && !feedbackGiven && !isAdmin) {
-            document.getElementById('feedbackSubtitle').innerText = "You've attempted multiple tests! Please share your experience.";
+            document.getElementById('feedbackSubtitle').innerText = "You've attempted multiple tests! We highly value your time, so please take a brief moment to share your valuable feedback with us.";
             window.openFeedbackModal();
         }
     }, 3000); // Wait 3 seconds so it doesn't block immediate interactions
