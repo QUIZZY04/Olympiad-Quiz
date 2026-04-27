@@ -138,4 +138,52 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-how-to-prepare-for-imo-in-30-days.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-best-maths-tricks-for-class-5.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-why-olympiads-help-cbse-students.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-reasoning-olympiad-preparation-guide.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-science-olympiad-preparation-guide.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-english-olympiad-preparation-guide.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-top-10-mistakes-in-olympiad-exams.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/blog-best-free-mock-test-platforms.html</loc>
+    <lastmod>2024-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
