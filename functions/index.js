@@ -64,6 +64,8 @@ exports.sendWelcomeEmailOnSignup = functions.auth.user().onCreate(async (user) =
       uid: uid,
       email: email || null,
       name: displayName || "Student",
+      email_consent: true,
+      promo_consent: false,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
     console.log(`User document created for UID: ${uid}. This will trigger the welcome email function.`);
@@ -91,10 +93,10 @@ exports.triggerWelcomeEmail = onDocumentWritten(
       return;
     }
 
-    const { email, name, welcomeEmailSent } = afterData;
+    const { email, name, welcomeEmailSent, email_consent } = afterData;
 
-    // Exit if email already sent or no email exists
-    if (welcomeEmailSent || !email) {
+    // Exit if email already sent, no email exists, or opted out
+    if (welcomeEmailSent || !email || email_consent === false) {
       return;
     }
 
@@ -222,6 +224,7 @@ exports.sendBulkEmail = onCall({
       }
 
       snapshot.docs.forEach((doc) => {
+        if (doc.data().email_consent === false) return;
         const email = doc.data().email;
         if (email && typeof email === "string" && email.includes("@")) {
           uniqueEmails.add(email.trim());
@@ -353,6 +356,10 @@ exports.sendResultEmail = onDocumentWritten(
 
             // The 'name' from the Firestore doc is the most up-to-date display name.
             if (userDoc.exists && userDoc.data().name) {
+                if (userDoc.data().email_consent === false) {
+                    console.log("Email consent false. Skipping.");
+                    return;
+                }
                 userName = userDoc.data().name;
             } else if (userRecord.displayName) {
                 // Fallback to the Auth display name if Firestore one isn't set.
@@ -518,8 +525,8 @@ exports.sendBulkSMS = onCall({
         }
       }
 
-      // Format and deduplicate phone numbers safely
-      if (add && data.phone) {
+      // Format and deduplicate phone numbers safely, check consent
+      if (add && data.phone && data.promo_consent === true) {
         let phone = String(data.phone).replace(/\D/g, '');
         if (phone.length === 10) phone = '91' + phone; // Add Indian country code default if 10 digits
         if (phone.length >= 11) uniqueNumbers.add('+' + phone);
@@ -823,6 +830,9 @@ exports.sendLiveQuizRegistrationEmail = onDocumentCreated(
         return;
       }
       const userData = userDoc.data();
+      if (userData.email_consent === false) {
+        return;
+      }
       const userEmail = userData.email;
       const userName = userData.name || "Student";
 

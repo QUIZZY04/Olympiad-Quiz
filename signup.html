@@ -276,6 +276,18 @@
                         <option value="class12">Grade 12</option>
                     </select>
 
+                    <div style="text-align: left; margin: 15px 0; font-size: 13px;">
+                        <label style="display: flex; gap: 8px; margin-bottom: 8px; cursor: pointer;">
+                            <input type="checkbox" id="emailConsent" checked required style="width: auto; margin: 0;">
+                            <span style="color: var(--text);">I agree to receive important account-related updates via Email. <span style="color: var(--danger);">*</span></span>
+                        </label>
+                        <label style="display: flex; gap: 8px; margin-bottom: 4px; cursor: pointer;">
+                            <input type="checkbox" id="promoConsent" checked style="width: auto; margin: 0;">
+                            <span style="color: var(--text);">Get test alerts & updates via SMS and WhatsApp.</span>
+                        </label>
+                        <div style="color: var(--muted); font-size: 11px; margin-left: 22px;">You can unsubscribe anytime.</div>
+                    </div>
+
                     <button type="submit" class="main-btn" style="margin-top:5px;">Create Account</button>
                 </form>
             </div>
@@ -557,6 +569,7 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
     const email = document.getElementById("cEmail").value.trim();
     const password = document.getElementById("cPassword").value;
     const classSelect = document.getElementById("cClassSelect").value;
+    const promoConsent = document.getElementById("promoConsent") ? document.getElementById("promoConsent").checked : false;
     const btn = e.target.querySelector('button');
     
     if (!name || !classSelect || !email) {
@@ -607,6 +620,8 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
             phoneVerified: true,
             authProviders: providerIds,
             class: classSelect, 
+            email_consent: true,
+            promo_consent: promoConsent,
             createdAt: user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date(),
             updatedAt: new Date(),
             signupCompleted: true,
