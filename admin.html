@@ -256,6 +256,7 @@ border-top:1px solid var(--border);
         <a href="#push-section" style="color:var(--accent);">Push Notifications</a>
         <a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
         <a href="#jee-admin-section" style="color:var(--success);">JEE Tests</a>
+        <a href="#senior-admin-section" style="color:#8b5cf6;">Senior Upload</a>
         <div class="nav-actions">
             <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
@@ -814,6 +815,37 @@ border-top:1px solid var(--border);
                     <tr><td colspan="4" style="text-align:center; color:var(--muted);">Click "Load Existing JEE Tests" to view</td></tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- NEW SECTION: SENIOR EXAMS (11-12) UPLOAD -->
+    <div id="senior-admin-section" class="panel" style="border-top: 2px solid #8b5cf6;">
+        <div class="panel-header">
+            <h2 style="color:#8b5cf6;">🚀 Competitive Exams Upload (11-12)</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Upload tests directly to the isolated <b>exam_tests</b> collection for JEE Main, JEE Advanced, and NEET.</p>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
+                <div><label>Exam Category</label><select id="compExam"><option value="jee_main">JEE Main</option><option value="jee_advanced">JEE Advanced</option><option value="neet">NEET</option></select></div>
+                <div><label>Class</label><select id="compClass"><option value="11">Class 11</option><option value="12">Class 12</option></select></div>
+                <div><label>Test Type</label><select id="compType" onchange="document.getElementById('compChapterDiv').style.display = this.value === 'chapter_test' ? 'block' : 'none';"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
+                <div><label>Subject</label><select id="compSubject"><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option><option value="Full Syllabus">Full Syllabus</option></select></div>
+                <div><label>Test Title</label><input type="text" id="compTitle" placeholder="e.g. Kinematics Mock 1"></div>
+                <div><label>Duration (Mins)</label><input type="number" id="compDuration" value="60"></div>
+                <div id="compChapterDiv" style="display:none; grid-column: 1 / -1;"><label>Chapter Name</label><input type="text" id="compChapter" placeholder="e.g. Thermodynamics"></div>
+            </div>
+            
+            <div style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px; margin-bottom:20px;">
+                <h4 style="margin-bottom:10px;">Questions JSON Array</h4>
+                <textarea id="compJsonPaste" placeholder='[{"question":"...","options":["A","B","C","D"],"answer":"A","explanation":"..."}]' style="height: 200px; font-family: monospace;"></textarea>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="upload" onclick="navigator.clipboard.readText().then(t => document.getElementById('compJsonPaste').value = t)" style="background: var(--brand); color: #fff;">📋 Paste</button>
+                    <button class="delete" onclick="document.getElementById('compJsonPaste').value = ''">🗑️ Clear</button>
+                </div>
+            </div>
+            
+            <button class="upload" id="compSaveBtn" onclick="saveCompetitiveTest()" style="background:#8b5cf6; width:100%;">💾 Upload Competitive Test</button>
+            <div id="compStatus" style="margin-top:10px; font-weight:bold; font-size:13px;"></div>
         </div>
     </div>
 
@@ -1894,6 +1926,42 @@ window.deleteJeeTest = async function(id) {
         await deleteDoc(doc(db, "jeeMockTests", id));
         loadJeeTestsList();
     }
+};
+
+// ADDED: SENIOR EXAMS UPLOAD LOGIC
+window.saveCompetitiveTest = async function() {
+    const exam = document.getElementById("compExam").value;
+    const grade = document.getElementById("compClass").value;
+    const type = document.getElementById("compType").value;
+    const subject = document.getElementById("compSubject").value;
+    const title = document.getElementById("compTitle").value.trim();
+    const duration = parseInt(document.getElementById("compDuration").value);
+    const chapter = document.getElementById("compChapter").value.trim();
+    const jsonText = document.getElementById("compJsonPaste").value.trim();
+    const status = document.getElementById("compStatus");
+    
+    if(!title || !jsonText) { status.innerText = "❌ Please provide a title and paste questions."; status.style.color = "red"; return; }
+    
+    let questions = [];
+    try {
+        questions = JSON.parse(jsonText);
+        if (!Array.isArray(questions) || questions.length === 0) throw new Error("JSON must be a non-empty array.");
+    } catch(e) {
+        status.innerText = "❌ Invalid JSON format: " + e.message; status.style.color = "red"; return;
+    }
+    
+    document.getElementById("compSaveBtn").innerText = "Uploading...";
+    try {
+        const payload = { exam, class: grade, testType: type, subject, title, duration, questions, createdAt: serverTimestamp() };
+        if (type === 'chapter_test') payload.chapter = chapter;
+        
+        await addDoc(collection(db, "exam_tests"), payload);
+        status.innerText = "✅ Test Successfully Uploaded to exam_tests!";
+        status.style.color = "green";
+        document.getElementById("compJsonPaste").value = "";
+        document.getElementById("compTitle").value = "";
+    } catch(e) { status.innerText = "❌ Error saving test: " + e.message; status.style.color = "red"; }
+    document.getElementById("compSaveBtn").innerText = "💾 Upload Competitive Test";
 };
 
 window.pasteJeeClipboard = async function() {

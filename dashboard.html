@@ -356,6 +356,28 @@
             </div>
         </section>
 
+        <!-- SENIOR COMPETITIVE GRID (CLASS 11-12) -->
+        <section class="main-menu-grid" id="seniorGrid" style="display:none; margin-bottom: 50px;">
+            <div class="modern-card card-blue" onclick="location.href='jee_main.html'">
+                <div class="card-content">
+                    <h3>JEE Main</h3><p>Full Mocks, Subject & Chapter-wise tests for engineering aspirants.</p>
+                </div>
+                <div class="icon-wrapper">📐</div>
+            </div>
+            <div class="modern-card card-indigo" onclick="location.href='jee-list.html'">
+                <div class="card-content">
+                    <h3>JEE Advanced</h3><p>Rigorous multi-correct mocks to crack the IITs.</p>
+                </div>
+                <div class="icon-wrapper">🎓</div>
+            </div>
+            <div class="modern-card card-green" onclick="location.href='neet.html'">
+                <div class="card-content">
+                    <h3>NEET</h3><p>Comprehensive Biology, Physics, and Chemistry practice.</p>
+                </div>
+                <div class="icon-wrapper">⚕️</div>
+            </div>
+        </section>
+
         <section class="study-banner animate-up delay-6" onclick="location.href='study.html'">
             <div class="desktop-only" style="flex: 0 0 200px; height: 150px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
                 <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=600&q=80" alt="IMO mock test free and NSO study material for Olympiad preparation" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: 0.4s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
@@ -567,8 +589,11 @@ onAuthStateChanged(auth, async (user) => {
             
             if (uClass && !isAdmin) {
                 if (uClass >= 11) {
-                    // Grade 11 & 12: Show ONLY JEE Advance section
-                    document.querySelectorAll('.modern-card:not(.card-indigo)').forEach(el => { if (el) el.style.display = 'none'; });
+                    // Grade 11 & 12: Show Competitive Grid
+                    const mainGrid = document.querySelector('.main-menu-grid');
+                    if(mainGrid) mainGrid.style.display = 'none';
+                    const seniorGrid = document.getElementById('seniorGrid');
+                    if(seniorGrid) seniorGrid.style.display = 'grid';
                     
                     const studyBanner = document.querySelector('.study-banner');
                     if (studyBanner) studyBanner.style.display = 'none';
