@@ -893,8 +893,8 @@ To build a solid foundation, students must master topics individually. Our chapt
 <section class="section" style="padding-top: 0;">
 <div class="container">
 <div class="live-box">
-<h2>LIVE IMO TEST • 26 APRIL • 11 AM</h2>
-<p>Price ₹99 • Use Coupon FREE60 • Get it for ₹39 only</p>
+<h2 id="liveBoxTitle">Loading Live Test...</h2>
+<p id="liveBoxDesc">Fetching upcoming arena details...</p>
 <a href="live.html" class="btn btn-light">Register Now</a>
 </div>
 </div>
@@ -1053,8 +1053,64 @@ async function loadDynamicTestimonials() {
         console.log("Using static fallbacks for testimonials.");
     }
 }
+
+async function loadLiveSessionBanner() {
+    try {
+        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(15));
+        const snap = await getDocs(q);
+        const now = new Date();
+        
+        let upcomingSession = null;
+        
+        snap.forEach(doc => {
+            const s = doc.data();
+            if (s.archived) return;
+            
+            const start = s.startTime.toDate();
+            const end = s.endTime.toDate();
+            
+            if (now < end) { 
+                if (!upcomingSession || start < upcomingSession.startTime.toDate()) {
+                    upcomingSession = s;
+                }
+            }
+        });
+
+        const titleEl = document.getElementById("liveBoxTitle");
+        const descEl = document.getElementById("liveBoxDesc");
+        
+        if (upcomingSession) {
+            const start = upcomingSession.startTime.toDate();
+            const dateStr = start.toLocaleDateString("en-IN", { day: "numeric", month: "short" }).toUpperCase();
+            const timeStr = start.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true }).toUpperCase();
+            const subject = upcomingSession.subject ? upcomingSession.subject.toUpperCase() : "OLYMPIAD";
+            
+            titleEl.innerHTML = `LIVE ${subject} TEST • ${dateStr} • ${timeStr}`;
+            
+            let priceText = `Price ₹${upcomingSession.price || 0}`;
+            if (upcomingSession.price === 0 || !upcomingSession.price) {
+                priceText = "Completely FREE • Join the Live Arena now";
+            } else if (upcomingSession.priceAfterCoupon !== undefined && upcomingSession.priceAfterCoupon !== null && upcomingSession.priceAfterCoupon !== "") {
+                priceText += ` • Special Offer: Get it for ₹${upcomingSession.priceAfterCoupon} only`;
+            }
+            
+            descEl.innerHTML = priceText;
+        } else {
+            titleEl.innerHTML = "LIVE OLYMPIAD ARENA";
+            descEl.innerHTML = "Compete with students nationwide. Check out our Live Arena!";
+        }
+    } catch (e) {
+        console.error("Error loading live session banner:", e);
+        const titleEl = document.getElementById("liveBoxTitle");
+        const descEl = document.getElementById("liveBoxDesc");
+        if (titleEl) titleEl.innerHTML = "LIVE OLYMPIAD ARENA";
+        if (descEl) descEl.innerHTML = "Compete with students nationwide. Check out our Live Arena!";
+    }
+}
+
 // Execute on a 1.5s delay to ensure main page elements paint first without layout shifting
 setTimeout(loadDynamicTestimonials, 1500);
+setTimeout(loadLiveSessionBanner, 1000);
 </script>
 
 </body>
