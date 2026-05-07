@@ -221,7 +221,7 @@
                 selectedAnswers[currentQ] = val ? [val] : [];
                 updatePalette();
             });
-            container.appendChild(label);
+            container.appendChild(inputField);
         } else {
             (q.options || []).forEach((opt) => {
                 if (!opt) return;
@@ -291,8 +291,9 @@
         }));
         
         const resultObj = {
+            examCategory: testData.exam || "jee_main",
             testTitle: testData.title, subject: testData.subject || "Full Syllabus", totalMarks: testData.totalMarks || (mappedQuestions.length * 4),
-            questions: mappedQuestions, userAnswers: selectedAnswers.map(ans => ans ? [ans] : [])
+            questions: mappedQuestions, userAnswers: selectedAnswers
         };
         localStorage.setItem("jeeQuizResult", JSON.stringify(resultObj));
         window.location.replace("jee-result.html");

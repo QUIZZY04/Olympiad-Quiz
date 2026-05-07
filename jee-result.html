@@ -278,6 +278,8 @@
             let maxScorePossible = 0;
             let correctCount = 0, incorrectCount = 0, partialCount = 0, unattemptedCount = 0;
             let html = "";
+            const examCategory = resultData.examCategory || "jee_advanced";
+            const isJeeMain = examCategory === "jee_main" || examCategory === "neet";
 
             resultData.questions.forEach((q, idx) => {
                 const userAns = resultData.userAnswers[idx] || [];
@@ -314,11 +316,11 @@
                 let statusTag = "";
                 let markClass = "";
                 
-                let qMaxMarks = 3;
-                if (q.type === 'multi') qMaxMarks = 4;
-                else if (q.type === 'numerical') qMaxMarks = 3;
-                
-                maxScorePossible += qMaxMarks;
+                let qMaxMarks = isJeeMain ? 4 : 3;
+                if (!isJeeMain) {
+                    if (q.type === 'multi') qMaxMarks = 4;
+                    else if (q.type === 'numerical') qMaxMarks = 3;
+                }
                 
                 if (userAns.length === 0) {
                     earned = 0;
@@ -327,7 +329,7 @@
                     unattemptedCount++;
                 } else if (isNumerical) {
                     if (!hasWrong) {
-                        earned = 3;
+                        earned = isJeeMain ? 4 : 3;
                         statusTag = "Fully Correct";
                         markClass = "positive";
                         correctCount++;
@@ -338,20 +340,31 @@
                         incorrectCount++;
                     }
                 } else if (hasWrong) {
-                    earned = q.type === 'multi' ? -2 : -1;
+                    if (isJeeMain) {
+                        earned = -1;
+                    } else {
+                        earned = q.type === 'multi' ? -2 : -1;
+                    }
                     statusTag = "Incorrect";
                     markClass = "negative";
                     incorrectCount++;
                 } else if (isAllCorrect) {
-                    earned = q.type === 'multi' ? 4 : 3;
+                    earned = isJeeMain ? 4 : (q.type === 'multi' ? 4 : 3);
                     statusTag = "Fully Correct";
                     markClass = "positive";
                     correctCount++;
                 } else {
-                    earned = userAns.length; // Partial marking: +1 per correct option chosen
-                    statusTag = "Partially Correct";
-                    markClass = "partial";
-                    partialCount++;
+                    if (!isJeeMain && q.type === 'multi') {
+                        earned = userAns.length; // +1 per correct option chosen
+                        statusTag = "Partially Correct";
+                        markClass = "partial";
+                        partialCount++;
+                    } else {
+                        earned = isJeeMain ? -1 : -1;
+                        statusTag = "Incorrect";
+                        markClass = "negative";
+                        incorrectCount++;
+                    }
                 }
                 
                 totalScoreEarned += earned;
@@ -410,15 +423,21 @@
                 
                 let qIdText = q.id ? ` | ID: ${q.id}` : "";
                 let typeBadgeText = "";
-                if (q.type === 'multi') typeBadgeText = "Multi-Correct (+4, -2)";
-                else if (q.type === 'numerical') typeBadgeText = "Numerical Value (+3, 0)";
-                else typeBadgeText = "Single Correct (+3, -1)";
+                if (isJeeMain) {
+                    typeBadgeText = isNumerical ? "Numerical Value (+4, 0)" : "Single Correct (+4, -1)";
+                } else {
+                    if (q.type === 'multi') typeBadgeText = "Multi-Correct (+4, -2)";
+                    else if (q.type === 'numerical') typeBadgeText = "Numerical Value (+3, 0)";
+                    else typeBadgeText = "Single Correct (+3, -1)";
+                }
+                
+                let qSectionText = q.subject ? `[${q.subject}${q.section ? ' - Section ' + q.section : ''}] ` : "";
 
                 html += `
                 <div class="solution-block">
                     <div class="q-header">
                         <div class="q-title-wrap">
-                            <div class="q-title">Question ${idx + 1}${qIdText}</div>
+                            <div class="q-title">${qSectionText}Question ${idx + 1}${qIdText}</div>
                             <div class="q-badge">${typeBadgeText}</div>
                             <div class="q-badge">${statusTag}</div>
                         </div>
@@ -432,6 +451,8 @@
                     </div>
                 </div>`;
             });
+
+            if (resultData.totalMarks) maxScorePossible = resultData.totalMarks;
 
             // Calculate Accuracy
             let attempted = correctCount + incorrectCount + partialCount;
@@ -450,7 +471,7 @@
                     accuracy: Number(accuracy),
                     correctCount: correctCount,
                     incorrectCount: incorrectCount,
-                    examType: "JEE",
+                    examType: isJeeMain ? (examCategory === 'neet' ? 'NEET' : 'JEE Main') : "JEE Advanced",
                     date: serverTimestamp()
                 }).catch(e => console.error("Error saving result:", e));
                 
@@ -463,7 +484,7 @@
 
             // Inject Summary Dashboard
             document.getElementById("summaryCard").innerHTML = `
-                <h2>JEE Advanced Mock Test Result</h2>
+                <h2>${isJeeMain ? (examCategory === 'neet' ? 'NEET' : 'JEE Main') : 'JEE Advanced'} Mock Test Result</h2>
                 <h1 style="color: var(--brand); margin-bottom: 15px;">${resultData.testTitle}</h1>
                 
                 <div class="stats-grid">
