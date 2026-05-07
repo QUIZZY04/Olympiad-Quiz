@@ -789,7 +789,11 @@ border-top:1px solid var(--border);
             <input type="hidden" id="editJmnTestId">
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
                 <div><label>Exam Category</label><select id="jmnExam"><option value="jee_main">JEE Main</option><option value="neet">NEET</option></select></div>
-                <div><label>Class</label><select id="jmnClass"><option value="11">Class 11</option><option value="12">Class 12</option></select></div>
+                <div><label>Class</label><select id="jmnClass">
+                    <option value="class11">Class 11</option>
+                    <option value="class12">Class 12</option>
+                    <option value="classJEE MAIN">JEE MAIN</option>
+                </select></div>
                 <div><label>Test Title</label><input type="text" id="jmnTitle" placeholder="e.g. JEE Main Full Mock 1"></div>
                 <div>
                     <label>Subject</label>
@@ -802,7 +806,7 @@ border-top:1px solid var(--border);
             
             <div style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px; margin-bottom:20px;">
                 <h4 style="margin-bottom:10px;">Questions JSON Data</h4>
-                <p class="muted" style="margin-bottom:10px; font-size:12px;">Format: [{"questionText":"...","type":"single","options":["A","B","C","D"],"correctAnswers":["A"],"explanation":"...","subject":"Physics","section":"A"}] <br> <i>(Note: For numerical use "type":"numerical", options:[], correctAnswers:["2.5"]. Use "subject" and "section" to divide Full Syllabus tests.)</i></p>
+                <p class="muted" style="margin-bottom:10px; font-size:12px;">Format: [{"id":"...","class":"class11","questionText":"...","type":"single","options":["A","B","C","D"],"correctAnswers":["A"],"explanation":"...","subject":"Physics","section":"A"}] <br> <i>(Note: For numerical use "type":"numerical", options:[], correctAnswers:["2.5"]. Use "subject", "section", and "class" to organize tests.)</i></p>
                 <textarea id="jmnJsonPaste" placeholder="Paste JSON array of questions here..." style="height: 250px; font-family: monospace;"></textarea>
                 <div style="display: flex; gap: 10px; margin-top: 10px;">
                     <button class="upload" onclick="pasteJmnClipboard()" style="background: var(--brand); color: #fff;">📋 Paste from Clipboard</button>
@@ -883,7 +887,11 @@ border-top:1px solid var(--border);
             <p class="muted">Upload tests directly to the isolated <b>exam_tests</b> collection for JEE Main, JEE Advanced, and NEET.</p>
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
                 <div><label>Exam Category</label><select id="compExam"><option value="jee_main">JEE Main</option><option value="jee_advanced">JEE Advanced</option><option value="neet">NEET</option></select></div>
-                <div><label>Class</label><select id="compClass"><option value="11">Class 11</option><option value="12">Class 12</option></select></div>
+                <div><label>Class</label><select id="compClass">
+                    <option value="class11">Class 11</option>
+                    <option value="class12">Class 12</option>
+                    <option value="classJEE MAIN">JEE MAIN</option>
+                </select></div>
                 <div><label>Test Type</label><select id="compType" onchange="document.getElementById('compChapterDiv').style.display = this.value === 'chapter_test' ? 'block' : 'none';"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
                 <div><label>Subject</label><select id="compSubject"><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option><option value="Full Syllabus">Full Syllabus</option></select></div>
                 <div><label>Test Title</label><input type="text" id="compTitle" placeholder="e.g. Kinematics Mock 1"></div>
@@ -2072,7 +2080,7 @@ window.editJmnTest = async function(id) {
             const data = docSnap.data();
             document.getElementById("editJmnTestId").value = id;
             document.getElementById("jmnExam").value = data.exam || "jee_main";
-            document.getElementById("jmnClass").value = data.class || "11";
+            document.getElementById("jmnClass").value = data.class || "class11";
             document.getElementById("jmnTitle").value = data.title;
             document.getElementById("jmnSubject").value = data.subject;
             document.getElementById("jmnTestType").value = data.testType || "full_mock";
