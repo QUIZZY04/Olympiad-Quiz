@@ -117,12 +117,14 @@
             <option value="classJEE MAIN">JEE MAIN</option>
         </select>
         <select id="fType" onchange="loadTests()">
+        <select id="fType" onchange="toggleSubjectSelector(); loadTests()">
             <option value="full_mock">Full Mock Tests</option>
             <option value="subject_test">Subject-wise Tests</option>
             <option value="chapter_test">Chapter-wise Tests</option>
             <option value="quick_quiz">Quick Quizzes</option>
        </select>
         <select id="fSubject" onchange="loadTests()">
+        <select id="fSubject" onchange="loadTests()" style="display: none;">
             <option value="all">All Subjects</option>
             <option value="Physics">Physics</option>
             <option value="Chemistry">Chemistry</option>
@@ -218,6 +220,16 @@
     };
 </script>
 <script>
+    window.toggleSubjectSelector = function() {
+        const fType = document.getElementById('fType').value;
+        const fSubject = document.getElementById('fSubject');
+        if (fType === 'full_mock') {
+            fSubject.style.display = 'none';
+            fSubject.value = 'all'; // Reset filter when hidden
+        } else {
+            fSubject.style.display = '';
+        }
+    };
     function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
 </script>
 </body>
