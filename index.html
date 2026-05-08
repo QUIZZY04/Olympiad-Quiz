@@ -16,6 +16,9 @@
 <title>Free Olympiad Mock Tests & Practice Online | OlympiadQuiz</title>
 <meta name="description" content="Attempt free IMO, NSO, IEO and Olympiad mock tests for Class 1–10 with instant results, chapterwise practice and live tests on OlympiadQuiz.">
 <meta name="keywords" content="Olympiad mock test, free Olympiad practice, IMO mock test, NSO mock test, chapterwise Olympiad test, JEE Advanced mock test, online Olympiad quiz">
+<title>Free JEE Main, JEE Advanced & Olympiad Mock Tests | OlympiadQuiz</title>
+<meta name="description" content="Practice free JEE Main, JEE Advanced, NEET and Olympiad mock tests with real CBT exam interface, instant results, detailed solutions, rankings and chapterwise practice.">
+<meta name="keywords" content="free jee main mock test, nta mock test free, jee advanced online practice, jee cbt mock test, jee main practice test, iit jee mock exam, Olympiad mock test, free Olympiad practice">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
@@ -23,11 +26,15 @@
 <meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="Olympiad Practice & Free Mock Tests Online | OlympiadQuiz">
 <meta property="og:description" content="Attempt free IMO, NSO, IEO and Olympiad mock tests for Class 1–10 with instant results, chapterwise practice and live tests on OlympiadQuiz.">
+<meta property="og:title" content="Free JEE Main, JEE Advanced & Olympiad Mock Tests | OlympiadQuiz">
+<meta property="og:description" content="Practice free JEE Main, JEE Advanced, NEET and Olympiad mock tests with real CBT exam interface, instant results, detailed solutions, rankings and chapterwise practice.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://olympiadquiz.org/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Olympiad Practice & Free Mock Tests Online | OlympiadQuiz">
 <meta name="twitter:description" content="Attempt free IMO, NSO, IEO and Olympiad mock tests for Class 1–10 with instant results, chapterwise practice and live tests on OlympiadQuiz.">
+<meta name="twitter:title" content="Free JEE Main, JEE Advanced & Olympiad Mock Tests | OlympiadQuiz">
+<meta name="twitter:description" content="Practice free JEE Main, JEE Advanced, NEET and Olympiad mock tests with real CBT exam interface, instant results, detailed solutions, rankings and chapterwise practice.">
 <link rel="canonical" href="https://olympiadquiz.org/">
 
 <script type="application/ld+json">
@@ -150,6 +157,46 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "When you participate in our live tests or submit a mock exam, our system instantly evaluates your score, accuracy, and time taken to place you on a dynamic global leaderboard against other students."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is JEE Main mock test free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, our JEE Main mock tests are completely free and available to all registered students without any hidden charges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does OlympiadQuiz follow the latest NTA pattern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Our JEE Main mock tests strictly adhere to the latest NTA exam pattern, including single-correct MCQs and numerical value questions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are detailed solutions available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, instant, step-by-step detailed solutions are provided immediately after you submit your mock test to help you analyze your mistakes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is CBT interface available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, our testing platform is designed as a Computer-Based Test (CBT) to mimic the exact environment of exams like JEE and Olympiads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is JEE Advanced practice free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can practice full syllabus and subject-wise JEE Advanced mock tests with multi-correct options entirely for free."
       }
     }
   ]
@@ -693,10 +740,47 @@ font-size:28px;
 .jee-card li { position: relative; padding-left: 30px; margin-bottom: 12px; color: #334155; font-weight: 600; font-size: 1.05rem; }
 .jee-card li::before { content: '✓'; position: absolute; left: 0; color: #10b981; font-weight: 900; font-size: 1.1rem; }
 .badge-new { background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; position: absolute; top: -14px; right: 30px; box-shadow: 0 4px 10px rgba(239,68,68,0.3); }
+    
+    @keyframes pulseNew { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    .badge-new { background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; position: absolute; top: -14px; right: 30px; box-shadow: 0 4px 10px rgba(239,68,68,0.3); animation: pulseNew 2s infinite; z-index: 2; }
+    .ribbon-free { position: absolute; top: 25px; left: -35px; background: #10b981; color: white; padding: 5px 40px; font-size: 11px; font-weight: 800; text-transform: uppercase; transform: rotate(-45deg); box-shadow: 0 2px 10px rgba(16,185,129,0.3); z-index: 2; letter-spacing: 1px; }
+
+    /* ANNOUNCEMENT BAR */
+    .announcement-bar { background: linear-gradient(90deg, #111827, #3b82f6, #111827); background-size: 200% auto; animation: shineBar 5s linear infinite; color: white; padding: 10px 15px; text-align: center; font-size: 13px; font-weight: 700; display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; z-index: 1002; position: relative; }
+    @keyframes shineBar { to { background-position: 200% center; } }
+    .announcement-bar a { background: #ffffff; color: #111827; padding: 4px 14px; border-radius: 20px; font-size: 11px; text-decoration: none; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    .announcement-bar a:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.3); color: #3b82f6; }
+
+    /* TRUST ROW */
+    .trust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 45px; }
+    .trust-badge { background: #ffffff; border: 1px solid var(--border); padding: 10px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; color: #334155; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+    .trust-badge:hover { transform: translateY(-3px); border-color: var(--brand); color: var(--brand); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+
+    /* STATS COUNTER */
+    .stats-banner { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 24px; padding: 40px; color: white; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #334155; margin: 60px 0; }
+    .stat-banner-item h3 { font-size: 2.8rem; font-weight: 800; color: #38bdf8; margin-bottom: 5px; line-height: 1; }
+    .stat-banner-item p { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin: 0; }
+
+    /* WHY CHOOSE CARDS */
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 30px; }
+    .feat-card { background: #ffffff; border: 1px solid var(--border); padding: 30px; border-radius: 20px; display: flex; align-items: flex-start; gap: 20px; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+    .feat-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: var(--brand); }
+    .feat-icon { font-size: 32px; background: #fff7ed; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 16px; flex-shrink: 0; }
+    .feat-text h4 { font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+    .feat-text p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
 </style>
 </head>
 
 <body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+    <span>🚀 NEW: FREE JEE Main & JEE Advanced Mock Tests Now Live</span>
+    <div style="display:flex; gap:10px;">
+        <a href="jee_main.html">JEE Main</a>
+        <a href="jee-list.html">JEE Advanced</a>
+    </div>
+</div>
 
 <!-- NAVBAR -->
 <nav>
@@ -754,6 +838,7 @@ font-size:28px;
 
 <p>
 Experience an exam-like practice environment for <strong>Class 1 to 10</strong> students. Learn faster with performance analysis, get instant results with detailed solutions, and secure your All India Ranking in our live arenas.
+Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock tests, instant analysis, rankings, and detailed solutions.
 </p>
 
 <!-- CONVERSION IMPROVEMENT: Mobile Trust Badges Above CTAs -->
@@ -796,6 +881,7 @@ Experience an exam-like practice environment for <strong>Class 1 to 10</strong> 
     <div class="grid" style="gap: 40px;">
         <!-- Card 1 -->
         <div class="jee-card" style="border-top: 5px solid #3b82f6;">
+            <div class="ribbon-free">100% Free</div>
             <div class="badge-new">NEW</div>
             <h3 class="jee-card-title"><span style="font-size: 2.5rem;">📐</span> JEE Main Mock Tests</h3>
             <ul>
@@ -807,11 +893,12 @@ Experience an exam-like practice environment for <strong>Class 1 to 10</strong> 
                 <li>Performance Analytics</li>
                 <li>Free Access</li>
             </ul>
-            <a href="jee_main.html" class="btn" style="background: #3b82f6; color: white; width: 100%; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 15px;">Start JEE Main Test</a>
+            <a href="jee_main.html" class="btn" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; width: 100%; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 15px;">Start JEE Main Test</a>
         </div>
 
         <!-- Card 2 -->
         <div class="jee-card" style="border-top: 5px solid #6366f1;">
+            <div class="ribbon-free" style="background: #6366f1;">100% Free</div>
             <div class="badge-new" style="background: #6366f1; box-shadow: 0 4px 10px rgba(99,102,241,0.3);">NEW</div>
             <h3 class="jee-card-title"><span style="font-size: 2.5rem;">🎓</span> JEE Advanced Mock Tests</h3>
             <ul>
@@ -823,8 +910,30 @@ Experience an exam-like practice environment for <strong>Class 1 to 10</strong> 
                 <li>Time-Based Practice</li>
                 <li>Completely Free</li>
             </ul>
-            <a href="jee-list.html" class="btn" style="background: #6366f1; color: white; width: 100%; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 15px;">Start JEE Advanced Test</a>
+            <a href="jee-list.html" class="btn" style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; width: 100%; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 15px;">Start JEE Advanced Test</a>
         </div>
+    </div>
+
+    <!-- PREMIUM TRUST ROW -->
+    <div class="trust-row">
+        <div class="trust-badge"><span style="color: #10b981; font-size: 16px;">✓</span> Latest NTA Pattern</div>
+        <div class="trust-badge"><span style="color: #3b82f6; font-size: 16px;">✓</span> Real CBT Interface</div>
+        <div class="trust-badge"><span style="color: #f59e0b; font-size: 16px;">✓</span> Instant Results</div>
+        <div class="trust-badge"><span style="color: #8b5cf6; font-size: 16px;">✓</span> Detailed Solutions</div>
+        <div class="trust-badge"><span style="color: #ec4899; font-size: 16px;">✓</span> Full Syllabus Tests</div>
+        <div class="trust-badge"><span style="color: #f43f5e; font-size: 16px;">✓</span> Subject-wise Practice</div>
+    </div>
+</div>
+</section>
+
+<!-- COMPETITIVE EXAM STATS -->
+<section class="section" style="padding-top: 0; padding-bottom: 20px;">
+<div class="container">
+    <div class="stats-banner">
+        <div class="stat-banner-item"><h3>5000+</h3><p>JEE Aspirants</p></div>
+        <div class="stat-banner-item"><h3>100K+</h3><p>Questions Bank</p></div>
+        <div class="stat-banner-item"><h3>500+</h3><p>Mock Tests</p></div>
+        <div class="stat-banner-item"><h3>100%</h3><p>NTA Pattern CBT</p></div>
     </div>
 </div>
 </section>
@@ -1059,8 +1168,10 @@ The key to securing international ranks lies in the Achievers Section. These Hig
 <div class="container">
 <div class="seo-box">
 <h2>Why Choose OlympiadQuiz.org?</h2>
+<h2>Why Choose OlympiadQuiz for Competitive Exams?</h2>
 <p>
 Thousands of students and parents trust OlympiadQuiz.org for comprehensive preparation. We offer a feature-rich, mobile-friendly platform designed to maximize learning outcomes and boost your scores:
+Thousands of students and parents trust OlympiadQuiz.org for comprehensive preparation. We offer a feature-rich, mobile-friendly platform designed to maximize learning outcomes and significantly boost your national ranking:
 </p>
 <ul>
 <li><strong>Free Mock & Chapterwise Tests:</strong> Practice comprehensively topic-by-topic or take full exams without financial barriers.</li>
@@ -1069,6 +1180,33 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 <li><strong>All India Ranking:</strong> Compare your performance with peers across the country on our dynamic leaderboards.</li>
 <li><strong>Email Result Reports:</strong> Receive detailed performance analytics and scorecards directly to your inbox.</li>
 </ul>
+
+<div class="feature-grid">
+    <div class="feat-card">
+        <div class="feat-icon">💻</div>
+        <div class="feat-text"><h4>Real CBT Interface</h4><p>Experience the exact Computer Based Test environment identical to official NTA JEE and modern Olympiads.</p></div>
+    </div>
+    <div class="feat-card">
+        <div class="feat-icon">🏆</div>
+        <div class="feat-text"><h4>Instant Ranking</h4><p>Submit your mock test and immediately see where you stand on our dynamic All India Leaderboards.</p></div>
+    </div>
+    <div class="feat-card">
+        <div class="feat-icon">💡</div>
+        <div class="feat-text"><h4>Detailed Solutions</h4><p>Don't just check your score. Review step-by-step logical solutions for every single incorrect answer.</p></div>
+    </div>
+    <div class="feat-card">
+        <div class="feat-icon">📚</div>
+        <div class="feat-text"><h4>Full Syllabus Practice</h4><p>Access high-quality question banks covering every chapter of Physics, Chemistry, Biology, and Mathematics.</p></div>
+    </div>
+    <div class="feat-card">
+        <div class="feat-icon">📱</div>
+        <div class="feat-text"><h4>Mobile Friendly</h4><p>Study on the go! Our platform is fully responsive, allowing you to practice smoothly on smartphones and tablets.</p></div>
+    </div>
+    <div class="feat-card">
+        <div class="feat-icon">📊</div>
+        <div class="feat-text"><h4>Performance Analytics</h4><p>Identify your weak areas instantly with comprehensive graphical reports and accuracy breakdowns.</p></div>
+    </div>
+</div>
 </div>
 </div>
 </section>
@@ -1112,13 +1250,13 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 <footer>
     <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
         <a href="index.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-            <a href="mock.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Mock Tests</a>
-            <a href="chapterwise.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Chapterwise</a>
-            <a href="live.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Live Arena</a>
-            <a href="jee_main.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">JEE Main</a>
-            <a href="jee-list.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">JEE Advanced</a>
-            <a href="neet.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">NEET</a>
             <a href="blog.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Blog</a>
+            <a href="jee_main.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">JEE Main Mock Test</a>
+            <a href="jee-list.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">JEE Advanced Mock Test</a>
+            <a href="neet.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">NEET Mock Test</a>
+            <a href="mock.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Olympiad Mock Tests</a>
+            <a href="chapterwise.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Chapterwise Practice</a>
+            <a href="live.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">CBT Practice Tests</a>
         <a href="features.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Features</a>
         <a href="about.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
         <a href="contact.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
