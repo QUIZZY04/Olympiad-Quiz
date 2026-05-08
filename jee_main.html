@@ -228,9 +228,13 @@
 
                 const chapStr = data.chapter ? `<p>📖 <strong>Chapter:</strong> ${data.chapter}</p>` : "";
                 
+                let displayClass = data.class ? String(data.class) : "N/A";
+                displayClass = displayClass.replace(/^class\s*/i, '').trim();
+
                 html += `<div class="test-card" style="border-top-color: ${cardColor};">
                     <h3>${data.title}</h3>
                     <div class="meta">
+                        <p>🎓 <strong>Grade:</strong> ${displayClass}</p>
                         <p>📚 <strong>Subject:</strong> ${data.subject}</p>
                         <p>⏱️ <strong>Duration:</strong> ${data.duration} mins</p>
                         <p>❓ <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>

@@ -13,6 +13,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
+        :root { 
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #111827;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --brand: #3b82f6; 
+            --accent: #2563eb;
+            --danger: #ef4444;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+        }
         body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; height: 100vh; display: flex; flex-direction: column; width: 100%; }
         
         .header { background: #3b82f6; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; height: 50px; }
@@ -80,11 +91,71 @@
         .submit-section { padding: 15px; background: #fff; border-top: 1px solid #ccc; text-align: center; }
 
         @media (max-width: 768px) {
+            /* Anti-cheat popup responsive styles */
+            .popup-overlay { padding: 10px !important; }
+            .popup-box { padding: 20px 15px !important; border-radius: 16px !important; max-height: 98vh !important; }
+            .popup-box h2 { font-size: 1.25rem !important; margin-bottom: 10px !important; }
+            .popup-box p { font-size: 0.85rem !important; line-height: 1.4 !important; margin-bottom: 15px !important; }
+            .popup-box .icon-display { font-size: 32px !important; margin-bottom: 10px !important; }
+            .popup-actions button { padding: 12px !important; font-size: 0.95rem !important; margin-bottom: 5px !important; }
+            .popup-actions { flex-direction: column; gap: 8px !important; }
+
             body { height: auto; overflow-y: auto; display: block; }
             .main-container { flex-direction: column; height: auto; display: flex; }
             .left-panel { min-height: 50vh; }
             .right-panel { width: 100%; border-top: 2px solid #ccc; }
         }
+
+        /* Anti-Cheat & Instruction Popups */
+        .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
+        #instructionsModal, #warningModal { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(5px); }
+        #fullscreenOverlay { background: var(--bg); }
+
+        .popup-box { background: var(--surface); padding: 25px; border-radius: 20px; width: 100%; border: 1px solid var(--border); box-shadow: var(--shadow-lg); text-align: left; max-height: 95vh; overflow-y: auto; }
+        #instructionsModal .popup-box { max-width: 650px; }
+        #fullscreenOverlay .popup-box { max-width: 600px; text-align: center; }
+        #warningModal .popup-box { max-width: 500px; text-align: center; border: 2px solid var(--danger); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3); padding: 30px 20px; }
+
+        .popup-box h2 { margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; font-weight: 800; color: var(--brand); }
+        #warningModal h2 { color: var(--danger); }
+
+        .popup-box p { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; }
+        #fullscreenOverlay .popup-box p { text-align: left; }
+        #warningModal p { color: var(--text); font-size: 1rem; font-weight: 500; margin-bottom: 25px; }
+
+        .popup-box .icon-display { font-size: 40px; margin-bottom: 15px; }
+
+        .popup-actions { display: flex; gap: 10px; width: 100%; flex-wrap: wrap; }
+
+        .btn-prev { padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--muted); font-weight: 600; }
+        .btn-prev:hover { background: #e2e8f0; color: var(--text); }
+
+        .btn-save { padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border: none; border-radius: 10px; background: var(--brand); color: white; font-weight: 600; }
+        .btn-save:hover { background: var(--accent); }
+
+        #instructionsModal .btn-save { flex: 2; }
+
+        #warningModal .btn-save { background: var(--danger); width: 100%; }
+        #warningModal .btn-save:hover { background: #dc2626; }
+
+        /* Instruction Modal Specifics */
+        .inst-grid {
+            background: var(--bg); padding: 15px; border-radius: 12px; margin-bottom: 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.9rem;
+            border: 1px solid var(--border); color: var(--text);
+        }
+        .inst-grid div b { color: var(--muted); }
+        .inst-grid div span { font-weight: 600; }
+
+        .inst-list {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        .inst-list li { margin-bottom: 8px; }
+        .inst-list b { color: var(--danger); }
     </style>
 </head>
 <body>
@@ -143,6 +214,62 @@
     </div>
 </div>
 
+<!-- Instructions Modal -->
+<div id="instructionsModal" class="popup-overlay">
+    <div class="popup-box">
+        <h2>📝 Test Instructions & Rules</h2>
+        
+        <div class="inst-grid">
+            <div><b>Test Name:</b> <span id="instTestTitle">...</span></div>
+            <div><b>Subject:</b> <span id="instSubject">...</span></div>
+            <div><b>Duration:</b> <span id="instDuration">...</span></div>
+            <div><b>Total Marks:</b> <span id="instMarks">...</span></div>
+            <div><b>Total Questions:</b> <span id="instTotalQ">...</span></div>
+        </div>
+        
+        <ul class="inst-list">
+            <li>The countdown timer at the top right of the screen will display the remaining time. When the timer reaches zero, the examination will end by itself.</li>
+            <li><b>Marking Scheme:</b> +4 for each correct answer, -1 for each incorrect answer, 0 for unattempted questions.</li>
+            <li>You can mark questions for review using the <b>Mark for Review & Next</b> button to revisit them later.</li>
+            <li><b>STRICT RULE:</b> Full-screen mode is required. Do NOT refresh the page, switch browser tabs, or minimize the window. Doing so will result in a warning, and after 3 warnings, your test will auto-submit.</li>
+        </ul>
+        
+        <div class="popup-actions">
+            <button onclick="goBackToSelection()" class="btn-prev">Cancel</button>
+            <button onclick="proceedToFullscreen()" class="btn-save">I am ready, Proceed</button>
+        </div>
+    </div>
+</div>
+
+<!-- Anti-Cheat Overlays -->
+<div id="fullscreenOverlay" class="popup-overlay">
+    <div class="popup-box">
+        <div class="icon-display">🖥️</div>
+        <h2>Enter Full Screen</h2>
+            <p>
+                To maintain a fair and secure testing environment, this quiz requires full-screen mode. Please ensure you are fully prepared before proceeding.<br><br>
+                <strong style="color: var(--danger);">STRICT RULES:</strong><br>
+                • Do not switch tabs or open new windows.<br>
+                • Do not minimize the browser or lose window focus.<br>
+                • Do not exit full-screen mode manually.<br><br>
+                Any of these actions will result in a strike. <b style="color: var(--danger);">After 3 strikes, your quiz will automatically submit and end immediately.</b>
+            </p>
+            <div class="popup-actions">
+                <button onclick="goBackToSelection()" class="btn-prev">Cancel & Go Back</button>
+                <button id="enterFullscreenBtn" class="btn-save">Start Quiz</button>
+            </div>
+    </div>
+</div>
+
+<div id="warningModal" class="popup-overlay">
+    <div class="popup-box">
+        <div class="icon-display">⚠️</div>
+        <h2>Warning <span id="warningCountDisplay"></span>/3</h2>
+        <p id="warningMessageDisplay"></p>
+        <button id="resumeQuizBtn" class="btn-save">I Understand, Resume Quiz</button>
+    </div>
+</div>
+
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -152,7 +279,12 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    let testData = null, currentQ = 0, selectedAnswers = [], visited = [], markedForReview = [], timeLeft = 0, timerInterval;
+    let testData = null, currentQ = 0, selectedAnswers = [], visited = [], markedForReview = [], timeLeft = 0, timerInterval, quizSubmitted = false;
+
+    let violationsCount = 0;
+    const MAX_VIOLATIONS = 3;
+    let isQuizActive = false;
+    let isWarningOpen = false;
 
     onAuthStateChanged(auth, (user) => {
         if (user) document.getElementById("studentName").innerText = user.displayName || user.email.split('@')[0];
@@ -160,7 +292,6 @@
 
     async function initTest() {
         const testId = new URLSearchParams(window.location.search).get('id');
-        if (!testId) { alert("Invalid Test ID"); window.location.href = "jee_main.html"; return; }
 
         try {
             const docSnap = await getDoc(doc(db, "exam_tests", testId));
@@ -173,20 +304,109 @@
             visited = new Array(testData.questions.length).fill(false);
             markedForReview = new Array(testData.questions.length).fill(false);
             timeLeft = testData.duration * 60;
-            
-            buildPalette();
-            renderQuestion();
-            
-            timerInterval = setInterval(() => {
-                if (timeLeft <= 0) { clearInterval(timerInterval); submitTest(true); return; }
-                timeLeft--;
-                const h = Math.floor(timeLeft / 3600).toString().padStart(2, '0');
-                const m = Math.floor((timeLeft % 3600) / 60).toString().padStart(2, '0');
-                const s = (timeLeft % 60).toString().padStart(2, '0');
-                document.getElementById("timer").innerText = `${h}:${m}:${s}`;
-            }, 1000);
+
+            if (testData.questions.length > 0) {
+                let strictTotalMarks = testData.totalMarks || (testData.questions.length * 4);
+                
+                document.getElementById("instTestTitle").innerText = testData.title;
+                document.getElementById("instSubject").innerText = testData.subject || "Full Syllabus";
+                document.getElementById("instDuration").innerText = testData.duration + " Minutes";
+                document.getElementById("instMarks").innerText = strictTotalMarks;
+                document.getElementById("instTotalQ").innerText = testData.questions.length;
+
+                document.getElementById('instructionsModal').style.display = 'flex';
+            } else {
+                document.getElementById("qText").innerHTML = "<h3 style='color:#3b82f6'>No questions found for this test.</h3>";
+            }
+
         } catch(e) { alert("Failed to load test data: " + e.message); window.location.href = "jee_main.html"; }
     }
+
+    window.proceedToFullscreen = function() {
+        document.getElementById('instructionsModal').style.display = 'none';
+        document.getElementById('fullscreenOverlay').style.display = 'flex';
+    };
+
+    function startTheQuiz() {
+        buildPalette();
+        renderQuestion();
+        
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) { clearInterval(timerInterval); submitTest(true); return; }
+            timeLeft--;
+            const h = Math.floor(timeLeft / 3600).toString().padStart(2, '0');
+            const m = Math.floor((timeLeft % 3600) / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById("timer").innerText = `${h}:${m}:${s}`;
+        }, 1000);
+    }
+
+    document.getElementById('enterFullscreenBtn').addEventListener('click', () => {
+        const elem = document.documentElement;
+        const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen || elem.mozRequestFullScreen;
+        
+        if (requestFS) {
+            requestFS.call(elem).then(() => {
+                document.getElementById('fullscreenOverlay').style.display = 'none';
+                if (!isQuizActive && testData.questions.length > 0) {
+                    isQuizActive = true;
+                    startTheQuiz();
+                }
+            }).catch(err => {
+                alert(`Error attempting to enable full-screen mode: ${err.message}`);
+            });
+        } else {
+            document.getElementById('fullscreenOverlay').style.display = 'none';
+            if (!isQuizActive && testData.questions.length > 0) {
+                isQuizActive = true;
+                startTheQuiz();
+            }
+        }
+    });
+
+    document.getElementById('resumeQuizBtn').addEventListener('click', () => {
+        const elem = document.documentElement;
+        const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen || elem.mozRequestFullScreen;
+        
+        if (requestFS && !document.fullscreenElement && !document.webkitFullscreenElement) {
+            requestFS.call(elem).then(() => {
+                document.getElementById('warningModal').style.display = 'none';
+                setTimeout(() => isWarningOpen = false, 500);
+            }).catch(err => {
+                alert("You must allow full screen to resume.");
+            });
+        } else {
+            document.getElementById('warningModal').style.display = 'none';
+            setTimeout(() => isWarningOpen = false, 500);
+        }
+    });
+
+    function handleViolation(reason) {
+        if (!isQuizActive || quizSubmitted || isWarningOpen) return;
+        
+        violationsCount++;
+        isWarningOpen = true;
+
+        if (violationsCount >= MAX_VIOLATIONS) {
+            document.getElementById('warningMessageDisplay').innerText = `${reason}. You have reached the maximum number of warnings. Your quiz will now be auto-submitted.`;
+            document.getElementById('warningCountDisplay').innerText = violationsCount;
+            document.getElementById('resumeQuizBtn').style.display = 'none';
+            document.getElementById('warningModal').style.display = 'flex';
+            
+            setTimeout(() => {
+                submitTest(true);
+            }, 3000);
+        } else {
+            document.getElementById('warningMessageDisplay').innerText = `${reason}. Please do not switch tabs, minimize the window, or exit full screen.`;
+            document.getElementById('warningCountDisplay').innerText = violationsCount;
+            document.getElementById('warningModal').style.display = 'flex';
+        }
+    }
+
+    document.addEventListener('visibilitychange', () => { if (document.hidden && isQuizActive) handleViolation("Tab switched or minimized"); });
+    window.addEventListener('blur', () => { if (isQuizActive) handleViolation("Window lost focus"); });
+    document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && isQuizActive) handleViolation("Exited full screen"); });
+    document.addEventListener('webkitfullscreenchange', () => { if (!document.webkitFullscreenElement && isQuizActive) handleViolation("Exited full screen"); });
 
     function renderQuestion() {
         if (!testData || !testData.questions.length) return;
@@ -276,10 +496,18 @@
     window.prevQuestion = () => { if (currentQ > 0) { currentQ--; renderQuestion(); } };
     
     window.submitTest = (auto = false) => {
+        if (quizSubmitted) return;
         if (!auto && !confirm(`You have answered ${selectedAnswers.filter(a => a.length > 0).length} out of ${testData.questions.length} questions.\n\nSubmit the test?`)) return;
+        
+        quizSubmitted = true;
+        isQuizActive = false;
         clearInterval(timerInterval);
         
-        // Map new JSON format to the structure expected by jee-result.html
+        const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
+        if (exitFS && (document.fullscreenElement || document.webkitFullscreenElement)) {
+            exitFS.call(document).catch(err => console.log(err));
+        }
+
         const mappedQuestions = testData.questions.map(q => ({
             questionText: q.questionText || q.question, 
             options: q.options || [], 
@@ -298,6 +526,16 @@
         localStorage.setItem("jeeQuizResult", JSON.stringify(resultObj));
         window.location.replace("jee-result.html");
     };
+
+    window.goBackToSelection = function() {
+        if (confirm("Go back to selection? Your current quiz progress will be lost.")) {
+            const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
+            if (exitFS && (document.fullscreenElement || document.webkitFullscreenElement)) {
+                exitFS.call(document).catch(err => console.log(err));
+            }
+            window.location.href = "jee_main.html";
+        }
+    }
 
     initTest();
 </script>
