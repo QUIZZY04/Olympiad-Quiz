@@ -252,9 +252,29 @@
                 const rank = idx + 1;
                 let rankIcon = rank;
                 let rowStyle = "";
-                if(rank === 1) { rankIcon = "🏆"; rowStyle = "background: rgba(250, 204, 21, 0.1); font-weight: bold;"; }
-                else if(rank === 2) { rankIcon = "🥈"; rowStyle = "background: rgba(241, 245, 249, 0.5);"; }
-                else if(rank === 3) { rankIcon = "🥉"; rowStyle = "background: rgba(254, 237, 213, 0.5);"; }
+                let circleStyle = "";
+                let nameStyle = "";
+                let namePrefix = "";
+
+                if(rank === 1) { 
+                    rankIcon = "🏆"; 
+                    rowStyle = "background: rgba(250, 204, 21, 0.2); font-weight: 800;"; 
+                    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4);";
+                    nameStyle = "color: #b45309; font-size: 1.1em;";
+                    namePrefix = "⭐ ";
+                }
+                else if(rank === 2) { 
+                    rankIcon = "🥈"; 
+                    rowStyle = "background: rgba(148, 163, 184, 0.15); font-weight: 700;"; 
+                    circleStyle = "background:#e2e8f0; transform:scale(1.25); font-size:20px; box-shadow: 0 4px 10px rgba(148,163,184,0.3);";
+                    nameStyle = "color: #334155; font-size: 1.05em;";
+                }
+                else if(rank === 3) { 
+                    rankIcon = "🥉"; 
+                    rowStyle = "background: rgba(251, 146, 60, 0.15); font-weight: 700;"; 
+                    circleStyle = "background:#fed7aa; transform:scale(1.15); font-size:18px; box-shadow: 0 4px 10px rgba(251,146,60,0.3);";
+                    nameStyle = "color: #9a3412; font-size: 1.05em;";
+                }
 
                 if (d.uid === currentUserUid) {
                     rowStyle += " border-left: 4px solid var(--brand);";
@@ -267,8 +287,8 @@
 
                 html += `
                     <tr style="${rowStyle}">
-                        <td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px; box-shadow:0 4px 10px rgba(250,204,21,0.3);':''}">${rankIcon}</span></td>
-                        <td>${rank===1?'⭐ ':''}${d.name || "Student"}</td>
+                        <td><span class="rank-circle" style="${circleStyle}">${rankIcon}</span></td>
+                        <td style="${nameStyle}">${namePrefix}${d.name || "Student"}</td>
                         <td><span class="score-badge">${d.score} / ${d.total || '-'}</span></td>
                         <td><span class="acc-badge">${d.accuracy}%</span></td>
                         <td><span style="color:var(--success);font-weight:800;">${d.correctCount||0}</span> / <span style="color:var(--danger);font-weight:800;">${d.incorrectCount||0}</span></td>

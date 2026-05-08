@@ -347,7 +347,6 @@ font-size:14px;
     <select id="weeklySubject" style="flex: 1;">
     <option value="all" selected>All Subjects</option>
     <option value="maths">Maths</option>
-    <option value="science" selected>Science</option>
     <option value="science">Science</option>
     <option value="english">English</option>
     <option value="reasoning">Reasoning</option>
@@ -524,29 +523,28 @@ async function loadSessionsList() {
 
     let html = '<option value="all_live">All Time Live Quizzes</option>';
 
-    if (grade !== "all" && subject !== "all") {
+    try {
         const classNum = parseInt(grade.replace("class", ""));
-        try {
-            const fallbackSnap = await getDocs(collection(db, "test_sessions"));
-            let sessionOptions = "";
-            fallbackSnap.forEach(doc => {
-                const data = doc.data();
-                if (data.class === classNum && data.subject === subject) {
-                    const archiveTag = data.archived ? " [Archived]" : "";
-                    const dateStr = data.startTime && data.startTime.toDate ? data.startTime.toDate().toLocaleDateString() : "";
-                    sessionOptions += `<option value="${doc.id}">${data.title} (${dateStr})${archiveTag}</option>`;
-                }
-            });
-            if (sessionOptions !== "") {
-                html += sessionOptions;
-            } else {
-                html += '<option value="" disabled>No past sessions found for this selection</option>';
+        const fallbackSnap = await getDocs(collection(db, "test_sessions"));
+        let sessionOptions = "";
+        fallbackSnap.forEach(doc => {
+            const data = doc.data();
+            const matchesGrade = grade === "all" || data.class === classNum;
+            const matchesSubject = subject === "all" || data.subject === subject;
+            
+            if (matchesGrade && matchesSubject) {
+                const archiveTag = data.archived ? " [Archived]" : "";
+                const dateStr = data.startTime && data.startTime.toDate ? data.startTime.toDate().toLocaleDateString() : "";
+                sessionOptions += `<option value="${doc.id}">${data.title} (${dateStr})${archiveTag}</option>`;
             }
-        } catch (e) {
-            console.error(e);
+        });
+        if (sessionOptions !== "") {
+            html += sessionOptions;
+        } else {
+            html += '<option value="" disabled>No past sessions found for this selection</option>';
         }
-    } else {
-        html += '<option value="" disabled>Select Grade & Subject to see past sessions</option>';
+    } catch (e) {
+        console.error(e);
     }
     
     sessSelect.innerHTML = html;
@@ -672,16 +670,36 @@ docs.forEach(doc=>{
 const d=doc.data()
 let rankIcon = rank;
 let rowStyle = "";
-if(rank === 1) { rankIcon = "🏆"; rowStyle = "background: rgba(250, 204, 21, 0.15); font-weight: bold;"; }
-else if(rank === 2) { rankIcon = "🥈"; }
-else if(rank === 3) { rankIcon = "🥉"; }
+let circleStyle = "";
+let nameStyle = "";
+let namePrefix = "";
+
+if(rank === 1) { 
+    rankIcon = "🏆"; 
+    rowStyle = "background: rgba(250, 204, 21, 0.2); font-weight: 800;"; 
+    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4);";
+    nameStyle = "color: #b45309; font-size: 1.1em;";
+    namePrefix = "⭐ ";
+}
+else if(rank === 2) { 
+    rankIcon = "🥈"; 
+    rowStyle = "background: rgba(148, 163, 184, 0.15); font-weight: 700;"; 
+    circleStyle = "background:#e2e8f0; transform:scale(1.25); font-size:20px; box-shadow: 0 4px 10px rgba(148,163,184,0.3);";
+    nameStyle = "color: #334155; font-size: 1.05em;";
+}
+else if(rank === 3) { 
+    rankIcon = "🥉"; 
+    rowStyle = "background: rgba(251, 146, 60, 0.15); font-weight: 700;"; 
+    circleStyle = "background:#fed7aa; transform:scale(1.15); font-size:18px; box-shadow: 0 4px 10px rgba(251,146,60,0.3);";
+    nameStyle = "color: #9a3412; font-size: 1.05em;";
+}
 
 const adminCell = isAdmin ? `<td><button onclick="deleteRecord('${doc.id}')" style="background:var(--danger);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:bold;box-shadow:var(--shadow-sm);">Delete</button></td>` : "";
 
 tbody.innerHTML+=`
 <tr style="${rowStyle}">
-<td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px;':''}">${rankIcon}</span></td>
-<td>${rank===1 ? '⭐ ' : ''}${d.email ? d.email.split('@')[0] : "Student"}</td>
+<td><span class="rank-circle" style="${circleStyle}">${rankIcon}</span></td>
+<td style="${nameStyle}">${namePrefix}${d.email ? d.email.split('@')[0] : "Student"}</td>
 <td style="color:var(--brand);font-weight:700">${d.score}/${d.total || 50}</td>
 <td>${d.accuracy ? d.accuracy + '%' : '--'}</td>
 <td style="text-transform:capitalize;">${d.subject||"NA"}</td>
@@ -700,16 +718,36 @@ docs.forEach(doc=>{
 const d=doc.data()
 let rankIcon = rank;
 let rowStyle = "";
-if(rank === 1) { rankIcon = "🏆"; rowStyle = "background: rgba(250, 204, 21, 0.15); font-weight: bold;"; }
-else if(rank === 2) { rankIcon = "🥈"; }
-else if(rank === 3) { rankIcon = "🥉"; }
+let circleStyle = "";
+let nameStyle = "";
+let namePrefix = "";
+
+if(rank === 1) { 
+    rankIcon = "🏆"; 
+    rowStyle = "background: rgba(250, 204, 21, 0.2); font-weight: 800;"; 
+    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4);";
+    nameStyle = "color: #b45309; font-size: 1.1em;";
+    namePrefix = "⭐ ";
+}
+else if(rank === 2) { 
+    rankIcon = "🥈"; 
+    rowStyle = "background: rgba(148, 163, 184, 0.15); font-weight: 700;"; 
+    circleStyle = "background:#e2e8f0; transform:scale(1.25); font-size:20px; box-shadow: 0 4px 10px rgba(148,163,184,0.3);";
+    nameStyle = "color: #334155; font-size: 1.05em;";
+}
+else if(rank === 3) { 
+    rankIcon = "🥉"; 
+    rowStyle = "background: rgba(251, 146, 60, 0.15); font-weight: 700;"; 
+    circleStyle = "background:#fed7aa; transform:scale(1.15); font-size:18px; box-shadow: 0 4px 10px rgba(251,146,60,0.3);";
+    nameStyle = "color: #9a3412; font-size: 1.05em;";
+}
 
 const adminCell = isAdmin ? `<td><button onclick="deleteRecord('${doc.id}')" style="background:var(--danger);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:bold;box-shadow:var(--shadow-sm);">Delete</button></td>` : "";
 
 tbody.innerHTML+=`
 <tr style="${rowStyle}">
-<td><span class="rank-circle" style="${rank===1?'background:#fef08a; transform:scale(1.15); font-size:16px;':''}">${rankIcon}</span></td>
-<td>${rank===1 ? '⭐ ' : ''}${d.email ? d.email.split('@')[0] : "Student"}</td>
+<td><span class="rank-circle" style="${circleStyle}">${rankIcon}</span></td>
+<td style="${nameStyle}">${namePrefix}${d.email ? d.email.split('@')[0] : "Student"}</td>
 <td style="color:var(--brand);font-weight:700">${d.score}/${d.total||30}</td>
 <td style="text-transform:capitalize;">${d.subject||"NA"}</td>
 <td>${(d.studentClass||"").replace("class","G")}</td>
