@@ -111,11 +111,9 @@
             <option value="class12">Class 12</option>
             <option value="classJEE MAIN">JEE MAIN</option>
         </select>
-        <select id="fType" onchange="loadTests()">
+        <select id="fType" onchange="handleTestTypeChange()">
             <option value="full_mock">Full Mock Tests</option>
             <option value="subject_test">Subject-wise Tests</option>
-            <option value="chapter_test">Chapter-wise Tests</option>
-            <option value="quick_quiz">Quick Quizzes</option>
         </select>
         <select id="fSubject" onchange="loadTests()">
             <option value="all">All Subjects</option>
@@ -148,9 +146,22 @@
         if(!user) { 
             window.location.href="login.html"; 
         } else { 
-            window.loadTests(); 
+            handleTestTypeChange(); // Set initial state and load tests
         } 
     });
+
+    window.handleTestTypeChange = function() {
+        const testType = document.getElementById('fType').value;
+        const subjectSelect = document.getElementById('fSubject');
+
+        if (testType === 'full_mock') {
+            subjectSelect.value = 'all'; // Reset to 'All Subjects' for full mock
+            subjectSelect.disabled = true;
+        } else {
+            subjectSelect.disabled = false;
+        }
+        window.loadTests();
+    }
 
     window.loadTests = async function() {
         const grid = document.getElementById("testGrid");

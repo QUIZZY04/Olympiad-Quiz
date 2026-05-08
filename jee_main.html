@@ -116,15 +116,15 @@
             <option value="class12">Class 12</option>
             <option value="classJEE MAIN">JEE MAIN</option>
         </select>
-        <select id="fType" onchange="loadTests()">
+        <select id="fType" onchange="handleTestTypeChange()">
             <option value="full_mock">Full Mock Test</option>
             <option value="subject_test">Subject-wise Mock Test</option>
         </select>
         <select id="fSubject" onchange="loadTests()">
             <option value="all">All Subjects</option>
-            <option value="maths">Mathematics</option>
-            <option value="physics">Physics</option>
-            <option value="chemistry">Chemistry</option>
+            <option value="Maths">Mathematics</option>
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
         </select>
     </div>
 
@@ -159,8 +159,21 @@
             const adminTab = document.getElementById("adminTab");
             if (adminTab) adminTab.style.display = "inline";
         }
-        window.loadTests();
+        handleTestTypeChange(); // Set initial state and load tests
     });
+
+    window.handleTestTypeChange = function() {
+        const testType = document.getElementById('fType').value;
+        const subjectSelect = document.getElementById('fSubject');
+
+        if (testType === 'full_mock') {
+            subjectSelect.value = 'all'; // Reset to 'All Subjects' for full mock
+            subjectSelect.disabled = true;
+        } else {
+            subjectSelect.disabled = false;
+        }
+        window.loadTests();
+    }
 
     window.loadTests = async function() {
         const grid = document.getElementById("testGrid");
@@ -181,7 +194,7 @@
             let html = "";
             snap.forEach(doc => {
                 const data = doc.data();
-                if (fSubject !== "all" && data.subject !== fSubject && data.subject !== "Full Syllabus") return;
+                if (fSubject !== "all" && data.subject !== fSubject) return;
                 
                 const chapStr = data.chapter ? `<p>📖 <strong>Chapter:</strong> ${data.chapter}</p>` : "";
                 
