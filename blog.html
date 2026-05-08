@@ -68,17 +68,17 @@
     .cat-btn:hover { border-color: var(--brand); color: var(--brand); }
     .cat-btn.active { background: var(--brand); color: white; border-color: var(--brand); }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 45px; margin-bottom: 60px; }
     
     .blog-card { background: #ffffff; border: 1px solid var(--border); border-radius: 24px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,.04); transition: .3s; display: flex; flex-direction: column; text-decoration: none; }
     .blog-card:hover { transform: translateY(-7px); box-shadow: 0 20px 45px rgba(0,0,0,.08); border-color: var(--brand); }
     .blog-img-wrap { position: relative; }
     .blog-cat-tag { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9); color: var(--brand); font-weight: 700; font-size: 12px; padding: 6px 12px; border-radius: 8px; text-transform: uppercase; }
-    .blog-img { width: 100%; height: 220px; object-fit: cover; }
-    .blog-content { padding: 25px; display: flex; flex-direction: column; flex: 1; }
+    .blog-img { width: 100%; height: 190px; object-fit: cover; }
+    .blog-content { padding: 20px 25px; display: flex; flex-direction: column; flex: 1; }
     .blog-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
-    .blog-content h3 { font-size: 20px; margin-bottom: 10px; color: #111827; line-height: 1.4; font-weight: 700; }
-    .blog-content p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px; flex: 1; }
+    .blog-content h3 { font-size: 18px; margin-bottom: 10px; color: #111827; line-height: 1.4; font-weight: 700; }
+    .blog-content p { color: var(--muted); font-size: 13px; line-height: 1.6; margin-bottom: 20px; flex: 1; }
     .blog-btn { color: var(--brand); font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; }
     .blog-card:hover .blog-btn { gap: 8px; }
     
@@ -152,6 +152,15 @@
 <script>
 /* Lightweight JSON array of blogs */
 const blogs = [
+    {
+        title: "Decoding the Achievers Section: The Ultimate Strategy",
+        excerpt: "Learn how to systematically tackle high-weightage High-Order Thinking Skills (HOTS) questions to guarantee a top international rank.",
+        date: "May 10, 2026",
+        readTime: "5 min read",
+        category: "Strategy",
+        image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=600&q=80",
+        link: "blog-decoding-achievers-section.html"
+    },
     {
         title: "Top 5 Science Olympiad (NSO) Preparation Mistakes to Avoid",
         excerpt: "Ensure you're on the right track for the National Science Olympiad by avoiding these 5 critical preparation mistakes.",
