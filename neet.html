@@ -107,16 +107,18 @@
 
     <div class="filter-bar">
         <select id="fClass" onchange="loadTests()">
+            <option value="all" selected>All Grades</option>
             <option value="class11">Class 11</option>
             <option value="class12">Class 12</option>
             <option value="classJEE MAIN">JEE MAIN</option>
         </select>
         <select id="fType" onchange="handleTestTypeChange()">
+            <option value="all" selected>All Test Types</option>
             <option value="full_mock">Full Mock Tests</option>
             <option value="subject_test">Subject-wise Tests</option>
         </select>
         <select id="fSubject" onchange="loadTests()">
-            <option value="all">All Subjects</option>
+            <option value="all" selected>All Subjects</option>
             <option value="Biology">Biology</option>
             <option value="Physics">Physics</option>
             <option value="Chemistry">Chemistry</option>
@@ -172,22 +174,28 @@
         const fSubject = document.getElementById("fSubject").value;
 
         try {
-            let q = query(collection(db, "exam_tests"), 
-                where("exam", "==", "neet"), 
-                where("class", "==", fClass), 
-                where("testType", "==", fType)
-            );
-            const snap = await getDocs(q);
+            let constraints = [where("exam", "==", "neet")];
+            if (fClass !== "all") constraints.push(where("class", "==", fClass));
+            if (fType !== "all") constraints.push(where("testType", "==", fType));
+            
+            const snap = await getDocs(query(collection(db, "exam_tests"), ...constraints));
             
             let html = "";
             snap.forEach(doc => {
                 const data = doc.data();
                 if (fSubject !== "all" && data.subject !== fSubject && data.subject !== "Full Syllabus") return;
                 
+                let hash = 0;
+                for (let i = 0; i < doc.id.length; i++) {
+                    hash = doc.id.charCodeAt(i) + ((hash << 5) - hash);
+                }
+                const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
+                const cardColor = colors[Math.abs(hash) % colors.length];
+
                 const chapStr = data.chapter ? `<p>📖 <strong>Chapter:</strong> ${data.chapter}</p>` : "";
                 const route = fType === 'quick_quiz' ? 'neet_quiz.html' : 'neet_quiz.html'; // Defaulting to central quiz handler
                 
-                html += `<div class="test-card">
+                html += `<div class="test-card" style="border-top-color: ${cardColor};">
                     <h3>${data.title}</h3>
                     <div class="meta">
                         <p>📚 <strong>Subject:</strong> ${data.subject}</p>
@@ -195,7 +203,7 @@
                         <p>❓ <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
                         ${chapStr}
                     </div>
-                    <button class="start-btn" onclick="window.location.href='${route}?id=${doc.id}'">Start Test</button>
+                    <button class="start-btn" style="background-color: ${cardColor};" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" onclick="window.location.href='${route}?id=${doc.id}'">Start Test</button>
                 </div>`;
             });
             

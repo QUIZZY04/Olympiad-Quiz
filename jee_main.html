@@ -59,7 +59,9 @@
         .header p { color: var(--muted); font-size: 1.1rem; }
 
         .filter-bar { background: var(--surface); padding: 20px; border-radius: 16px; border: 1px solid var(--border); display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; box-shadow: var(--shadow-sm); border-top: 4px solid var(--brand); }
-        .filter-bar select { flex: 1; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border); outline: none; font-weight: 600; min-width: 200px; cursor: pointer; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; }
+        .filter-group { flex: 1; min-width: 200px; }
+        .filter-label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .filter-bar select { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border); outline: none; font-weight: 600; cursor: pointer; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; }
         .filter-bar select:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
 
         .test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
@@ -111,21 +113,32 @@
     </div>
 
     <div class="filter-bar">
-        <select id="fClass" onchange="loadTests()">
-            <option value="class11">Class 11</option>
-            <option value="class12">Class 12</option>
-            <option value="classJEE MAIN">JEE MAIN</option>
-        </select>
-        <select id="fType" onchange="handleTestTypeChange()">
-            <option value="full_mock">Full Mock Test</option>
-            <option value="subject_test">Subject-wise Mock Test</option>
-        </select>
-        <select id="fSubject" onchange="loadTests()">
-            <option value="all">All Subjects</option>
-            <option value="Maths">Mathematics</option>
-            <option value="Physics">Physics</option>
-            <option value="Chemistry">Chemistry</option>
-        </select>
+        <div class="filter-group">
+            <label for="fClass" class="filter-label">🎓 Select Grade</label>
+            <select id="fClass" onchange="loadTests()">
+                <option value="all" selected>All Grades</option>
+                <option value="class11">Class 11</option>
+                <option value="class12">Class 12</option>
+                <option value="classJEE MAIN">JEE MAIN</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="fType" class="filter-label">📝 Select Test Type</label>
+            <select id="fType" onchange="handleTestTypeChange()">
+                <option value="all" selected>All Test Types</option>
+                <option value="full_mock">Full Mock Test</option>
+                <option value="subject_test">Subject-wise Mock Test</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="fSubject" class="filter-label">📚 Select Subject</label>
+            <select id="fSubject" onchange="loadTests()">
+                <option value="all" selected>All Subjects</option>
+                <option value="Maths">Mathematics</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+            </select>
+        </div>
     </div>
 
     <div class="test-grid" id="testGrid"></div>
@@ -184,21 +197,38 @@
         const fSubject = document.getElementById("fSubject").value;
 
         try {
-            let q = query(collection(db, "exam_tests"), 
-                where("exam", "==", "jee_main"), 
-                where("class", "==", fClass), 
-                where("testType", "==", fType)
-            );
-            const snap = await getDocs(q);
+            let constraints = [where("exam", "==", "jee_main")];
+            if (fClass !== "all") constraints.push(where("class", "==", fClass));
+            if (fType !== "all") constraints.push(where("testType", "==", fType));
+            
+            const snap = await getDocs(query(collection(db, "exam_tests"), ...constraints));
             
             let html = "";
             snap.forEach(doc => {
                 const data = doc.data();
                 if (fSubject !== "all" && data.subject !== fSubject) return;
                 
+                let cardColor = '#3b82f6'; // Default
+                if (data.testType === 'full_mock' || data.subject === 'Full Syllabus') {
+                    cardColor = '#8b5cf6'; // Purple for Full Mock Test
+                } else if (data.subject === 'Physics') {
+                    cardColor = '#3b82f6'; // Blue for Physics
+                } else if (data.subject === 'Chemistry') {
+                    cardColor = '#10b981'; // Emerald Green for Chemistry
+                } else if (data.subject === 'Maths') {
+                    cardColor = '#ef4444'; // Red for Mathematics
+                } else {
+                    let hash = 0;
+                    for (let i = 0; i < doc.id.length; i++) {
+                        hash = doc.id.charCodeAt(i) + ((hash << 5) - hash);
+                    }
+                    const colors = ['#f59e0b', '#ec4899', '#06b6d4'];
+                    cardColor = colors[Math.abs(hash) % colors.length];
+                }
+
                 const chapStr = data.chapter ? `<p>📖 <strong>Chapter:</strong> ${data.chapter}</p>` : "";
                 
-                html += `<div class="test-card">
+                html += `<div class="test-card" style="border-top-color: ${cardColor};">
                     <h3>${data.title}</h3>
                     <div class="meta">
                         <p>📚 <strong>Subject:</strong> ${data.subject}</p>
@@ -206,7 +236,7 @@
                         <p>❓ <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
                         ${chapStr}
                     </div>
-                    <button class="start-btn" onclick="window.location.href='jee_main_quiz.html?id=${doc.id}'">Start Test</button>
+                    <button class="start-btn" style="background-color: ${cardColor};" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" onclick="window.location.href='jee_main_quiz.html?id=${doc.id}'">Start Test</button>
                 </div>`;
             });
             
