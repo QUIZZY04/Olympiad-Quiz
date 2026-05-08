@@ -648,6 +648,51 @@ font-size:28px;
     .sticky-actions { bottom: 15px; right: 15px; flex-direction: row; gap: 8px; z-index: 99999; }
     .sticky-btn { padding: 8px 14px; font-size: 12px; }
 }
+
+/* JEE SECTION */
+.jee-section {
+    background: linear-gradient(-45deg, #eff6ff, #f8fafc, #e0f2fe, #f0fdfa);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding: 85px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.jee-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.jee-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.jee-card-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: -0.02em;
+}
+.jee-card ul { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; margin-left: 0; }
+.jee-card li { position: relative; padding-left: 30px; margin-bottom: 12px; color: #334155; font-weight: 600; font-size: 1.05rem; }
+.jee-card li::before { content: '✓'; position: absolute; left: 0; color: #10b981; font-weight: 900; font-size: 1.1rem; }
+.badge-new { background: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; position: absolute; top: -14px; right: 30px; box-shadow: 0 4px 10px rgba(239,68,68,0.3); }
 </style>
 </head>
 
@@ -736,6 +781,51 @@ Experience an exam-like practice environment for <strong>Class 1 to 10</strong> 
 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900" alt="Young student preparing for Olympiad online mock test">
 </div>
 
+</div>
+</section>
+
+<!-- FREE JEE SECTION -->
+<section class="jee-section">
+<div class="container">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <div class="badge" style="margin-bottom: 15px; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15); background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-size: 14px;">🌟 100% Free Access</div>
+        <h2 class="title" style="font-size: 2.8rem;">🚀 FREE JEE Main & JEE Advanced Mock Tests</h2>
+        <p class="sub" style="max-width: 850px;">Practice real exam-level CBT mock tests with instant results, detailed solutions, ranking, and proctored environment — completely FREE.</p>
+    </div>
+    
+    <div class="grid" style="gap: 40px;">
+        <!-- Card 1 -->
+        <div class="jee-card" style="border-top: 5px solid #3b82f6;">
+            <div class="badge-new">NEW</div>
+            <h3 class="jee-card-title"><span style="font-size: 2.5rem;">📐</span> JEE Main Mock Tests</h3>
+            <ul>
+                <li>Full Syllabus Mock Tests</li>
+                <li>Physics, Chemistry & Mathematics</li>
+                <li>Latest NTA Pattern</li>
+                <li>Instant Results & Solutions</li>
+                <li>CBT Exam Interface</li>
+                <li>Performance Analytics</li>
+                <li>Free Access</li>
+            </ul>
+            <a href="jee_main.html" class="btn" style="background: #3b82f6; color: white; width: 100%; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 15px;">Start JEE Main Test</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="jee-card" style="border-top: 5px solid #6366f1;">
+            <div class="badge-new" style="background: #6366f1; box-shadow: 0 4px 10px rgba(99,102,241,0.3);">NEW</div>
+            <h3 class="jee-card-title"><span style="font-size: 2.5rem;">🎓</span> JEE Advanced Mock Tests</h3>
+            <ul>
+                <li>Advanced Level Questions</li>
+                <li>Paper 1 & Paper 2 Practice</li>
+                <li>IIT Level Difficulty</li>
+                <li>Detailed Solutions</li>
+                <li>Real Exam Simulation</li>
+                <li>Time-Based Practice</li>
+                <li>Completely Free</li>
+            </ul>
+            <a href="jee-list.html" class="btn" style="background: #6366f1; color: white; width: 100%; text-align: center; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 15px;">Start JEE Advanced Test</a>
+        </div>
+    </div>
 </div>
 </section>
 
