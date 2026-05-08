@@ -849,12 +849,18 @@ border-top:1px solid var(--border);
             <p class="muted">Create a combined Full JEE Main mock test by pasting Physics, Mathematics, and Chemistry questions separately.</p>
             
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
-                <div><label>Exam Category</label><select id="fullJmnExam"><option value="jee_main">JEE Main</option></select></div>
+                <div><label>Exam Category</label><select id="fullJmnExam" onchange="window.updateFullJmnTitleOptions()"><option value="jee_main">JEE Main</option></select></div>
                 <div><label>Class</label><select id="fullJmnClass">
                     <option value="class11">Class 11</option>
                     <option value="class12">Class 12</option>
                     <option value="classJEE MAIN">JEE MAIN</option>
                 </select></div>
+                <div>
+                    <label>Test Title Base</label>
+                    <select id="fullJmnTitleBase" onchange="window.calculateNextFullJmnTestNumber()">
+                        <option value="">Select Base Title...</option>
+                    </select>
+                </div>
                 <div><label>Final Test Title</label><input type="text" id="fullJmnTitle" placeholder="e.g. JEE MAIN FULL MOCK TEST 1" required></div>
                 <div><label>Duration (Minutes)</label><input type="number" id="fullJmnDuration" value="180"></div>
                 <div><label>Total Marks</label><input type="number" id="fullJmnTotalMarks" value="300"></div>
@@ -1249,7 +1255,7 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
-        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions();
+        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions();
     } else {
         window.location.href = "login.html";
     }
@@ -1999,6 +2005,44 @@ window.calculateNextJmnTestNumber = async function() {
     } catch (e) {
         console.error(e);
         document.getElementById("jmnTitle").value = baseTitle + " 1";
+    }
+};
+
+window.updateFullJmnTitleOptions = function() {
+    const exam = document.getElementById("fullJmnExam").value;
+    const titleBaseSelect = document.getElementById("fullJmnTitleBase");
+    
+    let options = '<option value="">Select Base Title...</option>';
+    if (exam === "jee_main") {
+        options += '<option value="JEE MAIN FULL MOCK TEST">JEE MAIN FULL MOCK TEST</option>';
+    }
+    titleBaseSelect.innerHTML = options;
+};
+
+window.calculateNextFullJmnTestNumber = async function() {
+    const baseTitle = document.getElementById("fullJmnTitleBase").value;
+    if (!baseTitle) {
+        return;
+    }
+    document.getElementById("fullJmnTitle").value = "Calculating...";
+    try {
+        const q = query(collection(db, "exam_tests"), where("exam", "==", document.getElementById("fullJmnExam").value));
+        const snap = await getDocs(q);
+        let maxNum = 0;
+        snap.forEach(doc => {
+            const t = doc.data().title;
+            if (t && t.toUpperCase().startsWith(baseTitle.toUpperCase())) {
+                const numStr = t.substring(baseTitle.length).trim();
+                const num = parseInt(numStr);
+                if (!isNaN(num) && num > maxNum) {
+                    maxNum = num;
+                }
+            }
+        });
+        document.getElementById("fullJmnTitle").value = baseTitle + " " + (maxNum + 1);
+    } catch (e) {
+        console.error(e);
+        document.getElementById("fullJmnTitle").value = baseTitle + " 1";
     }
 };
 
