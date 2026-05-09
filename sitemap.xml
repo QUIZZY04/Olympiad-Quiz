@@ -66,7 +66,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-<<<<<<< HEAD
   <url>
     <loc>https://olympiadquiz.org/imo-class-5.html</loc>
     <changefreq>monthly</changefreq>
@@ -127,8 +126,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-=======
->>>>>>> f00dbec4581c331a7af879b5542b8cf0b365c949
 
   <!-- ================= Value & Content Pages ================= -->
   <url>
@@ -261,8 +258,4 @@
     <priority>0.5</priority>
   </url>
   
-<<<<<<< HEAD
 </urlset>
-=======
-</urlset>
->>>>>>> f00dbec4581c331a7af879b5542b8cf0b365c949
