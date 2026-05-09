@@ -7,5 +7,7 @@ Disallow: /result.html
 Disallow: /checkout.html
 Disallow: /neet_quiz.html
 Disallow: /jee-quiz.html
+Disallow: /jee_main_quiz.html
+Disallow: /analytics.html
 
 Sitemap: https://olympiadquiz.org/sitemap.xml
