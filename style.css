@@ -960,3 +960,11 @@ select {
     font-size: 0.9rem;
     color: var(--muted);
 }
+
+/* ================= DESKTOP/LAPTOP SCALING OPTIMIZATION ================= */
+/* Scales down the UI on larger screens so pages don't look oversized or heavy */
+@media (min-width: 1024px) {
+    body {
+        zoom: 0.85; /* Scales the entire page down to 85% of its original size */
+    }
+}
