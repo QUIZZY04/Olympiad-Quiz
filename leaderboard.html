@@ -498,6 +498,17 @@ window.location.replace("login.html")
 return
 }
 document.body.style.visibility = 'visible';
+
+const providerIds = user.providerData.map(p => p.providerId);
+const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
+const isAdminUser = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+
+if ((!hasEmailOrGoogle || !hasPhone) && !isAdminUser) {
+    window.location.replace("signup.html?mode=completion");
+    return;
+}
+
 if (user.email === "madhhu52@gmail.com") {
     document.getElementById("adminTab").style.display = "inline";
     isAdmin = true;
