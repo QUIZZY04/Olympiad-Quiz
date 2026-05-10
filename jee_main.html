@@ -124,8 +124,15 @@
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
         <a href="dashboard.html">Dashboard</a>
-        <a href="mock.html">Mock Tests</a>
-        <a href="chapterwise.html">Chapterwise</a>
+        <div class="nav-dropdown">
+            <a href="#" class="dropbtn">Students Zone</a>
+            <div class="nav-dropdown-content">
+                <a href="mock.html">Mock Tests</a>
+                <a href="chapterwise.html">Chapterwise</a>
+                <a href="study.html">Study Material</a>
+                <a href="blog.html">Success Guides</a>
+            </div>
+        </div>
         <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
             <a href="#" class="dropbtn active" style="color: var(--brand);">Senior Exams</a>
@@ -136,7 +143,6 @@
             </div>
         </div>
         <a href="leaderboard.html">Leaderboard</a>
-        <a href="study.html">Study Material</a>
         <div class="nav-actions">
             <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600; text-decoration:none;">Admin</a>
             <a onclick="logout()" class="login-link" style="color: white; cursor: pointer; background: #ef4444;">Logout</a>
