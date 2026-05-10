@@ -373,6 +373,7 @@ border-top:1px solid var(--border);
                     <tr>
                         <th>Date</th>
                         <th>User Email</th>
+                        <th>User Details</th>
                         <th>Question ID</th>
                         <th>Question Info</th>
                         <th>Message</th>
@@ -1731,11 +1732,14 @@ function loadFeedback() {
             }
             const email = f.email || f.userEmail || "N/A";
             return { id: d.id, f, date, qText, qDetails, email };
+            const name = f.name || "Student";
+            return { id: d.id, f, date, qText, qDetails, email, name };
         }));
         
         let html="";
         rowsData.forEach(row => { 
             html+=`<tr><td>${row.date}</td><td><span style="font-size:12px; color:var(--muted);">${row.email}</span></td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;"><button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button><button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button></td></tr>`; 
+            html+=`<tr><td>${row.date}</td><td><b>${row.name}</b><br><span style="font-size:12px; color:var(--muted);">${row.email}</span></td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;"><button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button><button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button></td></tr>`; 
         });
         if (html === "") html = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No error reports found.</td></tr>";
         document.getElementById("feedbackTable").innerHTML=html;
