@@ -105,28 +105,11 @@
         <p>Comprehensive Biology, Physics, and Chemistry practice designed for medical aspirants.</p>
     </div>
 
-    <div class="filter-bar">
-        <select id="fClass" onchange="loadTests()">
-            <option value="all" selected>All Grades</option>
-            <option value="class11">Class 11</option>
-            <option value="class12">Class 12</option>
-            <option value="classJEE MAIN">JEE MAIN</option>
-        </select>
-        <select id="fType" onchange="handleTestTypeChange()">
-            <option value="all" selected>All Test Types</option>
-            <option value="full_mock">Full Mock Tests</option>
-            <option value="subject_test">Subject-wise Tests</option>
-        </select>
-        <select id="fSubject" onchange="loadTests()">
-            <option value="all" selected>All Subjects</option>
-            <option value="Biology">Biology</option>
-            <option value="Physics">Physics</option>
-            <option value="Chemistry">Chemistry</option>
-        </select>
-    </div>
-
-    <div class="test-grid" id="testGrid">
-        <div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px;">Initializing test engine...</div>
+    <div style="text-align: center; padding: 60px 20px; background: var(--surface); border: 2px dashed var(--brand); border-radius: 24px; margin-top: 20px; box-shadow: var(--shadow-sm);">
+        <div style="font-size: 60px; margin-bottom: 20px;">🚀</div>
+        <h2 style="font-size: 2.2rem; color: var(--text); margin-bottom: 15px; font-weight: 800;">Coming Soon!</h2>
+        <p style="color: var(--muted); font-size: 1.15rem; max-width: 600px; margin: 0 auto;">We are currently crafting high-quality, NTA-pattern mock tests and comprehensive practice materials for NEET aspirants. Stay tuned for an incredible learning experience!</p>
+        <a href="dashboard.html" style="display: inline-block; margin-top: 30px; background: var(--brand); color: white; padding: 14px 35px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); transition: 0.3s;">Return to Dashboard</a>
     </div>
 </div>
 
@@ -157,78 +140,8 @@
                 window.location.replace("signup.html?mode=completion");
                 return;
             }
-            handleTestTypeChange(); // Set initial state and load tests
         } 
     });
-
-    window.handleTestTypeChange = function() {
-        const testType = document.getElementById('fType').value;
-        const subjectSelect = document.getElementById('fSubject');
-
-        if (testType === 'full_mock') {
-            subjectSelect.value = 'all'; // Reset to 'All Subjects' for full mock
-            subjectSelect.disabled = true;
-        } else {
-            subjectSelect.disabled = false;
-        }
-        window.loadTests();
-    }
-
-    window.loadTests = async function() {
-        const grid = document.getElementById("testGrid");
-        grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px;'>Fetching exams...</div>";
-        
-        const fClass = document.getElementById("fClass").value;
-        const fType = document.getElementById("fType").value;
-        const fSubject = document.getElementById("fSubject").value;
-
-        try {
-            let constraints = [where("exam", "==", "neet")];
-            if (fClass !== "all") constraints.push(where("class", "==", fClass));
-            if (fType !== "all") constraints.push(where("testType", "==", fType));
-            
-            const snap = await getDocs(query(collection(db, "exam_tests"), ...constraints));
-            
-            let html = "";
-            snap.forEach(doc => {
-                const data = doc.data();
-                if (fSubject !== "all" && data.subject !== fSubject && data.subject !== "Full Syllabus") return;
-                
-                let hash = 0;
-                for (let i = 0; i < doc.id.length; i++) {
-                    hash = doc.id.charCodeAt(i) + ((hash << 5) - hash);
-                }
-                const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
-                const cardColor = colors[Math.abs(hash) % colors.length];
-
-                const chapStr = data.chapter ? `<p>📖 <strong>Chapter:</strong> ${data.chapter}</p>` : "";
-                const route = fType === 'quick_quiz' ? 'neet_quiz.html' : 'neet_quiz.html'; // Defaulting to central quiz handler
-                
-                html += `<div class="test-card" style="border-top-color: ${cardColor};">
-                    <h3>${data.title}</h3>
-                    <div class="meta">
-                        <p>📚 <strong>Subject:</strong> ${data.subject}</p>
-                        <p>⏱️ <strong>Duration:</strong> ${data.duration} mins</p>
-                        <p>❓ <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
-                        ${chapStr}
-                    </div>
-                    <button class="start-btn" style="background-color: ${cardColor};" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" onclick="window.location.href='${route}?id=${doc.id}'">Start Test</button>
-                </div>`;
-            });
-            
-            grid.innerHTML = html || "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px; border: 1px dashed var(--border); border-radius: 16px; background: var(--surface);'>No tests found for this filter combination.</div>";
-        } catch(e) { 
-            if (e.message.includes("requires an index")) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; color: var(--danger); padding: 30px; border: 1px solid var(--danger); border-radius: 10px; background: rgba(239, 68, 68, 0.05); text-align: left;">
-                    <b style="font-size: 18px;">🛠️ Setup Required: Database Index</b><br><br>
-                    Your database needs an index to filter tests by these fields.<br>
-                    <a href="${e.message.match(/https:\/\/console\.firebase\.google\.com[^\s]+/)?.[0]}" target="_blank" style="color: var(--brand); font-weight: bold; text-decoration: underline;">Click here to generate the index automatically in Firebase.</a>
-                </div>`;
-            } else {
-                grid.innerHTML = `<div style="grid-column:1/-1; color: #ef4444; text-align:center; padding:20px;">Database Error: ${e.message}</div>`; 
-            }
-        }
-    };
 
     window.logout = async () => { 
         if(confirm("Logout?")) { 
