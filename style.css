@@ -966,5 +966,9 @@ select {
 @media (min-width: 1024px) {
     body {
         zoom: 0.85; /* Scales the entire page down to 85% of its original size */
+@media (min-width: 900px) {
+    html, body {
+        font-size: 14px !important; /* Shrinks rem-based fonts */
+        zoom: 0.80 !important; /* Forces the entire page to scale down to 80% on laptops */
     }
 }
