@@ -949,3 +949,96 @@ exports.sendLiveQuizRegistrationEmail = onDocumentCreated(
     }
   }
 );
+
+// =================================================================
+// 8. FEEDBACK & ERROR REPORT ACKNOWLEDGEMENT EMAILS
+// =================================================================
+
+const ackEmailHtml = (name, title, message) => `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding: 20px;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
+          <tr>
+            <td align="center" style="background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%); padding: 40px 20px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 800;">${title}</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 35px 30px; color: #0f172a; line-height: 1.6;">
+              <p style="font-size: 16px; margin: 0 0 20px;">Hello <strong>${name}</strong>,</p>
+              <p style="font-size: 16px; margin: 0 0 20px;">${message}</p>
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <p style="margin: 0; font-size: 15px; color: #475569;">
+                  In case of any more suggestions, issues, or if you need further help, please feel free to reach out to us directly at:<br><br>
+                  <a href="mailto:admin@olympiadquiz.org" style="color: #4f46e5; font-weight: bold; text-decoration: none;">admin@olympiadquiz.org</a>
+                </p>
+              </div>
+              <p style="font-size: 16px; color: #64748b; margin-top: 15px;">
+                Best regards,<br>
+                The Olympiad Portal Team
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                © 2024 Olympiad Portal. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>`;
+
+/**
+ * Triggered when a new document is created in the 'feedbacks' collection (General Experience Feedback).
+ */
+exports.sendFeedbackAckEmail = onDocumentCreated(
+  {
+    document: "feedbacks/{docId}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    const data = event.data?.data();
+    if (!data || !data.email || data.email === "N/A") return;
+
+    try {
+      const brevoApi = getBrevoClient();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: data.email, name: data.name || "Student" }];
+      sendSmtpEmail.subject = "Thank you for your Feedback! 🌟";
+      const msg = "Thank you for taking the time to share your experience and feedback with us. Your insights are incredibly valuable and help us continuously improve our platform for all students.";
+      sendSmtpEmail.htmlContent = ackEmailHtml(data.name || "Student", "Thank You for Your Feedback! 🌟", msg);
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
+    } catch (error) { console.error("Error sending feedback ack email:", error.message); }
+  }
+);
+
+/**
+ * Triggered when a new document is created in the 'feedback' collection (Question Error Reports).
+ */
+exports.sendErrorReportAckEmail = onDocumentCreated(
+  {
+    document: "feedback/{docId}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    const data = event.data?.data();
+    if (!data || !data.email || data.email === "N/A") return;
+
+    try {
+      const brevoApi = getBrevoClient();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: data.email, name: data.name || "Student" }];
+      sendSmtpEmail.subject = "Error Report Received 🛠️";
+      const msg = "Thank you for reporting an issue regarding a question on our platform. Our academic team has received your report and will review it immediately to ensure accuracy.";
+      sendSmtpEmail.htmlContent = ackEmailHtml(data.name || "Student", "Error Report Received 🛠️", msg);
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
+    } catch (error) { console.error("Error sending error report ack email:", error.message); }
+  }
+);

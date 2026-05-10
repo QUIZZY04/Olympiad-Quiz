@@ -534,8 +534,13 @@ window.submitReport = async () => {
 
     if (!msg.trim()) { alert("Please describe the issue."); return; }
 
+    const currentUser = auth.currentUser;
+
     try {
         await addDoc(collection(db, "feedback"), {
+            uid: currentUser?.uid || "anonymous",
+            name: currentUser?.displayName || "Student",
+            email: currentUser?.email || "N/A",
             questionId: qId,
             message: msg,
             class: qClass,
