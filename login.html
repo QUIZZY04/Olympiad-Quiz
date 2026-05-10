@@ -449,10 +449,13 @@ let isRedirecting = false;
 async function handleAuthSuccess(user) {
     if (isRedirecting) return;
     
-    // Require Email/Password or Google Credential
+    // Require BOTH Email/Google AND Phone Credentials
     const providerIds = user.providerData.map(p => p.providerId);
     const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-    if (!hasEmailOrGoogle && (!user.email || user.email.trim().toLowerCase() !== "madhhu52@gmail.com")) {
+    const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
+    const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+    
+    if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
         document.getElementById('incompleteProfileModal').style.display = 'flex';
         return;
     }
@@ -603,17 +606,7 @@ document.getElementById("otpForm").addEventListener("submit", async (e) => {
     isManualLogin = true;
     try {
         const result = await confirmationResult.confirm(code);
-        const additionalInfo = getAdditionalUserInfo(result);
-        if (additionalInfo && additionalInfo.isNewUser) {
-            // Immediately delete the mistakenly created credential
-            const userToDelete = auth.currentUser;
-            if (userToDelete) {
-                await deleteUser(userToDelete).catch(() => signOut(auth));
-            }
-            document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            return;
-        }
+        // Do not delete new users, force them to complete their profile
         handleAuthSuccess(result.user);
     } catch (err) {
         isManualLogin = false;
@@ -654,17 +647,7 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
     isManualLogin = true;
     try {
         const result = await signInWithPopup(auth, provider);
-        const additionalInfo = getAdditionalUserInfo(result);
-        if (additionalInfo && additionalInfo.isNewUser) {
-            // Immediately delete the mistakenly created credential
-            const userToDelete = auth.currentUser;
-            if (userToDelete) {
-                await deleteUser(userToDelete).catch(() => signOut(auth));
-            }
-            document.getElementById('notRegisteredMsg').innerText = "Account not found. Please create your account first.";
-            document.getElementById('notRegisteredModal').style.display = 'flex';
-            return;
-        }
+        // Do not delete new users, force them to complete their profile
         handleAuthSuccess(result.user);
     } catch (err) { 
         alert(err.message); 

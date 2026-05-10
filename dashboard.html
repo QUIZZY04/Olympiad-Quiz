@@ -577,12 +577,14 @@ onAuthStateChanged(auth, async (user) => {
         if (userDoc.exists()) {
             const data = userDoc.data();
 
-                const providerIds = user.providerData.map(p => p.providerId);
-                const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-                if (!hasEmailOrGoogle && !isAdmin) {
-                    window.location.replace("signup.html?mode=completion");
-                    return;
-                }
+            const providerIds = user.providerData.map(p => p.providerId);
+            const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+            const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
+            
+            if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
+                window.location.replace("signup.html?mode=completion");
+                return;
+            }
 
             if ((!data.registrationCompleted && !data.signupCompleted) && !isAdmin) {
                 window.location.replace("signup.html?mode=completion");
