@@ -376,7 +376,8 @@ exports.sendResultEmail = onDocumentWritten(
     }
 
     const accuracy = Math.round((Number(score) / Number(total)) * 100);
-    const testType = afterData.isChampionship ? "Live Quiz Arena" : (afterData.topicName ? "Chapterwise Practice" : "Full Mock Test");
+    const isLiveQuiz = afterData.isChampionship === true;
+    const testType = isLiveQuiz ? "Live Quiz Arena" : (afterData.topicName ? "Chapterwise Practice" : "Full Mock Test");
     const subject = afterData.subject ? afterData.subject.charAt(0).toUpperCase() + afterData.subject.slice(1) : "General";
 
     try {
@@ -385,8 +386,74 @@ exports.sendResultEmail = onDocumentWritten(
 
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: userEmail, name: userName }];
-      sendSmtpEmail.subject = `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`;
-      sendSmtpEmail.htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+      sendSmtpEmail.subject = isLiveQuiz 
+        ? `🏆 E-Certificate of Participation: ${subject} Live Olympiad` 
+        : `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`;
+
+      let htmlContent = "";
+
+      if (isLiveQuiz) {
+        const issueDate = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 20px; font-family: 'Georgia', serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table width="700" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 15px solid #1e293b; padding: 10px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+          <tr>
+            <td style="border: 2px solid #cbd5e1; padding: 50px 40px;">
+              <h1 style="color: #1e293b; font-size: 38px; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 2px;">Certificate of Participation</h1>
+              <div style="width: 120px; height: 3px; background-color: #ff6b00; margin: 0 auto 35px auto;"></div>
+              
+              <p style="font-size: 20px; color: #475569; margin: 0 0 25px 0; font-family: 'Arial', sans-serif;">This is proudly presented to</p>
+              
+              <h2 style="font-size: 46px; color: #ff6b00; margin: 0 0 25px 0; font-family: 'Times New Roman', serif; font-style: italic;">${userName}</h2>
+              
+              <p style="font-size: 18px; color: #475569; line-height: 1.8; margin: 0 0 40px 0; font-family: 'Arial', sans-serif;">
+                For successfully participating and demonstrating exceptional effort in the<br>
+                <strong style="color: #1e293b; font-size: 20px;">${subject} Live Olympiad Quiz</strong><br>
+                conducted by Olympiad Portal.
+              </p>
+
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 0 auto 40px auto; width: 70%; font-family: 'Arial', sans-serif;">
+                <table width="100%">
+                  <tr>
+                    <td align="center" style="font-size: 14px; color: #64748b; text-transform: uppercase; padding-bottom: 5px;">Score Achieved</td>
+                    <td align="center" style="font-size: 14px; color: #64748b; text-transform: uppercase; padding-bottom: 5px;">Accuracy</td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="font-size: 26px; font-weight: bold; color: #1e293b;">${score}/${total}</td>
+                    <td align="center" style="font-size: 26px; font-weight: bold; color: #10b981;">${accuracy}%</td>
+                  </tr>
+                </table>
+              </div>
+
+              <table width="100%" style="margin-top: 30px; font-family: 'Arial', sans-serif;">
+                <tr>
+                  <td align="center" width="50%">
+                    <p style="margin: 0; font-size: 18px; color: #1e293b; font-weight: bold; border-bottom: 1px solid #94a3b8; display: inline-block; padding-bottom: 5px; width: 160px;">${issueDate}</p>
+                    <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b; text-transform: uppercase;">Date of Issue</p>
+                  </td>
+                  <td align="center" width="50%">
+                    <p style="margin: 0; font-size: 24px; color: #1e293b; font-weight: bold; font-family: 'Brush Script MT', cursive; border-bottom: 1px solid #94a3b8; display: inline-block; padding-bottom: 5px; width: 160px;">Olympiad Portal</p>
+                    <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b; text-transform: uppercase;">Official Organizer</p>
+                  </td>
+                </tr>
+              </table>
+              
+            </td>
+          </tr>
+        </table>
+        
+        <p style="font-family: Arial, sans-serif; font-size: 15px; color: #64748b; margin-top: 25px;">
+          Save this email or take a screenshot to preserve your certificate.<br>
+          View your detailed analysis on the <a href="https://olympiadquiz.org/dashboard.html" style="color: #4f46e5; text-decoration: none;">Dashboard</a>.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>`;
+      } else {
+        htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td align="center" style="padding: 20px;">
@@ -467,6 +534,9 @@ exports.sendResultEmail = onDocumentWritten(
     </tr>
   </table>
 </body>`;
+      }
+
+      sendSmtpEmail.htmlContent = htmlContent;
 
       await brevoApi.sendTransacEmail(sendSmtpEmail);
       console.log(`Result email successfully sent to: ${userEmail} for result ID: ${resultId}`);
