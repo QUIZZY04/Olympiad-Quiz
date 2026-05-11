@@ -1748,22 +1748,22 @@ function loadFeedback() {
 window.deleteFB = async (id) => { await deleteDoc(doc(db, "feedback", id)); };
 
 function loadExpFeedback() {
-    onSnapshot(query(expFeedbackRef, orderBy("date", "desc")), (snap) => {
+    onSnapshot(query(expFeedbackRef, orderBy("timestamp", "desc")), (snap) => {
         let html=""; snap.forEach(d => { 
             const f=d.data(); 
-            const dateStr = f.date instanceof Timestamp ? f.date.toDate().toLocaleDateString() : f.date;
+            const dateStr = f.timestamp ? f.timestamp.toDate().toLocaleString() : (f.date || 'N/A');
             
             const ratingCat = `<div><b>${f.rating || 'N/A'}</b></div><div style="font-size:11px; color:var(--brand);">${f.category || 'General'}</div>`;
             const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
             
-            html+=`<tr><td>${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td>${f.suggestion || '-'}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')">🗑</button></td></tr>`; 
+            html+=`<tr><td>${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td>${f.suggestion || '-'}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')">🗑 Delete</button></td></tr>`; 
         });
         if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No feedback reports found.</td></tr>";
         document.getElementById("expFeedbackTable").innerHTML=html;
         document.getElementById("expCount").innerText = snap.size + " Reports";
     });
 }
-window.deleteExpFB = async (id) => { await deleteDoc(doc(db, "feedbacks", id)); };
+window.deleteExpFB = async (id) => { if (confirm("Are you sure you want to delete this feedback?")) { await deleteDoc(doc(db, "feedbacks", id)); } };
 
 window.loadSessions = async () => {
     const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
