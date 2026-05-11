@@ -17,6 +17,8 @@ html {
 /* ================= DEFAULT BODY (Dashboard/Quiz/Result) ================= */
 
 body {
+    display: flex;
+    flex-direction: column;
     background: #f8fafc;
     color: #1e293b;
     min-height: 100vh;
@@ -963,21 +965,23 @@ select {
 
 /* ================= DESKTOP/LAPTOP SCALING OPTIMIZATION ================= */
 /* Scales down the UI on larger screens so pages don't look oversized or heavy */
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
     body {
-        zoom: 0.85; /* Scales the entire page down to 85% of its original size */
+        font-size: 14px !important; /* Shrinks rem-based fonts */
+        zoom: 0.85 !important; /* Forces the entire page to scale down on laptops */
     }
 }
 
-@media (min-width: 900px) {
-    html, body {
-        font-size: 14px !important; /* Shrinks rem-based fonts */
-        zoom: 0.80 !important; /* Forces the entire page to scale down to 80% on laptops */
+@media (min-width: 1200px) {
+    body {
+        zoom: 0.90 !important; /* Adjust scaling slightly for larger monitors */
     }
 }
 
 /* ================= GLOBAL FOOTER ENHANCEMENT ================= */
 footer, .site-footer {
+    width: 100% !important;
+    box-sizing: border-box !important;
     text-align: center !important;
     padding: 40px 20px !important;
     background: #1e293b !important;

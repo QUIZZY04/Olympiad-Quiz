@@ -419,7 +419,7 @@ color:var(--muted);
 
 /* SECTION */
 .section{
-padding:85px 0;
+padding:70px 0;
 }
 
 .title{
@@ -621,6 +621,19 @@ margin-bottom: 10px;
 .blog-btn { color: var(--orange); font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; margin-top: auto; }
 .blog-btn:hover { gap: 8px; }
 
+/* DESKTOP/LAPTOP SCALING OPTIMIZATION */
+@media (min-width: 900px) {
+    body {
+        font-size: 14px !important;
+        zoom: 0.85 !important;
+    }
+}
+@media (min-width: 1200px) {
+    body {
+        zoom: 0.90 !important;
+    }
+}
+
 .blog-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
 
 @media(min-width: 769px) {
@@ -761,6 +774,40 @@ font-size:28px;
     .feat-icon { font-size: 32px; background: #fff7ed; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 16px; flex-shrink: 0; }
     .feat-text h4 { font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
     .feat-text p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+/* ================= GLOBAL FOOTER ENHANCEMENT ================= */
+footer, .site-footer {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    padding: 40px 20px !important;
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-top: 4px solid #ff6b00 !important;
+    margin-top: auto;
+}
+footer a, .site-footer a {
+    color: #f8fafc !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: color 0.3s ease !important;
+}
+footer a:hover, .site-footer a:hover {
+    color: #ff8c1a !important;
+}
+footer div, .site-footer .footer-links {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 15px !important;
+}
+footer p, .site-footer p {
+    margin-top: 15px !important;
+    font-size: 14px !important;
+    color: #94a3b8 !important;
+}
 </style>
 </head>
 
@@ -929,9 +976,9 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </section>
 
 <!-- COMPETITIVE EXAM STATS -->
-<section class="section" style="padding-top: 0; padding-bottom: 20px;">
+<section class="section">
 <div class="container">
-    <div class="stats-banner">
+    <div class="stats-banner" style="margin: 0;">
         <div class="stat-banner-item"><h3>5000+</h3><p>JEE Aspirants</p></div>
         <div class="stat-banner-item"><h3>100K+</h3><p>Questions Bank</p></div>
         <div class="stat-banner-item"><h3>500+</h3><p>Mock Tests</p></div>
@@ -941,7 +988,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </section>
 
 <!-- CLICKABLE TEST CARDS -->
-<section class="section">
+<section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
 <div class="container">
 
 <h2 class="title">Choose Your Practice Zone</h2>
@@ -970,7 +1017,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </section>
 
 <!-- SENIOR COMPETITIVE EXAMS SECTION -->
-<section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<section class="section">
 <div class="container">
     <div style="text-align: center; margin-bottom: 40px;">
         <div class="badge" style="margin-bottom: 15px; box-shadow: 0 2px 10px rgba(255, 107, 0, 0.1);">🎓 Class 11 & 12</div>
@@ -996,7 +1043,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </section>
 
 <!-- LATEST BLOGS SECTION -->
-<section class="section">
+<section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
 <div class="container">
     <div style="text-align: center; margin-bottom: 40px;">
         <div class="badge" style="margin-bottom: 15px; box-shadow: 0 2px 10px rgba(255, 107, 0, 0.1);">📚 Knowledge Base</div>
@@ -1041,7 +1088,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </section>
 
 <!-- TRUST & TESTIMONIALS SECTION -->
-<section class="section" style="background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<section class="section" style="background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%); border-bottom: 1px solid var(--border);">
 <div class="container">
     <div style="text-align: center; margin-bottom: 40px;">
         <div class="badge" style="margin-bottom: 15px; box-shadow: 0 2px 10px rgba(255, 107, 0, 0.1);">🌟 Trusted by Students & Parents</div>
@@ -1089,85 +1136,60 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </div>
 </section>
 
-<!-- WHY OLYMPIAD EXAMS MATTER -->
-<section class="section" style="padding-bottom: 0;">
-<div class="container">
-<div class="seo-box">
-<h2>Why Olympiad Exams Matter for Students</h2>
-<p>
-Early exposure to competitive exams builds a strong academic foundation. Dedicated Olympiad preparation develops logical reasoning, analytical thinking, and problem-solving skills that go far beyond regular school curriculums. 
-Whether a student is preparing using our <a href="imo-free-mock-test.html" style="color: var(--brand); font-weight: 600;">Free IMO Mock Test</a> or <a href="nso-free-mock-test.html" style="color: var(--brand); font-weight: 600;">Free NSO Mock Test</a> series, our platform's competitive environment encourages excellence and acts as the perfect stepping stone for future high-stakes exams like JEE and NEET.
-</p>
-</div>
-</div>
-</section>
-
-<!-- SEO SECTION 1 -->
+<!-- CONTENT & SEO SECTIONS -->
 <section class="section">
 <div class="container">
-<div class="seo-box">
-<h2>Comprehensive Olympiad Preparation Platform</h2>
-<p>
-OlympiadQuiz.org is a trusted destination for students seeking quality practice. We provide an extensive collection of mock exams and online quizzes for students from Class 1 to 12. Regular practice helps students understand the exam pattern, manage time effectively, and dramatically boost their confidence for major exams like SOF, SilverZone, and CREST.
-</p>
+    <div class="seo-box" style="margin-bottom: 40px;">
+        <h2>Why Olympiad Exams Matter for Students</h2>
+        <p>
+        Early exposure to competitive exams builds a strong academic foundation. Dedicated Olympiad preparation develops logical reasoning, analytical thinking, and problem-solving skills that go far beyond regular school curriculums. 
+        Whether a student is preparing using our <a href="imo-free-mock-test.html" style="color: var(--brand); font-weight: 600;">Free IMO Mock Test</a> or <a href="nso-free-mock-test.html" style="color: var(--brand); font-weight: 600;">Free NSO Mock Test</a> series, our platform's competitive environment encourages excellence and acts as the perfect stepping stone for future high-stakes exams like JEE and NEET.
+        </p>
+    </div>
 
-<h3>IMO & NSO Mock Tests</h3>
-<p>
-Prepare for the International Mathematics Olympiad (IMO) and National Science Olympiad (NSO) with our meticulously crafted test series. Each test simulates the real exam environment and comes complete with detailed, step-by-step solutions to help clarify complex concepts in Physics, Chemistry, Biology, and Mathematics.
-</p>
+    <div class="seo-box" style="margin-bottom: 40px;">
+        <h2>Comprehensive Olympiad Preparation Platform</h2>
+        <p>
+        OlympiadQuiz.org is a trusted destination for students seeking quality practice. We provide an extensive collection of mock exams and online quizzes for students from Class 1 to 12. Regular practice helps students understand the exam pattern, manage time effectively, and dramatically boost their confidence for major exams like SOF, SilverZone, and CREST.
+        </p>
 
-<h3>Chapterwise Practice Tests</h3>
-<p>
-To build a solid foundation, students must master topics individually. Our chapterwise modules allow for deeply focused learning. Effortlessly identify your weak areas, whether you need to perfect algebra with a maths chapterwise quiz or grasp complex phenomena in science.
-</p>
-</div>
-</div>
-</section>
+        <h3>IMO & NSO Mock Tests</h3>
+        <p>
+        Prepare for the International Mathematics Olympiad (IMO) and National Science Olympiad (NSO) with our meticulously crafted test series. Each test simulates the real exam environment and comes complete with detailed, step-by-step solutions to help clarify complex concepts in Physics, Chemistry, Biology, and Mathematics.
+        </p>
 
-<!-- LIVE -->
-<section class="section" style="padding-top: 0;">
-<div class="container">
-<div class="live-box">
-<h2 id="liveBoxTitle">Loading Live Test...</h2>
-<p id="liveBoxDesc">Fetching upcoming arena details...</p>
-<a href="live.html" class="btn btn-light">Register Now</a>
-</div>
-</div>
-</section>
+        <h3>Chapterwise Practice Tests</h3>
+        <p>
+        To build a solid foundation, students must master topics individually. Our chapterwise modules allow for deeply focused learning. Effortlessly identify your weak areas, whether you need to perfect algebra with a maths chapterwise quiz or grasp complex phenomena in science.
+        </p>
+    </div>
 
-<!-- JEE FOUNDATION -->
-<section class="section" style="padding-top: 0; padding-bottom: 0;">
-<div class="container">
-<div class="seo-box">
-<h2>JEE Foundation and Grade 11 & 12 Preparation</h2>
-<p>
-For senior students aiming for top engineering and medical colleges, a strong foundation is critical. We offer specialized <strong>JEE Main, JEE Advanced, and NEET practice</strong> tests featuring multi-correct questions, chapter-wise quizzes, and strict negative marking patterns. 
-Evaluate your readiness with a dedicated <strong>Class 11 maths test</strong> or challenge yourself with a rigorous <strong>Class 12 physics quiz</strong>. Our high-level mock exams bridge the gap between standard school board exams and elite competitive entrances.
-</p>
-</div>
-</div>
-</section>
+    <div class="live-box" style="margin-bottom: 40px;">
+        <h2 id="liveBoxTitle">Loading Live Test...</h2>
+        <p id="liveBoxDesc">Fetching upcoming arena details...</p>
+        <a href="live.html" class="btn btn-light">Register Now</a>
+    </div>
 
-<!-- ADDITIONAL SEO SECTION 1 -->
-<section class="section" style="padding-top: 40px; padding-bottom: 0;">
-<div class="container">
-<div class="seo-box">
-<h2>English, Reasoning & General Knowledge</h2>
-<p>
-Beyond core sciences, excelling in language and logic is vital. Our platform provides an exhaustive IEO (English) mock test series to enhance grammar, vocabulary, and reading comprehension. For students aiming to sharpen their mental aptitude, our logical reasoning practice offers complex pattern recognition and analytical puzzles. Additionally, stay ahead of global events with our frequently updated IGKO quizzes designed to build robust general awareness.
-</p>
+    <div class="seo-box" style="margin-bottom: 40px;">
+        <h2>JEE Foundation and Grade 11 & 12 Preparation</h2>
+        <p>
+        For senior students aiming for top engineering and medical colleges, a strong foundation is critical. We offer specialized <strong>JEE Main, JEE Advanced, and NEET practice</strong> tests featuring multi-correct questions, chapter-wise quizzes, and strict negative marking patterns. 
+        Evaluate your readiness with a dedicated <strong>Class 11 maths test</strong> or challenge yourself with a rigorous <strong>Class 12 physics quiz</strong>. Our high-level mock exams bridge the gap between standard school board exams and elite competitive entrances.
+        </p>
+    </div>
 
-<h3>Tackling the Achievers Section & HOTS</h3>
-<p>
-The key to securing international ranks lies in the Achievers Section. These High-Order Thinking Skills (HOTS) questions often carry double the marks. Our modules specifically integrate advanced HOTS questions across Maths, Science, and Reasoning to push your cognitive limits. With detailed solutions, you learn the exact shortcuts required to solve these complex problems efficiently.
-</p>
-</div>
-</div>
-</section>
+    <div class="seo-box" style="margin-bottom: 40px;">
+        <h2>English, Reasoning & General Knowledge</h2>
+        <p>
+        Beyond core sciences, excelling in language and logic is vital. Our platform provides an exhaustive IEO (English) mock test series to enhance grammar, vocabulary, and reading comprehension. For students aiming to sharpen their mental aptitude, our logical reasoning practice offers complex pattern recognition and analytical puzzles. Additionally, stay ahead of global events with our frequently updated IGKO quizzes designed to build robust general awareness.
+        </p>
 
-<!-- SEO SECTION 2 -->
-<section class="section">
-<div class="container">
+        <h3>Tackling the Achievers Section & HOTS</h3>
+        <p>
+        The key to securing international ranks lies in the Achievers Section. These High-Order Thinking Skills (HOTS) questions often carry double the marks. Our modules specifically integrate advanced HOTS questions across Maths, Science, and Reasoning to push your cognitive limits. With detailed solutions, you learn the exact shortcuts required to solve these complex problems efficiently.
+        </p>
+    </div>
+
 <div class="seo-box">
 <h2>Why Choose OlympiadQuiz for Competitive Exams?</h2>
 <p>
@@ -1205,7 +1227,7 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 </section>
 
 <!-- FAQ SECTION -->
-<section class="section" style="padding-top: 20px;">
+<section class="section" style="background: #f8fafc; border-top: 1px solid var(--border);">
 <div class="container">
 <h2 class="title" style="margin-bottom: 40px;">Frequently Asked Questions</h2>
 <div class="faq-container">
@@ -1289,21 +1311,21 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 </div>
 
 <!-- FOOTER -->
-<footer>
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
-        <a href="index.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-        <a href="blog.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Blog</a>
-        <a href="jee_main.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">JEE Main Mock Test</a>
-        <a href="jee-list.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">JEE Advanced Mock Test</a>
-        <a href="neet.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">NEET Mock Test</a>
-        <a href="mock.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Olympiad Mock Tests</a>
-        <a href="features.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Features</a>
-        <a href="about.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" style="color:#cbd5e1;text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="jee_main.html">JEE Main Mock Test</a>
+        <a href="jee-list.html">JEE Advanced Mock Test</a>
+        <a href="neet.html">NEET Mock Test</a>
+        <a href="mock.html">Olympiad Mock Tests</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="term.html">Terms & Conditions</a>
     </div>
-    <p style="font-size:14px; margin: 0;">© 2026 OlympiadQuiz.org • India's Premium Olympiad & JEE Platform. All rights reserved.</p>
+    <p>© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 
 <script>
