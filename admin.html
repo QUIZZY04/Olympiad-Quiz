@@ -722,9 +722,17 @@ border-top:1px solid var(--border);
             <div style="flex:1; min-width:250px;">
                 <label>Select Session</label>
                 <select id="regSessionSelect" style="margin-top:5px;">
+                    <label>Live / Upcoming Sessions</label>
+                    <select id="regSessionSelectLive" style="margin-top:5px;" onchange="document.getElementById('regSessionSelectArchive').value=''">
                     <option value="">Loading sessions...</option>
                 </select>
             </div>
+                <div style="flex:1; min-width:250px;">
+                    <label>Archived Sessions</label>
+                    <select id="regSessionSelectArchive" style="margin-top:5px;" onchange="document.getElementById('regSessionSelectLive').value=''">
+                        <option value="">Loading sessions...</option>
+                    </select>
+                </div>
             <button class="upload" style="background: var(--brand);" onclick="loadRegistrations()">Load Users</button>
         </div>
         <div id="regSummary" style="margin-bottom:15px; font-weight:800; color:var(--brand);"></div>
@@ -2946,17 +2954,29 @@ window.clearStudyContent = function() {
 
 window.loadRegSessionsList = async () => {
     const select = document.getElementById("regSessionSelect");
+    const selectLive = document.getElementById("regSessionSelectLive");
+    const selectArchive = document.getElementById("regSessionSelectArchive");
     try {
         const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
         let html = '<option value="">-- Select a Session --</option>';
         html += '<option value="all">All Live/Upcoming Sessions</option>';
+        let htmlLive = '<option value="">-- Select Live/Upcoming Session --</option>';
+        htmlLive += '<option value="all">All Live/Upcoming Sessions</option>';
+        let htmlArchive = '<option value="">-- Select Archived Session --</option>';
         snap.forEach(d => {
             const s = d.data();
             const date = s.startTime && s.startTime.toDate ? s.startTime.toDate().toLocaleDateString() : '';
             const archiveTag = s.archived ? " [Archived]" : "";
             html += `<option value="${d.id}">${s.title} (${date})${archiveTag}</option>`;
+            if (s.archived) {
+                htmlArchive += `<option value="${d.id}">${s.title} (${date})</option>`;
+            } else {
+                htmlLive += `<option value="${d.id}">${s.title} (${date})</option>`;
+            }
         });
         select.innerHTML = html;
+        selectLive.innerHTML = htmlLive;
+        selectArchive.innerHTML = htmlArchive;
     } catch (e) {
         console.error(e);
     }
@@ -2964,6 +2984,9 @@ window.loadRegSessionsList = async () => {
 
 window.loadRegistrations = async () => {
     const sid = document.getElementById("regSessionSelect").value;
+    const sidLive = document.getElementById("regSessionSelectLive").value;
+    const sidArchive = document.getElementById("regSessionSelectArchive").value;
+    const sid = sidLive || sidArchive;
     const tbody = document.getElementById("registrationsTable");
     const summary = document.getElementById("regSummary");
     
