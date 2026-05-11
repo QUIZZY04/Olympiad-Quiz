@@ -776,6 +776,32 @@ font-size:28px;
     .feat-text h4 { font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
     .feat-text p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
 
+/* SCROLLING BANNER */
+.scrolling-banner-container {
+    background: linear-gradient(90deg, #ff6b00, #ff8c1a);
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    z-index: 998;
+    box-shadow: 0 4px 10px rgba(255, 107, 0, 0.2);
+}
+.scrolling-content {
+    display: inline-block;
+    animation: scroll-left-banner 35s linear infinite;
+    font-weight: 600;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.5px;
+}
+.scrolling-content strong { color: #ffffff; font-weight: 800; }
+.scrolling-content:hover { animation-play-state: paused; }
+@keyframes scroll-left-banner {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+}
+
 /* ================= GLOBAL FOOTER ENHANCEMENT ================= */
 footer, .site-footer {
     width: 100% !important;
@@ -868,6 +894,11 @@ footer p, .site-footer p {
         </div>
     </div>
 </nav>
+
+<!-- DYNAMIC SCROLLING BANNER -->
+<div id="dynamicScrollingBanner" class="scrolling-banner-container" style="display:none;">
+    <div class="scrolling-content" id="scrollingBannerText"></div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1448,7 +1479,8 @@ async function loadLiveSessionBanner() {
         const snap = await getDocs(q);
         const now = new Date();
         
-        let upcomingSession = null;
+        let activeSessions = [];
+        let upcomingSessions = [];
         
         snap.forEach(doc => {
             const s = doc.data();
@@ -1458,11 +1490,21 @@ async function loadLiveSessionBanner() {
             const end = s.endTime.toDate();
             
             if (now < end) { 
-                if (!upcomingSession || start < upcomingSession.startTime.toDate()) {
-                    upcomingSession = s;
+                if (now >= start) {
+                    activeSessions.push(s);
+                } else {
+                    upcomingSessions.push(s);
                 }
             }
         });
+
+        // Pick the soonest upcoming/active session for the static box
+        let upcomingSession = null;
+        if (activeSessions.length > 0) {
+            upcomingSession = activeSessions.reduce((prev, curr) => (curr.startTime.toDate() < prev.startTime.toDate() ? curr : prev));
+        } else if (upcomingSessions.length > 0) {
+            upcomingSession = upcomingSessions.reduce((prev, curr) => (curr.startTime.toDate() < prev.startTime.toDate() ? curr : prev));
+        }
 
         const titleEl = document.getElementById("liveBoxTitle");
         const descEl = document.getElementById("liveBoxDesc");
@@ -1487,6 +1529,30 @@ async function loadLiveSessionBanner() {
             titleEl.innerHTML = "LIVE OLYMPIAD ARENA";
             descEl.innerHTML = "Compete with students nationwide. Check out our Live Arena!";
         }
+
+        // Populate the Scrolling Banner under the navbar
+        const scrollBanner = document.getElementById("dynamicScrollingBanner");
+        const scrollText = document.getElementById("scrollingBannerText");
+        
+        if (scrollBanner && scrollText && upcomingSession) {
+            const subj = upcomingSession.subject ? upcomingSession.subject.charAt(0).toUpperCase() + upcomingSession.subject.slice(1) : "Olympiad";
+            const isLive = now >= upcomingSession.startTime.toDate();
+            let msg = "";
+            if (isLive) {
+                msg = `🔥 <strong>LIVE NOW:</strong> Class 1-10 ${subj} Test`;
+            } else {
+                const dateStr = upcomingSession.startTime.toDate().toLocaleDateString("en-IN", { day: 'numeric', month: 'short' });
+                const timeStr = upcomingSession.startTime.toDate().toLocaleTimeString("en-IN", { hour: '2-digit', minute:'2-digit', hour12: true });
+                msg = `⏳ <strong>UPCOMING LIVE TEST:</strong> Class 1-10 ${subj} on ${dateStr} at ${timeStr}`;
+            }
+            
+            const bannerString = `${msg} &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; <a href="live.html" style="color: var(--brand); background: #ffffff; padding: 4px 14px; border-radius: 20px; font-weight: 800; text-decoration: none; display: inline-block; vertical-align: middle; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">REGISTER HERE ↗</a>`;
+            scrollText.innerHTML = bannerString + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⭐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + bannerString + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⭐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + bannerString;
+            scrollBanner.style.display = "block";
+        } else if (scrollBanner) {
+            scrollBanner.style.display = "none";
+        }
+        
     } catch (e) {
         console.error("Error loading live session banner:", e);
         const titleEl = document.getElementById("liveBoxTitle");
