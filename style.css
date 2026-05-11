@@ -966,9 +966,44 @@ select {
 @media (min-width: 1024px) {
     body {
         zoom: 0.85; /* Scales the entire page down to 85% of its original size */
+    }
+}
+
 @media (min-width: 900px) {
     html, body {
         font-size: 14px !important; /* Shrinks rem-based fonts */
         zoom: 0.80 !important; /* Forces the entire page to scale down to 80% on laptops */
     }
+}
+
+/* ================= GLOBAL FOOTER ENHANCEMENT ================= */
+footer, .site-footer {
+    text-align: center !important;
+    padding: 40px 20px !important;
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-top: 4px solid #ff6b00 !important;
+    margin-top: auto;
+}
+footer a, .site-footer a {
+    color: #f8fafc !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: color 0.3s ease !important;
+}
+footer a:hover, .site-footer a:hover {
+    color: #ff8c1a !important;
+}
+footer div, .site-footer .footer-links {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 15px !important;
+}
+footer p, .site-footer p {
+    margin-top: 15px !important;
+    font-size: 14px !important;
+    color: #94a3b8 !important;
 }
