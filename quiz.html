@@ -156,15 +156,6 @@ box-shadow: var(--shadow-md);
 .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
 .legend-box { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
 
-footer {
-  text-align:center;
-  padding:30px;
-  background:var(--surface);
-  border-top:1px solid var(--border);
-  color:var(--muted);
-  margin-top:40px;
-}
-
 @media (max-width:850px){
 .quiz-top-bar { margin-top: 5px !important; margin-bottom: 5px !important; }
 .quiz-container{flex-direction:column;height:auto;padding:15px;gap:15px;}
@@ -1572,14 +1563,16 @@ window.toggleMenu = function() {
 }
 </script>
 
-<footer>
+<footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-        <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-        <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-        <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+        <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Home</a>
+        <a href="features.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Features</a>
+        <a href="about.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">About Us</a>
+        <a href="contact.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
     </div>
-    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 </body>
 </html>
