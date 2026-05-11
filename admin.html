@@ -720,8 +720,6 @@ border-top:1px solid var(--border);
     <div class="panel-content">
         <div style="display:flex; gap:10px; align-items:end; margin-bottom:15px; flex-wrap:wrap;">
             <div style="flex:1; min-width:250px;">
-                <label>Select Session</label>
-                <select id="regSessionSelect" style="margin-top:5px;">
                     <label>Live / Upcoming Sessions</label>
                     <select id="regSessionSelectLive" style="margin-top:5px;" onchange="document.getElementById('regSessionSelectArchive').value=''">
                     <option value="">Loading sessions...</option>
@@ -1739,14 +1737,12 @@ function loadFeedback() {
                 } catch(e) { qText = "Error loading details"; }
             }
             const email = f.email || f.userEmail || "N/A";
-            return { id: d.id, f, date, qText, qDetails, email };
             const name = f.name || "Student";
             return { id: d.id, f, date, qText, qDetails, email, name };
         }));
         
         let html="";
         rowsData.forEach(row => { 
-            html+=`<tr><td>${row.date}</td><td><span style="font-size:12px; color:var(--muted);">${row.email}</span></td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;"><button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button><button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button></td></tr>`; 
             html+=`<tr><td>${row.date}</td><td><b>${row.name}</b><br><span style="font-size:12px; color:var(--muted);">${row.email}</span></td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;"><button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button><button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button></td></tr>`; 
         });
         if (html === "") html = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No error reports found.</td></tr>";
@@ -1764,7 +1760,7 @@ function loadExpFeedback() {
             const ratingCat = `<div><b>${f.rating || 'N/A'}</b></div><div style="font-size:11px; color:var(--brand);">${f.category || 'General'}</div>`;
             const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
             
-            html+=`<tr><td>${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td>${f.suggestion || '-'}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')">🗑 Delete</button></td></tr>`; 
+            html+=`<tr><td>${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td>${f.suggestion || '-'}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Delete</button></td></tr>`; 
         });
         if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No feedback reports found.</td></tr>";
         document.getElementById("expFeedbackTable").innerHTML=html;
@@ -2953,37 +2949,30 @@ window.clearStudyContent = function() {
 };
 
 window.loadRegSessionsList = async () => {
-    const select = document.getElementById("regSessionSelect");
     const selectLive = document.getElementById("regSessionSelectLive");
     const selectArchive = document.getElementById("regSessionSelectArchive");
     try {
         const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
-        let html = '<option value="">-- Select a Session --</option>';
-        html += '<option value="all">All Live/Upcoming Sessions</option>';
         let htmlLive = '<option value="">-- Select Live/Upcoming Session --</option>';
         htmlLive += '<option value="all">All Live/Upcoming Sessions</option>';
         let htmlArchive = '<option value="">-- Select Archived Session --</option>';
         snap.forEach(d => {
             const s = d.data();
             const date = s.startTime && s.startTime.toDate ? s.startTime.toDate().toLocaleDateString() : '';
-            const archiveTag = s.archived ? " [Archived]" : "";
-            html += `<option value="${d.id}">${s.title} (${date})${archiveTag}</option>`;
             if (s.archived) {
                 htmlArchive += `<option value="${d.id}">${s.title} (${date})</option>`;
             } else {
                 htmlLive += `<option value="${d.id}">${s.title} (${date})</option>`;
             }
         });
-        select.innerHTML = html;
-        selectLive.innerHTML = htmlLive;
-        selectArchive.innerHTML = htmlArchive;
+        if (selectLive) selectLive.innerHTML = htmlLive;
+        if (selectArchive) selectArchive.innerHTML = htmlArchive;
     } catch (e) {
         console.error(e);
     }
 };
 
 window.loadRegistrations = async () => {
-    const sid = document.getElementById("regSessionSelect").value;
     const sidLive = document.getElementById("regSessionSelectLive").value;
     const sidArchive = document.getElementById("regSessionSelectArchive").value;
     const sid = sidLive || sidArchive;
