@@ -368,21 +368,23 @@ border-top:1px solid var(--border);
             <h2 style="color:var(--danger);">🚩 Error Reports</h2>
         </div>
         <div class="panel-content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>User Email</th>
-                        <th>User Details</th>
-                        <th>Question ID</th>
-                        <th>Question Info</th>
-                        <th>Message</th>
-                        <th>Context</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="feedbackTable"></tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>User Email</th>
+                            <th>User Details</th>
+                            <th>Question ID</th>
+                            <th>Question Info</th>
+                            <th>Message</th>
+                            <th>Context</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackTable"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -394,21 +396,23 @@ border-top:1px solid var(--border);
             </div>
         </div>
         <div class="panel-content">
-            <table style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>User Details</th>
-                        <th>Rating & Category</th>
-                        <th>Score & Source</th>
-                        <th>Suggestion</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="expFeedbackTable">
-                    <tr><td colspan="6" style="text-align:center; color: var(--muted);">Loading experience data...</td></tr>
-                </tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>User Details</th>
+                            <th>Rating & Category</th>
+                            <th>Score & Source</th>
+                            <th>Suggestion</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expFeedbackTable">
+                        <tr><td colspan="6" style="text-align:center; color: var(--muted);">Loading experience data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -1760,7 +1764,7 @@ function loadExpFeedback() {
             const ratingCat = `<div><b>${f.rating || 'N/A'}</b></div><div style="font-size:11px; color:var(--brand);">${f.category || 'General'}</div>`;
             const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
             
-            html+=`<tr><td>${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td>${f.suggestion || '-'}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Delete</button></td></tr>`; 
+            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${f.suggestion || '-'}</td><td style="white-space:nowrap; text-align:center;"><button class="delete" onclick="deleteExpFB('${d.id}')" style="margin:0; padding:6px 12px; font-size:12px; min-width:85px;">🗑 Delete</button></td></tr>`; 
         });
         if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No feedback reports found.</td></tr>";
         document.getElementById("expFeedbackTable").innerHTML=html;
