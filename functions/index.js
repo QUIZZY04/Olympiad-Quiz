@@ -196,7 +196,7 @@ exports.sendBulkEmail = onCall({
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 
-  const { subject, htmlContent } = request.data;
+  const { subject, htmlContent, targetEmails } = request.data;
 
   // 2. Input Validation
   if (!subject || !htmlContent) {
@@ -208,30 +208,39 @@ exports.sendBulkEmail = onCall({
   try {
     // 3. Fetch and clean email list using pagination to avoid memory overflow
     const uniqueEmails = new Set();
-    let lastDoc = null;
-    let hasMore = true;
-
-    while (hasMore) {
-      let usersQuery = db.collection("users").select("email").limit(500);
-      if (lastDoc) {
-        usersQuery = usersQuery.startAfter(lastDoc);
-      }
-      const snapshot = await usersQuery.get();
-
-      if (snapshot.empty) {
-        hasMore = false;
-        break;
-      }
-
-      snapshot.docs.forEach((doc) => {
-        if (doc.data().email_consent === false) return;
-        const email = doc.data().email;
+    
+    if (targetEmails && Array.isArray(targetEmails) && targetEmails.length > 0) {
+      targetEmails.forEach((email) => {
         if (email && typeof email === "string" && email.includes("@")) {
           uniqueEmails.add(email.trim());
         }
       });
+    } else {
+      let lastDoc = null;
+      let hasMore = true;
 
-      lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      while (hasMore) {
+        let usersQuery = db.collection("users").select("email").limit(500);
+        if (lastDoc) {
+          usersQuery = usersQuery.startAfter(lastDoc);
+        }
+        const snapshot = await usersQuery.get();
+
+        if (snapshot.empty) {
+          hasMore = false;
+          break;
+        }
+
+        snapshot.docs.forEach((doc) => {
+          if (doc.data().email_consent === false) return;
+          const email = doc.data().email;
+          if (email && typeof email === "string" && email.includes("@")) {
+            uniqueEmails.add(email.trim());
+          }
+        });
+
+        lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      }
     }
 
     const emailList = Array.from(uniqueEmails);
