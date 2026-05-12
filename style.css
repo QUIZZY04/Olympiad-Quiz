@@ -991,6 +991,33 @@ select {
     }
 }
 
+/* ================= BREADCRUMB ================= */
+.breadcrumb {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.breadcrumb a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.breadcrumb a:hover {
+    color: var(--accent);
+}
+.breadcrumb .separator {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
 /* ================= GLOBAL FOOTER ENHANCEMENT ================= */
 footer, .site-footer {
     width: 100% !important;
