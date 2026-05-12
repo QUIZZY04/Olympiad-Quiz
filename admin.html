@@ -565,8 +565,13 @@ border-top:1px solid var(--border);
                     </div>
                 </div>
                 <div id="emailTargetSelection" style="display:none; margin-bottom: 15px;">
-                    <label>Select Users (Hold Ctrl/Cmd to select multiple)</label>
-                    <select id="emailTargetList" multiple style="height: 150px; margin-top: 5px;"></select>
+                    <label>Select Specific Users</label>
+                    <input type="text" id="emailUserSearch" placeholder="Search by name or email..." oninput="filterEmailUsers()" style="margin-top: 5px; margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 12px; font-weight: 600; color: var(--brand);"><span id="selectedEmailCount">0</span> Selected</span>
+                        <button type="button" onclick="clearEmailSelection()" style="padding: 4px 10px; font-size: 11px; margin: 0; background: var(--bg); color: var(--danger); border: 1px solid var(--border);">Clear Selection</button>
+                    </div>
+                    <div id="emailTargetList" style="height: 200px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--surface);"></div>
                 </div>
                 <div>
                     <label>Subject Line</label>
@@ -2661,7 +2666,7 @@ window.toggleEmailTarget = function() {
     const container = document.getElementById("emailTargetSelection");
     if (type === "selected") {
         container.style.display = "block";
-        if (document.getElementById("emailTargetList").options.length === 0) {
+        if (document.getElementById("emailTargetList").innerHTML.trim() === "") {
             loadUserEmailsForBroadcast();
         }
     } else {
@@ -2671,20 +2676,43 @@ window.toggleEmailTarget = function() {
 
 window.loadUserEmailsForBroadcast = async function() {
     const list = document.getElementById("emailTargetList");
-    list.innerHTML = "<option disabled>Loading users...</option>";
+    list.innerHTML = "<div style='color:var(--muted); text-align:center;'>Loading users...</div>";
     try {
         const snap = await getDocs(collection(db, "users"));
         let html = "";
         snap.forEach(doc => {
             const data = doc.data();
             if (data.email) {
-                html += `<option value="${data.email}">${data.name || 'Student'} (${data.email})</option>`;
+                html += `<label class="email-user-row" style="display:flex; align-items:center; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                            <input type="checkbox" value="${data.email}" onchange="updateEmailSelectionCount()" style="width:auto; margin:0;">
+                            <span class="user-text">${data.name || 'Student'} (${data.email})</span>
+                         </label>`;
             }
         });
-        list.innerHTML = html || "<option disabled>No users found</option>";
+        list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users found</div>";
+        updateEmailSelectionCount();
     } catch (e) {
-        list.innerHTML = `<option disabled>Error: ${e.message}</option>`;
+        list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
     }
+};
+
+window.filterEmailUsers = function() {
+    const term = document.getElementById("emailUserSearch").value.toLowerCase();
+    const rows = document.querySelectorAll(".email-user-row");
+    rows.forEach(row => {
+        const text = row.querySelector(".user-text").innerText.toLowerCase();
+        row.style.display = text.includes(term) ? "flex" : "none";
+    });
+};
+
+window.updateEmailSelectionCount = function() {
+    const count = document.querySelectorAll('#emailTargetList input[type="checkbox"]:checked').length;
+    document.getElementById("selectedEmailCount").innerText = count;
+};
+
+window.clearEmailSelection = function() {
+    document.querySelectorAll('#emailTargetList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    updateEmailSelectionCount();
 };
 
 document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) => {
@@ -2700,8 +2728,8 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
     let targetEmails = [];
     
     if (targetType === "selected") {
-        const selectedOptions = Array.from(document.getElementById("emailTargetList").selectedOptions);
-        targetEmails = selectedOptions.map(opt => opt.value);
+        const checkboxes = document.querySelectorAll('#emailTargetList input[type="checkbox"]:checked');
+        targetEmails = Array.from(checkboxes).map(cb => cb.value);
         if (targetEmails.length === 0) {
             alert("Please select at least one user from the list.");
             return;
