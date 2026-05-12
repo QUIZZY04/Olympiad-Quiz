@@ -1280,21 +1280,23 @@ const quill = new Quill('#email-editor', {
 async function uploadAndInsertImage(file) {
     if (!file || !file.type.startsWith('image/')) return;
 
-    const range = quill.getSelection(true);
-    quill.insertText(range.index, '\n[Uploading image...]\n', 'user');
+    let range = quill.getSelection(true);
+    let insertIndex = range ? range.index : quill.getLength();
+    quill.insertText(insertIndex, '[Uploading image...]', 'user');
     
     try {
-        const storageRef = ref(storage, `email_assets/${Date.now()}_${file.name}`);
+        const safeName = file.name ? file.name.replace(/[^a-zA-Z0-9.]/g, '_') : 'pasted_image.png';
+        const storageRef = ref(storage, `email_assets/${Date.now()}_${safeName}`);
         const snapshot = await uploadBytes(storageRef, file);
         const downloadURL = await getDownloadURL(snapshot.ref);
 
-        quill.deleteText(range.index, 21); // Length of placeholder
-        quill.insertEmbed(range.index, 'image', downloadURL);
-        quill.setSelection(range.index + 1, Quill.sources.SILENT);
+        quill.deleteText(insertIndex, 20); // Length of placeholder
+        quill.insertEmbed(insertIndex, 'image', downloadURL);
+        quill.setSelection(insertIndex + 1, Quill.sources.SILENT);
     } catch (error) {
         console.error("Image upload failed:", error);
-        quill.deleteText(range.index, 21);
-        alert("Image upload failed. Please try again.");
+        quill.deleteText(insertIndex, 20);
+        alert(`Image upload failed: ${error.message}`);
     }
 }
 
@@ -1314,13 +1316,18 @@ function imageHandler() {
     };
 }
 
-quill.getModule('toolbar').container.addEventListener('paste', (e) => {
+quill.root.addEventListener('paste', (e) => {
     const clipboardData = e.clipboardData || window.clipboardData;
-    if (clipboardData && clipboardData.files && clipboardData.files.length > 0) {
-        const file = Array.from(clipboardData.files).find(f => f.type.startsWith('image/'));
-        if (file) {
-            e.preventDefault();
-            uploadAndInsertImage(file);
+    if (clipboardData && clipboardData.items) {
+        for (let i = 0; i < clipboardData.items.length; i++) {
+            if (clipboardData.items[i].type.indexOf('image') !== -1) {
+                const file = clipboardData.items[i].getAsFile();
+                if (file) {
+                    e.preventDefault();
+                    uploadAndInsertImage(file);
+                    return;
+                }
+            }
         }
     }
 });
