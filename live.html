@@ -339,7 +339,7 @@
         <div style="margin-top: 15px;">
             <span id="arenaBadge" class="pulse-badge">Live Test Coming Soon</span>
         </div>
-        <p id="permanentInstruction" style="display: none; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text);">Select your grade and subject to Register. <br><span style="font-size: 1rem; font-weight: 600; color: var(--brand);">Registered user select your grade and subject to join the quiz.</span></p>
+        <p id="permanentInstruction" style="display: none; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text);">Select your grade and subject to Register. <br><span style="font-size: 1rem; font-weight: 800; color: var(--danger);">Registered user select your grade and subject to join the quiz on scheduled date and time.</span></p>
     </div>
 
     <div id="filterContainer" style="display: none; justify-content: center; gap: 30px; margin-bottom: 25px; flex-wrap: wrap; background: linear-gradient(135deg, #f5f3ff, #f0f9ff); padding: 25px; border-radius: 24px; border: 1px solid #e0e7ff; box-shadow: 0 20px 40px rgba(0,0,0,0.07);">
@@ -516,6 +516,7 @@
             const uniqueSubjects = new Set();
             const now = new Date();
             let nextSessionDate = null;
+            let nextSessionSubject = null;
 
             allFetchedSessionDocs.forEach(sDoc => {
                 const s = sDoc.data();
@@ -526,6 +527,7 @@
                     const startDate = s.startTime.toDate();
                     if (!nextSessionDate || startDate < nextSessionDate) {
                         nextSessionDate = startDate;
+                        nextSessionSubject = s.subject;
                     }
                 }
             });
@@ -541,7 +543,8 @@
                     minute: "2-digit",
                     hour12: true
                 }).toUpperCase();
-                window.globalHeadingText = `Upcoming Live Test on ${formattedDate} at ${formattedTime}`;
+                const subjStr = nextSessionSubject ? nextSessionSubject.toUpperCase() : "OLYMPIAD";
+                window.globalHeadingText = `Upcoming ${subjStr} Live Test on ${formattedDate} at ${formattedTime}`;
 
                 let schemaScript = document.getElementById("dynamic-event-schema");
                 if (!schemaScript) {
@@ -777,7 +780,8 @@
                     minute: "2-digit",
                     hour12: true
                 }).toUpperCase();
-                arenaBadge.innerText = `Upcoming Live Test on ${formattedDate} at ${formattedTime}`;
+                const subjStr = earliestSession.subject ? earliestSession.subject.toUpperCase() : "OLYMPIAD";
+                arenaBadge.innerText = `Upcoming ${subjStr} Live Test on ${formattedDate} at ${formattedTime}`;
             }
         } else {
             if (arenaBadge) {
