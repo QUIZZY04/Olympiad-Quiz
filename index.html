@@ -224,23 +224,23 @@ nav {
 }
 .nav-important { display: flex; gap: 8px; align-items: center; }
 @media (min-width: 769px) { .nav-important { display: none !important; } }
-.nav-important a { text-decoration: none; font-weight: 700; font-size: 0.75rem; color: var(--brand); background: rgba(255, 107, 0, 0.08); padding: 4px 8px; border-radius: 8px; text-transform: uppercase; }
+.nav-important a, .nav-important button.nav-link-btn { text-decoration: none; font-weight: 700; font-size: 0.75rem; color: var(--brand); background: rgba(255, 107, 0, 0.08); padding: 4px 8px; border-radius: 8px; text-transform: uppercase; border: none; cursor: pointer; font-family: inherit; }
 .menu-toggle { display: none; flex-direction: column; gap: 5px; background: transparent; border: none; cursor: pointer; padding: 5px; z-index: 1001; }
 .menu-toggle span { display: block; width: 25px; height: 3px; background: var(--text); border-radius: 2px; transition: 0.3s; }
 .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; white-space: nowrap; transition: 0.3s; }
 .brand:hover { color: var(--brand); }
 .nav-links { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
-.nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; border-bottom: 3px solid transparent; white-space: nowrap; }
-.nav-links a:hover { color: var(--brand); background: rgba(255, 107, 0, 0.05); }
-.nav-links a.active { color: var(--brand); background: rgba(255, 107, 0, 0.06); border-bottom-color: var(--brand); }
+.nav-links a, .nav-links button.nav-link-btn { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; border-bottom: 3px solid transparent; white-space: nowrap; background: none; border: none; cursor: pointer; font-family: inherit; }
+.nav-links a:hover, .nav-links button.nav-link-btn:hover { color: var(--brand); background: rgba(255, 107, 0, 0.05); }
+.nav-links a.active, .nav-links button.nav-link-btn.active { color: var(--brand); background: rgba(255, 107, 0, 0.06); border-bottom-color: var(--brand); }
 .nav-actions { display: flex; align-items: center; gap: 15px; border-left: 2px solid var(--border); padding-left: 15px; margin-left: 10px; }
-.login-link { font-weight: 700; color: white !important; text-decoration: none; font-size: 0.9rem; background: var(--brand); padding: 10px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
+.login-link { font-weight: 700; color: white !important; text-decoration: none; font-size: 0.9rem; background: var(--brand); padding: 10px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; border: none; cursor: pointer; font-family: inherit; outline: none; }
 .login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4); filter: brightness(1.1); }
 .nav-dropdown { position: relative; display: inline-block; }
 .nav-dropdown-content { display: none; position: absolute; background-color: var(--surface); min-width: 200px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08); border-radius: 12px; z-index: 1001; top: 100%; left: 0; border: 1px solid var(--border); padding: 8px 0; }
-.nav-dropdown-content a { color: var(--text) !important; padding: 12px 20px !important; text-decoration: none !important; display: block !important; font-size: 0.85rem !important; font-weight: 700 !important; border-bottom: none !important; transition: background 0.2s !important; border-radius: 0 !important; text-align: left; }
+.nav-dropdown-content a, .nav-dropdown-content button.nav-link-btn { color: var(--text) !important; padding: 12px 20px !important; text-decoration: none !important; display: block !important; font-size: 0.85rem !important; font-weight: 700 !important; border-bottom: none !important; transition: background 0.2s !important; border-radius: 0 !important; text-align: left; width: 100%; background: none; border: none; cursor: pointer; font-family: inherit; }
 .close-menu { display: none; }
-.nav-dropdown-content a:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
+.nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
 .nav-dropdown:hover .nav-dropdown-content { display: block; }
 .dropbtn::after { content: ' ▾'; font-size: 0.8rem; opacity: 0.7; }
 @media (max-width: 768px) {
@@ -254,7 +254,7 @@ nav {
     .nav-links.active { transform: translateX(0); visibility: visible; opacity: 1; pointer-events: auto; }
     .close-menu { display: flex; align-items: center; justify-content: center; position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.05); border: none; font-size: 28px; color: var(--text); cursor: pointer; width: 40px; height: 40px; border-radius: 50%; transition: 0.3s; padding: 0; }
     .close-menu:hover { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
-    .nav-links a { width: 100%; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; text-align: left; }
+    .nav-links a, .nav-links button.nav-link-btn { width: 100%; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; text-align: left; }
     .nav-actions { border: none; padding: 0; margin: 20px 0 0 0; gap: 15px; flex-direction: column; align-items: flex-start; }
 }
 
@@ -681,7 +681,7 @@ font-size:28px;
         <a href="chapterwise.html">Chapterwise</a>
         <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
-            <a href="#" class="dropbtn">Senior Exams</a>
+            <button class="dropbtn nav-link-btn">Senior Exams</button>
             <div class="nav-dropdown-content">
                 <a href="jee_main.html">JEE Main</a>
                 <a href="jee-list.html">JEE Advanced</a>

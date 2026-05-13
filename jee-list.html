@@ -104,7 +104,7 @@
     <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;"> Olympiad Portal</a>
     <div class="nav-important">
         <a href="dashboard.html">Dash</a>
-        <a onclick="logout()" style="cursor:pointer;">Logout</a>
+        <button onclick="logout()" class="nav-link-btn">Logout</button>
     </div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -113,7 +113,7 @@
         <a href="chapterwise.html">Chapterwise</a>
         <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
-            <a href="#" class="dropbtn active" style="color: var(--brand);">Senior Exams</a>
+            <button class="dropbtn nav-link-btn active" style="color: var(--brand);">Senior Exams</button>
             <div class="nav-dropdown-content">
                 <a href="jee_main.html">JEE Main</a>
                 <a href="jee-list.html" style="color: var(--brand) !important; background: var(--subtle) !important;">JEE Advanced</a>
@@ -124,7 +124,7 @@
         <a href="study.html">Study Material</a>
         <div class="nav-actions">
             <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
         </div>
     </div>
 </nav>

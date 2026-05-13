@@ -101,7 +101,7 @@
         <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;"> Olympiad Portal</a>
         <div class="nav-important">
             <a href="dashboard.html">Dash</a>
-            <a onclick="logout()" style="cursor:pointer;">Logout</a>
+            <button onclick="logout()" class="nav-link-btn">Logout</button>
         </div>
         <div class="nav-links">
             <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -109,7 +109,7 @@
             <a href="jee-list.html">JEE Mocks</a>
             <a href="jee-leaderboard.html" class="active">JEE Leaderboard</a>
             <div class="nav-actions">
-                <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+                <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
             </div>
         </div>
     </nav>
