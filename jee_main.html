@@ -229,12 +229,13 @@
     onAuthStateChanged(auth, (user) => {
         if (!user) {
             document.querySelectorAll('.login-link').forEach(el => {
-                el.onclick = null;
+                el.removeAttribute("onclick");
                 el.innerText = "Log in";
                 el.href = "login.html";
                 el.style.background = "var(--brand)";
+                el.style.color = "white";
             });
-            handleTestTypeChange();
+            window.handleTestTypeChange();
             return;
         }
         
@@ -252,11 +253,12 @@
             const adminTab = document.getElementById("adminTab");
             if (adminTab) adminTab.style.display = "inline";
         }
-        handleTestTypeChange(); // Set initial state and load tests
+        window.handleTestTypeChange(); // Set initial state and load tests
     });
 
     window.startJeeTest = function(docId) {
-        if (!auth.currentUser) {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+        if (!auth.currentUser || !isLoggedIn) {
             sessionStorage.setItem("redirectAfterLogin", "jee_main_quiz.html?id=" + docId);
             window.location.href = "login.html";
         } else {
@@ -350,7 +352,10 @@
     window.logout = async () => { 
         if(confirm("Logout?")) { 
             await signOut(auth); 
-            window.location.href="login.html"; 
+            localStorage.removeItem("isLoggedIn");
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html"); 
         } 
     };
 </script>
