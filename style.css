@@ -519,7 +519,8 @@ nav {
     justify-content: center;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-links button.nav-link-btn {
     color: var(--text);
     text-decoration: none;
     font-size: 0.9rem;
@@ -530,14 +531,20 @@ nav {
     border-radius: 8px;
     border-bottom: 3px solid transparent;
     white-space: nowrap;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links button.nav-link-btn:hover {
     color: var(--brand);
     background: rgba(79, 70, 229, 0.05);
 }
 
-.nav-links a.active {
+.nav-links a.active,
+.nav-links button.nav-link-btn.active {
     color: var(--brand);
     background: rgba(79, 70, 229, 0.06);
     border-bottom-color: var(--brand);
@@ -563,6 +570,10 @@ nav {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
     transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    outline: none;
 }
 .login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4); filter: brightness(1.1); }
 
@@ -586,7 +597,8 @@ nav {
     padding: 8px 0;
 }
 
-.nav-dropdown-content a {
+.nav-dropdown-content a,
+.nav-dropdown-content button.nav-link-btn {
     color: var(--text) !important;
     padding: 12px 20px !important;
     text-decoration: none !important;
@@ -597,13 +609,19 @@ nav {
     transition: background 0.2s !important;
     border-radius: 0 !important;
     text-align: left;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .close-menu {
     display: none;
 }
 
-.nav-dropdown-content a:hover {
+.nav-dropdown-content a:hover,
+.nav-dropdown-content button.nav-link-btn:hover {
     background-color: var(--subtle) !important;
     color: var(--brand) !important;
 }
@@ -761,7 +779,8 @@ nav {
     .nav-links a[href="index.html"] { /* Hide Home if it's in nav-important */
         display: none !important;
     }
-    .nav-links a {
+    .nav-links a,
+    .nav-links button.nav-link-btn {
         width: 100%;
         padding: 15px 0;
         border-bottom: 1px solid var(--border);
