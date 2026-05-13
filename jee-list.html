@@ -66,17 +66,9 @@
       ]
     }
     </script>
-    
-    <script>
-      if (localStorage.getItem("isLoggedIn") !== "true") {
-              sessionStorage.setItem("redirectAfterLogin", window.location.href);
-          window.location.replace("login.html");
-      }
-    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>body{visibility: hidden;}</style>
     <style>
         :root {
             --bg: #f8fafc;
@@ -266,10 +258,14 @@
 
         // Auth Guard
         onAuthStateChanged(auth, (user) => {
-            document.body.style.visibility = 'visible';
             if (!user) {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.replace("login.html");
+                document.querySelectorAll('.login-link').forEach(el => {
+                    el.onclick = null;
+                    el.innerText = "Log in";
+                    el.href = "login.html";
+                    el.style.background = "var(--brand)";
+                });
+                loadJeeTests();
                 return;
             }
             
@@ -336,6 +332,13 @@
         let generatedTestId = null;
 
         window.generateJeeTest = async () => {
+            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+            if (!isLoggedIn) {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.href = "login.html";
+                return;
+            }
+
             const subject = document.getElementById("genSubject").value;
             const btn = document.querySelector("button[onclick='generateJeeTest()']");
             const originalText = btn.innerText;

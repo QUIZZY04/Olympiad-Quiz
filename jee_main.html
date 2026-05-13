@@ -66,15 +66,8 @@
       ]
     }
     </script>
-    <script>
-      if (localStorage.getItem("isLoggedIn") !== "true") {
-          sessionStorage.setItem("redirectAfterLogin", window.location.href);
-          window.location.replace("login.html");
-      }
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>body{visibility: hidden;}</style>
     <style>
         :root {
             --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0;
@@ -215,10 +208,15 @@
 
     onAuthStateChanged(auth, (user) => {
         if (!user) {
-            window.location.replace("login.html");
+            document.querySelectorAll('.login-link').forEach(el => {
+                el.onclick = null;
+                el.innerText = "Log in";
+                el.href = "login.html";
+                el.style.background = "var(--brand)";
+            });
+            handleTestTypeChange();
             return;
         }
-        document.body.style.visibility = "visible";
         
         const providerIds = user.providerData.map(p => p.providerId);
         const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
