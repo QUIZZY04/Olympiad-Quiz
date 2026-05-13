@@ -31,7 +31,7 @@
         * { box-sizing: border-box; }
         body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; height: 100vh; display: flex; flex-direction: column; width: 100%; }
         
-        .header { background: #1a73e8; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; height: 50px; }
+        .header { background: #1557b0; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; height: 50px; }
         .header-title { font-size: 1.1rem; font-weight: bold; }
         .header-info { display: flex; align-items: center; gap: 20px; }
         .timer-box { font-size: 1.1rem; font-weight: bold; font-family: monospace; }
@@ -54,10 +54,10 @@
         
         .btn { padding: 8px 16px; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 13px; color: #333; transition: 0.2s; }
         .btn:hover { background: #e0e0e0; }
-        .btn-primary { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+        .btn-primary { background: #1557b0; color: #fff; border-color: #1557b0; }
         .btn-primary:hover { background: #1557b0; }
-        .btn-success { background: #34a853; color: #fff; border-color: #34a853; }
-        .btn-success:hover { background: #28803e; }
+        .btn-success { background: #1e7b34; color: #fff; border-color: #1e7b34; }
+        .btn-success:hover { background: #145924; }
         
         .numerical-input {
             width: 100%;
@@ -69,7 +69,7 @@
             outline: none;
             transition: 0.2s;
         }
-        .numerical-input:focus { border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2); }
+        .numerical-input:focus { border-color: #1557b0; box-shadow: 0 0 0 2px rgba(21, 87, 176, 0.2); }
         
         .right-panel { width: 320px; display: flex; flex-direction: column; background: #eef2f5; overflow: hidden; flex-shrink: 0; }
         
@@ -89,11 +89,11 @@
         
         /* JEE Advanced Realistic Status Colors and Shapes */
         .p-unseen { background: #f0f0f0; border-color: #ccc; }
-        .p-not-answered { background: #ed5565; color: #fff; border-color: #da4453; border-radius: 4px 4px 15px 15px; }
-        .p-answered { background: #1ab394; color: #fff; border-color: #18a689; border-radius: 15px 15px 4px 4px; }
-        .p-review { background: #9b59b6; color: #fff; border-color: #9055a2; border-radius: 50%; width: 35px; height: 35px; }
-        .p-answered-review { background: #9b59b6; color: #fff; border-color: #9055a2; border-radius: 50%; width: 35px; height: 35px; position: relative; }
-        .p-answered-review::after { content: ''; position: absolute; bottom: 0px; right: 0px; width: 10px; height: 10px; background: #1ab394; border-radius: 50%; border: 1px solid #fff; }
+        .p-not-answered { background: #b91c1c; color: #fff; border-color: #7f1d1d; border-radius: 4px 4px 15px 15px; }
+        .p-answered { background: #0f7663; color: #fff; border-color: #0c5e4f; border-radius: 15px 15px 4px 4px; }
+        .p-review { background: #70308c; color: #fff; border-color: #57256d; border-radius: 50%; width: 35px; height: 35px; }
+        .p-answered-review { background: #70308c; color: #fff; border-color: #57256d; border-radius: 50%; width: 35px; height: 35px; position: relative; }
+        .p-answered-review::after { content: ''; position: absolute; bottom: 0px; right: 0px; width: 10px; height: 10px; background: #0f7663; border-radius: 50%; border: 1px solid #fff; }
 
         .submit-section { padding: 15px; background: #fff; border-top: 1px solid #ccc; text-align: center; }
 
@@ -135,7 +135,7 @@
     <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;"> Olympiad Portal</a>
     <div class="nav-important">
         <a href="dashboard.html">Dash</a>
-        <button onclick="logout()" class="nav-link-btn">Logout</button>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
     </div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -147,7 +147,7 @@
         <a href="study.html">Study Material</a>
         <div class="nav-actions">
             <a id="adminTab" href="admin.html" style="display:none; color:var(--success); font-weight:600; text-decoration:none;">Admin</a>
-            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
     </div>
 </nav>
@@ -155,7 +155,7 @@
 <!-- Instructions Modal -->
 <div id="instructionsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
     <div style="background: #fff; width: 100%; max-width: 650px; border-radius: 8px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto;">
-        <h2 style="color: #1a73e8; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.5rem;">Please read the instructions carefully</h2>
+        <h2 style="color: #1557b0; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.5rem;">Please read the instructions carefully</h2>
         
         <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; border: 1px solid #ddd;">
             <div><b>Test Name:</b> <span id="instTestTitle">...</span></div>

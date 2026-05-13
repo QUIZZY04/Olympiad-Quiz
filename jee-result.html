@@ -49,6 +49,8 @@
             --border: #e2e8f0;
             --brand: #ff6b00;
             --accent: #ff8c1a;
+            --brand-text: #c2410c;
+            --brand-contrast: #111827;
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -83,32 +85,32 @@
         .q-badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; background: var(--bg); color: var(--muted); border: 1px solid var(--border); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
         
         .q-marks { font-size: 1.1rem; font-weight: 800; padding: 6px 15px; border-radius: 10px; white-space: nowrap; }
-        .q-marks.positive { background: #dcfce3; color: #047857; border: 1px solid #10b981; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15); }
-        .q-marks.negative { background: #fee2e2; color: #b91c1c; border: 1px solid #ef4444; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.15); }
-        .q-marks.zero { background: var(--subtle); color: #475569; border: 1px solid var(--border); }
-        .q-marks.partial { background: #fef3c7; color: #b45309; border: 1px solid #f59e0b; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.15); }
+        .q-marks.positive { background: #dcfce3; color: #047857; border: 1px solid #047857; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15); }
+        .q-marks.negative { background: #fee2e2; color: #b91c1c; border: 1px solid #b91c1c; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.15); }
+        .q-marks.zero { background: var(--subtle); color: var(--muted); border: 1px solid var(--border); }
+        .q-marks.partial { background: #fef3c7; color: #b45309; border: 1px solid #b45309; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.15); }
         
         .q-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 25px; line-height: 1.6; color: var(--text); }
         
         .opt-box { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; margin-bottom: 12px; border-radius: 12px; border: 1px solid var(--border); font-size: 1rem; background: var(--bg); color: var(--text); font-weight: 500; transition: 0.2s; }
         .opt-icon { font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; background: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 6px; }
         
-        .opt-correct-selected { background: #dcfce3; border-color: #10b981; color: #064e3b; font-weight: 700; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1); }
+        .opt-correct-selected { background: #dcfce3; border-color: #047857; color: #064e3b; font-weight: 700; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1); }
         .opt-correct-selected .opt-icon { color: #047857; }
         
-        .opt-wrong-selected { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; font-weight: 700; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1); }
+        .opt-wrong-selected { background: #fee2e2; border-color: #b91c1c; color: #7f1d1d; font-weight: 700; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1); }
         .opt-wrong-selected .opt-icon { color: #b91c1c; }
         
         .opt-missed-correct { background: #eff6ff; border-color: #3b82f6; color: #1e3a8a; font-weight: 700; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1); }
-        .opt-missed-correct .opt-icon { color: #1d4ed8; }
+        .opt-missed-correct .opt-icon { color: #2563eb; }
         
         .solution-content { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid var(--brand); padding: 25px; border-radius: 16px; margin-top: 30px; }
-        .solution-content h4 { color: var(--brand); margin-bottom: 15px; font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+        .solution-content h4 { color: var(--brand-text); margin-bottom: 15px; font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
         .solution-content p { color: var(--text); font-size: 1rem; line-height: 1.7; margin: 0; font-weight: 500; }
         
         .section-title { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 25px; text-align: center; }
 
-        .nav-btn { display: inline-block; background: var(--brand); color: white; padding: 12px 30px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 20px; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-btn { display: inline-block; background: var(--brand); color: var(--brand-contrast); padding: 12px 30px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 20px; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
         .nav-btn:hover { background: var(--accent); transform: translateY(-2px); }
         
         @media (max-width: 768px) { .q-header { flex-direction: column; align-items: flex-start; gap: 10px; } .opt-box { flex-direction: column; align-items: flex-start; gap: 10px; } }
@@ -133,7 +135,7 @@
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-important">
         <a href="dashboard.html">Dash</a>
-        <button onclick="logout()" class="nav-link-btn">Logout</button>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
     </div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -144,7 +146,7 @@
         <a href="leaderboard.html">Leaderboard</a>
         <div class="nav-actions">
             <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
     </div>
 </nav>
@@ -405,7 +407,7 @@
                             ${iconHtml}
                         </div>
                         <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 4px;">
-                            <strong>Correct Answer:</strong> <span style="color: #059669; font-weight: 800;">${caText}</span>
+                            <strong>Correct Answer:</strong> <span style="color: var(--success); font-weight: 800;">${caText}</span>
                         </div>
                     </div>`;
                 } else {
@@ -516,11 +518,11 @@
                         <div class="stat-label">Accuracy</div>
                     </div>
                     <div class="stat-box" style="border-bottom: 4px solid var(--success);">
-                        <div class="stat-val" style="color: #059669;">${correctCount + partialCount}</div>
+                        <div class="stat-val" style="color: var(--success);">${correctCount + partialCount}</div>
                         <div class="stat-label">Correct & Partial</div>
                     </div>
                     <div class="stat-box" style="border-bottom: 4px solid var(--danger);">
-                        <div class="stat-val" style="color: #dc2626;">${incorrectCount}</div>
+                        <div class="stat-val" style="color: var(--danger);">${incorrectCount}</div>
                         <div class="stat-label">Incorrect</div>
                     </div>
                     <div class="stat-box" style="border-bottom: 4px solid #94a3b8;">

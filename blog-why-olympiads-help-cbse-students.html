@@ -75,11 +75,11 @@
 </script>
 
 <style>
-    :root { --brand: #ff6b00; --border: #e2e8f0; --text: #111827; --surface: #ffffff; --muted: #64748b; }
+    :root { --brand: #ff6b00; --border: #e2e8f0; --text: #111827; --surface: #ffffff; --muted: #64748b; --brand-text: #c2410c; --brand-contrast: #111827; }
     body { background: #f8fafc; color: var(--text); }
     
     .article-header { text-align: center; padding: 60px 20px 40px; }
-    .article-header .cat-tag { background: #fff7ed; color: var(--brand); padding: 6px 16px; border-radius: 99px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
+    .article-header .cat-tag { background: #fff7ed; color: var(--brand-text); padding: 6px 16px; border-radius: 99px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px; }
     .article-header h1 { font-size: 42px; font-weight: 800; max-width: 900px; margin: 0 auto 20px; line-height: 1.3; }
     .article-meta { color: var(--muted); font-size: 14px; font-weight: 500; display: flex; justify-content: center; gap: 20px; }
     
@@ -103,12 +103,12 @@
     .toc-box ul { list-style: none; padding: 0; margin: 0; }
     .toc-box li { margin-bottom: 12px; }
     .toc-box a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.2s; }
-    .toc-box a:hover { color: var(--brand); }
+    .toc-box a:hover { color: var(--brand-text); }
 
-    .cta-box { background: linear-gradient(135deg, var(--brand), #ff8c1a); color: white; border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 10px 20px rgba(255,107,0,0.2); }
-    .cta-box h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: white; }
+    .cta-box { background: linear-gradient(135deg, var(--brand), #ff8c1a); color: var(--brand-contrast); border-radius: 16px; padding: 30px 20px; text-align: center; box-shadow: 0 10px 20px rgba(255,107,0,0.2); }
+    .cta-box h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: var(--brand-contrast); }
     .cta-box p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; line-height: 1.5; }
-    .cta-box a { display: inline-block; background: white; color: var(--brand); padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .cta-box a { display: inline-block; background: white; color: var(--brand-text); padding: 12px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .cta-box a:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
 
     .share-buttons { display: flex; gap: 10px; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border); }
@@ -135,7 +135,7 @@
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
         <a href="index.html">Home</a>
         <div class="nav-dropdown">
-            <button class="dropbtn nav-link-btn">Free Mock Test</button>
+            <a href="#" class="dropbtn">Free Mock Test</a>
             <div class="nav-dropdown-content">
                 <a href="imo-free-mock-test.html">IMO Test</a>
                 <a href="nso-free-mock-test.html">NSO Test</a>

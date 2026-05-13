@@ -114,7 +114,7 @@ border-top:4px solid var(--accent);
 .filter-box h3{
 font-size:0.875rem;
 text-transform:uppercase;
-color:var(--brand);
+color:var(--brand-text);
 letter-spacing:1px;
 }
 
@@ -239,7 +239,7 @@ background: rgba(0,0,0,0.02) !important;
 
 .rank-circle{
 background:var(--subtle);
-color:var(--brand);
+color:var(--brand-text);
 width:32px;
 height:32px;
 display:inline-flex;
@@ -298,7 +298,7 @@ font-size:14px;
     <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;"> Olympiad Portal</a>
     <div class="nav-important">
         <a href="index.html">Home</a>
-        <button onclick="logout()" class="nav-link-btn">Logout</button>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
     </div>
     <div class="nav-links">
     <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -317,7 +317,7 @@ font-size:14px;
     <a href="leaderboard.html" class="active">Leaderboard</a>
     <div class="nav-actions">
         <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-        <button onclick="logout()" class="login-link" style="color:var(--danger);">Logout</button>
+        <a onclick="logout()" class="login-link" style="color:var(--danger); cursor:pointer;">Logout</a>
     </div>
     </div>
     </nav>
@@ -704,7 +704,7 @@ let namePrefix = "";
 if(rank === 1) { 
     rankIcon = "🏆"; 
     rowStyle = "background: rgba(250, 204, 21, 0.2); font-weight: 800;"; 
-    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4); color: #b45309;";
+    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4);";
     nameStyle = "color: #b45309; font-size: 1.1em;";
     namePrefix = "⭐ ";
 }
@@ -727,7 +727,7 @@ tbody.innerHTML+=`
 <tr style="${rowStyle}">
 <td><span class="rank-circle" style="${circleStyle}">${rankIcon}</span></td>
 <td style="${nameStyle}">${namePrefix}${d.email ? d.email.split('@')[0] : "Student"}</td>
-<td style="color:var(--brand);font-weight:700">${d.score}/${d.total || 50}</td>
+<td style="color:var(--brand-text);font-weight:700">${d.score}/${d.total || 50}</td>
 <td>${d.accuracy ? d.accuracy + '%' : '--'}</td>
 <td style="text-transform:capitalize;">${d.subject||"NA"}</td>
 <td>${(d.studentClass||"").replace("class","G")}</td>
@@ -752,7 +752,7 @@ let namePrefix = "";
 if(rank === 1) { 
     rankIcon = "🏆"; 
     rowStyle = "background: rgba(250, 204, 21, 0.2); font-weight: 800;"; 
-    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4); color: #b45309;";
+    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4);";
     nameStyle = "color: #b45309; font-size: 1.1em;";
     namePrefix = "⭐ ";
 }
@@ -775,7 +775,7 @@ tbody.innerHTML+=`
 <tr style="${rowStyle}">
 <td><span class="rank-circle" style="${circleStyle}">${rankIcon}</span></td>
 <td style="${nameStyle}">${namePrefix}${d.email ? d.email.split('@')[0] : "Student"}</td>
-<td style="color:var(--brand);font-weight:700">${d.score}/${d.total||30}</td>
+<td style="color:var(--brand-text);font-weight:700">${d.score}/${d.total||30}</td>
 <td style="text-transform:capitalize;">${d.subject||"NA"}</td>
 <td>${(d.studentClass||"").replace("class","G")}</td>
 <td>${d.date?d.date.toDate().toLocaleDateString("en-GB"):"NA"}</td>

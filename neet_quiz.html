@@ -15,7 +15,7 @@
         * { box-sizing: border-box; }
         body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; height: 100vh; display: flex; flex-direction: column; width: 100%; }
         
-        .header { background: #10b981; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; height: 50px; }
+        .header { background: #047857; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; height: 50px; }
         .header-title { font-size: 1.1rem; font-weight: bold; }
         .header-info { display: flex; align-items: center; gap: 20px; }
         .timer-box { font-size: 1.1rem; font-weight: bold; font-family: monospace; }
@@ -38,14 +38,14 @@
         
         .btn { padding: 8px 16px; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 13px; color: #333; transition: 0.2s; }
         .btn:hover { background: #e0e0e0; }
-        .btn-primary { background: #10b981; color: #fff; border-color: #10b981; }
-        .btn-primary:hover { background: #059669; }
-        .btn-success { background: #3b82f6; color: #fff; border-color: #3b82f6; }
-        .btn-success:hover { background: #2563eb; }
+        .btn-primary { background: #047857; color: #fff; border-color: #047857; }
+        .btn-primary:hover { background: #064e3b; }
+        .btn-success { background: #2563eb; color: #fff; border-color: #2563eb; }
+        .btn-success:hover { background: #1d4ed8; }
         
         .right-panel { width: 320px; display: flex; flex-direction: column; background: #eef2f5; overflow: hidden; flex-shrink: 0; }
         .profile-section { display: flex; align-items: center; gap: 15px; padding: 15px; background: #fff; border-bottom: 1px solid #ccc; }
-        .profile-img { width: 60px; height: 60px; background: #ecfdf5; color: #10b981; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 30px; border: 1px solid #a7f3d0; }
+        .profile-img { width: 60px; height: 60px; background: #ecfdf5; color: #047857; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 30px; border: 1px solid #a7f3d0; }
         .profile-name { font-weight: bold; font-size: 14px; color: #333; }
         
         .legend-section { padding: 10px 15px; font-size: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-bottom: 1px solid #ccc; background: #fff; color: #333; }
@@ -59,11 +59,11 @@
         .p-btn:active { transform: scale(0.95); }
         
         .p-unseen { background: #f0f0f0; border-color: #ccc; }
-        .p-not-answered { background: #ef4444; color: #fff; border-color: #b91c1c; border-radius: 4px 4px 15px 15px; }
-        .p-answered { background: #10b981; color: #fff; border-color: #047857; border-radius: 15px 15px 4px 4px; }
-        .p-review { background: #8b5cf6; color: #fff; border-color: #6d28d9; border-radius: 50%; width: 35px; height: 35px; }
-        .p-answered-review { background: #8b5cf6; color: #fff; border-color: #6d28d9; border-radius: 50%; width: 35px; height: 35px; position: relative; }
-        .p-answered-review::after { content: ''; position: absolute; bottom: 0px; right: 0px; width: 10px; height: 10px; background: #10b981; border-radius: 50%; border: 1px solid #fff; }
+        .p-not-answered { background: #b91c1c; color: #fff; border-color: #7f1d1d; border-radius: 4px 4px 15px 15px; }
+        .p-answered { background: #047857; color: #fff; border-color: #064e3b; border-radius: 15px 15px 4px 4px; }
+        .p-review { background: #6d28d9; color: #fff; border-color: #5b21b6; border-radius: 50%; width: 35px; height: 35px; }
+        .p-answered-review { background: #6d28d9; color: #fff; border-color: #5b21b6; border-radius: 50%; width: 35px; height: 35px; position: relative; }
+        .p-answered-review::after { content: ''; position: absolute; bottom: 0px; right: 0px; width: 10px; height: 10px; background: #047857; border-radius: 50%; border: 1px solid #fff; }
 
         .submit-section { padding: 15px; background: #fff; border-top: 1px solid #ccc; text-align: center; }
 
@@ -90,7 +90,7 @@
     <div class="left-panel">
         <div class="question-header">
             <span id="qNumber">Question No. 1</span>
-            <span style="color:#10b981; font-weight:800;">Single Correct (+4, -1)</span>
+            <span style="color:#047857; font-weight:800;">Single Correct (+4, -1)</span>
         </div>
         <div class="question-body">
             <div id="qText">Loading question...</div>
