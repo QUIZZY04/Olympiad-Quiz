@@ -196,7 +196,7 @@ exports.sendBulkEmail = onCall({
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 
-  const { subject, htmlContent } = request.data;
+  const { subject, htmlContent, targetEmails } = request.data;
 
   // 2. Input Validation
   if (!subject || !htmlContent) {
@@ -208,30 +208,39 @@ exports.sendBulkEmail = onCall({
   try {
     // 3. Fetch and clean email list using pagination to avoid memory overflow
     const uniqueEmails = new Set();
-    let lastDoc = null;
-    let hasMore = true;
-
-    while (hasMore) {
-      let usersQuery = db.collection("users").select("email").limit(500);
-      if (lastDoc) {
-        usersQuery = usersQuery.startAfter(lastDoc);
-      }
-      const snapshot = await usersQuery.get();
-
-      if (snapshot.empty) {
-        hasMore = false;
-        break;
-      }
-
-      snapshot.docs.forEach((doc) => {
-        if (doc.data().email_consent === false) return;
-        const email = doc.data().email;
+    
+    if (targetEmails && Array.isArray(targetEmails) && targetEmails.length > 0) {
+      targetEmails.forEach((email) => {
         if (email && typeof email === "string" && email.includes("@")) {
           uniqueEmails.add(email.trim());
         }
       });
+    } else {
+      let lastDoc = null;
+      let hasMore = true;
 
-      lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      while (hasMore) {
+        let usersQuery = db.collection("users").select("email").limit(500);
+        if (lastDoc) {
+          usersQuery = usersQuery.startAfter(lastDoc);
+        }
+        const snapshot = await usersQuery.get();
+
+        if (snapshot.empty) {
+          hasMore = false;
+          break;
+        }
+
+        snapshot.docs.forEach((doc) => {
+          if (doc.data().email_consent === false) return;
+          const email = doc.data().email;
+          if (email && typeof email === "string" && email.includes("@")) {
+            uniqueEmails.add(email.trim());
+          }
+        });
+
+        lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      }
     }
 
     const emailList = Array.from(uniqueEmails);
@@ -376,7 +385,8 @@ exports.sendResultEmail = onDocumentWritten(
     }
 
     const accuracy = Math.round((Number(score) / Number(total)) * 100);
-    const testType = afterData.isChampionship ? "Live Quiz Arena" : (afterData.topicName ? "Chapterwise Practice" : "Full Mock Test");
+    const isLiveQuiz = afterData.isChampionship === true;
+    const testType = isLiveQuiz ? "Live Quiz Arena" : (afterData.topicName ? "Chapterwise Practice" : "Full Mock Test");
     const subject = afterData.subject ? afterData.subject.charAt(0).toUpperCase() + afterData.subject.slice(1) : "General";
 
     try {
@@ -385,8 +395,74 @@ exports.sendResultEmail = onDocumentWritten(
 
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: userEmail, name: userName }];
-      sendSmtpEmail.subject = `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`;
-      sendSmtpEmail.htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+      sendSmtpEmail.subject = isLiveQuiz 
+        ? `🏆 E-Certificate of Participation: ${subject} Live Olympiad` 
+        : `Your Olympiad Test Result: ${score}/${total} in ${subject} 🏆`;
+
+      let htmlContent = "";
+
+      if (isLiveQuiz) {
+        const issueDate = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 20px; font-family: 'Georgia', serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <table width="700" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 15px solid #1e293b; padding: 10px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+          <tr>
+            <td style="border: 2px solid #cbd5e1; padding: 50px 40px;">
+              <h1 style="color: #1e293b; font-size: 38px; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 2px;">Certificate of Participation</h1>
+              <div style="width: 120px; height: 3px; background-color: #ff6b00; margin: 0 auto 35px auto;"></div>
+              
+              <p style="font-size: 20px; color: #475569; margin: 0 0 25px 0; font-family: 'Arial', sans-serif;">This is proudly presented to</p>
+              
+              <h2 style="font-size: 46px; color: #ff6b00; margin: 0 0 25px 0; font-family: 'Times New Roman', serif; font-style: italic;">${userName}</h2>
+              
+              <p style="font-size: 18px; color: #475569; line-height: 1.8; margin: 0 0 40px 0; font-family: 'Arial', sans-serif;">
+                For successfully participating and demonstrating exceptional effort in the<br>
+                <strong style="color: #1e293b; font-size: 20px;">${subject} Live Olympiad Quiz</strong><br>
+                conducted by Olympiad Portal.
+              </p>
+
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 0 auto 40px auto; width: 70%; font-family: 'Arial', sans-serif;">
+                <table width="100%">
+                  <tr>
+                    <td align="center" style="font-size: 14px; color: #64748b; text-transform: uppercase; padding-bottom: 5px;">Score Achieved</td>
+                    <td align="center" style="font-size: 14px; color: #64748b; text-transform: uppercase; padding-bottom: 5px;">Accuracy</td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="font-size: 26px; font-weight: bold; color: #1e293b;">${score}/${total}</td>
+                    <td align="center" style="font-size: 26px; font-weight: bold; color: #10b981;">${accuracy}%</td>
+                  </tr>
+                </table>
+              </div>
+
+              <table width="100%" style="margin-top: 30px; font-family: 'Arial', sans-serif;">
+                <tr>
+                  <td align="center" width="50%">
+                    <p style="margin: 0; font-size: 18px; color: #1e293b; font-weight: bold; border-bottom: 1px solid #94a3b8; display: inline-block; padding-bottom: 5px; width: 160px;">${issueDate}</p>
+                    <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b; text-transform: uppercase;">Date of Issue</p>
+                  </td>
+                  <td align="center" width="50%">
+                    <p style="margin: 0; font-size: 24px; color: #1e293b; font-weight: bold; font-family: 'Brush Script MT', cursive; border-bottom: 1px solid #94a3b8; display: inline-block; padding-bottom: 5px; width: 160px;">Olympiad Portal</p>
+                    <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b; text-transform: uppercase;">Official Organizer</p>
+                  </td>
+                </tr>
+              </table>
+              
+            </td>
+          </tr>
+        </table>
+        
+        <p style="font-family: Arial, sans-serif; font-size: 15px; color: #64748b; margin-top: 25px;">
+          Save this email or take a screenshot to preserve your certificate.<br>
+          View your detailed analysis on the <a href="https://olympiadquiz.org/dashboard.html" style="color: #4f46e5; text-decoration: none;">Dashboard</a>.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>`;
+      } else {
+        htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td align="center" style="padding: 20px;">
@@ -467,6 +543,9 @@ exports.sendResultEmail = onDocumentWritten(
     </tr>
   </table>
 </body>`;
+      }
+
+      sendSmtpEmail.htmlContent = htmlContent;
 
       await brevoApi.sendTransacEmail(sendSmtpEmail);
       console.log(`Result email successfully sent to: ${userEmail} for result ID: ${resultId}`);
@@ -947,5 +1026,98 @@ exports.sendLiveQuizRegistrationEmail = onDocumentCreated(
     } catch (error) {
       console.error(`Failed to send registration email to user ${uid} for session ${sessionId}. Error:`, error.message);
     }
+  }
+);
+
+// =================================================================
+// 8. FEEDBACK & ERROR REPORT ACKNOWLEDGEMENT EMAILS
+// =================================================================
+
+const ackEmailHtml = (name, title, message) => `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding: 20px;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
+          <tr>
+            <td align="center" style="background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%); padding: 40px 20px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 800;">${title}</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 35px 30px; color: #0f172a; line-height: 1.6;">
+              <p style="font-size: 16px; margin: 0 0 20px;">Hello <strong>${name}</strong>,</p>
+              <p style="font-size: 16px; margin: 0 0 20px;">${message}</p>
+              <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 25px 0;">
+                <p style="margin: 0; font-size: 15px; color: #475569;">
+                  In case of any more suggestions, issues, or if you need further help, please feel free to reach out to us directly at:<br><br>
+                  <a href="mailto:admin@olympiadquiz.org" style="color: #4f46e5; font-weight: bold; text-decoration: none;">admin@olympiadquiz.org</a>
+                </p>
+              </div>
+              <p style="font-size: 16px; color: #64748b; margin-top: 15px;">
+                Best regards,<br>
+                The Olympiad Portal Team
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+              <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                © 2024 Olympiad Portal. All rights reserved.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>`;
+
+/**
+ * Triggered when a new document is created in the 'feedbacks' collection (General Experience Feedback).
+ */
+exports.sendFeedbackAckEmail = onDocumentCreated(
+  {
+    document: "feedbacks/{docId}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    const data = event.data?.data();
+    if (!data || !data.email || data.email === "N/A") return;
+
+    try {
+      const brevoApi = getBrevoClient();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: data.email, name: data.name || "Student" }];
+      sendSmtpEmail.subject = "Thank you for your Feedback! 🌟";
+      const msg = "Thank you for taking the time to share your experience and feedback with us. Your insights are incredibly valuable and help us continuously improve our platform for all students.";
+      sendSmtpEmail.htmlContent = ackEmailHtml(data.name || "Student", "Thank You for Your Feedback! 🌟", msg);
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
+    } catch (error) { console.error("Error sending feedback ack email:", error.message); }
+  }
+);
+
+/**
+ * Triggered when a new document is created in the 'feedback' collection (Question Error Reports).
+ */
+exports.sendErrorReportAckEmail = onDocumentCreated(
+  {
+    document: "feedback/{docId}",
+    secrets: ["BREVO_API_KEY"],
+  },
+  async (event) => {
+    const data = event.data?.data();
+    if (!data || !data.email || data.email === "N/A") return;
+
+    try {
+      const brevoApi = getBrevoClient();
+      const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+      sendSmtpEmail.sender = SENDER_INFO;
+      sendSmtpEmail.to = [{ email: data.email, name: data.name || "Student" }];
+      sendSmtpEmail.subject = "Error Report Received 🛠️";
+      const msg = "Thank you for reporting an issue regarding a question on our platform. Our academic team has received your report and will review it immediately to ensure accuracy.";
+      sendSmtpEmail.htmlContent = ackEmailHtml(data.name || "Student", "Error Report Received 🛠️", msg);
+      await brevoApi.sendTransacEmail(sendSmtpEmail);
+    } catch (error) { console.error("Error sending error report ack email:", error.message); }
   }
 );

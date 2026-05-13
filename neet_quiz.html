@@ -143,7 +143,18 @@
     let testData = null, currentQ = 0, selectedAnswers = [], visited = [], markedForReview = [], timeLeft = 0, timerInterval;
 
     onAuthStateChanged(auth, (user) => {
-        if (user) document.getElementById("studentName").innerText = user.displayName || user.email.split('@')[0];
+        if (!user) return;
+        
+        const providerIds = user.providerData.map(p => p.providerId);
+        const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+        const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
+        const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+        
+        if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
+            window.location.replace("signup.html?mode=completion");
+            return;
+        }
+        document.getElementById("studentName").innerText = user.displayName || user.email.split('@')[0];
     });
 
     async function initTest() {

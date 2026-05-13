@@ -6,19 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Olympiad Mock Tests | Real-Time Online Competition</title>
-    <meta name="description" content="Join our live Olympiad online test arena. Engage in competitive exam practice with real-time scoring, global rankings, and instant detailed solutions.">
+    <meta name="description" content="Join our live Olympiad online test arena. Engage in free competitive exam practice for IMO, NSO, IEO, and IRO with real-time scoring and All India Rankings.">
     <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
     <meta name="theme-color" content="#ffffff">
-    <meta name="keywords" content="IMO free mock test, NSO free mock test, Olympiad practice, math olympiad class 5, science olympiad class 4, free online olympiad quiz">
+    <meta name="keywords" content="live olympiad mock test, free competitive exam practice, Olympiad practice, All India Rank olympiad, IMO live test, NSO online quiz, CBT exam practice">
     <link rel="canonical" href="https://olympiadquiz.org/live.html">
-    <meta property="og:title" content="Live Olympiad Online Test | Real-Time Olympiad Competition">
-    <meta property="og:description" content="Join our live Olympiad online test arena. Engage in competitive exam practice with real-time scoring, global rankings, and instant detailed solutions.">
+    <meta property="og:title" content="Live Olympiad Mock Tests | Real-Time Online Competition">
+    <meta property="og:description" content="Join our live Olympiad online test arena. Engage in free competitive exam practice for IMO, NSO, IEO, and IRO with real-time scoring and All India Rankings.">
     <meta property="og:url" content="https://olympiadquiz.org/live.html">
     <meta property="og:image" content="https://olympiadquiz.org/hero.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Live Olympiad Online Test | Real-Time Olympiad Competition">
+    <meta name="twitter:title" content="Live Olympiad Mock Tests | Real-Time Online Competition">
     <meta property="og:type" content="website">
     <meta name="robots" content="index, follow">
     <script type="application/ld+json">
@@ -313,11 +313,17 @@
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
         <a href="dashboard.html">Dashboard</a>
-        <a href="mock.html">Mock Tests</a>
-        <a href="chapterwise.html">Chapterwise</a>
+        <div class="nav-dropdown">
+            <a href="#" class="dropbtn">Students Zone</a>
+            <div class="nav-dropdown-content">
+                <a href="mock.html">Mock Tests</a>
+                <a href="chapterwise.html">Chapterwise</a>
+                <a href="study.html">Study Material</a>
+                <a href="blog.html">Success Guides</a>
+            </div>
+        </div>
         <a href="live.html" class="active">Live Arena</a>
         <a href="leaderboard.html">Leaderboard</a>
-        <a href="study.html">Study Material</a>
         <div class="nav-actions">
             <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
         </div>
@@ -326,14 +332,14 @@
 
 <div class="container">
     <div class="arena-header">
-        <div style="margin-bottom: 12px; font-size: 0.9rem; color: var(--muted); font-weight: 500;"><a href="index.html" style="color: var(--brand); text-decoration: none; font-weight: 700;">Home</a> &gt; Live Arena</div>
+        <div class="breadcrumb" style="justify-content: center;"><a href="index.html">🏠 Home</a> <span class="separator">/</span> <span>Live Arena</span></div>
         <!-- SEO IMPROVEMENT: Target Keyword in H1 -->
-        <h1>Live <span>Olympiad Online Test Free</span> Arena</h1>
+        <h1>Live <span>Olympiad Online Test</span> Arena</h1>
         <p>Step into the ultimate competitive zone! Compete in real-time nationwide quizzes for <b>IMO (Maths)</b>, <b>NSO (Science)</b>, <b>IEO (English)</b>, and <b>IRO (Reasoning)</b>. Claim your spot on the global leaderboard.</p>
         <div style="margin-top: 15px;">
             <span id="arenaBadge" class="pulse-badge">Live Test Coming Soon</span>
         </div>
-        <p id="permanentInstruction" style="display: none; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text);">Select your grade and subject to Register.</p>
+        <p id="permanentInstruction" style="display: none; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text);">Select your grade and subject to Register. <br><span style="font-size: 1rem; font-weight: 800; color: var(--danger);">Registered user select your grade and subject to join the quiz on scheduled date and time.</span></p>
     </div>
 
     <div id="filterContainer" style="display: none; justify-content: center; gap: 30px; margin-bottom: 25px; flex-wrap: wrap; background: linear-gradient(135deg, #f5f3ff, #f0f9ff); padding: 25px; border-radius: 24px; border: 1px solid #e0e7ff; box-shadow: 0 20px 40px rgba(0,0,0,0.07);">
@@ -356,9 +362,9 @@
 
     <!-- SEO CONTENT BLOCK -->
     <div style="margin-top: 50px; background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
-        <h2 style="font-size: 1.5rem; color: var(--text); margin-bottom: 12px; font-weight: 800;">Real-Time Competitive Exam Practice</h2>
-        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Participating in a <strong>free Olympiad mock test</strong> prepares you for the actual pressure of the exam hall. Our <strong>Olympiad online test free</strong> arena simulates competitive environments flawlessly. This is the perfect <strong>online quiz for students free</strong> aiming for top national ranks in SOF and SilverZone. Join thousands of peers engaging in intense <strong>competitive exam practice for students</strong> right here.</p>
-        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Participating in a <strong>free Olympiad mock test</strong> prepares you for the actual pressure of the exam hall. Our <strong>Olympiad online test free</strong> arena simulates competitive environments flawlessly. This is the perfect <strong>online quiz for students free</strong> aiming for top national ranks in SOF, SilverZone, and JEE. Join thousands of peers engaging in intense <strong>competitive exam practice for students</strong> right here.</p>
+        <h2 style="font-size: 1.5rem; color: var(--text); margin-bottom: 12px; font-weight: 800;">Free Live Olympiad Mock Tests & Competitive Exam Practice</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Participating in a <strong>free live Olympiad mock test</strong> prepares you for the actual pressure of the exam hall. Our <strong>Olympiad online test free</strong> arena simulates competitive environments flawlessly with a strict <strong>CBT exam interface</strong>. This is the perfect <strong>online competitive exam practice for students</strong> aiming for top national ranks (All India Rank) in SOF IMO, NSO, IEO, and SilverZone.</p>
+        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-top: 15px;">Experience real-time tests strictly following the latest Olympiad exam patterns. Join thousands of peers engaging in intense <strong>competitive exam preparation</strong> for classes 1 to 10 and secure your spot on the global leaderboard today!</p>
     </div>
 </div>
 
@@ -385,17 +391,16 @@
     </div>
 </div>
 
-<footer style="text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted);margin-top:auto;background:rgba(2, 6, 23, 0.8);">
-    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-        <a href="index.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">Home</a>
-        <a href="imo-free-mock-test.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">IMO Test</a>
-        <a href="nso-free-mock-test.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">NSO Test</a>
-        <a href="ieo-free-mock-test.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">IEO Test</a>
-        <a href="igko-free-mock-test.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">IGKO Test</a>
-        <a href="leaderboard.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">Leaderboard</a>
-        <a href="contact.html" style="color:#fff;text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="term.html">Terms & Conditions</a>
     </div>
-    <p style="font-size:14px; margin-top:10px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    <p>© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 
 <script type="module">
@@ -511,6 +516,7 @@
             const uniqueSubjects = new Set();
             const now = new Date();
             let nextSessionDate = null;
+            let nextSessionSubject = null;
 
             allFetchedSessionDocs.forEach(sDoc => {
                 const s = sDoc.data();
@@ -521,6 +527,7 @@
                     const startDate = s.startTime.toDate();
                     if (!nextSessionDate || startDate < nextSessionDate) {
                         nextSessionDate = startDate;
+                        nextSessionSubject = s.subject;
                     }
                 }
             });
@@ -536,7 +543,8 @@
                     minute: "2-digit",
                     hour12: true
                 }).toUpperCase();
-                window.globalHeadingText = `Upcoming Live Test on ${formattedDate} at ${formattedTime}`;
+                const subjStr = nextSessionSubject ? nextSessionSubject.toUpperCase() : "OLYMPIAD";
+                window.globalHeadingText = `Upcoming ${subjStr} Live Test on ${formattedDate} at ${formattedTime}`;
 
                 let schemaScript = document.getElementById("dynamic-event-schema");
                 if (!schemaScript) {
@@ -772,7 +780,8 @@
                     minute: "2-digit",
                     hour12: true
                 }).toUpperCase();
-                arenaBadge.innerText = `Upcoming Live Test on ${formattedDate} at ${formattedTime}`;
+                const subjStr = earliestSession.subject ? earliestSession.subject.toUpperCase() : "OLYMPIAD";
+                arenaBadge.innerText = `Upcoming ${subjStr} Live Test on ${formattedDate} at ${formattedTime}`;
             }
         } else {
             if (arenaBadge) {

@@ -12,15 +12,15 @@
 </script>
 <!-- Quill.js Theme -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Panel - Olympiad Portal</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>body{visibility: hidden;}</style>
 <link rel="stylesheet" href="style.css">
@@ -260,6 +260,7 @@ border-top:1px solid var(--border);
         <a href="#push-section" style="color:var(--accent);">Push Notifications</a>
         <a href="#bulk-delete-section" style="color:var(--danger);">Bulk Delete</a>
         <a href="#jee-main-neet-admin-section" style="color:#3b82f6;">JEE Main/NEET Tests</a>
+        <a href="#full-jee-main-mock-section" style="color:#8b5cf6;">Full JEE Mocks</a>
         <a href="#jee-admin-section" style="color:var(--success);">JEE Tests</a>
         <a href="#senior-admin-section" style="color:#8b5cf6;">Senior Upload</a>
         <div class="nav-actions">
@@ -368,19 +369,23 @@ border-top:1px solid var(--border);
             <h2 style="color:var(--danger);">🚩 Error Reports</h2>
         </div>
         <div class="panel-content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Question ID</th>
-                        <th>Question Info</th>
-                        <th>Message</th>
-                        <th>Context</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="feedbackTable"></tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>User Email</th>
+                            <th>User Details</th>
+                            <th>Question ID</th>
+                            <th>Question Info</th>
+                            <th>Message</th>
+                            <th>Context</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackTable"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -392,21 +397,23 @@ border-top:1px solid var(--border);
             </div>
         </div>
         <div class="panel-content">
-            <table style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>User Details</th>
-                        <th>Rating & Category</th>
-                        <th>Score & Source</th>
-                        <th>Suggestion</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="expFeedbackTable">
-                    <tr><td colspan="6" style="text-align:center; color: var(--muted);">Loading experience data...</td></tr>
-                </tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>User Details</th>
+                            <th>Rating & Category</th>
+                            <th>Score & Source</th>
+                            <th>Suggestion</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expFeedbackTable">
+                        <tr><td colspan="6" style="text-align:center; color: var(--muted);">Loading experience data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -545,9 +552,27 @@ border-top:1px solid var(--border);
         <div class="panel-content">
             <p class="muted">Send promotional or informative emails to all registered students using the Brevo SMTP API. Your Firebase function handles batching to prevent rate limits.</p>
             <form id="bulkEmailForm">
-                <div>
-                    <label>Sender Email</label>
-                    <input type="email" id="senderEmail" value="admin@olympiadquiz.org" required>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label>Sender Email</label>
+                        <input type="email" id="senderEmail" value="admin@olympiadquiz.org" required style="margin-top: 5px;">
+                    </div>
+                    <div>
+                        <label>Target Audience</label>
+                        <select id="emailTargetType" onchange="toggleEmailTarget()" style="margin-top: 5px;">
+                            <option value="all">All Users</option>
+                            <option value="selected">Selected Users</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="emailTargetSelection" style="display:none; margin-bottom: 15px;">
+                    <label>Select Specific Users</label>
+                    <input type="text" id="emailUserSearch" placeholder="Search by name or email..." oninput="filterEmailUsers()" style="margin-top: 5px; margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 12px; font-weight: 600; color: var(--brand);"><span id="selectedEmailCount">0</span> Selected</span>
+                        <button type="button" onclick="clearEmailSelection()" style="padding: 4px 10px; font-size: 11px; margin: 0; background: var(--bg); color: var(--danger); border: 1px solid var(--border);">Clear Selection</button>
+                    </div>
+                    <div id="emailTargetList" style="height: 200px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--surface);"></div>
                 </div>
                 <div>
                     <label>Subject Line</label>
@@ -718,11 +743,17 @@ border-top:1px solid var(--border);
     <div class="panel-content">
         <div style="display:flex; gap:10px; align-items:end; margin-bottom:15px; flex-wrap:wrap;">
             <div style="flex:1; min-width:250px;">
-                <label>Select Session</label>
-                <select id="regSessionSelect" style="margin-top:5px;">
+                    <label>Live / Upcoming Sessions</label>
+                    <select id="regSessionSelectLive" style="margin-top:5px;" onchange="document.getElementById('regSessionSelectArchive').value=''">
                     <option value="">Loading sessions...</option>
                 </select>
             </div>
+                <div style="flex:1; min-width:250px;">
+                    <label>Archived Sessions</label>
+                    <select id="regSessionSelectArchive" style="margin-top:5px;" onchange="document.getElementById('regSessionSelectLive').value=''">
+                        <option value="">Loading sessions...</option>
+                    </select>
+                </div>
             <button class="upload" style="background: var(--brand);" onclick="loadRegistrations()">Load Users</button>
         </div>
         <div id="regSummary" style="margin-bottom:15px; font-weight:800; color:var(--brand);"></div>
@@ -803,7 +834,7 @@ border-top:1px solid var(--border);
                 <div><label>Final Test Title</label><input type="text" id="jmnTitle" placeholder="e.g. JEE MAIN FULL MOCK TEST 1" required></div>
                 <div>
                     <label>Subject</label>
-                    <select id="jmnSubject"><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option><option value="Full Syllabus">Full Syllabus</option></select>
+                    <select id="jmnSubject"><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option></select>
                 </div>
                 <div><label>Test Type</label><select id="jmnTestType"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
                 <div><label>Duration (Minutes)</label><input type="number" id="jmnDuration" value="180"></div>
@@ -836,6 +867,64 @@ border-top:1px solid var(--border);
                     <tr><td colspan="6" style="text-align:center; color:var(--muted);">Click "Load Existing Tests" to view</td></tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- NEW SECTION: FULL JEE MAIN MOCK TEST UPLOAD -->
+    <div id="full-jee-main-mock-section" class="panel" style="border-top: 2px solid #8b5cf6;">
+        <div class="panel-header">
+            <h2 style="color:#8b5cf6;">🚀 Upload Full JEE Main Mock Test</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Create a combined Full JEE Main mock test by pasting Physics, Mathematics, and Chemistry questions separately.</p>
+            
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
+                <div><label>Exam Category</label><select id="fullJmnExam" onchange="window.updateFullJmnTitleOptions()"><option value="jee_main">JEE Main</option></select></div>
+                <div><label>Class</label><select id="fullJmnClass">
+                    <option value="class11">Class 11</option>
+                    <option value="class12">Class 12</option>
+                    <option value="classJEE MAIN">JEE MAIN</option>
+                </select></div>
+                <div>
+                    <label>Test Title Base</label>
+                    <select id="fullJmnTitleBase" onchange="window.calculateNextFullJmnTestNumber()">
+                        <option value="">Select Base Title...</option>
+                    </select>
+                </div>
+                <div><label>Final Test Title</label><input type="text" id="fullJmnTitle" placeholder="e.g. JEE MAIN FULL MOCK TEST 1" required></div>
+                <div><label>Duration (Minutes)</label><input type="number" id="fullJmnDuration" value="180"></div>
+                <div><label>Total Marks</label><input type="number" id="fullJmnTotalMarks" value="300"></div>
+            </div>
+            
+            <div style="display:grid; grid-template-columns: 1fr; gap:20px; margin-bottom:20px;">
+                <div style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px;">
+                    <h4 style="margin-bottom:10px;">Physics Questions (JSON)</h4>
+                    <textarea id="fullJmnPhysics" placeholder="Paste Physics JSON Questions Here" style="height: 150px; font-family: monospace;"></textarea>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button class="upload" onclick="pasteToElement('fullJmnPhysics')" style="background: var(--brand); color: #fff;">📋 Paste</button>
+                        <button class="delete" onclick="document.getElementById('fullJmnPhysics').value = ''">🗑️ Clear</button>
+                    </div>
+                </div>
+                <div style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px;">
+                    <h4 style="margin-bottom:10px;">Mathematics Questions (JSON)</h4>
+                    <textarea id="fullJmnMaths" placeholder="Paste Mathematics JSON Questions Here" style="height: 150px; font-family: monospace;"></textarea>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button class="upload" onclick="pasteToElement('fullJmnMaths')" style="background: var(--brand); color: #fff;">📋 Paste</button>
+                        <button class="delete" onclick="document.getElementById('fullJmnMaths').value = ''">🗑️ Clear</button>
+                    </div>
+                </div>
+                <div style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px;">
+                    <h4 style="margin-bottom:10px;">Chemistry Questions (JSON)</h4>
+                    <textarea id="fullJmnChemistry" placeholder="Paste Chemistry JSON Questions Here" style="height: 150px; font-family: monospace;"></textarea>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button class="upload" onclick="pasteToElement('fullJmnChemistry')" style="background: var(--brand); color: #fff;">📋 Paste</button>
+                        <button class="delete" onclick="document.getElementById('fullJmnChemistry').value = ''">🗑️ Clear</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="upload" id="fullJmnSaveBtn" onclick="saveFullJmnTest()" style="background:#8b5cf6; width:100%; margin-top:15px;">💾 Combine & Upload Full Mock Test</button>
+            <div id="fullJmnStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600;"></div>
         </div>
     </div>
 
@@ -940,7 +1029,6 @@ border-top:1px solid var(--border);
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th><th>Email</th><th>Test Type</th><th>Marks</th><th>Time Taken</th><th>Date</th><th>Start</th><th>End</th>
                             <th>Name</th><th>Email</th><th>Grade</th><th>Test Type</th><th>Marks</th><th>Time Taken</th><th>Date</th><th>Start</th><th>End</th>
                         </tr>
                     </thead>
@@ -1069,28 +1157,6 @@ border-top:1px solid var(--border);
     </div>
 </div>
 
-<!-- Quill.js Script -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-<script>
-    // This script block is separate from the main module script
-    // Initialize the Rich Text Editor with a formatting toolbar
-    var quill = new Quill('#email-editor', {
-        theme: 'snow',
-        placeholder: 'Type or paste your beautifully formatted email here...',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, 4, false] }],
-                [{ 'color': [] }, { 'background': [] }],          // Font color & Background color
-                ['bold', 'italic', 'underline', 'strike'],        // Toggled buttons
-                [{ 'align': [] }],                                // Text alignment
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],     // Lists
-                [{ 'indent': '-1'}, { 'indent': '+1' }],          // Outdent/indent
-                ['link', 'image'],                                // Links and images
-                ['clean']                                         // Remove formatting
-            ]
-        }
-    });
-</script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -1185,6 +1251,87 @@ const auth=getAuth(app);
 const storage = getStorage(app);
 const functions = getFunctions(app);
 
+const quill = new Quill('#email-editor', {
+    theme: 'snow',
+    placeholder: 'Paste your beautifully formatted email here. Images will be uploaded automatically.',
+    modules: {
+        toolbar: {
+            container: [
+                [{ 'header': [1, 2, 3, 4, false] }],
+                [{ 'color': [] }, { 'background': [] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'align': [] }],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                ['link', 'image'],
+                ['clean']
+            ],
+            handlers: {
+                'image': imageHandler
+            }
+        }
+    }
+});
+
+/**
+ * Uploads a file to Firebase Storage and inserts it into the Quill editor.
+ * @param {File} file The image file to upload.
+ */
+async function uploadAndInsertImage(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+
+    let range = quill.getSelection(true);
+    let insertIndex = range ? range.index : quill.getLength();
+    quill.insertText(insertIndex, '[Uploading image...]', 'user');
+    
+    try {
+        const safeName = file.name ? file.name.replace(/[^a-zA-Z0-9.]/g, '_') : 'pasted_image.png';
+        const storageRef = ref(storage, `email_assets/${Date.now()}_${safeName}`);
+        const snapshot = await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        quill.deleteText(insertIndex, 20); // Length of placeholder
+        quill.insertEmbed(insertIndex, 'image', downloadURL);
+        quill.setSelection(insertIndex + 1, Quill.sources.SILENT);
+    } catch (error) {
+        console.error("Image upload failed:", error);
+        quill.deleteText(insertIndex, 20);
+        alert(`Image upload failed: ${error.message}`);
+    }
+}
+
+/**
+ * Handles the 'image' button in the Quill toolbar.
+ */
+function imageHandler() {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+
+    input.onchange = () => {
+        if (input.files && input.files.length > 0) {
+            uploadAndInsertImage(input.files[0]);
+        }
+    };
+}
+
+quill.root.addEventListener('paste', (e) => {
+    const clipboardData = e.clipboardData || window.clipboardData;
+    if (clipboardData && clipboardData.items) {
+        for (let i = 0; i < clipboardData.items.length; i++) {
+            if (clipboardData.items[i].type.indexOf('image') !== -1) {
+                const file = clipboardData.items[i].getAsFile();
+                if (file) {
+                    e.preventDefault();
+                    uploadAndInsertImage(file);
+                    return;
+                }
+            }
+        }
+    }
+});
+
 const questionsRef=collection(db,"questions");
 const feedbackRef=collection(db,"feedback");
 const expFeedbackRef=collection(db,"feedbacks"); 
@@ -1196,7 +1343,7 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
-        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions();
+        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions();
     } else {
         window.location.href = "login.html";
     }
@@ -1652,7 +1799,7 @@ window.logout = async () => {
 
 function loadFeedback() {
     onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), async (snap) => {
-        document.getElementById("feedbackTable").innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>Loading question details...</td></tr>";
+        document.getElementById("feedbackTable").innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>Loading question details...</td></tr>";
         
         const rowsData = await Promise.all(snap.docs.map(async (d) => {
             const f = d.data();
@@ -1671,36 +1818,38 @@ function loadFeedback() {
                     }
                 } catch(e) { qText = "Error loading details"; }
             }
-            return { id: d.id, f, date, qText, qDetails };
+            const email = f.email || f.userEmail || "N/A";
+            const name = f.name || "Student";
+            return { id: d.id, f, date, qText, qDetails, email, name };
         }));
         
         let html="";
         rowsData.forEach(row => { 
-            html+=`<tr><td>${row.date}</td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;"><button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button><button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button></td></tr>`; 
+            html+=`<tr><td>${row.date}</td><td><b>${row.name}</b><br><span style="font-size:12px; color:var(--muted);">${row.email}</span></td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;"><button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button><button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button></td></tr>`; 
         });
-        if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No error reports found.</td></tr>";
+        if (html === "") html = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No error reports found.</td></tr>";
         document.getElementById("feedbackTable").innerHTML=html;
     });
 }
 window.deleteFB = async (id) => { await deleteDoc(doc(db, "feedback", id)); };
 
 function loadExpFeedback() {
-    onSnapshot(query(expFeedbackRef, orderBy("date", "desc")), (snap) => {
+    onSnapshot(query(expFeedbackRef, orderBy("timestamp", "desc")), (snap) => {
         let html=""; snap.forEach(d => { 
             const f=d.data(); 
-            const dateStr = f.date instanceof Timestamp ? f.date.toDate().toLocaleDateString() : f.date;
+            const dateStr = f.timestamp ? f.timestamp.toDate().toLocaleString() : (f.date || 'N/A');
             
             const ratingCat = `<div><b>${f.rating || 'N/A'}</b></div><div style="font-size:11px; color:var(--brand);">${f.category || 'General'}</div>`;
             const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
             
-            html+=`<tr><td>${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td>${f.suggestion || '-'}</td><td><button class="delete" onclick="deleteExpFB('${d.id}')">🗑</button></td></tr>`; 
+            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${f.suggestion || '-'}</td><td style="white-space:nowrap; text-align:center;"><button class="delete" onclick="deleteExpFB('${d.id}')" style="margin:0; padding:6px 12px; font-size:12px; min-width:85px;">🗑 Delete</button></td></tr>`; 
         });
         if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No feedback reports found.</td></tr>";
         document.getElementById("expFeedbackTable").innerHTML=html;
         document.getElementById("expCount").innerText = snap.size + " Reports";
     });
 }
-window.deleteExpFB = async (id) => { await deleteDoc(doc(db, "feedbacks", id)); };
+window.deleteExpFB = async (id) => { if (confirm("Are you sure you want to delete this feedback?")) { await deleteDoc(doc(db, "feedbacks", id)); } };
 
 window.loadSessions = async () => {
     const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
@@ -1949,6 +2098,44 @@ window.calculateNextJmnTestNumber = async function() {
     }
 };
 
+window.updateFullJmnTitleOptions = function() {
+    const exam = document.getElementById("fullJmnExam").value;
+    const titleBaseSelect = document.getElementById("fullJmnTitleBase");
+    
+    let options = '<option value="">Select Base Title...</option>';
+    if (exam === "jee_main") {
+        options += '<option value="JEE MAIN FULL MOCK TEST">JEE MAIN FULL MOCK TEST</option>';
+    }
+    titleBaseSelect.innerHTML = options;
+};
+
+window.calculateNextFullJmnTestNumber = async function() {
+    const baseTitle = document.getElementById("fullJmnTitleBase").value;
+    if (!baseTitle) {
+        return;
+    }
+    document.getElementById("fullJmnTitle").value = "Calculating...";
+    try {
+        const q = query(collection(db, "exam_tests"), where("exam", "==", document.getElementById("fullJmnExam").value));
+        const snap = await getDocs(q);
+        let maxNum = 0;
+        snap.forEach(doc => {
+            const t = doc.data().title;
+            if (t && t.toUpperCase().startsWith(baseTitle.toUpperCase())) {
+                const numStr = t.substring(baseTitle.length).trim();
+                const num = parseInt(numStr);
+                if (!isNaN(num) && num > maxNum) {
+                    maxNum = num;
+                }
+            }
+        });
+        document.getElementById("fullJmnTitle").value = baseTitle + " " + (maxNum + 1);
+    } catch (e) {
+        console.error(e);
+        document.getElementById("fullJmnTitle").value = baseTitle + " 1";
+    }
+};
+
 // ADDED SECTION: JEE MAIN & NEET ADMIN LOGIC
 window.saveJmnTest = async function() {
     const id = document.getElementById("editJmnTestId").value;
@@ -1993,6 +2180,93 @@ window.saveJmnTest = async function() {
         
         if(typeof loadJmnTestsList === 'function') loadJmnTestsList();
     } catch(e) { alert("Error saving test: " + e.message); }
+};
+
+window.saveFullJmnTest = async function() {
+    const exam = document.getElementById("fullJmnExam").value;
+    const grade = document.getElementById("fullJmnClass").value;
+    const title = document.getElementById("fullJmnTitle").value.trim();
+    const duration = parseInt(document.getElementById("fullJmnDuration").value);
+    const totalMarks = parseInt(document.getElementById("fullJmnTotalMarks").value);
+    
+    const physicsJson = document.getElementById("fullJmnPhysics").value.trim();
+    const mathsJson = document.getElementById("fullJmnMaths").value.trim();
+    const chemistryJson = document.getElementById("fullJmnChemistry").value.trim();
+    const status = document.getElementById("fullJmnStatus");
+    
+    if(!title) { alert("Please provide a title for the full mock test."); return; }
+    if(!physicsJson || !mathsJson || !chemistryJson) {
+        alert("Please paste JSON questions for Physics, Mathematics, and Chemistry.");
+        return;
+    }
+    
+    let physicsQ = [], mathsQ = [], chemistryQ = [];
+    
+    try {
+        physicsQ = JSON.parse(physicsJson);
+        if (!Array.isArray(physicsQ) || physicsQ.length === 0) throw new Error("Physics JSON must be a non-empty array.");
+    } catch(e) { alert("Invalid Physics JSON format: " + e.message); return; }
+    
+    try {
+        mathsQ = JSON.parse(mathsJson);
+        if (!Array.isArray(mathsQ) || mathsQ.length === 0) throw new Error("Mathematics JSON must be a non-empty array.");
+    } catch(e) { alert("Invalid Mathematics JSON format: " + e.message); return; }
+    
+    try {
+        chemistryQ = JSON.parse(chemistryJson);
+        if (!Array.isArray(chemistryQ) || chemistryQ.length === 0) throw new Error("Chemistry JSON must be a non-empty array.");
+    } catch(e) { alert("Invalid Chemistry JSON format: " + e.message); return; }
+    
+    const combinedQuestions = [...physicsQ, ...mathsQ, ...chemistryQ];
+    
+    const ids = combinedQuestions.map(q => q.id).filter(id => !!id);
+    const uniqueIds = new Set(ids);
+    if(ids.length !== uniqueIds.size) {
+        if(!confirm(`⚠️ Warning: Detected ${ids.length - uniqueIds.size} duplicate IDs in the combined test. Do you want to continue anyway?`)) {
+            return;
+        }
+    }
+    
+    const btn = document.getElementById("fullJmnSaveBtn");
+    btn.innerText = "⏳ Uploading...";
+    btn.disabled = true;
+    status.innerText = "Processing and uploading...";
+    status.style.color = "var(--text)";
+    
+    try {
+        const payload = { 
+            exam, 
+            class: grade, 
+            testType: "full_mock", 
+            title, 
+            subject: "Full Syllabus", 
+            duration, 
+            totalMarks, 
+            questions: combinedQuestions, 
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp() 
+        };
+        
+        await addDoc(collection(db, "exam_tests"), payload);
+        
+        alert("✅ Full Mock Test Saved Successfully!");
+        status.innerText = "✅ Successfully uploaded Full Mock Test!";
+        status.style.color = "green";
+        
+        document.getElementById("fullJmnPhysics").value = "";
+        document.getElementById("fullJmnMaths").value = "";
+        document.getElementById("fullJmnChemistry").value = "";
+        document.getElementById("fullJmnTitle").value = "";
+        
+        if(typeof loadJmnTestsList === 'function') loadJmnTestsList();
+    } catch(e) { 
+        alert("Error saving full mock test: " + e.message); 
+        status.innerText = "❌ Error: " + e.message;
+        status.style.color = "red";
+    } finally {
+        btn.innerText = "💾 Combine & Upload Full Mock Test";
+        btn.disabled = false;
+    }
 };
 
 window.loadJmnTestsList = async function() {
@@ -2205,6 +2479,15 @@ window.saveCompetitiveTest = async function() {
         document.getElementById("compTitle").value = "";
     } catch(e) { status.innerText = "❌ Error saving test: " + e.message; status.style.color = "red"; }
     document.getElementById("compSaveBtn").innerText = "💾 Upload Competitive Test";
+};
+
+window.pasteToElement = async function(elementId) {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById(elementId).value = text;
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually (Ctrl+V / Cmd+V).");
+    }
 };
 
 window.pasteJeeClipboard = async function() {
@@ -2438,6 +2721,60 @@ window.createSession = async () => {
     }
 };
 
+window.toggleEmailTarget = function() {
+    const type = document.getElementById("emailTargetType").value;
+    const container = document.getElementById("emailTargetSelection");
+    if (type === "selected") {
+        container.style.display = "block";
+        if (document.getElementById("emailTargetList").innerHTML.trim() === "") {
+            loadUserEmailsForBroadcast();
+        }
+    } else {
+        container.style.display = "none";
+    }
+};
+
+window.loadUserEmailsForBroadcast = async function() {
+    const list = document.getElementById("emailTargetList");
+    list.innerHTML = "<div style='color:var(--muted); text-align:center;'>Loading users...</div>";
+    try {
+        const snap = await getDocs(collection(db, "users"));
+        let html = "";
+        snap.forEach(doc => {
+            const data = doc.data();
+            if (data.email) {
+                html += `<label class="email-user-row" style="display:flex; align-items:center; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                            <input type="checkbox" value="${data.email}" onchange="updateEmailSelectionCount()" style="width:auto; margin:0;">
+                            <span class="user-text">${data.name || 'Student'} (${data.email})</span>
+                         </label>`;
+            }
+        });
+        list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users found</div>";
+        updateEmailSelectionCount();
+    } catch (e) {
+        list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
+    }
+};
+
+window.filterEmailUsers = function() {
+    const term = document.getElementById("emailUserSearch").value.toLowerCase();
+    const rows = document.querySelectorAll(".email-user-row");
+    rows.forEach(row => {
+        const text = row.querySelector(".user-text").innerText.toLowerCase();
+        row.style.display = text.includes(term) ? "flex" : "none";
+    });
+};
+
+window.updateEmailSelectionCount = function() {
+    const count = document.querySelectorAll('#emailTargetList input[type="checkbox"]:checked').length;
+    document.getElementById("selectedEmailCount").innerText = count;
+};
+
+window.clearEmailSelection = function() {
+    document.querySelectorAll('#emailTargetList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    updateEmailSelectionCount();
+};
+
 document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = document.getElementById("sendEmailBtn");
@@ -2447,7 +2784,20 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
     const subject = document.getElementById("emailSubject").value;
     const content = quill.root.innerHTML; // Get HTML content from Quill editor
 
-    if (!confirm("⚠️ WARNING: You are about to send an email to ALL registered users. This action cannot be undone. Proceed?")) return;
+    const targetType = document.getElementById("emailTargetType").value;
+    let targetEmails = [];
+    
+    if (targetType === "selected") {
+        const checkboxes = document.querySelectorAll('#emailTargetList input[type="checkbox"]:checked');
+        targetEmails = Array.from(checkboxes).map(cb => cb.value);
+        if (targetEmails.length === 0) {
+            alert("Please select at least one user from the list.");
+            return;
+        }
+        if (!confirm(`⚠️ WARNING: You are about to send an email to ${targetEmails.length} selected user(s). Proceed?`)) return;
+    } else {
+        if (!confirm("⚠️ WARNING: You are about to send an email to ALL registered users. This action cannot be undone. Proceed?")) return;
+    }
 
     btn.disabled = true;
     btn.innerText = "⏳ Processing...";
@@ -2461,7 +2811,7 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
         // FIX 1: Correct function name from 'sendBulkEmails' to 'sendBulkEmail'
         const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmail');
         // FIX 2: Correct payload keys from 'content' to 'htmlContent' as expected by the backend
-        const result = await sendBulkEmailFn({ subject: subject, htmlContent: content });
+        const result = await sendBulkEmailFn({ subject: subject, htmlContent: content, targetEmails: targetEmails });
         
         // FIX 3: Handle the new JSON response structure from the backend function
         if (result.data.success) {
@@ -2586,6 +2936,66 @@ document.getElementById("smsForm")?.addEventListener("submit", async (e) => {
     } finally {
         btn.disabled = false;
         btn.innerText = "📲 Send SMS Alerts";
+    }
+});
+
+document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("sendEmailBtn");
+    const status = document.getElementById("emailStatus");
+    
+    const subject = document.getElementById("emailSubject").value;
+    const content = quill.root.innerHTML; // Get HTML content from Quill editor
+
+    const targetType = document.getElementById("emailTargetType").value;
+    let targetEmails = [];
+    
+    if (targetType === "selected") {
+        const checkboxes = document.querySelectorAll('#emailTargetList input[type="checkbox"]:checked');
+        targetEmails = Array.from(checkboxes).map(cb => cb.value);
+        if (targetEmails.length === 0) {
+            alert("Please select at least one user from the list.");
+            return;
+        }
+        if (!confirm(`⚠️ WARNING: You are about to send an email to ${targetEmails.length} selected user(s). Proceed?`)) return;
+    } else {
+        if (!confirm("⚠️ WARNING: You are about to send an email to ALL registered users. This action cannot be undone. Proceed?")) return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "⏳ Processing...";
+    status.style.display = "block";
+    status.style.background = "rgba(79, 70, 229, 0.1)";
+    status.style.color = "var(--brand)";
+    status.style.borderColor = "var(--brand)";
+    status.innerText = "Initiating bulk email function. Do not close this page...";
+
+    try {
+        const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmail');
+        const result = await sendBulkEmailFn({ subject: subject, htmlContent: content, targetEmails: targetEmails });
+        
+        if (result.data.success) {
+            status.style.background = "rgba(16, 185, 129, 0.1)";
+            status.style.color = "var(--success)";
+            status.style.borderColor = "var(--success)";
+            status.innerText = result.data.message;
+            alert(result.data.message);
+            
+            document.getElementById("emailSubject").value = "";
+            quill.setContents([]); // Clear the Quill editor
+        } else {
+            const errorMessage = `❌ Error: ${result.data.message}\n\nDetails: ${result.data.errorDetails || 'No additional details.'}`;
+            status.innerText = errorMessage;
+            alert(errorMessage);
+        }
+
+    } catch (error) {
+        const errMsg = "❌ Failed: " + error.message;
+        status.innerText = errMsg;
+        alert(errMsg);
+    } finally {
+        btn.disabled = false;
+        btn.innerText = "🚀 Send Broadcast";
     }
 });
 
@@ -2748,25 +3158,33 @@ window.clearStudyContent = function() {
 };
 
 window.loadRegSessionsList = async () => {
-    const select = document.getElementById("regSessionSelect");
+    const selectLive = document.getElementById("regSessionSelectLive");
+    const selectArchive = document.getElementById("regSessionSelectArchive");
     try {
         const snap = await getDocs(query(sessionsRef, orderBy("startTime", "desc")));
-        let html = '<option value="">-- Select a Session --</option>';
-        html += '<option value="all">All Live/Upcoming Sessions</option>';
+        let htmlLive = '<option value="">-- Select Live/Upcoming Session --</option>';
+        htmlLive += '<option value="all">All Live/Upcoming Sessions</option>';
+        let htmlArchive = '<option value="">-- Select Archived Session --</option>';
         snap.forEach(d => {
             const s = d.data();
             const date = s.startTime && s.startTime.toDate ? s.startTime.toDate().toLocaleDateString() : '';
-            const archiveTag = s.archived ? " [Archived]" : "";
-            html += `<option value="${d.id}">${s.title} (${date})${archiveTag}</option>`;
+            if (s.archived) {
+                htmlArchive += `<option value="${d.id}">${s.title} (${date})</option>`;
+            } else {
+                htmlLive += `<option value="${d.id}">${s.title} (${date})</option>`;
+            }
         });
-        select.innerHTML = html;
+        if (selectLive) selectLive.innerHTML = htmlLive;
+        if (selectArchive) selectArchive.innerHTML = htmlArchive;
     } catch (e) {
         console.error(e);
     }
 };
 
 window.loadRegistrations = async () => {
-    const sid = document.getElementById("regSessionSelect").value;
+    const sidLive = document.getElementById("regSessionSelectLive").value;
+    const sidArchive = document.getElementById("regSessionSelectArchive").value;
+    const sid = sidLive || sidArchive;
     const tbody = document.getElementById("registrationsTable");
     const summary = document.getElementById("regSummary");
     

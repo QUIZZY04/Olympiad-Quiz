@@ -7,8 +7,13 @@
     font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 html {
-    overflow-x: clip;
+    overflow-x: hidden;
     width: 100%;
     max-width: 100%;
     scroll-behavior: smooth;
@@ -17,10 +22,12 @@ html {
 /* ================= DEFAULT BODY (Dashboard/Quiz/Result) ================= */
 
 body {
+    display: flex;
+    flex-direction: column;
     background: #f8fafc;
     color: #1e293b;
     min-height: 100vh;
-    overflow-x: clip;
+    overflow-x: hidden;
     max-width: 100%;
     background-image: 
         radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
@@ -247,7 +254,8 @@ body.auth-page {
     border: 1px solid #e2e8f0;
 }
 .auth-container {
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     border-radius: 24px;
     border-top: 4px solid #ff6b00;
 }
@@ -693,15 +701,21 @@ nav {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px !important;
+    }
     nav {
         padding: 0 12px !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         justify-content: space-between !important;
         align-items: center !important;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        z-index: 1000 !important;
         min-height: 60px !important; /* Increased from 50px to better contain navigation items */
     }
     .brand {
@@ -867,7 +881,8 @@ select {
 }
 
 .dashboard-card {
-    width: 280px;
+    width: 100%;
+    max-width: 280px;
     padding: 30px;
     border-radius: 18px;
     background: #ffffff;
@@ -978,4 +993,86 @@ select {
     margin-bottom: 8px;
     font-size: 0.9rem;
     color: var(--muted);
+}
+
+/* ================= DESKTOP/LAPTOP SCALING OPTIMIZATION ================= */
+/* Scales down the UI on larger screens so pages don't look oversized or heavy */
+@media (min-width: 900px) {
+    body {
+        font-size: 14px !important; /* Shrinks rem-based fonts */
+        zoom: 0.85 !important; /* Forces the entire page to scale down on laptops */
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        zoom: 0.90 !important; /* Adjust scaling slightly for larger monitors */
+    }
+}
+
+/* ================= BREADCRUMB ================= */
+.breadcrumb {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.breadcrumb a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.breadcrumb a:hover {
+    color: var(--accent);
+}
+.breadcrumb .separator {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+/* ================= GLOBAL FOOTER ENHANCEMENT ================= */
+footer, .site-footer {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    padding: 40px 20px !important;
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-top: 4px solid #ff6b00 !important;
+    margin-top: auto !important;
+}
+footer a, .site-footer a {
+    color: #f8fafc !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    transition: color 0.3s ease !important;
+}
+footer a:hover, .site-footer a:hover {
+    color: #ff8c1a !important;
+}
+footer div, .site-footer .footer-links {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 15px !important;
+}
+footer p, .site-footer p {
+    margin-top: 15px !important;
+    margin-bottom: 0 !important;
+    font-size: 14px !important;
+    color: #94a3b8 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
 }

@@ -36,7 +36,41 @@
       "@type": "Organization",
       "name": "Olympiad Portal Team"
   }],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Olympiad Portal",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://olympiadquiz.org/favicon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://olympiadquiz.org/blog-how-to-prepare-for-imo-in-30-days.html"
+  },
   "description": "Master the International Mathematics Olympiad with this strategic, week-by-week 30-day preparation plan."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://olympiadquiz.org/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Success Guides",
+    "item": "https://olympiadquiz.org/blog.html"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "How to Prepare for IMO in 30 Days",
+    "item": "https://olympiadquiz.org/blog-how-to-prepare-for-imo-in-30-days.html"
+  }]
 }
 </script>
 
@@ -196,20 +230,15 @@
     </aside>
 </div>
 
-<footer style="text-align:center;padding:40px 20px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 15px;">
-        <a href="index.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Home</a>
-        <a href="blog.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Blog</a>
-        <a href="features.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Features</a>
-        <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:13px;text-transform:uppercase;">Privacy Policy</a>
+<footer style="text-align:center;padding:;-pholor:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
     </div>
-    <p style="margin-top:15px;font-size:13px;letter-spacing:0.5px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 
 <script>
     function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
     
-    // Smooth scrolling for TOC
     document.querySelectorAll('.toc-box a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();

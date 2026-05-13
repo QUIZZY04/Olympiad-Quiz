@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processing Payment - Olympiad Portal</title>
+    <meta name="robots" content="noindex, nofollow">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
@@ -183,56 +184,6 @@
                 window.location.href = "live.html";
             }, 3000); // 3-5 seconds redirection
         }
-    </script>
-</body>
-</html>                     document.getElementById("processingMsg").innerText = "Redirecting to Live Test Page...";
-                            const spinner = document.getElementById("processingSpinner");
-                            if(spinner) spinner.style.display = "none";
-                            
-                            response.sessionId = sId;
-                            response.amount = parseInt(price);
-                            response.sessionDate = localStorage.getItem("checkoutDate") || "Upcoming Weekend";
-                            response.sessionTime = localStorage.getItem("checkoutTime") || "As scheduled";
-                            localStorage.setItem("activeSessionId", sId);
-                            localStorage.setItem("activeSessionPrice", price);
-                            localStorage.setItem("paymentData", JSON.stringify(response));
-                            setTimeout(() => {
-                                window.location.href = "/live.html";
-                            }, 2000);
-                        } else {
-                            window.hideProcessingScreen();
-                            alert("Payment was not completed.");
-                            payBtn.innerText = originalText;
-                            payBtn.disabled = false;
-                        }
-                    },
-                    "modal": {
-                        "ondismiss": function() {
-                            window.hideProcessingScreen();
-                            alert("Payment was not completed.");
-                            const payBtn = document.getElementById("payButton");
-                            payBtn.innerText = originalText;
-                            payBtn.disabled = false;
-                        }
-                    },
-                    "prefill": { "name": userName, "email": userEmail },
-                    "theme": { "color": "#38bdf8" }
-                };
-                const rzp = new Razorpay(options);
-                rzp.on('payment.failed', function (response) { 
-                    window.hideProcessingScreen();
-                    alert("Payment was not completed.");
-                    payBtn.innerText = originalText;
-                    payBtn.disabled = false;
-                });
-                rzp.open();
-            } catch (err) {
-                console.error("Order Creation Error:", err);
-                alert("Unable to initiate payment. Please try again.");
-                payBtn.innerText = originalText;
-                payBtn.disabled = false;
-            }
-        });
     </script>
 </body>
 </html>

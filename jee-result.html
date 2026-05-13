@@ -159,45 +159,48 @@
     </div>
 
     <!-- Feedback Modal -->
-    <div id="feedbackModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.98); backdrop-filter:blur(15px); z-index:2000; justify-content:center; align-items:center; padding:20px;">
-        <div style="background:var(--surface); padding:30px; border-radius:24px; width:100%; max-width:450px; border:1px solid var(--border); text-align:left; box-shadow: var(--shadow-lg);">
-            <h2 style="color:var(--brand); margin-bottom:10px; text-align:center; font-weight:800; font-size:22px;">⭐ Please Share Your Experience</h2>
-            <p style="color:var(--muted); font-size:13px; margin-bottom:20px; text-align:center; line-height: 1.5;">We truly value your time and experience! 🌟 Please take a brief moment to share your feedback so we can continue to improve. Completing this quick form will instantly unlock your detailed results and analytics!</p>
+    <div id="feedbackModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.95); backdrop-filter:blur(10px); z-index:2000; justify-content:center; align-items:center; padding:20px;">
+        <div style="background:var(--surface); padding:40px; border-radius:24px; width:100%; max-width:480px; text-align:left; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <div style="font-size: 48px; margin-bottom: 10px;">🎯</div>
+                <h2 style="color: var(--text); margin-bottom: 10px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">Test Complete!</h2>
+                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;">Please share your feedback to unlock your detailed performance analytics and solutions.</p>
+            </div>
             
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING <span style="color:var(--danger)">*</span></label>
-            <select id="fbRating" style="width:100%; padding:12px; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; margin:5px 0 15px 0; outline:none; font-family:inherit;">
-                <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-                <option value="4">⭐⭐⭐⭐ Good</option>
-                <option value="3">⭐⭐⭐ Average</option>
-                <option value="2">⭐⭐ Poor</option>
-                <option value="1">⭐ Very Poor</option>
-            </select>
+            <div style="background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px;">
+                <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-bottom: 8px;">HOW WOULD YOU RATE THIS TEST? <span style="color:var(--danger)">*</span></label>
+                <select id="fbRating" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size: 14px; font-weight: 500; outline:none; cursor: pointer; transition: 0.2s;">
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent - Loved it!</option>
+                    <option value="4">⭐⭐⭐⭐ Good - Pretty solid</option>
+                    <option value="3">⭐⭐⭐ Average - Could be better</option>
+                    <option value="2">⭐⭐ Poor - Not great</option>
+                    <option value="1">⭐ Very Poor - Had a bad experience</option>
+                </select>
 
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">CATEGORY <span style="color:var(--danger)">*</span></label>
-            <select id="fbCategory" style="width:100%; padding:12px; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; margin:5px 0 15px 0; outline:none; font-family:inherit;">
-                <option value="" disabled selected>Select what your feedback is about...</option>
-                <optgroup label="What you liked">
-                    <option value="Questions quality">Questions quality</option>
-                    <option value="Instant result">Instant result</option>
-                    <option value="Detailed solutions">Detailed solutions</option>
-                    <option value="Easy interface">Easy interface</option>
-                    <option value="Performance analysis">Performance analysis</option>
-                    <option value="Live tests">Live tests</option>
-                </optgroup>
-                <optgroup label="Problems faced">
-                    <option value="Slow loading">Slow loading</option>
-                    <option value="Difficult UI">Difficult UI</option>
-                    <option value="Mobile issue">Mobile issue</option>
-                    <option value="Payment issue">Payment issue</option>
-                    <option value="Question error">Question error</option>
-                    <option value="Other">Other</option>
-                </optgroup>
-            </select>
+                <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-top: 20px; margin-bottom: 8px;">WHAT IS YOUR FEEDBACK ABOUT? <span style="color:var(--danger)">*</span></label>
+                <select id="fbCategory" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size: 14px; font-weight: 500; outline:none; cursor: pointer; transition: 0.2s;">
+                    <option value="" disabled selected>Select a topic...</option>
+                    <optgroup label="Positive Experience">
+                        <option value="Great Questions">Great Questions</option>
+                        <option value="Helpful Explanations">Helpful Explanations</option>
+                        <option value="Smooth Interface">Smooth Interface</option>
+                        <option value="Useful Analytics">Useful Analytics</option>
+                    </optgroup>
+                    <optgroup label="Needs Improvement">
+                        <option value="Platform Glitches/Bugs">Platform Glitches/Bugs</option>
+                        <option value="Question Errors">Question Errors</option>
+                        <option value="Slow Performance">Slow Performance</option>
+                        <option value="Confusing UI">Confusing UI</option>
+                        <option value="Feature Request">Feature Request</option>
+                        <option value="Other">Other</option>
+                    </optgroup>
+                </select>
+            </div>
 
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">MESSAGE / SUGGESTION</label>
-            <textarea id="fbText" rows="3" style="width:100%; padding:12px; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:10px; margin:5px 0 20px 0; outline:none; resize:none; font-family:inherit;" placeholder="Optional details..."></textarea>
+            <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-bottom: 8px;">TELL US MORE <span style="color:var(--danger)">*</span></label>
+            <textarea id="fbText" rows="4" style="width:100%; padding:16px; border-radius:16px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size: 14px; margin-bottom: 25px; outline:none; resize:none; font-family:inherit; transition: 0.2s;" placeholder="Please provide specific details..."></textarea>
             
-            <button id="fbSubmitBtn" style="width:100%; padding:14px; border-radius:10px; background:var(--brand); color:#fff; border:none; font-weight:700; font-size:15px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px;" onclick="submitFeedback()">Unlock My Results 🚀</button>
+            <button id="fbSubmitBtn" style="width:100%; padding:16px; border-radius:12px; background:var(--brand); color:#fff; border:none; font-weight:700; font-size:16px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; box-shadow: 0 4px 15px rgba(255,107,0,0.25);" onclick="submitFeedback()">Unlock My Results 🚀</button>
         </div>
     </div>
 
@@ -226,7 +229,8 @@
             const resultData = JSON.parse(localStorage.getItem("jeeQuizResult"));
             const currentUser = auth.currentUser;
 
-            if(!category) { alert("Please select a feedback category."); return; }
+            if(!category) { alert("Please select a feedback topic."); return; }
+            if (!comment.trim()) { alert("Please provide your comments or suggestions. This field is required."); return; }
 
             btn.disabled = true;
             btn.innerText = "Submitting...";
@@ -263,6 +267,17 @@
                 window.location.replace("login.html");
                 return;
             }
+            
+            const providerIds = user.providerData.map(p => p.providerId);
+            const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+            const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
+            const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+            
+            if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
+                window.location.replace("signup.html?mode=completion");
+                return;
+            }
+
             if (user.email === "madhhu52@gmail.com") {
                 document.getElementById("adminTab").style.display = "inline";
             }

@@ -12,10 +12,9 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
   <meta name="theme-color" content="#ffffff">
 
   <!-- INSTANT AUTHENTICATION CHECK -->
@@ -56,7 +55,7 @@
       display:flex; 
       flex-direction:column; 
       min-height:100vh; 
-      overflow-x: clip; 
+      overflow-x: hidden; 
       background-image: 
           radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
           radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
@@ -167,6 +166,7 @@
 
     @media (max-width:768px){
         .hero-panel { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+        .hero-left { min-width: 100%; }
         .hero-left h1 { font-size: 2.1rem; }
         .hero-stats-grid { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
         .hero-stat-card { padding: 20px 16px; }
@@ -236,8 +236,15 @@
             <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
             <a href="index.html">Home</a>
             <a href="dashboard.html" class="active">Dashboard</a>
-            <a href="mock.html">Mock Tests</a>
-            <a href="chapterwise.html">Chapterwise</a>
+            <div class="nav-dropdown">
+                <a href="#" class="dropbtn">Students Zone</a>
+                <div class="nav-dropdown-content">
+                    <a href="mock.html">Mock Tests</a>
+                    <a href="chapterwise.html">Chapterwise</a>
+                    <a href="study.html">Study Material</a>
+                    <a href="blog.html">Success Guides</a>
+                </div>
+            </div>
             <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
             <button class="dropbtn nav-link-btn">Senior Exams</button>
@@ -248,8 +255,6 @@
             </div>
         </div>
             <a href="leaderboard.html">Leaderboard</a>
-            <a href="study.html">Study Material</a>
-            <a href="blog.html">Success Guides</a>
             <div class="nav-actions">
                 <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
                 <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
@@ -471,46 +476,49 @@
 
     <!-- Dashboard Feedback Modal -->
     <div id="dashboardFeedbackModal" class="modal-overlay" style="display:none; z-index: 4000;">
-        <div class="modal-content" style="max-width: 450px; text-align: left;">
-            <h2 style="color: var(--brand); margin-bottom: 10px; font-weight: 800; font-size: 22px; text-align: center;">⭐ How was your experience?</h2>
-            <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; text-align: center;" id="feedbackSubtitle">We truly value your time! Please take a brief moment to share your experience so we can serve you better.</p>
+        <div class="modal-content" style="max-width: 480px; text-align: left; padding: 40px;">
+            <div style="text-align: center; margin-bottom: 25px;">
+                <div style="font-size: 48px; margin-bottom: 10px;">📣</div>
+                <h2 style="color: var(--text); margin-bottom: 10px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">We Value Your Feedback!</h2>
+                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;" id="feedbackSubtitle">Your thoughts help us improve Olympiad Portal for everyone. Please share your experience.</p>
+            </div>
             
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">RATING <span style="color:var(--danger)">*</span></label>
-            <select id="dbFbRating" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); margin:5px 0 15px; outline:none;">
-                <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-                <option value="4">⭐⭐⭐⭐ Good</option>
-                <option value="3">⭐⭐⭐ Average</option>
-                <option value="2">⭐⭐ Poor</option>
-                <option value="1">⭐ Very Poor</option>
-            </select>
+            <div style="background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px;">
+                <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-bottom: 8px;">HOW WOULD YOU RATE US? <span style="color:var(--danger)">*</span></label>
+                <select id="dbFbRating" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size: 14px; font-weight: 500; outline:none; cursor: pointer; transition: 0.2s;">
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent - Loved it!</option>
+                    <option value="4">⭐⭐⭐⭐ Good - Pretty solid</option>
+                    <option value="3">⭐⭐⭐ Average - Could be better</option>
+                    <option value="2">⭐⭐ Poor - Not great</option>
+                    <option value="1">⭐ Very Poor - Had a bad experience</option>
+                </select>
 
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">CATEGORY <span style="color:var(--danger)">*</span></label>
-            <select id="dbFbCategory" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); margin:5px 0 15px; outline:none;">
-                <option value="" disabled selected>Select what your feedback is about...</option>
-                <optgroup label="What you liked">
-                    <option value="Questions quality">Questions quality</option>
-                    <option value="Instant result">Instant result</option>
-                    <option value="Detailed solutions">Detailed solutions</option>
-                    <option value="Easy interface">Easy interface</option>
-                    <option value="Performance analysis">Performance analysis</option>
-                    <option value="Live tests">Live tests</option>
-                </optgroup>
-                <optgroup label="Problems faced">
-                    <option value="Slow loading">Slow loading</option>
-                    <option value="Difficult UI">Difficult UI</option>
-                    <option value="Mobile issue">Mobile issue</option>
-                    <option value="Payment issue">Payment issue</option>
-                    <option value="Question error">Question error</option>
-                    <option value="Other">Other</option>
-                </optgroup>
-            </select>
+                <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-top: 20px; margin-bottom: 8px;">WHAT IS YOUR FEEDBACK ABOUT? <span style="color:var(--danger)">*</span></label>
+                <select id="dbFbCategory" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size: 14px; font-weight: 500; outline:none; cursor: pointer; transition: 0.2s;">
+                    <option value="" disabled selected>Select a topic...</option>
+                    <optgroup label="Positive Experience">
+                        <option value="Great Questions">Great Questions</option>
+                        <option value="Helpful Explanations">Helpful Explanations</option>
+                        <option value="Smooth Interface">Smooth Interface</option>
+                        <option value="Useful Analytics">Useful Analytics</option>
+                    </optgroup>
+                    <optgroup label="Needs Improvement">
+                        <option value="Platform Glitches/Bugs">Platform Glitches/Bugs</option>
+                        <option value="Question Errors">Question Errors</option>
+                        <option value="Slow Performance">Slow Performance</option>
+                        <option value="Confusing UI">Confusing UI</option>
+                        <option value="Feature Request">Feature Request</option>
+                        <option value="Other">Other</option>
+                    </optgroup>
+                </select>
+            </div>
 
-            <label style="color:var(--muted); font-size:12px; font-weight:700;">MESSAGE / SUGGESTION</label>
-            <textarea id="dbFbText" rows="3" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background:var(--bg); color:var(--text); margin:5px 0 20px; outline:none; resize:none; font-family:inherit;" placeholder="Optional details..."></textarea>
+            <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-bottom: 8px;">TELL US MORE <span style="color:var(--danger)">*</span></label>
+            <textarea id="dbFbText" rows="4" style="width:100%; padding:16px; border-radius:16px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size: 14px; margin-bottom: 25px; outline:none; resize:none; font-family:inherit; transition: 0.2s;" placeholder="Please provide specific details..."></textarea>
             
             <div style="display: flex; gap: 15px;">
-                <button onclick="closeFeedbackModal()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--border); color: var(--text); font-weight: 700; border: none; cursor: pointer;">Cancel</button>
-                <button id="dbFbSubmitBtn" onclick="submitDashboardFeedback()" style="flex: 2; padding: 12px; border-radius: 10px; background: var(--brand); color: white; font-weight: 700; border: none; cursor: pointer;">Submit Feedback</button>
+                <button onclick="closeFeedbackModal()" style="flex: 1; padding: 14px; border-radius: 12px; background: var(--bg); color: var(--muted); font-weight: 700; border: 1px solid var(--border); cursor: pointer; transition: 0.2s; font-size: 15px;">Cancel</button>
+                <button id="dbFbSubmitBtn" onclick="submitDashboardFeedback()" style="flex: 2; padding: 14px; border-radius: 12px; background: var(--brand); color: white; font-weight: 700; border: none; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(255,107,0,0.25); font-size: 15px;">Submit Feedback</button>
             </div>
         </div>
     </div>
@@ -528,18 +536,27 @@
         </div>
     </div>
 
-    <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
-        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
-            <a href="imo-free-mock-test.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">IMO Guide</a>
-            <a href="nso-free-mock-test.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">NSO Guide</a>
-            <a href="ieo-free-mock-test.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">IEO Guide</a>
-            <a href="igko-free-mock-test.html" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">IGKO Guide</a>
-            <a href="about.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">About Us</a>
-            <a href="contact.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Contact Us</a>
-            <a href="privacy-policy.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Privacy Policy</a>
-            <a href="term.html" target="_blank" style="color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;">Terms & Conditions</a>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="imo-free-mock-test.html" target="_blank">IMO Guide</a>
+            <a href="nso-free-mock-test.html" target="_blank">NSO Guide</a>
+            <a href="ieo-free-mock-test.html" target="_blank">IEO Guide</a>
+            <a href="igko-free-mock-test.html" target="_blank">IGKO Guide</a>
+            <a href="about.html" target="_blank">About Us</a>
+            <a href="contact.html" target="_blank">Contact Us</a>
+            <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+            <a href="term.html" target="_blank">Terms & Conditions</a>
         </div>
-        <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Quiz. All rights reserved.</p>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin: 20px 0;">
+            <span style="color: #cbd5e1; font-size: 15px; font-weight: 600; letter-spacing: 0.5px;">Follow us on:</span>
+            <a href="https://www.instagram.com/olympiadquiz/" target="_blank" aria-label="Instagram" style="transition: transform 0.3s; display: inline-flex; align-items: center;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig" x1="0.2" y1="1" x2="0.8" y2="0"><stop offset="0%" stop-color="#fd5949"/><stop offset="50%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></linearGradient><radialGradient id="ig-y" cx="0.2" cy="0.8" r="0.8"><stop offset="0%" stop-color="#fdf497"/><stop offset="100%" stop-color="#fd5949" stop-opacity="0"/></radialGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" fill="url(#ig)"/><rect x="2" y="2" width="20" height="20" rx="5" fill="url(#ig-y)"/><rect x="6" y="6" width="12" height="12" rx="3" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="15.8" cy="8.2" r="1.2" fill="#fff"/></svg>
+            </a>
+            <a href="https://www.facebook.com/olympiadquiz" target="_blank" aria-label="Facebook" style="transition: transform 0.3s; display: inline-flex; align-items: center;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path d="M15.4 12H13V24h-3.5V12H7.5V8.5H9.5V6.4c0-2.4 1.4-3.7 3.6-3.7 1 0 1.9.1 1.9.1v2.2h-1.1c-1.1 0-1.3.5-1.3 1.3v2.2h2.9l-.4 3.5z" fill="#FFFFFF"/></svg>
+            </a>
+        </div>
+        <p>© 2026 Olympiad Portal. All rights reserved.</p>
     </footer>
 </div>
 
@@ -578,12 +595,14 @@ onAuthStateChanged(auth, async (user) => {
         if (userDoc.exists()) {
             const data = userDoc.data();
 
-                const providerIds = user.providerData.map(p => p.providerId);
-                const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-                if (!hasEmailOrGoogle && !isAdmin) {
-                    window.location.replace("signup.html?mode=completion");
-                    return;
-                }
+            const providerIds = user.providerData.map(p => p.providerId);
+            const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+            const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
+            
+            if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
+                window.location.replace("signup.html?mode=completion");
+                return;
+            }
 
             if ((!data.registrationCompleted && !data.signupCompleted) && !isAdmin) {
                 window.location.replace("signup.html?mode=completion");
@@ -831,7 +850,9 @@ window.submitDashboardFeedback = async () => {
     const comment = document.getElementById("dbFbText").value;
     const btn = document.getElementById("dbFbSubmitBtn");
 
-    if (!category) { alert("Please select a category."); return; }
+    if (!category) { alert("Please select a feedback topic."); return; }
+    if (!comment.trim()) { alert("Please provide your comments or suggestions. This field is required."); return; }
+
     btn.disabled = true; btn.innerText = "Submitting...";
 
     try {
