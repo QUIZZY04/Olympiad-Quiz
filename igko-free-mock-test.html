@@ -33,6 +33,8 @@
             --danger: #ef4444;
             --success: #10b981;
             --warning: #f59e0b;
+            --brand-text: #c2410c;
+            --brand-contrast: #111827;
             --border: #e2e8f0;
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
         }
@@ -48,15 +50,15 @@
         }
         .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
         .hero { text-align: center; margin-bottom: 60px; }
-        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: var(--brand); }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: var(--brand-text); }
         .hero p { font-size: 1.2rem; color: var(--muted); max-width: 700px; margin: 0 auto 30px; }
-        .cta-btn { background: linear-gradient(135deg, var(--brand), var(--accent)); color: white; padding: 15px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-block; box-shadow: 0 10px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
+        .cta-btn { background: linear-gradient(135deg, var(--brand), var(--accent)); color: var(--brand-contrast); padding: 15px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-block; box-shadow: 0 10px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
         .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 20px rgba(255, 107, 0, 0.4); }
         .content-section { background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); margin-bottom: 40px; }
         .content-section h2 { margin-bottom: 20px; font-size: 1.8rem; color: var(--text); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
         .feature-card { padding: 20px; border: 1px solid var(--border); border-radius: 16px; text-align: center; }
-        .feature-card h3 { color: var(--brand); margin-bottom: 10px; }
+        .feature-card h3 { color: var(--brand-text); margin-bottom: 10px; }
         .hero-cta-buttons { margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } }
     </style>
@@ -101,7 +103,7 @@
             <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
             <a href="index.html">Home</a>
             <div class="nav-dropdown">
-                <button class="dropbtn nav-link-btn">Free Mock Test</button>
+                <a href="#" class="dropbtn">Free Mock Test</a>
                 <div class="nav-dropdown-content">
                     <a href="imo-free-mock-test.html">IMO Test</a>
                     <a href="nso-free-mock-test.html">NSO Test</a>
@@ -193,11 +195,11 @@
             <p>General Knowledge is not something you can study the night before an exam. It requires consistent reading and a genuine curiosity about the world. Our platform helps you cultivate this habit:</p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
                 <div>
-                    <h4 style="color: var(--brand);">Foundational Knowledge</h4>
+                    <h4 style="color: var(--brand-text);">Foundational Knowledge</h4>
                     <p style="font-size: 0.9rem; color: var(--muted);">Master established facts about Earth, the Universe, human history, and literature. We provide clear, engaging questions that help cement these concepts in your memory.</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--brand);">Dynamic Awareness</h4>
+                    <h4 style="color: var(--brand-text);">Dynamic Awareness</h4>
                     <p style="font-size: 0.9rem; color: var(--muted);">Improve your grasp of sports, entertainment, and recent scientific breakthroughs. Our dynamic question banks reflect the evolving nature of the world around us.</p>
                 </div>
             </div>
@@ -207,15 +209,15 @@
             <h2>Frequently Asked Questions (FAQs)</h2>
             <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">What topics are covered in the IGKO?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">What topics are covered in the IGKO?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">Our GK mock tests cover topics such as Our Body & Health, Plants & Animals, India and the World, Science & Technology, Life Skills, and Current Affairs.</p>
                 </details>
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">Is general knowledge helpful for other Olympiads?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">Is general knowledge helpful for other Olympiads?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">Yes! A strong foundation in General Knowledge significantly aids your comprehension in Science (NSO) and English (IEO) by broadening your vocabulary and awareness.</p>
                 </details>
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">How do I prepare for the Current Affairs section?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">How do I prepare for the Current Affairs section?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">We recommend practicing our dedicated Current Affairs chapter-wise quizzes regularly, as we continuously update our database with recent global and national events.</p>
                 </details>
             </div>
@@ -227,7 +229,7 @@
         <p>General Knowledge is vast and continuously evolving. To prepare effectively, <strong>GK Olympiad Quiz Class 1 to 10</strong> preparation should be divided into digestible chapters like Current Affairs, Science & Technology, and Life Skills. This targeted chapter-wise practice helps students absorb and retain diverse facts systematically. Building this broad foundation is critical before challenging yourself with a full-length <strong>IGKO GK Olympiad Mock Test for Class 1 to 10</strong>, ensuring you are well-rounded and exam-ready.</p>
 
         <h2 style="margin-top: 30px;">Benefits of Online Olympiad Practice</h2>
-        <p>Taking advantage of online resources offers massive advantages for General Knowledge preparation. A digital <strong>IGKO GK Olympiad Mock Test for Class 1 to 10</strong> is regularly updated to reflect the latest current affairs and global events—something printed books cannot offer. <strong>GK Olympiad Quiz Class 1 to 10</strong> online platforms provide instant scoring and explanations, turning every mistake into an immediate learning opportunity. Practice efficiently using our <a href="mock.html" style="color: var(--brand); font-weight: 600;">test suite</a>, and keep expanding your horizons by visiting our <a href="index.html" style="color: var(--brand); font-weight: 600;">homepage</a> or reinforcing your quantitative logic with the <a href="imo-free-mock-test.html" style="color: var(--brand); font-weight: 600;">IMO Maths Mock Test</a>.</p>
+        <p>Taking advantage of online resources offers massive advantages for General Knowledge preparation. A digital <strong>IGKO GK Olympiad Mock Test for Class 1 to 10</strong> is regularly updated to reflect the latest current affairs and global events—something printed books cannot offer. <strong>GK Olympiad Quiz Class 1 to 10</strong> online platforms provide instant scoring and explanations, turning every mistake into an immediate learning opportunity. Practice efficiently using our <a href="mock.html" style="color: var(--brand-text); font-weight: 600;">test suite</a>, and keep expanding your horizons by visiting our <a href="index.html" style="color: var(--brand-text); font-weight: 600;">homepage</a> or reinforcing your quantitative logic with the <a href="imo-free-mock-test.html" style="color: var(--brand-text); font-weight: 600;">IMO Maths Mock Test</a>.</p>
     </section>
 
     <!-- SEO CONTENT BLOCK -->

@@ -29,15 +29,17 @@
         :root {
             --bg: #f8fafc;
             --surface: #ffffff;
-            --subtle: #fff7ed;
+            --subtle: #faf5ff;
             --text: #111827;
             --muted: #64748b;
-            --brand: #ff6b00;
-            --accent: #ff8c1a;
+            --brand: #7c3aed;
+            --accent: #6d28d9;
             --danger: #ef4444;
             --success: #10b981;
             --warning: #f59e0b;
             --border: #e2e8f0;
+            --brand-text: #6d28d9;
+            --brand-contrast: #ffffff;
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -52,15 +54,15 @@
         }
         .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
         .hero { text-align: center; margin-bottom: 60px; }
-        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: var(--brand); }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: var(--brand-text); }
         .hero p { font-size: 1.2rem; color: var(--muted); max-width: 700px; margin: 0 auto 30px; }
-        .cta-btn { background: linear-gradient(135deg, var(--brand), var(--accent)); color: white; padding: 15px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-block; box-shadow: 0 10px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 20px rgba(255, 107, 0, 0.4); }
+        .cta-btn { background: linear-gradient(135deg, var(--brand), var(--accent)); color: var(--brand-contrast); padding: 15px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-block; box-shadow: 0 10px 15px rgba(124, 58, 237, 0.3); transition: 0.3s; }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 20px rgba(124, 58, 237, 0.4); }
         .content-section { background: var(--surface); padding: 40px; border-radius: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); margin-bottom: 40px; }
         .content-section h2 { margin-bottom: 20px; font-size: 1.8rem; color: var(--text); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
         .feature-card { padding: 20px; border: 1px solid var(--border); border-radius: 16px; text-align: center; }
-        .feature-card h3 { color: var(--brand); margin-bottom: 10px; }
+        .feature-card h3 { color: var(--brand-text); margin-bottom: 10px; }
         .hero-cta-buttons { margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } }
     </style>
@@ -150,7 +152,7 @@
             <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
             <a href="index.html">Home</a>
             <div class="nav-dropdown">
-                <button class="dropbtn nav-link-btn">Free Mock Test</button>
+                <a href="#" class="dropbtn">Free Mock Test</a>
                 <div class="nav-dropdown-content">
                     <a href="imo-free-mock-test.html">IMO Test</a>
                     <a href="nso-free-mock-test.html">NSO Test</a>
@@ -243,11 +245,11 @@
             <p>Logical reasoning is the most critical section in any Olympiad exam, often acting as the tie-breaker for top ranks. Unlike school subjects, reasoning requires a unique mental approach. Our platform helps you build this 'Olympiad mindset':</p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
                 <div>
-                    <h4 style="color: var(--brand);">Verbal Reasoning</h4>
+                    <h4 style="color: var(--brand-text);">Verbal Reasoning</h4>
                     <p style="font-size: 0.9rem; color: var(--muted);">Master coding-decoding, blood relations, ranking tests, and logical sequences. We provide step-by-step methods to solve these puzzles without mental fatigue.</p>
                 </div>
                 <div>
-                    <h4 style="color: var(--brand);">Non-Verbal Reasoning</h4>
+                    <h4 style="color: var(--brand-text);">Non-Verbal Reasoning</h4>
                     <p style="font-size: 0.9rem; color: var(--muted);">Improve spatial visualization through mirror images, water images, paper folding, and embedded figures. Our high-resolution diagrams make visual practice highly effective.</p>
                 </div>
             </div>
@@ -257,23 +259,23 @@
             <h2>Frequently Asked Questions</h2>
             <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">Is IRO mock test free?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">Is IRO mock test free?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">Yes, our IRO mock tests are completely free for all students.</p>
                 </details>
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">Which classes are supported?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">Which classes are supported?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">We provide practice material and mock tests for Class 1 to 10.</p>
                 </details>
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">Do I get solutions?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">Do I get solutions?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">Yes, you receive instant results with detailed, step-by-step solutions immediately after submission.</p>
                 </details>
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">Is it mobile friendly?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">Is it mobile friendly?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">Yes, our platform is fully optimized for mobile devices so you can practice anywhere.</p>
                 </details>
                 <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand); outline: none;">Can I practice chapterwise?</summary>
+                    <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none;">Can I practice chapterwise?</summary>
                     <p style="margin-top: 10px; font-size: 0.95rem; color: var(--muted);">Yes, along with full mock tests, we offer dedicated chapterwise practice quizzes for targeted learning.</p>
                 </details>
             </div>
@@ -285,7 +287,7 @@
         <p>Logical reasoning is a skill honed through repetitive and diverse problem-solving. By utilizing our <strong>Reasoning Olympiad Practice Class 1 to 10</strong> chapter-wise, students can systematically tackle distinct patterns such as coding-decoding, blood relations, and spatial visualization. Isolating these topics ensures complete comprehension of the underlying logic before facing the mixed challenges of a complete <strong>IRO Reasoning Olympiad Mock Test for Class 1 to 10</strong>. Step-by-step practice eliminates confusion and builds cognitive speed.</p>
 
         <h2 style="margin-top: 30px;">Benefits of Online Olympiad Practice</h2>
-        <p>Utilizing digital platforms for <strong>Reasoning Olympiad Practice Class 1 to 10</strong> introduces distinct advantages. An online <strong>IRO Reasoning Olympiad Mock Test for Class 1 to 10</strong> features interactive visual puzzles and strictly timed conditions that mimic the real exam environment. Instant results and detailed logical breakdowns help students understand the exact solving methodology instantly. Once you've sharpened your reasoning skills in our <a href="mock.html" style="color: var(--brand); font-weight: 600;">mock test center</a>, you can head back to the <a href="index.html" style="color: var(--brand); font-weight: 600;">homepage</a> or test your general awareness with the <a href="igko-free-mock-test.html" style="color: var(--brand); font-weight: 600;">IGKO GK Olympiad Quiz</a>.</p>
+        <p>Utilizing digital platforms for <strong>Reasoning Olympiad Practice Class 1 to 10</strong> introduces distinct advantages. An online <strong>IRO Reasoning Olympiad Mock Test for Class 1 to 10</strong> features interactive visual puzzles and strictly timed conditions that mimic the real exam environment. Instant results and detailed logical breakdowns help students understand the exact solving methodology instantly. Once you've sharpened your reasoning skills in our <a href="mock.html" style="color: var(--brand-text); font-weight: 600;">mock test center</a>, you can head back to the <a href="index.html" style="color: var(--brand-text); font-weight: 600;">homepage</a> or test your general awareness with the <a href="igko-free-mock-test.html" style="color: var(--brand-text); font-weight: 600;">IGKO GK Olympiad Quiz</a>.</p>
     </section>
 
     <!-- SEO CONTENT BLOCK -->

@@ -69,6 +69,8 @@
         --danger: #ef4444;
         --success: #10b981;
         --warning: #f59e0b;
+        --brand-text: #c2410c;
+        --brand-contrast: #111827;
         --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
         --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
         --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
@@ -109,7 +111,7 @@
         margin-bottom: 15px;
         font-weight: 800;
     }
-    .header-text h1 span { color: var(--brand); }
+    .header-text h1 span { color: var(--brand-text); }
     .header-text p {
         color: var(--muted);
         font-size: 1.15rem;
@@ -129,7 +131,7 @@
     }
     
     .content-card h2 {
-        color: var(--brand);
+        color: var(--brand-text);
         font-size: 1.8rem;
         margin-bottom: 20px;
         font-weight: 800;
@@ -170,7 +172,7 @@
     .grid-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 0 20px rgba(255, 107, 0, 0.1); 
-        border-color: var(--brand);
+        border-color: var(--brand-text);
     }
 
     .grid-card h3 {
@@ -189,7 +191,7 @@
     .icon-wrapper {
         font-size: 45px;
         margin-bottom: 20px;
-        color: var(--brand);
+        color: var(--brand-text);
     }
 
     @media (max-width: 768px) {
@@ -338,13 +340,13 @@
         <h2>💎 Our Core Values</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
             <div>
-                <strong style="color: var(--brand);">Excellence:</strong> We strive for the highest quality in our content and user experience.
+                <strong style="color: var(--brand-text);">Excellence:</strong> We strive for the highest quality in our content and user experience.
             </div>
             <div>
-                <strong style="color: var(--brand);">Integrity:</strong> We ensure a fair and transparent competitive environment for all students.
+                <strong style="color: var(--brand-text);">Integrity:</strong> We ensure a fair and transparent competitive environment for all students.
             </div>
             <div>
-                <strong style="color: var(--brand);">Innovation:</strong> We continuously evolve our platform with the latest educational technologies.
+                <strong style="color: var(--brand-text);">Innovation:</strong> We continuously evolve our platform with the latest educational technologies.
             </div>
         </div>
     </div>
@@ -367,7 +369,7 @@
         <p style="color: rgba(255,255,255,0.9);">We are constantly iterating. Over the next year, we aim to introduce AI-driven personalized learning paths, detailed video solution integrations, and regional language support to make Olympiad preparation truly universal.</p>
         <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">Join us on this journey to redefine educational excellence and help your child achieve top national and international ranks.</p>
         <div style="text-align: center; margin-top: 35px;">
-            <a href="signup.html" style="display: inline-block; padding: 14px 35px; background: white; color: var(--brand); font-weight: 800; border-radius: 12px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); transition: 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">Join Our Community</a>
+            <a href="signup.html" style="display: inline-block; padding: 14px 35px; background: white; color: var(--brand-text); font-weight: 800; border-radius: 12px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); transition: 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">Join Our Community</a>
         </div>
     </div>
 

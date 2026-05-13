@@ -40,6 +40,8 @@
             --accent: #ff8c1a;
             --danger: #f43f5e;
             --success: #10b981;
+            --brand-text: #c2410c;
+            --brand-contrast: #111827;
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
         }
@@ -56,7 +58,7 @@
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
         .header { text-align: center; margin-bottom: 40px; }
         .header h1 { font-size: 2.8rem; color: var(--text); font-weight: 800; margin-bottom: 10px; }
-        .header h1 span { color: var(--brand); }
+        .header h1 span { color: var(--brand-text); }
         .header p { color: var(--muted); font-size: 1.1rem; }
 
         /* Modern Filter Controls */
@@ -101,7 +103,7 @@
         <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;"> Olympiad Portal</a>
         <div class="nav-important">
             <a href="dashboard.html">Dash</a>
-            <button onclick="logout()" class="nav-link-btn">Logout</button>
+            <a onclick="logout()" style="cursor:pointer;">Logout</a>
         </div>
         <div class="nav-links">
             <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -109,7 +111,7 @@
             <a href="jee-list.html">JEE Mocks</a>
             <a href="jee-leaderboard.html" class="active">JEE Leaderboard</a>
             <div class="nav-actions">
-                <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
+                <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
             </div>
         </div>
     </nav>
@@ -280,7 +282,7 @@
                 if(rank === 1) { 
                     rankIcon = "🏆"; 
                     rowStyle = "background: rgba(250, 204, 21, 0.2); font-weight: 800;"; 
-                    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4); color: #b45309;";
+                    circleStyle = "background:#fef08a; transform:scale(1.4); font-size:22px; box-shadow: 0 4px 10px rgba(250,204,21,0.4);";
                     nameStyle = "color: #b45309; font-size: 1.1em;";
                     namePrefix = "⭐ ";
                 }
