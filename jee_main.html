@@ -235,6 +235,16 @@
         handleTestTypeChange(); // Set initial state and load tests
     });
 
+    window.startJeeTest = function(docId) {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+        if (!isLoggedIn) {
+            sessionStorage.setItem("redirectAfterLogin", "jee_main_quiz.html?id=" + docId);
+            window.location.href = "login.html";
+        } else {
+            window.location.href = "jee_main_quiz.html?id=" + docId;
+        }
+    };
+
     window.handleTestTypeChange = function() {
         const testType = document.getElementById('fType').value;
         const subjectSelect = document.getElementById('fSubject');
@@ -300,7 +310,7 @@
                         <p>❓ <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
                         ${chapStr}
                     </div>
-                    <button class="start-btn" style="background-color: ${cardColor};" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" onclick="window.location.href='jee_main_quiz.html?id=${doc.id}'">Start Test</button>
+                    <button class="start-btn" style="background-color: ${cardColor};" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" onclick="startJeeTest('${doc.id}')">Start Test</button>
                 </div>`;
             });
             

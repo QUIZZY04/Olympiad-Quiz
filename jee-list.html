@@ -285,6 +285,16 @@
             loadJeeTests();
         });
 
+        window.startJeeTest = function(docId) {
+            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+            if (!isLoggedIn) {
+                sessionStorage.setItem("redirectAfterLogin", "jee-quiz.html?id=" + docId);
+                window.location.href = "login.html";
+            } else {
+                window.location.href = "jee-quiz.html?id=" + docId;
+            }
+        };
+
         window.logout = async () => {
             if (confirm("Logout?")) {
                 await signOut(auth);
@@ -320,7 +330,7 @@
                             <p>🎯 <strong>Total Marks:</strong> ${data.totalMarks}</p>
                             <p>📌 <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
                         </div>
-                        <a href="jee-quiz.html?id=${doc.id}" class="start-btn">Start Test</a>
+                        <button onclick="startJeeTest('${doc.id}')" class="start-btn" style="border:none; cursor:pointer; font-family:'Poppins',sans-serif;">Start Test</button>
                     `;
                     grid.appendChild(card);
                 });
