@@ -199,7 +199,7 @@
         <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
         <div class="nav-important">
             <a href="dashboard.html">Dash</a>
-            <a onclick="logout()" style="cursor:pointer;">Logout</a>
+        <button onclick="logout()" class="nav-link-btn">Logout</button>
         </div>
         <div class="nav-links">
             <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -212,7 +212,7 @@
             <a href="blog.html">Success Guides</a>
             <div class="nav-actions">
                 <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-                <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
             </div>
         </div>
     </nav>
@@ -467,9 +467,8 @@
         document.body.style.visibility = 'visible';
         if (!user) {
             document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
-                el.onclick = null;
+                el.onclick = function() { window.location.href = 'login.html'; };
                 el.innerText = "Login";
-                el.href = "login.html";
                 if(el.classList.contains("login-link")) {
                     el.style.color = "white";
                 }
