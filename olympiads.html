@@ -114,7 +114,7 @@
 
         .category-title {
             font-size: 1.5rem;
-            color: var(--brand);
+            color: var(--brand-text);
             margin-bottom: 25px;
             font-weight: 700;
             border-bottom: 2px solid var(--border);
@@ -210,7 +210,7 @@
     <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
     <div class="nav-important">
         <a href="dashboard.html">Dash</a>
-        <button onclick="logout()" class="nav-link-btn">Logout</button>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
     </div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -222,7 +222,7 @@
         <a href="study.html">Study Material</a>
         <a href="olympiads.html" class="active">Official Olympiads</a>
         <div class="nav-actions">
-            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
+            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
     </div>
 </nav>

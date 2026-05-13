@@ -48,6 +48,8 @@ body {
     --text: #111827;
     --muted: #64748b;
     --border: #e2e8f0;
+    --brand-text: #c2410c;
+    --brand-contrast: #111827;
 }
 
 /* ================= CONTAINER COMMON ================= */
@@ -76,13 +78,13 @@ button, .btn {
 }
 
 .primary-btn {
-    background: #3b82f6;
+    background: #2563eb;
     color: white;
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
 }
 
 .primary-btn:hover {
-    background: #2563eb;
+    background: #1d4ed8;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
 }
@@ -96,7 +98,7 @@ button, .btn {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     border: 1px solid #e2e8f0;
-    border-top: 4px solid #3b82f6;
+    border-top: 4px solid #2563eb;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
@@ -145,8 +147,8 @@ button, .btn {
 
 .options input[type="radio"]:checked+label {
     background-color: #eff6ff;
-    color: #1e40af;
-    border-color: #3b82f6;
+    color: #1e3a8a;
+    border-color: #2563eb;
     font-weight: 600;
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
 }
@@ -165,7 +167,7 @@ button, .btn {
 .progress-bar {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
     border-radius: 20px;
     transition: 0.3s;
 }
@@ -175,8 +177,8 @@ button, .btn {
 .timer {
     font-weight: bold;
     font-size: 18px;
-    color: #dc2626;
-    background: #fee2e2;
+    color: #b91c1c;
+    background: #fef2f2;
     padding: 6px 14px;
     border-radius: 20px;
     display: inline-block;
@@ -197,23 +199,23 @@ button, .btn {
 }
 
 .correct {
-    color: #22c55e;
+    color: #15803d;
 }
 
 .wrong {
-    color: #ef4444;
+    color: #b91c1c;
 }
 
 .options label.correct {
-    background-color: #16a34a;
-    border-color: #22c55e;
+    background-color: #15803d;
+    border-color: #15803d;
     color: white !important;
     font-weight: 600;
 }
 
 .options label.wrong {
-    background-color: #dc2626;
-    border-color: #ef4444;
+    background-color: #b91c1c;
+    border-color: #b91c1c;
     color: white !important;
     font-weight: 600;
 }
@@ -292,7 +294,7 @@ body.auth-page {
 }
 
 .auth-link a {
-    color: #ff6b00;
+    color: var(--brand-text);
     text-decoration: none;
     font-weight: bold;
 }
@@ -364,7 +366,7 @@ body.auth-page {
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-    color: white;
+    color: var(--brand-contrast);
     transition: all 0.3s ease;
     margin-top: 5px;
     box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);
@@ -382,7 +384,7 @@ body.auth-page {
     text-align: center;
     margin-bottom: 25px;
     font-size: 24px;
-    color: #2563eb;
+    color: #1d4ed8;
 }
 
 .olympiad-tagline {
@@ -423,7 +425,7 @@ body.auth-page {
 }
 
 .dashboard-card button:hover {
-    background: #2563eb;
+    background: #1d4ed8;
 }
 
 /* ================= PROFESSIONAL NAVBAR ================= */
@@ -462,7 +464,7 @@ nav {
         padding: 8px 16px;
         box-shadow: var(--shadow-sm);
         border: 1px solid rgba(239, 68, 68, 0.2);
-        color: #dc2626;
+        color: var(--danger);
         background-color: #fee2e2 !important;
         border-radius: 12px;
         font-weight: 700;
@@ -480,7 +482,7 @@ nav {
     text-decoration: none;
     font-weight: 700;
     font-size: 0.75rem;
-    color: var(--brand);
+    color: var(--brand-text);
     background: rgba(79, 70, 229, 0.08);
     padding: 4px 8px;
     border-radius: 8px;
@@ -527,8 +529,7 @@ nav {
     justify-content: center;
 }
 
-.nav-links a,
-.nav-links button.nav-link-btn {
+.nav-links a {
     color: var(--text);
     text-decoration: none;
     font-size: 0.9rem;
@@ -539,23 +540,17 @@ nav {
     border-radius: 8px;
     border-bottom: 3px solid transparent;
     white-space: nowrap;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-family: inherit;
 }
 
-.nav-links a:hover,
-.nav-links button.nav-link-btn:hover {
-    color: var(--brand);
+.nav-links a:hover {
+    color: var(--brand-text);
     background: rgba(79, 70, 229, 0.05);
 }
 
-.nav-links a.active,
-.nav-links button.nav-link-btn.active {
-    color: var(--brand);
+.nav-links a.active {
+    color: var(--brand-text);
     background: rgba(79, 70, 229, 0.06);
-    border-bottom-color: var(--brand);
+    border-bottom-color: var(--brand-text);
 }
 
 /* ================= NAV ACTIONS (Login/Signup) ================= */
@@ -570,7 +565,7 @@ nav {
 
 .login-link {
     font-weight: 700;
-    color: white !important;
+    color: var(--brand-contrast) !important;
     text-decoration: none;
     font-size: 0.9rem;
     background: linear-gradient(135deg, var(--brand), var(--accent));
@@ -578,10 +573,6 @@ nav {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
     transition: 0.3s;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    outline: none;
 }
 .login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4); filter: brightness(1.1); }
 
@@ -605,8 +596,7 @@ nav {
     padding: 8px 0;
 }
 
-.nav-dropdown-content a,
-.nav-dropdown-content button.nav-link-btn {
+.nav-dropdown-content a {
     color: var(--text) !important;
     padding: 12px 20px !important;
     text-decoration: none !important;
@@ -617,21 +607,15 @@ nav {
     transition: background 0.2s !important;
     border-radius: 0 !important;
     text-align: left;
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
 }
 
 .close-menu {
     display: none;
 }
 
-.nav-dropdown-content a:hover,
-.nav-dropdown-content button.nav-link-btn:hover {
+.nav-dropdown-content a:hover {
     background-color: var(--subtle) !important;
-    color: #ea580c !important;
+    color: var(--brand-text) !important;
 }
 
 .nav-dropdown:hover .nav-dropdown-content {
@@ -691,12 +675,12 @@ nav {
 }
 
 .tab-item:hover {
-    color: var(--brand);
+    color: var(--brand-text);
 }
 
 .tab-item.active {
-    color: var(--brand);
-    border-bottom-color: var(--brand);
+    color: var(--brand-text);
+    border-bottom-color: var(--brand-text);
     background: rgba(79, 70, 229, 0.05);
 }
 
@@ -793,8 +777,7 @@ nav {
     .nav-links a[href="index.html"] { /* Hide Home if it's in nav-important */
         display: none !important;
     }
-    .nav-links a,
-    .nav-links button.nav-link-btn {
+    .nav-links a {
         width: 100%;
         padding: 15px 0;
         border-bottom: 1px solid var(--border);
@@ -1022,7 +1005,7 @@ select {
     flex-wrap: wrap;
 }
 .breadcrumb a {
-    color: var(--brand);
+    color: var(--brand-text);
     text-decoration: none;
     font-weight: 700;
     transition: color 0.3s ease;
@@ -1031,10 +1014,10 @@ select {
     gap: 4px;
 }
 .breadcrumb a:hover {
-    color: var(--accent);
+    color: var(--brand-text);
 }
 .breadcrumb .separator {
-    color: #64748b;
+    color: #94a3b8;
     font-size: 0.8rem;
 }
 /* ================= GLOBAL FOOTER ENHANCEMENT ================= */
@@ -1058,7 +1041,7 @@ footer a, .site-footer a {
     transition: color 0.3s ease !important;
 }
 footer a:hover, .site-footer a:hover {
-    color: #ff8c1a !important;
+    color: #fb923c !important;
 }
 footer div, .site-footer .footer-links {
     display: flex !important;
@@ -1072,7 +1055,7 @@ footer p, .site-footer p {
     margin-top: 15px !important;
     margin-bottom: 0 !important;
     font-size: 14px !important;
-    color: #cbd5e1 !important;
+    color: #94a3b8 !important;
     text-transform: none !important;
     letter-spacing: normal !important;
 }

@@ -87,6 +87,8 @@
             --border: #e2e8f0;
             --brand: #ff6b00;
             --accent: #ff8c1a;
+            --brand-text: #c2410c;
+            --brand-contrast: #111827;
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
         }
@@ -103,14 +105,14 @@
         .container { flex: 1; max-width: 1200px; margin: 40px auto; padding: 0 20px; width: 100%; }
         .header { text-align: center; margin-bottom: 40px; }
         .header h1 { font-size: 2.8rem; color: var(--text); font-weight: 800; margin-bottom: 10px; }
-        .header h1 span { color: var(--brand); }
+        .header h1 span { color: var(--brand-text); }
         .header p { color: var(--muted); font-size: 1.1rem; }
         .test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
         .test-card { background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-md); transition: 0.3s; border-top: 4px solid var(--brand); display: flex; flex-direction: column; }
         .test-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--brand); }
         .test-card h3 { font-size: 1.4rem; color: var(--text); margin-bottom: 15px; font-weight: 800; }
         .meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 25px; line-height: 1.8; flex-grow: 1; }
-        .start-btn { display: inline-block; background: var(--brand); color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; width: 100%; text-align: center; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+        .start-btn { display: inline-block; background: var(--brand); color: var(--brand-contrast); padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; width: 100%; text-align: center; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
         .start-btn:hover { background: var(--accent); transform: translateY(-2px); }
         @media (max-width: 768px) { .header h1 { font-size: 2.2rem; } }
     </style>
@@ -136,7 +138,7 @@
     <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;"> Olympiad Portal</a>
     <div class="nav-important">
         <a href="dashboard.html">Dash</a>
-        <button onclick="logout()" class="nav-link-btn">Logout</button>
+        <a onclick="logout()" style="cursor:pointer;">Logout</a>
     </div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -152,7 +154,7 @@
         </div>
         <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
-            <button class="dropbtn nav-link-btn active" style="color: var(--brand);">Senior Exams</button>
+            <a href="#" class="dropbtn active" style="color: var(--brand);">Senior Exams</a>
             <div class="nav-dropdown-content">
                 <a href="jee_main.html">JEE Main</a>
                 <a href="jee-list.html" style="color: var(--brand) !important; background: var(--subtle) !important;">JEE Advanced</a>
@@ -161,13 +163,8 @@
         </div>
         <a href="leaderboard.html">Leaderboard</a>
         <div class="nav-actions">
-<<<<<<< HEAD
-            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
-=======
             <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600; text-decoration:none;">Admin</a>
             <a onclick="logout()" class="login-link" style="color: white; cursor: pointer; background: #ef4444;">Logout</a>
->>>>>>> 83e41e6607c5c0edc7efbca045cd1839934f8e2b
         </div>
     </div>
 </nav>
@@ -208,7 +205,7 @@
     <!-- Instructions Modal for Generator -->
     <div id="generatorModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
         <div style="background: #fff; width: 100%; max-width: 650px; border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; text-align: left;">
-            <h2 style="color: var(--brand); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.5rem; font-weight: 800;">Test Instructions & Rules</h2>
+            <h2 style="color: var(--brand-text); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.5rem; font-weight: 800;">Test Instructions & Rules</h2>
             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; border: 1px solid #ddd; color: #333;">
                 <div><b>Test Name:</b> <span id="instTestTitle">...</span></div>
                 <div><b>Subject:</b> <span id="instSubject">...</span></div>
@@ -239,7 +236,7 @@
             </ul>
             <div style="display: flex; gap: 15px;">
                 <button onclick="document.getElementById('generatorModal').style.display='none'" style="flex: 1; padding: 12px; text-align: center; border: 1px solid #ccc; border-radius: 8px; background: #f1f5f9; cursor: pointer; font-weight: bold; color: #333;">Cancel</button>
-                <button onclick="startGeneratedTest()" style="flex: 2; padding: 12px; text-align: center; font-size: 15px; background: var(--brand); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Accept & Start Test</button>
+                <button onclick="startGeneratedTest()" style="flex: 2; padding: 12px; text-align: center; font-size: 15px; background: var(--brand); color: var(--brand-contrast); border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Accept & Start Test</button>
             </div>
         </div>
     </div>

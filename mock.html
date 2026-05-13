@@ -59,6 +59,8 @@
             --accent: #ff8c1a;
             --danger: #ef4444;
             --success: #10b981;
+            --brand-text: #c2410c;
+            --brand-contrast: #111827;
             --warning: #f59e0b;
             --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
@@ -97,7 +99,7 @@
         }
         .hero-content { flex: 1; text-align: left; }
         .hero-content h1 { font-size: 2.8rem; color: #0f172a; margin-bottom: 16px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
-        .hero-content h1 span { color: var(--brand); }
+        .hero-content h1 span { color: var(--brand-text); }
         .hero-content p { color: #475569; font-size: 1.1rem; line-height: 1.65; max-width: 700px; margin-bottom: 0; }
         .hero-image { flex: 0 0 160px; display: flex; align-items: center; justify-content: center; }
         .hero-image img { 
@@ -129,21 +131,21 @@
             flex: 1 1 280px;
             height: 100%;
         }
-        .subject-card-large:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--brand); }
+        .subject-card-large:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--brand-text); }
         .subject-card-large h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; color: #0f172a; z-index: 1; letter-spacing: -0.01em;}
         .subject-card-large p { font-size: 0.95rem; line-height: 1.65; font-weight: 400; color: #475569; z-index: 1; flex-grow: 1; margin-bottom: 24px; }
         .subject-card-large .icon-bg { position: absolute; right: -5px; bottom: -15px; font-size: 80px; opacity: 0.05; z-index: 0; transform: rotate(-10deg); transition: 0.4s; }
-        .subject-card-large:hover .icon-bg { transform: rotate(0deg) scale(1.1); opacity: 0.1; color: var(--brand); }
+        .subject-card-large:hover .icon-bg { transform: rotate(0deg) scale(1.1); opacity: 0.1; color: var(--brand-text); }
         
-        .btn-start-mock { align-self: flex-start; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; z-index: 1; border: none; cursor: pointer; transition: 0.3s; background: var(--brand); color: white; box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25); text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto; }
+        .btn-start-mock { align-self: flex-start; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; z-index: 1; border: none; cursor: pointer; transition: 0.3s; background: var(--brand); color: var(--brand-contrast); box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25); text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto; }
         .subject-card-large:hover .btn-start-mock { background: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255, 107, 0, 0.35); }
         
-        .free-badge { position: absolute; top: 20px; right: 20px; background: rgba(255, 107, 0, 0.1); color: var(--brand); font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 2; border: 1px solid rgba(255, 107, 0, 0.2); }
+        .free-badge { position: absolute; top: 20px; right: 20px; background: rgba(255, 107, 0, 0.1); color: var(--brand-text); font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 2; border: 1px solid rgba(255, 107, 0, 0.2); }
 
         .seo-section { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 40px; }
         .seo-section h2 { color: #0f172a; font-size: 1.5rem; margin-bottom: 25px; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 15px; letter-spacing: -0.01em;}
         .seo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 30px; }
-        .seo-feature h4 { color: var(--brand); font-size: 1.15rem; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .seo-feature h4 { color: var(--brand-text); font-size: 1.15rem; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         .seo-feature p { color: #475569; font-size: 0.95rem; line-height: 1.6; }
 
         .rich-text-section { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border); border-left: 6px solid var(--brand); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); margin-bottom: 40px; }
@@ -151,7 +153,7 @@
         .rich-text-section p { color: #475569; font-size: 1.05rem; line-height: 1.7; margin-bottom: 16px; }
         .rich-text-section ul { margin-left: 20px; margin-bottom: 20px; }
         .rich-text-section li { color: #334155; font-size: 1rem; line-height: 1.6; margin-bottom: 12px; }
-        .rich-text-section .highlight { color: var(--brand); font-weight: 700; }
+        .rich-text-section .highlight { color: var(--brand-text); font-weight: 700; }
 
         .mock-grid { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px; }
 
@@ -199,7 +201,7 @@
         <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
         <div class="nav-important">
             <a href="dashboard.html">Dash</a>
-        <button onclick="logout()" class="nav-link-btn">Logout</button>
+            <a onclick="logout()" style="cursor:pointer;">Logout</a>
         </div>
         <div class="nav-links">
             <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -217,7 +219,7 @@
             <a href="leaderboard.html">Leaderboard</a>
             <div class="nav-actions">
                 <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
+                <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
             </div>
         </div>
     </nav>
@@ -229,10 +231,10 @@
                 <!-- SEO IMPROVEMENT: Refined H1 Tag -->
                 <h1>Free Olympiad <span>Mock Test</span> Online</h1>
                 <div class="hero-badges" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
-                    <span style="background: rgba(255, 107, 0, 0.1); color: #c2410c; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">🆓 Free Tests</span>
-                    <span style="background: rgba(16, 185, 129, 0.1); color: #047857; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">⚡ Instant Results</span>
-                    <span style="background: rgba(245, 158, 11, 0.1); color: #b45309; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">🏆 Ranking</span>
-                    <span style="background: rgba(59, 130, 246, 0.1); color: #1d4ed8; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">🔒 Secure Platform</span>
+                <span style="background: rgba(255, 107, 0, 0.1); color: var(--brand-text); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">🆓 Free Tests</span>
+                    <span style="background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">⚡ Instant Results</span>
+                    <span style="background: rgba(245, 158, 11, 0.1); color: var(--warning); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">🏆 Ranking</span>
+                    <span style="background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">🔒 Secure Platform</span>
                 </div>
                 <p>Experience the real exam environment with full-length papers designed for SOF (IMO, NSO, IEO, IRO), SilverZone, and CREST. Select your grade and start practicing instantly to boost your national ranking.</p>
             </div>
@@ -309,7 +311,7 @@
             <p>Our mock tests are meticulously designed by <strong>subject matter experts</strong> to replicate the exact difficulty and pattern of actual Olympiads like <em>SOF</em> and <em>SilverZone</em>.</p>
             <ul>
                 <li><span class="highlight">Time Management:</span> Each test is strictly timed to help you build the speed required for the real exam.</li>
-                <li><span class="highlight">Instant Analytics:</span> Receive a detailed scorecard immediately after submission, highlighting your <strong style="color: #dc2626;">weak areas</strong> and <strong style="color: #059669;">strengths</strong>.</li>
+                <li><span class="highlight">Instant Analytics:</span> Receive a detailed scorecard immediately after submission, highlighting your <strong style="color: var(--danger);">weak areas</strong> and <strong style="color: var(--success);">strengths</strong>.</li>
                 <li><span class="highlight">All-India Ranking:</span> Compare your performance with thousands of students across the country.</li>
                 <li><span class="highlight">High-Order Thinking (HOTS):</span> Tackle complex problems designed to test deep conceptual understanding.</li>
             </ul>
@@ -378,7 +380,7 @@
             </div>
             <div style="display: flex; gap: 15px; margin-top: 20px;">
                 <button onclick="closeQuizModal()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--border); color: var(--text); font-weight: 700; border: none; cursor: pointer;">Cancel</button>
-                <button onclick="confirmStartQuiz()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--brand); color: white; font-weight: 700; border: none; cursor: pointer;">Start Now</button>
+                <button onclick="confirmStartQuiz()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--brand); color: var(--brand-contrast); font-weight: 700; border: none; cursor: pointer;">Start Now</button>
             </div>
         </div>
     </div>
@@ -481,8 +483,9 @@
         document.body.style.visibility = 'visible';
         if (!user) {
             document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
-                el.onclick = function() { window.location.href = 'login.html'; };
+                el.onclick = null;
                 el.innerText = "Login";
+                el.href = "login.html";
                 if(el.classList.contains("login-link")) {
                     el.style.color = "white";
                 }

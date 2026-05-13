@@ -30,6 +30,8 @@
       --accent: #ff8c1a;
       --danger: #ef4444;
       --success: #10b981;
+      --brand-text: #c2410c;
+      --brand-contrast: #111827;
       --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
       --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
@@ -74,7 +76,7 @@
     }
 
     .auth-info h1 { font-size: 32px; color: var(--text); margin-bottom: 10px; font-weight: 800; }
-    .auth-info h1 span { color: var(--brand); }
+    .auth-info h1 span { color: var(--brand-text); }
     .auth-info p { color: var(--muted); font-size: 16px; margin-bottom: 30px; line-height: 1.6; }
 
     .login-box {
@@ -105,7 +107,7 @@
       width: 100%;
       padding: 14px 16px;
       background: var(--brand);
-      color: white;
+      color: var(--brand-contrast);
       border: none;
       border-radius: 12px;
       font-weight: 700;
@@ -154,7 +156,7 @@
       color: var(--text); border: 1px solid var(--border); 
       box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
     }
-    #btnShowEmail:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--brand); color: var(--brand); }
+    #btnShowEmail:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--brand-text); color: var(--brand-text); }
 
     #btnShowMobile { 
       background: #ffffff; 
@@ -162,7 +164,7 @@
       border: 1px solid var(--border); 
       box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
     }
-    #btnShowMobile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--brand); color: var(--brand); }
+    #btnShowMobile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--brand-text); color: var(--brand-text); }
 
     .divider { display: flex; align-items: center; text-align: center; color: #475569; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
     .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #94a3b8; }
@@ -170,13 +172,13 @@
 
     .auth-tabs { display: flex; background: var(--subtle); border-radius: 12px; padding: 5px; margin-bottom: 15px; }
     .auth-tab { flex: 1; padding: 12px; border: none; background: transparent; border-radius: 8px; font-weight: 700; color: var(--muted); cursor: pointer; transition: 0.3s; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .auth-tab.active { background: var(--surface); color: var(--brand); box-shadow: var(--shadow-sm); }
+    .auth-tab.active { background: var(--surface); color: var(--brand-text); box-shadow: var(--shadow-sm); }
 
     .link-group { margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
     .link-btn {
       background: none;
       border: none;
-      color: var(--brand);
+      color: var(--brand-text);
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
@@ -197,7 +199,7 @@
         border-radius: 14px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
     }
     .feature-icon {
-        background: var(--subtle); color: var(--brand); width: 32px; height: 32px;
+        background: var(--subtle); color: var(--brand-text); width: 32px; height: 32px;
         display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 14px;
     }
 
@@ -215,7 +217,7 @@
       .social-btn { margin-bottom: 15px; }
       .divider { margin-bottom: 15px; }
       .signup-text { margin-top: 20px; padding-top: 20px; color: var(--text) !important; font-weight: 500; font-size: 14px; }
-      .signup-text a { color: var(--brand) !important; font-weight: 800; text-decoration: underline; }
+      .signup-text a { color: var(--brand-text) !important; font-weight: 800; text-decoration: underline; }
     }
   </style>
 <!-- Google tag (gtag.js) -->

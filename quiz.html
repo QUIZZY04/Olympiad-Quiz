@@ -40,6 +40,9 @@
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+  --brand-text: #c2410c;
+  --brand-contrast: #111827;
+  --danger-text: #b91c1c;
 }
 *{box-sizing:border-box}
 html { overflow-x: hidden; width: 100%; max-width: 100%; }
@@ -58,7 +61,7 @@ background-image:
     radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
 background-attachment: fixed;
 }
-#timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger); padding:8px 15px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2);}
+#timerWrap{background:rgba(239, 68, 68, 0.1); color:var(--danger-text); padding:8px 15px; border-radius:10px; font-weight:700; font-size:14px; border: 1px solid rgba(239, 68, 68, 0.2);}
 
 .quiz-container{
 display:flex;
@@ -121,24 +124,24 @@ box-shadow: var(--shadow-md);
 }
 
 .options{display:grid;gap:12px;margin-top:15px}
-.opt{display:flex;align-items:center;gap:15px; padding:15px 20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.3s; font-size:15px; color: #1e40af; font-weight: 600;}
+.opt{display:flex;align-items:center;gap:15px; padding:15px 20px; background:var(--bg); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.3s; font-size:15px; color: #1e3a8a; font-weight: 600;}
 .opt:hover{border-color:var(--brand); background:#fff7ed;} 
 
 /* Aligning Navbar with Orange Theme */
 .nav-important a { background: rgba(255, 107, 0, 0.08) !important; }
 .nav-links a:hover { background: rgba(255, 107, 0, 0.05) !important; }
 .nav-links a.active { background: rgba(255, 107, 0, 0.06) !important; }
-.login-link { background: var(--brand) !important; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3) !important; }
+.login-link { background: var(--brand) !important; color: var(--brand-contrast) !important; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3) !important; }
 .login-link:hover { box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4) !important; filter: brightness(1.1); }
-.nav-dropdown-content a:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
+.nav-dropdown-content a:hover { background-color: #fff7ed !important; color: var(--brand-text) !important; }
 
 .quiz-buttons{display:flex;gap:16px;margin-top:auto;padding-top:32px;flex-wrap:wrap;}
 .btn{flex:1;padding:14px 20px;border-radius:12px; font-weight:600;cursor:pointer;border:none; font-size:1rem; transition:all 0.3s ease; min-width:140px;}
-.btn-save{background:linear-gradient(135deg, var(--success), #059669);color:#fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);}
+.btn-save{background:linear-gradient(135deg, #047857, #064e3b);color:#fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);}
 .btn-save:hover{transform: translateY(-2px); box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);}
 .btn-prev{background:#ffffff;color:#475569; border:1px solid #cbd5e1; box-shadow: 0 1px 2px rgba(0,0,0,0.05);}
 .btn-prev:hover{background:#f1f5f9; border-color: #94a3b8; color: #0f172a; transform: translateY(-1px);}
-.btn-finish{background:linear-gradient(135deg, var(--danger), #dc2626);color:#fff; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);}
+.btn-finish{background:linear-gradient(135deg, #b91c1c, #991b1b);color:#fff; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);}
 .btn-finish:hover{transform: translateY(-2px); box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);}
 .btn-danger{background:#b91c1c;color:#fff}
 .btn-danger:hover{background:#991b1b; transform: translateY(-2px);}
@@ -147,9 +150,9 @@ box-shadow: var(--shadow-md);
 .cell{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); cursor:pointer; font-weight:600; font-size:13px; background:var(--bg); transition:0.2s; color: var(--text);}
 .cell:hover{border-color:var(--brand);}
 
-.cell.current { background: #ea580c !important; color: white !important; border-color: #ea580c !important; }
-.cell.answered { background: #059669 !important; color: white !important; border-color: #059669 !important; }
-.cell.visited { background: #dc2626 !important; color: white !important; border-color: #dc2626 !important; }
+.cell.current { background: #c2410c !important; color: white !important; border-color: #c2410c !important; }
+.cell.answered { background: #047857 !important; color: white !important; border-color: #047857 !important; }
+.cell.visited { background: #b91c1c !important; color: white !important; border-color: #b91c1c !important; }
 .cell.unseen { background: var(--unseen-grey) !important; color: var(--text) !important; }
 
 .palette-legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 20px; border-top: 1px solid var(--border); width: 100%; margin-top: auto; }
@@ -213,7 +216,7 @@ box-shadow: var(--shadow-md);
 </button>
 <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
 <div class="nav-important mobile-timer">
-    <a id="timerWrap" style="background: rgba(239, 68, 68, 0.1) !important; color: #dc2626 !important; border: 1px solid rgba(239, 68, 68, 0.2); pointer-events: none; display: flex; align-items: center; gap: 4px; font-size: 0.75rem !important;">⏳ <span id="timer">--:--</span></a>
+    <a id="timerWrap" style="background: rgba(239, 68, 68, 0.1) !important; color: #b91c1c !important; border: 1px solid rgba(239, 68, 68, 0.2); pointer-events: none; display: flex; align-items: center; gap: 4px; font-size: 0.75rem !important;">⏳ <span id="timer">--:--</span></a>
     <button onclick="logout()" class="nav-link-btn" style="background: var(--brand) !important; color: white !important;">Logout</button>
 </div>
 <div class="nav-links">
@@ -226,7 +229,7 @@ box-shadow: var(--shadow-md);
 <a href="study.html">Study Material</a>
 <div class="nav-actions">
     <a id="adminTab" href="admin.html" style="display:none; color:var(--success);">Admin</a>
-    <button onclick="logout()" class="login-link" style="color:var(--danger);">Logout</button>
+    <button onclick="logout()" class="login-link" style="color:var(--brand-contrast) !important;">Logout</button>
 </div>
 </div>
 </nav>
@@ -247,12 +250,12 @@ box-shadow: var(--shadow-md);
 <section class="question-section section">
 <div style="display:flex;justify-content:space-between; align-items: center; font-weight:700; font-size:14px; color:var(--muted);">
     <span id="displaySubject">Progress</span>
-    <span id="progressPercent" style="color: var(--brand);">0%</span>
+    <span id="progressPercent" style="color: var(--brand-text);">0%</span>
 </div>
 <div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
     <div id="progressBar" style="width:0%; height:100%; background:var(--brand); transition:0.3s;"></div>
 </div>
-<div id="questionNumber" style="margin-top:25px; font-weight:700; color:var(--brand); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
+<div id="questionNumber" style="margin-top:25px; font-weight:700; color:var(--brand-text); font-size:14px; letter-spacing:1px;">QUESTION 1</div>
 
 <div id="questionText" style="margin-top:10px; font-size:18px; font-weight:600; line-height:1.6;">Loading...</div>
 
@@ -272,9 +275,9 @@ box-shadow: var(--shadow-md);
 <h3 style="margin:0 0 15px 0;font-size:16px;color:var(--text); font-weight:700;">Question Palette</h3>
 <div class="grid" id="questionGrid"></div>
 <div class="palette-legend">
-<div class="legend-item"><div class="legend-box legend-current" style="background:#ea580c">1</div> Current</div>
-<div class="legend-item"><div class="legend-box legend-answered" style="background:#059669">1</div> Answered</div>
-<div class="legend-item"><div class="legend-box legend-visited" style="background:#dc2626">1</div> Visited</div>
+<div class="legend-item"><div class="legend-box legend-current" style="background:#c2410c">1</div> Current</div>
+<div class="legend-item"><div class="legend-box legend-answered" style="background:#047857">1</div> Answered</div>
+<div class="legend-item"><div class="legend-box legend-visited" style="background:#b91c1c">1</div> Visited</div>
 <div class="legend-item"><div class="legend-box legend-unseen" style="background:var(--unseen-grey)">1</div> Unseen</div>
 </div>
 </aside>
@@ -295,7 +298,7 @@ box-shadow: var(--shadow-md);
 <div id="fullscreenOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 10000; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; overflow-y: auto;">
     <div class="popup-box" style="background: var(--surface); padding: 25px; border-radius: 20px; width: 100%; max-width: 600px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); max-height: 95vh; overflow-y: auto;">
         <div style="font-size: 40px; margin-bottom: 15px;">🖥️</div>
-        <h2 style="color: var(--brand); margin-bottom: 15px; font-size: 1.5rem; font-weight: 800;">Enter Full Screen</h2>
+        <h2 style="color: var(--brand-text); margin-bottom: 15px; font-size: 1.5rem; font-weight: 800;">Enter Full Screen</h2>
             <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; text-align: left;">
                 To maintain a fair and secure testing environment, this quiz requires full-screen mode. Please ensure you are fully prepared before proceeding.<br><br>
                 <strong style="color: #dc2626;">STRICT RULES:</strong><br>
@@ -1275,7 +1278,7 @@ if (questions.length === 0) {
     document.getElementById("quizTitle").innerHTML = `📖 Quiz`;
     document.getElementById("quizSubtitle").innerText = sTopicDisplay ? `Topic: ${sTopicDisplay}` : "Coming soon!";
     document.getElementById("displaySubject").innerText = `Grade: ${sClass.replace('class', '')}`;
-    document.getElementById("questionText").innerHTML="<h3 style='color:var(--brand)'>Coming soon! Questions for this section are being updated.</h3>";
+    document.getElementById("questionText").innerHTML="<h3 style='color:var(--brand-text)'>Coming soon! Questions for this section are being updated.</h3>";
     document.getElementById("options").innerHTML = "";
     document.getElementById("questionGrid").innerHTML = "";
     document.getElementById("questionNumber").innerText = "QUESTION 0";
@@ -1295,7 +1298,7 @@ if (isChampionship) {
     displayGradeEl.innerText = `Grade: ${sClass.replace('class', '')}`;
 } else {
     const subjectDisplayName = sSub.charAt(0).toUpperCase() + sSub.slice(1);
-    quizTitleEl.innerHTML = `📖 ${subjectDisplayName} <span style="color: var(--brand);">Quiz</span>`;
+    quizTitleEl.innerHTML = `📖 ${subjectDisplayName} <span style="color: var(--brand-text);">Quiz</span>`;
     if (sTopicDisplay) {
         quizSubtitleEl.innerText = `Topic: ${sTopicDisplay}`;
     } else if (sTopic && sTopicName) {
@@ -1320,7 +1323,7 @@ visitedQuestions[current]=true;
 
 let qTypeBadge = "";
 if (q.isAchiever) {
-    qTypeBadge = `<span style="background: #ea580c; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(234,88,12,0.3);">🏆 Achievers Section (2 Marks)</span>`;
+    qTypeBadge = `<span style="background: #c2410c; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(194,65,12,0.3);">🏆 Achievers Section (2 Marks)</span>`;
 } else if (isChampionship) {
     qTypeBadge = `<span style="background: var(--muted); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle;">📝 Regular Section (1 Mark)</span>`;
 }
@@ -1393,8 +1396,8 @@ if (regularHtml) {
 if (achieverHtml) {
     finalHtml += `
     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 5px; margin: 20px 0 10px;">
-        <div style="font-size: 12px; color: var(--brand); font-weight: 800; text-transform: uppercase;">🏆 Achievers Section</div>
-            <div style="font-size: 10px; background: var(--brand); color: white; padding: 3px 8px; border-radius: 6px; font-weight: 800; box-shadow: 0 2px 5px rgba(255,107,0,0.3);">${achCount} Qs × 2M</div>
+        <div style="font-size: 12px; color: var(--brand-text); font-weight: 800; text-transform: uppercase;">🏆 Achievers Section</div>
+            <div style="font-size: 10px; background: var(--brand-text); color: white; padding: 3px 8px; border-radius: 6px; font-weight: 800; box-shadow: 0 2px 5px rgba(194,65,12,0.3);">${achCount} Qs × 2M</div>
     </div>
     <div class="grid" style="margin-top:0;">${achieverHtml}</div>`;
 }

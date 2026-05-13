@@ -78,8 +78,8 @@
     <style>
         :root {
             --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0;
-            --brand: #3b82f6; /* Blue Theme for JEE Main */
-            --accent: #2563eb;
+            --brand: #2563eb; /* Blue Theme for JEE Main */
+            --accent: #1d4ed8;
             --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
@@ -120,7 +120,7 @@
 <nav>
     <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
     <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
-    <div class="nav-important"><a href="dashboard.html">Dash</a><button onclick="logout()" class="nav-link-btn">Logout</button></div>
+    <div class="nav-important"><a href="dashboard.html">Dash</a><a onclick="logout()" style="cursor:pointer;">Logout</a></div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
         <a href="dashboard.html">Dashboard</a>
@@ -135,7 +135,7 @@
         </div>
         <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
-            <button class="dropbtn nav-link-btn active" style="color: var(--brand);">Senior Exams</button>
+            <a href="#" class="dropbtn active" style="color: var(--brand);">Senior Exams</a>
             <div class="nav-dropdown-content">
                 <a href="jee_main.html" style="color: var(--brand) !important; background: var(--subtle) !important;">JEE Main</a>
                 <a href="jee-list.html">JEE Advanced</a>
@@ -145,7 +145,7 @@
         <a href="leaderboard.html">Leaderboard</a>
         <div class="nav-actions">
             <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600; text-decoration:none;">Admin</a>
-            <button onclick="logout()" class="login-link" style="color: white; background: #ef4444;">Logout</button>
+            <a onclick="logout()" class="login-link" style="color: white; cursor: pointer; background: #ef4444;">Logout</a>
         </div>
     </div>
 </nav>
