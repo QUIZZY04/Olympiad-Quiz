@@ -106,6 +106,14 @@
         .meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 25px; line-height: 1.8; flex-grow: 1; }
         .start-btn { display: inline-block; background: var(--brand); color: var(--brand-contrast); padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; width: 100%; text-align: center; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
         .start-btn:hover { background: var(--accent); transform: translateY(-2px); }
+        
+        .rich-text-section { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border); border-left: 6px solid var(--brand); box-shadow: var(--shadow-sm); margin-top: 40px; margin-bottom: 40px; }
+        .rich-text-section h2 { color: var(--text); font-size: 1.5rem; margin-bottom: 20px; font-weight: 800; letter-spacing: -0.01em;}
+        .rich-text-section p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 16px; }
+        .rich-text-section ul { margin-left: 20px; margin-bottom: 20px; }
+        .rich-text-section li { color: var(--text); font-size: 1rem; line-height: 1.6; margin-bottom: 12px; font-weight: 500; }
+        .rich-text-section .highlight { color: var(--brand-text); font-weight: 800; }
+
         @media (max-width: 768px) { .header h1 { font-size: 2.2rem; } }
     </style>
 <!-- Google tag (gtag.js) -->
@@ -186,6 +194,19 @@
 
         <div id="loading" style="text-align:center; font-weight:600; color: var(--muted); padding: 40px;">Loading available tests...</div>
         <div class="test-grid" id="testGrid"></div>
+
+        <!-- Rich Text Section -->
+        <div class="rich-text-section">
+            <h2>🎓 Cracking JEE Advanced: The Ultimate Challenge</h2>
+            <p>JEE Advanced tests your deep conceptual understanding and your ability to apply multiple concepts to a single problem. Our tests simulate the intense, unpredictable nature of the actual IIT JEE examination.</p>
+            <ul>
+                <li><span class="highlight">Multi-Correct Questions:</span> Master the art of partial marking. Learn to carefully evaluate every single option to avoid heavy negative marks.</li>
+                <li><span class="highlight">Integer & Paragraph Types:</span> Practice complex comprehension passages and precise numerical entries that demand absolute clarity.</li>
+                <li><span class="highlight">Real Exam Simulation:</span> Train your mind for the grueling 6-hour marathon (Paper 1 & Paper 2) with our rigorous difficulty levels.</li>
+                <li><span class="highlight">Detailed Solutions:</span> Don't just check your score. Understand the multi-layered logic behind every tough question with our step-by-step explanations.</li>
+            </ul>
+            <p>Success in JEE Advanced is about accuracy over speed. Practice thoughtfully with our <strong style="color: var(--text);">free JEE Advanced mock tests</strong> to refine your problem-solving approach.</p>
+        </div>
 
         <!-- SEO Content Block -->
         <div style="margin-top: 50px; background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">

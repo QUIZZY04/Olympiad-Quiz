@@ -105,6 +105,13 @@
         .start-btn { display: inline-block; background: var(--brand); color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; width: 100%; text-align: center; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; }
         .start-btn:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); }
 
+        .rich-text-section { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border); border-left: 6px solid var(--brand); box-shadow: var(--shadow-sm); margin-top: 40px; margin-bottom: 40px; }
+        .rich-text-section h2 { color: var(--text); font-size: 1.5rem; margin-bottom: 20px; font-weight: 800; letter-spacing: -0.01em;}
+        .rich-text-section p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 16px; }
+        .rich-text-section ul { margin-left: 20px; margin-bottom: 20px; }
+        .rich-text-section li { color: var(--text); font-size: 1rem; line-height: 1.6; margin-bottom: 12px; font-weight: 500; }
+        .rich-text-section .highlight { color: var(--brand); font-weight: 800; }
+
         @media (max-width: 768px) { .header h1 { font-size: 2.2rem; } }
     </style>
 </head>
@@ -180,6 +187,19 @@
     </div>
 
     <div class="test-grid" id="testGrid"></div>
+
+    <!-- Rich Text Section -->
+    <div class="rich-text-section">
+        <h2>📝 Mastering JEE Main: Your Ultimate Strategy</h2>
+        <p>JEE Main is the crucial first step towards securing a seat in India's top engineering colleges like NITs, IIITs, and GFTIs. Our mock tests are designed to give you a definitive edge by replicating the exact <strong>NTA CBT environment</strong>.</p>
+        <ul>
+            <li><span class="highlight">Time Management:</span> The exam is a race against the clock. Practice managing 90 questions in 180 minutes under realistic pressure.</li>
+            <li><span class="highlight">Numerical Value Questions:</span> These questions don't have options to guess from. Our platform provides specialized practice for accurate integer and decimal entries.</li>
+            <li><span class="highlight">Instant Analytics:</span> Receive a detailed scorecard immediately after submission, highlighting your accuracy and time taken per subject.</li>
+            <li><span class="highlight">Comprehensive Coverage:</span> From high-yield topics like Mechanics and Electromagnetism to tricky concepts in Organic Chemistry, our tests cover the entire Class 11 and 12 syllabus.</li>
+        </ul>
+        <p>Consistency is key. Regular practice with our <strong style="color: var(--text);">free JEE Main mock tests</strong> will build your stamina and conceptual clarity.</p>
+    </div>
 
     <!-- SEO Content Block -->
     <div style="margin-top: 50px; background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
