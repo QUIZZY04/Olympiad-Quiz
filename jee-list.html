@@ -307,8 +307,7 @@
         });
 
         window.startJeeTest = function(docId) {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!isLoggedIn) {
+            if (!auth.currentUser) {
                 sessionStorage.setItem("redirectAfterLogin", "jee-quiz.html?id=" + docId);
                 window.location.href = "login.html";
             } else {
@@ -363,8 +362,7 @@
         let generatedTestId = null;
 
         window.generateJeeTest = async () => {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!isLoggedIn) {
+            if (!auth.currentUser) {
                 sessionStorage.setItem("redirectAfterLogin", window.location.href);
                 window.location.href = "login.html";
                 return;
