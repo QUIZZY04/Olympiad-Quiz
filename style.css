@@ -175,7 +175,7 @@ button, .btn {
 .timer {
     font-weight: bold;
     font-size: 18px;
-    color: #ef4444;
+    color: #dc2626;
     background: #fee2e2;
     padding: 6px 14px;
     border-radius: 20px;
@@ -462,7 +462,7 @@ nav {
         padding: 8px 16px;
         box-shadow: var(--shadow-sm);
         border: 1px solid rgba(239, 68, 68, 0.2);
-        color: var(--danger);
+        color: #dc2626;
         background-color: #fee2e2 !important;
         border-radius: 12px;
         font-weight: 700;
@@ -631,7 +631,7 @@ nav {
 .nav-dropdown-content a:hover,
 .nav-dropdown-content button.nav-link-btn:hover {
     background-color: var(--subtle) !important;
-    color: var(--brand) !important;
+    color: #ea580c !important;
 }
 
 .nav-dropdown:hover .nav-dropdown-content {
@@ -1034,7 +1034,7 @@ select {
     color: var(--accent);
 }
 .breadcrumb .separator {
-    color: #94a3b8;
+    color: #64748b;
     font-size: 0.8rem;
 }
 /* ================= GLOBAL FOOTER ENHANCEMENT ================= */
@@ -1072,7 +1072,7 @@ footer p, .site-footer p {
     margin-top: 15px !important;
     margin-bottom: 0 !important;
     font-size: 14px !important;
-    color: #94a3b8 !important;
+    color: #cbd5e1 !important;
     text-transform: none !important;
     letter-spacing: normal !important;
 }

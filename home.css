@@ -115,9 +115,9 @@ box-shadow: 0 8px 20px rgba(255, 107, 0, 0.2);
 .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(255, 107, 0, 0.3); }
 
 .btn-light{
-background:#fff;
-border:1px solid #e2e8f0;
-color:#111827;
+background:#f8fafc;
+border:1px solid #cbd5e1;
+color:#0f172a;
 box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 .btn-light:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.06); border-color: #cbd5e1; }
@@ -214,7 +214,7 @@ font-weight:800;
 
 .stat p{
 font-size:14px;
-color:var(--muted);
+color:#475569;
 }
 
 /* SECTION */
@@ -403,7 +403,7 @@ margin-bottom: 10px;
     
     /* Trust Boosters Mobile Only */
     .mobile-trust-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 20px; }
-    .mobile-trust-badge { background: #fff7ed; color: var(--orange); border: 1px solid #ffedd5; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+    .mobile-trust-badge { background: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 }
 
 /* BLOG CARDS FOR HOMEPAGE */
@@ -418,7 +418,7 @@ margin-bottom: 10px;
 .blog-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
 .blog-content h3 { font-size: 1.25rem; margin-bottom: 10px; color: #0f172a; line-height: 1.4; font-weight: 700; letter-spacing: -0.01em; }
 .blog-content p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex: 1; }
-.blog-btn { color: var(--orange); font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; margin-top: auto; }
+.blog-btn { color: #ea580c; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; margin-top: auto; }
 .blog-btn:hover { gap: 8px; }
 
 /* DESKTOP/LAPTOP SCALING OPTIMIZATION */

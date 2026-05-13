@@ -78,7 +78,7 @@
 .insight-icon { font-size: 24px; }
 .insight-text { display: flex; flex-direction: column; }
 .insight-text b { font-size: 13px; color: var(--text); text-transform: capitalize; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
-.insight-text span { font-size: 11px; font-weight: 700; margin-top: 2px; }
+.insight-text span { font-size: 12px; font-weight: 700; margin-top: 2px; }
 
 @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
 </style>
@@ -379,13 +379,13 @@ async function fetchPerformanceData(uid) {
   let weaknesses = topicAverages.filter(t => t.avg < 60).reverse().slice(0, 3);
 
   if(strengths.length > 0) {
-      strengthsHtml = strengths.map(t => `<div class="insight-item strength"><span class="insight-icon">💪</span><div class="insight-text"><b>${t.name}</b><span style="color:var(--success)">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
+      strengthsHtml = strengths.map(t => `<div class="insight-item strength"><span class="insight-icon">💪</span><div class="insight-text"><b>${t.name}</b><span style="color:#059669">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
   } else {
       strengthsHtml = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">Keep practicing live quizzes to uncover your strengths!</div>`;
   }
 
   if(weaknesses.length > 0) {
-      weaknessesHtml = weaknesses.map(t => `<div class="insight-item weakness"><span class="insight-icon">⚠️</span><div class="insight-text"><b>${t.name}</b><span style="color:var(--danger)">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
+      weaknessesHtml = weaknesses.map(t => `<div class="insight-item weakness"><span class="insight-icon">⚠️</span><div class="insight-text"><b>${t.name}</b><span style="color:#dc2626">${t.avg.toFixed(1)}% Avg. Accuracy</span></div></div>`).join("");
   } else {
       weaknessesHtml = `<div style="color:var(--muted); font-size:12px; text-align:center; padding:15px; background:var(--bg); border-radius:10px; border: 1px dashed var(--border);">No major weaknesses detected!</div>`;
   }

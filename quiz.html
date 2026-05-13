@@ -137,7 +137,7 @@ box-shadow: var(--shadow-md);
 .btn-save{background:linear-gradient(135deg, var(--success), #059669);color:#fff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);}
 .btn-save:hover{transform: translateY(-2px); box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);}
 .btn-prev{background:#ffffff;color:#475569; border:1px solid #cbd5e1; box-shadow: 0 1px 2px rgba(0,0,0,0.05);}
-.btn-prev:hover{background:#f8fafc; border-color: #94a3b8; color: #1e293b; transform: translateY(-1px);}
+.btn-prev:hover{background:#f1f5f9; border-color: #94a3b8; color: #0f172a; transform: translateY(-1px);}
 .btn-finish{background:linear-gradient(135deg, var(--danger), #dc2626);color:#fff; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);}
 .btn-finish:hover{transform: translateY(-2px); box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);}
 .btn-danger{background:#b91c1c;color:#fff}
@@ -147,9 +147,9 @@ box-shadow: var(--shadow-md);
 .cell{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); cursor:pointer; font-weight:600; font-size:13px; background:var(--bg); transition:0.2s; color: var(--text);}
 .cell:hover{border-color:var(--brand);}
 
-.cell.current { background: var(--brand) !important; color: white !important; border-color: var(--brand) !important; }
-.cell.answered { background: #10b981 !important; color: white !important; border-color: #10b981 !important; }
-.cell.visited { background: #ef4444 !important; color: white !important; border-color: #ef4444 !important; }
+.cell.current { background: #ea580c !important; color: white !important; border-color: #ea580c !important; }
+.cell.answered { background: #059669 !important; color: white !important; border-color: #059669 !important; }
+.cell.visited { background: #dc2626 !important; color: white !important; border-color: #dc2626 !important; }
 .cell.unseen { background: var(--unseen-grey) !important; color: var(--text) !important; }
 
 .palette-legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 20px; border-top: 1px solid var(--border); width: 100%; margin-top: auto; }
@@ -213,7 +213,7 @@ box-shadow: var(--shadow-md);
 </button>
 <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
 <div class="nav-important mobile-timer">
-    <a id="timerWrap" style="background: rgba(239, 68, 68, 0.1) !important; color: var(--danger) !important; border: 1px solid rgba(239, 68, 68, 0.2); pointer-events: none; display: flex; align-items: center; gap: 4px; font-size: 0.75rem !important;">⏳ <span id="timer">--:--</span></a>
+    <a id="timerWrap" style="background: rgba(239, 68, 68, 0.1) !important; color: #dc2626 !important; border: 1px solid rgba(239, 68, 68, 0.2); pointer-events: none; display: flex; align-items: center; gap: 4px; font-size: 0.75rem !important;">⏳ <span id="timer">--:--</span></a>
     <button onclick="logout()" class="nav-link-btn" style="background: var(--brand) !important; color: white !important;">Logout</button>
 </div>
 <div class="nav-links">
@@ -272,9 +272,9 @@ box-shadow: var(--shadow-md);
 <h3 style="margin:0 0 15px 0;font-size:16px;color:var(--text); font-weight:700;">Question Palette</h3>
 <div class="grid" id="questionGrid"></div>
 <div class="palette-legend">
-<div class="legend-item"><div class="legend-box legend-current" style="background:var(--brand)">1</div> Current</div>
-<div class="legend-item"><div class="legend-box legend-answered" style="background:#10b981">1</div> Answered</div>
-<div class="legend-item"><div class="legend-box legend-visited" style="background:#ef4444">1</div> Visited</div>
+<div class="legend-item"><div class="legend-box legend-current" style="background:#ea580c">1</div> Current</div>
+<div class="legend-item"><div class="legend-box legend-answered" style="background:#059669">1</div> Answered</div>
+<div class="legend-item"><div class="legend-box legend-visited" style="background:#dc2626">1</div> Visited</div>
 <div class="legend-item"><div class="legend-box legend-unseen" style="background:var(--unseen-grey)">1</div> Unseen</div>
 </div>
 </aside>
@@ -298,11 +298,11 @@ box-shadow: var(--shadow-md);
         <h2 style="color: var(--brand); margin-bottom: 15px; font-size: 1.5rem; font-weight: 800;">Enter Full Screen</h2>
             <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; text-align: left;">
                 To maintain a fair and secure testing environment, this quiz requires full-screen mode. Please ensure you are fully prepared before proceeding.<br><br>
-                <strong style="color: var(--danger);">STRICT RULES:</strong><br>
+                <strong style="color: #dc2626;">STRICT RULES:</strong><br>
                 • Do not switch tabs or open new windows.<br>
                 • Do not minimize the browser or lose window focus.<br>
                 • Do not exit full-screen mode manually.<br><br>
-                Any of these actions will result in a strike. <b style="color: var(--danger);">After 3 strikes, your quiz will automatically submit and end immediately.</b>
+                Any of these actions will result in a strike. <b style="color: #dc2626;">After 3 strikes, your quiz will automatically submit and end immediately.</b>
         </p>
             <div class="popup-actions" style="display: flex; gap: 10px; width: 100%; flex-wrap: wrap;">
                 <button onclick="goBackToSelection()" class="btn-prev" style="padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border-radius: 10px; border: 1px solid var(--border);">Cancel & Go Back</button>
@@ -1320,7 +1320,7 @@ visitedQuestions[current]=true;
 
 let qTypeBadge = "";
 if (q.isAchiever) {
-    qTypeBadge = `<span style="background: var(--brand); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(255,107,0,0.3);">🏆 Achievers Section (2 Marks)</span>`;
+    qTypeBadge = `<span style="background: #ea580c; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(234,88,12,0.3);">🏆 Achievers Section (2 Marks)</span>`;
 } else if (isChampionship) {
     qTypeBadge = `<span style="background: var(--muted); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle;">📝 Regular Section (1 Mark)</span>`;
 }
