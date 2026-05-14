@@ -392,10 +392,10 @@
     <div class="modal-content" style="max-width: 440px; text-align: center;">
         <div style="font-size: 40px; margin-bottom: 10px;">⚠️</div>
         <h2 style="color: var(--brand); margin-bottom: 15px; font-weight: 800; font-size: 22px;">Registration Required</h2>
-        <p class="subtitle" id="notRegisteredMsg" style="margin-bottom: 20px;">Account not found. Please create your account first.</p>
+        <p class="subtitle" id="notRegisteredMsg" style="margin-bottom: 20px;">You are not a registered user. Please create your account in signup page.</p>
         <div style="display: flex; gap: 10px;">
             <button type="button" onclick="document.getElementById('notRegisteredModal').style.display='none'" style="background: var(--border); color: var(--text); padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Cancel</button>
-            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Go to Signup</button>
+            <button type="button" onclick="window.location.href='signup.html'" style="background: var(--brand); color: white; padding: 14px 20px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; flex: 1; transition: 0.2s;">Create account</button>
         </div>
     </div>
 </div>
@@ -612,7 +612,7 @@ document.getElementById("phoneForm").addEventListener("submit", async (e) => {
         const querySnapshot = await getDocs(userQuery);
         
         if (querySnapshot.empty) {
-            document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create an account on the Sign Up page first.";
+            document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create your account in signup page.";
             document.getElementById('notRegisteredModal').style.display = 'flex';
             btn.disabled = false; btn.innerText = "Send OTP";
             return;
@@ -629,6 +629,14 @@ document.getElementById("phoneForm").addEventListener("submit", async (e) => {
         document.getElementById("phoneForm").classList.add("hidden");
         document.getElementById("otpForm").classList.remove("hidden");
     } catch (err) {
+        // Intercept non-auth errors (like Firestore permission denied rules) to show the professional modal instead of the generic alert
+        if (!err.code || !err.code.startsWith('auth/')) {
+            document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create your account in signup page.";
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            btn.disabled = false; btn.innerText = "Send OTP";
+            initLoginRecaptcha();
+            return;
+        }
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
         else if (err.code === 'auth/too-many-requests') errorMsg = "Too many attempts. Please try again later.";
