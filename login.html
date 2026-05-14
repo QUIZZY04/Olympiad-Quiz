@@ -698,7 +698,27 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
     isManualLogin = true;
     try {
         const result = await signInWithPopup(auth, provider);
-        // Do not delete new users, force them to complete their profile
+        const additionalInfo = getAdditionalUserInfo(result);
+        
+        if (additionalInfo && additionalInfo.isNewUser) {
+            await deleteUser(result.user).catch(console.error);
+            await signOut(auth);
+            document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create an account first.";
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            isManualLogin = false;
+            return;
+        }
+        
+        const userDoc = await getDoc(doc(db, "users", result.user.uid));
+        if (!userDoc.exists()) {
+            await deleteUser(result.user).catch(console.error);
+            await signOut(auth);
+            document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create an account first.";
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            isManualLogin = false;
+            return;
+        }
+
         handleAuthSuccess(result.user);
     } catch (err) { 
         alert(err.message); 
