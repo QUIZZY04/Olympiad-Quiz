@@ -44,14 +44,10 @@
             --surface: #ffffff;
             --subtle: #fff7ed;
             --text: #111827;
-            --muted: #64748b;
-            --border: #e2e8f0;
+            --muted: #752e8f0;
             --brand: #ff6b00;
             --accent: #ff8c1a;
-            --danger: #ef4444;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --brand-text: #c2410c;
+            --danger: #dc2rbr10c;
             --brand-contrast: #111827;
             --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
@@ -256,11 +252,10 @@
             <div class="nav-dropdown-content">
                 <a href="mock.html">Mock Tests</a>
                 <a href="chapterwise.html">Chapterwise</a>
-                <a href="study.html" style="color: var(--brand) !important; background: var(--subtle) !important;">Study Material</a>
+                <a href="study.html" style="color: var(--brand-text) !important; background: var(--subtle) !important;">Study Material</a>
                 <a href="blog.html">Success Guides</a>
             </div>
         </div>
-        <a href="live.html">Live Arena</a>
         <a href="leaderboard.html">Leaderboard</a>
         <div class="nav-actions">
             <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
@@ -398,26 +393,23 @@
                                         <div class="subject-icon">📐</div>
                                         <h3 class="subject-title">Physics</h3>
                                         <p class="subject-desc">Master core concepts for JEE Advanced.</p>
-                                        <span class="card-btn" style="color: #38bdf8; border-color: #38bdf8;">Explore Physics →</span>
+                                        <span class="card-btn" style="color: #0284c7; border-color: #0284c7;">Explore Physics →</span>
                                     </a>
                                     <a href="study-material.html?subject=chemistry" class="subject-card science-card" style="border-top-color: #10b981;">
                                         <div class="subject-icon">🔬</div>
                                         <h3 class="subject-title">Chemistry</h3>
-                                        <p class="subject-desc">Deep dive into physical, organic, and inorganic chemistry.</p>
-                                        <span class="card-btn" style="color: #10b981; border-color: #10b981;">Explore Chemistry →</span>
+                                        <span class="card-btn" style="color: #059669; border-color: #059669;">Explore Chemistry →</span>
                                     </a>
                                     <a href="study-material.html?subject=maths" class="subject-card english-card" style="border-top-color: #3b82f6;">
                                         <div class="subject-icon">🔢</div>
                                         <h3 class="subject-title">Mathematics</h3>
-                                        <p class="subject-desc">Enhance problem-solving skills for JEE.</p>
-                                        <span class="card-btn" style="color: #3b82f6; border-color: #3b82f6;">Explore Maths →</span>
+                                        <p class="subject-desc">Enhance problem-solving skills for JEE.</p>an
                                     </a>
                                 `;
                             }
                         }
                     }
                 }
-            } catch(e) {}
         }
     });
 

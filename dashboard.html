@@ -35,15 +35,15 @@
       --bg: #f8fafc;
       --surface: #ffffff;
       --text: #111827;
-      --muted: #64748b;
+      --muted: #475569;
       --border: #e2e8f0;
       --brand: #ff6b00;
       --accent: #ff8c1a;
-      --danger: #ef4444;
-      --success: #10b981;
+      --danger: #dc2626;
+      --success: #059669;
       --brand-text: #c2410c;
       --brand-contrast: #111827;
-      --warning: #f59e0b;
+      --warning: #b45309;
       --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
       --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.04);
       --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.08);
@@ -113,7 +113,7 @@
     
     .card-content { position: relative; z-index: 1; flex: 1; }
     .card-content h3 { font-size: 1.25rem; color: #0f172a; margin-bottom: 10px; font-weight: 700; transition: 0.3s; }
-    .card-content p { color: #64748b; font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; }
+    .card-content p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 0; font-weight: 400; }
     .modern-card:hover .card-content h3 { color: var(--brand-text); }
 
     .icon-wrapper { position: relative; z-index: 1; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; border-radius: 16px; font-size: 28px; flex-shrink: 0; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); background: var(--c-light); color: var(--c-bg); }
@@ -160,7 +160,7 @@
     .stat-box { background: var(--surface); padding: 32px; border-radius: 20px; border: 1px solid var(--border); text-align: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: 0.3s; }
     .stat-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--border); }
     .stat-box h3 { font-size: 2.25rem; font-weight: 800; color: var(--brand-text); margin-bottom: 8px; letter-spacing: -0.02em; }
-    .stat-box p { font-size: 0.875rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+    .stat-box p { font-size: 0.875rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 0; }
     
     @media (max-width:1024px){
         .main-menu-grid { grid-template-columns: repeat(2, 1fr); }
@@ -193,7 +193,7 @@
     .study-banner-content p { color: #475569; font-size: 1rem; line-height: 1.6; max-width: 800px; margin-bottom: 16px; }
     .study-chips { display: flex; gap: 10px; flex-wrap: wrap; }
     .study-chip { padding: 6px 12px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-    .study-chip.imo { background: #eff6ff; color: #3b82f6; }
+    .study-chip.imo { background: #eff6ff; color: #2563eb; }
     .study-chip.nso { background: rgba(52, 211, 153, 0.1); color: #059669; }
     .study-chip.ieo { background: rgba(244, 63, 94, 0.1); color: #e11d48; }
     .study-chip.iro { background: rgba(251, 146, 60, 0.1); color: #d97706; }
@@ -306,14 +306,14 @@
             <div class="modern-card card-blue animate-up delay-1" onclick="location.href='mock.html'">
                 <div class="card-content">
                     <h3>Free Mock Tests</h3>
-                    <p>Full-length papers curated for <b style="color: var(--brand);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand);">SilverZone iOS, IOM</b> and more. Test your speed and accuracy.</p>
+                    <p>Full-length papers curated for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more. Test your speed and accuracy.</p>
                 </div>
                 <div class="icon-wrapper">📝</div>
             </div>
             <div class="modern-card card-purple animate-up delay-2" onclick="location.href='chapterwise.html'">
                 <div class="card-content">
                     <h3>Chapterwise Quiz</h3>
-                    <p>Practice topics from your science and math books curated for <b style="color: var(--brand);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand);">SilverZone iOS, IOM</b> and more. Master every concept.</p>
+                    <p>Practice topics from your science and math books curated for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more. Master every concept.</p>
                 </div>
                 <div class="icon-wrapper">📖</div>
             </div>
@@ -327,7 +327,7 @@
             <div class="modern-card card-orange animate-up delay-4" onclick="location.href='tricks.html'">
                 <div class="card-content">
                     <h3>Olympiad Tricks</h3>
-                    <p>Learn shortcut methods and smart strategies for <b style="color: var(--brand);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand);">SilverZone iOS, IOM</b> and more to solve problems faster.</p>
+                    <p>Learn shortcut methods and smart strategies for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more to solve problems faster.</p>
                 </div>
                 <div class="icon-wrapper">💡</div>
             </div>
@@ -348,7 +348,7 @@
             <div class="modern-card card-video animate-up delay-6" onclick="location.href='video-tutorials.html'">
                 <div class="card-content">
                     <h3>Video Tutorials</h3>
-                    <p>Master complex topics visually. Watch expertly curated video lessons for <b style="color: #38bdf8;">Math, Science, English & Reasoning</b>.</p>
+                    <p>Master complex topics visually. Watch expertly curated video lessons for <b style="color: #0284c7;">Math, Science, English & Reasoning</b>.</p>
                 </div>
                 <div class="icon-wrapper">📺</div>
             </div>
@@ -425,7 +425,7 @@
                     <div style="flex: 1; min-width: 300px;">
                         <h2 style="font-size: 1.8rem; color: var(--text); margin-bottom: 15px; font-weight: 800;">Master Your Olympiad Journey</h2>
                         <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px;">Success in Olympiads like SOF, SilverZone, and CREST requires more than just reading textbooks. It demands a strategic approach to problem-solving, time management, and conceptual clarity.</p>
-                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">Start by taking a <strong style="color: var(--brand);">Free Mock Test</strong> to benchmark your current standing. Then, use the <strong style="color: var(--brand);">Chapterwise Quizzes</strong> to target specific weak areas, and explore our <strong style="color: var(--brand);">Olympiad Tricks</strong> to learn time-saving shortcuts!</p>
+                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">Start by taking a <strong style="color: var(--brand-text);">Free Mock Test</strong> to benchmark your current standing. Then, use the <strong style="color: var(--brand-text);">Chapterwise Quizzes</strong> to target specific weak areas, and explore our <strong style="color: var(--brand-text);">Olympiad Tricks</strong> to learn time-saving shortcuts!</p>
                     </div>
                     <div style="flex: 1; min-width: 300px; display: grid; gap: 15px;">
                         <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s;" onmouseover="this.style.borderColor='var(--brand)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateX(0)';">

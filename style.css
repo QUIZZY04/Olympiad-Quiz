@@ -46,7 +46,7 @@ body {
     --surface: #ffffff;
     --subtle: #fff7ed;
     --text: #111827;
-    --muted: #64748b;
+    --muted: #475569;
     --border: #e2e8f0;
     --brand-text: #c2410c;
     --brand-contrast: #111827;
@@ -643,7 +643,7 @@ nav {
 }
 
 .signup-btn-nav {
-    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    background: linear-gradient(135deg, #0284c7, #2563eb);
     color: white !important;
     padding: 10px 20px;
     border-radius: 10px;
@@ -888,7 +888,8 @@ select {
 }
 
 .leaderboard-btn {
-    background: #3b82f6;
+    background: #2563eb;
+    background: #2563eb;
     color: #ffffff;
     padding: 12px 25px;
     border-radius: 10px;
@@ -1019,7 +1020,7 @@ select {
     color: var(--brand-text);
 }
 .breadcrumb .separator {
-    color: #94a3b8;
+    color: #64748b;
     font-size: 0.8rem;
 }
 /* ================= GLOBAL FOOTER ENHANCEMENT ================= */
