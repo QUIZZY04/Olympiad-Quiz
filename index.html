@@ -253,13 +253,17 @@ padding:0 22px;
 :root{
 --orange:#ff6b00;
 --dark:#111827;
---muted:#64748b;
+--muted:#475569;
 /* Navbar variables matching mock page */
 --brand: #ff6b00;
 --border: #e2e8f0;
 --text: #111827;
 --surface: #ffffff;
---danger: #ef4444;
+--danger: #dc2626;
+--success: #059669;
+--warning: #b45309;
+--brand-text: #c2410c;
+--brand-contrast: #111827;
 }
 
 /* NAVBAR */
@@ -279,7 +283,7 @@ nav {
 }
 .nav-important { display: flex; gap: 8px; align-items: center; }
 @media (min-width: 769px) { .nav-important { display: none !important; } }
-.nav-important a, .nav-important button.nav-link-btn { text-decoration: none; font-weight: 700; font-size: 0.75rem; color: var(--brand); background: rgba(255, 107, 0, 0.08); padding: 4px 8px; border-radius: 8px; text-transform: uppercase; border: none; cursor: pointer; font-family: inherit; }
+.nav-important a, .nav-important button.nav-link-btn { text-decoration: none; font-weight: 700; font-size: 0.75rem; color: var(--brand-text); background: rgba(255, 107, 0, 0.08); padding: 4px 8px; border-radius: 8px; text-transform: uppercase; border: none; cursor: pointer; font-family: inherit; }
 .menu-toggle { display: none; flex-direction: column; gap: 5px; background: transparent; border: none; cursor: pointer; padding: 5px; z-index: 1001; }
 .menu-toggle span { display: block; width: 25px; height: 3px; background: var(--text); border-radius: 2px; transition: 0.3s; }
 .brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; white-space: nowrap; transition: 0.3s; }
@@ -295,7 +299,7 @@ nav {
 .nav-dropdown-content { display: none; position: absolute; background-color: var(--surface); min-width: 200px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08); border-radius: 12px; z-index: 1001; top: 100%; left: 0; border: 1px solid var(--border); padding: 8px 0; }
 .nav-dropdown-content a, .nav-dropdown-content button.nav-link-btn { color: var(--text) !important; padding: 12px 20px !important; text-decoration: none !important; display: block !important; font-size: 0.85rem !important; font-weight: 700 !important; border-bottom: none !important; transition: background 0.2s !important; border-radius: 0 !important; text-align: left; width: 100%; background: none; border: none; cursor: pointer; font-family: inherit; }
 .close-menu { display: none; }
-.nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
+.nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background-color: #fff7ed !important; color: var(--brand-text) !important; }
 .nav-dropdown:hover .nav-dropdown-content { display: block; }
 .dropbtn::after { content: ' ▾'; font-size: 0.8rem; opacity: 0.7; }
 @media (max-width: 768px) {
@@ -303,7 +307,7 @@ nav {
     .nav-dropdown-content { position: static; display: block; box-shadow: none; border: none; background: #fff7ed; padding-left: 20px; border-radius: 0; min-width: 100%; }
     nav { padding: 0 12px !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; align-items: center !important; min-height: 60px !important; position: sticky !important; top: 0 !important; z-index: 1000 !important; }
     .brand { font-size: 0.9rem !important; margin-left: 0 !important; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-    .nav-important a { background: var(--brand) !important; color: white !important; display: inline-block; }
+    .nav-important a { background: var(--brand) !important; color: var(--brand-contrast) !important; display: inline-block; }
     .menu-toggle { display: flex; padding: 10px 4px; margin-right: 0; order: -1; flex-shrink: 0; }
     .nav-links { display: flex; position: fixed; top: 0; right: 0; transform: translateX(100%); height: 100vh; width: 280px; background: var(--surface); flex-direction: column; padding: 80px 25px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.15); z-index: 1000; align-items: flex-start; justify-content: flex-start; margin: 0; visibility: hidden; opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s, visibility 0.4s; }
     .nav-links.active { transform: translateX(0); visibility: visible; opacity: 1; pointer-events: auto; }
@@ -324,7 +328,7 @@ transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 .btn-main{
 background:var(--orange);
-color:#fff;
+color:var(--brand-contrast);
 box-shadow: 0 8px 20px rgba(255, 107, 0, 0.2);
 }
 .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(255, 107, 0, 0.3); }
@@ -354,7 +358,7 @@ align-items:center;
 display:inline-block;
 padding:8px 16px;
 background:#ffedd5;
-color:var(--orange);
+color:var(--brand-text);
 border-radius:999px;
 font-size:13px;
 font-weight:700;
@@ -369,7 +373,7 @@ letter-spacing: -0.03em;
 }
 
 .hero h1 span{
-color:var(--orange);
+color:var(--brand-text);
 }
 
 .hero p{
@@ -419,7 +423,7 @@ box-shadow:0 10px 25px rgba(0,0,0,.05);
 
 .stat h3{
 font-size:28px;
-color:var(--orange);
+color:var(--brand-text);
 font-weight:800;
 }
 
@@ -517,7 +521,7 @@ letter-spacing: -0.01em;
 background:linear-gradient(135deg,#ff6b00,#ff8c1a);
 padding:52px;
 border-radius:28px;
-color:#fff;
+color:var(--brand-contrast);
 text-align:center;
 }
 
@@ -562,7 +566,7 @@ outline: none;
 transition: color 0.3s;
 }
 .faq-item summary:hover {
-color: var(--orange);
+color: var(--brand-text);
 }
 .faq-item summary::-webkit-details-marker {
 display: none;
@@ -620,7 +624,7 @@ margin-bottom: 10px;
     
     /* Trust Boosters Mobile Only */
     .mobile-trust-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 20px; }
-    .mobile-trust-badge { background: #fff7ed; color: var(--orange); border: 1px solid #ffedd5; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+    .mobile-trust-badge { background: #fff7ed; color: var(--brand-text); border: 1px solid #ffedd5; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 }
 
 /* BLOG CARDS FOR HOMEPAGE */
@@ -628,13 +632,13 @@ margin-bottom: 10px;
     background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,.04); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%;
 }
-.blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,.08); border-color: var(--orange); }
+.blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,.08); border-color: var(--brand-text); }
 .blog-img { width: 100%; height: 200px; object-fit: cover; }
 .blog-content { padding: 24px; display: flex; flex-direction: column; flex: 1; }
 .blog-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
 .blog-content h3 { font-size: 1.25rem; margin-bottom: 12px; color: #0f172a; line-height: 1.4; font-weight: 700; letter-spacing: -0.01em;}
 .blog-content p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px; flex: 1; }
-.blog-btn { color: var(--orange); font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; }
+.blog-btn { color: var(--brand-text); font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; }
 .blog-btn:hover { gap: 8px; }
 
 @media(min-width: 769px) {
@@ -683,7 +687,7 @@ font-size:28px;
 
 .sticky-btn {
     background: var(--brand);
-    color: #ffffff !important;
+    color: var(--brand-contrast) !important;
     padding: 12px 20px;
     border-radius: 50px;
     font-weight: 700;
@@ -698,7 +702,7 @@ font-size:28px;
 }
 .sticky-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5); background: var(--accent); }
 .sticky-btn.feedback-btn { background: #ffffff; color: var(--text) !important; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-.sticky-btn.feedback-btn:hover { border-color: var(--brand); color: var(--brand) !important; }
+.sticky-btn.feedback-btn:hover { border-color: var(--brand-text); color: var(--brand-text) !important; }
 @media(max-width: 768px) {
     .sticky-actions { bottom: 15px; right: 15px; flex-direction: row; gap: 8px; z-index: 99999; }
     .sticky-btn { padding: 8px 14px; font-size: 12px; }
@@ -973,7 +977,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
     </div>
     
     <div style="text-align: center; margin-top: 40px;">
-        <a href="blog.html" class="btn btn-light" style="border: 2px solid var(--orange); color: var(--orange); box-shadow: 0 4px 15px rgba(255,107,0,0.1);">View All Articles</a>
+        <a href="blog.html" class="btn btn-light" style="border: 2px solid var(--brand-text); color: var(--brand-text); box-shadow: 0 4px 15px rgba(255,107,0,0.1);">View All Articles</a>
     </div>
 </div>
 </section>
@@ -1035,6 +1039,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
         <p>
         Early exposure to competitive exams builds a strong academic foundation. Dedicated Olympiad preparation develops logical reasoning, analytical thinking, and problem-solving skills that go far beyond regular school curriculums. 
         Whether a student is preparing using our <a href="imo-free-mock-test.html" style="color: var(--brand); font-weight: 600;">Free IMO Mock Test</a> or <a href="nso-free-mock-test.html" style="color: var(--brand); font-weight: 600;">Free NSO Mock Test</a> series, our platform's competitive environment encourages excellence and acts as the perfect stepping stone for future high-stakes exams like JEE and NEET.
+        Whether a student is preparing using our <a href="imo-free-mock-test.html" style="color: var(--brand-text); font-weight: 600;">Free IMO Mock Test</a> or <a href="nso-free-mock-test.html" style="color: var(--brand-text); font-weight: 600;">Free NSO Mock Test</a> series, our platform's competitive environment encourages excellence and acts as the perfect stepping stone for future high-stakes exams like JEE and NEET.
         </p>
     </div>
 
