@@ -833,34 +833,36 @@
                     const originalPrice = s.price;
                     const discountedPrice = s.priceAfterCoupon;
 
-                    if (appliedCoupons[s.id]) {
-                        // Coupon Applied
-                        let finalPrice = 0; // Default to free if no specific discount price is set
-                        if (typeof discountedPrice === 'number' && discountedPrice >= 0) {
-                            finalPrice = discountedPrice;
-                        }
-                        
-                        if (finalPrice === 0) {
-                            btn.innerText = "Unlock for Free";
-                            btn.className = "join-btn btn-free-unlock";
+                    if (btn.innerText !== "PROCESSING.......") {
+                        if (appliedCoupons[s.id]) {
+                            // Coupon Applied
+                            let finalPrice = 0; // Default to free if no specific discount price is set
+                            if (typeof discountedPrice === 'number' && discountedPrice >= 0) {
+                                finalPrice = discountedPrice;
+                            }
+                            
+                            if (finalPrice === 0) {
+                                btn.innerText = "Unlock for Free";
+                                btn.className = "join-btn btn-free-unlock";
+                            } else {
+                                const priceDisplayHtml = originalPrice > finalPrice ? `<s style="opacity: 0.7; font-size: 0.9em; margin-right: 5px;">₹${originalPrice}</s> ₹${finalPrice}` : `₹${finalPrice}`;
+                                btn.innerHTML = `Unlock for ${priceDisplayHtml}`;
+                                btn.className = "join-btn btn-free-unlock"; // Keep pulsing class for successful coupon
+                            }
+                            btn.onclick = () => handleUnlock(s.id, finalPrice, s.title);
                         } else {
-                            const priceDisplayHtml = originalPrice > finalPrice ? `<s style="opacity: 0.7; font-size: 0.9em; margin-right: 5px;">₹${originalPrice}</s> ₹${finalPrice}` : `₹${finalPrice}`;
-                            btn.innerHTML = `Unlock for ${priceDisplayHtml}`;
-                            btn.className = "join-btn btn-free-unlock"; // Keep pulsing class for successful coupon
+                            // No Coupon Applied
+                            if (originalPrice === 0) {
+                                btn.innerText = "Unlock for Free";
+                                btn.className = "join-btn btn-free-unlock";
+                            } else {
+                                btn.innerText = `Unlock for ₹${originalPrice}`;
+                                btn.className = "join-btn btn-locked";
+                            }
+                            btn.onclick = () => handleUnlock(s.id, originalPrice, s.title);
                         }
-                        btn.onclick = () => handleUnlock(s.id, finalPrice, s.title);
-                    } else {
-                        // No Coupon Applied
-                        if (originalPrice === 0) {
-                            btn.innerText = "Unlock for Free";
-                            btn.className = "join-btn btn-free-unlock";
-                        } else {
-                            btn.innerText = `Unlock for ₹${originalPrice}`;
-                            btn.className = "join-btn btn-locked";
-                        }
-                        btn.onclick = () => handleUnlock(s.id, originalPrice, s.title);
+                        btn.disabled = false;
                     }
-                    btn.disabled = false;
     
                     // Show coupon area for paid locked sessions
                     if (cpArea) cpArea.style.display = (originalPrice > 0 && !appliedCoupons[s.id]) ? "block" : "none";
@@ -995,6 +997,8 @@
 
         if (sessionPrice === 0) {
             // --- Handle Free Unlock ---
+            const btn = document.getElementById(`btn-${sessionId}`);
+            if(btn) { btn.innerText = "PROCESSING......."; btn.disabled = true; }
             try {
                 window.showProcessingScreen();
                 // Create a 0-cost purchase record in Firestore
@@ -1039,8 +1043,8 @@
         } else {
             // --- Handle Paid Unlock (New Razorpay Orders flow) ---
             const btn = document.getElementById(`btn-${sessionId}`);
-            const originalText = btn.innerText;
-            btn.innerText = "Processing...";
+            const originalText = btn.innerHTML;
+            btn.innerText = "PROCESSING.......";
             btn.disabled = true;
 
             try {
@@ -1062,7 +1066,7 @@
                 if (!order.keyId) {
                     console.error("Missing Razorpay Key ID from backend response.");
                     alert("Payment configuration error. Please try later.");
-                    btn.innerText = originalText;
+                    btn.innerHTML = originalText;
                     btn.disabled = false;
                     return;
                 }
@@ -1132,7 +1136,7 @@
                         "ondismiss": function() {
                             window.hideProcessingScreen();
                             alert("Payment was not completed.");
-                            btn.innerText = originalText;
+                            btn.innerHTML = originalText;
                             btn.disabled = false;
                         }
                     },
@@ -1150,14 +1154,14 @@
                 rzp.on('payment.failed', function(response) { 
                     window.hideProcessingScreen();
                     alert("Payment was not completed.");
-                    btn.innerText = originalText;
+                    btn.innerHTML = originalText;
                     btn.disabled = false;
                 });
                 rzp.open();
             } catch (err) {
                 console.error("❌ Order Creation Error:", err);
                 alert("Unable to initiate payment. Please try again.");
-                btn.innerText = originalText;
+                btn.innerHTML = originalText;
                 btn.disabled = false;
             }
         }
