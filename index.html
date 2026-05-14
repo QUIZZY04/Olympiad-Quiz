@@ -1250,7 +1250,7 @@ function toggleMenu() {
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeFirestore, collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -1260,7 +1260,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db = initializeFirestore(app, { experimentalForceLongPolling: true });
 
 window.openFeedbackModal = () => {
     document.getElementById('dashboardFeedbackModal').style.display = 'flex';
@@ -1419,7 +1419,7 @@ async function loadLiveSessionBanner() {
         }
         
     } catch (e) {
-        console.error("Error loading live session banner:", e);
+        console.warn("Error loading live session banner:", e);
         const titleEl = document.getElementById("liveBoxTitle");
         const descEl = document.getElementById("liveBoxDesc");
         if (titleEl) titleEl.innerHTML = "LIVE OLYMPIAD ARENA";
