@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var ad = document.createElement('script');
+          ad.async = true;
+          ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
+          ad.crossOrigin = 'anonymous';
+          document.head.appendChild(ad);
+        }, 500);
+      });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO IMPROVEMENT: Title tagging for secondary keywords -->
@@ -240,14 +249,20 @@
         }
     </style>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18108080300"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18108080300');
-  gtag('config', 'G-ZN5D87BQXP');
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var gt = document.createElement('script');
+      gt.async = true;
+      gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
+      document.head.appendChild(gt);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18108080300');
+      gtag('config', 'G-ZN5D87BQXP');
+    }, 500);
+  });
 </script>
 </head>
 <body>

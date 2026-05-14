@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN5D87BQXP"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var gt = document.createElement('script');
+      gt.async = true;
+      gt.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZN5D87BQXP';
+      document.head.appendChild(gt);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZN5D87BQXP');
 
-  gtag('config', 'G-ZN5D87BQXP');
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    }, 500);
+  });
 </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524"
-     crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Performance Analytics & Dashboard | Olympiad Portal</title>
