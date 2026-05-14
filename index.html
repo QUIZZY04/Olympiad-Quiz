@@ -4,10 +4,10 @@
 <!-- Google tag (gtag.js) -->
 <script>
   window.addEventListener('load', function() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZN5D87BQXP';
-    document.head.appendChild(script);
+    var gt = document.createElement('script');
+    gt.async = true;
+    gt.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZN5D87BQXP';
+    document.head.appendChild(gt);
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -209,10 +209,504 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"></noscript>
-<link rel="preload" href="home.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="home.css"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<<<<<<< HEAD
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html {
+overflow-x: clip;
+max-width: 100%;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#ffffff;
+color:#1e293b;
+overflow-x:clip;
+max-width: 100%;
+line-height: 1.6;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+img {
+max-width: 100%;
+height: auto;
+}
+
+.container{
+max-width:1320px;
+margin:auto;
+padding:0 22px;
+}
+
+:root{
+--orange:#ff6b00;
+--dark:#111827;
+--muted:#64748b;
+/* Navbar variables matching mock page */
+--brand: #ff6b00;
+--border: #e2e8f0;
+--text: #111827;
+--surface: #ffffff;
+--danger: #ef4444;
+}
+
+/* NAVBAR */
+nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.nav-important { display: flex; gap: 8px; align-items: center; }
+@media (min-width: 769px) { .nav-important { display: none !important; } }
+.nav-important a, .nav-important button.nav-link-btn { text-decoration: none; font-weight: 700; font-size: 0.75rem; color: var(--brand); background: rgba(255, 107, 0, 0.08); padding: 4px 8px; border-radius: 8px; text-transform: uppercase; border: none; cursor: pointer; font-family: inherit; }
+.menu-toggle { display: none; flex-direction: column; gap: 5px; background: transparent; border: none; cursor: pointer; padding: 5px; z-index: 1001; }
+.menu-toggle span { display: block; width: 25px; height: 3px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+.brand { font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none; white-space: nowrap; transition: 0.3s; }
+.brand:hover { color: var(--brand); }
+.nav-links { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.nav-links a, .nav-links button.nav-link-btn { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; border-bottom: 3px solid transparent; white-space: nowrap; background: none; border: none; cursor: pointer; font-family: inherit; }
+.nav-links a:hover, .nav-links button.nav-link-btn:hover { color: var(--brand); background: rgba(255, 107, 0, 0.05); }
+.nav-links a.active, .nav-links button.nav-link-btn.active { color: var(--brand); background: rgba(255, 107, 0, 0.06); border-bottom-color: var(--brand); }
+.nav-actions { display: flex; align-items: center; gap: 15px; border-left: 2px solid var(--border); padding-left: 15px; margin-left: 10px; }
+.login-link { font-weight: 700; color: white !important; text-decoration: none; font-size: 0.9rem; background: var(--brand); padding: 10px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; border: none; cursor: pointer; font-family: inherit; outline: none; }
+.login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4); filter: brightness(1.1); }
+.nav-dropdown { position: relative; display: inline-block; }
+.nav-dropdown-content { display: none; position: absolute; background-color: var(--surface); min-width: 200px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08); border-radius: 12px; z-index: 1001; top: 100%; left: 0; border: 1px solid var(--border); padding: 8px 0; }
+.nav-dropdown-content a, .nav-dropdown-content button.nav-link-btn { color: var(--text) !important; padding: 12px 20px !important; text-decoration: none !important; display: block !important; font-size: 0.85rem !important; font-weight: 700 !important; border-bottom: none !important; transition: background 0.2s !important; border-radius: 0 !important; text-align: left; width: 100%; background: none; border: none; cursor: pointer; font-family: inherit; }
+.close-menu { display: none; }
+.nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
+.nav-dropdown:hover .nav-dropdown-content { display: block; }
+.dropbtn::after { content: ' ▾'; font-size: 0.8rem; opacity: 0.7; }
+@media (max-width: 768px) {
+    .nav-dropdown { width: 100%; }
+    .nav-dropdown-content { position: static; display: block; box-shadow: none; border: none; background: #fff7ed; padding-left: 20px; border-radius: 0; min-width: 100%; }
+    nav { padding: 0 12px !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; align-items: center !important; min-height: 60px !important; position: sticky !important; top: 0 !important; z-index: 1000 !important; }
+    .brand { font-size: 0.9rem !important; margin-left: 0 !important; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    .nav-important a { background: var(--brand) !important; color: white !important; display: inline-block; }
+    .menu-toggle { display: flex; padding: 10px 4px; margin-right: 0; order: -1; flex-shrink: 0; }
+    .nav-links { display: flex; position: fixed; top: 0; right: 0; transform: translateX(100%); height: 100vh; width: 280px; background: var(--surface); flex-direction: column; padding: 80px 25px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.15); z-index: 1000; align-items: flex-start; justify-content: flex-start; margin: 0; visibility: hidden; opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s, visibility 0.4s; }
+    .nav-links.active { transform: translateX(0); visibility: visible; opacity: 1; pointer-events: auto; }
+    .close-menu { display: flex; align-items: center; justify-content: center; position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.05); border: none; font-size: 28px; color: var(--text); cursor: pointer; width: 40px; height: 40px; border-radius: 50%; transition: 0.3s; padding: 0; }
+    .close-menu:hover { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+    .nav-links a, .nav-links button.nav-link-btn { width: 100%; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; text-align: left; }
+    .nav-actions { border: none; padding: 0; margin: 20px 0 0 0; gap: 15px; flex-direction: column; align-items: flex-start; }
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+padding:14px 28px;
+border-radius:14px;
+font-weight:600;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-main{
+background:var(--orange);
+color:#fff;
+box-shadow: 0 8px 20px rgba(255, 107, 0, 0.2);
+}
+.btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(255, 107, 0, 0.3); }
+
+.btn-light{
+background:#fff;
+border:1px solid #e2e8f0;
+color:#111827;
+box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.btn-light:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.06); border-color: #cbd5e1; }
+
+/* HERO */
+.hero{
+padding:100px 0 80px;
+background:linear-gradient(135deg,#fff7ed,#ffffff);
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:40px;
+align-items:center;
+}
+
+.badge{
+display:inline-block;
+padding:8px 16px;
+background:#ffedd5;
+color:var(--orange);
+border-radius:999px;
+font-size:13px;
+font-weight:700;
+}
+
+.hero h1{
+font-size:3.75rem;
+line-height:1.12;
+font-weight:800;
+margin:24px 0 20px;
+letter-spacing: -0.03em;
+}
+
+.hero h1 span{
+color:var(--orange);
+}
+
+.hero p{
+font-size:1.15rem;
+line-height:1.75;
+color:#334155;
+max-width:640px;
+margin-bottom: 32px;
+}
+
+.hero-btns{
+margin-top:28px;
+display:flex;
+gap:16px;
+flex-wrap:wrap;
+}
+
+.hero-card{
+background:#ffffff;
+padding:18px;
+border-radius:28px;
+box-shadow:0 18px 40px rgba(0,0,0,.07);
+}
+
+.hero-card img{
+width:100%;
+height:380px;
+object-fit:cover;
+border-radius:20px;
+}
+
+/* STATS */
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
+margin-top:34px;
+}
+
+.stat{
+background:#fff;
+padding:18px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.stat h3{
+font-size:28px;
+color:var(--orange);
+font-weight:800;
+}
+
+.stat p{
+font-size:14px;
+color:var(--muted);
+}
+
+/* SECTION */
+.section{
+padding:85px 0;
+}
+
+.title{
+font-size:2.4rem;
+font-weight:800;
+text-align:center;
+letter-spacing: -0.03em;
+color: #0f172a;
+margin-bottom: 12px;
+}
+
+.sub{
+text-align:center;
+max-width:760px;
+margin:0 auto 48px;
+color:var(--muted);
+font-size: 1.1rem;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:24px;
+}
+
+.card{
+background:#ffffff;
+border:1px solid #e2e8f0;
+padding:32px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.04);
+transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+display:block;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 20px 40px rgba(0,0,0,.08);
+border-color: #cbd5e1;
+}
+
+.card h3{
+font-size:1.3rem;
+margin-bottom:12px;
+color: #0f172a;
+font-weight: 700;
+}
+
+.card p{
+color:var(--muted);
+line-height:1.8;
+}
+
+/* TEXT SEO */
+.seo-box{
+background:#f8fafc;
+padding:48px;
+border-radius:24px;
+line-height:1.8;
+color:#475569;
+border: 1px solid #e2e8f0;
+box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+}
+
+.seo-box h2{
+font-size:2.2rem;
+margin-bottom:20px;
+color: #0f172a;
+font-weight: 800;
+letter-spacing: -0.03em;
+}
+
+.seo-box h3{
+font-size:1.4rem;
+margin-top:28px;
+margin-bottom:12px;
+color: #1e293b;
+font-weight: 700;
+letter-spacing: -0.01em;
+}
+
+/* LIVE */
+.live-box{
+background:linear-gradient(135deg,#ff6b00,#ff8c1a);
+padding:52px;
+border-radius:28px;
+color:#fff;
+text-align:center;
+}
+
+.live-box h2{
+font-size:42px;
+font-weight:800;
+}
+
+.live-box p{
+margin:14px 0 24px;
+font-size:18px;
+}
+
+/* FOOTER */
+footer{
+background:#111827;
+padding:42px 0;
+color:#cbd5e1;
+text-align:center;
+}
+
+/* FAQ STYLES */
+.faq-container {
+max-width: 800px;
+margin: 0 auto;
+}
+.faq-item {
+background: #ffffff;
+border: 1px solid #e2e8f0;
+border-radius: 16px;
+margin-bottom: 16px;
+box-shadow: 0 4px 6px rgba(0,0,0,.02);
+}
+.faq-item summary {
+padding: 20px 24px;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+color: #111827;
+list-style: none;
+outline: none;
+transition: color 0.3s;
+}
+.faq-item summary:hover {
+color: var(--orange);
+}
+.faq-item summary::-webkit-details-marker {
+display: none;
+}
+.faq-item p {
+padding: 0 24px 24px;
+color: #475569;
+line-height: 1.8;
+margin-top: 5px;
+}
+
+/* SEO LISTS */
+.seo-box ul {
+margin-left: 20px;
+margin-top: 15px;
+}
+.seo-box li {
+margin-bottom: 10px;
+}
+
+/* MOBILE UX & CONVERSION OPTIMIZATIONS */
+.mobile-trust-badges { display: none; }
+@media(max-width: 768px) {
+    .section { padding: 40px 0; }
+    .hero { padding: 40px 0 30px; }
+    .hero h1 { font-size: 32px; line-height: 1.25; margin: 15px 0; }
+    .hero p { font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+    
+    /* Thumb-friendly full-width buttons */
+    .hero-btns { flex-direction: column; width: 100%; gap: 12px; margin-top: 15px; }
+    .hero-btns .btn { width: 100%; text-align: center; padding: 14px 20px; font-size: 16px; }
+    
+    /* Scannable layout */
+    .stats { gap: 10px; margin-top: 24px; }
+    .stat { padding: 15px 10px; border-radius: 12px; }
+    .stat h3 { font-size: 20px; }
+    .stat p { font-size: 12px; }
+    
+    .title { font-size: 26px; line-height: 1.3; }
+    .sub { font-size: 14px; margin-bottom: 30px; }
+    .grid { gap: 16px; }
+    .card { padding: 20px 16px; border-width: 2px; }
+    .card h3 { font-size: 18px; margin-bottom: 8px; }
+    .card p { font-size: 13px; line-height: 1.5; }
+    
+    .seo-box { padding: 24px 20px; }
+    .seo-box h2 { font-size: 22px; line-height: 1.3; margin-bottom: 12px; }
+    .seo-box h3 { font-size: 18px; margin-top: 20px; }
+    .seo-box p { font-size: 14px; line-height: 1.6; }
+    
+    .live-box { padding: 30px 20px; border-radius: 20px; }
+    .live-box h2 { font-size: 24px; line-height: 1.3; }
+    .live-box p { font-size: 14px; margin: 10px 0 20px; }
+    .live-box .btn { width: 100%; padding: 14px 20px; font-size: 1rem; }
+    
+    /* Trust Boosters Mobile Only */
+    .mobile-trust-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 20px; }
+    .mobile-trust-badge { background: #fff7ed; color: var(--orange); border: 1px solid #ffedd5; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+}
+
+/* BLOG CARDS FOR HOMEPAGE */
+.blog-card {
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,.04); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%;
+}
+.blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,.08); border-color: var(--orange); }
+.blog-img { width: 100%; height: 200px; object-fit: cover; }
+.blog-content { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.blog-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; }
+.blog-content h3 { font-size: 1.25rem; margin-bottom: 12px; color: #0f172a; line-height: 1.4; font-weight: 700; letter-spacing: -0.01em;}
+.blog-content p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px; flex: 1; }
+.blog-btn { color: var(--orange); font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; }
+.blog-btn:hover { gap: 8px; }
+
+@media(min-width: 769px) {
+    .mobile-trust-badges { display: none; }
+}
+
+/* MOBILE */
+@media(max-width:950px){
+
+.hero-grid{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+.hero-card img{
+height:280px;
+}
+
+.title{
+font-size:34px;
+}
+
+.live-box h2{
+font-size:28px;
+}
+
+}
+
+/* STICKY ACTIONS */
+.sticky-actions {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+
+.sticky-btn {
+    background: var(--brand);
+    color: #ffffff !important;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+}
+.sticky-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5); background: var(--accent); }
+.sticky-btn.feedback-btn { background: #ffffff; color: var(--text) !important; border: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.sticky-btn.feedback-btn:hover { border-color: var(--brand); color: var(--brand) !important; }
+@media(max-width: 768px) {
+    .sticky-actions { bottom: 15px; right: 15px; flex-direction: row; gap: 8px; z-index: 99999; }
+    .sticky-btn { padding: 8px 14px; font-size: 12px; }
+}
+</style>
+=======
+>>>>>>> 83e41e6607c5c0edc7efbca045cd1839934f8e2b
 </head>
 
 <body>
@@ -252,12 +746,11 @@
         </div>
         <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
-            <a href="#" class="dropbtn">Senior Exams</a>
+            <button class="dropbtn nav-link-btn">Senior Exams</button>
             <div class="nav-dropdown-content">
                 <a href="jee_main.html">JEE Main</a>
                 <a href="jee-list.html">JEE Advanced</a>
                 <a href="neet.html">NEET</a>
-                <a href="jee-main-previous-year-papers.html">JEE PYQs</a>
             </div>
         </div>
         <a href="contact.html">Contact</a>
@@ -272,7 +765,6 @@
     <div class="scrolling-content" id="scrollingBannerText"></div>
 </div>
 
-<main id="main-content">
 <!-- HERO -->
 <section class="hero">
 <div class="container hero-grid">
@@ -310,10 +802,10 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </div>
 
 <div class="stats">
-<div class="stat"><div style="font-size:28px; color:var(--brand-text); font-weight:800;">10K+</div><p>Students</p></div>
-<div class="stat"><div style="font-size:28px; color:var(--brand-text); font-weight:800;">50K+</div><p>Attempts</p></div>
-<div class="stat"><div style="font-size:28px; color:var(--brand-text); font-weight:800;">24x7</div><p>Access</p></div>
-<div class="stat"><div style="font-size:28px; color:var(--brand-text); font-weight:800;">100%</div><p>Online</p></div>
+<div class="stat"><h3>10K+</h3><p>Students</p></div>
+<div class="stat"><h3>50K+</h3><p>Attempts</p></div>
+<div class="stat"><h3>24x7</h3><p>Access</p></div>
+<div class="stat"><h3>100%</h3><p>Online</p></div>
 </div>
 
 </div>
@@ -374,7 +866,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
     <div class="trust-row">
         <div class="trust-badge"><span style="color: #059669; font-size: 16px;">✓</span> Latest NTA Pattern</div>
         <div class="trust-badge"><span style="color: #2563eb; font-size: 16px;">✓</span> Real CBT Interface</div>
-        <div class="trust-badge"><span style="color: #b45309; font-size: 16px;">✓</span> Instant Results</div>
+        <div class="trust-badge"><span style="color: #d97706; font-size: 16px;">✓</span> Instant Results</div>
         <div class="trust-badge"><span style="color: #7c3aed; font-size: 16px;">✓</span> Detailed Solutions</div>
         <div class="trust-badge" style="border-color: #dc2626; color: #dc2626; background: #fef2f2; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.15);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -390,10 +882,10 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 <section class="section">
 <div class="container">
     <div class="stats-banner" style="margin: 0;">
-        <div class="stat-banner-item"><div style="font-size: 2.8rem; font-weight: 800; color: #38bdf8; margin-bottom: 5px; line-height: 1;">5000+</div><p>JEE Aspirants</p></div>
-        <div class="stat-banner-item"><div style="font-size: 2.8rem; font-weight: 800; color: #38bdf8; margin-bottom: 5px; line-height: 1;">100K+</div><p>Questions Bank</p></div>
-        <div class="stat-banner-item"><div style="font-size: 2.8rem; font-weight: 800; color: #38bdf8; margin-bottom: 5px; line-height: 1;">500+</div><p>Mock Tests</p></div>
-        <div class="stat-banner-item"><div style="font-size: 2.8rem; font-weight: 800; color: #38bdf8; margin-bottom: 5px; line-height: 1;">100%</div><p>NTA Pattern CBT</p></div>
+        <div class="stat-banner-item"><h3>5000+</h3><p>JEE Aspirants</p></div>
+        <div class="stat-banner-item"><h3>100K+</h3><p>Questions Bank</p></div>
+        <div class="stat-banner-item"><h3>500+</h3><p>Mock Tests</p></div>
+        <div class="stat-banner-item"><h3>100%</h3><p>NTA Pattern CBT</p></div>
     </div>
 </div>
 </section>
@@ -493,7 +985,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
     </div>
     
     <div style="text-align: center; margin-top: 40px;">
-        <a href="blog.html" class="btn btn-light" style="border: 2px solid var(--brand-text); color: var(--brand-text); box-shadow: 0 4px 15px rgba(255,107,0,0.1);">View All Articles</a>
+        <a href="blog.html" class="btn btn-light" style="border: 2px solid var(--orange); color: var(--orange); box-shadow: 0 4px 15px rgba(255,107,0,0.1);">View All Articles</a>
     </div>
 </div>
 </section>
@@ -518,7 +1010,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
     <div class="grid" id="testimonialGrid">
         <!-- Static Fallbacks (Will be dynamically replaced by real Firebase data if available) -->
         <div class="card" style="display: flex; flex-direction: column;">
-            <div style="color: #b45309; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
+            <div style="color: #d97706; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
             <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The chapterwise quizzes broke down complex patterns into easy steps. My daughter's confidence in Logical Reasoning has soared."</p>
             <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
                 <div style="width: 40px; height: 40px; background: rgba(255, 107, 0, 0.1); color: #c2410c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">P</div>
@@ -526,7 +1018,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
             </div>
         </div>
         <div class="card" style="display: flex; flex-direction: column;">
-            <div style="color: #b45309; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
+            <div style="color: #d97706; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
             <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The Live Arena helped me manage my time better. When I sat for the actual SOF IMO exam, it felt like just another practice session!"</p>
             <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
                 <div style="width: 40px; height: 40px; background: rgba(16, 185, 129, 0.1); color: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">A</div>
@@ -534,7 +1026,7 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
             </div>
         </div>
         <div class="card" style="display: flex; flex-direction: column;">
-            <div style="color: #b45309; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
+            <div style="color: #d97706; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
             <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"Detailed solutions after every mock test are a game-changer. I easily identified my mistakes in Science and improved my rank."</p>
             <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
                 <div style="width: 40px; height: 40px; background: rgba(56, 189, 248, 0.1); color: #0369a1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">K</div>
@@ -610,33 +1102,32 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 <div class="feature-grid">
     <div class="feat-card">
         <div class="feat-icon">💻</div>
-        <div class="feat-text"><div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Real CBT Interface</div><p>Experience the exact Computer Based Test environment identical to official NTA JEE and modern Olympiads.</p></div>
+        <div class="feat-text"><h4>Real CBT Interface</h4><p>Experience the exact Computer Based Test environment identical to official NTA JEE and modern Olympiads.</p></div>
     </div>
     <div class="feat-card">
         <div class="feat-icon">🏆</div>
-        <div class="feat-text"><div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Instant Ranking</div><p>Submit your mock test and immediately see where you stand on our dynamic All India Leaderboards.</p></div>
+        <div class="feat-text"><h4>Instant Ranking</h4><p>Submit your mock test and immediately see where you stand on our dynamic All India Leaderboards.</p></div>
     </div>
     <div class="feat-card">
         <div class="feat-icon">💡</div>
-        <div class="feat-text"><div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Detailed Solutions</div><p>Don't just check your score. Review step-by-step logical solutions for every single incorrect answer.</p></div>
+        <div class="feat-text"><h4>Detailed Solutions</h4><p>Don't just check your score. Review step-by-step logical solutions for every single incorrect answer.</p></div>
     </div>
     <div class="feat-card">
         <div class="feat-icon">📚</div>
-        <div class="feat-text"><div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Full Syllabus Practice</div><p>Access high-quality question banks covering every chapter of Physics, Chemistry, Biology, and Mathematics.</p></div>
+        <div class="feat-text"><h4>Full Syllabus Practice</h4><p>Access high-quality question banks covering every chapter of Physics, Chemistry, Biology, and Mathematics.</p></div>
     </div>
     <div class="feat-card">
         <div class="feat-icon">📱</div>
-        <div class="feat-text"><div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Mobile Friendly</div><p>Study on the go! Our platform is fully responsive, allowing you to practice smoothly on smartphones and tablets.</p></div>
+        <div class="feat-text"><h4>Mobile Friendly</h4><p>Study on the go! Our platform is fully responsive, allowing you to practice smoothly on smartphones and tablets.</p></div>
     </div>
     <div class="feat-card">
         <div class="feat-icon">📊</div>
-        <div class="feat-text"><div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Performance Analytics</div><p>Identify your weak areas instantly with comprehensive graphical reports and accuracy breakdowns.</p></div>
+        <div class="feat-text"><h4>Performance Analytics</h4><p>Identify your weak areas instantly with comprehensive graphical reports and accuracy breakdowns.</p></div>
     </div>
 </div>
 </div>
 </div>
 </section>
-</main>
 
 <!-- FAQ SECTION -->
 <section class="section" style="background: #f8fafc; border-top: 1px solid var(--border);">
@@ -670,7 +1161,7 @@ Thousands of students and parents trust OlympiadQuiz.org for comprehensive prepa
 <!-- STICKY BUTTONS -->
 <div class="sticky-actions">
     <a href="signup.html" class="sticky-btn">📝 Sign Up</a>
-    <a href="#feedback-modal" onclick="openFeedbackModal(); return false;" style="cursor: pointer;" class="sticky-btn feedback-btn">💬 Feedback</a>
+    <a onclick="openFeedbackModal()" style="cursor: pointer;" class="sticky-btn feedback-btn">💬 Feedback</a>
 </div>
 
 <!-- Feedback Modal -->
