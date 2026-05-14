@@ -427,7 +427,7 @@ import {
     getAdditionalUserInfo,
     deleteUser
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -607,6 +607,17 @@ document.getElementById("phoneForm").addEventListener("submit", async (e) => {
     btn.innerText = "Sending...";
 
     try {
+        // Check if user exists in database before sending OTP
+        const userQuery = query(collection(db, "users"), where("phone", "==", phone));
+        const querySnapshot = await getDocs(userQuery);
+        
+        if (querySnapshot.empty) {
+            document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create an account on the Sign Up page first.";
+            document.getElementById('notRegisteredModal').style.display = 'flex';
+            btn.disabled = false; btn.innerText = "Send OTP";
+            return;
+        }
+
         // JIT Guard: Ensure verifier is completely initialized before Firebase executes
         if (!window.recaptchaVerifier) {
             initLoginRecaptcha();
