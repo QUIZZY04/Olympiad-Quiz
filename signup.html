@@ -329,7 +329,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -487,6 +487,16 @@ document.getElementById("phoneSignupForm").addEventListener("submit", async (e) 
     btn.disabled = true;
     btn.innerText = "Sending...";
 
+    try {
+        const userQuery = query(collection(db, "users"), where("phone", "==", phone));
+        const querySnapshot = await getDocs(userQuery);
+        if (!querySnapshot.empty) {
+            alert("Account already exists with this mobile number. Please log in.");
+            window.location.href = "login.html";
+            return;
+        }
+    } catch (err) { console.error("Firestore pre-check error:", err); }
+
     // JIT Guard: Ensure verifier is completely initialized before Firebase executes
     if (!window.signupRecaptchaVerifier) {
         initRecaptcha();
@@ -523,48 +533,34 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
     btn.innerText = "Verifying...";
 
     try {
-        const result = await signupConfirmation.confirm(code);
-        const user = result.user;
+        // DO NOT permanently create the Firebase auth credential here.
+        // We only create the credential object locally to verify at the final step.
+        window.phoneAuthCredential = PhoneAuthProvider.credential(signupConfirmation.verificationId, code);
 
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        const data = userDoc.exists() ? userDoc.data() : null;
-        if (data && data.registrationCompleted === true) {
-            alert("Account already exists with this mobile number. Please log in.");
-            await signOut(auth);
-            window.location.href = "login.html";
-            return;
-        }
-
-        // Let onAuthStateChanged handle the transition to Profile section
-        // Force UI transition manually to prevent getting stuck
         document.getElementById("phoneSignupSection").classList.add("hidden");
         document.getElementById("completeProfileSection").classList.remove("hidden");
         
-        if (user.displayName || (data && data.name)) document.getElementById("cName").value = user.displayName || (data && data.name) || "";
-        if (user.email || (data && data.email)) document.getElementById("cEmail").value = user.email || (data && data.email) || "";
+        if (auth.currentUser && auth.currentUser.displayName) document.getElementById("cName").value = auth.currentUser.displayName;
+        if (auth.currentUser && auth.currentUser.email) document.getElementById("cEmail").value = auth.currentUser.email;
         
-        const providerIds = user.providerData.map(p => p.providerId);
+        const providerIds = auth.currentUser ? auth.currentUser.providerData.map(p => p.providerId) : [];
         if (providerIds.includes("google.com")) {
             document.getElementById("linkGoogleBtn").classList.add("hidden");
             document.querySelector(".divider").classList.add("hidden");
             document.getElementById("cPassword").required = false;
             document.getElementById("cPassword").placeholder = "Create Password (Optional)";
-            if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
+            if (auth.currentUser && auth.currentUser.email) document.getElementById("cEmail").readOnly = true;
         } else if (providerIds.includes("password")) {
             document.getElementById("cPassword").required = false;
             document.getElementById("cPassword").placeholder = "Update Password (Optional)";
-            if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
+            if (auth.currentUser && auth.currentUser.email) document.getElementById("cEmail").readOnly = true;
         }
         
         btn.disabled = false;
         btn.innerText = "Verify Mobile";
 
     } catch (err) {
-        let errorMsg = "Verification failed. Please try again.";
-        if (err.code === 'auth/invalid-verification-code') errorMsg = "Incorrect OTP. Please check and try again.";
-        else if (err.code === 'auth/code-expired') errorMsg = "OTP has expired. Please request a new one.";
-        
-        alert(errorMsg);
+        alert("Verification failed locally. Please try again.");
         btn.disabled = false;
         btn.innerText = "Verify Mobile";
     }
@@ -607,30 +603,72 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
     isCompletingSignup = true;
 
     try {
-        const user = auth.currentUser;
-        const providerIds = user.providerData.map(p => p.providerId);
+        let user = auth.currentUser;
         
-        if (password) {
-            if (!providerIds.includes("password")) {
+        if (!user && window.phoneAuthCredential) {
+            try {
+                const userCred = await signInWithCredential(auth, window.phoneAuthCredential);
+                user = userCred.user;
+                
+                if (password) {
+                    const emailCred = EmailAuthProvider.credential(email, password);
+                    await linkWithCredential(user, emailCred);
+                }
+            } catch (err) {
+                if (user) await deleteUser(user).catch(console.error);
+                if (err.code === 'auth/invalid-verification-code') {
+                    alert("Invalid OTP. Please refresh the page and try again.");
+                } else if (err.code === 'auth/email-already-in-use') {
+                    alert("Email already in use. Please use a different email.");
+                } else {
+                    alert("Authentication failed: " + err.message);
+                }
+                btn.disabled = false;
+                btn.innerText = "Create Account";
+                isCompletingSignup = false;
+                return;
+            }
+        } else if (user) {
+            const providerIds = user.providerData.map(p => p.providerId);
+            
+            if (window.phoneAuthCredential && !providerIds.includes("phone")) {
                 try {
-                    const credential = EmailAuthProvider.credential(email, password);
-                    await linkWithCredential(user, credential);
-                } catch (linkErr) {
-                    if (linkErr.code !== 'auth/credential-already-in-use' && linkErr.code !== 'auth/email-already-in-use' && linkErr.code !== 'auth/provider-already-linked') {
-                        throw linkErr;
+                    await linkWithCredential(user, window.phoneAuthCredential);
+                } catch (err) {
+                    if (err.code === 'auth/invalid-verification-code') {
+                        alert("Invalid OTP. Please refresh and try again.");
+                        btn.disabled = false;
+                        btn.innerText = "Create Account";
+                        isCompletingSignup = false;
+                        return;
                     }
                 }
-            } else {
-                try {
-                    await updatePassword(user, password);
-                } catch (updateErr) {
-                    console.warn("Password update failed, might need re-auth:", updateErr);
+            }
+
+            if (password) {
+                if (!providerIds.includes("password")) {
+                    try {
+                        const credential = EmailAuthProvider.credential(email, password);
+                        await linkWithCredential(user, credential);
+                    } catch (linkErr) {
+                        if (linkErr.code !== 'auth/credential-already-in-use' && linkErr.code !== 'auth/email-already-in-use' && linkErr.code !== 'auth/provider-already-linked') {
+                            throw linkErr;
+                        }
+                    }
+                } else {
+                    try {
+                        await updatePassword(user, password);
+                    } catch (updateErr) {
+                        console.warn("Password update failed, might need re-auth:", updateErr);
+                    }
                 }
             }
         }
         
         const existingDoc = await getDoc(doc(db, "users", user.uid));
         const currentPhone = user.phoneNumber || (existingDoc.exists() ? (existingDoc.data().phoneNumber || existingDoc.data().phone) : null);
+
+        if (!user) throw new Error("Authentication flow failed.");
 
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
@@ -668,8 +706,14 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
     isCompletingSignup = true;
     
     try {
-        const result = await linkWithPopup(auth.currentUser, provider);
-        const user = result.user;
+        let user;
+        if (!auth.currentUser) {
+            const result = await signInWithPopup(auth, provider);
+            user = result.user;
+        } else {
+            const result = await linkWithPopup(auth.currentUser, provider);
+            user = result.user;
+        }
 
         document.getElementById("linkGoogleBtn").classList.add("hidden");
         document.querySelector(".divider").classList.add("hidden");
