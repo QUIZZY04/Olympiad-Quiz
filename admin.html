@@ -2943,66 +2943,6 @@ document.getElementById("smsForm")?.addEventListener("submit", async (e) => {
     }
 });
 
-document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById("sendEmailBtn");
-    const status = document.getElementById("emailStatus");
-    
-    const subject = document.getElementById("emailSubject").value;
-    const content = quill.root.innerHTML; // Get HTML content from Quill editor
-
-    const targetType = document.getElementById("emailTargetType").value;
-    let targetEmails = [];
-    
-    if (targetType === "selected") {
-        const checkboxes = document.querySelectorAll('#emailTargetList input[type="checkbox"]:checked');
-        targetEmails = Array.from(checkboxes).map(cb => cb.value);
-        if (targetEmails.length === 0) {
-            alert("Please select at least one user from the list.");
-            return;
-        }
-        if (!confirm(`⚠️ WARNING: You are about to send an email to ${targetEmails.length} selected user(s). Proceed?`)) return;
-    } else {
-        if (!confirm("⚠️ WARNING: You are about to send an email to ALL registered users. This action cannot be undone. Proceed?")) return;
-    }
-
-    btn.disabled = true;
-    btn.innerText = "⏳ Processing...";
-    status.style.display = "block";
-    status.style.background = "rgba(79, 70, 229, 0.1)";
-    status.style.color = "var(--brand)";
-    status.style.borderColor = "var(--brand)";
-    status.innerText = "Initiating bulk email function. Do not close this page...";
-
-    try {
-        const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmail');
-        const result = await sendBulkEmailFn({ subject: subject, htmlContent: content, targetEmails: targetEmails });
-        
-        if (result.data.success) {
-            status.style.background = "rgba(16, 185, 129, 0.1)";
-            status.style.color = "var(--success)";
-            status.style.borderColor = "var(--success)";
-            status.innerText = result.data.message;
-            alert(result.data.message);
-            
-            document.getElementById("emailSubject").value = "";
-            quill.setContents([]); // Clear the Quill editor
-        } else {
-            const errorMessage = `❌ Error: ${result.data.message}\n\nDetails: ${result.data.errorDetails || 'No additional details.'}`;
-            status.innerText = errorMessage;
-            alert(errorMessage);
-        }
-
-    } catch (error) {
-        const errMsg = "❌ Failed: " + error.message;
-        status.innerText = errMsg;
-        alert(errMsg);
-    } finally {
-        btn.disabled = false;
-        btn.innerText = "🚀 Send Broadcast";
-    }
-});
-
 window.appendStudyContent = async function() {
     const cls = document.getElementById('studyClass').value;
     const subject = document.getElementById('studySubject').value;
