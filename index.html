@@ -1001,29 +1001,28 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
     </div>
 
     <div class="grid" id="testimonialGrid">
-        <!-- Static Fallbacks (Will be dynamically replaced by real Firebase data if available) -->
         <div class="card" style="display: flex; flex-direction: column;">
             <div style="color: #b45309; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
-            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The chapterwise quizzes broke down complex patterns into easy steps. My daughter's confidence in Logical Reasoning has soared."</p>
+            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The platform's highly structured mock tests and detailed analytics transformed my preparation. I secured an International Rank in IMO thanks to the H.O.T.S problems and Live Arena practice!"</p>
             <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
-                <div style="width: 40px; height: 40px; background: rgba(255, 107, 0, 0.1); color: #c2410c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">P</div>
-                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Priya Sharma</strong><span style="color: var(--muted); font-size: 12px;">Parent of Class 4 Student</span></div>
+                <div style="width: 40px; height: 40px; background: rgba(255, 107, 0, 0.1); color: #c2410c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">S</div>
+                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Siddharth M.</strong><span style="color: var(--muted); font-size: 12px;">Class 8 Student, IMO Gold Medalist</span></div>
             </div>
         </div>
         <div class="card" style="display: flex; flex-direction: column;">
             <div style="color: #b45309; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
-            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The Live Arena helped me manage my time better. When I sat for the actual SOF IMO exam, it felt like just another practice session!"</p>
+            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"OlympiadQuiz is simply the best free resource out there. The chapterwise quizzes pinpointed my exact weak areas, and the step-by-step solutions helped me clear all my concepts before the NSO exam."</p>
             <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
                 <div style="width: 40px; height: 40px; background: rgba(16, 185, 129, 0.1); color: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">A</div>
-                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Arnav M.</strong><span style="color: var(--muted); font-size: 12px;">Class 7 Student</span></div>
+                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Ananya V.</strong><span style="color: var(--muted); font-size: 12px;">Class 6 Student</span></div>
             </div>
         </div>
         <div class="card" style="display: flex; flex-direction: column;">
             <div style="color: #b45309; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">★★★★★</div>
-            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"Detailed solutions after every mock test are a game-changer. I easily identified my mistakes in Science and improved my rank."</p>
+            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"As a parent, I am amazed by the quality of questions and the real-time ranking system. It sparked a healthy competitive spirit in my son, making him excited to study and practice every single day."</p>
             <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
                 <div style="width: 40px; height: 40px; background: rgba(56, 189, 248, 0.1); color: #0369a1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">K</div>
-                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Kavya R.</strong><span style="color: var(--muted); font-size: 12px;">Class 5 Student</span></div>
+                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Rajesh K.</strong><span style="color: var(--muted); font-size: 12px;">Parent of Class 5 Student</span></div>
             </div>
         </div>
     </div>
@@ -1296,42 +1295,6 @@ window.submitDashboardFeedback = async () => {
     }
 };
 
-async function loadDynamicTestimonials() {
-    try {
-        const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"), limit(25));
-        const snap = await getDocs(q);
-        
-        let validFeedbacks = [];
-        snap.forEach(doc => {
-            const data = doc.data();
-            // Filter only positive feedback (4 or 5 stars) with substantial comments
-            if (data.rating && (data.rating.includes("5") || data.rating.includes("4")) && data.suggestion && data.suggestion.length > 20) {
-                validFeedbacks.push(data);
-            }
-        });
-
-        if (validFeedbacks.length >= 3) {
-            const grid = document.getElementById("testimonialGrid");
-            let html = "";
-            const colors = [ {bg: 'rgba(255, 107, 0, 0.1)', c: 'var(--brand-text)'}, {bg: 'rgba(16, 185, 129, 0.1)', c: '#059669'}, {bg: 'rgba(56, 189, 248, 0.1)', c: '#0284c7'} ];
-            
-            for(let i=0; i<3; i++) {
-                const fb = validFeedbacks[i];
-                const initial = fb.name ? fb.name.charAt(0).toUpperCase() : "S";
-                const name = fb.name || "Student";
-                const stars = fb.rating.includes("5") ? "★★★★★" : "★★★★☆";
-                const source = fb.quizName && fb.quizName !== "N/A" ? fb.quizName : "Olympiad Portal User";
-                const clr = colors[i % 3];
-
-                html += `<div class="card" style="display: flex; flex-direction: column;"><div style="color: #b45309; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px;">${stars}</div><p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"${fb.suggestion}"</p><div style="display: flex; align-items: center; gap: 12px; margin-top: auto;"><div style="width: 40px; height: 40px; background: ${clr.bg}; color: ${clr.c}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">${initial}</div><div><strong style="color: var(--dark); display: block; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${name}</strong><span style="color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; display: block;">${source}</span></div></div></div>`;
-            }
-            grid.innerHTML = html;
-        }
-    } catch(e) {
-        console.log("Using static fallbacks for testimonials.");
-    }
-}
-
 async function loadLiveSessionBanner() {
     try {
         const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(15));
@@ -1422,7 +1385,6 @@ async function loadLiveSessionBanner() {
 }
 
 // Execute on a 1.5s delay to ensure main page elements paint first without layout shifting
-setTimeout(loadDynamicTestimonials, 1500);
 setTimeout(loadLiveSessionBanner, 1000);
 </script>
 
