@@ -474,6 +474,8 @@
         localStorage.setItem("selectedSubject", subject);
         localStorage.setItem("isChampionship", "false");
         localStorage.setItem("isMockTest", "true");
+        localStorage.removeItem("isHotsTest");
+        localStorage.removeItem("activeHotsId");
         window.location.href = "quiz.html";
     }
 </script>

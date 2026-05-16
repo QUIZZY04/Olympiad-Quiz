@@ -1170,6 +1170,8 @@
         localStorage.setItem("selectedTopicDisplay", `${selectedTopicObj.code} - ${selectedTopicObj.name}`);
         localStorage.setItem("selectedTopicData", JSON.stringify(selectedTopicObj));
         localStorage.setItem("isChampionship", "false");
+        localStorage.removeItem("isHotsTest");
+        localStorage.removeItem("activeHotsId");
 
         window.location.href = "quiz.html";
     }
