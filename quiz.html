@@ -229,6 +229,7 @@ box-shadow: var(--shadow-md);
 <a href="mock.html">Mock Tests</a>
 <a href="chapterwise.html">Chapterwise</a>
 <a href="live.html">Live Arena</a>
+<a href="hots.html">HOTS Problems</a>
 <a href="leaderboard.html">Leaderboard</a>
 <a href="study.html">Study Material</a>
 <div class="nav-actions">
@@ -1139,10 +1140,13 @@ function goBackToSelection() {
     localStorage.removeItem("quizAnswers");
 
     const isMockTest = localStorage.getItem("isMockTest") === "true";
+    const isHotsTest = localStorage.getItem("isHotsTest") === "true";
     const selectionSource = localStorage.getItem("selectionSource");
 
     // This logic ensures users return to the correct page based on the source tag
-    if (isMockTest || selectionSource === "mock") {
+    if (isHotsTest) {
+        window.location.href = "hots.html";
+    } else if (isMockTest || selectionSource === "mock") {
         window.location.href = "mock.html";
     } else {
         window.location.href = "chapterwise.html";
@@ -1186,8 +1190,10 @@ const sTopicName = topicInfo.selectedTopicName;
 const sTopicDisplay = topicInfo.selectedTopicDisplay;
 const sId = localStorage.getItem("activeSessionId");
 const isMockTest = localStorage.getItem("isMockTest") === "true";
+const isHotsTest = localStorage.getItem("isHotsTest") === "true";
+const activeHotsId = localStorage.getItem("activeHotsId");
 
-if (!isChampionship) {
+if (!isChampionship && !isHotsTest) {
     if (!sClass || !sSub) {
         alert("Quiz selection is incomplete. Please select again.");
         window.location.href = isMockTest ? "mock.html" : "chapterwise.html";
@@ -1205,7 +1211,37 @@ if (!isChampionship) {
 }
 
 try {
-    if (isChampionship && sId) {
+    if (isHotsTest && activeHotsId) {
+        const hotsSnap = await getDoc(doc(db, "hots_tests", activeHotsId));
+        if (hotsSnap.exists()) {
+            const hotsData = hotsSnap.data();
+            questions = hotsData.questions || [];
+            
+            questions = questions.map((q, index) => ({ ...q, id: q.id || `hots_q_${index}`, isAchiever: q.isAchiever === true }));
+
+            if (hotsData.duration) totalTime = hotsData.duration * 60;
+            else totalTime = 1800;
+
+            sClass = hotsData.class;
+            sSub = hotsData.subject;
+            localStorage.setItem("selectedClass", sClass);
+            localStorage.setItem("selectedSubject", sSub);
+            
+            document.getElementById("quizTitle").innerHTML = `🧠 H.O.T.S Problems`;
+            document.getElementById("quizSubtitle").innerText = `${sSub.charAt(0).toUpperCase() + sSub.slice(1)} - ${hotsData.title}`;
+            document.getElementById("displaySubject").innerText = `Grade: ${sClass.replace('class', '')}`;
+            
+            selectedAnswers=new Array(questions.length).fill(null);
+            visitedQuestions=new Array(questions.length).fill(false);
+            generateGrid();
+            loadQuestion();
+            return;
+        } else {
+            alert("HOTS Test not found!");
+            window.location.replace("hots.html");
+            return;
+        }
+    } else if (isChampionship && sId) {
         const sSnap = await getDoc(doc(db, "test_sessions", sId));
         if (sSnap.exists()) {
             const sData = sSnap.data();
@@ -1330,6 +1366,8 @@ if (q.isAchiever) {
     qTypeBadge = `<span style="background: #c2410c; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(194,65,12,0.3);">🏆 Achievers Section (2 Marks)</span>`;
 } else if (isChampionship) {
     qTypeBadge = `<span style="background: var(--muted); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle;">📝 Regular Section (1 Mark)</span>`;
+} else if (localStorage.getItem("isHotsTest") === "true") {
+    qTypeBadge = `<span style="background: #d946ef; color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 10px; vertical-align: middle; box-shadow: 0 2px 5px rgba(217,70,239,0.3);">🧠 H.O.T.S Problem</span>`;
 }
 
 document.getElementById("questionNumber").innerHTML=`QUESTION ${current+1} ${qTypeBadge}`;
@@ -1472,7 +1510,8 @@ async function submitQuiz(){
         topic: topicInfo.selectedTopicCode,
         topicName: topicInfo.selectedTopicName,
         topicDisplay: topicInfo.selectedTopicDisplay,
-        isChampionship
+        isChampionship,
+        isHotsTest: localStorage.getItem("isHotsTest") === "true"
     };
 
     localStorage.setItem("quizResult", JSON.stringify(resultData));
@@ -1491,6 +1530,8 @@ async function submitQuiz(){
             accuracy:((score/maxScore)*100).toFixed(2),
             date:serverTimestamp(),
             isChampionship,
+            isHotsTest: localStorage.getItem("isHotsTest") === "true",
+            hotsId: localStorage.getItem("isHotsTest") === "true" ? localStorage.getItem("activeHotsId") : null,
             sessionId: isChampionship ? localStorage.getItem("activeSessionId") : null,
             subject:localStorage.getItem("selectedSubject"),
             studentClass:localStorage.getItem("selectedClass"),

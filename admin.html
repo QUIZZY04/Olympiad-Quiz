@@ -266,6 +266,7 @@ border-top:1px solid var(--border);
         <a href="#jee-main-neet-admin-section" style="color:#3b82f6;">JEE Main/NEET Tests</a>
         <a href="#full-jee-main-mock-section" style="color:#8b5cf6;">Full JEE Mocks</a>
         <a href="#jee-admin-section" style="color:var(--success);">JEE Tests</a>
+        <a href="#hots-admin-section" style="color:#d946ef;">HOTS Management</a>
         <a href="#senior-admin-section" style="color:#8b5cf6;">Senior Upload</a>
         <div class="nav-actions">
             <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
@@ -977,6 +978,59 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <!-- NEW SECTION: HOTS MANAGEMENT -->
+    <div id="hots-admin-section" class="panel" style="border-top: 2px solid #d946ef;">
+        <div class="panel-header">
+            <h2 style="color:#d946ef;">🧠 H.O.T.S Problems Management</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Create or Edit Higher Order Thinking Skills (H.O.T.S) sets for students. Paste questions in JSON format.</p>
+            
+            <input type="hidden" id="editHotsTestId">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
+                <div><label>Class</label><select id="hotsClass">
+                    <option value="class1">Class 1</option><option value="class2">Class 2</option>
+                    <option value="class3">Class 3</option><option value="class4">Class 4</option>
+                    <option value="class5">Class 5</option><option value="class6">Class 6</option>
+                    <option value="class7">Class 7</option><option value="class8">Class 8</option>
+                    <option value="class9">Class 9</option><option value="class10">Class 10</option>
+                </select></div>
+                <div>
+                    <label>Subject</label>
+                    <select id="hotsSubject"><option value="maths">Maths</option><option value="science">Science</option><option value="english">English</option><option value="reasoning">Reasoning</option><option value="igko">General Knowledge</option></select>
+                </div>
+                <div><label>HOTS Title</label><input type="text" id="hotsTitle" placeholder="e.g. Algebra Advanced Set 1" required></div>
+                <div><label>Duration (Minutes)</label><input type="number" id="hotsDuration" value="30"></div>
+                <div style="grid-column: 1 / -1;"><label>Description (Optional)</label><input type="text" id="hotsDesc" placeholder="e.g. 20 challenging questions to boost logical thinking"></div>
+            </div>
+            
+            <div style="background:var(--subtle); border:1px solid var(--border); padding:20px; border-radius:12px; margin-bottom:20px;">
+                <h4 style="margin-bottom:10px;">Questions JSON Data</h4>
+                <p class="muted" style="margin-bottom:10px; font-size:12px;">Format: [{"q":"...","o":["A","B","C","D"],"a":0,"sol":"...","topic":"..."}]</p>
+                <textarea id="hotsJsonPaste" placeholder="Paste JSON array of questions here..." style="height: 250px; font-family: monospace;"></textarea>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="upload" onclick="pasteHotsClipboard()" style="background: var(--brand); color: #fff;">📋 Paste from Clipboard</button>
+                    <button class="delete" onclick="clearHotsPaste()">🗑️ Clear JSON</button>
+                </div>
+            </div>
+            
+            <button class="upload" id="hotsSaveBtn" onclick="saveHotsTest()" style="background:#d946ef; width:100%; margin-top:15px;">💾 Save HOTS Set</button>
+            
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid var(--border);">
+            <h3 style="margin-bottom: 15px; font-size: 16px;">📝 Manage Existing HOTS Sets</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <select id="hotsFilterClass" style="width: 200px; margin: 0;">
+                    <option value="">All Classes</option><option value="class1">Class 1</option><option value="class2">Class 2</option><option value="class3">Class 3</option><option value="class4">Class 4</option><option value="class5">Class 5</option><option value="class6">Class 6</option><option value="class7">Class 7</option><option value="class8">Class 8</option><option value="class9">Class 9</option><option value="class10">Class 10</option>
+                </select>
+                <button class="upload" onclick="loadHotsTestsList()" style="background: var(--brand); margin: 0;">Load Existing Sets</button>
+            </div>
+            <table style="margin-top: 15px;">
+                <thead><tr><th>Class</th><th>Subject</th><th>Title</th><th>Questions</th><th>Action</th></tr></thead>
+                <tbody id="hotsTestTableList"><tr><td colspan="5" style="text-align:center; color:var(--muted);">Click "Load Existing Sets" to view</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
     <!-- NEW SECTION: SENIOR EXAMS (11-12) UPLOAD -->
     <div id="senior-admin-section" class="panel" style="border-top: 2px solid #8b5cf6;">
         <div class="panel-header">
@@ -1347,7 +1401,7 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
-        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions();
+        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions(); window.loadHotsTestsList();
     } else {
         window.location.href = "login.html";
     }
@@ -2505,6 +2559,110 @@ window.pasteJeeClipboard = async function() {
 
 window.clearJeePaste = function() {
     document.getElementById("jeeJsonPaste").value = "";
+};
+
+// ADDED SECTION: HOTS ADMIN LOGIC
+window.pasteHotsClipboard = async function() {
+    try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("hotsJsonPaste").value = text;
+    } catch (err) {
+        alert("Failed to read clipboard. Please paste manually.");
+    }
+};
+
+window.clearHotsPaste = function() {
+    document.getElementById("hotsJsonPaste").value = "";
+};
+
+window.saveHotsTest = async function() {
+    const id = document.getElementById("editHotsTestId").value;
+    const grade = document.getElementById("hotsClass").value;
+    const subject = document.getElementById("hotsSubject").value;
+    const title = document.getElementById("hotsTitle").value.trim();
+    const duration = parseInt(document.getElementById("hotsDuration").value);
+    const desc = document.getElementById("hotsDesc").value.trim();
+    const jsonText = document.getElementById("hotsJsonPaste").value.trim();
+    
+    if(!title || !jsonText) { alert("Please provide a title and paste questions in JSON format."); return; }
+    
+    let questions = [];
+    try {
+        questions = JSON.parse(jsonText);
+        if (!Array.isArray(questions) || questions.length === 0) {
+            throw new Error("JSON must be a non-empty array of question objects.");
+        }
+    } catch(e) {
+        alert("Invalid JSON format: " + e.message);
+        return;
+    }
+    
+    try {
+        const payload = { class: grade, subject, title, desc, duration, questions, updatedAt: serverTimestamp() };
+        if (id) {
+            await updateDoc(doc(db, "hots_tests", id), payload);
+            alert("✅ HOTS Set Updated Successfully!");
+        } else {
+            payload.createdAt = serverTimestamp();
+            await addDoc(collection(db, "hots_tests"), payload);
+            alert("✅ HOTS Set Saved Successfully!");
+        }
+        
+        document.getElementById("hotsJsonPaste").value = "";
+        document.getElementById("hotsTitle").value = "";
+        document.getElementById("hotsDesc").value = "";
+        document.getElementById("editHotsTestId").value = "";
+        const saveBtn = document.getElementById("hotsSaveBtn");
+        if(saveBtn) saveBtn.innerText = "💾 Save HOTS Set";
+        
+        if(typeof loadHotsTestsList === 'function') loadHotsTestsList();
+    } catch(e) { alert("Error saving HOTS set: " + e.message); }
+};
+
+window.loadHotsTestsList = async function() {
+    const tbody = document.getElementById("hotsTestTableList");
+    const filterClass = document.getElementById("hotsFilterClass").value;
+    tbody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>Loading...</td></tr>";
+    try {
+        let q = collection(db, "hots_tests");
+        if (filterClass) q = query(q, where("class", "==", filterClass));
+        const snap = await getDocs(q);
+        let html = "";
+        snap.forEach(doc => {
+            const data = doc.data();
+            html += `<tr><td>${data.class}</td><td>${data.subject}</td><td>${data.title}</td><td>${data.questions ? data.questions.length : 0}</td><td>
+                <div style="display:flex; gap:5px;"><button class="edit-btn" onclick="editHotsTest('${doc.id}')">Edit</button><button class="delete" onclick="deleteHotsTest('${doc.id}')">Delete</button></div>
+            </td></tr>`;
+        });
+        if (!html) html = "<tr><td colspan='5' style='text-align:center; color:var(--muted);'>No HOTS sets found.</td></tr>";
+        tbody.innerHTML = html;
+    } catch(e) { tbody.innerHTML = `<tr><td colspan='5' style='color:var(--danger);'>Error: ${e.message}</td></tr>`; }
+}
+
+window.editHotsTest = async function(id) {
+    try {
+        const docSnap = await getDoc(doc(db, "hots_tests", id));
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            document.getElementById("editHotsTestId").value = id;
+            document.getElementById("hotsClass").value = data.class || "class1";
+            document.getElementById("hotsSubject").value = data.subject || "maths";
+            document.getElementById("hotsTitle").value = data.title;
+            document.getElementById("hotsDesc").value = data.desc || "";
+            document.getElementById("hotsDuration").value = data.duration || 30;
+            if (data.questions && data.questions.length > 0) { document.getElementById("hotsJsonPaste").value = JSON.stringify(data.questions, null, 4); } else { document.getElementById("hotsJsonPaste").value = "[]"; }
+            document.getElementById("hots-admin-section").scrollIntoView({behavior: "smooth"});
+            const saveBtn = document.getElementById("hotsSaveBtn");
+            if(saveBtn) saveBtn.innerText = "💾 Update HOTS Set";
+        }
+    } catch(e) { alert("Error loading HOTS set: " + e.message); }
+};
+
+window.deleteHotsTest = async function(id) {
+    if (confirm("Are you sure you want to permanently delete this HOTS Set?")) {
+        await deleteDoc(doc(db, "hots_tests", id));
+        loadHotsTestsList();
+    }
 };
 
 window.pasteJmnClipboard = async function() {
