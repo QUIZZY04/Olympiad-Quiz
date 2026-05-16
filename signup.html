@@ -678,7 +678,7 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
             phone: currentPhone,
             phoneNumber: currentPhone,
             phoneVerified: true,
-            authProviders: providerIds,
+            authProviders: user.providerData.map(p => p.providerId),
             class: classSelect, 
             email_consent: true,
             promo_consent: promoConsent,
