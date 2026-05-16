@@ -988,7 +988,7 @@ border-top:1px solid var(--border);
             
             <input type="hidden" id="editHotsTestId">
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
-                <div><label>Class</label><select id="hotsClass">
+                <div><label>Class</label><select id="hotsClass" onchange="window.calculateNextHotsTitle()">
                     <option value="class1">Class 1</option><option value="class2">Class 2</option>
                     <option value="class3">Class 3</option><option value="class4">Class 4</option>
                     <option value="class5">Class 5</option><option value="class6">Class 6</option>
@@ -997,9 +997,9 @@ border-top:1px solid var(--border);
                 </select></div>
                 <div>
                     <label>Subject</label>
-                    <select id="hotsSubject"><option value="maths">Maths</option><option value="science">Science</option><option value="english">English</option><option value="reasoning">Reasoning</option><option value="igko">General Knowledge</option></select>
+                    <select id="hotsSubject" onchange="window.calculateNextHotsTitle()"><option value="maths">Maths</option><option value="science">Science</option><option value="english">English</option><option value="reasoning">Reasoning</option><option value="igko">General Knowledge</option></select>
                 </div>
-                <div><label>HOTS Title</label><input type="text" id="hotsTitle" placeholder="e.g. Algebra Advanced Set 1" required></div>
+                <div><label>HOTS Title <span style="cursor:pointer; font-size:12px; margin-left:5px; color:var(--brand);" onclick="window.calculateNextHotsTitle()" title="Auto-generate Title">🔄 Generate</span></label><input type="text" id="hotsTitle" placeholder="e.g. Class 8 Maths HOTS 1" required></div>
                 <div><label>Duration (Minutes)</label><input type="number" id="hotsDuration" value="30"></div>
                 <div style="grid-column: 1 / -1;"><label>Description (Optional)</label><input type="text" id="hotsDesc" placeholder="e.g. 20 challenging questions to boost logical thinking"></div>
             </div>
@@ -2573,6 +2573,47 @@ window.pasteHotsClipboard = async function() {
 
 window.clearHotsPaste = function() {
     document.getElementById("hotsJsonPaste").value = "";
+};
+
+window.calculateNextHotsTitle = async function() {
+    const clsVal = document.getElementById("hotsClass").value;
+    const subVal = document.getElementById("hotsSubject").value;
+    const titleInput = document.getElementById("hotsTitle");
+    
+    if (!clsVal || !subVal) return;
+    
+    titleInput.value = "Calculating...";
+    
+    try {
+        const q = query(collection(db, "hots_tests"), where("class", "==", clsVal), where("subject", "==", subVal));
+        const snap = await getDocs(q);
+        
+        let maxNum = 0;
+        let classFormatted = clsVal.replace("class", "Class ");
+        let subFormatted = subVal.charAt(0).toUpperCase() + subVal.slice(1);
+        if (subVal === 'igko') subFormatted = "IGKO";
+        
+        const baseTitle = `${classFormatted} ${subFormatted} HOTS`;
+        
+        snap.forEach(doc => {
+            const data = doc.data();
+            if (data.title && data.title.toUpperCase().startsWith(baseTitle.toUpperCase())) {
+                const numStr = data.title.substring(baseTitle.length).trim();
+                const num = parseInt(numStr);
+                if (!isNaN(num) && num > maxNum) {
+                    maxNum = num;
+                }
+            }
+        });
+        
+        titleInput.value = `${baseTitle} ${maxNum + 1}`;
+    } catch (e) {
+        console.error(e);
+        let classFormatted = clsVal.replace("class", "Class ");
+        let subFormatted = subVal.charAt(0).toUpperCase() + subVal.slice(1);
+        if (subVal === 'igko') subFormatted = "IGKO";
+        titleInput.value = `${classFormatted} ${subFormatted} HOTS 1`;
+    }
 };
 
 window.saveHotsTest = async function() {
