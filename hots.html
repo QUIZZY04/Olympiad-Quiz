@@ -9,14 +9,6 @@
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
 
-<!-- INSTANT AUTHENTICATION CHECK -->
-<script>
-  if (localStorage.getItem("isLoggedIn") !== "true") {
-      sessionStorage.setItem("redirectAfterLogin", window.location.href);
-      window.location.replace("login.html");
-  }
-</script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="style.css" as="style">
@@ -213,23 +205,30 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
+    document.body.style.visibility = 'visible';
     if (!user) {
-        window.location.replace("login.html");
-    } else {
-        document.body.style.visibility = 'visible';
-        
-        // Load last selection if available
-        const savedClass = localStorage.getItem("selectedClass");
-        const savedSub = localStorage.getItem("selectedSubject");
-        if(savedClass && document.querySelector(`#classSelect option[value="${savedClass}"]`)) {
-            document.getElementById("classSelect").value = savedClass;
-        }
-        if(savedSub && document.querySelector(`#subjectSelect option[value="${savedSub}"]`)) {
-            document.getElementById("subjectSelect").value = savedSub;
-        }
-        
-        fetchHotsSets();
+        document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
+            el.onclick = function() { window.location.href = 'login.html'; };
+            el.innerText = "Login";
+            if(el.tagName === 'A') el.href = "login.html";
+            if(el.classList.contains("login-link")) {
+                el.style.color = "white";
+                el.style.background = "var(--brand)";
+            }
+        });
     }
+    
+    // Load last selection if available
+    const savedClass = localStorage.getItem("selectedClass");
+    const savedSub = localStorage.getItem("selectedSubject");
+    if(savedClass && document.querySelector(`#classSelect option[value="${savedClass}"]`)) {
+        document.getElementById("classSelect").value = savedClass;
+    }
+    if(savedSub && document.querySelector(`#subjectSelect option[value="${savedSub}"]`)) {
+        document.getElementById("subjectSelect").value = savedSub;
+    }
+    
+    fetchHotsSets();
 });
 
 window.fetchHotsSets = async function() {
@@ -286,6 +285,12 @@ window.fetchHotsSets = async function() {
 };
 
 window.startHotsTest = function(id, cls, sub) {
+    if (localStorage.getItem("isLoggedIn") !== "true" || !auth.currentUser) {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.href = "login.html";
+        return;
+    }
+
     localStorage.setItem("isHotsTest", "true");
     localStorage.setItem("activeHotsId", id);
     localStorage.setItem("selectedClass", cls);
