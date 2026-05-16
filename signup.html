@@ -329,7 +329,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -605,6 +605,23 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
     try {
         let user = auth.currentUser;
         
+        // Pre-check email to prevent partial success and ghost phone accounts
+        if (!user && email && password) {
+            try {
+                const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+                const existingProviders = signInMethods || [];
+                if (existingProviders.length > 0) {
+                    alert("This email is already registered. Please log in or use a different email.");
+                    btn.disabled = false;
+                    btn.innerText = "Create Account";
+                    isCompletingSignup = false;
+                    return;
+                }
+            } catch (checkErr) {
+                console.warn("Email pre-check failed or not permitted:", checkErr);
+            }
+        }
+
         if (!user && window.phoneAuthCredential) {
             try {
                 const userCred = await signInWithCredential(auth, window.phoneAuthCredential);
@@ -670,6 +687,17 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
 
         if (!user) throw new Error("Authentication flow failed.");
 
+        // Reload user to get latest provider data securely
+        await user.reload().catch(e => console.warn("Reload failed:", e));
+        user = auth.currentUser;
+
+        // Fetching providers safely with fallback
+        let finalProviderIds = user.providerData ? user.providerData.map(p => p.providerId) : [];
+        if (finalProviderIds.length === 0 && email) {
+            const signInMethods = await fetchSignInMethodsForEmail(auth, email).catch(() => []);
+            finalProviderIds = signInMethods || [];
+        }
+
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             name: name,
@@ -678,7 +706,7 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
             phone: currentPhone,
             phoneNumber: currentPhone,
             phoneVerified: true,
-            authProviders: user.providerData.map(p => p.providerId),
+            authProviders: finalProviderIds,
             class: classSelect, 
             email_consent: true,
             promo_consent: promoConsent,
@@ -692,7 +720,8 @@ document.getElementById("completeEmailForm").addEventListener("submit", async (e
         localStorage.setItem("isLoggedIn", "true");
         showSuccessAndRedirect();
     } catch(error) { 
-        alert("Issue creating account: " + error.message); 
+        console.error("Signup flow error:", error);
+        alert("Issue creating account: " + (error.message || "Unknown error")); 
         btn.disabled = false;
         btn.innerText = "Create Account";
         isCompletingSignup = false;
