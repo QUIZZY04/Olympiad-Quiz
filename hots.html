@@ -164,14 +164,16 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
 
     <div class="filter-section">
         <select id="classSelect" class="filter-select" onchange="fetchHotsSets()">
+            <option value="all" selected>All Classes</option>
             <option value="class1">Class 1</option><option value="class2">Class 2</option>
             <option value="class3">Class 3</option><option value="class4">Class 4</option>
-            <option value="class5">Class 5</option><option value="class6" selected>Class 6</option>
+            <option value="class5">Class 5</option><option value="class6">Class 6</option>
             <option value="class7">Class 7</option><option value="class8">Class 8</option>
             <option value="class9">Class 9</option><option value="class10">Class 10</option>
         </select>
         <select id="subjectSelect" class="filter-select" onchange="fetchHotsSets()">
-            <option value="maths" selected>Maths</option>
+            <option value="all" selected>All Subjects</option>
+            <option value="maths">Maths</option>
             <option value="science">Science</option>
             <option value="english">English</option>
             <option value="reasoning">Reasoning</option>
@@ -238,11 +240,15 @@ window.fetchHotsSets = async function() {
     grid.innerHTML = '<div class="empty-state"><span>⏳</span> Fetching challenges...</div>';
     
     try {
-        const q = query(collection(db, "hots_tests"), where("class", "==", cls), where("subject", "==", sub));
-        const snap = await getDocs(q);
+        let qry = collection(db, "hots_tests");
+        if (cls !== "all") qry = query(qry, where("class", "==", cls));
+        if (sub !== "all") qry = query(qry, where("subject", "==", sub));
+        const snap = await getDocs(qry);
         
         if (snap.empty) {
-            grid.innerHTML = `<div class="empty-state"><span>📭</span> No HOTS sets available for ${sub.toUpperCase()} in ${cls.replace('class', 'Class ')} yet. Check back later!</div>`;
+            const subText = sub === "all" ? "any subject" : sub.toUpperCase();
+            const clsText = cls === "all" ? "any class" : cls.replace('class', 'Class ');
+            grid.innerHTML = `<div class="empty-state"><span>📭</span> No HOTS sets available for ${subText} in ${clsText} yet. Check back later!</div>`;
             return;
         }
         
@@ -253,8 +259,8 @@ window.fetchHotsSets = async function() {
             const duration = data.duration || 30;
             
             html += `
-            <div class="hots-card" onclick="startHotsTest('${doc.id}', '${cls}', '${sub}')">
-                <span class="card-badge">${sub.toUpperCase()}</span>
+            <div class="hots-card" onclick="startHotsTest('${doc.id}', '${data.class}', '${data.subject}')">
+                <span class="card-badge">${data.subject.toUpperCase()} - ${data.class.replace('class', 'Class ')}</span>
                 <h3 class="card-title">${data.title}</h3>
                 <p class="card-desc">${data.desc || 'Higher Order Thinking Skills Challenge. Test your advanced problem-solving abilities.'}</p>
                 <div class="card-meta">
