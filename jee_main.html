@@ -112,6 +112,14 @@
         .rich-text-section li { color: var(--text); font-size: 1rem; line-height: 1.6; margin-bottom: 12px; font-weight: 500; }
         .rich-text-section .highlight { color: var(--brand); font-weight: 800; }
 
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 50px; }
+        .hub-card { background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--brand); padding: 30px; border-radius: 20px; transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .hub-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--brand); }
+        .hub-card h3 { font-size: 1.4rem; color: var(--text); margin-bottom: 12px; font-weight: 700; }
+        .hub-card p { color: var(--muted); margin-bottom: 20px; flex-grow: 1; font-size: 0.95rem; }
+        .hub-card .btn { margin-top: auto; text-align: center; background: var(--brand); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: 0.2s; border: none; cursor: pointer; font-size: 1rem; }
+        .hub-card .btn:hover { background: var(--accent); }
+
         @media (max-width: 768px) { .header h1 { font-size: 2.2rem; } }
     </style>
 </head>
@@ -157,40 +165,27 @@
         <h1>Free JEE Main <span>Mock Test 2026</span></h1>
         <p>Access full syllabus mocks, subject-specific, and chapter-wise quizzes designed for engineering aspirants.</p>
         <div style="margin-top: 20px;">
-            <a href="jee-main-pyq.html" class="start-btn" style="width: auto; padding: 10px 25px; background: #ffffff; color: var(--brand); border: 2px solid var(--brand); box-shadow: none;">🏛️ Access Previous Year Papers (PYQs)</a>
+wise            <a href="jee-main-pyq.html" class="start-btn" style="width: auto; padding: 16px 35px; background: #1e3a8a; color: #ffffff; font-size: 1.15rem; font-weight: 800; border: 3px solid #60a5fa; box-shadow: 0 10px 25px rgba(30, 58, 138, 0.4); border-radius: 14px; letter-spacing: 0.5px;">🏛️ Access Previous Year Papers (PYQs)</a>
         </div>
     </div>
 
-    <div class="filter-bar">
-        <div class="filter-group">
-            <label for="fClass" class="filter-label">🎓 Select Grade</label>
-            <select id="fClass" onchange="loadTests()">
-                <option value="all" selected>All Grades</option>
-                <option value="class11">Class 11</option>
-                <option value="class12">Class 12</option>
-                <option value="classJEE MAIN">JEE MAIN</option>
-            </select>
+    <section class="hub-grid">
+        <div class="hub-card" style="border-top-color: #1e3a8a;">
+            <h3>🏛️ Previous Year Papers</h3>
+            <p>Download and practice official NTA Previous Year Question papers (PYQs). Filter by year and session to strengthen your exam strategy.</p>
+            <a href="jee-main-pyq.html" class="btn" style="background: #1e3a8a;">Access PYQs</a>
         </div>
-        <div class="filter-group">
-            <label for="fType" class="filter-label">📝 Select Test Type</label>
-            <select id="fType" onchange="handleTestTypeChange()">
-                <option value="all" selected>All Test Types</option>
-                <option value="full_mock">Full Mock Test</option>
-                <option value="subject_test">Subject-wise Mock Test</option>
-            </select>
+        <div class="hub-card" style="border-top-color: #2563eb;">
+            <h3>💻 CBT Mock Tests & Quizzes</h3>
+            <p>Access full syllabus mocks and subject-specific tests designed exactly on the latest NTA exam pattern.</p>
+            <a href="jee-main-quizzes.html" class="btn" style="background: #2563eb;">Access JEE Quizzes</a>
         </div>
-        <div class="filter-group">
-            <label for="fSubject" class="filter-label">📚 Select Subject</label>
-            <select id="fSubject" onchange="loadTests()">
-                <option value="all" selected>All Subjects</option>
-                <option value="Maths">Mathematics</option>
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-            </select>
+        <div class="hub-card" style="border-top-color: #059669;">
+            <h3>📚 Study Material & Notes</h3>
+            <p>Access expert-curated revision notes, essential formulas, and high-yield study materials for your JEE Main preparation.</p>
+            <a href="study.html" class="btn" style="background: #059669;">View Study Notes</a>
         </div>
-    </div>
-
-    <div class="test-grid" id="testGrid"></div>
+    </section>
 
     <!-- Rich Text Section -->
     <div class="rich-text-section">
@@ -257,101 +252,7 @@
             const adminTab = document.getElementById("adminTab");
             if (adminTab) adminTab.style.display = "inline";
         }
-        window.handleTestTypeChange(); // Set initial state and load tests
     });
-
-    window.startJeeTest = function(docId) {
-        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-        if (!auth.currentUser || !isLoggedIn) {
-            sessionStorage.setItem("redirectAfterLogin", "jee_main_quiz.html?id=" + docId);
-            window.location.href = "login.html";
-        } else {
-            window.location.href = "jee_main_quiz.html?id=" + docId;
-        }
-    };
-
-    window.handleTestTypeChange = function() {
-        const testType = document.getElementById('fType').value;
-        const subjectSelect = document.getElementById('fSubject');
-
-        if (testType === 'full_mock') {
-            subjectSelect.value = 'all'; // Reset to 'All Subjects' for full mock
-            subjectSelect.disabled = true;
-        } else {
-            subjectSelect.disabled = false;
-        }
-        window.loadTests();
-    }
-
-    window.loadTests = async function() {
-        const grid = document.getElementById("testGrid");
-        grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px;'>Fetching exams...</div>";
-        
-        const fClass = document.getElementById("fClass").value;
-        const fType = document.getElementById("fType").value;
-        const fSubject = document.getElementById("fSubject").value;
-
-        try {
-            let constraints = [where("exam", "==", "jee_main")];
-            if (fClass !== "all") constraints.push(where("class", "==", fClass));
-            if (fType !== "all") constraints.push(where("testType", "==", fType));
-            
-            const snap = await getDocs(query(collection(db, "exam_tests"), ...constraints));
-            
-            let html = "";
-            snap.forEach(doc => {
-                const data = doc.data();
-                if (fSubject !== "all" && data.subject !== fSubject) return;
-                
-                let cardColor = '#2563eb'; // Default
-                if (data.testType === 'full_mock' || data.subject === 'Full Syllabus') {
-                    cardColor = '#7c3aed'; // Purple for Full Mock Test
-                } else if (data.subject === 'Physics') {
-                    cardColor = '#2563eb'; // Blue for Physics
-                } else if (data.subject === 'Chemistry') {
-                    cardColor = '#059669'; // Emerald Green for Chemistry
-                } else if (data.subject === 'Maths') {
-                    cardColor = '#dc2626'; // Red for Mathematics
-                } else {
-                    let hash = 0;
-                    for (let i = 0; i < doc.id.length; i++) {
-                        hash = doc.id.charCodeAt(i) + ((hash << 5) - hash);
-                    }
-                    const colors = ['#b45309', '#db2777', '#0284c7'];
-                    cardColor = colors[Math.abs(hash) % colors.length];
-                }
-
-                const chapStr = data.chapter ? `<p>📖 <strong>Chapter:</strong> ${data.chapter}</p>` : "";
-                
-                let displayClass = data.class ? String(data.class) : "N/A";
-                displayClass = displayClass.replace(/^class\s*/i, '').trim();
-
-                html += `<div class="test-card" style="border-top-color: ${cardColor};">
-                    <h3>${data.title}</h3>
-                    <div class="meta">
-                        <p>🎓 <strong>Grade:</strong> ${displayClass}</p>
-                        <p>📚 <strong>Subject:</strong> ${data.subject}</p>
-                        <p>⏱️ <strong>Duration:</strong> ${data.duration} mins</p>
-                        <p>❓ <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
-                        ${chapStr}
-                    </div>
-                    <button class="start-btn" style="background-color: ${cardColor};" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" onclick="startJeeTest('${doc.id}')">Start Test</button>
-                </div>`;
-            });
-            
-            grid.innerHTML = html || "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px; border: 1px dashed var(--border); border-radius: 16px; background: var(--surface);'>No tests found for this filter combination.</div>";
-        } catch(e) { 
-            if (e.message.includes("requires an index")) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; color: var(--danger); padding: 30px; border: 1px solid var(--danger); border-radius: 10px; background: rgba(239, 68, 68, 0.05); text-align: left;">
-                    <b style="font-size: 18px;">🛠️ Setup Required: Database Index</b><br><br>
-                    Your database needs an index to filter tests by these fields.<br>
-                    <a href="${e.message.match(/https:\/\/console\.firebase\.google\.com[^\s]+/)?.[0]}" target="_blank" style="color: var(--brand); font-weight: bold; text-decoration: underline;">Click here to generate the index automatically in Firebase.</a>
-                </div>`;
-            } else {
-                grid.innerHTML = `<div style="grid-column:1/-1; color: #ef4444; text-align:center; padding:20px;">Database Error: ${e.message}</div>`; 
-            }
-        }
-    };
 
     window.logout = async () => { 
         if(confirm("Logout?")) { 
