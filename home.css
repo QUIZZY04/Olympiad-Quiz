@@ -639,3 +639,14 @@ footer p, .site-footer p {
     text-transform: none !important;
     letter-spacing: normal !important;
 }
+
+.feedback-modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+@media(max-width: 768px) {
+    .feedback-modal-content {
+        padding: 20px !important;
+        max-height: 92vh;
+    }
+}
