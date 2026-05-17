@@ -126,6 +126,38 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- ================= SEO Silo Hubs ================= -->
+  <url>
+    <loc>https://olympiadquiz.org/class-6-imo-mock-test.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/imo-syllabus-class-6.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/algebra-questions-class-6.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/how-to-crack-olympiad.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/imo-previous-year-questions.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/real-cbt-mock-test.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- ================= Value & Content Pages ================= -->
   <url>

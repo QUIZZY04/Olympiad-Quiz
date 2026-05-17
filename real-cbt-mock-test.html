@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real CBT Mock Test Interface for JEE & Olympiads</title>
+    <meta name="description" content="Experience the exact NTA and Olympiad Computer Based Test (CBT) interface. Practice with proctored timers, review palettes, and instant analytics.">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="canonical" href="https://olympiadquiz.org/real-cbt-mock-test.html">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --brand: #2563eb; --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; margin: 0; }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .hero { text-align: center; margin-bottom: 40px; }
+        .hero h1 { font-size: 2.5rem; font-weight: 800; color: var(--brand); }
+        .content-card { background: var(--surface); padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 30px; }
+        .silo-box { background: #eff6ff; padding: 25px; border-radius: 16px; margin-top: 40px; border: 1px solid #bfdbfe; text-align: center; }
+        .silo-box a { display: inline-block; background: var(--brand); color: white; padding: 12px 25px; border-radius: 8px; font-weight: 700; text-decoration: none; margin-top: 15px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <nav style="background: rgba(255, 255, 255, 0.95); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; justify-content:space-between; align-items:center;">
+        <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none;">Olympiad Portal</a>
+        <a href="jee_main.html" style="background: var(--brand); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700;">Take CBT Test</a>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Real CBT Mock Test Interface</h1>
+            <p style="color: var(--muted); font-size: 1.1rem;">Train your brain for the actual exam hall. No paper, no cheating—just authentic Computer Based Testing.</p>
+        </div>
+
+        <div class="content-card">
+            <h2 style="margin-bottom: 15px;">Why the CBT Interface Matters</h2>
+            <p style="color: var(--text); line-height: 1.8;">
+                In modern exams like JEE Main, JEE Advanced, and level-2 Olympiads, the medium is digital. Students who only practice on paper often face <strong>interface anxiety</strong>. They struggle with navigation, marking questions for review, and tracking digital timers.
+            </p>
+            <p style="color: var(--text); line-height: 1.8; margin-top: 15px;">
+                Our platform precisely replicates the official <strong>NTA UI</strong> and Olympiad test environments. You get access to:
+            </p>
+            <ul style="margin-top: 15px; margin-left: 20px; color: var(--text); line-height: 1.8;">
+                <li>Unpausable server-side timers.</li>
+                <li>Question Palettes with "Marked for Review" functionality.</li>
+                <li>Auto-submission protocols.</li>
+                <li>Support for Numerical Value Type and Multi-Correct formats (JEE Advanced).</li>
+            </ul>
+        </div>
+
+        <div class="silo-box">
+            <h3 style="color: var(--brand);">Experience the NTA CBT Interface Now</h3>
+            <a href="jee_main.html">💻 Start JEE Main CBT</a>
+            <a href="jee-list.html">🎓 Start JEE Advanced CBT</a>
+            <a href="mock.html">🏆 Start Olympiad CBT</a>
+            
+            <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="jee-main-pyq.html" style="background: white; color: var(--text); border: 1px solid var(--border);">Download PYQs</a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);">
+        <p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    </footer>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        onAuthStateChanged(auth, (user) => {
+            if (user) { document.querySelector('nav a:last-child').innerText = "Dashboard"; document.querySelector('nav a:last-child').href = "dashboard.html"; }
+        });
+    </script>
+</body>
+</html>
