@@ -267,6 +267,7 @@ border-top:1px solid var(--border);
         <a href="#full-jee-main-mock-section" style="color:#8b5cf6;">Full JEE Mocks</a>
         <a href="#jee-admin-section" style="color:var(--success);">JEE Tests</a>
         <a href="#hots-admin-section" style="color:#d946ef;">HOTS Management</a>
+        <a href="#jee-pyq-admin-section" style="color:#0ea5e9;">JEE PYQs</a>
         <a href="#senior-admin-section" style="color:#8b5cf6;">Senior Upload</a>
         <div class="nav-actions">
             <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
@@ -1027,6 +1028,35 @@ border-top:1px solid var(--border);
             <table style="margin-top: 15px;">
                 <thead><tr><th>Class</th><th>Subject</th><th>Title</th><th>Questions</th><th>Action</th></tr></thead>
                 <tbody id="hotsTestTableList"><tr><td colspan="5" style="text-align:center; color:var(--muted);">Click "Load Existing Sets" to view</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- NEW SECTION: JEE MAIN PYQ MANAGEMENT -->
+    <div id="jee-pyq-admin-section" class="panel" style="border-top: 2px solid #0ea5e9;">
+        <div class="panel-header">
+            <h2 style="color:#0ea5e9;">📄 JEE Main PYQ Management</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Upload Previous Year Question Papers (PDFs) for JEE Main.</p>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
+                <div><label>Year</label><input type="number" id="pyqYear" placeholder="e.g. 2024" required></div>
+                <div><label>Session</label><select id="pyqSession"><option value="January Session">January Session</option><option value="April Session">April Session</option><option value="Other Session">Other Session</option></select></div>
+                <div style="grid-column: 1/-1;"><label>Paper Title</label><input type="text" id="pyqTitle" placeholder="e.g. 24 Jan 2024 Shift 1" required></div>
+                <div style="grid-column: 1/-1;"><label>Description (Optional)</label><input type="text" id="pyqDesc" placeholder="Brief description..."></div>
+                <div style="grid-column: 1/-1;"><label>PDF File</label><input type="file" id="pyqPdfFile" accept="application/pdf"></div>
+            </div>
+            <button class="upload" id="pyqSaveBtn" onclick="saveJeePyq()" style="background:#0ea5e9; width:100%;">📤 Upload PYQ PDF</button>
+            <div id="pyqStatus" style="margin-top:10px; font-weight:bold; font-size:13px;"></div>
+
+            <hr style="margin: 25px 0; border: 0; border-top: 1px solid var(--border);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0; font-size: 16px;">📝 Managed PYQs</h3>
+                <button class="upload" onclick="loadJeePyqsList()" style="margin: 0; padding: 6px 12px; font-size: 13px; background:var(--brand);">Load PYQs</button>
+            </div>
+            <table style="margin-top: 15px;">
+                <thead><tr><th>Year</th><th>Session</th><th>Title</th><th>PDF</th><th>Action</th></tr></thead>
+                <tbody id="pyqTableList"><tr><td colspan="5" style="text-align:center; color:var(--muted);">Click "Load PYQs" to view</td></tr></tbody>
             </table>
         </div>
     </div>
@@ -2703,6 +2733,91 @@ window.deleteHotsTest = async function(id) {
     if (confirm("Are you sure you want to permanently delete this HOTS Set?")) {
         await deleteDoc(doc(db, "hots_tests", id));
         loadHotsTestsList();
+    }
+};
+
+// ADDED SECTION: JEE MAIN PYQ ADMIN LOGIC
+window.saveJeePyq = async function() {
+    const year = parseInt(document.getElementById("pyqYear").value);
+    const session = document.getElementById("pyqSession").value;
+    const title = document.getElementById("pyqTitle").value.trim();
+    const desc = document.getElementById("pyqDesc").value.trim();
+    const fileInput = document.getElementById("pyqPdfFile");
+    const file = fileInput.files[0];
+    const status = document.getElementById("pyqStatus");
+    const btn = document.getElementById("pyqSaveBtn");
+
+    if(!year || !title || !file) {
+        status.innerText = "❌ Please provide Year, Title, and select a PDF file.";
+        status.style.color = "var(--danger)";
+        return;
+    }
+
+    btn.innerText = "⏳ Uploading PDF...";
+    btn.disabled = true;
+    status.innerText = "Uploading securely to Firebase Storage...";
+    status.style.color = "var(--text)";
+
+    try {
+        const safeName = file.name.replace(/[^a-zA-Z0-9.]/g, '_');
+        const storageRefObj = ref(storage, `jee_pyqs/${Date.now()}_${safeName}`);
+        await uploadBytes(storageRefObj, file);
+        const downloadUrl = await getDownloadURL(storageRefObj);
+
+        status.innerText = "Saving metadata to database...";
+        await addDoc(collection(db, "jeeMainPyqs"), {
+            year, session, title, description: desc, pdfUrl: downloadUrl, createdAt: serverTimestamp()
+        });
+
+        status.innerText = "✅ PYQ Successfully Uploaded!";
+        status.style.color = "var(--success)";
+        
+        document.getElementById("pyqYear").value = "";
+        document.getElementById("pyqTitle").value = "";
+        document.getElementById("pyqDesc").value = "";
+        fileInput.value = "";
+        if (typeof loadJeePyqsList === 'function') loadJeePyqsList();
+    } catch (e) {
+        status.innerText = "❌ Error: " + e.message;
+        status.style.color = "var(--danger)";
+    } finally {
+        btn.innerText = "📤 Upload PYQ PDF";
+        btn.disabled = false;
+    }
+};
+
+window.loadJeePyqsList = async function() {
+    const tbody = document.getElementById("pyqTableList");
+    tbody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>Loading...</td></tr>";
+    try {
+        const q = query(collection(db, "jeeMainPyqs"), orderBy("year", "desc"));
+        const snap = await getDocs(q);
+        let html = "";
+        snap.forEach(doc => {
+            const data = doc.data();
+            html += `<tr>
+                <td>${data.year}</td>
+                <td>${data.session}</td>
+                <td>${data.title}</td>
+                <td><a href="${data.pdfUrl}" target="_blank" style="color:#0ea5e9;font-weight:bold;text-decoration:underline;">View PDF</a></td>
+                <td><button class="delete" onclick="deleteJeePyq('${doc.id}')">Delete</button></td>
+            </tr>`;
+        });
+        if (!html) html = "<tr><td colspan='5' style='text-align:center; color:var(--muted);'>No PYQs found.</td></tr>";
+        tbody.innerHTML = html;
+    } catch(e) {
+        if (e.message.includes("requires an index")) {
+            tbody.innerHTML = `<tr><td colspan='5' style='color:var(--danger);'>Index required for sorting. Check Firebase Console.</td></tr>`;
+        } else {
+            tbody.innerHTML = `<tr><td colspan='5' style='color:var(--danger);'>Error: ${e.message}</td></tr>`;
+        }
+    }
+};
+
+window.deleteJeePyq = async function(id) {
+    if (confirm("Are you sure you want to permanently delete this PYQ record?")) {
+        await deleteDoc(doc(db, "jeeMainPyqs", id));
+        loadJeePyqsList();
     }
 };
 

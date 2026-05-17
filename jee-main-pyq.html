@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Main Previous Year Question Papers (PYQs) | Olympiad Portal</title>
+    <meta name="description" content="Download and practice JEE Main Previous Year Question Papers (PYQs). Access official NTA PDFs sorted by year and session for free.">
+    <meta name="keywords" content="jee main pyq, previous year question papers jee, nta past papers, jee main pdf download, jee pyq class 11 12">
+    <link rel="canonical" href="https://olympiadquiz.org/jee-main-pyq.html">
+    <meta property="og:title" content="JEE Main Previous Year Question Papers (PYQs)">
+    <meta property="og:description" content="Download and practice official JEE Main past papers in PDF format for free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://olympiadquiz.org/jee-main-pyq.html">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #475569; --border: #e2e8f0;
+            --brand: #2563eb; /* Blue Theme for JEE */
+            --accent: #1d4ed8; --danger: #ef4444; --success: #10b981;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column;
+            background-image: radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        .container { flex: 1; max-width: 1200px; margin: 40px auto; padding: 0 20px; width: 100%; }
+        
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2.8rem; color: var(--text); font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em; }
+        .header h1 span { color: var(--brand); }
+        .header p { color: var(--muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+        /* Filter Controls */
+        .filter-bar { background: var(--surface); padding: 20px; border-radius: 16px; border: 1px solid var(--border); display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; box-shadow: var(--shadow-sm); border-top: 4px solid var(--brand); align-items: flex-end; }
+        .filter-group { flex: 1; min-width: 200px; }
+        .filter-label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .filter-bar select, .filter-bar input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border); outline: none; font-weight: 600; background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; transition: 0.2s; }
+        .filter-bar select:focus, .filter-bar input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+
+        /* PYQ Grid System */
+        .pyq-year-section { margin-bottom: 50px; }
+        .year-title { font-size: 1.8rem; font-weight: 800; color: #1e293b; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        .year-title span { background: var(--brand); color: white; padding: 4px 12px; border-radius: 8px; font-size: 1rem; }
+        
+        .pyq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        
+        .pyq-card {
+            background: var(--surface); padding: 25px; border-radius: 16px; border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm); transition: 0.3s; position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+        .pyq-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: #cbd5e1; }
+        .pyq-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--brand); }
+        
+        .pyq-card h3 { font-size: 1.25rem; color: var(--text); margin-bottom: 10px; font-weight: 700; line-height: 1.4; }
+        .pyq-session-badge { display: inline-block; background: #eff6ff; color: #2563eb; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; border: 1px solid #bfdbfe; }
+        .pyq-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; flex-grow: 1; }
+        
+        .pyq-actions { display: flex; gap: 10px; margin-top: auto; }
+        .btn-view { flex: 1; background: var(--brand); color: white; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; border: none; }
+        .btn-view:hover { background: var(--accent); }
+        .btn-download { flex: 1; background: var(--surface); color: var(--text); padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; border: 1px solid var(--border); }
+        .btn-download:hover { background: var(--bg); border-color: var(--muted); }
+
+        #loader { text-align: center; padding: 40px; color: var(--muted); font-size: 1.1rem; font-weight: 600; }
+        .no-data { text-align: center; padding: 50px 20px; background: var(--surface); border: 2px dashed var(--border); border-radius: 16px; color: var(--muted); font-weight: 600; grid-column: 1/-1; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.2rem; }
+            .pyq-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;">
+        <img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal
+    </a>
+    <div class="nav-important"><a href="dashboard.html">Dash</a><a onclick="logout()" style="cursor:pointer;">Logout</a></div>
+    <div class="nav-links">
+        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+        <a href="dashboard.html">Dashboard</a>
+        <div class="nav-dropdown">
+            <a href="#" class="dropbtn">Students Zone</a>
+            <div class="nav-dropdown-content">
+                <a href="mock.html">Mock Tests</a>
+                <a href="chapterwise.html">Chapterwise</a>
+                <a href="study.html">Study Material</a>
+                <a href="blog.html">Success Guides</a>
+            </div>
+        </div>
+        <a href="live.html">Live Arena</a>
+        <div class="nav-dropdown">
+            <a href="#" class="dropbtn active" style="color: #2563eb;">Senior Exams</a>
+            <div class="nav-dropdown-content">
+                <a href="jee_main.html">JEE Main</a>
+                <a href="jee-list.html">JEE Advanced</a>
+                <a href="neet.html">NEET</a>
+                <a href="jee-main-pyq.html" style="color: #2563eb !important; background: #f1f5f9 !important;">JEE PYQs</a>
+            </div>
+        </div>
+        <a href="leaderboard.html">Leaderboard</a>
+        <div class="nav-actions">
+            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600; text-decoration:none;">Admin</a>
+            <a onclick="logout()" class="login-link" style="color: white; cursor: pointer; background: #dc2626;">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header">
+        <div class="breadcrumb" style="justify-content: center;">
+            <a href="index.html">🏠 Home</a> <span class="separator">/</span> 
+            <a href="jee_main.html">JEE Main</a> <span class="separator">/</span> 
+            <span>PYQs</span>
+        </div>
+        <h1>Official JEE Main <span>Past Papers</span></h1>
+        <p>Download and practice official NTA Previous Year Question papers. Filter by year and session to strengthen your exam strategy.</p>
+    </div>
+
+    <div class="filter-bar">
+        <div class="filter-group">
+            <label for="filterYear" class="filter-label">📅 Filter by Year</label>
+            <select id="filterYear" onchange="renderPyqs()">
+                <option value="all" selected>All Years</option>
+                <!-- Populated dynamically -->
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="filterSession" class="filter-label">🎯 Filter by Session</label>
+            <select id="filterSession" onchange="renderPyqs()">
+                <option value="all" selected>All Sessions</option>
+                <option value="January Session">January Session</option>
+                <option value="April Session">April Session</option>
+                <option value="Other Session">Other Session</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="searchTitle" class="filter-label">🔍 Search Papers</label>
+            <input type="text" id="searchTitle" placeholder="e.g., 24 Jan Shift 1" oninput="renderPyqs()">
+        </div>
+    </div>
+
+    <div id="loader">Fetching Past Papers...</div>
+    <div id="pyqContainer"></div>
+
+    <div style="margin-top: 50px; background: var(--surface); padding: 30px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+        <h2 style="font-size: 1.5rem; color: var(--text); margin-bottom: 12px; font-weight: 800;">Why practice JEE Main PYQs?</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Practicing <strong>Previous Year Questions (PYQs)</strong> is the most reliable way to understand the changing NTA pattern. It gives you an exact idea of the difficulty level and weightage of topics. Use these official PDFs to evaluate your speed and accuracy before attempting our dynamic <a href="jee_main.html" style="color: var(--brand); font-weight: bold; text-decoration: underline;">CBT Mock Tests</a>.</p>
+    </div>
+</div>
+
+<footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig={
+        apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
+        projectId:"olympiad-portal-d2a5e",
+        storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+        messagingSenderId:"341855557503",
+        appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    let pyqData = [];
+    let uniqueYears = new Set();
+
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            document.querySelectorAll('.login-link').forEach(el => {
+                el.removeAttribute("onclick");
+                el.innerText = "Log in";
+                el.href = "login.html";
+            });
+        } else {
+            if (user.email === "madhhu52@gmail.com") {
+                const adminTab = document.getElementById("adminTab");
+                if (adminTab) adminTab.style.display = "inline";
+            }
+        }
+        loadPyqs();
+    });
+
+    async function loadPyqs() {
+        const loader = document.getElementById("loader");
+        try {
+            const q = query(collection(db, "jeeMainPyqs"), orderBy("year", "desc"));
+            const snap = await getDocs(q);
+            
+            pyqData = [];
+            uniqueYears.clear();
+
+            snap.forEach(doc => {
+                const data = doc.data();
+                pyqData.push({ id: doc.id, ...data });
+                uniqueYears.add(data.year);
+            });
+
+            loader.style.display = "none";
+            populateYearFilter();
+            window.renderPyqs();
+
+        } catch(e) {
+            console.error("Error loading PYQs:", e);
+            if (e.message.includes("requires an index")) {
+                loader.innerHTML = `<span style="color: var(--danger);">Index required for sorting. <a href="${e.message.match(/https:\/\/console\.firebase\.google\.com[^\s]+/)?.[0]}" target="_blank">Create Index here</a></span>`;
+            } else {
+                loader.innerHTML = `<span style="color: var(--danger);">Failed to load papers: ${e.message}</span>`;
+            }
+        }
+    }
+
+    function populateYearFilter() {
+        const filterYear = document.getElementById("filterYear");
+        filterYear.innerHTML = '<option value="all" selected>All Years</option>';
+        const sortedYears = Array.from(uniqueYears).sort((a, b) => b - a);
+        
+        sortedYears.forEach(year => {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            filterYear.appendChild(option);
+        });
+    }
+
+    window.renderPyqs = function() {
+        const container = document.getElementById("pyqContainer");
+        const filterYear = document.getElementById("filterYear").value;
+        const filterSession = document.getElementById("filterSession").value;
+        const searchQuery = document.getElementById("searchTitle").value.toLowerCase().trim();
+
+        const filteredData = pyqData.filter(item => {
+            const matchYear = filterYear === "all" || String(item.year) === filterYear;
+            const matchSession = filterSession === "all" || item.session === filterSession;
+            const matchSearch = !searchQuery || item.title.toLowerCase().includes(searchQuery) || (item.description && item.description.toLowerCase().includes(searchQuery));
+            return matchYear && matchSession && matchSearch;
+        });
+
+        if (filteredData.length === 0) {
+            container.innerHTML = `<div class="no-data">No previous year papers found matching your filters.</div>`;
+            return;
+        }
+
+        const groupedByYear = {};
+        filteredData.forEach(item => {
+            if (!groupedByYear[item.year]) groupedByYear[item.year] = [];
+            groupedByYear[item.year].push(item);
+        });
+
+        const sortedYears = Object.keys(groupedByYear).sort((a, b) => b - a);
+        let html = "";
+
+        sortedYears.forEach(year => {
+            html += `<div class="pyq-year-section"><h2 class="year-title">📅 JEE Main <span>${year}</span></h2><div class="pyq-grid">`;
+            
+            groupedByYear[year].forEach(paper => {
+                html += `
+                <div class="pyq-card">
+                    <span class="pyq-session-badge">${paper.session}</span>
+                    <h3>${paper.title}</h3>
+                    <p class="pyq-desc">${paper.description || 'Official NTA Question Paper'}</p>
+                    <div class="pyq-actions">
+                        <a href="${paper.pdfUrl}" target="_blank" class="btn-view">👁️ View PDF</a>
+                        <a href="${paper.pdfUrl}" download target="_blank" class="btn-download">⬇️ Download</a>
+                    </div>
+                </div>`;
+            });
+            html += `</div></div>`;
+        });
+        container.innerHTML = html;
+    };
+
+    window.logout = async () => { 
+        if(confirm("Logout?")) { 
+            await signOut(auth); 
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html"); 
+        } 
+    };
+</script>
+<script>
+    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+</script>
+</body>
+</html>
