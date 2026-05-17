@@ -1042,7 +1042,11 @@ border-top:1px solid var(--border);
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom: 20px;">
                 <div><label>Year</label><input type="number" id="pyqYear" placeholder="e.g. 2024" required></div>
                 <div><label>Session</label><select id="pyqSession"><option value="January Session">January Session</option><option value="April Session">April Session</option><option value="Other Session">Other Session</option></select></div>
-                <div style="grid-column: 1/-1;"><label>Paper Title</label><input type="text" id="pyqTitle" placeholder="e.g. 24 Jan 2024 Shift 1" required></div>
+                <div style="grid-column: 1/-1;">
+                    <label>Paper Title</label>
+                    <input type="text" id="pyqTitle" list="pyqTitleSuggestions" placeholder="e.g. 24 Jan 2024 Shift 1" required>
+                    <datalist id="pyqTitleSuggestions"></datalist>
+                </div>
                 <div style="grid-column: 1/-1;"><label>Description (Optional)</label><input type="text" id="pyqDesc" placeholder="Brief description..."></div>
                 <div style="grid-column: 1/-1;"><label>PDF File</label><input type="file" id="pyqPdfFile" accept="application/pdf"></div>
             </div>
@@ -1431,7 +1435,7 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
-        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions(); window.loadHotsTestsList();
+        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions(); window.loadHotsTestsList(); window.updatePyqTitleSuggestions();
     } else {
         window.location.href = "login.html";
     }
@@ -2777,12 +2781,32 @@ window.saveJeePyq = async function() {
         document.getElementById("pyqDesc").value = "";
         fileInput.value = "";
         if (typeof loadJeePyqsList === 'function') loadJeePyqsList();
+        if (typeof updatePyqTitleSuggestions === 'function') updatePyqTitleSuggestions();
     } catch (e) {
         status.innerText = "❌ Error: " + e.message;
         status.style.color = "var(--danger)";
     } finally {
         btn.innerText = "📤 Upload PYQ PDF";
         btn.disabled = false;
+    }
+};
+
+window.updatePyqTitleSuggestions = async function() {
+    const datalist = document.getElementById("pyqTitleSuggestions");
+    if (!datalist) return;
+    try {
+        const q = query(collection(db, "jeeMainPyqs"), orderBy("year", "desc"));
+        const snap = await getDocs(q);
+        const uniqueTitles = new Set();
+        snap.forEach(doc => {
+            const data = doc.data();
+            if (data.title) uniqueTitles.add(data.title);
+        });
+        let optionsHtml = "";
+        uniqueTitles.forEach(title => { optionsHtml += `<option value="${title}"></option>`; });
+        datalist.innerHTML = optionsHtml;
+    } catch (e) {
+        console.error("Error loading PYQ title suggestions:", e);
     }
 };
 
