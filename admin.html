@@ -1044,6 +1044,7 @@ border-top:1px solid var(--border);
                 <div><label>Session</label><select id="pyqSession"><option value="January Session">January Session</option><option value="April Session">April Session</option><option value="Other Session">Other Session</option></select></div>
                 <div style="grid-column: 1/-1;">
                     <label>Paper Title</label>
+                    <label>Paper Title <span style="cursor:pointer; font-size:12px; margin-left:5px; color:#0ea5e9;" onclick="window.updatePyqTitleSuggestions()" title="Load Recent Titles">🔄 Load Suggestions</span></label>
                     <input type="text" id="pyqTitle" list="pyqTitleSuggestions" placeholder="e.g. 24 Jan 2024 Shift 1" required>
                     <datalist id="pyqTitleSuggestions"></datalist>
                 </div>
@@ -1436,6 +1437,7 @@ onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
         loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions(); window.loadHotsTestsList(); window.updatePyqTitleSuggestions();
+        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions(); window.loadHotsTestsList();
     } else {
         window.location.href = "login.html";
     }
@@ -2793,7 +2795,12 @@ window.saveJeePyq = async function() {
 
 window.updatePyqTitleSuggestions = async function() {
     const datalist = document.getElementById("pyqTitleSuggestions");
+    const titleInput = document.getElementById("pyqTitle");
     if (!datalist) return;
+    
+    const oldPlaceholder = titleInput.placeholder;
+    titleInput.placeholder = "Loading suggestions...";
+    
     try {
         const q = query(collection(db, "jeeMainPyqs"), orderBy("year", "desc"));
         const snap = await getDocs(q);
@@ -2819,8 +2826,11 @@ window.updatePyqTitleSuggestions = async function() {
         let optionsHtml = "";
         uniqueTitles.forEach(title => { optionsHtml += `<option value="${title}"></option>`; });
         datalist.innerHTML = optionsHtml;
+        titleInput.placeholder = "Suggestions loaded!";
+        setTimeout(() => titleInput.placeholder = oldPlaceholder, 2000);
     } catch (e) {
         console.error("Error loading PYQ title suggestions:", e);
+        titleInput.placeholder = oldPlaceholder;
     }
 };
 
