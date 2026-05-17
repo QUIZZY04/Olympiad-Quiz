@@ -142,15 +142,13 @@
         <div class="filter-group">
             <label for="filterYear" class="filter-label">📅 Filter by Year</label>
             <select id="filterYear" onchange="renderPyqs()">
-                <option value="all" selected>All Years</option>
                 <!-- Populated dynamically -->
             </select>
         </div>
         <div class="filter-group">
             <label for="filterSession" class="filter-label">🎯 Filter by Session</label>
             <select id="filterSession" onchange="renderPyqs()">
-                <option value="all" selected>All Sessions</option>
-                <option value="January Session">January Session</option>
+                <option value="January Session" selected>January Session</option>
                 <option value="April Session">April Session</option>
                 <option value="Other Session">Other Session</option>
             </select>
@@ -242,7 +240,7 @@
 
     function populateYearFilter() {
         const filterYear = document.getElementById("filterYear");
-        filterYear.innerHTML = '<option value="all" selected>All Years</option>';
+        filterYear.innerHTML = '';
         const sortedYears = Array.from(uniqueYears).sort((a, b) => b - a);
         
         sortedYears.forEach(year => {
