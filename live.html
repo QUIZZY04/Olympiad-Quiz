@@ -1132,14 +1132,31 @@
                             if (session) {
                                 response.sessionDate = session.start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
                                 response.sessionTime = session.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                                response.sessionClass = session.class;
+                                response.sessionSubject = session.subject;
+                                response.sessionTitle = session.title;
                             }
                             response.sessionId = sessionId;
                             response.amount = sessionPrice;
                             localStorage.setItem("activeSessionId", sessionId);
                             localStorage.setItem("activeSessionPrice", sessionPrice);
                             localStorage.setItem("paymentData", JSON.stringify(response));
+
+                            // Prepare data for the new success page
+                            const successData = {
+                                userName: auth.currentUser?.displayName || "Student",
+                                sessionClass: session ? session.class : "N/A",
+                                sessionSubject: session ? session.subject : "N/A",
+                                sessionTitle: session ? session.title : "Live Olympiad Test",
+                                sessionDate: response.sessionDate || "TBD",
+                                sessionTime: response.sessionTime || "TBD",
+                                amount: sessionPrice,
+                                paymentId: response.razorpay_payment_id
+                            };
+                            localStorage.setItem("paymentSuccessData", JSON.stringify(successData));
+
                             setTimeout(() => {
-                                window.location.href = "/live.html";
+                                window.location.href = "live-success.html";
                             }, 2000);
                         } else {
                             window.hideProcessingScreen();

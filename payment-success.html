@@ -174,16 +174,30 @@
         function handleSuccess() {
             statusIcon.className = "success-icon";
             statusIcon.innerHTML = "✅";
-            statusTitle.innerText = "Payment Successful";
-            statusMessage.innerText = "You are being redirected to Live Test page";
+            statusTitle.innerText = "Registration Confirmed!";
+            statusMessage.innerText = "Redirecting to your confirmation page...";
             
             fallbackLink.style.display = "inline-block";
-            fallbackLink.innerText = "If not redirected within 1 minute, click here";
+            fallbackLink.href = "live-success.html";
+            fallbackLink.innerText = "Click here if you are not redirected";
             
             document.querySelector('.status-card').style.borderTopColor = "#10b981";
             
+            const paymentData = JSON.parse(localStorage.getItem("paymentData") || "{}");
+            const successData = {
+                userName: auth.currentUser?.displayName || "Student",
+                sessionClass: paymentData.sessionClass || "N/A",
+                sessionSubject: paymentData.sessionSubject || "N/A",
+                sessionTitle: paymentData.sessionTitle || "Live Olympiad Test",
+                sessionDate: paymentData.sessionDate || "TBD",
+                sessionTime: paymentData.sessionTime || "TBD",
+                amount: paymentData.amount || 99,
+                paymentId: paymentData.razorpay_payment_id || "N/A"
+            };
+            localStorage.setItem("paymentSuccessData", JSON.stringify(successData));
+
             setTimeout(() => {
-                window.location.href = "live.html";
+                window.location.href = "live-success.html";
             }, 3000); // 3-5 seconds redirection
         }
     </script>
