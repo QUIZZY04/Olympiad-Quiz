@@ -3106,15 +3106,25 @@ window.loadUserEmailsForBroadcast = async function() {
     try {
         const snap = await getDocs(collection(db, "users"));
         let html = "";
+        const uniqueUsers = new Map();
+        
         snap.forEach(doc => {
             const data = doc.data();
             if (data.email) {
-                html += `<label class="email-user-row" style="display:flex; align-items:center; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
-                            <input type="checkbox" value="${data.email}" onchange="updateEmailSelectionCount()" style="width:auto; margin:0;">
-                            <span class="user-text">${data.name || 'Student'} (${data.email})</span>
-                         </label>`;
+                const email = data.email.trim().toLowerCase();
+                if (!uniqueUsers.has(email) || (data.name && data.name !== 'Student')) {
+                    uniqueUsers.set(email, data.name || 'Student');
+                }
             }
         });
+        
+        uniqueUsers.forEach((name, email) => {
+            html += `<label class="email-user-row" style="display:flex; align-items:center; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                        <input type="checkbox" value="${email}" onchange="updateEmailSelectionCount()" style="width:auto; margin:0;">
+                        <span class="user-text">${name} (${email})</span>
+                     </label>`;
+        });
+        
         list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users found</div>";
         updateEmailSelectionCount();
     } catch (e) {
