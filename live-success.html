@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful | Olympiad Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #f8fafc; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #111827; }
+        .success-card { background: #ffffff; padding: 40px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); text-align: center; max-width: 550px; width: 100%; border-top: 6px solid #10b981; animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .icon { font-size: 60px; margin-bottom: 20px; line-height: 1; }
+        h1 { font-size: 2rem; font-weight: 800; color: #111827; margin-bottom: 15px; }
+        p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px; }
+        .details-box { background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 30px; text-align: left; }
+        .detail-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #e2e8f0; font-size: 0.95rem; }
+        .detail-item:last-child { border-bottom: none; }
+        .detail-item strong { color: #111827; font-weight: 700; }
+        .detail-item span { color: #64748b; font-weight: 600; text-align: right; }
+        .actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
+        .btn-primary { background: #10b981; color: white; }
+        .btn-primary:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(16,185,129,0.2); }
+        .btn-secondary { background: #ffffff; color: #111827; border: 1px solid #e2e8f0; }
+        .btn-secondary:hover { background: #f1f5f9; transform: translateY(-2px); }
+    </style>
+
+    <!-- Google Ads Conversion Tracking Tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18108080300"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18108080300');
+      
+      // Google Ads Conversion Tag for Live Test Purchase
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18108080300/some_conversion_id',
+          'value': 99.0,
+          'currency': 'INR'
+      });
+    </script>
+</head>
+<body>
+
+<div class="success-card">
+    <div class="icon">🎉</div>
+    <h1>Registration Successful!</h1>
+    <p>Your slot for the live test is confirmed. Get ready to compete!</p>
+
+    <div class="details-box">
+        <div class="detail-item"><strong>Student:</strong> <span id="userName">Student</span></div>
+        <div class="detail-item"><strong>Test:</strong> <span id="sessionTitle">Live Olympiad Test</span></div>
+        <div class="detail-item"><strong>Class:</strong> <span id="sessionClass">N/A</span></div>
+        <div class="detail-item"><strong>Subject:</strong> <span id="sessionSubject">N/A</span></div>
+        <div class="detail-item"><strong>Date & Time:</strong> <span id="sessionDateTime">TBD</span></div>
+        <div class="detail-item"><strong>Payment Status:</strong> <span style="color: #10b981; font-weight: 800;">SUCCESSFUL</span></div>
+    </div>
+
+    <div class="actions">
+        <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+        <a href="chapterwise.html" class="btn btn-secondary">Start Practice</a>
+        <a href="index.html" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Fetch the data already prepared by live.html during Razorpay success
+        const successDataStr = localStorage.getItem("paymentSuccessData");
+        
+        if (successDataStr) {
+            try {
+                const data = JSON.parse(successDataStr);
+                
+                document.getElementById("userName").innerText = data.userName || "Student";
+                document.getElementById("sessionTitle").innerText = data.sessionTitle || "Live Olympiad Test";
+                
+                let displayClass = data.sessionClass || "N/A";
+                if (displayClass !== "N/A" && !displayClass.toString().toLowerCase().includes("class")) {
+                    displayClass = "Class " + displayClass;
+                }
+                document.getElementById("sessionClass").innerText = displayClass.toString().replace(/class/i, 'Class ').trim();
+
+                let subjectName = data.sessionSubject || "N/A";
+                if (subjectName !== "N/A") {
+                    subjectName = subjectName.charAt(0).toUpperCase() + subjectName.slice(1);
+                }
+                document.getElementById("sessionSubject").innerText = subjectName;
+                document.getElementById("sessionDateTime").innerText = `${data.sessionDate || 'TBD'} at ${data.sessionTime || 'TBD'}`;
+            } catch (e) {
+                console.error("Failed to parse success data:", e);
+            }
+        }
+    });
+</script>
+</body>
+</html>
