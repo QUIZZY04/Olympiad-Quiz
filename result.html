@@ -471,11 +471,16 @@ function escapeHtml(text) {
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
-window.openHintSolutionModal = (hint, solution, questionNumber) => {
-    document.getElementById("hintSolutionModalTitle").innerText = `Question ${questionNumber} Details`;
-    document.getElementById("modalHintText").innerHTML = hint; // Use innerHTML as hint/sol might contain HTML
-    document.getElementById("modalSolutionText").innerHTML = solution; // Use innerHTML
-    document.getElementById("hintSolutionModal").style.display = "flex";
+window.openHintSolutionModal = (index) => {
+    const data = localStorage.getItem("quizResult");
+    if (data) {
+        const res = JSON.parse(data);
+        const q = res.questions[index];
+        document.getElementById("hintSolutionModalTitle").innerText = `Question ${index + 1} Details`;
+        document.getElementById("modalHintText").innerHTML = q.hint || "N/A";
+        document.getElementById("modalSolutionText").innerHTML = q.sol || "N/A";
+        document.getElementById("hintSolutionModal").style.display = "flex";
+    }
 };
 
 window.closeHintSolutionModal = () => {
@@ -633,7 +638,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 <span class="status-badge ${isCorrect?'status-correct':'status-wrong'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
             </td>
             <td style="text-align: center; vertical-align: middle;">
-                <button class="action-btn" style="background:var(--brand);color:#fff; padding: 8px 15px; font-size: 12px; margin: 0;" onclick="openHintSolutionModal('${escapeHtml(q.hint || "N/A")}', '${escapeHtml(q.sol || "N/A")}', ${i + 1})">
+                <button class="action-btn" style="background:var(--brand);color:#fff; padding: 8px 15px; font-size: 12px; margin: 0;" onclick="openHintSolutionModal(${i})">
                     View Solution
                 </button>
             </td>
