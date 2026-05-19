@@ -402,7 +402,15 @@
             // Use regex to safely extract raw SVGs ignoring hidden spaces or HTML wrappers
             const svgMatch = imgData.match(/(<svg[\s\S]*<\/svg>)/i);
             if (svgMatch) {
-                try { imgData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgMatch[1]))); } catch(e) {}
+                let rawSvg = svgMatch[1];
+                if (!rawSvg.includes('xmlns=') && !rawSvg.includes('xmlns:')) {
+                    rawSvg = rawSvg.replace(/<svg/i, '<svg xmlns="http://www.w3.org/2000/svg" ');
+                }
+                rawSvg = rawSvg.replace(/(<text[^>]*>)([\s\S]*?)(<\/text>)/gi, function(match, openTag, innerContent, closeTag) {
+                    let safeText = innerContent.replace(/θ/g, 'theta').replace(/α/g, 'alpha').replace(/ω/g, 'omega').replace(/μ/g, 'mu').replace(/π/g, 'pi').replace(/√/g, 'sqrt');
+                    return openTag + safeText + closeTag;
+                });
+                try { imgData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(rawSvg))); } catch(e) {}
             }
             const img = document.createElement("img");
             img.src = imgData;
