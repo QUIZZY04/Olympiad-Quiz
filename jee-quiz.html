@@ -400,18 +400,27 @@
         if (q.image_url || q.image_name) {
             let imgData = (q.image_url || q.image_name || "").trim();
 
+            // Decode safely if escaped by JSON/DB
+            if (imgData.includes("&lt;svg") || imgData.includes("&lt;SVG")) {
+                imgData = imgData.replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"').replace(/&amp;/gi, '&');
+            }
+
+            // Reliably extract raw SVG regardless of case, newlines, or data URI prefixes
+            const svgMatch = imgData.match(/(<\s*svg[\s\S]*<\/\s*svg\s*>)/i);
+
             if (
                 imgData.startsWith("data:image/svg+xml;base64,") ||
                 imgData.startsWith("data:image/png;base64,") ||
-                imgData.startsWith("data:image/jpeg;base64,")
+                imgData.startsWith("data:image/jpeg;base64,") ||
+                (imgData.startsWith("data:image/") && !svgMatch)
             ) {
                 // Use directly without modification
-            } else if (imgData.includes("<svg")) {
-                let rawSvg = imgData;
+            } else if (svgMatch) {
+                let rawSvg = svgMatch[1];
 
-                if (!rawSvg.includes('xmlns=')) {
+                if (!rawSvg.includes('xmlns=') && !rawSvg.includes('xmlns:')) {
                     rawSvg = rawSvg.replace(
-                        /<svg/i,
+                        /<\s*svg/i,
                         '<svg xmlns="http://www.w3.org/2000/svg" '
                     );
                 }
