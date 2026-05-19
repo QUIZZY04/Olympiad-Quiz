@@ -1455,7 +1455,24 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
 
             // Open the clicked one if it wasn't already active
-            if (!wasActive) panel.classList.add('active');
+            if (!wasActive) {
+                panel.classList.add('active');
+                
+                // Auto-load user activity for current date when opening its panel
+                if (header.innerText.includes('User Activity Log')) {
+                    const dateInput = document.getElementById('activityDateFilter');
+                    if (!dateInput.value) {
+                        const today = new Date();
+                        const yyyy = today.getFullYear();
+                        const mm = String(today.getMonth() + 1).padStart(2, '0');
+                        const dd = String(today.getDate()).padStart(2, '0');
+                        dateInput.value = `${yyyy}-${mm}-${dd}`;
+                    }
+                    if (typeof window.initUserActivityLog === 'function') {
+                        window.initUserActivityLog();
+                    }
+                }
+            }
         });
     });
     // Open the first panel (JSON import) by default
