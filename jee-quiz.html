@@ -399,8 +399,10 @@
         imgDiv.innerHTML = ""; 
         if (q.image_url || q.image_name) {
             let imgData = (q.image_url || q.image_name).trim();
-            if (imgData.toLowerCase().startsWith("<svg")) {
-                try { imgData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(imgData))); } catch(e) {}
+            // Use regex to safely extract raw SVGs ignoring hidden spaces or HTML wrappers
+            const svgMatch = imgData.match(/(<svg[\s\S]*<\/svg>)/i);
+            if (svgMatch) {
+                try { imgData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgMatch[1]))); } catch(e) {}
             }
             const img = document.createElement("img");
             img.src = imgData;
