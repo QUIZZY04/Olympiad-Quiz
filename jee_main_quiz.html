@@ -441,11 +441,22 @@
         document.getElementById("qText").innerHTML = q.questionText || q.question;
         
         const imgDiv = document.getElementById("qImage");
+        imgDiv.innerHTML = "";
         if (q.image_url || q.image_name) {
-            imgDiv.innerHTML = `<img src="${q.image_url || q.image_name}" style="max-width:100%; max-height:300px; border-radius:8px; border:1px solid #ccc; object-fit: contain;">`;
+            let imgData = (q.image_url || q.image_name).trim();
+            if (imgData.toLowerCase().startsWith("<svg")) {
+                try { imgData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(imgData))); } catch(e) {}
+            }
+            const img = document.createElement("img");
+            img.src = imgData;
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "300px";
+            img.style.borderRadius = "8px";
+            img.style.border = "1px solid #ccc";
+            img.style.objectFit = "contain";
+            imgDiv.appendChild(img);
             imgDiv.style.display = "block";
         } else {
-            imgDiv.innerHTML = "";
             imgDiv.style.display = "none";
         }
 

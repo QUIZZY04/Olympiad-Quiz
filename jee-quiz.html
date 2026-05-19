@@ -398,8 +398,12 @@
         const imgDiv = document.getElementById("qImage");
         imgDiv.innerHTML = ""; 
         if (q.image_url || q.image_name) {
+            let imgData = (q.image_url || q.image_name).trim();
+            if (imgData.toLowerCase().startsWith("<svg")) {
+                try { imgData = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(imgData))); } catch(e) {}
+            }
             const img = document.createElement("img");
-            img.src = q.image_url || q.image_name;
+            img.src = imgData;
             img.style.maxWidth = "100%";
             img.style.maxHeight = "300px";
             img.style.borderRadius = "8px";
