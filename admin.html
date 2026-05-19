@@ -1578,7 +1578,7 @@ window.uploadImageFolder = async function() {
     uploadedImageUrls = {}; 
 
     for (const file of files) {
-        if (file.name.startsWith('.') || !file.type.startsWith('image/')) continue;
+        if (file.name.startsWith('.') || (!file.type.startsWith('image/') && !file.name.toLowerCase().endsWith('.svg'))) continue;
         const idKey = file.name.split('.').slice(0, -1).join('.');
         const storageRef = ref(storage, `question_images/${file.name}`);
         try {
@@ -2267,6 +2267,9 @@ window.saveJmnTest = async function() {
         if (!Array.isArray(questions) || questions.length === 0) {
             throw new Error("JSON must be a non-empty array of question objects.");
         }
+        questions.forEach(q => {
+            if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+        });
     } catch(e) {
         alert("Invalid JSON format: " + e.message);
         return;
@@ -2331,6 +2334,10 @@ window.saveFullJmnTest = async function() {
     const combinedQuestions = [...physicsQ, ...mathsQ, ...chemistryQ];
     
     const ids = combinedQuestions.map(q => q.id).filter(id => !!id);
+    combinedQuestions.forEach(q => {
+        if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+    });
+
     const uniqueIds = new Set(ids);
     if(ids.length !== uniqueIds.size) {
         if(!confirm(`⚠️ Warning: Detected ${ids.length - uniqueIds.size} duplicate IDs in the combined test. Do you want to continue anyway?`)) {
@@ -2432,6 +2439,9 @@ window.saveJeeTest = async function() {
         if (!Array.isArray(questions) || questions.length === 0) {
             throw new Error("JSON must be a non-empty array of question objects.");
         }
+        questions.forEach(q => {
+            if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+        });
     } catch(e) {
         alert("Invalid JSON format: " + e.message);
         return;
@@ -2574,6 +2584,9 @@ window.saveCompetitiveTest = async function() {
     try {
         questions = JSON.parse(jsonText);
         if (!Array.isArray(questions) || questions.length === 0) throw new Error("JSON must be a non-empty array.");
+        questions.forEach(q => {
+            if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+        });
     } catch(e) {
         status.innerText = "❌ Invalid JSON format: " + e.message; status.style.color = "red"; return;
     }

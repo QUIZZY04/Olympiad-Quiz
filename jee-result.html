@@ -450,6 +450,8 @@
                 
                 let qSectionText = q.subject ? `[${q.subject}${q.section ? ' - Section ' + q.section : ''}] ` : "";
 
+                const imgHtml = (q.image_url || q.image_name) ? `<div style="text-align: left; margin: 15px 0;"><img src="${q.image_url || q.image_name}" style="max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid var(--border); object-fit: contain;"></div>` : "";
+
                 html += `
                 <div class="solution-block">
                     <div class="q-header">
@@ -460,7 +462,8 @@
                         </div>
                         <div class="q-marks ${markClass}">Marks: ${earned > 0 ? '+' : ''}${earned}</div>
                     </div>
-                    <div class="q-text">${q.questionText}</div>
+                    <div class="q-text">${q.questionText || q.question || ""}</div>
+                    ${imgHtml}
                     <div>${optionsHtml}</div>
                     <div class="solution-content">
                         <h4>💡 Detailed Solution</h4>

@@ -97,6 +97,7 @@
         </div>
         <div class="question-body">
             <div id="qText">Loading question...</div>
+            <div id="qImage" style="display:none; margin: 15px 0; text-align: center;"></div>
             <div id="optionsContainer" class="options-container"></div>
         </div>
         
@@ -198,6 +199,15 @@
         document.getElementById("qNumber").innerHTML = `Question No. ${currentQ + 1}`;
         document.getElementById("qText").innerHTML = q.question;
         
+        const imgDiv = document.getElementById("qImage");
+        if (q.image_url || q.image_name) {
+            imgDiv.innerHTML = `<img src="${q.image_url || q.image_name}" style="max-width:100%; max-height:300px; border-radius:8px; border:1px solid #ccc; object-fit: contain;">`;
+            imgDiv.style.display = "block";
+        } else {
+            imgDiv.innerHTML = "";
+            imgDiv.style.display = "none";
+        }
+
         const container = document.getElementById("optionsContainer");
         container.innerHTML = "";
         
