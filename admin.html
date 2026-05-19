@@ -2247,6 +2247,38 @@ window.calculateNextFullJmnTestNumber = async function() {
     }
 };
 
+// ADDED HELPER: Ensures JEE SVG images render flawlessly by fixing Unicode/Maths encoding
+window.processSafeSVG = function(inputString) {
+    if (!inputString || typeof inputString !== 'string') return inputString;
+    
+    let svgContent = '';
+    const trimmedInput = inputString.trim();
+    
+    if (trimmedInput.toLowerCase().startsWith('<svg')) {
+        svgContent = trimmedInput;
+    } else if (trimmedInput.toLowerCase().startsWith('data:image/svg+xml,')) {
+        svgContent = decodeURIComponent(trimmedInput.substring(19));
+    } else if (trimmedInput.toLowerCase().startsWith('data:image/svg+xml;base64,')) {
+        try { svgContent = decodeURIComponent(escape(atob(trimmedInput.substring(26)))); } 
+        catch(e) { try { svgContent = atob(trimmedInput.substring(26)); } catch(err) { return inputString; } }
+    } else {
+        return inputString;
+    }
+    
+    // 1. SAFE SVG TEXT: Replace math symbols only inside <text> tags
+    svgContent = svgContent.replace(/(<text[^>]*>)([\s\S]*?)(<\/text>)/gi, function(match, openTag, innerContent, closeTag) {
+        let safeText = innerContent.replace(/θ/g, 'theta').replace(/α/g, 'alpha').replace(/ω/g, 'omega').replace(/μ/g, 'mu').replace(/π/g, 'pi').replace(/√/g, 'sqrt');
+        return openTag + safeText + closeTag;
+    });
+        
+    // 4. SVG VALIDATION: Ensure xmlns is present
+    if (!svgContent.includes('xmlns=') && !svgContent.includes('xmlns:')) { svgContent = svgContent.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" '); }
+    
+    // 3. SAFE UTF-8 ENCODING
+    try { return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgContent))); } 
+    catch (e) { throw new Error("SVG encoding failed: Corrupted image data."); }
+};
+
 // ADDED SECTION: JEE MAIN & NEET ADMIN LOGIC
 window.saveJmnTest = async function() {
     const id = document.getElementById("editJmnTestId").value;
@@ -2269,6 +2301,8 @@ window.saveJmnTest = async function() {
         }
         questions.forEach(q => {
             if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+            if (q.image_url) q.image_url = window.processSafeSVG(q.image_url);
+            if (q.image_name) q.image_name = window.processSafeSVG(q.image_name);
         });
     } catch(e) {
         alert("Invalid JSON format: " + e.message);
@@ -2336,6 +2370,8 @@ window.saveFullJmnTest = async function() {
     const ids = combinedQuestions.map(q => q.id).filter(id => !!id);
     combinedQuestions.forEach(q => {
         if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+        if (q.image_url) q.image_url = window.processSafeSVG(q.image_url);
+        if (q.image_name) q.image_name = window.processSafeSVG(q.image_name);
     });
 
     const uniqueIds = new Set(ids);
@@ -2441,6 +2477,8 @@ window.saveJeeTest = async function() {
         }
         questions.forEach(q => {
             if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+            if (q.image_url) q.image_url = window.processSafeSVG(q.image_url);
+            if (q.image_name) q.image_name = window.processSafeSVG(q.image_name);
         });
     } catch(e) {
         alert("Invalid JSON format: " + e.message);
@@ -2586,6 +2624,8 @@ window.saveCompetitiveTest = async function() {
         if (!Array.isArray(questions) || questions.length === 0) throw new Error("JSON must be a non-empty array.");
         questions.forEach(q => {
             if (q.id && uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
+            if (q.image_url) q.image_url = window.processSafeSVG(q.image_url);
+            if (q.image_name) q.image_name = window.processSafeSVG(q.image_name);
         });
     } catch(e) {
         status.innerText = "❌ Invalid JSON format: " + e.message; status.style.color = "red"; return;
