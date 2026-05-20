@@ -258,6 +258,7 @@
                 <div class="nav-dropdown-content">
                     <a href="mock.html">Mock Tests</a>
                     <a href="chapterwise.html">Chapterwise</a>
+                    <a href="profile.html">My Profile</a>
                 <a href="hots.html">H.O.T.S Problems</a>
                     <a href="study.html">Study Material</a>
                     <a href="blog.html">Success Guides</a>
@@ -289,6 +290,7 @@
                 <div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
                     <a href="chapterwise.html" class="hero-btn">Start Practice</a>
                     <a href="analytics.html" class="hero-btn-outline">View Analytics</a>
+                    <a href="profile.html" class="hero-btn" style="background: #1e293b; color: #ffffff; border: 1px solid #334155; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">👤 Student Profile</a>
                 </div>
             </div>
             <div class="hero-stats-grid">
@@ -530,6 +532,23 @@
         </div>
     </div>
 
+    <!-- Incomplete Profile Modal -->
+    <div id="incompleteProfileModal" class="modal-overlay" style="display:none; z-index: 5000;">
+        <div class="modal-content" style="max-width: 480px; text-align: center; padding: 40px; border-top: 4px solid var(--brand);">
+            <div style="font-size: 50px; line-height: 1; margin-bottom: 15px; color: var(--brand);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h2 style="color: var(--text); margin-bottom: 10px; font-weight: 800; font-size: 24px;">Complete Your Profile</h2>
+            <p style="color: var(--muted); margin-bottom: 25px; font-size: 1rem; line-height: 1.6;">
+                Please add your details to get personalized certificates, accurate rankings, and a better experience.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <a href="profile.html" style="padding: 14px; border-radius: 12px; background: var(--brand); color: white; font-weight: 700; text-decoration: none; display: block; transition: 0.2s; box-shadow: 0 4px 15px rgba(255,107,0,0.25);">Update Profile Now</a>
+                <button onclick="dismissIncompleteProfileModal()" style="padding: 12px; border-radius: 12px; background: transparent; color: var(--muted); font-weight: 700; border: none; cursor: pointer; font-size: 14px;">Remind Me Later</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Push Notification Prompt Modal -->
     <div id="pushPromptModal" class="modal-overlay" style="display:none; z-index: 3000;">
         <div class="modal-content" style="text-align: center; max-width: 400px;">
@@ -621,6 +640,14 @@ onAuthStateChanged(auth, async (user) => {
             }
             if (data.name) {
                 document.getElementById("userGreeting").innerText = `Welcome, ${data.name}!`;
+            }
+
+            // Incomplete Profile Check
+            const profileComplete = data.name && (data.studentClass || data.class) && data.schoolName;
+            if (!profileComplete && !isAdmin && !sessionStorage.getItem('profilePromptDismissed')) {
+                setTimeout(() => {
+                    document.getElementById('incompleteProfileModal').style.display = 'flex';
+                }, 2500); // Delay to not be too intrusive
             }
             
             // --- Dashboard Visibility Logic for Grade 11 & 12 ---
@@ -850,6 +877,11 @@ window.openFeedbackModal = () => {
 };
 window.closeFeedbackModal = () => {
     document.getElementById('dashboardFeedbackModal').style.display = 'none';
+};
+
+window.dismissIncompleteProfileModal = () => {
+    sessionStorage.setItem('profilePromptDismissed', 'true');
+    document.getElementById('incompleteProfileModal').style.display = 'none';
 };
 window.submitDashboardFeedback = async () => {
     const rating = document.getElementById("dbFbRating").value;
