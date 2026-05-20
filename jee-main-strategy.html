@@ -87,9 +87,38 @@
     </style>
 </head>
 <body>
-    <nav style="background: rgba(255, 255, 255, 0.95); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; justify-content:space-between; align-items:center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);">
-        <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none;">Olympiad Portal</a>
-        <a href="jee_main.html" style="background: var(--brand); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s;">JEE Main Hub</a>
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+        <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
+        <div class="nav-important"><a href="dashboard.html">Dash</a><a href="login.html" id="navAuthLinkMobile">Login</a></div>
+        <div class="nav-links">
+            <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+            <a href="dashboard.html">Dashboard</a>
+            <div class="nav-dropdown">
+                <a href="#" class="dropbtn">Students Zone</a>
+                <div class="nav-dropdown-content">
+                    <a href="mock.html">Mock Tests</a>
+                    <a href="chapterwise.html">Chapterwise</a>
+                    <a href="study.html">Study Material</a>
+                    <a href="blog.html">Success Guides</a>
+                </div>
+            </div>
+            <a href="live.html">Live Arena</a>
+            <div class="nav-dropdown">
+                <a href="#" class="dropbtn active" style="color: #2563eb;">Senior Exams</a>
+                <div class="nav-dropdown-content">
+                    <a href="jee_main.html" style="color: #2563eb !important; background: #eff6ff !important;">JEE Main</a>
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="neet.html">NEET</a>
+                    <a href="jee-main-pyq.html">JEE PYQs</a>
+                </div>
+            </div>
+            <a href="leaderboard.html">Leaderboard</a>
+            <div class="nav-actions">
+                <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600; text-decoration:none;">Admin</a>
+                <a href="login.html" class="login-link">Log in</a>
+            </div>
+        </div>
     </nav>
 
     <div class="container">
@@ -155,5 +184,40 @@
     <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);">
         <p style="font-size:14px;margin:0;font-weight: 500;">© 2026 Olympiad Portal. All rights reserved.</p>
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        
+        const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.querySelectorAll('.login-link').forEach(el => {
+                    el.onclick = async () => { if(confirm("Logout?")) { await signOut(auth); window.location.replace("login.html"); } };
+                    el.innerText = "Logout";
+                    el.removeAttribute("href");
+                    el.style.background = "#dc2626";
+                    el.style.color = "white";
+                    el.style.cursor = "pointer";
+                });
+                const mobileAuthLink = document.getElementById("navAuthLinkMobile");
+                if (mobileAuthLink) {
+                    mobileAuthLink.onclick = async () => { if(confirm("Logout?")) { await signOut(auth); window.location.replace("login.html"); } };
+                    mobileAuthLink.innerText = "Logout";
+                    mobileAuthLink.removeAttribute("href");
+                }
+                if (user.email === "madhhu52@gmail.com") {
+                    const adminTab = document.getElementById("adminTab");
+                    if (adminTab) adminTab.style.display = "inline";
+                }
+            }
+        });
+    </script>
+    <script>
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+    </script>
 </body>
 </html>
