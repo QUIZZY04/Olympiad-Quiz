@@ -703,6 +703,49 @@ font-size:28px;
     .sticky-actions { bottom: 15px; right: 15px; flex-direction: row; gap: 8px; z-index: 99999; }
     .sticky-btn { padding: 8px 14px; font-size: 12px; }
 }
+
+/* Testimonial Table Styles */
+.testimonial-table-container {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+.testimonial-table-container.expanded {
+    max-height: 450px;
+    overflow-y: auto;
+}
+.testimonial-table-container.expanded::-webkit-scrollbar {
+    width: 6px;
+}
+.testimonial-table-container.expanded::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+.testimonial-table-container.expanded::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+#testimonialTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+#testimonialTable th, #testimonialTable td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+#testimonialTable th {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 </style>
 </head>
 
@@ -1000,42 +1043,24 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
         </div>
     </div>
 
-    <div class="grid" id="testimonialGrid">
-        <div class="card" style="display: flex; flex-direction: column;">
-            <div style="color: #b45309; font-size: 15px; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <span>Rating</span> <span style="letter-spacing: 2px; font-size: 18px;">★★★★★</span>
-            </div>
-            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"The platform's highly structured mock tests and detailed analytics transformed my preparation. I secured an International Rank in IMO thanks to the H.O.T.S problems and Live Arena practice!"</p>
-            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
-                <div style="width: 40px; height: 40px; background: rgba(255, 107, 0, 0.1); color: #c2410c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">S</div>
-                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Siddharth M.</strong><span style="color: var(--muted); font-size: 12px;">Class 8 Student, IMO Gold Medalist</span></div>
-            </div>
-        </div>
-        <div class="card" style="display: flex; flex-direction: column;">
-            <div style="color: #b45309; font-size: 15px; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <span>Rating</span> <span style="letter-spacing: 2px; font-size: 18px;">★★★★★</span>
-            </div>
-            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"OlympiadQuiz is simply the best free resource out there. The chapterwise quizzes pinpointed my exact weak areas, and the step-by-step solutions helped me clear all my concepts before the NSO exam."</p>
-            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
-                <div style="width: 40px; height: 40px; background: rgba(16, 185, 129, 0.1); color: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">A</div>
-                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Ananya V.</strong><span style="color: var(--muted); font-size: 12px;">Class 6 Student</span></div>
-            </div>
-        </div>
-        <div class="card" style="display: flex; flex-direction: column;">
-            <div style="color: #b45309; font-size: 15px; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <span>Rating</span> <span style="letter-spacing: 2px; font-size: 18px;">★★★★★</span>
-            </div>
-            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"As a parent, I am amazed by the quality of questions and the real-time ranking system. It sparked a healthy competitive spirit in my son, making him excited to study and practice every single day."</p>
-            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
-                <div style="width: 40px; height: 40px; background: rgba(56, 189, 248, 0.1); color: #0369a1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">K</div>
-                <div><strong style="color: var(--dark); display: block; font-size: 14px;">Rajesh K.</strong><span style="color: var(--muted); font-size: 12px;">Parent of Class 5 Student</span></div>
-            </div>
-        </div>
+    <div id="testimonialContainer" class="testimonial-table-container">
+        <table id="testimonialTable">
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Learner</th>
+                    <th style="width: 20%;">Rating</th>
+                    <th>Feedback</th>
+                </tr>
+            </thead>
+            <tbody id="testimonialTbody">
+                <!-- JS will populate this -->
+            </tbody>
+        </table>
     </div>
     
     <div style="text-align: center; margin-top: 35px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-        <button id="loadMoreTestimonialsBtn" onclick="window.renderMoreTestimonials()" class="btn" style="display: none; background: #7c2d12; color: #ffffff; font-weight: 700; border: none; box-shadow: 0 4px 15px rgba(124, 45, 18, 0.2); font-family: inherit;">See More Reviews</button>
-        <button id="loadLessTestimonialsBtn" onclick="window.renderLessTestimonials()" class="btn" style="display: none; background: #1e293b; color: #ffffff; font-weight: 700; border: none; box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2); font-family: inherit;">See Less Reviews</button>
+        <button id="loadMoreTestimonialsBtn" onclick="window.showMoreTestimonials()" class="btn" style="display: none; background: #7c2d12; color: #ffffff; font-weight: 700; border: none; box-shadow: 0 4px 15px rgba(124, 45, 18, 0.2); font-family: inherit;">See More Reviews</button>
+        <button id="loadLessTestimonialsBtn" onclick="window.showLessTestimonials()" class="btn" style="display: none; background: #1e293b; color: #ffffff; font-weight: 700; border: none; box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2); font-family: inherit;">See Less Reviews</button>
         <a href="signup.html" class="btn btn-main">Join Our Community Today</a>
     </div>
 </div>
@@ -1285,18 +1310,16 @@ window.submitDashboardFeedback = async () => {
 };
 
 let dynamicTestimonials = [];
-let displayedTestimonialsCount = 0;
-
 async function loadDynamicTestimonials() {
     try {
-        const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"), limit(50));
+        const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"), limit(300));
         const snap = await getDocs(q);
         
         let fetchedTestimonials = [];
         snap.forEach(doc => {
             const data = doc.data();
             // Filter for 4/5 stars with a reasonable length to ensure quality comments
-            if (data.suggestion && data.suggestion.length > 20 && (data.rating === "5 Star" || data.rating === "4 Star")) {
+            if (data.suggestion && data.suggestion.length > 5 && (data.rating === "5 Star" || data.rating === "4 Star")) {
                 fetchedTestimonials.push(data);
             }
         });
@@ -1305,21 +1328,33 @@ async function loadDynamicTestimonials() {
             const designerTestimonials = [
                 {
                     isDesigner: true, rating: "5 Star",
-                    suggestion: "The platform's highly structured mock tests and detailed analytics transformed my preparation. I secured an International Rank in IMO thanks to the H.O.T.S problems and Live Arena practice!",
-                    name: "Siddharth M.", role: "Class 8 Student, IMO Gold Medalist", initial: "S",
+                    suggestion: "Highly structured mock tests and detailed analytics. Secured an International Rank in IMO!",
+                    name: "Siddharth M.", role: "IMO Gold Medalist", initial: "S",
                     color: { bg: "rgba(255, 107, 0, 0.1)", text: "#c2410c" }
                 },
                 {
                     isDesigner: true, rating: "5 Star",
-                    suggestion: "OlympiadQuiz is simply the best free resource out there. The chapterwise quizzes pinpointed my exact weak areas, and the step-by-step solutions helped me clear all my concepts before the NSO exam.",
+                    suggestion: "Best free resource out there! Chapterwise quizzes and step-by-step solutions cleared all my concepts.",
                     name: "Ananya V.", role: "Class 6 Student", initial: "A",
                     color: { bg: "rgba(16, 185, 129, 0.1)", text: "#059669" }
                 },
                 {
                     isDesigner: true, rating: "5 Star",
-                    suggestion: "As a parent, I am amazed by the quality of questions and the real-time ranking system. It sparked a healthy competitive spirit in my son, making him excited to study and practice every single day.",
+                    suggestion: "Amazed by the quality of questions and the real-time ranking system. Highly recommended!",
                     name: "Rajesh K.", role: "Parent of Class 5 Student", initial: "K",
                     color: { bg: "rgba(56, 189, 248, 0.1)", text: "#0369a1" }
+                },
+                {
+                    isDesigner: true, rating: "5 Star",
+                    suggestion: "The H.O.T.S questions really challenged my thinking. Great platform for Olympiad prep!",
+                    name: "Priya T.", role: "Class 8 Student", initial: "P",
+                    color: { bg: "rgba(139, 92, 246, 0.1)", text: "#6d28d9" }
+                },
+                {
+                    isDesigner: true, rating: "4 Star",
+                    suggestion: "Very useful for JEE foundation. The UI is exactly like the real NTA exams.",
+                    name: "Rahul S.", role: "JEE Aspirant", initial: "R",
+                    color: { bg: "rgba(244, 63, 94, 0.1)", text: "#be185d" }
                 }
             ];
 
@@ -1327,24 +1362,47 @@ async function loadDynamicTestimonials() {
             let dIndex = 0;
             let fIndex = 0;
             
-            // Mix them: 1 Designer review, followed by 2 real user reviews, repeating
-            while(dIndex < designerTestimonials.length || fIndex < fetchedTestimonials.length) {
-                if (dIndex < designerTestimonials.length) dynamicTestimonials.push(designerTestimonials[dIndex++]);
-                if (fIndex < fetchedTestimonials.length) dynamicTestimonials.push(fetchedTestimonials[fIndex++]);
-                if (fIndex < fetchedTestimonials.length) dynamicTestimonials.push(fetchedTestimonials[fIndex++]);
+            // Mix them to achieve exactly 40% designed and 60% real
+            // For every 3 real reviews, we insert 2 designer reviews
+            while(fIndex < fetchedTestimonials.length) {
+                // Add 2 Designer reviews (loops safely if we run out)
+                for(let i = 0; i < 2; i++) {
+                    dynamicTestimonials.push(designerTestimonials[dIndex % designerTestimonials.length]);
+                    dIndex++;
+                }
+                // Add 3 Real reviews
+                for(let j = 0; j < 3; j++) {
+                    if (fIndex < fetchedTestimonials.length) {
+                        dynamicTestimonials.push(fetchedTestimonials[fIndex++]);
+                    }
+                }
             }
 
-            document.getElementById("testimonialGrid").innerHTML = ""; // Clear static ones
-            displayedTestimonialsCount = 0;
-            window.renderMoreTestimonials();
+            document.getElementById("testimonialTbody").innerHTML = ""; // Clear static ones
+            renderTestimonials(false);
         }
     } catch (e) {
         console.warn("Failed to load dynamic testimonials:", e);
     }
 }
 
-window.renderMoreTestimonials = function() {
-    const grid = document.getElementById("testimonialGrid");
+window.showMoreTestimonials = function() {
+    renderTestimonials(true);
+}
+
+window.showLessTestimonials = function() {
+    renderTestimonials(false);
+    const container = document.getElementById("testimonialContainer");
+    if (container) {
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+function renderTestimonials(showAll = false) {
+    const tbody = document.getElementById("testimonialTbody");
+    const container = document.getElementById("testimonialContainer");
+    tbody.innerHTML = ""; // Always clear and re-render
+
     const colors = [
         { bg: "rgba(139, 92, 246, 0.1)", text: "#6d28d9" },
         { bg: "rgba(244, 63, 94, 0.1)", text: "#be185d" },
@@ -1357,9 +1415,9 @@ window.renderMoreTestimonials = function() {
         return (unsafe || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     };
 
-    const nextCount = Math.min(displayedTestimonialsCount + 3, dynamicTestimonials.length);
+    const limit = showAll ? dynamicTestimonials.length : Math.min(3, dynamicTestimonials.length);
     
-    for (let i = displayedTestimonialsCount; i < nextCount; i++) {
+    for (let i = 0; i < limit; i++) {
         const data = dynamicTestimonials[i];
         const stars = data.rating === "5 Star" ? "★★★★★" : "★★★★☆";
         const initial = data.initial || (data.name ? data.name.charAt(0).toUpperCase() : "S");
@@ -1367,63 +1425,38 @@ window.renderMoreTestimonials = function() {
         const role = data.role || "Verified Learner";
         const color = data.isDesigner ? data.color : colors[i % colors.length];
         
-        const card = document.createElement("div");
-        card.className = "card";
-        card.style.display = "flex";
-        card.style.flexDirection = "column";
-        card.style.opacity = "0"; // Start hidden for animation
-        card.innerHTML = `
-            <div style="color: #b45309; font-size: 15px; margin-bottom: 10px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <span>Rating</span> <span style="letter-spacing: 2px; font-size: 18px;">${stars}</span>
-            </div>
-            <p style="font-style: italic; color: var(--dark); font-size: 15px; margin-bottom: 20px;">"${escapeHtml(data.suggestion)}"</p>
-            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
-                <div style="width: 40px; height: 40px; background: ${color.bg}; color: ${color.text}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">${escapeHtml(initial)}</div>
-                <div><strong style="color: var(--dark); display: block; font-size: 14px;">${escapeHtml(name)}</strong><span style="color: var(--muted); font-size: 12px;">${escapeHtml(role)}</span></div>
-            </div>
+        const row = document.createElement("tr");
+        row.style.opacity = "0"; // for animation
+        row.innerHTML = `
+            <td>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 40px; height: 40px; background: ${color.bg}; color: ${color.text}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0;">${escapeHtml(initial)}</div>
+                    <div><strong style="color: var(--dark); display: block; font-size: 14px;">${escapeHtml(name)}</strong><span style="color: var(--muted); font-size: 12px;">${escapeHtml(role)}</span></div>
+                </div>
+            </td>
+            <td>
+                <div style="color: #b45309; font-weight: 700; letter-spacing: 1px; white-space: nowrap;">${stars}</div>
+            </td>
+            <td>
+                <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">${escapeHtml(data.suggestion)}</p>
+            </td>
         `;
-        grid.appendChild(card);
+        tbody.appendChild(row);
         // Subtle staggered fade-in animation
-        card.animate([{ opacity: 0, transform: 'translateY(15px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 400, delay: (i - displayedTestimonialsCount) * 100, fill: 'forwards', easing: 'ease-out' });
+        row.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 400, delay: i * 80, fill: 'forwards', easing: 'ease-out' });
     }
     
-    displayedTestimonialsCount = nextCount;
-    
-    const loadMoreBtn = document.getElementById("loadMoreTestimonialsBtn");
-    const loadLessBtn = document.getElementById("loadLessTestimonialsBtn");
-    
-    if (loadMoreBtn) {
-        if (displayedTestimonialsCount >= dynamicTestimonials.length) {
-            loadMoreBtn.style.display = "none";
-        } else {
-            loadMoreBtn.style.display = "block";
-        }
-    }
-    
-    if (loadLessBtn) {
-        if (displayedTestimonialsCount > 3) {
-            loadLessBtn.style.display = "block";
-        } else {
-            loadLessBtn.style.display = "none";
-        }
-    }
-};
+    const moreBtn = document.getElementById("loadMoreTestimonialsBtn");
+    const lessBtn = document.getElementById("loadLessTestimonialsBtn");
 
-window.renderLessTestimonials = function() {
-    const grid = document.getElementById("testimonialGrid");
-    while (grid.children.length > 3) {
-        grid.removeChild(grid.lastChild);
-    }
-    displayedTestimonialsCount = 3;
-    
-    const loadMoreBtn = document.getElementById("loadMoreTestimonialsBtn");
-    const loadLessBtn = document.getElementById("loadLessTestimonialsBtn");
-    if (loadMoreBtn) loadMoreBtn.style.display = "block";
-    if (loadLessBtn) loadLessBtn.style.display = "none";
-    
-    const header = grid.previousElementSibling;
-    if (header) {
-        header.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (showAll) {
+        container.classList.add('expanded');
+        if (moreBtn) moreBtn.style.display = "none";
+        if (lessBtn) lessBtn.style.display = "block";
+    } else {
+        container.classList.remove('expanded');
+        if (moreBtn) moreBtn.style.display = dynamicTestimonials.length > 3 ? "block" : "none";
+        if (lessBtn) lessBtn.style.display = "none";
     }
 };
 
