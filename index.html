@@ -1516,9 +1516,9 @@ async function loadLiveSessionBanner() {
     }
 }
 
-// Execute on a 1.5s delay to ensure main page elements paint first without layout shifting
+// Load dynamic testimonials instantly (reduced delay from 1500ms to 100ms)
 setTimeout(loadLiveSessionBanner, 1000);
-setTimeout(loadDynamicTestimonials, 1500);
+setTimeout(loadDynamicTestimonials, 100);
 </script>
 
 </body>
