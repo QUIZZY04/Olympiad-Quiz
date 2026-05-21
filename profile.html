@@ -131,6 +131,7 @@
                     <div class="view-item"><label>State</label><p id="viewState">-</p></div>
                     <div class="view-item"><label>Pin Code</label><p id="viewPinCode">-</p></div>
                     <div class="view-item"><label>Date of Birth</label><p id="viewDob">-</p></div>
+                    <div class="view-item"><label>Gender</label><p id="viewGender">-</p></div>
                     <div class="view-item"><label>Grade/Class</label><p id="viewStudentClass">-</p></div>
                     <div class="view-item"><label>School Name and Address</label><p id="viewSchoolName">-</p></div>
                 </div>
@@ -145,28 +146,38 @@
                             <input type="text" id="studentName" required>
                         </div>
                         <div class="form-group full-width">
-                            <label for="fatherName">Father's Name</label>
-                            <input type="text" id="fatherName">
+                            <label for="fatherName">Father's Name *</label>
+                            <input type="text" id="fatherName" required>
                         </div>
                         <div class="form-group full-width">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" placeholder="House No, Street, Area">
+                            <label for="address">Address *</label>
+                            <input type="text" id="address" placeholder="House No, Street, Area" required>
                         </div>
                         <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" placeholder="e.g. Mumbai">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" required>
+                                <option value="" disabled selected>Select...</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="state">State</label>
-                            <input type="text" id="state" placeholder="e.g. Maharashtra">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" placeholder="e.g. Mumbai" required>
                         </div>
                         <div class="form-group">
-                            <label for="pinCode">Pin Code</label>
-                            <input type="text" id="pinCode" pattern="\d{6}" title="Enter a 6-digit pin code">
+                            <label for="state">State *</label>
+                            <input type="text" id="state" placeholder="e.g. Maharashtra" required>
                         </div>
                         <div class="form-group">
-                            <label for="dob">Date of Birth</label>
-                            <input type="date" id="dob">
+                            <label for="pinCode">Pin Code *</label>
+                            <input type="text" id="pinCode" pattern="\d{6}" title="Enter a 6-digit pin code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth *</label>
+                            <input type="date" id="dob" required>
                         </div>
                         <div class="form-group">
                             <label for="studentClass">Grade/Class *</label>
@@ -272,6 +283,7 @@
                 document.getElementById('state').value = data.state || '';
                 document.getElementById('pinCode').value = data.pinCode || '';
                 document.getElementById('dob').value = data.dob || '';
+                document.getElementById('gender').value = data.gender || '';
                 document.getElementById('studentClass').value = data.studentClass || data.class || '';
                 document.getElementById('schoolName').value = data.schoolName || '';
 
@@ -283,6 +295,7 @@
                 document.getElementById('viewState').innerText = data.state || '-';
                 document.getElementById('viewPinCode').innerText = data.pinCode || '-';
                 document.getElementById('viewDob').innerText = data.dob ? new Date(data.dob).toLocaleDateString('en-GB') : '-';
+                document.getElementById('viewGender').innerText = data.gender || '-';
                 document.getElementById('viewStudentClass').innerText = (data.studentClass || data.class || '').replace('class', 'Class ') || '-';
                 document.getElementById('viewSchoolName').innerText = data.schoolName || '-';
 
@@ -352,6 +365,7 @@
                 state: document.getElementById('state').value.trim(),
                 pinCode: document.getElementById('pinCode').value.trim(),
                 dob: document.getElementById('dob').value,
+                gender: document.getElementById('gender').value,
                 studentClass: document.getElementById('studentClass').value,
                 schoolName: document.getElementById('schoolName').value.trim(),
                 photoURL: photoURL,
@@ -359,8 +373,8 @@
             };
 
             // Validate required fields
-            if (!profileData.name || !profileData.studentClass || !profileData.schoolName) {
-                throw new Error("Student Name, Class, and School Name are required fields.");
+            if (!profileData.name || !profileData.fatherName || !profileData.address || !profileData.city || !profileData.state || !profileData.pinCode || !profileData.dob || !profileData.gender || !profileData.studentClass || !profileData.schoolName) {
+                throw new Error("All fields are required. Please ensure everything is filled out.");
             }
 
             await setDoc(doc(db, "users", uid), profileData, { merge: true });

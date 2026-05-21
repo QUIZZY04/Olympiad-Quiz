@@ -1124,12 +1124,13 @@ border-top:1px solid var(--border);
                             <th>Name</th>
                             <th>Email & Phone</th>
                             <th>Grade</th>
+                            <th>Gender</th>
                             <th>Joined</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="studentProfilesTable">
-                        <tr><td colspan="6" style="text-align:center; color: var(--muted);">Click "Search / Refresh" to load profiles.</td></tr>
+                        <tr><td colspan="7" style="text-align:center; color: var(--muted);">Click "Search / Refresh" to load profiles.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -3834,7 +3835,7 @@ window.loadStudentProfiles = async function() {
     const tbody = document.getElementById("studentProfilesTable");
     const searchInput = document.getElementById("profileSearchInput").value.trim().toLowerCase();
     
-    tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>Loading profiles...</td></tr>";
+    tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>Loading profiles...</td></tr>";
     
     try {
         const usersQ = query(collection(db, "users"), orderBy("createdAt", "desc"), limit(500));
@@ -3859,6 +3860,7 @@ window.loadStudentProfiles = async function() {
             const searchableString = `${name} ${email} ${phone}`.toLowerCase();
             if (searchInput && !searchableString.includes(searchInput)) return;
             
+            const gender = data.gender || "N/A";
             const grade = data.class || data.studentClass || "N/A";
             const joined = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString("en-GB") : "N/A";
             const imgUrl = data.profileImage || data.profileImageUrl || data.photoURL || "favicon.png";
@@ -3870,6 +3872,7 @@ window.loadStudentProfiles = async function() {
                 <td><b>${name}</b></td>
                 <td><div style="font-size:12px;">✉️ ${email}<br>📞 ${phone}</div></td>
                 <td>${grade.toString().replace('class', 'Class ')}</td>
+                <td>${gender}</td>
                 <td>${joined}</td>
                 <td><button class="upload" style="background:#10b981; padding:6px 12px; font-size:12px; margin:0;" onclick="viewStudentProfile('${safeData}')">View Profile</button></td>
             </tr>`;
@@ -3877,16 +3880,16 @@ window.loadStudentProfiles = async function() {
         });
         
         if (found === 0) {
-            tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No matching profiles found.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No matching profiles found.</td></tr>";
         } else {
             tbody.innerHTML = html;
         }
     } catch (e) {
         console.error("Error loading profiles:", e);
         if (e.message.includes("requires an index")) {
-            tbody.innerHTML = `<tr><td colspan='6' style='text-align:center; color: var(--danger);'>Index required for sorting. Check Firebase console.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Index required for sorting. Check Firebase console.</td></tr>`;
         } else {
-            tbody.innerHTML = `<tr><td colspan='6' style='text-align:center; color: var(--danger);'>Error: ${e.message}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error: ${e.message}</td></tr>`;
         }
     }
 };
