@@ -269,6 +269,7 @@ border-top:1px solid var(--border);
         <a href="#hots-admin-section" style="color:#d946ef;">HOTS Management</a>
         <a href="#jee-pyq-admin-section" style="color:#0ea5e9;">JEE PYQs</a>
         <a href="#senior-admin-section" style="color:#8b5cf6;">Senior Upload</a>
+        <a href="#student-profiles-section" style="color:#10b981;">Student Profiles</a>
         <div class="nav-actions">
             <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
         </div>
@@ -1101,6 +1102,40 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <!-- STUDENT PROFILES SECTION -->
+    <div id="student-profiles-section" class="panel" style="border-top: 2px solid #10b981;">
+        <div class="panel-header">
+            <h2 style="color:#10b981;">🧑‍🎓 Student Profiles</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">View and search through registered student profiles.</p>
+            <div style="display:grid; grid-template-columns: 1fr auto; gap:15px; align-items:end; margin-bottom:20px;">
+                <div>
+                    <label>Search Name, Email or Phone</label>
+                    <input type="text" id="profileSearchInput" placeholder="Enter name, email, phone..." onkeydown="if(event.key==='Enter') loadStudentProfiles()">
+                </div>
+                <button class="upload" style="background: #10b981;" onclick="loadStudentProfiles()">Search / Refresh</button>
+            </div>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Email & Phone</th>
+                            <th>Grade</th>
+                            <th>Joined</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentProfilesTable">
+                        <tr><td colspan="6" style="text-align:center; color: var(--muted);">Click "Search / Refresh" to load profiles.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <!-- USER ACTIVITY SECTION -->
     <div class="panel" style="border-top: 2px solid var(--accent);">
         <div class="panel-header">
@@ -1247,6 +1282,16 @@ border-top:1px solid var(--border);
         <input type="date" id="editCouponExpiry">
         <button class="upload" onclick="saveCouponEdit()">Save Changes</button>
         <button class="delete" onclick="closeCouponEdit()">Cancel</button>
+    </div>
+</div>
+
+<div id="viewProfileModal" class="modal">
+    <div class="modal-content" style="max-width: 500px; text-align: center;">
+        <h2 style="margin-bottom: 10px; color: var(--brand);">Student Profile</h2>
+        <div id="profileDetailsContent" style="margin-top: 20px; text-align: left;"></div>
+        <div style="display: flex; gap: 10px; margin-top: 25px;">
+            <button class="delete" style="width: 100%;" onclick="closeProfileModal()">Close</button>
+        </div>
     </div>
 </div>
 
@@ -1470,6 +1515,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     if (typeof window.initUserActivityLog === 'function') {
                         window.initUserActivityLog();
+                    }
+                }
+                
+                if (header.innerText.includes('Student Profiles')) {
+                    if (document.getElementById('studentProfilesTable').innerText.includes('Click')) {
+                        window.loadStudentProfiles();
                     }
                 }
             }
@@ -3777,6 +3828,113 @@ window.loadVideos = async function() {
 
 window.deleteVideo = async function(id) {
     if (confirm("Are you sure you want to delete this video?")) { await deleteDoc(doc(db, "video_tutorials", id)); window.loadVideos(); }
+};
+
+window.loadStudentProfiles = async function() {
+    const tbody = document.getElementById("studentProfilesTable");
+    const searchInput = document.getElementById("profileSearchInput").value.trim().toLowerCase();
+    
+    tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>Loading profiles...</td></tr>";
+    
+    try {
+        const usersQ = query(collection(db, "users"), orderBy("createdAt", "desc"), limit(500));
+        const snap = await getDocs(usersQ);
+        
+        let html = "";
+        let found = 0;
+        const seenKeys = new Set();
+        
+        snap.forEach(docSnap => {
+            const data = docSnap.data();
+            const email = (data.email || "N/A").trim().toLowerCase();
+            const phone = (data.phone || "N/A").trim();
+            
+            // Deduplicate by email or phone to prevent showing the same student multiple times
+            const uniqueKey = (email !== "n/a") ? email : ((phone !== "n/a" && phone !== "N/A") ? phone : docSnap.id);
+            if (seenKeys.has(uniqueKey)) return;
+            seenKeys.add(uniqueKey);
+
+            const name = (data.name || data.fullName || data.displayName || "Student");
+            
+            const searchableString = `${name} ${email} ${phone}`.toLowerCase();
+            if (searchInput && !searchableString.includes(searchInput)) return;
+            
+            const grade = data.class || data.studentClass || "N/A";
+            const joined = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString("en-GB") : "N/A";
+            const imgUrl = data.profileImage || data.profileImageUrl || data.photoURL || "favicon.png";
+            
+            const safeData = encodeURIComponent(JSON.stringify(data));
+            
+            html += `<tr>
+                <td><img src="${imgUrl}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--border);" onerror="this.src='favicon.png'"></td>
+                <td><b>${name}</b></td>
+                <td><div style="font-size:12px;">✉️ ${email}<br>📞 ${phone}</div></td>
+                <td>${grade.toString().replace('class', 'Class ')}</td>
+                <td>${joined}</td>
+                <td><button class="upload" style="background:#10b981; padding:6px 12px; font-size:12px; margin:0;" onclick="viewStudentProfile('${safeData}')">View Profile</button></td>
+            </tr>`;
+            found++;
+        });
+        
+        if (found === 0) {
+            tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No matching profiles found.</td></tr>";
+        } else {
+            tbody.innerHTML = html;
+        }
+    } catch (e) {
+        console.error("Error loading profiles:", e);
+        if (e.message.includes("requires an index")) {
+            tbody.innerHTML = `<tr><td colspan='6' style='text-align:center; color: var(--danger);'>Index required for sorting. Check Firebase console.</td></tr>`;
+        } else {
+            tbody.innerHTML = `<tr><td colspan='6' style='text-align:center; color: var(--danger);'>Error: ${e.message}</td></tr>`;
+        }
+    }
+};
+
+window.viewStudentProfile = function(encodedData) {
+    try {
+        const data = JSON.parse(decodeURIComponent(encodedData));
+        const contentDiv = document.getElementById("profileDetailsContent");
+        
+        const imgUrl = data.profileImage || data.profileImageUrl || data.photoURL || "favicon.png";
+        const name = data.name || data.fullName || data.displayName || "N/A";
+        const email = data.email || "N/A";
+        const phone = data.phone || "N/A";
+        const grade = data.class || data.studentClass || "N/A";
+        const school = data.schoolName || data.school || "N/A";
+        const dob = data.dob || data.dateOfBirth || "N/A";
+        const gender = data.gender || "N/A";
+        const address = data.address || data.city || "N/A";
+        const joined = data.createdAt && data.createdAt.seconds 
+            ? new Date(data.createdAt.seconds * 1000).toLocaleString("en-GB") 
+            : "N/A";
+
+        contentDiv.innerHTML = `
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="${imgUrl}" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:3px solid #10b981; margin-bottom:10px;" onerror="this.src='favicon.png'">
+                <h3 style="margin:0; font-size:1.4rem;">${name}</h3>
+                <span class="badge" style="background:rgba(16,185,129,0.15); color:#10b981; margin-top:5px;">${grade.toString().replace('class', 'Class ')}</span>
+            </div>
+            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
+                <tr><th style="padding:10px; border-bottom:1px solid var(--border); width:35%;">Email</th><td style="padding:10px; border-bottom:1px solid var(--border);">${email}</td></tr>
+                <tr><th style="padding:10px; border-bottom:1px solid var(--border);">Phone</th><td style="padding:10px; border-bottom:1px solid var(--border);">${phone}</td></tr>
+                <tr><th style="padding:10px; border-bottom:1px solid var(--border);">School</th><td style="padding:10px; border-bottom:1px solid var(--border);">${school}</td></tr>
+                <tr><th style="padding:10px; border-bottom:1px solid var(--border);">D.O.B</th><td style="padding:10px; border-bottom:1px solid var(--border);">${dob}</td></tr>
+                <tr><th style="padding:10px; border-bottom:1px solid var(--border);">Gender</th><td style="padding:10px; border-bottom:1px solid var(--border);">${gender}</td></tr>
+                <tr><th style="padding:10px; border-bottom:1px solid var(--border);">Address</th><td style="padding:10px; border-bottom:1px solid var(--border);">${address}</td></tr>
+                <tr><th style="padding:10px; border-bottom:1px solid var(--border);">Joined</th><td style="padding:10px; border-bottom:1px solid var(--border);">${joined}</td></tr>
+            </table>
+        `;
+        
+        document.getElementById("viewProfileModal").style.display = "flex";
+    } catch (e) {
+        console.error("Error parsing profile data:", e);
+        alert("Error loading profile details.");
+    }
+};
+
+window.closeProfileModal = function() {
+    document.getElementById("viewProfileModal").style.display = "none";
 };
 
 window.initUserActivityLog = async function() {
