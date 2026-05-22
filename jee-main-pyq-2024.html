@@ -9,6 +9,8 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="canonical" href="https://olympiadquiz.org/jee-main-pyq-2024.html">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=optional" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=optional" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         :root { --brand: #2563eb; --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0; }
@@ -68,5 +70,28 @@
             if (user) { document.querySelector('nav a:last-child').innerText = "Dashboard"; document.querySelector('nav a:last-child').href = "dashboard.html"; }
         });
     </script>
+
+<!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var gt = document.createElement('script');
+      gt.async = true;
+      gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
+      document.head.appendChild(gt);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18108080300');
+      gtag('config', 'G-ZN5D87BQXP');
+
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    }, 800);
+  });
+</script>
 </body>
 </html>
