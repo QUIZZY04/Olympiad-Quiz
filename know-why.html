@@ -395,12 +395,13 @@
         card.innerHTML = `
             <div class="fact-icon" style="background: ${colorObj.bg};">${fact.icon}</div>
             <div class="fact-question">${fact.q}</div>
-            <button class="know-why-btn" style="background: ${colorObj.main}; box-shadow: 0 4px 15px ${colorObj.bg};" onclick="openFactPopover(event, ${index})">Know Why 💡</button>
+            <button type="button" class="know-why-btn" style="background: ${colorObj.main}; box-shadow: 0 4px 15px ${colorObj.bg};" onclick="openFactPopover(event, this, ${index})">Know Why 💡</button>
         `;
+        card.onclick = function(event) { openFactPopover(event, card.querySelector('.know-why-btn'), index); };
         grid.appendChild(card);
     });
 
-    function openFactPopover(event, index) {
+    function openFactPopover(event, btnElement, index) {
         event.stopPropagation();
         const fact = factsData[index];
         const colorObj = colors[index % colors.length];
@@ -416,7 +417,7 @@
         popover.style.display = 'block';
         
         // Calculate absolute position relative to the clicked button
-        const btnRect = event.target.getBoundingClientRect();
+        const btnRect = btnElement.getBoundingClientRect();
         let top = btnRect.bottom + window.scrollY + 10;
         let left = btnRect.left + window.scrollX;
         
