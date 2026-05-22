@@ -2012,7 +2012,6 @@ window.replyFB = async (id, encodedExistingReply) => {
         const existingReply = decodeURIComponent(encodedExistingReply);
         const reply = prompt("Enter your reply to this error report:", existingReply);
         if (reply !== null) {
-            await setDoc(doc(db, "feedback", id), { adminReply: reply.trim() }, { merge: true });
             await updateDoc(doc(db, "feedback", id), { adminReply: reply.trim() });
             alert("Reply saved successfully!");
         }
@@ -2024,7 +2023,6 @@ window.replyFB = async (id, encodedExistingReply) => {
 window.deleteReplyFB = async (id) => {
     if(confirm("Delete this reply?")) {
         try {
-            await setDoc(doc(db, "feedback", id), { adminReply: "" }, { merge: true });
             await updateDoc(doc(db, "feedback", id), { adminReply: "" });
         } catch(e) { alert("Error: " + e.message); }
     }
@@ -2065,7 +2063,6 @@ window.replyExpFB = async (id, encodedExistingReply) => {
         const existingReply = decodeURIComponent(encodedExistingReply);
         const reply = prompt("Enter your reply to this feedback:", existingReply);
         if (reply !== null) {
-            await setDoc(doc(db, "feedbacks", id), { adminReply: reply.trim() }, { merge: true });
             await updateDoc(doc(db, "feedbacks", id), { adminReply: reply.trim() });
             alert("Reply saved successfully!");
         }
@@ -2077,7 +2074,6 @@ window.replyExpFB = async (id, encodedExistingReply) => {
 window.deleteReplyExpFB = async (id) => {
     if(confirm("Delete this reply?")) {
         try {
-            await setDoc(doc(db, "feedbacks", id), { adminReply: "" }, { merge: true });
             await updateDoc(doc(db, "feedbacks", id), { adminReply: "" });
         } catch(e) { alert("Error: " + e.message); }
     }
