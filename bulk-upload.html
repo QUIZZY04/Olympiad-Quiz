@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN5D87BQXP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZN5D87BQXP');
-</script>
 <meta charset="UTF-8">
 <title>Bulk Upload Questions</title>
 <style>
@@ -148,5 +139,20 @@ window.pasteFromClipboard = async function () {
 };
 </script>
 
+<!-- Deferred Analytics to eliminate Total Blocking Time -->
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var gt = document.createElement('script');
+      gt.async = true;
+      gt.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZN5D87BQXP';
+      document.head.appendChild(gt);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZN5D87BQXP');
+    }, 800);
+  });
+</script>
 </body>
 </html>
