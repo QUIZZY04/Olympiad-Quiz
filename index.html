@@ -207,6 +207,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=optional" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=optional" rel="stylesheet">
+<link rel="preload" href="home.css" as="style">
 <link rel="stylesheet" href="home.css">
 
 <style>
@@ -1424,7 +1425,7 @@ function renderTestimonials(showAll = false) {
         const name = data.name || "Student";
         const role = data.role || "Verified Learner";
         const color = data.isDesigner ? data.color : colors[i % colors.length];
-        const adminReplyHtml = data.adminReply ? `<div style="margin-top:10px; padding:10px; background:#f8fafc; border-left:3px solid var(--brand); border-radius:6px; font-size:13px; color:var(--text);"><strong>Admin:</strong> ${escapeHtml(data.adminReply)}</div>` : "";
+        const adminReplyHtml = data.adminReply ? `<div style="margin-top:10px; padding:10px; background:rgba(16,185,129,0.15); border-left:4px solid #10b981; border-radius:6px; font-size:13px; color:#064e3b;"><strong>Admin:</strong> ${escapeHtml(data.adminReply)}</div>` : "";
         
         const row = document.createElement("tr");
         row.style.opacity = "0"; // for animation
@@ -1551,9 +1552,11 @@ async function loadLiveSessionBanner() {
     }
 }
 
-// Load dynamic testimonials instantly (reduced delay from 1500ms to 100ms)
-setTimeout(loadLiveSessionBanner, 1000);
-setTimeout(loadDynamicTestimonials, 100);
+// Delay Firebase calls until after initial render to prevent Mobile FCP/TBT blocking
+window.addEventListener('load', () => {
+    setTimeout(loadLiveSessionBanner, 100);
+    setTimeout(loadDynamicTestimonials, 500);
+});
 </script>
 
 </body>

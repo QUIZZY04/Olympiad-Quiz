@@ -685,7 +685,10 @@ onAuthStateChanged(auth, async (user) => {
     } catch (e) {
         console.warn("Error fetching user data:", e);
     }
-    checkLiveSessions(isAdmin ? null : uClass);
+    
+    // Offload heavy DB call to prevent blocking main thread
+    if (window.requestIdleCallback) { requestIdleCallback(() => checkLiveSessions(isAdmin ? null : uClass)); } 
+    else { setTimeout(() => checkLiveSessions(isAdmin ? null : uClass), 500); }
     
     // Smart Feedback Popup Logic
     setTimeout(() => {
