@@ -49,7 +49,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-    <style>body{visibility: hidden;}</style>
     <style>
         :root {
             --bg: #f8fafc;
@@ -473,7 +472,6 @@
     const db = getFirestore(app);
 
     onAuthStateChanged(auth, async (user) => {
-        document.body.style.visibility = 'visible';
         if (!user) {
             document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
                 el.onclick = function() { window.location.href = 'login.html'; };

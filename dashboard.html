@@ -26,7 +26,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
-  <style>body{visibility: hidden;}</style>
 
   <style>
     :root {
@@ -578,7 +577,6 @@ onAuthStateChanged(auth, async (user) => {
         window.location.replace("index.html"); 
         return;
     }
-    document.body.style.visibility = 'visible';
 
     const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
 

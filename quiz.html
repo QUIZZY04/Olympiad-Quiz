@@ -23,7 +23,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="style.css" as="style">
 <link rel="stylesheet" href="style.css">
-<style>body{visibility: hidden;}</style>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 <style>
@@ -1147,7 +1146,6 @@ onAuthStateChanged(auth, async(user)=>{
         window.location.href="login.html"; 
         return; 
     }
-    document.body.style.visibility = 'visible';
     
     const providerIds = user.providerData.map(p => p.providerId);
     const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");

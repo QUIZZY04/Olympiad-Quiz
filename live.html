@@ -54,7 +54,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
-    <style>body{visibility: hidden;}</style>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         :root {
@@ -437,7 +436,6 @@
     const functions = getFunctions(app);
 
     onAuthStateChanged(auth, async (user) => {
-        document.body.style.visibility = 'visible';
         if (!user) {
             document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
                 el.onclick = null;

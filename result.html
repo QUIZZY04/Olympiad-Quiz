@@ -10,7 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="style.css" as="style">
 <link rel="stylesheet" href="style.css">
-<style>body{visibility: hidden;}</style>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
@@ -399,7 +398,6 @@ onAuthStateChanged(auth, (user) => {
         sessionStorage.setItem("redirectAfterLogin", window.location.href);
         window.location.replace("login.html");
     } else {
-        document.body.style.visibility = 'visible';
         
         const providerIds = user.providerData.map(p => p.providerId);
         const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
