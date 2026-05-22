@@ -20,6 +20,7 @@
     <meta name="twitter:title" content="Free IMO Mock Test Online | Math Olympiad Practice">
     <meta name="twitter:description" content="Free IMO Mock Test online for Class 1 to 10 in a secure proctored environment. Get instant results, solutions, and global leaderboards.">
     <meta property="og:type" content="website">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -83,15 +84,6 @@
       }]
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://olympiadquiz.org/"
       },{
         "@type": "ListItem",
         "position": 2,
@@ -99,15 +91,9 @@
         "item": "https://olympiadquiz.org/imo-free-mock-test.html"
       }]
     }
-</script>
-</head>
-<body>
-    <nav>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;"> Olympiad Portal</a>
         <div class="nav-important">
             <a href="about.html">About</a>
@@ -367,6 +353,29 @@
     function toggleMenu() {
         document.querySelector('.nav-links').classList.toggle('active');
     }
+    </script>
+
+    <!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var gt = document.createElement('script');
+          gt.async = true;
+          gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
+          document.head.appendChild(gt);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-18108080300');
+          gtag('config', 'G-ZN5D87BQXP');
+
+          var ad = document.createElement('script');
+          ad.async = true;
+          ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
+          ad.crossOrigin = 'anonymous';
+          document.head.appendChild(ad);
+        }, 800);
+      });
     </script>
 
     <!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
