@@ -1424,6 +1424,7 @@ function renderTestimonials(showAll = false) {
         const name = data.name || "Student";
         const role = data.role || "Verified Learner";
         const color = data.isDesigner ? data.color : colors[i % colors.length];
+        const adminReplyHtml = data.adminReply ? `<div style="margin-top:10px; padding:10px; background:#f8fafc; border-left:3px solid var(--brand); border-radius:6px; font-size:13px; color:var(--text);"><strong>Admin:</strong> ${escapeHtml(data.adminReply)}</div>` : "";
         
         const row = document.createElement("tr");
         row.style.opacity = "0"; // for animation
@@ -1439,6 +1440,7 @@ function renderTestimonials(showAll = false) {
             </td>
             <td>
                 <p style="font-size: 14px; color: var(--muted); line-height: 1.6;">${escapeHtml(data.suggestion)}</p>
+                ${adminReplyHtml}
             </td>
         `;
         tbody.appendChild(row);
