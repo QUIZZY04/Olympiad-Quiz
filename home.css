@@ -135,6 +135,7 @@ display:grid;
 grid-template-columns:1.2fr .8fr;
 gap:40px;
 align-items:center;
+min-height: 600px; /* Locks grid height to prevent font-swap from shifting the hero-card */
 }
 
 .badge{
@@ -183,6 +184,8 @@ background:#ffffff;
 padding:18px;
 border-radius:28px;
 box-shadow:0 18px 40px rgba(0,0,0,.07);
+min-height: 416px; /* 380px image + 36px padding. Reserves exact space before image loads */
+box-sizing: border-box;
 }
 
 .hero-card img{
@@ -449,6 +452,7 @@ margin-bottom: 10px;
 
 .hero-grid{
 grid-template-columns:1fr;
+min-height: auto; /* Releases the height lock for mobile stacking */
 }
 
 .hero h1{
