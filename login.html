@@ -1,29 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var ad = document.createElement('script');
-        ad.async = true;
-        ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
-        ad.crossOrigin = 'anonymous';
-        document.head.appendChild(ad);
-      }, 500);
-    });
-  </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login to Olympiad Portal | Student Dashboard</title>
-  <link rel="canonical" href="https://olympiadquiz.org/login.html">
-  <meta name="description" content="Log in to your Olympiad Portal account to track your progress, take live quizzes, and access premium study material.">
-  <meta property="og:title" content="Login to Olympiad Portal | Student Dashboard">
-  <meta property="og:description" content="Log in to your Olympiad Portal account to track your progress, take live quizzes, and access premium study material.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://olympiadquiz.org/login.html">
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-  
+  <ery= 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="style.css" as="style">
@@ -234,22 +212,6 @@
       .signup-text a { color: var(--brand-text) !important; font-weight: 800; text-decoration: underline; }
     }
   </style>
-<!-- Google tag (gtag.js) -->
-<script>
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var gt = document.createElement('script');
-      gt.async = true;
-      gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
-      document.head.appendChild(gt);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-18108080300');
-      gtag('config', 'G-ZN5D87BQXP');
-    }, 500);
-  });
-</script>
 </head>
 
 <body>
@@ -260,23 +222,7 @@
         <span></span>
         <span></span>
     </button>
-    <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
-    <div class="nav-important">
-        <a href="index.html">Home</a>
-        <a href="signup.html">Signup</a>
-    </div>
-    <div class="nav-links">
-        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
-        <a href="index.html">Home</a>
-        <a href="imo-free-mock-test.html">IMO Test</a>
-        <a href="nso-free-mock-test.html">NSO Test</a>
-        <a href="ieo-free-mock-test.html">IEO Test</a>
-        <a href="iro-free-mock-test.html">IRO Test</a>
-        <a href="igko-free-mock-test.html">IGKO Test</a>
-        <a href="signup.html">Signup</a>
-    </div>
-</nav>
-
+    <a cl
 <div class="container">
     <div class="auth-layout">
         <div class="auth-info">
@@ -788,4 +734,27 @@ function toggleMenu() {
     <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 </body>
+
+<!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var gt = document.createElement('script');
+      gt.async = true;
+      gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
+      document.head.appendChild(gt);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18108080300');
+      gtag('config', 'G-ZN5D87BQXP');
+
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    }, 800);
+  });
+</script>
 </html>

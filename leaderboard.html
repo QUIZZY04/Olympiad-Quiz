@@ -287,22 +287,6 @@ font-size:14px;
 }
 
 </style>
-<!-- Google tag (gtag.js) -->
-<script>
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var gt = document.createElement('script');
-      gt.async = true;
-      gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
-      document.head.appendChild(gt);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-18108080300');
-      gtag('config', 'G-ZN5D87BQXP');
-    }, 500);
-  });
-</script>
 </head>
 
 <body>
@@ -846,5 +830,27 @@ window.toggleMenu = function() {
 
 </script>
 
+<!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var gt = document.createElement('script');
+      gt.async = true;
+      gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
+      document.head.appendChild(gt);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18108080300');
+      gtag('config', 'G-ZN5D87BQXP');
+
+      var ad = document.createElement('script');
+      ad.async = true;
+      ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
+      ad.crossOrigin = 'anonymous';
+      document.head.appendChild(ad);
+    }, 800);
+  });
+</script>
 </body>
 </html>

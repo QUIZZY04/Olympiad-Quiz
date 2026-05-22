@@ -1482,8 +1482,6 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
-        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions(); window.loadHotsTestsList(); window.updatePyqTitleSuggestions();
-        loadFeedback(); loadExpFeedback(); window.loadSessions(); window.loadCoupons(); window.loadRegSessionsList(); window.updateVidTopics(); window.updateJmnTitleOptions(); window.updateFullJmnTitleOptions(); window.loadHotsTestsList();
     } else {
         window.location.href = "login.html";
     }
@@ -1503,26 +1501,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // Open the clicked one if it wasn't already active
             if (!wasActive) {
                 panel.classList.add('active');
-                
-                // Auto-load user activity for current date when opening its panel
-                if (header.innerText.includes('User Activity Log')) {
-                    const dateInput = document.getElementById('activityDateFilter');
-                    if (!dateInput.value) {
-                        const today = new Date();
-                        const yyyy = today.getFullYear();
-                        const mm = String(today.getMonth() + 1).padStart(2, '0');
-                        const dd = String(today.getDate()).padStart(2, '0');
-                        dateInput.value = `${yyyy}-${mm}-${dd}`;
-                    }
-                    if (typeof window.initUserActivityLog === 'function') {
-                        window.initUserActivityLog();
-                    }
-                }
-                
-                if (header.innerText.includes('Student Profiles')) {
-                    if (document.getElementById('studentProfilesTable').innerText.includes('Click')) {
-                        window.loadStudentProfiles();
-                    }
+
+                // LAZY LOAD DATA ON PANEL EXPAND
+                if (panel.dataset.loaded !== 'true') {
+                    const headerText = header.querySelector('h2').innerText;
+                    if (headerText.includes('Chapter-Code Checker')) { window.loadChapterSummary(); }
+                    else if (headerText.includes('Error Reports')) { loadFeedback(); }
+                    else if (headerText.includes('Experience Feedback')) { loadExpFeedback(); }
+                    else if (headerText.includes('Video Tutorials')) { window.updateVidTopics(); window.loadVideos(); }
+                    else if (headerText.includes('Coupon Management')) { window.loadCoupons(); }
+                    else if (headerText.includes('Bulk Email')) { window.loadUserEmailsForBroadcast(); }
+                    else if (headerText.includes('Managed Test Sessions')) { window.loadSessions(); }
+                    else if (headerText.includes('Live Quiz Registrations')) { window.loadRegSessionsList(); }
+                    else if (headerText.includes('JEE Main & NEET')) { window.updateJmnTitleOptions(); window.loadJmnTestsList(); }
+                    else if (headerText.includes('Full JEE Main Mock')) { window.updateFullJmnTitleOptions(); }
+                    else if (headerText.includes('JEE Advanced')) { window.loadJeeTestsList(); }
+                    else if (headerText.includes('H.O.T.S Problems')) { window.calculateNextHotsTitle(); window.loadHotsTestsList(); }
+                    else if (headerText.includes('JEE Main PYQ')) { window.updatePyqTitleSuggestions(); window.loadJeePyqsList(); }
+                    else if (headerText.includes('Student Profiles')) { window.loadStudentProfiles(); }
+                    else if (headerText.includes('User Activity Log')) { window.initUserActivityLog(); }
+                    else if (headerText.includes('Search & Manage Questions')) { window.loadQuestions(); }
+                    panel.dataset.loaded = 'true';
                 }
             }
         });
