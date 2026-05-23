@@ -1431,7 +1431,7 @@ function renderTestimonials(showAll = false) {
         const name = data.name || "Student";
         const role = data.role || "Verified Learner";
         const color = data.isDesigner ? data.color : colors[i % colors.length];
-        const adminReplyHtml = data.adminReply ? `<div style="margin-top:10px; padding:10px; background:rgba(16,185,129,0.15); border-left:4px solid #10b981; border-radius:6px; font-size:13px; color:#064e3b;"><strong>Admin:</strong> ${escapeHtml(data.adminReply)}</div>` : "";
+        const adminReplyHtml = data.adminReply ? `<div style="margin-top:10px; padding:10px; background:rgba(37,99,235,0.08); border-left:4px solid #2563eb; border-radius:6px; font-size:13px; color:#1e293b;"><strong>Admin:</strong> ${escapeHtml(data.adminReply)}</div>` : "";
         
         const row = document.createElement("tr");
         row.style.opacity = "0"; // for animation

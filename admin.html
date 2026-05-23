@@ -1980,7 +1980,7 @@ function loadFeedback() {
         rowsData.forEach(row => { 
             const safeReply = row.f.adminReply ? row.f.adminReply.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
             const encodedReply = encodeURIComponent(row.f.adminReply || '').replace(/'/g, "%27");
-            const replyHtml = row.f.adminReply ? `<div style="margin-top:8px; padding:8px; background:rgba(16,185,129,0.15); border-left:4px solid #10b981; border-radius:4px; font-size:12px; color:#064e3b;"><b>Admin Reply:</b> ${safeReply}</div>` : '';
+            const replyHtml = row.f.adminReply ? `<div style="margin-top:8px; padding:8px; background:rgba(37,99,235,0.08); border-left:4px solid #2563eb; border-radius:4px; font-size:12px; color:#1e293b;"><b>Admin Reply:</b> ${safeReply}</div>` : '';
             
             const replyBtnText = row.f.adminReply ? 'Edit Reply' : 'Reply';
             const delReplyBtn = row.f.adminReply ? `<button class="delete" onclick="deleteReplyFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px; background:var(--warning);">🗑 Del Reply</button>` : '';
@@ -2031,7 +2031,7 @@ function loadExpFeedback() {
             const safeReply = f.adminReply ? f.adminReply.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
             const encodedReply = encodeURIComponent(f.adminReply || '').replace(/'/g, "%27");
             
-            const replyHtml = f.adminReply ? `<div style="margin-top:8px; padding:8px; background:rgba(16,185,129,0.15); border-left:4px solid #10b981; border-radius:4px; font-size:12px; color:#064e3b;"><b>Admin Reply:</b> ${safeReply}</div>` : '';
+            const replyHtml = f.adminReply ? `<div style="margin-top:8px; padding:8px; background:rgba(37,99,235,0.08); border-left:4px solid #2563eb; border-radius:4px; font-size:12px; color:#1e293b;"><b>Admin Reply:</b> ${safeReply}</div>` : '';
             
             const replyBtnText = f.adminReply ? 'Edit Reply' : 'Reply';
             const delReplyBtn = f.adminReply ? `<button class="delete" onclick="deleteReplyExpFB('${d.id}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--warning);">🗑 Del Reply</button><br>` : '';
