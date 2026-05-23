@@ -32,7 +32,7 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     
-    body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; 
+    body { background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; 
         background-image: 
             radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
             radial-gradient(circle at 100% 0%, rgba(255, 140, 26, 0.05) 0%, transparent 50%),
@@ -201,16 +201,16 @@
 
     @media (max-width: 768px) {
       .auth-info { display: none; }
-      .auth-layout { border-radius: 20px; border-top: 4px solid var(--brand); flex-direction: column; }
-      .login-box { padding: 25px 20px; }
-      .container { display: block; padding: 20px 15px; margin-bottom: 20px; }
-      h1, h2 { font-size: 22px; margin-bottom: 10px; }
-      .subtitle { font-size: 13px; margin-bottom: 15px; }
-      input { padding: 12px 16px; font-size: 14px; margin-bottom: 12px; }
-      button.main-btn, .social-btn { padding: 12px 16px; font-size: 14px; }
-      .social-btn { margin-bottom: 12px; }
-      .divider { margin-bottom: 15px; }
-      .signup-text { margin-top: 15px; padding-top: 15px; color: var(--text); font-weight: 500; font-size: 14px; }
+      .auth-layout { border-radius: 16px; border-top: 4px solid var(--brand); flex-direction: column; }
+      .login-box { padding: 20px 15px; }
+      .container { padding: 15px; align-items: flex-start; margin-top: 10px; }
+      h1, h2 { font-size: 20px; margin-bottom: 5px; }
+      .subtitle { font-size: 12px; margin-bottom: 12px; }
+      input { padding: 10px 14px; font-size: 14px; margin-bottom: 10px; border-radius: 10px; }
+      button.main-btn, .social-btn { padding: 10px 14px; font-size: 14px; border-radius: 10px; }
+      .social-btn { margin-bottom: 10px; }
+      .divider { margin-bottom: 10px; font-size: 11px; }
+      .signup-text { margin-top: 10px; padding-top: 10px; color: var(--text); font-weight: 500; font-size: 13px; }
       .signup-text a { color: var(--brand-text); font-weight: 800; text-decoration: underline; }
     }
   </style>
