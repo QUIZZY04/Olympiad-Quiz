@@ -203,7 +203,7 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+ove mobile performace<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" imagesrcset="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&auto=format&q=80 400w, https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&auto=format&q=80 900w" imagesizes="(max-width: 768px) 100vw, 900px">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=optional" as="style">
@@ -1270,59 +1270,17 @@ function toggleMenu() {
 </script>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { initializeFirestore, collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-    projectId: "olympiad-portal-d2a5e"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = initializeFirestore(app, { experimentalForceLongPolling: true });
-
 window.openFeedbackModal = () => {
     document.getElementById('dashboardFeedbackModal').style.display = 'flex';
 };
 window.closeFeedbackModal = () => {
     document.getElementById('dashboardFeedbackModal').style.display = 'none';
 };
-window.submitDashboardFeedback = async () => {
-    const rating = document.getElementById("dbFbRating").value;
-    const comment = document.getElementById("dbFbText").value;
-    const btn = document.getElementById("dbFbSubmitBtn");
-
-    if (!comment.trim()) { alert("Please provide your comments or suggestions. This field is required."); return; }
-
-    btn.disabled = true; btn.innerText = "Submitting...";
-
-    try {
-        const currentUser = auth.currentUser;
-        await addDoc(collection(db, "feedbacks"), {
-            uid: currentUser?.uid || "anonymous",
-            name: currentUser?.displayName || "Visitor",
-            email: currentUser?.email || "N/A",
-            rating: rating + " Star",
-            category: "General Feedback",
-            suggestion: comment,
-            pageSource: "Home Page",
-            date: new Date().toLocaleString(),
-            timestamp: serverTimestamp()
-        });
-        alert("Thank you for your feedback!");
-        window.closeFeedbackModal();
-        document.getElementById("dbFbText").value = "";
-    } catch (e) {
-        alert("Error: " + e.message);
-    } finally {
-        btn.disabled = false; btn.innerText = "Submit Feedback";
-    }
-};
 
 let dynamicTestimonials = [];
+let db, auth, app;
+let collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp;
+
 async function loadDynamicTestimonials() {
     try {
         const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"), limit(300));
@@ -1564,10 +1522,56 @@ async function loadLiveSessionBanner() {
     }
 }
 
-// Delay Firebase calls until after initial render to prevent Mobile FCP/TBT blocking
+async function initFirebaseAndLoadData() {
+    try {
+        const [
+            firebaseApp,
+            firebaseAuth,
+            firestore
+        ] = await Promise.all([
+            import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"),
+            import("https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"),
+            import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js")
+        ]);
+
+        app = firebaseApp.initializeApp({
+            apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+            authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+            projectId: "olympiad-portal-d2a5e"
+        });
+        auth = firebaseAuth.getAuth(app);
+        
+        collection = firestore.collection;
+        query = firestore.query;
+        orderBy = firestore.orderBy;
+        limit = firestore.limit;
+        getDocs = firestore.getDocs;
+        addDoc = firestore.addDoc;
+        serverTimestamp = firestore.serverTimestamp;
+        db = firestore.initializeFirestore(app, { experimentalForceLongPolling: true });
+
+        window.submitDashboardFeedback = async () => {
+            const rating = document.getElementById("dbFbRating").value;
+            const comment = document.getElementById("dbFbText").value;
+            const btn = document.getElementById("dbFbSubmitBtn");
+            if (!comment.trim()) { alert("Please provide your comments. This field is required."); return; }
+            btn.disabled = true; btn.innerText = "Submitting...";
+            try {
+                const currentUser = auth.currentUser;
+                await addDoc(collection(db, "feedbacks"), { uid: currentUser?.uid || "anonymous", name: currentUser?.displayName || "Visitor", email: currentUser?.email || "N/A", rating: rating + " Star", category: "General Feedback", suggestion: comment, pageSource: "Home Page", date: new Date().toLocaleString(), timestamp: serverTimestamp() });
+                alert("Thank you for your feedback!");
+                window.closeFeedbackModal();
+                document.getElementById("dbFbText").value = "";
+            } catch (e) { alert("Error: " + e.message); } finally { btn.disabled = false; btn.innerText = "Submit Feedback"; }
+        };
+
+        loadLiveSessionBanner();
+        loadDynamicTestimonials();
+    } catch (e) { console.error("Firebase init failed:", e); }
+}
+
 window.addEventListener('load', () => {
-    setTimeout(loadLiveSessionBanner, 100);
-    setTimeout(loadDynamicTestimonials, 500);
+    setTimeout(initFirebaseAndLoadData, 800);
 });
 </script>
 
