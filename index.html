@@ -1570,9 +1570,21 @@ async function initFirebaseAndLoadData() {
     } catch (e) { console.error("Firebase init failed:", e); }
 }
 
-window.addEventListener('load', () => {
-    setTimeout(initFirebaseAndLoadData, 800);
-});
+if (window.innerWidth > 768) {
+    // DESKTOP: Fast execution to restore Speed Index and LCP without TBT
+    const initDesktop = () => window.requestIdleCallback ? requestIdleCallback(initFirebaseAndLoadData) : setTimeout(initFirebaseAndLoadData, 50);
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDesktop);
+    } else {
+        initDesktop();
+    }
+} else {
+    // MOBILE: Preserve heavy deferral to protect Mobile FCP/TBT
+    window.addEventListener('load', () => {
+        setTimeout(initFirebaseAndLoadData, 800);
+    });
+}
 </script>
 
 </body>
