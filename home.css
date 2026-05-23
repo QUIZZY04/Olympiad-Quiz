@@ -72,8 +72,8 @@ nav {
 .brand:hover { color: var(--brand-text); }
 .nav-links { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
 .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; border-bottom: 3px solid transparent; white-space: nowrap; }
-.nav-links a:hover { color: var(--brand-text); background: rgba(194, 65, 12, 0.05); }
-.nav-links a.active { color: var(--brand-text); background: rgba(194, 65, 12, 0.06); border-bottom-color: var(--brand-text); }
+.nav-links a:hover { color: var(--brand-text); background: rgba(255, 107, 0, 0.05); }
+.nav-links a.active { color: var(--brand-text); background: rgba(255, 107, 0, 0.06); border-bottom-color: var(--brand-text); }
 .nav-actions { display: flex; align-items: center; gap: 15px; border-left: 2px solid var(--border); padding-left: 15px; margin-left: 10px; }
 .login-link { font-weight: 800; color: var(--brand-contrast) !important; text-decoration: none; font-size: 0.9rem; background: var(--brand); padding: 10px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3); transition: 0.3s; }
 .login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4); filter: brightness(1.1); }
