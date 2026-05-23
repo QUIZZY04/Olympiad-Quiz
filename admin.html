@@ -4004,16 +4004,38 @@ window.initUserActivityLog = async function() {
     // Default to today's date if no date is selected
     if (!dateInput.value) {
         const today = new Date();
-        dateInput.value = new Date(today.getTime() - (today.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        dateInput.value = `${year}-${month}-${day}`;
     }
     
+    tbody.innerHTML = "<tr><td colspan='10' style='text-align:center;'>Loading activities...</td></tr>";
+
     try {
-        const actQuery = query(collection(db, "leaderboard"), orderBy("date", "desc"), limit(150));
+        let actQuery;
+        const filterDate = dateInput.value;
+        
+        if (filterDate) {
+            const [y, m, d] = filterDate.split('-');
+            const startDate = new Date(y, m - 1, d, 0, 0, 0, 0);
+            const endDate = new Date(y, m - 1, d, 23, 59, 59, 999);
+            
+            actQuery = query(
+                collection(db, "leaderboard"), 
+                where("date", ">=", startDate),
+                where("date", "<=", endDate),
+                orderBy("date", "desc"), 
+                limit(150)
+            );
+        } else {
+            actQuery = query(collection(db, "leaderboard"), orderBy("date", "desc"), limit(150));
+        }
+
         const snap = await getDocs(actQuery);
         
         const renderRows = () => {
             const searchTerm = searchInput.value.toLowerCase();
-            const filterDate = dateInput.value;
             let html = "";
             let found = 0;
 
@@ -4027,12 +4049,6 @@ window.initUserActivityLog = async function() {
 
                 if (searchTerm && !name.toLowerCase().includes(searchTerm) && !email.toLowerCase().includes(searchTerm)) return;
                 
-                let docIso = "";
-                if (d.date && d.date.toDate) {
-                    docIso = d.date.toDate().toISOString().split('T')[0];
-                    if (filterDate && docIso !== filterDate) return;
-                } else if (filterDate) return;
-
                 let timeStr = "N/A";
                 const fmt = (s) => `${Math.floor(s/60)}m ${s%60}s`;
                 if (d.timeTaken !== undefined && d.timeTaken !== null) {
@@ -4063,9 +4079,16 @@ window.initUserActivityLog = async function() {
         };
 
         searchInput.oninput = renderRows;
-        dateInput.onchange = renderRows;
+        dateInput.onchange = window.initUserActivityLog;
         renderRows();
-    } catch (e) { tbody.innerHTML = `<tr><td colspan='10' style='color:var(--danger);'>Error: ${e.message}</td></tr>`; }
+    } catch (e) { 
+        if (e.message.includes("requires an index")) {
+            tbody.innerHTML = `<tr><td colspan='10' style='color:var(--danger); text-align:center;'><b>Index Required.</b> Check browser console (F12) for the direct link to create it in Firebase.</td></tr>`;
+            console.error("Index Required Link:", e.message);
+        } else {
+            tbody.innerHTML = `<tr><td colspan='10' style='color:var(--danger); text-align:center;'>Error: ${e.message}</td></tr>`; 
+        }
+    }
 };
 
 /* Kill BFCache to prevent showing page after logout */
