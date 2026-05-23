@@ -48,7 +48,7 @@ body {
     --text: #111827;
     --muted: #475569;
     --border: #e2e8f0;
-    --brand-text: #c2410c;
+    --brand-text: #9a3412;
     --brand-contrast: #111827;
 }
 
@@ -431,8 +431,8 @@ body.auth-page {
 /* ================= PROFESSIONAL NAVBAR ================= */
 
 nav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
+    background: #ffffff !important;
+    backdrop-filter: none !important;
     border-bottom: 1px solid var(--border);
     padding: 8px 5%;
     display: flex;
