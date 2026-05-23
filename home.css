@@ -373,6 +373,7 @@ margin-bottom: 10px;
 /* MOBILE UX & CONVERSION OPTIMIZATIONS */
 .mobile-trust-badges { display: none; }
 @media(max-width: 768px) {
+    body { background-attachment: scroll !important; }
     .section { padding: 40px 0; }
     .hero { padding: 40px 0 30px; }
     .hero h1 { font-size: 32px; line-height: 1.25; margin: 15px 0; }

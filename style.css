@@ -39,6 +39,11 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* MOBILE RENDERING OPTIMIZATION: Prevent expensive repaints on scroll */
+@media (max-width: 768px) {
+    body { background-attachment: scroll !important; }
+}
+
 :root {
     --brand: #ff6b00;
     --accent: #ff8c1a;
