@@ -130,6 +130,9 @@
                     <label for="subjectSelect">Olympiad</label>
                     <select id="subjectSelect" class="styled-input" aria-label="Select Olympiad" onchange="window.renderSyllabus()">
                         <option value="NSTSE" selected>NSTSE (Unified Council)</option>
+                        <option value="UIMO">UIMO (Mathematics)</option>
+                        <option value="UIEO">UIEO (English)</option>
+                        <option value="UCO">UCO (Cyber)</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -256,6 +259,52 @@
                     { section: "Biology", topics: ["Life Processes", "Control and Coordination", "How do Organisms Reproduce", "Heredity and Evolution", "Our Environment", "Management of Natural Resources"] },
                     { section: "Critical Thinking", topics: ["Analytical Reasoning", "Non-Verbal Reasoning"] }
                 ]
+            },
+            UIMO: {
+                name: "UIMO (Unified International Mathematics Olympiad)", icon: "📐",
+                pattern: {
+                    "1-2": [ { sec: "Mathematics", q: 30, m: 1 }, { sec: "Logical Reasoning", q: 10, m: 1 } ],
+                    "3-5": [ { sec: "Mathematics", q: 35, m: 1 }, { sec: "Logical Reasoning", q: 10, m: 1 }, { sec: "Critical Thinking", q: 5, m: 1 } ],
+                    "6-10": [ { sec: "Mathematics-1", q: 30, m: 1 }, { sec: "Mathematics-2", q: 10, m: 1 }, { sec: "Logical Reasoning", q: 10, m: 1 } ]
+                },
+                "1": [ { section: "Mathematics", topics: ["Numbers", "Addition and Subtraction", "Money", "Time", "Measurements", "Shapes", "Data Handling"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out", "Analogy", "Series"] }, { section: "Critical Thinking", topics: ["HOTS"] } ],
+                "2": [ { section: "Mathematics", topics: ["Numbers", "Addition and Subtraction", "Length, Weight and Capacity", "Time", "Money", "Shapes", "Data Handling"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out", "Analogy", "Series"] }, { section: "Critical Thinking", topics: ["HOTS"] } ],
+                "3": [ { section: "Mathematics", topics: ["Numbers up to 10000", "Operations", "Fractions", "Money", "Measurement", "Time", "Geometry", "Data Handling"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out", "Analogy", "Series"] }, { section: "Critical Thinking", topics: ["HOTS"] } ],
+                "4": [ { section: "Mathematics", topics: ["Large Numbers", "Operations", "Fractions", "Money", "Measurement", "Time", "Geometry", "Data Handling"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out", "Analogy", "Series"] }, { section: "Critical Thinking", topics: ["HOTS"] } ],
+                "5": [ { section: "Mathematics", topics: ["Large Numbers", "Operations", "Fractions and Decimals", "Measurement", "Angles", "Perimeter, Area and Volume", "Data Handling"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out", "Analogy", "Series"] }, { section: "Critical Thinking", topics: ["HOTS"] } ],
+                "6": [ { section: "Mathematics-1", topics: ["Knowing our Numbers", "Whole Numbers", "Integers", "Fractions", "Decimals", "Algebra"] }, { section: "Mathematics-2", topics: ["Ratio and Proportion", "Geometry", "Mensuration"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "7": [ { section: "Mathematics-1", topics: ["Integers", "Fractions and Decimals", "Simple Equations", "Lines and Angles"] }, { section: "Mathematics-2", topics: ["Triangles", "Comparing Quantities", "Rational Numbers", "Perimeter and Area"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "8": [ { section: "Mathematics-1", topics: ["Rational Numbers", "Linear Equations", "Quadrilaterals", "Data Handling", "Squares and Cubes"] }, { section: "Mathematics-2", topics: ["Comparing Quantities", "Algebraic Expressions", "Mensuration", "Exponents"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "9": [ { section: "Mathematics-1", topics: ["Number Systems", "Polynomials", "Coordinate Geometry", "Linear Equations", "Euclid's Geometry", "Lines and Angles"] }, { section: "Mathematics-2", topics: ["Triangles", "Quadrilaterals", "Areas", "Circles", "Surface Areas and Volumes", "Statistics", "Probability"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "10": [ { section: "Mathematics-1", topics: ["Real Numbers", "Polynomials", "Pair of Linear Equations", "Quadratic Equations", "Arithmetic Progressions", "Triangles"] }, { section: "Mathematics-2", topics: ["Coordinate Geometry", "Trigonometry", "Circles", "Surface Areas and Volumes", "Statistics", "Probability"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ]
+            },
+            UIEO: {
+                name: "UIEO (Unified International English Olympiad)", icon: "📚",
+                pattern: { "1-4": [ { sec: "Vocabulary & Grammar", q: 25, m: 1 }, { sec: "Reading Comprehension", q: 5, m: 1 }, { sec: "Interactive English", q: 5, m: 1 } ], "5-10": [ { sec: "Vocabulary & Grammar", q: 35, m: 1 }, { sec: "Reading Comprehension", q: 10, m: 1 }, { sec: "Interactive English", q: 5, m: 1 } ] },
+                "1": [ { section: "Vocabulary & Grammar", topics: ["Nouns", "Verbs", "Adjectives", "Articles", "Punctuation"] }, { section: "Reading Comprehension", topics: ["Short Stories"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "2": [ { section: "Vocabulary & Grammar", topics: ["Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions"] }, { section: "Reading Comprehension", topics: ["Short Stories"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "3": [ { section: "Vocabulary & Grammar", topics: ["Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Tenses"] }, { section: "Reading Comprehension", topics: ["Short Stories"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "4": [ { section: "Vocabulary & Grammar", topics: ["Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Tenses"] }, { section: "Reading Comprehension", topics: ["Short Stories"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "5": [ { section: "Vocabulary & Grammar", topics: ["Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Tenses", "Active-Passive Voice"] }, { section: "Reading Comprehension", topics: ["Passages"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "6": [ { section: "Vocabulary & Grammar", topics: ["Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Tenses", "Voices", "Narration"] }, { section: "Reading Comprehension", topics: ["Passages"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "7": [ { section: "Vocabulary & Grammar", topics: ["Spellings", "Collocations", "Idioms", "Homonyms", "Active-Passive Voice", "Reported Speech", "Phrasal Verbs"] }, { section: "Reading Comprehension", topics: ["Passages"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "8": [ { section: "Vocabulary & Grammar", topics: ["Synonyms", "Antonyms", "Analogies", "Collocations", "Phrasal Verbs", "Idioms", "Homonyms"] }, { section: "Reading Comprehension", topics: ["Passages"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "9": [ { section: "Vocabulary & Grammar", topics: ["Synonyms", "Antonyms", "Analogies", "Concord", "Question forms", "Tenses", "Conditionals", "Modals", "Reported speech"] }, { section: "Reading Comprehension", topics: ["Passages"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ],
+                "10": [ { section: "Vocabulary & Grammar", topics: ["Synonyms", "Antonyms", "Analogies", "One word", "Word order", "Voices", "Narration", "Concord", "Conditionals", "Modals"] }, { section: "Reading Comprehension", topics: ["Passages"] }, { section: "Interactive English", topics: ["Everyday Usage"] } ]
+            },
+            UCO: {
+                name: "UCO (Unified Cyber Olympiad)", icon: "💻",
+                pattern: { "1-4": [ { sec: "Mental Ability", q: 15, m: 1 }, { sec: "Reasoning", q: 15, m: 1 }, { sec: "Computers", q: 15, m: 1 }, { sec: "English", q: 5, m: 1 } ], "5-10": [ { sec: "Mental Ability", q: 15, m: 1 }, { sec: "Reasoning", q: 15, m: 1 }, { sec: "Computers", q: 15, m: 1 }, { sec: "English", q: 5, m: 1 } ] },
+                "1": [ { section: "Mental Ability", topics: ["Numbers", "Addition", "Subtraction"] }, { section: "Reasoning", topics: ["Patterns", "Odd One Out"] }, { section: "Computers", topics: ["Introduction to Computers", "Parts of Computer"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "2": [ { section: "Mental Ability", topics: ["Numbers", "Addition", "Subtraction"] }, { section: "Reasoning", topics: ["Patterns", "Odd One Out"] }, { section: "Computers", topics: ["Parts of Computer", "Uses of Computer"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "3": [ { section: "Mental Ability", topics: ["Numbers", "Operations", "Fractions"] }, { section: "Reasoning", topics: ["Patterns", "Analogy"] }, { section: "Computers", topics: ["Fundamentals of Computer", "MS-Paint"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "4": [ { section: "Mental Ability", topics: ["Large Numbers", "Operations", "Fractions"] }, { section: "Reasoning", topics: ["Patterns", "Analogy"] }, { section: "Computers", topics: ["Evolution of Computers", "MS-Word"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "5": [ { section: "Mental Ability", topics: ["Large Numbers", "Operations", "Fractions and Decimals"] }, { section: "Reasoning", topics: ["Coding-Decoding", "Analogy"] }, { section: "Computers", topics: ["Fundamentals of Computer", "MS-Word"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "6": [ { section: "Mental Ability", topics: ["Knowing our Numbers", "Whole Numbers", "Integers", "Fractions"] }, { section: "Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] }, { section: "Computers", topics: ["History and Generation of Computers", "MS-Windows"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "7": [ { section: "Mental Ability", topics: ["Integers", "Fractions and Decimals", "Simple Equations"] }, { section: "Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] }, { section: "Computers", topics: ["Fundamentals of Computer", "MS-Windows"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "8": [ { section: "Mental Ability", topics: ["Rational Numbers", "Linear Equations", "Quadrilaterals"] }, { section: "Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] }, { section: "Computers", topics: ["Fundamentals of Computers", "HTML & CSS"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "9": [ { section: "Mental Ability", topics: ["Number Systems", "Polynomials", "Coordinate Geometry"] }, { section: "Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] }, { section: "Computers", topics: ["Algorithms and Flowcharts", "Internet and Viruses"] }, { section: "English", topics: ["Vocabulary"] } ],
+                "10": [ { section: "Mental Ability", topics: ["Real Numbers", "Polynomials", "Pair of Linear Equations"] }, { section: "Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] }, { section: "Computers", topics: ["Operating System", "Networking"] }, { section: "English", topics: ["Vocabulary"] } ]
             }
         };
 
