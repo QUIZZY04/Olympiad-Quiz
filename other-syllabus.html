@@ -208,8 +208,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        
+        import { getAuth, onAuthStateChanged
         const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -217,10 +216,17 @@
         onAuthStateChanged(auth, (user) => {
             const authLink = document.getElementById('navAuthLink');
             if (user && authLink) {
-                authLink.innerText = "Dashboard";
-                authLink.href = "dashboard.html";
+                authLink.innerText ventDefault(); window.logout(); };
+                authLink.style.background = "var(--danger)";
             }
         });
+
+        window.logout = async () => {
+            if (confirm("Logout?")) {
+                await signOut(auth);
+                window.location.replace("login.html");
+            }
+        };
 
         const syllabusData = {
             NSTSE: {
