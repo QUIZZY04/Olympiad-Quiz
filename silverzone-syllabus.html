@@ -31,6 +31,27 @@
       }]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is there negative marking in these Olympiads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Generally, preliminary levels of Olympiads like SilverZone do not have negative marking for Class 1 to 10. Always verify with official guidelines for advanced levels."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the Scholar's Zone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Scholar's Zone contains Higher Order Thinking Skills (HOTS) questions. These are more complex and carry a higher weightage, making them crucial for top ranks."
+        }
+      }]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
@@ -154,8 +175,21 @@
         </div>
 
         <div id="syllabusContainer" class="content-card">
-            <h2 id="syllabusTitle"><span id="titleIcon">📘</span> <span id="titleText">Syllabus</span></h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; border-bottom: 2px solid var(--border); padding-bottom: 15px;">
+                <h2 style="margin-bottom: 0; border: none; padding: 0;" id="syllabusTitle"><span id="titleIcon">📘</span> <span id="titleText">Syllabus</span></h2>
+                <button onclick="window.print()" style="background: var(--brand); color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 10px rgba(194, 65, 12, 0.2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF</button>
+            </div>
             
+            <div id="examOverview" style="display:none; background: var(--bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 30px;">
+                <h3 style="font-size: 1.1rem; color: var(--brand-text); margin-bottom: 15px; font-weight: 700;">Exam Overview</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 0.95rem;">
+                    <div><strong style="color: var(--muted);">Conducting Body:</strong> <span style="color: var(--text); font-weight: 600;">SilverZone Foundation</span></div>
+                    <div><strong style="color: var(--muted);">Eligibility:</strong> <span style="color: var(--text); font-weight: 600;">Class 1 to 12</span></div>
+                    <div><strong style="color: var(--muted);">Exam Mode:</strong> <span style="color: var(--text); font-weight: 600;">Online / Offline</span></div>
+                    <div><strong style="color: var(--muted);">Question Type:</strong> <span style="color: var(--text); font-weight: 600;">Multiple Choice Questions (MCQs)</span></div>
+                </div>
+            </div>
+
             <div id="patternContainer" style="margin-bottom: 35px; display: none;">
                 <h3 style="font-size: 1.2rem; color: var(--text); margin-bottom: 15px; font-weight: 700;">Exam Pattern & Marking Scheme</h3>
                 <div style="overflow-x: auto; border-radius: 12px; border: 1px solid var(--border);">
@@ -178,6 +212,39 @@
             <div id="noResultsMsg" style="display:none; text-align:center; padding: 20px; color: var(--muted); font-weight: 500;">
                 No matching topics found for your search.
             </div>
+            
+            <div style="background: linear-gradient(135deg, var(--brand), var(--accent)); padding: 25px; border-radius: 16px; text-align: center; margin-top: 40px; box-shadow: var(--shadow-md);">
+                <h3 style="color: white; margin-bottom: 10px; font-size: 1.4rem; font-weight: 800;">Ready to check your preparation level?</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 20px; font-size: 0.95rem;">Practice free mock tests based on this exact syllabus and pattern.</p>
+                <a href="mock.html" style="background: white; color: var(--brand-text); padding: 12px 25px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">Start Free Mock Test</a>
+            </div>
+        </div>
+        
+        <div class="content-card" style="display: block; padding: 30px;">
+            <h3 style="font-size: 1.4rem; color: var(--text); margin-bottom: 15px; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 10px;">Preparation Strategy & Recommended Books</h3>
+            <ul style="color: var(--text); font-size: 0.95rem; margin-left: 20px; margin-bottom: 20px; line-height: 1.8;">
+                <li><strong>Understand the Exam Pattern:</strong> Familiarize yourself with the marking scheme. Prioritize the Scholar's Zone as it carries more marks.</li>
+                <li><strong>Focus on Logical Reasoning:</strong> This section often acts as a rank decider. Practice coding-decoding, blood relations, and spatial reasoning daily.</li>
+                <li><strong>Take Timed Mock Tests:</strong> Accuracy under pressure is key. Use CBT interfaces to simulate the real exam environment.</li>
+            </ul>
+            <h4 style="font-size: 1.1rem; color: var(--brand-text); margin-bottom: 10px; font-weight: 700;">Recommended Books:</h4>
+            <ul style="color: var(--text); font-size: 0.95rem; margin-left: 20px; line-height: 1.8;">
+                <li>NCERT / School prescribed textbooks for core concepts.</li>
+                <li>SilverZone Comprehensive Books & Previous Years' Papers.</li>
+                <li>Reasoning & Aptitude books by R.S. Aggarwal.</li>
+            </ul>
+        </div>
+        
+        <div class="content-card" style="display: block; padding: 30px;">
+            <h3 style="font-size: 1.4rem; color: var(--text); margin-bottom: 20px; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 10px;">Frequently Asked Questions (FAQs)</h3>
+            <details style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border);">
+                <summary style="font-weight: 700; color: var(--brand-text); cursor: pointer; font-size: 1.05rem;">Is there negative marking in these Olympiads?</summary>
+                <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Generally, preliminary levels of Olympiads do not have negative marking for Class 1 to 10. However, always verify with the official guidelines for specific advanced levels.</p>
+            </details>
+            <details style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border);">
+                <summary style="font-weight: 700; color: var(--brand-text); cursor: pointer; font-size: 1.05rem;">What is the Scholar's Zone?</summary>
+                <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">The Scholar's Zone contains Higher Order Thinking Skills (HOTS) questions. These are more complex and carry a higher weightage (usually 2 or 3 marks per question), making them crucial for securing top ranks.</p>
+            </details>
         </div>
     </div>
 
@@ -347,12 +414,18 @@
             
             if(!cls || !sub) return;
             
+            const url = new URL(window.location);
+            url.searchParams.set('class', cls);
+            url.searchParams.set('subject', sub);
+            window.history.pushState({}, '', url);
+
             document.getElementById("searchInput").disabled = false;
             document.getElementById("defaultState")?.style.setProperty('display', 'none');
             document.getElementById("syllabusContainer").style.display = "block";
             
             const data = syllabusData[sub];
             document.getElementById("syllabusTitle").innerText = `Class ${cls} ${data.name}`;
+            document.getElementById('examOverview').style.display = 'block';
             
             const c = parseInt(cls);
             const patternData = (c <= 2) ? data.pattern["1-2"] : data.pattern["3-10"];
@@ -389,6 +462,15 @@
                 if (hasMatch) { item.classList.remove('hidden'); visibleCount++; } else { item.classList.add('hidden'); }
             });
             document.getElementById('noResultsMsg').style.display = visibleCount === 0 ? 'block' : 'none';
+        });
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const clsParam = urlParams.get('class');
+            const subParam = urlParams.get('subject');
+            if (clsParam) document.getElementById('classSelect').value = clsParam;
+            if (subParam) document.getElementById('subjectSelect').value = subParam;
+            if (clsParam && subParam) window.renderSyllabus();
         });
     </script>
 </body>
