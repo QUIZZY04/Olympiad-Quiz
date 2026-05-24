@@ -349,9 +349,15 @@
             
             const c = parseInt(cls);
             let patternData = null;
-            if(c <= 2) patternData = data.pattern["1-2"];
-            else if(c <= 5) patternData = data.pattern["3-5"];
-            else patternData = data.pattern["6-10"];
+            
+            if (sub === "NSTSE" || sub === "UIMO") {
+                if (c <= 2) patternData = data.pattern["1-2"];
+                else if (c <= 5) patternData = data.pattern["3-5"];
+                else patternData = data.pattern["6-10"];
+            } else {
+                if (c <= 4) patternData = data.pattern["1-4"];
+                else patternData = data.pattern["5-10"];
+            }
             
             if (patternData) {
                 document.getElementById('patternContainer').style.display = 'block';
