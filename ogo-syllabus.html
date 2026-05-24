@@ -133,6 +133,9 @@
                         <option value="OGOM">OGO Mathematics</option>
                         <option value="OGOS">OGO Science</option>
                         <option value="OGOE">OGO English</option>
+                        <option value="OGOC">OGO Cyber</option>
+                        <option value="OGOA">OGO Astronomy</option>
+                        <option value="OGOH">OGO Hindi</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -235,6 +238,48 @@
                 "8": [ { section: "English Grammar", topics: ["Synonyms", "Antonyms", "Analogies", "Collocations", "Phrasal Verbs", "Idioms", "Homonyms", "One word", "Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Tenses", "Voices and Narrations"] }, { section: "Logical Reasoning", topics: ["Logical Reasoning"] } ],
                 "9": [ { section: "English Grammar", topics: ["Synonyms", "Antonyms", "Analogies", "One word", "Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Punctuations", "Jumbled words", "Voices", "Concord", "Question forms", "Tenses", "Conditionals", "Modals", "Reported speech"] }, { section: "Logical Reasoning", topics: ["Logical Reasoning"] } ],
                 "10": [ { section: "English Grammar", topics: ["Synonyms", "Antonyms", "Analogies", "One word", "Word order", "Nouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Punctuations", "Voices", "Narration", "Concord", "Question forms", "Tenses", "Conditionals", "Modals"] }, { section: "Logical Reasoning", topics: ["Logical Reasoning"] } ]
+            },
+            OGOC: {
+                name: "OGO Cyber", icon: "💻",
+                pattern: { "1-10": [ { sec: "Subjective Questions", q: 35, m: 1 }, { sec: "Logical Reasoning", q: 15, m: 1 } ] },
+                "1": [ { section: "Subjective", topics: ["Introduction to Computers", "Parts of Computer", "Uses of Computer", "Keyboard and Mouse"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out"] } ],
+                "2": [ { section: "Subjective", topics: ["Computer-a Smart Machine", "Parts of Computer", "Uses of Computer", "Learning to use Keyboard and Mouse"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out"] } ],
+                "3": [ { section: "Subjective", topics: ["Fundamentals of Computer", "Storage Devices", "Parts of Computer", "MS-Paint", "Introduction to MS-Word"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "4": [ { section: "Subjective", topics: ["Evolution of Computers", "Input and Output Devices", "Hardware", "Software", "MS-Word", "Using Windows"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "5": [ { section: "Subjective", topics: ["Fundamentals of Computer", "Memory & Storage Devices", "Algorithms & Flowcharts", "MS-Word", "MS-PowerPoint"] }, { section: "Logical Reasoning", topics: ["Coding-Decoding", "Analogy"] } ],
+                "6": [ { section: "Subjective", topics: ["History and Generation of Computers", "Types of Computers", "MS-Windows", "MS-Word", "MS-PowerPoint", "Internet & E-mail"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "7": [ { section: "Subjective", topics: ["Fundamentals of Computer", "Memory & Storage Devices", "Algorithms & Flowcharts", "MS-Windows", "MS-Word", "MS-PowerPoint", "MS-Excel"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "8": [ { section: "Subjective", topics: ["Fundamentals of Computers", "Internet & Viruses", "HTML & CSS", "Flash", "MS-Access", "Networking"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "9": [ { section: "Subjective", topics: ["Algorithms and Flowcharts", "Visual Basic", "Animations", "HTML (Advanced)", "Internet and Viruses", "MS-Excel", "MS-PowerPoint"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "10": [ { section: "Subjective", topics: ["Operating System", "MS-Word", "Networking", "MS-PowerPoint", "MS-Excel", "HTML", "Database Management System"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ]
+            },
+            OGOA: {
+                name: "OGO Astronomy", icon: "🔭",
+                pattern: { "1-10": [ { sec: "Subjective Questions", q: 35, m: 1 }, { sec: "Logical Reasoning", q: 15, m: 1 } ] },
+                "1": [ { section: "Subjective", topics: ["Day and Night", "The Sun", "The Moon", "Stars in the Sky"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out"] } ],
+                "2": [ { section: "Subjective", topics: ["Day and Night", "The Sun", "The Moon", "Stars in the Sky", "Earth our Home"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out"] } ],
+                "3": [ { section: "Subjective", topics: ["The Solar System", "Planets", "Moon Phases", "Constellations"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "4": [ { section: "Subjective", topics: ["The Solar System", "Planets", "Moon Phases", "Eclipses", "Space Exploration Basics"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "5": [ { section: "Subjective", topics: ["Our Solar System", "Earth's Rotation and Revolution", "Stars and Galaxies", "Satellites"] }, { section: "Logical Reasoning", topics: ["Coding-Decoding", "Analogy"] } ],
+                "6": [ { section: "Subjective", topics: ["The Universe", "Solar System Deep Dive", "Asteroids and Comets", "Space Missions", "Telescopes"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "7": [ { section: "Subjective", topics: ["The Universe", "Solar System Deep Dive", "Asteroids and Comets", "Space Missions", "Telescopes"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "8": [ { section: "Subjective", topics: ["Life Cycle of Stars", "Galaxies", "Black Holes", "History of Astronomy", "Space Technology"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "9": [ { section: "Subjective", topics: ["Astrophysics Basics", "Cosmology", "Space Physics", "Famous Astronomers", "Observatories"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "10": [ { section: "Subjective", topics: ["Astrophysics Basics", "Cosmology", "Space Physics", "Famous Astronomers", "Observatories", "Exoplanets"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ]
+            },
+            OGOH: {
+                name: "OGO Hindi", icon: "📝",
+                pattern: { "1-10": [ { sec: "Subjective Questions", q: 35, m: 1 }, { sec: "Logical Reasoning", q: 15, m: 1 } ] },
+                "1": [ { section: "Subjective", topics: ["Varnamala", "Matras", "Simple Words", "Basic Grammar"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out"] } ],
+                "2": [ { section: "Subjective", topics: ["Varnamala", "Matras", "Vocabulary", "Basic Grammar", "Sentence Formation"] }, { section: "Logical Reasoning", topics: ["Patterns", "Odd One Out"] } ],
+                "3": [ { section: "Subjective", topics: ["Noun", "Pronoun", "Adjectives", "Synonyms", "Antonyms", "Reading Comprehension"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "4": [ { section: "Subjective", topics: ["Noun", "Pronoun", "Adjectives", "Verbs", "Synonyms", "Antonyms", "Reading Comprehension"] }, { section: "Logical Reasoning", topics: ["Patterns", "Analogy"] } ],
+                "5": [ { section: "Subjective", topics: ["Grammar Rules", "Idioms", "Proverbs", "Vocabulary", "Reading Comprehension"] }, { section: "Logical Reasoning", topics: ["Coding-Decoding", "Analogy"] } ],
+                "6": [ { section: "Subjective", topics: ["Advanced Grammar", "Sandhi", "Samas", "Idioms", "Reading Comprehension"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "7": [ { section: "Subjective", topics: ["Advanced Grammar", "Sandhi", "Samas", "Idioms", "Reading Comprehension"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "8": [ { section: "Subjective", topics: ["Grammar", "Literature Basics", "Alankar", "Essay/Letter Writing basics", "Comprehension"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "9": [ { section: "Subjective", topics: ["Grammar", "Literature", "Alankar", "Ras", "Comprehension"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ],
+                "10": [ { section: "Subjective", topics: ["Grammar", "Literature", "Alankar", "Ras", "Chhand", "Comprehension"] }, { section: "Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] } ]
             }
         };
 
