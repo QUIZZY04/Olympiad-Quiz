@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOF Olympiad Syllabus | Class-wise Detailed Topics</title>
+    <meta name="description" content="Class-wise detailed syllabus for all major SOF Olympiads including IMO, NSO, IEO, NCO, and IGKO.">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="canonical" href="https://olympiadquiz.org/sof-syllabus.html">
+    <meta property="og:title" content="SOF Olympiad Syllabus | Detailed Topics">
+    <meta property="og:description" content="Class-wise detailed syllabus for all major SOF Olympiads.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root {
+            --bg: #f1f5f9; --surface: #ffffff; --text: #0f172a; --muted: #475569; 
+            --border: #cbd5e1; --brand: #c2410c; --accent: #9a3412; 
+            --brand-text: #b45309; --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
+            background-image: radial-gradient(circle at 0% 0%, rgba(194, 65, 12, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(194, 65, 12, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* Navbar */
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
+        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
+        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; }
+        .nav-links a:hover { color: var(--brand-text); background: rgba(194, 65, 12, 0.05); }
+        .login-link { background: var(--brand) !important; color: #ffffff !important; box-shadow: 0 4px 15px rgba(194, 65, 12, 0.3) !important; }
+        .login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(194, 65, 12, 0.4) !important; filter: brightness(1.1); }
+
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
+        
+        /* Hero Section */
+        .hero { text-align: center; margin-bottom: 40px; }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; color: var(--text); margin-bottom: 10px; letter-spacing: -0.02em; }
+        .hero h1 span { color: var(--brand-text); }
+        .hero p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        
+        /* Sticky Selectors & Search */
+        .sticky-controls {
+            position: sticky; top: 75px; z-index: 100; background: var(--bg); padding: 15px 0; margin-bottom: 30px;
+        }
+        .selector-card { 
+            background: var(--surface); padding: 20px 25px; border-radius: 16px; border: 1px solid var(--border); 
+            display: flex; gap: 15px; flex-wrap: wrap; box-shadow: var(--shadow-sm); align-items: center; 
+        }
+        .input-group { flex: 1; min-width: 200px; position: relative; }
+        .input-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .styled-input { 
+            width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border); font-size: 15px; font-weight: 600; 
+            outline: none; background: var(--bg); color: var(--text); transition: 0.2s; 
+        }
+        select.styled-input {
+            cursor: pointer; appearance: none; 
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+            background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; 
+        }
+        .styled-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1); background: var(--surface); }
+
+        /* Empty & Skeleton States */
+        .empty-state { text-align: center; padding: 60px 20px; color: var(--text); background: var(--surface); border-radius: 16px; border: 1px dashed var(--border); font-weight: 600; font-size: 1.1rem; }
+        .empty-state span { font-size: 3rem; display: block; margin-bottom: 15px; }
+        
+        .skeleton { background: #e2e8f0; border-radius: 8px; animation: pulse 1.5s infinite ease-in-out; margin-bottom: 15px; height: 60px; width: 100%; }
+        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        .skeleton-wrapper { display: none; background: var(--surface); padding: 30px; border-radius: 16px; border: 1px solid var(--border); }
+
+        /* Content Card */
+        .content-card { 
+            background: var(--surface); padding: 35px; border-radius: 20px; box-shadow: var(--shadow-md); 
+            border: 1px solid var(--border); margin-bottom: 30px; display: none; animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .content-card h2 { margin-bottom: 25px; color: var(--text); border-bottom: 2px solid var(--border); padding-bottom: 15px; font-size: 1.6rem; font-weight: 800; display: flex; align-items: center; gap: 10px;}
+        
+        /* Accordion UI */
+        .accordion-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; background: var(--bg); transition: 0.3s; }
+        .accordion-item.hidden { display: none; }
+        .accordion-header { 
+            width: 100%; text-align: left; padding: 18px 20px; background: transparent; border: none; cursor: pointer; 
+            font-size: 1.1rem; font-weight: 700; color: var(--text); display: flex; justify-content: space-between; align-items: center; transition: 0.2s;
+        }
+        .accordion-header:hover { background: rgba(194, 65, 12, 0.05); color: var(--brand-text); }
+        .accordion-header:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+        .accordion-icon { transition: transform 0.3s ease; font-size: 1.2rem; color: var(--brand-text); }
+        .accordion-item.open .accordion-header { border-bottom: 1px solid var(--border); background: var(--surface); color: var(--brand-text); }
+        .accordion-item.open .accordion-icon { transform: rotate(180deg); }
+        .accordion-content { 
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; 
+            background: var(--surface); padding: 0 20px;
+        }
+        .accordion-item.open .accordion-content { padding: 20px; }
+        .topic-list { list-style: none; margin-left: 5px; }
+        .topic-list li { position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--text); font-weight: 500; font-size: 0.95rem; }
+        .topic-list li::before { content: "•"; position: absolute; left: 0; color: var(--brand-text); font-weight: bold; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; }
+            .sticky-controls { top: 60px; padding: 10px 0; }
+            .input-group { min-width: 100%; }
+            .content-card { padding: 20px; }
+            .accordion-header { font-size: 1rem; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="mock.html">Mock Tests</a>
+            <a href="chapterwise.html">Chapterwise</a>
+            <a href="login.html" id="navAuthLink" class="login-link">Log in</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>SOF Olympiad <span>Syllabus</span></h1>
+            <p>Class-wise detailed syllabus for all major SOF Olympiads. Select your criteria below to explore the official topics.</p>
+        </div>
+
+        <div class="sticky-controls">
+            <div class="selector-card">
+                <div class="input-group">
+                    <label for="classSelect">Class</label>
+                    <select id="classSelect" class="styled-input" aria-label="Select Class">
+                        <option value="" disabled selected>Select Class...</option>
+                        <option value="1">Class 1</option><option value="2">Class 2</option>
+                        <option value="3">Class 3</option><option value="4">Class 4</option>
+                        <option value="5">Class 5</option><option value="6">Class 6</option>
+                        <option value="7">Class 7</option><option value="8">Class 8</option>
+                        <option value="9">Class 9</option><option value="10">Class 10</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="subjectSelect">Olympiad</label>
+                    <select id="subjectSelect" class="styled-input" aria-label="Select Olympiad">
+                        <option value="" disabled selected>Select Olympiad...</option>
+                        <option value="IMO">IMO (Mathematics)</option>
+                        <option value="NSO">NSO (Science)</option>
+                        <option value="IEO">IEO (English)</option>
+                        <option value="NCO">NCO (Cyber)</option>
+                        <option value="IGKO">IGKO (General Knowledge)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="searchInput">Search Topics</label>
+                    <input type="text" id="searchInput" class="styled-input" placeholder="e.g. Algebra, Animals..." aria-label="Search within syllabus" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- States -->
+        <div id="emptyState" class="empty-state">
+            <span>📖</span>
+            Select a class and olympiad to view the detailed syllabus.
+        </div>
+
+        <div id="skeletonLoader" class="skeleton-wrapper">
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+        </div>
+
+        <div id="syllabusContainer" class="content-card">
+            <h2 id="syllabusTitle"><span id="titleIcon">📘</span> <span id="titleText">Syllabus</span></h2>
+            
+            <div id="patternContainer" style="margin-bottom: 35px; display: none;">
+                <h3 style="font-size: 1.2rem; color: var(--text); margin-bottom: 15px; font-weight: 700;">Exam Pattern & Marking Scheme</h3>
+                <div style="overflow-x: auto; border-radius: 12px; border: 1px solid var(--border);">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+                        <thead style="background: var(--bg);">
+                            <tr>
+                                <th style="padding: 12px 15px; border-bottom: 1px solid var(--border); color: var(--text); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">Section</th>
+                                <th style="padding: 12px 15px; border-bottom: 1px solid var(--border); color: var(--text); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; text-align: center;">No. of Questions</th>
+                                <th style="padding: 12px 15px; border-bottom: 1px solid var(--border); color: var(--text); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; text-align: center;">Marks/Question</th>
+                                <th style="padding: 12px 15px; border-bottom: 1px solid var(--border); color: var(--text); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; text-align: center;">Total Marks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patternTbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.2rem; color: var(--text); margin-bottom: 15px; font-weight: 700;">Chapter-wise Syllabus</h3>
+            <div id="accordionContainer">
+                <!-- Accordions injected via JS -->
+            </div>
+            <div id="noResultsMsg" style="display:none; text-align:center; padding: 20px; color: var(--muted); font-weight: 500;">
+                No matching topics found for your search.
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+        <p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        
+        const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            const authLink = document.getElementById('navAuthLink');
+            if (user && authLink) {
+                authLink.innerText = "Dashboard";
+                authLink.href = "dashboard.html";
+            }
+        });
+
+        // Reusable Structured Syllabus Data (Modular JSON approach)
+        const syllabusData = {
+            IMO: {
+                name: "International Mathematics Olympiad (IMO)", icon: "📐",
+                pattern: {
+                    "1-4": [
+                        { sec: "Logical Reasoning", q: 10, m: 1 },
+                        { sec: "Mathematical Reasoning", q: 10, m: 1 },
+                        { sec: "Everyday Mathematics", q: 10, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 2 }
+                    ],
+                    "5-10": [
+                        { sec: "Logical Reasoning", q: 15, m: 1 },
+                        { sec: "Mathematical Reasoning", q: 20, m: 1 },
+                        { sec: "Everyday Mathematics", q: 10, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 3 }
+                    ]
+                },
+                "1": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Odd One Out", "Measuring Units", "Geometrical Shapes", "Spatial Understanding", "Grouping", "Analogy", "Ranking Test", "Problems based on Figures"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Numerals", "Number Names", "Number Sense (2 digit numbers)", "Addition", "Subtraction", "Lengths", "Weights and Comparisons", "Time", "Money", "Geometrical Shapes and Solids", "Patterns"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "2": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Measuring Units", "Odd One Out", "Series Completion", "Geometrical Shapes", "Analogy", "Ranking Test", "Grouping of Figures", "Coding-Decoding", "Embedded Figures"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Numerals", "Number Names and Number Sense (3-Digit Numbers)", "Computation Operations", "Length", "Weight", "Capacity", "Time", "Temperature", "Money", "Lines", "Shapes and Solids", "Pictographs"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "3": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Analogy and Classification", "Alphabet Test", "Coding-Decoding", "Ranking Test", "Grouping of Figures and Figure Matrix", "Mirror Images", "Geometrical Shapes", "Embedded Figures", "Days and Dates & Possible Combinations"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Numerals", "Number Names and Number Sense (4-digit numbers)", "Computation Operations", "Fractions", "Length", "Weight", "Capacity", "Temperature", "Time", "Money", "Geometry", "Data Handling"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "4": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Alphabet Test", "Coding-Decoding", "Ranking Test", "Mirror Images", "Geometrical Shapes and Solids", "Embedded Figures", "Direction Sense Test", "Days and Dates & Possible Combinations", "Analogy and Classification"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Numerals and Number Names", "Number Sense (more than 4-digit numbers)", "Computation Operations", "Fractions", "Length", "Weight", "Capacity", "Time", "Money", "Geometry", "Perimeter of Various Shapes", "Symmetry", "Conversions", "Data Handling"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "5": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Analogy and Classification", "Geometrical Shapes", "Mirror and Water Images", "Direction Sense Test", "Ranking Test", "Alphabet Test", "Logical Sequence of Words", "Puzzle Test", "Coding-Decoding"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Numerals", "Number Names and Number Sense (7 and 8 digit numbers)", "Computation Operations", "Fractions and Decimals", "Measurement of Length, Weight, Capacity, Time, Temperature and Money", "Conversions", "Geometrical Shapes and Solids", "Angles", "Perimeter of Various Shapes & Area of Rectangle and Square", "Symmetry", "Data Handling"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "6": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Knowing our Numbers", "Whole Numbers", "Playing with Numbers", "Basic Geometrical Ideas", "Understanding Elementary Shapes", "Integers", "Fractions", "Decimals", "Data Handling", "Mensuration", "Algebra", "Ratio and Proportion", "Symmetry", "Practical Geometry"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "7": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Integers", "Fractions and Decimals", "Exponents and Powers", "Algebraic Expressions", "Simple Linear Equations", "Lines and Angles", "Comparing Quantities", "The Triangle and its Properties", "Symmetry", "Congruence of Triangles", "Rational Numbers", "Perimeter and Area", "Data Handling", "Visualising Solid Shapes", "Practical Geometry"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "8": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Rational Numbers", "Squares and Square Roots", "Cubes and Cube Roots", "Exponents and Powers", "Comparing Quantities", "Algebraic Expressions and Identities", "Linear Equations in One Variable", "Understanding Quadrilaterals", "Constructions", "Mensuration", "Visualising Solid Shapes", "Data Handling", "Direct and Inverse Variations", "Factorisation", "Introduction to Graphs", "Playing with Numbers"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "9": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Number Systems", "Polynomials", "Coordinate Geometry", "Linear Equations in Two Variables", "Introduction to Euclid’s Geometry", "Lines and Angles", "Triangles", "Quadrilaterals", "Areas of Parallelograms and Triangles", "Circles", "Constructions", "Heron’s Formula", "Surface Areas and Volumes", "Statistics", "Probability"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "10": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Mathematical Reasoning", topics: ["Real Numbers", "Polynomials", "Pair of Linear Equations in Two Variables", "Quadratic Equations", "Arithmetic Progressions", "Triangles", "Coordinate Geometry", "Introduction to Trigonometry", "Some Applications of Trigonometry", "Circles", "Constructions", "Areas Related to Circles", "Surface Areas and Volumes", "Statistics", "Probability"] },
+                    { section: "Section 3: Everyday Mathematics", topics: ["Syllabus of Mathematical Reasoning applied to everyday life"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ]
+            },
+            NSO: {
+                name: "National Science Olympiad (NSO)", icon: "🔬",
+                pattern: {
+                    "1-4": [
+                        { sec: "Logical Reasoning", q: 5, m: 1 },
+                        { sec: "Science", q: 25, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 2 }
+                    ],
+                    "5-10": [
+                        { sec: "Logical Reasoning", q: 10, m: 1 },
+                        { sec: "Science", q: 35, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 3 }
+                    ]
+                },
+                "1": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Spatial Understanding", "Grouping", "Measuring Units", "Analogy", "Geometrical Shapes", "Patterns", "Odd One Out", "Ranking Test"] },
+                    { section: "Section 2: Science", topics: ["Living and Non-living things", "Plants", "Animals", "Human Beings and Their Needs", "Good Habits and Safety Rules", "Air and Water", "Weather and The Sky"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "2": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Spatial Understanding", "Measuring Units", "Analogy", "Geometrical Shapes", "Patterns", "Odd One Out", "Ranking Test", "Grouping of Figures", "Coding-Decoding"] },
+                    { section: "Section 2: Science", topics: ["Plants", "Animals", "Human Body", "Food", "Housing and Clothing", "Family and Festivals", "Good Habits and Safety Rules", "Transport and Communication", "Air, Water and Rocks", "Earth and Universe"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "3": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Analogy and Classification", "Alphabet Test", "Coding-Decoding", "Ranking Test", "Grouping of Figures and Figure Matrix", "Mirror Images", "Geometrical Shapes", "Embedded Figures", "Days and Dates & Possible Combinations"] },
+                    { section: "Section 2: Science", topics: ["Plants and Animals", "Birds", "Food", "Housing, Clothing and Occupation", "Transport and Communication", "Human Body", "Earth and Universe", "Matter and Materials", "Light, Sound and Force", "Our Environment"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "4": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Alphabet Test", "Coding-Decoding", "Ranking Test", "Mirror Images", "Geometrical Shapes and Solids", "Embedded Figures", "Direction Sense Test", "Days and Dates & Possible Combinations", "Analogy and Classification"] },
+                    { section: "Section 2: Science", topics: ["Plants", "Animals", "Food and Digestion", "Human Needs", "Matter and Materials", "Force, Work and Energy", "Our Environment", "Earth and Universe"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "5": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Analogy and Classification", "Geometrical Shapes", "Mirror and Water Images", "Direction Sense Test", "Ranking Test", "Alphabet Test", "Logical Sequence of Words", "Puzzle Test", "Coding-Decoding"] },
+                    { section: "Section 2: Science", topics: ["Animals", "Plants and Food", "Human Body and Health", "Water", "Matter and Materials", "Earth and Universe", "Our Environment", "Force, Work and Energy"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "6": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Science", topics: ["Motion and Measurement of Distances", "Light, Shadows and Reflections", "Electricity and Circuits", "Fun with Magnets", "Our Environment (Water, Air Around us, Garbage)", "Sorting and Separation of Materials", "Changes Around Us", "The World of Living (Characteristics, Plants, Adaptations)"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "7": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Science", topics: ["Heat", "Motion and Time", "Electric Current and its Effects", "Winds, Storms and Cyclones", "Light", "Acids, Bases and Salts", "Physical and Chemical Changes", "Weather, Climate and Adaptations", "Fibre to Fabric", "Nutrition in Plants and Animals", "Respiration in Organisms", "Transportation", "Reproduction in Plants", "Natural Resources"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "8": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Science", topics: ["Crop Production and Management", "Microorganisms", "Synthetic Fibres and Plastics", "Metals and Non-metals", "Coal and Petroleum", "Combustion and Flame", "Conservation of Plants and Animals", "Cell Structure and Functions", "Reproduction in Animals", "Age of Adolescence", "Force and Pressure", "Friction", "Sound", "Chemical Effects of Electric Current", "Some Natural Phenomena", "Light", "Stars and the Solar System", "Pollution of Air and Water"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "9": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Science", topics: ["Motion", "Force and Laws of Motion", "Gravitation", "Work and Energy", "Sound", "Matter in Our Surroundings", "Is Matter Around Us Pure", "Atoms and Molecules", "Structure of Atom", "Cell-The Fundamental Unit of Life", "Tissues", "Diversity in Living Organisms", "Why Do We Fall Ill", "Natural Resources", "Improvement in Food Resources"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "10": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Science", topics: ["Chemical Reactions and Equations", "Acids, Bases and Salts", "Metals and Non-metals", "Carbon and Its Compounds", "Periodic Classification of Elements", "Life Processes", "Control and Coordination", "How do Organisms Reproduce?", "Heredity and Evolution", "Light-Reflection and Refraction", "Human Eye and Colourful World", "Electricity", "Magnetic Effects of Electric Current", "Sources of Energy", "Our Environment", "Management of Natural Resources"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ]
+            },
+            IEO: {
+                name: "International English Olympiad (IEO)", icon: "📚",
+                pattern: {
+                    "1-4": [
+                        { sec: "Word and Structure Knowledge", q: 15, m: 1 },
+                        { sec: "Reading", q: 10, m: 1 },
+                        { sec: "Spoken and Written Expression", q: 5, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 2 }
+                    ],
+                    "5-10": [
+                        { sec: "Word and Structure Knowledge", q: 30, m: 1 },
+                        { sec: "Reading", q: 10, m: 1 },
+                        { sec: "Spoken and Written Expression", q: 5, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 3 }
+                    ]
+                },
+                "1": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Words and Their Meanings", "Words and Their Opposites", "Identify the Word From the Picture", "Making a Word", "Word Power", "Nouns", "Verbs", "Articles"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from stories, short dialogues, messages, invitations, etc."] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like apologizing, greeting, introducing, requesting, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "2": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Collocations", "Spellings", "Synonyms", "Antonyms", "Identify the word from the Picture", "Words related to animals, phrases, Idioms", "Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from stories, short dialogues, etc."] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like apologizing, greeting, introducing, requesting, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "3": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Homophones", "Collocations", "Spellings", "Words related to animals, Household things, Clothes, Basic emotions, Food, Animals and Pets", "Synonyms and Antonyms", "Gender", "Number", "Proverbs", "Idioms", "Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Simple Tenses", "Conjunctions and Punctuation"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from stories, Anecdotes", "Understand information through pictures, Time-table format, etc."] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like apology, greeting, introduction, request, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "4": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Collocations", "Spellings", "Words related to animals, Household things, Clothes, Basic emotions, Food, Animals and Pets", "Synonyms", "Antonyms", "Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Tenses", "Punctuation", "Jumbled words", "Basic Questions", "Question Tags", "Proverbs", "Idioms"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from stories, Anecdotes", "Understand information through pictures, Time-table format, etc."] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like apology, greeting, introduction, request, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "5": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Spellings", "Collocations", "Idioms", "Homonyms and homophones", "Words related to feelings, Travel, Food, Health, Appearance, Character", "Nouns", "Pronouns", "Verbs and Phrasal Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Punctuation", "Tenses", "Active-Passive Voice and Reported Speech"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from News headlines, Messages, Letters", "Understand information given in News reports, Time-tables, Messages"] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like requests, refusals, apologies, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "6": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Punctuation and Jumbled Words", "Tenses", "Voices", "Narration", "Spellings", "Collocations", "Phrasal verbs", "Idioms", "Synonyms", "Antonyms"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from News headlines, Messages, Letters", "Understand information given in News reports, Time-tables, Messages"] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like agreement and disagreement, Requests, Refusals, Apologies, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "7": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Spellings", "Collocations", "Idioms", "Homonyms and homophones", "Words related to Weather, Countries, Language and People, Global problems", "Nouns", "Pronouns", "Verbs and Phrasal Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Punctuation", "Tenses", "Active-Passive Voice and Reported Speech"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from News stories, Brochures, Formal and informal letters and advertisements", "Understand information given in news reports, Brochures, Itinerary, etc."] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like requesting and refusing, Apologies and stating of preferences and expression of intent, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "8": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Synonyms", "Antonyms", "Analogies and Spellings", "Collocations", "Phrasal Verbs", "Idioms or Proverbs", "Homonyms and Homophones", "One word", "Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Prepositional Phrases", "Participle Phrases", "Conjunctions", "Determiners", "Jumbled Words and Punctuation", "Tenses", "Voices and Narrations", "Question Tags"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from News reports, Blurb, Dictionaries", "Understand information presented in instruction manual format, Message format and others"] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like requesting, Giving information, Expressing surprise, Pronunciation, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "9": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Synonyms", "Antonyms", "Analogies and Spellings", "One word", "Word order", "Nouns", "Pronouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Punctuations", "Jumbled words", "Voices", "Concord", "Question forms", "Tenses", "Conditionals", "Modals", "Reported speech", "Phrasal verbs and idioms", "Homonyms and homophones", "Collocations", "Words related to leisure, Household items, Social causes, Outdoor locations"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from flyers, Classifieds, Dictionaries", "Understand information presented in instruction manual format, Message format and others"] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like Giving advice, Stating preferences, Discussing probability, Making an offer, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "10": [
+                    { section: "Section 1: Word and Structure Knowledge", topics: ["Synonyms", "Antonyms", "Analogies and Spellings", "One word", "Word order", "Nouns", "Verbs", "Adverbs", "Adjectives", "Articles", "Prepositions", "Conjunctions", "Punctuations", "Voices", "Narration", "Concord", "Question forms", "Tenses", "Conditionals", "Modals", "Collocations", "Phrasal verbs and idioms", "Homonyms and homophones", "Words related to weather, Countries, Language and people, Global problems"] },
+                    { section: "Section 2: Reading", topics: ["Search for and retrieve information from Encyclopedias, Dictionaries", "Understand information presented in instruction manual format, Message format and others"] },
+                    { section: "Section 3: Spoken and Written Expression", topics: ["Understand situation-based variations in functions like Giving/accepting compliments, Agreeing, Disagreeing, Requesting, Seeking information, etc."] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ]
+            },
+            NCO: {
+                name: "National Cyber Olympiad (NCO)", icon: "💻",
+                pattern: {
+                    "1-4": [
+                        { sec: "Logical Reasoning", q: 5, m: 1 },
+                        { sec: "Computers and IT", q: 25, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 2 }
+                    ],
+                    "5-10": [
+                        { sec: "Logical Reasoning", q: 10, m: 1 },
+                        { sec: "Computers and IT", q: 35, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 3 }
+                    ]
+                },
+                "1": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Odd One Out", "Measuring Units", "Geometrical Shapes", "Spatial Understanding", "Grouping", "Analogy", "Ranking Test", "Problems based on Figures"] },
+                    { section: "Section 2: Computers and IT", topics: ["Introduction to Computers", "Parts of Computer", "Uses of Computer", "Keyboard and Mouse", "Introduction to MS-Paint", "Latest Developments in the field of IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "2": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Measuring Units", "Odd One Out", "Series Completion", "Geometrical Shapes", "Analogy", "Ranking Test", "Grouping of Figures", "Coding-Decoding", "Embedded Figures"] },
+                    { section: "Section 2: Computers and IT", topics: ["Computer-a Smart Machine", "General Information about Computers", "Parts of Computer", "Uses of Computer", "Learning to use Keyboard and Mouse", "Introduction to MS-Paint", "Latest Developments in the field of IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "3": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Analogy and Classification", "Alphabet Test", "Coding-Decoding", "Ranking Test", "Grouping of Figures and Figure Matrix", "Mirror Images", "Geometrical Shapes", "Embedded Figures", "Days and Dates & Possible Combinations"] },
+                    { section: "Section 2: Computers and IT", topics: ["Fundamentals of Computer", "General Information about Computers", "Storage Devices", "Parts of Computer", "Uses of Computer", "Input and Output Devices", "Introduction to Internet", "MS-Paint", "Introduction to MS-Word (Opening, Closing, Saving and Printing)", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "4": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Alphabet Test", "Coding-Decoding", "Ranking Test", "Mirror Images", "Geometrical Shapes and Solids", "Embedded Figures", "Direction Sense Test", "Days and Dates & Possible Combinations", "Analogy and Classification"] },
+                    { section: "Section 2: Computers and IT", topics: ["About Computers (General Information)", "Evolution of Computers", "Parts of Computer", "Input and Output Devices", "Hardware", "Software", "MS-Word (Formatting a Word Document, Font group, Format Painter, Search using Find and Replace option, Checking Spelling and Grammar using Thesaurus)", "Using Windows", "Introduction to Internet and Its Uses", "Computer Networks", "MS-Paint", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "5": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Patterns", "Analogy and Classification", "Geometrical Shapes", "Mirror and Water Images", "Direction Sense Test", "Ranking Test", "Alphabet Test", "Logical Sequence of Words", "Puzzle Test", "Coding-Decoding"] },
+                    { section: "Section 2: Computers and IT", topics: ["Fundamentals of Computer", "Evolution of Computers", "Memory & Storage Devices", "Algorithms & Flowcharts (Introduction)", "Programming in Scratch", "MS-Word (Adding Graphics- inserting pictures, using shapes, inserting texts, symbols)", "MS-PowerPoint (Introduction, creating a new presentation, adding slides, backgrounds)", "Internet & Viruses", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "6": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Computers and IT", topics: ["History and Generation of Computers", "Types of Computers", "MS-Windows", "MS-Word (Working with Charts and Tables, Using Page Layout tab, Arranging multiple windows)", "MS-PowerPoint (Creating presentation using Animation, Custom Animation and Slide Transition, Creating new slides using Slides pane)", "Internet & E-mail", "Introduction to QBasic", "Hardware", "Software", "Input & Output Devices", "Memory & Storage Devices", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "7": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Computers and IT", topics: ["Fundamentals of Computer", "Evolution of Computers", "Memory & Storage Devices", "Algorithms & Flowcharts", "Programming in QBasic", "MS-Windows", "MS-Word (Links, Mail Merge, Macros)", "MS-PowerPoint (Slide master, viewing presentations, insert audio & video)", "MS-Excel (Editing cell contents, formatting data, functions)", "Internet & Viruses", "Networking", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "8": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Computers and IT", topics: ["Fundamentals of Computers", "Internet & Viruses", "HTML & CSS (Introduction, Basic Tags, CSS properties)", "Flash (Introduction)", "MS-Access", "Networking", "MS-Word", "MS-PowerPoint", "MS-Excel", "Memory & Storage Devices", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "9": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Computers and IT", topics: ["Algorithms and Flowcharts in Programming", "Visual Basic", "Animations", "HTML (Advanced)", "Internet and Viruses", "MS-Word", "MS-Excel", "MS-PowerPoint", "Hardware", "Software", "Input & Output Devices", "Memory & Storage Devices", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ],
+                "10": [
+                    { section: "Section 1: Logical Reasoning", topics: ["Verbal and Non-Verbal Reasoning"] },
+                    { section: "Section 2: Computers and IT", topics: ["Fundamentals of Computers", "Operating System", "MS-Word", "Networking", "MS-PowerPoint", "MS-Excel", "HTML", "Internet", "Database Management System (MS-Access)", "Latest Developments in IT"] },
+                    { section: "Section 3: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on Section-2 syllabus"] }
+                ]
+            },
+            IGKO: {
+                name: "International General Knowledge Olympiad (IGKO)", icon: "🌍",
+                pattern: {
+                    "1-4": [
+                        { sec: "General Awareness", q: 20, m: 1 },
+                        { sec: "Current Affairs", q: 5, m: 1 },
+                        { sec: "Life Skills", q: 5, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 2 }
+                    ],
+                    "5-10": [
+                        { sec: "General Awareness", q: 30, m: 1 },
+                        { sec: "Current Affairs", q: 10, m: 1 },
+                        { sec: "Life Skills", q: 5, m: 1 },
+                        { sec: "Achievers Section", q: 5, m: 3 }
+                    ]
+                },
+                "1": [
+                    { section: "Section 1: General Awareness", topics: ["Me and My Surroundings", "Plants and Animals", "India and the World", "Science and Technology", "Language and Literature", "Earth and Its Environment", "Transport and Communication", "Sports", "Math Fun"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Good Habits", "Etiquette", "Empathy", "Safety Rules"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "2": [
+                    { section: "Section 1: General Awareness", topics: ["Me and My Surroundings", "Plants and Animals", "India and the World", "Science and Technology", "Language and Literature", "Earth and Its Environment", "Transport and Communication", "Sports", "Math Fun"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Good Habits", "Etiquette", "Empathy", "Safety Rules"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "3": [
+                    { section: "Section 1: General Awareness", topics: ["Me and My Surroundings", "Plants and Animals", "India and the World", "Science and Technology", "Language and Literature", "Earth and Its Environment", "Transport and Communication", "Sports", "Math Fun"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Moral Values", "Team Work", "Environmental Sensitivity", "Communication", "Leadership", "Time Management"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "4": [
+                    { section: "Section 1: General Awareness", topics: ["Our Body and Health", "Plants and Animals", "India and the World", "Science and Technology", "Environment and its Conservation", "Language and Literature", "Entertainment", "Sports", "Math Fun"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Moral Values", "Team Work", "Environmental Sensitivity", "Communication", "Leadership", "Time Management"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "5": [
+                    { section: "Section 1: General Awareness", topics: ["Our Body and Health", "Plants and Animals", "India and the World", "Science and Technology", "Environment and its Conservation", "Language and Literature", "Entertainment", "Sports", "Quantitative Aptitude and Reasoning"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Empathy", "Effective Communication", "Problem Solving", "Self-Awareness", "Interpersonal Skills", "Coping with Stress and Emotions"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "6": [
+                    { section: "Section 1: General Awareness", topics: ["Plants and Animals", "India and the World", "Science and Technology", "Earth and Its Environment", "Universe", "Language and Literature", "Entertainment", "Social Studies", "Sports", "Quantitative Aptitude and Reasoning"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Empathy", "Effective Communication", "Critical Thinking", "Creative Thinking", "Coping with Stress", "Decision Making", "Problem Solving", "Interpersonal Skills", "Managing Emotions", "Self-awareness"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "7": [
+                    { section: "Section 1: General Awareness", topics: ["Plants and Animals", "India and the World", "Science and Technology", "Earth and Its Environment", "Universe", "Language and Literature", "Entertainment", "Social Studies", "Sports", "Quantitative Aptitude and Reasoning"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Empathy", "Effective Communication", "Critical Thinking", "Creative Thinking", "Coping with Stress", "Decision Making", "Problem Solving", "Interpersonal Skills", "Managing Emotions", "Self-awareness"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "8": [
+                    { section: "Section 1: General Awareness", topics: ["Plants and Animals", "India and the World", "Science and Technology", "Earth and Its Environment", "Universe", "Language and Literature", "Entertainment", "Social Studies", "Sports", "Quantitative Aptitude and Reasoning"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Empathy", "Effective Communication", "Critical Thinking", "Creative Thinking", "Coping with Stress", "Decision Making", "Problem Solving", "Interpersonal Skills", "Managing Emotions", "Self-awareness"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "9": [
+                    { section: "Section 1: General Awareness", topics: ["Plants and Animals", "India and the World", "Science and Technology", "Earth and Its Environment", "Universe", "Language and Literature", "Entertainment", "Social Studies", "Sports", "Quantitative Aptitude and Reasoning"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Empathy", "Effective Communication", "Critical Thinking", "Creative Thinking", "Coping with Stress", "Decision Making", "Problem Solving", "Interpersonal Skills", "Managing Emotions", "Self-awareness"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ],
+                "10": [
+                    { section: "Section 1: General Awareness", topics: ["Plants and Animals", "India and the World", "Science and Technology", "Earth and Its Environment", "Universe", "Language and Literature", "Entertainment", "Social Studies", "Sports", "Quantitative Aptitude and Reasoning"] },
+                    { section: "Section 2: Current Affairs", topics: ["Recent developments in India and around the world"] },
+                    { section: "Section 3: Life Skills", topics: ["Empathy", "Effective Communication", "Critical Thinking", "Creative Thinking", "Coping with Stress", "Decision Making", "Problem Solving", "Interpersonal Skills", "Managing Emotions", "Self-awareness"] },
+                    { section: "Section 4: Achievers Section", topics: ["Higher Order Thinking Skills (HOTS) questions based on syllabus"] }
+                ]
+            }
+        };
+
+        // DOM Elements
+        const classSelect = document.getElementById('classSelect');
+        const subjectSelect = document.getElementById('subjectSelect');
+        const searchInput = document.getElementById('searchInput');
+        const emptyState = document.getElementById('emptyState');
+        const skeletonLoader = document.getElementById('skeletonLoader');
+        const syllabusContainer = document.getElementById('syllabusContainer');
+        const accordionContainer = document.getElementById('accordionContainer');
+        const titleText = document.getElementById('titleText');
+        const titleIcon = document.getElementById('titleIcon');
+        const noResultsMsg = document.getElementById('noResultsMsg');
+
+        // State & Hooks simulation
+        let currentData = [];
+        let isAnimating = false;
+
+        const renderPattern = (patternData) => {
+            const tbody = document.getElementById('patternTbody');
+            let html = '';
+            let totalQs = 0;
+            let totalMarks = 0;
+            
+            patternData.forEach(row => {
+                const marks = row.q * row.m;
+                totalQs += row.q;
+                totalMarks += marks;
+                html += `
+                    <tr>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid var(--border); color: var(--text); font-weight: 600;">${row.sec}</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text); font-weight: 600;">${row.q}</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text); font-weight: 600;">${row.m}</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid var(--border); text-align: center; font-weight: 800; color: var(--brand-text);">${marks}</td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                <tr style="background: var(--subtle);">
+                    <td style="padding: 12px 15px; font-weight: 800; color: var(--text);">GRAND TOTAL</td>
+                    <td style="padding: 12px 15px; text-align: center; font-weight: 800; color: var(--text);">${totalQs}</td>
+                    <td style="padding: 12px 15px; text-align: center; color: var(--text);">-</td>
+                    <td style="padding: 12px 15px; text-align: center; font-weight: 800; color: var(--brand-text);">${totalMarks}</td>
+                </tr>
+            `;
+            tbody.innerHTML = html;
+        };
+
+        // Handle Selection Change
+        const handleSelection = () => {
+            const cls = classSelect.value;
+            const sub = subjectSelect.value;
+
+            if (!cls || !sub) return;
+
+            // Enable search
+            searchInput.disabled = false;
+            searchInput.value = '';
+
+            // UI State Transition
+            emptyState.style.display = 'none';
+            syllabusContainer.style.display = 'none';
+            skeletonLoader.style.display = 'block';
+
+            // Simulate network/processing delay for smooth UX
+            setTimeout(() => {
+                loadSyllabusData(cls, sub);
+                skeletonLoader.style.display = 'none';
+                syllabusContainer.style.display = 'block';
+            }, 400);
+        };
+
+        // Load Data Logic
+        const loadSyllabusData = (cls, sub) => {
+            const db = syllabusData[sub];
+            titleText.innerText = `Class ${cls} - ${db.name}`;
+            titleIcon.innerText = db.icon;
+
+            // Render Pattern
+            const tier = parseInt(cls) <= 4 ? "1-4" : "5-10";
+            if (db.pattern && db.pattern[tier]) {
+                document.getElementById('patternContainer').style.display = 'block';
+                renderPattern(db.pattern[tier]);
+            } else {
+                document.getElementById('patternContainer').style.display = 'none';
+            }
+
+            currentData = db[cls] || db["1"]; // Fallback to Class 1 if invalid
+            
+            renderAccordions(currentData);
+        };
+
+        // Render Accordions UI
+        const renderAccordions = (data) => {
+            accordionContainer.innerHTML = '';
+            
+            data.forEach((item, index) => {
+                const accItem = document.createElement('div');
+                accItem.className = 'accordion-item open'; // Default open
+                
+                let listHtml = item.topics.map(topic => `<li>${topic}</li>`).join('');
+                
+                accItem.innerHTML = `
+                    <button class="accordion-header" aria-expanded="true">
+                        <span class="section-title">${item.section}</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content" style="max-height: 1000px;">
+                        <ul class="topic-list">
+                            ${listHtml}
+                        </ul>
+                    </div>
+                `;
+
+                // Add Event Listener for Toggle
+                const header = accItem.querySelector('.accordion-header');
+                header.addEventListener('click', () => toggleAccordion(accItem));
+
+                accordionContainer.appendChild(accItem);
+            });
+        };
+
+        // Accordion Toggle Animation Logic
+        const toggleAccordion = (item) => {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            const content = item.querySelector('.accordion-content');
+            const header = item.querySelector('.accordion-header');
+            const isOpen = item.classList.contains('open');
+
+            if (isOpen) {
+                // Close
+                content.style.maxHeight = content.scrollHeight + 'px';
+                setTimeout(() => { content.style.maxHeight = '0px'; }, 10);
+                item.classList.remove('open');
+                header.setAttribute('aria-expanded', 'false');
+            } else {
+                // Open
+                item.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                header.setAttribute('aria-expanded', 'true');
+                setTimeout(() => { content.style.maxHeight = '1000px'; }, 300); // Remove limit after animation
+            }
+            
+            setTimeout(() => { isAnimating = false; }, 300);
+        };
+
+        // Search Functionality (Filters topics)
+        const handleSearch = (e) => {
+            const query = e.target.value.toLowerCase();
+            let visibleCount = 0;
+
+            const items = accordionContainer.querySelectorAll('.accordion-item');
+            
+            items.forEach(item => {
+                const sectionTitle = item.querySelector('.section-title').innerText.toLowerCase();
+                const topics = item.querySelectorAll('.topic-list li');
+                let hasMatch = sectionTitle.includes(query);
+
+                topics.forEach(li => {
+                    const text = li.innerText.toLowerCase();
+                    if (text.includes(query)) {
+                        hasMatch = true;
+                        // Highlight logic can be added here if desired
+                    }
+                });
+
+                if (hasMatch) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        };
+
+        // Bind Events
+        classSelect.addEventListener('change', handleSelection);
+        subjectSelect.addEventListener('change', handleSelection);
+        searchInput.addEventListener('input', handleSearch);
+
+    </script>
+</body>
+</html>
