@@ -1368,9 +1368,13 @@ const imageName = q.image_name || q.image_url;
 if (imageName && imageName.toLowerCase() !== "none" && imageName.toLowerCase() !== "null") {
     try {
         let finalUrl = imageName;
-        if (typeof imageName === 'string' && !imageName.startsWith("http")) {
-            const storageRef = ref(storage, `question_images/${imageName}`);
-            finalUrl = await getDownloadURL(storageRef);
+            
+            if (typeof finalUrl === 'string' && (finalUrl.trim().toLowerCase().startsWith("<svg") || finalUrl.trim().toLowerCase().startsWith("&lt;svg"))) {
+                let rawSvg = finalUrl.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+                finalUrl = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(rawSvg)));
+            } else if (typeof finalUrl === 'string' && !finalUrl.startsWith("http") && !finalUrl.startsWith("data:")) {
+                const storageRef = ref(storage, `question_images/${finalUrl}`);
+                finalUrl = await getDownloadURL(storageRef);
         }
 
         imgDiv.innerHTML = `<img src="${finalUrl}" alt="Question Diagram" onclick="openMagnifier('${finalUrl}')" style="cursor: zoom-in;" title="Click to enlarge">`;
