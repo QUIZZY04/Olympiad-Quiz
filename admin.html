@@ -1972,7 +1972,8 @@ function loadFeedback() {
                 } catch(e) { qText = "Error loading details"; }
             }
             const email = f.email || f.userEmail || "N/A";
-            const name = f.name || "Student";
+            let name = f.name || "Student";
+            if (name === "Guest" || name === "Visitor" || name === "User" || name === "anonymous") name = "Student";
             return { id: d.id, f, date, qText, qDetails, email, name };
         }));
         
@@ -2028,6 +2029,8 @@ function loadExpFeedback() {
             const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
             
             const safeSuggestion = f.suggestion ? f.suggestion.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '-';
+            let dispName = f.name || 'Student';
+            if (dispName === "Guest" || dispName === "Visitor" || dispName === "User" || dispName === "anonymous") dispName = "Student";
             const safeReply = f.adminReply ? f.adminReply.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
             const encodedReply = encodeURIComponent(f.adminReply || '').replace(/'/g, "%27");
             
@@ -2036,7 +2039,7 @@ function loadExpFeedback() {
             const replyBtnText = f.adminReply ? 'Edit Reply' : 'Reply';
             const delReplyBtn = f.adminReply ? `<button class="delete" onclick="deleteReplyExpFB('${d.id}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--warning);">🗑 Del Reply</button><br>` : '';
 
-            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${f.name || 'User'}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${safeSuggestion}${replyHtml}</td><td style="white-space:nowrap; text-align:center;">
+            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${dispName}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${safeSuggestion}${replyHtml}</td><td style="white-space:nowrap; text-align:center;">
                 <button class="upload" onclick="replyExpFB('${d.id}', '${encodedReply}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--brand);">💬 ${replyBtnText}</button><br>
                 ${delReplyBtn}
                 <button class="delete" onclick="deleteExpFB('${d.id}')" style="margin:0; padding:6px 12px; font-size:12px; min-width:85px;">🗑 Delete</button>

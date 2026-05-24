@@ -306,10 +306,13 @@
                 
                 const adminCell = isAdmin ? `<td><button onclick="deleteRecord('${d.id}')" style="background:var(--danger);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:bold;box-shadow:0 2px 4px rgba(0,0,0,0.1);">Delete</button></td>` : "";
 
+                let dispName = d.name || (d.email ? d.email.split('@')[0] : "Student");
+                if (dispName === "Guest" || dispName === "Visitor" || dispName === "User") dispName = "Student";
+
                 html += `
                     <tr style="${rowStyle}">
                         <td><span class="rank-circle" style="${circleStyle}">${rankIcon}</span></td>
-                        <td style="${nameStyle}">${namePrefix}${d.name || "Student"}</td>
+                        <td style="${nameStyle}">${namePrefix}${dispName}</td>
                         <td><span class="score-badge">${d.score} / ${d.total || '-'}</span></td>
                         <td><span class="acc-badge">${d.accuracy}%</span></td>
                         <td><span style="color:var(--success);font-weight:800;">${d.correctCount||0}</span> / <span style="color:var(--danger);font-weight:800;">${d.incorrectCount||0}</span></td>

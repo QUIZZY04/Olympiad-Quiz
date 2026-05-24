@@ -472,7 +472,7 @@ window.submitFeedback = async () => {
     try {
         await addDoc(collection(db, "feedbacks"), {
             uid: currentUser?.uid || "anonymous",
-            name: currentUser?.displayName || "Guest",
+                name: currentUser?.displayName || "Student",
             email: currentUser?.email || "N/A",
             rating: rating + " Star",
             category: "General Feedback",
