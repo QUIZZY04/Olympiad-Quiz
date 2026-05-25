@@ -270,8 +270,8 @@
             
             <!-- STEP 1: UNIFIED ENTRY -->
             <div id="stepUnifiedEntry">
-                <h2>Welcome Back</h2>
-                <p class="subtitle">Log in to Olympiad Portal to continue.</p>
+                <h2>Welcome to OlympiadQuiz</h2>
+                <p class="subtitle">Choose a method to continue.</p>
                 
                 <button type="button" id="btnGoogleEntry" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
                     <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
@@ -286,10 +286,10 @@
                 <p class="already-member">New to the portal? <a href="signup.html" style="color: var(--brand-text); text-decoration: none; font-weight: 800;">Create an Account</a></p>
             </div>
 
-            <!-- STEP 2: PHONE AUTH / LINKING -->
+            <!-- STEP 2: PHONE AUTH -->
             <div id="stepPhoneAuth" class="hidden">
                 <h2 id="phoneStepTitle">Verify Mobile Number</h2>
-                <p class="subtitle" id="phoneStepSubtitle">A verified mobile number is mandatory.</p>
+                <p class="subtitle" id="phoneStepSubtitle">Enter your mobile number to continue.</p>
                 <form id="phoneAuthForm">
                     <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                         <input type="text" value="+91" readonly style="width: 70px; margin-bottom: 0; text-align: center; font-weight: 700; background: var(--border); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border); border-radius: 12px;">
@@ -306,14 +306,21 @@
                 </form>
             </div>
 
-            <!-- STEP 3: EMAIL AUTH / LINKING -->
-            <div id="stepEmailAuth" class="hidden">
-                <h2 id="emailStepTitle">Continue with Email</h2>
-                <p class="subtitle" id="emailStepSubtitle">Enter your details to continue.</p>
-                <form id="emailAuthForm">
-                    <input type="email" id="authEmail" placeholder="Email Address" required>
-                    <input type="password" id="authPassword" placeholder="Password (Min 6 chars)" minlength="6" required>
-                    <button type="submit" id="btnEmailSubmit" class="main-btn">Continue</button>
+            <!-- STEP 3: EMAIL LOGIN -->
+            <div id="stepEmailLogin" class="hidden">
+                <h2>Continue with Email</h2>
+                <p class="subtitle">Enter your details to log in.</p>
+                <form id="emailLoginForm">
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                    <button type="submit" id="btnEmailLoginSubmit" class="main-btn">Log In</button>
+                    <div id="googleSuggestionBox" class="hidden" style="margin-top: 15px; text-align: center; padding: 15px; background: var(--subtle); border-radius: 12px; border: 1px solid var(--border);">
+                        <p style="color: var(--warning); font-size: 13px; margin-bottom: 10px; font-weight: 700;">This account uses Google Sign-In. Please continue with Google.</p>
+                        <button type="button" id="btnGoogleSuggestion" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 0;">
+                            <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
+                            Continue with Google
+                        </button>
+                    </div>
                     <button type="button" class="social-btn" style="margin-top: 15px;" onclick="resetToEntry()">← Back</button>
                     <div style="margin-top: 15px;"><a href="forgot-password.html" style="font-size: 13px; color: var(--brand-text); font-weight: 600; text-decoration: none;">Forgot Password?</a></div>
                 </form>
@@ -322,19 +329,32 @@
             <!-- STEP 4: PROVIDER LINKING -->
             <div id="stepProviderLinking" class="hidden">
                 <h2>Secure Your Account</h2>
-                <p class="subtitle">Link an email or Google account to continue.</p>
+                <p class="subtitle">Link an email or Google account for easier recovery.</p>
                 
                 <button type="button" id="btnLinkGoogle" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
                     <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
-                    Link Google Account
+                    Continue with Google
                 </button>
                 
                 <div class="divider">or</div>
                 
-                <button type="button" id="btnLinkEmail" class="social-btn">✉️ Link Email & Password</button>
+                <button type="button" id="btnLinkEmail" class="social-btn">✉️ Add Email</button>
+                <button type="button" id="btnSkipLinking" class="link-btn" style="margin-top: 10px; color: var(--muted); text-decoration: underline;">Skip for now</button>
             </div>
 
-            <!-- STEP 5: COMPLETE PROFILE -->
+            <!-- STEP 5: EMAIL LINKING -->
+            <div id="stepEmailAuth" class="hidden">
+                <h2>Add Email Account</h2>
+                <p class="subtitle">Secure your account with an email and password.</p>
+                <form id="emailAuthForm">
+                    <input type="email" id="authEmail" placeholder="Email Address" required>
+                    <input type="password" id="authPassword" placeholder="Password (Min 6 chars)" minlength="6" required>
+                    <button type="submit" id="btnEmailSubmit" class="main-btn">Add Email</button>
+                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="showSection('stepProviderLinking')">← Back</button>
+                </form>
+            </div>
+
+            <!-- STEP 6: COMPLETE PROFILE -->
             <div id="stepCompleteProfile" class="hidden">
                 <h2>Complete Profile</h2>
                 <p class="subtitle">Please provide your details to finish.</p>
@@ -439,6 +459,14 @@ try {
 window.resetToEntry = function() {
     document.querySelectorAll('.signup-box > div').forEach(d => d.classList.add('hidden'));
     document.getElementById('stepUnifiedEntry').classList.remove('hidden');
+    document.getElementById("phoneAuthForm").classList.remove("hidden");
+    document.getElementById("otpAuthForm").classList.add("hidden");
+    document.getElementById("phoneNumberInput").value = "";
+    document.getElementById("otpInput").value = "";
+    document.getElementById("btnSendOtp").disabled = false;
+    document.getElementById("btnSendOtp").innerText = "Send OTP";
+    document.getElementById("btnVerifyOtp").disabled = false;
+    document.getElementById("btnVerifyOtp").innerText = "Verify Mobile";
 };
 
 window.showSection = function(id) {
@@ -457,6 +485,21 @@ function initRecaptcha() {
     window.recaptchaVerifier.render().catch(console.error);
 }
 initRecaptcha();
+
+async function proceedToNextStep(user) {
+    const docSnap = await getDoc(doc(db, "users", user.uid));
+    const data = docSnap.exists() ? docSnap.data() : null;
+
+    if (data && data.registrationCompleted) {
+        localStorage.setItem("isLoggedIn", "true");
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.replace(redirectUrl);
+    } else {
+        if (user.displayName || (data && data.name)) document.getElementById("profileName").value = user.displayName || (data && data.name) || "";
+        if (data && data.class) document.getElementById("profileClass").value = data.class;
+        showSection('stepCompleteProfile');
+    }
+}
 
 async function evaluateAuthState(user) {
     if (!user) {
@@ -484,18 +527,7 @@ async function evaluateAuthState(user) {
         return;
     }
 
-    const docSnap = await getDoc(doc(db, "users", user.uid));
-    const data = docSnap.exists() ? docSnap.data() : null;
-
-    if (data && data.registrationCompleted) {
-        localStorage.setItem("isLoggedIn", "true");
-        sessionStorage.removeItem("redirectAfterLogin");
-        window.location.replace(redirectUrl);
-    } else {
-        if (user.displayName || (data && data.name)) document.getElementById("profileName").value = user.displayName || (data && data.name) || "";
-        if (data && data.class) document.getElementById("profileClass").value = data.class;
-        showSection('stepCompleteProfile');
-    }
+    await proceedToNextStep(user);
 }
 
 onAuthStateChanged(auth, async (user) => {
@@ -514,26 +546,28 @@ document.getElementById("btnGoogleEntry").onclick = async () => {
         const result = await signInWithPopup(auth, provider);
         await evaluateAuthState(result.user);
     } catch (e) {
-        if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
+        if (e.code === 'auth/account-exists-with-different-credential') {
+            alert("An account already exists with the same email. Please log in using Email or Phone, then link Google.");
+        } else if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
             alert("Google Sign-In Failed: " + e.message);
         }
         btn.disabled = false;
-        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
+        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
     }
 };
 
 document.getElementById("btnPhoneEntry").onclick = () => {
-    document.getElementById("phoneStepTitle").innerText = "Verify Mobile Number";
-    document.getElementById("phoneStepSubtitle").innerText = "A verified mobile number is mandatory.";
+    document.getElementById("phoneStepTitle").innerText = "Welcome to OlympiadQuiz";
+    document.getElementById("phoneStepSubtitle").innerText = "Enter your mobile number to continue.";
     showSection('stepPhoneAuth');
     if(!window.recaptchaVerifier) initRecaptcha();
 };
 
 document.getElementById("btnEmailEntry").onclick = () => {
-    document.getElementById("emailStepTitle").innerText = "Continue with Email";
-    document.getElementById("emailStepSubtitle").innerText = "Sign in or create a new account.";
-    document.getElementById("emailAuthForm").dataset.mode = "entry";
-    showSection('stepEmailAuth');
+    document.getElementById("loginEmail").value = "";
+    document.getElementById("loginPassword").value = "";
+    document.getElementById("googleSuggestionBox").classList.add("hidden");
+    showSection('stepEmailLogin');
 };
 
 // 2. Phone Auth Actions
@@ -564,7 +598,7 @@ document.getElementById("phoneAuthForm").onsubmit = async (e) => {
         btn.disabled = false; btn.innerText = "Send OTP";
         if (window.recaptchaVerifier) { window.recaptchaVerifier.clear(); initRecaptcha(); }
     }
-});
+};
 
 document.getElementById("otpAuthForm").onsubmit = async (e) => {
     e.preventDefault();
@@ -580,53 +614,97 @@ document.getElementById("otpAuthForm").onsubmit = async (e) => {
         btn.disabled = false;
         btn.innerText = "Verify Mobile";
     }
-});
+};
 
-// 3. Email Auth Actions
+// 3. Email Auth Actions (Login)
+document.getElementById("emailLoginForm").onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value.trim();
+    const pass = document.getElementById("loginPassword").value;
+    const btn = document.getElementById("btnEmailLoginSubmit");
+    const googleBox = document.getElementById("googleSuggestionBox");
+    
+    btn.disabled = true; btn.innerText = "Processing...";
+    googleBox.classList.add("hidden");
+    
+    try {
+        // First check which providers are associated with this email
+        const providers = await fetchSignInMethodsForEmail(auth, email);
+        
+        if (providers.length === 0) {
+            alert("No account found with this email. Please sign up.");
+            btn.disabled = false; btn.innerText = "Log In";
+            return;
+        }
+        
+        if (providers.includes("google.com") && !providers.includes("password")) {
+            // Case 1: Account exists but uses Google Sign-In instead of a Password
+            googleBox.classList.remove("hidden");
+            btn.disabled = false; btn.innerText = "Log In";
+            return;
+        }
+
+        const result = await signInWithEmailAndPassword(auth, email, pass);
+        await evaluateAuthState(result.user);
+    } catch (err) {
+        let msg = "Login Failed: " + err.message;
+        if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+            msg = "Invalid email or password. Please try again.";
+        } else if (err.code === 'auth/too-many-requests') {
+            msg = "Too many attempts. Please try again later.";
+        }
+        alert(msg);
+        btn.disabled = false; btn.innerText = "Log In";
+    }
+};
+
+document.getElementById("btnGoogleSuggestion").onclick = async () => {
+    const btn = document.getElementById("btnGoogleSuggestion");
+    btn.disabled = true; btn.innerHTML = "Authenticating...";
+    try {
+        const result = await signInWithPopup(auth, provider);
+        await evaluateAuthState(result.user);
+    } catch (e) {
+        if (e.code === 'auth/account-exists-with-different-credential') {
+            alert("An account already exists with the same email. Please log in using Email or Phone, then link Google.");
+        } else if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
+            alert("Google Sign-In Failed: " + e.message);
+        }
+        btn.disabled = false;
+        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
+    }
+};
+
+// 4. Email Auth Actions (Linking only)
 document.getElementById("emailAuthForm").onsubmit = async (e) => {
     e.preventDefault();
     const email = document.getElementById("authEmail").value.trim();
     const pass = document.getElementById("authPassword").value;
-    const mode = e.target.dataset.mode;
     const btn = document.getElementById("btnEmailSubmit");
     btn.disabled = true; btn.innerText = "Processing...";
 
     try {
-        if (mode === 'link' && auth.currentUser) {
+        if (auth.currentUser) {
             const cred = EmailAuthProvider.credential(email, pass);
             await linkWithCredential(auth.currentUser, cred);
             await evaluateAuthState(auth.currentUser);
-        } else {
-            try {
-                const result = await signInWithEmailAndPassword(auth, email, pass);
-                await evaluateAuthState(result.user);
-            } catch (err) {
-                if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
-                    const result = await createUserWithEmailAndPassword(auth, email, pass);
-                    await evaluateAuthState(result.user);
-                } else {
-                    throw err;
-                }
-            }
         }
     } catch (e) {
         if (e.code === 'auth/email-already-in-use' || e.code === 'auth/credential-already-in-use') {
-            alert("Email already in use by another account.");
-        } else if (e.code === 'auth/wrong-password') {
-            alert("Incorrect password.");
+            alert("This email is already in use by another account.");
+        } else if (e.code === 'auth/provider-already-linked') {
+            alert("An email is already linked to your account.");
+            await evaluateAuthState(auth.currentUser);
         } else {
-            alert("Authentication Failed: " + e.message);
+            alert("Linking Failed: " + e.message);
         }
         btn.disabled = false;
-        btn.innerText = "Continue";
+        btn.innerText = "Add Email";
     }
-});
+};
 
-// 4. Provider Linking Actions
+// 5. Provider Linking Actions
 document.getElementById("btnLinkEmail").onclick = () => {
-    document.getElementById("emailStepTitle").innerText = "Link Email Account";
-    document.getElementById("emailStepSubtitle").innerText = "Secure your account with an email and password.";
-    document.getElementById("emailAuthForm").dataset.mode = "link";
     showSection('stepEmailAuth');
 };
 
@@ -639,16 +717,24 @@ document.getElementById("btnLinkGoogle").onclick = async () => {
     } catch (error) {
         if (error.code === 'auth/credential-already-in-use') {
             alert("This Google account is already linked to another user. Please use a different one.");
+        } else if (error.code === 'auth/provider-already-linked') {
+            alert("Google is already linked to your account.");
+            await evaluateAuthState(auth.currentUser);
         } else if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
             alert("Google Linking Failed: " + error.message);
-        } else {
-            btn.disabled = false;
-            btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Link Google Account`;
         }
+        btn.disabled = false;
+        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
     }
 };
 
-// 5. Complete Profile Actions
+document.getElementById("btnSkipLinking").onclick = async () => {
+    if (auth.currentUser) {
+        await proceedToNextStep(auth.currentUser);
+    }
+};
+
+// 6. Complete Profile Actions
 document.getElementById("completeProfileForm").onsubmit = async (e) => {
     e.preventDefault();
     const name = document.getElementById("profileName").value.trim();
@@ -708,7 +794,7 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
         alert("Failed to save profile: " + e.message);
         btn.disabled = false; btn.innerText = "Save Details & Continue";
     }
-});
+};
 </script>
 <script>
 /* Mobile Menu Toggle */

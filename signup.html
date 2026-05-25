@@ -150,6 +150,9 @@
     .already-member a { color: var(--brand-text); text-decoration: none; font-weight: 800; }
 
     .hidden { display: none !important; }
+    
+    .link-btn { background: none; border: none; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .link-btn:hover { text-decoration: underline; }
 
     /* CUSTOM THEMATIC MODAL */
     #customModal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center; }
@@ -248,9 +251,28 @@
 
         <div class="signup-box">
             
-            <div id="phoneSignupSection">
+            <!-- STEP 1: UNIFIED ENTRY -->
+            <div id="stepUnifiedEntry">
                 <h2>Create your Account Now</h2>
-                <p class="subtitle">Enter your mobile number to begin.</p>
+                <p class="subtitle">Choose a method to continue.</p>
+                
+                <button type="button" id="btnGoogleEntry" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
+                    Continue with Google
+                </button>
+                
+                <div class="divider">or</div>
+                
+                <button type="button" id="btnPhoneEntry" class="social-btn">📱 Continue with Mobile</button>
+                <button type="button" id="btnEmailEntry" class="social-btn">✉️ Continue with Email</button>
+                
+                <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
+            </div>
+
+            <!-- STEP 2: PHONE AUTH / LINKING -->
+            <div id="stepPhoneAuth" class="hidden">
+                <h2 id="phoneTitle">Verify Mobile Number</h2>
+                <p class="subtitle" id="phoneSubtitle">A verified mobile number is mandatory.</p>
                 <form id="phoneSignupForm">
                     <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                         <input type="text" value="+91" readonly style="width: 70px; margin-bottom: 0; text-align: center; font-weight: 700; background: var(--border); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border); border-radius: 12px;">
@@ -258,29 +280,61 @@
                     </div>
                     <div id="recaptcha-signup"></div>
                     <button type="submit" id="pSendBtn" class="main-btn">Send OTP</button>
+                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="resetToEntry()">← Back</button>
                 </form>
                 <form id="pOtpForm" class="hidden">
                     <input type="text" id="pOtpCode" placeholder="Enter 6-digit OTP" required>
-                    <button type="submit" class="main-btn">Verify Mobile</button>
+                    <button type="submit" id="pVerifyBtn" class="main-btn">Verify Mobile</button>
+                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="resetToEntry()">← Cancel</button>
                 </form>
-                <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
             </div>
 
-            <div id="completeProfileSection" class="hidden">
-                <h2>Complete Profile</h2>
+            <!-- STEP 3: EMAIL AUTH (INITIAL) -->
+            <div id="stepEmailAuth" class="hidden">
+                <h2>Continue with Email</h2>
+                <p class="subtitle">Enter your details to create an account or log in.</p>
+                <form id="emailSignupForm">
+                    <input type="email" id="eEmail" placeholder="Email Address" required>
+                    <input type="password" id="ePassword" placeholder="Create Password" required minlength="6">
+                    <button type="submit" class="main-btn" id="btnEmailSignupSubmit">Continue</button>
+                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="resetToEntry()">← Back</button>
+                </form>
+            </div>
+
+            <!-- STEP 4: PROVIDER LINKING -->
+            <div id="stepProviderLinking" class="hidden">
+                <h2>Secure Your Account</h2>
                 <p class="subtitle">Mobile verified! Link an account to continue.</p>
                 
-                <button type="button" class="social-btn" id="linkGoogleBtn">
-                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google">
-                    Complete with Google
+                <button type="button" id="btnLinkGoogle" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
+                    Link Google Account
                 </button>
 
-                <div class="divider">or use email</div>
+                <div class="divider">or</div>
+                
+                <button type="button" id="btnShowEmailLink" class="social-btn">✉️ Add Email</button>
+            </div>
 
-                <form id="completeEmailForm">
+            <!-- STEP 5: EMAIL LINK FORM -->
+            <div id="stepEmailLink" class="hidden">
+                <h2>Add Email Account</h2>
+                <p class="subtitle">Secure your account with an email and password.</p>
+                <form id="emailLinkForm">
+                    <input type="email" id="lEmail" placeholder="Email Address" required>
+                    <input type="password" id="lPassword" placeholder="Create Password" required minlength="6">
+                    <button type="submit" class="main-btn" id="btnEmailLinkSubmit">Add Email</button>
+                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="showSection('stepProviderLinking')">← Back</button>
+                </form>
+            </div>
+
+            <!-- STEP 6: COMPLETE PROFILE -->
+            <div id="stepCompleteProfile" class="hidden">
+                <h2>Complete Profile</h2>
+                <p class="subtitle">Please provide the missing details to continue.</p>
+                <form id="completeProfileForm">
                     <input type="text" id="cName" placeholder="Full Name" required>
-                    <input type="email" id="cEmail" placeholder="Email Address" required>
-                    <input type="password" id="cPassword" placeholder="Create Password" required>
+                    <input type="email" id="cEmail" placeholder="Email Address" required readonly style="background: var(--border); cursor: not-allowed; color: var(--muted);">
 
                     <select id="cClassSelect" required>
                         <option value="" disabled selected>Select Your Grade</option>
@@ -310,7 +364,7 @@
                         <div style="color: var(--muted); font-size: 11px; margin-left: 22px;">You can unsubscribe anytime.</div>
                     </div>
 
-                    <button type="submit" class="main-btn" style="margin-top:5px;">Create Account</button>
+                    <button type="submit" class="main-btn" id="btnSaveProfile">Create Account</button>
                 </form>
             </div>
         </div>
@@ -329,8 +383,8 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -346,127 +400,20 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-let isCompletingSignup = false;
-const mode = new URLSearchParams(window.location.search).get('mode');
+window.resetToEntry = function() {
+    document.querySelectorAll('.signup-box > div').forEach(d => d.classList.add('hidden'));
+    document.getElementById('stepUnifiedEntry').classList.remove('hidden');
+};
 
-// Google Init Logic for Signup/Login
-if (mode === 'google-signup' || mode === 'google-login') {
-    document.querySelector("#phoneSignupSection h2").innerText = mode === 'google-login' ? "Google Login" : "Google Signup";
-    document.querySelector("#phoneSignupSection .subtitle").innerText = "Please authenticate with Google to continue.";
-    document.getElementById("phoneSignupForm").classList.add("hidden");
-    
-    const gBtn = document.createElement("button");
-    gBtn.type = "button";
-    gBtn.className = "social-btn";
-    gBtn.id = "initGoogleBtn";
-    gBtn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google"> Continue with Google`;
-    gBtn.onclick = async () => {
-        gBtn.disabled = true;
-        gBtn.innerText = "Authenticating...";
-        try {
-            const result = await signInWithPopup(auth, provider);
-            const additionalInfo = getAdditionalUserInfo(result);
+window.showSection = function(id) {
+    document.querySelectorAll('.signup-box > div').forEach(d => d.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+};
 
-            // If they clicked "Existing User" on the login page but are actually brand new
-            if (mode === 'google-login') {
-                if (additionalInfo && additionalInfo.isNewUser) {
-                    await deleteUser(result.user).catch(console.error); // Clean up
-                    await signOut(auth);
-                    alert("Account not found. Please create a new account to continue.");
-                    window.location.href = "signup.html";
-                    return;
-                }
-            }
-
-            const userDoc = await getDoc(doc(db, "users", result.user.uid));
-            const data = userDoc.exists() ? userDoc.data() : null;
-            const isFullyRegistered = data && data.registrationCompleted === true;
-
-            if (mode === 'google-login') {
-                if (isFullyRegistered) {
-                    localStorage.setItem("isLoggedIn", "true");
-                    window.location.replace("dashboard.html");
-                } else {
-                    alert("Account incomplete. Please provide the missing details.");
-                }
-            } else if (mode === 'google-signup') {
-                if (!additionalInfo.isNewUser && isFullyRegistered) {
-                    alert("Account already exists. Please log in.");
-                    await signOut(auth);
-                    window.location.href = "login.html";
-                }
-            }
-        } catch(e) {
-            alert("Google Authentication Failed: " + e.message);
-            gBtn.disabled = false;
-            gBtn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google"> Continue with Google`;
-        }
-    };
-    document.getElementById("phoneSignupSection").insertBefore(gBtn, document.getElementById("phoneSignupForm"));
-}
-
-onAuthStateChanged(auth, async (user) => {
-    if (user && !isCompletingSignup) {
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        const data = userDoc.exists() ? userDoc.data() : null;
-        const isFullyRegistered = data && data.registrationCompleted === true;
-        
-        if (isFullyRegistered) {
-            window.location.href = "dashboard.html";
-        } else {
-            const hasPhone = !!user.phoneNumber || !!(data && data.phone);
-            const providerIds = user.providerData.map(p => p.providerId);
-            
-            const initGoogleBtn = document.getElementById("initGoogleBtn");
-            if (initGoogleBtn) initGoogleBtn.classList.add("hidden");
-            
-            if (!hasPhone) {
-                document.getElementById("phoneSignupSection").classList.remove("hidden");
-                document.getElementById("completeProfileSection").classList.add("hidden");
-                document.querySelector("#phoneSignupSection h2").innerText = "Verify Mobile Number";
-                document.querySelector("#phoneSignupSection .subtitle").innerText = "A verified mobile number is mandatory to continue.";
-                document.getElementById("phoneSignupForm").classList.remove("hidden");
-                if (document.getElementById("initGoogleBtn")) document.getElementById("initGoogleBtn").classList.add("hidden");
-                document.querySelector(".already-member").classList.add("hidden");
-            } else {
-                document.getElementById("phoneSignupSection").classList.add("hidden");
-                document.getElementById("completeProfileSection").classList.remove("hidden");
-                
-                // Dynamic UI updates for completion flow
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('mode') === 'completion') {
-                    document.querySelector("#completeProfileSection h2").innerText = "Complete Profile";
-                    document.querySelector("#completeProfileSection .subtitle").innerText = "Please provide the missing details to continue.";
-                    const completeBtn = document.querySelector("#completeEmailForm button[type='submit']");
-                    if (completeBtn) completeBtn.innerText = "Save Details & Continue";
-                }
-
-                if (user.displayName || (data && data.name)) document.getElementById("cName").value = user.displayName || (data && data.name) || "";
-                if (user.email || (data && data.email)) document.getElementById("cEmail").value = user.email || (data && data.email) || "";
-                if (data && data.class) document.getElementById("cClassSelect").value = data.class;
-                
-                const providerIds = user.providerData.map(p => p.providerId);
-                if (providerIds.includes("google.com")) {
-                    document.getElementById("linkGoogleBtn").classList.add("hidden");
-                    document.querySelector(".divider").classList.add("hidden");
-                    document.getElementById("cPassword").required = false;
-                    document.getElementById("cPassword").placeholder = "Create Password (Optional)";
-                    if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
-                } else if (providerIds.includes("password")) {
-                    document.getElementById("cPassword").required = false;
-                    document.getElementById("cPassword").placeholder = "Update Password (Optional)";
-                    if (user.email || (data && data.email)) document.getElementById("cEmail").readOnly = true;
-                }
-            }
-        }
-    }
-});
-
-// Initialize Invisible reCAPTCHA directly (DOM is already loaded for module scripts)
+// Initialize Invisible reCAPTCHA directly
 function initRecaptcha() {
     if (window.signupRecaptchaVerifier) {
         try { window.signupRecaptchaVerifier.clear(); } catch (e) {}
-        window.signupRecaptchaVerifier = null;
     }
     window.signupRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-signup', {
         'size': 'invisible'
@@ -475,8 +422,92 @@ function initRecaptcha() {
 }
 initRecaptcha();
 
-// Phone Signup Logic
-let signupConfirmation;
+async function evaluateAuthState(user) {
+    if (!user) {
+        resetToEntry();
+        return;
+    }
+    await user.reload().catch(e=>console.warn(e));
+    
+    const providerIds = user.providerData.map(p => p.providerId);
+    const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
+    const hasGoogle = providerIds.includes("google.com");
+    const hasEmail = providerIds.includes("password");
+
+    if (!hasPhone) {
+        document.getElementById("phoneTitle").innerText = "Verify Mobile Number";
+        document.getElementById("phoneSubtitle").innerText = "A verified mobile number is mandatory to secure your account.";
+        showSection('stepPhoneAuth');
+        if(!window.signupRecaptchaVerifier) initRecaptcha();
+        return;
+    }
+
+    if (!hasGoogle && !hasEmail) {
+        showSection('stepProviderLinking');
+        return;
+    }
+
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const data = userDoc.exists() ? userDoc.data() : null;
+    
+    if (data && data.registrationCompleted) {
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.replace("dashboard.html");
+    } else {
+        if (user.displayName || (data && data.name)) document.getElementById("cName").value = user.displayName || (data && data.name) || "";
+        if (user.email || (data && data.email)) {
+            document.getElementById("cEmail").value = user.email || (data && data.email) || "";
+            document.getElementById("cEmail").readOnly = true;
+            document.getElementById("cEmail").style.cursor = "not-allowed";
+            document.getElementById("cEmail").style.background = "var(--border)";
+        } else {
+            document.getElementById("cEmail").readOnly = false;
+            document.getElementById("cEmail").style.cursor = "text";
+            document.getElementById("cEmail").style.background = "var(--surface)";
+        }
+        if (data && data.class) document.getElementById("cClassSelect").value = data.class;
+        
+        showSection('stepCompleteProfile');
+    }
+}
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        await evaluateAuthState(user);
+    } else {
+        resetToEntry();
+    }
+});
+
+// 1. Unified Entry Actions
+document.getElementById("btnGoogleEntry").onclick = async () => {
+    const btn = document.getElementById("btnGoogleEntry");
+    btn.disabled = true; btn.innerHTML = "Authenticating...";
+    try {
+        const result = await signInWithPopup(auth, provider);
+        await evaluateAuthState(result.user);
+    } catch (e) {
+        if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
+            alert("Google Sign-In Failed: " + e.message);
+        }
+        btn.disabled = false;
+        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
+    }
+};
+
+document.getElementById("btnPhoneEntry").onclick = () => {
+    document.getElementById("phoneTitle").innerText = "Verify Mobile Number";
+    document.getElementById("phoneSubtitle").innerText = "A verified mobile number is mandatory.";
+    showSection('stepPhoneAuth');
+    if(!window.signupRecaptchaVerifier) initRecaptcha();
+};
+
+document.getElementById("btnEmailEntry").onclick = () => {
+    showSection('stepEmailAuth');
+};
+
+// 2. Phone Auth Actions
+window.signupConfirmation = null;
 
 document.getElementById("phoneSignupForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -487,29 +518,17 @@ document.getElementById("phoneSignupForm").addEventListener("submit", async (e) 
     btn.disabled = true;
     btn.innerText = "Sending...";
 
-    try {
-        const userQuery = query(collection(db, "users"), where("phone", "==", phone));
-        const querySnapshot = await getDocs(userQuery);
-        if (!querySnapshot.empty) {
-            alert("Account already exists with this mobile number. Please log in.");
-            window.location.href = "login.html";
-            return;
-        }
-    } catch (err) { console.error("Firestore pre-check error:", err); }
-
     // JIT Guard: Ensure verifier is completely initialized before Firebase executes
     if (!window.signupRecaptchaVerifier) {
         initRecaptcha();
     }
 
     try {
-        // Safe Linking: If logged in but lacking a phone, link it instead of creating a new session
         if (auth.currentUser && !auth.currentUser.phoneNumber) {
-            signupConfirmation = await linkWithPhoneNumber(auth.currentUser, phone, window.signupRecaptchaVerifier);
+            window.signupConfirmation = await linkWithPhoneNumber(auth.currentUser, phone, window.signupRecaptchaVerifier);
         } else {
-            signupConfirmation = await signInWithPhoneNumber(auth, phone, window.signupRecaptchaVerifier);
+            window.signupConfirmation = await signInWithPhoneNumber(auth, phone, window.signupRecaptchaVerifier);
         }
-        console.log("Signup OTP Sent to:", phone);
         alert("OTP sent successfully to " + phone);
         document.getElementById("phoneSignupForm").classList.add("hidden");
         document.getElementById("pOtpForm").classList.remove("hidden");
@@ -517,11 +536,12 @@ document.getElementById("phoneSignupForm").addEventListener("submit", async (e) 
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
         else if (err.code === 'auth/too-many-requests') errorMsg = "Too many attempts. Please try again later.";
-        else if (err.code === 'auth/network-request-failed') errorMsg = "Network error. Please check your internet connection.";
+        else if (err.code === 'auth/credential-already-in-use') errorMsg = "Phone number already linked to another account. Please log in directly with this number.";
         
         alert(errorMsg);
         btn.disabled = false; btn.innerText = "Send OTP";
-        initRecaptcha(); // Safely reset recaptcha
+        if(window.signupRecaptchaVerifier) window.signupRecaptchaVerifier.clear();
+        initRecaptcha();
     }
 });
 
@@ -533,252 +553,145 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
     btn.innerText = "Verifying...";
 
     try {
-        // DO NOT permanently create the Firebase auth credential here.
-        // We only create the credential object locally to verify at the final step.
-        window.phoneAuthCredential = PhoneAuthProvider.credential(signupConfirmation.verificationId, code);
-
-        document.getElementById("phoneSignupSection").classList.add("hidden");
-        document.getElementById("completeProfileSection").classList.remove("hidden");
-        
-        if (auth.currentUser && auth.currentUser.displayName) document.getElementById("cName").value = auth.currentUser.displayName;
-        if (auth.currentUser && auth.currentUser.email) document.getElementById("cEmail").value = auth.currentUser.email;
-        
-        const providerIds = auth.currentUser ? auth.currentUser.providerData.map(p => p.providerId) : [];
-        if (providerIds.includes("google.com")) {
-            document.getElementById("linkGoogleBtn").classList.add("hidden");
-            document.querySelector(".divider").classList.add("hidden");
-            document.getElementById("cPassword").required = false;
-            document.getElementById("cPassword").placeholder = "Create Password (Optional)";
-            if (auth.currentUser && auth.currentUser.email) document.getElementById("cEmail").readOnly = true;
-        } else if (providerIds.includes("password")) {
-            document.getElementById("cPassword").required = false;
-            document.getElementById("cPassword").placeholder = "Update Password (Optional)";
-            if (auth.currentUser && auth.currentUser.email) document.getElementById("cEmail").readOnly = true;
-        }
-        
-        btn.disabled = false;
-        btn.innerText = "Verify Mobile";
-
+        const result = await window.signupConfirmation.confirm(code);
+        await evaluateAuthState(result.user);
     } catch (err) {
-        alert("Verification failed locally. Please try again.");
+        alert("Invalid OTP. Please try again.");
         btn.disabled = false;
         btn.innerText = "Verify Mobile";
     }
 });
 
-function showSuccessAndRedirect() {
-    const modal = document.getElementById('customModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        setTimeout(() => {
-            window.location.replace('dashboard.html');
-        }, 2000);
-    } else {
-        // Fallback if modal is not found
-        alert("Account created successfully! Redirecting to dashboard...");
-        window.location.replace('dashboard.html');
+// 3. Email Signup (Initial)
+document.getElementById("emailSignupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("eEmail").value.trim();
+    const pass = document.getElementById("ePassword").value;
+    const btn = document.getElementById("btnEmailSignupSubmit");
+    btn.disabled = true; btn.innerText = "Processing...";
+    try {
+        try {
+            const result = await signInWithEmailAndPassword(auth, email, pass);
+            await evaluateAuthState(result.user);
+        } catch (err) {
+            if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
+                const result = await createUserWithEmailAndPassword(auth, email, pass);
+                await evaluateAuthState(result.user);
+            } else {
+                throw err;
+            }
+        }
+    } catch (e) {
+        alert("Authentication Failed: " + e.message);
+        btn.disabled = false;
+        btn.innerText = "Continue";
     }
-}
+});
 
-// Complete Profile via Email
-document.getElementById("completeEmailForm").addEventListener("submit", async (e)=>{
+// 4. Provider Linking Actions
+document.getElementById("btnLinkGoogle").onclick = async () => {
+    const btn = document.getElementById("linkGoogleBtn");
+    btn.disabled = true;
+    btn.innerHTML = "Linking...";
+    try {
+        await linkWithPopup(auth.currentUser, provider);
+        await evaluateAuthState(auth.currentUser);
+    } catch (error) {
+        if (error.code === 'auth/credential-already-in-use') {
+            alert("This Google account is already linked to another user. Please use a different one.");
+        } else if (error.code === 'auth/provider-already-linked') {
+            await evaluateAuthState(auth.currentUser);
+        } else if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
+            alert("Google Linking Failed: " + error.message);
+        }
+        btn.disabled = false;
+        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Link Google Account`;
+    }
+};
+
+document.getElementById("btnShowEmailLink").onclick = () => {
+    showSection('stepEmailLink');
+};
+
+document.getElementById("emailLinkForm").onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("lEmail").value.trim();
+    const pass = document.getElementById("lPassword").value;
+    const btn = document.getElementById("btnEmailLinkSubmit");
+    btn.disabled = true; btn.innerText = "Linking...";
+    try {
+        const cred = EmailAuthProvider.credential(email, pass);
+        await linkWithCredential(auth.currentUser, cred);
+        await evaluateAuthState(auth.currentUser);
+    } catch (e) {
+        if (e.code === 'auth/email-already-in-use' || e.code === 'auth/credential-already-in-use') {
+            alert("Email already in use by another account.");
+        } else {
+            alert("Linking Failed: " + e.message);
+        }
+        btn.disabled = false; btn.innerText = "Add Email";
+    }
+};
+
+// 5. Complete Profile Actions
+document.getElementById("completeProfileForm").onsubmit = async (e) => {
     e.preventDefault();
     const name = document.getElementById("cName").value.trim();
     const email = document.getElementById("cEmail").value.trim();
-    const password = document.getElementById("cPassword").value;
-    const classSelect = document.getElementById("cClassSelect").value;
-    const promoConsent = document.getElementById("promoConsent") ? document.getElementById("promoConsent").checked : false;
-    const btn = e.target.querySelector('button');
+    const cls = document.getElementById("cClassSelect").value;
+    const promoConsent = document.getElementById("promoConsent").checked;
+    const btn = document.getElementById("completeProfileForm").querySelector('button[type="submit"]');
     
-    if (!name || !classSelect || !email) {
-        alert("Name, Email, and Grade are required.");
-        btn.disabled = false;
-        btn.innerText = "Create Account";
-        isCompletingSignup = false;
-        return;
-    }
-
-    btn.disabled = true;
-    btn.innerText = "Creating...";
-    isCompletingSignup = true;
-
+    btn.disabled = true; btn.innerText = "Creating Account...";
+    
     try {
-        let user = auth.currentUser;
+        const user = auth.currentUser;
+        const finalProviderIds = user.providerData.map(p => p.providerId);
+        const currentPhone = user.phoneNumber || "";
         
-        // Pre-check email to prevent partial success and ghost phone accounts
-        if (!user && email && password) {
-            try {
-                const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-                const existingProviders = signInMethods || [];
-                if (existingProviders.length > 0) {
-                    alert("This email is already registered. Please log in or use a different email.");
-                    btn.disabled = false;
-                    btn.innerText = "Create Account";
-                    isCompletingSignup = false;
-                    return;
-                }
-            } catch (checkErr) {
-                console.warn("Email pre-check failed or not permitted:", checkErr);
-            }
-        }
-
-        if (!user && window.phoneAuthCredential) {
-            try {
-                const userCred = await signInWithCredential(auth, window.phoneAuthCredential);
-                user = userCred.user;
-                
-                if (password) {
-                    const emailCred = EmailAuthProvider.credential(email, password);
-                    await linkWithCredential(user, emailCred);
-                }
-            } catch (err) {
-                if (user) await deleteUser(user).catch(console.error);
-                if (err.code === 'auth/invalid-verification-code') {
-                    alert("Invalid OTP. Please refresh the page and try again.");
-                } else if (err.code === 'auth/email-already-in-use') {
-                    alert("Email already in use. Please use a different email.");
-                } else {
-                    alert("Authentication failed: " + err.message);
-                }
-                btn.disabled = false;
-                btn.innerText = "Create Account";
-                isCompletingSignup = false;
-                return;
-            }
-        } else if (user) {
-            const providerIds = user.providerData.map(p => p.providerId);
-            
-            if (window.phoneAuthCredential && !providerIds.includes("phone")) {
-                try {
-                    await linkWithCredential(user, window.phoneAuthCredential);
-                } catch (err) {
-                    if (err.code === 'auth/invalid-verification-code') {
-                        alert("Invalid OTP. Please refresh and try again.");
-                        btn.disabled = false;
-                        btn.innerText = "Create Account";
-                        isCompletingSignup = false;
-                        return;
-                    }
-                }
-            }
-
-            if (password) {
-                if (!providerIds.includes("password")) {
-                    try {
-                        const credential = EmailAuthProvider.credential(email, password);
-                        await linkWithCredential(user, credential);
-                    } catch (linkErr) {
-                        if (linkErr.code !== 'auth/credential-already-in-use' && linkErr.code !== 'auth/email-already-in-use' && linkErr.code !== 'auth/provider-already-linked') {
-                            throw linkErr;
-                        }
-                    }
-                } else {
-                    try {
-                        await updatePassword(user, password);
-                    } catch (updateErr) {
-                        console.warn("Password update failed, might need re-auth:", updateErr);
-                    }
-                }
-            }
-        }
-        
-        const existingDoc = await getDoc(doc(db, "users", user.uid));
-        const currentPhone = user.phoneNumber || (existingDoc.exists() ? (existingDoc.data().phoneNumber || existingDoc.data().phone) : null);
-
-        if (!user) throw new Error("Authentication flow failed.");
-
-        // Reload user to get latest provider data securely
-        await user.reload().catch(e => console.warn("Reload failed:", e));
-        user = auth.currentUser;
-
-        // Fetching providers safely with fallback
-        let finalProviderIds = user.providerData ? user.providerData.map(p => p.providerId) : [];
-        if (finalProviderIds.length === 0 && email) {
-            const signInMethods = await fetchSignInMethodsForEmail(auth, email).catch(() => []);
-            finalProviderIds = signInMethods || [];
-        }
-
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             name: name,
             fullName: name,
-            email: email,
+            email: email || user.email || "",
             phone: currentPhone,
             phoneNumber: currentPhone,
-            phoneVerified: true,
+            phoneVerified: !!currentPhone,
             authProviders: finalProviderIds,
-            class: classSelect, 
+            class: cls,
             email_consent: true,
             promo_consent: promoConsent,
-            createdAt: user.metadata.creationTime ? new Date(user.metadata.creationTime) : new Date(),
-            updatedAt: new Date(),
+            createdAt: user.metadata.creationTime ? new Date(user.metadata.creationTime) : serverTimestamp(),
+            updatedAt: serverTimestamp(),
             signupCompleted: true,
             registrationCompleted: true,
-            hasPassword: !!password
+            hasPassword: finalProviderIds.includes("password")
         }, { merge: true });
 
         localStorage.setItem("isLoggedIn", "true");
-        showSuccessAndRedirect();
-    } catch(error) { 
-        console.error("Signup flow error:", error);
-        alert("Issue creating account: " + (error.message || "Unknown error")); 
-        btn.disabled = false;
-        btn.innerText = "Create Account";
-        isCompletingSignup = false;
-    }
-});
-
-// Complete Profile via Google
-document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
-    const btn = document.getElementById("linkGoogleBtn");
-    btn.disabled = true;
-    isCompletingSignup = true;
-    
-    try {
-        let user = auth.currentUser;
         
-        if (!user && window.phoneAuthCredential) {
-            const userCred = await signInWithCredential(auth, window.phoneAuthCredential);
-            user = userCred.user;
-        }
-
-        if (!user) {
-            const result = await signInWithPopup(auth, provider);
-            user = result.user;
-        } else {
-            const providerIds = user.providerData.map(p => p.providerId);
-            if (!providerIds.includes("google.com")) {
-                const result = await linkWithPopup(user, provider);
-                user = result.user;
-            }
-        }
-
-        document.getElementById("linkGoogleBtn").classList.add("hidden");
-        document.querySelector(".divider").classList.add("hidden");
-        document.getElementById("cPassword").required = false;
-        document.getElementById("cPassword").placeholder = "Create Password (Optional)";
-        
-        if (user.displayName && !document.getElementById("cName").value) {
-            document.getElementById("cName").value = user.displayName;
-        }
-        if (user.email) {
-            document.getElementById("cEmail").value = user.email;
-            document.getElementById("cEmail").readOnly = true;
+        const modal = document.getElementById('customModal');
+        if (modal) {
+            modal.innerHTML = `
+                <div class="modal-box">
+                    <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
+                    <h2 style="color: var(--brand-text); margin-bottom: 15px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">Success!</h2>
+                    <p class="subtitle" style="margin-bottom: 20px;">Your profile is complete.</p>
+                </div>
+            `;
+            modal.style.display = 'flex';
         }
         
-        alert("Google linked successfully! Please fill your Grade and click Create Account.");
-        btn.disabled = false;
-        isCompletingSignup = false;
+        setTimeout(() => {
+            sessionStorage.removeItem("redirectAfterLogin");
+            window.location.replace("dashboard.html");
+        }, 2000);
+
     } catch (error) {
-        if (error.code === 'auth/credential-already-in-use') {
-            alert("This Google account is already registered to another user. Please select a different Google account or set an email/password manually.");
-        } else {
-            alert("Google link failed: " + error.message);
-        }
-        btn.disabled = false;
-        isCompletingSignup = false;
+        alert("Issue creating account: " + error.message);
+        btn.disabled = false; btn.innerText = "Create Account";
     }
-});
+};
 </script>
 <script>
 /* Mobile Menu Toggle - Defined globally for inline onclick */
