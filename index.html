@@ -300,12 +300,23 @@ nav {
 .close-menu { display: none; }
 .nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background-color: #fff7ed !important; color: var(--brand-text) !important; }
 .nav-dropdown:hover .nav-dropdown-content { display: block; }
-.dropbtn::after { content: ' ▾'; font-size: 0.8rem; opacity: 0.7; }
+@media (min-width: 769px) {
+    .dropbtn::after { content: ' ▾'; font-size: 0.8rem; opacity: 0.7; display: inline-block; margin-left: 4px; }
+}
 @media (max-width: 768px) {
-    .nav-dropdown { width: 100%; cursor: pointer; }
-    .nav-dropdown-content { position: static; display: none; box-shadow: none; border: none; background: #fff7ed; padding-left: 20px; border-radius: 0; min-width: 100%; }
-    .nav-dropdown:hover .nav-dropdown-content, .nav-dropdown:focus-within .nav-dropdown-content { display: block; }
-    .dropbtn { display: flex !important; justify-content: space-between; align-items: center; width: 100%; }
+    .nav-dropdown { width: 100%; }
+    .nav-dropdown .dropbtn { display: flex !important; justify-content: space-between; align-items: center; width: 100%; }
+    .nav-dropdown .dropbtn::after { content: ''; display: inline-block; width: 7px; height: 7px; border-right: 2px solid var(--text); border-bottom: 2px solid var(--text); transform: rotate(45deg); transition: transform 0.3s ease; margin-right: 10px; }
+    .nav-dropdown.open .dropbtn::after { transform: rotate(225deg); margin-top: -4px; }
+    .nav-dropdown-content {
+        position: static; display: block; box-shadow: none; border: none; background: var(--subtle);
+        padding: 0 0 0 15px; border-radius: 0 8px 8px 0; min-width: 100%;
+        max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, padding-bottom 0.4s ease-out;
+        margin-top: 5px; border-left: 3px solid var(--brand);
+    }
+    .nav-dropdown.open > .nav-dropdown-content { max-height: 400px; padding-top: 10px; padding-bottom: 10px; }
+    .nav-dropdown-content a, .nav-dropdown-content button.nav-link-btn { padding: 8px 15px !important; font-size: 0.8rem !important; font-weight: 600 !important; border-radius: 4px !important; }
+    .nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background: rgba(255, 107, 0, 0.15) !important; }
     nav { padding: 0 12px !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: space-between !important; align-items: center !important; min-height: 60px !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; box-sizing: border-box !important; z-index: 1000 !important; }
     .brand { font-size: 0.9rem !important; margin-left: 0 !important; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
     .nav-important a { background: var(--brand) !important; color: var(--brand-contrast) !important; display: inline-block; }
@@ -1319,6 +1330,30 @@ orm         </div>
 function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('active');
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                
+                // Close other open dropdowns
+                document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) {
+                        openDropdown.classList.remove('open');
+                        const contentToClose = openDropdown.querySelector('.nav-dropdown-content');
+                        if (contentToClose) contentToClose.style.maxHeight = '0';
+                    }
+                });
+
+                dropdown.classList.toggle('open');
+                const content = dropdown.querySelector('.nav-dropdown-content');
+                if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
+            }
+        });
+    });
+});
 </script>
 
 <script type="module">

@@ -633,29 +633,39 @@ nav {
     display: block;
 }
 
-.dropbtn::after {
-    content: ' ▾';
-    font-size: 0.8rem;
-    opacity: 0.7;
+@media (min-width: 769px) {
+    .dropbtn::after {
+        content: ' ▾';
+        font-size: 0.8rem;
+        opacity: 0.7;
+        display: inline-block;
+        margin-left: 4px;
+    }
 }
 
 @media (max-width: 768px) {
-    .nav-dropdown { width: 100%; cursor: pointer; }
+    .nav-dropdown { width: 100%; }
+    .nav-dropdown .dropbtn { display: flex !important; justify-content: space-between; align-items: center; width: 100%; }
+    .nav-dropdown .dropbtn::after { content: ''; display: inline-block; width: 7px; height: 7px; border-right: 2px solid var(--text); border-bottom: 2px solid var(--text); transform: rotate(45deg); transition: transform 0.3s ease; margin-right: 10px; }
+    .nav-dropdown.open .dropbtn::after { transform: rotate(225deg); margin-top: -4px; }
     .nav-dropdown-content {
         position: static;
-        display: none;
+        display: block;
         box-shadow: none;
         border: none;
         background: var(--subtle);
-        padding-left: 20px;
-        border-radius: 0;
+        padding: 0 0 0 15px;
+        border-radius: 0 8px 8px 0;
         min-width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, padding-bottom 0.4s ease-out;
+        margin-top: 5px;
+        border-left: 3px solid var(--brand);
     }
-    .nav-dropdown:hover .nav-dropdown-content,
-    .nav-dropdown:focus-within .nav-dropdown-content {
-        display: block;
-    }
-    .dropbtn { display: flex !important; justify-content: space-between; align-items: center; width: 100%; }
+    .nav-dropdown.open > .nav-dropdown-content { max-height: 400px; /* Adjust as needed */ padding-top: 10px; padding-bottom: 10px; }
+    .nav-dropdown-content a, .nav-dropdown-content button.nav-link-btn { padding: 8px 15px !important; font-size: 0.8rem !important; font-weight: 600 !important; border-radius: 4px !important; }
+    .nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background: rgba(255, 107, 0, 0.15) !important; }
 }
 
 .signup-btn-nav {
