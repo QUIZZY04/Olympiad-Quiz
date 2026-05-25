@@ -757,6 +757,7 @@ nav {
         opacity: 0;
         pointer-events: none;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s, visibility 0.4s;
+        overflow-y: auto;
     }
     .nav-links.active {
         transform: translateX(0);
