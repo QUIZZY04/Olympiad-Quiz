@@ -74,8 +74,14 @@
 <body>
 
 <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
     <div class="nav-links">
+        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="mock.html">Mock Tests</a>
@@ -150,6 +156,26 @@
             document.getElementById('navAuthLink').href = "dashboard.html";
         }
     });
+</script>
+<script>
+/* Mobile Menu Toggle */
+function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); const contentToClose = openDropdown.querySelector('.nav-dropdown-content'); if (contentToClose) contentToClose.style.maxHeight = '0'; }
+                });
+                dropdown.classList.toggle('open');
+                const content = dropdown.querySelector('.nav-dropdown-content');
+                if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
+            }
+        });
+    });
+});
 </script>
 </body>
 </html>

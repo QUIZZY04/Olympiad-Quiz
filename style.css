@@ -644,7 +644,7 @@ nav {
 }
 
 @media (max-width: 768px) {
-    .nav-dropdown { width: 100%; border-bottom: 1px solid var(--border); }
+    .nav-dropdown { width: 100%; border-bottom: 1px solid var(--border); cursor: pointer; }
     .nav-dropdown .dropbtn { display: flex !important; justify-content: space-between; align-items: center; width: 100%; border-bottom: none !important; }
     .nav-dropdown .dropbtn::after { content: '' !important; display: inline-block !important; width: 8px !important; height: 8px !important; border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; transform: rotate(45deg) !important; transition: transform 0.3s ease !important; margin-right: 5px !important; flex-shrink: 0 !important; position: relative !important; top: -2px !important; }
     .nav-dropdown.open .dropbtn::after { transform: rotate(225deg) !important; top: 2px !important; }
