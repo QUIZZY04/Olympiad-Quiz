@@ -112,8 +112,14 @@
 </head>
 <body>
     <nav>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
         <div class="nav-links">
+            <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
             <a href="index.html">Home</a>
             <a href="dashboard.html">Dashboard</a>
             <a href="mock.html">Mock Tests</a>

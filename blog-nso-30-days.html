@@ -229,6 +229,22 @@
             }
         });
     });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdown = this.closest('.nav-dropdown');
+                    document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
+                        if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); const contentToClose = openDropdown.querySelector('.nav-dropdown-content'); if (contentToClose) contentToClose.style.maxHeight = '0'; }
+                    });
+                    dropdown.classList.toggle('open');
+                    const content = dropdown.querySelector('.nav-dropdown-content');
+                    if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
+                }
+            });
+        });
+    });
 </script>
 
 <!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
