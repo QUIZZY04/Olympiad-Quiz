@@ -1332,11 +1332,11 @@ let db, auth, app;
 let collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp;
 
 async function loadDynamicTestimonials() {
+    let fetchedTestimonials = [];
     try {
         const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"), limit(300));
         const snap = await getDocs(q);
         
-        let fetchedTestimonials = [];
         snap.forEach(doc => {
             const data = doc.data();
             // Filter for 4/5 stars with a reasonable length to ensure quality comments
@@ -1344,67 +1344,70 @@ async function loadDynamicTestimonials() {
                 fetchedTestimonials.push(data);
             }
         });
+    } catch (e) {
+        console.warn("Failed to load dynamic testimonials from DB:", e);
+    }
 
-        if (fetchedTestimonials.length > 0) {
-            const designerTestimonials = [
-                {
-                    isDesigner: true, rating: "5 Star",
-                    suggestion: "Highly structured mock tests and detailed analytics. Secured an International Rank in IMO!",
-                    name: "Siddharth M.", role: "IMO Gold Medalist", initial: "S",
-                    color: { bg: "rgba(255, 107, 0, 0.1)", text: "#c2410c" }
-                },
-                {
-                    isDesigner: true, rating: "5 Star",
-                    suggestion: "Best free resource out there! Chapterwise quizzes and step-by-step solutions cleared all my concepts.",
-                    name: "Ananya V.", role: "Class 6 Student", initial: "A",
-                    color: { bg: "rgba(16, 185, 129, 0.1)", text: "#059669" }
-                },
-                {
-                    isDesigner: true, rating: "5 Star",
-                    suggestion: "Amazed by the quality of questions and the real-time ranking system. Highly recommended!",
-                    name: "Rajesh K.", role: "Parent of Class 5 Student", initial: "K",
-                    color: { bg: "rgba(56, 189, 248, 0.1)", text: "#0369a1" }
-                },
-                {
-                    isDesigner: true, rating: "5 Star",
-                    suggestion: "The H.O.T.S questions really challenged my thinking. Great platform for Olympiad prep!",
-                    name: "Priya T.", role: "Class 8 Student", initial: "P",
-                    color: { bg: "rgba(139, 92, 246, 0.1)", text: "#6d28d9" }
-                },
-                {
-                    isDesigner: true, rating: "4 Star",
-                    suggestion: "Very useful for JEE foundation. The UI is exactly like the real NTA exams.",
-                    name: "Rahul S.", role: "JEE Aspirant", initial: "R",
-                    color: { bg: "rgba(244, 63, 94, 0.1)", text: "#be185d" }
-                }
-            ];
+    const designerTestimonials = [
+        {
+            isDesigner: true, rating: "5 Star",
+            suggestion: "Highly structured mock tests and detailed analytics. Secured an International Rank in IMO!",
+            name: "Siddharth M.", role: "IMO Gold Medalist", initial: "S",
+            color: { bg: "rgba(255, 107, 0, 0.1)", text: "#c2410c" }
+        },
+        {
+            isDesigner: true, rating: "5 Star",
+            suggestion: "Best free resource out there! Chapterwise quizzes and step-by-step solutions cleared all my concepts.",
+            name: "Ananya V.", role: "Class 6 Student", initial: "A",
+            color: { bg: "rgba(16, 185, 129, 0.1)", text: "#059669" }
+        },
+        {
+            isDesigner: true, rating: "5 Star",
+            suggestion: "Amazed by the quality of questions and the real-time ranking system. Highly recommended!",
+            name: "Rajesh K.", role: "Parent of Class 5 Student", initial: "K",
+            color: { bg: "rgba(56, 189, 248, 0.1)", text: "#0369a1" }
+        },
+        {
+            isDesigner: true, rating: "5 Star",
+            suggestion: "The H.O.T.S questions really challenged my thinking. Great platform for Olympiad prep!",
+            name: "Priya T.", role: "Class 8 Student", initial: "P",
+            color: { bg: "rgba(139, 92, 246, 0.1)", text: "#6d28d9" }
+        },
+        {
+            isDesigner: true, rating: "4 Star",
+            suggestion: "Very useful for JEE foundation. The UI is exactly like the real NTA exams.",
+            name: "Rahul S.", role: "JEE Aspirant", initial: "R",
+            color: { bg: "rgba(244, 63, 94, 0.1)", text: "#be185d" }
+        }
+    ];
 
-            dynamicTestimonials = [];
-            let dIndex = 0;
-            let fIndex = 0;
-            
-            // Mix them to achieve exactly 40% designed and 60% real
-            // For every 3 real reviews, we insert 2 designer reviews
-            while(fIndex < fetchedTestimonials.length) {
-                // Add 2 Designer reviews (loops safely if we run out)
-                for(let i = 0; i < 2; i++) {
-                    dynamicTestimonials.push(designerTestimonials[dIndex % designerTestimonials.length]);
-                    dIndex++;
-                }
-                // Add 3 Real reviews
-                for(let j = 0; j < 3; j++) {
-                    if (fIndex < fetchedTestimonials.length) {
-                        dynamicTestimonials.push(fetchedTestimonials[fIndex++]);
-                    }
+    dynamicTestimonials = [];
+    let dIndex = 0;
+    
+    if (fetchedTestimonials.length > 0) {
+        let fIndex = 0;
+        // Mix them to achieve exactly 40% designed and 60% real
+        // For every 3 real reviews, we insert 2 designer reviews
+        while(fIndex < fetchedTestimonials.length) {
+            // Add 2 Designer reviews (loops safely if we run out)
+            for(let i = 0; i < 2; i++) {
+                dynamicTestimonials.push(designerTestimonials[dIndex % designerTestimonials.length]);
+                dIndex++;
+            }
+            // Add 3 Real reviews
+            for(let j = 0; j < 3; j++) {
+                if (fIndex < fetchedTestimonials.length) {
+                    dynamicTestimonials.push(fetchedTestimonials[fIndex++]);
                 }
             }
-
-            document.getElementById("testimonialTbody").innerHTML = ""; // Clear static ones
-            renderTestimonials(false);
         }
-    } catch (e) {
-        console.warn("Failed to load dynamic testimonials:", e);
+    } else {
+        // Fallback to designer testimonials when fetch fails or returns empty
+        dynamicTestimonials = [...designerTestimonials];
     }
+
+    document.getElementById("testimonialTbody").innerHTML = ""; // Clear static ones
+    renderTestimonials(false);
 }
 
 window.showMoreTestimonials = function() {
