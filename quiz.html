@@ -1526,7 +1526,9 @@ async function submitQuiz(){
             subject:localStorage.getItem("selectedSubject"),
             studentClass:localStorage.getItem("selectedClass"),
             topic: topicInfo.selectedTopicCode || null,
-            topicName: topicInfo.selectedTopicName || null
+            topicName: topicInfo.selectedTopicName || null,
+            questions: questions,
+            userAnswers: selectedAnswers
         });
 
         // Trigger the Result Email Cloud Function asynchronously
