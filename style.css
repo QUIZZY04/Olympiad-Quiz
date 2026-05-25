@@ -752,7 +752,7 @@ nav {
         width: 250px;
         background: var(--surface);
         flex-direction: column;
-        padding: 80px 25px 30px;
+        padding: 60px 20px 20px;
         box-shadow: -10px 0 30px rgba(0,0,0,0.15);
         z-index: 1000;
         align-items: flex-start;
@@ -801,7 +801,7 @@ nav {
     }
     .nav-links a {
         width: 100%;
-        padding: 15px 0;
+        padding: 12px 0;
         border-bottom: 1px solid var(--border);
         font-size: 0.9rem;
         text-align: left;
