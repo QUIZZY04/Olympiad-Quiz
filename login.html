@@ -81,7 +81,7 @@
     }
 
     h1, h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: var(--text); letter-spacing: -0.5px; }
-    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 15px; line-height: 1.4; }
+    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 24px; line-height: 1.4; }
     
     input {
       width: 100%;
@@ -128,7 +128,7 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       transition: all 0.3s ease;
     }
     .social-btn img { width: 22px; height: 22px; }
@@ -160,9 +160,11 @@
     }
     #btnShowMobile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--brand-text); color: var(--brand-text); }
 
-    .divider { display: flex; align-items: center; text-align: center; color: #475569; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+    .divider { display: flex; align-items: center; text-align: center; color: #475569; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 24px; }
     .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #94a3b8; }
     .divider::before { margin-right: 15px; } .divider::after { margin-left: 15px; }
+
+    #btnGoogleEntry, #btnLinkGoogle { margin-bottom: 24px; }
 
     .auth-tabs { display: flex; background: var(--subtle); border-radius: 12px; padding: 5px; margin-bottom: 15px; }
     .auth-tab { flex: 1; padding: 12px; border: none; background: transparent; border-radius: 8px; font-weight: 700; color: var(--muted); cursor: pointer; transition: 0.3s; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -212,6 +214,7 @@
       .divider { margin-bottom: 10px; font-size: 11px; }
       .signup-text { margin-top: 10px; padding-top: 10px; color: var(--text); font-weight: 500; font-size: 13px; }
       .signup-text a { color: var(--brand-text); font-weight: 800; text-decoration: underline; }
+      #btnGoogleEntry, #btnLinkGoogle { margin-bottom: 15px !important; }
     }
   </style>
 </head>
@@ -227,6 +230,7 @@
     <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
     <div class="nav-important">
         <a href="index.html">Home</a>
+        <a href="signup.html">Sign Up</a>
     </div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -241,7 +245,30 @@
                 <a href="igko-free-mock-test.html">IGKO Test</a>
             </div>
         </div>
-        <a href="features.html">Features</a>
+        <div class="nav-dropdown">
+            <a href="olympiad-syllabus.html" class="dropbtn">Syllabus</a>
+            <div class="nav-dropdown-content">
+                <a href="sof-syllabus.html">SOF Olympiads</a>
+                <a href="silverzone-syllabus.html">SilverZone</a>
+                <a href="crest-syllabus.html">CREST Olympiads</a>
+                <a href="nstse-syllabus.html">NSTSE</a>
+                <a href="spellbee-syllabus.html">SpellBee</a>
+                <a href="hummingbird-syllabus.html">Humming Bird</a>
+                <a href="ogo-syllabus.html">Orange Olympiad</a>
+            </div>
+        </div>
+        <a href="live.html">Live Arena</a>
+        <div class="nav-dropdown">
+            <button class="dropbtn nav-link-btn">Senior Exams</button>
+            <div class="nav-dropdown-content">
+                <a href="jee_main.html">JEE Main</a>
+                <a href="jee-list.html">JEE Advanced</a>
+                <a href="neet.html">NEET</a>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <a href="signup.html" class="login-link">Sign Up</a>
+        </div>
     </div>
 </nav>
 <div class="container">
@@ -273,7 +300,7 @@
                 <h2>Welcome to OlympiadQuiz</h2>
                 <p class="subtitle">Choose a method to continue.</p>
                 
-                <button type="button" id="btnGoogleEntry" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                <button type="button" id="btnGoogleEntry" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
                     <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
                     Continue with Google
                 </button>
@@ -331,7 +358,7 @@
                 <h2>Secure Your Account</h2>
                 <p class="subtitle">Link an email or Google account for easier recovery.</p>
                 
-                <button type="button" id="btnLinkGoogle" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                <button type="button" id="btnLinkGoogle" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
                     <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
                     Continue with Google
                 </button>
@@ -801,6 +828,28 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
 function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('active');
 }
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                
+                document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) {
+                        openDropdown.classList.remove('open');
+                        const contentToClose = openDropdown.querySelector('.nav-dropdown-content');
+                        if (contentToClose) contentToClose.style.maxHeight = '0';
+                    }
+                });
+
+                dropdown.classList.toggle('open');
+                const content = dropdown.querySelector('.nav-dropdown-content');
+                if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
+            }
+        });
+    });
+});
 </script>
 <footer style="text-align:center;padding:20px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">

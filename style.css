@@ -383,6 +383,21 @@ body.auth-page {
     box-shadow: 0 8px 20px rgba(255, 107, 0, 0.35);
 }
 
+/* AUTH SPACING REFINEMENTS (Desktop) */
+.signup-box .subtitle { margin-bottom: 24px; }
+.signup-box .social-btn { margin-bottom: 20px; }
+.signup-box .divider { margin-bottom: 24px; }
+.signup-box #btnGoogleEntry, .signup-box #btnLinkGoogle { margin-bottom: 24px; }
+
+/* AUTH SPACING REFINEMENTS (Mobile) */
+@media (max-width: 768px) {
+    .signup-box .subtitle { margin-bottom: 12px; }
+    .signup-box .social-btn { margin-bottom: 10px; }
+    .signup-box .divider { margin-bottom: 10px; }
+    .signup-box #btnGoogleEntry, .signup-box #btnLinkGoogle { margin-bottom: 15px !important; }
+}
+
+
 /* ================= SAFE DASHBOARD ENHANCEMENT ================= */
 
 .dashboard-card h2 {
