@@ -680,15 +680,19 @@ document.getElementById("googleSignInBtn").addEventListener("click", async () =>
         try {
             const userDoc = await getDoc(doc(db, "users", result.user.uid));
             userDocExists = userDoc.exists();
-        } catch (e) {
-            userDocExists = false;
-        }
 
-        if (!userDocExists) {
-            await deleteUser(result.user).catch(console.error);
+            if (!userDocExists) {
+                await deleteUser(result.user).catch(console.error);
+                await signOut(auth);
+                document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create an account first.";
+                document.getElementById('notRegisteredModal').style.display = 'flex';
+                isManualLogin = false;
+                return;
+            }
+        } catch (e) {
+            console.error("Database check failed:", e);
+            alert("Network error while verifying your account. Please try again.");
             await signOut(auth);
-            document.getElementById('notRegisteredMsg').innerText = "You are not a registered user. Please create an account first.";
-            document.getElementById('notRegisteredModal').style.display = 'flex';
             isManualLogin = false;
             return;
         }
