@@ -735,13 +735,22 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
     isCompletingSignup = true;
     
     try {
-        let user;
-        if (!auth.currentUser) {
+        let user = auth.currentUser;
+        
+        if (!user && window.phoneAuthCredential) {
+            const userCred = await signInWithCredential(auth, window.phoneAuthCredential);
+            user = userCred.user;
+        }
+
+        if (!user) {
             const result = await signInWithPopup(auth, provider);
             user = result.user;
         } else {
-            const result = await linkWithPopup(auth.currentUser, provider);
-            user = result.user;
+            const providerIds = user.providerData.map(p => p.providerId);
+            if (!providerIds.includes("google.com")) {
+                const result = await linkWithPopup(user, provider);
+                user = result.user;
+            }
         }
 
         document.getElementById("linkGoogleBtn").classList.add("hidden");
@@ -761,7 +770,11 @@ document.getElementById("linkGoogleBtn").addEventListener("click", async () => {
         btn.disabled = false;
         isCompletingSignup = false;
     } catch (error) {
-        alert("Google link failed: " + error.message);
+        if (error.code === 'auth/credential-already-in-use') {
+            alert("This Google account is already registered to another user. Please select a different Google account or set an email/password manually.");
+        } else {
+            alert("Google link failed: " + error.message);
+        }
         btn.disabled = false;
         isCompletingSignup = false;
     }
