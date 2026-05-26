@@ -404,7 +404,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, updateEmail, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -580,6 +580,11 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
         await evaluateAuthState(result.user);
     } catch (err) {
         alert("Invalid OTP. Please try again.");
+        if (err.code === 'auth/credential-already-in-use') {
+            alert("This phone number is already linked to another account! Please log in directly with that number.");
+        } else {
+            alert("Invalid OTP or verification failed. Please try again.");
+        }
         btn.disabled = false;
         btn.innerText = "Verify Mobile";
     }
@@ -613,7 +618,7 @@ document.getElementById("emailSignupForm").addEventListener("submit", async (e) 
 
 // 4. Provider Linking Actions
 document.getElementById("btnLinkGoogle").onclick = async () => {
-    const btn = document.getElementById("linkGoogleBtn");
+    const btn = document.getElementById("btnLinkGoogle");
     btn.disabled = true;
     btn.innerHTML = "Linking...";
     try {
@@ -621,7 +626,7 @@ document.getElementById("btnLinkGoogle").onclick = async () => {
         await evaluateAuthState(auth.currentUser);
     } catch (error) {
         if (error.code === 'auth/credential-already-in-use') {
-            alert("This Google account is already linked to another user. Please use a different one.");
+            alert("This Google account is already linked to another user. Please log in directly with Google.");
         } else if (error.code === 'auth/provider-already-linked') {
             await evaluateAuthState(auth.currentUser);
         } else if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
@@ -643,12 +648,14 @@ document.getElementById("emailLinkForm").onsubmit = async (e) => {
     const btn = document.getElementById("btnEmailLinkSubmit");
     btn.disabled = true; btn.innerText = "Linking...";
     try {
-        const cred = EmailAuthProvider.credential(email, pass);
-        await linkWithCredential(auth.currentUser, cred);
+        await updateEmail(auth.currentUser, email);
+        await updatePassword(auth.currentUser, pass);
         await evaluateAuthState(auth.currentUser);
     } catch (e) {
-        if (e.code === 'auth/email-already-in-use' || e.code === 'auth/credential-already-in-use') {
+        if (e.code === 'auth/email-already-in-use') {
             alert("Email already in use by another account.");
+        } else if (e.code === 'auth/requires-recent-login') {
+            alert("Security requirement: Please refresh the page, verify your mobile number again, and then add your email.");
         } else {
             alert("Linking Failed: " + e.message);
         }
