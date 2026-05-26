@@ -522,9 +522,7 @@ async function proceedToNextStep(user) {
         sessionStorage.removeItem("redirectAfterLogin");
         window.location.replace(redirectUrl);
     } else {
-        if (user.displayName || (data && data.name)) document.getElementById("profileName").value = user.displayName || (data && data.name) || "";
-        if (data && data.class) document.getElementById("profileClass").value = data.class;
-        showSection('stepCompleteProfile');
+            window.location.replace("signup.html?mode=completion");
     }
 }
 
@@ -542,15 +540,12 @@ async function evaluateAuthState(user) {
     const hasEmail = providers.includes("password");
 
     if (!hasPhone) {
-        document.getElementById("phoneStepTitle").innerText = "Link Mobile Number";
-        document.getElementById("phoneStepSubtitle").innerText = "A verified mobile number is required to secure your account.";
-        showSection('stepPhoneAuth');
-        if(!window.recaptchaVerifier) initRecaptcha();
+            window.location.replace("signup.html?mode=completion");
         return;
     }
 
     if (!hasGoogle && !hasEmail) {
-        showSection('stepProviderLinking');
+            window.location.replace("signup.html?mode=completion");
         return;
     }
 
