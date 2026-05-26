@@ -404,7 +404,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, updateEmail, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail, signInWithEmailAndPassword, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail, signInWithEmailAndPassword, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -420,6 +420,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
+
+let isRedirecting = false;
 
 window.resetToEntry = function() {
     document.querySelectorAll('.signup-box > div').forEach(d => d.classList.add('hidden'));
@@ -478,7 +480,7 @@ async function updateUserState(user, state, extraData = {}) {
     }
 
     if (state === 'NEW_USER') {
-        data.createdAt = user.metadata.creationTime ? new Date(user.metadata.creationTime) : serverTimestamp();
+        data.createdAt = serverTimestamp();
     }
     if (state === 'ACTIVE_USER') {
         data.registrationCompleted = true;
@@ -490,6 +492,8 @@ async function updateUserState(user, state, extraData = {}) {
 }
 
 async function evaluateAuthState(user) {
+    if (isRedirecting) return;
+
     if (!user) {
         resetToEntry();
         return;
@@ -510,6 +514,14 @@ async function evaluateAuthState(user) {
         await updateUserState(user, 'AUTHENTICATED');
     }
 
+    // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
+    if (data && data.registrationCompleted) {
+        isRedirecting = true;
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.replace("dashboard.html");
+        return;
+    }
+
     if (!hasPhone) {
         await updateUserState(user, 'PHONE_PENDING');
         document.getElementById("phoneTitle").innerText = "Verify Mobile Number";
@@ -525,27 +537,22 @@ async function evaluateAuthState(user) {
         return;
     }
 
-    if (data && data.registrationCompleted) {
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.replace("dashboard.html");
+    let existingName = user.displayName || (data && data.name) || "";
+    if (existingName.toLowerCase() === "student") existingName = "";
+    document.getElementById("cName").value = existingName;
+    if (user.email || (data && data.email)) {
+        document.getElementById("cEmail").value = user.email || (data && data.email) || "";
+        document.getElementById("cEmail").readOnly = true;
+        document.getElementById("cEmail").style.cursor = "not-allowed";
+        document.getElementById("cEmail").style.background = "var(--border)";
     } else {
-        let existingName = user.displayName || (data && data.name) || "";
-        if (existingName.toLowerCase() === "student") existingName = "";
-        document.getElementById("cName").value = existingName;
-        if (user.email || (data && data.email)) {
-            document.getElementById("cEmail").value = user.email || (data && data.email) || "";
-            document.getElementById("cEmail").readOnly = true;
-            document.getElementById("cEmail").style.cursor = "not-allowed";
-            document.getElementById("cEmail").style.background = "var(--border)";
-        } else {
-            document.getElementById("cEmail").readOnly = false;
-            document.getElementById("cEmail").style.cursor = "text";
-            document.getElementById("cEmail").style.background = "var(--surface)";
-        }
-        if (data && data.class) document.getElementById("cClassSelect").value = data.class;
-        
-        showSection('stepCompleteProfile');
+        document.getElementById("cEmail").readOnly = false;
+        document.getElementById("cEmail").style.cursor = "text";
+        document.getElementById("cEmail").style.background = "var(--surface)";
     }
+    if (data && data.class) document.getElementById("cClassSelect").value = data.class;
+    
+    showSection('stepCompleteProfile');
 }
 
 onAuthStateChanged(auth, async (user) => {
