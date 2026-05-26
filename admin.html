@@ -655,7 +655,11 @@ border-top:1px solid var(--border);
         </div>
         <div class="panel-content">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div style="grid-column: 1 / -1;"><label>Test Title</label><input type="text" id="sessTitle"></div>
+                <div style="grid-column: 1 / -1;">
+                    <label>Test Title <span style="cursor:pointer; font-size:12px; margin-left:5px; color:var(--warning);" onclick="window.updateSessSuggestions()" title="Load Recent Suggestions">🔄 Load Suggestions</span></label>
+                    <input type="text" id="sessTitle" list="sessTitleSuggestions" autocomplete="off">
+                    <datalist id="sessTitleSuggestions"></datalist>
+                </div>
         <div><label>Subject</label>
             <select id="sessSubject">
                 <option value="maths">Mathematics</option>
@@ -676,11 +680,19 @@ border-top:1px solid var(--border);
             </select>
         </div>
         <div><label>Test Date</label><input type="date" id="sessDate"></div>
-        <div><label>Start Time</label><input type="time" id="sessTime"></div>
+        <div>
+            <label>Start Time</label>
+            <input type="time" id="sessTime" list="sessTimeSuggestions">
+            <datalist id="sessTimeSuggestions"></datalist>
+        </div>
         <div><label>Range Start ID (Regular)</label><input type="text" id="sessStartId" placeholder="e.g. Q001"></div>
         <div><label>Range End ID (Regular)</label><input type="text" id="sessEndId" placeholder="e.g. Q050"></div>
         <div><label>Price (INR)</label><input type="number" id="sessPrice" value="99"></div>
-        <div><label>Price After Coupon (Optional ₹)</label><input type="number" id="sessPriceAfterCoupon" placeholder="e.g. 29"></div>
+        <div>
+            <label>Price After Coupon (Optional ₹)</label>
+            <input type="number" id="sessPriceAfterCoupon" placeholder="e.g. 29" list="sessPriceSuggestions">
+            <datalist id="sessPriceSuggestions"></datalist>
+        </div>
         <div><label>Duration (Min)</label><input type="number" id="sessDuration" value="60"></div>
         <div style="grid-column: 1 / -1;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
@@ -1512,6 +1524,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     else if (headerText.includes('Student Profiles')) { window.loadStudentProfiles(); }
                     else if (headerText.includes('User Activity Log')) { window.initUserActivityLog(); }
                     else if (headerText.includes('Search & Manage Questions')) { window.loadQuestions(); }
+                    else if (headerText.includes('Schedule Weekly Test')) { window.updateSessSuggestions && window.updateSessSuggestions(); }
                     panel.dataset.loaded = 'true';
                 }
             }
@@ -1607,6 +1620,58 @@ window.clearSessAchManualIds = function() {
 
 window.clearSessManualIds = function() {
     document.getElementById("sessManualIds").value = "";
+};
+
+window.updateSessSuggestions = async function() {
+    const titleList = document.getElementById("sessTitleSuggestions");
+    const timeList = document.getElementById("sessTimeSuggestions");
+    const priceList = document.getElementById("sessPriceSuggestions");
+    
+    if (!titleList || !timeList || !priceList) return;
+    
+    const titleInput = document.getElementById("sessTitle");
+    const oldPlaceholder = titleInput.placeholder || "";
+    titleInput.placeholder = "Loading suggestions...";
+    
+    try {
+        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(20));
+        const snap = await getDocs(q);
+        
+        const uniqueTitles = new Set();
+        const uniqueTimes = new Set();
+        const uniquePrices = new Set();
+        
+        snap.forEach(doc => {
+            const data = doc.data();
+            if (data.title) uniqueTitles.add(data.title);
+            if (data.startTime && data.startTime.toDate) {
+                const dt = data.startTime.toDate();
+                const timeStr = dt.toTimeString().slice(0,5);
+                uniqueTimes.add(timeStr);
+            }
+            if (data.priceAfterCoupon !== undefined && data.priceAfterCoupon !== null) {
+                uniquePrices.add(data.priceAfterCoupon);
+            }
+        });
+        
+        let titleHtml = "";
+        Array.from(uniqueTitles).slice(0, 3).forEach(t => titleHtml += `<option value="${t}"></option>`);
+        titleList.innerHTML = titleHtml;
+        
+        let timeHtml = "";
+        Array.from(uniqueTimes).slice(0, 3).forEach(t => timeHtml += `<option value="${t}"></option>`);
+        timeList.innerHTML = timeHtml;
+        
+        let priceHtml = "";
+        Array.from(uniquePrices).slice(0, 3).forEach(p => priceHtml += `<option value="${p}"></option>`);
+        priceList.innerHTML = priceHtml;
+        
+        titleInput.placeholder = "Suggestions loaded!";
+        setTimeout(() => titleInput.placeholder = oldPlaceholder, 2000);
+    } catch (e) {
+        console.error("Error loading session suggestions:", e);
+        titleInput.placeholder = oldPlaceholder;
+    }
 };
 
 window.uploadImageFolder = async function() {
