@@ -826,9 +826,12 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
         }
         
         setTimeout(() => {
-            sessionStorage.removeItem("redirectAfterLogin");
-            window.location.replace("dashboard.html");
-        }, 2000);
+            if (!isRedirecting) {
+                isRedirecting = true;
+                sessionStorage.removeItem("redirectAfterLogin");
+                window.location.replace("dashboard.html");
+            }
+        }, 1500);
 
     } catch (error) {
         alert("Issue creating account: " + error.message);
