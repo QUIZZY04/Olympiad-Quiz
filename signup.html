@@ -430,7 +430,7 @@ window.resetToEntry = function() {
 window.cancelPhoneAuth = async function() {
     const user = auth.currentUser;
     if (user && !user.phoneNumber) {
-        await deleteUser(user).catch(e => console.warn("Cleanup failed:", e));
+        await updateUserState(user, 'ABANDONED', { registrationCompleted: false });
     }
     resetToEntry();
 };
@@ -451,6 +451,43 @@ function initRecaptcha() {
     window.signupRecaptchaVerifier.render().catch(console.error);
 }
 initRecaptcha();
+
+// Onboarding State Machine & User Model
+async function updateUserState(user, state, extraData = {}) {
+    if (!user) return;
+    const providerIds = user.providerData.map(p => p.providerId);
+    
+    const data = {
+        uid: user.uid,
+        authProviders: providerIds,
+        linkedProviders: providerIds,
+        onboardingState: state,
+        updatedAt: serverTimestamp(),
+        lastLoginAt: serverTimestamp(),
+        ...extraData
+    };
+
+    if (user.email) data.email = user.email;
+    if (user.phoneNumber) {
+        data.phone = user.phoneNumber;
+        data.phoneNumber = user.phoneNumber;
+        data.phoneVerified = true;
+    }
+    if (providerIds.length > 0 && !extraData.primaryAuth) {
+        data.primaryAuth = providerIds[0];
+    }
+
+    if (state === 'NEW_USER') {
+        data.createdAt = user.metadata.creationTime ? new Date(user.metadata.creationTime) : serverTimestamp();
+    }
+    if (state === 'ACTIVE_USER') {
+        data.registrationCompleted = true;
+        data.profileCompleted = true;
+        data.signupCompleted = true;
+    }
+
+    await setDoc(doc(db, "users", user.uid), data, { merge: true });
+}
 
 async function evaluateAuthState(user) {
     if (!user) {
@@ -488,9 +525,6 @@ async function evaluateAuthState(user) {
         return;
     }
 
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    const data = userDoc.exists() ? userDoc.data() : null;
-    
     if (data && data.registrationCompleted) {
         localStorage.setItem("isLoggedIn", "true");
         window.location.replace("dashboard.html");
@@ -530,7 +564,19 @@ document.getElementById("btnGoogleEntry").onclick = async () => {
         const result = await signInWithPopup(auth, provider);
         await evaluateAuthState(result.user);
     } catch (e) {
-        if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
+        if (e.code === 'auth/account-exists-with-different-credential') {
+            const email = e.customData?.email;
+            if (email) {
+                try {
+                    const methods = await fetchSignInMethodsForEmail(auth, email);
+                    alert(`An account already exists with ${email}. Please log in using ${methods.join(" or ")} to link your Google account.`);
+                } catch (fetchErr) {
+                    alert("An account already exists with the same email. Please log in using Email or Phone, then link Google.");
+                }
+            } else {
+                alert("An account already exists with the same email. Please log in using Email or Phone, then link Google.");
+            }
+        } else if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
             alert("Google Sign-In Failed: " + e.message);
         }
         btn.disabled = false;
@@ -675,9 +721,22 @@ document.getElementById("btnLinkGoogle").onclick = async () => {
         await evaluateAuthState(auth.currentUser);
     } catch (error) {
         if (error.code === 'auth/credential-already-in-use') {
-            alert("This Google account is already linked to another user. Please log in directly with Google.");
+            const confirmMerge = confirm("This Google account is already linked to another user. Do you want to switch and log into that account instead?");
+            if (confirmMerge) {
+                try {
+                    const cred = GoogleAuthProvider.credentialFromError(error);
+                    const result = await signInWithCredential(auth, cred);
+                    await evaluateAuthState(result.user);
+                    return;
+                } catch(signInErr) {
+                    alert("Failed to log into existing account. " + signInErr.message);
+                }
+            }
         } else if (error.code === 'auth/provider-already-linked') {
             await evaluateAuthState(auth.currentUser);
+            return;
+        } else if (error.code === 'auth/requires-recent-login') {
+            alert("Security requirement: Please refresh the page, log in again, and then link Google.");
         } else if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
             alert("Google Linking Failed: " + error.message);
         }
@@ -703,7 +762,16 @@ document.getElementById("emailLinkForm").onsubmit = async (e) => {
         await evaluateAuthState(auth.currentUser);
     } catch (e) {
         if (e.code === 'auth/email-already-in-use' || e.code === 'auth/credential-already-in-use') {
-            alert("Email already in use by another account.");
+            const confirmMerge = confirm("Email already in use by another account. Would you like to log into that account instead?");
+            if (confirmMerge) {
+                try {
+                    const result = await signInWithEmailAndPassword(auth, email, pass);
+                    await evaluateAuthState(result.user);
+                    return;
+                } catch(signInErr) {
+                    alert("Failed to log into existing account. " + signInErr.message);
+                }
+            }
         } else if (e.code === 'auth/requires-recent-login') {
             alert("Security requirement: Please refresh the page, verify your mobile number again, and then add your email.");
         } else {
