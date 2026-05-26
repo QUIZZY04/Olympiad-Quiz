@@ -1954,6 +1954,7 @@ function loadFeedback() {
     onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), async (snap) => {
         document.getElementById("feedbackTable").innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>Loading question details...</td></tr>";
         
+        const userCache = {};
         const rowsData = await Promise.all(snap.docs.map(async (d) => {
             const f = d.data();
             const date = f.timestamp ? f.timestamp.toDate().toLocaleDateString() : 'N/A';
@@ -1973,6 +1974,23 @@ function loadFeedback() {
             }
             const email = f.email || f.userEmail || "N/A";
             let name = f.name || "Student";
+
+            if (f.uid && f.uid !== "anonymous") {
+                if (userCache[f.uid]) {
+                    name = userCache[f.uid];
+                } else {
+                    try {
+                        const uSnap = await getDoc(doc(db, "users", f.uid));
+                        if (uSnap.exists()) {
+                            const uData = uSnap.data();
+                            if (uData.name && uData.name !== "Student") name = uData.name;
+                            else if (uData.fullName) name = uData.fullName;
+                            userCache[f.uid] = name;
+                        }
+                    } catch(e) {}
+                }
+            }
+
             if (name === "Guest" || name === "Visitor" || name === "User" || name === "anonymous") name = "Student";
             return { id: d.id, f, date, qText, qDetails, email, name };
         }));
@@ -2020,29 +2038,54 @@ window.deleteReplyFB = async (id) => {
 };
 
 function loadExpFeedback() {
-    onSnapshot(query(expFeedbackRef, orderBy("timestamp", "desc")), (snap) => {
-        let html=""; snap.forEach(d => { 
-            const f=d.data(); 
+    onSnapshot(query(expFeedbackRef, orderBy("timestamp", "desc")), async (snap) => {
+        document.getElementById("expFeedbackTable").innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>Loading experience data...</td></tr>";
+        
+        const userCache = {};
+        const rowsData = await Promise.all(snap.docs.map(async (d) => {
+            const f = d.data();
+            let dispName = f.name || 'Student';
+            
+            if (f.uid && f.uid !== "anonymous") {
+                if (userCache[f.uid]) {
+                    dispName = userCache[f.uid];
+                } else {
+                    try {
+                        const uSnap = await getDoc(doc(db, "users", f.uid));
+                        if (uSnap.exists()) {
+                            const uData = uSnap.data();
+                            if (uData.name && uData.name !== "Student") dispName = uData.name;
+                            else if (uData.fullName) dispName = uData.fullName;
+                            userCache[f.uid] = dispName;
+                        }
+                    } catch(e) {}
+                }
+            }
+            if (dispName === "Guest" || dispName === "Visitor" || dispName === "User" || dispName === "anonymous") dispName = "Student";
+            return { id: d.id, f: f, dispName: dispName };
+        }));
+
+        let html=""; 
+        rowsData.forEach(row => { 
+            const f = row.f; 
             const dateStr = f.timestamp ? f.timestamp.toDate().toLocaleString() : (f.date || 'N/A');
             
             const ratingCat = `<div><b>${f.rating || 'N/A'}</b></div><div style="font-size:11px; color:var(--brand);">${f.category || 'General'}</div>`;
             const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
             
             const safeSuggestion = f.suggestion ? f.suggestion.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '-';
-            let dispName = f.name || 'Student';
-            if (dispName === "Guest" || dispName === "Visitor" || dispName === "User" || dispName === "anonymous") dispName = "Student";
             const safeReply = f.adminReply ? f.adminReply.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
             const encodedReply = encodeURIComponent(f.adminReply || '').replace(/'/g, "%27");
             
             const replyHtml = f.adminReply ? `<div style="margin-top:8px; padding:8px; background:rgba(37,99,235,0.08); border-left:4px solid #2563eb; border-radius:4px; font-size:12px; color:#1e293b;"><b>Admin Reply:</b> ${safeReply}</div>` : '';
             
             const replyBtnText = f.adminReply ? 'Edit Reply' : 'Reply';
-            const delReplyBtn = f.adminReply ? `<button class="delete" onclick="deleteReplyExpFB('${d.id}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--warning);">🗑 Del Reply</button><br>` : '';
+            const delReplyBtn = f.adminReply ? `<button class="delete" onclick="deleteReplyExpFB('${row.id}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--warning);">🗑 Del Reply</button><br>` : '';
 
-            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${dispName}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${safeSuggestion}${replyHtml}</td><td style="white-space:nowrap; text-align:center;">
-                <button class="upload" onclick="replyExpFB('${d.id}', '${encodedReply}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--brand);">💬 ${replyBtnText}</button><br>
+            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${row.dispName}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${safeSuggestion}${replyHtml}</td><td style="white-space:nowrap; text-align:center;">
+                <button class="upload" onclick="replyExpFB('${row.id}', '${encodedReply}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--brand);">💬 ${replyBtnText}</button><br>
                 ${delReplyBtn}
-                <button class="delete" onclick="deleteExpFB('${d.id}')" style="margin:0; padding:6px 12px; font-size:12px; min-width:85px;">🗑 Delete</button>
+                <button class="delete" onclick="deleteExpFB('${row.id}')" style="margin:0; padding:6px 12px; font-size:12px; min-width:85px;">🗑 Delete</button>
             </td></tr>`; 
         });
         if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No feedback reports found.</td></tr>";

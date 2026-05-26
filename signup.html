@@ -475,7 +475,9 @@ async function evaluateAuthState(user) {
         localStorage.setItem("isLoggedIn", "true");
         window.location.replace("dashboard.html");
     } else {
-        if (user.displayName || (data && data.name)) document.getElementById("cName").value = user.displayName || (data && data.name) || "";
+        let existingName = user.displayName || (data && data.name) || "";
+        if (existingName.toLowerCase() === "student") existingName = "";
+        document.getElementById("cName").value = existingName;
         if (user.email || (data && data.email)) {
             document.getElementById("cEmail").value = user.email || (data && data.email) || "";
             document.getElementById("cEmail").readOnly = true;
@@ -663,6 +665,13 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
     const promoConsent = document.getElementById("promoConsent").checked;
     const btn = document.getElementById("completeProfileForm").querySelector('button[type="submit"]');
     
+    // Stricter validation for real names (only letters/spaces, min 3 chars)
+    const nameRegex = /^[A-Za-z\s]+$/;
+    if (!name || name.toLowerCase() === "student" || name.length < 3 || !nameRegex.test(name)) {
+        alert("Please provide your actual full name (letters only, minimum 3 characters) to continue.");
+        return;
+    }
+
     btn.disabled = true; btn.innerText = "Creating Account...";
     
     try {

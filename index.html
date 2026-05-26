@@ -828,6 +828,7 @@ min-height: 380px;
             <div class="nav-dropdown-content">
                 <a href="mock.html">Mock Tests</a>
                 <a href="chapterwise.html">Chapterwise</a>
+                <a href="previous-papers.html">Previous Papers</a>
                 <a href="study.html">Study Material</a>
                 <a href="blog.html">Success Guides</a>
             </div>
@@ -1366,7 +1367,7 @@ window.closeFeedbackModal = () => {
 
 let dynamicTestimonials = [];
 let db, auth, app;
-let collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp;
+let collection, query, orderBy, limit, getDocs, addDoc, serverTimestamp, doc, getDoc;
 
 async function loadDynamicTestimonials() {
     let fetchedTestimonials = [];
@@ -1374,13 +1375,36 @@ async function loadDynamicTestimonials() {
         const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"), limit(300));
         const snap = await getDocs(q);
         
-        snap.forEach(doc => {
-            const data = doc.data();
-            // Filter for 4/5 stars with a reasonable length to ensure quality comments
+        const filteredDocs = [];
+        snap.forEach(dSnap => {
+            const data = dSnap.data();
             if (data.suggestion && data.suggestion.length > 5 && (data.rating === "5 Star" || data.rating === "4 Star")) {
-                fetchedTestimonials.push(data);
+                filteredDocs.push(data);
             }
         });
+        
+        const userCache = {};
+        fetchedTestimonials = await Promise.all(filteredDocs.map(async (data) => {
+            let realName = data.name || "Student";
+            
+            if (data.uid && data.uid !== "anonymous") {
+                if (userCache[data.uid]) {
+                    realName = userCache[data.uid];
+                } else {
+                    try {
+                        const uSnap = await getDoc(doc(db, "users", data.uid));
+                        if (uSnap.exists()) {
+                            const uData = uSnap.data();
+                            if (uData.name && uData.name !== "Student") realName = uData.name;
+                            else if (uData.fullName) realName = uData.fullName;
+                            userCache[data.uid] = realName;
+                        }
+                    } catch(e) {}
+                }
+            }
+            data.name = realName;
+            return data;
+        }));
     } catch (e) {
         console.warn("Failed to load dynamic testimonials from DB:", e);
     }
@@ -1639,6 +1663,8 @@ async function initFirebaseAndLoadData() {
         getDocs = firestore.getDocs;
         addDoc = firestore.addDoc;
         serverTimestamp = firestore.serverTimestamp;
+        doc = firestore.doc;
+        getDoc = firestore.getDoc;
         db = firestore.initializeFirestore(app, { experimentalForceLongPolling: true });
 
         window.submitDashboardFeedback = async () => {
