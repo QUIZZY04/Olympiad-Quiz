@@ -921,7 +921,7 @@
 
             // 1. Mark as applied in local state so the background timer preserves the transformation
             appliedCoupons[sessionId] = true;
-            localStorage.setItem("appliedCoupon", code);
+            localStorage.setItem(`appliedCoupon_${sessionId}`, code);
 
             // 2. Force the UI to refresh the specific button immediately
             updateTick(currentSessionList);
