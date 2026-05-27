@@ -449,6 +449,7 @@
     let allFetchedSessionDocs = [];
     let userAccessSnaps = [];
     let isAdminUser = false;
+    let isProcessingPayment = false;
 
     async function loadSessions(user) {
         const container = document.getElementById("sessionContainer");
@@ -827,7 +828,7 @@
                     const discountedPrice = s.priceAfterCoupon;
 
                     if (btn.innerText !== "PROCESSING.......") {
-                        if (appliedCoupons[s.id]) {
+                        if (appliedCoupons[s.id] || localStorage.getItem(`appliedCoupon_${s.id}`)) {
                             // Coupon Applied
                             let finalPrice = 0; // Default to free if no specific discount price is set
                             if (typeof discountedPrice === 'number' && discountedPrice >= 0) {
