@@ -955,6 +955,8 @@
     };
 
     window.handleUnlock = async (sessionId, price, title) => {
+        if (isProcessingPayment) return;
+        
         const user = auth.currentUser;
         if (!user) {
             document.getElementById('loginPromptModal').style.display = 'flex';
@@ -997,8 +999,7 @@
                         createdAt: serverTimestamp(),
                         amount: 0,
                         sessionId: sessionId,
-                        couponUsed: appliedCoupons[sessionId] ? localStorage.getItem("appliedCoupon") : null
-                    }
+                        sndp
                 );
                 localStorage.setItem("activeSessionId", sessionId);
                 localStorage.setItem("activeSessionPrice", 0);
@@ -1047,6 +1048,7 @@
                 // Ensure popup opens ONLY after successful order creation
                 if (!order || !order.id || !order.amount) {
                     console.error("Invalid order object received:", order);
+                        isProcessingPayment = false;
                     throw new Error("Invalid order data received from server. Missing order_id or amount.");
                 }
 
@@ -1055,6 +1057,7 @@
                     alert("Payment configuration error. Please try later.");
                     btn.innerHTML = originalText;
                     btn.disabled = false;
+                        isProcessingPayment = false;
                     return;
                 }
 
@@ -1082,8 +1085,7 @@
                             razorpay_signature: response.razorpay_signature,
                             sessionId: sessionId,
                             amount: sessionPrice,
-                            couponUsed: appliedCoupons[sessionId] ? localStorage.getItem("appliedCoupon") : null
-                        };
+                                couponUsed: appli
                         while(attempts < maxAttempts && !verified) {
                             attempts++;
                             try {
@@ -1134,6 +1136,7 @@
                             alert("Payment was not completed.");
                             btn.innerText = originalText;
                             btn.disabled = false;
+                                isProcessingPayment = false;
                         }
                     },
                     "modal": {
@@ -1142,6 +1145,7 @@
                             alert("Payment was not completed.");
                             btn.innerHTML = originalText;
                             btn.disabled = false;
+                                isProcessingPayment = false;
                         }
                     },
                     "prefill": { 
@@ -1160,6 +1164,7 @@
                     alert("Payment was not completed.");
                     btn.innerHTML = originalText;
                     btn.disabled = false;
+                        isProcessingPayment = false;
                 });
                 rzp.open();
             } catch (err) {
@@ -1167,6 +1172,7 @@
                 alert("Unable to initiate payment. Please try again.");
                 btn.innerHTML = originalText;
                 btn.disabled = false;
+                    isProcessingPayment = false;
             }
         }
     };
