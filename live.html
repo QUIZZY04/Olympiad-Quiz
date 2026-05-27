@@ -836,22 +836,32 @@
                             }
                             
                             if (finalPrice === 0) {
-                                btn.innerText = "Unlock for Free";
-                                btn.className = "join-btn btn-free-unlock";
+                                if (btn.innerText !== "Unlock for Free") {
+                                    btn.innerText = "Unlock for Free";
+                                }
+                                if (btn.className !== "join-btn btn-free-unlock") btn.className = "join-btn btn-free-unlock";
                             } else {
                                 const priceDisplayHtml = originalPrice > finalPrice ? `<s style="opacity: 0.7; font-size: 0.9em; margin-right: 5px;">₹${originalPrice}</s> ₹${finalPrice}` : `₹${finalPrice}`;
-                                btn.innerHTML = `Unlock for ${priceDisplayHtml}`;
-                                btn.className = "join-btn btn-free-unlock"; // Keep pulsing class for successful coupon
+                                const newHtml = `Unlock for ${priceDisplayHtml}`;
+                                if (btn.innerHTML !== newHtml) {
+                                    btn.innerHTML = newHtml;
+                                }
+                                if (btn.className !== "join-btn btn-free-unlock") btn.className = "join-btn btn-free-unlock"; // Keep pulsing class for successful coupon
                             }
                             btn.onclick = () => handleUnlock(s.id, finalPrice, s.title);
                         } else {
                             // No Coupon Applied
                             if (originalPrice === 0) {
-                                btn.innerText = "Unlock for Free";
-                                btn.className = "join-btn btn-free-unlock";
+                                if (btn.innerText !== "Unlock for Free") {
+                                    btn.innerText = "Unlock for Free";
+                                }
+                                if (btn.className !== "join-btn btn-free-unlock") btn.className = "join-btn btn-free-unlock";
                             } else {
-                                btn.innerText = `Unlock for ₹${originalPrice}`;
-                                btn.className = "join-btn btn-locked";
+                                const newText = `Unlock for ₹${originalPrice}`;
+                                if (btn.innerText !== newText) {
+                                    btn.innerText = newText;
+                                }
+                                if (btn.className !== "join-btn btn-locked") btn.className = "join-btn btn-locked";
                             }
                             btn.onclick = () => handleUnlock(s.id, originalPrice, s.title);
                         }
@@ -935,6 +945,7 @@
 
             // 1. Mark as applied in local state so the background timer preserves the transformation
             appliedCoupons[sessionId] = true;
+            appliedCoupons[sessionId] = code;
             localStorage.setItem(`appliedCoupon_${sessionId}`, code);
 
             // 2. Force the UI to refresh the specific button immediately
