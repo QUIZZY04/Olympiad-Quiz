@@ -799,8 +799,10 @@
 
             if (now > s.end) {
                 pill.innerText = "Ended"; pill.className = "status-pill status-ended";
-                timerEl.innerText = "00:00:00";
-                timerEl.style.fontSize = "22px"; timerEl.style.letterSpacing = "3px";
+                if (timerEl.innerText !== "00:00:00") {
+                    timerEl.innerText = "00:00:00";
+                    timerEl.style.fontSize = "22px"; timerEl.style.letterSpacing = "3px";
+                }
                 if (highlight) highlight.style.display = "none";
                 btn.innerText = "Session Ended"; btn.className = "join-btn btn-disabled"; btn.disabled = true;
                 if (cpArea) cpArea.style.display = "none";
@@ -808,14 +810,18 @@
                 const regCloseTime = new Date(s.start.getTime() - 5 * 60000);
                 if (now >= regCloseTime) {
                     pill.innerText = "Closed"; pill.className = "status-pill status-ended";
-                    timerEl.innerText = "Registration Closed";
-                    timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
+                    if (timerEl.innerText !== "Registration Closed") {
+                        timerEl.innerText = "Registration Closed";
+                        timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
+                    }
                     btn.innerText = "Registration Closed"; btn.className = "join-btn btn-disabled"; btn.disabled = true;
                     if (cpArea) cpArea.style.display = "none";
                 } else {
                     pill.innerText = "Locked"; pill.className = "status-pill status-upcoming";
-                    timerEl.innerText = "Registration Open";
-                    timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
+                    if (timerEl.innerText !== "Registration Open") {
+                        timerEl.innerText = "Registration Open";
+                        timerEl.style.fontSize = "14px"; timerEl.style.letterSpacing = "1px";
+                    }
     
                     const originalPrice = s.price;
                     const discountedPrice = s.priceAfterCoupon;
@@ -864,22 +870,29 @@
                     const sec = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
                     
                     pill.innerText = "Access Granted"; pill.className = "status-pill status-unlocked";
-                    timerEl.innerText = `${h}:${m}:${sec}`;
-                    timerEl.style.fontSize = "22px"; timerEl.style.letterSpacing = "3px";
+                    const newTime = `${h}:${m}:${sec}`;
+                    if (timerEl.innerText !== newTime) {
+                        timerEl.innerText = newTime;
+                        timerEl.style.fontSize = "22px"; timerEl.style.letterSpacing = "3px";
+                    }
                     btn.innerText = "Test Unlocked"; btn.className = "join-btn btn-ready"; btn.disabled = true;
                 } else {
                     if (s.hasAttempted) {
                         pill.innerText = "COMPLETED"; pill.className = "status-pill status-ended";
                         if (highlight) highlight.style.display = "none";
-                        timerEl.innerText = "Already Attempted";
-                        timerEl.style.fontSize = "16px"; timerEl.style.letterSpacing = "1px";
+                        if (timerEl.innerText !== "Already Attempted") {
+                            timerEl.innerText = "Already Attempted";
+                            timerEl.style.fontSize = "16px"; timerEl.style.letterSpacing = "1px";
+                        }
                         btn.innerText = "View Results"; btn.className = "join-btn btn-unlocked"; btn.disabled = false;
                         btn.onclick = () => window.location.href = "analytics.html";
                     } else {
                         pill.innerText = "LIVE NOW"; pill.className = "status-pill status-live";
                         if (highlight) highlight.innerHTML = "⚡ JOIN QUIZ NOW";
-                        timerEl.innerText = "QUIZ is Live!";
-                        timerEl.style.fontSize = "16px"; timerEl.style.letterSpacing = "2px";
+                        if (timerEl.innerText !== "QUIZ is Live!") {
+                            timerEl.innerText = "QUIZ is Live!";
+                            timerEl.style.fontSize = "16px"; timerEl.style.letterSpacing = "2px";
+                        }
                         btn.innerText = "Join Quiz"; btn.className = "join-btn btn-unlocked"; btn.disabled = false;
                         btn.onclick = () => handleJoin(s.id, s.class, s.subject);
                     }
