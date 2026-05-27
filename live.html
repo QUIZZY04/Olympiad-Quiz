@@ -983,6 +983,8 @@
             alert("Invalid price detected. Please refresh and try again.");
             return;
         }
+        
+        isProcessingPayment = true;
 
         if (sessionPrice === 0) {
             // --- Handle Free Unlock ---
@@ -999,7 +1001,8 @@
                         createdAt: serverTimestamp(),
                         amount: 0,
                         sessionId: sessionId,
-                        sndp
+                        couponUsed: appliedCoupons[sessionId] || localStorage.getItem(`appliedCoupon_${sessionId}`) || null
+                    }
                 );
                 localStorage.setItem("activeSessionId", sessionId);
                 localStorage.setItem("activeSessionPrice", 0);
@@ -1012,21 +1015,26 @@
                     sTime = session.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 }
                 
-                const freePaymentData = {
-                    isFree: true,
-                    sessionId: sessionId,
-                    amount: 0,
+                const successData = {
+                    userName: user.displayName || "Student",
+                    sessionClass: session ? session.class : "N/A",
+                    sessionSubject: session ? session.subject : "N/A",
+                    sessionTitle: session ? session.title : "Live Olympiad Test",
                     sessionDate: sDate,
-                    sessionTime: sTime
+                    sessionTime: sTime,
+                    amount: 0,
+                    paymentId: "FREE_UNLOCK"
                 };
-                localStorage.setItem("paymentData", JSON.stringify(freePaymentData));
+                localStorage.setItem("paymentSuccessData", JSON.stringify(successData));
                 setTimeout(() => {
-                    window.location.href = "/live.html";
+                    window.location.href = "live-success.html";
                 }, 2000);
             } catch (e) {
                 console.error("Error recording free unlock:", e);
                 window.hideProcessingScreen();
                 alert("Error unlocking quiz: " + e.message + ". Please try again or contact support.");
+            } finally {
+                isProcessingPayment = false;
             }
         } else {
             // --- Handle Paid Unlock (New Razorpay Orders flow) ---
@@ -1048,7 +1056,7 @@
                 // Ensure popup opens ONLY after successful order creation
                 if (!order || !order.id || !order.amount) {
                     console.error("Invalid order object received:", order);
-                        isProcessingPayment = false;
+                    isProcessingPayment = false;
                     throw new Error("Invalid order data received from server. Missing order_id or amount.");
                 }
 
@@ -1057,7 +1065,7 @@
                     alert("Payment configuration error. Please try later.");
                     btn.innerHTML = originalText;
                     btn.disabled = false;
-                        isProcessingPayment = false;
+                    isProcessingPayment = false;
                     return;
                 }
 
@@ -1085,7 +1093,8 @@
                             razorpay_signature: response.razorpay_signature,
                             sessionId: sessionId,
                             amount: sessionPrice,
-                                couponUsed: appli
+                            couponUsed: appliedCoupons[sessionId] || localStorage.getItem(`appliedCoupon_${sessionId}`) || null
+                        };
                         while(attempts < maxAttempts && !verified) {
                             attempts++;
                             try {
@@ -1136,7 +1145,7 @@
                             alert("Payment was not completed.");
                             btn.innerText = originalText;
                             btn.disabled = false;
-                                isProcessingPayment = false;
+                            isProcessingPayment = false;
                         }
                     },
                     "modal": {
@@ -1145,7 +1154,7 @@
                             alert("Payment was not completed.");
                             btn.innerHTML = originalText;
                             btn.disabled = false;
-                                isProcessingPayment = false;
+                            isProcessingPayment = false;
                         }
                     },
                     "prefill": { 
@@ -1164,7 +1173,7 @@
                     alert("Payment was not completed.");
                     btn.innerHTML = originalText;
                     btn.disabled = false;
-                        isProcessingPayment = false;
+                    isProcessingPayment = false;
                 });
                 rzp.open();
             } catch (err) {
@@ -1172,12 +1181,14 @@
                 alert("Unable to initiate payment. Please try again.");
                 btn.innerHTML = originalText;
                 btn.disabled = false;
-                    isProcessingPayment = false;
+                isProcessingPayment = false;
             }
         }
     };
 
     window.handleJoin = (sessionId, studentClass, subject) => {
+        if (isProcessingPayment) return;
+        
         const user = auth.currentUser;
         if (!user) {
             document.getElementById('loginPromptModal').style.display = 'flex';
