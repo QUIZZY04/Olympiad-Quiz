@@ -23,8 +23,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="style.css" as="style">
 <link rel="stylesheet" href="style.css">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=optional" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=optional" rel="stylesheet" />
 <style>
 :root {
   --bg: #f8fafc;
@@ -183,7 +183,6 @@ box-shadow: var(--shadow-md);
 
 /* Adjustments to fit properly on laptop screens */
 @media (min-width: 851px) {
-    body { zoom: 0.9; }
     .quiz-container { height: calc(100vh - 200px); min-height: 500px; }
     .quiz-top-bar { margin-top: 10px !important; margin-bottom: 5px !important; }
     .section { padding: 15px 25px; }

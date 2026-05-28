@@ -440,21 +440,6 @@ margin-bottom: 10px;
 .blog-btn { color: var(--brand-text); font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; transition: 0.2s; margin-top: auto; }
 .blog-btn:hover { gap: 8px; }
 
-/* DESKTOP/LAPTOP SCALING OPTIMIZATION */
-@media (min-width: 900px) {
-    body {
-        font-size: 14px !important;
-        zoom: 0.85 !important;
-        min-height: calc(100vh / 0.85) !important;
-    }
-}
-@media (min-width: 1200px) {
-    body {
-        zoom: 0.90 !important;
-        min-height: calc(100vh / 0.90) !important;
-    }
-}
-
 .blog-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
 
 @media(min-width: 769px) {
