@@ -1130,10 +1130,13 @@ border-top:1px solid var(--border);
                     </select>
                 </div>
             </div>
-            <div style="display:grid; grid-template-columns: 1fr auto; gap:15px; align-items:end; margin-bottom: 20px;">
+            <div style="display:grid; grid-template-columns: 1fr auto auto; gap:15px; align-items:end; margin-bottom: 20px;">
                 <div>
                     <label>PDF Link (Google Drive / Firebase Storage)</label>
                     <input type="text" id="sofPyqLink" placeholder="Paste link here..." style="margin-top:5px;">
+                </div>
+                <div>
+                    <button class="upload" onclick="checkExistingSofPyq()" style="background:#0ea5e9; margin-top:0; width:100%; height:41px;">Load Existing</button>
                 </div>
                 <div>
                     <button class="upload" onclick="saveSofPyqLink()" style="background:#f59e0b; margin-top:0; width:100%; height:41px;">Save Link</button>
@@ -3230,6 +3233,27 @@ window.deleteJeePyq = async function(id) {
 };
 
 // ADDED SECTION: SOF PYQ ADMIN LOGIC
+window.checkExistingSofPyq = async function() {
+    const cls = document.getElementById('sofPyqClass').value;
+    const sub = document.getElementById('sofPyqSubject').value;
+    const year = document.getElementById('sofPyqYear').value;
+    const docId = `${cls}_${sub}_${year}`;
+    
+    try {
+        const snap = await getDoc(doc(db, "sof_pyqs", docId));
+        if (snap.exists() && snap.data().pdfUrl) {
+            document.getElementById('sofPyqLink').value = snap.data().pdfUrl;
+            alert(`✅ Existing link loaded for ${cls.replace('class', 'Class ')} ${sub} (${year}). You can now edit and save.`);
+        } else {
+            document.getElementById('sofPyqLink').value = "";
+            alert(`ℹ️ No existing link found for ${cls.replace('class', 'Class ')} ${sub} (${year}).`);
+        }
+    } catch (e) {
+        console.error(e);
+        alert("❌ Error checking link: " + e.message);
+    }
+};
+
 window.saveSofPyqLink = async function() {
     const cls = document.getElementById('sofPyqClass').value;
     const sub = document.getElementById('sofPyqSubject').value;

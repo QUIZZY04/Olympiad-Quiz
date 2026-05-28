@@ -141,7 +141,7 @@
                 if (snap.exists() && snap.data().pdfUrl) {
                     const url = snap.data().pdfUrl;
                     const year = years[index];
-                    html += `<a href="${url}" target="_blank" class="btn-download" style="margin: 5px; width: 100%; max-width: 400px;">⬇️ Download ${year} ${sub} Paper</a>`;
+                    html += `<a href="${url}" target="_blank" class="btn-download" style="margin: 5px; width: 100%; max-width: 400px;">⬇️ Download ${year} ${sub} Paper (Class ${cls.replace('class', '')})</a>`;
                 }
             });
 
