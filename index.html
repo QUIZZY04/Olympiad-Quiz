@@ -210,8 +210,8 @@
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="preload" href="home.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="home.css"></noscript>
+<link rel="preload" href="home.css" as="style">
+<link rel="stylesheet" href="home.css">
 
 <style>
 *{
@@ -264,21 +264,6 @@ padding:0 22px;
 --warning: #b45309;
 --brand-text: #c2410c;
 --brand-contrast: #111827;
-}
-
-/* DESKTOP/LAPTOP SCALING OPTIMIZATION */
-@media (min-width: 900px) {
-    body {
-        font-size: 14px !important;
-        zoom: 0.85 !important;
-        min-height: calc(100vh / 0.85) !important;
-    }
-}
-@media (min-width: 1200px) {
-    body {
-        zoom: 0.90 !important;
-        min-height: calc(100vh / 0.90) !important;
-    }
 }
 
 /* NAVBAR */
