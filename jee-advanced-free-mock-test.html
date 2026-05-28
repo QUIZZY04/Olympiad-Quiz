@@ -117,14 +117,9 @@
                 <button onclick="openHubAction('mock')" class="btn">Start Full Mock Test</button>
             </div>
             <div class="hub-card">
-                <h3>📘 Advanced Chapter Practice</h3>
-                <p>Focus on individual high-weightage topics. Face intense multi-concept problems involving calculus, mechanics, and advanced organic chemistry.</p>
-                <button onclick="openHubAction('chapter')" class="btn">Practice by Chapter</button>
-            </div>
-            <div class="hub-card">
-                <h3>📚 Revision Material</h3>
-                <p>Access high-quality concise notes for JEE Advanced. Review tricky edge cases, exceptions, and foundational principles needed for complex problem-solving.</p>
-                <a href="study.html" class="btn" style="background: #fff; color: var(--brand); border: 2px solid var(--brand); display: block;">View Study Notes</a>
+                <h3>📘 Subject-wise Mock Tests</h3>
+                <p>Focus on individual subjects like Physics, Chemistry, or Mathematics. Face intense multi-concept problems to strengthen your core topics.</p>
+                <button onclick="openHubAction('subject')" class="btn">Practice by Subject</button>
             </div>
         </section>
 
@@ -174,12 +169,8 @@
                 return;
             }
             
-            if (type === 'mock') {
+            if (type === 'mock' || type === 'subject') {
                 window.location.href = "jee-list.html";
-            } else if (type === 'chapter') {
-                localStorage.setItem("selectedClass", "class12");
-                localStorage.setItem("isMockTest", "false");
-                window.location.href = "chapterwise.html";
             }
         }
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
