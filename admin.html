@@ -1078,7 +1078,7 @@ border-top:1px solid var(--border);
         </div>
         <div class="panel-content">
             <p class="muted">Upload Previous Year Question Paper PDF links for SOF exams.</p>
-            <div style="display:grid; grid-template-columns: 1fr 2fr auto; gap:15px; align-items:end; margin-bottom: 20px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px; align-items:end; margin-bottom: 15px;">
                 <div>
                     <label>Select Class</label>
                     <select id="sofPyqClass" style="margin-top:5px;">
@@ -1096,6 +1096,41 @@ border-top:1px solid var(--border);
                         <option value="class12">Class 12</option>
                     </select>
                 </div>
+                <div>
+                    <label>Select Subject</label>
+                    <select id="sofPyqSubject" style="margin-top:5px;">
+                        <option value="IMO">IMO (Mathematics)</option>
+                        <option value="NSO">NSO (Science)</option>
+                        <option value="IEO">IEO (English)</option>
+                        <option value="NCO">NCO (Cyber)</option>
+                        <option value="IGKO">IGKO (General Knowledge)</option>
+                        <option value="ISSO">ISSO (Social Studies)</option>
+                        <option value="IHO">IHO (Hindi)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Select Year</label>
+                    <select id="sofPyqYear" style="margin-top:5px;">
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                    </select>
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr auto; gap:15px; align-items:end; margin-bottom: 20px;">
                 <div>
                     <label>PDF Link (Google Drive / Firebase Storage)</label>
                     <input type="text" id="sofPyqLink" placeholder="Paste link here..." style="margin-top:5px;">
@@ -3197,6 +3232,8 @@ window.deleteJeePyq = async function(id) {
 // ADDED SECTION: SOF PYQ ADMIN LOGIC
 window.saveSofPyqLink = async function() {
     const cls = document.getElementById('sofPyqClass').value;
+    const sub = document.getElementById('sofPyqSubject').value;
+    const year = document.getElementById('sofPyqYear').value;
     const link = document.getElementById('sofPyqLink').value.trim();
     
     if (!link) {
@@ -3205,12 +3242,16 @@ window.saveSofPyqLink = async function() {
     }
 
     try {
-        await setDoc(doc(db, "sof_pyqs", cls), { 
+        const docId = `${cls}_${sub}_${year}`;
+        await setDoc(doc(db, "sof_pyqs", docId), { 
+            class: cls,
+            subject: sub,
+            year: year,
             pdfUrl: link,
             updatedAt: serverTimestamp()
         }, { merge: true });
         
-        alert(`✅ Successfully saved PDF link for ${cls.replace('class', 'Class ')}!`);
+        alert(`✅ Successfully saved PDF link for ${cls.replace('class', 'Class ')} ${sub} (${year})!`);
         document.getElementById('sofPyqLink').value = ""; // Clear input
     } catch (e) {
         console.error(e);

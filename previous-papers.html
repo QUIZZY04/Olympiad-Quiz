@@ -63,27 +63,42 @@
     </div>
 
     <div class="filter-bar">
-        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <label for="classSelect" class="filter-label">🎓 Select Grade</label>
-            <select id="classSelect" onchange="fetchPaper()">
-                <option value="" disabled selected>Choose your class...</option>
-                <option value="class1">Class 1</option>
-                <option value="class2">Class 2</option>
-                <option value="class3">Class 3</option>
-                <option value="class4">Class 4</option>
-                <option value="class5">Class 5</option>
-                <option value="class6">Class 6</option>
-                <option value="class7">Class 7</option>
-                <option value="class8">Class 8</option>
-                <option value="class9">Class 9</option>
-                <option value="class10">Class 10</option>
-                <option value="class11">Class 11</option>
-                <option value="class12">Class 12</option>
-            </select>
+        <div style="display: flex; gap: 20px; width: 100%; max-width: 700px; flex-wrap: wrap; justify-content: center;">
+            <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+                <label for="classSelect" class="filter-label">🎓 Select Grade</label>
+                <select id="classSelect" onchange="fetchPaper()">
+                    <option value="" disabled selected>Choose your class...</option>
+                    <option value="class1">Class 1</option>
+                    <option value="class2">Class 2</option>
+                    <option value="class3">Class 3</option>
+                    <option value="class4">Class 4</option>
+                    <option value="class5">Class 5</option>
+                    <option value="class6">Class 6</option>
+                    <option value="class7">Class 7</option>
+                    <option value="class8">Class 8</option>
+                    <option value="class9">Class 9</option>
+                    <option value="class10">Class 10</option>
+                    <option value="class11">Class 11</option>
+                    <option value="class12">Class 12</option>
+                </select>
+            </div>
+            <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; align-items: center;">
+                <label for="subjectSelect" class="filter-label">📚 Select Subject</label>
+                <select id="subjectSelect" onchange="fetchPaper()">
+                    <option value="" disabled selected>Choose your subject...</option>
+                    <option value="IMO">IMO (Mathematics)</option>
+                    <option value="NSO">NSO (Science)</option>
+                    <option value="IEO">IEO (English)</option>
+                    <option value="NCO">NCO (Cyber)</option>
+                    <option value="IGKO">IGKO (General Knowledge)</option>
+                    <option value="ISSO">ISSO (Social Studies)</option>
+                    <option value="IHO">IHO (Hindi)</option>
+                </select>
+            </div>
         </div>
 
-        <div id="downloadContainer">
-            <div class="msg-info">Please select a class to view the download link.</div>
+        <div id="downloadContainer" style="display: flex; flex-direction: column; gap: 10px; width: 100%; align-items: center;">
+            <div class="msg-info">Please select a class and subject to view papers.</div>
         </div>
     </div>
 </div>
@@ -107,22 +122,33 @@
 
     window.fetchPaper = async function() {
         const cls = document.getElementById('classSelect').value;
+        const sub = document.getElementById('subjectSelect').value;
         const container = document.getElementById('downloadContainer');
         
-        if(!cls) return;
+        if(!cls || !sub) return;
         
         container.innerHTML = `<div class="msg-info">Loading...</div>`;
         
         try {
-            // Looks for a document matching the class name in the "sof_pyqs" collection
-            const docRef = doc(db, "sof_pyqs", cls);
-            const snap = await getDoc(docRef);
+            let html = "";
+            const years = [];
+            for (let y = 2025; y >= 2010; y--) years.push(y.toString());
             
-            if (snap.exists() && snap.data().pdfUrl) {
-                const url = snap.data().pdfUrl;
-                container.innerHTML = `<a href="${url}" target="_blank" class="btn-download">⬇️ Download Class ${cls.replace('class', '')} PYQ PDF</a>`;
+            const promises = years.map(year => getDoc(doc(db, "sof_pyqs", `${cls}_${sub}_${year}`)));
+            const snaps = await Promise.all(promises);
+            
+            snaps.forEach((snap, index) => {
+                if (snap.exists() && snap.data().pdfUrl) {
+                    const url = snap.data().pdfUrl;
+                    const year = years[index];
+                    html += `<a href="${url}" target="_blank" class="btn-download" style="margin: 5px; width: 100%; max-width: 400px;">⬇️ Download ${year} ${sub} Paper</a>`;
+                }
+            });
+
+            if (html !== "") {
+                container.innerHTML = html;
             } else {
-                container.innerHTML = `<div class="msg-info">No previous year paper is currently available for this class. Please check back later!</div>`;
+                container.innerHTML = `<div class="msg-info">No previous year papers are currently available for this selection.</div>`;
             }
         } catch (error) {
             console.error("Error fetching PYQ:", error);
