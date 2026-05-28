@@ -259,6 +259,7 @@ border-top:1px solid var(--border);
         <a href="#jee-admin-section" style="color:var(--success);">JEE Tests</a>
         <a href="#hots-admin-section" style="color:#d946ef;">HOTS Management</a>
         <a href="#jee-pyq-admin-section" style="color:#0ea5e9;">JEE PYQs</a>
+        <a href="#sof-pyq-admin-section" style="color:#f59e0b;">SOF PYQs</a>
         <a href="#senior-admin-section" style="color:#8b5cf6;">Senior Upload</a>
         <a href="#student-profiles-section" style="color:#10b981;">Student Profiles</a>
         <div class="nav-actions">
@@ -1067,6 +1068,42 @@ border-top:1px solid var(--border);
                 <thead><tr><th>Year</th><th>Session</th><th>Title</th><th>PDF</th><th>Action</th></tr></thead>
                 <tbody id="pyqTableList"><tr><td colspan="5" style="text-align:center; color:var(--muted);">Click "Load PYQs" to view</td></tr></tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- NEW SECTION: SOF PYQ MANAGEMENT -->
+    <div id="sof-pyq-admin-section" class="panel" style="border-top: 2px solid #f59e0b;">
+        <div class="panel-header">
+            <h2 style="color:#f59e0b;">📄 SOF PYQ Link Management</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Upload Previous Year Question Paper PDF links for SOF exams.</p>
+            <div style="display:grid; grid-template-columns: 1fr 2fr auto; gap:15px; align-items:end; margin-bottom: 20px;">
+                <div>
+                    <label>Select Class</label>
+                    <select id="sofPyqClass" style="margin-top:5px;">
+                        <option value="class1">Class 1</option>
+                        <option value="class2">Class 2</option>
+                        <option value="class3">Class 3</option>
+                        <option value="class4">Class 4</option>
+                        <option value="class5">Class 5</option>
+                        <option value="class6">Class 6</option>
+                        <option value="class7">Class 7</option>
+                        <option value="class8">Class 8</option>
+                        <option value="class9">Class 9</option>
+                        <option value="class10">Class 10</option>
+                        <option value="class11">Class 11</option>
+                        <option value="class12">Class 12</option>
+                    </select>
+                </div>
+                <div>
+                    <label>PDF Link (Google Drive / Firebase Storage)</label>
+                    <input type="text" id="sofPyqLink" placeholder="Paste link here..." style="margin-top:5px;">
+                </div>
+                <div>
+                    <button class="upload" onclick="saveSofPyqLink()" style="background:#f59e0b; margin-top:0; width:100%; height:41px;">Save Link</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -3154,6 +3191,30 @@ window.deleteJeePyq = async function(id) {
     if (confirm("Are you sure you want to permanently delete this PYQ record?")) {
         await deleteDoc(doc(db, "jeeMainPyqs", id));
         loadJeePyqsList();
+    }
+};
+
+// ADDED SECTION: SOF PYQ ADMIN LOGIC
+window.saveSofPyqLink = async function() {
+    const cls = document.getElementById('sofPyqClass').value;
+    const link = document.getElementById('sofPyqLink').value.trim();
+    
+    if (!link) {
+        alert("Please paste a valid PDF URL.");
+        return;
+    }
+
+    try {
+        await setDoc(doc(db, "sof_pyqs", cls), { 
+            pdfUrl: link,
+            updatedAt: serverTimestamp()
+        }, { merge: true });
+        
+        alert(`✅ Successfully saved PDF link for ${cls.replace('class', 'Class ')}!`);
+        document.getElementById('sofPyqLink').value = ""; // Clear input
+    } catch (e) {
+        console.error(e);
+        alert("❌ Error saving link: " + e.message);
     }
 };
 
