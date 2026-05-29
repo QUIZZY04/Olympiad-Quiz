@@ -150,8 +150,8 @@
             .main-nav a:last-child { font-size: 0.8rem !important; padding: 8px 14px !important; }
             
             /* Quiz Screen */
-            .quiz-header { font-size: 0.95rem; flex-direction: column; align-items: flex-start; gap: 10px; }
-            .quiz-header .timer-box { align-self: flex-end; margin-top: -30px; }
+            .quiz-header { font-size: 0.95rem; flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; }
+            .quiz-header .timer-box { align-self: center; margin-top: 0; font-size: 0.85rem; padding: 5px 10px; }
             .quiz-question-box { padding: 25px 20px !important; }
             #question-text { font-size: 1.15rem !important; margin-bottom: 20px !important; }
             
@@ -391,6 +391,7 @@
 
                 document.getElementById('selection-screen').style.display = 'none';
                 document.getElementById('quiz-screen').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 
                 trackEvent("QUIZ_STARTED", { class: selectedClass, subject: selectedSubject });
 
