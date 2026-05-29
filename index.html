@@ -804,6 +804,139 @@ min-height: 380px;
         padding-bottom: 0;
     }
 }
+
+    /* SAMPLE QUIZ LEAD GEN SECTION STYLES */
+    .sq-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 24px;
+        padding: 50px 40px;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255,107,0,0.1) inset;
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+    .sq-badge-top {
+        background: linear-gradient(135deg, #ef4444, #f97316);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 99px;
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+    }
+    .sq-title { font-size: 3rem; font-weight: 900; color: #0f172a; margin-bottom: 12px; letter-spacing: -0.03em; line-height: 1.1; }
+    .sq-subtitle { font-size: 1.25rem; color: #475569; font-weight: 500; margin-bottom: 30px; line-height: 1.5; }
+    
+    .sq-info-strip {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 35px;
+    }
+    .sq-info-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-weight: 700;
+        color: #334155;
+        font-size: 0.95rem;
+    }
+    .sq-info-item.highlight {
+        background: #fff7ed;
+        border-color: #ffedd5;
+        color: #c2410c;
+    }
+    
+    .sq-trust-row {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 35px;
+        flex-wrap: wrap;
+    }
+    .sq-trust-item {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #64748b;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .sq-cta-wrap {
+        margin: 40px 0 20px;
+    }
+    .sq-cta-subtext {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #16a34a;
+        margin-bottom: 15px;
+    }
+    .sq-cta-btn {
+        background: linear-gradient(135deg, #ff6b00 0%, #e11d48 100%);
+        color: white !important;
+        font-size: 1.3rem;
+        font-weight: 800;
+        padding: 18px 50px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(225, 29, 72, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        text-decoration: none;
+        position: relative;
+        z-index: 1;
+        width: auto;
+    }
+    .sq-cta-btn:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(225, 29, 72, 0.5);
+    }
+    @keyframes sqPulse {
+        0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.5); }
+        70% { box-shadow: 0 0 0 20px rgba(225, 29, 72, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+    }
+    .sq-pulse-effect {
+        animation: sqPulse 2.5s infinite;
+    }
+    .sq-social-proof {
+        margin-top: 25px;
+        font-size: 1rem;
+        color: #475569;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    @media (max-width: 768px) {
+        .sq-card { padding: 30px 20px; border-radius: 20px; }
+        .sq-title { font-size: 2.1rem !important; }
+        .sq-subtitle { font-size: 1.1rem !important; margin-bottom: 25px !important; }
+        .sq-info-strip { gap: 10px; margin-bottom: 25px; }
+        .sq-info-item { width: calc(50% - 5px); justify-content: center; font-size: 0.85rem; padding: 10px; }
+        .sq-trust-row { flex-direction: column; gap: 10px; align-items: center; margin-bottom: 25px; }
+        .sq-cta-btn { font-size: 1.1rem; padding: 16px 20px; width: 100%; }
+        .sq-social-proof { font-size: 0.85rem; flex-direction: column; gap: 4px; }
+    }
 </style>
 </head>
 
@@ -998,6 +1131,44 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 </div>
 </section>
 
+<!-- SAMPLE QUIZ LEAD GEN SECTION -->
+<section class="sample-quiz-section" style="background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); padding: 80px 20px; position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <!-- Background shapes for premium look -->
+    <div style="position: absolute; top: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 107, 0, 0.08) 0%, transparent 70%); border-radius: 50%; filter: blur(20px);"></div>
+    <div style="position: absolute; bottom: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%); border-radius: 50%; filter: blur(20px);"></div>
+    
+    <div class="container" style="text-align: center; position: relative; z-index: 2; padding: 0;">
+        <div class="sq-card">
+            <span class="sq-badge-top">🔥 Challenge of the Day</span>
+            
+            <h2 class="sq-title">Take the Ultimate Free Olympiad HOTS Challenge</h2>
+            <p class="sq-subtitle">Are you ready to solve 10 mind-bending questions used to identify actual Olympiad toppers?</p>
+            
+            <div class="sq-info-strip">
+                <div class="sq-info-item"><span>⏱️</span> 10 Questions</div>
+                <div class="sq-info-item"><span>⚡</span> 5 Minutes</div>
+                <div class="sq-info-item"><span>🎯</span> Instant Results</div>
+                <div class="sq-info-item highlight"><span>🆓</span> 100% Free</div>
+            </div>
+
+            <div class="sq-trust-row">
+                <div class="sq-trust-item">✅ No Login Required</div>
+                <div class="sq-trust-item">✅ Based on Real Olympiad Pattern</div>
+            </div>
+
+            <div class="sq-cta-wrap">
+                <div class="sq-cta-subtext">🎯 Get Your Score & Detailed Solutions Instantly</div>
+                <a href="sample-quiz.html" class="sq-cta-btn sq-pulse-effect">🚀 Start Free Challenge Now</a>
+            </div>
+            
+            <div class="sq-social-proof">
+                <span style="color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px;">★★★★★</span>
+                <span>Trusted by 15,000+ students practicing on OlympiadQuiz.org</span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CLICKABLE TEST CARDS -->
 <section class="section" style="background: #f8fafc; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
 <div class="container">
@@ -1006,12 +1177,6 @@ Practice Olympiads, JEE Main, JEE Advanced & NEET with real exam-level CBT mock 
 <p class="sub">All cards below are clickable.</p>
 
 <div class="grid">
-
-<a href="sample-quiz.html" class="card" style="border: 2px solid var(--orange); background: #fffaf5; position: relative; overflow: hidden;">
-<div style="position: absolute; top: 0; right: 0; background: var(--orange); color: white; font-size: 10px; font-weight: 800; padding: 4px 12px; border-bottom-left-radius: 12px; z-index: 2; letter-spacing: 0.5px;">GUEST ACCESS</div>
-<h3>🎁 Free Sample Quiz</h3>
-<p>Test your skills immediately with 10 random Olympiad H.O.T.S questions. No account needed to play!</p>
-</a>
 
 <a href="mock.html" class="card">
 <h3>📝 Free Full Mock Tests</h3>
