@@ -126,61 +126,80 @@
         .progress-bar-container { width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
         .progress-bar { height: 100%; background: linear-gradient(90deg, #ff6b00, #ec4899); width: 0%; transition: width 0.3s ease; }
 
+        /* Solution Block Styles */
+        .sol-card { background: rgba(255,255,255,0.95); padding: 25px; border-radius: 16px; border: 1px solid var(--border); border-left: 4px solid var(--brand); margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); text-align: left; }
+        .sol-q-text { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 15px; }
+        .sol-opt { padding: 12px 15px; border-radius: 8px; margin-bottom: 8px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border); background: var(--bg); display: flex; justify-content: space-between; align-items: center; }
+        .sol-opt.correct { background: #dcfce3; border-color: #10b981; color: #064e3b; font-weight: 800; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1); }
+        .sol-opt.wrong { background: #fee2e2; border-color: #ef4444; color: #7f1d1d; font-weight: 800; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1); }
+        .sol-explanation { margin-top: 15px; padding: 15px; background: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 8px; font-size: 0.95rem; color: #1e3a8a; line-height: 1.6; }
+
         @media (max-width: 600px) {
-            .sample-container { margin: 10px auto; padding: 10px; }
-            .card-box { padding: 20px 15px; border-radius: 20px; }
-            .promo-banner { padding: 20px 15px; margin-top: 20px; }
-            .opt-label { font-size: 0.95rem; padding: 12px 15px; margin-bottom: 10px; }
+            .sample-container { margin: 5px auto; padding: 5px; }
+            .card-box { padding: 15px 10px; border-radius: 16px; }
+            .promo-banner { padding: 15px 10px; margin-top: 15px; border-radius: 12px; }
+            .opt-label { font-size: 0.9rem; padding: 10px 12px; margin-bottom: 8px; border-radius: 12px; }
             
             /* Typography & Top Spacing Fixes */
-            #sq-logo { width: 50px !important; margin-bottom: 10px !important; }
-            #sq-badge { margin-bottom: 10px !important; padding: 4px 12px !important; font-size: 0.75rem !important; }
-            #selection-screen h1 { font-size: 1.7rem !important; margin-bottom: 8px !important; }
-            #selection-screen p { font-size: 0.85rem !important; margin-bottom: 15px !important; line-height: 1.3 !important; }
+            #sq-logo { width: 40px !important; margin-bottom: 8px !important; }
+            #sq-badge { margin-bottom: 8px !important; padding: 4px 10px !important; font-size: 0.7rem !important; }
+            #selection-screen h1 { font-size: 1.5rem !important; margin-bottom: 6px !important; }
+            #selection-screen p { font-size: 0.8rem !important; margin-bottom: 12px !important; line-height: 1.2 !important; }
             
             /* Form Box Compression */
-            #sq-form-box { padding: 15px !important; }
-            #sq-form-box label { margin-bottom: 5px !important; font-size: 0.85rem !important; }
-            #sq-form-box select { padding: 10px 14px !important; margin-bottom: 12px !important; font-size: 0.95rem !important; }
-            #startBtn { padding: 12px !important; font-size: 1rem !important; }
+            #sq-form-box { padding: 12px !important; margin-bottom: 10px !important; }
+            #sq-form-box label { margin-bottom: 4px !important; font-size: 0.8rem !important; }
+            #sq-form-box select { padding: 8px 12px !important; margin-bottom: 10px !important; font-size: 0.9rem !important; }
+            #startBtn { padding: 10px !important; font-size: 0.95rem !important; }
 
             /* Nav */
-            .main-nav { padding: 12px 15px !important; }
-            .main-nav a:first-child { font-size: 1.2rem !important; }
-            .main-nav a:last-child { font-size: 0.8rem !important; padding: 8px 14px !important; }
+            .main-nav { padding: 10px 12px !important; }
+            .main-nav a:first-child { font-size: 1.1rem !important; }
+            .main-nav a:last-child { font-size: 0.75rem !important; padding: 6px 12px !important; }
             
             /* Quiz Screen */
-            .quiz-header { font-size: 0.95rem; flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; }
-            .quiz-header .timer-box { align-self: center; margin-top: 0; font-size: 0.85rem; padding: 5px 10px; }
-            .quiz-question-box { padding: 25px 20px !important; }
-            #question-text { font-size: 1.15rem !important; margin-bottom: 20px !important; }
+            .quiz-header { font-size: 0.85rem; flex-direction: row; justify-content: space-between; align-items: center; gap: 5px; margin-top: 5px; margin-bottom: 10px; }
+            .quiz-header .timer-box { align-self: center; margin-top: 0; font-size: 0.8rem; padding: 4px 8px; }
+            .progress-bar-container { margin-bottom: 15px !important; }
+            .quiz-question-box { padding: 15px 12px !important; margin-bottom: 15px !important; border-radius: 16px !important; }
+            #question-text { font-size: 1.05rem !important; margin-bottom: 15px !important; line-height: 1.4 !important; }
+            #options-container { margin-top: 15px !important; }
             
             /* Quiz Buttons */
-            .quiz-nav-row { flex-direction: column-reverse; gap: 12px !important; }
-            .quiz-nav-row button { width: 100%; text-align: center; }
+            .quiz-nav-row { flex-direction: row !important; justify-content: space-between; gap: 10px !important; margin-bottom: 20px !important; }
+            .quiz-nav-row button { width: auto; flex: 1; padding: 10px !important; font-size: 0.9rem !important; }
             
             /* Result Screen */
-            #result-screen { padding-top: 15px !important; }
-            #result-logo { width: 45px !important; margin-bottom: 5px !important; }
-            #emoji-display { font-size: 2.5rem !important; margin-bottom: 0 !important; }
-            #result-screen h2 { font-size: 1.6rem !important; margin-bottom: 5px !important; }
-            #result-meta { font-size: 0.85rem !important; margin-bottom: 10px !important; }
+            #result-screen { padding-top: 10px !important; }
+            #result-logo { width: 40px !important; margin-bottom: 5px !important; }
+            #emoji-display { font-size: 2rem !important; margin-bottom: 0 !important; }
+            #result-screen h2 { font-size: 1.4rem !important; margin-bottom: 5px !important; }
+            #result-meta { font-size: 0.8rem !important; margin-bottom: 5px !important; }
             
-            .score-box-mobile { padding: 15px !important; margin: 15px 0 !important; border-radius: 16px !important; }
-            #score-display { font-size: 3.5rem !important; }
-            #feedback-message { font-size: 0.95rem !important; margin-top: 10px !important; }
+            .score-box-mobile { padding: 12px !important; margin: 10px 0 !important; border-radius: 12px !important; }
+            #score-display { font-size: 3rem !important; }
+            #feedback-message { font-size: 0.85rem !important; margin-top: 5px !important; }
             
-            .result-stats-row { flex-direction: row !important; flex-wrap: nowrap !important; padding: 12px !important; gap: 5px !important; margin-bottom: 20px !important; border-radius: 12px !important; }
-            .result-stats-row > div { border-bottom: none !important; padding-bottom: 0 !important; flex-direction: column; justify-content: center; font-size: 0.75rem !important; display: flex; align-items: center; }
-            .result-stats-row span { font-size: 1.15rem !important; display: block !important; margin-top: 4px !important; }
+            .result-stats-row { flex-direction: row !important; flex-wrap: nowrap !important; padding: 10px !important; gap: 5px !important; margin-bottom: 15px !important; border-radius: 12px !important; }
+            .result-stats-row > div { border-bottom: none !important; padding-bottom: 0 !important; flex-direction: column; justify-content: center; font-size: 0.7rem !important; display: flex; align-items: center; }
+            .result-stats-row span { font-size: 1.05rem !important; display: block !important; margin-top: 2px !important; }
             
-            .promo-banner { padding: 20px 15px !important; margin-bottom: 25px !important; border-radius: 16px !important; }
-            .promo-banner h3 { font-size: 1.25rem !important; margin-bottom: 10px !important; }
-            .promo-banner p { font-size: 0.85rem !important; margin-bottom: 15px !important; line-height: 1.3 !important; }
-            .promo-banner .btn-white { padding: 12px 15px !important; font-size: 0.95rem !important; width: 100%; box-sizing: border-box; }
+            .promo-banner { padding: 15px 12px !important; margin-bottom: 20px !important; }
+            .promo-banner h3 { font-size: 1.15rem !important; margin-bottom: 8px !important; }
+            .promo-banner p { font-size: 0.8rem !important; margin-bottom: 10px !important; line-height: 1.2 !important; }
+            .promo-banner .btn-white { padding: 10px 12px !important; font-size: 0.85rem !important; width: 100%; box-sizing: border-box; }
             
-            .share-btn { flex: 1; min-width: calc(50% - 5px) !important; font-size: 0.85rem !important; padding: 10px !important; }
-            .share-row { gap: 8px !important; }
+            .share-btn { flex: 1; min-width: calc(50% - 5px) !important; font-size: 0.8rem !important; padding: 8px !important; }
+            .share-row { gap: 6px !important; }
+            
+            /* Mobile Solution Block Adjustments */
+            .sol-card { padding: 15px 12px; margin-bottom: 15px; border-radius: 12px; }
+            .sol-q-text { font-size: 0.95rem; margin-bottom: 10px; }
+            .sol-opt { font-size: 0.8rem; padding: 8px 10px; flex-direction: column; align-items: flex-start; gap: 4px; }
+            .sol-explanation { font-size: 0.8rem; padding: 10px; margin-top: 10px; }
+            
+            /* Toggle Details Button */
+            #toggleSampleDetailsBtn { padding: 10px 15px !important; font-size: 0.9rem !important; margin-bottom: 20px !important; }
         }
     </style>
 </head>
@@ -227,7 +246,6 @@
                     <option value="science">Science</option>
                     <option value="english">English</option>
                     <option value="reasoning">Logical Reasoning</option>
-                    <option value="igko">General Knowledge</option>
                 </select>
                     <button onclick="startSampleQuiz()" id="startBtn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, var(--brand-text), #be123c); color: white; border: none; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(194,65,12,0.3); transition: 0.3s; animation: pulse-glow 2s infinite;">Start Challenge Now &rarr;</button>
                 </div>
@@ -302,9 +320,16 @@
                 <div>Accuracy: <span id="accuracy-count" style="color: #0f172a; font-size: 1.4rem; display: block;">0%</span></div>
             </div>
 
+            <div style="text-align: center; margin-bottom: 30px;">
+                <button id="toggleSampleDetailsBtn" class="submit-btn" style="background:#0ea5e9; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);" onclick="toggleSampleDetails()">View Detailed Result</button>
+            </div>
+
+            <!-- Solutions Container -->
+            <div id="solutions-container" style="margin-top: 40px; margin-bottom: 40px; text-align: left; display: none;"></div>
+
             <div class="promo-banner" style="margin-top: 0; margin-bottom: 40px;">
                 <h3 style="font-size: 1.8rem; margin-bottom: 15px;">🚀 Ready to become an Achiever?</h3>
-                <p style="font-size: 1.1rem; margin-bottom: 25px;">Unlock detailed solutions, full-length mock tests, live arenas, and performance analytics to dominate the actual exam.</p>
+                <p style="font-size: 1.1rem; margin-bottom: 25px;">Unlock full-length mock tests, live arenas, chapter-wise practice, and performance analytics to dominate the actual exam.</p>
                 <a href="signup.html" onclick="trackClick('result_signup')" class="btn-white" style="font-size: 1.1rem; padding: 16px 35px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Start Full Olympiad Preparation Free</a>
             </div>
 
@@ -447,6 +472,7 @@
                         finalUrl = await getDownloadURL(storageRef);
                     } catch(e) {}
                 }
+                q.resolved_image_url = finalUrl;
                 imgDiv.innerHTML = `<img src="${finalUrl}" alt="Question Image">`;
                 imgDiv.style.display = "block";
             }
@@ -534,12 +560,80 @@
             document.getElementById('feedback-message').innerText = msg;
             document.getElementById('emoji-display').innerText = emoji;
 
+            // --- Generate Solutions HTML ---
+            let solutionsHtml = `<h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 25px; color: var(--text); text-align: center; letter-spacing: -0.01em;">Detailed Solutions</h3>`;
+            
+            questions.forEach((q, i) => {
+                const userAnsIdx = selectedAnswers[i];
+                const correctAnsIdx = parseInt(q.a);
+                const isCorrect = userAnsIdx === correctAnsIdx;
+                
+                let statusBadge = isCorrect ? 
+                    `<span style="background: #dcfce3; color: #047857; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">✅ Correct</span>` : 
+                    (userAnsIdx === null ? 
+                        `<span style="background: var(--border); color: var(--muted); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">Not Attempted</span>` : 
+                        `<span style="background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">❌ Incorrect</span>`
+                    );
+
+                let optsHtml = "";
+                const options = q.o || q.options || [];
+                options.forEach((opt, optIdx) => {
+                    let optClass = "sol-opt";
+                    let iconHtml = "";
+                    if (optIdx === correctAnsIdx) {
+                        optClass += " correct";
+                        iconHtml = `<span style="font-size: 0.8rem; font-weight: 700;">✓ Correct Answer</span>`;
+                    } else if (optIdx === userAnsIdx) {
+                        optClass += " wrong";
+                        iconHtml = `<span style="font-size: 0.8rem; font-weight: 700;">✗ Your Answer</span>`;
+                    }
+                    optsHtml += `<div class="${optClass}"><span>${opt}</span> ${iconHtml}</div>`;
+                });
+
+                const explanation = q.sol || q.explanation || q.hint || "Self-explanatory based on the correct option marked above.";
+                let imgHtml = "";
+                if (q.resolved_image_url) {
+                    imgHtml = `<div style="text-align: left; margin: 15px 0;"><img src="${q.resolved_image_url}" style="max-width: 100%; max-height: 200px; border-radius: 8px; border: 1px solid var(--border); object-fit: contain;"></div>`;
+                }
+
+                solutionsHtml += `
+                    <div class="sol-card">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; gap: 10px;">
+                            <span style="font-weight: 800; color: var(--brand-text); font-size: 1.2rem;">Q${i + 1}.</span>
+                            ${statusBadge}
+                        </div>
+                        <div class="sol-q-text">${q.q}</div>
+                        ${imgHtml}
+                        <div style="margin-bottom: 15px;">${optsHtml}</div>
+                        <div class="sol-explanation">
+                            <strong style="display: block; margin-bottom: 6px; color: #1d4ed8; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">💡 Solution / Explanation</strong>
+                            ${explanation}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('solutions-container').innerHTML = solutionsHtml;
+            // --- End Solutions Generation ---
+
             document.getElementById('quiz-screen').style.display = 'none';
             document.getElementById('result-screen').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             trackEvent("QUIZ_COMPLETED", { class: selectedClass, subject: selectedSubject, score: score, accuracy: accuracy });
         }
+
+        window.toggleSampleDetails = function() {
+            const container = document.getElementById('solutions-container');
+            const btn = document.getElementById('toggleSampleDetailsBtn');
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                btn.innerText = 'Hide Detailed Result';
+            } else {
+                container.style.display = 'none';
+                btn.innerText = 'View Detailed Result';
+            }
+        };
 
         const shareText = "I just attempted a FREE Olympiad HOTS Quiz on OlympiadQuiz.org. Test your skills and challenge yourself here! ";
         const shareUrl = "https://olympiadquiz.org/sample-quiz.html";
