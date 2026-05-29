@@ -160,14 +160,27 @@
             .quiz-nav-row button { width: 100%; text-align: center; }
             
             /* Result Screen */
-            #emoji-display { font-size: 3.5rem !important; }
-            #result-screen h2 { font-size: 2rem !important; }
-            #score-display { font-size: 4.5rem !important; }
-            .result-stats-row { flex-direction: column; gap: 15px !important; }
-            .result-stats-row > div { display: flex; justify-content: space-between; width: 100%; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-            .result-stats-row > div:last-child { border-bottom: none; padding-bottom: 0; }
-            .result-stats-row span { display: inline !important; margin: 0 !important; }
-            .share-btn { min-width: 100%; }
+            #result-screen { padding-top: 15px !important; }
+            #result-logo { width: 45px !important; margin-bottom: 5px !important; }
+            #emoji-display { font-size: 2.5rem !important; margin-bottom: 0 !important; }
+            #result-screen h2 { font-size: 1.6rem !important; margin-bottom: 5px !important; }
+            #result-meta { font-size: 0.85rem !important; margin-bottom: 10px !important; }
+            
+            .score-box-mobile { padding: 15px !important; margin: 15px 0 !important; border-radius: 16px !important; }
+            #score-display { font-size: 3.5rem !important; }
+            #feedback-message { font-size: 0.95rem !important; margin-top: 10px !important; }
+            
+            .result-stats-row { flex-direction: row !important; flex-wrap: nowrap !important; padding: 12px !important; gap: 5px !important; margin-bottom: 20px !important; border-radius: 12px !important; }
+            .result-stats-row > div { border-bottom: none !important; padding-bottom: 0 !important; flex-direction: column; justify-content: center; font-size: 0.75rem !important; display: flex; align-items: center; }
+            .result-stats-row span { font-size: 1.15rem !important; display: block !important; margin-top: 4px !important; }
+            
+            .promo-banner { padding: 20px 15px !important; margin-bottom: 25px !important; border-radius: 16px !important; }
+            .promo-banner h3 { font-size: 1.25rem !important; margin-bottom: 10px !important; }
+            .promo-banner p { font-size: 0.85rem !important; margin-bottom: 15px !important; line-height: 1.3 !important; }
+            .promo-banner .btn-white { padding: 12px 15px !important; font-size: 0.95rem !important; width: 100%; box-sizing: border-box; }
+            
+            .share-btn { flex: 1; min-width: calc(50% - 5px) !important; font-size: 0.85rem !important; padding: 10px !important; }
+            .share-row { gap: 8px !important; }
         }
     </style>
 </head>
@@ -273,12 +286,12 @@
             <div class="shape shape-3"></div>
             
             <div style="position: relative; z-index: 2;">
-            <img src="favicon.png" alt="OlympiadQuiz Logo" style="width: 70px; margin: 0 auto 15px; display: block;">
+            <img id="result-logo" src="favicon.png" alt="OlympiadQuiz Logo" style="width: 70px; margin: 0 auto 15px; display: block;">
             <div style="font-size: 4rem; margin-bottom: 5px; animation: float 3s ease-in-out infinite;" id="emoji-display">🎉</div>
             <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; color: var(--text); letter-spacing: -0.02em;">Challenge Complete!</h2>
             <div id="result-meta" style="font-weight: 700; color: var(--muted); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem;"></div>
             
-            <div style="background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 24px; padding: 40px; margin: 25px 0; border: 2px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.06), 0 0 40px rgba(255,107,0,0.1) inset;">
+            <div class="score-box-mobile" style="background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 24px; padding: 40px; margin: 25px 0; border: 2px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.06), 0 0 40px rgba(255,107,0,0.1) inset;">
                 <div style="font-size: 6rem; font-weight: 900; background: linear-gradient(135deg, var(--brand-text), #be185d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; filter: drop-shadow(0 4px 6px rgba(194,65,12,0.2));" id="score-display">0/10</div>
                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--text); margin-top: 20px;" id="feedback-message">Good effort!</div>
             </div>
@@ -523,6 +536,7 @@
 
             document.getElementById('quiz-screen').style.display = 'none';
             document.getElementById('result-screen').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
             trackEvent("QUIZ_COMPLETED", { class: selectedClass, subject: selectedSubject, score: score, accuracy: accuracy });
         }
