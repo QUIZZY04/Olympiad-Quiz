@@ -836,20 +836,18 @@ border-top:1px solid var(--border);
                     <option value="class12">Class 12</option>
                     <option value="classJEE MAIN">JEE MAIN</option>
                 </select></div>
+                <div><label>Test Type</label><select id="jmnTestType" onchange="window.handleJmnTestTypeChange()"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
+                <div>
+                    <label>Subject</label>
+                    <select id="jmnSubject" disabled onchange="window.handleJmnSubjectChange()"><option value="Full Syllabus">Full Syllabus</option><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option></select>
+                </div>
                 <div>
                     <label>Test Title Base</label>
                     <select id="jmnTitleBase" onchange="window.calculateNextJmnTestNumber()">
                         <option value="">Select Base Title...</option>
                     </select>
                 </div>
-                <div><label>Final Test Title</label><input type="text" id="jmnTitle" placeholder="e.g. JEE MAIN FULL MOCK TEST 1" required oninput="window.handleJmnTitleChange()"></div>
-                <div><label>Test Type</label><select id="jmnTestType" onchange="window.handleJmnTestTypeChange()"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
-                <div>
-                    <label>Subject</label>
-                    <select id="jmnSubject"><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option></select>
-                    <select id="jmnSubject" disabled><option value="Full Syllabus">Full Syllabus</option><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option></select>
-                </div>
-                <div><label>Test Type</label><select id="jmnTestType"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
+                <div><label>Final Test Title</label><input type="text" id="jmnTitle" placeholder="e.g. JEE MAIN FULL MOCK TEST 1" required></div>
                 <div><label>Duration (Minutes)</label><input type="number" id="jmnDuration" value="180"></div>
                 <div><label>Total Marks</label><input type="number" id="jmnTotalMarks" value="300"></div>
             </div>
@@ -2474,21 +2472,43 @@ window.executeBulkDelete = async function() {
 
 window.updateJmnTitleOptions = function() {
     const exam = document.getElementById("jmnExam").value;
+    const testType = document.getElementById("jmnTestType").value;
+    const subject = document.getElementById("jmnSubject").value;
     const titleBaseSelect = document.getElementById("jmnTitleBase");
     
     let options = '<option value="">Select Base Title...</option>';
-    if (exam === "jee_main") {
-        options += '<option value="JEE MAIN FULL MOCK TEST">JEE MAIN FULL MOCK TEST</option>';
-        options += '<option value="JEE MAIN PHYSICS MOCK TEST">JEE MAIN PHYSICS MOCK TEST</option>';
-        options += '<option value="JEE MAIN CHEMISTRY MOCK TEST">JEE MAIN CHEMISTRY MOCK TEST</option>';
-        options += '<option value="JEE MAIN MATHS MOCK TEST">JEE MAIN MATHS MOCK TEST</option>';
-    } else if (exam === "neet") {
-        options += '<option value="NEET FULL MOCK TEST">NEET FULL MOCK TEST</option>';
-        options += '<option value="NEET PHYSICS MOCK TEST">NEET PHYSICS MOCK TEST</option>';
-        options += '<option value="NEET CHEMISTRY MOCK TEST">NEET CHEMISTRY MOCK TEST</option>';
-        options += '<option value="NEET BIOLOGY MOCK TEST">NEET BIOLOGY MOCK TEST</option>';
+    let prefix = exam === "jee_main" ? "JEE MAIN" : "NEET";
+
+    if (testType === "full_mock") {
+        options += `<option value="${prefix} FULL MOCK TEST">${prefix} FULL MOCK TEST</option>`;
+    } else if (testType === "subject_test") {
+        if (subject && subject !== "Full Syllabus") {
+            options += `<option value="${prefix} ${subject.toUpperCase()} MOCK TEST">${prefix} ${subject.toUpperCase()} MOCK TEST</option>`;
+        } else {
+            options += `<option value="${prefix} PHYSICS MOCK TEST">${prefix} PHYSICS MOCK TEST</option>`;
+            options += `<option value="${prefix} CHEMISTRY MOCK TEST">${prefix} CHEMISTRY MOCK TEST</option>`;
+            options += `<option value="${prefix} MATHS MOCK TEST">${prefix} MATHS MOCK TEST</option>`;
+            if (exam === "neet") {
+                options += `<option value="${prefix} BIOLOGY MOCK TEST">${prefix} BIOLOGY MOCK TEST</option>`;
+            }
+        }
+    } else if (testType === "chapter_test") {
+         options += `<option value="${prefix} CHAPTER TEST">${prefix} CHAPTER TEST</option>`;
+    } else if (testType === "quick_quiz") {
+         options += `<option value="${prefix} QUICK QUIZ">${prefix} QUICK QUIZ</option>`;
     }
     titleBaseSelect.innerHTML = options;
+    
+    if (titleBaseSelect.options.length > 1) {
+        titleBaseSelect.selectedIndex = 1;
+        if (!document.getElementById("editJmnTestId").value) {
+            window.calculateNextJmnTestNumber();
+        }
+    } else {
+        if (!document.getElementById("editJmnTestId").value) {
+            document.getElementById("jmnTitle").value = "";
+        }
+    }
 };
 
 window.calculateNextJmnTestNumber = async function() {
@@ -2559,28 +2579,20 @@ window.calculateNextFullJmnTestNumber = async function() {
 window.handleJmnTestTypeChange = function() {
     const testType = document.getElementById("jmnTestType").value;
     const subjectSelect = document.getElementById("jmnSubject");
-    if (testType === "full_mock") {
-        subjectSelect.value = "Full Syllabus";
-        subjectSelect.disabled = true;
-    } else {
+    if (testType === "subject_test") {
         if (subjectSelect.value === "Full Syllabus") {
             subjectSelect.value = "Physics";
         }
         subjectSelect.disabled = false;
+    } else {
+        subjectSelect.value = "Full Syllabus";
+        subjectSelect.disabled = true;
     }
+    window.updateJmnTitleOptions();
 };
 
-window.handleJmnTitleChange = function() {
-    const title = document.getElementById("jmnTitle").value.toLowerCase();
-    const subjectSelect = document.getElementById("jmnSubject");
-    const testType = document.getElementById("jmnTestType").value;
-    
-    if (testType !== "full_mock") {
-        if (title.includes("physics")) subjectSelect.value = "Physics";
-        else if (title.includes("chemistry")) subjectSelect.value = "Chemistry";
-        else if (title.includes("math")) subjectSelect.value = "Maths";
-        else if (title.includes("biology")) subjectSelect.value = "Biology";
-    }
+window.handleJmnSubjectChange = function() {
+    window.updateJmnTitleOptions();
 };
 
 // ADDED HELPER: Ensures JEE SVG images render flawlessly by fixing Unicode/Maths encoding
@@ -2905,15 +2917,19 @@ window.editJmnTest = async function(id) {
             const data = docSnap.data();
             document.getElementById("editJmnTestId").value = id;
             document.getElementById("jmnExam").value = data.exam || "jee_main";
-            window.updateJmnTitleOptions();
             document.getElementById("jmnClass").value = data.class || "class11";
-            document.getElementById("jmnTitle").value = data.title;
-            document.getElementById("jmnSubject").value = data.subject;
             document.getElementById("jmnTestType").value = data.testType || "full_mock";
-            window.handleJmnTestTypeChange();
-            document.getElementById("jmnSubject").value = data.subject || "Full Syllabus";
-            document.getElementById("jmnDuration").value = data.duration || 180;
-            document.getElementById("jmnTotalMarks").value = data.totalMarks || 300;
+            
+            const subjectSelect = document.getElementById("jmnSubject");
+            subjectSelect.value = data.subject || "Full Syllabus";
+            
+            if (data.testType === "subject_test") {
+                subjectSelect.disabled = false;
+            } else {
+                subjectSelect.disabled = true;
+            }
+
+            window.updateJmnTitleOptions();
             
             if (data.questions && data.questions.length > 0) {
                 document.getElementById("jmnJsonPaste").value = JSON.stringify(data.questions, null, 4);
@@ -2928,6 +2944,10 @@ window.editJmnTest = async function(id) {
                     break;
                 }
             }
+
+            document.getElementById("jmnTitle").value = data.title;
+            document.getElementById("jmnDuration").value = data.duration || 180;
+            document.getElementById("jmnTotalMarks").value = data.totalMarks || 300;
 
             document.getElementById("jee-main-neet-admin-section").scrollIntoView({behavior: "smooth"});
             
