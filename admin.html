@@ -842,10 +842,12 @@ border-top:1px solid var(--border);
                         <option value="">Select Base Title...</option>
                     </select>
                 </div>
-                <div><label>Final Test Title</label><input type="text" id="jmnTitle" placeholder="e.g. JEE MAIN FULL MOCK TEST 1" required></div>
+                <div><label>Final Test Title</label><input type="text" id="jmnTitle" placeholder="e.g. JEE MAIN FULL MOCK TEST 1" required oninput="window.handleJmnTitleChange()"></div>
+                <div><label>Test Type</label><select id="jmnTestType" onchange="window.handleJmnTestTypeChange()"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
                 <div>
                     <label>Subject</label>
                     <select id="jmnSubject"><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option></select>
+                    <select id="jmnSubject" disabled><option value="Full Syllabus">Full Syllabus</option><option value="Physics">Physics</option><option value="Chemistry">Chemistry</option><option value="Maths">Maths</option><option value="Biology">Biology</option></select>
                 </div>
                 <div><label>Test Type</label><select id="jmnTestType"><option value="full_mock">Full Mock Test</option><option value="subject_test">Subject-wise Test</option><option value="chapter_test">Chapter-wise Test</option><option value="quick_quiz">Quick Quiz</option></select></div>
                 <div><label>Duration (Minutes)</label><input type="number" id="jmnDuration" value="180"></div>
@@ -2554,6 +2556,33 @@ window.calculateNextFullJmnTestNumber = async function() {
     }
 };
 
+window.handleJmnTestTypeChange = function() {
+    const testType = document.getElementById("jmnTestType").value;
+    const subjectSelect = document.getElementById("jmnSubject");
+    if (testType === "full_mock") {
+        subjectSelect.value = "Full Syllabus";
+        subjectSelect.disabled = true;
+    } else {
+        if (subjectSelect.value === "Full Syllabus") {
+            subjectSelect.value = "Physics";
+        }
+        subjectSelect.disabled = false;
+    }
+};
+
+window.handleJmnTitleChange = function() {
+    const title = document.getElementById("jmnTitle").value.toLowerCase();
+    const subjectSelect = document.getElementById("jmnSubject");
+    const testType = document.getElementById("jmnTestType").value;
+    
+    if (testType !== "full_mock") {
+        if (title.includes("physics")) subjectSelect.value = "Physics";
+        else if (title.includes("chemistry")) subjectSelect.value = "Chemistry";
+        else if (title.includes("math")) subjectSelect.value = "Maths";
+        else if (title.includes("biology")) subjectSelect.value = "Biology";
+    }
+};
+
 // ADDED HELPER: Ensures JEE SVG images render flawlessly by fixing Unicode/Maths encoding
 window.processSafeSVG = function(inputString) {
     if (!inputString || typeof inputString !== 'string') return inputString;
@@ -2881,6 +2910,8 @@ window.editJmnTest = async function(id) {
             document.getElementById("jmnTitle").value = data.title;
             document.getElementById("jmnSubject").value = data.subject;
             document.getElementById("jmnTestType").value = data.testType || "full_mock";
+            window.handleJmnTestTypeChange();
+            document.getElementById("jmnSubject").value = data.subject || "Full Syllabus";
             document.getElementById("jmnDuration").value = data.duration || 180;
             document.getElementById("jmnTotalMarks").value = data.totalMarks || 300;
             
