@@ -207,7 +207,7 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
 
     <div class="filter-section">
         <select id="classSelect" class="filter-select" onchange="fetchHotsSets()">
-            <option value="all" selected>All Classes</option>
+            <option value="all" selected>Select Grade</option>
             <option value="class1">Class 1</option><option value="class2">Class 2</option>
             <option value="class3">Class 3</option><option value="class4">Class 4</option>
             <option value="class5">Class 5</option><option value="class6">Class 6</option>
@@ -215,10 +215,10 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
             <option value="class9">Class 9</option><option value="class10">Class 10</option>
         </select>
         <select id="subjectSelect" class="filter-select" onchange="fetchHotsSets()">
-            <option value="all" selected>All Subjects</option>
+            <option value="all" selected>Select Subject</option>
             <option value="maths">Maths</option>
             <option value="science">Science</option>
-            <option value="english" style="display:none;">English</option>
+            <option value="english">English</option>
             <option value="reasoning">Reasoning</option>
             <option value="igko" style="display:none;">General Knowledge</option>
         </select>
@@ -226,7 +226,7 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
 
     <div id="hotsGrid" class="hots-grid" style="min-height: 50vh;">
         <!-- Dynamic content will load here -->
-        <div class="empty-state"><span>⏳</span> Loading HOTS challenges...</div>
+        <div class="empty-state"><span>📚</span> Please select a Grade and Subject to view HOTS challenges.</div>
     </div>
 
     <!-- SEO CONTENT BLOCK -->
@@ -319,6 +319,11 @@ window.fetchHotsSets = async function() {
     const cls = document.getElementById("classSelect").value;
     const sub = document.getElementById("subjectSelect").value;
     const grid = document.getElementById("hotsGrid");
+    
+    if (cls === "all" || sub === "all") {
+        grid.innerHTML = '<div class="empty-state"><span>📚</span> Please select a Grade and Subject to view HOTS challenges.</div>';
+        return;
+    }
     
     grid.innerHTML = '<div class="empty-state"><span>⏳</span> Fetching challenges...</div>';
     
