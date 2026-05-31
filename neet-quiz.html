@@ -289,15 +289,15 @@
                     throw new Error("No questions available for this chapter yet.");
                 }
 
-                // Randomize and limit to 50 for quick practice
+                // Randomize and limit to 30 for chapter practice
                 fetchedQuestions.sort(() => 0.5 - Math.random());
-                const finalQuestions = fetchedQuestions.slice(0, 50);
+                const finalQuestions = fetchedQuestions.slice(0, 30);
 
                 testData = {
                     title: `NEET Practice: ${sTopicName}`,
                     exam: "neet",
                     subject: sSubject,
-                    duration: finalQuestions.length * 2, // 2 mins per question
+                    duration: 30, // 30 minutes fixed for chapter practice
                     totalMarks: finalQuestions.length * 4,
                     questions: finalQuestions.map(q => ({
                         questionText: q.content.question_text,
