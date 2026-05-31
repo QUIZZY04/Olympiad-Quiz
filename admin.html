@@ -3166,6 +3166,102 @@ window.submitNeetUpload = async function() {
     }
 };
 
+window.seedNeetChapterMaster = async function() {
+    if (!confirm("This will populate the 'sys_master_chapters' collection with 79 standard NEET chapters. Proceed?")) return;
+    
+    const chapters = [
+        { chapter_code: "PH11_01", subject_code: "PH", class: 11, chapter_name: "Physics and Measurement", display_order: 1 },
+        { chapter_code: "PH11_02", subject_code: "PH", class: 11, chapter_name: "Kinematics", display_order: 2 },
+        { chapter_code: "PH11_03", subject_code: "PH", class: 11, chapter_name: "Laws of Motion", display_order: 3 },
+        { chapter_code: "PH11_04", subject_code: "PH", class: 11, chapter_name: "Work, Energy and Power", display_order: 4 },
+        { chapter_code: "PH11_05", subject_code: "PH", class: 11, chapter_name: "Rotational Motion", display_order: 5 },
+        { chapter_code: "PH11_06", subject_code: "PH", class: 11, chapter_name: "Gravitation", display_order: 6 },
+        { chapter_code: "PH11_07", subject_code: "PH", class: 11, chapter_name: "Properties of Solids and Liquids", display_order: 7 },
+        { chapter_code: "PH11_08", subject_code: "PH", class: 11, chapter_name: "Thermodynamics", display_order: 8 },
+        { chapter_code: "PH11_09", subject_code: "PH", class: 11, chapter_name: "Kinetic Theory of Gases", display_order: 9 },
+        { chapter_code: "PH11_10", subject_code: "PH", class: 11, chapter_name: "Oscillations and Waves", display_order: 10 },
+        { chapter_code: "PH12_01", subject_code: "PH", class: 12, chapter_name: "Electrostatics", display_order: 11 },
+        { chapter_code: "PH12_02", subject_code: "PH", class: 12, chapter_name: "Current Electricity", display_order: 12 },
+        { chapter_code: "PH12_03", subject_code: "PH", class: 12, chapter_name: "Magnetic Effects of Current and Magnetism", display_order: 13 },
+        { chapter_code: "PH12_04", subject_code: "PH", class: 12, chapter_name: "Electromagnetic Induction and AC", display_order: 14 },
+        { chapter_code: "PH12_05", subject_code: "PH", class: 12, chapter_name: "Electromagnetic Waves", display_order: 15 },
+        { chapter_code: "PH12_06", subject_code: "PH", class: 12, chapter_name: "Optics", display_order: 16 },
+        { chapter_code: "PH12_07", subject_code: "PH", class: 12, chapter_name: "Dual Nature of Matter and Radiation", display_order: 17 },
+        { chapter_code: "PH12_08", subject_code: "PH", class: 12, chapter_name: "Atoms and Nuclei", display_order: 18 },
+        { chapter_code: "PH12_09", subject_code: "PH", class: 12, chapter_name: "Electronic Devices", display_order: 19 },
+        { chapter_code: "CH11_01", subject_code: "CH", class: 11, chapter_name: "Some Basic Concepts of Chemistry", display_order: 1 },
+        { chapter_code: "CH11_02", subject_code: "CH", class: 11, chapter_name: "Structure of Atom", display_order: 2 },
+        { chapter_code: "CH11_03", subject_code: "CH", class: 11, chapter_name: "Classification of Elements and Periodicity", display_order: 3 },
+        { chapter_code: "CH11_04", subject_code: "CH", class: 11, chapter_name: "Chemical Bonding and Molecular Structure", display_order: 4 },
+        { chapter_code: "CH11_05", subject_code: "CH", class: 11, chapter_name: "Chemical Thermodynamics", display_order: 5 },
+        { chapter_code: "CH11_06", subject_code: "CH", class: 11, chapter_name: "Equilibrium", display_order: 6 },
+        { chapter_code: "CH11_07", subject_code: "CH", class: 11, chapter_name: "Redox Reactions", display_order: 7 },
+        { chapter_code: "CH11_08", subject_code: "CH", class: 11, chapter_name: "Organic Chemistry - Basic Principles (GOC)", display_order: 8 },
+        { chapter_code: "CH11_09", subject_code: "CH", class: 11, chapter_name: "Hydrocarbons", display_order: 9 },
+        { chapter_code: "CH12_01", subject_code: "CH", class: 12, chapter_name: "Solutions", display_order: 10 },
+        { chapter_code: "CH12_02", subject_code: "CH", class: 12, chapter_name: "Electrochemistry", display_order: 11 },
+        { chapter_code: "CH12_03", subject_code: "CH", class: 12, chapter_name: "Chemical Kinetics", display_order: 12 },
+        { chapter_code: "CH12_04", subject_code: "CH", class: 12, chapter_name: "d and f Block Elements", display_order: 13 },
+        { chapter_code: "CH12_05", subject_code: "CH", class: 12, chapter_name: "Coordination Compounds", display_order: 14 },
+        { chapter_code: "CH12_06", subject_code: "CH", class: 12, chapter_name: "Haloalkanes and Haloarenes", display_order: 15 },
+        { chapter_code: "CH12_07", subject_code: "CH", class: 12, chapter_name: "Alcohols, Phenols and Ethers", display_order: 16 },
+        { chapter_code: "CH12_08", subject_code: "CH", class: 12, chapter_name: "Aldehydes, Ketones and Carboxylic Acids", display_order: 17 },
+        { chapter_code: "CH12_09", subject_code: "CH", class: 12, chapter_name: "Amines", display_order: 18 },
+        { chapter_code: "CH12_10", subject_code: "CH", class: 12, chapter_name: "Biomolecules", display_order: 19 },
+        { chapter_code: "BOT11_01", subject_code: "BOT", class: 11, chapter_name: "The Living World", display_order: 1 },
+        { chapter_code: "BOT11_02", subject_code: "BOT", class: 11, chapter_name: "Biological Classification", display_order: 2 },
+        { chapter_code: "BOT11_03", subject_code: "BOT", class: 11, chapter_name: "Plant Kingdom", display_order: 3 },
+        { chapter_code: "BOT11_04", subject_code: "BOT", class: 11, chapter_name: "Morphology of Flowering Plants", display_order: 4 },
+        { chapter_code: "BOT11_05", subject_code: "BOT", class: 11, chapter_name: "Anatomy of Flowering Plants", display_order: 5 },
+        { chapter_code: "BOT11_06", subject_code: "BOT", class: 11, chapter_name: "Cell: The Unit of Life", display_order: 6 },
+        { chapter_code: "BOT11_07", subject_code: "BOT", class: 11, chapter_name: "Cell Cycle and Cell Division", display_order: 7 },
+        { chapter_code: "BOT11_08", subject_code: "BOT", class: 11, chapter_name: "Photosynthesis in Higher Plants", display_order: 8 },
+        { chapter_code: "BOT11_09", subject_code: "BOT", class: 11, chapter_name: "Respiration in Plants", display_order: 9 },
+        { chapter_code: "BOT11_10", subject_code: "BOT", class: 11, chapter_name: "Plant Growth and Development", display_order: 10 },
+        { chapter_code: "BOT12_01", subject_code: "BOT", class: 12, chapter_name: "Sexual Reproduction in Flowering Plants", display_order: 11 },
+        { chapter_code: "BOT12_02", subject_code: "BOT", class: 12, chapter_name: "Principles of Inheritance and Variation", display_order: 12 },
+        { chapter_code: "BOT12_03", subject_code: "BOT", class: 12, chapter_name: "Molecular Basis of Inheritance", display_order: 13 },
+        { chapter_code: "BOT12_04", subject_code: "BOT", class: 12, chapter_name: "Microbes in Human Welfare", display_order: 14 },
+        { chapter_code: "BOT12_05", subject_code: "BOT", class: 12, chapter_name: "Organisms and Populations", display_order: 15 },
+        { chapter_code: "BOT12_06", subject_code: "BOT", class: 12, chapter_name: "Ecosystem", display_order: 16 },
+        { chapter_code: "BOT12_07", subject_code: "BOT", class: 12, chapter_name: "Biodiversity and Conservation", display_order: 17 },
+        { chapter_code: "ZOO11_01", subject_code: "ZOO", class: 11, chapter_name: "Animal Kingdom", display_order: 1 },
+        { chapter_code: "ZOO11_02", subject_code: "ZOO", class: 11, chapter_name: "Structural Organisation in Animals", display_order: 2 },
+        { chapter_code: "ZOO11_03", subject_code: "ZOO", class: 11, chapter_name: "Biomolecules", display_order: 3 },
+        { chapter_code: "ZOO11_04", subject_code: "ZOO", class: 11, chapter_name: "Breathing and Exchange of Gases", display_order: 4 },
+        { chapter_code: "ZOO11_05", subject_code: "ZOO", class: 11, chapter_name: "Body Fluids and Circulation", display_order: 5 },
+        { chapter_code: "ZOO11_06", subject_code: "ZOO", class: 11, chapter_name: "Excretory Products and their Elimination", display_order: 6 },
+        { chapter_code: "ZOO11_07", subject_code: "ZOO", class: 11, chapter_name: "Locomotion and Movement", display_order: 7 },
+        { chapter_code: "ZOO11_08", subject_code: "ZOO", class: 11, chapter_name: "Neural Control and Coordination", display_order: 8 },
+        { chapter_code: "ZOO11_09", subject_code: "ZOO", class: 11, chapter_name: "Chemical Coordination and Integration", display_order: 9 },
+        { chapter_code: "ZOO12_01", subject_code: "ZOO", class: 12, chapter_name: "Human Reproduction", display_order: 10 },
+        { chapter_code: "ZOO12_02", subject_code: "ZOO", class: 12, chapter_name: "Reproductive Health", display_order: 11 },
+        { chapter_code: "ZOO12_03", subject_code: "ZOO", class: 12, chapter_name: "Evolution", display_order: 12 },
+        { chapter_code: "ZOO12_04", subject_code: "ZOO", class: 12, chapter_name: "Human Health and Disease", display_order: 13 },
+        { chapter_code: "ZOO12_05", subject_code: "ZOO", class: 12, chapter_name: "Biotechnology: Principles and Processes", display_order: 14 },
+        { chapter_code: "ZOO12_06", subject_code: "ZOO", class: 12, chapter_name: "Biotechnology and its Applications", display_order: 15 }
+    ];
+
+    try {
+        const batchPromises = chapters.map(ch => {
+            const docRef = doc(db, 'sys_master_chapters', ch.chapter_code);
+            return setDoc(docRef, {
+                chapter_code: ch.chapter_code,
+                chapter_name: ch.chapter_name,
+                subject_code: ch.subject_code,
+                class: ch.class,
+                display_order: ch.display_order,
+                status: 'active'
+            });
+        });
+        await Promise.all(batchPromises);
+        alert(`Successfully seeded ${chapters.length} chapters to the Master Table! You can now upload NEET questions.`);
+    } catch(e) {
+        console.error("Error seeding chapters:", e);
+        alert("Error seeding chapters: " + e.message);
+    }
+};
+
 // ADDED SECTION: HOTS ADMIN LOGIC
 window.pasteHotsClipboard = async function() {
     try {
