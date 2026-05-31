@@ -260,6 +260,7 @@ border-top:1px solid var(--border);
         <a href="#hots-admin-section" style="color:#d946ef;">HOTS Management</a>
         <a href="#jee-pyq-admin-section" style="color:#0ea5e9;">JEE PYQs</a>
         <a href="#sof-pyq-admin-section" style="color:#f59e0b;">SOF PYQs</a>
+        <a href="#neet-upload-section" style="color:#10b981;">NEET Q-Bank Upload</a>
         <a href="#senior-admin-section" style="color:#8b5cf6;">Senior Upload</a>
         <a href="#student-profiles-section" style="color:#10b981;">Student Profiles</a>
         <div class="nav-actions">
@@ -1191,6 +1192,23 @@ border-top:1px solid var(--border);
             
             <button class="upload" id="compSaveBtn" onclick="saveCompetitiveTest()" style="background:#8b5cf6; width:100%;">💾 Upload Competitive Test</button>
             <div id="compStatus" style="margin-top:10px; font-weight:bold; font-size:13px;"></div>
+        </div>
+    </div>
+
+    <!-- NEW SECTION: NEET Q-BANK UPLOAD -->
+    <div id="neet-upload-section" class="panel" style="border-top: 2px solid #10b981;">
+        <div class="panel-header">
+            <h2 style="color:#10b981;">🧬 NEET Q-Bank Bulk Upload</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Upload NEET questions via JSON. Must contain valid chapter_code from sys_master_chapters.</p>
+            <textarea id="neetJsonInput" rows="15" placeholder='[{"subject_code": "BOT", "chapter_code": "BOT11_01", "difficulty": 2, "content": {"question_text": "...", "options": ["A","B","C","D"], "correct_option_index": 0}}]' style="height: 250px; font-family: monospace;"></textarea>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="upload" onclick="navigator.clipboard.readText().then(t => document.getElementById('neetJsonInput').value = t)" style="background: var(--brand); color: #fff;">📋 Paste from Clipboard</button>
+                <button class="delete" onclick="document.getElementById('neetJsonInput').value = ''">🗑️ Clear JSON</button>
+            </div>
+            <button class="upload" onclick="submitNeetUpload()" style="background: #10b981; width: 100%; margin-top: 20px;">Validate & Upload NEET Questions</button>
+            <div id="neetConsole" style="background: #111827; color: #10b981; padding: 15px; border-radius: 8px; height: 150px; overflow-y: auto; font-family: monospace; font-size: 13px; margin-top: 20px; line-height: 1.6;">> Awaiting payload...</div>
         </div>
     </div>
 
@@ -3027,6 +3045,40 @@ window.pasteJeeClipboard = async function() {
 
 window.clearJeePaste = function() {
     document.getElementById("jeeJsonPaste").value = "";
+};
+
+window.submitNeetUpload = async function() {
+    const consoleEl = document.getElementById('neetConsole');
+    consoleEl.innerHTML = '> Validating JSON syntax...<br>';
+    let payload;
+    
+    try {
+        payload = JSON.parse(document.getElementById('neetJsonInput').value);
+    } catch (e) {
+        consoleEl.innerHTML += `<span style="color: #ef4444;">> JSON Syntax Error: ${e.message}</span><br>`;
+        return;
+    }
+
+    consoleEl.innerHTML += `> Sending ${payload.length} questions to server...<br>`;
+    
+    try {
+        // Assuming Firebase HTTP callable function endpoint or Express route is deployed
+        const response = await fetch('/api/neetUpload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ questions: payload })
+        });
+        const result = await response.json();
+        
+        consoleEl.innerHTML += `> Success: ${result.report.success} | Failed: ${result.report.failed}<br>`;
+        if (result.report.errors && result.report.errors.length > 0) {
+            result.report.errors.forEach(err => {
+                consoleEl.innerHTML += `<span style="color: #ef4444;">> ${err}</span><br>`;
+            });
+        }
+    } catch (e) {
+        consoleEl.innerHTML += `<span style="color: #ef4444;">> Server Error: ${e.message}</span><br>`;
+    }
 };
 
 // ADDED SECTION: HOTS ADMIN LOGIC
