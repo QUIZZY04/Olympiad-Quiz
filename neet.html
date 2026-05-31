@@ -33,6 +33,34 @@
       }]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are the NEET mock tests free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, all our NEET mock tests, including full-length papers and chapter-wise quizzes, are completely free for all students to access and practice." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the test interface similar to the actual NTA exam?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Our Computer Based Test (CBT) environment simulates the exact NTA exam interface, helping you get accustomed to the digital format and manage your time effectively." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide detailed solutions after the test?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, immediately after submitting your test, you will receive a detailed performance analysis along with step-by-step solutions and explanations for every question." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I practice specific chapters instead of full mock tests?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer dedicated chapter-wise practice tests for Botany, Zoology, Physics, and Chemistry, so you can target your weak areas before taking full-length mocks." }
+        }
+      ]
+    }
+    </script>
     <script>
       if (localStorage.getItem("isLoggedIn") !== "true") {
           sessionStorage.setItem("redirectAfterLogin", window.location.href);
@@ -75,6 +103,19 @@
         
         .start-btn { display: inline-block; background: var(--brand); color: white; padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; width: 100%; text-align: center; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; }
         .start-btn:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3); }
+
+        .rich-text-section { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border); border-left: 6px solid var(--brand); box-shadow: var(--shadow-sm); margin-top: 40px; margin-bottom: 40px; }
+        .rich-text-section h2 { color: var(--text); font-size: 1.5rem; margin-bottom: 20px; font-weight: 800; letter-spacing: -0.01em;}
+        .rich-text-section p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 16px; }
+        .rich-text-section ul { margin-left: 20px; margin-bottom: 20px; }
+        .rich-text-section li { color: var(--text); font-size: 1rem; line-height: 1.6; margin-bottom: 12px; font-weight: 500; }
+        .rich-text-section .highlight { color: var(--brand); font-weight: 800; }
+
+        .faq-section { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow-md); margin-top: 40px; margin-bottom: 40px; }
+        .faq-section h2 { font-size: 1.8rem; color: var(--text); margin-bottom: 25px; font-weight: 800; }
+        .faq-item { background: var(--bg); padding: 15px 20px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 15px; }
+        .faq-item summary { font-weight: 700; cursor: pointer; color: var(--brand); outline: none; font-size: 1.05rem; }
+        .faq-item p { margin-top: 15px; font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
 
         @media (max-width: 768px) { .header h1 { font-size: 2.2rem; } }
     </style>
@@ -140,6 +181,40 @@
             <p class="meta">Targeted practice for all 79 chapters of Physics, Chemistry & Biology.</p>
             <button class="start-btn" style="background: #14b8a6;">Practice Chapter-wise</button>
         </div>
+    </div>
+
+    <!-- Rich Text Section -->
+    <div class="rich-text-section">
+        <h2>📝 Mastering NEET: Your Pathway to Medical College</h2>
+        <p>The National Eligibility cum Entrance Test (NEET-UG) is India's most competitive medical entrance examination. To excel, students need more than just rote memorization—they need speed, accuracy, and rigorous conceptual application.</p>
+        <ul>
+            <li><span class="highlight">Exact NTA Pattern:</span> Our mock tests strictly follow the latest NMC syllabus, divided into Section A (35 questions) and Section B (15 questions, attempt any 10) for Physics, Chemistry, Botany, and Zoology.</li>
+            <li><span class="highlight">Time Management:</span> Practice completing 200 questions within the 200-minute time limit to build crucial exam stamina.</li>
+            <li><span class="highlight">Instant Analytics:</span> Receive detailed scorecards immediately after submission, highlighting your accuracy and identifying weak concepts.</li>
+            <li><span class="highlight">Detailed Solutions:</span> Understand the reasoning behind every correct answer with our comprehensive, step-by-step explanations.</li>
+        </ul>
+        <p>Regular practice with our <strong style="color: var(--text);">free NEET mock tests</strong> and chapter-wise quizzes will significantly boost your confidence and NTA percentile.</p>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+        <details class="faq-item">
+            <summary>Are the NEET mock tests free?</summary>
+            <p>Yes, all our NEET mock tests, including full-length papers and chapter-wise quizzes, are completely free for all students to access and practice.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Is the test interface similar to the actual NTA exam?</summary>
+            <p>Absolutely. Our Computer Based Test (CBT) environment simulates the exact NTA exam interface, helping you get accustomed to the digital format and manage your time effectively.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Do you provide detailed solutions after the test?</summary>
+            <p>Yes, immediately after submitting your test, you will receive a detailed performance analysis along with step-by-step solutions and explanations for every question.</p>
+        </details>
+        <details class="faq-item">
+            <summary>Can I practice specific chapters instead of full mock tests?</summary>
+            <p>Yes, we offer dedicated chapter-wise practice tests for Botany, Zoology, Physics, and Chemistry, so you can target your weak areas before taking full-length mocks.</p>
+        </details>
     </div>
 </div>
 
