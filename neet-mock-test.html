@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full NEET Mock Tests 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #f8fafc; font-family: 'Poppins', sans-serif; margin: 0; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 16px; border-top: 4px solid #8b5cf6; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .btn { padding: 12px 24px; background: #8b5cf6; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #7c3aed; }
+    </style>
+</head>
+<body>
+    <nav style="background: rgba(255, 255, 255, 0.95); padding:15px 5%; display:flex; justify-content:space-between; border-bottom: 1px solid #e2e8f0;">
+        <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: #111827; text-decoration: none;">Olympiad Portal</a>
+        <a href="neet.html" style="color: #64748b; font-weight: 600; text-decoration: none;">Back to NEET</a>
+    </nav>
+
+    <div class="container">
+        <h1 style="text-align: center; color: #0f172a; margin-bottom: 40px;">NEET Mock Test Dashboard</h1>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;" id="neetTestGrid">
+            <div style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;">Fetching Mock Tests...</div>
+        </div>
+        
+        <div style="margin-top: 40px; background: white; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 15px;">Instructions:</h2>
+            <ul style="color: #475569; line-height: 1.8; padding-left: 20px;">
+                <li>The test consists of 200 questions across Botany, Zoology, Physics, and Chemistry.</li>
+                <li>Each subject is divided into Section A (35 questions) and Section B (15 questions).</li>
+                <li>You are required to attempt only 10 questions out of the 15 in Section B.</li>
+                <li><strong>Marking Scheme:</strong> +4 for correct, -1 for incorrect, 0 for unattempted.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+            authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+            projectId: "olympiad-portal-d2a5e"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function loadNeetTests() {
+            const grid = document.getElementById("neetTestGrid");
+            try {
+                const q = query(collection(db, "exam_tests"), where("exam", "==", "neet"));
+                const snap = await getDocs(q);
+                
+                if (snap.empty) {
+                    grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px; border: 1px dashed #e2e8f0; border-radius: 16px; background: white;'>No NEET full mock tests available at the moment. Coming soon!</div>";
+                    return;
+                }
+                
+                grid.innerHTML = "";
+                snap.forEach(doc => {
+                    const data = doc.data();
+                    const card = document.createElement("div");
+                    card.className = "card";
+                    card.innerHTML = `
+                        <h3 style="margin-bottom: 10px;">${data.title || 'NEET Mock Test'}</h3>
+                        <p style="color: #64748b; margin-bottom: 10px;">${data.questions ? data.questions.length : 0} Questions | ${data.duration || 200} Minutes | ${data.totalMarks || 720} Marks</p>
+                        <p style="font-size: 13px; color: #10b981; margin-bottom: 20px;">NTA Latest Pattern Exam.</p>
+                        <button class="btn" style="width: 100%;" onclick="window.location.href='jee-quiz.html?id=${doc.id}'">Start Test</button>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: #ef4444; padding: 40px;'>Failed to load tests.</div>";
+            }
+        }
+        loadNeetTests();
+    </script>
+</body>
+</html>

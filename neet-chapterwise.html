@@ -94,27 +94,149 @@
 
         <!-- Placeholder Grid - Will be populated dynamically by DB -->
         <div class="topics-grid" id="chapterGrid">
-            <div class="topic-card">
-                <span class="topic-code code-bot">BOT11_01</span>
-                <h3>The Living World</h3>
-                <button class="start-btn">Start Practice →</button>
-            </div>
-            <div class="topic-card">
-                <span class="topic-code code-bot">BOT11_02</span>
-                <h3>Biological Classification</h3>
-                <button class="start-btn">Start Practice →</button>
-            </div>
-            <div class="topic-card">
-                <span class="topic-code code-bot">BOT11_03</span>
-                <h3>Plant Kingdom</h3>
-                <button class="start-btn">Start Practice →</button>
-            </div>
-            <div class="topic-card">
-                <span class="topic-code code-bot">BOT11_04</span>
-                <h3>Morphology of Flowering Plants</h3>
-                <button class="start-btn">Start Practice →</button>
-            </div>
         </div>
     </div>
+
+    <script>
+        // Complete NEET Chapter Master mapped logically
+        const neetSyllabus = {
+            "11": {
+                "PH": [
+                    {code: "PH11_01", name: "Physics and Measurement"},
+                    {code: "PH11_02", name: "Kinematics"},
+                    {code: "PH11_03", name: "Laws of Motion"},
+                    {code: "PH11_04", name: "Work, Energy and Power"},
+                    {code: "PH11_05", name: "Rotational Motion"},
+                    {code: "PH11_06", name: "Gravitation"},
+                    {code: "PH11_07", name: "Properties of Solids and Liquids"},
+                    {code: "PH11_08", name: "Thermodynamics"},
+                    {code: "PH11_09", name: "Kinetic Theory of Gases"},
+                    {code: "PH11_10", name: "Oscillations and Waves"}
+                ],
+                "CH": [
+                    {code: "CH11_01", name: "Some Basic Concepts of Chemistry"},
+                    {code: "CH11_02", name: "Structure of Atom"},
+                    {code: "CH11_03", name: "Classification of Elements and Periodicity"},
+                    {code: "CH11_04", name: "Chemical Bonding and Molecular Structure"},
+                    {code: "CH11_05", name: "Chemical Thermodynamics"},
+                    {code: "CH11_06", name: "Equilibrium"},
+                    {code: "CH11_07", name: "Redox Reactions"},
+                    {code: "CH11_08", name: "Organic Chemistry - Basic Principles (GOC)"},
+                    {code: "CH11_09", name: "Hydrocarbons"}
+                ],
+                "BOT": [
+                    {code: "BOT11_01", name: "The Living World"},
+                    {code: "BOT11_02", name: "Biological Classification"},
+                    {code: "BOT11_03", name: "Plant Kingdom"},
+                    {code: "BOT11_04", name: "Morphology of Flowering Plants"},
+                    {code: "BOT11_05", name: "Anatomy of Flowering Plants"},
+                    {code: "BOT11_06", name: "Cell: The Unit of Life"},
+                    {code: "BOT11_07", name: "Cell Cycle and Cell Division"},
+                    {code: "BOT11_08", name: "Photosynthesis in Higher Plants"},
+                    {code: "BOT11_09", name: "Respiration in Plants"},
+                    {code: "BOT11_10", name: "Plant Growth and Development"}
+                ],
+                "ZOO": [
+                    {code: "ZOO11_01", name: "Animal Kingdom"},
+                    {code: "ZOO11_02", name: "Structural Organisation in Animals"},
+                    {code: "ZOO11_03", name: "Biomolecules"},
+                    {code: "ZOO11_04", name: "Breathing and Exchange of Gases"},
+                    {code: "ZOO11_05", name: "Body Fluids and Circulation"},
+                    {code: "ZOO11_06", name: "Excretory Products and their Elimination"},
+                    {code: "ZOO11_07", name: "Locomotion and Movement"},
+                    {code: "ZOO11_08", name: "Neural Control and Coordination"},
+                    {code: "ZOO11_09", name: "Chemical Coordination and Integration"}
+                ]
+            },
+            "12": {
+                "PH": [
+                    {code: "PH12_01", name: "Electrostatics"},
+                    {code: "PH12_02", name: "Current Electricity"},
+                    {code: "PH12_03", name: "Magnetic Effects of Current and Magnetism"},
+                    {code: "PH12_04", name: "Electromagnetic Induction and AC"},
+                    {code: "PH12_05", name: "Electromagnetic Waves"},
+                    {code: "PH12_06", name: "Optics"},
+                    {code: "PH12_07", name: "Dual Nature of Matter and Radiation"},
+                    {code: "PH12_08", name: "Atoms and Nuclei"},
+                    {code: "PH12_09", name: "Electronic Devices"}
+                ],
+                "CH": [
+                    {code: "CH12_01", name: "Solutions"},
+                    {code: "CH12_02", name: "Electrochemistry"},
+                    {code: "CH12_03", name: "Chemical Kinetics"},
+                    {code: "CH12_04", name: "d and f Block Elements"},
+                    {code: "CH12_05", name: "Coordination Compounds"},
+                    {code: "CH12_06", name: "Haloalkanes and Haloarenes"},
+                    {code: "CH12_07", name: "Alcohols, Phenols and Ethers"},
+                    {code: "CH12_08", name: "Aldehydes, Ketones and Carboxylic Acids"},
+                    {code: "CH12_09", name: "Amines"},
+                    {code: "CH12_10", name: "Biomolecules"}
+                ],
+                "BOT": [
+                    {code: "BOT12_01", name: "Sexual Reproduction in Flowering Plants"},
+                    {code: "BOT12_02", name: "Principles of Inheritance and Variation"},
+                    {code: "BOT12_03", name: "Molecular Basis of Inheritance"},
+                    {code: "BOT12_04", name: "Microbes in Human Welfare"},
+                    {code: "BOT12_05", name: "Organisms and Populations"},
+                    {code: "BOT12_06", name: "Ecosystem"},
+                    {code: "BOT12_07", name: "Biodiversity and Conservation"}
+                ],
+                "ZOO": [
+                    {code: "ZOO12_01", name: "Human Reproduction"},
+                    {code: "ZOO12_02", name: "Reproductive Health"},
+                    {code: "ZOO12_03", name: "Evolution"},
+                    {code: "ZOO12_04", name: "Human Health and Disease"},
+                    {code: "ZOO12_05", name: "Biotechnology: Principles and Processes"},
+                    {code: "ZOO12_06", name: "Biotechnology and its Applications"}
+                ]
+            }
+        };
+
+        const classFilter = document.getElementById('classFilter');
+        const subjectFilter = document.getElementById('subjectFilter');
+        const chapterGrid = document.getElementById('chapterGrid');
+
+        function renderChapters() {
+            const grade = classFilter.value;
+            const subject = subjectFilter.value;
+            const chapters = neetSyllabus[grade]?.[subject] || [];
+            
+            chapterGrid.innerHTML = '';
+            
+            if (chapters.length === 0) {
+                chapterGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px; border: 1px dashed var(--border); border-radius: 16px; background: white;">No chapters available yet.</div>';
+                return;
+            }
+
+            let codeClass = '';
+            if(subject === 'BOT') codeClass = 'code-bot';
+            else if(subject === 'ZOO') codeClass = 'code-zoo';
+            else if(subject === 'PH') codeClass = 'code-ph';
+            else if(subject === 'CH') codeClass = 'code-ch';
+
+            chapters.forEach(chap => {
+                const card = document.createElement('div');
+                card.className = 'topic-card';
+                card.innerHTML = `
+                    <span class="topic-code ${codeClass}">${chap.code}</span>
+                    <h3>${chap.name}</h3>
+                    <button class="start-btn" onclick="alert('Feature linking to CBT engine for ${chap.code} is coming in the next update!')">Start Practice →</button>
+                `;
+                chapterGrid.appendChild(card);
+            });
+        }
+
+        classFilter.addEventListener('change', renderChapters);
+        subjectFilter.addEventListener('change', renderChapters);
+
+        // Handle incoming parameters from biology/physics/chemistry hubs
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.has('subject')) {
+                subjectFilter.value = urlParams.get('subject');
+            }
+            renderChapters();
+        });
+    </script>
 </body>
 </html>

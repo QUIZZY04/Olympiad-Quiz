@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Physics Practice: Chapter-wise & Mock Tests</title>
+    <meta name="description" content="Free NEET Physics chapter-wise tests and mock tests based on the latest NMC syllabus.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --brand: #3b82f6; --accent: #1d4ed8; --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; margin: 0; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .hero { text-align: center; margin-bottom: 40px; }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; color: var(--brand); margin-bottom: 10px; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 30px; }
+        .hub-card { background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--brand); padding: 30px; border-radius: 20px; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .btn { margin-top: auto; text-align: center; background: var(--brand); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; }
+    </style>
+</head>
+<body>
+    <nav style="background: rgba(255, 255, 255, 0.95); padding:15px 5%; display:flex; justify-content:space-between; border-bottom: 1px solid var(--border);">
+        <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none;">Olympiad Portal</a>
+        <a href="dashboard.html" style="color: var(--text); font-weight: 600; text-decoration: none;">Dashboard</a>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <div class="breadcrumb" style="justify-content: center; margin-bottom: 15px; color: var(--muted);"><a href="index.html" style="color: var(--brand); text-decoration: none; font-weight: bold;">Home</a> / <a href="neet.html" style="color: var(--brand); text-decoration: none; font-weight: bold;">NEET</a> / Physics</div>
+            <h1>NEET Physics Hub</h1>
+            <p style="color: var(--muted); font-size: 1.1rem;">Master Mechanics, Electromagnetism, and Modern Physics.</p>
+        </div>
+
+        <div class="hub-grid">
+            <div class="hub-card" style="border-top-color: #3b82f6;">
+                <h3 style="margin-bottom: 10px;">📐 Chapter-wise Practice</h3>
+                <p style="color: var(--muted); margin-bottom: 20px; flex-grow: 1;">Targeted quizzes on Kinematics, Thermodynamics, Optics, and more.</p>
+                <button onclick="location.href='neet-chapterwise.html?subject=PH'" class="btn" style="background: #3b82f6;">Start Practice</button>
+            </div>
+            <div class="hub-card" style="border-top-color: #1d4ed8;">
+                <h3 style="margin-bottom: 10px;">📝 Full Physics Mock</h3>
+                <p style="color: var(--muted); margin-bottom: 20px; flex-grow: 1;">50 questions split into Section A (35) and Section B (15) exactly like the NTA pattern.</p>
+                <button onclick="location.href='neet-mock-test.html?subject=PH'" class="btn" style="background: #1d4ed8;">Start Full Test</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
