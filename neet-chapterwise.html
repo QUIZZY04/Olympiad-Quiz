@@ -221,6 +221,7 @@
                     <span class="topic-code ${codeClass}">${chap.code}</span>
                     <h3>${chap.name}</h3>
                     <button class="start-btn" onclick="alert('Feature linking to CBT engine for ${chap.code} is coming in the next update!')">Start Practice →</button>
+                    <button class="start-btn" onclick="startNeetChapterPractice('${chap.code}', '${chap.name}')">Start Practice →</button>
                 `;
                 chapterGrid.appendChild(card);
             });
@@ -228,6 +229,22 @@
 
         classFilter.addEventListener('change', renderChapters);
         subjectFilter.addEventListener('change', renderChapters);
+
+        // Function to handle launching the quiz engine
+        window.startNeetChapterPractice = function(chapterCode, chapterName) {
+            const grade = classFilter.value;
+            const subject = subjectFilter.value;
+            
+            // Set necessary variables for your CBT engine
+            localStorage.setItem("selectedClass", "class" + grade);
+            localStorage.setItem("selectedSubject", subject);
+            localStorage.setItem("selectedTopic", chapterCode);
+            localStorage.setItem("selectedTopicName", chapterName);
+            localStorage.setItem("isMockTest", "false");
+            
+            // Redirect to your test player (e.g., jee-quiz.html or quiz.html)
+            window.location.href = "quiz.html";
+        };
 
         // Handle incoming parameters from biology/physics/chemistry hubs
         window.addEventListener('DOMContentLoaded', () => {
