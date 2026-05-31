@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NEET Admin | Bulk Upload</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .panel { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 900px; margin: 40px auto; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        select, textarea, button { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; font-family: monospace; }
+        button { background: #10b981; color: white; border: none; font-weight: bold; cursor: pointer; }
+        #console { background: #111827; color: #10b981; padding: 15px; border-radius: 8px; height: 150px; overflow-y: auto; font-family: monospace; font-size: 12px; margin-top: 20px; }
+        .err { color: #ef4444; }
+    </style>
+</head>
+<body style="background: #f8fafc; padding: 20px;">
+
+    <div class="panel">
+        <h2 style="margin-bottom: 20px; color: #047857;">Upload NEET Questions</h2>
+        <p style="color: #64748b; margin-bottom: 20px;">JSON must contain valid chapter_code from sys_master_chapters.</p>
+        
+        <textarea id="jsonInput" rows="15" placeholder='[{"subject_code": "BOT", "chapter_code": "BOT01", "difficulty": 2, "content": {"question_text": "...", "options": ["A","B","C","D"], "correct_option_index": 0}}]'></textarea>
+        
+        <button onclick="submitUpload()" style="margin-top: 20px;">Validate & Upload</button>
+        
+        <div id="console">> Awaiting payload...</div>
+    </div>
+
+    <script>
+        async function submitUpload() {
+            const consoleEl = document.getElementById('console');
+            consoleEl.innerHTML = '> Validating JSON syntax...<br>';
+            let payload;
+            
+            try {
+                payload = JSON.parse(document.getElementById('jsonInput').value);
+            } catch (e) {
+                consoleEl.innerHTML += `<span class="err">> JSON Syntax Error: ${e.message}</span><br>`;
+                return;
+            }
+
+            consoleEl.innerHTML += `> Sending ${payload.length} questions to server...<br>`;
+            
+            try {
+                // Assuming Firebase HTTP callable function endpoint
+                const response = await fetch('/api/neetUpload', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ questions: payload })
+                });
+                const result = await response.json();
+                
+                consoleEl.innerHTML += `> Success: ${result.report.success} | Failed: ${result.report.failed}<br>`;
+                result.report.errors.forEach(err => {
+                    consoleEl.innerHTML += `<span class="err">> ${err}</span><br>`;
+                });
+            } catch (e) {
+                consoleEl.innerHTML += `<span class="err">> Server Error: ${e.message}</span><br>`;
+            }
+        }
+    </script>
+</body>
+</html>

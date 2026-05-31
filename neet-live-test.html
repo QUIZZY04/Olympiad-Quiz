@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Live Test Arena | Real-Time All India Rank</title>
+    <meta name="description" content="Participate in live NEET mock tests online. Compete with thousands of medical aspirants nationwide and secure your All India Rank.">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="canonical" href="https://olympiadquiz.org/neet-live-test.html">
+    <meta property="og:title" content="NEET Live Test Arena | Real-Time Competition">
+    <meta property="og:description" content="Participate in live NEET mock tests online. Compete with thousands of medical aspirants nationwide.">
+    <meta property="og:url" content="https://olympiadquiz.org/neet-live-test.html">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --brand: #10b981; --accent: #059669; --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; margin: 0; }
+        
+        .arena-header { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #022c22, #064e3b); color: white; border-bottom: 4px solid var(--brand); }
+        .arena-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 15px; }
+        .arena-header p { font-size: 1.15rem; opacity: 0.9; max-width: 700px; margin: 0 auto 20px; }
+        
+        .live-badge { display: inline-block; background: #ef4444; color: white; padding: 6px 15px; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; animation: pulseRed 2s infinite; font-size: 14px;}
+        @keyframes pulseRed { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 70% { box-shadow: 0 0 0 15px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
+
+        .container { max-width: 1000px; margin: -30px auto 40px; padding: 0 20px; position: relative; z-index: 10; }
+        
+        .card { background: var(--surface); padding: 40px; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid var(--border); text-align: center; }
+        .timer-display { font-size: 3rem; font-weight: 800; font-family: monospace; color: var(--text); margin: 20px 0; background: #f1f5f9; display: inline-block; padding: 10px 30px; border-radius: 12px; border: 1px solid var(--border); }
+        
+        .btn-register { background: var(--brand); color: white; border: none; padding: 15px 40px; border-radius: 12px; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(16,185,129,0.3); }
+        .btn-register:hover { background: var(--accent); transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+    <nav style="background: rgba(255, 255, 255, 0.95); padding:15px 5%; display:flex; justify-content:space-between; border-bottom: 1px solid var(--border);">
+        <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none;">Olympiad Portal</a>
+        <a href="neet.html" style="color: var(--muted); font-weight: 600; text-decoration: none;">Back to NEET</a>
+    </nav>
+
+    <div class="arena-header">
+        <div class="live-badge" style="margin-bottom: 20px;">Upcoming All India Test</div>
+        <h1>NEET Live Arena</h1>
+        <p>Experience the pressure of the real exam. Take the nationwide proctored NEET mock test scheduled for this weekend.</p>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2 style="color: var(--brand); margin-bottom: 10px;">NEET 2026 Mega Mock 1</h2>
+            <p style="color: var(--muted);">Full Syllabus • 200 Questions • Section A & B • 200 Minutes</p>
+            
+            <div class="timer-display">48:12:05</div>
+            <p style="color: #ef4444; font-weight: 700; margin-bottom: 25px;">Registrations close 1 hour before the exam starts.</p>
+            
+            <button class="btn-register">Register for Free</button>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 30px; background: white; border-radius: 16px; border: 1px solid var(--border);">
+            <h3 style="margin-bottom: 15px;">Why participate in the Live Arena?</h3>
+            <ul style="color: var(--muted); line-height: 1.8; padding-left: 20px;">
+                <li><strong>Real Exam Pressure:</strong> The test starts and ends at the exact same time for thousands of students across India.</li>
+                <li><strong>Relative Grading:</strong> Get an accurate prediction of your NEET percentile based on the current competition.</li>
+                <li><strong>Proctored Environment:</strong> Full-screen lockdown mode prevents tab switching, ensuring honest leaderboards.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

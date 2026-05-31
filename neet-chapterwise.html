@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Chapter-wise Practice | Biology, Physics, Chemistry Mocks</title>
+    <meta name="description" content="Practice NEET chapter-wise mock tests for Class 11 and 12. Master Botany, Zoology, Physics, and Chemistry strictly on the NMC syllabus pattern.">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="canonical" href="https://olympiadquiz.org/neet-chapterwise.html">
+    <meta property="og:title" content="NEET Chapter-wise Practice | OlympiadQuiz">
+    <meta property="og:description" content="Practice NEET chapter-wise mock tests for Class 11 and 12. Master Botany, Zoology, Physics, and Chemistry strictly on the NMC syllabus pattern.">
+    <meta property="og:url" content="https://olympiadquiz.org/neet-chapterwise.html">
+    <meta property="og:image" content="https://olympiadquiz.org/hero.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/"
+      },{
+        "@type": "ListItem", "position": 2, "name": "NEET Prep", "item": "https://olympiadquiz.org/neet.html"
+      },{
+        "@type": "ListItem", "position": 3, "name": "Chapter-wise", "item": "https://olympiadquiz.org/neet-chapterwise.html"
+      }]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --brand: #10b981; --accent: #059669; --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; margin: 0; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .hero { text-align: center; margin-bottom: 40px; }
+        .hero h1 { font-size: 2.5rem; font-weight: 800; color: var(--text); margin-bottom: 15px; }
+        .hero h1 span { color: var(--brand); }
+        
+        .filter-bar { background: var(--surface); padding: 25px; border-radius: 16px; border: 1px solid var(--border); border-top: 4px solid var(--brand); display: flex; gap: 20px; flex-wrap: wrap; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .filter-group { flex: 1; min-width: 200px; }
+        .filter-group label { display: block; font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; }
+        .filter-group select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); font-family: 'Poppins', sans-serif; font-weight: 600; outline: none; }
+        .filter-group select:focus { border-color: var(--brand); }
+
+        .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .topic-card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); padding: 25px; transition: 0.3s; display: flex; flex-direction: column; cursor: pointer; }
+        .topic-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--brand); }
+        .topic-code { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; align-self: flex-start; margin-bottom: 15px; }
+        .code-bot { background: #dcfce3; color: #047857; border: 1px solid #a7f3d0; }
+        .code-zoo { background: #cffafe; color: #0891b2; border: 1px solid #a5f3fc; }
+        .code-ph { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .code-ch { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        
+        .topic-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; flex-grow: 1; }
+        .start-btn { margin-top: 15px; text-align: center; padding: 10px; background: var(--brand); color: white; border-radius: 8px; font-weight: 600; border: none; transition: 0.2s; }
+        .topic-card:hover .start-btn { background: var(--accent); }
+    </style>
+</head>
+<body>
+    <nav style="background: rgba(255, 255, 255, 0.95); padding:15px 5%; display:flex; justify-content:space-between; border-bottom: 1px solid var(--border);">
+        <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none;">Olympiad Portal</a>
+        <a href="neet.html" style="color: var(--muted); font-weight: 600; text-decoration: none;">Back to NEET</a>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <div class="breadcrumb" style="justify-content: center; margin-bottom: 15px;"><a href="index.html">Home</a> / <a href="neet.html">NEET</a> / Chapter-wise</div>
+            <h1>NEET <span>Chapter-wise</span> Practice</h1>
+            <p>Target your weak areas. Select a subject and practice exact NMC syllabus chapters with instant detailed solutions.</p>
+        </div>
+
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label>Select Grade</label>
+                <select id="classFilter">
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Select Subject</label>
+                <select id="subjectFilter">
+                    <option value="BOT">Botany</option>
+                    <option value="ZOO">Zoology</option>
+                    <option value="PH">Physics</option>
+                    <option value="CH">Chemistry</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Placeholder Grid - Will be populated dynamically by DB -->
+        <div class="topics-grid" id="chapterGrid">
+            <div class="topic-card">
+                <span class="topic-code code-bot">BOT11_01</span>
+                <h3>The Living World</h3>
+                <button class="start-btn">Start Practice →</button>
+            </div>
+            <div class="topic-card">
+                <span class="topic-code code-bot">BOT11_02</span>
+                <h3>Biological Classification</h3>
+                <button class="start-btn">Start Practice →</button>
+            </div>
+            <div class="topic-card">
+                <span class="topic-code code-bot">BOT11_03</span>
+                <h3>Plant Kingdom</h3>
+                <button class="start-btn">Start Practice →</button>
+            </div>
+            <div class="topic-card">
+                <span class="topic-code code-bot">BOT11_04</span>
+                <h3>Morphology of Flowering Plants</h3>
+                <button class="start-btn">Start Practice →</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
