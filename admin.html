@@ -3048,36 +3048,121 @@ window.clearJeePaste = function() {
 };
 
 window.submitNeetUpload = async function() {
-    const consoleEl = document.getElementById('neetConsole');
-    consoleEl.innerHTML = '> Validating JSON syntax...<br>';
-    let payload;
-    
-    try {
-        payload = JSON.parse(document.getElementById('neetJsonInput').value);
-    } catch (e) {
-        consoleEl.innerHTML += `<span style="color: #ef4444;">> JSON Syntax Error: ${e.message}</span><br>`;
+    const jsonText = document.getElementById("neetJsonInput").value.trim();
+    if (!jsonText) {
+        alert("Please paste some JSON data first.");
         return;
     }
 
-    consoleEl.innerHTML += `> Sending ${payload.length} questions to server...<br>`;
-    
+    let payload;
     try {
-        // Assuming Firebase HTTP callable function endpoint or Express route is deployed
-        const response = await fetch('/api/neetUpload', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ questions: payload })
-        });
-        const result = await response.json();
-        
-        consoleEl.innerHTML += `> Success: ${result.report.success} | Failed: ${result.report.failed}<br>`;
-        if (result.report.errors && result.report.errors.length > 0) {
-            result.report.errors.forEach(err => {
-                consoleEl.innerHTML += `<span style="color: #ef4444;">> ${err}</span><br>`;
-            });
-        }
+        payload = JSON.parse(jsonText);
+        if (!Array.isArray(payload)) throw new Error("JSON must be an array of questions.");
     } catch (e) {
-        consoleEl.innerHTML += `<span style="color: #ef4444;">> Server Error: ${e.message}</span><br>`;
+        alert("❌ JSON Syntax Error: " + e.message);
+        return;
+    }
+
+    // Duplicate Check
+    const idsInBatch = payload.map(q => q.question_id || q.id).filter(id => !!id);
+    const uniqueIds = new Set(idsInBatch);
+    if (idsInBatch.length !== uniqueIds.size) {
+        if (!confirm(`⚠️ Warning: Detected ${idsInBatch.length - uniqueIds.size} duplicate IDs in this batch. Firestore will only keep the last version of each. Continue?`)) return;
+    }
+
+    try {
+        const chaptersSnap = await getDocs(collection(db, 'sys_master_chapters'));
+        const chapterMaster = {};
+        chaptersSnap.forEach(docSnap => {
+            chapterMaster[docSnap.id] = docSnap.data();
+        });
+
+        const validSubjects = ['BOT', 'ZOO', 'PH', 'CH'];
+        let successCount = 0;
+        let failedCount = 0;
+        let errorList = [];
+
+        for (let i = 0; i < payload.length; i++) {
+            const q = payload[i];
+            const rowNum = i + 1;
+
+            if (!validSubjects.includes(q.subject_code)) {
+                errorList.push(`Row ${rowNum}: Invalid subject_code '${q.subject_code}'`);
+                failedCount++;
+                continue;
+            }
+
+            if (!q.content || !q.content.options || q.content.options.length !== 4) {
+                errorList.push(`Row ${rowNum}: Exactly 4 options required`);
+                failedCount++;
+                continue;
+            }
+
+            if (q.content.correct_option_index < 0 || q.content.correct_option_index > 3) {
+                errorList.push(`Row ${rowNum}: Correct answer index must be 0, 1, 2, or 3`);
+                failedCount++;
+                continue;
+            }
+
+            const masterRecord = chapterMaster[q.chapter_code];
+            if (!masterRecord) {
+                errorList.push(`Row ${rowNum}: Chapter code '${q.chapter_code}' not found in Master`);
+                failedCount++;
+                continue;
+            }
+
+            if (masterRecord.subject_code !== q.subject_code) {
+                errorList.push(`Row ${rowNum}: Chapter '${q.chapter_code}' does not belong to subject '${q.subject_code}'`);
+                failedCount++;
+                continue;
+            }
+
+            q.chapter_name = masterRecord.chapter_name;
+            q.status = "active";
+            q.createdAt = serverTimestamp();
+            
+            let docId = q.question_id || q.id;
+            if (!docId) {
+                docId = doc(collection(db, 'qb_questions')).id;
+                q.question_id = docId;
+                q.id = docId;
+            } else {
+                q.id = docId;
+                q.question_id = docId;
+            }
+
+            if (uploadedImageUrls[docId]) {
+                q.content.image_url = uploadedImageUrls[docId];
+            }
+            if (q.content.image_url) {
+                q.content.image_url = window.processSafeSVG(q.content.image_url);
+            }
+
+            const docRef = doc(db, 'qb_questions', docId);
+            await setDoc(docRef, q);
+            successCount++;
+        }
+
+        let resultMsg = `✅ Successfully uploaded ${successCount} questions!`;
+        if (failedCount > 0) {
+            resultMsg += `\n\n❌ Failed to upload ${failedCount} questions:\n` + errorList.join('\n');
+        } else {
+            resultMsg += `\n\nClick OK to clear the area for the next batch.`;
+        }
+
+        if (confirm(resultMsg)) {
+            if (failedCount === 0) {
+                document.getElementById("neetJsonInput").value = "";
+                uploadedImageUrls = {};
+                if (document.getElementById('imageUploadStatus')) {
+                    document.getElementById('imageUploadStatus').innerHTML = "";
+                }
+            }
+        }
+        
+    } catch (e) {
+        alert("❌ Error uploading NEET questions: " + e.message);
+        console.error(e);
     }
 };
 
