@@ -220,7 +220,6 @@
                 card.innerHTML = `
                     <span class="topic-code ${codeClass}">${chap.code}</span>
                     <h3>${chap.name}</h3>
-                    <button class="start-btn" onclick="alert('Feature linking to CBT engine for ${chap.code} is coming in the next update!')">Start Practice →</button>
                     <button class="start-btn" onclick="startNeetChapterPractice('${chap.code}', '${chap.name}')">Start Practice →</button>
                 `;
                 chapterGrid.appendChild(card);
@@ -242,8 +241,8 @@
             localStorage.setItem("selectedTopicName", chapterName);
             localStorage.setItem("isMockTest", "false");
             
-            // Redirect to your test player (e.g., jee-quiz.html or quiz.html)
-            window.location.href = "quiz.html";
+            // Redirect to dedicated NEET test player
+            window.location.href = "neet-quiz.html";
         };
 
         // Handle incoming parameters from biology/physics/chemistry hubs
