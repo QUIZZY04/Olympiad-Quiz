@@ -3072,6 +3072,21 @@ window.submitNeetUpload = async function() {
         if (!confirm(`⚠️ Warning: Detected ${idsInBatch.length - uniqueIds.size} duplicate IDs in this batch. Firestore will only keep the last version of each. Continue?`)) return;
     }
 
+    let dbExistingIds = [];
+    for (const id of uniqueIds) {
+        if (id) {
+            const docSnap = await getDoc(doc(db, "qb_questions", id));
+            if (docSnap.exists()) {
+                dbExistingIds.push(id);
+            }
+        }
+    }
+
+    if (dbExistingIds.length > 0) {
+        alert(`Warning! The following Question IDs already exist in the NEET Question Bank:\n\n${dbExistingIds.join(", ")}\n\nPlease modify them to prevent overwriting.`);
+        return;
+    }
+
     try {
         const chaptersSnap = await getDocs(collection(db, 'sys_master_chapters'));
         const chapterMaster = {};
