@@ -1202,7 +1202,7 @@ border-top:1px solid var(--border);
         </div>
         <div class="panel-content">
             <p class="muted">Upload NEET questions via JSON. Must contain valid chapter_code from sys_master_chapters.</p>
-            <textarea id="neetJsonInput" rows="15" placeholder='[{"subject_code": "BOT", "chapter_code": "BOT11_01", "difficulty": 2, "content": {"question_text": "...", "options": ["A","B","C","D"], "correct_option_index": 0}}]' style="height: 250px; font-family: monospace;"></textarea>
+            <textarea id="neetJsonInput" rows="15" placeholder='[{"subject_code": "PH", "chapter_code": "PH11_01", "difficulty": 2, "content": {"question_text": "...", "image_url": "<svg xmlns=\"http://www.w3.org/2000/svg\">...</svg>", "options": ["A","B","C","D"], "correct_option_index": 0, "solution_text": "..."}}]' style="height: 250px; font-family: monospace;"></textarea>
             <div style="display: flex; gap: 10px; margin-top: 10px;">
                 <button class="upload" onclick="navigator.clipboard.readText().then(t => document.getElementById('neetJsonInput').value = t)" style="background: var(--brand); color: #fff;">📋 Paste from Clipboard</button>
                 <button class="delete" onclick="document.getElementById('neetJsonInput').value = ''">🗑️ Clear JSON</button>
