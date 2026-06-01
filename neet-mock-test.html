@@ -55,24 +55,28 @@
                 const q = query(collection(db, "exam_tests"), where("exam", "==", "neet"));
                 const snap = await getDocs(q);
                 
-                if (snap.empty) {
-                    grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px; border: 1px dashed #e2e8f0; border-radius: 16px; background: white;'>No NEET full mock tests available at the moment. Coming soon!</div>";
-                    return;
-                }
-                
-                grid.innerHTML = "";
+                let html = `
+                    <div class="card">
+                        <h3 style="margin-bottom: 10px;">NEET Full Mock Test (Dynamic)</h3>
+                        <p style="color: #64748b; margin-bottom: 10px;">200 Questions | 200 Minutes | 720 Marks</p>
+                        <p style="font-size: 13px; color: #10b981; margin-bottom: 20px;">NTA Latest Pattern Exam. Questions fetched dynamically from chapter-wise bank.</p>
+                        <button class="btn" style="width: 100%;" onclick="window.location.href='neet-quiz.html?id=dynamic_full'">Start Test</button>
+                    </div>
+                `;
+
                 snap.forEach(doc => {
                     const data = doc.data();
-                    const card = document.createElement("div");
-                    card.className = "card";
-                    card.innerHTML = `
+                    html += `
+                    <div class="card">
                         <h3 style="margin-bottom: 10px;">${data.title || 'NEET Mock Test'}</h3>
                         <p style="color: #64748b; margin-bottom: 10px;">${data.questions ? data.questions.length : 0} Questions | ${data.duration || 200} Minutes | ${data.totalMarks || 720} Marks</p>
                         <p style="font-size: 13px; color: #10b981; margin-bottom: 20px;">NTA Latest Pattern Exam.</p>
                         <button class="btn" style="width: 100%;" onclick="window.location.href='neet-quiz.html?id=${doc.id}'">Start Test</button>
+                    </div>
                     `;
-                    grid.appendChild(card);
                 });
+                
+                grid.innerHTML = html;
             } catch (error) {
                 grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: #ef4444; padding: 40px;'>Failed to load tests.</div>";
             }
