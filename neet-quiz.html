@@ -93,18 +93,22 @@
             .popup-actions button { padding: 12px !important; font-size: 0.95rem !important; margin-bottom: 5px !important; }
             .popup-actions { flex-direction: column; gap: 8px !important; }
             body { height: auto; overflow-y: auto; display: block; }
-            .header { padding: 10px 15px; }
-            .header-title { font-size: 1rem; }
-            .header-info { gap: 10px; font-size: 14px; }
+            .header { height: auto; flex-direction: column; align-items: center; gap: 15px; padding: 15px; }
+            .header-title { font-size: 1.2rem; }
+            .header-info { width: 100%; justify-content: space-between; gap: 5px; font-size: 14px; }
+            .header-info > div:nth-child(2) { display: none; }
             .timer-box { font-size: 14px; }
-            .main-container { flex-direction: column; height: auto; display: flex; padding: 10px; }
-            .left-panel { overflow: visible; height: auto; min-height: 50vh; }
+            .main-container { flex-direction: column; height: auto; display: flex; padding: 10px; gap: 15px; }
+            .left-panel { overflow: visible; height: auto; min-height: unset; }
+            .question-header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 15px; }
+            .q-badge { align-self: flex-start; }
             .question-body { overflow-y: visible; padding: 15px; }
-            .right-panel { width: 100%; overflow: visible; height: auto; }
-            .palette-section { overflow-y: visible; padding: 15px; }
+            .right-panel { width: 100%; overflow: visible; height: auto; gap: 15px; }
+            .palette-section { overflow-y: auto; padding: 15px; max-height: 250px; }
             .action-buttons { flex-direction: column; gap: 10px; padding-top: 15px; }
-            .action-buttons-left, .action-buttons-right { width: 100%; display: flex; justify-content: space-between; gap: 10px; }
-            .action-buttons .btn { flex: 1; text-align: center; padding: 10px 5px; font-size: 12px; white-space: normal; }
+            .action-buttons-left, .action-buttons-right { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+            .action-buttons .btn { width: 100%; text-align: center; padding: 10px; font-size: 12px; white-space: normal; height: 100%; }
+            .action-buttons-right button:last-child { grid-column: 1 / -1; }
         }
 
         /* Anti-Cheat & Instruction Popups */
