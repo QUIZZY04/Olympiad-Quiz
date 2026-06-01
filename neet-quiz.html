@@ -701,8 +701,8 @@
             testTitle: testData.title, subject: testData.subject || "Full Syllabus", totalMarks: testData.totalMarks || (mappedQuestions.length * 4),
             questions: mappedQuestions, userAnswers: selectedAnswers
         };
-        localStorage.setItem("jeeQuizResult", JSON.stringify(resultObj));
-        window.location.replace("jee-result.html");
+        localStorage.setItem("neetQuizResult", JSON.stringify(resultObj));
+        window.location.replace("neet-result.html");
     };
 
     window.goBackToSelection = function() {

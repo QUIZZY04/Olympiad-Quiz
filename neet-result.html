@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Mock Test Results & Solutions | Olympiad Portal</title>
+    <meta name="description" content="Get detailed performance analytics, instant scores, and step-by-step solutions for your NEET mock tests. Analyze your mistakes and improve.">
+    <link rel="canonical" href="https://olympiadquiz.org/neet-result.html">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    
+    <script>
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+          sessionStorage.setItem("redirectAfterLogin", window.location.href);
+          window.location.replace("login.html");
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>body{visibility: hidden;}</style>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --subtle: #ecfdf5;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #cbd5e1;
+            --brand: #047857;
+            --accent: #064e3b;
+            --brand-text: #047857;
+            --brand-contrast: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column;
+            background-image: radial-gradient(circle at 0% 0%, rgba(4, 120, 87, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(4, 120, 87, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
+        
+        .summary-card { background: var(--surface); padding: 40px; border-radius: 24px; text-align: center; box-shadow: var(--shadow-lg); border-top: 6px solid var(--brand); margin-bottom: 50px; }
+        .summary-card h2 { font-size: 1.3rem; color: var(--muted); margin-bottom: 5px; font-weight: 700; }
+        .summary-card h1 { font-size: 2rem; color: var(--text); margin-bottom: 30px; font-weight: 800; letter-spacing: -0.5px; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-box { background: var(--bg); padding: 20px 15px; border-radius: 16px; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+        .stat-val { font-size: 2.2rem; font-weight: 800; line-height: 1; margin-bottom: 8px; color: var(--text); }
+        .stat-label { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+        
+        .solution-block { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: var(--shadow-md); transition: 0.3s; }
+        .solution-block:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: #94a3b8; }
+        
+        .q-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 20px; gap: 15px; flex-wrap: wrap; }
+        .q-title-wrap { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .q-title { font-size: 1.2rem; font-weight: 800; color: var(--text); }
+        .q-badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; background: var(--bg); color: var(--muted); border: 1px solid var(--border); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+        
+        .q-marks { font-size: 1.1rem; font-weight: 800; padding: 6px 15px; border-radius: 10px; white-space: nowrap; }
+        .q-marks.positive { background: #dcfce3; color: #047857; border: 1px solid #047857; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15); }
+        .q-marks.negative { background: #fee2e2; color: #b91c1c; border: 1px solid #b91c1c; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.15); }
+        .q-marks.zero { background: var(--subtle); color: var(--muted); border: 1px solid var(--border); }
+        
+        .q-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 25px; line-height: 1.6; color: var(--text); }
+        
+        .opt-box { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; margin-bottom: 12px; border-radius: 12px; border: 1px solid var(--border); font-size: 1rem; background: var(--bg); color: var(--text); font-weight: 500; transition: 0.2s; }
+        .opt-icon { font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; background: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 6px; }
+        
+        .opt-correct-selected { background: #dcfce3; border-color: #047857; color: #064e3b; font-weight: 700; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1); }
+        .opt-correct-selected .opt-icon { color: #047857; }
+        
+        .opt-wrong-selected { background: #fee2e2; border-color: #b91c1c; color: #7f1d1d; font-weight: 700; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1); }
+        .opt-wrong-selected .opt-icon { color: #b91c1c; }
+        
+        .opt-missed-correct { background: #eff6ff; border-color: #3b82f6; color: #1e3a8a; font-weight: 700; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1); }
+        .opt-missed-correct .opt-icon { color: #2563eb; }
+        
+        .solution-content { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid var(--brand); padding: 25px; border-radius: 16px; margin-top: 30px; }
+        .solution-content h4 { color: var(--brand-text); margin-bottom: 15px; font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+        .solution-content p { color: var(--text); font-size: 1rem; line-height: 1.7; margin: 0; font-weight: 500; }
+        
+        .section-title { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 25px; text-align: center; }
+
+        .nav-btn { display: inline-block; background: var(--brand); color: var(--brand-contrast); padding: 12px 30px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 20px; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer;}
+        .nav-btn:hover { background: var(--accent); transform: translateY(-2px); }
+        
+        @media (max-width: 768px) { .q-header { flex-direction: column; align-items: flex-start; gap: 10px; } .opt-box { flex-direction: column; align-items: flex-start; gap: 10px; } }
+    </style>
+</head>
+<body>
+<nav>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+    <a href="dashboard.html" class="brand">🎓 Olympiad Portal</a>
+    <div class="nav-links">
+        <button class="close-menu" onclick="toggleMenu()">&times;</button>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="neet.html">NEET Prep</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <div class="nav-actions">
+            <a onclick="logout()" class="login-link" style="color: white; cursor: pointer; background: #dc2626;">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="summary-card" id="summaryCard">
+        <h2>Loading your results...</h2>
+    </div>
+    
+    <h2 class="section-title">Question Analysis & Solutions</h2>
+    <div id="solutionsContainer"></div>
+</div>
+
+<!-- Feedback Modal -->
+<div id="feedbackModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.95); backdrop-filter:blur(10px); z-index:2000; justify-content:center; align-items:center; padding:20px;">
+    <div class="feedback-modal-content" style="background:var(--surface); padding:40px; border-radius:24px; width:100%; max-width:480px; text-align:left; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+        <div style="text-align: center; margin-bottom: 25px;">
+            <div style="font-size: 48px; margin-bottom: 10px;">🎯</div>
+            <h2 style="color: var(--text); margin-bottom: 10px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">Test Complete!</h2>
+            <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;">Please share your feedback to unlock your detailed performance analytics and solutions.</p>
+        </div>
+        
+        <div style="background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px;">
+            <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-bottom: 8px;">HOW WOULD YOU RATE THIS TEST? <span style="color:var(--danger)">*</span></label>
+            <select id="fbRating" style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size: 14px; font-weight: 500; outline:none; cursor: pointer; transition: 0.2s;">
+                <option value="5">⭐⭐⭐⭐⭐ Excellent - Loved it!</option>
+                <option value="4">⭐⭐⭐⭐ Good - Pretty solid</option>
+                <option value="3">⭐⭐⭐ Average - Could be better</option>
+                <option value="2">⭐⭐ Poor - Not great</option>
+                <option value="1">⭐ Very Poor - Had a bad experience</option>
+            </select>
+        </div>
+
+        <label style="display:block; color:var(--text); font-size:13px; font-weight:700; margin-bottom: 8px;">TELL US MORE <span style="color:var(--danger)">*</span></label>
+        <textarea id="fbText" rows="4" style="width:100%; padding:16px; border-radius:16px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size: 14px; margin-bottom: 25px; outline:none; resize:none; font-family:inherit; transition: 0.2s;" placeholder="Please provide specific details..."></textarea>
+        
+        <button id="fbSubmitBtn" style="width:100%; padding:16px; border-radius:12px; background:var(--brand); color:#fff; border:none; font-weight:700; font-size:16px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; box-shadow: 0 4px 15px rgba(4, 120, 87, 0.25);" onclick="submitFeedback()">Unlock My Results 🚀</button>
+    </div>
+</div>
+
+<footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
+    <p style="font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+</footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.openFeedback = () => document.getElementById("feedbackModal").style.display = "flex";
+    window.closeFeedback = () => document.getElementById("feedbackModal").style.display = "none";
+    
+    window.submitFeedback = async () => {
+        const rating = document.getElementById("fbRating").value;
+        const comment = document.getElementById("fbText").value;
+        const btn = document.getElementById("fbSubmitBtn");
+        const resultData = JSON.parse(localStorage.getItem("neetQuizResult"));
+        const currentUser = auth.currentUser;
+
+        if (!comment.trim()) { alert("Please provide your comments or suggestions. This field is required."); return; }
+
+        btn.disabled = true;
+        btn.innerText = "Submitting...";
+
+        try {
+            await addDoc(collection(db, "feedbacks"), {
+                uid: currentUser?.uid || "anonymous",
+                name: currentUser?.displayName || "Student",
+                email: currentUser?.email || "N/A",
+                rating: rating + " Star",
+                category: "General Feedback",
+                suggestion: comment,
+                score: window.neetTotalScoreEarned !== undefined ? `${window.neetTotalScoreEarned}/${window.neetMaxScorePossible}` : "N/A",
+                quizName: resultData ? (resultData.testTitle || resultData.subject || "NEET Mock Test") : "N/A",
+                pageSource: "NEET Result Page",
+                date: new Date().toLocaleString(),
+                timestamp: serverTimestamp()
+            });
+            localStorage.setItem("feedbackGiven", "true");
+            alert("Thank you for your feedback!");
+            window.closeFeedback();
+        } catch (e) {
+            alert("Error: " + e.message);
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "SUBMIT FEEDBACK";
+        }
+    };
+
+    onAuthStateChanged(auth, (user) => {
+        document.body.style.visibility = 'visible';
+        if (!user) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace("login.html");
+            return;
+        }
+
+        const resultData = JSON.parse(localStorage.getItem("neetQuizResult"));
+        if (!resultData) {
+            alert("No result data found!");
+            window.location.href = "neet.html";
+            return;
+        }
+
+        let totalScoreEarned = 0;
+        let maxScorePossible = 0;
+        let correctCount = 0, incorrectCount = 0, unattemptedCount = 0;
+        let html = "";
+        
+        resultData.questions.forEach((q, idx) => {
+            const userAns = resultData.userAnswers[idx] || [];
+            const correctAns = q.correctAnswers || [];
+            
+            let isCorrect = false;
+            let isAttempted = userAns.length > 0;
+            
+            if (isAttempted && correctAns.length > 0 && userAns[0] === correctAns[0]) {
+                isCorrect = true;
+            }
+            
+            let earned = 0;
+            let statusTag = "";
+            let markClass = "";
+            
+            if (!isAttempted) {
+                earned = 0;
+                statusTag = "Unattempted";
+                markClass = "zero";
+                unattemptedCount++;
+            } else if (isCorrect) {
+                earned = 4;
+                statusTag = "Correct";
+                markClass = "positive";
+                correctCount++;
+            } else {
+                earned = -1;
+                statusTag = "Incorrect";
+                markClass = "negative";
+                incorrectCount++;
+            }
+            
+            totalScoreEarned += earned;
+            maxScorePossible += 4;
+
+            let optionsHtml = "";
+            (q.options || []).forEach(opt => {
+                if(!opt) return;
+                let styleClass = "opt-box";
+                let iconHtml = "";
+                const isUserSelected = userAns.includes(opt);
+                const isTrueCorrect = correctAns.includes(opt);
+                
+                if (isUserSelected && isTrueCorrect) {
+                    styleClass += " opt-correct-selected";
+                    iconHtml = `<div class="opt-icon">✅ <span>Your Ans & Correct</span></div>`;
+                }
+                else if (isUserSelected && !isTrueCorrect) {
+                    styleClass += " opt-wrong-selected";
+                    iconHtml = `<div class="opt-icon">❌ <span>Your Ans</span></div>`;
+                }
+                else if (!isUserSelected && isTrueCorrect) {
+                    styleClass += " opt-missed-correct";
+                    iconHtml = `<div class="opt-icon">🎯 <span>Correct Ans</span></div>`;
+                }
+                
+                optionsHtml += `<div class="${styleClass}">
+                    <div style="flex: 1;">${opt}</div>
+                    ${iconHtml}
+                </div>`;
+            });
+            
+            let qIdText = q.id ? ` | ID: ${q.id}` : "";
+            let typeBadgeText = "Single Correct (+4, -1)";
+            
+            let qSectionText = q.subject ? `[${q.subject}${q.section ? ' - Section ' + q.section : ''}] ` : "";
+
+            const imgHtml = (q.image_url || q.image_name) ? `<div style="text-align: left; margin: 15px 0;"><img src="${q.image_url || q.image_name}" style="max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid var(--border); object-fit: contain;"></div>` : "";
+
+            html += `
+            <div class="solution-block">
+                <div class="q-header">
+                    <div class="q-title-wrap">
+                        <div class="q-title">${qSectionText}Question ${idx + 1}${qIdText}</div>
+                        <div class="q-badge">${typeBadgeText}</div>
+                        <div class="q-badge">${statusTag}</div>
+                    </div>
+                    <div class="q-marks ${markClass}">Marks: ${earned > 0 ? '+' : ''}${earned}</div>
+                </div>
+                <div class="q-text">${q.questionText || q.question || ""}</div>
+                ${imgHtml}
+                <div>${optionsHtml}</div>
+                <div class="solution-content">
+                    <h4>💡 Detailed Solution</h4>
+                    <p>${q.explanation ? q.explanation : "Self-explanatory based on the correct options provided above."}</p>
+                </div>
+            </div>`;
+        });
+
+        // Calculate Accuracy
+        let attempted = correctCount + incorrectCount;
+        let accuracy = attempted > 0 ? ((correctCount) / attempted * 100).toFixed(1) : 0;
+
+        if (!resultData.savedToDb) {
+            addDoc(collection(db, "leaderboard"), {
+                uid: user.uid,
+                email: user.email || null,
+                name: user.displayName || (user.email ? user.email.split('@')[0] : "Student"),
+                testTitle: resultData.testTitle || "NEET Mock Test",
+                subject: resultData.subject || "Full Syllabus",
+                score: totalScoreEarned,
+                total: maxScorePossible,
+                accuracy: Number(accuracy),
+                correctCount: correctCount,
+                incorrectCount: incorrectCount,
+                examType: "NEET",
+                date: serverTimestamp()
+            }).catch(e => console.error("Error saving result:", e));
+            
+            resultData.savedToDb = true;
+            localStorage.setItem("neetQuizResult", JSON.stringify(resultData));
+        }
+        
+        window.neetTotalScoreEarned = totalScoreEarned;
+        window.neetMaxScorePossible = maxScorePossible;
+
+        document.getElementById("summaryCard").innerHTML = `
+            <h2>NEET Mock Test Result</h2>
+            <h1 style="color: var(--brand); margin-bottom: 15px;">${resultData.testTitle}</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-box" style="border-bottom: 4px solid var(--brand);">
+                    <div class="stat-val" style="color: ${totalScoreEarned >= 0 ? 'var(--brand)' : 'var(--danger)'};">${totalScoreEarned}</div>
+                    <div class="stat-label">Total Score</div>
+                </div>
+                <div class="stat-box" style="border-bottom: 4px solid #64748b;">
+                    <div class="stat-val" style="color: #475569;">${maxScorePossible}</div>
+                    <div class="stat-label">Max Marks</div>
+                </div>
+                <div class="stat-box" style="border-bottom: 4px solid #0ea5e9;">
+                    <div class="stat-val" style="color: #0284c7;">${accuracy}%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-box" style="border-bottom: 4px solid var(--success);">
+                    <div class="stat-val" style="color: var(--success);">${correctCount}</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-box" style="border-bottom: 4px solid var(--danger);">
+                    <div class="stat-val" style="color: var(--danger);">${incorrectCount}</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-box" style="border-bottom: 4px solid #94a3b8;">
+                    <div class="stat-val" style="color: #64748b;">${unattemptedCount}</div>
+                    <div class="stat-label">Unattempted</div>
+                </div>
+            </div>
+            
+            <a href="neet.html" class="nav-btn">Take Another Test</a>
+            <button class="nav-btn" style="background:var(--warning); color: #fff; cursor:pointer; margin-left:10px;" onclick="openFeedback()">Give Feedback</button>
+        `;
+
+        document.getElementById("solutionsContainer").innerHTML = html;
+        
+        const feedbackGiven = localStorage.getItem("feedbackGiven");
+        if (feedbackGiven !== "true") {
+            window.openFeedback();
+        }
+    });
+
+    window.logout = async () => {
+        if (confirm("Logout?")) {
+            await signOut(auth);
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace("login.html");
+        }
+    };
+</script>
+<script>
+    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+</script>
+</body>
+</html>
