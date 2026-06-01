@@ -60,6 +60,16 @@ exports.bulkUploadNeetQuestions = async (req, res) => {
             q.status = "active";
             q.created_at = admin.firestore.FieldValue.serverTimestamp();
 
+            // 4.5. Check if question_id already exists to prevent overwrite
+            if (q.question_id) {
+                const existingDoc = await db.collection('qb_questions').doc(q.question_id).get();
+                if (existingDoc.exists) {
+                    uploadReport.errors.push(`Row ${rowNum}: Question ID '${q.question_id}' already exists in the database.`);
+                    uploadReport.failed++;
+                    continue;
+                }
+            }
+
             // 5. Add to Batch
             const docRef = db.collection('qb_questions').doc(q.question_id || db.collection('qb_questions').doc().id);
             batch.set(docRef, q);

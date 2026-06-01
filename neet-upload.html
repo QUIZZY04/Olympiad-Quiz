@@ -20,13 +20,24 @@
         
         <textarea id="jsonInput" rows="15" placeholder='[{"subject_code": "BOT", "chapter_code": "BOT01", "difficulty": 2, "content": {"question_text": "...", "options": ["A","B","C","D"], "correct_option_index": 0}}]'></textarea>
         
-        <button onclick="submitUpload()" style="margin-top: 20px;">Validate & Upload</button>
+        <button id="uploadBtn" style="margin-top: 20px;">Validate & Upload</button>
         
         <div id="console">> Awaiting payload...</div>
     </div>
 
-    <script>
-        async function submitUpload() {
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+            authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+            projectId: "olympiad-portal-d2a5e"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById('uploadBtn').addEventListener('click', async () => {
             const consoleEl = document.getElementById('console');
             consoleEl.innerHTML = '> Validating JSON syntax...<br>';
             let payload;
@@ -35,6 +46,25 @@
                 payload = JSON.parse(document.getElementById('jsonInput').value);
             } catch (e) {
                 consoleEl.innerHTML += `<span class="err">> JSON Syntax Error: ${e.message}</span><br>`;
+                return;
+            }
+
+            consoleEl.innerHTML += `> Checking for duplicate Question IDs in database...<br>`;
+            
+            let existingIds = [];
+            for (const q of payload) {
+                if (q.question_id) {
+                    const docRef = doc(db, "qb_questions", q.question_id);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        existingIds.push(q.question_id);
+                    }
+                }
+            }
+
+            if (existingIds.length > 0) {
+                alert(`Warning! The following Question IDs already exist in the NEET Question Bank:\n\n${existingIds.join(", ")}\n\nPlease modify them to prevent overwriting.`);
+                consoleEl.innerHTML += `<span class="err">> Upload aborted due to duplicate IDs.</span><br>`;
                 return;
             }
 
@@ -56,7 +86,7 @@
             } catch (e) {
                 consoleEl.innerHTML += `<span class="err">> Server Error: ${e.message}</span><br>`;
             }
-        }
+        });
     </script>
 </body>
 </html>
