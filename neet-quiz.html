@@ -18,6 +18,7 @@
         * { box-sizing: border-box; }
         :root { 
             --bg: #f1f5f9;
+            --bg: #e2e8f0;
             --surface: #ffffff;
             --text: #0f172a;
             --muted: #475569;
@@ -30,25 +31,33 @@
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
         body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: #fff; overflow: hidden; height: 100vh; display: flex; flex-direction: column; width: 100%; }
+        body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: var(--bg); overflow: hidden; height: 100vh; display: flex; flex-direction: column; width: 100%; }
         
         .header { background: var(--surface); color: var(--text); padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-sm); z-index: 10; }
         .header-title { font-size: 1.3rem; font-weight: 800; color: var(--brand); display: flex; align-items: center; gap: 10px; }
         .header-info { display: flex; align-items: center; gap: 20px; }
+        .header-left { flex: 1; display: flex; align-items: center; justify-content: flex-start; }
+        .header-center { flex: 1; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .header-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; }
+        
+        .header-title { font-size: 1.3rem; font-weight: 800; color: var(--brand); display: flex; align-items: center; gap: 8px; }
         .timer-box { font-size: 1.2rem; font-weight: 700; font-family: monospace; background: #fef2f2; color: #b91c1c; padding: 6px 15px; border-radius: 8px; border: 1px solid #fca5a5; }
         
-        .main-container { display: flex; flex: 1; padding: 20px; gap: 20px; overflow: hidden; }
+        .main-container { display: flex; flex: 1; padding: 20px; gap: 20px; overflow: hidden; max-width: 70%; margin: 0 auto; }
         
         .left-panel { flex: 1; display: flex; flex-direction: column; background: var(--surface); border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--shadow-md); overflow: hidden; min-width: 0; }
         .question-header { background: #f8fafc; padding: 15px 25px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; color: var(--text); }
         .q-badge { background: #ecfdf5; color: #047857; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; border: 1px solid #a7f3d0; text-transform: uppercase; }
         .question-body { flex: 1; padding: 30px; overflow-y: auto; font-size: 16px; line-height: 1.7; color: var(--text); }
+        #qText { font-size: 1.15rem; font-weight: 600; color: #0f172a; line-height: 1.6; }
         
         .options-container { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; width: 100%; }
-        .option-row { display: flex; align-items: flex-start; gap: 15px; cursor: pointer; padding: 15px 20px; border-radius: 12px; transition: 0.2s; border: 2px solid var(--border); background: var(--surface); }
-        .option-row:hover { background: #f0fdf4; border-color: #86efac; }
-        .option-row.selected { background: #ecfdf5; border-color: var(--brand); box-shadow: 0 4px 10px rgba(4, 120, 87, 0.1); }
+        .option-row { display: flex; align-items: flex-start; gap: 15px; cursor: pointer; padding: 15px 20px; border-radius: 12px; transition: 0.2s; border: 2px solid #e2e8f0; background: #f8fafc; }
+        .option-row:hover { background: #f1f5f9; border-color: #cbd5e1; }
+        .option-row.selected { background: #f0fdf4; border-color: #10b981; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.1); }
         .option-row input { margin-top: 5px; cursor: pointer; transform: scale(1.3); accent-color: var(--brand); flex-shrink: 0; }
-        .option-row span { font-size: 15px; color: var(--text); line-height: 1.5; font-weight: 500; }
+        .option-row span { font-size: 16px; color: #334155; line-height: 1.5; font-weight: 500; }
+        .option-row.selected span { color: #064e3b; font-weight: 600; }
         
         .action-buttons { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
         .action-buttons-left { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -97,6 +106,8 @@
             .header-title { font-size: 1.2rem; }
             .header-info { width: 100%; justify-content: space-between; gap: 5px; font-size: 14px; }
             .header-info > div:nth-child(2) { display: none; }
+            .header-left, .header-center, .header-right { justify-content: center; width: 100%; }
+            .header-title { font-size: 1.2rem; justify-content: center; }
             .timer-box { font-size: 14px; }
             .main-container { flex-direction: column; height: auto; display: flex; padding: 10px; gap: 15px; }
             .left-panel { overflow: visible; height: auto; min-height: unset; }
@@ -142,11 +153,15 @@
 <body>
 
 <div class="header">
-    <div class="header-title"><span style="font-size: 24px;">🎓</span> <span id="testTitle">NEET Mock Test</span></div>
-    <div class="header-info">
-        <button class="btn" style="padding: 8px 16px; font-size: 12px; font-weight: 700;" onclick="goBackToSelection()">Exit Exam</button>
-        <div style="font-weight: 600; color: var(--muted); font-size: 14px;">Time Left:</div>
+    <div class="header-left">
+        <div class="header-title"><span style="font-size: 24px;">🎓</span> <span id="testTitle">NEET Mock Test</span></div>
+    </div>
+    <div class="header-center">
+        <div style="font-weight: 700; color: var(--text); font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Time Left:</div>
         <div class="timer-box" id="timer">--:--:--</div>
+    </div>
+    <div class="header-right">
+        <button class="btn" style="padding: 8px 16px; font-size: 12px; font-weight: 700; background: #fee2e2; color: #b91c1c; border-color: #fca5a5;" onclick="goBackToSelection()">Exit Exam</button>
     </div>
 </div>
 
@@ -163,13 +178,13 @@
         
             <div class="action-buttons">
                 <div class="action-buttons-left">
-                    <button class="btn btn-review" onclick="markForReview()">⭐ Mark for Review & Next</button>
-                    <button class="btn btn-clear" onclick="clearResponse()">🗑️ Clear Response</button>
-                </div>
-                <div class="action-buttons-right">
                     <button class="btn" onclick="prevQuestion()">⬅️ Previous</button>
                     <button class="btn btn-primary" onclick="saveAndNext()">Save & Next ➡️</button>
-                    <button class="btn btn-primary" style="background: #b91c1c; border-color: #b91c1c;" onclick="submitTest()">Submit Final Test</button>
+                </div>
+                <div class="action-buttons-right">
+                    <button class="btn btn-review" onclick="markForReview()">⭐ Review & Next</button>
+                    <button class="btn btn-clear" onclick="clearResponse()">🗑️ Clear</button>
+                    <button class="btn btn-primary" style="background: #b91c1c; border-color: #b91c1c; color: white;" onclick="submitTest()">Submit Test</button>
                 </div>
             </div>
         </div>
@@ -307,17 +322,6 @@
                         baseTestData = { title: "Biology Full Mock Test", duration: 90, subject: "Biology" };
                     }
 
-                    const formatQuestion = (q) => ({
-                        questionText: q.content.question_text,
-                        image_url: q.content.image_url,
-                        options: q.content.options,
-                        correctAnswers: [q.content.options[q.content.correct_option_index]],
-                        explanation: q.content.solution_text,
-                        type: "single",
-                        subject: q.subject_code,
-                        id: q.question_id || q.id
-                    });
-
                     for (const sub of subjects) {
                         const qry = query(collection(db, "qb_questions"), 
                             where("subject_code", "==", sub),
@@ -351,7 +355,21 @@
                             selected.sort(() => 0.5 - Math.random());
                         }
                         
-                        dynamicQuestions.push(...selected.map(formatQuestion));
+                        dynamicQuestions.push(...selected.map((q, idx) => {
+                            let section = idx < 35 ? "A" : "B";
+                            let subDisplay = q.subject_code === "PH" ? "Physics" : q.subject_code === "CH" ? "Chemistry" : q.subject_code === "BOT" ? "Botany" : "Zoology";
+                            return {
+                                questionText: q.content.question_text,
+                                image_url: q.content.image_url,
+                                options: q.content.options,
+                                correctAnswers: [q.content.options[q.content.correct_option_index]],
+                                explanation: q.content.solution_text,
+                                type: "single",
+                                subject: subDisplay,
+                                section: section,
+                                id: q.question_id || q.id
+                            };
+                        }));
                     }
                 }
                 
@@ -403,7 +421,8 @@
                         correctAnswers: [q.content.options[q.content.correct_option_index]],
                         explanation: q.content.solution_text,
                         type: q.question_type === "SINGLE_CORRECT" ? "single" : "single",
-                        subject: q.subject_code,
+                        subject: q.subject_code === "PH" ? "Physics" : q.subject_code === "CH" ? "Chemistry" : q.subject_code === "BOT" ? "Botany" : q.subject_code === "ZOO" ? "Zoology" : q.subject_code,
+                        section: idx < 35 ? "A" : "B",
                         id: q.question_id || q.id
                     }))
                 };
@@ -525,8 +544,19 @@
         visited[currentQ] = true;
         
         const q = testData.questions[currentQ];
-        let qSectionText = q.subject ? `[${q.subject}${q.section ? ' - Section ' + q.section : ''}] ` : "";
-        document.getElementById("qNumber").innerHTML = `${qSectionText}Question No. ${currentQ + 1}`;
+        
+        let subSecText = "";
+        if (q.subject) {
+            subSecText += q.subject;
+            if (q.section) subSecText += ` - Section ${q.section}`;
+        }
+        const subSecEl = document.getElementById("qSubjectSection");
+        if (subSecEl) {
+            subSecEl.innerText = subSecText;
+            subSecEl.style.display = subSecText ? "inline" : "none";
+        }
+        
+        document.getElementById("qNumber").innerHTML = `Question No. ${currentQ + 1}`;
         
         document.getElementById("qTypeBadge").innerText = "Single Correct Option (+4, -1)";
         
@@ -575,7 +605,37 @@
     function buildPalette() {
         const grid = document.getElementById("paletteGrid");
         grid.innerHTML = "";
-        testData.questions.forEach((_, i) => {
+        let currentSubject = "";
+        let currentSection = "";
+        testData.questions.forEach((q, i) => {
+            if (q.subject && q.section && (q.subject !== currentSubject || q.section !== currentSection)) {
+                currentSubject = q.subject;
+                currentSection = q.section;
+                const label = document.createElement("div");
+                label.style.flex = "1 1 100%";
+                label.style.fontWeight = "800";
+                label.style.fontSize = "12px";
+                label.style.color = "#047857";
+                label.style.marginTop = "10px";
+                label.style.textTransform = "uppercase";
+                label.style.borderBottom = "2px solid #a7f3d0";
+                label.style.paddingBottom = "4px";
+                label.innerText = `${currentSubject} - Section ${currentSection}`;
+                grid.appendChild(label);
+            } else if (q.subject && !q.section && q.subject !== currentSubject) {
+                currentSubject = q.subject;
+                const label = document.createElement("div");
+                label.style.flex = "1 1 100%";
+                label.style.fontWeight = "800";
+                label.style.fontSize = "12px";
+                label.style.color = "#047857";
+                label.style.marginTop = "10px";
+                label.style.textTransform = "uppercase";
+                label.style.borderBottom = "2px solid #a7f3d0";
+                label.style.paddingBottom = "4px";
+                label.innerText = `${currentSubject}`;
+                grid.appendChild(label);
+            }
             const cell = document.createElement("div");
             cell.id = "pcell-" + i; cell.innerText = i + 1;
             cell.onclick = () => { currentQ = i; renderQuestion(); };
