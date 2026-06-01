@@ -236,7 +236,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, collection, query, where, getDocs, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const app = initializeApp({ apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" });
     const auth = getAuth(app);
@@ -259,12 +259,71 @@
         
         try {
             if (testId) {
-                // --- MODE 1: Full NEET Mock Test (from exam_tests) ---
+                // --- MODE 1: Full NEET Mock Test (from exam_tests + qb_questions) ---
                 const docSnap = await getDoc(doc(db, "exam_tests", testId));
-                if (!docSnap.exists()) throw new Error("Test not found");
+                let baseTestData = { title: "NEET Full Mock Test", duration: 200, subject: "Full Syllabus" };
+                if (docSnap.exists()) {
+                    baseTestData = docSnap.data();
+                }
                 
-                testData = docSnap.data();
-                document.getElementById("testTitle").innerText = testData.title;
+                document.getElementById("testTitle").innerText = baseTestData.title || "NEET Full Mock Test";
+
+                // Fetch dynamic questions from chapterwise database (qb_questions)
+                const subjects = ["PH", "CH", "BOT", "ZOO"];
+                let dynamicQuestions = [];
+
+                const formatQuestion = (q) => ({
+                    questionText: q.content.question_text,
+                    image_url: q.content.image_url,
+                    options: q.content.options,
+                    correctAnswers: [q.content.options[q.content.correct_option_index]],
+                    explanation: q.content.solution_text,
+                    type: "single",
+                    subject: q.subject_code,
+                    id: q.question_id || q.id
+                });
+
+                for (const sub of subjects) {
+                    const qry = query(collection(db, "qb_questions"), 
+                        where("subject_code", "==", sub),
+                        where("status", "==", "active"),
+                        limit(400)
+                    );
+                    const snap = await getDocs(qry);
+                    let subQs = snap.docs.map(d => d.data());
+                    
+                    // Separate into Class 11 and Class 12 based on the chapter_code format (e.g. PH11_01)
+                    let class11Qs = subQs.filter(q => q.chapter_code && q.chapter_code.includes("11"));
+                    let class12Qs = subQs.filter(q => q.chapter_code && q.chapter_code.includes("12"));
+                    
+                    let selected = [];
+                    if (class11Qs.length === 0 && class12Qs.length === 0) {
+                        subQs.sort(() => 0.5 - Math.random());
+                        selected = subQs.slice(0, 50);
+                    } else {
+                        class11Qs.sort(() => 0.5 - Math.random());
+                        class12Qs.sort(() => 0.5 - Math.random());
+                        
+                        let selected11 = class11Qs.slice(0, 25);
+                        let selected12 = class12Qs.slice(0, 50 - selected11.length);
+                        
+                        if (selected12.length < 25) {
+                            const needed = 50 - selected12.length;
+                            selected11 = class11Qs.slice(0, needed);
+                        }
+                        
+                        selected = [...selected11, ...selected12];
+                        selected.sort(() => 0.5 - Math.random());
+                    }
+                    
+                    dynamicQuestions.push(...selected.map(formatQuestion));
+                }
+
+                testData = {
+                    ...baseTestData,
+                    totalMarks: dynamicQuestions.length > 0 ? dynamicQuestions.length * 4 : (baseTestData.totalMarks || 720),
+                    questions: dynamicQuestions.length > 0 ? dynamicQuestions : (baseTestData.questions || [])
+                };
             } else {
                 // --- MODE 2: Chapter-wise NEET Practice (from qb_questions via localStorage) ---
                 const sClass = localStorage.getItem("selectedClass");
