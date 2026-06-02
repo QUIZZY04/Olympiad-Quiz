@@ -61,12 +61,6 @@
       ]
     }
     </script>
-    <script>
-      if (localStorage.getItem("isLoggedIn") !== "true") {
-          sessionStorage.setItem("redirectAfterLogin", window.location.href);
-          window.location.replace("login.html");
-      }
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -150,38 +144,72 @@
         <p>Comprehensive Biology, Physics, and Chemistry practice designed exactly on the latest NMC/NTA pattern for medical aspirants.</p>
     </div>
 
-    <div class="test-grid" id="neetHubGrid">
+        <div class="test-grid" id="neetHubGrid" style="margin-bottom: 40px;">
         <div class="test-card" style="border-top-color: #10b981; cursor:pointer;" onclick="location.href='neet-biology.html'">
             <h3>🧬 Biology (Botany & Zoology)</h3>
             <p class="meta">Master NCERT line-by-line with chapter-wise tests and full Biology mocks.</p>
             <button class="start-btn" style="background: #10b981;">Explore Biology</button>
+            </div>
+            <div class="test-card" style="border-top-color: #3b82f6; cursor:pointer;" onclick="location.href='neet-physics.html'">
+                <h3>📐 Physics</h3>
+                <p class="meta">Practice high-speed numericals, mechanics, and modern physics.</p>
+                <button class="start-btn" style="background: #3b82f6;">Explore Physics</button>
+            </div>
+            <div class="test-card" style="border-top-color: #f59e0b; cursor:pointer;" onclick="location.href='neet-chemistry.html'">
+                <h3>🧪 Chemistry</h3>
+                <p class="meta">Organic, Inorganic, and Physical Chemistry mocks and PYQs.</p>
+                <button class="start-btn" style="background: #f59e0b;">Explore Chemistry</button>
+            </div>
+            <div class="test-card" style="border-top-color: #8b5cf6; cursor:pointer;" onclick="location.href='neet-mock-test.html'">
+                <h3>📝 Full NEET Mock Tests</h3>
+                <p class="meta">Experience the exact 200-question NTA CBT environment.</p>
+                <button class="start-btn" style="background: #8b5cf6;">Start Full Mock</button>
+            </div>
+            <div class="test-card" style="border-top-color: #ef4444; cursor:pointer;" onclick="location.href='neet-pyq.html'">
+                <h3>🏛️ Previous Year Papers</h3>
+                <p class="meta">Download and practice official NTA NEET PYQs from 2013-2025.</p>
+                <button class="start-btn" style="background: #ef4444;">Access PYQs</button>
+            </div>
+            <div class="test-card" style="border-top-color: #14b8a6; cursor:pointer;" onclick="location.href='neet-chapterwise.html'">
+                <h3>📘 Chapter-wise Practice</h3>
+                <p class="meta">Targeted practice for all 79 chapters of Physics, Chemistry & Biology.</p>
+                <button class="start-btn" style="background: #14b8a6;">Practice Chapter-wise</button>
+            </div>
         </div>
-        <div class="test-card" style="border-top-color: #3b82f6; cursor:pointer;" onclick="location.href='neet-physics.html'">
-            <h3>📐 Physics</h3>
-            <p class="meta">Practice high-speed numericals, mechanics, and modern physics.</p>
-            <button class="start-btn" style="background: #3b82f6;">Explore Physics</button>
+
+        <div style="margin-top: 40px; margin-bottom: 20px;">
+            <h2 style="font-size: 1.8rem; color: var(--text); font-weight: 800; text-align: center;">Explore Dynamic NEET Tests</h2>
         </div>
-        <div class="test-card" style="border-top-color: #f59e0b; cursor:pointer;" onclick="location.href='neet-chemistry.html'">
-            <h3>🧪 Chemistry</h3>
-            <p class="meta">Organic, Inorganic, and Physical Chemistry mocks and PYQs.</p>
-            <button class="start-btn" style="background: #f59e0b;">Explore Chemistry</button>
+
+    <div class="filter-bar">
+        <div class="filter-group">
+            <label for="fClass" class="filter-label">🎓 Select Grade</label>
+            <select id="fClass" onchange="loadTests()">
+                <option value="all" selected>All Grades</option>
+                <option value="class11">Class 11</option>
+                <option value="class12">Class 12</option>
+            </select>
         </div>
-        <div class="test-card" style="border-top-color: #8b5cf6; cursor:pointer;" onclick="location.href='neet-mock-test.html'">
-            <h3>📝 Full NEET Mock Tests</h3>
-            <p class="meta">Experience the exact 200-question NTA CBT environment.</p>
-            <button class="start-btn" style="background: #8b5cf6;">Start Full Mock</button>
+        <div class="filter-group">
+            <label for="fType" class="filter-label">📝 Select Test Type</label>
+            <select id="fType" onchange="handleTestTypeChange()">
+                <option value="all" selected>All Test Types</option>
+                <option value="full_mock">Full Mock Test</option>
+                <option value="subject_test">Subject-wise Mock Test</option>
+            </select>
         </div>
-        <div class="test-card" style="border-top-color: #ef4444; cursor:pointer;" onclick="location.href='neet-pyq.html'">
-            <h3>🏛️ Previous Year Papers</h3>
-            <p class="meta">Download and practice official NTA NEET PYQs from 2013-2025.</p>
-            <button class="start-btn" style="background: #ef4444;">Access PYQs</button>
-        </div>
-        <div class="test-card" style="border-top-color: #14b8a6; cursor:pointer;" onclick="location.href='neet-chapterwise.html'">
-            <h3>📘 Chapter-wise Practice</h3>
-            <p class="meta">Targeted practice for all 79 chapters of Physics, Chemistry & Biology.</p>
-            <button class="start-btn" style="background: #14b8a6;">Practice Chapter-wise</button>
+        <div class="filter-group">
+            <label for="fSubject" class="filter-label">📚 Select Subject</label>
+            <select id="fSubject" onchange="loadTests()">
+                <option value="all" selected>All Subjects</option>
+                <option value="Biology">Biology</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+            </select>
         </div>
     </div>
+
+        <div class="test-grid" id="testGrid"></div>
 
     <!-- Rich Text Section -->
     <div class="rich-text-section">
@@ -234,7 +262,19 @@
     onAuthStateChanged(auth, (user) => {
         document.body.style.visibility = 'visible';
         if(!user) { 
-            window.location.href="login.html"; 
+            document.querySelectorAll('.login-link').forEach(el => {
+                el.removeAttribute("onclick");
+                el.innerText = "Log in";
+                el.href = "login.html";
+                el.style.background = "var(--brand)";
+                el.style.color = "white";
+            });
+            const navAuthLinkMobile = document.querySelector('.nav-important a:last-child');
+            if (navAuthLinkMobile) {
+                navAuthLinkMobile.innerText = "Login";
+                navAuthLinkMobile.href = "login.html";
+                navAuthLinkMobile.removeAttribute("onclick");
+            }
         } else { 
             const providerIds = user.providerData.map(p => p.providerId);
             const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
@@ -245,8 +285,99 @@
                 window.location.replace("signup.html?mode=completion");
                 return;
             }
+
+                document.querySelectorAll('.login-link').forEach(el => {
+                    el.innerText = "Logout";
+                    el.removeAttribute("href");
+                    el.setAttribute("onclick", "logout()");
+                    el.style.background = "#ef4444";
+                });
+                const navAuthLinkMobile = document.querySelector('.nav-important a:last-child');
+                if (navAuthLinkMobile) {
+                    navAuthLinkMobile.innerText = "Logout";
+                    navAuthLinkMobile.removeAttribute("href");
+                    navAuthLinkMobile.setAttribute("onclick", "logout()");
+                }
         } 
+            window.handleTestTypeChange();
     });
+
+        window.startNeetTest = function(docId) {
+            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+            if (!auth.currentUser || !isLoggedIn) {
+                sessionStorage.setItem("redirectAfterLogin", "neet-quiz.html?id=" + docId);
+                window.location.href = "login.html";
+            } else {
+                window.location.href = "neet-quiz.html?id=" + docId;
+            }
+        };
+
+        window.handleTestTypeChange = function() {
+            const testType = document.getElementById('fType').value;
+            const subjectSelect = document.getElementById('fSubject');
+
+            if (testType === 'full_mock') {
+                subjectSelect.value = 'all'; // Reset to 'All Subjects' for full mock
+                subjectSelect.disabled = true;
+            } else {
+                subjectSelect.disabled = false;
+            }
+            window.loadTests();
+        }
+
+        window.loadTests = async function() {
+            const grid = document.getElementById("testGrid");
+            grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px;'>Fetching exams...</div>";
+            
+            const fClass = document.getElementById("fClass").value;
+            const fType = document.getElementById("fType").value;
+            const fSubject = document.getElementById("fSubject").value;
+
+            try {
+                let constraints = [where("exam", "==", "neet")];
+                if (fClass !== "all") constraints.push(where("class", "==", fClass));
+                if (fType !== "all") constraints.push(where("testType", "==", fType));
+                
+                const snap = await getDocs(query(collection(db, "exam_tests"), ...constraints));
+                
+                let html = "";
+                snap.forEach(doc => {
+                    const data = doc.data();
+                    if (fSubject !== "all" && data.subject !== fSubject) return;
+                    
+                    let cardColor = '#10b981'; // Default
+                    if (data.testType === 'full_mock' || data.subject === 'Full Syllabus') {
+                        cardColor = '#8b5cf6'; // Purple for Full Mock Test
+                    } else if (data.subject === 'Physics') {
+                        cardColor = '#3b82f6'; // Blue for Physics
+                    } else if (data.subject === 'Chemistry') {
+                        cardColor = '#f59e0b'; // Orange for Chemistry
+                    } else if (data.subject === 'Biology' || data.subject === 'Botany' || data.subject === 'Zoology') {
+                        cardColor = '#10b981'; // Emerald Green for Biology
+                    }
+
+                    const chapStr = data.chapter ? `<p>📖 <strong>Chapter:</strong> ${data.chapter}</p>` : "";
+                    let displayClass = data.class ? String(data.class) : "N/A";
+                    displayClass = displayClass.replace(/^class\s*/i, '').trim();
+
+                    html += `<div class="test-card" style="border-top-color: ${cardColor};">
+                        <h3>${data.title}</h3>
+                        <div class="meta">
+                            <p>🎓 <strong>Grade:</strong> ${displayClass}</p>
+                            <p>📚 <strong>Subject:</strong> ${data.subject}</p>
+                            <p>⏱️ <strong>Duration:</strong> ${data.duration} mins</p>
+                            <p>❓ <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
+                            ${chapStr}
+                        </div>
+                        <button class="start-btn" style="background-color: ${cardColor};" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'" onclick="startNeetTest('${doc.id}')">Start Test</button>
+                    </div>`;
+                });
+                
+                grid.innerHTML = html || "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px; border: 1px dashed var(--border); border-radius: 16px; background: var(--surface); font-weight: 600;'>No tests found for this filter combination.</div>";
+            } catch(e) { 
+                grid.innerHTML = `<div style="grid-column:1/-1; color: #ef4444; text-align:center; padding:20px;">Database Error: ${e.message}</div>`; 
+            }
+        };
 
     window.logout = async () => { 
         if(confirm("Logout?")) { 
