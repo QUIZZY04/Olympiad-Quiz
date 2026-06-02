@@ -209,34 +209,35 @@ border-radius:20px;
 .hero-exam-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 35px;
-    max-width: 70%;
+    gap: 12px;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 640px; /* Aligns perfectly with the paragraph above */
 }
 .hero-exam-card {
-    padding: 10px;
-    border-radius: 10px;
+    padding: 12px 10px;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s, border-color 0.3s;
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6); /* High WCAG contrast */
 }
 .hero-exam-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,.2);
     border-color: rgba(255, 255, 255, 0.9);
 }
-.hero-exam-card h3 { font-size: 0.75rem; font-weight: 800; margin-bottom: 2px; color: white; }
-.hero-exam-card p { font-size: 0.6rem; color: rgba(255, 255, 255, 0.95); margin: 0; font-weight: 600; }
+.hero-exam-card h3 { font-size: 0.85rem; font-weight: 800; margin-bottom: 2px; color: #ffffff; line-height: 1.2; }
+.hero-exam-card p { font-size: 0.65rem; color: rgba(255, 255, 255, 0.95); margin: 0; font-weight: 600; }
 
 .card-olympiad { background: linear-gradient(135deg, #c2410c, #9a3412); }
-.card-jee-adv { background: linear-gradient(135deg, #4338ca, #312e81); }
+.card-jee-adv { background: linear-gradient(135deg, #5b21b6, #4c1d95); }
 .card-jee-main { background: linear-gradient(135deg, #1d4ed8, #1e3a8a); }
 .card-neet { background: linear-gradient(135deg, #047857, #064e3b); }
 
@@ -403,10 +404,10 @@ margin-bottom: 10px;
     .hero-btns .btn { width: 100%; text-align: center; padding: 14px 20px; font-size: 16px; }
     
     /* Scannable layout */
-    .hero-exam-cards { grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 20px; max-width: 90%; margin-left: auto; margin-right: auto; }
-    .hero-exam-card { padding: 6px 4px; border-radius: 8px; }
-    .hero-exam-card h3 { font-size: 0.65rem; margin-bottom: 2px; }
-    .hero-exam-card p { font-size: 0.5rem; }
+    .hero-exam-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; width: 100%; max-width: 100%; }
+    .hero-exam-card { padding: 10px 8px; border-radius: 10px; }
+    .hero-exam-card h3 { font-size: 0.8rem; margin-bottom: 2px; line-height: 1.2; }
+    .hero-exam-card p { font-size: 0.6rem; }
 
     .title { font-size: 26px; line-height: 1.3; }
     .sub { font-size: 14px; margin-bottom: 30px; }
