@@ -370,13 +370,14 @@ img {
 .quiz-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 48px;
+    gap: 64px;
+    width: 100%;
 }
 
 .quiz-card {
-    height: 216px;
+    aspect-ratio: 1 / 1;
     border: 1px solid #E5E7EB;
-    padding: 20px;
+    padding: 22px;
     border-radius: 20px;
     background-color: #ffffff;
     box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
@@ -425,7 +426,7 @@ img {
     font-size: 18px;
     font-weight: 700;
     color: #0F172A;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     z-index: 1;
     line-height: 1.2;
 }
@@ -433,7 +434,7 @@ img {
 .quiz-card p {
     color: #64748B;
     font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     flex-grow: 1;
     z-index: 1;
 }
@@ -452,8 +453,8 @@ img {
 }
 
 .arrow-btn {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
