@@ -320,9 +320,6 @@ img {
     animation: floatImage 6s ease-in-out infinite;
     mix-blend-mode: multiply;
     filter: brightness(1.1) contrast(1.1);
-    /* Tightened mask to guarantee 100% transparency before hitting the rectangular edges */
-    -webkit-mask-image: radial-gradient(ellipse closest-side, black 75%, transparent 100%);
-    mask-image: radial-gradient(ellipse closest-side, black 75%, transparent 100%);
     /* Widened mask to make edge details like books/flowerpot visible while keeping soft edges */
     -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 85%, transparent 100%);
     mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 85%, transparent 100%);
