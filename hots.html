@@ -451,6 +451,11 @@ window.fetchHotsSets = async function() {
 };
 
 window.startHotsTest = function(id, cls, sub) {
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.href = "login.html";
+        return;
+    }
     localStorage.setItem("isHotsTest", "true");
     localStorage.setItem("activeHotsId", id);
     localStorage.setItem("selectedClass", cls);

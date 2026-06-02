@@ -187,7 +187,13 @@
     });
 
     window.startJeeTest = function(docId) {
-        window.location.href = "jee_main_quiz.html?id=" + docId;
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+        if (!isLoggedIn) {
+            sessionStorage.setItem("redirectAfterLogin", "jee_main_quiz.html?id=" + docId);
+            window.location.href = "login.html";
+        } else {
+            window.location.href = "jee_main_quiz.html?id=" + docId;
+        }
     };
 
     window.handleTestTypeChange = function() {

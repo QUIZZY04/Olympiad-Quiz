@@ -98,10 +98,15 @@
     <script>
         window.startTest = function(e) {
             e.preventDefault();
-            localStorage.setItem("selectedClass", "class7");
-            localStorage.setItem("selectedSubject", "science");
-            localStorage.setItem("isMockTest", "true");
-            window.location.href = "quiz.html";
+            if (localStorage.getItem("isLoggedIn") === "true") {
+                localStorage.setItem("selectedClass", "class7");
+                localStorage.setItem("selectedSubject", "science");
+                localStorage.setItem("isMockTest", "true");
+                window.location.href = "quiz.html";
+            } else {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.href = "login.html";
+            }
         };
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
     </script>

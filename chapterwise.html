@@ -1107,6 +1107,11 @@
     }
 
     function startMobilePractice() {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.href = "login.html";
+            return;
+        }
         const select = document.getElementById("topicSelectMobile");
         if (select.selectedIndex <= 0) {
             alert("Please select a chapter from the dropdown first.");
@@ -1119,6 +1124,11 @@
     let pendingTopicObj = null;
 
     function startPractice(topicCode, topicName) {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.href = "login.html";
+            return;
+        }
         const selectedClass = document.getElementById("classSelect").value;
         const selectedSubject = currentSubject;
 
@@ -1146,6 +1156,11 @@
     }
 
     function confirmStartQuiz() {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.href = "login.html";
+            return;
+        }
         const selectedClass = document.getElementById("classSelect").value;
         const selectedSubject = currentSubject;
         const selectedTopicObj = pendingTopicObj;

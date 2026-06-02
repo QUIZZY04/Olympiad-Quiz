@@ -304,7 +304,13 @@
     });
 
         window.startNeetTest = function(docId) {
-            window.location.href = "neet-quiz.html?id=" + docId;
+            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+            if (!isLoggedIn) {
+                sessionStorage.setItem("redirectAfterLogin", "neet-quiz.html?id=" + docId);
+                window.location.href = "login.html";
+            } else {
+                window.location.href = "neet-quiz.html?id=" + docId;
+            }
         };
 
         window.handleTestTypeChange = function() {
