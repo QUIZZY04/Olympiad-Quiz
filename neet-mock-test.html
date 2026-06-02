@@ -49,6 +49,15 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        window.startTest = function(url) {
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                sessionStorage.setItem("redirectAfterLogin", url);
+                window.location.href = "login.html";
+            } else {
+                window.location.href = url;
+            }
+        };
+
         async function loadNeetTests() {
             const urlParams = new URLSearchParams(window.location.search);
             const subjectFilter = urlParams.get('subject');
@@ -65,7 +74,7 @@
                             <h3 style="margin-bottom: 10px;">NEET Full Mock Test (Dynamic)</h3>
                             <p style="color: #475569; margin-bottom: 10px;">200 Questions | 200 Minutes | 720 Marks</p>
                             <p style="font-size: 13px; color: #047857; margin-bottom: 20px;">NTA Latest Pattern Exam. Questions fetched dynamically from chapter-wise bank.</p>
-                            <button class="btn" style="width: 100%;" onclick="window.location.href='neet-quiz.html?id=dynamic_full'">Start Test</button>
+                            <button class="btn" style="width: 100%;" onclick="startTest('neet-quiz.html?id=dynamic_full')">Start Test</button>
                         </div>
                     `;
                 } else if (subjectFilter === 'CH') {
@@ -74,7 +83,7 @@
                             <h3 style="margin-bottom: 10px;">Chemistry Full Mock Test (Dynamic)</h3>
                             <p style="color: #475569; margin-bottom: 10px;">50 Questions | 45 Minutes | 200 Marks</p>
                             <p style="font-size: 13px; color: #047857; margin-bottom: 20px;">NTA Latest Pattern Exam for Chemistry.</p>
-                            <button class="btn" style="width: 100%;" onclick="window.location.href='neet-quiz.html?id=dynamic_CH'">Start Test</button>
+                            <button class="btn" style="width: 100%;" onclick="startTest('neet-quiz.html?id=dynamic_CH')">Start Test</button>
                         </div>
                     `;
                 } else if (subjectFilter === 'PH') {
@@ -83,7 +92,7 @@
                             <h3 style="margin-bottom: 10px;">Physics Full Mock Test (Dynamic)</h3>
                             <p style="color: #475569; margin-bottom: 10px;">50 Questions | 45 Minutes | 200 Marks</p>
                             <p style="font-size: 13px; color: #047857; margin-bottom: 20px;">NTA Latest Pattern Exam for Physics.</p>
-                            <button class="btn" style="width: 100%;" onclick="window.location.href='neet-quiz.html?id=dynamic_PH'">Start Test</button>
+                            <button class="btn" style="width: 100%;" onclick="startTest('neet-quiz.html?id=dynamic_PH')">Start Test</button>
                         </div>
                     `;
                 } else if (subjectFilter === 'BIO') {
@@ -92,7 +101,7 @@
                             <h3 style="margin-bottom: 10px;">Biology Full Mock Test (Dynamic)</h3>
                             <p style="color: #475569; margin-bottom: 10px;">100 Questions | 90 Minutes | 400 Marks</p>
                             <p style="font-size: 13px; color: #047857; margin-bottom: 20px;">NTA Latest Pattern Exam for Biology (Botany + Zoology).</p>
-                            <button class="btn" style="width: 100%;" onclick="window.location.href='neet-quiz.html?id=dynamic_BIO'">Start Test</button>
+                            <button class="btn" style="width: 100%;" onclick="startTest('neet-quiz.html?id=dynamic_BIO')">Start Test</button>
                         </div>
                     `;
                 }
@@ -105,7 +114,7 @@
                             <h3 style="margin-bottom: 10px;">${data.title || 'NEET Mock Test'}</h3>
                             <p style="color: #475569; margin-bottom: 10px;">${data.questions ? data.questions.length : 0} Questions | ${data.duration || 200} Minutes | ${data.totalMarks || 720} Marks</p>
                             <p style="font-size: 13px; color: #047857; margin-bottom: 20px;">NTA Latest Pattern Exam.</p>
-                            <button class="btn" style="width: 100%;" onclick="window.location.href='neet-quiz.html?id=${doc.id}'">Start Test</button>
+                            <button class="btn" style="width: 100%;" onclick="startTest('neet-quiz.html?id=${doc.id}')">Start Test</button>
                         </div>
                         `;
                     }

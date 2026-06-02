@@ -147,7 +147,11 @@
     let testData = null, currentQ = 0, selectedAnswers = [], visited = [], markedForReview = [], timeLeft = 0, timerInterval;
 
     onAuthStateChanged(auth, (user) => {
-        if (!user) return;
+        if (!user) {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.replace("login.html");
+            return;
+        }
         
         const providerIds = user.providerData.map(p => p.providerId);
         const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");

@@ -242,7 +242,12 @@
             localStorage.setItem("isMockTest", "false");
             
             // Redirect to dedicated NEET test player
-            window.location.href = "neet-quiz.html";
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                sessionStorage.setItem("redirectAfterLogin", "neet-quiz.html");
+                window.location.href = "login.html";
+            } else {
+                window.location.href = "neet-quiz.html";
+            }
         };
 
         // Handle incoming parameters from biology/physics/chemistry hubs

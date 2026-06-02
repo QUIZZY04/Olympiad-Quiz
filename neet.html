@@ -262,6 +262,7 @@
     onAuthStateChanged(auth, (user) => {
         document.body.style.visibility = 'visible';
         if(!user) { 
+            localStorage.setItem("isLoggedIn", "false");
             document.querySelectorAll('.login-link').forEach(el => {
                 el.removeAttribute("onclick");
                 el.innerText = "Log in";
@@ -304,7 +305,7 @@
 
         window.startNeetTest = function(docId) {
             const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!auth.currentUser || !isLoggedIn) {
+            if (!isLoggedIn) {
                 sessionStorage.setItem("redirectAfterLogin", "neet-quiz.html?id=" + docId);
                 window.location.href = "login.html";
             } else {
@@ -382,6 +383,8 @@
     window.logout = async () => { 
         if(confirm("Logout?")) { 
             await signOut(auth); 
+            localStorage.removeItem("isLoggedIn");
+            sessionStorage.clear();
             window.location.href="login.html"; 
         } 
     };
