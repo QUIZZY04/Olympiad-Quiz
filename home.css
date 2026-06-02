@@ -323,6 +323,9 @@ img {
     /* Tightened mask to guarantee 100% transparency before hitting the rectangular edges */
     -webkit-mask-image: radial-gradient(ellipse closest-side, black 75%, transparent 100%);
     mask-image: radial-gradient(ellipse closest-side, black 75%, transparent 100%);
+    /* Widened mask to make edge details like books/flowerpot visible while keeping soft edges */
+    -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 85%, transparent 100%);
+    mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 85%, transparent 100%);
 }
 
 @keyframes floatImage {
@@ -334,37 +337,37 @@ img {
 .rank-card {
     position: absolute; 
     z-index: 2;
-    top: 60px;
+    top: 20px;
     bottom: auto;
     right: -30px;
     left: auto;
     background-color: white;
-    padding: 12px 16px;
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     width: max-content;
 }
 
 .rank-icon-wrapper {
-    width: 36px; 
-    height: 36px; 
+    width: 26px; 
+    height: 26px; 
     border-radius: 50%;
     background-color: rgba(255, 107, 0, 0.1);
     display: flex; 
     align-items: center; 
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 0.85rem;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .rank-info { display: flex; flex-direction: column; }
-.rank-label { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
-.rank-value { font-size: 1.2rem; font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 2px; }
-.rank-sublabel { font-size: 0.65rem; font-weight: 500; color: var(--text-muted); }
+.rank-label { font-size: 0.45rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+.rank-value { font-size: 0.85rem; font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 2px; }
+.rank-sublabel { font-size: 0.45rem; font-weight: 500; color: var(--text-muted); }
 
 /* ==========================================================================
    4. QUIZ SECTION
@@ -381,9 +384,9 @@ img {
 }
 
 .quiz-card {
-    height: 240px;
+    height: 216px;
     border: 1px solid #E5E7EB;
-    padding: 24px;
+    padding: 20px;
     border-radius: 20px;
     background-color: #ffffff;
     box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
@@ -408,39 +411,39 @@ img {
 }
 
 .watermark svg {
-    width: 56px;
-    height: 56px;
+    width: 50px;
+    height: 50px;
 }
 
 .quiz-icon {
-    width: 52px;
-    height: 52px;
+    width: 46px;
+    height: 46px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     z-index: 1;
 }
 
 .quiz-icon svg {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
 }
 
 .quiz-card h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: #0F172A;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     z-index: 1;
     line-height: 1.2;
 }
 
 .quiz-card p {
     color: #64748B;
-    font-size: 13px;
-    margin-bottom: 12px;
+    font-size: 12px;
+    margin-bottom: 10px;
     flex-grow: 1;
     z-index: 1;
 }
@@ -454,13 +457,13 @@ img {
 }
 
 .bottom-text {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
 }
 
 .arrow-btn {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -469,8 +472,8 @@ img {
 }
 
 .arrow-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 .quiz-card:hover .arrow-btn {
@@ -566,14 +569,14 @@ img {
 
 .feature-title {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 15px;
     color: #0F172A;
     line-height: 1.2;
 }
 
 .feature-subtitle {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     color: #64748B;
     line-height: 1.2;
 }
@@ -699,7 +702,7 @@ img {
     .hero-buttons { justify-content: center; }
     .hero-right { justify-content: center; margin-top: 40px; }
     .hero-image-wrapper { width: 90%; max-width: 450px; }
-    .rank-card { right: -10px; left: auto; top: 40px; bottom: auto; }
+    .rank-card { right: -10px; left: auto; top: 10px; bottom: auto; }
 }
 
 @media (max-width: 600px) {
@@ -712,8 +715,8 @@ img {
     .quiz-grid { grid-template-columns: 1fr; gap: 24px; }
     .feature-item { min-width: 100%; justify-content: flex-start; }
     
-    .rank-card { padding: 12px; right: 10px; left: auto; top: 20px; bottom: auto; gap: 12px; flex-direction: row; text-align: left; }
+    .rank-card { padding: 8px; right: 10px; left: auto; top: 0px; bottom: auto; gap: 8px; flex-direction: row; text-align: left; }
     .rank-info { align-items: flex-start; }
-    .rank-icon-wrapper { width: 32px; height: 32px; font-size: 1rem; }
-    .rank-value { font-size: 1.5rem; }
+    .rank-icon-wrapper { width: 22px; height: 22px; font-size: 0.7rem; }
+    .rank-value { font-size: 1.05rem; }
 }
