@@ -172,12 +172,14 @@
 
     onAuthStateChanged(auth, (user) => {
         if (!user) {
+            localStorage.setItem("isLoggedIn", "false");
             document.querySelectorAll('.login-link').forEach(el => {
                 el.removeAttribute("onclick");
                 el.innerText = "Log in";
                 el.href = "login.html";
             });
         } else {
+            localStorage.setItem("isLoggedIn", "true");
             if (user.email === "madhhu52@gmail.com") {
                 const adminTab = document.getElementById("adminTab");
                 if (adminTab) adminTab.style.display = "inline";
