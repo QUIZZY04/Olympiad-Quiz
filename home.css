@@ -209,15 +209,15 @@ border-radius:20px;
 .hero-exam-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 25px;
-    max-width: 95%;
+    gap: 10px;
+    margin-top: 35px;
+    max-width: 70%;
 }
 .hero-exam-card {
-    padding: 12px 10px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 10px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,.05);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s, border-color 0.3s;
     color: white;
     text-decoration: none;
@@ -228,12 +228,12 @@ border-radius:20px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 .hero-exam-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,.2);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
     border-color: rgba(255, 255, 255, 0.9);
 }
-.hero-exam-card h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 2px; color: white; }
-.hero-exam-card p { font-size: 0.75rem; color: rgba(255, 255, 255, 0.95); margin: 0; font-weight: 600; }
+.hero-exam-card h3 { font-size: 0.75rem; font-weight: 800; margin-bottom: 2px; color: white; }
+.hero-exam-card p { font-size: 0.6rem; color: rgba(255, 255, 255, 0.95); margin: 0; font-weight: 600; }
 
 .card-olympiad { background: linear-gradient(135deg, #c2410c, #9a3412); }
 .card-jee-adv { background: linear-gradient(135deg, #4338ca, #312e81); }
