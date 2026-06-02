@@ -162,13 +162,6 @@
 
     <script>
         function openHubAction(type) {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!isLoggedIn) {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.href = "login.html";
-                return;
-            }
-            
             if (type === 'mock' || type === 'subject') {
                 window.location.href = "jee-list.html";
             }

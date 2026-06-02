@@ -176,12 +176,6 @@
 
     <script>
         function openHubAction(type) {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!isLoggedIn) {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.href = "login.html";
-                return;
-            }
             localStorage.setItem("selectedClass", "class4");
             localStorage.setItem("selectedSubject", "maths");
             localStorage.setItem("isChampionship", "false");

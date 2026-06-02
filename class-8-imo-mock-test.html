@@ -143,15 +143,10 @@
 
         window.startTest = function(e) {
             e.preventDefault();
-            if (localStorage.getItem("isLoggedIn") === "true") {
-                localStorage.setItem("selectedClass", "class8");
-                localStorage.setItem("selectedSubject", "maths");
-                localStorage.setItem("isMockTest", "true");
-                window.location.href = "quiz.html";
-            } else {
-                sessionStorage.setItem("redirectAfterLogin", "mock.html");
-                window.location.href = "login.html";
-            }
+            localStorage.setItem("selectedClass", "class8");
+            localStorage.setItem("selectedSubject", "maths");
+            localStorage.setItem("isMockTest", "true");
+            window.location.href = "quiz.html";
         };
 
         onAuthStateChanged(auth, (user) => {
