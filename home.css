@@ -189,7 +189,7 @@ img {
    ========================================================================== */
 
 .hero-section { 
-    padding: 20px 0 10px 0;
+    padding: 5px 0 0 0;
 }
 
 .hero-grid { 
@@ -216,11 +216,11 @@ img {
 }
 
 .hero-left h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -1px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     color: var(--navy);
 }
 
@@ -228,10 +228,10 @@ img {
 .text-orange { color: var(--orange); }
 
 .hero-subheading {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     max-width: 450px;
 }
 
@@ -246,7 +246,7 @@ img {
     display: inline-flex; 
     align-items: center; 
     gap: 8px;
-    padding: 12px 20px; 
+    padding: 10px 18px; 
     font-size: 0.9rem;
     border-radius: 8px; 
     font-weight: 600; 
@@ -262,7 +262,7 @@ img {
     display: inline-flex; 
     align-items: center; 
     gap: 8px;
-    padding: 12px 20px; 
+    padding: 10px 18px; 
     font-size: 0.9rem;
     border-radius: 8px; 
     font-weight: 600; 
@@ -310,7 +310,7 @@ img {
 .hero-image-wrapper {
     position: relative;
     width: 100%;
-    max-width: 480px;
+    max-width: 408px;
 }
 
 .hero-image {
@@ -364,13 +364,13 @@ img {
    ========================================================================== */
 
 .quiz-section {
-    padding: 10px 0 0 0;
+    padding: 5px 0 0 0;
 }
 
 .quiz-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 64px;
+    gap: 80px;
     width: 100%;
 }
 
