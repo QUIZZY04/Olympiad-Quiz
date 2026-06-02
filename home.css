@@ -317,18 +317,11 @@ img {
     position: relative; z-index: 1;
     width: 100%;
     height: auto;
-    animation: floatImage 6s ease-in-out infinite;
     mix-blend-mode: multiply;
     filter: brightness(1.1) contrast(1.1);
     /* Widened mask to make edge details like books/flowerpot visible while keeping soft edges */
     -webkit-mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 85%, transparent 100%);
     mask-image: radial-gradient(ellipse 95% 95% at 50% 50%, black 85%, transparent 100%);
-}
-
-@keyframes floatImage {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
 }
 
 .rank-card {
