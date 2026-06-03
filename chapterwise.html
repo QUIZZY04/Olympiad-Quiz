@@ -221,6 +221,7 @@
             .topics-grid { display: none !important; }
         }
     </style>
+    <script type="module" src="auth-guard.js"></script>
 </head>
 <body>
 
@@ -1107,48 +1108,61 @@
     }
 
     function startMobilePractice() {
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            sessionStorage.setItem("redirectAfterLogin", window.location.href);
-            window.location.href = "login.html";
-            return;
+        const proceed = () => {
+            const select = document.getElementById("topicSelectMobile");
+            if (select.selectedIndex <= 0) {
+                alert("Please select a chapter from the dropdown first.");
+                return;
+            }
+            const selectedOption = select.options[select.selectedIndex];
+            startPractice(selectedOption.value, selectedOption.dataset.name);
+        };
+
+        if (window.AuthGuard) {
+            window.AuthGuard.requireLogin(proceed);
+        } else {
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.href = "login.html";
+                return;
+            }
+            proceed();
         }
-        const select = document.getElementById("topicSelectMobile");
-        if (select.selectedIndex <= 0) {
-            alert("Please select a chapter from the dropdown first.");
-            return;
-        }
-        const selectedOption = select.options[select.selectedIndex];
-        startPractice(selectedOption.value, selectedOption.dataset.name);
     }
 
     let pendingTopicObj = null;
 
     function startPractice(topicCode, topicName) {
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            sessionStorage.setItem("redirectAfterLogin", window.location.href);
-            window.location.href = "login.html";
-            return;
-        }
-        const selectedClass = document.getElementById("classSelect").value;
-        const selectedSubject = currentSubject;
+        const proceed = () => {
+            const selectedClass = document.getElementById("classSelect").value;
+            const selectedSubject = currentSubject;
 
-        pendingTopicObj = { code: topicCode, name: topicName };
-        
-        const subjectNames = {
-            'maths': 'Mathematics (IMO)',
-            'science': 'Science (NSO)',
-            'english': 'English (IEO)',
-            'reasoning': 'Logical Reasoning',
-            'igko': 'General Knowledge (IGKO)'
+            pendingTopicObj = { code: topicCode, name: topicName };
+            
+            const subjectNames = {
+                'maths': 'Mathematics (IMO)',
+                'science': 'Science (NSO)',
+                'english': 'English (IEO)',
+                'reasoning': 'Logical Reasoning',
+                'igko': 'General Knowledge (IGKO)'
+            };
+
+            document.getElementById('modalGrade').innerText = document.getElementById("classSelect").options[document.getElementById("classSelect").selectedIndex].text;
+            document.getElementById('modalSubject').innerText = subjectNames[currentSubject];
+            document.getElementById('modalTopic').innerText = `${topicCode} - ${topicName}`;
+            document.getElementById('quizConfirmModal').style.display = 'flex';
         };
 
-        // Update modal content
-        document.getElementById('modalGrade').innerText = document.getElementById("classSelect").options[document.getElementById("classSelect").selectedIndex].text;
-        document.getElementById('modalSubject').innerText = subjectNames[currentSubject];
-        document.getElementById('modalTopic').innerText = `${topicCode} - ${topicName}`;
-
-        // Show the modal
-        document.getElementById('quizConfirmModal').style.display = 'flex';
+        if (window.AuthGuard) {
+            window.AuthGuard.requireLogin(proceed);
+        } else {
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.href = "login.html";
+                return;
+            }
+            proceed();
+        }
     }
 
     function closeQuizModal() {
@@ -1156,28 +1170,35 @@
     }
 
     function confirmStartQuiz() {
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            sessionStorage.setItem("redirectAfterLogin", window.location.href);
-            window.location.href = "login.html";
-            return;
+        const proceed = () => {
+            const selectedClass = document.getElementById("classSelect").value;
+            const selectedSubject = currentSubject;
+            const selectedTopicObj = pendingTopicObj;
+
+            localStorage.setItem("selectionSource", "chapterwise");
+            localStorage.setItem("isMockTest", "false");
+            localStorage.setItem("selectedClass", selectedClass);
+            localStorage.setItem("selectedSubject", selectedSubject);
+            localStorage.setItem("selectedTopic", selectedTopicObj.code);
+            localStorage.setItem("selectedTopicName", selectedTopicObj.name);
+            localStorage.setItem("selectedTopicDisplay", `${selectedTopicObj.code} - ${selectedTopicObj.name}`);
+            localStorage.setItem("selectedTopicData", JSON.stringify(selectedTopicObj));
+            localStorage.setItem("isChampionship", "false");
+            localStorage.removeItem("isHotsTest");
+            localStorage.removeItem("activeHotsId");
+            window.location.href = "quiz.html";
+        };
+
+        if (window.AuthGuard) {
+            window.AuthGuard.requireLogin(proceed);
+        } else {
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.href = "login.html";
+                return;
+            }
+            proceed();
         }
-        const selectedClass = document.getElementById("classSelect").value;
-        const selectedSubject = currentSubject;
-        const selectedTopicObj = pendingTopicObj;
-
-        localStorage.setItem("selectionSource", "chapterwise");
-        localStorage.setItem("isMockTest", "false");
-        localStorage.setItem("selectedClass", selectedClass);
-        localStorage.setItem("selectedSubject", selectedSubject);
-        localStorage.setItem("selectedTopic", selectedTopicObj.code);
-        localStorage.setItem("selectedTopicName", selectedTopicObj.name);
-        localStorage.setItem("selectedTopicDisplay", `${selectedTopicObj.code} - ${selectedTopicObj.name}`);
-        localStorage.setItem("selectedTopicData", JSON.stringify(selectedTopicObj));
-        localStorage.setItem("isChampionship", "false");
-        localStorage.removeItem("isHotsTest");
-        localStorage.removeItem("activeHotsId");
-
-        window.location.href = "quiz.html";
     }
 
     // Load initial selection on script run
@@ -1185,7 +1206,7 @@
 </script>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -1198,13 +1219,12 @@
         appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
     };
 
-    const app = initializeApp(firebaseConfig);
+    const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
     const auth = getAuth(app);
     const db = getFirestore(app);
 
     onAuthStateChanged(auth, async (user) => {
         if (!user) {
-            localStorage.setItem("isLoggedIn", "false");
             document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
                 el.onclick = null;
                 el.innerText = "Login";
@@ -1215,7 +1235,6 @@
             });
             return;
         }
-        localStorage.setItem("isLoggedIn", "true");
         
         const providerIds = user.providerData.map(p => p.providerId);
         const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
