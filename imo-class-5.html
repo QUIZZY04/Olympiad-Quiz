@@ -55,7 +55,6 @@
 
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .content-section { padding: 25px; } }
     </style>
-    <script type="module" src="auth-guard.js"></script>
 </head>
 <body>
     <nav>
@@ -81,6 +80,7 @@
                     <a href="jee_main.html">JEE Main</a>
                     <a href="jee-list.html">JEE Advanced</a>
                     <a href="neet.html">NEET</a>
+                    <a href="jee-main-pyq.html">JEE PYQs</a>
                 </div>
             </div>
             <a href="chapterwise.html">Chapterwise</a>
@@ -155,28 +155,21 @@
 
     <script>
         function openHubAction(type) {
-            const proceed = () => {
-                localStorage.setItem("selectedClass", "class5");
-                localStorage.setItem("selectedSubject", "maths");
-                localStorage.setItem("isChampionship", "false");
-                if (type === 'mock') {
-                    localStorage.setItem("isMockTest", "true");
-                    window.location.href = "quiz.html";
-                } else {
-                    localStorage.setItem("isMockTest", "false");
-                    window.location.href = "chapterwise.html";
-                }
-            };
-
-            if (window.AuthGuard) {
-                window.AuthGuard.requireLogin(proceed);
+            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+            if (!isLoggedIn) {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.href = "login.html";
+                return;
+            }
+            localStorage.setItem("selectedClass", "class5");
+            localStorage.setItem("selectedSubject", "maths");
+            localStorage.setItem("isChampionship", "false");
+            if (type === 'mock') {
+                localStorage.setItem("isMockTest", "true");
+                window.location.href = "quiz.html";
             } else {
-                if (localStorage.getItem("isLoggedIn") !== "true") {
-                    sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                    window.location.href = "login.html";
-                    return;
-                }
-                proceed();
+                localStorage.setItem("isMockTest", "false");
+                window.location.href = "chapterwise.html";
             }
         }
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
