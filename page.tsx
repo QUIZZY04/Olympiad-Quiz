@@ -15,7 +15,7 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }
           🔐
         </div>
         <h2 className="text-2xl font-extrabold text-[#0f172a] mb-2 tracking-tight">Login Required</h2>
-        <p className="text-[#64748b] text-sm mb-6 leading-relaxed">
+        <p className="text-[#475569] text-sm mb-6 leading-relaxed">
           You must be logged in to attempt tests, save your progress, and view rankings.
         </p>
         
@@ -28,12 +28,12 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }
         
         <div className="bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl p-5 mb-5">
           <p className="text-[#475569] text-[13px] font-semibold mb-3">If you don't have an account</p>
-          <button onClick={() => { sessionStorage.setItem("redirectAfterLogin", window.location.href); window.location.href = 'signup.html'; }} className="w-full bg-white text-[#FF6B00] border border-[#FF6B00] p-3 rounded-xl font-bold text-[15px] hover:bg-[#fff7ed] hover:-translate-y-0.5 hover:shadow-md transition-all cursor-pointer">
+          <button onClick={() => { sessionStorage.setItem("redirectAfterLogin", window.location.href); window.location.href = 'signup.html'; }} className="w-full bg-white text-[#c2410c] border border-[#c2410c] p-3 rounded-xl font-bold text-[15px] hover:bg-[#fff7ed] hover:-translate-y-0.5 hover:shadow-md transition-all cursor-pointer">
             Register for free
           </button>
         </div>
         
-        <button onClick={onClose} className="bg-transparent text-[#64748b] border-none p-2 font-semibold text-[14px] hover:text-[#0f172a] transition-all cursor-pointer underline decoration-transparent hover:decoration-[#0f172a]">
+        <button onClick={onClose} className="bg-transparent text-[#475569] border-none p-2 font-semibold text-[14px] hover:text-[#0f172a] transition-all cursor-pointer underline decoration-transparent hover:decoration-[#0f172a]">
           Cancel and go back
         </button>
       </div>
@@ -45,7 +45,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => (
   <nav className="sticky top-0 z-50 h-[80px] bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] flex items-center justify-between px-6 lg:px-12">
     {/* Left: Logo */}
     <div className="flex items-center gap-3 cursor-pointer">
-      <div className="w-8 h-8 bg-[#FF6B00] rounded-lg shadow-sm flex items-center justify-center">
+      <div className="w-8 h-8 bg-[#c2410c] rounded-lg shadow-sm flex items-center justify-center">
         <span className="text-white font-bold text-lg leading-none">O</span>
       </div>
       <span className="font-extrabold text-xl tracking-tight text-[#0F172A]">
@@ -54,7 +54,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => (
     </div>
 
     {/* Center: Links */}
-    <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#64748B]">
+    <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#475569]">
       <a href="#" className="text-[#0F172A] transition-colors">Home</a>
       <a href="#" className="hover:text-[#0F172A] transition-colors">Students Zone</a>
       <a href="#" className="hover:text-[#0F172A] transition-colors">Syllabus</a>
@@ -76,21 +76,21 @@ const Hero = ({ onStartTest }: { onStartTest: (url: string) => void }) => (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       {/* Left Column */}
       <div className="max-w-xl">
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#FF6B00]/10 text-[#FF6B00] text-xs font-bold uppercase tracking-wider mb-8">
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#FF6B00]/10 text-[#c2410c] text-xs font-bold uppercase tracking-wider mb-8">
           India's Smart Olympiad Practice Platform
         </div>
         
         <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-6 leading-[1.1]">
           <span className="block text-[#0F172A]">Practice Smart.</span>
-          <span className="block text-[#FF6B00]">Achieve Greatness.</span>
+          <span className="block text-[#c2410c]">Achieve Greatness.</span>
         </h1>
         
-        <p className="text-lg text-[#64748B] mb-10 leading-relaxed max-w-lg">
+        <p className="text-lg text-[#475569] mb-10 leading-relaxed max-w-lg">
           Free mock tests for Olympiads, JEE Main, JEE Advanced and NEET with real exam experience, instant analysis and smart performance tracking.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <button onClick={() => onStartTest('mock.html')} className="bg-[#FF6B00] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#e66000] hover:shadow-[0_8px_30px_rgba(255,107,0,0.2)] transition-all duration-200 cursor-pointer">
+          <button onClick={() => onStartTest('mock.html')} className="bg-[#c2410c] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#9a3412] hover:shadow-[0_8px_30px_rgba(194,65,12,0.2)] transition-all duration-200 cursor-pointer">
             Start Free Mock Test
           </button>
           <button onClick={() => onStartTest('mock.html')} className="bg-white text-[#0F172A] px-8 py-4 rounded-xl font-bold border border-[#E5E7EB] hover:border-[#0F172A] hover:bg-[#F8FAFC] shadow-sm transition-all duration-200 cursor-pointer">
@@ -98,7 +98,7 @@ const Hero = ({ onStartTest }: { onStartTest: (url: string) => void }) => (
           </button>
         </div>
         
-        <div className="flex items-center gap-4 text-sm font-medium text-[#64748B] mt-6">
+        <div className="flex items-center gap-4 text-sm font-medium text-[#475569] mt-6">
           <div className="flex -space-x-2">
             <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-xs">👱🏼‍♂️</div>
             <div className="w-8 h-8 rounded-full border-2 border-white bg-green-100 flex items-center justify-center text-xs">👩🏻‍🦰</div>
@@ -128,9 +128,9 @@ const Hero = ({ onStartTest }: { onStartTest: (url: string) => void }) => (
                🏆
              </div>
              <div>
-               <p className="text-[#64748B] text-xs font-bold uppercase tracking-wider mb-0.5">AIR Rank</p>
+               <p className="text-[#475569] text-xs font-bold uppercase tracking-wider mb-0.5">AIR Rank</p>
                <p className="text-[#0F172A] font-extrabold text-2xl leading-none mb-1">#142</p>
-               <p className="text-[#64748B] text-xs font-medium">Top 1% of students</p>
+               <p className="text-[#475569] text-xs font-medium">Top 1% of students</p>
              </div>
            </div>
         </div>
@@ -155,17 +155,17 @@ const FeatureStrip = () => (
 );
 
 const QuizCard = ({ title, description, icon: Icon, questions, onStart }: { title: string, description: string, icon: any, questions: string, onStart: () => void }) => (
-  <div onClick={onStart} className="group bg-white border border-[#E5E7EB] p-8 rounded-[24px] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:border-[#FF6B00]/30 transition-all duration-300 cursor-pointer flex flex-col h-full">
-    <div className="w-12 h-12 rounded-xl bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center text-[#0F172A] mb-8 group-hover:bg-[#FF6B00] group-hover:text-white group-hover:border-[#FF6B00] transition-colors duration-300 shadow-sm">
+  <div onClick={onStart} className="group bg-white border border-[#E5E7EB] p-8 rounded-[24px] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:border-[#c2410c]/30 transition-all duration-300 cursor-pointer flex flex-col h-full">
+    <div className="w-12 h-12 rounded-xl bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center text-[#0F172A] mb-8 group-hover:bg-[#c2410c] group-hover:text-white group-hover:border-[#c2410c] transition-colors duration-300 shadow-sm">
       <Icon size={22} strokeWidth={2.5} />
     </div>
     
     <h3 className="text-xl font-bold text-[#0F172A] mb-3 tracking-tight">{title}</h3>
-    <p className="text-[#64748B] text-sm leading-relaxed mb-10 flex-grow">{description}</p>
+    <p className="text-[#475569] text-sm leading-relaxed mb-10 flex-grow">{description}</p>
     
     <div className="flex items-center justify-between mt-auto pt-6 border-t border-[#E5E7EB]">
-      <span className="text-xs font-bold text-[#64748B] uppercase tracking-wider bg-[#F8FAFC] px-3 py-1 rounded-md">{questions}</span>
-      <div className="text-[#0F172A] group-hover:text-[#FF6B00] transition-colors flex items-center gap-1 text-sm font-bold tracking-tight">
+      <span className="text-xs font-bold text-[#475569] uppercase tracking-wider bg-[#F8FAFC] px-3 py-1 rounded-md">{questions}</span>
+      <div className="text-[#0F172A] group-hover:text-[#c2410c] transition-colors flex items-center gap-1 text-sm font-bold tracking-tight">
         Start <ChevronRight size={16} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
       </div>
     </div>
@@ -204,7 +204,7 @@ const QuizSection = ({ onStartTest }: { onStartTest: (url: string) => void }) =>
     <section className="py-[120px] px-6 lg:px-12 max-w-[1400px] mx-auto">
       <div className="mb-16">
         <h2 className="text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">Choose Your Quiz</h2>
-        <p className="text-lg text-[#64748B] font-medium">Select your exam and start practicing instantly.</p>
+        <p className="text-lg text-[#475569] font-medium">Select your exam and start practicing instantly.</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -218,7 +218,7 @@ const QuizSection = ({ onStartTest }: { onStartTest: (url: string) => void }) =>
 
 const TestimonialCard = ({ name, role, text, avatar }: { name: string, role: string, text: string, avatar: string }) => (
   <div className="bg-white border border-[#E5E7EB] p-8 rounded-[24px] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col h-full">
-    <div className="flex gap-1 mb-6 text-[#FF6B00]">
+    <div className="flex gap-1 mb-6 text-[#c2410c]">
       {[...Array(5)].map((_, i) => (
         <Star key={i} size={18} fill="currentColor" strokeWidth={0} />
       ))}
@@ -230,7 +230,7 @@ const TestimonialCard = ({ name, role, text, avatar }: { name: string, role: str
       </div>
       <div>
         <h4 className="font-bold text-[#0F172A] tracking-tight">{name}</h4>
-        <p className="text-[#64748B] text-xs font-bold uppercase tracking-wider">{role}</p>
+        <p className="text-[#475569] text-xs font-bold uppercase tracking-wider">{role}</p>
       </div>
     </div>
   </div>
@@ -320,7 +320,7 @@ const TestimonialSection = () => {
     <section className="py-[120px] px-6 lg:px-12 max-w-[1400px] mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">Student Success Stories</h2>
-        <p className="text-lg text-[#64748B] font-medium max-w-2xl mx-auto">Real experiences from students using Olympiad Portal.</p>
+        <p className="text-lg text-[#475569] font-medium max-w-2xl mx-auto">Real experiences from students using Olympiad Portal.</p>
       </div>
       
       {!expanded ? (
@@ -343,7 +343,7 @@ const TestimonialSection = () => {
                 <div className="absolute top-5 right-5 opacity-5">
                     <svg width="45" height="45" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                 </div>
-                <div className="flex gap-1 mb-6 text-[#FF6B00] text-xl tracking-widest">{stars}</div>
+                <div className="flex gap-1 mb-6 text-[#c2410c] text-xl tracking-widest">{stars}</div>
                 <p className="text-[#0F172A] font-medium leading-relaxed mb-8 flex-grow relative z-10">"{t.suggestion}"</p>
                 <div className="flex items-center gap-4 mt-auto pt-6 border-t border-[#E5E7EB] relative z-10">
                   <div className="w-12 h-12 rounded-full bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center text-xl shadow-sm text-[#0F172A] font-bold">
@@ -351,7 +351,7 @@ const TestimonialSection = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-[#0F172A] tracking-tight">{t.name || 'Student'}</h4>
-                    <p className="text-[#64748B] text-xs font-bold uppercase tracking-wider">{grade}</p>
+                    <p className="text-[#475569] text-xs font-bold uppercase tracking-wider">{grade}</p>
                   </div>
                 </div>
               </div>
@@ -379,8 +379,8 @@ const TestimonialSection = () => {
                   {shortName}
                 </div>
                 <div>
-                  <div className="text-[#FF6B00] text-lg tracking-widest mb-1">{stars}</div>
-                  <h4 className="font-extrabold text-[#0F172A] mb-2">{t.name || 'Student'} <span className="text-xs text-[#64748B] font-semibold ml-2">- {grade}</span></h4>
+                  <div className="text-[#c2410c] text-lg tracking-widest mb-1">{stars}</div>
+                  <h4 className="font-extrabold text-[#0F172A] mb-2">{t.name || 'Student'} <span className="text-xs text-[#475569] font-semibold ml-2">- {grade}</span></h4>
                   <p className="text-[#475569] text-[15px] leading-relaxed m-0">"{t.suggestion}"</p>
                 </div>
               </div>
