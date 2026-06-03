@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, Check, Award, BookOpen, Cpu, Stethoscope } from 'lucide-react';
 
 // ============================================================================
 // COMPONENTS
 // ============================================================================
 
-const Navbar = () => (
+const AuthModal = ({ isOpen, onClose, onGoogleSignIn }: { isOpen: boolean, onClose: () => void, onGoogleSignIn: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-[#0f172a]/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-5 animate-in fade-in duration-300">
+      <div className="bg-white rounded-3xl p-10 w-full max-w-[400px] text-center shadow-2xl border-t-4 border-[#FF6B00] relative">
+        <button onClick={onClose} className="absolute top-5 right-5 text-[#64748b] hover:text-[#0f172a] text-2xl leading-none cursor-pointer border-none bg-transparent">
+          &times;
+        </button>
+        <div className="w-16 h-16 bg-[#FF6B00]/10 text-[#FF6B00] rounded-full flex items-center justify-center text-3xl mx-auto mb-5">
+          🔐
+        </div>
+        <h2 className="text-2xl font-extrabold text-[#0f172a] mb-3 tracking-tight">Login Required</h2>
+        <p className="text-[#64748b] text-sm mb-8 leading-relaxed">
+          Create a free account to attempt tests, save your progress, view rankings, and track your performance.
+        </p>
+        
+        <button onClick={onGoogleSignIn} className="w-full bg-white text-[#0f172a] border border-[#e2e8f0] p-3.5 rounded-xl font-bold text-[15px] flex items-center justify-center gap-2.5 mb-4 hover:bg-[#f8fafc] hover:border-[#cbd5e1] transition-all shadow-sm cursor-pointer">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5" alt="Google" />
+          Continue with Google
+        </button>
+        
+        <button onClick={() => { sessionStorage.setItem("redirectAfterLogin", window.location.href); window.location.href = 'login.html'; }} className="w-full bg-[#0f172a] text-white border-none p-3.5 rounded-xl font-bold text-[15px] mb-4 hover:bg-[#1e293b] transition-all cursor-pointer">
+          Login with Email
+        </button>
+        
+        <p className="text-sm text-[#64748b] m-0">
+          New here? <a href="signup.html" className="text-[#FF6B00] font-bold hover:underline">Register</a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => (
   <nav className="sticky top-0 z-50 h-[80px] bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] flex items-center justify-between px-6 lg:px-12">
     {/* Left: Logo */}
     <div className="flex items-center gap-3 cursor-pointer">
@@ -28,14 +62,14 @@ const Navbar = () => (
 
     {/* Right: CTA */}
     <div>
-      <button className="bg-[#0F172A] text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#1e293b] shadow-sm transition-all duration-200">
+      <button onClick={onLoginClick} className="bg-[#0F172A] text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#1e293b] shadow-sm transition-all duration-200 cursor-pointer">
         Login
       </button>
     </div>
   </nav>
 );
 
-const Hero = () => (
+const Hero = ({ onStartTest }: { onStartTest: (url: string) => void }) => (
   <section className="pt-[120px] pb-[100px] px-6 lg:px-12 max-w-[1400px] mx-auto">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       {/* Left Column */}
@@ -54,10 +88,10 @@ const Hero = () => (
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <button className="bg-[#FF6B00] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#e66000] hover:shadow-[0_8px_30px_rgba(255,107,0,0.2)] transition-all duration-200">
+          <button onClick={() => onStartTest('mock.html')} className="bg-[#FF6B00] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#e66000] hover:shadow-[0_8px_30px_rgba(255,107,0,0.2)] transition-all duration-200 cursor-pointer">
             Start Free Mock Test
           </button>
-          <button className="bg-white text-[#0F172A] px-8 py-4 rounded-xl font-bold border border-[#E5E7EB] hover:border-[#0F172A] hover:bg-[#F8FAFC] shadow-sm transition-all duration-200">
+          <button onClick={() => onStartTest('mock.html')} className="bg-white text-[#0F172A] px-8 py-4 rounded-xl font-bold border border-[#E5E7EB] hover:border-[#0F172A] hover:bg-[#F8FAFC] shadow-sm transition-all duration-200 cursor-pointer">
             Explore Tests
           </button>
         </div>
@@ -118,8 +152,8 @@ const FeatureStrip = () => (
   </div>
 );
 
-const QuizCard = ({ title, description, icon: Icon, questions }: { title: string, description: string, icon: any, questions: string }) => (
-  <div className="group bg-white border border-[#E5E7EB] p-8 rounded-[24px] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:border-[#FF6B00]/30 transition-all duration-300 cursor-pointer flex flex-col h-full">
+const QuizCard = ({ title, description, icon: Icon, questions, onStart }: { title: string, description: string, icon: any, questions: string, onStart: () => void }) => (
+  <div onClick={onStart} className="group bg-white border border-[#E5E7EB] p-8 rounded-[24px] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:border-[#FF6B00]/30 transition-all duration-300 cursor-pointer flex flex-col h-full">
     <div className="w-12 h-12 rounded-xl bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center text-[#0F172A] mb-8 group-hover:bg-[#FF6B00] group-hover:text-white group-hover:border-[#FF6B00] transition-colors duration-300 shadow-sm">
       <Icon size={22} strokeWidth={2.5} />
     </div>
@@ -136,7 +170,7 @@ const QuizCard = ({ title, description, icon: Icon, questions }: { title: string
   </div>
 );
 
-const QuizSection = () => {
+const QuizSection = ({ onStartTest }: { onStartTest: (url: string) => void }) => {
   const quizzes = [
     {
       title: "Olympiad",
@@ -173,7 +207,7 @@ const QuizSection = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {quizzes.map((quiz, idx) => (
-          <QuizCard key={idx} {...quiz} />
+          <QuizCard key={idx} {...quiz} onStart={() => onStartTest('mock.html')} />
         ))}
       </div>
     </section>
@@ -181,13 +215,42 @@ const QuizSection = () => {
 };
 
 export default function Home() {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [targetUrl, setTargetUrl] = useState('');
+
+  const handleStartTest = (url: string) => {
+    const isLoggedIn = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') === 'true' : false;
+    if (isLoggedIn) {
+      window.location.href = url;
+    } else {
+      setTargetUrl(url);
+      setIsAuthModalOpen(true);
+    }
+  };
+
+  const handleLoginClick = () => {
+    const isLoggedIn = typeof window !== 'undefined' ? localStorage.getItem('isLoggedIn') === 'true' : false;
+    if (isLoggedIn) {
+      window.location.href = 'dashboard.html';
+    } else {
+      setIsAuthModalOpen(true);
+    }
+  };
+
+  const handleGoogleSignIn = () => {
+    sessionStorage.setItem("redirectAfterLogin", targetUrl || window.location.href);
+    sessionStorage.setItem("autoGoogleLogin", "true");
+    window.location.href = 'login.html';
+  };
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-[#FF6B00] selection:text-white">
-      <Navbar />
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} onGoogleSignIn={handleGoogleSignIn} />
+      <Navbar onLoginClick={handleLoginClick} />
       <main>
-        <Hero />
+        <Hero onStartTest={handleStartTest} />
         <FeatureStrip />
-        <QuizSection />
+        <QuizSection onStartTest={handleStartTest} />
       </main>
     </div>
   );
