@@ -59,6 +59,7 @@
         .start-btn { margin-top: 15px; text-align: center; padding: 10px; background: var(--brand); color: white; border-radius: 8px; font-weight: 600; border: none; transition: 0.2s; }
         .topic-card:hover .start-btn { background: var(--accent); }
     </style>
+    <script type="module" src="auth-guard.js"></script>
 </head>
 <body>
     <nav style="background: rgba(255, 255, 255, 0.95); padding:15px 5%; display:flex; justify-content:space-between; border-bottom: 1px solid var(--border);">
@@ -231,22 +232,28 @@
 
         // Function to handle launching the quiz engine
         window.startNeetChapterPractice = function(chapterCode, chapterName) {
-            const grade = classFilter.value;
-            const subject = subjectFilter.value;
-            
-            // Set necessary variables for your CBT engine
-            localStorage.setItem("selectedClass", "class" + grade);
-            localStorage.setItem("selectedSubject", subject);
-            localStorage.setItem("selectedTopic", chapterCode);
-            localStorage.setItem("selectedTopicName", chapterName);
-            localStorage.setItem("isMockTest", "false");
-            
-            // Redirect to dedicated NEET test player
-            if (localStorage.getItem("isLoggedIn") !== "true") {
-                sessionStorage.setItem("redirectAfterLogin", "neet-quiz.html");
-                window.location.href = "login.html";
-            } else {
+            const proceed = () => {
+                const grade = classFilter.value;
+                const subject = subjectFilter.value;
+                
+                // Set necessary variables for your CBT engine
+                localStorage.setItem("selectedClass", "class" + grade);
+                localStorage.setItem("selectedSubject", subject);
+                localStorage.setItem("selectedTopic", chapterCode);
+                localStorage.setItem("selectedTopicName", chapterName);
+                localStorage.setItem("isMockTest", "false");
                 window.location.href = "neet-quiz.html";
+            };
+
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
+            } else {
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", "neet-quiz.html");
+                    window.location.href = "login.html";
+                    return;
+                }
+                proceed();
             }
         };
 

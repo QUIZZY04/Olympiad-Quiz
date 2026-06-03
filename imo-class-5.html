@@ -55,6 +55,7 @@
 
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .content-section { padding: 25px; } }
     </style>
+    <script type="module" src="auth-guard.js"></script>
 </head>
 <body>
     <nav>
@@ -154,21 +155,28 @@
 
     <script>
         function openHubAction(type) {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!isLoggedIn) {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.href = "login.html";
-                return;
-            }
-            localStorage.setItem("selectedClass", "class5");
-            localStorage.setItem("selectedSubject", "maths");
-            localStorage.setItem("isChampionship", "false");
-            if (type === 'mock') {
-                localStorage.setItem("isMockTest", "true");
-                window.location.href = "quiz.html";
+            const proceed = () => {
+                localStorage.setItem("selectedClass", "class5");
+                localStorage.setItem("selectedSubject", "maths");
+                localStorage.setItem("isChampionship", "false");
+                if (type === 'mock') {
+                    localStorage.setItem("isMockTest", "true");
+                    window.location.href = "quiz.html";
+                } else {
+                    localStorage.setItem("isMockTest", "false");
+                    window.location.href = "chapterwise.html";
+                }
+            };
+
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
             } else {
-                localStorage.setItem("isMockTest", "false");
-                window.location.href = "chapterwise.html";
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                    window.location.href = "login.html";
+                    return;
+                }
+                proceed();
             }
         }
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }

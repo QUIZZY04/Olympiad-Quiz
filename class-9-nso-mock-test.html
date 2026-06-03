@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="auth-guard.js"></script>
     <style>
         :root { --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --brand: #059669; --accent: #047857; --border: #e2e8f0; --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -98,14 +99,21 @@
     <script>
         window.startTest = function(e) {
             e.preventDefault();
-            if (localStorage.getItem("isLoggedIn") === "true") {
+            const proceed = () => {
                 localStorage.setItem("selectedClass", "class9");
                 localStorage.setItem("selectedSubject", "science");
                 localStorage.setItem("isMockTest", "true");
                 window.location.href = "quiz.html";
+            };
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
             } else {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.href = "login.html";
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                    window.location.href = "login.html";
+                    return;
+                }
+                proceed();
             }
         };
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }

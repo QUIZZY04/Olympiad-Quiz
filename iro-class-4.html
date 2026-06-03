@@ -56,6 +56,7 @@
 
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .content-section { padding: 25px; } }
     </style>
+    <script type="module" src="auth-guard.js"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -178,26 +179,33 @@
 
     <script>
         function openHubAction(type) {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!isLoggedIn) {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.href = "login.html";
-                return;
-            }
-            localStorage.setItem("selectedClass", "class4");
-            localStorage.setItem("selectedSubject", "reasoning");
-            localStorage.setItem("isChampionship", "false");
+            const proceed = () => {
+                localStorage.setItem("selectedClass", "class4");
+                localStorage.setItem("selectedSubject", "reasoning");
+                localStorage.setItem("isChampionship", "false");
 
-            if (type === 'mock') {
-                localStorage.setItem("selectedTopic", "");
-                localStorage.setItem("selectedTopicName", "");
-                localStorage.setItem("selectedTopicDisplay", "");
-                localStorage.removeItem("selectedTopicData");
-                localStorage.setItem("isMockTest", "true");
-                window.location.href = "quiz.html";
-            } else if (type === 'chapter') {
-                localStorage.setItem("isMockTest", "false");
-                window.location.href = "chapterwise.html";
+                if (type === 'mock') {
+                    localStorage.setItem("selectedTopic", "");
+                    localStorage.setItem("selectedTopicName", "");
+                    localStorage.setItem("selectedTopicDisplay", "");
+                    localStorage.removeItem("selectedTopicData");
+                    localStorage.setItem("isMockTest", "true");
+                    window.location.href = "quiz.html";
+                } else if (type === 'chapter') {
+                    localStorage.setItem("isMockTest", "false");
+                    window.location.href = "chapterwise.html";
+                }
+            };
+
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
+            } else {
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                    window.location.href = "login.html";
+                    return;
+                }
+                proceed();
             }
         }
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }

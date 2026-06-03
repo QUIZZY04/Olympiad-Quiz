@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processing Payment - Olympiad Portal</title>
     <meta name="robots" content="noindex, nofollow">
+
+    <!-- INSTANT AUTHENTICATION CHECK -->
+    <script>
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+          sessionStorage.setItem("redirectAfterLogin", window.location.href);
+          window.location.replace("login.html");
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" as="style">

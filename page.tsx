@@ -5,35 +5,37 @@ import { ChevronRight, Check, Award, BookOpen, Cpu, Stethoscope } from 'lucide-r
 // COMPONENTS
 // ============================================================================
 
-const AuthModal = ({ isOpen, onClose, onGoogleSignIn }: { isOpen: boolean, onClose: () => void, onGoogleSignIn: () => void }) => {
+const AuthModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-[#0f172a]/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-5 animate-in fade-in duration-300">
-      <div className="bg-white rounded-3xl p-10 w-full max-w-[400px] text-center shadow-2xl border-t-4 border-[#FF6B00] relative">
-        <button onClick={onClose} className="absolute top-5 right-5 text-[#64748b] hover:text-[#0f172a] text-2xl leading-none cursor-pointer border-none bg-transparent">
-          &times;
-        </button>
-        <div className="w-16 h-16 bg-[#FF6B00]/10 text-[#FF6B00] rounded-full flex items-center justify-center text-3xl mx-auto mb-5">
+      <div className="bg-white rounded-3xl p-8 w-full max-w-[420px] text-center shadow-2xl border-t-4 border-[#FF6B00] relative">
+        <div className="w-16 h-16 bg-[#FF6B00]/10 text-[#FF6B00] rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
           🔐
         </div>
-        <h2 className="text-2xl font-extrabold text-[#0f172a] mb-3 tracking-tight">Login Required</h2>
-        <p className="text-[#64748b] text-sm mb-8 leading-relaxed">
-          Create a free account to attempt tests, save your progress, view rankings, and track your performance.
+        <h2 className="text-2xl font-extrabold text-[#0f172a] mb-2 tracking-tight">Login Required</h2>
+        <p className="text-[#64748b] text-sm mb-6 leading-relaxed">
+          You must be logged in to attempt tests, save your progress, and view rankings.
         </p>
         
-        <button onClick={onGoogleSignIn} className="w-full bg-white text-[#0f172a] border border-[#e2e8f0] p-3.5 rounded-xl font-bold text-[15px] flex items-center justify-center gap-2.5 mb-4 hover:bg-[#f8fafc] hover:border-[#cbd5e1] transition-all shadow-sm cursor-pointer">
-          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5" alt="Google" />
-          Continue with Google
-        </button>
+        <div className="bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl p-5 mb-4">
+          <p className="text-[#475569] text-[13px] font-semibold mb-3">If you are a registered user</p>
+          <button onClick={() => { sessionStorage.setItem("redirectAfterLogin", window.location.href); window.location.href = 'login.html'; }} className="w-full bg-[#0f172a] text-white border-none p-3 rounded-xl font-bold text-[15px] hover:bg-[#1e293b] hover:-translate-y-0.5 hover:shadow-md transition-all cursor-pointer">
+            Sign In securely
+          </button>
+        </div>
         
-        <button onClick={() => { sessionStorage.setItem("redirectAfterLogin", window.location.href); window.location.href = 'login.html'; }} className="w-full bg-[#0f172a] text-white border-none p-3.5 rounded-xl font-bold text-[15px] mb-4 hover:bg-[#1e293b] transition-all cursor-pointer">
-          Login with Email
-        </button>
+        <div className="bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl p-5 mb-5">
+          <p className="text-[#475569] text-[13px] font-semibold mb-3">If you don't have an account</p>
+          <button onClick={() => { sessionStorage.setItem("redirectAfterLogin", window.location.href); window.location.href = 'signup.html'; }} className="w-full bg-white text-[#FF6B00] border border-[#FF6B00] p-3 rounded-xl font-bold text-[15px] hover:bg-[#fff7ed] hover:-translate-y-0.5 hover:shadow-md transition-all cursor-pointer">
+            Register for free
+          </button>
+        </div>
         
-        <p className="text-sm text-[#64748b] m-0">
-          New here? <a href="signup.html" className="text-[#FF6B00] font-bold hover:underline">Register</a>
-        </p>
+        <button onClick={onClose} className="bg-transparent text-[#64748b] border-none p-2 font-semibold text-[14px] hover:text-[#0f172a] transition-all cursor-pointer underline decoration-transparent hover:decoration-[#0f172a]">
+          Cancel and go back
+        </button>
       </div>
     </div>
   );
@@ -237,15 +239,9 @@ export default function Home() {
     }
   };
 
-  const handleGoogleSignIn = () => {
-    sessionStorage.setItem("redirectAfterLogin", targetUrl || window.location.href);
-    sessionStorage.setItem("autoGoogleLogin", "true");
-    window.location.href = 'login.html';
-  };
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-[#FF6B00] selection:text-white">
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} onGoogleSignIn={handleGoogleSignIn} />
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
       <Navbar onLoginClick={handleLoginClick} />
       <main>
         <Hero onStartTest={handleStartTest} />

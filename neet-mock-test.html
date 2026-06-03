@@ -12,6 +12,7 @@
         .btn { padding: 12px 24px; background: #6d28d9; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; }
         .btn:hover { background: #5b21b6; }
     </style>
+    <script type="module" src="auth-guard.js"></script>
 </head>
 <body>
     <nav style="background: rgba(255, 255, 255, 0.95); padding:15px 5%; display:flex; justify-content:space-between; border-bottom: 1px solid #cbd5e1;">
@@ -38,7 +39,7 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -46,15 +47,22 @@
             authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
             projectId: "olympiad-portal-d2a5e"
         };
-        const app = initializeApp(firebaseConfig);
+        const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
         const db = getFirestore(app);
 
         window.startTest = function(url) {
-            if (localStorage.getItem("isLoggedIn") !== "true") {
-                sessionStorage.setItem("redirectAfterLogin", url);
-                window.location.href = "login.html";
-            } else {
+            const proceed = () => {
                 window.location.href = url;
+            };
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
+            } else {
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", url);
+                    window.location.href = "login.html";
+                    return;
+                }
+                proceed();
             }
         };
 

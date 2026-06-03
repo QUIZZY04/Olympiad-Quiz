@@ -34,6 +34,7 @@
         .cta-btn { background: linear-gradient(135deg, var(--brand), var(--accent)); color: white; padding: 15px 40px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-flex; box-shadow: 0 10px 15px rgba(5, 150, 105, 0.3); transition: 0.3s; }
         .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 20px rgba(5, 150, 105, 0.4); }
     </style>
+    <script type="module" src="auth-guard.js"></script>
 </head>
 <body>
     <nav>
@@ -98,14 +99,21 @@
     <script>
         window.startTest = function(e) {
             e.preventDefault();
-            if (localStorage.getItem("isLoggedIn") === "true") {
+            const proceed = () => {
                 localStorage.setItem("selectedClass", "class7");
                 localStorage.setItem("selectedSubject", "science");
                 localStorage.setItem("isMockTest", "true");
                 window.location.href = "quiz.html";
+            };
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
             } else {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.href = "login.html";
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", "mock.html");
+                    window.location.href = "login.html";
+                    return;
+                }
+                proceed();
             }
         };
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }

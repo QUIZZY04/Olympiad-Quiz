@@ -93,6 +93,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+<script type="module" src="auth-guard.js"></script>
 
 <style>
 :root {
@@ -342,7 +343,6 @@ onAuthStateChanged(auth, async (user) => {
     const classSelect = document.getElementById("classSelect");
     
     if (!user) {
-        localStorage.setItem("isLoggedIn", "false");
         document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
             el.onclick = function() { window.location.href = 'login.html'; };
             el.innerText = "Login";
@@ -356,7 +356,6 @@ onAuthStateChanged(auth, async (user) => {
         const allOption = classSelect.querySelector('option[value="all"]');
         if (allOption) allOption.remove();
     } else {
-        localStorage.setItem("isLoggedIn", "true");
         const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
         if (!isAdmin) {
             const allOption = classSelect.querySelector('option[value="all"]');
@@ -453,22 +452,30 @@ window.fetchHotsSets = async function() {
 };
 
 window.startHotsTest = function(id, cls, sub) {
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-        sessionStorage.setItem("redirectAfterLogin", window.location.href);
-        window.location.href = "login.html";
-        return;
+    const proceed = () => {
+        localStorage.setItem("isHotsTest", "true");
+        localStorage.setItem("activeHotsId", id);
+        localStorage.setItem("selectedClass", cls);
+        localStorage.setItem("selectedSubject", sub);
+        
+        // Clear conflicting modes
+        localStorage.removeItem("isMockTest");
+        localStorage.removeItem("isChampionship");
+        localStorage.removeItem("activeSessionId");
+        
+        window.location.href = "quiz.html";
+    };
+
+    if (window.AuthGuard) {
+        window.AuthGuard.requireLogin(proceed);
+    } else {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            sessionStorage.setItem("redirectAfterLogin", window.location.href);
+            window.location.href = "login.html";
+            return;
+        }
+        proceed();
     }
-    localStorage.setItem("isHotsTest", "true");
-    localStorage.setItem("activeHotsId", id);
-    localStorage.setItem("selectedClass", cls);
-    localStorage.setItem("selectedSubject", sub);
-    
-    // Clear conflicting modes
-    localStorage.removeItem("isMockTest");
-    localStorage.removeItem("isChampionship");
-    localStorage.removeItem("activeSessionId");
-    
-    window.location.href = "quiz.html";
 };
 
 window.logout = async () => {
