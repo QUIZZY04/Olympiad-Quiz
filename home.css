@@ -114,11 +114,11 @@ img {
     border-bottom: 2px solid transparent;
 }
 
-.nav-link:hover { color: var(--orange); }
+.nav-link:hover { color: #c2410c; }
 
 .nav-link.active { 
-    color: var(--orange); 
-    border-bottom-color: var(--orange);
+    color: #c2410c; 
+    border-bottom-color: #c2410c;
 }
 
 .navbar-actions {
@@ -161,7 +161,7 @@ img {
 
 .nav-dropdown-content a:hover {
     background-color: var(--background);
-    color: var(--orange);
+    color: #c2410c;
 }
 
 .nav-dropdown:hover .nav-dropdown-content {
@@ -206,8 +206,8 @@ img {
     align-items: center;
     padding: 4px 12px;
     border-radius: 9999px;
-    background-color: rgba(255, 107, 0, 0.1);
-    color: var(--orange);
+    background-color: rgba(194, 65, 12, 0.1);
+    color: #c2410c;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -225,7 +225,7 @@ img {
 }
 
 .hero-left .heading-line { display: block; }
-.text-orange { color: var(--orange); }
+.text-orange { color: #c2410c; }
 
 .hero-subheading {
     font-size: 0.9rem;
@@ -476,29 +476,29 @@ img {
 
 /* Quiz Card Themes */
 .card-orange { background-color: #FFFAF5; border-color: rgba(255, 107, 0, 0.3); }
-.card-orange .quiz-icon { background-color: #ffffff; color: #FF6B00; }
-.card-orange .bottom-text { color: #FF6B00; }
-.card-orange .arrow-btn { border: 2px solid #FF6B00; background-color: white; color: #FF6B00; }
+.card-orange .quiz-icon { background-color: #ffffff; color: #c2410c; }
+.card-orange .bottom-text { color: #c2410c; }
+.card-orange .arrow-btn { border: 2px solid #c2410c; background-color: white; color: #c2410c; }
 
 .card-blue { background-color: #F8FAFF; border-color: rgba(37, 99, 235, 0.3); }
-.card-blue .quiz-icon { background-color: #ffffff; color: #2563EB; }
-.card-blue .bottom-text { color: #2563EB; }
-.card-blue .arrow-btn { background-color: #2563EB; color: white; border: 2px solid #2563EB; }
+.card-blue .quiz-icon { background-color: #ffffff; color: #1d4ed8; }
+.card-blue .bottom-text { color: #1d4ed8; }
+.card-blue .arrow-btn { background-color: #1d4ed8; color: white; border: 2px solid #1d4ed8; }
 
 .card-purple { background-color: #FCFAFF; border-color: rgba(147, 51, 234, 0.3); }
-.card-purple .quiz-icon { background-color: #ffffff; color: #9333EA; }
-.card-purple .bottom-text { color: #9333EA; }
-.card-purple .arrow-btn { background-color: #9333EA; color: white; border: 2px solid #9333EA; }
+.card-purple .quiz-icon { background-color: #ffffff; color: #7e22ce; }
+.card-purple .bottom-text { color: #7e22ce; }
+.card-purple .arrow-btn { background-color: #7e22ce; color: white; border: 2px solid #7e22ce; }
 
 .card-green { background-color: #F8FFFC; border-color: rgba(22, 163, 74, 0.3); }
-.card-green .quiz-icon { background-color: #ffffff; color: #16A34A; }
-.card-green .bottom-text { color: #16A34A; }
-.card-green .arrow-btn { background-color: #16A34A; color: white; border: 2px solid #16A34A; }
+.card-green .quiz-icon { background-color: #ffffff; color: #15803d; }
+.card-green .bottom-text { color: #15803d; }
+.card-green .arrow-btn { background-color: #15803d; color: white; border: 2px solid #15803d; }
 
-.text-orange { color: #FF6B00; }
-.text-blue { color: #2563EB; }
-.text-purple { color: #9333EA; }
-.text-green { color: #16A34A; }
+.text-orange { color: #c2410c; }
+.text-blue { color: #1d4ed8; }
+.text-purple { color: #7e22ce; }
+.text-green { color: #15803d; }
 
 /* ==========================================================================
    5. FEATURE STRIP
@@ -551,10 +551,10 @@ img {
     height: 24px;
 }
 
-.icon-free { background-color: #EFF6FF; color: #2563EB; }
-.icon-analysis { background-color: #F5F3FF; color: #9333EA; }
-.icon-rank { background-color: #F0FDF4; color: #16A34A; }
-.icon-trusted { background-color: #FFF4EB; color: #FF6B00; }
+.icon-free { background-color: #EFF6FF; color: #1d4ed8; }
+.icon-analysis { background-color: #F5F3FF; color: #7e22ce; }
+.icon-rank { background-color: #F0FDF4; color: #15803d; }
+.icon-trusted { background-color: #FFF4EB; color: #c2410c; }
 
 .feature-text-group {
     display: flex;
@@ -617,14 +617,14 @@ img {
     width: 70%;
     margin: 0 auto;
 }
-.blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--orange); }
+.blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #c2410c; }
 .blog-card img { width: 100%; height: 140px; object-fit: cover; }
 .blog-content { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
-.blog-date { font-size: 0.75rem; color: var(--orange); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+.blog-date { font-size: 0.75rem; color: #c2410c; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
 .blog-content h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
 .blog-content p { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 16px; flex-grow: 1; line-height: 1.5; }
 .read-more { font-weight: 700; color: var(--navy); font-size: 0.85rem; transition: color 0.2s; }
-.blog-card:hover .read-more { color: var(--orange); }
+.blog-card:hover .read-more { color: #c2410c; }
 
 .testimonial-section {
     padding: 60px 0 100px 0;
@@ -671,7 +671,7 @@ img {
 }
 
 .testimonial-stars {
-    color: var(--orange);
+    color: #c2410c;
     font-size: 1.25rem;
     margin-bottom: 24px;
     letter-spacing: 2px;
@@ -767,7 +767,7 @@ img {
     transition: color 0.2s;
 }
 
-.footer-links a:hover { color: var(--orange); }
+.footer-links a:hover { color: #c2410c; }
 .site-footer p { font-size: 0.875rem; color: var(--text-muted); }
 
 /* ==========================================================================
@@ -829,7 +829,7 @@ img {
         padding: 0 0 0 15px;
         border-radius: 0 0 8px 8px;
         min-width: 100%;
-        border-left: 3px solid var(--orange);
+        border-left: 3px solid #c2410c;
     }
     
     .nav-dropdown.open > .nav-dropdown-content {
@@ -935,14 +935,14 @@ img {
     width: 70%;
     margin: 0 auto;
 }
-.blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--orange); }
+.blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #c2410c; }
 .blog-card img { width: 100%; height: 140px; object-fit: cover; }
 .blog-content { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
-.blog-date { font-size: 0.75rem; color: var(--orange); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+.blog-date { font-size: 0.75rem; color: #c2410c; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
 .blog-content h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
 .blog-content p { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 16px; flex-grow: 1; line-height: 1.5; }
 .read-more { font-weight: 700; color: var(--navy); font-size: 0.85rem; transition: color 0.2s; }
-.read-more:hover { color: var(--orange); }
+.read-more:hover { color: #c2410c; }
 
 /* Expanded Testimonials View */
 .testimonial-expanded {
@@ -1012,8 +1012,8 @@ img {
 }
 
 .faq-item:hover {
-    border-color: rgba(255, 107, 0, 0.3);
-    box-shadow: 0 10px 15px -3px rgba(255, 107, 0, 0.05);
+    border-color: rgba(194, 65, 12, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(194, 65, 12, 0.05);
 }
 
 .faq-question {
@@ -1034,12 +1034,12 @@ img {
 
 .faq-icon {
     font-size: 1.5rem;
-    color: var(--orange);
+    color: #c2410c;
     font-weight: 400;
     transition: transform 0.3s ease;
 }
 
-.faq-item.open .faq-question { color: var(--orange); }
+.faq-item.open .faq-question { color: #c2410c; }
 .faq-item.open .faq-icon { transform: rotate(45deg); }
 
 .faq-answer {
@@ -1091,15 +1091,15 @@ img {
 
 .step-card:hover {
     transform: translateY(-5px);
-    border-color: var(--orange);
-    box-shadow: 0 10px 25px -5px rgba(255, 107, 0, 0.1);
+    border-color: #c2410c;
+    box-shadow: 0 10px 25px -5px rgba(194, 65, 12, 0.1);
 }
 
 .step-number {
     width: 48px;
     height: 48px;
-    background: rgba(255, 107, 0, 0.1);
-    color: var(--orange);
+    background: rgba(194, 65, 12, 0.1);
+    color: #c2410c;
     border-radius: 50%;
     display: flex;
     align-items: center;
