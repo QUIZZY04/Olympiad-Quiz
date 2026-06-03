@@ -454,30 +454,198 @@ nav {
     background: #ffffff !important;
     backdrop-filter: none !important;
     border-bottom: 1px solid var(--border);
-    padding: 8px 5%;
+    padding: 0 2rem !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 1000;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-wrap: nowrap;
+    height: 70px;
+}
+
+@media (min-width: 1300px) {
+    nav {
+        padding: 0 calc((100% - 1280px) / 2 + 2rem) !important;
+    }
+}
+
+.brand {
+    font-size: 1.35rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+    color: #0F172A !important;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.brand img {
+    height: 32px;
+    width: auto;
+}
+.brand:hover {
+    color: var(--brand) !important;
 }
 
 .nav-important {
+    display: none;
+}
+
+.nav-links {
     display: flex;
-    gap: 8px;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: 100%;
+}
+
+.nav-links a, .dropbtn {
+    color: #0F172A !important;
+    text-decoration: none;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    transition: 0.3s;
+    padding: 23px 0 !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid transparent !important;
+    white-space: nowrap;
+    background: transparent !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+    font-family: inherit;
+    height: 100%;
+    display: flex;
     align-items: center;
 }
 
-@media (min-width: 769px) {
-    /* Hide the mobile navbar helper on desktop to remove redundant Home/Logout buttons */
-    .nav-important {
-        display: none !important;
-    }
+.nav-links a:hover, .dropbtn:hover {
+    color: var(--brand) !important;
+}
 
-    /* Floating Timer for Desktop Layout */
+.nav-links a.active, .dropbtn.active {
+    color: var(--brand) !important;
+    border-bottom-color: var(--brand) !important;
+}
+
+/* ================= NAV ACTIONS ================= */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-left: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.login-link, .nav-actions .login-link, .nav-actions .nav-link-btn, .nav-important a {
+    background-color: #0F172A !important;
+    color: white !important;
+    padding: 8px 20px !important;
+    border-radius: 8px !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    transition: all 0.2s !important;
+    background-image: none !important;
+    height: auto !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    text-transform: none !important;
+}
+.login-link:hover, .nav-actions .login-link:hover, .nav-actions .nav-link-btn:hover, .nav-important a:hover {
+    background-color: #1e293b !important;
+    transform: none !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+/* Red styling for logout button */
+.nav-actions .login-link[style*="color: var(--danger)"], .nav-actions .login-link[style*="color:var(--danger)"], .nav-actions .nav-link-btn[onclick="logout()"] {
+    background-color: #fef2f2 !important;
+    color: #ef4444 !important;
+    border: 1px solid #fca5a5 !important;
+}
+.nav-actions .login-link[style*="color: var(--danger)"]:hover, .nav-actions .login-link[style*="color:var(--danger)"]:hover, .nav-actions .nav-link-btn[onclick="logout()"]:hover {
+    background-color: #fee2e2 !important;
+}
+
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    height: 100%;
+}
+.nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--surface);
+    min-width: 200px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+    border-radius: 12px !important;
+    z-index: 1001;
+    top: 100%;
+    left: 0;
+    border: 1px solid var(--border) !important;
+    padding: 8px 0 !important;
+}
+.nav-dropdown-content a {
+    color: #0F172A !important;
+    padding: 12px 20px !important;
+    text-decoration: none !important;
+    display: block !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    border-bottom: none !important;
+    transition: background 0.2s !important;
+    border-radius: 0 !important;
+    text-align: left;
+}
+.nav-dropdown-content a:hover {
+    background-color: var(--subtle) !important;
+    color: var(--brand) !important;
+}
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+}
+
+.close-menu { display: none !important; }
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #0F172A;
+    border-radius: 2px;
+}
+
+@media (min-width: 769px) {
+    .dropbtn::after {
+        content: ' ▾';
+        font-size: 0.8rem;
+        opacity: 0.7;
+        display: inline-block;
+        margin-left: 4px;
+    }
     .desktop-timer {
         display: flex !important;
         font-size: 1.2rem;
@@ -491,207 +659,91 @@ nav {
         align-items: center;
         gap: 10px;
     }
+    .mobile-timer { display: none !important; }
+}
 
-    /* Hide the mobile-specific timer on desktop */
-    .mobile-timer {
-        display: none !important;
+@media (max-width: 900px) {
+    nav {
+        padding: 0 1.5rem !important;
     }
-}
-
-.nav-important a {
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.75rem;
-    color: var(--brand-text);
-    background: rgba(79, 70, 229, 0.08);
-    padding: 4px 8px;
-    border-radius: 8px;
-    text-transform: uppercase;
-}
-
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    z-index: 1001;
-    width: 40px;
-    height: 40px;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    min-height: 3px;
-    background: var(--text);
-    border-radius: 2px;
-    transition: 0.3s;
-    flex-shrink: 0;
-}
-
-.brand {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text);
-    text-decoration: none;
-    white-space: nowrap;
-    transition: 0.3s;
-}
-.brand:hover {
-    color: var(--brand);
-}
-
-.nav-links {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.nav-links a {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    transition: 0.3s;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border-bottom: 3px solid transparent;
-    white-space: nowrap;
-}
-
-.nav-links a:hover {
-    color: var(--brand-text);
-    background: rgba(79, 70, 229, 0.05);
-}
-
-.nav-links a.active {
-    color: var(--brand-text);
-    background: rgba(79, 70, 229, 0.06);
-    border-bottom-color: var(--brand-text);
-}
-
-/* ================= NAV ACTIONS (Login/Signup) ================= */
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border-left: 2px solid var(--border);
-    padding-left: 15px;
-    margin-left: 10px;
-}
-
-.login-link {
-    font-weight: 700;
-    color: var(--brand-contrast) !important;
-    text-decoration: none;
-    font-size: 0.9rem;
-    background: linear-gradient(135deg, var(--brand), var(--accent));
-    padding: 10px 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
-    transition: 0.3s;
-}
-.login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4); filter: brightness(1.1); }
-
-/* Dropdown Menu Styles */
-.nav-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--surface);
-    min-width: 200px;
-    box-shadow: var(--shadow-lg);
-    border-radius: 12px;
-    z-index: 1001;
-    top: 100%;
-    left: 0;
-    border: 1px solid var(--border);
-    padding: 8px 0;
-}
-
-.nav-dropdown-content a {
-    color: var(--text) !important;
-    padding: 12px 20px !important;
-    text-decoration: none !important;
-    display: block !important;
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    border-bottom: none !important;
-    transition: background 0.2s !important;
-    border-radius: 0 !important;
-    text-align: left;
-}
-
-.close-menu {
-    display: none;
-}
-
-.nav-dropdown-content a:hover {
-    background-color: var(--subtle) !important;
-    color: var(--brand-text) !important;
-}
-
-.nav-dropdown:hover .nav-dropdown-content {
-    display: block;
-}
-
-@media (min-width: 769px) {
-    .dropbtn::after {
-        content: ' ▾';
-        font-size: 0.8rem;
-        opacity: 0.7;
-        display: inline-block;
-        margin-left: 4px;
+    .nav-links {
+        display: none;
     }
-}
-
-@media (max-width: 768px) {
-    .nav-dropdown { width: 100%; border-bottom: 1px solid var(--border); cursor: pointer; }
-    .nav-dropdown .dropbtn { display: flex !important; justify-content: space-between; align-items: center; width: 100%; border-bottom: none !important; }
-    .nav-dropdown .dropbtn::after { content: '' !important; display: inline-block !important; width: 8px !important; height: 8px !important; border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; transform: rotate(45deg) !important; transition: transform 0.3s ease !important; margin-right: 5px !important; flex-shrink: 0 !important; position: relative !important; top: -2px !important; }
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        transform: none;
+        height: auto;
+        width: 100%;
+        background-color: white;
+        padding: 1rem 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid var(--border);
+        gap: 0;
+        align-items: flex-start;
+        z-index: 1000;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .nav-links a, .dropbtn {
+        width: 100%;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid var(--border) !important;
+        height: auto;
+    }
+    .nav-dropdown {
+        width: 100%;
+        cursor: pointer;
+    }
+    .nav-dropdown .dropbtn {
+        justify-content: space-between;
+    }
+    .nav-dropdown .dropbtn::after {
+        content: '' !important; display: inline-block !important; width: 8px !important; height: 8px !important; border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; transform: rotate(45deg) !important; transition: transform 0.3s ease !important; margin-right: 5px !important; flex-shrink: 0 !important; position: relative !important; top: -2px !important;
+    }
     .nav-dropdown.open .dropbtn::after { transform: rotate(225deg) !important; top: 2px !important; }
     .nav-dropdown-content {
         position: static;
-        display: block;
-        box-shadow: none;
-        border: none;
-        background: var(--subtle);
-        padding: 0 0 0 15px;
-        border-radius: 0 0 8px 8px;
+        display: none;
+        box-shadow: none !important;
+        border: none !important;
+        background: var(--bg);
+        padding: 0 0 0 15px !important;
+        border-radius: 0 0 8px 8px !important;
         min-width: 100%;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, padding-bottom 0.4s ease-out;
-        margin-top: 0px;
-        border-left: 3px solid var(--brand);
+        border-left: 3px solid var(--brand) !important;
     }
-    .nav-dropdown.open > .nav-dropdown-content { max-height: 400px; /* Adjust as needed */ padding-top: 10px; padding-bottom: 10px; }
-    .nav-dropdown-content a, .nav-dropdown-content button.nav-link-btn { padding: 8px 15px !important; font-size: 0.8rem !important; font-weight: 600 !important; border-radius: 4px !important; }
-    .nav-dropdown-content a:hover, .nav-dropdown-content button.nav-link-btn:hover { background: rgba(255, 107, 0, 0.15) !important; }
-}
-
-.signup-btn-nav {
-    background: linear-gradient(135deg, #0284c7, #2563eb);
-    color: white !important;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-    text-decoration: none;
-    font-size: 0.9rem;
+    .nav-dropdown.open > .nav-dropdown-content {
+        display: block;
+    }
+    .menu-toggle {
+        display: flex;
+        order: 3;
+    }
+    .brand {
+        order: 1;
+        flex: 1;
+    }
+    .nav-important {
+        display: flex;
+        order: 2;
+        gap: 12px;
+    }
+    .nav-important a[href="index.html"] {
+        display: none !important;
+    }
+    .nav-actions {
+        width: 100%;
+        margin-top: 15px;
+    }
+    .nav-actions .login-link, .nav-actions .nav-link-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* ================= TABS NAVIGATION (For Chapterwise/Leaderboard) ================= */
@@ -732,112 +784,6 @@ nav {
     }
     body {
         padding-top: 60px !important;
-    }
-    nav {
-        padding: 0 12px !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        z-index: 1000 !important;
-        min-height: 60px !important; /* Increased from 50px to better contain navigation items */
-    }
-    .brand {
-        font-size: 0.9rem !important;
-        margin-left: 0 !important; /* Removed to give more horizontal space to the brand */
-        flex: 1;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis; /* Prevents pushing buttons off-screen */
-    }
-    .nav-important a {
-        background: var(--brand) !important;
-        color: white !important;
-        display: inline-block;
-    }
-    .menu-toggle {
-        display: flex;
-        padding: 5px;
-        margin-right: 8px;
-        order: -1; /* Ensures it stays on the far left */
-        flex-shrink: 0;
-    }
-    .nav-links {
-        display: flex;
-        position: fixed;
-        top: 0;
-        right: 0;
-        transform: translateX(100%);
-        height: 100vh;
-        width: 240px;
-        background: var(--surface);
-        flex-direction: column;
-        padding: 60px 15px 15px;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.15);
-        z-index: 1000;
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin: 0;
-        visibility: hidden;
-        opacity: 0;
-        pointer-events: none;
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s, visibility 0.4s;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-    .nav-links.active {
-        transform: translateX(0);
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .close-menu {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: rgba(0,0,0,0.05);
-        border: none;
-        font-size: 28px;
-        color: var(--text);
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        transition: 0.3s;
-        padding: 0;
-    }
-    .close-menu:hover {
-        background: rgba(239, 68, 68, 0.1);
-        color: var(--danger);
-    }
-    /* Hide links that are already visible on the main screen */
-    .nav-links a[href="about.html"], 
-    .nav-links .login-link,
-    .nav-links a[href="index.html"] { /* Hide Home if it's in nav-important */
-        display: none !important;
-    }
-    .nav-links a {
-        width: 100%;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 0.85rem;
-        text-align: left;
-    }
-    .nav-actions {
-        border: none;
-        padding: 0;
-        margin: 20px 0 0 0;
-        gap: 15px;
-        flex-direction: column;
-        align-items: flex-start;
     }
     .tabs-nav {
         justify-content: flex-start !important;
