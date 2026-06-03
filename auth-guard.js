@@ -74,13 +74,11 @@ export const AuthGuard = {
                         
                         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:20px; margin-bottom:20px;">
                             <p style="font-size:13px; color:#475569; margin:0 0 12px 0; font-weight:600;">If you don't have an account</p>
-                            <button id="agRegisterBtn" style="width:100%;background:#fff;color:#ff6b00;border:1px solid #ff6b00;padding:12px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s;">
                             <button id="agRegisterBtn" style="width:100%;background:#fff;color:#c2410c;border:1px solid #c2410c;padding:12px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s;">
                                 Register for free
                             </button>
                         </div>
                         
-                        <button id="agCancelBtn" style="background:transparent;color:#64748b;border:none;padding:10px;font-weight:600;font-size:14px;cursor:pointer;transition:0.2s;text-decoration:underline;">
                         <button id="agCancelBtn" style="background:transparent;color:#475569;border:none;padding:10px;font-weight:600;font-size:14px;cursor:pointer;transition:0.2s;text-decoration:underline;">
                             Cancel and go back
                         </button>
@@ -89,7 +87,6 @@ export const AuthGuard = {
                 <style>
                     @keyframes agFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
                     #agSignInBtn:hover { background: #1e293b; transform: translateY(-1px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-                    #agRegisterBtn:hover { background: #fff7ed; transform: translateY(-1px); box-shadow: 0 4px 6px rgba(255,107,0,0.15); }
                     #agRegisterBtn:hover { background: #fff7ed; transform: translateY(-1px); box-shadow: 0 4px 6px rgba(194,65,12,0.15); }
                     #agCancelBtn:hover { color: #0f172a; }
                 </style>
