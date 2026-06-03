@@ -6,6 +6,14 @@
 <title>Your Quiz Results & Analysis | Olympiad Portal</title>
 <meta name="robots" content="noindex, nofollow">
 
+<!-- INSTANT AUTHENTICATION CHECK -->
+<script>
+  if (localStorage.getItem("isLoggedIn") !== "true") {
+      sessionStorage.setItem("redirectAfterLogin", window.location.href);
+      window.location.replace("login.html");
+  }
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="style.css" as="style">

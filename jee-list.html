@@ -4,7 +4,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free JEE Advanced Mock Test 2026 | Multi-Correct IIT CBT</title>
+. login is not forcing user to login    <title>Free JEE Advanced Mock Test 2026 | Multi-Correct IIT CBT</title>
     <meta name="description" content="Take a Free JEE Advanced Mock Test 2026 online. Master multi-correct questions in an IIT-level CBT environment with instant detailed solutions. Start now!">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
@@ -142,6 +142,7 @@
   gtag('config', 'AW-18108080300');
   gtag('config', 'G-ZN5D87BQXP');
 </script>
+<script type="module" src="auth-guard.js"></script>
 </head>
 <body>
 
@@ -280,7 +281,7 @@
     </footer>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, collection, getDocs, orderBy, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -289,7 +290,7 @@
             authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
             projectId: "olympiad-portal-d2a5e"
         };
-        const app = initializeApp(firebaseConfig);
+        const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
         const auth = getAuth(app);
         const db = getFirestore(app);
 
@@ -325,12 +326,18 @@
         });
 
         window.startJeeTest = function(docId) {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!auth.currentUser || !isLoggedIn) {
-                sessionStorage.setItem("redirectAfterLogin", "jee-quiz.html?id=" + docId);
-                window.location.href = "login.html";
-            } else {
+            const proceed = () => {
                 window.location.href = "jee-quiz.html?id=" + docId;
+            };
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
+            } else {
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", "jee-quiz.html?id=" + docId);
+                    window.location.href = "login.html";
+                    return;
+                }
+                proceed();
             }
         };
 
@@ -381,53 +388,59 @@
         let generatedTestId = null;
 
         window.generateJeeTest = async () => {
-            const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-            if (!auth.currentUser || !isLoggedIn) {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                window.location.href = "login.html";
-                return;
-            }
+            const proceed = async () => {
+                const subject = document.getElementById("genSubject").value;
+                const btn = document.querySelector("button[onclick='generateJeeTest()']");
+                const originalText = btn.innerText;
+                btn.innerText = "Generating...";
+                btn.disabled = true;
 
-            const subject = document.getElementById("genSubject").value;
-            const btn = document.querySelector("button[onclick='generateJeeTest()']");
-            const originalText = btn.innerText;
-            btn.innerText = "Generating...";
-            btn.disabled = true;
+                try {
+                    const q = query(collection(db, "jeeMockTests"), where("subject", "==", subject));
+                    const snap = await getDocs(q);
+                    
+                    if (snap.empty) {
+                        alert(`No tests available for ${subject} currently in the database.`);
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                        return;
+                    }
 
-            try {
-                const q = query(collection(db, "jeeMockTests"), where("subject", "==", subject));
-                const snap = await getDocs(q);
-                
-                if (snap.empty) {
-                    alert(`No tests available for ${subject} currently in the database.`);
+                    // Pick a random test
+                    const docs = snap.docs;
+                    const randomDoc = docs[Math.floor(Math.random() * docs.length)];
+                    const testData = randomDoc.data();
+                    generatedTestId = randomDoc.id;
+
+                    let strictTotalMarks = 0;
+                    testData.questions.forEach(q => {
+                        strictTotalMarks += (q.type === "multi" ? 4 : 3);
+                    });
+
+                    document.getElementById("instTestTitle").innerText = testData.title;
+                    document.getElementById("instSubject").innerText = testData.subject || "Full Syllabus";
+                    document.getElementById("instDuration").innerText = testData.duration + " Minutes";
+                    document.getElementById("instMarks").innerText = strictTotalMarks;
+                    document.getElementById("instTotalQ").innerText = testData.questions.length;
+
+                    document.getElementById("generatorModal").style.display = "flex";
+                } catch (error) {
+                    alert("Error generating test: " + error.message);
+                } finally {
                     btn.innerText = originalText;
                     btn.disabled = false;
+                }
+            };
+
+            if (window.AuthGuard) {
+                window.AuthGuard.requireLogin(proceed);
+            } else {
+                if (localStorage.getItem("isLoggedIn") !== "true") {
+                    sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                    window.location.href = "login.html";
                     return;
                 }
-
-                // Pick a random test
-                const docs = snap.docs;
-                const randomDoc = docs[Math.floor(Math.random() * docs.length)];
-                const testData = randomDoc.data();
-                generatedTestId = randomDoc.id;
-
-                let strictTotalMarks = 0;
-                testData.questions.forEach(q => {
-                    strictTotalMarks += (q.type === "multi" ? 4 : 3);
-                });
-
-                document.getElementById("instTestTitle").innerText = testData.title;
-                document.getElementById("instSubject").innerText = testData.subject || "Full Syllabus";
-                document.getElementById("instDuration").innerText = testData.duration + " Minutes";
-                document.getElementById("instMarks").innerText = strictTotalMarks;
-                document.getElementById("instTotalQ").innerText = testData.questions.length;
-
-                document.getElementById("generatorModal").style.display = "flex";
-            } catch (error) {
-                alert("Error generating test: " + error.message);
-            } finally {
-                btn.innerText = originalText;
-                btn.disabled = false;
+                proceed();
             }
         };
 

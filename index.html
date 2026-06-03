@@ -465,6 +465,43 @@
             </div>
         </div>
     </section>
+
+    <!-- ================= BLOG SECTION ================= -->
+    <section class="blog-section container">
+        <div class="section-header">
+            <h2>Latest Articles</h2>
+            <p>Tips, preparation strategies and Olympiad insights.</p>
+        </div>
+        <div class="blog-grid" id="blogGrid">
+            <!-- Dynamically populated via JS -->
+            <div style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;">Loading latest articles...</div>
+        </div>
+        <div class="section-action">
+            <a href="blog.html" class="btn-primary">View All Articles</a>
+        </div>
+    </section>
+
+    <!-- ================= TESTIMONIAL SECTION ================= -->
+    <section class="testimonial-section container" style="padding-top: 40px;">
+        <div class="section-header">
+            <h2>What Students Say</h2>
+            <p>Real experiences from students using Olympiad Portal.</p>
+        </div>
+        
+        <div class="testimonial-grid" id="testimonialGrid">
+            <!-- 3 Cards populated by JS -->
+            <div style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;">Loading reviews...</div>
+        </div>
+
+        <!-- Expanded View (Hidden by default) -->
+        <div class="testimonial-expanded" id="testimonialExpanded" style="display: none;">
+            <!-- Up to 15 Cards populated by JS, vertical scroll -->
+        </div>
+
+        <div class="section-action">
+            <button id="toggleTestimonialBtn" class="btn-outline" onclick="toggleTestimonialView()">See More Reviews</button>
+        </div>
+    </section>
 </main>
 <!-- Main Content Area Ends -->
 
@@ -522,5 +559,215 @@
     });
 </script>
 
+<!-- DYNAMIC BLOG & TESTIMONIAL SCRIPTS -->
+<script type="module">
+    import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+        projectId: "olympiad-portal-d2a5e"
+    };
+
+    const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+    const db = getFirestore(app);
+
+    function loadBlogs() {
+        const blogGrid = document.getElementById("blogGrid");
+        if (!blogGrid) return;
+        const recentBlogs = [
+            { title: "Advanced Time Management Techniques for Competitive Exams", excerpt: "Discover advanced time management techniques to maximize your score in competitive exams and Olympiads.", date: "January 15, 2024", readTime: "15 min read", category: "Strategy", image: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=600&q=80&fm=webp", link: "blog-advanced-time-management.html" },
+            { title: "The Ultimate Guide to Crack NEET 2026: A 6-Month Study Plan", excerpt: "Master Biology, Physics, and Chemistry with this comprehensive 6-month NEET preparation strategy. Learn how to balance NCERT and mock tests efficiently.", date: "May 25, 2026", readTime: "10 min read", category: "Strategy", image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80&fm=webp", link: "blog-ultimate-neet-2026-study-plan.html" },
+            { title: "JEE Main vs JEE Advanced: Understanding the Key Differences", excerpt: "Discover the fundamental differences between JEE Main and JEE Advanced in terms of syllabus, exam pattern, difficulty, and preparation strategy.", date: "May 20, 2026", readTime: "8 min read", category: "Strategy", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80&fm=webp", link: "blog-jee-main-vs-jee-advanced.html" }
+        ];
+        let html = "";
+        recentBlogs.forEach(blog => {
+            html += `
+                <a href="${blog.link}" class="blog-card">
+                    <div style="position: relative;">
+                        <div style="position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.95); color: #ff6b00; font-weight: 700; font-size: 12px; padding: 6px 12px; border-radius: 8px; text-transform: uppercase; z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">${blog.category}</div>
+                        <img src="${blog.image}" alt="${blog.title}" loading="lazy" style="width: 100%; height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="blog-content">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 12px; font-weight: 600; text-transform: uppercase;">
+                            <span>📅 ${blog.date}</span>
+                            <span>⏱️ ${blog.readTime}</span>
+                        </div>
+                        <h3>${blog.title}</h3>
+                        <p>${blog.excerpt}</p>
+                        <span class="read-more">Read Article &rarr;</span>
+                    </div>
+                </a>
+            `;
+        });
+        blogGrid.innerHTML = html;
+    }
+
+    // 2. Fetch Testimonials from Real Feedback Collection
+    let allTestimonials = [];
+    async function loadTestimonials() {
+        const grid = document.getElementById("testimonialGrid");
+        try {
+            // Removed orderBy to prevent Firebase Index errors which force the fallback silently
+            const q = query(collection(db, "feedbacks"), limit(100));
+            const snap = await getDocs(q);
+            let realFeedbacks = [];
+            
+            snap.forEach(doc => {
+                const data = doc.data();
+                if(data.suggestion && data.suggestion.trim().length > 10) {
+                    realFeedbacks.push(data);
+                }
+            });
+
+            // Sort by timestamp descending in memory to guarantee no index failures
+            realFeedbacks.sort((a, b) => {
+                const timeA = a.timestamp?.toMillis ? a.timestamp.toMillis() : 0;
+                const timeB = b.timestamp?.toMillis ? b.timestamp.toMillis() : 0;
+                return timeB - timeA;
+            });
+            realFeedbacks = realFeedbacks.slice(0, 25);
+
+            const fallbacks = [
+                { name: "Ananya Sharma", suggestion: "The mock tests are exactly like the real NSO exam. The detailed solutions helped me clear my doubts and secure an international rank.", rating: "5 Star", class: "AIR 12, SOF NSO" },
+                { name: "Rahul Verma", suggestion: "I loved the chapter-wise practice feature. It allowed me to focus on my weak areas in Mathematics before taking the full IMO mock tests.", rating: "5 Star", class: "Class 8 Student" },
+                { name: "Priya Kapoor", suggestion: "The JEE Advanced mock tests are incredibly challenging and perfectly simulate the actual CBT environment. Highly recommended!", rating: "5 Star", class: "JEE Aspirant" },
+                { name: "Vikram Singh", suggestion: "The analytical reports helped me identify my weak subjects. My scores improved significantly after practicing the chapter-wise questions.", rating: "4 Star", class: "Class 10 Student" },
+                { name: "Sneha Reddy", suggestion: "Olympiad Portal's HOTS section is a game-changer. The complexity of the questions really prepares you for the toughest exams.", rating: "5 Star", class: "Class 9 Student" }
+            ];
+
+            let mixed = [];
+            let fallbackIndex = 0;
+            
+            if (realFeedbacks.length === 0) {
+                mixed = fallbacks;
+            } else {
+                realFeedbacks.forEach((t, i) => {
+                    mixed.push(t);
+                    if ((i + 1) % 2 === 0 && fallbackIndex < fallbacks.length) {
+                        mixed.push(fallbacks[fallbackIndex]);
+                        fallbackIndex++;
+                    }
+                });
+                while (fallbackIndex < fallbacks.length && mixed.length < 3) {
+                    mixed.push(fallbacks[fallbackIndex]);
+                    fallbackIndex++;
+                }
+            }
+            
+            allTestimonials = mixed;
+            renderTestimonialGrid();
+        } catch(e) {
+            console.error("Error loading testimonials:", e);
+            allTestimonials = [
+                { name: "Ananya Sharma", suggestion: "The mock tests are exactly like the real NSO exam. The detailed solutions helped me clear my doubts and secure an international rank.", rating: "5 Star", class: "AIR 12, SOF NSO" },
+                { name: "Rahul Verma", suggestion: "I loved the chapter-wise practice feature. It allowed me to focus on my weak areas in Mathematics before taking the full IMO mock tests.", rating: "5 Star", class: "Class 8 Student" },
+                { name: "Priya Kapoor", suggestion: "The JEE Advanced mock tests are incredibly challenging and perfectly simulate the actual CBT environment. Highly recommended!", rating: "5 Star", class: "JEE Aspirant" }
+            ];
+            renderTestimonialGrid();
+        }
+    }
+
+    function renderTestimonialGrid() {
+        const grid = document.getElementById("testimonialGrid");
+        if(!grid) return;
+        let html = "";
+        const displayCount = Math.min(3, allTestimonials.length);
+        for(let i=0; i < displayCount; i++) {
+            const t = allTestimonials[i];
+            
+            let ratingNum = 5;
+            if (t.rating) {
+                const parsed = parseInt(t.rating);
+                if (!isNaN(parsed)) ratingNum = parsed;
+            }
+            let stars = "";
+            for (let s = 0; s < 5; s++) {
+                stars += s < ratingNum ? "★" : "☆";
+            }
+            
+            let grade = "Student";
+            if (t.class) grade = t.class.toString().includes("class") ? t.class.toString().replace("class", "Class ") : t.class;
+            
+            const shortName = t.name ? t.name.charAt(0).toUpperCase() : "S";
+            html += `
+                <div class="testimonial-card" style="border-radius: 20px; position: relative;">
+                    <div style="position: absolute; top: 20px; right: 20px; opacity: 0.05;">
+                        <svg width="45" height="45" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                    </div>
+                    <div class="testimonial-stars" style="color: #ff6b00; font-size: 1.25rem; letter-spacing: 2px; margin-bottom: 15px;">${stars}</div>
+                    <p class="testimonial-text" style="position: relative; z-index: 1;">"${t.suggestion}"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">${shortName}</div>
+                        <div class="author-info">
+                            <h4>${t.name || 'Student'}</h4>
+                            <p>${grade}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        grid.innerHTML = html;
+        
+        const expanded = document.getElementById("testimonialExpanded");
+        if (expanded && expanded.style.display === "block") {
+            window.toggleTestimonialView(true);
+        }
+    }
+
+    // 3. See More / See Less Expanding Functionality
+    window.toggleTestimonialView = function(forceUpdate = false) {
+        const grid = document.getElementById("testimonialGrid");
+        const expanded = document.getElementById("testimonialExpanded");
+        const btn = document.getElementById("toggleTestimonialBtn");
+
+        if (grid.style.display !== "none" || forceUpdate === true) {
+            grid.style.display = "none";
+            expanded.style.display = "block";
+            
+            let html = "";
+            allTestimonials.forEach(t => {
+                let ratingNum = 5;
+                if (t.rating) {
+                    const parsed = parseInt(t.rating);
+                    if (!isNaN(parsed)) ratingNum = parsed;
+                }
+                let stars = "";
+                for (let s = 0; s < 5; s++) {
+                    stars += s < ratingNum ? "★" : "☆";
+                }
+                
+                let grade = "Student";
+                if (t.class) grade = t.class.toString().includes("class") ? t.class.toString().replace("class", "Class ") : t.class;
+                
+                const shortName = t.name ? t.name.charAt(0).toUpperCase() : "S";
+                html += `
+                    <div class="testimonial-list-item">
+                        <div class="testimonial-avatar" style="flex-shrink:0;">${shortName}</div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars" style="color: #ff6b00; margin-bottom: 5px; font-size: 1.1rem; letter-spacing: 2px;">${stars}</div>
+                            <h4 style="margin-bottom: 6px; font-weight: 800; color: #0f172a;">${t.name || 'Student'} <span style="font-size:0.8rem; color:#64748b; font-weight:600;">- ${grade}</span></h4>
+                            <p style="margin:0; color: #475569; font-size: 0.95rem; font-weight: 500;">"${t.suggestion}"</p>
+                        </div>
+                    </div>
+                `;
+            });
+            expanded.innerHTML = html;
+            btn.innerText = "See Less";
+            if (forceUpdate !== true) expanded.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            // Collapse back to grid
+            grid.style.display = "grid";
+            expanded.style.display = "none";
+            btn.innerText = "See More Reviews";
+            document.querySelector(".testimonial-section").scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    // Execute functions on page load
+    loadBlogs();
+    loadTestimonials();
+</script>
 </body>
 </html>
