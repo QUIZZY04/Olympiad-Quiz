@@ -521,6 +521,7 @@
 
     onAuthStateChanged(auth, async (user) => {
         if (!user) {
+            localStorage.setItem("isLoggedIn", "false");
             document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
                 el.onclick = function() { window.location.href = 'login.html'; };
                 el.innerText = "Login";
@@ -530,6 +531,7 @@
             });
             return;
         }
+        localStorage.setItem("isLoggedIn", "true");
         
         const providerIds = user.providerData.map(p => p.providerId);
         const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");

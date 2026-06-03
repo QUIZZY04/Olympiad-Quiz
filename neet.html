@@ -124,16 +124,29 @@
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
         <a href="dashboard.html">Dashboard</a>
         <div class="nav-dropdown">
+            <a href="#" class="dropbtn">Students Zone</a>
+            <div class="nav-dropdown-content">
+                <a href="mock.html">Mock Tests</a>
+                <a href="chapterwise.html">Chapterwise</a>
+                <a href="study.html">Study Material</a>
+                <a href="blog.html">Success Guides</a>
+            </div>
+        </div>
+        <a href="live.html">Live Arena</a>
+        <div class="nav-dropdown">
             <a href="#" class="dropbtn active" style="color: var(--brand);">Senior Exams</a>
             <div class="nav-dropdown-content">
                 <a href="jee_main.html">JEE Main</a>
                 <a href="jee-list.html">JEE Advanced</a>
                 <a href="neet.html" style="color: var(--brand) !important; background: var(--subtle) !important;">NEET</a>
+                <a href="neet-pyq.html">NEET PYQs</a>
             </div>
         </div>
         <a href="leaderboard.html">Leaderboard</a>
-        <a href="study.html">Study Material</a>
-        <div class="nav-actions"><a onclick="logout()" class="login-link" style="color: white; cursor: pointer; background: #ef4444;">Logout</a></div>
+        <div class="nav-actions">
+            <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600; text-decoration:none;">Admin</a>
+            <a onclick="logout()" class="login-link" style="color: white; cursor: pointer; background: #ef4444;">Logout</a>
+        </div>
     </div>
 </nav>
 
@@ -142,6 +155,9 @@
         <div class="breadcrumb" style="justify-content: center;"><a href="index.html">🏠 Home</a> <span class="separator">/</span> <span>NEET Preparation</span></div>
         <h1>NEET <span>Preparation Hub</span></h1>
         <p>Comprehensive Biology, Physics, and Chemistry practice designed exactly on the latest NMC/NTA pattern for medical aspirants.</p>
+        <div style="margin-top: 20px;">
+            <a href="neet-pyq.html" class="start-btn" style="width: auto; padding: 16px 35px; background: var(--brand); color: #ffffff; font-size: 1.15rem; font-weight: 800; border: 3px solid #34d399; box-shadow: 0 10px 25px rgba(4, 120, 87, 0.4); border-radius: 14px; letter-spacing: 0.5px;">🏛️ Access Previous Year Papers (PYQs)</a>
+        </div>
     </div>
 
         <div class="test-grid" id="neetHubGrid" style="margin-bottom: 40px;">
@@ -277,6 +293,7 @@
                 navAuthLinkMobile.removeAttribute("onclick");
             }
         } else { 
+            localStorage.setItem("isLoggedIn", "true");
             const providerIds = user.providerData.map(p => p.providerId);
             const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
             const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
@@ -285,6 +302,11 @@
             if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
                 window.location.replace("signup.html?mode=completion");
                 return;
+            }
+            
+            if (isAdmin) {
+                const adminTab = document.getElementById("adminTab");
+                if (adminTab) adminTab.style.display = "inline";
             }
 
                 document.querySelectorAll('.login-link').forEach(el => {

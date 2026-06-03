@@ -104,7 +104,7 @@
                 localStorage.setItem("isMockTest", "true");
                 window.location.href = "quiz.html";
             } else {
-                sessionStorage.setItem("redirectAfterLogin", "mock.html");
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
                 window.location.href = "login.html";
             }
         };

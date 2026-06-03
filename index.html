@@ -212,7 +212,7 @@
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-- <link rel="preload" href="home.css?v=2.0" as="style">
+<link rel="preload" href="home.css?v=2.0" as="style">
 <link rel="stylesheet" href="home.css?v=2.0">
 
 <style>
@@ -233,11 +233,37 @@
 
         <!-- Center: Links (Desktop) -->
         <div class="navbar-links">
-            <a href="#" class="nav-link active">Home</a>
-            <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-            <a href="#" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-            <a href="#" class="nav-link">Live Arena</a>
-            <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+            <a href="index.html" class="nav-link active">Home</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="mock.html">Mock Tests</a>
+                    <a href="chapterwise.html">Chapterwise</a>
+                    <a href="study.html">Study Material</a>
+                    <a href="blog.html">Success Guides</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a href="olympiad-syllabus.html" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="sof-syllabus.html">SOF Olympiads</a>
+                    <a href="silverzone-syllabus.html">SilverZone</a>
+                    <a href="crest-syllabus.html">CREST Olympiads</a>
+                    <a href="nstse-syllabus.html">NSTSE</a>
+                    <a href="spellbee-syllabus.html">SpellBee</a>
+                    <a href="hummingbird-syllabus.html">Humming Bird</a>
+                    <a href="ogo-syllabus.html">Orange Olympiad</a>
+                </div>
+            </div>
+            <a href="live.html" class="nav-link">Live Arena</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="jee_main.html">JEE Main</a>
+                    <a href="neet.html">NEET</a>
+                </div>
+            </div>
         </div>
 
         <!-- Right: CTA -->
@@ -275,7 +301,7 @@
                         <a href="mock.html" class="btn-primary">
                             Start Free Mock Test
                         </a>
-                        <a href="#" class="btn-outline">
+                        <a href="mock.html" class="btn-outline">
                             Explore Tests
                         </a>
                     </div>
@@ -319,65 +345,73 @@
         <div class="container">
             <div class="quiz-grid">
                 <!-- Card 1: Olympiad -->
-                <a href="#" class="quiz-card card-orange">
+                <a href="mock.html" class="quiz-card card-orange">
+                    <div class="watermark text-orange">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                    </div>
                     <div class="quiz-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 4h-3V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1H3a1 1 0 0 0-1 1v3c0 2.55 1.95 4.63 4.43 4.94A5.99 5.99 0 0 0 11 16.9V19H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2h-2v-2.1a5.99 5.99 0 0 0 4.57-3.96C20.05 12.63 22 10.55 22 8V5a1 1 0 0 0-1-1zM5 10.9A2.99 2.99 0 0 1 4 8V6h2v5.13c-.35-.05-.68-.13-1-.23zM19 10.9c-.32.1-.65.18-1 .23V6h2v2c0 1.25-.66 2.37-1 2.9z"/></svg>
                     </div>
                     <h3>Olympiad</h3>
-                    <p>Master logical reasoning and scientific aptitude with comprehensive IMO & NSO mock tests.</p>
+                    <p>For IMO, NSO, IEO & more</p>
                     <div class="quiz-card-bottom">
-                        <span class="question-count">50+ Tests</span>
+                        <span class="bottom-text text-orange">25K+ Questions</span>
                         <div class="arrow-btn">
-                            Start
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </div>
                     </div>
                 </a>
                 
                 <!-- Card 2: JEE Main -->
-                <a href="#" class="quiz-card card-blue">
+                <a href="jee_main.html" class="quiz-card card-blue">
+                    <div class="watermark text-blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
                     <div class="quiz-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.83 7.92L12 14.65 5.17 10.92 12 7.18l6.83 3.74z"/></svg>
                     </div>
                     <h3>JEE Main</h3>
-                    <p>Real CBT interface tests following the exact latest NTA exam pattern and syllabus.</p>
+                    <p>Chapter-wise & full-length tests</p>
                     <div class="quiz-card-bottom">
-                        <span class="question-count">100+ Tests</span>
+                        <span class="bottom-text text-blue">1.2L+ Questions</span>
                         <div class="arrow-btn">
-                            Start
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </div>
                     </div>
                 </a>
                 
                 <!-- Card 3: JEE Advanced -->
-                <a href="#" class="quiz-card card-purple">
+                <a href="jee-list.html" class="quiz-card card-purple">
+                    <div class="watermark text-purple">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="20" x2="21" y2="20"/><line x1="3" y1="3" x2="3" y2="20"/><path d="M7 16l4-4 4 4 6-6"/><polyline points="18 10 21 10 21 13"/></svg>
+                    </div>
                     <div class="quiz-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.59 3.41c-2.31-2.3-7.53-2.6-10.42-.51l-4.7 4.71a1 1 0 0 0-.21.46l-1.92 8.79a1 1 0 0 0 1.18 1.18l8.79-1.92a1 1 0 0 0 .46-.21l4.71-4.7c2.09-2.89 1.79-8.11-.51-10.42zm-5.6 7.6a2 2 0 1 1 2.82-2.82 2 2 0 0 1-2.82 2.82zM4.65 17.5l-2.02 2.01a1 1 0 1 0 1.41 1.41l2.01-2.02-1.4-1.4z"/></svg>
                     </div>
                     <h3>JEE Advanced</h3>
-                    <p>Rigorous multi-correct and advanced numerical problems crafted for IIT aspirants.</p>
+                    <p>Advanced level mock tests</p>
                     <div class="quiz-card-bottom">
-                        <span class="question-count">40+ Tests</span>
+                        <span class="bottom-text text-purple">60K+ Questions</span>
                         <div class="arrow-btn">
-                            Start
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </div>
                     </div>
                 </a>
                 
                 <!-- Card 4: NEET -->
-                <a href="#" class="quiz-card card-green">
+                <a href="neet.html" class="quiz-card card-green">
+                    <div class="watermark text-green">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.808-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.808 5.993"/><path d="M17 6l-4.5 4.5"/><path d="M11 11.5l-4.5 4.5"/><path d="M15.5 15.5l-4-4"/><path d="M8.5 8.5l-4-4"/></svg>
+                    </div>
                     <div class="quiz-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm6 11h-3v3h-2v-3H8v-2h3v-3h2v3h3v2z"/></svg>
                     </div>
                     <h3>NEET</h3>
-                    <p>High-yield full syllabus biology, physics, and chemistry practice tests.</p>
+                    <p>Chapter-wise & full-length tests</p>
                     <div class="quiz-card-bottom">
-                        <span class="question-count">80+ Tests</span>
+                        <span class="bottom-text text-green">90K+ Questions</span>
                         <div class="arrow-btn">
-                            Start
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </div>
                     </div>
                 </a>
@@ -388,30 +422,45 @@
     <!-- FEATURE STRIP -->
     <section class="feature-strip">
         <div class="container">
-            <div class="feature-grid">
+            <div class="feature-container">
                 <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <div class="feature-icon icon-free">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 22C12 22 20 18 20 12V5l-8-3-8 3v7C4 18 12 22 12 22zm-1.5-6.5l-3.5-3.5 1.41-1.41L10.5 12.67l5.59-5.59L17.5 8.5l-7 7z"/></svg>
                     </div>
-                    <span class="feature-text">100% Free Access</span>
+                    <div class="feature-text-group">
+                        <span class="feature-title">100% Free Access</span>
+                        <span class="feature-subtitle">No hidden charges ever</span>
+                    </div>
                 </div>
+                <div class="feature-separator"></div>
                 <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <div class="feature-icon icon-analysis">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 2.07A8.01 8.01 0 0 1 19.93 11H13V4.07zM11 4.07V13h8.93A8.02 8.02 0 0 1 11 19.93z"/></svg>
                     </div>
-                    <span class="feature-text">Smart Analysis</span>
+                    <div class="feature-text-group">
+                        <span class="feature-title">Smart Analysis</span>
+                        <span class="feature-subtitle">Detailed performance insights</span>
+                    </div>
                 </div>
+                <div class="feature-separator"></div>
                 <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <div class="feature-icon icon-rank">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M2 19h20v2H2v-2zm2-5l4-4 4 4 8-8v4l-8 8-4-4-4 4v-4z"/></svg>
                     </div>
-                    <span class="feature-text">Improve Your Rank</span>
+                    <div class="feature-text-group">
+                        <span class="feature-title">Improve Your Rank</span>
+                        <span class="feature-subtitle">Practice. Analyze. Improve.</span>
+                    </div>
                 </div>
+                <div class="feature-separator"></div>
                 <div class="feature-item">
-                    <div class="feature-icon">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                    <div class="feature-icon icon-trusted">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                     </div>
-                    <span class="feature-text">Trusted by Students</span>
+                    <div class="feature-text-group">
+                        <span class="feature-title">Trusted by Students</span>
+                        <span class="feature-subtitle">Across India</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -455,6 +504,22 @@
             navLinks.classList.toggle('active');
         });
     }
+
+    /* Mobile Dropdown Toggle */
+    document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) { 
+                        openDropdown.classList.remove('open'); 
+                    }
+                });
+                dropdown.classList.toggle('open');
+            }
+        });
+    });
 </script>
 
 </body>

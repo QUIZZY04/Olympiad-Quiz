@@ -411,6 +411,7 @@
 
     onAuthStateChanged(auth, async (user) => {
         if (!user) {
+            localStorage.setItem("isLoggedIn", "false");
             document.querySelectorAll('[onclick="logout()"], .login-link').forEach(el => {
                 el.onclick = null;
                 el.innerText = "Login";
@@ -420,6 +421,7 @@
                 }
             });
         } else {
+            localStorage.setItem("isLoggedIn", "true");
             if (user.email === "madhhu52@gmail.com") {
                 const adminTab = document.getElementById("adminTab");
                 if (adminTab) adminTab.style.display = "inline";

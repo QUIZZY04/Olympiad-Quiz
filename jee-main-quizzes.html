@@ -172,12 +172,14 @@
 
     onAuthStateChanged(auth, (user) => {
         if (!user) {
+            localStorage.setItem("isLoggedIn", "false");
             document.querySelectorAll('.login-link').forEach(el => {
                 el.removeAttribute("onclick");
                 el.innerText = "Log in";
                 el.href = "login.html";
             });
         } else {
+            localStorage.setItem("isLoggedIn", "true");
             if (user.email === "madhhu52@gmail.com") {
                 const adminTab = document.getElementById("adminTab");
                 if (adminTab) adminTab.style.display = "inline";
@@ -188,7 +190,7 @@
 
     window.startJeeTest = function(docId) {
         const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-        if (!auth.currentUser || !isLoggedIn) {
+        if (!isLoggedIn) {
             sessionStorage.setItem("redirectAfterLogin", "jee_main_quiz.html?id=" + docId);
             window.location.href = "login.html";
         } else {
