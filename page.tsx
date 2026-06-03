@@ -49,7 +49,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => (
         <span className="text-white font-bold text-lg leading-none">O</span>
       </div>
       <span className="font-extrabold text-xl tracking-tight text-[#0F172A]">
-        OLYMPIAD PORTAL
+        OLYMPIADQUIZ
       </span>
     </div>
 
@@ -280,7 +280,7 @@ const TestimonialSection = () => {
           { name: "Rahul Verma", suggestion: "I loved the chapter-wise practice feature. It allowed me to focus on my weak areas in Mathematics before taking the full IMO mock tests.", rating: "5", class: "Class 8 Student" },
           { name: "Priya Kapoor", suggestion: "The JEE Advanced mock tests are incredibly challenging and perfectly simulate the actual CBT environment. Highly recommended!", rating: "5", class: "JEE Aspirant" },
           { name: "Vikram Singh", suggestion: "The analytical reports helped me identify my weak subjects. My scores improved significantly after practicing the chapter-wise questions.", rating: "4", class: "Class 10 Student" },
-          { name: "Sneha Reddy", suggestion: "Olympiad Portal's HOTS section is a game-changer. The complexity of the questions really prepares you for the toughest exams.", rating: "5", class: "Class 9 Student" }
+          { name: "Sneha Reddy", suggestion: "OlympiadQuiz's HOTS section is a game-changer. The complexity of the questions really prepares you for the toughest exams.", rating: "5", class: "Class 9 Student" }
         ];
 
         let mixed: any[] = [];
@@ -320,7 +320,7 @@ const TestimonialSection = () => {
     <section className="py-[120px] px-6 lg:px-12 max-w-[1400px] mx-auto">
       <div className="text-center mb-16">
         <h2 className="text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">Student Success Stories</h2>
-        <p className="text-lg text-[#475569] font-medium max-w-2xl mx-auto">Real experiences from students using Olympiad Portal.</p>
+        <p className="text-lg text-[#475569] font-medium max-w-2xl mx-auto">Real experiences from students using OlympiadQuiz.</p>
       </div>
       
       {!expanded ? (

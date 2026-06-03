@@ -45,6 +45,7 @@ function getBrevoSMSClient() {
 const SENDER_INFO = {
   email: "admin@olympiadquiz.org",
   name: "Olympiad Portal",
+  name: "OlympiadQuiz",
 };
 
 // =================================================================
@@ -109,6 +110,7 @@ exports.triggerWelcomeEmail = onDocumentWritten(
       sendSmtpEmail.sender = SENDER_INFO;
       sendSmtpEmail.to = [{ email: email, name: name || "Student" }];
       sendSmtpEmail.subject = "Welcome to Olympiad Portal! 🎓";
+      sendSmtpEmail.subject = "Welcome to OlympiadQuiz! 🎓";
       sendSmtpEmail.htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -124,6 +126,7 @@ exports.triggerWelcomeEmail = onDocumentWritten(
           <tr>
             <td style="padding: 35px 30px; color: #0f172a; line-height: 1.6;">
               <p style="font-size: 16px; margin: 0 0 20px;">Thank you for joining <strong>Olympiad Portal</strong>, your ultimate destination for mastering competitive exams. You're all set to start your journey!</p>
+              <p style="font-size: 16px; margin: 0 0 20px;">Thank you for joining <strong>OlympiadQuiz</strong>, your ultimate destination for mastering competitive exams. You're all set to start your journey!</p>
               
               <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 25px 0;">
                 <p style="margin: 0 0 10px; font-size: 14px; color: #64748b;">Your account has been created with the following email:</p>
@@ -154,6 +157,7 @@ exports.triggerWelcomeEmail = onDocumentWritten(
             <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
               <p style="margin: 0; font-size: 12px; color: #94a3b8;">
                 © 2024 Olympiad Portal. All rights reserved.<br>
+                © 2024 OlympiadQuiz. All rights reserved.<br>
                 If you did not sign up for this account, you can safely ignore this email.
               </p>
             </td>
@@ -421,6 +425,7 @@ exports.sendResultEmail = onDocumentWritten(
                 For successfully participating and demonstrating exceptional effort in the<br>
                 <strong style="color: #1e293b; font-size: 20px;">${subject} Live Olympiad Quiz</strong><br>
                 conducted by Olympiad Portal.
+                conducted by OlympiadQuiz.
               </p>
 
               <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 0 auto 40px auto; width: 70%; font-family: 'Arial', sans-serif;">
@@ -444,6 +449,7 @@ exports.sendResultEmail = onDocumentWritten(
                   </td>
                   <td align="center" width="50%">
                     <p style="margin: 0; font-size: 24px; color: #1e293b; font-weight: bold; font-family: 'Brush Script MT', cursive; border-bottom: 1px solid #94a3b8; display: inline-block; padding-bottom: 5px; width: 160px;">Olympiad Portal</p>
+                    <p style="margin: 0; font-size: 24px; color: #1e293b; font-weight: bold; font-family: 'Brush Script MT', cursive; border-bottom: 1px solid #94a3b8; display: inline-block; padding-bottom: 5px; width: 160px;">OlympiadQuiz</p>
                     <p style="margin: 8px 0 0 0; font-size: 13px; color: #64748b; text-transform: uppercase;">Official Organizer</p>
                   </td>
                 </tr>
@@ -526,6 +532,7 @@ exports.sendResultEmail = onDocumentWritten(
               <p style="font-size: 16px; color: #64748b; margin-top: 15px;">
                 Best of luck, and see you at the top! 🚀<br>
                 The Olympiad Portal Team
+                The OlympiadQuiz Team
               </p>
             </td>
           </tr>
@@ -534,6 +541,7 @@ exports.sendResultEmail = onDocumentWritten(
             <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
               <p style="margin: 0; font-size: 12px; color: #94a3b8;">
                 © 2024 Olympiad Portal. All rights reserved.<br>
+                © 2024 OlympiadQuiz. All rights reserved.<br>
                 You are receiving this email because you completed a test on our platform.
               </p>
             </td>
@@ -1007,6 +1015,7 @@ exports.sendLiveQuizRegistrationEmail = onDocumentCreated(
             <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
               <p style="margin: 0; font-size: 12px; color: #94a3b8;">
                 © 2024 Olympiad Portal. All rights reserved.<br>
+                © 2024 OlympiadQuiz. All rights reserved.<br>
                 Prepare well, and best of luck! 🚀
               </p>
             </td>
@@ -1056,6 +1065,7 @@ const ackEmailHtml = (name, title, message) => `<body style="background-color: #
               <p style="font-size: 16px; color: #64748b; margin-top: 15px;">
                 Best regards,<br>
                 The Olympiad Portal Team
+                The OlympiadQuiz Team
               </p>
             </td>
           </tr>
@@ -1063,6 +1073,7 @@ const ackEmailHtml = (name, title, message) => `<body style="background-color: #
             <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
               <p style="margin: 0; font-size: 12px; color: #94a3b8;">
                 © 2024 Olympiad Portal. All rights reserved.
+                © 2024 OlympiadQuiz. All rights reserved.
               </p>
             </td>
           </tr>
