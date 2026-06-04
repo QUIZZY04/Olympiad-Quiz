@@ -19,18 +19,14 @@
         body { background: #f8fafc; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; color: #111827; }
         .success-card { background: #ffffff; padding: 40px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); text-align: center; max-width: 550px; width: 100%; border-top: 6px solid #10b981; animation: fadeIn 0.5s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .icon { font-size: 60px; margin-bottom: 20px; line-height: 1; }
-        h1 { font-size: 2rem; font-weight: 800; color: #111827; margin-bottom: 15px; }
-        p { color: #64748b; font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px; }
+        h1 { font-size: 2rem; font-weight: 800; color: #111827; margin-bottom: 10px; }
         .details-box { background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 30px; text-align: left; }
         .detail-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #e2e8f0; font-size: 0.95rem; }
         .detail-item:last-child { border-bottom: none; }
         .detail-item strong { color: #111827; font-weight: 700; }
         .detail-item span { color: #64748b; font-weight: 600; text-align: right; }
-        .actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn { padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
-        .btn-primary { background: #10b981; color: white; }
-        .btn-primary:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(16,185,129,0.2); }
+        .actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; flex-direction: column; }
+        .btn { padding: 16px 25px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 1rem; transition: 0.3s; width: 100%; display: inline-block; }
         .btn-secondary { background: #ffffff; color: #111827; border: 1px solid #e2e8f0; }
         .btn-secondary:hover { background: #f1f5f9; transform: translateY(-2px); }
     </style>
@@ -54,9 +50,9 @@
 <body>
 
 <div class="success-card">
-    <div class="icon">🎉</div>
-    <h1>Registration Successful!</h1>
-    <p>Your slot for the live test is confirmed. Get ready to compete!</p>
+    <div style="font-size: 70px; margin-bottom: 10px; line-height: 1;">✅</div>
+    <h1>🎉 Registration Confirmed</h1>
+    <p style="font-size: 1.1rem; color: #0f172a; font-weight: 600; margin-bottom: 25px;">Your seat for the Live Olympiad Quiz has been successfully reserved.</p>
 
     <div class="details-box">
         <div class="detail-item"><strong>Student:</strong> <span id="userName">Student</span></div>
@@ -67,10 +63,24 @@
         <div class="detail-item"><strong>Payment Status:</strong> <span style="color: #10b981; font-weight: 800;">SUCCESSFUL</span></div>
     </div>
 
+    <div style="background: #fffbeb; border: 1px solid #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 12px; text-align: left; margin-bottom: 25px;">
+        <h3 style="font-size: 1rem; color: #b45309; margin-bottom: 12px; font-weight: 800;">⚠️ Important Instructions</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; color: #92400e; font-size: 0.95rem; line-height: 1.8; font-weight: 600;">
+            <li>• Join 10 minutes before start time</li>
+            <li>• Use stable internet connection</li>
+            <li>• Keep login credentials ready</li>
+            <li>• Quiz can be attempted only once</li>
+            <li>• Check your email for confirmation</li>
+        </ul>
+    </div>
+    
+    <p style="color: #1d4ed8; font-weight: 700; font-style: italic; margin-bottom: 30px; background: #eff6ff; padding: 15px; border-radius: 12px; border: 1px solid #bfdbfe;">
+        Best wishes for your upcoming Live Olympiad Quiz. Compete confidently and aim for the top rank!
+    </p>
+
     <div class="actions">
-        <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
-        <a href="chapterwise.html" class="btn btn-secondary">Start Practice</a>
-        <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        <a href="live.html" class="btn" style="background: #ff6b00; color: white; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);">🚀 Go to Live Quiz Arena</a>
+        <div style="display: flex; gap: 15px;"><a href="dashboard.html" class="btn btn-secondary" style="padding: 12px;">📊 Dashboard</a><a href="index.html" class="btn btn-secondary" style="padding: 12px;">🏠 Home</a></div>
     </div>
 </div>
 
