@@ -81,12 +81,12 @@ const Hero = ({ onStartTest }: { onStartTest: (url: string) => void }) => (
         </div>
         
         <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-6 leading-[1.1]">
-          <span className="block text-[#0F172A]">Practice Smart.</span>
-          <span className="block text-[#c2410c]">Achieve Greatness.</span>
+          <span className="block text-[#0F172A]">Free Olympiad, JEE & NEET Mock Tests</span>
+          <span className="block text-[#c2410c]">with Instant Results and Performance Analysis</span>
         </h1>
         
         <p className="text-lg text-[#475569] mb-10 leading-relaxed max-w-lg">
-          Free mock tests for Olympiads, JEE Main, JEE Advanced and NEET with real exam experience, instant analysis and smart performance tracking.
+          Practice IMO, NSO, IEO, IGKO, JEE Main, JEE Advanced and NEET with real exam-level mock tests, detailed solutions, All India ranking, AI-proctored exams and chapter-wise practice for Classes 1–10.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
