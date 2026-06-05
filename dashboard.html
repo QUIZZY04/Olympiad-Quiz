@@ -15,15 +15,6 @@
   <link rel="apple-touch-icon" href="/favicon.png">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- INSTANT AUTHENTICATION CHECK -->
-  <!-- Runs instantly before the page renders to block the back button -->
-  <script>
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-        sessionStorage.setItem("redirectAfterLogin", window.location.href);
-        window.location.replace("login.html");
-    }
-  </script>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
 
