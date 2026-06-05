@@ -537,19 +537,12 @@ async function evaluateAuthState(user) {
     const docSnap = await getDoc(doc(db, "users", user.uid));
     const data = docSnap.exists() ? docSnap.data() : null;
 
-        if (!hasPhone) {
-            isRedirecting = true;
-            window.location.replace("signup.html?mode=completion");
-            return;
-        }
+    console.log("Auth user:", user.uid);
+    console.log("Providers:", providers);
+    console.log("Firestore data:", data);
 
-        if (!hasGoogle && !hasEmail) {
-            isRedirecting = true;
-            window.location.replace("signup.html?mode=completion");
-            return;
-        }
-
-    if (data && data.registrationCompleted) {
+    if (data && (data.registrationCompleted || data.signupCompleted)) {
+        console.log("Redirect decision: dashboard");
         isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");
         sessionStorage.removeItem("redirectAfterLogin");
@@ -557,6 +550,21 @@ async function evaluateAuthState(user) {
         return;
     }
 
+    if (!hasPhone) {
+        console.log("Redirect decision: signup (missing phone)");
+        isRedirecting = true;
+        window.location.replace("signup.html?mode=completion");
+        return;
+    }
+
+    if (!hasGoogle && !hasEmail) {
+        console.log("Redirect decision: signup (missing email/google)");
+        isRedirecting = true;
+        window.location.replace("signup.html?mode=completion");
+        return;
+    }
+
+    console.log("Redirect decision: signup (incomplete profile)");
     isRedirecting = true;
     window.location.replace("signup.html?mode=completion");
 }
