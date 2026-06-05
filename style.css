@@ -636,6 +636,18 @@ nav {
     height: 3px;
     background: #0F172A;
     border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hamburger to X animation */
+nav:has(.nav-links.active) .menu-toggle span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+nav:has(.nav-links.active) .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 @media (min-width: 769px) {
@@ -703,12 +715,15 @@ nav {
         justify-content: space-between;
     }
     .nav-dropdown .dropbtn::after {
-        content: '' !important; display: inline-block !important; width: 8px !important; height: 8px !important; border-right: 2px solid var(--text) !important; border-bottom: 2px solid var(--text) !important; transform: rotate(45deg) !important; transition: transform 0.3s ease !important; margin-right: 5px !important; flex-shrink: 0 !important; position: relative !important; top: -2px !important;
+        content: '' !important; display: inline-block !important; width: 10px !important; height: 10px !important; border-right: 2px solid var(--brand) !important; border-bottom: 2px solid var(--brand) !important; transform: rotate(45deg) !important; transition: transform 0.3s ease !important; margin-right: 10px !important; flex-shrink: 0 !important; position: relative !important; top: -2px !important;
     }
     .nav-dropdown.open .dropbtn::after { transform: rotate(225deg) !important; top: 2px !important; }
     .nav-dropdown-content {
-        position: static;
-        display: none;
+        position: static !important;
+        display: block !important;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out !important;
         box-shadow: none !important;
         border: none !important;
         background: var(--bg);
@@ -716,9 +731,6 @@ nav {
         border-radius: 0 0 8px 8px !important;
         min-width: 100%;
         border-left: 3px solid var(--brand) !important;
-    }
-    .nav-dropdown.open > .nav-dropdown-content {
-        display: block;
     }
     .menu-toggle {
         display: flex;
