@@ -537,6 +537,18 @@ async function evaluateAuthState(user) {
     const docSnap = await getDoc(doc(db, "users", user.uid));
     const data = docSnap.exists() ? docSnap.data() : null;
 
+        if (!hasPhone) {
+            isRedirecting = true;
+            window.location.replace("signup.html?mode=completion");
+            return;
+        }
+
+        if (!hasGoogle && !hasEmail) {
+            isRedirecting = true;
+            window.location.replace("signup.html?mode=completion");
+            return;
+        }
+
     if (data && data.registrationCompleted) {
         isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");

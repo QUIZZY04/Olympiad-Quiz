@@ -622,10 +622,6 @@ onAuthStateChanged(auth, async (user) => {
                 window.location.replace("signup.html?mode=completion");
                 return;
             }
-            if (!data.phone && !isAdmin) {
-                window.location.replace("signup.html?mode=completion");
-                return;
-            }
             if (data.name) {
                 document.getElementById("userGreeting").innerText = `Welcome, ${data.name}!`;
             }

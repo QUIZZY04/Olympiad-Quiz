@@ -514,14 +514,6 @@ async function evaluateAuthState(user) {
         await updateUserState(user, 'AUTHENTICATED');
     }
 
-    // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
-    if (data && data.registrationCompleted) {
-        isRedirecting = true;
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.replace("dashboard.html");
-        return;
-    }
-
     if (!hasPhone) {
         await updateUserState(user, 'PHONE_PENDING');
         document.getElementById("phoneTitle").innerText = "Verify Mobile Number";
@@ -536,6 +528,14 @@ async function evaluateAuthState(user) {
         showSection('stepProviderLinking');
         return;
     }
+
+        // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
+        if (data && data.registrationCompleted) {
+            isRedirecting = true;
+            localStorage.setItem("isLoggedIn", "true");
+            window.location.replace("dashboard.html");
+            return;
+        }
 
     let existingName = user.displayName || (data && data.name) || "";
     if (existingName.toLowerCase() === "student") existingName = "";
