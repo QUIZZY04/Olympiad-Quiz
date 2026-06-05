@@ -470,6 +470,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
+let isRedirecting = false;
+
 let redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
 try {
     // Only allow same-origin redirects to prevent Open Redirect vulnerabilities
@@ -478,6 +480,11 @@ try {
         redirectUrl = "dashboard.html";
     } else {
         redirectUrl = parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
+    }
+    
+    // Prevent infinite redirect loops back to auth pages
+    if (redirectUrl.includes("login.html") || redirectUrl.includes("signup.html")) {
+        redirectUrl = "dashboard.html";
     }
 } catch (e) {
     redirectUrl = "dashboard.html";
@@ -513,20 +520,8 @@ function initRecaptcha() {
 }
 initRecaptcha();
 
-async function proceedToNextStep(user) {
-    const docSnap = await getDoc(doc(db, "users", user.uid));
-    const data = docSnap.exists() ? docSnap.data() : null;
-
-    if (data && data.registrationCompleted) {
-        localStorage.setItem("isLoggedIn", "true");
-        sessionStorage.removeItem("redirectAfterLogin");
-        window.location.replace(redirectUrl);
-    } else {
-            window.location.replace("signup.html?mode=completion");
-    }
-}
-
 async function evaluateAuthState(user) {
+    if (isRedirecting) return;
     if (!user) {
         resetToEntry();
         return;
@@ -539,20 +534,23 @@ async function evaluateAuthState(user) {
     const hasGoogle = providers.includes("google.com");
     const hasEmail = providers.includes("password");
 
-    if (!hasPhone) {
-            window.location.replace("signup.html?mode=completion");
+    const docSnap = await getDoc(doc(db, "users", user.uid));
+    const data = docSnap.exists() ? docSnap.data() : null;
+
+    if (data && data.registrationCompleted) {
+        isRedirecting = true;
+        localStorage.setItem("isLoggedIn", "true");
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.replace(redirectUrl);
         return;
     }
 
-    if (!hasGoogle && !hasEmail) {
-            window.location.replace("signup.html?mode=completion");
-        return;
-    }
-
-    await proceedToNextStep(user);
+    isRedirecting = true;
+    window.location.replace("signup.html?mode=completion");
 }
 
 onAuthStateChanged(auth, async (user) => {
+    if (isRedirecting) return;
     if (user) {
         await evaluateAuthState(user);
     } else {
