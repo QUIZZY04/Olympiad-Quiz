@@ -266,7 +266,7 @@
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container" style="visibility:hidden">
         <div class="hero-panel animate-up">
             <div class="hero-left">
                 <div style="display: inline-block; padding: 6px 12px; background: rgba(255,255,255,0.2); border-radius: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);">Level Up Your Skills 🚀</div>
@@ -589,9 +589,12 @@ const db=initializeFirestore(app, { experimentalForceLongPolling: true });
 
 // AUTH GUARD: Optimistic Redirect
 onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-        // Redirect only if they are definitely not logged in
-        window.location.replace("index.html"); 
+    if (user) {
+        document.querySelector('.container').style.visibility = 'visible';
+    } else {
+        localStorage.removeItem("isLoggedIn");
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.replace("login.html");
         return;
     }
 

@@ -344,7 +344,10 @@
                 <p class="subtitle">Secure your account with an email and password.</p>
                 <form id="emailLinkForm">
                     <input type="email" id="lEmail" placeholder="Email Address" required>
-                    <input type="password" id="lPassword" placeholder="Create Password" required minlength="6">
+                    <div style="position:relative; margin-bottom:15px;">
+                      <input type="password" id="lPassword" placeholder="Create a Password" required style="margin-bottom:0; width:100%; padding-right:48px;">
+                      <button type="button" onclick="const f=document.getElementById('lPassword');f.type=f.type==='password'?'text':'password';this.textContent=f.type==='password'?'Show':'Hide';" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#64748b;font-size:13px;font-weight:600;cursor:pointer;padding:0;width:auto;">Show</button>
+                    </div>
                     <button type="submit" class="main-btn" id="btnEmailLinkSubmit">Add Email</button>
                     <button type="button" class="social-btn" style="margin-top: 15px;" onclick="showSection('stepProviderLinking')">← Back</button>
                 </form>
@@ -762,6 +765,12 @@ document.getElementById("emailLinkForm").onsubmit = async (e) => {
     const pass = document.getElementById("lPassword").value;
     const btn = document.getElementById("btnEmailLinkSubmit");
     btn.disabled = true; btn.innerText = "Linking...";
+    const _pwStrong = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/.test(pass);
+    if (!_pwStrong) {
+        alert("Password must be at least 8 characters and include one uppercase letter and one number.");
+        btn.disabled = false; btn.innerText = "Add Email";
+        return;
+    }
     try {
         // FIX DANGEROUS EMAIL LINKING LOGIC
         const cred = EmailAuthProvider.credential(email, pass);

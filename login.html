@@ -628,6 +628,17 @@ document.getElementById("phoneAuthForm").onsubmit = async (e) => {
         document.getElementById("phoneAuthForm").classList.add("hidden");
         document.getElementById("otpAuthForm").classList.remove("hidden");
         alert("OTP sent successfully to " + phone);
+        let _otpCooldown = 60;
+        btn.disabled = true;
+        const _otpTimer = setInterval(() => {
+            _otpCooldown--;
+            btn.innerText = `Resend OTP (${_otpCooldown}s)`;
+            if (_otpCooldown <= 0) {
+                clearInterval(_otpTimer);
+                btn.disabled = false;
+                btn.innerText = "Send OTP";
+            }
+        }, 1000);
     } catch (err) {
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
