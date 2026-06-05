@@ -13,7 +13,7 @@ img {
 }
 
 html {
-    overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
     max-width: 100%;
     scroll-behavior: smooth;
@@ -27,7 +27,7 @@ body {
     background: #f8fafc;
     color: #1e293b;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
     background-image: 
         radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
@@ -795,19 +795,32 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         max-height: 92vh;
     }
     body {
-        padding-top: 60px !important;
+        /* Removed absolute padding-top to prevent jumping content as navbar is sticky */
     }
     .tabs-nav {
         justify-content: flex-start !important;
         flex-wrap: nowrap !important;
         overflow-x: auto;
-        padding: 0 15px;
+        padding: 10px 24px;
         scrollbar-width: none;
-        margin: 15px 0 25px;
+        margin: 0 -24px 25px -24px;
+        background: #ffffff;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 70px;
+        z-index: 50;
     }
     .tab-item {
-        padding: 10px 16px;
-        font-size: 0.85rem;
+        padding: 10px 18px;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        border-bottom: none !important;
+        border-radius: 8px;
+    }
+    .tab-item.active {
+        background-color: var(--brand);
+        color: white !important;
     }
 
     /* Hide the floating desktop timer on mobile devices */
