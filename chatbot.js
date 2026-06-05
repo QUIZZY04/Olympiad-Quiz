@@ -59,10 +59,10 @@ class OlympiadMentorChatbot {
                 --oqcb-shadow: 0 20px 40px rgba(0,0,0,0.15);
             }
             #oq-cb-trigger {
-                position: fixed; bottom: 25px; right: 25px; width: 65px; height: 65px;
-                border-radius: 50%; background: linear-gradient(135deg, var(--oqcb-brand), var(--oqcb-accent));
+            position: fixed; bottom: 25px; right: 25px; height: 60px; padding: 0 25px; gap: 10px;
+            border-radius: 30px; background: linear-gradient(135deg, var(--oqcb-brand), var(--oqcb-accent));
                 color: white; display: flex; align-items: center; justify-content: center;
-                font-size: 32px; cursor: pointer; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+            cursor: pointer; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
                 z-index: 99999; transition: transform 0.3s;
             }
             #oq-cb-trigger:hover { transform: scale(1.05); }
@@ -73,14 +73,14 @@ class OlympiadMentorChatbot {
                 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
             }
             #oq-cb-badge {
-                position: absolute; top: -2px; right: -2px; background: #ef4444; color: white;
+            position: absolute; top: -5px; right: -5px; background: #ef4444; color: white;
                 font-size: 11px; font-weight: 800; width: 20px; height: 20px; border-radius: 50%;
                 display: none; align-items: center; justify-content: center; font-family: sans-serif;
                 border: 2px solid white;
             }
             #oq-cb-window {
-                position: fixed; bottom: 100px; right: 25px; width: 380px; max-height: 80vh; height: 600px;
-                background: var(--oqcb-surface); border-radius: 24px; box-shadow: var(--oqcb-shadow);
+            position: fixed; bottom: 0; right: 25px; width: 380px; max-height: 85vh; height: 600px;
+            background: var(--oqcb-surface); border-radius: 24px 24px 0 0; box-shadow: var(--oqcb-shadow);
                 display: none; flex-direction: column; z-index: 99999; border: 1px solid var(--oqcb-border);
                 font-family: 'Poppins', sans-serif; overflow: hidden;
                 transform-origin: bottom right; animation: cbScaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -140,7 +140,7 @@ class OlympiadMentorChatbot {
     injectHTML() {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = `
-            <div id="oq-cb-trigger">🧠<span id="oq-cb-badge">1</span></div>
+            <div id="oq-cb-trigger"><span style="font-size: 26px;">🧠</span> <span style="font-weight: 600; font-size: 15px; white-space: nowrap;">Ask AI Mentor</span><span id="oq-cb-badge">1</span></div>
             <div id="oq-cb-window">
                 <div class="oq-cb-header">
                     <div class="oq-cb-header-info">
@@ -281,6 +281,7 @@ class OlympiadMentorChatbot {
             let response = "";
 
             const escalationKeywords = ['payment','refund','technical','login','contact support','human','expert','mentor','administrator','call me','account', 'callback', 'message'];
+            const greetingKeywords = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening', 'how are you', 'hii', 'namaste', 'hola'];
             
             if (escalationKeywords.some(kw => text.includes(kw)) || text.includes('chat')) {
                 if (text.includes('request callback') || text.includes('call me')) {
@@ -297,20 +298,28 @@ class OlympiadMentorChatbot {
                         <button onclick="window.oqCb.handleAction('Leave Message')">📧 Leave Message</button>
                     </div>`;
                 }
+            } else if (greetingKeywords.some(kw => text === kw || text.startsWith(kw + ' ') || text.endsWith(' ' + kw))) {
+                const hour = new Date().getHours();
+                let timeGreeting = "Hello there!";
+                if (hour < 12) timeGreeting = "Good morning!";
+                else if (hour < 17) timeGreeting = "Good afternoon!";
+                else timeGreeting = "Good evening!";
+                
+                response = `👋 ${timeGreeting} I am your Olympiad Mentor AI.<br><br>How can I help you today? You can ask me about:<br>• Free Mock Tests<br>• Olympiads (IMO, NSO, etc.)<br>• JEE & NEET preparation<br>• Study Plans & Strategy`;
             } else if (text.includes('imo') || text.includes('maths')) {
-                response = `IMO (International Mathematics Olympiad) tests your logical skills. We have dedicated mock tests and chapter-wise quizzes.<br><br><a href="imo-free-mock-test.html" class="oq-cb-link">Start IMO Practice 🚀</a>`;
+                response = `The <b>International Mathematics Olympiad (IMO)</b> is a prestigious exam that tests your mathematical and logical reasoning skills.<br><br><b>To excel in IMO, you should:</b><br>1. Master your school syllabus.<br>2. Practice High-Order Thinking (H.O.T.S) questions.<br>3. Take timed mock tests.<br><br>We have a huge collection of chapter-wise quizzes and full-length mock tests to help you prepare.<br><br><a href="imo-free-mock-test.html" class="oq-cb-link">Start IMO Practice 🚀</a>`;
             } else if (text.includes('nso') || text.includes('science')) {
-                response = `NSO (National Science Olympiad) covers Physics, Chemistry, and Biology. Check out our free NSO mock tests!<br><br><a href="nso-free-mock-test.html" class="oq-cb-link">Start NSO Practice 🔬</a>`;
+                response = `The <b>National Science Olympiad (NSO)</b> evaluates your conceptual understanding of Physics, Chemistry, and Biology (or general science).<br><br><b>Key to success:</b> Understand the 'Why' behind every scientific phenomenon and practice application-based questions.<br><br>Try our comprehensive NSO mock tests and detailed analytics to boost your score!<br><br><a href="nso-free-mock-test.html" class="oq-cb-link">Start NSO Practice 🔬</a>`;
             } else if (text.includes('study plan') || text.includes('plan')) {
-                response = `<b>Recommended 30-Day Study Plan:</b><br><ul><li><b>Days 1-10:</b> Clear basics using NCERT.</li><li><b>Days 11-20:</b> Chapter-wise practice tests.</li><li><b>Days 21-25:</b> Previous Year Questions (PYQs).</li><li><b>Days 26-30:</b> Full Mock Tests in timed environment.</li></ul>`;
+                response = `Here is a highly effective <b>30-Day Master Study Plan</b> for competitive exams:<br><br><ul><li><b>Phase 1 (Days 1-10) - Foundation:</b> Focus purely on clearing basic concepts using NCERT and our Study Material section.</li><li><b>Phase 2 (Days 11-20) - Targeted Practice:</b> Take chapter-wise quizzes to identify weak spots.</li><li><b>Phase 3 (Days 21-25) - PYQs:</b> Solve Previous Year Questions to understand the exam pattern.</li><li><b>Phase 4 (Days 26-30) - Exam Simulation:</b> Attempt full-length Mock Tests with a strict timer. Review every mistake!</li></ul>`;
             } else if (text.includes('improve') || text.includes('performance') || text.includes('score') || text.includes('analyze')) {
-                response = `To improve your score:<br>1. Check your Dashboard analytics to find weak chapters.<br>2. Practice those chapters in our Chapter-wise section.<br>3. Review detailed solutions after every test.<br><br><a href="chapterwise.html" class="oq-cb-link">Practice Chapter-wise</a>`;
+                response = `To significantly improve your score and rank, follow this strategy:<br><br>1. <b>Analyze:</b> Check your Dashboard analytics to pinpoint exact weak chapters.<br>2. <b>Target:</b> Practice those specific chapters in our Chapter-wise section.<br>3. <b>Review:</b> Never skip the detailed solutions after a test—understanding your mistakes is how you grow.<br>4. <b>Compete:</b> Participate in Live Arenas to build exam temperament.<br><br><a href="chapterwise.html" class="oq-cb-link">Start Chapter-wise Practice 🎯</a>`;
             } else if (text.includes('mock test') || text.includes('practice')) {
-                response = `We offer 100% Free Mock Tests for IMO, NSO, IEO, IGKO, JEE, and NEET.<br><br><a href="mock.html" class="oq-cb-link">Explore Mock Tests 📝</a>`;
+                response = `We offer an extensive library of <b>100% Free Mock Tests</b> for IMO, NSO, IEO, IGKO, JEE, and NEET.<br><br>Our mock tests feature an authentic CBT (Computer Based Test) interface, instant performance analytics, and detailed step-by-step solutions for every question.<br><br><a href="mock.html" class="oq-cb-link">Explore Mock Tests 📝</a>`;
             } else if (text.includes('live test') || text.includes('arena')) {
-                response = `Our Live Arena allows you to compete nationally in real-time and get an All India Rank!<br><br><a href="live.html" class="oq-cb-link">Join Live Arena 🏆</a>`;
+                response = `Our <b>Live Quiz Arena</b> is the ultimate battleground! 🏆<br><br>It allows you to compete nationally in real-time against thousands of students. You get an <b>All India Rank (AIR)</b>, percentile score, and a participation certificate upon completion.<br><br><a href="live.html" class="oq-cb-link">Join the Live Arena ⚡</a>`;
             } else if (text.includes('jee') || text.includes('neet')) {
-                response = `We have dedicated CBT mock tests for JEE and NEET strictly based on the latest NTA pattern.<br><br><a href="jee_main.html" class="oq-cb-link">JEE Main</a> | <a href="neet.html" class="oq-cb-link">NEET</a>`;
+                response = `We have dedicated, high-quality CBT mock tests for <b>JEE Main, JEE Advanced, and NEET</b>, strictly based on the latest NTA/NMC syllabus.<br><br>You'll find full syllabus mocks, chapter-wise practice, and Previous Year Questions (PYQs) to accelerate your prep.<br><br><a href="jee_main.html" class="oq-cb-link">Explore JEE Main 📐</a> | <a href="neet.html" class="oq-cb-link">Explore NEET ⚕️</a>`;
             } else {
                 response = `I may not have accurate information for this query. Would you like to connect with an expert?<br>
                 <div class="oq-cb-qa-group" style="margin-top:10px;">
