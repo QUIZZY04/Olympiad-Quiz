@@ -610,15 +610,15 @@ onAuthStateChanged(auth, async (user) => {
             const data = userDoc.data();
 
             const providerIds = user.providerData.map(p => p.providerId);
-            const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-            const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
             
-            if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
-                window.location.replace("signup.html?mode=completion");
-                return;
-            }
+            const isRegistered = data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true;
 
-            if ((!data.registrationCompleted && !data.signupCompleted) && !isAdmin) {
+            console.log("UID:", user.uid);
+            console.log("Provider IDs:", providerIds);
+            console.log("User Data:", data);
+            console.log("isRegistered:", isRegistered);
+
+            if (!isRegistered && !isAdmin) {
                 window.location.replace("signup.html?mode=completion");
                 return;
             }
