@@ -1310,6 +1310,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+function initMobileNav(){window.toggleMenu=function(){const e=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!e)return;e.classList.toggle("active");let n=document.querySelector(".nav-overlay");n||(n=document.createElement("div"),n.className="nav-overlay",n.onclick=window.toggleMenu,document.body.appendChild(n)),e.classList.contains("active")?(n.style.display="block",void n.offsetWidth,n.classList.add("active"),document.body.classList.add("nav-open")):(n.classList.remove("active"),setTimeout(()=>{e.classList.contains("active")||(n.style.display="none")},400),document.body.classList.remove("nav-open"))},document.addEventListener("keydown",function(e){if("Escape"===e.key){const n=document.querySelector(".nav-links")||document.querySelector(".navbar-links");n&&n.classList.contains("active")&&window.toggleMenu()}}),document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(e=>{e.addEventListener("click",function(e){if(window.innerWidth<=900){e.preventDefault();const n=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(e=>{e!==n&&e.classList.remove("open")}),n.classList.toggle("open")}})})}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",initMobileNav):initMobileNav();
 </script>
 
 <!-- Processing Screen -->
