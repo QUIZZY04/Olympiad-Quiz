@@ -848,7 +848,7 @@ img {
         background: none;
         border: none;
         cursor: pointer;
-        color: var(--navy);
+        color: var(--orange);
         margin-bottom: 1rem;
         padding: 0;
         line-height: 1;
@@ -871,6 +871,9 @@ img {
     
     .nav-dropdown.open .nav-link svg {
         transform: rotate(180deg);
+    }
+    .nav-dropdown.open .nav-link {
+        color: var(--orange);
     }
     
     .nav-dropdown-content {
@@ -920,11 +923,17 @@ img {
     .navbar-actions {
         flex-shrink: 0;
     }
+    .navbar-actions .btn-login {
+        background-color: var(--orange);
+        border: none;
+        width: 100%;
+        justify-content: center;
+    }
     .navbar-toggle span {
         display: block;
         width: 25px;
         height: 3px;
-        background: var(--navy);
+        background: var(--orange);
         border-radius: 2px;
         transition: transform 0.3s ease, opacity 0.3s ease;
     }

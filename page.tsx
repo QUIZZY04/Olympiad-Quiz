@@ -103,9 +103,9 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
             className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <span className={`block w-[25px] h-[3px] bg-[#0F172A] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'translate-y-[8px] rotate-45' : ''}`}></span>
-            <span className={`block w-[25px] h-[3px] bg-[#0F172A] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-[25px] h-[3px] bg-[#0F172A] rounded-[2px] transition-all duration-300 ${isMenuOpen ? '-translate-y-[8px] -rotate-45' : ''}`}></span>
+            <span className={`block w-[25px] h-[3px] bg-[#c2410c] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'translate-y-[8px] rotate-45' : ''}`}></span>
+            <span className={`block w-[25px] h-[3px] bg-[#c2410c] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-[25px] h-[3px] bg-[#c2410c] rounded-[2px] transition-all duration-300 ${isMenuOpen ? '-translate-y-[8px] -rotate-45' : ''}`}></span>
           </button>
         </div>
       </div>
@@ -121,15 +121,15 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
       {/* Mobile Side Drawer */}
       <div className={`lg:hidden fixed top-0 right-0 h-screen w-[85%] max-w-[350px] bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-end p-6">
-          <button onClick={() => setIsMenuOpen(false)} className="text-3xl text-[#0F172A] leading-none" aria-label="Close Menu">&times;</button>
+          <button onClick={() => setIsMenuOpen(false)} className="text-3xl text-[#c2410c] leading-none" aria-label="Close Menu">&times;</button>
         </div>
         <div className="flex flex-col px-6 gap-2 text-sm font-semibold text-[#475569] overflow-y-auto pb-8">
           <a href="/" className="py-3 text-[#0F172A] border-b border-[#E5E7EB]">Home</a>
           
           <div className="border-b border-[#E5E7EB]">
-            <button onClick={(e) => toggleDropdown('students', e)} className="w-full flex justify-between items-center py-3 hover:text-[#0F172A]">
+            <button onClick={(e) => toggleDropdown('students', e)} className={`w-full flex justify-between items-center py-3 font-semibold transition-colors ${openDropdown === 'students' ? 'text-[#c2410c]' : 'text-[#0F172A]'}`}>
               Students Zone
-              <span className={`transform transition-transform ${openDropdown === 'students' ? 'rotate-180' : ''}`}>▾</span>
+              <span className={`transform transition-transform duration-300 text-lg leading-none ${openDropdown === 'students' ? 'rotate-180 text-[#c2410c]' : 'text-[#475569]'}`}>▾</span>
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${openDropdown === 'students' ? 'max-h-[500px]' : 'max-h-0'}`}>
               <div className="flex flex-col pl-4 border-l-2 border-[#c2410c] ml-2 mb-2">
@@ -144,7 +144,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
           <a href="live.html" className="py-3 hover:text-[#0F172A] border-b border-[#E5E7EB]">Live Arena</a>
           <a href="#" className="py-3 hover:text-[#0F172A]">Senior Exams</a>
           
-          <button onClick={() => { setIsMenuOpen(false); onLoginClick(); }} className="w-full bg-[#0F172A] text-white px-6 py-3.5 rounded-xl text-[15px] font-bold mt-6 text-center cursor-pointer shadow-md">
+          <button onClick={() => { setIsMenuOpen(false); onLoginClick(); }} className="w-full bg-[#c2410c] hover:bg-[#9a3412] transition-colors text-white px-6 py-3.5 rounded-xl text-[15px] font-bold mt-6 text-center cursor-pointer shadow-md">
             Login
           </button>
         </div>
