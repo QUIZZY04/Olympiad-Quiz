@@ -858,6 +858,8 @@ img {
         width: 100%;
         padding: 12px 0;
         border-bottom: 1px solid var(--border);
+        height: auto !important;
+        flex: none !important;
     }
     
     .nav-dropdown {
@@ -865,6 +867,8 @@ img {
         cursor: pointer;
         display: flex !important;
         flex-direction: column !important;
+        height: auto !important;
+        flex: none !important;
     }
     
     .nav-dropdown .nav-link {
@@ -895,9 +899,9 @@ img {
     }
     
     .nav-dropdown.open .nav-dropdown-content {
-        max-height: 500px;
+        max-height: 2000px !important;
         padding: 5px 0 5px 10px;
-        margin-bottom: 5px;
+        margin-bottom: 0 !important;
     }
     
     .nav-dropdown-content a {

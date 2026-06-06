@@ -131,7 +131,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
               Students Zone
               <span className={`transform transition-transform duration-300 text-lg leading-none ${openDropdown === 'students' ? 'rotate-180 text-[#c2410c]' : 'text-[#475569]'}`}>▾</span>
             </button>
-            <div className={`overflow-hidden transition-all duration-300 bg-black/5 ${openDropdown === 'students' ? 'max-h-[500px] py-1 mb-1' : 'max-h-0'}`}>
+            <div className={`overflow-hidden transition-all duration-300 bg-black/5 ${openDropdown === 'students' ? 'max-h-[1500px] py-1 mb-1' : 'max-h-0'}`}>
               <div className="flex flex-col pl-3 border-l-2 border-[#c2410c] ml-0">
                 <a href="mock.html" className="py-2.5 px-2 text-[#0F172A] font-semibold block">Mock Tests</a>
                 <a href="chapterwise.html" className="py-2.5 px-2 text-[#0F172A] font-semibold block">Chapterwise</a>
