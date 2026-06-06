@@ -686,8 +686,8 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         top: 0;
         right: -100%;
         width: 50vw !important;
-        min-width: 220px !important;
-        max-width: none;
+        min-width: auto !important;
+        max-width: 50vw !important;
         height: 100vh;
         background-color: var(--surface, #ffffff);
         flex-direction: column;
@@ -723,16 +723,7 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         overflow: hidden;
     }
     .close-menu {
-        display: block !important;
-        align-self: flex-end;
-        font-size: 2.5rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--brand);
-        margin-bottom: 1rem;
-        padding: 0;
-        line-height: 1;
+        display: none !important;
     }
     .nav-links > a, .nav-dropdown > .dropbtn {
         width: 100%;
@@ -776,7 +767,6 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         margin-top: 0;
     }
     .nav-dropdown.open .nav-dropdown-content {
-        max-height: 2000px !important;
         padding: 5px 0 5px 10px !important;
         margin-bottom: 0 !important;
     }

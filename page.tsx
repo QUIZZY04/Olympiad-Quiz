@@ -119,7 +119,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
       )}
 
       {/* Mobile Side Drawer */}
-      <div className={`lg:hidden fixed top-0 right-0 h-screen w-[50vw] min-w-[220px] bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`lg:hidden fixed top-0 right-0 h-screen w-[50vw] bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-end p-6">
           <button onClick={() => setIsMenuOpen(false)} className="text-3xl text-[#c2410c] leading-none" aria-label="Close Menu">&times;</button>
         </div>
