@@ -546,7 +546,7 @@ nav {
 }
 
 .login-link, .nav-actions .login-link, .nav-actions .nav-link-btn, .nav-important a {
-    background-color: #0F172A !important;
+    background-color: var(--brand) !important;
     color: white !important;
     padding: 8px 20px !important;
     border-radius: 8px !important;
@@ -562,7 +562,7 @@ nav {
     text-transform: none !important;
 }
 .login-link:hover, .nav-actions .login-link:hover, .nav-actions .nav-link-btn:hover, .nav-important a:hover {
-    background-color: #1e293b !important;
+    background-color: var(--accent) !important;
     transform: none !important;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
 }
@@ -632,17 +632,18 @@ nav {
 }
 .menu-toggle span {
     display: block;
-    width: 25px;
-    height: 3px;
+    width: 28px;
+    height: 4px;
         background: var(--brand);
-    border-radius: 2px;
+    border-radius: 4px;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateZ(0);
 }
 
 /* Hamburger to X animation */
 .menu-toggle.active span:nth-child(1),
 nav:has(.nav-links.active) .menu-toggle span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(9px) rotate(45deg);
 }
 .menu-toggle.active span:nth-child(2),
 nav:has(.nav-links.active) .menu-toggle span:nth-child(2) {
@@ -650,7 +651,7 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(2) {
 }
 .menu-toggle.active span:nth-child(3),
 nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 @media (min-width: 769px) {
@@ -799,8 +800,12 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         background-color: var(--brand) !important;
         box-shadow: 0 4px 10px rgba(255, 107, 0, 0.2) !important;
     }
-    .nav-important a[href="index.html"] {
+    .nav-important a {
         display: none !important;
+    }
+    .nav-important a[href="dashboard.html"], 
+    .nav-important a[href="login.html"] {
+        display: inline-flex !important;
     }
     .nav-actions {
         width: 100%;

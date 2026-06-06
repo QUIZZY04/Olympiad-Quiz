@@ -94,7 +94,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
 
         {/* Right: CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 shrink-0">
-          <button onClick={onLoginClick} className="hidden lg:block bg-[#0F172A] text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#1e293b] shadow-sm transition-all duration-200 cursor-pointer">
+          <button onClick={onLoginClick} className="hidden lg:block bg-[#c2410c] text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#9a3412] shadow-sm transition-all duration-200 cursor-pointer">
             Login
           </button>
           
@@ -103,9 +103,9 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
             className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <span className={`block w-[25px] h-[3px] bg-[#c2410c] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'translate-y-[8px] rotate-45' : ''}`}></span>
-            <span className={`block w-[25px] h-[3px] bg-[#c2410c] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-[25px] h-[3px] bg-[#c2410c] rounded-[2px] transition-all duration-300 ${isMenuOpen ? '-translate-y-[8px] -rotate-45' : ''}`}></span>
+            <span className={`block w-[28px] h-[4px] bg-[#c2410c] rounded-[4px] transform-gpu transition-all duration-300 ${isMenuOpen ? 'translate-y-[9px] rotate-45' : ''}`}></span>
+            <span className={`block w-[28px] h-[4px] bg-[#c2410c] rounded-[4px] transform-gpu transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-[28px] h-[4px] bg-[#c2410c] rounded-[4px] transform-gpu transition-all duration-300 ${isMenuOpen ? '-translate-y-[9px] -rotate-45' : ''}`}></span>
           </button>
         </div>
       </div>
