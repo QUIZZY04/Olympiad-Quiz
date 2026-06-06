@@ -890,6 +890,7 @@ img {
     }
     
     .nav-dropdown.open .nav-dropdown-content {
+        max-height: 2000px !important;
         padding: 5px 0 5px 10px;
         margin-bottom: 0 !important;
     }
