@@ -103,9 +103,9 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
             className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <span className={`block w-[28px] h-[4px] bg-[#c2410c] rounded-[4px] transition-all duration-300 ${isMenuOpen ? 'translate-y-[9px] rotate-45' : ''}`}></span>
-            <span className={`block w-[28px] h-[4px] bg-[#c2410c] rounded-[4px] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-[28px] h-[4px] bg-[#c2410c] rounded-[4px] transition-all duration-300 ${isMenuOpen ? '-translate-y-[9px] -rotate-45' : ''}`}></span>
+            <span className={`block w-[24px] h-[2px] bg-[#c2410c] rounded-none transition-all duration-300 ${isMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`block w-[24px] h-[2px] bg-[#c2410c] rounded-none transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-[24px] h-[2px] bg-[#c2410c] rounded-none transition-all duration-300 ${isMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
         </div>
       </div>
@@ -119,7 +119,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
       )}
 
       {/* Mobile Side Drawer */}
-      <div className={`lg:hidden fixed top-0 right-0 h-screen w-[50%] bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`lg:hidden fixed top-0 right-0 h-screen w-[50vw] min-w-[220px] bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-end p-6">
           <button onClick={() => setIsMenuOpen(false)} className="text-3xl text-[#c2410c] leading-none" aria-label="Close Menu">&times;</button>
         </div>
