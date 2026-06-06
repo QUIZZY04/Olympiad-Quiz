@@ -698,7 +698,7 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         z-index: 1002;
         overflow-y: auto;
         display: flex;
-        gap: 0;
+        gap: 0 !important;
         align-items: flex-start;
     }
     .nav-links.active {
@@ -734,7 +734,7 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         padding: 0;
         line-height: 1;
     }
-    .nav-links a, .dropbtn {
+    .nav-links > a, .nav-dropdown > .dropbtn {
         width: 100%;
         padding: 12px 0 !important;
         border-bottom: 1px solid var(--border) !important;
@@ -765,15 +765,21 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out !important;
         box-shadow: none !important;
         border: none !important;
-        background: var(--bg);
-        padding: 0 0 0 15px !important;
-        border-radius: 0 0 8px 8px !important;
+        background: rgba(0,0,0,0.02) !important;
+        padding: 0 0 0 10px !important;
+        border-radius: 0 0 0 0 !important;
         min-width: 100%;
-        border-left: 3px solid var(--brand) !important;
+        border-left: 2px solid var(--brand) !important;
+        margin-top: 0;
     }
     .nav-dropdown.open .nav-dropdown-content {
         max-height: 500px;
-        padding: 10px 0 10px 15px !important;
+        padding: 5px 0 5px 10px !important;
+        margin-bottom: 5px;
+    }
+    .nav-dropdown-content a {
+        padding: 10px 12px !important;
+        font-weight: 600 !important;
     }
     .menu-toggle {
         display: flex;
