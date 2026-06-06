@@ -830,7 +830,7 @@ img {
         inset: 0;
         background: rgba(15, 23, 42, 0.6);
         backdrop-filter: blur(3px);
-        z-index: 1001;
+        z-index: 49;
         opacity: 0;
         transition: opacity 0.4s ease;
     }
@@ -863,6 +863,8 @@ img {
     .nav-dropdown {
         width: 100%;
         cursor: pointer;
+        display: flex !important;
+        flex-direction: column !important;
     }
     
     .nav-dropdown .nav-link {
@@ -910,6 +912,7 @@ img {
         height: 40px;
         flex-shrink: 0;
         z-index: 1005;
+        position: relative;
     }
     .navbar-logo {
         flex: 1;

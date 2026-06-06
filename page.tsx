@@ -100,7 +100,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
           
           {/* Hamburger Icon */}
           <button 
-            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-none"
+            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-none relative z-[1005]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <span className={`block w-[24px] h-[2px] bg-[#c2410c] rounded-none transition-all duration-300 ${isMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
@@ -113,7 +113,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
       {/* Overlay */}
       {isMenuOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-[#0f172a]/60 backdrop-blur-sm z-[1001]"
+          className="lg:hidden fixed inset-0 bg-[#0f172a]/60 backdrop-blur-sm z-[49]"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
