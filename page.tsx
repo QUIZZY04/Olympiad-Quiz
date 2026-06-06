@@ -41,35 +41,117 @@ const AuthModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }
   );
 };
 
-const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => (
-  <nav className="sticky top-0 z-50 h-[80px] bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] flex items-center justify-between px-6 lg:px-12">
-    {/* Left: Logo */}
-    <div className="flex items-center gap-3 cursor-pointer">
-      <div className="w-8 h-8 bg-[#c2410c] rounded-lg shadow-sm flex items-center justify-center">
-        <span className="text-white font-bold text-lg leading-none">O</span>
+const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen]);
+
+  const toggleDropdown = (name: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setOpenDropdown(openDropdown === name ? null : name);
+  };
+
+  return (
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E7EB]">
+      <div className="flex items-center justify-between px-6 lg:px-12 h-[80px]">
+        {/* Left: Logo */}
+        <div className="flex items-center gap-3 cursor-pointer">
+          <div className="w-8 h-8 bg-[#c2410c] rounded-lg shadow-sm flex items-center justify-center">
+            <span className="text-white font-bold text-lg leading-none">O</span>
+          </div>
+          <span className="font-extrabold text-xl tracking-tight text-[#0F172A]">
+            OLYMPIADQUIZ
+          </span>
+        </div>
+
+        {/* Center: Links */}
+        <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#475569]">
+          <a href="#" className="text-[#0F172A] transition-colors">Home</a>
+          <a href="#" className="hover:text-[#0F172A] transition-colors">Students Zone</a>
+          <a href="#" className="hover:text-[#0F172A] transition-colors">Syllabus</a>
+          <a href="#" className="hover:text-[#0F172A] transition-colors">Live Arena</a>
+          <a href="#" className="hover:text-[#0F172A] transition-colors">Senior Exams</a>
+        </div>
+
+        {/* Right: CTA & Mobile Toggle */}
+        <div className="flex items-center gap-4">
+          <button onClick={onLoginClick} className="hidden lg:block bg-[#0F172A] text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#1e293b] shadow-sm transition-all duration-200 cursor-pointer">
+            Login
+          </button>
+          
+          {/* Hamburger Icon */}
+          <button 
+            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-none"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <span className={`block w-[25px] h-[3px] bg-[#0F172A] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'translate-y-[8px] rotate-45' : ''}`}></span>
+            <span className={`block w-[25px] h-[3px] bg-[#0F172A] rounded-[2px] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-[25px] h-[3px] bg-[#0F172A] rounded-[2px] transition-all duration-300 ${isMenuOpen ? '-translate-y-[8px] -rotate-45' : ''}`}></span>
+          </button>
+        </div>
       </div>
-      <span className="font-extrabold text-xl tracking-tight text-[#0F172A]">
-        OLYMPIADQUIZ
-      </span>
-    </div>
+      
+      {/* Overlay */}
+      {isMenuOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-[#0f172a]/60 backdrop-blur-sm z-[1001]"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
 
-    {/* Center: Links */}
-    <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#475569]">
-      <a href="#" className="text-[#0F172A] transition-colors">Home</a>
-      <a href="#" className="hover:text-[#0F172A] transition-colors">Students Zone</a>
-      <a href="#" className="hover:text-[#0F172A] transition-colors">Syllabus</a>
-      <a href="#" className="hover:text-[#0F172A] transition-colors">Live Arena</a>
-      <a href="#" className="hover:text-[#0F172A] transition-colors">Senior Exams</a>
-    </div>
+      {/* Mobile Side Drawer */}
+      <div className={`lg:hidden fixed top-0 right-0 h-screen w-[85%] max-w-[350px] bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="flex justify-end p-6">
+          <button onClick={() => setIsMenuOpen(false)} className="text-3xl text-[#0F172A] leading-none" aria-label="Close Menu">&times;</button>
+        </div>
+        <div className="flex flex-col px-6 gap-2 text-sm font-semibold text-[#475569] overflow-y-auto pb-8">
+          <a href="/" className="py-3 text-[#0F172A] border-b border-[#E5E7EB]">Home</a>
+          
+          <div className="border-b border-[#E5E7EB]">
+            <button onClick={(e) => toggleDropdown('students', e)} className="w-full flex justify-between items-center py-3 hover:text-[#0F172A]">
+              Students Zone
+              <span className={`transform transition-transform ${openDropdown === 'students' ? 'rotate-180' : ''}`}>▾</span>
+            </button>
+            <div className={`overflow-hidden transition-all duration-300 ${openDropdown === 'students' ? 'max-h-[500px]' : 'max-h-0'}`}>
+              <div className="flex flex-col pl-4 border-l-2 border-[#c2410c] ml-2 mb-2">
+                <a href="mock.html" className="py-2.5 text-[#0F172A]">Mock Tests</a>
+                <a href="chapterwise.html" className="py-2.5 text-[#0F172A]">Chapterwise</a>
+                <a href="study.html" className="py-2.5 text-[#0F172A]">Study Material</a>
+              </div>
+            </div>
+          </div>
 
-    {/* Right: CTA */}
-    <div>
-      <button onClick={onLoginClick} className="bg-[#0F172A] text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#1e293b] shadow-sm transition-all duration-200 cursor-pointer">
-        Login
-      </button>
-    </div>
-  </nav>
-);
+          <a href="olympiad-syllabus.html" className="py-3 hover:text-[#0F172A] border-b border-[#E5E7EB]">Syllabus</a>
+          <a href="live.html" className="py-3 hover:text-[#0F172A] border-b border-[#E5E7EB]">Live Arena</a>
+          <a href="#" className="py-3 hover:text-[#0F172A]">Senior Exams</a>
+          
+          <button onClick={() => { setIsMenuOpen(false); onLoginClick(); }} className="w-full bg-[#0F172A] text-white px-6 py-3.5 rounded-xl text-[15px] font-bold mt-6 text-center cursor-pointer shadow-md">
+            Login
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 const Hero = ({ onStartTest }: { onStartTest: (url: string) => void }) => (
   <section className="pt-[120px] pb-[100px] px-6 lg:px-12 max-w-[1400px] mx-auto">
