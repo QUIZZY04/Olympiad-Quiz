@@ -806,8 +806,8 @@ img {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 85%;
-        max-width: 350px;
+        width: 50%;
+        max-width: none;
         height: 100vh;
         background-color: #ffffff;
         flex-direction: column;
@@ -936,7 +936,6 @@ img {
         background: var(--orange);
         border-radius: 4px;
         transition: transform 0.3s ease, opacity 0.3s ease;
-        transform: translateZ(0);
     }
     
     /* Hamburger to X animation */
