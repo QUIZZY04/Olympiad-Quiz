@@ -74,11 +74,11 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E7EB]">
       <div className="flex items-center justify-between px-6 lg:px-12 h-[80px]">
         {/* Left: Logo */}
-        <div className="flex items-center gap-3 cursor-pointer">
-          <div className="w-8 h-8 bg-[#c2410c] rounded-lg shadow-sm flex items-center justify-center">
+        <div className="flex items-center gap-3 cursor-pointer min-w-0 flex-1">
+          <div className="w-8 h-8 bg-[#c2410c] rounded-lg shadow-sm flex items-center justify-center shrink-0">
             <span className="text-white font-bold text-lg leading-none">O</span>
           </div>
-          <span className="font-extrabold text-xl tracking-tight text-[#0F172A]">
+          <span className="font-extrabold text-xl tracking-tight text-[#0F172A] truncate">
             OLYMPIADQUIZ
           </span>
         </div>
@@ -93,7 +93,7 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
         </div>
 
         {/* Right: CTA & Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 shrink-0">
           <button onClick={onLoginClick} className="hidden lg:block bg-[#0F172A] text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#1e293b] shadow-sm transition-all duration-200 cursor-pointer">
             Login
           </button>

@@ -679,7 +679,7 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
 
 @media (max-width: 900px) {
     nav {
-        padding: 0 1.5rem !important;
+        padding: 0 1rem !important;
     }
     .nav-links {
         position: fixed;
@@ -771,15 +771,27 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
     .menu-toggle {
         display: flex;
         order: 3;
+        flex-shrink: 0;
     }
     .brand {
         order: 1;
         flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .brand img {
+        flex-shrink: 0;
     }
     .nav-important {
         display: flex;
         order: 2;
-        gap: 12px;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+    .nav-important a {
+        padding: 6px 10px !important;
+        font-size: 0.8rem !important;
     }
     .nav-important a[href="index.html"] {
         display: none !important;
