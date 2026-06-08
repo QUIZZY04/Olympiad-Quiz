@@ -221,13 +221,15 @@
 <div id="main-app-container">
     <nav class="navbar">
         <div class="navbar-inner">
+        <!-- Left: Logo -->
             <a href="/" class="navbar-logo">
                 <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'">
                 <span class="logo-text">OlympiadQuiz</span>
             </a>
+
+        <!-- Center: Links (Desktop) -->
             <div class="navbar-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
                 <div class="nav-dropdown">
                     <a href="#" class="nav-link active">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                     <div class="nav-dropdown-content">
@@ -259,11 +261,13 @@
                         <a href="jee-main-pyq.html">JEE PYQs</a>
                     </div>
                 </div>
-                <a href="leaderboard.html" class="nav-link">Leaderboard</a>
             </div>
+
+        <!-- Right: CTA -->
             <div class="navbar-actions">
                 <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success);">Admin</a>
                 <a onclick="logout()" class="btn-login login-link" style="background-color: var(--danger); cursor: pointer;">Logout</a>
+            <!-- Mobile Menu Toggle -->
                 <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">
                     <span></span>
                     <span></span>
@@ -600,6 +604,7 @@
     });
 
 </script>
+<script>window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});</script>
 
 <!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
 <script>
