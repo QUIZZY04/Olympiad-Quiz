@@ -256,7 +256,7 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
     </div>
 
     <div class="filter-section">
-        <select id="classSelect" class="filter-select" onchange="fetchHotsSets()">
+        <select id="classSelect" class="filter-select">
             <option value="all" selected>Select Grade</option>
             <option value="class1">Class 1</option><option value="class2">Class 2</option>
             <option value="class3">Class 3</option><option value="class4">Class 4</option>
@@ -264,7 +264,7 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
             <option value="class7">Class 7</option><option value="class8">Class 8</option>
             <option value="class9">Class 9</option><option value="class10">Class 10</option>
         </select>
-        <select id="subjectSelect" class="filter-select" onchange="fetchHotsSets()">
+        <select id="subjectSelect" class="filter-select">
             <option value="all" selected>Select Subject</option>
             <option value="maths">Maths</option>
             <option value="science">Science</option>
@@ -323,7 +323,7 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
 </footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, collection, query, where, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -334,7 +334,7 @@ const firebaseConfig = {
     storageBucket: "olympiad-portal-d2a5e.firebasestorage.app"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const db = getFirestore(app);
 
@@ -366,8 +366,13 @@ onAuthStateChanged(auth, async (user) => {
                 if (userDoc.exists()) {
                     let uClass = userDoc.data().class || userDoc.data().studentClass;
                     if (uClass) {
-                        if (!uClass.toString().startsWith('class')) uClass = 'class' + uClass;
-                        if (classSelect) {
+                        let classMatch = String(uClass).match(/\d+/);
+                        if (classMatch) {
+                            uClass = "class" + classMatch[0];
+                        } else if (!String(uClass).startsWith('class')) {
+                            uClass = 'class' + uClass;
+                        }
+                        if (classSelect && classSelect.querySelector(`option[value="${uClass}"]`)) {
                             classSelect.value = uClass;
                             classSelect.disabled = true;
                         }
@@ -397,20 +402,41 @@ window.fetchHotsSets = async function() {
     const sub = document.getElementById("subjectSelect").value;
     const grid = document.getElementById("hotsGrid");
     
-    if (cls === "all" || sub === "all") {
-        grid.innerHTML = '<div class="empty-state"><span>📚</span> Please select a Grade and Subject to view HOTS challenges.</div>';
+    console.log("Selected class:", cls);
+    console.log("Selected subject:", sub);
+    console.log("Executing in-memory fetch of HOTS tests...");
+
+    if (cls === "all" && sub === "all") {
+        grid.innerHTML = '<div class="empty-state"><span>📚</span> Please select a Grade or Subject to view HOTS challenges.</div>';
         return;
     }
     
     grid.innerHTML = '<div class="empty-state"><span>⏳</span> Fetching challenges...</div>';
     
     try {
-        let qry = collection(db, "hots_tests");
-        if (cls !== "all") qry = query(qry, where("class", "==", cls));
-        if (sub !== "all") qry = query(qry, where("subject", "==", sub));
-        const snap = await getDocs(qry);
+        // Fetch all tests and filter in memory to bypass index issues and format mismatches
+        const snap = await getDocs(collection(db, "hots_tests"));
         
-        if (snap.empty) {
+        console.log("Dataset size (total documents fetched from Firestore):", snap.size);
+
+        let filteredDocs = [];
+        snap.forEach(doc => {
+            const data = doc.data();
+            let rawClass = String(data.class || "");
+            let classMatch = rawClass.match(/\d+/);
+            let docClass = classMatch ? "class" + classMatch[0] : rawClass.toLowerCase().replace(/\s+/g, '');
+            
+            let docSub = String(data.subject || "").toLowerCase().trim();
+
+            if ((cls === "all" || docClass === cls) && (sub === "all" || docSub === sub)) {
+                data.subject = docSub; // Ensure subject is normalized for UI rendering
+                filteredDocs.push({ id: doc.id, data, docClass });
+            }
+        });
+
+        console.log("Filtered result size:", filteredDocs.length);
+
+        if (filteredDocs.length === 0) {
             const subText = sub === "all" ? "any subject" : sub.toUpperCase();
             const clsText = cls === "all" ? "any class" : cls.replace('class', 'Class ');
             grid.innerHTML = `<div class="empty-state"><span>📭</span> No HOTS sets available for ${subText} in ${clsText} yet. Check back later!</div>`;
@@ -418,8 +444,8 @@ window.fetchHotsSets = async function() {
         }
         
         let html = '';
-        snap.forEach(doc => {
-            const data = doc.data();
+        filteredDocs.forEach(item => {
+            const { id, data, docClass } = item;
             const qCount = data.questions ? data.questions.length : 0;
             const duration = data.duration || 30;
             
@@ -433,8 +459,8 @@ window.fetchHotsSets = async function() {
             else if (data.subject === 'igko') { cardColor = '#8b5cf6'; cardText = '#6d28d9'; bgLight = 'rgba(139, 92, 246, 0.1)'; }
 
             html += `
-            <div class="hots-card" style="--card-color: ${cardColor}; --card-text: ${cardText}; --card-bg: ${bgLight};" onclick="startHotsTest('${doc.id}', '${data.class}', '${data.subject}')">
-                <span class="card-badge">${data.subject.toUpperCase()} - ${data.class.replace('class', 'Class ')}</span>
+            <div class="hots-card" style="--card-color: ${cardColor}; --card-text: ${cardText}; --card-bg: ${bgLight};" onclick="startHotsTest('${id}', '${docClass}', '${data.subject}')">
+                <span class="card-badge">${data.subject.toUpperCase()} - ${docClass.replace('class', 'Class ')}</span>
                 <h3 class="card-title">${data.title}</h3>
                 <p class="card-desc">${data.desc || 'Higher Order Thinking Skills Challenge. Test your advanced problem-solving abilities.'}</p>
                 <div class="card-meta">
@@ -443,13 +469,20 @@ window.fetchHotsSets = async function() {
                 </div>
             </div>`;
         });
+        
+        console.log("Generated HTML length:", html.length);
         grid.innerHTML = html;
+        console.log("Final grid.innerHTML assignment completed.");
         
     } catch (e) {
         console.error("Error fetching HOTS:", e);
+        console.log("Firestore error details:", e.message);
         grid.innerHTML = `<div class="empty-state" style="color:var(--danger)"><span>⚠️</span> Failed to load HOTS sets. Please try again.</div>`;
     }
 };
+
+document.getElementById("classSelect").addEventListener("change", window.fetchHotsSets);
+document.getElementById("subjectSelect").addEventListener("change", window.fetchHotsSets);
 
 window.startHotsTest = function(id, cls, sub) {
     const proceed = () => {
