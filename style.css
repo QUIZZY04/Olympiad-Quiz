@@ -754,8 +754,8 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
     .nav-dropdown-content {
         position: static !important;
         display: block !important;
-        max-height: 0;
-        overflow: hidden;
+        max-height: 0 !important;
+        overflow: hidden !important;
         transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out !important;
         box-shadow: none !important;
         border: none !important;
@@ -764,7 +764,7 @@ nav:has(.nav-links.active) .menu-toggle span:nth-child(3) {
         border-radius: 0 0 0 0 !important;
         min-width: 100%;
         border-left: 2px solid var(--brand) !important;
-        margin-top: 0;
+        margin-top: 0 !important;
     }
     .nav-dropdown.open .nav-dropdown-content {
         max-height: 2000px !important;
