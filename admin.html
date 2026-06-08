@@ -7,7 +7,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Panel - Olympiad Portal</title>
+<title>Admin Panel - OlympiadQuiz</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -247,7 +247,7 @@ border-top:1px solid var(--border);
         <span></span>
         <span></span>
     </button>
-    <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
+    <a href="dashboard.html" class="brand"><img src="favicon.png" alt="Logo" width="32" height="32" onerror="this.style.display='none'"> OlympiadQuiz</a>
     <div class="nav-important">
         <a href="dashboard.html">Dash</a>
         <a onclick="logout()" style="cursor:pointer;">Logout</a>
@@ -1337,7 +1337,7 @@ border-top:1px solid var(--border);
         <a href="privacy-policy.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
         <a href="term.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Terms & Conditions</a>
     </div>
-    <p style="margin-top:15px;font-size:14px;">© 2026 Olympiad Portal. All rights reserved.</p>
+    <p style="margin-top:15px;font-size:14px;">© 2026 OlympiadQuiz. All rights reserved.</p>
 </footer>
 
 <div id="editModal" class="modal">
@@ -3676,22 +3676,25 @@ window.createSession = async () => {
                 const parsed = JSON.parse(manualIdsRaw);
                 const items = Array.isArray(parsed) ? parsed : [parsed];
                 
-                const isFullObject = items.length > 0 && typeof items[0] === 'object' && items[0].id && items[0].q;
+                const isFullObject = items.length > 0 && typeof items[0] === 'object' && (items[0].id || items[0].question_id) && items[0].q;
 
                 if (isFullObject) {
                     btn.innerText = "⏳ Syncing Questions...";
                     for (let q of items) {
-                        if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
-                        await setDoc(doc(questionsRef, q.id), q);
+                        const qId = q.id || q.question_id;
+                        if (!qId) continue;
+                        if (uploadedImageUrls[qId]) q.image_url = uploadedImageUrls[qId];
+                        q.id = qId;
+                        await setDoc(doc(questionsRef, qId), q);
                     }
-                    questionIds = items.map(i => i.id);
+                    questionIds = items.map(i => i.id || i.question_id);
                 } else {
-                    questionIds = items.map(item => (typeof item === 'string' ? item : item.id)).filter(id => !!id);
+                    questionIds = items.map(item => (typeof item === 'string' ? item : (item.id || item.question_id))).filter(id => !!id);
                 }
             } catch (e) {
                 let extractedIds = [];
 
-                const jsonIdPattern = /"id"\s*:\s*"([^"]+)"/g;
+                const jsonIdPattern = /"(?:question_)?id"\s*:\s*"([^"]+)"/g;
                 let match;
                 while ((match = jsonIdPattern.exec(manualIdsRaw)) !== null) {
                     extractedIds.push(match[1]);
@@ -3738,21 +3741,25 @@ window.createSession = async () => {
                 const parsed = JSON.parse(achManualIdsRaw);
                 const items = Array.isArray(parsed) ? parsed : [parsed];
                 
-                const isFullObject = items.length > 0 && typeof items[0] === 'object' && items[0].id && items[0].q;
+                const isFullObject = items.length > 0 && typeof items[0] === 'object' && (items[0].id || items[0].question_id) && items[0].q;
 
                 if (isFullObject) {
                     btn.innerText = "⏳ Syncing Achiever Questions...";
                     for (let q of items) {
-                        if (uploadedImageUrls[q.id]) q.image_url = uploadedImageUrls[q.id];
-                        await setDoc(doc(questionsRef, q.id), q);
+                        const qId = q.id || q.question_id;
+                        if (!qId) continue;
+                        if (uploadedImageUrls[qId]) q.image_url = uploadedImageUrls[qId];
+                        q.id = qId;
+                        q.isAchiever = true;
+                        await setDoc(doc(questionsRef, qId), q);
                     }
-                    achieverQuestionIds = items.map(i => i.id);
+                    achieverQuestionIds = items.map(i => i.id || i.question_id);
                 } else {
-                    achieverQuestionIds = items.map(item => (typeof item === 'string' ? item : item.id)).filter(id => !!id);
+                    achieverQuestionIds = items.map(item => (typeof item === 'string' ? item : (item.id || item.question_id))).filter(id => !!id);
                 }
             } catch (e) {
                 let extractedIds = [];
-                const jsonIdPattern = /"id"\s*:\s*"([^"]+)"/g;
+                const jsonIdPattern = /"(?:question_)?id"\s*:\s*"([^"]+)"/g;
                 let match;
                 while ((match = jsonIdPattern.exec(achManualIdsRaw)) !== null) {
                     extractedIds.push(match[1]);

@@ -72,7 +72,7 @@
 <body>
     <nav>
         <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
-        <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
+        <a href="index.html" class="brand"><img src="favicon.png" alt="Logo" width="32" height="32" onerror="this.style.display='none'"> OlympiadQuiz</a>
         <div class="nav-important"><a href="about.html">About</a><a href="login.html" id="navAuthLinkMobile">Login</a></div>
         <div class="nav-links">
             <button class="close-menu" onclick="toggleMenu()">&times;</button>
@@ -161,9 +161,7 @@
 
     <script>
         function openHubAction(type) {
-            window.location.href = "jee_main.html"; // Central routing handles auth and logic
-        }
-        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+            window.location.href = "jee_main.html"; // Central routing handles auth and logic        }
     </script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -180,9 +178,12 @@
             }
         });
     </script>
+    <script>
+window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});
+    </script>
 
-<!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
-<script>
+    <!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
+    <script>
   window.addEventListener('load', function() {
     setTimeout(function() {
       var gt = document.createElement('script');
@@ -203,5 +204,6 @@
     }, 800);
   });
 </script>
+<script type="module" src="chatbot.js"></script>
 </body>
 </html>

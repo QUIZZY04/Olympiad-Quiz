@@ -206,7 +206,7 @@ nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border
     <span></span>
     <span></span>
 </button>
-<a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
+<a href="dashboard.html" class="brand"><img src="favicon.png" alt="Logo" width="32" height="32" onerror="this.style.display='none'"> OlympiadQuiz</a>
 <div class="nav-important">
     <a href="dashboard.html">Dash</a>
     <a onclick="logout()" style="cursor:pointer;">Logout</a>
@@ -520,33 +520,8 @@ window.logout = async () => {
     }
 };
 
-window.toggleMenu = function() {
-    document.querySelector('.nav-links').classList.toggle('active');
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const dropdown = this.closest('.nav-dropdown');
-                
-                // Close other open dropdowns
-                document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
-                    if (openDropdown !== dropdown) {
-                        openDropdown.classList.remove('open');
-                        const contentToClose = openDropdown.querySelector('.nav-dropdown-content');
-                        if (contentToClose) contentToClose.style.maxHeight = '0';
-                    }
-                });
-
-                dropdown.classList.toggle('open');
-                const content = dropdown.querySelector('.nav-dropdown-content');
-                if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
-            }
-        });
-    });
-});
+window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});
 </script>
+<script type="module" src="chatbot.js"></script>
 </body>
 </html>

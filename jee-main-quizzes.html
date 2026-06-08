@@ -74,9 +74,7 @@
     <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
         <span></span><span></span><span></span>
     </button>
-    <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;">
-        <img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal
-    </a>
+    <a href="dashboard.html" class="brand"><img src="favicon.png" alt="Logo" width="32" height="32" onerror="this.style.display='none'"> OlympiadQuiz</a>
     <div class="nav-important"><a href="dashboard.html">Dash</a><a onclick="logout()" style="cursor:pointer;">Logout</a></div>
     <div class="nav-links">
         <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
@@ -296,27 +294,34 @@
             window.location.replace("login.html"); 
         } 
     };
-</script>
-<script>
-    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const dropdown = this.closest('.nav-dropdown');
-                    document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
-                        if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); const contentToClose = openDropdown.querySelector('.nav-dropdown-content'); if (contentToClose) contentToClose.style.maxHeight = '0'; }
-                    });
-                    dropdown.classList.toggle('open');
-                    const content = dropdown.querySelector('.nav-dropdown-content');
-                    if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
-                }
-            });
-        });
+    
+    // Deferred Analytics & Ads to eliminate Total Blocking Time
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var gt = document.createElement('script');
+        gt.async = true;
+        gt.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18108080300';
+        document.head.appendChild(gt);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18108080300');
+        gtag('config', 'G-ZN5D87BQXP');
+  
+        var ad = document.createElement('script');
+        ad.async = true;
+        ad.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7631964396609524';
+        ad.crossOrigin = 'anonymous';
+        document.head.appendChild(ad);
+      }, 800);
     });
+    </script>
+<script>
+window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});
 </script>
-
+<script type="module" src="chatbot.js"></script>
+</body>
+</html>
 <!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
 <script>
   window.addEventListener('load', function() {
@@ -339,5 +344,6 @@
     }, 800);
   });
 </script>
+<script type="module" src="chatbot.js"></script>
 </body>
 </html>

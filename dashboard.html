@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Dashboard - Olympiad Portal</title>
+  <title>Dashboard - OlympiadQuiz</title>
   
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
@@ -14,15 +14,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <meta name="theme-color" content="#ffffff">
-
-  <!-- INSTANT AUTHENTICATION CHECK -->
-  <!-- Runs instantly before the page renders to block the back button -->
-  <script>
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-        sessionStorage.setItem("redirectAfterLogin", window.location.href);
-        window.location.replace("login.html");
-    }
-  </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
@@ -215,7 +206,7 @@
             <span></span>
             <span></span>
         </button>
-    <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async"> Olympiad Portal</a>
+    <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async"> OlympiadQuiz</a>
         <div class="nav-important">
             <a href="dashboard.html">Dashboard</a>
             <a href="index.html">Home</a>
@@ -230,6 +221,7 @@
                 <div class="nav-dropdown-content">
                     <a href="mock.html">Mock Tests</a>
                     <a href="chapterwise.html">Chapterwise</a>
+                    <a href="live.html">Live Arena</a>
                     <a href="profile.html">My Profile</a>
                 <a href="hots.html">H.O.T.S Problems</a>
                     <a href="study.html">Study Material</a>
@@ -248,7 +240,6 @@
                     <a href="ogo-syllabus.html">Orange Olympiad</a>
                 </div>
             </div>
-            <a href="live.html">Live Arena</a>
         <div class="nav-dropdown">
             <a href="#" class="dropbtn">Senior Exams</a>
             <div class="nav-dropdown-content">
@@ -266,12 +257,12 @@
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container" style="visibility:hidden">
         <div class="hero-panel animate-up">
             <div class="hero-left">
                 <div style="display: inline-block; padding: 6px 12px; background: rgba(255,255,255,0.2); border-radius: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);">Level Up Your Skills 🚀</div>
                 <h1 id="userGreeting">Welcome to Dashboard</h1>
-                <p>Your personal command center for Olympiad success. Track your progress, attempt live arenas, and master concepts.</p>
+                <p id="heroSubtitle">Your personal command center for Olympiad success. Track your progress, attempt live arenas, and master concepts.</p>
                 <div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
                     <a href="chapterwise.html" class="hero-btn">Start Practice</a>
                     <a href="analytics.html" class="hero-btn-outline">View Analytics</a>
@@ -297,7 +288,7 @@
             </div>
         </div>
 
-        <div style="min-height: 85px;">
+        <div id="liveSessionWrapper" style="min-height: 85px;">
         <div id="liveSessionBanner" class="sleek-banner animate-up delay-1" style="display:none;">
             <span class="badge" id="bannerBadge">Live</span>
             <div class="scrolling-text-container">
@@ -307,7 +298,7 @@
         </div>
         </div>
 
-        <div style="min-height: 450px;">
+        <div id="juniorGridWrapper" style="min-height: 450px;">
         <section class="main-menu-grid">
             <div class="modern-card card-blue animate-up delay-1" onclick="location.href='mock.html'">
                 <div class="card-content">
@@ -385,7 +376,7 @@
             <div class="modern-card card-orange animate-up delay-6" onclick="openFeedbackModal()">
                 <div class="card-content">
                     <h3>💬 Share Feedback</h3>
-                    <p>Help us improve Olympiad Portal by sharing your experience and suggestions.</p>
+                    <p>Help us improve OlympiadQuiz by sharing your experience and suggestions.</p>
                 </div>
                 <div class="icon-wrapper">⭐</div>
             </div>
@@ -406,11 +397,64 @@
                 </div>
                 <div class="icon-wrapper">🎓</div>
             </div>
-            <div class="modern-card card-green" onclick="location.href='neet.html'" style="display: none;">
+            <div class="modern-card card-green" onclick="location.href='neet.html'">
                 <div class="card-content">
                     <h3>NEET</h3><p>Comprehensive Biology, Physics, and Chemistry practice.</p>
                 </div>
                 <div class="icon-wrapper">⚕️</div>
+            </div>
+        </section>
+
+        <!-- SENIOR RICH TEXT SECTION -->
+        <section id="seniorRichText" class="rich-text-section animate-up delay-6" style="display:none; margin-bottom: 50px;">
+            <h2>🎯 Crack JEE & NEET: The Ultimate Blueprint</h2>
+            <p>Welcome to the senior arena. The next two years are critical for your career in engineering or medicine. Preparation requires more than just reading—it demands strategic practice and precise execution.</p>
+            <ul>
+                <li><span class="highlight">JEE Main & Advanced:</span> Focus on high-weightage topics, practice multi-correct questions, and build speed through our rigorous CBT mock tests.</li>
+                <li><span class="highlight">NEET Aspirants:</span> Master NCERT line-by-line for Biology. Build strong conceptual foundations in Physics and Chemistry to score 650+.</li>
+                <li><span class="highlight">Analyze and Adapt:</span> Always review your mock test mistakes. Identifying and rectifying errors is the key to jumping percentiles.</li>
+            </ul>
+            <p>Consistency is your superpower. <b style="color: var(--text);">Stay focused, keep practicing, and claim your seat!</b></p>
+        </section>
+
+        <!-- SENIOR FAQ SECTION -->
+        <section id="seniorFaq" class="info-section animate-up delay-6" style="display:none; margin-bottom: 50px;">
+            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-md);">
+                <h2 style="font-size: 1.8rem; color: var(--text); margin-bottom: 25px; font-weight: 800;">Frequently Asked Questions (JEE & NEET)</h2>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Are the JEE and NEET mock tests based on the latest NTA pattern?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Yes, all our full-length and chapter-wise mock tests are strictly aligned with the latest NTA and NMC syllabuses, including the updated marking schemes and CBT interfaces.</p>
+                    </details>
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">How should I balance board exams with competitive prep?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Focus on mastering the NCERT textbook concepts first, as they form the foundation for both Boards and JEE/NEET. Allocate weekends strictly for competitive mock tests and higher-level problem solving.</p>
+                    </details>
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Do you provide solutions for the mock tests?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Absolutely. Detailed, step-by-step solutions and performance analytics are available immediately after you submit any mock test to help you understand your mistakes.</p>
+                    </details>
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">How is the All India Rank (AIR) calculated in Live Mock Tests?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Your AIR is calculated dynamically based on your relative performance (percentile scoring) against all other students who participated in that specific Live Arena session across the country.</p>
+                    </details>
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Are there negative marks in the mock tests?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Yes, our tests simulate the exact marking scheme of the real exams. JEE Main and NEET tests carry a -1 negative mark for incorrect answers, while JEE Advanced tests feature complex partial marking and negative marking per the actual exam format.</p>
+                    </details>
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Can I attempt the tests on a mobile phone?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Yes, our platform is fully responsive and optimized for mobile devices. However, for the best experience resembling the actual CBT (Computer Based Test), we highly recommend taking full-length mock tests on a desktop or laptop.</p>
+                    </details>
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">What are Multi-Correct Questions in JEE Advanced mock tests?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Multi-correct questions are those where one or more options can be correct. Our testing engine fully supports this format, including the intricate partial marking rules (+1 for each correct option chosen, provided no incorrect option is selected, and -2 if any incorrect option is selected).</p>
+                    </details>
+                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Is there any specific strategy for attempting the NEET biology section?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Since Biology accounts for 50% of the NEET score, we advise students to attempt this section first and aim to complete it within 40-45 minutes. Our chapter-wise Botany and Zoology quizzes are designed to improve both your accuracy and speed.</p>
+                    </details>
+                </div>
             </div>
         </section>
 
@@ -497,7 +541,7 @@
             <div style="text-align: center; margin-bottom: 25px;">
                 <div style="font-size: 48px; margin-bottom: 10px;">📣</div>
                 <h2 style="color: var(--text); margin-bottom: 10px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">We Value Your Feedback!</h2>
-                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;" id="feedbackSubtitle">Your thoughts help us improve Olympiad Portal for everyone. Please share your experience.</p>
+                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;" id="feedbackSubtitle">Your thoughts help us improve OlympiadQuiz for everyone. Please share your experience.</p>
             </div>
             
             <div style="background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px;">
@@ -571,7 +615,7 @@
                 <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path d="M15.4 12H13V24h-3.5V12H7.5V8.5H9.5V6.4c0-2.4 1.4-3.7 3.6-3.7 1 0 1.9.1 1.9.1v2.2h-1.1c-1.1 0-1.3.5-1.3 1.3v2.2h2.9l-.4 3.5z" fill="#FFFFFF"/></svg>
             </a>
         </div>
-        <p>© 2026 Olympiad Portal. All rights reserved.</p>
+        <p>© 2026 OlympiadQuiz. All rights reserved.</p>
     </footer>
 </div>
 
@@ -589,9 +633,12 @@ const db=initializeFirestore(app, { experimentalForceLongPolling: true });
 
 // AUTH GUARD: Optimistic Redirect
 onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-        // Redirect only if they are definitely not logged in
-        window.location.replace("index.html"); 
+    if (user) {
+        document.querySelector('.container').style.visibility = 'visible';
+    } else {
+        localStorage.removeItem("isLoggedIn");
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.replace("login.html");
         return;
     }
 
@@ -610,19 +657,15 @@ onAuthStateChanged(auth, async (user) => {
             const data = userDoc.data();
 
             const providerIds = user.providerData.map(p => p.providerId);
-            const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-            const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
             
-            if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
-                window.location.replace("signup.html?mode=completion");
-                return;
-            }
+            const isRegistered = data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true;
 
-            if ((!data.registrationCompleted && !data.signupCompleted) && !isAdmin) {
-                window.location.replace("signup.html?mode=completion");
-                return;
-            }
-            if (!data.phone && !isAdmin) {
+            console.log("UID:", user.uid);
+            console.log("Provider IDs:", providerIds);
+            console.log("User Data:", data);
+            console.log("isRegistered:", isRegistered);
+
+            if (!isRegistered && !isAdmin) {
                 window.location.replace("signup.html?mode=completion");
                 return;
             }
@@ -644,23 +687,38 @@ onAuthStateChanged(auth, async (user) => {
             
             if (uClass && !isAdmin) {
                 if (uClass >= 11) {
+                    // Update Hero Subtitle for Seniors
+                    const heroSubtitle = document.getElementById('heroSubtitle');
+                    if (heroSubtitle) heroSubtitle.innerText = "Your personal command center for JEE & NEET success. Track your progress, attempt full mock tests, and master complex concepts.";
+
                     // Grade 11 & 12: Show Competitive Grid
                     const mainGrid = document.querySelector('.main-menu-grid');
                     if(mainGrid) mainGrid.style.display = 'none';
                     const seniorGrid = document.getElementById('seniorGrid');
                     if(seniorGrid) seniorGrid.style.display = 'grid';
                     
+                    const seniorRichText = document.getElementById('seniorRichText');
+                    if(seniorRichText) seniorRichText.style.display = 'block';
+                    
+                    const seniorFaq = document.getElementById('seniorFaq');
+                    if(seniorFaq) seniorFaq.style.display = 'block';
+                    
                     const studyBanner = document.querySelector('.study-banner');
                     if (studyBanner) studyBanner.style.display = 'none';
                     const statsSection = document.querySelector('.stats-section');
                     if (statsSection) statsSection.style.display = 'none';
                     
+                    const liveSessionWrapper = document.getElementById('liveSessionWrapper');
+                    if (liveSessionWrapper) liveSessionWrapper.style.display = 'none';
+                    
+                    const juniorGridWrapper = document.getElementById('juniorGridWrapper');
+                    if (juniorGridWrapper) juniorGridWrapper.style.display = 'none';
+                    
                     const liveBanner = document.getElementById('liveSessionBanner');
                     if (liveBanner) liveBanner.style.display = 'none';
-                    const infoSection = document.querySelector('.info-section');
-                    if (infoSection) infoSection.style.display = 'none';
-                    const richText = document.querySelector('.rich-text-section');
-                    if (richText) richText.style.display = 'none';
+                    
+                    document.querySelectorAll('.info-section:not(#seniorFaq)').forEach(el => el.style.display = 'none');
+                    document.querySelectorAll('.rich-text-section:not(#seniorRichText)').forEach(el => el.style.display = 'none');
                     
                     document.querySelectorAll('.nav-dropdown, a[href="mock.html"], a[href="chapterwise.html"], a[href="live.html"], a[href="leaderboard.html"], a[href="olympiads.html"]').forEach(el => { if (el) el.style.display = 'none'; });
                 } else {
@@ -906,34 +964,7 @@ window.submitDashboardFeedback = async () => {
 };
 </script>
 <script>
-/* Mobile Menu Toggle */
-function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('active');
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const dropdown = this.closest('.nav-dropdown');
-                
-                // Close other open dropdowns
-                document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
-                    if (openDropdown !== dropdown) {
-                        openDropdown.classList.remove('open');
-                        const contentToClose = openDropdown.querySelector('.nav-dropdown-content');
-                        if (contentToClose) contentToClose.style.maxHeight = '0';
-                    }
-                });
-
-                dropdown.classList.toggle('open');
-                const content = dropdown.querySelector('.nav-dropdown-content');
-                if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
-            }
-        });
-    });
-});
+window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});
 </script>
 
 <!-- Deferred Analytics & Ads to eliminate Total Blocking Time -->
@@ -958,5 +989,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 800);
   });
 </script>
+<script type="module" src="chatbot.js"></script>
 </body>
 </html>

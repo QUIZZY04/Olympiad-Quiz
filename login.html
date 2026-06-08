@@ -470,6 +470,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
+let isRedirecting = false;
+
 let redirectUrl = sessionStorage.getItem("redirectAfterLogin") || "dashboard.html";
 try {
     // Only allow same-origin redirects to prevent Open Redirect vulnerabilities
@@ -478,6 +480,11 @@ try {
         redirectUrl = "dashboard.html";
     } else {
         redirectUrl = parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
+    }
+    
+    // Prevent infinite redirect loops back to auth pages
+    if (redirectUrl.includes("login.html") || redirectUrl.includes("signup.html")) {
+        redirectUrl = "dashboard.html";
     }
 } catch (e) {
     redirectUrl = "dashboard.html";
@@ -513,20 +520,8 @@ function initRecaptcha() {
 }
 initRecaptcha();
 
-async function proceedToNextStep(user) {
-    const docSnap = await getDoc(doc(db, "users", user.uid));
-    const data = docSnap.exists() ? docSnap.data() : null;
-
-    if (data && data.registrationCompleted) {
-        localStorage.setItem("isLoggedIn", "true");
-        sessionStorage.removeItem("redirectAfterLogin");
-        window.location.replace(redirectUrl);
-    } else {
-            window.location.replace("signup.html?mode=completion");
-    }
-}
-
 async function evaluateAuthState(user) {
+    if (isRedirecting) return;
     if (!user) {
         resetToEntry();
         return;
@@ -539,20 +534,43 @@ async function evaluateAuthState(user) {
     const hasGoogle = providers.includes("google.com");
     const hasEmail = providers.includes("password");
 
+    const docSnap = await getDoc(doc(db, "users", user.uid));
+    const data = docSnap.exists() ? docSnap.data() : null;
+
+    console.log("Auth user:", user.uid);
+    console.log("Providers:", providers);
+    console.log("Firestore data:", data);
+
+    if (data && (data.registrationCompleted || data.signupCompleted)) {
+        console.log("Redirect decision: dashboard");
+        isRedirecting = true;
+        localStorage.setItem("isLoggedIn", "true");
+        sessionStorage.removeItem("redirectAfterLogin");
+        window.location.replace(redirectUrl);
+        return;
+    }
+
     if (!hasPhone) {
-            window.location.replace("signup.html?mode=completion");
+        console.log("Redirect decision: signup (missing phone)");
+        isRedirecting = true;
+        window.location.replace("signup.html?mode=completion");
         return;
     }
 
     if (!hasGoogle && !hasEmail) {
-            window.location.replace("signup.html?mode=completion");
+        console.log("Redirect decision: signup (missing email/google)");
+        isRedirecting = true;
+        window.location.replace("signup.html?mode=completion");
         return;
     }
 
-    await proceedToNextStep(user);
+    console.log("Redirect decision: signup (incomplete profile)");
+    isRedirecting = true;
+    window.location.replace("signup.html?mode=completion");
 }
 
 onAuthStateChanged(auth, async (user) => {
+    if (isRedirecting) return;
     if (user) {
         await evaluateAuthState(user);
     } else {
@@ -610,6 +628,17 @@ document.getElementById("phoneAuthForm").onsubmit = async (e) => {
         document.getElementById("phoneAuthForm").classList.add("hidden");
         document.getElementById("otpAuthForm").classList.remove("hidden");
         alert("OTP sent successfully to " + phone);
+        let _otpCooldown = 60;
+        btn.disabled = true;
+        const _otpTimer = setInterval(() => {
+            _otpCooldown--;
+            btn.innerText = `Resend OTP (${_otpCooldown}s)`;
+            if (_otpCooldown <= 0) {
+                clearInterval(_otpTimer);
+                btn.disabled = false;
+                btn.innerText = "Send OTP";
+            }
+        }, 1000);
     } catch (err) {
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
@@ -819,32 +848,7 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
 };
 </script>
 <script>
-/* Mobile Menu Toggle */
-function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('active');
-}
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const dropdown = this.closest('.nav-dropdown');
-                
-                document.querySelectorAll('.nav-links .nav-dropdown.open').forEach(openDropdown => {
-                    if (openDropdown !== dropdown) {
-                        openDropdown.classList.remove('open');
-                        const contentToClose = openDropdown.querySelector('.nav-dropdown-content');
-                        if (contentToClose) contentToClose.style.maxHeight = '0';
-                    }
-                });
-
-                dropdown.classList.toggle('open');
-                const content = dropdown.querySelector('.nav-dropdown-content');
-                if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
-            }
-        });
-    });
-});
+window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});
 </script>
 <footer style="text-align:center;padding:20px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
