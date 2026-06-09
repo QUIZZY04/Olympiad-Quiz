@@ -125,19 +125,6 @@
 </head>
 <body>
 
-<nav>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
-    <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
-    <div class="nav-important"><a href="index.html">Home</a><a href="login.html">Login</a></div>
-    <div class="nav-links">
-        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
-        <a href="index.html">Home</a>
-        <div class="nav-dropdown">
-            <a href="#" class="dropbtn">Free Mock Test</a>
-            <div class="nav-dropdown-content">
-                <a href="imo-free-mock-test.html">IMO Test</a>
-                <a href="nso-free-mock-test.html">NSO Test</a>
-                <a href="ieo-free-mock-test.html">IEO Test</a>
 <nav class="navbar">
     <div class="navbar-inner">
         <!-- Left: Logo -->
@@ -169,10 +156,6 @@
             </div>
             <a href="live.html" class="nav-link">Live Arena</a>
         </div>
-        <a href="chapterwise.html">Chapterwise</a>
-        <a href="live.html">Live Arena</a>
-        <a href="blog.html" class="active">Success Guides</a>
-        <div class="nav-actions"><a href="login.html" class="login-link">Log in</a></div>
 
         <!-- Right: CTA -->
         <div class="navbar-actions">
@@ -279,7 +262,6 @@
 </footer>
 
 <script>
-    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const navLinks = document.querySelector('.navbar-links');
