@@ -175,7 +175,7 @@ img {
 
 .btn-login {
     background-color: var(--orange);
-    color: white;
+    color: var(--navy);
     padding: 8px 20px;
     border-radius: 8px;
     font-size: 0.875rem;
@@ -247,7 +247,7 @@ img {
 
 .btn-primary { 
     background-color: var(--orange); 
-    color: white; 
+    color: var(--navy); 
     display: inline-flex; 
     align-items: center; 
     gap: 8px;
@@ -870,7 +870,7 @@ img {
         transform: rotate(180deg);
     }
     .nav-dropdown.open .nav-link {
-        color: var(--orange);
+        color: #c2410c;
     }
     
     .nav-dropdown-content {
@@ -885,7 +885,7 @@ img {
         padding: 0 0 0 10px;
         border-radius: 0 0 0 0;
         min-width: 100%;
-        border-left: 2px solid var(--orange);
+        border-left: 2px solid #c2410c;
         margin-top: 0;
     }
     
@@ -939,7 +939,7 @@ img {
         display: block;
         width: 24px;
         height: 2px;
-        background: var(--orange);
+        background: #c2410c;
         border-radius: 0;
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
