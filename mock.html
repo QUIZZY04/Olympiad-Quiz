@@ -219,46 +219,61 @@
 <body>
 
 <div id="main-app-container">
-    <nav>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    <a href="dashboard.html" class="brand"><img src="favicon.png" alt="Logo" width="32" height="32" onerror="this.style.display='none'" decoding="async"> OlympiadQuiz</a>
-        <div class="nav-important">
-            <a href="dashboard.html">Dash</a>
-        <button onclick="logout()" class="nav-link-btn">Logout</button>
-        </div>
-        <div class="nav-links">
-            <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
-            <a href="dashboard.html">Dashboard</a>
-            <div class="nav-dropdown">
-                <a href="#" class="dropbtn active" style="color: var(--brand);">Students Zone</a>
-                <div class="nav-dropdown-content">
-                    <a href="mock.html" style="color: var(--brand) !important; background: var(--subtle) !important;">Mock Tests</a>
-                    <a href="chapterwise.html">Chapterwise</a>
-                    <a href="study.html">Study Material</a>
-                    <a href="blog.html">Success Guides</a>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <!-- Left: Logo -->
+            <a href="dashboard.html" class="navbar-logo">
+                <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
+                <span class="logo-text">OlympiadQuiz</span>
+            </a>
+
+            <!-- Center: Links (Desktop) -->
+            <div class="navbar-links">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link active">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-content">
+                        <a href="mock.html">Mock Tests</a>
+                        <a href="chapterwise.html">Chapterwise</a>
+                        <a href="study.html">Study Material</a>
+                        <a href="blog.html">Success Guides</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="olympiad-syllabus.html" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-content">
+                        <a href="sof-syllabus.html">SOF Olympiads</a>
+                        <a href="silverzone-syllabus.html">SilverZone</a>
+                        <a href="crest-syllabus.html">CREST Olympiads</a>
+                        <a href="nstse-syllabus.html">NSTSE</a>
+                        <a href="spellbee-syllabus.html">SpellBee</a>
+                        <a href="hummingbird-syllabus.html">Humming Bird</a>
+                        <a href="ogo-syllabus.html">Orange Olympiad</a>
+                    </div>
+                </div>
+                <a href="live.html" class="nav-link">Live Arena</a>
+                <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-content">
+                        <a href="jee-list.html">JEE Advanced</a>
+                        <a href="jee_main.html">JEE Main</a>
+                        <a href="neet.html">NEET</a>
+                        <a href="jee-main-pyq.html">JEE PYQs</a>
+                    </div>
                 </div>
             </div>
-            <div class="nav-dropdown">
-                <a href="olympiad-syllabus.html" class="dropbtn">Syllabus</a>
-                <div class="nav-dropdown-content">
-                    <a href="sof-syllabus.html">SOF Olympiads</a>
-                    <a href="silverzone-syllabus.html">SilverZone</a>
-                    <a href="crest-syllabus.html">CREST Olympiads</a>
-                    <a href="nstse-syllabus.html">NSTSE</a>
-                    <a href="spellbee-syllabus.html">SpellBee</a>
-                    <a href="hummingbird-syllabus.html">Humming Bird</a>
-                    <a href="ogo-syllabus.html">Orange Olympiad</a>
-                </div>
-            </div>
-            <a href="live.html">Live Arena</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <div class="nav-actions">
-                <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600;">Admin</a>
-            <button onclick="logout()" class="login-link" style="color: var(--danger);">Logout</button>
+
+            <!-- Right: CTA -->
+            <div class="navbar-actions">
+                <a id="adminTab" href="admin.html" style="display:none; color:var(--success); text-transform:none; font-weight:600; font-size: 0.95rem; margin-right: 15px;">Admin</a>
+                <button onclick="logout()" class="btn-login" style="background-color: #fef2f2; color: #ef4444; border: 1px solid #fca5a5; cursor: pointer;">Logout</button>
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
@@ -589,55 +604,30 @@
         if (event.persisted) window.location.reload();
     });
 
-    /* Mobile Menu Toggle */
-    window.toggleMenu = function() {
-        const navLinks = document.querySelector('.nav-links') || document.querySelector('.navbar-links');
-        if (!navLinks) return;
-        
-        navLinks.classList.toggle('active');
-        
-        let overlay = document.querySelector('.nav-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'nav-overlay';
-            overlay.onclick = window.toggleMenu;
-            document.body.appendChild(overlay);
-        }
-        
-        const isActive = navLinks.classList.contains('active');
-        if (isActive) {
-            overlay.style.display = 'block';
-            void overlay.offsetWidth; // Force Reflow
-            overlay.classList.add('active');
-            document.body.classList.add('nav-open');
-        } else {
-            overlay.classList.remove('active');
-            setTimeout(() => {
-                if(!navLinks.classList.contains('active')) overlay.style.display = 'none';
-            }, 400);
-            document.body.classList.remove('nav-open');
-        }
-    }
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const navLinks = document.querySelector('.nav-links') || document.querySelector('.navbar-links');
-            if (navLinks && navLinks.classList.contains('active')) {
-                window.toggleMenu();
-            }
-        }
-    });
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link').forEach(button => {
+        /* Mobile Menu Toggle */
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.navbar-links');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+                document.body.classList.toggle('nav-open');
+            });
+        }
+
+        /* Mobile Dropdown Toggle */
+        document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
             button.addEventListener('click', function(e) {
                 if (window.innerWidth <= 900) {
                     e.preventDefault();
                     const dropdown = this.closest('.nav-dropdown');
                     document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
-                        if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); const contentToClose = openDropdown.querySelector('.nav-dropdown-content'); if (contentToClose) contentToClose.style.maxHeight = '0'; }
+                        if (openDropdown !== dropdown) { 
+                            openDropdown.classList.remove('open'); 
+                        }
                     });
                     dropdown.classList.toggle('open');
-                    const content = dropdown.querySelector('.nav-dropdown-content');
-                    if (content) content.style.maxHeight = dropdown.classList.contains('open') ? content.scrollHeight + "px" : '0';
                 }
             });
         });
