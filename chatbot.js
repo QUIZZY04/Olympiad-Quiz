@@ -140,7 +140,7 @@ class OlympiadMentorChatbot {
     injectHTML() {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = `
-            <div id="oq-cb-trigger"><span style="font-size: 26px;">🧠</span> <span style="font-weight: 600; font-size: 15px; white-space: nowrap;">Ask AI Mentor</span><span id="oq-cb-badge">1</span></div>
+            <div id="oq-cb-trigger"><span style="font-size: 26px;">🧠</span> <span style="font-weight: 600; font-size: 15px; white-space: nowrap;">Chat with us</span><span id="oq-cb-badge">1</span></div>
             <div id="oq-cb-window">
                 <div class="oq-cb-header">
                     <div class="oq-cb-header-info">
