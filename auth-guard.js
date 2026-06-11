@@ -44,11 +44,13 @@ export const AuthGuard = {
 
     // Use this function on public HTML pages for "Start Test" buttons
     requireLogin: function(actionCallback) {
-        if (localStorage.getItem("isLoggedIn") === "true") {
-            if (actionCallback) actionCallback();
-            return;
-        }
-        this.showLoginModal(actionCallback);
+        this.checkAuth((user) => {
+            if (user) {
+                if (actionCallback) actionCallback();
+            } else {
+                this.showLoginModal(actionCallback);
+            }
+        });
     },
 
     showLoginModal: function(actionCallback) {
@@ -111,10 +113,12 @@ export const AuthGuard = {
     },
 
     protectPage: function() {
-        if (localStorage.getItem("isLoggedIn") !== "true") {
-            sessionStorage.setItem("redirectAfterLogin", window.location.href);
-            window.location.replace("login.html");
-        }
+        this.checkAuth((user) => {
+            if (!user) {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.replace("login.html");
+            }
+        });
     }
 };
 

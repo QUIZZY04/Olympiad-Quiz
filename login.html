@@ -308,7 +308,6 @@
                 <div class="divider">or</div>
                 
                 <button type="button" id="btnPhoneEntry" class="social-btn">📱 Continue with Mobile</button>
-                <button type="button" id="btnEmailEntry" class="social-btn">✉️ Continue with Email</button>
                 
                 <p class="already-member">New to the portal? <a href="signup.html" style="color: var(--brand-text); text-decoration: none; font-weight: 800;">Create an Account</a></p>
             </div>
@@ -330,54 +329,6 @@
                     <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" required>
                     <button type="submit" id="btnVerifyOtp" class="main-btn">Verify Mobile</button>
                     <button type="button" class="social-btn" style="margin-top: 15px;" onclick="resetToEntry()">← Cancel</button>
-                </form>
-            </div>
-
-            <!-- STEP 3: EMAIL LOGIN -->
-            <div id="stepEmailLogin" class="hidden">
-                <h2>Continue with Email</h2>
-                <p class="subtitle">Enter your details to log in.</p>
-                <form id="emailLoginForm">
-                    <input type="email" id="loginEmail" placeholder="Email Address" required>
-                    <input type="password" id="loginPassword" placeholder="Password" required>
-                    <button type="submit" id="btnEmailLoginSubmit" class="main-btn">Log In</button>
-                    <div id="googleSuggestionBox" class="hidden" style="margin-top: 15px; text-align: center; padding: 15px; background: var(--subtle); border-radius: 12px; border: 1px solid var(--border);">
-                        <p style="color: var(--warning); font-size: 13px; margin-bottom: 10px; font-weight: 700;">This account uses Google Sign-In. Please continue with Google.</p>
-                        <button type="button" id="btnGoogleSuggestion" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 0;">
-                            <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
-                            Continue with Google
-                        </button>
-                    </div>
-                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="resetToEntry()">← Back</button>
-                    <div style="margin-top: 15px;"><a href="forgot-password.html" style="font-size: 13px; color: var(--brand-text); font-weight: 600; text-decoration: none;">Forgot Password?</a></div>
-                </form>
-            </div>
-
-            <!-- STEP 4: PROVIDER LINKING -->
-            <div id="stepProviderLinking" class="hidden">
-                <h2>Secure Your Account</h2>
-                <p class="subtitle">Link an email or Google account for easier recovery.</p>
-                
-                <button type="button" id="btnLinkGoogle" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
-                    Continue with Google
-                </button>
-                
-                <div class="divider">or</div>
-                
-                <button type="button" id="btnLinkEmail" class="social-btn">✉️ Add Email</button>
-                <button type="button" id="btnSkipLinking" class="link-btn" style="margin-top: 10px; color: var(--muted); text-decoration: underline;">Skip for now</button>
-            </div>
-
-            <!-- STEP 5: EMAIL LINKING -->
-            <div id="stepEmailAuth" class="hidden">
-                <h2>Add Email Account</h2>
-                <p class="subtitle">Secure your account with an email and password.</p>
-                <form id="emailAuthForm">
-                    <input type="email" id="authEmail" placeholder="Email Address" required>
-                    <input type="password" id="authPassword" placeholder="Password (Min 6 chars)" minlength="6" required>
-                    <button type="submit" id="btnEmailSubmit" class="main-btn">Add Email</button>
-                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="showSection('stepProviderLinking')">← Back</button>
                 </form>
             </div>
 
@@ -453,7 +404,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -529,20 +480,10 @@ async function evaluateAuthState(user) {
 
     await user.reload().catch(e=>console.warn(e));
     
-    const providers = user.providerData.map(p => p.providerId);
-    const hasPhone = providers.includes("phone") || !!user.phoneNumber;
-    const hasGoogle = providers.includes("google.com");
-    const hasEmail = providers.includes("password");
-
     const docSnap = await getDoc(doc(db, "users", user.uid));
     const data = docSnap.exists() ? docSnap.data() : null;
 
-    console.log("Auth user:", user.uid);
-    console.log("Providers:", providers);
-    console.log("Firestore data:", data);
-
-    if (data && (data.registrationCompleted || data.signupCompleted)) {
-        console.log("Redirect decision: dashboard");
+    if (data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted)) {
         isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");
         sessionStorage.removeItem("redirectAfterLogin");
@@ -550,21 +491,6 @@ async function evaluateAuthState(user) {
         return;
     }
 
-    if (!hasPhone) {
-        console.log("Redirect decision: signup (missing phone)");
-        isRedirecting = true;
-        window.location.replace("signup.html?mode=completion");
-        return;
-    }
-
-    if (!hasGoogle && !hasEmail) {
-        console.log("Redirect decision: signup (missing email/google)");
-        isRedirecting = true;
-        window.location.replace("signup.html?mode=completion");
-        return;
-    }
-
-    console.log("Redirect decision: signup (incomplete profile)");
     isRedirecting = true;
     window.location.replace("signup.html?mode=completion");
 }
@@ -603,13 +529,6 @@ document.getElementById("btnPhoneEntry").onclick = () => {
     if(!window.recaptchaVerifier) initRecaptcha();
 };
 
-document.getElementById("btnEmailEntry").onclick = () => {
-    document.getElementById("loginEmail").value = "";
-    document.getElementById("loginPassword").value = "";
-    document.getElementById("googleSuggestionBox").classList.add("hidden");
-    showSection('stepEmailLogin');
-};
-
 // 2. Phone Auth Actions
 let phoneConfirmationResult = null;
 document.getElementById("phoneAuthForm").onsubmit = async (e) => {
@@ -620,11 +539,7 @@ document.getElementById("phoneAuthForm").onsubmit = async (e) => {
     btn.innerText = "Sending...";
 
     try {
-        if (auth.currentUser && !auth.currentUser.phoneNumber) {
-            phoneConfirmationResult = await linkWithPhoneNumber(auth.currentUser, phone, window.recaptchaVerifier);
-        } else {
-            phoneConfirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
-        }
+        phoneConfirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
         document.getElementById("phoneAuthForm").classList.add("hidden");
         document.getElementById("otpAuthForm").classList.remove("hidden");
         alert("OTP sent successfully to " + phone);
@@ -643,7 +558,6 @@ document.getElementById("phoneAuthForm").onsubmit = async (e) => {
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
         else if (err.code === 'auth/too-many-requests') errorMsg = "Too many attempts. Please try again later.";
-        else if (err.code === 'auth/credential-already-in-use') errorMsg = "This phone number is already linked to another account. Please log in with this phone number directly.";
         
         alert(errorMsg);
         btn.disabled = false; btn.innerText = "Send OTP";
@@ -798,6 +712,7 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
     try {
         const user = auth.currentUser;
         const finalProviderIds = user.providerData.map(p => p.providerId);
+        const primaryAuth = finalProviderIds[0] || "unknown";
         const email = user.email || "";
         const phone = user.phoneNumber || "";
 
@@ -810,6 +725,7 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
             phoneNumber: phone,
             phoneVerified: !!phone,
             authProviders: finalProviderIds,
+            primaryAuth: primaryAuth,
             class: cls,
             email_consent: true,
             promo_consent: promo,

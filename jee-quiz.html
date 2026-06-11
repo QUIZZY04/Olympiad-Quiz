@@ -15,13 +15,6 @@
     <meta name="twitter:title" content="JEE Advanced Online Test Series | Live Exam Environment">
     <meta name="twitter:description" content="Experience the real IIT JEE Advanced exam environment with our live online test portal.">
     
-    <script>
-      if (localStorage.getItem("isLoggedIn") !== "true") {
-              sessionStorage.setItem("redirectAfterLogin", window.location.href);
-          window.location.replace("login.html");
-      }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style">
@@ -269,15 +262,7 @@
                 sessionStorage.setItem("redirectAfterLogin", window.location.href);
             window.location.replace("login.html");
         } else {
-            const providerIds = user.providerData.map(p => p.providerId);
-            const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-            const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
             const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
-            
-            if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
-                window.location.replace("signup.html?mode=completion");
-                return;
-            }
             if (user.email === "madhhu52@gmail.com") {
                 document.getElementById("adminTab").style.display = "inline";
             }
