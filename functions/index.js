@@ -65,6 +65,8 @@ exports.sendWelcomeEmailOnSignup = functions.auth.user().onCreate(async (user) =
       uid: uid,
       email: email || null,
       name: displayName || "Student",
+      onboardingState: 'NEW_USER',
+      registrationCompleted: false,
       email_consent: true,
       promo_consent: false,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -94,10 +96,10 @@ exports.triggerWelcomeEmail = onDocumentWritten(
       return;
     }
 
-    const { email, name, welcomeEmailSent, email_consent } = afterData;
+    const { email, name, welcomeEmailSent, email_consent, registrationCompleted } = afterData;
 
-    // Exit if email already sent, no email exists, or opted out
-    if (welcomeEmailSent || !email || email_consent === false) {
+    // Exit if email already sent, no email exists, opted out, or registration incomplete
+    if (welcomeEmailSent || !email || email_consent === false || registrationCompleted !== true) {
       return;
     }
 

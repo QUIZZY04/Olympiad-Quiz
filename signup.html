@@ -196,53 +196,59 @@
 
 <body>
 
-<nav>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <a href="index.html" class="brand"><img src="favicon.png" alt="Logo" width="32" height="32" onerror="this.style.display='none'"> OlympiadQuiz</a>
-    <div class="nav-important">
-        <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
-    </div>
-    <div class="nav-links">
-        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
-        <a href="index.html">Home</a>
-        <div class="nav-dropdown">
-            <a href="mock.html" class="dropbtn">Free Mock Test</a>
-            <div class="nav-dropdown-content">
-                <a href="imo-free-mock-test.html">IMO Test</a>
-                <a href="nso-free-mock-test.html">NSO Test</a>
-                <a href="ieo-free-mock-test.html">IEO Test</a>
-                <a href="iro-free-mock-test.html">IRO Test</a>
-                <a href="igko-free-mock-test.html">IGKO Test</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Logo -->
+        <a href="index.html" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+
+        <!-- Center: Links (Desktop) -->
+        <div class="navbar-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Free Mock Test <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="imo-free-mock-test.html">IMO Test</a>
+                    <a href="nso-free-mock-test.html">NSO Test</a>
+                    <a href="ieo-free-mock-test.html">IEO Test</a>
+                    <a href="iro-free-mock-test.html">IRO Test</a>
+                    <a href="igko-free-mock-test.html">IGKO Test</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a href="olympiad-syllabus.html" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="sof-syllabus.html">SOF Olympiads</a>
+                    <a href="silverzone-syllabus.html">SilverZone</a>
+                    <a href="crest-syllabus.html">CREST Olympiads</a>
+                    <a href="nstse-syllabus.html">NSTSE</a>
+                    <a href="spellbee-syllabus.html">SpellBee</a>
+                    <a href="hummingbird-syllabus.html">Humming Bird</a>
+                    <a href="ogo-syllabus.html">Orange Olympiad</a>
+                </div>
+            </div>
+            <a href="live.html" class="nav-link">Live Arena</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="jee_main.html">JEE Main</a>
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="neet.html">NEET</a>
+                </div>
             </div>
         </div>
-        <div class="nav-dropdown">
-            <a href="olympiad-syllabus.html" class="dropbtn">Syllabus</a>
-            <div class="nav-dropdown-content">
-                <a href="sof-syllabus.html">SOF Olympiads</a>
-                <a href="silverzone-syllabus.html">SilverZone</a>
-                <a href="crest-syllabus.html">CREST Olympiads</a>
-                <a href="nstse-syllabus.html">NSTSE</a>
-                <a href="spellbee-syllabus.html">SpellBee</a>
-                <a href="hummingbird-syllabus.html">Humming Bird</a>
-                <a href="ogo-syllabus.html">Orange Olympiad</a>
-            </div>
-        </div>
-        <a href="live.html">Live Arena</a>
-        <div class="nav-dropdown">
-            <button class="dropbtn nav-link-btn">Senior Exams</button>
-            <div class="nav-dropdown-content">
-                <a href="jee_main.html">JEE Main</a>
-                <a href="jee-list.html">JEE Advanced</a>
-                <a href="neet.html">NEET</a>
-            </div>
-        </div>
-        <div class="nav-actions">
-            <a href="login.html" class="login-link">Log in</a>
+
+        <!-- Right: CTA -->
+        <div class="navbar-actions">
+            <a href="login.html" class="btn-login">Login</a>
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
 </nav>
@@ -286,7 +292,6 @@
                 <div class="divider">or</div>
                 
                 <button type="button" id="btnPhoneEntry" class="social-btn">📱 Continue with Mobile</button>
-                <button type="button" id="btnEmailEntry" class="social-btn">✉️ Continue with Email</button>
                 
                 <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
             </div>
@@ -308,48 +313,6 @@
                     <input type="text" id="pOtpCode" placeholder="Enter 6-digit OTP" required>
                     <button type="submit" id="pVerifyBtn" class="main-btn">Verify Mobile</button>
                     <button type="button" class="social-btn" style="margin-top: 15px;" onclick="cancelPhoneAuth()">← Cancel</button>
-                </form>
-            </div>
-
-            <!-- STEP 3: EMAIL AUTH (INITIAL) -->
-            <div id="stepEmailAuth" class="hidden">
-                <h2>Continue with Email</h2>
-                <p class="subtitle">Enter your details to create an account or log in.</p>
-                <form id="emailSignupForm">
-                    <input type="email" id="eEmail" placeholder="Email Address" required>
-                    <input type="password" id="ePassword" placeholder="Create Password" required minlength="6">
-                    <button type="submit" class="main-btn" id="btnEmailSignupSubmit">Continue</button>
-                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="resetToEntry()">← Back</button>
-                </form>
-            </div>
-
-            <!-- STEP 4: PROVIDER LINKING -->
-            <div id="stepProviderLinking" class="hidden">
-                <h2>Secure Your Account</h2>
-                <p class="subtitle">Mobile verified! Link an account to continue.</p>
-                
-                <button type="button" id="btnLinkGoogle" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
-                    Link Google Account
-                </button>
-
-                <div class="divider">or</div>
-                
-                <button type="button" id="btnShowEmailLink" class="social-btn">✉️ Add Email</button>
-            </div>
-
-            <!-- STEP 5: EMAIL LINK FORM -->
-            <div id="stepEmailLink" class="hidden">
-                <h2>Add Email Account</h2>
-                <p class="subtitle">Secure your account with an email and password.</p>
-                <form id="emailLinkForm">
-                    <input type="email" id="lEmail" placeholder="Email Address" required>
-                    <div style="position:relative; margin-bottom:15px;">
-                      <input type="password" id="lPassword" placeholder="Create a Password" required style="margin-bottom:0; width:100%; padding-right:48px;">
-                      <button type="button" onclick="const f=document.getElementById('lPassword');f.type=f.type==='password'?'text':'password';this.textContent=f.type==='password'?'Show':'Hide';" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#64748b;font-size:13px;font-weight:600;cursor:pointer;padding:0;width:auto;">Show</button>
-                    </div>
-                    <button type="submit" class="main-btn" id="btnEmailLinkSubmit">Add Email</button>
-                    <button type="button" class="social-btn" style="margin-top: 15px;" onclick="showSection('stepProviderLinking')">← Back</button>
                 </form>
             </div>
 
@@ -407,7 +370,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, createUserWithEmailAndPassword, signInWithCredential, fetchSignInMethodsForEmail, signInWithEmailAndPassword, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, signInWithPopup, GoogleAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, signInWithCredential, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -504,9 +467,6 @@ async function evaluateAuthState(user) {
     await user.reload().catch(e=>console.warn(e));
     
     const providerIds = user.providerData.map(p => p.providerId);
-    const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
-    const hasGoogle = providerIds.includes("google.com");
-    const hasEmail = providerIds.includes("password");
 
     const userDoc = await getDoc(doc(db, "users", user.uid));
     const data = userDoc.exists() ? userDoc.data() : null;
@@ -517,28 +477,13 @@ async function evaluateAuthState(user) {
         await updateUserState(user, 'AUTHENTICATED');
     }
 
-    if (!hasPhone) {
-        await updateUserState(user, 'PHONE_PENDING');
-        document.getElementById("phoneTitle").innerText = "Verify Mobile Number";
-        document.getElementById("phoneSubtitle").innerText = "A verified mobile number is mandatory to secure your account.";
-        showSection('stepPhoneAuth');
-        if(!window.signupRecaptchaVerifier) initRecaptcha();
+    // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
+    if (data && data.registrationCompleted) {
+        isRedirecting = true;
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.replace("dashboard.html");
         return;
     }
-
-    if (!hasGoogle && !hasEmail) {
-        await updateUserState(user, 'PROVIDER_LINK_PENDING');
-        showSection('stepProviderLinking');
-        return;
-    }
-
-        // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
-        if (data && data.registrationCompleted) {
-            isRedirecting = true;
-            localStorage.setItem("isLoggedIn", "true");
-            window.location.replace("dashboard.html");
-            return;
-        }
 
     let existingName = user.displayName || (data && data.name) || "";
     if (existingName.toLowerCase() === "student") existingName = "";
@@ -599,10 +544,6 @@ document.getElementById("btnPhoneEntry").onclick = () => {
     document.getElementById("phoneSubtitle").innerText = "A verified mobile number is mandatory.";
     showSection('stepPhoneAuth');
     if(!window.signupRecaptchaVerifier) initRecaptcha();
-};
-
-document.getElementById("btnEmailEntry").onclick = () => {
-    showSection('stepEmailAuth');
 };
 
 // 2. Phone Auth Actions
@@ -685,119 +626,7 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
     }
 });
 
-// 3. Email Signup (Initial)
-document.getElementById("emailSignupForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("eEmail").value.trim();
-    const pass = document.getElementById("ePassword").value;
-    const btn = document.getElementById("btnEmailSignupSubmit");
-    btn.disabled = true; btn.innerText = "Processing...";
-    
-    try {
-        const providers = await fetchSignInMethodsForEmail(auth, email);
-        
-        if (providers.length > 0) {
-            // Prevent duplicate creation, force to log in if exists
-            if (providers.includes("google.com") && !providers.includes("password")) {
-                alert("This email is registered with Google Sign-In. Please use 'Continue with Google'.");
-                btn.disabled = false; btn.innerText = "Continue";
-                return;
-            }
-            const result = await signInWithEmailAndPassword(auth, email, pass);
-            await evaluateAuthState(result.user);
-        } else {
-            // New account
-            const result = await createUserWithEmailAndPassword(auth, email, pass);
-            await evaluateAuthState(result.user);
-        }
-    } catch (err) {
-        if (err.code === 'auth/wrong-password') {
-            alert("Account exists but invalid password. Please try again.");
-        } else {
-            alert("Authentication Failed: " + err.message);
-        }
-        btn.disabled = false;
-        btn.innerText = "Continue";
-    }
-});
-
-// 4. Provider Linking Actions
-document.getElementById("btnLinkGoogle").onclick = async () => {
-    const btn = document.getElementById("btnLinkGoogle");
-    btn.disabled = true;
-    btn.innerHTML = "Linking...";
-    try {
-        await linkWithPopup(auth.currentUser, provider);
-        await evaluateAuthState(auth.currentUser);
-    } catch (error) {
-        if (error.code === 'auth/credential-already-in-use') {
-            const confirmMerge = confirm("This Google account is already linked to another user. Do you want to switch and log into that account instead?");
-            if (confirmMerge) {
-                try {
-                    const cred = GoogleAuthProvider.credentialFromError(error);
-                    const result = await signInWithCredential(auth, cred);
-                    await evaluateAuthState(result.user);
-                    return;
-                } catch(signInErr) {
-                    alert("Failed to log into existing account. " + signInErr.message);
-                }
-            }
-        } else if (error.code === 'auth/provider-already-linked') {
-            await evaluateAuthState(auth.currentUser);
-            return;
-        } else if (error.code === 'auth/requires-recent-login') {
-            alert("Security requirement: Please refresh the page, log in again, and then link Google.");
-        } else if (error.code !== 'auth/popup-closed-by-user' && error.code !== 'auth/cancelled-popup-request') {
-            alert("Google Linking Failed: " + error.message);
-        }
-        btn.disabled = false;
-        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Link Google Account`;
-    }
-};
-
-document.getElementById("btnShowEmailLink").onclick = () => {
-    showSection('stepEmailLink');
-};
-
-document.getElementById("emailLinkForm").onsubmit = async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("lEmail").value.trim();
-    const pass = document.getElementById("lPassword").value;
-    const btn = document.getElementById("btnEmailLinkSubmit");
-    btn.disabled = true; btn.innerText = "Linking...";
-    const _pwStrong = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/.test(pass);
-    if (!_pwStrong) {
-        alert("Password must be at least 8 characters and include one uppercase letter and one number.");
-        btn.disabled = false; btn.innerText = "Add Email";
-        return;
-    }
-    try {
-        // FIX DANGEROUS EMAIL LINKING LOGIC
-        const cred = EmailAuthProvider.credential(email, pass);
-        await linkWithCredential(auth.currentUser, cred);
-        await evaluateAuthState(auth.currentUser);
-    } catch (e) {
-        if (e.code === 'auth/email-already-in-use' || e.code === 'auth/credential-already-in-use') {
-            const confirmMerge = confirm("Email already in use by another account. Would you like to log into that account instead?");
-            if (confirmMerge) {
-                try {
-                    const result = await signInWithEmailAndPassword(auth, email, pass);
-                    await evaluateAuthState(result.user);
-                    return;
-                } catch(signInErr) {
-                    alert("Failed to log into existing account. " + signInErr.message);
-                }
-            }
-        } else if (e.code === 'auth/requires-recent-login') {
-            alert("Security requirement: Please refresh the page, verify your mobile number again, and then add your email.");
-        } else {
-            alert("Linking Failed: " + e.message);
-        }
-        btn.disabled = false; btn.innerText = "Add Email";
-    }
-};
-
-// 5. Complete Profile Actions
+// 3. Complete Profile Actions
 document.getElementById("completeProfileForm").onsubmit = async (e) => {
     e.preventDefault();
     const name = document.getElementById("cName").value.trim();
@@ -856,7 +685,29 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
 };
 </script>
 <script>
-window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.navbar-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+        });
+    }
+    document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); }
+                });
+                dropdown.classList.toggle('open');
+            }
+        });
+    });
+});
 </script>
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">

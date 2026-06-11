@@ -5,6 +5,7 @@
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+ 
 const firebaseConfig = {
     apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
     authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
@@ -13,6 +14,7 @@ const firebaseConfig = {
     messagingSenderId: "341855557503",
     appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
 };
+}; 
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
@@ -67,16 +69,16 @@ export const AuthGuard = {
                         <h2 style="font-size:24px;font-weight:800;color:#0f172a;margin-bottom:10px;">Login Required</h2>
                         <p style="color:#64748b;font-size:14px;margin-bottom:25px;line-height:1.6;">You must be logged in to attempt tests, save your progress, and view rankings.</p>
                         
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:20px; margin-bottom:15px;">
+                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:20px; margin-bottom:15px; text-align: left;">
                             <p style="font-size:13px; color:#475569; margin:0 0 12px 0; font-weight:600;">If you are a registered user</p>
-                            <button id="agSignInBtn" style="width:100%;background:#0f172a;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s;">
+                            <button id="agSignInBtn" style="width:100%;background:#0f172a;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s; text-align: center;">
                                 Sign In securely
                             </button>
                         </div>
                         
-                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:20px; margin-bottom:20px;">
+                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:20px; margin-bottom:20px; text-align: left;">
                             <p style="font-size:13px; color:#475569; margin:0 0 12px 0; font-weight:600;">If you don't have an account</p>
-                            <button id="agRegisterBtn" style="width:100%;background:#fff;color:#c2410c;border:1px solid #c2410c;padding:12px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s;">
+                            <button id="agRegisterBtn" style="width:100%;background:#fff;color:#c2410c;border:1px solid #c2410c;padding:12px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s; text-align: center;">
                                 Register for free
                             </button>
                         </div>

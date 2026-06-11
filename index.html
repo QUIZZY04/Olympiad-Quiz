@@ -166,12 +166,11 @@
 
         <!-- Center: Links (Desktop) -->
         <div class="navbar-links">
-            <a href="index.html" class="nav-link active">Home</a>
+            <a href="mock.html" class="nav-link">Mock Tests</a>
+            <a href="chapterwise.html" class="nav-link">Chapterwise</a>
             <div class="nav-dropdown">
                 <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
-                    <a href="mock.html">Mock Tests</a>
-                    <a href="chapterwise.html">Chapterwise</a>
                     <a href="study.html">Study Material</a>
                     <a href="blog.html">Success Guides</a>
                 </div>
@@ -204,7 +203,7 @@
         <div class="navbar-actions">
             <a href="login.html" class="btn-login">Login</a>
             <!-- Mobile Menu Toggle -->
-            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -586,7 +585,31 @@
         }
     };
 
-    window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});
+    /* Mobile Menu Toggle */
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.navbar-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+
+    /* Mobile Dropdown Toggle */
+    document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) { 
+                        openDropdown.classList.remove('open'); 
+                    }
+                });
+                dropdown.classList.toggle('open');
+            }
+        });
+    });
 </script>
 
 <!-- DYNAMIC BLOG & TESTIMONIAL SCRIPTS -->

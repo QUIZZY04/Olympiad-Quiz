@@ -225,6 +225,13 @@
         .english-card { border-top: 4px solid #be185d; } .english-card:hover .card-btn { background: #be185d; border-color: #be185d; color: #fff; }
         .reasoning-card { border-top: 4px solid #b45309; } .reasoning-card:hover .card-btn { background: #b45309; border-color: #b45309; color: #fff; }
         
+        /* Aligning Navbar with Orange Theme */
+        .nav-important a { background: rgba(255, 107, 0, 0.08) !important; color: var(--brand) !important; }
+.nav-links a:hover { background: rgba(255, 107, 0, 0.05) !important; color: var(--brand-text) !important; }
+.nav-links a.active { background: rgba(255, 107, 0, 0.06) !important; color: var(--brand-text) !important; }
+        .login-link { background: var(--brand) !important; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3) !important; color: white !important; }
+        .login-link:hover { box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4) !important; filter: brightness(1.1); }
+        .nav-dropdown-content a:hover { background-color: #fff7ed !important; color: var(--brand) !important; }
     </style>
 <!-- Google tag (gtag.js) -->
 <script>
@@ -247,19 +254,21 @@
 
 <nav class="navbar">
     <div class="navbar-inner">
-        <a href="/" class="navbar-logo">
-            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'">
+        <!-- Left: Logo -->
+        <a href="dashboard.html" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
             <span class="logo-text">OlympiadQuiz</span>
         </a>
+
+        <!-- Center: Links (Desktop) -->
         <div class="navbar-links">
-            <a href="index.html" class="nav-link">Home</a>
             <a href="dashboard.html" class="nav-link">Dashboard</a>
             <div class="nav-dropdown">
                 <a href="#" class="nav-link active">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
                     <a href="mock.html">Mock Tests</a>
                     <a href="chapterwise.html">Chapterwise</a>
-                    <a href="study.html" style="color: #c2410c; background: #f8fafc;">Study Material</a>
+                    <a href="study.html" style="color: #c2410c; background: #fff7ed;">Study Material</a>
                     <a href="blog.html">Success Guides</a>
                 </div>
             </div>
@@ -276,21 +285,15 @@
                 </div>
             </div>
             <a href="live.html" class="nav-link">Live Arena</a>
-            <div class="nav-dropdown">
-                <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                <div class="nav-dropdown-content">
-                    <a href="jee-list.html">JEE Advanced</a>
-                    <a href="jee_main.html">JEE Main</a>
-                    <a href="neet.html">NEET</a>
-                    <a href="jee-main-pyq.html">JEE PYQs</a>
-                </div>
-            </div>
             <a href="leaderboard.html" class="nav-link">Leaderboard</a>
         </div>
+
+        <!-- Right: CTA -->
         <div class="navbar-actions">
-            <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success);">Admin</a>
-            <a onclick="logout()" class="btn-login login-link" style="background-color: var(--danger); cursor: pointer;">Logout</a>
-            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">
+            <a id="adminTab" class="nav-link" href="admin.html" style="display:none; color:var(--success); font-weight:600; text-decoration:none; font-size: 0.95rem; margin-right: 10px;">Admin</a>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -461,6 +464,34 @@
         }
     };
 </script>
-<script>window.toggleMenu=function(){const t=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!t)return;t.classList.toggle("active");let e=document.querySelector(".nav-overlay");e||(e=document.createElement("div"),e.className="nav-overlay",e.onclick=window.toggleMenu,document.body.appendChild(e));const n=t.classList.contains("active");n?(e.style.display="block",void e.offsetWidth,e.classList.add("active"),document.body.classList.add("nav-open")):(e.classList.remove("active"),setTimeout(()=>{t.classList.contains("active")||(e.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(t){"Escape"===t.key&&((t=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&t.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-links .nav-dropdown .dropbtn, .navbar-links .nav-dropdown .nav-link").forEach(t=>{t.addEventListener("click",function(t){if(window.innerWidth<=900){t.preventDefault();const e=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(t=>{t!==e&&(t.classList.remove("open"),(t=t.querySelector(".nav-dropdown-content"))&&(t.style.maxHeight="0"))}),e.classList.toggle("open");const n=e.querySelector(".nav-dropdown-content");n&&(n.style.maxHeight=e.classList.contains("open")?n.scrollHeight+"px":"0")}})})});</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.navbar-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+        });
+    }
+    document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); }
+                });
+                dropdown.classList.toggle('open');
+            }
+        });
+    });
+});
+
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) window.location.reload();
+});
+</script>
 </body>
 </html>
