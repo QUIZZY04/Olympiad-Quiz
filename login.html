@@ -401,11 +401,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-<<<<<<< HEAD
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-=======
 import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, linkWithCredential, updatePassword, onAuthStateChanged, getAdditionalUserInfo, deleteUser, PhoneAuthProvider, signInWithCredential, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
->>>>>>> bd515dcc5b104e5e0dd8cf5d79f655c222315269
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -481,12 +477,6 @@ async function evaluateAuthState(user) {
 
     await user.reload().catch(e=>console.warn(e));
     
-<<<<<<< HEAD
-    const docSnap = await getDoc(doc(db, "users", user.uid));
-    const data = docSnap.exists() ? docSnap.data() : null;
-
-    if (data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted)) {
-=======
 
     const docSnap = await getDoc(doc(db, "users", user.uid));
     const data = docSnap.exists() ? docSnap.data() : null;
@@ -494,9 +484,8 @@ async function evaluateAuthState(user) {
     console.log("Auth user:", user.uid);
     console.log("Firestore data:", data);
 
-    if (data && (data.registrationCompleted || data.signupCompleted)) {
+    if (data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted)) {
         console.log("Redirect decision: dashboard");
->>>>>>> bd515dcc5b104e5e0dd8cf5d79f655c222315269
         isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");
         sessionStorage.removeItem("redirectAfterLogin");
@@ -504,11 +493,7 @@ async function evaluateAuthState(user) {
         return;
     }
 
-<<<<<<< HEAD
-=======
-
     console.log("Redirect decision: signup (incomplete profile)");
->>>>>>> bd515dcc5b104e5e0dd8cf5d79f655c222315269
     isRedirecting = true;
     window.location.replace("signup.html?mode=completion");
 }
