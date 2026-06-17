@@ -134,27 +134,34 @@
 </head>
 <body>
 
-<nav>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
-    <div class="nav-important">
-        <a href="dashboard.html">Dash</a>
-        <a onclick="logout()" style="cursor:pointer;">Logout</a>
-    </div>
-    <div class="nav-links">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="mock.html">Mock Tests</a>
-        <a href="chapterwise.html">Chapterwise</a>
-        <a href="live.html">Live Arena</a>
-        <a href="leaderboard.html">Leaderboard</a>
-        <a href="study.html" class="active">Study Material</a>
-        <div class="nav-actions">
-            <a id="adminTab" href="admin.html" class="login-link" style="display:none; color:var(--success);">Admin</a>
-            <a onclick="logout()" class="login-link" style="color: var(--danger); cursor: pointer;">Logout</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Logo -->
+        <a href="index.html" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+
+        <!-- Center: Links (Desktop) -->
+        <div class="navbar-links">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="mock.html" class="nav-link">Mock Tests</a>
+            <a href="chapterwise.html" class="nav-link">Chapterwise</a>
+            <a href="live.html" class="nav-link">Live Arena</a>
+            <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+            <a href="study.html" class="nav-link active" style="color: #c2410c; background: #fff7ed;">Study Material</a>
+        </div>
+
+        <!-- Right: CTA -->
+        <div class="navbar-actions">
+            <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success); font-weight:600; text-decoration:none; font-size: 0.95rem; margin-right: 10px;">Admin</a>
+            <button onclick="logout()" class="btn-logout login-link">Logout</button>
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
 </nav>
@@ -306,7 +313,26 @@
 </footer>
 
 <script>
-window.toggleMenu=function(){const e=document.querySelector(".nav-links")||document.querySelector(".navbar-links");if(!e)return;e.classList.toggle("active");let t=document.querySelector(".nav-overlay");t||(t=document.createElement("div"),t.className="nav-overlay",t.onclick=window.toggleMenu,document.body.appendChild(t));const n=e.classList.contains("active");n?(t.style.display="block",void t.offsetWidth,t.classList.add("active"),document.body.classList.add("nav-open")):(t.classList.remove("active"),setTimeout(()=>{e.classList.contains("active")||(t.style.display="none")},400),document.body.classList.remove("nav-open"))};document.addEventListener("keydown",function(e){"Escape"===e.key&&((e=document.querySelector(".nav-links")||document.querySelector(".navbar-links"))&&e.classList.contains("active")&&window.toggleMenu())});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".nav-dropdown .nav-link, .nav-dropdown .dropbtn").forEach(e=>{e.addEventListener("click",function(e){if(window.innerWidth<=900){e.preventDefault();const t=this.closest(".nav-dropdown");document.querySelectorAll(".nav-dropdown.open").forEach(e=>{e!==t&&e.classList.remove("open")}),t.classList.toggle("open")}}) })});
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.navbar-links');
+    let overlay = document.querySelector('.nav-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        document.body.appendChild(overlay);
+    }
+    if (menuToggle && navLinks) {
+        const toggleMenu = () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+            overlay.classList.toggle('active');
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    }
+});
 window.addEventListener('pageshow', (event) => { if (event.persisted) window.location.reload(); });
 </script>
 </body>

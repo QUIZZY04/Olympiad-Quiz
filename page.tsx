@@ -74,14 +74,12 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E7EB]">
       <div className="flex items-center justify-between px-6 lg:px-12 h-[80px]">
         {/* Left: Logo */}
-        <div className="flex items-center gap-3 cursor-pointer min-w-0 flex-1">
-          <div className="w-8 h-8 bg-[#c2410c] rounded-lg shadow-sm flex items-center justify-center shrink-0">
-            <span className="text-white font-bold text-lg leading-none">O</span>
-          </div>
-          <span className="font-extrabold text-xl tracking-tight text-[#0F172A] truncate">
-            OLYMPIADQUIZ
+        <a href="/" className="flex items-center gap-3 cursor-pointer min-w-0 flex-1 no-underline">
+          <img src="favicon.png" alt="OlympiadQuiz Logo" className="w-8 h-8 object-contain" onError={(e) => { e.currentTarget.style.display='none' }} />
+          <span className="font-extrabold text-[1.35rem] tracking-tight text-[#0F172A] truncate">
+            OlympiadQuiz
           </span>
-        </div>
+        </a>
 
         {/* Center: Links */}
         <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#475569]">
