@@ -254,7 +254,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, collection, query, where, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig={
         apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -269,7 +269,7 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         if (!user) {
             document.querySelectorAll('.login-link').forEach(el => {
                 el.innerText = "Log in";
@@ -280,17 +280,23 @@
             return;
         }
         
-        const providerIds = user.providerData.map(p => p.providerId);
-        const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-        const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
         const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
         
-        if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
-            window.location.replace("signup.html?mode=completion");
-            return;
+        try {
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                const data = userDoc.data();
+                const isRegistered = data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true;
+                if (!isRegistered && !isAdmin) {
+                    window.location.replace("signup.html?mode=completion");
+                    return;
+                }
+            }
+        } catch(e) {
+            console.error(e);
         }
 
-        if (user.email === "madhhu52@gmail.com") {
+        if (isAdmin) {
             const adminTab = document.getElementById("adminTab");
             if (adminTab) adminTab.style.display = "inline";
         }
