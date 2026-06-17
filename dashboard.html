@@ -658,12 +658,10 @@ onAuthStateChanged(auth, async (user) => {
         if (userDoc.exists()) {
             const data = userDoc.data();
 
-            const providerIds = user.providerData.map(p => p.providerId);
             
             const isRegistered = data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true;
 
             console.log("UID:", user.uid);
-            console.log("Provider IDs:", providerIds);
             console.log("User Data:", data);
             console.log("isRegistered:", isRegistered);
 

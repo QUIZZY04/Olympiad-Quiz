@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEET | Live Exam Environment</title>
-    <script>
-      if (localStorage.getItem("isLoggedIn") !== "true") {
-          sessionStorage.setItem("redirectAfterLogin", window.location.href);
-          window.location.replace("login.html");
-      }
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" as="style">
@@ -203,15 +197,7 @@
             return;
         }
         
-        const providerIds = user.providerData.map(p => p.providerId);
-        const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-        const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
         const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
-        
-        if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
-            window.location.replace("signup.html?mode=completion");
-            return;
-        }
         document.getElementById("studentName").innerText = user.displayName || user.email.split('@')[0];
     });
 

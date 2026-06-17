@@ -484,7 +484,7 @@ async function evaluateAuthState(user) {
     console.log("Auth user:", user.uid);
     console.log("Firestore data:", data);
 
-    if (data && (data.registrationCompleted || data.signupCompleted)) {
+    if (data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted)) {
         console.log("Redirect decision: dashboard");
         isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");
@@ -492,7 +492,6 @@ async function evaluateAuthState(user) {
         window.location.replace(redirectUrl);
         return;
     }
-
 
     console.log("Redirect decision: signup (incomplete profile)");
     isRedirecting = true;
@@ -543,11 +542,7 @@ document.getElementById("phoneAuthForm").onsubmit = async (e) => {
     btn.innerText = "Sending...";
 
     try {
-        if (auth.currentUser && !auth.currentUser.phoneNumber) {
-            phoneConfirmationResult = await linkWithPhoneNumber(auth.currentUser, phone, window.recaptchaVerifier);
-        } else {
-            phoneConfirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
-        }
+        phoneConfirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
         document.getElementById("phoneAuthForm").classList.add("hidden");
         document.getElementById("otpAuthForm").classList.remove("hidden");
         alert("OTP sent successfully to " + phone);
@@ -566,7 +561,6 @@ document.getElementById("phoneAuthForm").onsubmit = async (e) => {
         let errorMsg = "Verification failed. Please try again.";
         if (err.code === 'auth/invalid-phone-number') errorMsg = "Invalid mobile number. Please check and try again.";
         else if (err.code === 'auth/too-many-requests') errorMsg = "Too many attempts. Please try again later.";
-        else if (err.code === 'auth/credential-already-in-use') errorMsg = "This phone number is already linked to another account. Please log in with this phone number directly.";
         
         alert(errorMsg);
         btn.disabled = false; btn.innerText = "Send OTP";
@@ -603,6 +597,7 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
     try {
         const user = auth.currentUser;
         const finalProviderIds = user.providerData.map(p => p.providerId);
+        const primaryAuth = finalProviderIds[0] || "unknown";
         const email = user.email || "";
         const phone = user.phoneNumber || "";
 
@@ -615,6 +610,7 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
             phoneNumber: phone,
             phoneVerified: !!phone,
             authProviders: finalProviderIds,
+            primaryAuth: primaryAuth,
             class: cls,
             email_consent: true,
             promo_consent: promo,

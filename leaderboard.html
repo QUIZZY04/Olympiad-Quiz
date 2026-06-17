@@ -16,15 +16,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
 <meta name="theme-color" content="#ffffff">
 
-<!-- INSTANT AUTHENTICATION CHECK -->
-<!-- Runs instantly before the page renders to block the back button -->
-<script>
-  if (localStorage.getItem("isLoggedIn") !== "true") {
-      sessionStorage.setItem("redirectAfterLogin", window.location.href);
-      window.location.replace("login.html");
-  }
-</script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
@@ -533,15 +524,7 @@ return
 }
 document.body.style.visibility = 'visible';
 
-const providerIds = user.providerData.map(p => p.providerId);
-const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
-const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
 const isAdminUser = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
-
-if ((!hasEmailOrGoogle || !hasPhone) && !isAdminUser) {
-    window.location.replace("signup.html?mode=completion");
-    return;
-}
 
 if (user.email === "madhhu52@gmail.com") {
     document.getElementById("adminTab").style.display = "inline";
