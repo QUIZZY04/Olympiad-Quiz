@@ -68,7 +68,7 @@ img {
     top: 0;
     z-index: 50;
     height: 70px;
-    background: linear-gradient(to right, #FF6B4A, #F85A36);
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
@@ -94,7 +94,7 @@ img {
     font-size: 1.35rem; 
     font-weight: 800; 
     letter-spacing: -0.5px; 
-    color: #1A1A1A; 
+    color: #ffffff; 
 }
 
 .navbar-links { 
@@ -106,7 +106,7 @@ img {
 .nav-link { 
     font-size: 0.95rem; 
     font-weight: 600; 
-    color: #1A1A1A; 
+    color: #ff6b00; 
     transition: color 0.3s ease, border-bottom-color 0.3s ease; 
     display: flex;
     align-items: center;
@@ -142,19 +142,19 @@ img {
 .nav-dropdown-content {
     display: none;
     position: absolute;
-    background-color: #ffffff;
+    background-color: #0f172a;
     min-width: 200px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
     z-index: 1001;
     top: 100%;
     left: 0;
-    border: 1px solid var(--border);
+    border: 1px solid #1e3a8a;
     padding: 8px 0;
 }
 
 .nav-dropdown-content a {
-    color: var(--navy);
+    color: #ff6b00;
     padding: 12px 20px;
     text-decoration: none;
     display: block;
@@ -165,8 +165,8 @@ img {
 }
 
 .nav-dropdown-content a:hover {
-    background-color: var(--background);
-    color: #c2410c;
+    background-color: #1e3a8a;
+    color: #ffffff;
 }
 
 .nav-dropdown:hover .nav-dropdown-content {
@@ -174,7 +174,7 @@ img {
 }
 
 .btn-login {
-    background-color: #1A1A1A;
+    background-color: #ff6b00;
     color: #ffffff;
     padding: 8px 20px;
     border-radius: 8px;
@@ -185,7 +185,7 @@ img {
     transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.btn-login:hover { background-color: #2A2A2A; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transform: translateY(-1px); }
+.btn-login:hover { background-color: #e65f00; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transform: translateY(-1px); }
 
 .navbar-toggle { display: none; }
 
@@ -809,7 +809,7 @@ img {
         min-width: auto !important;
         max-width: 50vw !important;
         height: 100vh;
-        background: linear-gradient(to bottom, #FF6B4A, #F85A36);
+        background: linear-gradient(135deg, #0f172a, #1e3a8a);
         flex-direction: column;
         justify-content: flex-start;
         padding: 1.5rem 1.5rem 3rem 1.5rem;
@@ -885,7 +885,7 @@ img {
         padding: 0 0 0 10px;
         border-radius: 0 0 0 0;
         min-width: 100%;
-        border-left: 2px solid #1A1A1A;
+        border-left: 2px solid #ff6b00;
         margin-top: 0;
     }
     
@@ -937,7 +937,7 @@ img {
         display: block;
         width: 24px;
         height: 2px;
-        background: #1A1A1A;
+        background: #ff6b00;
         border-radius: 0;
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
