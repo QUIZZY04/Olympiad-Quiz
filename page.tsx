@@ -71,28 +71,28 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E7EB]">
+    <nav className="sticky top-0 z-50 bg-gradient-to-r from-[#FF6B4A] to-[#F85A36] shadow-[0_4px_10px_rgba(0,0,0,0.05)]">
       <div className="flex items-center justify-between px-6 lg:px-12 h-[80px]">
         {/* Left: Logo */}
         <a href="/" className="flex items-center gap-3 cursor-pointer min-w-0 flex-1 no-underline">
           <img src="favicon.png" alt="OlympiadQuiz Logo" className="w-8 h-8 object-contain" onError={(e) => { e.currentTarget.style.display='none' }} />
-          <span className="font-extrabold text-[1.35rem] tracking-tight text-[#0F172A] truncate">
+          <span className="font-extrabold text-[1.35rem] tracking-tight text-[#1A1A1A] truncate">
             OlympiadQuiz
           </span>
         </a>
 
         {/* Center: Links */}
-        <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#475569]">
-          <a href="#" className="text-[#0F172A] transition-colors">Home</a>
-          <a href="#" className="hover:text-[#0F172A] transition-colors">Students Zone</a>
-          <a href="#" className="hover:text-[#0F172A] transition-colors">Syllabus</a>
-          <a href="#" className="hover:text-[#0F172A] transition-colors">Live Arena</a>
-          <a href="#" className="hover:text-[#0F172A] transition-colors">Senior Exams</a>
+        <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#1A1A1A]">
+          <a href="#" className="text-white border-b-2 border-white pb-[20px] pt-[22px]">Home</a>
+          <a href="#" className="hover:text-white border-b-2 border-transparent hover:border-white pb-[20px] pt-[22px] transition-all duration-300">Students Zone</a>
+          <a href="#" className="hover:text-white border-b-2 border-transparent hover:border-white pb-[20px] pt-[22px] transition-all duration-300">Syllabus</a>
+          <a href="#" className="hover:text-white border-b-2 border-transparent hover:border-white pb-[20px] pt-[22px] transition-all duration-300">Live Arena</a>
+          <a href="#" className="hover:text-white border-b-2 border-transparent hover:border-white pb-[20px] pt-[22px] transition-all duration-300">Senior Exams</a>
         </div>
 
         {/* Right: CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 shrink-0">
-          <button onClick={onLoginClick} className="hidden lg:block bg-[#c2410c] text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#9a3412] shadow-sm transition-all duration-200 cursor-pointer">
+          <button onClick={onLoginClick} className="hidden lg:block bg-[#1A1A1A] text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-[#2A2A2A] shadow-sm transition-all duration-200 cursor-pointer">
             Login
           </button>
           
@@ -101,9 +101,9 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
             className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-none relative z-[1005]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <span className={`block w-[24px] h-[2px] bg-[#c2410c] rounded-none transition-all duration-300 ${isMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`block w-[24px] h-[2px] bg-[#c2410c] rounded-none transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-[24px] h-[2px] bg-[#c2410c] rounded-none transition-all duration-300 ${isMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+            <span className={`block w-[24px] h-[2px] bg-[#1A1A1A] rounded-none transition-all duration-300 ${isMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`block w-[24px] h-[2px] bg-[#1A1A1A] rounded-none transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-[24px] h-[2px] bg-[#1A1A1A] rounded-none transition-all duration-300 ${isMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </button>
         </div>
       </div>
@@ -117,32 +117,32 @@ const Navbar = ({ onLoginClick }: { onLoginClick: () => void }) => {
       )}
 
       {/* Mobile Side Drawer */}
-      <div className={`lg:hidden fixed top-0 right-0 h-screen w-[50vw] bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`lg:hidden fixed top-0 right-0 h-screen w-[50vw] bg-gradient-to-b from-[#FF6B4A] to-[#F85A36] shadow-2xl z-[1002] transform transition-transform duration-300 ease-out flex flex-col ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-end p-6">
-          <button onClick={() => setIsMenuOpen(false)} className="text-3xl text-[#c2410c] leading-none" aria-label="Close Menu">&times;</button>
+          <button onClick={() => setIsMenuOpen(false)} className="text-3xl text-[#1A1A1A] leading-none" aria-label="Close Menu">&times;</button>
         </div>
-        <div className="flex flex-col px-6 gap-0 text-sm font-semibold text-[#475569] overflow-y-auto pb-8">
-          <a href="/" className="py-3 text-[#0F172A] border-b border-[#E5E7EB] block">Home</a>
+        <div className="flex flex-col px-6 gap-0 text-sm font-semibold text-[#1A1A1A] overflow-y-auto pb-8">
+          <a href="/" className="py-3 text-white border-b border-[#1A1A1A]/10 block">Home</a>
           
-          <div className="border-b border-[#E5E7EB] w-full">
-            <button onClick={(e) => toggleDropdown('students', e)} className={`w-full flex justify-between items-center py-3 font-semibold transition-colors ${openDropdown === 'students' ? 'text-[#c2410c]' : 'text-[#0F172A]'}`}>
+          <div className="border-b border-[#1A1A1A]/10 w-full">
+            <button onClick={(e) => toggleDropdown('students', e)} className={`w-full flex justify-between items-center py-3 font-semibold transition-colors ${openDropdown === 'students' ? 'text-white' : 'text-[#1A1A1A]'}`}>
               Students Zone
-              <span className={`transform transition-transform duration-300 text-lg leading-none ${openDropdown === 'students' ? 'rotate-180 text-[#c2410c]' : 'text-[#475569]'}`}>▾</span>
+              <span className={`transform transition-transform duration-300 text-lg leading-none ${openDropdown === 'students' ? 'rotate-180 text-white' : 'text-[#1A1A1A]'}`}>▾</span>
             </button>
             <div className={`overflow-hidden transition-all duration-300 bg-black/5 ${openDropdown === 'students' ? 'max-h-[1500px] py-1 mb-1' : 'max-h-0'}`}>
               <div className="flex flex-col pl-3 border-l-2 border-[#c2410c] ml-0">
-                <a href="mock.html" className="py-2.5 px-2 text-[#0F172A] font-semibold block">Mock Tests</a>
-                <a href="chapterwise.html" className="py-2.5 px-2 text-[#0F172A] font-semibold block">Chapterwise</a>
-                <a href="study.html" className="py-2.5 px-2 text-[#0F172A] font-semibold block">Study Material</a>
+                <a href="mock.html" className="py-2.5 px-2 text-[#1A1A1A] hover:text-white font-semibold block">Mock Tests</a>
+                <a href="chapterwise.html" className="py-2.5 px-2 text-[#1A1A1A] hover:text-white font-semibold block">Chapterwise</a>
+                <a href="study.html" className="py-2.5 px-2 text-[#1A1A1A] hover:text-white font-semibold block">Study Material</a>
               </div>
             </div>
           </div>
 
-          <a href="olympiad-syllabus.html" className="py-3 hover:text-[#0F172A] border-b border-[#E5E7EB] block">Syllabus</a>
-          <a href="live.html" className="py-3 hover:text-[#0F172A] border-b border-[#E5E7EB] block">Live Arena</a>
-          <a href="#" className="py-3 hover:text-[#0F172A] block">Senior Exams</a>
+          <a href="olympiad-syllabus.html" className="py-3 hover:text-white border-b border-[#1A1A1A]/10 block">Syllabus</a>
+          <a href="live.html" className="py-3 hover:text-white border-b border-[#1A1A1A]/10 block">Live Arena</a>
+          <a href="#" className="py-3 hover:text-white block">Senior Exams</a>
           
-          <button onClick={() => { setIsMenuOpen(false); onLoginClick(); }} className="w-full bg-[#c2410c] hover:bg-[#9a3412] transition-colors text-white px-6 py-3.5 rounded-xl text-[15px] font-bold mt-6 text-center cursor-pointer shadow-md">
+          <button onClick={() => { setIsMenuOpen(false); onLoginClick(); }} className="w-full bg-[#1A1A1A] hover:bg-[#2A2A2A] transition-colors text-white px-6 py-3.5 rounded-xl text-[15px] font-bold mt-6 text-center cursor-pointer shadow-md">
             Login
           </button>
         </div>

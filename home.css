@@ -68,8 +68,8 @@ img {
     top: 0;
     z-index: 50;
     height: 70px;
-    background-color: #ffffff;
-    border-bottom: 1px solid var(--border);
+    background: linear-gradient(to right, #FF6B4A, #F85A36);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
 }
@@ -94,7 +94,7 @@ img {
     font-size: 1.35rem; 
     font-weight: 800; 
     letter-spacing: -0.5px; 
-    color: var(--navy); 
+    color: #1A1A1A; 
 }
 
 .navbar-links { 
@@ -106,8 +106,8 @@ img {
 .nav-link { 
     font-size: 0.95rem; 
     font-weight: 600; 
-    color: var(--navy); 
-    transition: color 0.2s; 
+    color: #1A1A1A; 
+    transition: color 0.3s ease, border-bottom-color 0.3s ease; 
     display: flex;
     align-items: center;
     gap: 4px;
@@ -119,11 +119,11 @@ img {
     transition: transform 0.3s ease;
 }
 
-.nav-link:hover { color: #c2410c; }
+.nav-link:hover { color: #ffffff; border-bottom-color: #ffffff; }
 
 .nav-link.active { 
-    color: #c2410c; 
-    border-bottom-color: #c2410c;
+    color: #ffffff; 
+    border-bottom-color: #ffffff;
 }
 
 .navbar-actions {
@@ -174,18 +174,18 @@ img {
 }
 
 .btn-login {
-    background-color: var(--orange);
-    color: var(--navy);
+    background-color: #1A1A1A;
+    color: #ffffff;
     padding: 8px 20px;
     border-radius: 8px;
     font-size: 0.875rem;
     font-weight: 600;
     display: flex;
     align-items: center;
-    transition: all 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.btn-login:hover { background-color: #e65f00; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.btn-login:hover { background-color: #2A2A2A; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transform: translateY(-1px); }
 
 .navbar-toggle { display: none; }
 
@@ -809,7 +809,7 @@ img {
         min-width: auto !important;
         max-width: 50vw !important;
         height: 100vh;
-        background-color: #ffffff;
+        background: linear-gradient(to bottom, #FF6B4A, #F85A36);
         flex-direction: column;
         justify-content: flex-start;
         padding: 1.5rem 1.5rem 3rem 1.5rem;
@@ -870,7 +870,7 @@ img {
         transform: rotate(180deg);
     }
     .nav-dropdown.open .nav-link {
-        color: #c2410c;
+        color: #ffffff;
     }
     
     .nav-dropdown-content {
@@ -885,7 +885,7 @@ img {
         padding: 0 0 0 10px;
         border-radius: 0 0 0 0;
         min-width: 100%;
-        border-left: 2px solid #c2410c;
+        border-left: 2px solid #1A1A1A;
         margin-top: 0;
     }
     
@@ -930,8 +930,6 @@ img {
         flex-shrink: 0;
     }
     .navbar-actions .btn-login {
-        background-color: var(--orange);
-        border: none;
         width: 100%;
         justify-content: center;
     }
@@ -939,7 +937,7 @@ img {
         display: block;
         width: 24px;
         height: 2px;
-        background: #c2410c;
+        background: #1A1A1A;
         border-radius: 0;
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
