@@ -109,72 +109,67 @@
             .footer .btn { flex: 1; text-align: center; padding: 10px 5px; font-size: 12px; white-space: normal; }
         }
     </style>
+    <style>
+        /* Anti-Cheat & Instruction Popups */
+        .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
+        #instructionsModal, #warningModal { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(5px); }
+        #fullscreenOverlay { background: var(--bg); }
+
+        .popup-box { background: var(--surface); padding: 25px; border-radius: 20px; width: 100%; border: 1px solid var(--border); box-shadow: var(--shadow-lg); text-align: left; max-height: 95vh; overflow-y: auto; }
+        #instructionsModal .popup-box { max-width: 650px; }
+        #fullscreenOverlay .popup-box { max-width: 600px; text-align: center; }
+        #warningModal .popup-box { max-width: 500px; text-align: center; border: 2px solid var(--danger); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3); padding: 30px 20px; }
+
+        .popup-box h2 { margin-top: 0; margin-bottom: 15px; font-size: 1.5rem; font-weight: 800; color: #1557b0; }
+        #warningModal h2 { color: var(--danger); }
+
+        .popup-box p { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; }
+        #fullscreenOverlay .popup-box p { text-align: left; }
+        #warningModal p { color: var(--text); font-size: 1rem; font-weight: 500; margin-bottom: 25px; }
+
+        .popup-box .icon-display { font-size: 40px; margin-bottom: 15px; }
+
+        .popup-actions { display: flex; gap: 10px; width: 100%; flex-wrap: wrap; }
+
+        .btn-prev { padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--muted); font-weight: 600; }
+        .btn-prev:hover { background: #e2e8f0; color: var(--text); }
+
+        .btn-save { padding: 12px; font-size: 1rem; flex: 1; min-width: 120px; cursor: pointer; border: none; border-radius: 10px; background: #1557b0; color: white; font-weight: 600; }
+        .btn-save:hover { background: #1557b0; }
+
+        #instructionsModal .btn-save { flex: 2; }
+
+        #warningModal .btn-save { background: var(--danger); width: 100%; }
+        #warningModal .btn-save:hover { background: #dc2626; }
+
+        /* Instruction Modal Specifics */
+        .inst-grid {
+            background: var(--bg); padding: 15px; border-radius: 12px; margin-bottom: 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.9rem;
+            border: 1px solid var(--border); color: var(--text);
+        }
+        .inst-grid div b { color: var(--muted); }
+        .inst-grid div span { font-weight: 600; }
+
+        .inst-list {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        .inst-list li { margin-bottom: 8px; }
+        .inst-list b { color: var(--danger); }
+    </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="navbar-inner">
-        <!-- Left: Logo -->
-        <a href="dashboard.html" class="navbar-logo">
-            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
-            <span class="logo-text">OlympiadQuiz</span>
-        </a>
-
-        <!-- Center: Links (Desktop) -->
-        <div class="navbar-links">
-            <a href="dashboard.html" class="nav-link">Dashboard</a>
-            <div class="nav-dropdown">
-                <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                <div class="nav-dropdown-content">
-                    <a href="mock.html">Mock Tests</a>
-                    <a href="chapterwise.html">Chapterwise</a>
-                    <a href="study.html">Study Material</a>
-                    <a href="blog.html">Success Guides</a>
-                </div>
-            </div>
-            <div class="nav-dropdown">
-                <a href="olympiad-syllabus.html" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                <div class="nav-dropdown-content">
-                    <a href="sof-syllabus.html">SOF Olympiads</a>
-                    <a href="silverzone-syllabus.html">SilverZone</a>
-                    <a href="crest-syllabus.html">CREST Olympiads</a>
-                    <a href="nstse-syllabus.html">NSTSE</a>
-                    <a href="spellbee-syllabus.html">SpellBee</a>
-                    <a href="hummingbird-syllabus.html">Humming Bird</a>
-                    <a href="ogo-syllabus.html">Orange Olympiad</a>
-                </div>
-            </div>
-            <a href="live.html" class="nav-link">Live Arena</a>
-            <a href="leaderboard.html" class="nav-link">Leaderboard</a>
-            <div class="nav-dropdown">
-                <a href="#" class="nav-link active">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                <div class="nav-dropdown-content">
-                    <a href="jee-list.html" style="color: #c2410c; background: #fff7ed;">JEE Advanced</a>
-                    <a href="jee_main.html">JEE Main</a>
-                    <a href="neet.html">NEET</a>
-                    <a href="jee-main-pyq.html">JEE PYQs</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right: CTA -->
-        <div class="navbar-actions">
-            <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success); font-weight:600; text-decoration:none; font-size: 0.95rem; margin-right: 10px;">Admin</a>
-            <button onclick="logout()" class="btn-logout">Logout</button>
-            <!-- Mobile Menu Toggle -->
-            <button class="navbar-toggle" id="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </div>
-</nav>
-
 <!-- Instructions Modal -->
-<div id="instructionsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
-    <div style="background: #fff; width: 100%; max-width: 650px; border-radius: 8px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto;">
-        <h2 style="color: #1557b0; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.5rem;">Please read the instructions carefully</h2>
+<div id="instructionsModal" class="popup-overlay">
+    <div class="popup-box">
+        <h2>📝 Test Instructions & Rules</h2>
         
-        <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; border: 1px solid #ddd;">
+        <div class="inst-grid">
             <div><b>Test Name:</b> <span id="instTestTitle">...</span></div>
             <div><b>Subject:</b> <span id="instSubject">...</span></div>
             <div><b>Duration:</b> <span id="instDuration">...</span></div>
@@ -182,18 +177,18 @@
             <div><b>Total Questions:</b> <span id="instTotalQ">...</span></div>
         </div>
         
-        <ul style="font-size: 14px; line-height: 1.7; color: #333; padding-left: 20px; margin-bottom: 30px;">
+        <ul class="inst-list">
             <li>The countdown timer at the top right of screen will display the remaining time available for you to complete the examination. When the timer reaches zero, the examination will end by itself.</li>
             <li>There are multiple types of questions: <b>Single Correct Option</b>, <b>Multiple Correct Options</b>, and <b>Numerical Value Type</b>.</li>
             <li><b>Marking Scheme for Single Correct Option:</b>
-                <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px; font-size: 0.85rem;">
                     <li><b>Full Marks:</b> +3 If only the correct option is chosen.</li>
                     <li><b>Zero Marks:</b> 0 If none of the options is chosen (i.e. the question is unanswered).</li>
                     <li><b>Negative Marks:</b> -1 In all other cases.</li>
                 </ul>
             </li>
             <li><b>Marking Scheme for Multiple Correct Options:</b>
-                <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px; font-size: 0.85rem;">
                     <li><b>Full Marks:</b> +4 If only (all) the correct option(s) is(are) chosen.</li>
                     <li><b>Partial Marks:</b> +1 For each correct option chosen, provided NO incorrect option is chosen.</li>
                     <li><b>Zero Marks:</b> 0 If none of the options is chosen (i.e. the question is unanswered).</li>
@@ -201,26 +196,56 @@
                 </ul>
             </li>
             <li><b>Marking Scheme for Numerical Value Type:</b>
-                <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
+                <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px; font-size: 0.85rem;">
                     <li><b>Full Marks:</b> +3 If the entered numerical value is correct.</li>
                     <li><b>Zero Marks:</b> 0 If unanswered or incorrectly answered (no negative marking).</li>
                 </ul>
             </li>
             <li>You can mark questions for review using the <b>Mark for Review & Next</b> button to revisit them later.</li>
             <li>To change your answer, you can select another option, or click <b>Clear Response</b> to remove your selection.</li>
-            <li><b style="color: #d32f2f;">STRICT RULE:</b> Do NOT refresh the page or switch browser tabs. Doing so may cause you to lose your progress and auto-submit the exam.</li>
+            <li><b>STRICT RULE:</b> Full-screen mode is required. Do NOT refresh the page, switch browser tabs, or minimize the window. Doing so will result in a warning, and after 3 warnings, your test will auto-submit.</li>
         </ul>
         
-        <div style="display: flex; gap: 15px;">
-            <button onclick="window.location.href='jee-list.html'" class="btn" style="flex: 1; padding: 12px; text-align: center; border: 1px solid #ccc;">Cancel</button>
-            <button onclick="beginQuiz()" class="btn btn-primary" style="flex: 2; padding: 12px; text-align: center; font-size: 15px;">I am ready, Start Test</button>
+        <div class="popup-actions">
+            <button onclick="goBackToSelection()" class="btn-prev">Cancel</button>
+            <button onclick="proceedToFullscreen()" class="btn-save">I am ready, Proceed</button>
         </div>
+    </div>
+</div>
+
+<!-- Anti-Cheat Overlays -->
+<div id="fullscreenOverlay" class="popup-overlay">
+    <div class="popup-box">
+        <div class="icon-display">🖥️</div>
+        <h2>Enter Full Screen</h2>
+            <p>
+                To maintain a fair and secure testing environment, this quiz requires full-screen mode. Please ensure you are fully prepared before proceeding.<br><br>
+                <strong style="color: var(--danger);">STRICT RULES:</strong><br>
+                • Do not switch tabs or open new windows.<br>
+                • Do not minimize the browser or lose window focus.<br>
+                • Do not exit full-screen mode manually.<br><br>
+                Any of these actions will result in a strike. <b style="color: var(--danger);">After 3 strikes, your quiz will automatically submit and end immediately.</b>
+            </p>
+            <div class="popup-actions">
+                <button onclick="goBackToSelection()" class="btn-prev">Cancel & Go Back</button>
+                <button id="enterFullscreenBtn" class="btn-save">Start Quiz</button>
+            </div>
+    </div>
+</div>
+
+<div id="warningModal" class="popup-overlay">
+    <div class="popup-box">
+        <div class="icon-display">⚠️</div>
+        <h2>Warning <span id="warningCountDisplay"></span>/3</h2>
+        <p id="warningMessageDisplay"></p>
+        <button id="resumeQuizBtn" class="btn-save">I Understand, Resume Quiz</button>
     </div>
 </div>
 
 <div class="header">
     <div class="header-title" id="testTitle">JEE Advanced Mock Test</div>
     <div class="header-info">
+        <button class="btn" style="padding:4px 8px; font-size:11px;" onclick="goBackToSelection()">Exit</button>
         <div>Time Left:</div>
         <div class="timer-box" id="timer">--:--:--</div>
     </div>
@@ -308,6 +333,12 @@
     let markedForReview = [];
     let timeLeft = 0;
     let timerInterval;
+    let quizSubmitted = false;
+
+    let violationsCount = 0;
+    const MAX_VIOLATIONS = 3;
+    let isQuizActive = false;
+    let isWarningOpen = false;
 
     async function initTest() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -345,10 +376,7 @@
             document.getElementById("instTotalQ").innerText = testData.questions.length;
             
             if (skipModal) {
-                document.getElementById("instructionsModal").style.display = "none";
-                startTimer();
-                buildPalette();
-                renderQuestion();
+                proceedToFullscreen();
             } else {
                 // Show Instructions
                 document.getElementById("instructionsModal").style.display = "flex";
@@ -359,12 +387,83 @@
         }
     }
 
-    window.beginQuiz = () => {
-        document.getElementById("instructionsModal").style.display = "none";
+    window.proceedToFullscreen = function() {
+        document.getElementById('instructionsModal').style.display = 'none';
+        document.getElementById('fullscreenOverlay').style.display = 'flex';
+    };
+
+    function startTheQuiz() {
         startTimer();
         buildPalette();
         renderQuestion();
     }
+
+    document.getElementById('enterFullscreenBtn').addEventListener('click', () => {
+        const elem = document.documentElement;
+        const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen || elem.mozRequestFullScreen;
+        
+        if (requestFS) {
+            requestFS.call(elem).then(() => {
+                document.getElementById('fullscreenOverlay').style.display = 'none';
+                if (!isQuizActive && testData.questions.length > 0) {
+                    isQuizActive = true;
+                    startTheQuiz();
+                }
+            }).catch(err => {
+                alert(`Error attempting to enable full-screen mode: ${err.message}`);
+            });
+        } else {
+            document.getElementById('fullscreenOverlay').style.display = 'none';
+            if (!isQuizActive && testData.questions.length > 0) {
+                isQuizActive = true;
+                startTheQuiz();
+            }
+        }
+    });
+
+    document.getElementById('resumeQuizBtn').addEventListener('click', () => {
+        const elem = document.documentElement;
+        const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen || elem.mozRequestFullScreen;
+        
+        if (requestFS && !document.fullscreenElement && !document.webkitFullscreenElement) {
+            requestFS.call(elem).then(() => {
+                document.getElementById('warningModal').style.display = 'none';
+                setTimeout(() => isWarningOpen = false, 500);
+            }).catch(err => {
+                alert("You must allow full screen to resume.");
+            });
+        } else {
+            document.getElementById('warningModal').style.display = 'none';
+            setTimeout(() => isWarningOpen = false, 500);
+        }
+    });
+
+    function handleViolation(reason) {
+        if (!isQuizActive || quizSubmitted || isWarningOpen) return;
+        
+        violationsCount++;
+        isWarningOpen = true;
+
+        if (violationsCount >= MAX_VIOLATIONS) {
+            document.getElementById('warningMessageDisplay').innerText = `${reason}. You have reached the maximum number of warnings. Your quiz will now be auto-submitted.`;
+            document.getElementById('warningCountDisplay').innerText = violationsCount;
+            document.getElementById('resumeQuizBtn').style.display = 'none';
+            document.getElementById('warningModal').style.display = 'flex';
+            
+            setTimeout(() => {
+                submitTest(true);
+            }, 3000);
+        } else {
+            document.getElementById('warningMessageDisplay').innerText = `${reason}. Please do not switch tabs, minimize the window, or exit full screen.`;
+            document.getElementById('warningCountDisplay').innerText = violationsCount;
+            document.getElementById('warningModal').style.display = 'flex';
+        }
+    }
+
+    document.addEventListener('visibilitychange', () => { if (document.hidden && isQuizActive) handleViolation("Tab switched or minimized"); });
+    window.addEventListener('blur', () => { if (isQuizActive) handleViolation("Window lost focus"); });
+    document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && isQuizActive) handleViolation("Exited full screen"); });
+    document.addEventListener('webkitfullscreenchange', () => { if (!document.webkitFullscreenElement && isQuizActive) handleViolation("Exited full screen"); });
 
     function startTimer() {
         timerInterval = setInterval(() => {
@@ -576,12 +675,20 @@
     window.prevQuestion = () => { if (currentQ > 0) { currentQ--; renderQuestion(); } };
     
     window.submitTest = (auto = false) => {
+        if (quizSubmitted) return;
         if (!auto) {
             let answered = selectedAnswers.filter(ans => ans.length > 0).length;
             let msg = `You have answered ${answered} out of ${testData.questions.length} questions.\n\nAre you sure you want to submit the test?`;
             if (!confirm(msg)) return;
         }
+        quizSubmitted = true;
+        isQuizActive = false;
         clearInterval(timerInterval);
+        
+        const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
+        if (exitFS && (document.fullscreenElement || document.webkitFullscreenElement)) {
+            exitFS.call(document).catch(err => console.log(err));
+        }
         
         const resultObj = {
             testTitle: testData.title,
@@ -595,8 +702,12 @@
         window.location.href = "jee-result.html";
     };
 
-    window.goBack = () => {
-        if(confirm("Are you sure you want to exit? Your progress will not be saved.")) { window.location.href = "jee-list.html"; }
+    window.goBackToSelection = () => {
+        if(confirm("Are you sure you want to exit? Your progress will not be saved.")) { 
+            const exitFS = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen || document.mozCancelFullScreen;
+            if (exitFS && (document.fullscreenElement || document.webkitFullscreenElement)) { exitFS.call(document).catch(err => console.log(err)); }
+            window.location.href = "jee-list.html"; 
+        }
     };
 
     initTest();
