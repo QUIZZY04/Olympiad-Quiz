@@ -36,6 +36,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,17 +101,6 @@
             radial-gradient(circle at 0% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
         background-attachment: fixed;
     }
-
-    nav { 
-        background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
-        border-bottom:1px solid var(--border); 
-        padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
-        position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
-    }
-    .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-    .nav-links { display:flex; gap:10px; align-items:center; flex-wrap: wrap; justify-content: center; }
-    .nav-links a { color:var(--text); text-decoration:none; font-size:0.85rem; font-weight:700; text-transform:uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; }
-    .nav-links a:hover { color: var(--brand-text); background: rgba(79, 70, 229, 0.05); }
 
     .container {
         width: 100%;
@@ -185,7 +175,6 @@
 
     @media (max-width: 768px) {
         .header-text h1 { font-size: 2.2rem; }
-        nav { flex-direction: column; padding: 15px; }
     }
 </style>
 </head>
@@ -219,10 +208,22 @@
                     <a href="silverzone-syllabus.html">SilverZone</a>
                     <a href="crest-syllabus.html">CREST Olympiads</a>
                     <a href="nstse-syllabus.html">NSTSE</a>
+                    <a href="spellbee-syllabus.html">SpellBee</a>
+                    <a href="hummingbird-syllabus.html">Humming Bird</a>
+                    <a href="ogo-syllabus.html">Orange Olympiad</a>
                 </div>
             </div>
             <a href="live.html" class="nav-link">Live Arena</a>
-            <a href="contact.html" class="nav-link active">Contact</a>
+            <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="jee_main.html">JEE Main</a>
+                    <a href="neet.html">NEET</a>
+                    <a href="jee-main-pyq.html">JEE PYQs</a>
+                </div>
+            </div>
         </div>
 
         <!-- Right: CTA -->

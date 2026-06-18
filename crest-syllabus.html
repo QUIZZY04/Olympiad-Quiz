@@ -71,13 +71,6 @@
             background-image: radial-gradient(circle at 0% 0%, rgba(194, 65, 12, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(194, 65, 12, 0.05) 0%, transparent 50%);
             background-attachment: fixed;
         }
-        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
-        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; }
-        .nav-links a:hover { color: var(--brand-text); background: rgba(194, 65, 12, 0.05); }
-        .login-link { background: var(--brand) !important; color: #ffffff !important; box-shadow: 0 4px 15px rgba(194, 65, 12, 0.3) !important; }
-        .login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(194, 65, 12, 0.4) !important; filter: brightness(1.1); }
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
         .hero { text-align: center; margin-bottom: 40px; }
         .hero h1 { font-size: 2.8rem; font-weight: 800; color: var(--text); margin-bottom: 10px; letter-spacing: -0.02em; }
@@ -107,30 +100,23 @@
         .topic-list { list-style: none; margin-left: 5px; }
         .topic-list li { position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--text); font-weight: 500; font-size: 0.95rem; }
         .topic-list li::before { content: "•"; position: absolute; left: 0; color: var(--brand-text); font-weight: bold; }
-        @media (max-width: 768px) { nav { flex-direction: column; padding: 15px; } .sticky-controls { top: 60px; padding: 10px 0; } .input-group { min-width: 100%; } .content-card { padding: 20px; } .accordion-header { font-size: 1rem; padding: 15px; } }
-        
-        .nav-dropdown { position: relative; display: inline-block; }
-        .nav-dropdown-content { display: none; position: absolute; background-color: var(--surface); min-width: 200px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08); border-radius: 12px; z-index: 1001; top: 100%; left: 0; border: 1px solid var(--border); padding: 8px 0; }
-        .nav-dropdown-content a { padding: 12px 20px !important; text-align: left; display: block !important; border-radius: 0 !important; }
-        .nav-dropdown-content a:hover { background-color: #fff7ed !important; color: var(--brand-text) !important; }
-        .nav-dropdown:hover .nav-dropdown-content { display: block; }
-        .dropbtn { cursor: pointer; }
-        .dropbtn::after { content: ' ▾'; font-size: 0.8rem; opacity: 0.7; }
+        @media (max-width: 768px) { .sticky-controls { top: 60px; padding: 10px 0; } .input-group { min-width: 100%; } .content-card { padding: 20px; } .accordion-header { font-size: 1rem; padding: 15px; } }
     </style>
 </head>
 <body>
-    <nav>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
-        <div class="nav-links">
-            <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
-            <a href="dashboard.html">Dashboard</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Logo -->
+        <a href="index.html" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+
+        <!-- Center: Links (Desktop) -->
+        <div class="navbar-links">
+            <a href="index.html" class="nav-link">Home</a>
             <div class="nav-dropdown">
-                <a href="#" class="dropbtn">Students Zone</a>
+                <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
                     <a href="mock.html">Mock Tests</a>
                     <a href="chapterwise.html">Chapterwise</a>
@@ -139,22 +125,32 @@
                 </div>
             </div>
             <div class="nav-dropdown">
-                <a href="#" class="dropbtn active" style="color: var(--brand-text);">Syllabus</a>
+                <a href="olympiad-syllabus.html" class="nav-link active">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
                     <a href="sof-syllabus.html">SOF Olympiads</a>
                     <a href="silverzone-syllabus.html">SilverZone</a>
-                    <a href="crest-syllabus.html" style="color: var(--brand-text) !important; background: var(--subtle) !important;">CREST Olympiads</a>
+                    <a href="crest-syllabus.html" style="color: #c2410c; background: #fff7ed;">CREST Olympiads</a>
                     <a href="nstse-syllabus.html">NSTSE</a>
                     <a href="spellbee-syllabus.html">SpellBee</a>
                     <a href="hummingbird-syllabus.html">Humming Bird</a>
                     <a href="ogo-syllabus.html">Orange Olympiad</a>
                 </div>
             </div>
-            <a href="live.html">Live Arena</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="login.html" id="navAuthLink" class="login-link">Log in</a>
+            <a href="live.html" class="nav-link">Live Arena</a>
         </div>
-    </nav>
+
+        <!-- Right: CTA -->
+        <div class="navbar-actions">
+            <a href="login.html" id="navAuthLink" class="btn-login login-link">Login</a>
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</nav>
 
     <div class="container">
         <div class="hero">

@@ -71,13 +71,6 @@
             background-image: radial-gradient(circle at 0% 0%, rgba(194, 65, 12, 0.05) 0%, transparent 50%), radial-gradient(circle at 100% 100%, rgba(194, 65, 12, 0.05) 0%, transparent 50%);
             background-attachment: fixed;
         }
-        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:20px 5%; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px; }
-        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; padding: 8px 12px; border-radius: 8px; }
-        .nav-links a:hover { color: var(--brand-text); background: rgba(194, 65, 12, 0.05); }
-        .login-link { background: var(--brand) !important; color: #ffffff !important; box-shadow: 0 4px 15px rgba(194, 65, 12, 0.3) !important; }
-        .login-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(194, 65, 12, 0.4) !important; filter: brightness(1.1); }
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; width: 100%; }
         .hero { text-align: center; margin-bottom: 40px; }
         .hero h1 { font-size: 2.8rem; font-weight: 800; color: var(--text); margin-bottom: 10px; letter-spacing: -0.02em; }
@@ -107,7 +100,7 @@
         .topic-list { list-style: none; margin-left: 5px; }
         .topic-list li { position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--text); font-weight: 500; font-size: 0.95rem; }
         .topic-list li::before { content: "•"; position: absolute; left: 0; color: var(--brand-text); font-weight: bold; }
-        @media (max-width: 768px) { nav { flex-direction: column; padding: 15px; } .sticky-controls { top: 60px; padding: 10px 0; } .input-group { min-width: 100%; } .content-card { padding: 20px; } .accordion-header { font-size: 1rem; padding: 15px; } }
+        @media (max-width: 768px) { .sticky-controls { top: 60px; padding: 10px 0; } .input-group { min-width: 100%; } .content-card { padding: 20px; } .accordion-header { font-size: 1rem; padding: 15px; } }
     </style>
 </head>
 <body>
