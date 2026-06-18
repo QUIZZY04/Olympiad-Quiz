@@ -100,22 +100,23 @@
         .topic-list { list-style: none; margin-left: 5px; }
         .topic-list li { position: relative; padding-left: 20px; margin-bottom: 10px; color: var(--text); font-weight: 500; font-size: 0.95rem; }
         .topic-list li::before { content: "•"; position: absolute; left: 0; color: var(--brand-text); font-weight: bold; }
-        @media (max-width: 768px) { nav { flex-direction: column; padding: 15px; } .sticky-controls { top: 60px; padding: 10px 0; } .input-group { min-width: 100%; } .content-card { padding: 20px; } .accordion-header { font-size: 1rem; padding: 15px; } }
+        @media (max-width: 768px) { .sticky-controls { top: 60px; padding: 10px 0; } .input-group { min-width: 100%; } .content-card { padding: 20px; } .accordion-header { font-size: 1rem; padding: 15px; } }
     </style>
 </head>
 <body>
-    <nav>
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;"> Olympiad Portal</a>
-        <div class="nav-links">
-            <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
-            <a href="dashboard.html">Dashboard</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Logo -->
+        <a href="index.html" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+
+        <!-- Center: Links (Desktop) -->
+        <div class="navbar-links">
+            <a href="index.html" class="nav-link">Home</a>
             <div class="nav-dropdown">
-                <a href="#" class="dropbtn">Students Zone</a>
+                <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
                     <a href="mock.html">Mock Tests</a>
                     <a href="chapterwise.html">Chapterwise</a>
@@ -124,22 +125,33 @@
                 </div>
             </div>
             <div class="nav-dropdown">
-                <a href="#" class="dropbtn active" style="color: var(--brand-text);">Syllabus</a>
+                <a href="olympiad-syllabus.html" class="nav-link active">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
                     <a href="sof-syllabus.html">SOF Olympiads</a>
                     <a href="silverzone-syllabus.html">SilverZone</a>
                     <a href="crest-syllabus.html">CREST Olympiads</a>
-                    <a href="nstse-syllabus.html" style="color: var(--brand-text) !important; background: var(--subtle) !important;">NSTSE</a>
+                    <a href="nstse-syllabus.html" style="color: #c2410c; background: #fff7ed;">NSTSE</a>
                     <a href="spellbee-syllabus.html">SpellBee</a>
                     <a href="hummingbird-syllabus.html">Humming Bird</a>
                     <a href="ogo-syllabus.html">Orange Olympiad</a>
                 </div>
             </div>
-            <a href="live.html">Live Arena</a>
-            <a href="leaderboard.html">Leaderboard</a>
-            <a href="login.html" id="navAuthLink" class="login-link">Log in</a>
+            <a href="live.html" class="nav-link">Live Arena</a>
         </div>
-    </nav>
+
+        <!-- Right: CTA -->
+        <div class="navbar-actions">
+            <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success); font-weight:600; text-decoration:none; font-size: 0.95rem; margin-right: 10px;">Admin</a>
+            <a href="login.html" id="navAuthLink" class="btn-login login-link">Login</a>
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggle" id="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</nav>
 
     <div class="container">
         <div class="hero">
