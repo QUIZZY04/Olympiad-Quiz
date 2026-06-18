@@ -284,27 +284,50 @@ outline:none;
 
 <body>
 
-<nav>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-<a href="dashboard.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
-    <div class="nav-important">
-        <a href="dashboard.html">Dash</a>
-        <a onclick="logout()" style="cursor:pointer;">Logout</a>
-    </div>
-    <div class="nav-links">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="mock.html">Mock Tests</a>
-        <a href="chapterwise.html">Chapterwise</a>
-        <a href="live.html">Live Arena</a>
-        <a href="leaderboard.html">Leaderboard</a>
-        <a href="study.html">Study Material</a>
-        <a href="result.html" class="active">Results</a>
-        <div class="nav-actions">
-            <a onclick="logout()" class="login-link" style="color:var(--danger);cursor:pointer;">Logout</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Logo -->
+        <a href="dashboard.html" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+
+        <!-- Center: Links (Desktop) -->
+        <div class="navbar-links">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link active">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="mock.html">Mock Tests</a>
+                    <a href="chapterwise.html">Chapterwise</a>
+                    <a href="study.html">Study Material</a>
+                    <a href="blog.html">Success Guides</a>
+                </div>
+            </div>
+            <a href="live.html" class="nav-link">Live Arena</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="jee_main.html">JEE Main</a>
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="neet.html">NEET</a>
+                    <a href="jee-main-pyq.html">JEE PYQs</a>
+                    <a href="neet-pyq.html">NEET PYQs</a>
+                </div>
+            </div>
+            <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+        </div>
+
+        <!-- Right: CTA -->
+        <div class="navbar-actions">
+            <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success); font-weight:600; text-decoration:none; font-size: 0.95rem; margin-right: 10px;">Admin</a>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
 </nav>

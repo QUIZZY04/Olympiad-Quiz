@@ -15,9 +15,52 @@
     <script type="module" src="auth-guard.js"></script>
 </head>
 <body>
-    <nav style="background: rgba(255, 255, 255, 0.95); padding:15px 5%; display:flex; justify-content:space-between; border-bottom: 1px solid #cbd5e1;">
-        <a href="index.html" class="brand"><img src="favicon.png" alt="Logo" width="32" height="32" onerror="this.style.display='none'"> OlympiadQuiz</a>
-        <a href="neet.html" style="color: #334155; font-weight: 600; text-decoration: none;">Back to NEET</a>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <!-- Left: Logo -->
+            <a href="dashboard.html" class="navbar-logo">
+                <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
+                <span class="logo-text">OlympiadQuiz</span>
+            </a>
+
+            <!-- Center: Links (Desktop) -->
+            <div class="navbar-links">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-content">
+                        <a href="mock.html">Mock Tests</a>
+                        <a href="chapterwise.html">Chapterwise</a>
+                        <a href="study.html">Study Material</a>
+                        <a href="blog.html">Success Guides</a>
+                    </div>
+                </div>
+                <a href="live.html" class="nav-link">Live Arena</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link active">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-content">
+                        <a href="jee_main.html">JEE Main</a>
+                        <a href="jee-list.html">JEE Advanced</a>
+                        <a href="neet.html" style="color: #c2410c; background: #fff7ed;">NEET</a>
+                        <a href="jee-main-pyq.html">JEE PYQs</a>
+                        <a href="neet-pyq.html">NEET PYQs</a>
+                    </div>
+                </div>
+                <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+            </div>
+
+            <!-- Right: CTA -->
+            <div class="navbar-actions">
+                <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success); font-weight:600; text-decoration:none; font-size: 0.95rem; margin-right: 10px;">Admin</a>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggle" id="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
     </nav>
 
     <div class="container">
