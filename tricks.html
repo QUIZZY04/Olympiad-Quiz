@@ -32,6 +32,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --bg: #FFD700;
@@ -67,18 +69,6 @@
                 radial-gradient(circle at 0% 100%, rgba(244, 63, 94, 0.12) 0%, transparent 50%);
             background-attachment: fixed;
         }
-
-        nav { 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
-            border-bottom:1px solid var(--border); 
-            padding:20px 5%; display:flex; align-items:center; justify-content:space-between; 
-            position:sticky; top:0; z-index:1000; flex-wrap: wrap; gap: 10px;
-        }
-        
-        .brand { font-size:1.5rem; font-weight:800; color:var(--text); text-decoration:none; white-space: nowrap; }
-        .nav-links { display:flex; gap:12px; align-items:center; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color:var(--text); text-decoration:none; font-size:0.9rem; font-weight:700; text-transform:uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--brand-text); }
 
         .container {
             width: 100%;
@@ -321,7 +311,7 @@
 <nav class="navbar">
     <div class="navbar-inner">
         <!-- Left: Logo -->
-        <a href="dashboard.html" class="navbar-logo">
+        <a href="index.html" class="navbar-logo">
             <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
             <span class="logo-text">OlympiadQuiz</span>
         </a>
