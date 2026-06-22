@@ -132,7 +132,6 @@
     <p style="font-size:13px;margin:0;">© 2026 Olympiad Portal. All rights reserved.</p>
 </footer>
 <script>
-    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
     document.querySelectorAll('.toc-box a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const t = document.getElementById(a.getAttribute('href').substring(1)); if (t) window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }));
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.nav-links .nav-dropdown .dropbtn').forEach(button => {

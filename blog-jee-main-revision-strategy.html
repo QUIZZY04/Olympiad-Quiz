@@ -95,11 +95,11 @@
 <body>
 
 <nav>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+    <button class="menu-toggle" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
     <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
     <div class="nav-important"><a href="index.html">Home</a><a href="login.html">Login</a></div>
     <div class="nav-links">
-        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+        <button class="close-menu" aria-label="Close Menu">&times;</button>
         <a href="index.html">Home</a>
         <div class="nav-dropdown">
             <a href="#" class="dropbtn active" style="color: var(--brand);">Students Zone</a>
@@ -271,11 +271,11 @@
 <body>
 
 <nav>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+    <button class="menu-toggle" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
     <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 8px;"><img src="favicon.png" alt="Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'"> Olympiad Portal</a>
     <div class="nav-important"><a href="index.html">Home</a><a href="login.html">Login</a></div>
     <div class="nav-links">
-        <button class="close-menu" onclick="toggleMenu()" aria-label="Close Menu">&times;</button>
+        <button class="close-menu" aria-label="Close Menu">&times;</button>
         <a href="index.html">Home</a>
         <div class="nav-dropdown">
             <a href="#" class="dropbtn">Senior Exams</a>
@@ -404,7 +404,17 @@
 </footer>
 
 <script>
-    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const closeMenu = document.querySelector('.close-menu');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    }
+    if (closeMenu && navLinks) {
+        closeMenu.addEventListener('click', () => { navLinks.classList.remove('active'); });
+    }
+});
     
     // Smooth scrolling for TOC
     document.querySelectorAll('.toc-box a').forEach(anchor => {
@@ -692,7 +702,17 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
     renderBlogs(activeCat, e.target.value);
 });
 
-function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const closeMenu = document.querySelector('.close-menu');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    }
+    if (closeMenu && navLinks) {
+        closeMenu.addEventListener('click', () => { navLinks.classList.remove('active'); });
+    }
+});
 
 // Initial Render
 renderBlogs();
