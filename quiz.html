@@ -143,22 +143,26 @@ box-shadow: var(--shadow-md);
 .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
 .legend-box { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
 
-#mobileTimerBar {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background: #fef2f2;
-    border: 1.5px solid rgba(239, 68, 68, 0.3);
-    border-radius: 10px;
-    color: #b91c1c;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 14px;
-}
+/* Hide the quiz-top-bar floating timer everywhere — navbar timer handles desktop */
+.desktop-timer { display: none !important; }
+
+#mobileTimerBar { display: none; }
+
 @media (max-width: 850px) {
-    #mobileTimerBar { display: flex; }
+    /* On mobile: show inline timer bar, hide navbar timer */
+    #mobileTimerBar {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 10px;
+        background: #fef2f2;
+        border: 1.5px solid rgba(239, 68, 68, 0.3);
+        border-radius: 8px;
+        color: #b91c1c;
+        font-weight: 700;
+        font-size: 13px;
+    }
+    #timerWrap { display: none !important; }
 }
 @media (max-width:850px){
 .quiz-top-bar { margin-top: 5px !important; margin-bottom: 5px !important; }
@@ -271,9 +275,9 @@ box-shadow: var(--shadow-md);
 
 <main class="quiz-container">
 <section class="question-section section">
-<div id="mobileTimerBar">⏳ <span id="timer-mobile">--:--</span></div>
 <div style="display:flex;justify-content:space-between; align-items: center; font-weight:700; font-size:14px; color:var(--muted);">
     <span id="displaySubject">Progress</span>
+    <span id="mobileTimerBar">⏳ <span id="timer-mobile">--:--</span></span>
     <span id="progressPercent" style="color: var(--brand-text);">0%</span>
 </div>
 <div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
