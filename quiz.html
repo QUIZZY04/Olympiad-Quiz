@@ -145,22 +145,19 @@ box-shadow: var(--shadow-md);
 
 #mobileTimerBar {
     display: none;
-    position: sticky;
-    top: 0;
-    z-index: 900;
-    width: 100%;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    padding: 8px 16px;
-    background: rgba(239, 68, 68, 0.12);
-    border-bottom: 1px solid rgba(239, 68, 68, 0.25);
+    padding: 8px 14px;
+    background: #fef2f2;
+    border: 1.5px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
     color: #b91c1c;
     font-weight: 700;
     font-size: 1rem;
-    letter-spacing: 0.5px;
+    margin-bottom: 14px;
 }
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     #mobileTimerBar { display: flex; }
 }
 @media (max-width:850px){
@@ -260,8 +257,6 @@ box-shadow: var(--shadow-md);
     </div>
 </nav>
 
-<div id="mobileTimerBar">⏳ <span id="timer-mobile">--:--</span></div>
-
 <div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;" class="quiz-top-bar">
     <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-info-timer">
         <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
@@ -276,6 +271,7 @@ box-shadow: var(--shadow-md);
 
 <main class="quiz-container">
 <section class="question-section section">
+<div id="mobileTimerBar">⏳ <span id="timer-mobile">--:--</span></div>
 <div style="display:flex;justify-content:space-between; align-items: center; font-weight:700; font-size:14px; color:var(--muted);">
     <span id="displaySubject">Progress</span>
     <span id="progressPercent" style="color: var(--brand-text);">0%</span>
