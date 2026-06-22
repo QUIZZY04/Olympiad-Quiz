@@ -143,6 +143,26 @@ box-shadow: var(--shadow-md);
 .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
 .legend-box { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
 
+#mobileTimerBar {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(239, 68, 68, 0.12);
+    border-bottom: 1px solid rgba(239, 68, 68, 0.25);
+    color: #b91c1c;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+@media (max-width: 768px) {
+    #mobileTimerBar { display: flex; }
+}
 @media (max-width:850px){
 .quiz-top-bar { margin-top: 5px !important; margin-bottom: 5px !important; }
 .quiz-container{flex-direction:column;height:auto;padding:15px;gap:15px;}
@@ -239,6 +259,8 @@ box-shadow: var(--shadow-md);
         </div>
     </div>
 </nav>
+
+<div id="mobileTimerBar">⏳ <span id="timer-mobile">--:--</span></div>
 
 <div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;" class="quiz-top-bar">
     <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-info-timer">
@@ -1469,8 +1491,10 @@ const m=Math.floor(totalTime/60), s=totalTime%60;
 const timeStr = `${m}:${s<10?"0":""}${s}`;
 const tMobile = document.getElementById("timer");
 const tDesktop = document.getElementById("timer-desktop");
+const tMobileBar = document.getElementById("timer-mobile");
 if(tMobile) tMobile.innerText = timeStr;
 if(tDesktop) tDesktop.innerText = timeStr;
+if(tMobileBar) tMobileBar.innerText = timeStr;
 if(--totalTime<0){ clearInterval(tInterval); submitQuiz(); }
 },1000);
 }
