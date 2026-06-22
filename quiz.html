@@ -143,20 +143,36 @@ box-shadow: var(--shadow-md);
 .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
 .legend-box { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
 
-/* Hide the quiz-top-bar floating timer everywhere — navbar timer handles desktop */
+/* Hide the quiz-top-bar floating timer — navbar timer handles desktop */
 .desktop-timer { display: none !important; }
 
-#mobileTimerBar { display: none; }
-
+/* Mobile sticky subject+timer bar */
+#mobileQuizBar {
+    display: none;
+}
 @media (max-width: 850px) {
-    /* On mobile: show inline timer bar, hide navbar timer */
-    #mobileTimerBar {
+    #mobileQuizBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 70px;
+        z-index: 999;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        padding: 7px 16px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--muted);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    #mobileQuizBar .mob-timer {
         display: inline-flex;
         align-items: center;
         gap: 4px;
         padding: 3px 10px;
         background: #fef2f2;
-        border: 1.5px solid rgba(239, 68, 68, 0.3);
+        border: 1.5px solid rgba(239,68,68,0.3);
         border-radius: 8px;
         color: #b91c1c;
         font-weight: 700;
@@ -261,6 +277,12 @@ box-shadow: var(--shadow-md);
     </div>
 </nav>
 
+<!-- Mobile sticky subject+timer bar (hidden on desktop) -->
+<div id="mobileQuizBar">
+    <span id="mobileQuizSubject"></span>
+    <span class="mob-timer">⏳ <span id="timer-mobile">--:--</span></span>
+</div>
+
 <div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;" class="quiz-top-bar">
     <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-info-timer">
         <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
@@ -277,7 +299,6 @@ box-shadow: var(--shadow-md);
 <section class="question-section section">
 <div style="display:flex;justify-content:space-between; align-items: center; font-weight:700; font-size:14px; color:var(--muted);">
     <span id="displaySubject">Progress</span>
-    <span id="mobileTimerBar">⏳ <span id="timer-mobile">--:--</span></span>
     <span id="progressPercent" style="color: var(--brand-text);">0%</span>
 </div>
 <div style="width:100%; height:10px; background:var(--bg); border-radius:5px; margin-top:10px; overflow:hidden; border:1px solid var(--border);">
@@ -1486,6 +1507,8 @@ document.getElementById("progressPercent").innerText=p+"%";
 }
 
 function startTimer(){
+const mqs = document.getElementById('mobileQuizSubject');
+if(mqs) mqs.textContent = document.getElementById('displaySubject')?.textContent || '';
 const tInterval=setInterval(()=>{
 const m=Math.floor(totalTime/60), s=totalTime%60;
 const timeStr = `${m}:${s<10?"0":""}${s}`;
