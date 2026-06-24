@@ -467,13 +467,14 @@
             });
             return;
         }
-        if (user.email === "madhhu52@gmail.com") {
+        const isAdmin = user.email === "madhhu52@gmail.com";
+        if (isAdmin) {
             const adminTab = document.getElementById("adminTab");
             if(adminTab) adminTab.style.display = "inline";
         }
         try {
             const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (userDoc.exists()) {
+            if (userDoc.exists() && !isAdmin) {
                 let uClass = userDoc.data().class || userDoc.data().studentClass;
                 if (uClass) {
                     if (!uClass.toString().startsWith('class')) uClass = 'class' + uClass;
