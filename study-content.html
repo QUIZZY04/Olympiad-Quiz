@@ -256,7 +256,6 @@ body{
     .navbar-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 }
 body.nav-open { overflow: hidden; }
-}
 
 /* MAIN CONTAINER */
 .container{
@@ -517,6 +516,333 @@ document.getElementById('breadSubject').innerText = subject;
 document.getElementById('pageTitle').innerText = subject;
 document.getElementById('pageClass').innerText = "Class " + classNum;
 
+/* BUILT-IN STUDY CONTENT FALLBACK */
+const builtinContent = {
+'class1_maths': `<h2>Class 1 Maths – Key Topics</h2>
+<h3>Numbers 1–100</h3><ul><li>Count forward and backward from any number up to 100.</li><li>Identify even (2,4,6…) and odd (1,3,5…) numbers.</li><li>Before, after, and between numbers.</li><li>Smallest and greatest digit comparisons.</li></ul>
+<h3>Addition &amp; Subtraction</h3><ul><li>Add two single-digit numbers using number line or fingers.</li><li>Subtract smaller from larger (no regrouping at this level).</li><li>Word problems: "Ram has 5 apples, gets 3 more → 5+3=8."</li></ul>
+<h3>Shapes &amp; Patterns</h3><ul><li>Identify circle, square, triangle, rectangle.</li><li>Complete simple AB, ABC repeating patterns.</li><li>Count sides and corners of 2-D shapes.</li></ul>
+<h3>Measurement (Basics)</h3><ul><li>Compare lengths: long/short, tall/short.</li><li>Compare weights: heavy/light using a balance.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Expect pattern-completion and missing-number questions. Practice filling blanks in sequences like 2, 4, __, 8.</div>`,
+
+'class1_science': `<h2>Class 1 Science – Key Topics</h2>
+<h3>Plants Around Us</h3><ul><li>Parts of a plant: root, stem, leaves, flower, fruit.</li><li>Plants need sunlight, water, and soil to grow.</li><li>Some plants give us food (mango, wheat); some give shade.</li></ul>
+<h3>Animals Around Us</h3><ul><li>Domestic animals (cow, dog) vs. wild animals (lion, elephant).</li><li>Animals that fly, swim, or walk.</li><li>What animals eat: herbivore, carnivore, omnivore basics.</li></ul>
+<h3>My Body</h3><ul><li>External body parts and their functions (eyes → see, ears → hear).</li><li>Five senses: sight, hearing, smell, taste, touch.</li></ul>
+<h3>Food &amp; Health</h3><ul><li>Healthy foods vs. junk foods.</li><li>Clean habits: wash hands, brush teeth.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Picture-based questions are common — practice naming body parts and animals from images.</div>`,
+
+'class1_english': `<h2>Class 1 English – Key Topics</h2>
+<h3>Vocabulary</h3><ul><li>Names of animals, fruits, vegetables, colours, and shapes.</li><li>Opposite words (antonyms): hot–cold, big–small, day–night.</li><li>Rhyming words: cat–bat–hat.</li></ul>
+<h3>Grammar Basics</h3><ul><li>Nouns: names of people, places, and things.</li><li>Articles: a, an, the — when to use each.</li><li>Singular and plural: one cat → two cats.</li></ul>
+<h3>Sentence Building</h3><ul><li>Capital letter starts a sentence; full stop ends it.</li><li>Simple sentences: "The dog runs fast."</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Spotting the error in a sentence is a favourite question type — check capitals and full stops carefully.</div>`,
+
+'class1_reasoning': `<h2>Class 1 Reasoning – Key Topics</h2>
+<h3>Patterns</h3><ul><li>Identify and extend colour/shape/size patterns.</li><li>Mirror-image patterns (left-right flip).</li></ul>
+<h3>Odd One Out</h3><ul><li>Group objects by category and find the one that doesn't belong.</li><li>Example: apple, mango, carrot, banana → carrot (vegetable).</li></ul>
+<h3>Spatial Reasoning</h3><ul><li>Inside/outside, left/right, top/bottom positions.</li><li>Counting objects hidden behind or inside shapes.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Spend extra time on mirror-image and rotation questions — draw arrows to keep track of orientation.</div>`,
+
+'class2_maths': `<h2>Class 2 Maths – Key Topics</h2>
+<h3>Numbers up to 1000</h3><ul><li>Place value: hundreds, tens, ones.</li><li>Expanded form: 342 = 300 + 40 + 2.</li><li>Comparing 3-digit numbers using &lt; &gt; =.</li></ul>
+<h3>Addition &amp; Subtraction with Regrouping</h3><ul><li>Column addition with carrying.</li><li>Column subtraction with borrowing.</li><li>Estimating sums by rounding to nearest 10.</li></ul>
+<h3>Multiplication Beginnings</h3><ul><li>Repeated addition: 3+3+3 = 3×3.</li><li>Tables of 2, 3, 4, 5, 10.</li></ul>
+<h3>Time &amp; Money</h3><ul><li>Read clock to the hour and half-hour.</li><li>Identify coins and notes; simple addition of amounts.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Money and clock problems often appear as word problems — read carefully and write the equation before solving.</div>`,
+
+'class2_science': `<h2>Class 2 Science – Key Topics</h2>
+<h3>Living &amp; Non-Living Things</h3><ul><li>Living things grow, reproduce, and respond to surroundings.</li><li>Non-living things do none of these.</li><li>Examples: stone (non-living), mushroom (living).</li></ul>
+<h3>Plants</h3><ul><li>Types: trees, shrubs, herbs, creepers, climbers.</li><li>Uses of plants: food, medicine, wood, paper.</li></ul>
+<h3>Animals</h3><ul><li>Animal homes: burrow, nest, den, hive, stable.</li><li>Life cycles: egg → larva → pupa → adult (butterfly).</li></ul>
+<h3>Air &amp; Water</h3><ul><li>Air is all around us and is needed to breathe.</li><li>Water sources: river, lake, rain, well.</li><li>Three states of water: solid (ice), liquid (water), gas (steam).</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Classification questions (living/non-living, type of plant) are very common — memorise at least 5 examples per category.</div>`,
+
+'class2_english': `<h2>Class 2 English – Key Topics</h2>
+<h3>Parts of Speech</h3><ul><li>Noun, Pronoun (I, he, she, they), Verb (action words).</li><li>Adjectives: describing words (big red ball).</li></ul>
+<h3>Tenses</h3><ul><li>Present tense: "She eats." Past tense: "She ate."</li><li>Continuous: "She is eating."</li></ul>
+<h3>Punctuation</h3><ul><li>Full stop, question mark, exclamation mark.</li><li>Comma in a list: apples, mangoes, and grapes.</li></ul>
+<h3>Reading Comprehension</h3><ul><li>Read a short passage and answer who/what/where/when.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> In comprehension, underline key words in the question before scanning the passage — saves time.</div>`,
+
+'class2_reasoning': `<h2>Class 2 Reasoning – Key Topics</h2>
+<h3>Series Completion</h3><ul><li>Number series: 1, 3, 5, __, 9 → 7 (odd numbers).</li><li>Alphabet series: A, C, E, __ → G (skip one letter).</li></ul>
+<h3>Coding–Decoding</h3><ul><li>If CAT = 3120, find code of DOG.</li><li>Simple substitution codes at class 2 level.</li></ul>
+<h3>Analogy</h3><ul><li>Dog : Pup :: Cat : __ (Kitten) — relate parent and young.</li><li>Pen : Write :: Knife : __ (Cut).</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Always identify the relationship type first (animal–young, tool–use, opposite) before solving analogy questions.</div>`,
+
+'class3_maths': `<h2>Class 3 Maths – Key Topics</h2>
+<h3>4-Digit Numbers</h3><ul><li>Place value up to thousands: 4,562 = 4000+500+60+2.</li><li>Comparing and ordering 4-digit numbers.</li><li>Roman numerals I to L.</li></ul>
+<h3>Multiplication &amp; Division</h3><ul><li>Tables 2–10 (must be fluent).</li><li>Multiplication of 2-digit by 1-digit numbers.</li><li>Division as sharing equally; concept of remainder.</li></ul>
+<h3>Fractions</h3><ul><li>Half (1/2), one-third (1/3), one-fourth (1/4) of shapes and quantities.</li><li>Numerator and denominator.</li></ul>
+<h3>Geometry</h3><ul><li>Perimeter: add all sides.</li><li>Area: count unit squares inside a shape.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Fractions on number lines and missing-factor problems are favourite olympiad question types for class 3.</div>`,
+
+'class3_science': `<h2>Class 3 Science – Key Topics</h2>
+<h3>Plants</h3><ul><li>Photosynthesis simplified: leaves use sunlight + water + CO₂ → food + oxygen.</li><li>Types of roots: taproot (carrot) and fibrous root (grass).</li></ul>
+<h3>Animals</h3><ul><li>Adaptation: camel stores water; polar bear has thick fur.</li><li>Food chains: grass → deer → lion.</li></ul>
+<h3>Matter &amp; Materials</h3><ul><li>Objects and the materials they are made from.</li><li>Properties: hard/soft, transparent/opaque, magnetic/non-magnetic.</li></ul>
+<h3>Earth &amp; Environment</h3><ul><li>Soil types: sandy, clayey, loamy.</li><li>Conservation: reduce, reuse, recycle.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Food chain and adaptation questions are very frequent — practise constructing simple food chains from memory.</div>`,
+
+'class3_english': `<h2>Class 3 English – Key Topics</h2>
+<h3>Nouns &amp; Pronouns</h3><ul><li>Common, proper, collective, abstract nouns.</li><li>Pronoun agreement: He/She/They with singular/plural nouns.</li></ul>
+<h3>Verbs &amp; Tenses</h3><ul><li>Simple past, present, future tense.</li><li>Irregular verbs: go–went, see–saw, eat–ate.</li></ul>
+<h3>Adjectives &amp; Adverbs</h3><ul><li>Degrees of comparison: big → bigger → biggest.</li><li>Adverbs of time (now, soon), place (here, there), manner (quickly).</li></ul>
+<h3>Punctuation &amp; Spelling</h3><ul><li>Apostrophe for possession: cat's tail.</li><li>Common spelling rules: i before e except after c.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Irregular verb forms trip up many students — make a list and quiz yourself daily.</div>`,
+
+'class3_reasoning': `<h2>Class 3 Reasoning – Key Topics</h2>
+<h3>Number &amp; Letter Series</h3><ul><li>Identify the rule (add 2, multiply by 3, skip alternate) and find missing terms.</li><li>Mixed series: 2, A, 4, B, 6, __ → C.</li></ul>
+<h3>Matrix Reasoning</h3><ul><li>2×2 and 3×3 grids where one cell is missing — find the pattern.</li></ul>
+<h3>Spatial Reasoning</h3><ul><li>Folding a shape and predicting the folded result.</li><li>Counting cubes in a 3-D stack.</li></ul>
+<h3>Blood Relations</h3><ul><li>Simple family trees: "Riya's mother's sister is Riya's __ (aunt)."</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> For blood-relation problems, draw a quick family-tree diagram — it prevents confusion between maternal and paternal sides.</div>`,
+
+'class4_maths': `<h2>Class 4 Maths – Key Topics</h2>
+<h3>Large Numbers</h3><ul><li>Numbers up to 6 digits; Indian place-value system.</li><li>Roman numerals up to 100.</li><li>Rounding to nearest 10, 100, 1000.</li></ul>
+<h3>Multiplication &amp; Division</h3><ul><li>2-digit × 2-digit multiplication.</li><li>Long division with remainders.</li><li>Multiples and factors; HCF and LCM basics.</li></ul>
+<h3>Fractions &amp; Decimals</h3><ul><li>Equivalent fractions; comparing fractions with like/unlike denominators.</li><li>Decimal notation to tenths and hundredths.</li></ul>
+<h3>Geometry</h3><ul><li>Angles: acute, right, obtuse, straight.</li><li>Perimeter and area of rectangles and squares.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> HCF and LCM word problems are common — practise choosing which operation to use (HCF for "largest" problems, LCM for "together again" problems).</div>`,
+
+'class4_science': `<h2>Class 4 Science – Key Topics</h2>
+<h3>The Living World</h3><ul><li>Characteristics of living things: nutrition, respiration, excretion, growth, reproduction, movement, sensitivity.</li><li>Classification: plants, animals, microorganisms.</li></ul>
+<h3>Human Body</h3><ul><li>Digestive system: mouth → oesophagus → stomach → intestines.</li><li>Respiratory system: breathing in O₂, breathing out CO₂.</li><li>Skeletal system: functions of bones and joints.</li></ul>
+<h3>Light &amp; Shadow</h3><ul><li>Transparent, translucent, opaque objects.</li><li>Shadow forms when opaque object blocks light; same side as light source.</li></ul>
+<h3>Simple Machines</h3><ul><li>Lever, pulley, inclined plane, wheel-and-axle — how they make work easier.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Simple machine diagrams are tested frequently — identify the type and explain how it reduces effort.</div>`,
+
+'class4_english': `<h2>Class 4 English – Key Topics</h2>
+<h3>Parts of Speech (Advanced)</h3><ul><li>Prepositions: in, on, at, under, between, among.</li><li>Conjunctions: and, but, or, because, although.</li><li>Interjections: Wow! Oh! Ouch!</li></ul>
+<h3>Sentence Types</h3><ul><li>Declarative, interrogative, imperative, exclamatory.</li><li>Simple, compound, complex sentences.</li></ul>
+<h3>Active &amp; Passive Voice</h3><ul><li>Active: "The dog bit the boy." Passive: "The boy was bitten by the dog."</li></ul>
+<h3>Comprehension &amp; Vocabulary</h3><ul><li>Synonyms, antonyms, homophones (hear/here, their/there).</li><li>Idioms: "break the ice", "hit the nail on the head".</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Active-to-passive conversion is a predictable question — practise the formula: Object + was/were + past participle + by + Subject.</div>`,
+
+'class4_reasoning': `<h2>Class 4 Reasoning – Key Topics</h2>
+<h3>Analogy (Advanced)</h3><ul><li>Meaning-based: Doctor : Hospital :: Teacher : __ (School).</li><li>Degree-based: Warm : Hot :: Cool : __ (Cold).</li></ul>
+<h3>Classification</h3><ul><li>Group by function, material, habitat, etc.</li></ul>
+<h3>Coding–Decoding</h3><ul><li>Letter shifting: A→D (shift +3), B→E, etc.</li><li>Number coding: each letter gets its alphabet position number.</li></ul>
+<h3>Direction &amp; Distance</h3><ul><li>Cardinal directions; calculate shortest distance after turns.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> For direction problems, always draw a compass diagram first and mark each movement — mistakes happen when you try to visualise only in your head.</div>`,
+
+'class5_maths': `<h2>Class 5 Maths – Key Topics</h2>
+<h3>Number System</h3><ul><li>Numbers up to 7 digits; international place-value (millions).</li><li>Prime and composite numbers; prime factorisation using factor trees.</li><li>LCM and HCF by prime factorisation method.</li></ul>
+<h3>Fractions &amp; Decimals</h3><ul><li>Addition and subtraction of unlike fractions.</li><li>Multiplication and division of fractions.</li><li>Converting fractions to decimals and vice versa.</li></ul>
+<h3>Percentage</h3><ul><li>Percent means "out of 100": 25% = 25/100 = 0.25.</li><li>Finding x% of a number; finding what percent one number is of another.</li></ul>
+<h3>Area &amp; Volume</h3><ul><li>Area of triangle = ½ × base × height.</li><li>Volume of cuboid = l × b × h.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Percentage and fraction equivalence (25% = 1/4, 33.3% ≈ 1/3) are tested every year — memorise the common ones.</div>`,
+
+'class5_science': `<h2>Class 5 Science – Key Topics</h2>
+<h3>Food &amp; Nutrition</h3><ul><li>Nutrients: carbohydrates (energy), proteins (growth), fats (stored energy), vitamins, minerals, water.</li><li>Deficiency diseases: scurvy (Vit C), rickets (Vit D), anaemia (iron).</li></ul>
+<h3>Living World</h3><ul><li>Cell — basic unit of life; plant cell has cell wall, chloroplast.</li><li>Photosynthesis: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (simplified).</li></ul>
+<h3>Our Environment</h3><ul><li>Ecosystem components: biotic (living) and abiotic (non-living).</li><li>Food webs — multiple food chains linked.</li></ul>
+<h3>Matter</h3><ul><li>Properties of solids, liquids, gases.</li><li>Physical vs. chemical changes.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Nutrient functions and deficiency diseases are high-yield topics — make a 3-column table (Nutrient | Source | Deficiency Disease).</div>`,
+
+'class5_english': `<h2>Class 5 English – Key Topics</h2>
+<h3>Grammar</h3><ul><li>Reported speech: "He said, 'I am happy'" → "He said that he was happy."</li><li>Conditionals: If + present → future (If it rains, I will stay home).</li><li>Modal verbs: can, could, may, might, should, must.</li></ul>
+<h3>Comprehension Strategies</h3><ul><li>Skimming for gist; scanning for specific information.</li><li>Inferential questions: what does the author imply?</li></ul>
+<h3>Vocabulary</h3><ul><li>Prefixes: un-, dis-, mis-, pre-.</li><li>Suffixes: -tion, -ness, -ly, -ful.</li><li>One-word substitutions: "one who heals the sick" = doctor.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Reported speech tense shifts catch many students — remember: present → past, will → would, can → could.</div>`,
+
+'class5_reasoning': `<h2>Class 5 Reasoning – Key Topics</h2>
+<h3>Series (Number &amp; Letter)</h3><ul><li>Mixed arithmetic series: 3, 6, 12, 24, __ (multiply by 2).</li><li>Alphabet position: A=1, Z=26. Reverse: A=26, Z=1.</li></ul>
+<h3>Figure-Based</h3><ul><li>Mirror image, water reflection of figures.</li><li>Embedded figures — find the smaller shape hidden in a larger one.</li></ul>
+<h3>Logical Venn Diagrams</h3><ul><li>Represent relationships between sets (animals, pets, dogs).</li></ul>
+<h3>Arithmetic Reasoning</h3><ul><li>Age problems, simple time-and-work.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> For Venn diagram questions, draw and label all three regions (A only, B only, A∩B) before answering — avoids double-counting errors.</div>`,
+
+'class6_maths': `<h2>Class 6 Maths – Key Topics</h2>
+<h3>Number System</h3><ul><li>Natural numbers, whole numbers, integers on a number line.</li><li>Factors, multiples, prime factorisation; HCF and LCM.</li><li>Operations on integers including negative numbers.</li></ul>
+<h3>Fractions &amp; Decimals</h3><ul><li>All four operations on fractions and decimals.</li><li>Converting between fractions, decimals, and percentages.</li></ul>
+<h3>Algebra Basics</h3><ul><li>Variables and constants; forming algebraic expressions.</li><li>Simple linear equations: 2x + 3 = 11 → x = 4.</li></ul>
+<h3>Geometry</h3><ul><li>Types of angles; properties of triangles (angle sum = 180°).</li><li>Construction: bisect a line segment, draw perpendicular.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Integer addition/subtraction on a number line and simple equation solving are the two most-tested Class 6 topics in IMO.</div>`,
+
+'class6_science': `<h2>Class 6 Science – Key Topics</h2>
+<h3>Food</h3><ul><li>Sources: plant-based and animal-based. Nutrients and balanced diet.</li><li>Components: carbohydrates, proteins, fats, vitamins, minerals.</li></ul>
+<h3>Living Organisms</h3><ul><li>Cell — basic structural and functional unit.</li><li>Habitat and adaptation: aquatic, terrestrial, aerial.</li></ul>
+<h3>Motion &amp; Measurement</h3><ul><li>SI units for length, mass, time.</li><li>Types of motion: linear, circular, periodic, random.</li></ul>
+<h3>Light &amp; Shadows</h3><ul><li>Luminous vs. non-luminous objects; rectilinear propagation of light.</li><li>Formation of shadows; pinhole camera concept.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Know SI units and their abbreviations thoroughly — a unit conversion question is almost guaranteed in NSO.</div>`,
+
+'class6_english': `<h2>Class 6 English – Key Topics</h2>
+<h3>Parts of Speech</h3><ul><li>Full review: noun, pronoun, verb, adjective, adverb, preposition, conjunction, interjection.</li><li>Determiners: a, an, the, some, any, each, every.</li></ul>
+<h3>Tenses (Full Set)</h3><ul><li>Simple, continuous, perfect in present and past.</li><li>Future: will/shall, going to.</li></ul>
+<h3>Reading &amp; Writing</h3><ul><li>Formal letter format: address, date, salutation, body, closing.</li><li>Paragraph writing with a topic sentence, supporting sentences, and conclusion.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Tense-identification and error-spotting questions dominate EIO — write a chart of all 12 tenses with one example sentence each.</div>`,
+
+'class6_reasoning': `<h2>Class 6 Reasoning – Key Topics</h2>
+<h3>Analogy &amp; Classification</h3><ul><li>Word analogy, number analogy, letter analogy.</li><li>Find the odd one out using multiple criteria.</li></ul>
+<h3>Series</h3><ul><li>Number series with two interleaved sequences.</li><li>Alpha-numeric series combining letters and numbers.</li></ul>
+<h3>Ranking &amp; Ordering</h3><ul><li>Rank of a person from top and bottom; find total strength.</li><li>Arrange statements in logical sequence.</li></ul>
+<h3>Calendar</h3><ul><li>Days in each month; leap year rule (divisible by 4, century divisible by 400).</li><li>Find day of a given date given the day of another date.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Calendar problems become easy once you memorise the odd-days concept — 1 ordinary year = 1 odd day, 1 leap year = 2 odd days.</div>`,
+
+'class7_maths': `<h2>Class 7 Maths – Key Topics</h2>
+<h3>Integers &amp; Rational Numbers</h3><ul><li>Operations on rational numbers (p/q form, q≠0).</li><li>Rational numbers on number line; absolute value.</li></ul>
+<h3>Algebraic Expressions</h3><ul><li>Like and unlike terms; addition and subtraction of expressions.</li><li>Simple equations — transpose method.</li></ul>
+<h3>Lines &amp; Angles</h3><ul><li>Complementary (sum 90°), supplementary (sum 180°) angles.</li><li>Vertically opposite angles are equal.</li><li>Parallel lines with a transversal: alternate, corresponding, co-interior angles.</li></ul>
+<h3>Triangles</h3><ul><li>Congruence criteria: SSS, SAS, ASA, RHS.</li><li>Inequalities: longer side opposite larger angle.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Angle-chasing in parallel-line diagrams is the #1 geometry problem type in IMO Class 7 — practise identifying angle pairs instantly.</div>`,
+
+'class7_science': `<h2>Class 7 Science – Key Topics</h2>
+<h3>Nutrition</h3><ul><li>Autotrophs (make own food) vs. heterotrophs (consume others).</li><li>Digestive enzymes: amylase (starch), pepsin (protein), lipase (fat).</li></ul>
+<h3>Heat &amp; Temperature</h3><ul><li>Conduction, convection, radiation with examples.</li><li>Celsius and Kelvin scales; conversion: K = °C + 273.</li></ul>
+<h3>Acids, Bases &amp; Salts</h3><ul><li>pH scale: &lt;7 acidic, =7 neutral, &gt;7 basic.</li><li>Indicators: litmus, phenolphthalein, methyl orange.</li></ul>
+<h3>Motion &amp; Time</h3><ul><li>Speed = Distance ÷ Time; unit: m/s or km/h.</li><li>Distance-time graph: slope = speed.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> pH and indicator colour changes are a guaranteed 2–3 marks in NSO — memorise the colour table for litmus and universal indicator.</div>`,
+
+'class7_english': `<h2>Class 7 English – Key Topics</h2>
+<h3>Advanced Grammar</h3><ul><li>Clauses: main (independent) and subordinate (dependent).</li><li>Relative clauses: who, which, that, whose.</li><li>Non-finite verbs: infinitive (to run), gerund (running), participle (running dog).</li></ul>
+<h3>Reported Speech</h3><ul><li>Statements, questions, commands in indirect speech.</li><li>Pronoun and tense changes when reporting.</li></ul>
+<h3>Vocabulary Building</h3><ul><li>Word roots: bene- (good), mal- (bad), aqua- (water), terra- (earth).</li><li>Context clues to infer meaning of unfamiliar words.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Indirect-speech questions often test tricky time expressions ("yesterday" → "the previous day") — compile a full list and memorise them.</div>`,
+
+'class7_reasoning': `<h2>Class 7 Reasoning – Key Topics</h2>
+<h3>Statements &amp; Conclusions</h3><ul><li>Syllogism: draw Venn diagrams to test "All", "Some", "No" statements.</li><li>Conclusion is valid only if always true from given statements.</li></ul>
+<h3>Input–Output</h3><ul><li>Machines that rearrange numbers/words by a fixed rule each step — trace the rule.</li></ul>
+<h3>Clocks</h3><ul><li>Hour hand moves 0.5°/min; minute hand moves 6°/min.</li><li>Angle between hands at time H:M = |30H − 5.5M|°.</li></ul>
+<h3>Data Interpretation</h3><ul><li>Read bar charts and pie charts; calculate percentage, ratio, average.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> The clock-angle formula |30H − 5.5M| gives you the answer in one step — memorise it; deriving it during the exam wastes time.</div>`,
+
+'class8_maths': `<h2>Class 8 Maths – Key Topics</h2>
+<h3>Number System</h3><ul><li>Squares and square roots; cubes and cube roots.</li><li>Rational and irrational numbers; real number line.</li></ul>
+<h3>Algebra</h3><ul><li>Algebraic identities: (a+b)², (a-b)², (a+b)(a-b), (a+b)³.</li><li>Factorisation: common factors, grouping, difference of squares.</li><li>Linear equations in one and two variables.</li></ul>
+<h3>Geometry</h3><ul><li>Properties of quadrilaterals: parallelogram, rhombus, rectangle, square, kite, trapezium.</li><li>Area of polygons by dividing into triangles.</li></ul>
+<h3>Mensuration</h3><ul><li>Curved surface area and volume of cylinder and cone.</li><li>Surface area and volume of sphere.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Algebraic identity factoring appears in 3–4 questions every year — drill all four standard identities until you can expand/factor in under 30 seconds.</div>`,
+
+'class8_science': `<h2>Class 8 Science – Key Topics</h2>
+<h3>Cell Biology</h3><ul><li>Plant cell vs. animal cell differences (cell wall, vacuole, chloroplast).</li><li>Cell division: mitosis (growth), meiosis (reproduction).</li></ul>
+<h3>Force &amp; Pressure</h3><ul><li>Resultant of forces; friction — static, kinetic, rolling.</li><li>Pressure = Force / Area; atmospheric pressure: 101325 Pa.</li></ul>
+<h3>Chemical Reactions</h3><ul><li>Types: combination, decomposition, displacement, double displacement, redox.</li><li>Balancing chemical equations.</li></ul>
+<h3>Metals &amp; Non-Metals</h3><ul><li>Physical properties (lustre, malleability) and chemical reactivity series.</li><li>Corrosion: iron + water + oxygen → rust (Fe₂O₃·xH₂O).</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Balancing equations and identifying reaction types are combined in NSO questions — practise both skills together using the same equation.</div>`,
+
+'class8_english': `<h2>Class 8 English – Key Topics</h2>
+<h3>Grammar</h3><ul><li>Voice (active/passive) in all tenses.</li><li>Reported speech for all sentence types and tenses.</li><li>Conditionals (zero, first, second, third).</li></ul>
+<h3>Comprehension</h3><ul><li>Critical reading: author's purpose, tone, mood, bias.</li><li>Figurative language: metaphor, simile, personification, alliteration.</li></ul>
+<h3>Writing Skills</h3><ul><li>Formal/informal letter; article; diary entry.</li><li>Précis writing: condense a passage to 1/3 its length.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Third-conditional questions ("If he had studied, he would have passed") are tricky — identify the time frame (past hypothetical) to choose the correct form.</div>`,
+
+'class8_reasoning': `<h2>Class 8 Reasoning – Key Topics</h2>
+<h3>Logical Deduction</h3><ul><li>Statements–Assumptions: is the assumption implicit or not?</li><li>Statements–Conclusions: which conclusion definitely follows?</li></ul>
+<h3>Cubes &amp; Dice</h3><ul><li>Unfolding a cube to identify opposite faces.</li><li>From a net, determine which face is opposite which.</li></ul>
+<h3>Puzzles</h3><ul><li>Seating arrangement: linear and circular.</li><li>Scheduling: who does what on which day.</li></ul>
+<h3>Mathematical Operations</h3><ul><li>If * means + and + means ×, evaluate expressions.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> For dice problems, write "opposite pairs" immediately on reading the question — then the answer is usually visible without visualization.</div>`,
+
+'class9_maths': `<h2>Class 9 Maths – Key Topics</h2>
+<h3>Number Systems</h3><ul><li>Irrational numbers; decimal expansions — terminating and non-terminating recurring.</li><li>Rationalising the denominator: 1/√2 = √2/2.</li><li>Laws of exponents for real numbers.</li></ul>
+<h3>Algebra</h3><ul><li>Polynomials: degree, remainder theorem, factor theorem.</li><li>Algebraic identities (5 standard ones including sum of cubes).</li><li>Linear equations in two variables; graphical representation.</li></ul>
+<h3>Geometry</h3><ul><li>Euclid's postulates; lines and angles proofs.</li><li>Triangle congruence and properties; quadrilateral properties.</li><li>Circles: chord, arc, sector; angle subtended at centre = 2 × angle at circumference.</li></ul>
+<h3>Statistics &amp; Probability</h3><ul><li>Mean, median, mode for ungrouped data.</li><li>Bar chart, histogram, frequency polygon.</li><li>Probability = favourable outcomes / total outcomes.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Circle-angle theorems are a goldmine for olympiad problems — know all six key theorems and practise angle-chasing with them.</div>`,
+
+'class9_science': `<h2>Class 9 Science – Key Topics</h2>
+<h3>Matter</h3><ul><li>States of matter and interconversion; evaporation and its factors.</li><li>Mixtures vs. compounds; separation methods (distillation, chromatography).</li><li>Atoms and molecules; molecular mass; mole concept.</li></ul>
+<h3>Biology</h3><ul><li>Cell organelles and functions: mitochondria (energy), ribosome (protein synthesis), chloroplast (photosynthesis).</li><li>Tissues: plant (meristematic, permanent) and animal (epithelial, connective, muscular, nervous).</li></ul>
+<h3>Physics</h3><ul><li>Motion: uniform, non-uniform; equations of motion (v=u+at, s=ut+½at², v²=u²+2as).</li><li>Force and Newton's three laws; momentum = mass × velocity.</li><li>Gravitation: g = 9.8 m/s²; weight vs. mass.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Equations of motion problems require careful identification of which variables are known — write u, v, a, s, t before selecting the equation.</div>`,
+
+'class9_english': `<h2>Class 9 English – Key Topics</h2>
+<h3>Advanced Grammar</h3><ul><li>Subjunctive mood: "I wish he were here."</li><li>Inversion: "Never have I seen such beauty."</li><li>Ellipsis and substitution for avoiding repetition.</li></ul>
+<h3>Literature Skills</h3><ul><li>Themes, motifs, and symbolism in prose and poetry.</li><li>Character analysis: motivation, conflict, development.</li><li>Poetic devices: enjambment, caesura, rhyme scheme.</li></ul>
+<h3>Vocabulary</h3><ul><li>Latin/Greek roots: log (word), phon (sound), graph (write), bio (life).</li><li>Foreign words in English: en masse, carte blanche, faux pas.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> EIO passages often test inferential comprehension — practise reading between the lines and identifying the author's unstated assumptions.</div>`,
+
+'class9_reasoning': `<h2>Class 9 Reasoning – Key Topics</h2>
+<h3>Analytical Reasoning</h3><ul><li>Selecting information from conditions: constraint-based arrangement.</li><li>Syllogism: 4-statement problems with multiple conclusions.</li></ul>
+<h3>Data Sufficiency</h3><ul><li>Determine if given data is enough to answer a specific question (no need to actually solve).</li></ul>
+<h3>Critical Reasoning</h3><ul><li>Strengthen / weaken an argument.</li><li>Find the assumption underlying a conclusion.</li></ul>
+<h3>Quantitative Reasoning</h3><ul><li>Work and time, pipes and cisterns.</li><li>Ratio, proportion, partnerships.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> For "strengthen/weaken" questions, ask yourself: does this new fact make the conclusion more or less probable? Ignore information about irrelevant groups.</div>`,
+
+'class10_maths': `<h2>Class 10 Maths – Key Topics</h2>
+<h3>Algebra</h3><ul><li>Quadratic equations: factoring, completing the square, quadratic formula.</li><li>Discriminant: b²-4ac &gt; 0 (2 real roots), = 0 (1 root), &lt; 0 (no real roots).</li><li>Arithmetic progressions: aₙ = a + (n-1)d; Sₙ = n/2[2a + (n-1)d].</li></ul>
+<h3>Geometry &amp; Trigonometry</h3><ul><li>Similar triangles: AA, SSS, SAS similarity; corresponding sides proportional.</li><li>Trigonometric ratios and complementary angles; standard values table.</li><li>Heights and distances using sin, cos, tan.</li></ul>
+<h3>Coordinate Geometry</h3><ul><li>Distance formula; mid-point formula; section formula.</li><li>Area of triangle with vertices.</li></ul>
+<h3>Statistics &amp; Probability</h3><ul><li>Grouped data: mean by direct, assumed-mean, step-deviation methods.</li><li>Median and mode from grouped frequency table.</li><li>Cumulative frequency curve (ogive).</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Trig standard values (sin 30°, cos 45°, tan 60°, etc.) must be instant recall — even 2 seconds of hesitation per question adds up to missed marks.</div>`,
+
+'class10_science': `<h2>Class 10 Science – Key Topics</h2>
+<h3>Chemistry</h3><ul><li>Acids, bases, salts: reactions, pH indicators, neutralisation.</li><li>Metals and non-metals: reactivity series, extraction of metals, corrosion.</li><li>Carbon compounds: covalent bonding, organic nomenclature basics, homologous series.</li></ul>
+<h3>Biology</h3><ul><li>Life processes: nutrition (photosynthesis, digestion), respiration (aerobic/anaerobic), transportation (blood, xylem, phloem), excretion (kidney, dialysis).</li><li>Control and coordination: nervous system (neuron, reflex arc); hormones.</li><li>Heredity: Mendel's laws, monohybrid and dihybrid crosses, dominant/recessive.</li></ul>
+<h3>Physics</h3><ul><li>Light: reflection laws, mirror formula (1/v + 1/u = 1/f); refraction, Snell's law; lenses.</li><li>Electricity: Ohm's law (V=IR); series and parallel circuits; Joule's heating law.</li><li>Magnetic effects: right-hand rule, Fleming's rules, AC/DC generators and motors.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Mirror and lens formula sign conventions differ by source — stick to the New Cartesian convention used in NCERT and apply it consistently to all questions.</div>`,
+
+'class10_english': `<h2>Class 10 English – Key Topics</h2>
+<h3>Grammar (High Level)</h3><ul><li>All modal verbs and their nuances (ability, permission, probability, obligation).</li><li>Complex passive constructions: "It is believed that…", "He is said to…".</li><li>Cleft sentences for emphasis: "It was John who called."</li></ul>
+<h3>Literature Analysis</h3><ul><li>Prose: narrative technique, unreliable narrator, irony.</li><li>Poetry: prosody (metre, foot, verse forms), tone vs. mood.</li><li>Drama: dramatic irony, soliloquy, aside.</li></ul>
+<h3>Writing</h3><ul><li>Discursive essay: for/against with balanced conclusion.</li><li>Report writing: formal language, subheadings, passive voice.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Literary device identification questions reward pattern recognition — practise labelling devices in unseen poems rapidly without re-reading the poem.</div>`,
+
+'class10_reasoning': `<h2>Class 10 Reasoning – Key Topics</h2>
+<h3>High-Order Deduction</h3><ul><li>Multi-step syllogisms; Venn-diagram validation.</li><li>Statement–Course of Action: choose the most practical response.</li></ul>
+<h3>Non-Verbal Reasoning</h3><ul><li>Paper-folding and cutting: predict the unfolded shape.</li><li>Figure matrix (3×3 grid): identify the pattern rule in rows and columns.</li></ul>
+<h3>Data Interpretation</h3><ul><li>Tabular data, mixed charts, moving averages.</li></ul>
+<h3>Logical Puzzles</h3><ul><li>Combination puzzles: order + group + attribute.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Paper-folding questions: always track the fold line and symmetry axis physically on paper — mental visualization leads to errors under time pressure.</div>`,
+
+'class11_maths': `<h2>Class 11 Maths – Key Topics</h2>
+<h3>Sets, Relations &amp; Functions</h3><ul><li>Types of sets; union, intersection, complement using Venn diagrams.</li><li>Domain, codomain, range; types of functions (one-one, onto, bijection).</li></ul>
+<h3>Trigonometry</h3><ul><li>Radian measure; arc length = rθ.</li><li>Trigonometric identities and compound-angle formulae.</li><li>General solutions of trig equations.</li></ul>
+<h3>Algebra</h3><ul><li>Binomial theorem for positive integral index; expansion, general term.</li><li>Permutations and combinations: ⁿPr and ⁿCr with applications.</li><li>Sequences and series: AP, GP, sum of n terms, sum to infinity of GP.</li></ul>
+<h3>Calculus Intro</h3><ul><li>Limits: direct substitution, factoring, L'Hôpital (preview).</li><li>Derivatives: first principles; product, quotient, chain rules.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Binomial expansion questions often ask for the term independent of x — set the power of x to zero in the general term formula and solve for r.</div>`,
+
+'class11_science': `<h2>Class 11 Science (Physics) – Key Topics</h2>
+<h3>Units &amp; Measurements</h3><ul><li>SI base units (7); dimensional analysis; significant figures.</li><li>Error analysis: absolute, relative, and percentage error.</li></ul>
+<h3>Kinematics</h3><ul><li>Equations of motion in 1-D; projectile motion.</li><li>Relative velocity; circular motion: ω, α, centripetal acceleration = v²/r.</li></ul>
+<h3>Laws of Motion</h3><ul><li>Newton's three laws; friction (static μₛ, kinetic μₖ); pulleys.</li><li>Pseudo force in non-inertial frames.</li></ul>
+<h3>Work, Energy &amp; Power</h3><ul><li>Work-energy theorem; conservation of energy.</li><li>Elastic and inelastic collisions; coefficient of restitution.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> In projectile questions, treat horizontal and vertical components completely independently — common error is mixing them in a single equation.</div>`,
+
+'class11_english': `<h2>Class 11 English – Key Topics</h2>
+<h3>Grammar at Advanced Level</h3><ul><li>Nominalisation: converting verbs/adjectives to nouns for formal writing.</li><li>Participial phrases; dangling modifiers and how to fix them.</li><li>Discourse markers: moreover, nevertheless, by contrast, in retrospect.</li></ul>
+<h3>Literature</h3><ul><li>Prose fiction: point of view (1st, 3rd limited, omniscient, stream of consciousness).</li><li>Poetry: ode, elegy, sonnet forms; literary movements (Romanticism, Modernism).</li></ul>
+<h3>Writing</h3><ul><li>Academic essay: thesis statement, body paragraphs, counterargument, rebuttal.</li><li>Summary writing and note-making with structured headings.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> EIO Class 11 tests advanced vocabulary in context — read editorials and note unfamiliar words; aim for 10 new academic-register words per day.</div>`,
+
+'class11_reasoning': `<h2>Class 11 Reasoning – Key Topics</h2>
+<h3>Advanced Syllogism</h3><ul><li>Possibility cases ("Some A are not B" — what is possible?).</li><li>Coded syllogisms; complementary pairs.</li></ul>
+<h3>Input–Output (Advanced)</h3><ul><li>Multi-step machine outputs where words and numbers are rearranged by separate rules.</li></ul>
+<h3>Decision Making</h3><ul><li>Given facts and conditions, select the right course of action from 4–5 options.</li></ul>
+<h3>Quantitative Reasoning</h3><ul><li>Mixture and alligation; speed-distance-time with relative speeds; work and wages.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Alligation rule (cross-difference method) solves mixture problems in one step — practice until it's automatic so you don't fall back to slow simultaneous-equations method.</div>`,
+
+'class12_maths': `<h2>Class 12 Maths – Key Topics</h2>
+<h3>Calculus</h3><ul><li>Differentiation: chain, product, quotient rules; implicit differentiation.</li><li>Applications: tangents and normals, maxima/minima (first and second derivative tests), rate of change.</li><li>Integration: standard integrals, substitution, integration by parts, definite integrals.</li><li>Area under curves; differential equations (variable separable).</li></ul>
+<h3>Algebra</h3><ul><li>Matrices: types, operations, transpose, inverse (2×2 and 3×3).</li><li>Determinants: properties, expansion, Cramer's rule.</li><li>Relations and functions: composition, inverse functions.</li></ul>
+<h3>Vectors &amp; 3-D Geometry</h3><ul><li>Dot product, cross product, scalar triple product.</li><li>Equation of line and plane in 3-D; angle between them; distance formulae.</li></ul>
+<h3>Probability</h3><ul><li>Conditional probability; Bayes' theorem; Bernoulli trials; binomial distribution.</li></ul>
+<div style="border-left:4px solid #1565C0;padding:10px 14px;background:#E3F2FD;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Bayes' theorem problems always have a "tree" structure — draw the probability tree first; the answer is just a fraction of branches. Never try to set it up algebraically without the tree.</div>`,
+
+'class12_science': `<h2>Class 12 Science (Physics) – Key Topics</h2>
+<h3>Electrostatics</h3><ul><li>Coulomb's law; electric field and potential; Gauss's law.</li><li>Capacitors: series and parallel; energy stored = ½CV².</li></ul>
+<h3>Current Electricity</h3><ul><li>Ohm's law; resistivity; Kirchhoff's laws (KCL, KVL); Wheatstone bridge.</li></ul>
+<h3>Magnetism &amp; Electromagnetic Induction</h3><ul><li>Biot-Savart law; Ampere's law; force on current in magnetic field.</li><li>Faraday's laws; Lenz's law; self-inductance L; LCR circuits.</li></ul>
+<h3>Optics</h3><ul><li>Wave optics: interference (Young's double slit), diffraction, polarisation.</li><li>Ray optics: lens maker's equation; optical instruments (microscope, telescope).</li></ul>
+<h3>Modern Physics</h3><ul><li>Photoelectric effect: E = hf − φ.</li><li>Bohr's model; de Broglie wavelength; radioactivity and half-life.</li></ul>
+<div style="border-left:4px solid #2E7D32;padding:10px 14px;background:#E8F5E9;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> Kirchhoff's law problems require a disciplined sign convention — always define current direction for each branch before writing equations, and stick to it.</div>`,
+
+'class12_english': `<h2>Class 12 English – Key Topics</h2>
+<h3>Grammar &amp; Usage</h3><ul><li>Advanced conditionals and mixed tenses in complex sentences.</li><li>Parallelism in lists and comparisons.</li><li>Pronoun reference clarity; sentence-level ambiguity correction.</li></ul>
+<h3>Literature</h3><ul><li>Novel analysis: narrative structure (exposition, rising action, climax, resolution).</li><li>Critical lens: feminist, Marxist, post-colonial readings of texts.</li><li>Drama: tragedy (hamartia, catharsis), comedy conventions.</li></ul>
+<h3>Writing</h3><ul><li>Argumentative essay: logical fallacy identification; evidence hierarchy.</li><li>Research-style writing: citations, paraphrasing, avoiding plagiarism.</li></ul>
+<div style="border-left:4px solid #F57F17;padding:10px 14px;background:#FFFDE7;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> For high-scoring comprehension answers, always quote directly from the text and then explain the significance — do not paraphrase without attribution.</div>`,
+
+'class12_reasoning': `<h2>Class 12 Reasoning – Key Topics</h2>
+<h3>Critical Reasoning (Exam Level)</h3><ul><li>Argument analysis: valid vs. sound arguments; deductive vs. inductive.</li><li>Identify logical fallacies: ad hominem, straw man, false dilemma, circular reasoning.</li></ul>
+<h3>Quantitative Aptitude</h3><ul><li>Profit and loss with successive discounts; compound interest; time-speed-distance (trains, boats).</li></ul>
+<h3>Set Theory Applications</h3><ul><li>Venn diagram problems with 3 sets; inclusion-exclusion principle.</li></ul>
+<h3>Abstract Reasoning</h3><ul><li>Rule-detection in figure sequences with rotation, reflection, and attribute changes simultaneously.</li></ul>
+<div style="border-left:4px solid #6A1B9A;padding:10px 14px;background:#F3E5F5;border-radius:4px;margin-top:12px"><strong>Olympiad Tip:</strong> 3-set Venn diagram problems: always fill in the intersection of all three first (centre region), then work outward — going from outside-in causes double-counting errors.</div>`
+};
+
 /* LOAD CONTENT */
 async function loadStudyContent(){
     const div = document.getElementById('contentInjection');
@@ -536,10 +862,15 @@ async function loadStudyContent(){
             });
 
         }else{
-            div.innerHTML = `<div class='note-card'>
-                <h3>Content updating soon...</h3>
-                <p>Notes for Class ${classNum} ${subject} will be available shortly.</p>
-            </div>`;
+            const key = `${classStr}_${subject}`;
+            if(builtinContent[key]){
+                div.innerHTML = `<div class='note-card'>${builtinContent[key]}</div>`;
+            }else{
+                div.innerHTML = `<div class='note-card'>
+                    <h3>Content updating soon...</h3>
+                    <p>Notes for Class ${classNum} ${subject} will be available shortly.</p>
+                </div>`;
+            }
         }
 
     }catch(err){
