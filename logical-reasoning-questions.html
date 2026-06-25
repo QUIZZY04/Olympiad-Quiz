@@ -26,10 +26,56 @@
     </style>
 </head>
 <body>
-    <nav style="background: rgba(255, 255, 255, 0.95); border-bottom:1px solid var(--border); padding:15px 5%; display:flex; justify-content:space-between; align-items:center;">
-        <a href="index.html" style="font-size: 1.5rem; font-weight: 800; color: var(--text); text-decoration: none;">Olympiad Portal</a>
-        <a href="chapterwise.html" style="background: var(--brand); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 700;">Take Reasoning Quiz</a>
-    </nav>
+    <nav class="navbar">
+    <div class="navbar-inner">
+        <a href="/" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+        <div class="navbar-links">
+            <a href="mock.html" class="nav-link">Mock Tests</a>
+            <a href="chapterwise.html" class="nav-link">Chapterwise</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="study.html">Study Material</a>
+                    <a href="blog.html">Success Guides</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a href="olympiad-syllabus.html" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="sof-syllabus.html">SOF Olympiads</a>
+                    <a href="silverzone-syllabus.html">SilverZone</a>
+                    <a href="crest-syllabus.html">CREST Olympiads</a>
+                    <a href="nstse-syllabus.html">NSTSE</a>
+                    <a href="spellbee-syllabus.html">SpellBee</a>
+                    <a href="hummingbird-syllabus.html">Humming Bird</a>
+                    <a href="ogo-syllabus.html">Orange Olympiad</a>
+                </div>
+            </div>
+            <a href="live.html" class="nav-link">Live Arena</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="jee_main.html">JEE Main</a>
+                    <a href="neet.html">NEET</a>
+                    <a href="jee-main-pyq.html">JEE PYQs</a>
+                </div>
+            </div>
+            <a id="adminTab" href="admin.html" class="nav-link" style="display:none;color:#22c55e;">Admin</a>
+        </div>
+        <div class="navbar-actions">
+            <a href="login.html" class="btn-login">Login</a>
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</nav>
 
     <div class="container">
         <div class="hero">
