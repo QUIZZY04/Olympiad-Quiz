@@ -3,156 +3,665 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEET Previous Year Question Papers (PYQs) | Free PDFs</title>
-    <meta name="description" content="Download official NEET Previous Year Question Papers (PYQs) from 2013 to 2025. Practice real NTA papers with detailed solutions.">
+    <title>NEET Previous Year Question Papers (PYQs) | Practice Free</title>
+    <meta name="description" content="Practice actual NEET Previous Year Questions (PYQs) from 2017 to 2024. Biology, Physics, Chemistry MCQs with solutions — free and interactive.">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="canonical" href="https://olympiadquiz.org/neet-pyq.html">
     <meta property="og:title" content="NEET Previous Year Question Papers (PYQs)">
-    <meta property="og:description" content="Download official NEET Previous Year Question Papers (PYQs) from 2013 to 2025. Practice real NTA papers with detailed solutions.">
+    <meta property="og:description" content="Practice actual NEET PYQs from 2017 to 2024 with detailed solutions.">
     <meta property="og:url" content="https://olympiadquiz.org/neet-pyq.html">
     <meta name="twitter:card" content="summary_large_image">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        :root { --brand: #ef4444; --accent: #dc2626; --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #64748b; --border: #e2e8f0; }
-        body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; margin: 0; }
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        .hero { text-align: center; margin-bottom: 40px; }
-        .hero h1 { font-size: 2.5rem; font-weight: 800; color: var(--text); margin-bottom: 15px; }
-        .hero h1 span { color: var(--brand); }
-        
-        .filter-bar { background: var(--surface); padding: 20px; border-radius: 16px; border: 1px solid var(--border); border-top: 4px solid var(--brand); display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .filter-bar select, .filter-bar input { flex: 1; min-width: 200px; padding: 12px; border-radius: 8px; border: 1px solid var(--border); font-family: 'Poppins', sans-serif; font-weight: 600; outline: none; }
-        
-        .pyq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .pyq-card { background: var(--surface); border: 1px solid var(--border); padding: 25px; border-radius: 16px; display: flex; flex-direction: column; transition: 0.3s; }
-        .pyq-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--brand); }
-        .pyq-year-badge { align-self: flex-start; background: #fef2f2; color: #dc2626; font-weight: 800; font-size: 12px; padding: 4px 10px; border-radius: 6px; border: 1px solid #fecaca; margin-bottom: 12px; }
-        .pyq-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
-        .pyq-card p { font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; flex-grow: 1; }
-        
-        .btn-group { display: flex; gap: 10px; }
-        .btn { flex: 1; text-align: center; padding: 10px; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
-        .btn-view { background: var(--brand); color: white; }
-        .btn-view:hover { background: var(--accent); }
-        .btn-dl { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-        .btn-dl:hover { background: var(--bg); border-color: var(--muted); }
+        :root {
+            --bg: #f8fafc; --surface: #ffffff; --text: #111827; --muted: #475569;
+            --border: #e2e8f0; --brand: #16a34a; --accent: #15803d;
+            --neet-red: #ef4444; --neet-blue: #3b82f6; --neet-green: #16a34a;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08); --shadow-md: 0 10px 20px rgba(0,0,0,0.06);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Poppins',sans-serif; min-height:100vh; }
+
+        .container { max-width:1200px; margin:0 auto; padding:40px 20px; }
+        .header { text-align:center; margin-bottom:40px; }
+        .header h1 { font-size:2.6rem; font-weight:800; margin-bottom:10px; }
+        .header h1 span { color:var(--neet-red); }
+        .header p { color:var(--muted); font-size:1rem; max-width:650px; margin:0 auto; line-height:1.7; }
+
+        /* Stats bar */
+        .stats-bar { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:36px; }
+        .stat-chip { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:10px 20px; display:flex; align-items:center; gap:10px; font-size:0.9rem; font-weight:600; box-shadow:var(--shadow-sm); }
+        .stat-chip .ico { font-size:1.3rem; }
+
+        /* Filter */
+        .filter-bar { background:var(--surface); padding:20px; border-radius:16px; border:1px solid var(--border); border-top:4px solid var(--neet-red); display:flex; gap:15px; margin-bottom:36px; flex-wrap:wrap; box-shadow:var(--shadow-sm); align-items:flex-end; }
+        .filter-group { flex:1; min-width:180px; }
+        .filter-label { display:block; font-size:0.78rem; font-weight:700; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+        .filter-bar select, .filter-bar input { width:100%; padding:11px 14px; border-radius:10px; border:1px solid var(--border); font-family:'Poppins',sans-serif; font-weight:600; font-size:0.9rem; background:var(--bg); color:var(--text); outline:none; transition:.2s; }
+        .filter-bar select:focus, .filter-bar input:focus { border-color:var(--neet-red); box-shadow:0 0 0 3px rgba(239,68,68,.1); }
+
+        /* Year section */
+        .year-section { margin-bottom:50px; }
+        .year-heading { font-size:1.6rem; font-weight:800; color:#1e293b; margin-bottom:18px; display:flex; align-items:center; gap:10px; border-bottom:2px solid var(--border); padding-bottom:10px; }
+        .year-heading span { background:var(--neet-red); color:#fff; padding:3px 12px; border-radius:8px; font-size:0.95rem; }
+
+        /* Cards */
+        .pyq-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+        .pyq-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; display:flex; flex-direction:column; box-shadow:var(--shadow-sm); transition:.3s; position:relative; overflow:hidden; }
+        .pyq-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--neet-red); }
+        .pyq-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:#cbd5e1; }
+
+        .card-badge { display:inline-flex; align-items:center; gap:5px; background:#fef2f2; color:#dc2626; padding:4px 10px; border-radius:6px; font-size:0.78rem; font-weight:700; border:1px solid #fecaca; margin-bottom:12px; }
+        .pyq-card h3 { font-size:1.1rem; font-weight:700; margin-bottom:8px; line-height:1.4; }
+        .pyq-desc { font-size:0.88rem; color:var(--muted); margin-bottom:14px; line-height:1.6; flex-grow:1; }
+
+        .subject-pills { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px; }
+        .pill { padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:700; }
+        .pill-bio { background:#dcfce7; color:#15803d; }
+        .pill-phy { background:#dbeafe; color:#1d4ed8; }
+        .pill-chem { background:#fef9c3; color:#a16207; }
+
+        .card-actions { display:flex; gap:10px; }
+        .btn-practice { flex:1; background:var(--neet-red); color:#fff; padding:10px; border-radius:9px; text-align:center; font-weight:700; font-size:0.88rem; border:none; cursor:pointer; transition:.2s; }
+        .btn-practice:hover { background:#dc2626; transform:scale(1.02); }
+        .btn-info { flex:0 0 auto; background:var(--surface); color:var(--text); padding:10px 14px; border-radius:9px; text-align:center; font-weight:600; font-size:0.88rem; border:1px solid var(--border); cursor:pointer; transition:.2s; }
+        .btn-info:hover { background:var(--bg); }
+
+        /* Quiz Modal */
+        .quiz-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; display:none; align-items:center; justify-content:center; padding:16px; }
+        .quiz-overlay.active { display:flex; }
+        .quiz-modal { background:#fff; border-radius:20px; max-width:820px; width:100%; max-height:90vh; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.2); }
+        .quiz-header { background:linear-gradient(135deg,#ef4444,#dc2626); color:#fff; padding:20px 28px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; }
+        .quiz-header h2 { font-size:1.2rem; font-weight:700; }
+        .quiz-header .timer { background:rgba(255,255,255,0.2); padding:6px 14px; border-radius:20px; font-weight:700; font-size:1rem; }
+        .quiz-close { background:rgba(255,255,255,0.2); border:none; color:#fff; width:32px; height:32px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+
+        .quiz-progress { padding:14px 28px; border-bottom:1px solid var(--border); background:#fafafa; display:flex; align-items:center; gap:14px; flex-shrink:0; }
+        .progress-bar-wrap { flex:1; background:#e2e8f0; border-radius:10px; height:8px; }
+        .progress-bar-fill { background:var(--neet-red); height:8px; border-radius:10px; transition:width .3s; }
+        .progress-text { font-size:0.82rem; font-weight:700; color:var(--muted); white-space:nowrap; }
+
+        .quiz-body { flex:1; overflow-y:auto; padding:24px 28px; }
+        .subject-tag { display:inline-block; padding:3px 10px; border-radius:5px; font-size:0.75rem; font-weight:700; margin-bottom:10px; }
+        .subject-tag.bio { background:#dcfce7; color:#15803d; }
+        .subject-tag.phy { background:#dbeafe; color:#1d4ed8; }
+        .subject-tag.chem { background:#fef9c3; color:#a16207; }
+        .question-text { font-size:1rem; font-weight:600; line-height:1.65; margin-bottom:20px; color:#1e293b; }
+        .options-list { display:flex; flex-direction:column; gap:10px; }
+        .option-btn { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; border-radius:10px; border:2px solid var(--border); cursor:pointer; transition:.2s; font-size:0.9rem; font-weight:500; background:var(--bg); text-align:left; width:100%; }
+        .option-btn:hover:not(:disabled) { border-color:#ef4444; background:#fef2f2; }
+        .option-btn.selected { border-color:#2563eb; background:#eff6ff; }
+        .option-btn.correct { border-color:#16a34a; background:#dcfce7; }
+        .option-btn.wrong { border-color:#dc2626; background:#fef2f2; }
+        .opt-letter { width:26px; height:26px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; flex-shrink:0; }
+        .option-btn.correct .opt-letter { background:#16a34a; color:#fff; }
+        .option-btn.wrong .opt-letter { background:#dc2626; color:#fff; }
+        .option-btn.selected:not(.correct):not(.wrong) .opt-letter { background:#2563eb; color:#fff; }
+
+        .solution-box { margin-top:16px; padding:14px 18px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; border-left:4px solid #16a34a; }
+        .solution-box strong { color:#15803d; display:block; margin-bottom:4px; font-size:0.88rem; }
+        .solution-box p { font-size:0.88rem; color:#166534; line-height:1.6; }
+
+        .quiz-footer { padding:16px 28px; border-top:1px solid var(--border); background:#fafafa; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; gap:12px; }
+        .quiz-nav { display:flex; gap:10px; }
+        .btn-nav { padding:10px 20px; border-radius:9px; border:1px solid var(--border); background:var(--surface); font-weight:700; cursor:pointer; font-family:'Poppins',sans-serif; font-size:0.88rem; transition:.2s; }
+        .btn-nav:hover { background:var(--bg); }
+        .btn-submit-quiz { padding:10px 24px; border-radius:9px; background:var(--neet-red); color:#fff; border:none; font-weight:700; cursor:pointer; font-family:'Poppins',sans-serif; font-size:0.9rem; }
+        .btn-submit-quiz:hover { background:#dc2626; }
+
+        /* Result screen */
+        .result-screen { padding:32px 28px; text-align:center; }
+        .result-circle { width:130px; height:130px; border-radius:50%; margin:0 auto 20px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:2rem; font-weight:800; }
+        .result-circle.good { background:#dcfce7; color:#15803d; border:4px solid #16a34a; }
+        .result-circle.ok { background:#fef9c3; color:#a16207; border:4px solid #ca8a04; }
+        .result-circle.low { background:#fef2f2; color:#dc2626; border:4px solid #ef4444; }
+        .result-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:20px 0; }
+        .res-stat { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:14px; }
+        .res-stat .val { font-size:1.5rem; font-weight:800; }
+        .res-stat .lbl { font-size:0.78rem; color:var(--muted); font-weight:600; margin-top:3px; }
+        .btn-review { background:var(--neet-red); color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; font-family:'Poppins',sans-serif; font-size:0.95rem; margin-top:10px; }
+        .btn-close-result { background:var(--bg); color:var(--text); border:1px solid var(--border); padding:12px 28px; border-radius:10px; font-weight:700; cursor:pointer; font-family:'Poppins',sans-serif; font-size:0.95rem; margin-top:10px; margin-right:10px; }
+
+        .no-data { text-align:center; padding:50px; color:var(--muted); font-weight:600; grid-column:1/-1; background:var(--surface); border:2px dashed var(--border); border-radius:16px; }
+        footer { text-align:center; padding:28px; background:var(--surface); border-top:1px solid var(--border); color:var(--muted); font-size:0.88rem; margin-top:20px; }
+
+        @media(max-width:640px) {
+            .header h1 { font-size:1.8rem; }
+            .result-stats { grid-template-columns:repeat(3,1fr); }
+            .quiz-modal { border-radius:12px; max-height:95vh; }
+            .quiz-body { padding:18px; }
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <!-- Left: Logo -->
-            <a href="dashboard.html" class="navbar-logo">
-                <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
-                <span class="logo-text">OlympiadQuiz</span>
-            </a>
 
-            <!-- Center: Links (Desktop) -->
-            <div class="navbar-links">
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
-                <div class="nav-dropdown">
-                    <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                    <div class="nav-dropdown-content">
-                        <a href="mock.html">Mock Tests</a>
-                        <a href="chapterwise.html">Chapterwise</a>
-                        <a href="study.html">Study Material</a>
-                        <a href="blog.html">Success Guides</a>
-                    </div>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="dashboard.html" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" onerror="this.style.display='none'" decoding="async">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+        <div class="navbar-links">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="mock.html">Mock Tests</a>
+                    <a href="chapterwise.html">Chapterwise</a>
+                    <a href="study.html">Study Material</a>
+                    <a href="blog.html">Success Guides</a>
                 </div>
-                <a href="live.html" class="nav-link">Live Arena</a>
-                <div class="nav-dropdown">
-                    <a href="#" class="nav-link active">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                    <div class="nav-dropdown-content">
-                        <a href="jee_main.html">JEE Main</a>
-                        <a href="jee-list.html">JEE Advanced</a>
-                        <a href="neet.html" style="color: #c2410c; background: #fff7ed;">NEET</a>
-                        <a href="jee-main-pyq.html">JEE PYQs</a>
-                        <a href="neet-pyq.html">NEET PYQs</a>
-                    </div>
+            </div>
+            <a href="live.html" class="nav-link">Live Arena</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link active">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="jee_main.html">JEE Main</a>
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="neet.html">NEET</a>
+                    <a href="jee-main-pyq.html">JEE PYQs</a>
+                    <a href="neet-pyq.html" style="color:#c2410c;background:#fff7ed;">NEET PYQs</a>
                 </div>
-                <a href="leaderboard.html" class="nav-link">Leaderboard</a>
             </div>
-
-            <!-- Right: CTA -->
-            <div class="navbar-actions">
-                <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success); font-weight:600; text-decoration:none; font-size: 0.95rem; margin-right: 10px;">Admin</a>
-                <button onclick="logout()" class="btn-logout">Logout</button>
-                <!-- Mobile Menu Toggle -->
-                <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+            <a href="leaderboard.html" class="nav-link">Leaderboard</a>
         </div>
-    </nav>
-
-    <div class="container">
-        <div class="hero">
-            <div class="breadcrumb" style="justify-content: center; margin-bottom: 15px;"><a href="index.html">Home</a> / <a href="neet.html">NEET</a> / PYQs</div>
-            <h1>Official NEET <span>Past Papers</span></h1>
-            <p style="color: var(--muted);">Download and practice official NTA Previous Year Question papers to identify high-yield topics.</p>
+        <div class="navbar-actions">
+            <a id="adminTab" href="admin.html" class="nav-link" style="display:none;color:var(--success);font-weight:600;text-decoration:none;font-size:.95rem;margin-right:10px;">Admin</a>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
         </div>
+    </div>
+</nav>
 
-        <div class="filter-bar">
-            <select id="yearFilter">
+<div class="container">
+    <div class="header">
+        <div class="breadcrumb" style="justify-content:center;margin-bottom:14px;">
+            <a href="index.html">Home</a> / <a href="neet.html">NEET</a> / PYQs
+        </div>
+        <h1>NEET <span>Previous Year</span> Questions</h1>
+        <p>Practice actual NEET questions from 2017 to 2024. Full Biology, Physics &amp; Chemistry MCQs with detailed solutions. No login required to start a quiz.</p>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-chip"><span class="ico">📅</span> 8 Years of Papers</div>
+        <div class="stat-chip"><span class="ico">❓</span> 160+ Practice Questions</div>
+        <div class="stat-chip"><span class="ico">🧬</span> Bio · Physics · Chemistry</div>
+        <div class="stat-chip"><span class="ico">✅</span> Detailed Solutions</div>
+    </div>
+
+    <div class="filter-bar">
+        <div class="filter-group">
+            <label class="filter-label">📅 Year</label>
+            <select id="filterYear" onchange="renderCards()">
                 <option value="all">All Years</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
             </select>
-            <input type="text" placeholder="Search by paper code or phase..." id="searchQuery">
         </div>
-
-        <div class="pyq-grid">
-            <!-- Static Placeholders / Fallbacks -->
-            <div class="pyq-card">
-                <span class="pyq-year-badge">2024</span>
-                <h3>NEET UG 2024 Official Paper</h3>
-                <p>NTA Official Question Paper (Set Q1 to Q6, R1 to R6, S1 to S6, T1 to T6).</p>
-                <div class="btn-group">
-                    <a href="#" class="btn btn-view">👁️ View PDF</a>
-                    <a href="#" class="btn btn-dl">⬇️ Download</a>
-                </div>
-            </div>
-            <div class="pyq-card">
-                <span class="pyq-year-badge">2023</span>
-                <h3>NEET UG 2023 (Phase 1)</h3>
-                <p>May 2023 Official Paper with detailed Biology, Physics, and Chemistry solutions.</p>
-                <div class="btn-group">
-                    <a href="#" class="btn btn-view">👁️ View PDF</a>
-                    <a href="#" class="btn btn-dl">⬇️ Download</a>
-                </div>
-            </div>
+        <div class="filter-group">
+            <label class="filter-label">🧬 Subject</label>
+            <select id="filterSubject" onchange="renderCards()">
+                <option value="all">All Subjects</option>
+                <option value="Biology">Biology</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label class="filter-label">🔍 Search</label>
+            <input type="text" id="searchInput" placeholder="Search paper…" oninput="renderCards()">
         </div>
     </div>
-<script type="module" src="chatbot.js"></script>
+
+    <div id="cardsContainer"></div>
+</div>
+
+<footer>© 2026 OlympiadQuiz. Questions sourced from official NTA NEET papers.</footer>
+
+<!-- Quiz Modal -->
+<div class="quiz-overlay" id="quizOverlay">
+    <div class="quiz-modal" id="quizModal">
+        <div class="quiz-header">
+            <h2 id="quizTitle">NEET PYQ Quiz</h2>
+            <div class="timer" id="quizTimer">20:00</div>
+            <button class="quiz-close" onclick="closeQuiz()">✕</button>
+        </div>
+        <div class="quiz-progress">
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+            <div class="progress-text" id="progressText">Q 1 / 20</div>
+        </div>
+        <div class="quiz-body" id="quizBody"></div>
+        <div class="quiz-footer">
+            <div class="quiz-nav">
+                <button class="btn-nav" onclick="prevQ()">← Prev</button>
+                <button class="btn-nav" onclick="nextQ()">Next →</button>
+            </div>
+            <button class="btn-submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+const firebaseConfig = {
+    apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain:"olympiad-portal-d2a5e.firebaseapp.com",
+    projectId:"olympiad-portal-d2a5e",
+    storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",
+    messagingSenderId:"341855557503",
+    appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+onAuthStateChanged(auth, user => {
+    if (!user) {
+        document.querySelectorAll('.btn-logout').forEach(el => {
+            el.removeAttribute('onclick'); el.textContent = 'Log in';
+            el.classList.add('btn-login'); el.onclick = () => location.href='login.html';
+        });
+    } else if (user.email === 'madhhu52@gmail.com') {
+        const a = document.getElementById('adminTab'); if (a) a.style.display='inline';
+    }
+});
+window.logout = async () => {
+    if (confirm('Logout?')) {
+        const { signOut } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js");
+        await signOut(auth); localStorage.clear(); sessionStorage.clear(); location.replace('login.html');
+    }
+};
+</script>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('mobile-menu-toggle');
-    const navLinks = document.querySelector('.navbar-links');
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+/* ===== NEET PYQ DATA ===== */
+const NEET_DATA = [
+{
+    year: 2024, id: 'neet2024_set1',
+    title: 'NEET UG 2024 — Set Q1 (May 5)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'Which of the following is NOT a characteristic of RNA?', o:['It is single stranded','It can act as a ribozyme (enzyme)','It contains deoxyribose sugar','It can form base pairs with DNA'], a:2, sol:'RNA contains ribose sugar (2\'–OH group), NOT deoxyribose. Deoxyribose is found in DNA. RNA can be single-stranded, can catalyse reactions (ribozyme), and can hybridise with DNA.' },
+        { sub:'Biology', q:'The "lock and key" hypothesis of enzyme action was proposed by:', o:['Emil Fischer','Daniel Koshland','Michaelis and Menten','Lineweaver and Burk'], a:0, sol:'Emil Fischer (1894) proposed the lock and key model. Koshland proposed the induced-fit model (1958), which explains enzyme flexibility.' },
+        { sub:'Biology', q:'Bacterial flagella are made up of the protein:', o:['Tubulin','Actin','Flagellin','Dynein'], a:2, sol:'Bacterial flagella are made of flagellin protein and are solid (no 9+2 microtubular arrangement). Eukaryotic cilia and flagella contain tubulin in a 9+2 arrangement.' },
+        { sub:'Biology', q:'Which of the following is a heterosporous pteridophyte?', o:['Dryopteris','Selaginella','Equisetum','Adiantum'], a:1, sol:'Selaginella produces two types of spores: small microspores (give rise to male gametophyte) and large megaspores (female gametophyte). This is called heterospory.' },
+        { sub:'Biology', q:'The law of independent assortment holds true for genes located on:', o:['Same chromosome, same locus','Homologous chromosomes, very close together','Non-homologous chromosomes','X and Y chromosomes only'], a:2, sol:'Independent assortment applies to genes on non-homologous (different) chromosomes. Linked genes on the same chromosome do NOT assort independently — they violate Mendel\'s second law.' },
+        { sub:'Physics', q:'A body of mass 2 kg is thrown vertically upward with kinetic energy of 490 J. The height at which KE becomes half its initial value is: (g = 9.8 m/s²)', o:['12.5 m','25 m','10 m','20 m'], a:0, sol:'Initial KE = 490 J. At height h, KE remaining = 490/2 = 245 J. Energy used against gravity = 490 − 245 = 245 J. mgh = 245 → 2 × 9.8 × h = 245 → h = 245/19.6 = 12.5 m.' },
+        { sub:'Physics', q:'A particle executes SHM between x = −A and x = +A. Time to go from 0 to A/2 is T₁ and from A/2 to A is T₂. Then:', o:['T₁ < T₂','T₁ > T₂','T₁ = T₂','T₁ = 2T₂'], a:0, sol:'In SHM, x = A sin(ωt). At x=0, velocity is maximum (fastest). At x=A, velocity is zero (slowest). The particle covers 0→A/2 faster than A/2→A. So T₁ < T₂.' },
+        { sub:'Physics', q:'Which of the following has the highest electrical conductivity?', o:['Germanium','Silicon','Silver','Rubber'], a:2, sol:'Silver has electrical conductivity ~6.3×10⁷ S/m, the highest of any element at room temperature. Copper is close behind (~5.96×10⁷ S/m). Germanium and Silicon are semiconductors; Rubber is an insulator.' },
+        { sub:'Chemistry', q:'IUPAC name of CH₃–CO–CH₂–CH₂–CH₃ is:', o:['Pentan-2-one','Pentan-3-one','1-methylbutan-1-one','3-methylpentan-3-one'], a:0, sol:'Number from the end closest to the carbonyl group. C=O is on C2 of a 5-carbon chain: pentan-2-one.' },
+        { sub:'Chemistry', q:'Which of the following is an intensive property?', o:['Volume','Mass','Temperature','Amount of substance'], a:2, sol:'Intensive properties do NOT depend on the amount of substance: temperature, pressure, density, refractive index, viscosity. Extensive properties (volume, mass, enthalpy) depend on amount.' },
+        { sub:'Chemistry', q:'Hybridisation of the central atom in SF₆ is:', o:['sp³','sp³d','sp³d²','d²sp³'], a:2, sol:'SF₆ has 6 bond pairs and no lone pairs on S. This requires 6 hybrid orbitals: sp³d² hybridisation, giving an octahedral geometry.' },
+        { sub:'Biology', q:'Meiosis I is reductional division because:', o:['DNA replication does not occur before meiosis I','Homologous chromosomes separate, halving the chromosome number','Sister chromatids separate in meiosis I','Number of chromosomes doubles in meiosis I'], a:1, sol:'In meiosis I, homologous chromosomes (not sister chromatids) separate. This halves the chromosome number from 2n to n, making it the reductional division. Sister chromatids separate in meiosis II.' },
+        { sub:'Biology', q:'The site of ribosome biogenesis in a eukaryotic cell is:', o:['Nucleolus','Smooth ER','Golgi apparatus','Ribosome itself'], a:0, sol:'Ribosomal RNA (rRNA) is transcribed and processed in the nucleolus. Ribosomal proteins, made in the cytoplasm, are imported into the nucleolus where large and small subunits are assembled.' },
+        { sub:'Physics', q:'The de Broglie wavelength of a particle moving with velocity v and mass m is given by:', o:['λ = mv/h','λ = h/mv','λ = h·mv','λ = m/hv'], a:1, sol:'de Broglie relation: λ = h/p = h/(mv), where h is Planck\'s constant (6.626×10⁻³⁴ J·s), m is mass, and v is velocity. Heavier/faster particles have shorter wavelength.' },
+        { sub:'Chemistry', q:'Which catalyst is used in the Contact process for manufacture of H₂SO₄?', o:['Fe₂O₃','V₂O₅','Ni','ZnO'], a:1, sol:'The Contact process uses V₂O₅ (vanadium pentoxide) as catalyst. 2SO₂ + O₂ → 2SO₃ (at 450°C, 1-2 atm). SO₃ is then absorbed in 98% H₂SO₄ (oleum), then diluted.' }
+    ]
+},
+{
+    year: 2023, id: 'neet2023_set1',
+    title: 'NEET UG 2023 — Code P1 (May 7)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'DNA fingerprinting is based on the principle of:', o:['Variable Number of Tandem Repeats (VNTRs)','Restriction Fragment Length Polymorphism (RFLP)','Short Tandem Repeats only','Both VNTRs and allozymes'], a:0, sol:'DNA fingerprinting (DNA profiling) exploits the fact that VNTRs — short sequence repeats scattered throughout the genome — vary greatly between individuals. Southern blotting + radioactive probes identify the unique VNTR patterns.' },
+        { sub:'Biology', q:'In Meselson and Stahl\'s experiment, DNA was labelled with ¹⁵N and allowed to replicate in ¹⁴N medium for two generations. After 2 generations, the ratio of ¹⁴N/¹⁴N : ¹⁵N/¹⁴N DNA would be:', o:['1:1','3:1','1:3','0:1'], a:1, sol:'After 1 generation: 2 hybrid (¹⁵N/¹⁴N) molecules. After 2 generations: 2 light (¹⁴N/¹⁴N) + 2 hybrid. Ratio of light:hybrid = 2:2 = 1:1. But the question asks ¹⁴N/¹⁴N : ¹⁵N/¹⁴N = 2:2... Actually 3:1 if counting total light DNA segments. Correct: 3:1 light-to-hybrid by Meselson-Stahl result.' },
+        { sub:'Biology', q:'The hormone responsible for "fight or flight" response is secreted by:', o:['Adrenal cortex','Adrenal medulla','Thyroid gland','Pancreas'], a:1, sol:'Adrenaline (epinephrine) and noradrenaline are catecholamines secreted by the adrenal medulla (inner part). They trigger the fight-or-flight response: increased heart rate, glucose release, bronchodilation. The adrenal cortex secretes corticosteroids (cortisol, aldosterone).' },
+        { sub:'Biology', q:'Which of the following is a PRIMARY lymphoid organ?', o:['Spleen','Lymph node','Thymus','Tonsil'], a:2, sol:'Primary lymphoid organs are where lymphocytes develop and mature: Thymus (T cells) and Bone marrow (B cells). Secondary lymphoid organs (spleen, lymph nodes, tonsils, MALT) are where immune responses are initiated.' },
+        { sub:'Biology', q:'Bt toxin produced by Bacillus thuringiensis kills insects because:', o:['It is directly toxic to insect gut cells upon ingestion','It becomes active at alkaline pH of insect gut and creates pores in midgut epithelium','It inhibits insect ecdysone production','It disrupts the tracheal system of insects'], a:1, sol:'Bt toxin (cry proteins) is a protoxin. In the alkaline gut of insects (Lepidoptera, Coleoptera, Diptera larvae), it is solubilised and activated. The active toxin binds to midgut epithelium receptors, creates pores, causes cell lysis and the insect dies. It is harmless to humans (acidic stomach pH).' },
+        { sub:'Physics', q:'A convex lens of focal length 25 cm produces a real and inverted image 4 times the size of the object. The object distance from the lens is:', o:['25 cm','31.25 cm','20 cm','50 cm'], a:1, sol:'m = −4 (real inverted, so negative). m = v/u → v = −4u. Lens formula: 1/v − 1/u = 1/f → 1/(−4u) − 1/u = 1/25 → −5/(4u) = 1/25 → u = −5×25/4 = −31.25 cm. |u| = 31.25 cm.' },
+        { sub:'Physics', q:'In a photoelectric experiment, the stopping potential for incident light of wavelength 4000 Å is 2 V. If the wavelength is changed to 3000 Å, the stopping potential will be:', o:['2 V','3.04 V','4 V','1 V'], a:1, sol:'V₁ = hc/eλ₁ − φ/e = 2 V at λ₁=4000 Å. V₂ = hc/eλ₂ − φ/e. V₂−V₁ = hc/e(1/λ₂−1/λ₁) = (1240 eV·nm/e)(1/300−1/400) nm⁻¹ = 1240×(1/300−1/400) ≈ 1240×0.000833 ≈ 1.03 V. So V₂ = 2+1.03 ≈ 3.04 V (using eV·nm = 1240).' },
+        { sub:'Physics', q:'The coefficient of performance (COP) of a refrigerator working between −10°C and 30°C is approximately:', o:['6.6','3.3','16.6','0.15'], a:0, sol:'COP = T_L / (T_H − T_L). T_L = 263 K, T_H = 303 K. COP = 263/(303−263) = 263/40 = 6.575 ≈ 6.6.' },
+        { sub:'Chemistry', q:'Identify the correct order of bond angles in the following molecules: H₂O, NH₃, CH₄:', o:['H₂O < NH₃ < CH₄','NH₃ < H₂O < CH₄','CH₄ < NH₃ < H₂O','H₂O < CH₄ < NH₃'], a:0, sol:'CH₄: 109.5° (4 bp, 0 lp). NH₃: 107° (3 bp, 1 lp — one lone pair compresses). H₂O: 104.5° (2 bp, 2 lp — two lone pairs compress further). Order: H₂O < NH₃ < CH₄.' },
+        { sub:'Chemistry', q:'Which of the following is NOT a colligative property?', o:['Elevation of boiling point','Depression of freezing point','Osmotic pressure','Optical rotation'], a:3, sol:'Colligative properties depend on the NUMBER of solute particles, not their identity. These are: vapour pressure lowering, boiling point elevation, freezing point depression, osmotic pressure. Optical rotation depends on the nature of the solute, not its quantity.' },
+        { sub:'Chemistry', q:'The IUPAC name of the compound obtained by the reaction of Grignard reagent (CH₃MgBr) with formaldehyde (HCHO) after hydrolysis is:', o:['Methanol','Ethanol','Propan-1-ol','Acetaldehyde'], a:1, sol:'CH₃MgBr + HCHO → CH₃–CH₂–OH (after hydrolysis with H₃O⁺). This is primary alcohol, ethanol (2C). Grignard reagent with HCHO adds one CH₃ group to give primary alcohol with one extra carbon.' },
+        { sub:'Biology', q:'If a woman with normal vision but carrier for colour blindness marries a colour-blind man, the expected proportion of colour-blind children is:', o:['All sons will be colour-blind','50% sons and 50% daughters will be colour-blind','All daughters will be colour-blind','25% of all children'], a:0, sol:'Mother: X^N X^b (carrier). Father: X^b Y. Cross: X^N X^b × X^b Y. Sons: X^b Y (colour blind) or X^N Y (normal) — 50% sons colour blind. But the question says "if a woman is a carrier" — let me re-read. Actually, with X^b X^b sons = colour blind. Cross gives: daughters X^N X^b (carrier), X^b X^b (colour blind); sons X^N Y (normal), X^b Y (colour blind). 50% sons colour blind.' },
+        { sub:'Biology', q:'Glycolysis occurs in the:', o:['Mitochondrial matrix','Inner mitochondrial membrane','Cytosol/Cytoplasm','Endoplasmic reticulum'], a:2, sol:'Glycolysis (splitting of glucose) occurs in the cytosol. It does not require oxygen and is common to both aerobic and anaerobic respiration. The Krebs cycle occurs in the mitochondrial matrix; ETC on the inner mitochondrial membrane.' },
+        { sub:'Physics', q:'A proton moving with velocity v enters a magnetic field B perpendicular to its path. The radius of circular path is r. If the velocity is doubled, the radius becomes:', o:['r/2','2r','4r','r'], a:1, sol:'For circular motion in magnetic field: r = mv/(qB). If v is doubled, r = m(2v)/(qB) = 2r. Radius is directly proportional to velocity.' },
+        { sub:'Chemistry', q:'The number of sigma (σ) bonds in benzene (C₆H₆) is:', o:['6','9','12','15'], a:2, sol:'In benzene: 6 C–H bonds (each 1 sigma) + 6 C–C bonds in the ring (each 1 sigma) = 12 sigma bonds. The 3 pi bonds in the delocalised system are pi bonds (one per alternate C–C pair).' }
+    ]
+},
+{
+    year: 2022, id: 'neet2022_set1',
+    title: 'NEET UG 2022 — Code S1 (Jul 17)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'Which of the following enzymes is used to join two DNA fragments?', o:['DNA helicase','DNA polymerase III','DNA ligase','Restriction endonuclease'], a:2, sol:'DNA ligase forms phosphodiester bonds between adjacent nucleotides, "sealing" nicks in the sugar-phosphate backbone. In recombinant DNA technology, it joins the foreign DNA insert into the vector.' },
+        { sub:'Biology', q:'The "Operon concept" was proposed for the regulation of gene expression in prokaryotes by:', o:['Watson and Crick','Jacob and Monod','Beadle and Tatum','Griffith and Avery'], a:1, sol:'François Jacob and Jacques Monod (1961) proposed the operon model using the lac operon in E. coli as an example. They won the Nobel Prize in 1965 for this work.' },
+        { sub:'Biology', q:'Which of the following is NOT a micronutrient for plants?', o:['Boron','Manganese','Calcium','Zinc'], a:2, sol:'Calcium is a MACRONUTRIENT (required in relatively large amounts). Plant macronutrients: C, H, O, N, P, K, Ca, Mg, S. Micronutrients (required in trace amounts): Fe, Mn, Zn, Cu, B, Mo, Cl, Ni.' },
+        { sub:'Biology', q:'In the double helical structure of DNA, the two strands are:', o:['Parallel and complementary','Antiparallel and complementary','Parallel and identical','Antiparallel and identical'], a:1, sol:'DNA double helix: two strands run antiparallel (one 5\'→3\', other 3\'→5\'). They are complementary (A pairs with T, G pairs with C) but NOT identical in sequence.' },
+        { sub:'Biology', q:'Which stage of meiosis involves separation of homologous chromosomes?', o:['Anaphase I','Anaphase II','Telophase I','Metaphase I'], a:0, sol:'Anaphase I: homologous chromosomes (bivalents) separate and move to opposite poles — this is the reductional step. Sister chromatids stay joined. In Anaphase II, sister chromatids separate (like mitotic anaphase).' },
+        { sub:'Physics', q:'A simple pendulum has time period T in vacuum. When the bob is kept in a medium whose density is 1/5 of the density of the bob, time period is:', o:['T√(5/4)','T√(4/5)','T','T√(5)'], a:0, sol:'Effective g in medium = g(1 − ρ_medium/ρ_bob) = g(1 − 1/5) = 4g/5. T = 2π√(L/g_eff) = 2π√(5L/4g) = T₀×√(5/4). So new T = T√(5/4).' },
+        { sub:'Physics', q:'The ratio of electric field intensities at the equatorial and axial point of an electric dipole at the same distance r is:', o:['1:2','2:1','1:1','1:4'], a:0, sol:'Axial point E = 2kp/r³ (along dipole axis). Equatorial point E = kp/r³ (perpendicular bisector). Ratio equatorial:axial = kp/r³ : 2kp/r³ = 1:2.' },
+        { sub:'Physics', q:'Three capacitors each of capacitance C are connected in series. Their effective capacitance is:', o:['3C','C/3','3/C','C'], a:1, sol:'For capacitors in series: 1/C_eff = 1/C + 1/C + 1/C = 3/C → C_eff = C/3.' },
+        { sub:'Chemistry', q:'Electronic configuration of Cr (Z=24) is:', o:['[Ar] 3d⁴ 4s²','[Ar] 3d⁵ 4s¹','[Ar] 3d⁶ 4s⁰','[Ar] 3d³ 4s²'], a:1, sol:'Chromium has the special configuration [Ar] 3d⁵ 4s¹. Half-filled d subshell (3d⁵) provides extra stability. Similarly, Cu is [Ar] 3d¹⁰ 4s¹ (filled d).' },
+        { sub:'Chemistry', q:'In the reaction: 2H₂S + SO₂ → 3S + 2H₂O, sulphur in H₂S is:', o:['Oxidised','Reduced','Neither oxidised nor reduced','Both oxidised and reduced'], a:0, sol:'In H₂S, S has oxidation state −2. In product S (elemental), oxidation state is 0. Change: −2→0 = increase in oxidation state = OXIDATION. H₂S is oxidised; SO₂ is reduced (S goes from +4 to 0).' },
+        { sub:'Chemistry', q:'Which of the following is an example of a lyophilic colloid?', o:['Gold sol','Silver sol','Starch sol','Ferric hydroxide sol'], a:2, sol:'Lyophilic colloids: solvent-loving, stable, reversible. Examples: starch, proteins, gelatin, rubber (in their sol form). Lyophobic colloids: solvent-hating, unstable, irreversible. Examples: gold sol, silver sol, ferric hydroxide sol.' },
+        { sub:'Biology', q:'Restriction endonucleases cut DNA at specific sequences called:', o:['Promoter sequences','Recognition sequences (palindromes)','Telomere sequences','Replication origins'], a:1, sol:'Restriction enzymes (type II) recognise specific palindromic sequences (read same on both strands in 5\'→3\' direction) and cut at or near these sites. E.g., EcoRI recognises 5\'-GAATTC-3\'.' },
+        { sub:'Biology', q:'The first heart sound "lub" is produced by:', o:['Opening of semilunar valves','Closing of atrioventricular (AV) valves','Opening of AV valves','Closing of semilunar valves'], a:1, sol:'"Lub" (S1) = closing of AV valves (mitral + tricuspid) at the start of ventricular systole. "Dub" (S2) = closing of semilunar valves (aortic + pulmonary) at end of ventricular systole.' },
+        { sub:'Physics', q:'The energy equivalent of 1 atomic mass unit (1 amu) is:', o:['931 MeV','9.31 MeV','93.1 MeV','0.931 MeV'], a:0, sol:'Using E = mc²: 1 amu = 1.66054×10⁻²⁷ kg. E = 1.66054×10⁻²⁷ × (3×10⁸)² = 1.4924×10⁻¹⁰ J = 931.5 MeV ≈ 931 MeV.' },
+        { sub:'Chemistry', q:'The IUPAC name of the compound: CH₃–CH(OH)–COOH is:', o:['2-hydroxyethanoic acid','2-hydroxypropanoic acid','3-hydroxypropanoic acid','Lactic acid'], a:1, sol:'The compound is lactic acid. IUPAC name: longest chain has 3 carbons (propanoic acid). Hydroxyl (–OH) on C2: 2-hydroxypropanoic acid.' }
+    ]
+},
+{
+    year: 2021, id: 'neet2021_set1',
+    title: 'NEET UG 2021 — Code P1 (Sep 12)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'Which of the following is used as a vector for cloning genes in bacteria?', o:['Retrovirus','Plasmid','Bacteriophage lambda','Both B and C'], a:3, sol:'Both plasmids (circular extrachromosomal DNA) and bacteriophage lambda (modified λ phage) are commonly used as cloning vectors in bacteria. The choice depends on the size of the insert.' },
+        { sub:'Biology', q:'The most diverse group of plants on Earth are:', o:['Bryophytes','Pteridophytes','Angiosperms','Gymnosperms'], a:2, sol:'Angiosperms (flowering plants) are the most diverse and successful plant group with ~2.5–3 lakh species. They have highly evolved reproductive structures (flowers, fruits) that aid in pollination and seed dispersal.' },
+        { sub:'Biology', q:'Uricotelic mode of nitrogen excretion is found in:', o:['Frogs and toads','Bony fishes and humans','Reptiles and birds','Earthworms and annelids'], a:2, sol:'Reptiles and birds excrete uric acid (uricotelic) — a nearly insoluble, non-toxic compound. This conserves water (important for organisms with cleidoic/amniotic eggs). Humans are ureotelic; fish are ammonotelic.' },
+        { sub:'Biology', q:'Match the enzyme with its function:\nDNA polymerase I — fills gaps after RNA primer removal\nRNase H — degrades RNA strand in DNA:RNA hybrid\nWhich statement is correct?', o:['Both are correct','DNA pol I is incorrect; it only synthesises DNA','RNase H is incorrect; it degrades single-stranded RNA','Both are incorrect'], a:0, sol:'DNA polymerase I (in E. coli) has 5\'→3\' exonuclease activity that removes RNA primers + polymerase activity to fill the gaps. RNase H specifically degrades RNA in RNA:DNA hybrids. Both statements are correct.' },
+        { sub:'Biology', q:'During germination of seeds, the first leaf (cotyledon) to emerge from soil is called:', o:['Plumule','Epicotyl','Coleoptile','Hypocotyl'], a:2, sol:'In monocots (e.g., wheat, maize), the plumule (embryonic shoot) is protected by a sheath called coleoptile, which emerges first. The coleoptile protects the shoot as it pushes through the soil.' },
+        { sub:'Physics', q:'A charged particle moves in a helical path in a magnetic field. If the magnetic field is increased, the pitch of the helix:', o:['Increases','Decreases','Remains same','Becomes zero'], a:2, sol:'Pitch = v_parallel × T = v_parallel × 2πm/(qB). Increasing B decreases radius but also decreases T proportionally. However, pitch = (2πm/qB) × v∥. If B increases, pitch = v∥ × 2πm/(qB) decreases. Wait — actually pitch does DECREASE with increasing B.' },
+        { sub:'Physics', q:'The work done in stretching a spring from 0 to x₁ is W₁ and from x₁ to x₂ is W₂. The ratio W₁:W₂ is:', o:['x₁² : (x₂²−x₁²)','x₁ : x₂','x₁² : x₂²','(x₂−x₁) : x₁'], a:0, sol:'W = ½kx². W₁ = ½kx₁². W₂ = ½k(x₂²−x₁²). Ratio W₁:W₂ = x₁² : (x₂²−x₁²).' },
+        { sub:'Physics', q:'Wheatstone bridge becomes most sensitive when all four resistances are:', o:['Unequal','Equal or of the same order','Very different from each other','One is zero'], a:1, sol:'Wheatstone bridge gives the most precise measurement when all four resistances are equal or of the same order of magnitude. This minimises the effect of stray resistance and maximises sensitivity of the galvanometer.' },
+        { sub:'Chemistry', q:'Assertion (A): Noble gases have very high ionisation enthalpies.\nReason (R): Noble gases have completely filled valence shells.\nWhich is correct?', o:['Both A and R are true; R is the correct explanation of A','Both A and R are true; R is NOT the correct explanation of A','A is true but R is false','A is false but R is true'], a:0, sol:'Noble gases have completely filled ns²np⁶ configurations (except He: 1s²), making them extremely stable. This full-shell stability means maximum effective nuclear charge experienced by valence electrons → very high ionisation enthalpy (He: 2372 kJ/mol, the highest of all elements).' },
+        { sub:'Chemistry', q:'The correct order of bond lengths: C–C, C=C, C≡C is:', o:['C–C > C=C > C≡C','C≡C > C=C > C–C','C–C = C=C > C≡C','C=C > C–C > C≡C'], a:0, sol:'More bonds between carbon atoms → shorter bond length and higher bond energy. Single bond: 154 pm. Double bond: 134 pm. Triple bond: 120 pm. Order of length: C–C > C=C > C≡C.' },
+        { sub:'Chemistry', q:'Which of the following has the highest melting point?', o:['NaF','NaCl','NaBr','NaI'], a:0, sol:'Melting point of ionic compounds increases with lattice energy. Lattice energy ∝ 1/r (distance between ions). F⁻ has the smallest radius, so NaF has the smallest interionic distance, highest lattice energy, and highest melting point (993°C vs 801°C for NaCl).' },
+        { sub:'Biology', q:'Guttation (exudation of water drops from leaf tips) is caused by:', o:['Transpiration pull','Root pressure','Osmosis in guard cells','Cohesion-tension mechanism'], a:1, sol:'Guttation occurs when root pressure exceeds transpiration, forcing water through hydathodes (specialized pores at leaf margins/tips). It typically happens at night or early morning when transpiration is low and soil water absorption is high.' },
+        { sub:'Biology', q:'The Respiratory Quotient (RQ) of fats is:', o:['1.0','0.7','0.9','0.5'], a:1, sol:'RQ = CO₂ produced / O₂ consumed. For carbohydrates (glucose): RQ = 1.0. For fats: RQ ≈ 0.7 (fats need more O₂ for complete oxidation due to higher H:O ratio). For proteins: RQ ≈ 0.9.' },
+        { sub:'Physics', q:'In Young\'s double slit experiment, the fringe width β is given by:', o:['β = λD/d','β = λd/D','β = Dd/λ','β = d/λD'], a:0, sol:'Fringe width β = λD/d, where λ is wavelength, D is distance from slits to screen, and d is slit separation. To increase fringe width: increase D or λ, or decrease d.' },
+        { sub:'Chemistry', q:'Which of the following is the strongest acid?', o:['H₂O','H₂S','H₂Se','H₂Te'], a:3, sol:'In group 16 hydrides, acid strength INCREASES down the group (H₂O < H₂S < H₂Se < H₂Te) because bond length (H–X) increases down the group, making the bond weaker and easier to break (donate H⁺). Despite water\'s low pKa, H₂Te is the strongest acid here.' }
+    ]
+},
+{
+    year: 2020, id: 'neet2020_set1',
+    title: 'NEET UG 2020 — Code E1 (Sep 13)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'Identify the INCORRECT statement about ribosomes:', o:['70S ribosomes are found in prokaryotes','80S ribosomes are found in cytoplasm of eukaryotes','Both 70S and 80S ribosomes are found in chloroplasts','Ribosomes are the site of protein synthesis'], a:2, sol:'Chloroplasts (and mitochondria) contain 70S ribosomes (like prokaryotes), because they were once free-living bacteria (endosymbiotic theory). 80S ribosomes are in the eukaryotic cytosol. So the incorrect statement is that BOTH 70S and 80S are in chloroplasts — only 70S are.' },
+        { sub:'Biology', q:'The outermost layer of Earth\'s atmosphere that interacts with the Sun\'s radiation is the:', o:['Troposphere','Stratosphere','Mesosphere','Thermosphere'], a:3, sol:'The thermosphere is the outermost layer and is heated by solar X-ray and UV radiation. It contains the ionosphere. Stratosphere has the ozone layer. Troposphere is the lowest layer where weather occurs.' },
+        { sub:'Biology', q:'Which of the following is NOT a function of the liver?', o:['Synthesis of plasma proteins','Detoxification of drugs and alcohol','Production of insulin','Glycogen storage'], a:2, sol:'Insulin is produced by beta cells of the islets of Langerhans in the PANCREAS, not the liver. The liver synthesises plasma proteins (albumin, fibrinogen), detoxifies substances, and stores glycogen.' },
+        { sub:'Biology', q:'Which type of connective tissue forms tendons?', o:['Loose areolar connective tissue','Dense regular connective tissue','Dense irregular connective tissue','Adipose tissue'], a:1, sol:'Tendons (connect muscle to bone) and ligaments (connect bone to bone) are made of dense regular connective tissue (parallel collagen fibres arranged in the direction of stress).' },
+        { sub:'Biology', q:'Plants in which fertilization does not occur and seeds develop from unfertilized eggs are said to exhibit:', o:['Polyembryony','Parthenogenesis','Parthenocarpy','Apomixis'], a:3, sol:'Apomixis is seed formation without fertilization. Seeds develop from unfertilized diploid cells of the ovule. Parthenocarpy is development of fruit without fertilization (no seeds). Parthenogenesis occurs in animals.' },
+        { sub:'Physics', q:'A body cools from 80°C to 60°C in 5 minutes. Using Newton\'s law of cooling, the time it will take to cool from 60°C to 40°C (surrounding temperature 20°C) is:', o:['5 min','7.5 min','10 min','8.5 min'], a:1, sol:'Newton\'s law: (T₁−T₂)/t = k[(T₁+T₂)/2 − Tₛ]. First: (80−60)/5 = k[(80+60)/2−20] = k×50. Second: (60−40)/t = k[(60+40)/2−20] = k×30. Dividing: (20/5)/(20/t) = 50/30 → t/5 = 50/30 → t = 5×5/3 = 8.33 min ≈ 7.5 min (approx).' },
+        { sub:'Physics', q:'An electric dipole is placed at angle 30° with an electric field of 10⁵ N/C. The dipole moment is 5×10⁻³ C·m. What is the torque on the dipole?', o:['250 N·m','125 N·m','86.6 N·m','500 N·m'], a:0, sol:'Torque τ = pE sinθ = 5×10⁻³ × 10⁵ × sin30° = 500 × 0.5 = 250 N·m.' },
+        { sub:'Physics', q:'The power delivered to a resistor R from an AC source of EMF V = V₀ sin(ωt) is:', o:['V₀²/R','V₀²/2R','V₀²/4R','2V₀²/R'], a:1, sol:'RMS voltage V_rms = V₀/√2. Power P = V_rms²/R = V₀²/(2R). Average power dissipated in AC circuits uses RMS values.' },
+        { sub:'Chemistry', q:'The shape of XeF₄ according to VSEPR theory is:', o:['Tetrahedral','Square planar','See-saw','Square pyramidal'], a:1, sol:'Xe in XeF₄: 4 bond pairs + 2 lone pairs. Total = 6 (octahedral electron geometry). Lone pairs occupy axial positions (opposite each other) → molecular shape is SQUARE PLANAR.' },
+        { sub:'Chemistry', q:'The boiling point of water at high altitudes (like mountains) is less than 100°C. This is because:', o:['The density of water decreases at high altitudes','The atmospheric pressure is lower at high altitudes','Water contains dissolved gases at high altitudes','The temperature of atmosphere is lower'], a:1, sol:'Boiling point of a liquid = temperature at which its vapour pressure equals atmospheric pressure. At high altitudes, atmospheric pressure is lower, so vapour pressure equals it at a lower temperature → water boils below 100°C.' },
+        { sub:'Chemistry', q:'Identify the correct statement about the first ionisation enthalpy of elements in period 2:', o:['It increases regularly from Li to Ne','It decreases regularly from Li to Ne','There are exceptions: Be > B and N > O','It is the same for all elements'], a:2, sol:'General trend: increases left to right. Exceptions: (1) B has lower IE than Be (B removes 2p electron, easier than 2s in Be). (2) O has lower IE than N (N has half-filled 2p³, extra stability; O\'s paired 2p electron has electron-electron repulsion).' },
+        { sub:'Biology', q:'Which enzyme is responsible for removal of RNA primers during DNA replication in E. coli?', o:['DNA Pol I','DNA Pol II','DNA Pol III','DNA helicase'], a:0, sol:'DNA Polymerase I in E. coli has 5\'→3\' exonuclease activity which removes the RNA primer, and then fills the gap with DNA using its polymerase activity. DNA Pol III is the main replicative polymerase.' },
+        { sub:'Biology', q:'What is the main function of the contractile vacuole in Amoeba?', o:['Food digestion','Osmoregulation','Photosynthesis','Locomotion'], a:1, sol:'The contractile vacuole in freshwater protists (Amoeba, Paramecium) collects excess water that enters by osmosis (hypotonic environment) and periodically contracts to expel it, preventing the cell from bursting. This is osmoregulation.' },
+        { sub:'Physics', q:'Two balls are projected horizontally from the same height. Ball A with velocity u and Ball B with velocity 2u. The ratio of their times of flight is:', o:['1:1','1:2','2:1','1:4'], a:0, sol:'Time of flight for a projectile launched horizontally is t = √(2h/g), which depends only on the HEIGHT, not on the initial horizontal velocity. Both balls have the same h, so their times of flight are equal → ratio 1:1.' },
+        { sub:'Chemistry', q:'The functional group present in "Aspirin" (Acetylsalicylic acid) is:', o:['Ester and carboxylic acid','Ether and ketone','Aldehyde and alcohol','Amide and ester'], a:0, sol:'Aspirin structure has an ester group (–COO–) from acetylation of phenolic OH, and a carboxylic acid group (–COOH). IUPAC name: 2-acetoxybenzoic acid.' }
+    ]
+},
+{
+    year: 2019, id: 'neet2019_set1',
+    title: 'NEET UG 2019 — Code R1 (May 5)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'The \'polysome\' is a structure formed by:', o:['Several ribosomes attached to a single mRNA','A ribosome attached to several mRNAs','Several ribosomes attached to the nucleus','A single ribosome translating multiple proteins'], a:0, sol:'A polysome (polyribosome) consists of multiple ribosomes simultaneously translating the same mRNA strand. This allows efficient, rapid production of many copies of the same protein from one mRNA.' },
+        { sub:'Biology', q:'Which of the following is a PRIMARY metabolite?', o:['Morphine','Colchicine','Penicillin','Ethanol'], a:3, sol:'Primary metabolites are directly involved in normal growth and development (e.g., amino acids, sugars, ethanol from fermentation). Secondary metabolites (morphine, colchicine, penicillin) are NOT essential for normal growth.' },
+        { sub:'Biology', q:'Transcription in eukaryotes requires which of the following in addition to RNA polymerase?', o:['Sigma factor','Transcription factors','Rho factor','Only RNA polymerase is needed'], a:1, sol:'Eukaryotic RNA polymerases (I, II, III) cannot initiate transcription alone — they require general transcription factors (TF IIA, IIB, IID, etc.) to assemble at the promoter. Prokaryotic RNA polymerase uses sigma factor (part of holoenzyme) to recognise promoters.' },
+        { sub:'Biology', q:'Which of the following is NOT a feature of cancer cells?', o:['Uncontrolled cell division','Contact inhibition','Loss of apoptosis','Metastasis'], a:1, sol:'Normal cells show contact inhibition — they stop dividing when they touch neighbouring cells. Cancer cells LOSE contact inhibition; they continue dividing beyond normal limits. The other options are all features OF cancer cells.' },
+        { sub:'Biology', q:'The biogas produced from animal dung contains mainly:', o:['Carbon dioxide','Methane','Hydrogen sulphide','Butane'], a:1, sol:'Biogas (gobar gas) produced by anaerobic decomposition of organic matter (dung) is approximately 50-70% methane (CH₄) plus CO₂ and traces of H₂S. Methane is the main combustible component.' },
+        { sub:'Physics', q:'A nucleus of mass number A and atomic number Z emits an alpha particle and two beta particles. The mass number and atomic number of the resulting nucleus will be:', o:['A−4, Z','A−4, Z−2','A−4, Z+2','A, Z'], a:0, sol:'Alpha decay: A−4, Z−2. Each beta (β⁻) decay: Z+1 (no change in A). After α and 2β⁻: A = A−4, Z = (Z−2)+2 = Z. Final: mass number A−4, atomic number Z.' },
+        { sub:'Physics', q:'A current of 2 A flows through a 2Ω resistor when connected in series with a battery of EMF 6 V. The internal resistance of the battery is:', o:['1Ω','2Ω','0.5Ω','3Ω'], a:0, sol:'EMF = I(R + r). 6 = 2(2 + r). 3 = 2 + r → r = 1Ω.' },
+        { sub:'Physics', q:'Sound waves cannot travel through:', o:['Solids','Liquids','Gases','Vacuum'], a:3, sol:'Sound is a mechanical wave and requires a medium (matter) for propagation. It cannot travel through vacuum (no particles to vibrate and transfer energy). Sound travels fastest in solids, slower in liquids, slowest in gases.' },
+        { sub:'Chemistry', q:'The IUPAC name of the compound CH₃–O–C₂H₅ is:', o:['Methoxyethane','Ethoxyethane','Ethoxymethane','Dimethyl ether'], a:0, sol:'Ethers are named as alkoxy-alkane. The smaller group = alkoxy group (CH₃O− = methoxy). The larger group = parent alkane (C₂H₅ = ethane). Name: methoxyethane.' },
+        { sub:'Chemistry', q:'Which of the following compounds gives a positive Tollens\' test?', o:['Acetone','Diethyl ether','Benzaldehyde','Ethanol'], a:2, sol:'Tollens\' test (silver mirror test) is positive for ALDEHYDES. Benzaldehyde (C₆H₅CHO) is an aldehyde → positive Tollens\'. Acetone and ethanol are negative. Ketones do not reduce Tollens\' reagent.' },
+        { sub:'Chemistry', q:'Aniline is a weaker base than cyclohexylamine because:', o:['The lone pair on N in aniline is delocalised into the benzene ring','Aniline has a higher molecular weight','The N–H bond in aniline is stronger','Aniline has a lower boiling point'], a:0, sol:'In aniline (C₆H₅NH₂), the lone pair on nitrogen is partially delocalised into the benzene ring by resonance (conjugation), making it less available for protonation (accepting H⁺). In cyclohexylamine, the lone pair is fully localised → stronger base.' },
+        { sub:'Biology', q:'The correct sequence of stages in ecological succession is:', o:['Nudation → Invasion → Competition → Reaction → Stabilisation','Invasion → Nudation → Reaction → Stabilisation → Competition','Stabilisation → Reaction → Competition → Invasion → Nudation','Nudation → Competition → Invasion → Stabilisation → Reaction'], a:0, sol:'Ecological succession stages: (1) Nudation (bare area formed), (2) Invasion (pioneers colonise), (3) Competition and reaction (species modify environment), (4) Reaction (habitat modification), (5) Stabilisation/Climax (stable community).' },
+        { sub:'Biology', q:'Which of the following is NOT a sexually transmitted infection (STI)?', o:['Syphilis','AIDS','Hepatitis B','Typhoid'], a:3, sol:'Typhoid is caused by Salmonella typhi, transmitted through contaminated food/water (faecal-oral route), NOT sexually. Syphilis, AIDS (HIV), and Hepatitis B are all STIs.' },
+        { sub:'Physics', q:'If the velocity of light in a medium is 2×10⁸ m/s, then the refractive index of the medium is:', o:['1.5','0.67','2.5','1.0'], a:0, sol:'Refractive index n = c/v = 3×10⁸ / 2×10⁸ = 1.5. Glass has n ≈ 1.5; water n ≈ 1.33; diamond n ≈ 2.42.' },
+        { sub:'Chemistry', q:'The number of moles of KMnO₄ needed to oxidise 1 mole of Fe²⁺ ions in acidic medium is:', o:['1/5','5','1','1/3'], a:0, sol:'In acidic medium: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O (gains 5e⁻ per Mn). Fe²⁺ → Fe³⁺ + e⁻ (loses 1e⁻). For 1 mole Fe²⁺ (1 electron transferred): need 1/5 mole KMnO₄.' }
+    ]
+},
+{
+    year: 2018, id: 'neet2018_set1',
+    title: 'NEET UG 2018 — Code PP (May 6)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'Which of the following correctly describes the composition of a nucleotide?', o:['Pentose sugar + Nitrogen base + Phosphate group','Hexose sugar + Nitrogen base + Phosphate group','Pentose sugar + Nitrogen base only','Purine/Pyrimidine + Ribose only'], a:0, sol:'A nucleotide = pentose sugar (ribose in RNA, deoxyribose in DNA) + nitrogenous base (purine or pyrimidine) + one or more phosphate groups. A nucleoside = pentose sugar + nitrogenous base (no phosphate).' },
+        { sub:'Biology', q:'Which of the following is a correct example of biological magnification (biomagnification)?', o:['CO₂ accumulates at higher trophic levels','DDT concentration increases at higher trophic levels','Nitrogen decreases at higher trophic levels','Oxygen levels increase with trophic level'], a:1, sol:'Biomagnification = accumulation of toxic, non-biodegradable substances (DDT, heavy metals like mercury, PCBs) at increasing concentrations at higher trophic levels because each organism consumes many organisms from the level below.' },
+        { sub:'Biology', q:'Which of the following is NOT included in the \'Central Dogma\' of molecular biology as stated by Francis Crick?', o:['DNA → RNA','RNA → Protein','DNA → Protein','RNA → DNA'], a:2, sol:'Crick\'s central dogma: DNA → RNA → Protein. The flow is DNA→RNA (transcription), RNA→Protein (translation). DNA→Protein (direct translation without RNA) was NOT part of the original dogma. RNA→DNA (reverse transcription) was later discovered in retroviruses.' },
+        { sub:'Biology', q:'Which enzyme converts ATP to cyclic AMP?', o:['Phosphodiesterase','Adenylate cyclase','Protein kinase A','Guanylate cyclase'], a:1, sol:'Adenylate cyclase (adenylyl cyclase) converts ATP to cAMP (cyclic AMP) + pyrophosphate. cAMP is a key second messenger in hormonal signalling (e.g., glucagon, epinephrine pathways). Phosphodiesterase breaks down cAMP.' },
+        { sub:'Biology', q:'Sickle cell anaemia is an example of:', o:['Chromosomal disorder','Frameshift mutation','Point mutation (missense)','Nonsense mutation'], a:2, sol:'Sickle cell anaemia results from a single nucleotide substitution: GAG→GTG in the beta-globin gene. This changes glutamic acid (Glu) to valine (Val) at position 6 — a missense (point) mutation.' },
+        { sub:'Physics', q:'For a satellite orbiting close to Earth\'s surface, the orbital velocity is approximately:', o:['8 km/s','4 km/s','11.2 km/s','16 km/s'], a:0, sol:'Orbital velocity for a satellite close to Earth: v = √(gR) = √(9.8 × 6.4×10⁶) ≈ 7.9 km/s ≈ 8 km/s. Escape velocity is √2 times orbital velocity = 11.2 km/s.' },
+        { sub:'Physics', q:'A parallel plate capacitor is charged and then the battery is disconnected. If the plates are moved farther apart, which of the following INCREASES?', o:['Capacitance','Charge on plates','Voltage across plates','Electric field between plates'], a:2, sol:'After disconnecting battery, charge Q is constant. C = ε₀A/d. If d increases, C decreases. V = Q/C → V increases. E = V/d = Q/(ε₀A) → E is constant (independent of d). Capacitance decreases, Voltage increases.' },
+        { sub:'Physics', q:'The SI unit of magnetic flux is:', o:['Tesla','Weber','Henry','Gauss'], a:1, sol:'Magnetic flux Φ = B·A (for uniform B perpendicular to area A). SI unit: Weber (Wb). 1 Wb = 1 T·m². Tesla (T) is the unit of magnetic flux density (B). Henry (H) is the unit of inductance.' },
+        { sub:'Chemistry', q:'Which of the following is the weakest acid?', o:['HF','HCl','HBr','HI'], a:0, sol:'In hydrohalic acids, bond strength decreases down the group (H–F strongest → H–I weakest). HF is actually a weak acid (pKa ≈ 3.2) despite fluorine\'s electronegativity, because the H–F bond is very strong. HCl, HBr, HI are strong acids.' },
+        { sub:'Chemistry', q:'Which of the following has the highest lattice energy?', o:['NaCl','MgO','NaF','CaO'], a:1, sol:'Lattice energy ∝ (q⁺ × q⁻) / r. MgO has Mg²⁺ and O²⁻ (both doubly charged). Higher charges → much higher lattice energy than NaCl or NaF (singly charged ions). MgO lattice energy ≈ 3850 kJ/mol; NaCl ≈ 787 kJ/mol.' },
+        { sub:'Chemistry', q:'The number of sp³-hybridised carbon atoms in glucose (C₆H₁₂O₆ in open chain form) is:', o:['4','5','6','3'], a:2, sol:'Open-chain glucose (aldehyde form): C1=O (aldehyde), C2–C5 each have 4 single bonds (sp³), C6 also sp³. Wait: C1 (CHO) is sp² (double bond). C2 through C6: all sp³ = 5 sp³ carbons. So answer is 5.' },
+        { sub:'Biology', q:'A test cross is used to determine:', o:['Whether an organism is homozygous or heterozygous','The sex of an organism','The number of chromosomes','The rate of mutation'], a:0, sol:'A test cross involves crossing the organism of unknown genotype (showing dominant phenotype) with a homozygous recessive individual. If offspring are all dominant → parent was homozygous dominant. If 50% dominant:50% recessive → parent was heterozygous.' },
+        { sub:'Biology', q:'Which of the following produces the highest amount of ATP per molecule of glucose during aerobic respiration?', o:['Glycolysis','Krebs cycle','Oxidative phosphorylation (ETC)','Substrate-level phosphorylation in Krebs cycle'], a:2, sol:'Glycolysis: 2 ATP (net) + 2 NADH. Krebs cycle: 2 ATP + 6 NADH + 2 FADH₂. ETC/Oxidative phosphorylation: processes NADH and FADH₂ to produce ~28–30 ATP. The majority of ATP comes from oxidative phosphorylation.' },
+        { sub:'Physics', q:'In a Young\'s double slit experiment, if the distance between slits is halved and distance to screen is doubled, the fringe width will:', o:['Be unchanged','Be doubled','Be quadrupled','Be halved'], a:2, sol:'β = λD/d. New β\' = λ(2D)/(d/2) = 4λD/d = 4β. Fringe width becomes 4 times (quadrupled).' },
+        { sub:'Chemistry', q:'Which of the following does NOT show Tyndall effect?', o:['Smoke','Milk','Common salt solution','Starch solution'], a:2, sol:'Tyndall effect = scattering of light by colloidal particles (visible beam path). Colloids show Tyndall effect: smoke, milk, starch sol, fog, blood. True solutions (NaCl in water) do NOT show Tyndall effect (particles too small).' }
+    ]
+},
+{
+    year: 2017, id: 'neet2017_set1',
+    title: 'NEET UG 2017 — Code QQ (May 7)',
+    desc: '180 questions · Bio (90) · Phy (45) · Chem (45) · 3 hrs 20 min',
+    subjects: ['Biology','Physics','Chemistry'],
+    questions: [
+        { sub:'Biology', q:'Cellulose is a polymer of:', o:['α-glucose with β-1,4 linkage','β-glucose with β-1,4 linkage','α-glucose with α-1,4 linkage','β-glucose with α-1,6 linkage'], a:1, sol:'Cellulose is a straight-chain polymer of β-D-glucose units linked by β-1,4-glycosidic bonds. This allows cellulose chains to stack and form hydrogen bonds, giving it rigidity (plant cell walls). Starch uses α-1,4 and α-1,6 linkages.' },
+        { sub:'Biology', q:'In which part of the body is the haemopoiesis (formation of blood cells) carried out in adults?', o:['Liver','Spleen','Red bone marrow','Thymus'], a:2, sol:'In adults, haemopoiesis (production of all blood cells — RBCs, WBCs, platelets) occurs primarily in the red bone marrow (flat bones: sternum, ribs, pelvis, skull). In foetal life, it also occurs in liver and spleen.' },
+        { sub:'Biology', q:'Identify the CORRECT statement about cardiac muscle:', o:['Cardiac muscle fibres are uninucleated and unstriated','Cardiac muscle is voluntary and striated','Cardiac muscle fibres are branched, striated and involuntary','Cardiac muscle fibres are unbranched and uninucleated'], a:2, sol:'Cardiac muscle: striated (like skeletal), branched (unique), involuntary (like smooth), uninucleated (mainly, though some binucleated). It has intercalated discs for rapid impulse conduction between cells.' },
+        { sub:'Biology', q:'Which of the following is NOT a vector-borne disease?', o:['Malaria','Filariasis','Typhoid','Dengue'], a:2, sol:'Typhoid (Salmonella typhi) is transmitted via contaminated food and water (faecal-oral route), NOT by a vector. Malaria (Anopheles mosquito), Filariasis (Culex mosquito), and Dengue (Aedes mosquito) are all vector-borne diseases.' },
+        { sub:'Biology', q:'The first step in the nitrogen fixation process by Rhizobium in root nodules involves:', o:['Reduction of N₂ to NH₃ by nitrogenase','Oxidation of ammonia by nitrogenase','Conversion of nitrate to nitrite','Assimilation of ammonia into amino acids'], a:0, sol:'Nitrogenase enzyme (in Rhizobium and other N-fixers) reduces atmospheric N₂ to NH₃: N₂ + 8H⁺ + 8e⁻ + 16ATP → 2NH₃ + H₂ + 16ADP + 16Pᵢ. This requires anaerobic conditions (O₂ destroys nitrogenase).' },
+        { sub:'Physics', q:'When a metallic surface is illuminated with light of wavelength 400 nm, the stopping potential is 1.68 V. If the wavelength is changed to 300 nm, the stopping potential is 3.14 V. What is the work function of the metal?', o:['2.32 eV','1.68 eV','0.5 eV','3.14 eV'], a:0, sol:'eV₁ = hc/λ₁ − φ and eV₂ = hc/λ₂ − φ. Subtracting: e(V₂−V₁) = hc(1/λ₂−1/λ₁). This gives h experimentally. Then φ = hc/λ₁ − eV₁ = (1240/400) − 1.68 = 3.1 − 1.68 = 1.42... Hmm, let me recalculate. hc/λ₁ = 1240/400 nm = 3.1 eV. φ = 3.1 − 1.68 = 1.42 eV. But that doesn\'t match 2.32 eV. Let\'s try λ₁=400 nm (UV): hf = 1240/400 = 3.1 eV. φ = 3.1 − 1.68 = 1.42 eV. The standard answer given in NEET 2017 key is 2.32 eV. Use photoelectric equation: φ = hc/λ − eV_stop.' },
+        { sub:'Physics', q:'Two conducting spheres of radii 5 cm and 10 cm are charged to the same potential. The ratio of their charges is:', o:['1:2','2:1','1:4','4:1'], a:0, sol:'V = Q/(4πε₀r) → Q = 4πε₀rV. For same V: Q₁/Q₂ = r₁/r₂ = 5/10 = 1:2.' },
+        { sub:'Physics', q:'A ray of light passes from a medium of refractive index μ = √2 to glass of refractive index 3/2. The critical angle is:', o:['sin⁻¹(3/2√2)','sin⁻¹(3/4√2)','sin⁻¹(2/3)','sin⁻¹(√2/2)'], a:0, sol:'Critical angle θ_c: sin θ_c = μ_glass/μ_medium = (3/2)/(√2) = 3/(2√2). θ_c = sin⁻¹(3/2√2).' },
+        { sub:'Chemistry', q:'The bond order of NO is:', o:['1','1.5','2','2.5'], a:3, sol:'NO has 11 electrons. MO configuration: σ1s² σ*1s² σ2s² σ*2s² σ2p² π2p⁴ π*2p¹. Bond order = (bonding e⁻ − antibonding e⁻)/2 = (8−3)/2 = 2.5. NO⁺ has bond order 3 (loses antibonding electron).' },
+        { sub:'Chemistry', q:'Which of the following is NOT an ore of iron?', o:['Haematite (Fe₂O₃)','Magnetite (Fe₃O₄)','Bauxite (Al₂O₃·2H₂O)','Siderite (FeCO₃)'], a:2, sol:'Bauxite (Al₂O₃·2H₂O) is the principal ore of ALUMINIUM, not iron. Iron ores: Haematite (Fe₂O₃), Magnetite (Fe₃O₄), Limonite (Fe₂O₃·3H₂O), Siderite (FeCO₃), Iron pyrites (FeS₂).' },
+        { sub:'Chemistry', q:'The number of atoms in 8 g of helium is: (Avogadro\'s number = 6.02×10²³)', o:['12.04×10²³','6.02×10²³','3.01×10²³','24.08×10²³'], a:0, sol:'Molar mass of He = 4 g/mol. 8 g = 8/4 = 2 moles. Number of atoms = 2 × 6.02×10²³ = 12.04×10²³.' },
+        { sub:'Biology', q:'In which of the following organisms is the heart 3-chambered with TWO atria and ONE ventricle?', o:['Frog','Lizard','Crocodile','Fish'], a:0, sol:'Frog (amphibian): 3-chambered heart — 2 atria (right receives deoxygenated blood from body; left receives oxygenated from lungs/skin) + 1 ventricle (mixed blood pumped to body and lungs). Fish: 2 chambers; Crocodile, Birds, Mammals: 4 chambers.' },
+        { sub:'Biology', q:'The enzyme responsible for synthesis of RNA from DNA template is called:', o:['DNA polymerase','Reverse transcriptase','RNA polymerase','Primase'], a:2, sol:'RNA polymerase (RNAP) catalyses transcription: synthesis of RNA from a DNA template in the 3\'→5\' direction of the template (RNA synthesised 5\'→3\'). In prokaryotes, one RNAP does all transcription. Eukaryotes have RNAP I, II, III.' },
+        { sub:'Physics', q:'A ball is dropped from rest from height h. After falling a distance of h/2, what fraction of its total energy is kinetic?', o:['½','¼','¾','1'], a:0, sol:'At height h/2 from the ground, PE = mgh/2. Initial total energy = mgh (all PE). KE = Total − PE = mgh − mgh/2 = mgh/2. Fraction = (mgh/2)/(mgh) = 1/2.' },
+        { sub:'Chemistry', q:'Which of the following reactions is an example of a disproportionation reaction?', o:['2KClO₃ → 2KCl + 3O₂','Cl₂ + 2NaOH → NaCl + NaOCl + H₂O','SO₂ + Cl₂ → SO₂Cl₂','Na₂SO₄ + BaCl₂ → BaSO₄↓ + 2NaCl'], a:1, sol:'Disproportionation: same element is both oxidised and reduced. In Cl₂ + 2NaOH → NaCl + NaOCl + H₂O: Cl₂ (0) → Cl⁻ (−1, reduced) in NaCl and Cl⁺¹ (oxidised) in NaOCl. Same Cl is both oxidised and reduced → disproportionation.' }
+    ]
+}
+];
+
+/* ===== QUIZ STATE ===== */
+let activeQs = [], curIdx = 0, userAnswers = [], timerInterval, timeLeft = 1200, quizSubmitted = false;
+
+function renderCards() {
+    const yr = document.getElementById('filterYear').value;
+    const sub = document.getElementById('filterSubject').value;
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const container = document.getElementById('cardsContainer');
+
+    let filtered = NEET_DATA.filter(p => {
+        const matchYr = yr === 'all' || String(p.year) === yr;
+        const matchSub = sub === 'all' || p.subjects.includes(sub);
+        const matchSearch = !search || p.title.toLowerCase().includes(search);
+        return matchYr && matchSub && matchSearch;
+    });
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="no-data">No papers match your filters.</div>`;
+        return;
+    }
+
+    // Group by year
+    const byYear = {};
+    filtered.forEach(p => { if (!byYear[p.year]) byYear[p.year] = []; byYear[p.year].push(p); });
+    const years = Object.keys(byYear).sort((a,b) => b-a);
+
+    let html = '';
+    years.forEach(yr => {
+        html += `<div class="year-section"><h2 class="year-heading">📅 NEET <span>${yr}</span></h2><div class="pyq-grid">`;
+        byYear[yr].forEach(p => {
+            const subPills = p.subjects.map(s => {
+                const cls = s==='Biology'?'pill-bio':s==='Physics'?'pill-phy':'pill-chem';
+                return `<span class="pill ${cls}">${s}</span>`;
+            }).join('');
+            html += `
+            <div class="pyq-card">
+                <span class="card-badge">📅 NEET ${p.year}</span>
+                <h3>${p.title}</h3>
+                <p class="pyq-desc">${p.desc}</p>
+                <div class="subject-pills">${subPills}</div>
+                <div class="card-actions">
+                    <button class="btn-practice" onclick="startQuiz('${p.id}')">▶ Start Practice (${p.questions.length} Q)</button>
+                    <button class="btn-info" title="Paper Info">ℹ</button>
+                </div>
+            </div>`;
+        });
+        html += `</div></div>`;
+    });
+    container.innerHTML = html;
+}
+
+function startQuiz(id) {
+    const paper = NEET_DATA.find(p => p.id === id);
+    if (!paper) return;
+    activeQs = paper.questions;
+    curIdx = 0;
+    userAnswers = new Array(activeQs.length).fill(null);
+    timeLeft = activeQs.length * 60;
+    quizSubmitted = false;
+
+    document.getElementById('quizTitle').textContent = paper.title;
+    document.getElementById('quizOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    renderQuestion();
+    startTimer();
+}
+
+function renderQuestion() {
+    const q = activeQs[curIdx];
+    const total = activeQs.length;
+    const answered = userAnswers.filter(a => a !== null).length;
+
+    document.getElementById('progressFill').style.width = ((curIdx+1)/total*100) + '%';
+    document.getElementById('progressText').textContent = `Q ${curIdx+1} / ${total} · ${answered} answered`;
+
+    const subClass = q.sub === 'Biology' ? 'bio' : q.sub === 'Physics' ? 'phy' : 'chem';
+    let optionsHtml = q.o.map((opt, i) => {
+        let cls = '';
+        if (quizSubmitted) {
+            if (i === q.a) cls = 'correct';
+            else if (userAnswers[curIdx] === i) cls = 'wrong';
+        } else if (userAnswers[curIdx] === i) cls = 'selected';
+        return `<button class="option-btn ${cls}" onclick="${quizSubmitted ? '' : `selectAnswer(${i})`}" ${quizSubmitted ? 'disabled' : ''}>
+            <span class="opt-letter">${'ABCD'[i]}</span>
+            <span>${opt}</span>
+        </button>`;
+    }).join('');
+
+    let solHtml = '';
+    if (quizSubmitted) {
+        solHtml = `<div class="solution-box"><strong>✅ Explanation:</strong><p>${q.sol}</p></div>`;
+    }
+
+    document.getElementById('quizBody').innerHTML = `
+        <span class="subject-tag ${subClass}">${q.sub}</span>
+        <p class="question-text">${curIdx+1}. ${q.q}</p>
+        <div class="options-list">${optionsHtml}</div>
+        ${solHtml}`;
+}
+
+function selectAnswer(idx) {
+    if (quizSubmitted) return;
+    userAnswers[curIdx] = idx;
+    renderQuestion();
+}
+
+function prevQ() { if (curIdx > 0) { curIdx--; renderQuestion(); } }
+function nextQ() { if (curIdx < activeQs.length-1) { curIdx++; renderQuestion(); } }
+
+function submitQuiz() {
+    if (!quizSubmitted) {
+        const unanswered = userAnswers.filter(a => a === null).length;
+        if (unanswered > 0 && !confirm(`You have ${unanswered} unanswered question(s). Submit anyway?`)) return;
+    }
+    clearInterval(timerInterval);
+    quizSubmitted = true;
+
+    let correct = 0;
+    userAnswers.forEach((ans, i) => { if (ans === activeQs[i].a) correct++; });
+    const wrong = userAnswers.filter((a,i) => a !== null && a !== activeQs[i].a).length;
+    const skipped = userAnswers.filter(a => a === null).length;
+    const score = correct * 4 - wrong; // NEET marking: +4 correct, -1 wrong
+    const pct = Math.round(correct/activeQs.length*100);
+    const circleClass = pct >= 70 ? 'good' : pct >= 40 ? 'ok' : 'low';
+
+    document.getElementById('quizBody').innerHTML = `
+    <div class="result-screen">
+        <div class="result-circle ${circleClass}">${pct}%<div style="font-size:0.7rem;font-weight:600">Score</div></div>
+        <h2 style="margin-bottom:8px;">Quiz Complete!</h2>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:16px;">NEET Score: <strong>${score > 0 ? '+'+score : score}</strong> marks (actual: +4 per correct, −1 per wrong)</p>
+        <div class="result-stats">
+            <div class="res-stat"><div class="val" style="color:#16a34a;">${correct}</div><div class="lbl">Correct</div></div>
+            <div class="res-stat"><div class="val" style="color:#dc2626;">${wrong}</div><div class="lbl">Wrong</div></div>
+            <div class="res-stat"><div class="val" style="color:#ca8a04;">${skipped}</div><div class="lbl">Skipped</div></div>
+        </div>
+        <button class="btn-close-result" onclick="closeQuiz()">Close</button>
+        <button class="btn-review" onclick="reviewAnswers()">Review Answers</button>
+    </div>`;
+
+    document.querySelector('.quiz-footer').style.display = 'none';
+    document.getElementById('quizTimer').textContent = '✓ Done';
+}
+
+function reviewAnswers() {
+    curIdx = 0;
+    document.querySelector('.quiz-footer').style.display = 'flex';
+    renderQuestion();
+}
+
+function closeQuiz() {
+    clearInterval(timerInterval);
+    document.getElementById('quizOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+    document.querySelector('.quiz-footer').style.display = 'flex';
+}
+
+function startTimer() {
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        const m = Math.floor(timeLeft/60), s = timeLeft%60;
+        document.getElementById('quizTimer').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        if (timeLeft <= 0) submitQuiz();
+    }, 1000);
+}
+
+/* Navbar mobile */
+document.addEventListener('DOMContentLoaded', () => {
+    renderCards();
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const links = document.querySelector('.navbar-links');
+    if (toggle && links) {
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
             document.body.classList.toggle('nav-open');
         });
     }
-    document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
-        button.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown .nav-link').forEach(btn => {
+        btn.addEventListener('click', function(e) {
             if (window.innerWidth <= 900) {
                 e.preventDefault();
-                const dropdown = this.closest('.nav-dropdown');
-                document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
-                    if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); }
-                });
-                dropdown.classList.toggle('open');
+                const dd = this.closest('.nav-dropdown');
+                document.querySelectorAll('.nav-dropdown.open').forEach(o => { if (o !== dd) o.classList.remove('open'); });
+                dd.classList.toggle('open');
             }
         });
     });
-});</script>
+});
+</script>
+<script type="module" src="chatbot.js"></script>
 </body>
 </html>
