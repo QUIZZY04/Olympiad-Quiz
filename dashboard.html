@@ -1092,8 +1092,8 @@ function checkPhoneCollection(user, userData) {
     setDoc(doc(db, 'users', user.uid), { pcDashboardVisits: newVisits }, { merge: true })
         .catch(e => console.warn('[ProfileComplete] visit count update failed:', e));
 
-    // Show from 2nd visit onward
-    if (newVisits < 2) return;
+    // Show from 3rd visit onward (proxy for "has attempted 2+ tests")
+    if (newVisits < 3) return;
 
     const dismissCount = parseInt(localStorage.getItem('pcDismissCount') || '0');
 
