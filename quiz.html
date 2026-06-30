@@ -1210,6 +1210,38 @@ onAuthStateChanged(auth, async(user)=>{
         document.getElementById("adminTab").style.display="inline";
         document.getElementById("deleteQuestionBtn").style.display = "inline-block";
     }
+
+    // Block 3rd+ test attempt when profile is incomplete
+    if (!isAdmin) {
+        try {
+            const userDoc = await getDoc(doc(db, 'users', user.uid));
+            const userData = userDoc.exists() ? userDoc.data() : {};
+
+            const providers = user.providerData.map(p => p.providerId);
+            const isGoogleOnly = providers.includes('google.com') && !providers.includes('phone');
+            const isPhoneOnly  = providers.includes('phone')  && !providers.includes('google.com');
+
+            const hasBasicInfo = !!(userData.name && (userData.studentClass || userData.class) && userData.schoolName);
+            const hasPhone = !!(user.phoneNumber || userData.phoneVerified);
+            const hasEmail = !!(user.email || userData.email);
+
+            let profileComplete;
+            if (isGoogleOnly)      profileComplete = hasBasicInfo && hasPhone;
+            else if (isPhoneOnly)  profileComplete = hasBasicInfo && hasEmail;
+            else                   profileComplete = hasBasicInfo;
+
+            if (!profileComplete) {
+                const snap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid)));
+                if (snap.size >= 2) {
+                    window.location.replace('profile.html?complete=1');
+                    return;
+                }
+            }
+        } catch(e) {
+            // If check fails, allow the test to proceed
+        }
+    }
+
     await loadQuestions();
     if (questions.length > 0) {
         document.getElementById('fullscreenOverlay').style.display = 'flex';
