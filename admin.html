@@ -4619,15 +4619,18 @@ window.initUserActivityLog = async function() {
 
         const snap = await getDocs(actQuery);
 
-        // Batch-fetch phone numbers from users collection
+        // Batch-fetch name and phone from users collection
         const uniqueUids = [...new Set(snap.docs.map(d => d.data().uid).filter(Boolean))];
-        const phoneMap = {};
+        const userDataMap = {};
         await Promise.all(uniqueUids.map(async uid => {
             try {
                 const uDoc = await getDoc(doc(db, 'users', uid));
                 if (uDoc.exists()) {
                     const u = uDoc.data();
-                    phoneMap[uid] = u.phone || u.phoneNumber || '';
+                    userDataMap[uid] = {
+                        name: u.name || u.fullName || '',
+                        phone: u.phone || u.phoneNumber || ''
+                    };
                 }
             } catch(e) {}
         }));
@@ -4639,9 +4642,10 @@ window.initUserActivityLog = async function() {
 
             snap.forEach(dSnap => {
                 const d = dSnap.data();
-                const name = d.name || (d.email ? d.email.split('@')[0] : "Student");
+                const userData = (d.uid && userDataMap[d.uid]) || {};
+                const name = d.name || userData.name || (d.email ? d.email.split('@')[0] : "N/A");
                 const email = d.email || "N/A";
-                const mobile = (d.uid && phoneMap[d.uid]) ? phoneMap[d.uid] : "N/A";
+                const mobile = userData.phone || "N/A";
                 
                 const grd = (d.studentClass || d.class || "N/A").toString().replace("class", "G");
                 const subj = d.subject || "N/A";
