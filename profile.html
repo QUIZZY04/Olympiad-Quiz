@@ -174,6 +174,7 @@
                     <div class="view-item"><label>Grade/Class</label><p id="viewStudentClass">-</p></div>
                     <div class="view-item"><label>School Name and Address</label><p id="viewSchoolName">-</p></div>
                     <div class="view-item full-width"><label>Mobile Number</label><p id="viewPhoneNumber" style="display:flex; align-items:center; gap:8px;">Not verified</p></div>
+                    <div class="view-item full-width" id="viewEmailRow" style="display:none;"><label>Email Address</label><p id="viewEmailAddress">-</p></div>
                 </div>
             </div>
 
@@ -287,6 +288,16 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- Email section — shown only for phone-login users -->
+                    <div id="profileEmailSection" style="display:none; margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+                        <label style="display:block; font-weight:700; font-size:0.85rem; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">Email Address *</label>
+                        <input type="email" id="profileEmailInput" placeholder="Enter your email address"
+                            style="width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:14px; outline:none; transition:0.2s; box-sizing:border-box;"
+                            onfocus="this.style.borderColor='var(--brand)'; this.style.boxShadow='0 0 0 3px rgba(255,107,0,0.12)'"
+                            onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none'">
+                        <p style="font-size:12px; color:var(--muted); margin-top:6px;">Used for certificates and test result notifications.</p>
+                    </div>
                 </div>
             </form>
         </div>
@@ -316,7 +327,7 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut, RecaptchaVerifier, linkWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut, RecaptchaVerifier, linkWithPhoneNumber, updateEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
     import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
@@ -334,17 +345,28 @@
 
     let currentUser = null;
     let newImageFile = null;
+    let isPhoneOnlyUser = false;
 
     // Phone OTP state
     let profileOtpResult = null;
     let profileVerifiedPhone = '';
     let profilePhoneIsVerified = false;
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         if (user) {
             currentUser = user;
             document.body.style.visibility = 'visible';
-            loadProfileData(user.uid);
+
+            // Detect auth provider to show correct fields
+            const providers = user.providerData.map(p => p.providerId);
+            isPhoneOnlyUser = providers.includes('phone') && !providers.includes('google.com');
+
+            await loadProfileData(user.uid);
+
+            // Auto-open edit mode when redirected from the profile completion popup
+            if (new URLSearchParams(window.location.search).get('complete') === '1') {
+                toggleEditMode(true);
+            }
         } else {
             window.location.replace("login.html");
         }
@@ -363,7 +385,13 @@
         uploader.style.cursor = editing ? 'pointer' : 'default';
         uploader.style.opacity = editing ? '1' : '0.7';
 
-        if (editing && !profilePhoneIsVerified) initProfileRecaptcha();
+        // Phone OTP section: only for non-phone users (Google/email login) without verified phone
+        const phoneSection = document.getElementById('profilePhoneInputArea')?.closest('[style*="border-top"]') ||
+            document.querySelector('#profileEditMode > div[style*="border-top"]');
+        if (editing && !profilePhoneIsVerified && !isPhoneOnlyUser) initProfileRecaptcha();
+
+        // Email section: only for phone-only users
+        document.getElementById('profileEmailSection').style.display = (editing && isPhoneOnlyUser) ? 'block' : 'none';
     }
 
     function initProfileRecaptcha() {
@@ -510,6 +538,14 @@
                     document.getElementById('profilePhoneVerifiedDisplay').style.display = 'none';
                     document.getElementById('profilePhoneInputArea').style.display = 'block';
                 }
+
+                // Email — for phone-only users
+                const emailVal = currentUser.email || data.email || '';
+                if (isPhoneOnlyUser) {
+                    document.getElementById('profileEmailInput').value = emailVal;
+                    document.getElementById('viewEmailAddress').innerText = emailVal || '-';
+                    document.getElementById('viewEmailRow').style.display = emailVal ? 'flex' : 'none';
+                }
             }
             toggleEditMode(false); // Start in view mode
         } catch (error) {
@@ -569,6 +605,15 @@
                 throw new Error("Please verify your mobile number before saving your profile.");
             }
 
+            // Validate email for phone-only users
+            let collectedEmail = '';
+            if (isPhoneOnlyUser) {
+                collectedEmail = (document.getElementById('profileEmailInput').value || '').trim();
+                if (!collectedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(collectedEmail)) {
+                    throw new Error("Please enter a valid email address.");
+                }
+            }
+
             const profileData = {
                 name: document.getElementById('studentName').value.trim(),
                 fatherName: document.getElementById('fatherName').value.trim(),
@@ -592,10 +637,18 @@
                 profileData.phoneVerifiedAt = serverTimestamp();
             }
 
+            if (collectedEmail) {
+                profileData.email = collectedEmail;
+                // Try to update Firebase Auth email (may fail if session is old — we still save to Firestore)
+                try { await updateEmail(currentUser, collectedEmail); } catch(e) { /* non-fatal */ }
+            }
+
             // Validate required fields
             if (!profileData.name || !profileData.fatherName || !profileData.address || !profileData.city || !profileData.state || !profileData.pinCode || !profileData.dob || !profileData.gender || !profileData.studentClass || !profileData.schoolName) {
                 throw new Error("All fields are required. Please ensure everything is filled out.");
             }
+
+            profileData.profileCompleted = true;
 
             await setDoc(doc(db, "users", uid), profileData, { merge: true });
 

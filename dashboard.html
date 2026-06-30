@@ -567,152 +567,22 @@
         </div>
     </div>
 
-    <!-- Incomplete Profile Modal -->
-    <div id="incompleteProfileModal" class="modal-overlay" style="display:none; z-index: 5000;">
-        <div class="modal-content" style="max-width: 480px; text-align: center; padding: 40px; border-top: 4px solid var(--brand);">
-            <div style="font-size: 50px; line-height: 1; margin-bottom: 15px; color: var(--brand);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            </div>
-            <h2 style="color: var(--text); margin-bottom: 10px; font-weight: 800; font-size: 24px;">Complete Your Profile</h2>
-            <p style="color: var(--muted); margin-bottom: 25px; font-size: 1rem; line-height: 1.6;">
-                Please add your details to get personalized certificates, accurate rankings, and a better experience.
+    <!-- Profile Completion Popup (shown after 2+ tests with incomplete profile) -->
+    <div id="profileCompletePopup" class="modal-overlay" style="display:none; z-index:7000; background:rgba(0,0,0,0.85);">
+        <div class="modal-content" style="max-width:460px; text-align:center; padding:44px 36px; border-top:4px solid var(--brand);">
+            <div style="font-size:58px; line-height:1; margin-bottom:18px;">📋</div>
+            <h2 style="font-weight:800; font-size:1.55rem; color:var(--text); margin-bottom:12px;">Complete Your Profile</h2>
+            <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:28px;">
+                You've completed <strong>2+ tests!</strong> Please finish your profile to unlock accurate rankings, personalised certificates, and test notifications.
             </p>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="profile.html" style="padding: 14px; border-radius: 12px; background: var(--brand); color: white; font-weight: 700; text-decoration: none; display: block; transition: 0.2s; box-shadow: 0 4px 15px rgba(255,107,0,0.25);">Update Profile Now</a>
-                <button onclick="dismissIncompleteProfileModal()" style="padding: 12px; border-radius: 12px; background: transparent; color: var(--muted); font-weight: 700; border: none; cursor: pointer; font-size: 14px;">Remind Me Later</button>
-            </div>
+            <a href="profile.html?complete=1"
+               style="display:block; padding:14px 20px; background:var(--brand); color:white; font-weight:800; font-size:1rem; border-radius:12px; text-decoration:none; box-shadow:0 4px 15px rgba(255,107,0,0.3); transition:0.2s;"
+               onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                Complete Profile Now →
+            </a>
         </div>
     </div>
 
-    <!-- ===== COMPLETE PROFILE MODAL (z-index 7000 — topmost) ===== -->
-    <div id="phoneCollectModal" class="modal-overlay" style="display:none; z-index:7000; background:rgba(0,0,0,0.8);" onclick="event.stopPropagation()">
-        <div class="modal-content" style="max-width:480px; padding:36px; border-top:4px solid var(--brand); position:relative; max-height:90vh; overflow-y:auto;">
-
-            <!-- Form View -->
-            <div id="pcFormView">
-                <div style="text-align:center; margin-bottom:22px;">
-                    <div style="font-size:48px; margin-bottom:10px;">📋</div>
-                    <h2 style="font-size:1.5rem; font-weight:800; margin-bottom:8px; color:var(--text);">Complete Your Profile</h2>
-                    <p style="color:var(--muted); font-size:0.88rem; line-height:1.6;">
-                        You've attempted <strong>2+ tests</strong>! Completing your profile unlocks accurate rankings, certificates, and personalised test alerts.
-                    </p>
-                </div>
-
-                <!-- Name -->
-                <div style="margin-bottom:14px;">
-                    <label style="display:block; font-weight:700; font-size:13px; color:var(--text); margin-bottom:6px;">Full Name *</label>
-                    <input type="text" id="pcName" placeholder="Enter your full name"
-                        style="width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:14px; outline:none; box-sizing:border-box; transition:0.2s;"
-                        onfocus="this.style.borderColor='var(--brand)'; this.style.boxShadow='0 0 0 3px rgba(255,107,0,0.12)'"
-                        onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none'">
-                </div>
-
-                <!-- Grade -->
-                <div style="margin-bottom:14px;">
-                    <label style="display:block; font-weight:700; font-size:13px; color:var(--text); margin-bottom:6px;">Grade / Class *</label>
-                    <select id="pcClass"
-                        style="width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:14px; outline:none; background:var(--card); color:var(--text); box-sizing:border-box; cursor:pointer;"
-                        onfocus="this.style.borderColor='var(--brand)'"
-                        onblur="this.style.borderColor='var(--border)'">
-                        <option value="">Select your grade</option>
-                        <option value="class1">Grade 1</option>
-                        <option value="class2">Grade 2</option>
-                        <option value="class3">Grade 3</option>
-                        <option value="class4">Grade 4</option>
-                        <option value="class5">Grade 5</option>
-                        <option value="class6">Grade 6</option>
-                        <option value="class7">Grade 7</option>
-                        <option value="class8">Grade 8</option>
-                        <option value="class9">Grade 9</option>
-                        <option value="class10">Grade 10</option>
-                        <option value="class11">Grade 11</option>
-                        <option value="class12">Grade 12</option>
-                    </select>
-                </div>
-
-                <!-- School -->
-                <div style="margin-bottom:14px;">
-                    <label style="display:block; font-weight:700; font-size:13px; color:var(--text); margin-bottom:6px;">School Name *</label>
-                    <input type="text" id="pcSchool" placeholder="Enter your school name"
-                        style="width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:14px; outline:none; box-sizing:border-box; transition:0.2s;"
-                        onfocus="this.style.borderColor='var(--brand)'; this.style.boxShadow='0 0 0 3px rgba(255,107,0,0.12)'"
-                        onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none'">
-                </div>
-
-                <!-- Phone section (Google users without verified phone only) -->
-                <div id="pcPhoneSection" style="display:none; margin-bottom:14px;">
-                    <label style="display:block; font-weight:700; font-size:13px; color:var(--text); margin-bottom:6px;">
-                        Mobile Number * <span style="font-weight:400; color:var(--muted); font-size:11px;">(OTP verification required)</span>
-                    </label>
-
-                    <div id="pcPhoneInputArea">
-                        <div style="display:flex; gap:8px; margin-bottom:10px;">
-                            <div style="background:#f1f5f9; border:1px solid var(--border); border-radius:10px; padding:12px 14px; font-weight:700; color:var(--muted); flex-shrink:0; font-size:14px;">+91</div>
-                            <input type="tel" id="pcPhoneInput" maxlength="10" inputmode="numeric" placeholder="10-digit mobile number"
-                                style="flex:1; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:14px; outline:none; transition:0.2s;"
-                                onfocus="this.style.borderColor='var(--brand)'; this.style.boxShadow='0 0 0 3px rgba(255,107,0,0.12)'"
-                                onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none'"
-                                oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
-                        </div>
-                        <div id="pc-recaptcha-container"></div>
-                        <button id="pcSendOtpBtn" onclick="pcSendOtp()"
-                            style="width:100%; padding:11px; background:var(--brand); color:#111827; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; transition:0.2s; font-family:inherit;"
-                            onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                            Send OTP
-                        </button>
-                    </div>
-
-                    <div id="pcOtpArea" style="display:none;">
-                        <p style="color:var(--muted); font-size:13px; margin:0 0 10px 0;">OTP sent to <strong>+91 <span id="pcPhoneDisplay"></span></strong></p>
-                        <input type="text" id="pcOtpInput" maxlength="6" inputmode="numeric" placeholder="Enter 6-digit OTP"
-                            style="width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:18px; letter-spacing:6px; text-align:center; outline:none; margin-bottom:10px; box-sizing:border-box; transition:0.2s;"
-                            onfocus="this.style.borderColor='var(--brand)'; this.style.boxShadow='0 0 0 3px rgba(255,107,0,0.12)'"
-                            onblur="this.style.borderColor='var(--border)'; this.style.boxShadow='none'"
-                            oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,6)">
-                        <button id="pcVerifyOtpBtn" onclick="pcVerifyOtp()"
-                            style="width:100%; padding:11px; background:var(--brand); color:#111827; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; transition:0.2s; font-family:inherit; margin-bottom:8px;"
-                            onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                            Verify OTP
-                        </button>
-                        <button onclick="pcBackToPhone()"
-                            style="width:100%; padding:8px; background:transparent; color:var(--muted); border:none; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit;">
-                            ← Change Number
-                        </button>
-                    </div>
-
-                    <div id="pcPhoneVerifiedMsg" style="display:none; padding:10px 14px; background:#ecfdf5; border:1px solid #6ee7b7; border-radius:10px; color:#059669; font-weight:700; font-size:13px;">
-                        ✅ +91 <span id="pcVerifiedNum"></span> — Mobile verified!
-                    </div>
-                </div>
-
-                <!-- Save & Skip buttons -->
-                <button id="pcSaveBtn" onclick="pcSaveProfile()"
-                    style="width:100%; padding:14px; background:var(--brand); color:#111827; border:none; border-radius:12px; font-weight:800; font-size:15px; cursor:pointer; box-shadow:0 4px 14px rgba(255,107,0,0.3); margin-top:6px; margin-bottom:10px; transition:0.2s; font-family:inherit;"
-                    onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
-                    Complete Profile
-                </button>
-                <button id="pcSkipBtn" onclick="pcDismiss()"
-                    style="width:100%; padding:10px; background:transparent; color:var(--muted); border:none; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit;">
-                    Remind Me Later
-                </button>
-            </div>
-
-            <!-- Success View -->
-            <div id="pcSuccessView" style="display:none; text-align:center; padding:20px 0;">
-                <div style="font-size:64px; margin-bottom:16px;">🎉</div>
-                <h2 style="font-size:1.5rem; font-weight:800; margin-bottom:8px; color:#059669;">Profile Complete!</h2>
-                <p style="color:var(--muted); font-size:0.95rem; line-height:1.6; margin-bottom:24px;">
-                    Your profile has been saved. You'll now receive accurate rankings, certificates, and personalised test notifications.
-                </p>
-                <button onclick="pcClose()"
-                    style="width:100%; padding:14px; background:var(--brand); color:#111827; border:none; border-radius:12px; font-weight:800; font-size:15px; cursor:pointer; font-family:inherit;">
-                    Continue to Dashboard
-                </button>
-            </div>
-
-        </div>
-    </div>
-    <!-- ===== END COMPLETE PROFILE MODAL ===== -->
 
     <!-- Push Notification Prompt Modal -->
     <div id="pushPromptModal" class="modal-overlay" style="display:none; z-index: 3000;">
@@ -753,8 +623,8 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth,onAuthStateChanged,signOut,RecaptchaVerifier,linkWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { initializeFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, orderBy, limit, getDocs, arrayUnion, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { initializeFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, where, orderBy, limit, getDocs, arrayUnion, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
 
 const firebaseConfig={ apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",authDomain:"olympiad-portal-d2a5e.firebaseapp.com",projectId:"olympiad-portal-d2a5e",storageBucket:"olympiad-portal-d2a5e.firebasestorage.app",messagingSenderId:"341855557503",appId:"1:341855557503:web:5cb0c3a9ee424a6db0ec4a"};
@@ -803,16 +673,8 @@ onAuthStateChanged(auth, async (user) => {
                 document.getElementById("userGreeting").innerText = `Welcome, ${data.name}!`;
             }
 
-            // Incomplete Profile Check
-            const profileComplete = data.name && (data.studentClass || data.class) && data.schoolName;
-            if (!profileComplete && !isAdmin && !sessionStorage.getItem('profilePromptDismissed')) {
-                setTimeout(() => {
-                    document.getElementById('incompleteProfileModal').style.display = 'flex';
-                }, 2500); // Delay to not be too intrusive
-            }
-            
-            // Phone collection check (Google-only users with 2+ tests)
-            if (!isAdmin) checkPhoneCollection(user, data);
+            // Show forced profile completion popup when user has >2 tests and profile is incomplete
+            if (!isAdmin) await checkAndShowProfilePopup(user, data);
 
             // --- Dashboard Visibility Logic for Grade 11 & 12 ---
             uClass = data.class || data.studentClass || "";
@@ -1061,221 +923,41 @@ window.closeFeedbackModal = () => {
     document.getElementById('dashboardFeedbackModal').style.display = 'none';
 };
 
-// ===== COMPLETE PROFILE LOGIC =====
-let pcConfirmResult = null;
-let pcLinkedPhone = '';
-let pcPhoneVerified = false;
-let pcRequiresPhone = false;
-
-function initPhoneModalRecaptcha() {
-    if (window.pcRecaptchaVerifier) {
-        try { window.pcRecaptchaVerifier.clear(); } catch(e) {}
-        window.pcRecaptchaVerifier = null;
-    }
-    window.pcRecaptchaVerifier = new RecaptchaVerifier(auth, 'pc-recaptcha-container', { 'size': 'invisible' });
-    window.pcRecaptchaVerifier.render().catch(e => console.warn('reCAPTCHA render:', e));
-}
-
-function checkPhoneCollection(user, userData) {
+// ===== PROFILE COMPLETION CHECK =====
+async function checkAndShowProfilePopup(user, userData) {
     const providers = user.providerData.map(p => p.providerId);
+    const isGoogleOnly = providers.includes('google.com') && !providers.includes('phone');
+    const isPhoneOnly = providers.includes('phone') && !providers.includes('google.com');
 
-    // Profile is complete only when all of: name, class, school, and verified phone are present
-    const hasPhone = !!(user.phoneNumber || userData.phoneVerified === true);
-    const hasName = !!(userData.name && userData.name.trim());
-    const hasClass = !!(userData.class || userData.studentClass);
-    const hasSchool = !!(userData.schoolName && userData.schoolName.trim());
-    if (hasPhone && hasName && hasClass && hasSchool) return;
+    const hasBasicInfo = !!(userData.name && (userData.studentClass || userData.class) && userData.schoolName);
+    const hasPhone = !!(user.phoneNumber || userData.phoneVerified);
+    const hasEmail = !!(user.email || userData.email);
 
-    // Track visits in Firestore (reliable across all test pages, unlike localStorage)
-    const prevVisits = userData.pcDashboardVisits || 0;
-    const newVisits = prevVisits + 1;
-    setDoc(doc(db, 'users', user.uid), { pcDashboardVisits: newVisits }, { merge: true })
-        .catch(e => console.warn('[ProfileComplete] visit count update failed:', e));
+    let profileComplete;
+    if (isGoogleOnly) {
+        profileComplete = hasBasicInfo && hasPhone;
+    } else if (isPhoneOnly) {
+        profileComplete = hasBasicInfo && hasEmail;
+    } else {
+        profileComplete = hasBasicInfo;
+    }
 
-    // Show from 3rd visit onward (proxy for "has attempted 2+ tests")
-    if (newVisits < 3) return;
+    if (profileComplete) return;
 
-    const dismissCount = parseInt(localStorage.getItem('pcDismissCount') || '0');
+    // Count total test attempts from leaderboard
+    try {
+        const snap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid)));
+        if (snap.size <= 2) return;
+    } catch(e) {
+        return;
+    }
 
     setTimeout(() => {
-        const modal = document.getElementById('phoneCollectModal');
-        if (!modal) return;
-
-        // Hide the simpler incomplete-profile modal so only this one is visible
-        const simpleModal = document.getElementById('incompleteProfileModal');
-        if (simpleModal) simpleModal.style.display = 'none';
-
-        // Reset state for a clean re-open
-        pcPhoneVerified = false; pcLinkedPhone = ''; pcConfirmResult = null;
-        document.getElementById('pcFormView').style.display = 'block';
-        document.getElementById('pcSuccessView').style.display = 'none';
-        document.getElementById('pcPhoneInputArea').style.display = 'block';
-        document.getElementById('pcOtpArea').style.display = 'none';
-        document.getElementById('pcPhoneVerifiedMsg').style.display = 'none';
-
-        // Pre-fill existing data
-        const nameEl = document.getElementById('pcName');
-        const classEl = document.getElementById('pcClass');
-        const schoolEl = document.getElementById('pcSchool');
-        const sendBtn = document.getElementById('pcSendOtpBtn');
-        if (nameEl) nameEl.value = userData.name || user.displayName || '';
-        if (classEl) classEl.value = userData.class || userData.studentClass || '';
-        if (schoolEl) schoolEl.value = userData.schoolName || '';
-        if (sendBtn) { sendBtn.disabled = false; sendBtn.innerText = 'Send OTP'; }
-
-        // Phone section: shown only for Google users without verified phone
-        pcRequiresPhone = providers.includes('google.com') && !user.phoneNumber && !userData.phoneVerified;
-        document.getElementById('pcPhoneSection').style.display = pcRequiresPhone ? 'block' : 'none';
-        // Save button disabled until phone verified (for Google users); enabled immediately for phone users
-        document.getElementById('pcSaveBtn').disabled = pcRequiresPhone;
-
-        // After first dismiss, hide the skip button (forced completion)
-        document.getElementById('pcSkipBtn').style.display = dismissCount >= 1 ? 'none' : 'block';
-
-        modal.style.display = 'flex';
-        if (pcRequiresPhone) initPhoneModalRecaptcha();
-    }, 1800);
+        const popup = document.getElementById('profileCompletePopup');
+        if (popup) popup.style.display = 'flex';
+    }, 1500);
 }
-
-window.pcSendOtp = async function() {
-    const raw = document.getElementById('pcPhoneInput').value.trim();
-    if (!/^[6-9][0-9]{9}$/.test(raw)) {
-        alert('Please enter a valid 10-digit Indian mobile number starting with 6–9.');
-        return;
-    }
-    const phone = '+91' + raw;
-    pcLinkedPhone = phone;
-    const btn = document.getElementById('pcSendOtpBtn');
-    btn.disabled = true; btn.innerText = 'Sending OTP…';
-
-    try {
-        pcConfirmResult = await linkWithPhoneNumber(auth.currentUser, phone, window.pcRecaptchaVerifier);
-        document.getElementById('pcPhoneDisplay').innerText = raw;
-        document.getElementById('pcPhoneInputArea').style.display = 'none';
-        document.getElementById('pcOtpArea').style.display = 'block';
-        document.getElementById('pcOtpInput').focus();
-    } catch(err) {
-        btn.disabled = false; btn.innerText = 'Send OTP';
-        if (window.pcRecaptchaVerifier) { window.pcRecaptchaVerifier.clear(); initPhoneModalRecaptcha(); }
-
-        if (err.code === 'auth/provider-already-linked') {
-            // Phone already linked to this Google account — mark verified, enable save
-            pcPhoneVerified = true; pcLinkedPhone = phone;
-            document.getElementById('pcPhoneInputArea').style.display = 'none';
-            document.getElementById('pcVerifiedNum').innerText = raw;
-            document.getElementById('pcPhoneVerifiedMsg').style.display = 'block';
-            document.getElementById('pcSaveBtn').disabled = false;
-        } else if (err.code === 'auth/credential-already-in-use') {
-            alert('This mobile number is already linked to a different account. Please use a different number.');
-        } else if (err.code === 'auth/invalid-phone-number') {
-            alert('Invalid phone number. Please check and try again.');
-        } else if (err.code === 'auth/too-many-requests') {
-            alert('Too many OTP requests. Please wait a few minutes before trying again.');
-        } else {
-            alert('Could not send OTP. Please try again.\n(' + (err.message || err.code) + ')');
-        }
-    }
-};
-
-window.pcVerifyOtp = async function() {
-    const code = document.getElementById('pcOtpInput').value.trim();
-    if (!/^[0-9]{6}$/.test(code)) { alert('Please enter the 6-digit OTP.'); return; }
-
-    const btn = document.getElementById('pcVerifyOtpBtn');
-    btn.disabled = true; btn.innerText = 'Verifying…';
-
-    try {
-        const result = await pcConfirmResult.confirm(code);
-        pcLinkedPhone = result.user.phoneNumber || pcLinkedPhone;
-        pcPhoneVerified = true;
-
-        const rawNum = pcLinkedPhone.replace('+91', '');
-        document.getElementById('pcOtpArea').style.display = 'none';
-        document.getElementById('pcVerifiedNum').innerText = rawNum;
-        document.getElementById('pcPhoneVerifiedMsg').style.display = 'block';
-        document.getElementById('pcSaveBtn').disabled = false;
-    } catch(err) {
-        btn.disabled = false; btn.innerText = 'Verify OTP';
-        if (err.code === 'auth/invalid-verification-code') {
-            alert('Incorrect OTP. Please check the code and try again.');
-        } else if (err.code === 'auth/code-expired') {
-            alert('OTP has expired. Please go back and request a new one.');
-        } else {
-            alert('Verification failed: ' + (err.message || err.code));
-        }
-    }
-};
-
-window.pcBackToPhone = function() {
-    document.getElementById('pcOtpArea').style.display = 'none';
-    document.getElementById('pcPhoneInputArea').style.display = 'block';
-    document.getElementById('pcOtpInput').value = '';
-    const btn = document.getElementById('pcSendOtpBtn');
-    btn.disabled = false; btn.innerText = 'Send OTP';
-    if (window.pcRecaptchaVerifier) { window.pcRecaptchaVerifier.clear(); initPhoneModalRecaptcha(); }
-};
-
-window.pcSaveProfile = async function() {
-    const name = (document.getElementById('pcName').value || '').trim();
-    const cls = document.getElementById('pcClass').value;
-    const school = (document.getElementById('pcSchool').value || '').trim();
-
-    if (!name || name.length < 2) {
-        alert('Please enter your full name.'); document.getElementById('pcName').focus(); return;
-    }
-    if (!cls) {
-        alert('Please select your grade/class.'); document.getElementById('pcClass').focus(); return;
-    }
-    if (!school || school.length < 2) {
-        alert('Please enter your school name.'); document.getElementById('pcSchool').focus(); return;
-    }
-    if (pcRequiresPhone && !pcPhoneVerified) {
-        alert('Please verify your mobile number to complete your profile.');
-        return;
-    }
-
-    const btn = document.getElementById('pcSaveBtn');
-    btn.disabled = true; btn.innerText = 'Saving…';
-
-    try {
-        const updateData = {
-            name, fullName: name,
-            class: cls, studentClass: cls,
-            schoolName: school,
-            profileCompleted: true
-        };
-        if (pcRequiresPhone && pcPhoneVerified && pcLinkedPhone) {
-            updateData.phone = pcLinkedPhone;
-            updateData.phoneNumber = pcLinkedPhone;
-            updateData.phoneVerified = true;
-            updateData.phoneVerifiedAt = serverTimestamp();
-        }
-        await setDoc(doc(db, 'users', auth.currentUser.uid), updateData, { merge: true });
-        localStorage.removeItem('pcDismissCount');
-
-        document.getElementById('pcFormView').style.display = 'none';
-        document.getElementById('pcSuccessView').style.display = 'block';
-    } catch(err) {
-        btn.disabled = false; btn.innerText = 'Complete Profile';
-        alert('Failed to save profile. Please try again.\n(' + (err.message || err.code) + ')');
-    }
-};
-
-window.pcDismiss = function() {
-    const count = parseInt(localStorage.getItem('pcDismissCount') || '0');
-    localStorage.setItem('pcDismissCount', String(count + 1));
-    document.getElementById('phoneCollectModal').style.display = 'none';
-};
-
-window.pcClose = function() {
-    document.getElementById('phoneCollectModal').style.display = 'none';
-};
-// ===== END COMPLETE PROFILE LOGIC =====
-
-window.dismissIncompleteProfileModal = () => {
-    sessionStorage.setItem('profilePromptDismissed', 'true');
-    document.getElementById('incompleteProfileModal').style.display = 'none';
-};
+// ===== END PROFILE COMPLETION CHECK =====
 window.submitDashboardFeedback = async () => {
     const rating = document.getElementById("dbFbRating").value;
     const comment = document.getElementById("dbFbText").value;
