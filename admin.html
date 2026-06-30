@@ -1292,11 +1292,11 @@ border-top:1px solid var(--border);
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th><th>Email</th><th>Grade</th><th>Subject</th><th>Test Type</th><th>Marks</th><th>Time Taken</th><th>Date</th><th>Start</th><th>End</th>
+                            <th>Name</th><th>Email</th><th>Mobile</th><th>Grade</th><th>Subject</th><th>Test Type</th><th>Marks</th><th>Time Taken</th><th>Date</th><th>Start</th><th>End</th>
                         </tr>
                     </thead>
                     <tbody id="activityTableBody">
-                        <tr><td colspan="10" style="text-align:center; color: var(--muted);">Click "Refresh Data" to load user activity logs.</td></tr>
+                        <tr><td colspan="11" style="text-align:center; color: var(--muted);">Click "Refresh Data" to load user activity logs.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -4595,7 +4595,7 @@ window.initUserActivityLog = async function() {
         dateInput.value = `${year}-${month}-${day}`;
     }
     
-    tbody.innerHTML = "<tr><td colspan='10' style='text-align:center;'>Loading activities...</td></tr>";
+    tbody.innerHTML = "<tr><td colspan='11' style='text-align:center;'>Loading activities...</td></tr>";
 
     try {
         let actQuery;
@@ -4618,7 +4618,20 @@ window.initUserActivityLog = async function() {
         }
 
         const snap = await getDocs(actQuery);
-        
+
+        // Batch-fetch phone numbers from users collection
+        const uniqueUids = [...new Set(snap.docs.map(d => d.data().uid).filter(Boolean))];
+        const phoneMap = {};
+        await Promise.all(uniqueUids.map(async uid => {
+            try {
+                const uDoc = await getDoc(doc(db, 'users', uid));
+                if (uDoc.exists()) {
+                    const u = uDoc.data();
+                    phoneMap[uid] = u.phone || u.phoneNumber || '';
+                }
+            } catch(e) {}
+        }));
+
         const renderRows = () => {
             const searchTerm = searchInput.value.toLowerCase();
             let html = "";
@@ -4628,6 +4641,7 @@ window.initUserActivityLog = async function() {
                 const d = dSnap.data();
                 const name = d.name || (d.email ? d.email.split('@')[0] : "Student");
                 const email = d.email || "N/A";
+                const mobile = (d.uid && phoneMap[d.uid]) ? phoneMap[d.uid] : "N/A";
                 
                 const grd = (d.studentClass || d.class || "N/A").toString().replace("class", "G");
                 const subj = d.subject || "N/A";
@@ -4653,14 +4667,14 @@ window.initUserActivityLog = async function() {
                 const end = d.endTime ? d.endTime.toDate().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : "N/A";
 
                 html += `<tr>
-                    <td><b>${name}</b></td><td>${email}</td><td>${grd}</td><td style="text-transform:capitalize;">${subj}</td><td>${type}</td>
+                    <td><b>${name}</b></td><td>${email}</td><td>${mobile}</td><td>${grd}</td><td style="text-transform:capitalize;">${subj}</td><td>${type}</td>
                     <td><span class="badge" style="background:rgba(16, 185, 129, 0.1); color:var(--success); border:none;">${marks}</span></td>
                     <td style="font-weight:800; color:var(--brand);">${timeStr}</td>
                     <td>${dt}</td><td class="muted">${start}</td><td class="muted">${end}</td>
                 </tr>`;
                 found++;
             });
-            tbody.innerHTML = found > 0 ? html : "<tr><td colspan='10' style='text-align:center;'>No matching activities found.</td></tr>";
+            tbody.innerHTML = found > 0 ? html : "<tr><td colspan='11' style='text-align:center;'>No matching activities found.</td></tr>";
         };
 
         searchInput.oninput = renderRows;
@@ -4668,10 +4682,10 @@ window.initUserActivityLog = async function() {
         renderRows();
     } catch (e) { 
         if (e.message.includes("requires an index")) {
-            tbody.innerHTML = `<tr><td colspan='10' style='color:var(--danger); text-align:center;'><b>Index Required.</b> Check browser console (F12) for the direct link to create it in Firebase.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan='11' style='color:var(--danger); text-align:center;'><b>Index Required.</b> Check browser console (F12) for the direct link to create it in Firebase.</td></tr>`;
             console.error("Index Required Link:", e.message);
         } else {
-            tbody.innerHTML = `<tr><td colspan='10' style='color:var(--danger); text-align:center;'>Error: ${e.message}</td></tr>`; 
+            tbody.innerHTML = `<tr><td colspan='11' style='color:var(--danger); text-align:center;'>Error: ${e.message}</td></tr>`; 
         }
     }
 };
