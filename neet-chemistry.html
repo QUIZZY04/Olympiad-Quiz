@@ -16,13 +16,17 @@
         .hub-card { background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--brand); padding: 30px; border-radius: 20px; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .btn { margin-top: auto; text-align: center; background: var(--brand); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; }
     </style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://olympiadquiz.org/"},{"@type":"ListItem","position":2,"name":"NEET","item":"https://olympiadquiz.org/neet.html"},{"@type":"ListItem","position":3,"name":"NEET Chemistry Practice","item":"https://olympiadquiz.org/neet-chemistry.html"}]}
+</script>
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-inner">
             <!-- Left: Logo -->
             <a href="dashboard.html" class="navbar-logo">
-                <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async">
+                <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" onerror="this.style.display='none'" decoding="async" loading="lazy">
                 <span class="logo-text">OlympiadQuiz</span>
             </a>
 
