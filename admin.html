@@ -1243,10 +1243,19 @@ border-top:1px solid var(--border);
         </div>
         <div class="panel-content">
             <p class="muted">View and search through registered student profiles.</p>
-            <div style="display:grid; grid-template-columns: 1fr auto; gap:15px; align-items:end; margin-bottom:20px;">
+            <div style="display:grid; grid-template-columns: 1fr auto auto; gap:15px; align-items:end; margin-bottom:20px;">
                 <div>
                     <label>Search Name, Email or Phone</label>
                     <input type="text" id="profileSearchInput" placeholder="Enter name, email, phone..." onkeydown="if(event.key==='Enter') loadStudentProfiles()">
+                </div>
+                <div>
+                    <label>Filter by Gender</label>
+                    <select id="profileGenderFilter" style="height:42px;">
+                        <option value="">All Genders</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
                 <button class="upload" style="background: #10b981;" onclick="loadStudentProfiles()">Search / Refresh</button>
             </div>
@@ -4474,39 +4483,59 @@ window.deleteVideo = async function(id) {
 window.loadStudentProfiles = async function() {
     const tbody = document.getElementById("studentProfilesTable");
     const searchInput = document.getElementById("profileSearchInput").value.trim().toLowerCase();
-    
+    const genderFilter = document.getElementById("profileGenderFilter").value.toLowerCase();
+
     tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>Loading profiles...</td></tr>";
-    
+
     try {
-        const usersQ = query(collection(db, "users"), orderBy("createdAt", "desc"), limit(500));
-        const snap = await getDocs(usersQ);
-        
+        // Fetch ALL users — no limit cap so every Firebase user is visible
+        const snap = await getDocs(collection(db, "users"));
+
+        // Deduplicate: keep the most complete record per email (or uid as fallback)
+        const bestByKey = new Map();
+        snap.forEach(docSnap => {
+            const data = { _uid: docSnap.id, ...docSnap.data() };
+            const email = (data.email || "").trim().toLowerCase();
+            const key = email || docSnap.id;
+            if (!bestByKey.has(key)) {
+                bestByKey.set(key, data);
+            } else {
+                // Prefer the record with more fields filled in
+                const existing = bestByKey.get(key);
+                const existingScore = Object.values(existing).filter(v => v && v !== "N/A").length;
+                const newScore = Object.values(data).filter(v => v && v !== "N/A").length;
+                if (newScore > existingScore) bestByKey.set(key, data);
+            }
+        });
+
+        // Sort by createdAt descending (newest first)
+        const allUsers = Array.from(bestByKey.values()).sort((a, b) => {
+            const ta = a.createdAt && a.createdAt.toDate ? a.createdAt.toDate().getTime() : 0;
+            const tb = b.createdAt && b.createdAt.toDate ? b.createdAt.toDate().getTime() : 0;
+            return tb - ta;
+        });
+
         let html = "";
         let found = 0;
-        const seenKeys = new Set();
-        
-        snap.forEach(docSnap => {
-            const data = docSnap.data();
-            const email = (data.email || "N/A").trim().toLowerCase();
-            const phone = (data.phone || "N/A").trim();
-            
-            // Deduplicate by email or phone to prevent showing the same student multiple times
-            const uniqueKey = (email !== "n/a") ? email : ((phone !== "n/a" && phone !== "N/A") ? phone : docSnap.id);
-            if (seenKeys.has(uniqueKey)) return;
-            seenKeys.add(uniqueKey);
 
+        allUsers.forEach(data => {
+            const email = (data.email || "N/A").trim();
+            const phone = (data.phone || data.mobile || "N/A").trim();
             const name = (data.name || data.fullName || data.displayName || "Student");
-            
+            const gender = (data.gender || "N/A");
+            const grade = data.class || data.studentClass || "N/A";
+
+            // Gender filter
+            if (genderFilter && gender.toLowerCase() !== genderFilter) return;
+
+            // Search filter
             const searchableString = `${name} ${email} ${phone}`.toLowerCase();
             if (searchInput && !searchableString.includes(searchInput)) return;
-            
-            const gender = data.gender || "N/A";
-            const grade = data.class || data.studentClass || "N/A";
+
             const joined = data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString("en-GB") : "N/A";
             const imgUrl = data.profileImage || data.profileImageUrl || data.photoURL || "favicon.png";
-            
             const safeData = encodeURIComponent(JSON.stringify(data));
-            
+
             html += `<tr>
                 <td><img src="${imgUrl}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--border);" onerror="this.src='favicon.png'"></td>
                 <td><b>${name}</b></td>
@@ -4518,19 +4547,18 @@ window.loadStudentProfiles = async function() {
             </tr>`;
             found++;
         });
-        
-        if (found === 0) {
-            tbody.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No matching profiles found.</td></tr>";
-        } else {
-            tbody.innerHTML = html;
-        }
+
+        tbody.innerHTML = found > 0
+            ? html
+            : "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No matching profiles found.</td></tr>";
+
+        // Show count
+        const heading = document.querySelector('#student-profiles-section .panel-header h2');
+        if (heading) heading.title = `${bestByKey.size} total users, ${found} shown`;
+
     } catch (e) {
         console.error("Error loading profiles:", e);
-        if (e.message.includes("requires an index")) {
-            tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Index required for sorting. Check Firebase console.</td></tr>`;
-        } else {
-            tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error: ${e.message}</td></tr>`;
-        }
+        tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error: ${e.message}</td></tr>`;
     }
 };
 
