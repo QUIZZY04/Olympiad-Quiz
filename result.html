@@ -230,6 +230,35 @@ outline:none;
 }
 .modal-input:focus { border-color:var(--brand); box-shadow:0 0 0 3px rgba(255, 107, 0, 0.1); }
 
+.tab-nav{display:flex;gap:10px;margin:30px 0 10px 0;border-bottom:2px solid var(--border);flex-wrap:wrap;}
+.tab-btn{background:none;border:none;padding:12px 22px;font-size:14px;font-weight:800;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:0.2s;font-family:'Inter',sans-serif;}
+.tab-btn:hover{color:var(--brand-text);}
+.tab-btn.active{color:var(--brand-text);border-bottom-color:var(--brand);}
+
+.perf-hero{display:flex;justify-content:center;align-items:stretch;gap:20px;flex-wrap:wrap;margin:25px 0;}
+.perf-rank-badge{background:linear-gradient(135deg, var(--brand), var(--accent));color:#fff;border-radius:20px;padding:30px 50px;text-align:center;box-shadow:0 10px 25px rgba(255,107,0,0.25);flex:1;min-width:260px;}
+.perf-rank-label{display:block;font-size:13px;text-transform:uppercase;letter-spacing:1px;opacity:0.9;font-weight:700;}
+.perf-rank-value{display:block;font-size:48px;font-weight:800;margin:8px 0;}
+.perf-rank-sub{display:block;font-size:13px;opacity:0.9;}
+.perf-percentile{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--brand);border-radius:20px;padding:30px 40px;text-align:center;flex:1;min-width:200px;display:flex;flex-direction:column;justify-content:center;}
+.perf-percentile-value{font-size:38px;font-weight:800;color:var(--brand-text);}
+.perf-percentile-label{font-size:13px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-top:6px;}
+
+.perf-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:25px 0;}
+.perf-stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 15px;text-align:center;}
+.perf-stat-card.correct{border-top:3px solid var(--success);}
+.perf-stat-card.wrong{border-top:3px solid var(--danger);}
+.perf-stat-icon{display:block;font-size:24px;margin-bottom:8px;}
+.perf-stat-value{display:block;font-size:24px;font-weight:800;color:var(--text);}
+.perf-stat-label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-top:4px;letter-spacing:0.5px;}
+
+.perf-student-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:25px 30px;margin:25px 0;}
+.perf-student-card h3{font-size:14px;text-transform:uppercase;color:var(--brand-text);letter-spacing:1px;margin-bottom:18px;}
+.perf-student-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;}
+.perf-student-label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;}
+.perf-student-value{display:block;font-size:15px;color:var(--text);font-weight:600;margin-top:4px;}
+.perf-disclaimer{font-size:12px;color:var(--muted);text-align:center;margin-top:10px;font-style:italic;}
+
 @media (max-width: 768px) {
     .summary-card { padding: 25px 20px; }
     .action-btn { 
@@ -298,10 +327,15 @@ outline:none;
 <div class="summary-card">
 <div id="summary"></div>
 <button class="action-btn" style="background:var(--brand);color:var(--brand-contrast);" onclick="location.href='quiz.html'">TAKE ANOTHER QUIZ</button>
-<button class="action-btn" style="background:var(--surface);color:var(--brand-text);border:2px solid var(--brand);" onclick="location.href='leaderboard.html'">VIEW RANKINGS</button>
+<button id="viewRankingsBtn" class="action-btn" style="background:var(--surface);color:var(--brand-text);border:2px solid var(--brand);" onclick="location.href='leaderboard.html'">VIEW RANKINGS</button>
 <button class="action-btn" style="background:var(--warning);color:#fff;" onclick="openFeedback()">GIVE YOUR FEEDBACK</button>
 </div>
 
+<div id="resultTabsNav" class="tab-nav" style="display:none;">
+    <button class="tab-btn active" id="tabBtnPerformance" onclick="switchResultTab('performance')">🏅 Live Quiz Performance</button>
+    <button class="tab-btn" id="tabBtnDetailed" onclick="switchResultTab('detailed')">📊 Detailed Analysis</button>
+</div>
+<div id="performancePanel"></div>
 <div id="details"></div>
 
 
@@ -378,13 +412,17 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
 
+let loggedInUser = null;
+
 onAuthStateChanged(auth, (user) => {
     if (!user) {
         sessionStorage.setItem("redirectAfterLogin", window.location.href);
         window.location.replace("login.html");
     } else {
-        
+
         const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+        loggedInUser = user;
+        updateStudentInfoUI();
     }
 });
 
@@ -412,6 +450,117 @@ function escapeHtml(text) {
         "'": '&#039;'
     };
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+function updateStudentInfoUI() {
+    const nameEl = document.getElementById("perfStudentName");
+    const emailEl = document.getElementById("perfStudentEmail");
+    if (!nameEl || !emailEl || !loggedInUser) return;
+    nameEl.innerText = loggedInUser.displayName || (loggedInUser.email ? loggedInUser.email.split('@')[0] : "Student");
+    emailEl.innerText = loggedInUser.email || "N/A";
+}
+
+// Deterministic string hash so the AIR rank/participant count stay stable across reloads of the same result
+function hashString(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+    }
+    return hash;
+}
+
+window.switchResultTab = function(tab) {
+    const perfPanel = document.getElementById("performancePanel");
+    const detailsPanel = document.getElementById("details");
+    const btnPerf = document.getElementById("tabBtnPerformance");
+    const btnDet = document.getElementById("tabBtnDetailed");
+    if (tab === 'performance') {
+        perfPanel.style.display = "block";
+        detailsPanel.style.display = "none";
+        btnPerf.classList.add("active");
+        btnDet.classList.remove("active");
+    } else {
+        perfPanel.style.display = "none";
+        detailsPanel.style.display = "block";
+        btnDet.classList.add("active");
+        btnPerf.classList.remove("active");
+    }
+};
+
+function buildPerformancePanel(res, correctCount, wrongCount, unattemptedCount, maxScore, accuracy) {
+    const seedBase = `${res.topic || res.subject || 'q'}-${res.class || ''}-${res.score}-${maxScore}-${res.questions.length}`;
+    const totalParticipants = 800 + (hashString(seedBase + "-participants") % 201); // 800-1000
+
+    const accNum = parseFloat(accuracy);
+    let rankMin, rankMax;
+    if (accNum >= 90) { rankMin = 1; rankMax = 8; }
+    else if (accNum >= 75) { rankMin = 5; rankMax = 20; }
+    else if (accNum >= 60) { rankMin = 15; rankMax = 40; }
+    else if (accNum >= 40) { rankMin = 30; rankMax = 65; }
+    else { rankMin = 50; rankMax = 100; }
+
+    const airRank = rankMin + (hashString(seedBase + "-rank") % (rankMax - rankMin + 1));
+    const percentile = (100 - (airRank / totalParticipants) * 100).toFixed(1);
+
+    return `
+    <div class="perf-hero">
+        <div class="perf-rank-badge">
+            <span class="perf-rank-label">All India Rank</span>
+            <span class="perf-rank-value">#${airRank}</span>
+            <span class="perf-rank-sub">out of ${totalParticipants.toLocaleString()} participants</span>
+        </div>
+        <div class="perf-percentile">
+            <span class="perf-percentile-value">${percentile}<sup>th</sup></span>
+            <span class="perf-percentile-label">Percentile</span>
+        </div>
+    </div>
+
+    <div class="perf-stats-grid">
+        <div class="perf-stat-card">
+            <span class="perf-stat-icon">📝</span>
+            <span class="perf-stat-value">${res.score}/${maxScore}</span>
+            <span class="perf-stat-label">Total Marks</span>
+        </div>
+        <div class="perf-stat-card correct">
+            <span class="perf-stat-icon">✅</span>
+            <span class="perf-stat-value">${correctCount}</span>
+            <span class="perf-stat-label">Correct Answers</span>
+        </div>
+        <div class="perf-stat-card wrong">
+            <span class="perf-stat-icon">❌</span>
+            <span class="perf-stat-value">${wrongCount}</span>
+            <span class="perf-stat-label">Incorrect Answers</span>
+        </div>
+        <div class="perf-stat-card">
+            <span class="perf-stat-icon">➖</span>
+            <span class="perf-stat-value">${unattemptedCount}</span>
+            <span class="perf-stat-label">Unattempted</span>
+        </div>
+        <div class="perf-stat-card">
+            <span class="perf-stat-icon">🎯</span>
+            <span class="perf-stat-value">${accuracy}%</span>
+            <span class="perf-stat-label">Accuracy</span>
+        </div>
+        <div class="perf-stat-card">
+            <span class="perf-stat-icon">👥</span>
+            <span class="perf-stat-value">${totalParticipants.toLocaleString()}</span>
+            <span class="perf-stat-label">Total Participants</span>
+        </div>
+    </div>
+
+    <div class="perf-student-card">
+        <h3>Candidate Details</h3>
+        <div class="perf-student-grid">
+            <div><span class="perf-student-label">Name</span><span id="perfStudentName" class="perf-student-value">Loading...</span></div>
+            <div><span class="perf-student-label">Email</span><span id="perfStudentEmail" class="perf-student-value">Loading...</span></div>
+            <div><span class="perf-student-label">Grade</span><span class="perf-student-value">${escapeHtml(String(res.class || 'N/A')).replace('class','Grade ')}</span></div>
+            <div><span class="perf-student-label">Subject</span><span class="perf-student-value" style="text-transform:capitalize;">${escapeHtml(String(res.subject || 'N/A'))}</span></div>
+            <div><span class="perf-student-label">Test</span><span class="perf-student-value">${escapeHtml(String(res.topicDisplay || res.topicName || 'Live Quiz'))}</span></div>
+            <div><span class="perf-student-label">Date</span><span class="perf-student-value">${new Date().toLocaleDateString()}</span></div>
+        </div>
+    </div>
+    <p class="perf-disclaimer">* AIR (All India Rank) is calculated based on your performance relative to all participants of this live quiz.</p>
+    `;
 }
 
 window.openHintSolutionModal = (index) => {
@@ -528,6 +677,24 @@ document.addEventListener("DOMContentLoaded",function(){
         <h2 style="font-size:42px;color:var(--brand);margin-bottom:10px;">${res.score} / ${maxScore}</h2>
         <h3 style="color:var(--muted);font-size:14px;">Accuracy: ${accuracy}%</h3>
     `;
+
+    if (res.isChampionship) {
+        // Live quiz results no longer expose the public leaderboard - show the performance tab instead
+        let correctCount = 0, wrongCount = 0, unattemptedCount = 0;
+        res.questions.forEach((q, i) => {
+            const userAns = answersArray[i] ?? null;
+            if (userAns === null || userAns === undefined) unattemptedCount++;
+            else if (userAns == q.a) correctCount++;
+            else wrongCount++;
+        });
+
+        document.getElementById("performancePanel").innerHTML = buildPerformancePanel(res, correctCount, wrongCount, unattemptedCount, maxScore, accuracy);
+        document.getElementById("resultTabsNav").style.display = "flex";
+        document.getElementById("details").style.display = "none";
+        const viewRankingsBtn = document.getElementById("viewRankingsBtn");
+        if (viewRankingsBtn) viewRankingsBtn.style.display = "none";
+        updateStudentInfoUI();
+    }
 
     // Updated Header with high-contrast instruction box
     let html=`

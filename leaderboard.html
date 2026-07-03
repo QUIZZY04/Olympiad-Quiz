@@ -161,6 +161,11 @@ min-height: 480px;
 border-top:4px solid var(--accent);
 }
 
+/* Live quiz leaderboard is hidden - students see performance via result.html instead */
+.weekly-filter, .lb-card.weekly-card{
+display:none !important;
+}
+
 .card-header{
 display:flex;
 justify-content:space-between;
@@ -537,11 +542,8 @@ if (user.email === "madhhu52@gmail.com") {
     const dailyHead = document.querySelector("#dailyBody").previousElementSibling.querySelector("tr");
     if (!dailyHead.innerHTML.includes("Action")) dailyHead.innerHTML += "<th>Action</th>";
 }
-    // Initial load
-    loadSessionsList().then(() => {
-        refreshWeekly();
-        refreshDaily();
-    });
+    // Initial load - Live Quiz leaderboard is hidden, so only load Daily Practice
+    refreshDaily();
 })
 
 async function loadSessionsList() {
