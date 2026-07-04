@@ -1286,7 +1286,7 @@ border-top:1px solid var(--border);
             <h2 style="color:var(--accent);">📊 User Activity Log</h2>
         </div>
         <div class="panel-content">
-            <div style="display:grid; grid-template-columns: 1fr 1fr auto; gap:15px; align-items:end; margin-bottom:20px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr 1fr auto; gap:15px; align-items:end; margin-bottom:20px;">
                 <div>
                     <label>Search Name or Email</label>
                     <input type="text" id="activitySearch" placeholder="Filter by user...">
@@ -1294,6 +1294,17 @@ border-top:1px solid var(--border);
                 <div>
                     <label>Filter by Date</label>
                     <input type="date" id="activityDateFilter">
+                </div>
+                <div>
+                    <label>Filter by Test Type</label>
+                    <select id="activityTypeFilter">
+                        <option value="all">All Types</option>
+                        <option value="live">⚡ Live Quiz</option>
+                        <option value="hots">🧠 HOTS Test</option>
+                        <option value="chapterwise">📖 Chapterwise</option>
+                        <option value="exam">🎓 Senior Exam</option>
+                        <option value="mock">Mock Test</option>
+                    </select>
                 </div>
                 <button class="upload" onclick="initUserActivityLog()">Refresh Data</button>
             </div>
@@ -4612,6 +4623,7 @@ window.initUserActivityLog = async function() {
     const tbody = document.getElementById("activityTableBody");
     const searchInput = document.getElementById("activitySearch");
     const dateInput = document.getElementById("activityDateFilter");
+    const typeInput = document.getElementById("activityTypeFilter");
     if (!tbody) return;
     
     // Default to today's date if no date is selected
@@ -4663,8 +4675,17 @@ window.initUserActivityLog = async function() {
             } catch(e) {}
         }));
 
+        const categorize = (d) => {
+            if (d.isHotsTest) return { cat: "hots", type: "🧠 HOTS Test" };
+            if (d.isChampionship) return { cat: "live", type: "⚡ Live Quiz" };
+            if (d.topicName) return { cat: "chapterwise", type: "📖 " + d.topicName };
+            if (d.examType) return { cat: "exam", type: "🎓 " + d.examType };
+            return { cat: "mock", type: "Mock Test" };
+        };
+
         const renderRows = () => {
             const searchTerm = searchInput.value.toLowerCase();
+            const typeFilter = typeInput.value;
             let html = "";
             let found = 0;
 
@@ -4674,12 +4695,15 @@ window.initUserActivityLog = async function() {
                 const name = d.name || userData.name || (d.email ? d.email.split('@')[0] : "N/A");
                 const email = d.email || "N/A";
                 const mobile = userData.phone || "N/A";
-                
+
                 const grd = (d.studentClass || d.class || "N/A").toString().replace("class", "G");
                 const subj = d.subject || "N/A";
 
                 if (searchTerm && !name.toLowerCase().includes(searchTerm) && !email.toLowerCase().includes(searchTerm)) return;
-                
+
+                const { cat, type } = categorize(d);
+                if (typeFilter !== "all" && cat !== typeFilter) return;
+
                 let timeStr = "N/A";
                 const fmt = (s) => `${Math.floor(s/60)}m ${s%60}s`;
                 if (d.timeTaken !== undefined && d.timeTaken !== null) {
@@ -4687,12 +4711,6 @@ window.initUserActivityLog = async function() {
                 } else if (d.startTime && d.endTime && d.startTime.toDate && d.endTime.toDate) {
                     timeStr = fmt(Math.floor((d.endTime.toDate() - d.startTime.toDate()) / 1000));
                 }
-
-                let type = "Mock Test";
-                if (d.isHotsTest) type = "🧠 HOTS Test";
-                else if (d.isChampionship) type = "⚡ Live Quiz";
-                else if (d.topicName) type = "📖 " + d.topicName;
-                else if (d.examType) type = "🎓 " + d.examType;
 
                 const marks = `${d.score || 0} / ${d.total || d.totalScore || '-'}`;
                 const dt = d.date ? d.date.toDate().toLocaleDateString("en-GB") : "N/A";
@@ -4711,6 +4729,7 @@ window.initUserActivityLog = async function() {
         };
 
         searchInput.oninput = renderRows;
+        typeInput.onchange = renderRows;
         dateInput.onchange = window.initUserActivityLog;
         renderRows();
     } catch (e) { 
