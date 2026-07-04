@@ -4689,7 +4689,8 @@ window.initUserActivityLog = async function() {
                 }
 
                 let type = "Mock Test";
-                if (d.isChampionship) type = "⚡ Live Quiz";
+                if (d.isHotsTest) type = "🧠 HOTS Test";
+                else if (d.isChampionship) type = "⚡ Live Quiz";
                 else if (d.topicName) type = "📖 " + d.topicName;
                 else if (d.examType) type = "🎓 " + d.examType;
 

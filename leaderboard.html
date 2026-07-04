@@ -461,6 +461,7 @@ font-size:14px;
     <th>Rank</th>
     <th>Participant</th>
     <th>Score</th>
+    <th>Type</th>
     <th>Sub</th>
     <th>Grd</th>
     <th>Date</th>
@@ -644,7 +645,7 @@ async function refreshDaily(){
     const subjectFilter = document.getElementById("dailySubject").value;
     const dateFilter = document.getElementById("dailyDate").value;
 
-    tbody.innerHTML="<tr><td colspan='6'>Loading...</td></tr>";
+    tbody.innerHTML="<tr><td colspan='7'>Loading...</td></tr>";
 
     try {
         let constraints = [];
@@ -675,7 +676,7 @@ async function refreshDaily(){
         });
 
         if (allDocs.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No practice results found.</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No practice results found.</td></tr>";
             return;
         }
         
@@ -689,7 +690,7 @@ async function refreshDaily(){
         renderDaily(allDocs.slice(0, 30), tbody);
     } catch (e) {
         console.error(e);
-        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color: var(--danger);'>Error loading practice scores.</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error loading practice scores.</td></tr>";
     }
 }
 
@@ -773,12 +774,14 @@ else if(rank === 3) {
 }
 
 const adminCell = isAdmin ? `<td><button onclick="deleteRecord('${doc.id}')" style="background:var(--danger);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:bold;box-shadow:var(--shadow-sm);">Delete</button></td>` : "";
+const typeLabel = d.isHotsTest ? "🧠 HOTS" : "📖 Practice";
 
 tbody.innerHTML+=`
 <tr style="${rowStyle}">
 <td><span class="rank-circle" style="${circleStyle}">${rankIcon}</span></td>
 <td style="${nameStyle}">${namePrefix}${d.email ? d.email.split('@')[0] : "Student"}</td>
 <td style="color:var(--brand-text);font-weight:700">${d.score}/${d.total||30}</td>
+<td style="white-space:nowrap;">${typeLabel}</td>
 <td style="text-transform:capitalize;">${d.subject||"NA"}</td>
 <td>${(d.studentClass||"").replace("class","G")}</td>
 <td>${d.date?d.date.toDate().toLocaleDateString("en-GB"):"NA"}</td>
