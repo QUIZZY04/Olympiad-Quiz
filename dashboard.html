@@ -68,6 +68,44 @@
     .delay-5 { animation-delay: 0.5s; }
     .delay-6 { animation-delay: 0.6s; }
 
+    #hotsPromoToast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        max-width: 340px;
+        background: var(--surface, #fff);
+        border: 1px solid var(--border, #e2e8f0);
+        border-top: 3px solid #e11d48;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        padding: 20px 20px 18px;
+        z-index: 2500;
+        transform: translateY(30px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+    #hotsPromoToast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    #hotsPromoToast .promo-close {
+        position: absolute; top: 10px; right: 12px; cursor: pointer;
+        color: var(--muted, #64748b); font-size: 18px; line-height: 1; background: none; border: none;
+    }
+    #hotsPromoToast .promo-title { font-weight: 800; font-size: 1rem; color: var(--text, #111827); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    #hotsPromoToast .promo-body { font-size: 0.85rem; color: var(--muted, #64748b); line-height: 1.5; margin-bottom: 14px; }
+    #hotsPromoToast .promo-cta {
+        display: inline-block; flex: 1; text-align: center; padding: 10px 14px;
+        background: #e11d48; color: #fff; font-weight: 800; font-size: 0.85rem;
+        border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(225,29,72,0.3);
+    }
+    #hotsPromoToast .promo-cancel {
+        flex: 1; padding: 10px 14px; background: var(--bg, #f8fafc); color: var(--muted, #64748b);
+        font-weight: 700; font-size: 0.85rem; border: 1px solid var(--border, #e2e8f0);
+        border-radius: 10px; cursor: pointer;
+    }
+    @media (max-width: 480px) {
+        #hotsPromoToast { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+    }
+
     .hero-panel { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%); border-radius: 24px; padding: 48px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: var(--shadow-lg); flex-wrap: wrap; gap: 40px; }
     .hero-panel::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
     .hero-left { position: relative; z-index: 1; flex: 1; min-width: 300px; }
@@ -598,6 +636,17 @@
         </div>
     </div>
 
+    <!-- HOTS Genius Challenge Promo Toast -->
+    <div id="hotsPromoToast" style="position:relative;">
+        <button class="promo-close" onclick="document.getElementById('hotsPromoToast').classList.remove('show')" aria-label="Dismiss">&times;</button>
+        <div class="promo-title">🧠 Try the Genius Challenge</div>
+        <div class="promo-body">Our <strong>Rank Booster HOTS</strong> questions are the same style used in the Achiever section — attempt one and see how it moves your rank.</div>
+        <div style="display:flex; gap:10px;">
+            <button type="button" class="promo-cancel" onclick="document.getElementById('hotsPromoToast').classList.remove('show')">Maybe Later</button>
+            <a href="hots.html" class="promo-cta">Try Now →</a>
+        </div>
+    </div>
+
     <footer class="site-footer">
         <div class="footer-links">
             <a href="imo-free-mock-test.html" target="_blank">IMO Guide</a>
@@ -756,6 +805,21 @@ onAuthStateChanged(auth, async (user) => {
             }
         } else if (Notification.permission === 'granted') {
             initNotifications(user); // Silently grab token if already permitted
+        }
+    }
+
+    // HOTS "Genius Challenge" Promo Toast - only for junior grades who haven't attempted a HOTS test yet
+    if (!isAdmin && (!uClass || uClass < 11)) {
+        try {
+            const hotsSnap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid), where('isHotsTest', '==', true), limit(1)));
+            if (hotsSnap.empty) {
+                setTimeout(() => {
+                    const toast = document.getElementById('hotsPromoToast');
+                    if (toast) toast.classList.add('show');
+                }, 4500);
+            }
+        } catch (e) {
+            console.warn('HOTS promo check failed:', e);
         }
     }
 });
