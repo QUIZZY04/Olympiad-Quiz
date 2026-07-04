@@ -332,17 +332,17 @@
             <div class="hero-stats-grid">
                 <div class="hero-stat-card">
                     <div class="icon">🔥</div>
-                    <div class="val">3</div>
+                    <div class="val" id="heroStreakVal">--</div>
                     <div class="label">Day Streak</div>
                 </div>
                 <div class="hero-stat-card">
                     <div class="icon">🎯</div>
-                    <div class="val">85%</div>
+                    <div class="val" id="heroAccuracyVal">--</div>
                     <div class="label">Accuracy</div>
                 </div>
                 <div class="hero-stat-card desktop-only">
                     <div class="icon">⭐</div>
-                    <div class="val">1,250</div>
+                    <div class="val" id="heroPointsVal">--</div>
                     <div class="label">Points</div>
                 </div>
             </div>
@@ -723,7 +723,10 @@ onAuthStateChanged(auth, async (user) => {
     if(isAdmin) {
         document.getElementById("adminTab").style.display="inline";
     }
-    
+
+    // Populate hero stats (Day Streak / Accuracy / Points) from real activity - fire and forget
+    updateHeroStats(user);
+
     // Background UI Updates
     let uClass = null;
     try {
@@ -1010,6 +1013,53 @@ window.openFeedbackModal = () => {
 window.closeFeedbackModal = () => {
     document.getElementById('dashboardFeedbackModal').style.display = 'none';
 };
+
+// ===== HERO STATS (Day Streak / Accuracy / Points) FROM REAL ACTIVITY =====
+async function updateHeroStats(user) {
+    const streakEl = document.getElementById('heroStreakVal');
+    const accuracyEl = document.getElementById('heroAccuracyVal');
+    const pointsEl = document.getElementById('heroPointsVal');
+
+    try {
+        const snap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid)));
+
+        let totalScore = 0, totalMax = 0;
+        const dayStrings = [];
+        snap.forEach(dSnap => {
+            const d = dSnap.data();
+            totalScore += (d.score || 0);
+            totalMax += (d.total || d.totalScore || 0);
+            if (d.date && d.date.toDate) {
+                const dt = d.date.toDate();
+                dayStrings.push(`${dt.getFullYear()}-${dt.getMonth()}-${dt.getDate()}`);
+            }
+        });
+
+        const attempted = snap.size > 0;
+        const accuracy = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
+        const points = totalScore * 10;
+
+        // Day Streak: consecutive days (anchored on today, or yesterday if today has no attempt yet) with at least one attempt
+        const daySet = new Set(dayStrings);
+        const keyOf = (dt) => `${dt.getFullYear()}-${dt.getMonth()}-${dt.getDate()}`;
+        const cursor = new Date();
+        if (!daySet.has(keyOf(cursor))) cursor.setDate(cursor.getDate() - 1);
+        let streak = 0;
+        while (daySet.has(keyOf(cursor))) {
+            streak++;
+            cursor.setDate(cursor.getDate() - 1);
+        }
+
+        if (streakEl) streakEl.innerText = streak;
+        if (accuracyEl) accuracyEl.innerText = attempted ? `${accuracy}%` : '0%';
+        if (pointsEl) pointsEl.innerText = points.toLocaleString();
+    } catch (e) {
+        console.warn('Failed to update hero stats:', e);
+        if (streakEl) streakEl.innerText = '0';
+        if (accuracyEl) accuracyEl.innerText = '0%';
+        if (pointsEl) pointsEl.innerText = '0';
+    }
+}
 
 // ===== PROFILE COMPLETION CHECK =====
 async function checkAndShowProfilePopup(user, userData) {
