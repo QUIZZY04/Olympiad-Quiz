@@ -1292,7 +1292,7 @@ border-top:1px solid var(--border);
                     <input type="text" id="activitySearch" placeholder="Filter by user...">
                 </div>
                 <div>
-                    <label>Filter by Date</label>
+                    <label>Filter by Date (optional - blank shows all)</label>
                     <input type="date" id="activityDateFilter">
                 </div>
                 <div>
@@ -4625,16 +4625,9 @@ window.initUserActivityLog = async function() {
     const dateInput = document.getElementById("activityDateFilter");
     const typeInput = document.getElementById("activityTypeFilter");
     if (!tbody) return;
-    
-    // Default to today's date if no date is selected
-    if (!dateInput.value) {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        dateInput.value = `${year}-${month}-${day}`;
-    }
-    
+
+    // No date selected by default - show the latest activity across all dates so filters
+    // (like Test Type) aren't silently scoped to "today" only. Admin can still narrow by date.
     tbody.innerHTML = "<tr><td colspan='11' style='text-align:center;'>Loading activities...</td></tr>";
 
     try {
