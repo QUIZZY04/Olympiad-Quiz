@@ -70,40 +70,59 @@
 
     #hotsPromoToast {
         position: fixed;
-        bottom: 24px;
-        right: 24px;
-        max-width: 340px;
-        background: var(--surface, #fff);
-        border: 1px solid var(--border, #e2e8f0);
-        border-top: 3px solid #e11d48;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        padding: 20px 20px 18px;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(6px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 2500;
-        transform: translateY(30px);
+        padding: 20px;
         opacity: 0;
         pointer-events: none;
-        transition: transform 0.35s ease, opacity 0.35s ease;
+        transition: opacity 0.35s ease;
     }
-    #hotsPromoToast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    #hotsPromoToast.show { opacity: 1; pointer-events: auto; }
+    #hotsPromoToast .promo-card {
+        position: relative;
+        width: 100%;
+        max-width: 540px;
+        background: linear-gradient(135deg, #7c3aed 0%, #e11d48 100%);
+        color: #fff;
+        border-radius: 28px;
+        padding: 48px 44px 40px;
+        text-align: center;
+        box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        transform: scale(0.92) translateY(15px);
+        transition: transform 0.35s ease;
+    }
+    #hotsPromoToast.show .promo-card { transform: scale(1) translateY(0); }
     #hotsPromoToast .promo-close {
-        position: absolute; top: 10px; right: 12px; cursor: pointer;
-        color: var(--muted, #64748b); font-size: 18px; line-height: 1; background: none; border: none;
+        position: absolute; top: 16px; right: 18px; cursor: pointer;
+        color: rgba(255,255,255,0.85); font-size: 26px; line-height: 1; background: none; border: none;
     }
-    #hotsPromoToast .promo-title { font-weight: 800; font-size: 1rem; color: var(--text, #111827); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-    #hotsPromoToast .promo-body { font-size: 0.85rem; color: var(--muted, #64748b); line-height: 1.5; margin-bottom: 14px; }
+    #hotsPromoToast .promo-badge {
+        display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.45);
+        padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; letter-spacing: 1.2px;
+        text-transform: uppercase; margin-bottom: 18px;
+    }
+    #hotsPromoToast .promo-icon { font-size: 3.4rem; margin-bottom: 10px; line-height: 1; }
+    #hotsPromoToast .promo-title { font-weight: 800; font-size: 1.7rem; margin-bottom: 16px; line-height: 1.3; }
+    #hotsPromoToast .promo-body { font-size: 1.05rem; color: rgba(255,255,255,0.95); line-height: 1.65; margin-bottom: 30px; }
+    #hotsPromoToast .promo-actions { display: flex; gap: 14px; }
     #hotsPromoToast .promo-cta {
-        display: inline-block; flex: 1; text-align: center; padding: 10px 14px;
-        background: #e11d48; color: #fff; font-weight: 800; font-size: 0.85rem;
-        border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(225,29,72,0.3);
+        display: inline-block; flex: 1; text-align: center; padding: 15px 18px;
+        background: #fff; color: #b91c1c; font-weight: 800; font-size: 1rem;
+        border-radius: 12px; text-decoration: none; box-shadow: 0 8px 18px rgba(0,0,0,0.25);
     }
     #hotsPromoToast .promo-cancel {
-        flex: 1; padding: 10px 14px; background: var(--bg, #f8fafc); color: var(--muted, #64748b);
-        font-weight: 700; font-size: 0.85rem; border: 1px solid var(--border, #e2e8f0);
-        border-radius: 10px; cursor: pointer;
+        flex: 1; padding: 15px 18px; background: rgba(255,255,255,0.15); color: #fff;
+        font-weight: 700; font-size: 1rem; border: 1px solid rgba(255,255,255,0.45);
+        border-radius: 12px; cursor: pointer;
     }
     @media (max-width: 480px) {
-        #hotsPromoToast { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+        #hotsPromoToast .promo-card { padding: 36px 24px 30px; }
+        #hotsPromoToast .promo-title { font-size: 1.4rem; }
     }
 
     .hero-panel { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%); border-radius: 24px; padding: 48px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: var(--shadow-lg); flex-wrap: wrap; gap: 40px; }
@@ -636,14 +655,18 @@
         </div>
     </div>
 
-    <!-- HOTS Genius Challenge Promo Toast -->
+    <!-- HOTS Genius Challenge Promo Popup -->
     <div id="hotsPromoToast">
-        <button class="promo-close" onclick="document.getElementById('hotsPromoToast').classList.remove('show')" aria-label="Dismiss">&times;</button>
-        <div class="promo-title">🧠 Try the Genius Challenge</div>
-        <div class="promo-body">Our <strong>Rank Booster HOTS</strong> questions are the same style used in the Achiever section — attempt one and see how it moves your rank.</div>
-        <div style="display:flex; gap:10px;">
-            <button type="button" class="promo-cancel" onclick="document.getElementById('hotsPromoToast').classList.remove('show')">Maybe Later</button>
-            <a href="hots.html" class="promo-cta">Try Now →</a>
+        <div class="promo-card">
+            <button class="promo-close" onclick="document.getElementById('hotsPromoToast').classList.remove('show')" aria-label="Dismiss">&times;</button>
+            <div class="promo-badge">✨ Newly Introduced</div>
+            <div class="promo-icon">🧠</div>
+            <div class="promo-title">Introducing the Genius Challenge!</div>
+            <div class="promo-body">We've just launched a brand-new <strong>Rank Booster HOTS</strong> section — the same tough, Achiever-style questions that decide Top Ranks. Be one of the first to try it and jump ahead on the leaderboard!</div>
+            <div class="promo-actions">
+                <button type="button" class="promo-cancel" onclick="document.getElementById('hotsPromoToast').classList.remove('show')">Maybe Later</button>
+                <a href="hots.html" class="promo-cta">Try Now →</a>
+            </div>
         </div>
     </div>
 
