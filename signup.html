@@ -456,6 +456,7 @@ async function updateUserState(user, state, extraData = {}) {
     await setDoc(doc(db, "users", user.uid), data, { merge: true });
 }
 
+let isEvaluating = false;
 async function evaluateAuthState(user) {
     if (isRedirecting) return;
 
@@ -463,27 +464,47 @@ async function evaluateAuthState(user) {
         resetToEntry();
         return;
     }
-    await user.reload().catch(e=>console.warn(e));
-    
-    const providerIds = user.providerData.map(p => p.providerId);
 
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    const data = userDoc.exists() ? userDoc.data() : null;
-    
-    if (!data) {
-        await updateUserState(user, 'NEW_USER');
-    } else {
-        await updateUserState(user, 'AUTHENTICATED');
+    // Guard against concurrent calls (e.g. a direct call racing the onAuthStateChanged listener)
+    // reading Firestore at the same time and reaching conflicting decisions.
+    if (isEvaluating) return;
+    isEvaluating = true;
+
+    try {
+        await user.reload().catch(e=>console.warn(e));
+
+        const providerIds = user.providerData.map(p => p.providerId);
+
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const data = userDoc.exists() ? userDoc.data() : null;
+
+        console.log("[signup] Auth user:", user.uid, "phone:", user.phoneNumber, "email:", user.email);
+        console.log("[signup] Firestore data:", data);
+
+        if (!data) {
+            await updateUserState(user, 'NEW_USER');
+        } else {
+            await updateUserState(user, 'AUTHENTICATED');
+        }
+
+        // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
+        if (data && data.registrationCompleted) {
+            console.log("[signup] Redirect decision: dashboard (registrationCompleted=true)");
+            isRedirecting = true;
+            localStorage.setItem("isLoggedIn", "true");
+            window.location.replace("dashboard.html");
+            return;
+        }
+
+        console.log("[signup] Redirect decision: show Complete Profile card");
+
+        await populateProfileForm(user, data);
+    } finally {
+        isEvaluating = false;
     }
+}
 
-    // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
-    if (data && data.registrationCompleted) {
-        isRedirecting = true;
-        localStorage.setItem("isLoggedIn", "true");
-        window.location.replace("dashboard.html");
-        return;
-    }
-
+async function populateProfileForm(user, data) {
     let existingName = user.displayName || (data && data.name) || "";
     if (existingName.toLowerCase() === "student") existingName = "";
     document.getElementById("cName").value = existingName;
