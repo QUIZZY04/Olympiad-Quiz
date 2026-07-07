@@ -122,6 +122,10 @@
         .meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 25px; line-height: 1.8; flex-grow: 1; }
         .start-btn { display: inline-block; background: var(--brand); color: var(--brand-contrast); padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; width: 100%; text-align: center; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
         .start-btn:hover { background: var(--accent); transform: translateY(-2px); }
+
+        .filter-btn { padding: 10px 20px; border-radius: 99px; background: var(--bg); border: 1px solid var(--border); font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.3s; color: var(--muted); font-family: 'Poppins', sans-serif; }
+        .filter-btn:hover { border-color: var(--brand); color: var(--brand-text); }
+        .filter-btn.active { background: var(--brand); color: var(--brand-contrast); border-color: var(--brand); }
         
         .rich-text-section { background: var(--surface); padding: 40px; border-radius: 20px; border: 1px solid var(--border); border-left: 6px solid var(--brand); box-shadow: var(--shadow-sm); margin-top: 40px; margin-bottom: 40px; }
         .rich-text-section h2 { color: var(--text); font-size: 1.5rem; margin-bottom: 20px; font-weight: 800; letter-spacing: -0.01em;}
@@ -201,19 +205,21 @@
             <p>Practice single and multi-correct format questions tailored for IIT JEE.</p>
         </div>
         
-        <!-- Generate Mock Test Section -->
-        <div style="background: var(--surface); padding: 30px; border-radius: 20px; box-shadow: var(--shadow-md); margin-bottom: 40px; border-top: 4px solid var(--brand); text-align: center;">
-            <h2 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--text); font-weight: 800;">Generate Dynamic Mock Test</h2>
-            <p style="color: var(--muted); margin-bottom: 25px;">Select a subject to instantly generate a random JEE Advanced mock test from our database.</p>
-            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; align-items: center;">
-                <select id="genSubject" style="padding: 12px 20px; border-radius: 10px; border: 2px solid var(--border); font-size: 16px; font-weight: 600; outline: none; color: var(--text); background: var(--bg); cursor: pointer;">
-                    <option value="Physics">Physics</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Maths">Maths</option>
-                    <option value="Full Syllabus">Full Jee Test</option>
-                </select>
-                <button onclick="generateJeeTest()" class="start-btn" style="width: auto; padding: 12px 30px; margin: 0; cursor: pointer;">Generate Mock Test</button>
-                <a href="jee-leaderboard.html" class="start-btn" style="background: var(--accent); width: auto; padding: 12px 30px; margin: 0;">🏆 View JEE Leaderboard</a>
+        <!-- Subject Filter Section -->
+        <div style="background: var(--surface); padding: 25px 30px; border-radius: 20px; box-shadow: var(--shadow-md); margin-bottom: 40px; border-top: 4px solid var(--brand);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom: 20px;">
+                <div>
+                    <h2 style="font-size: 1.4rem; margin-bottom: 5px; color: var(--text); font-weight: 800;">Browse Mock Tests</h2>
+                    <p style="color: var(--muted); font-size: 0.95rem; margin:0;">Select a subject to see only the tests for that category.</p>
+                </div>
+                <a href="jee-leaderboard.html" class="start-btn" style="background: var(--accent); width: auto; padding: 12px 24px; margin: 0;">🏆 View JEE Leaderboard</a>
+            </div>
+            <div id="subjectFilters" style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="filter-btn active" data-subject="All">All Tests</button>
+                <button class="filter-btn" data-subject="Physics">Physics</button>
+                <button class="filter-btn" data-subject="Chemistry">Chemistry</button>
+                <button class="filter-btn" data-subject="Maths">Maths</button>
+                <button class="filter-btn" data-subject="Full Syllabus">Full Syllabus</button>
             </div>
         </div>
 
@@ -240,45 +246,6 @@
         </div>
     </div>
 
-    <!-- Instructions Modal for Generator -->
-    <div id="generatorModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
-        <div style="background: #fff; width: 100%; max-width: 650px; border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto; text-align: left;">
-            <h2 style="color: var(--brand-text); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.5rem; font-weight: 800;">Test Instructions & Rules</h2>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; border: 1px solid #ddd; color: #333;">
-                <div><b>Test Name:</b> <span id="instTestTitle">...</span></div>
-                <div><b>Subject:</b> <span id="instSubject">...</span></div>
-                <div><b>Duration:</b> <span id="instDuration">...</span></div>
-                <div><b>Total Marks:</b> <span id="instMarks">...</span></div>
-                <div><b>Total Questions:</b> <span id="instTotalQ">...</span></div>
-            </div>
-            <ul style="font-size: 14px; line-height: 1.7; color: #333; padding-left: 20px; margin-bottom: 30px;">
-                <li>The countdown timer at the top right of screen will display the remaining time available. When the timer reaches zero, the examination will end by itself.</li>
-                <li>There are multiple types of questions: <b>Single Correct Option</b> and <b>Multiple Correct Options</b>.</li>
-                <li><b>Marking Scheme for Single Correct Option:</b>
-                    <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
-                        <li><b>Full Marks:</b> +3 If only the correct option is chosen.</li>
-                        <li><b>Zero Marks:</b> 0 If none of the options is chosen (i.e. the question is unanswered).</li>
-                        <li><b>Negative Marks:</b> -1 In all other cases.</li>
-                    </ul>
-                </li>
-                <li><b>Marking Scheme for Multiple Correct Options:</b>
-                    <ul style="margin-top: 5px; margin-bottom: 5px; padding-left: 20px;">
-                        <li><b>Full Marks:</b> +4 If only (all) the correct option(s) is(are) chosen.</li>
-                        <li><b>Partial Marks:</b> +1 For each correct option chosen, provided NO incorrect option is chosen.</li>
-                        <li><b>Zero Marks:</b> 0 If none of the options is chosen (i.e. the question is unanswered).</li>
-                        <li><b>Negative Marks:</b> -2 In all other cases (e.g., if any incorrect option is selected).</li>
-                    </ul>
-                </li>
-                <li>You can mark questions for review to revisit them later.</li>
-                <li><b style="color: #d32f2f;">STRICT RULE:</b> Do NOT refresh the page or switch browser tabs during the exam.</li>
-            </ul>
-            <div style="display: flex; gap: 15px;">
-                <button onclick="document.getElementById('generatorModal').style.display='none'" style="flex: 1; padding: 12px; text-align: center; border: 1px solid #ccc; border-radius: 8px; background: #f1f5f9; cursor: pointer; font-weight: bold; color: #333;">Cancel</button>
-                <button onclick="startGeneratedTest()" style="flex: 2; padding: 12px; text-align: center; font-size: 15px; background: var(--brand); color: var(--brand-contrast); border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Accept & Start Test</button>
-            </div>
-        </div>
-    </div>
-
     <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
         <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
             <a href="dashboard.html" style="color:var(--text);text-decoration:none;font-weight:700;font-size:14px;">Dashboard</a>
@@ -291,7 +258,7 @@
     <script type="module">
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, getDocs, orderBy, query, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, orderBy, query, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -362,105 +329,58 @@
             }
         };
 
+        let allJeeTests = [];
+
         async function loadJeeTests() {
-            const grid = document.getElementById("testGrid");
             const loading = document.getElementById("loading");
-            
+
             try {
                 const q = query(collection(db, "jeeMockTests"), orderBy("createdAt", "desc"));
                 const snap = await getDocs(q);
-                
+
                 loading.style.display = "none";
-                if (snap.empty) {
-                    grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px; border: 1px dashed var(--border); border-radius: 16px; background: var(--surface);'>No JEE tests available at the moment.</div>";
-                    return;
-                }
-                
-                snap.forEach(doc => {
-                    const data = doc.data();
-                    const card = document.createElement("div");
-                    card.className = "test-card";
-                    card.innerHTML = `
-                        <h3>${data.title}</h3>
-                        <div class="meta">
-                            <p>📚 <strong>Subject:</strong> ${data.subject}</p>
-                            <p>⏱️ <strong>Duration:</strong> ${data.duration} Mins</p>
-                            <p>🎯 <strong>Total Marks:</strong> ${data.totalMarks}</p>
-                            <p>📌 <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
-                        </div>
-                        <button onclick="startJeeTest('${doc.id}')" class="start-btn" style="border:none; cursor:pointer; font-family:'Poppins',sans-serif;">Start Test</button>
-                    `;
-                    grid.appendChild(card);
-                });
+                allJeeTests = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderJeeTests("All");
             } catch (error) {
                 loading.innerText = "Failed to load tests: " + error.message;
             }
         }
 
-        let generatedTestId = null;
+        function renderJeeTests(subjectFilter) {
+            const grid = document.getElementById("testGrid");
+            grid.innerHTML = "";
 
-        window.generateJeeTest = async () => {
-            const proceed = async () => {
-                const subject = document.getElementById("genSubject").value;
-                const btn = document.querySelector("button[onclick='generateJeeTest()']");
-                const originalText = btn.innerText;
-                btn.innerText = "Generating...";
-                btn.disabled = true;
+            const filtered = subjectFilter === "All" ? allJeeTests : allJeeTests.filter(t => t.subject === subjectFilter);
 
-                try {
-                    const q = query(collection(db, "jeeMockTests"), where("subject", "==", subject));
-                    const snap = await getDocs(q);
-                    
-                    if (snap.empty) {
-                        alert(`No tests available for ${subject} currently in the database.`);
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                        return;
-                    }
-
-                    // Pick a random test
-                    const docs = snap.docs;
-                    const randomDoc = docs[Math.floor(Math.random() * docs.length)];
-                    const testData = randomDoc.data();
-                    generatedTestId = randomDoc.id;
-
-                    let strictTotalMarks = 0;
-                    testData.questions.forEach(q => {
-                        strictTotalMarks += (q.type === "multi" ? 4 : 3);
-                    });
-
-                    document.getElementById("instTestTitle").innerText = testData.title;
-                    document.getElementById("instSubject").innerText = testData.subject || "Full Syllabus";
-                    document.getElementById("instDuration").innerText = testData.duration + " Minutes";
-                    document.getElementById("instMarks").innerText = strictTotalMarks;
-                    document.getElementById("instTotalQ").innerText = testData.questions.length;
-
-                    document.getElementById("generatorModal").style.display = "flex";
-                } catch (error) {
-                    alert("Error generating test: " + error.message);
-                } finally {
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                }
-            };
-
-            if (window.AuthGuard) {
-                window.AuthGuard.requireLogin(proceed);
-            } else {
-                if (localStorage.getItem("isLoggedIn") !== "true") {
-                    sessionStorage.setItem("redirectAfterLogin", window.location.href);
-                    window.location.href = "login.html";
-                    return;
-                }
-                proceed();
+            if (filtered.length === 0) {
+                grid.innerHTML = "<div style='grid-column: 1/-1; text-align: center; color: var(--muted); padding: 40px; border: 1px dashed var(--border); border-radius: 16px; background: var(--surface);'>No JEE tests available for this subject yet.</div>";
+                return;
             }
-        };
 
-        window.startGeneratedTest = () => {
-            if (generatedTestId) {
-                window.location.href = "jee-quiz.html?id=" + generatedTestId + "&skipModal=true";
-            }
-        };
+            filtered.forEach(data => {
+                const card = document.createElement("div");
+                card.className = "test-card";
+                card.innerHTML = `
+                    <h3>${data.title}</h3>
+                    <div class="meta">
+                        <p>📚 <strong>Subject:</strong> ${data.subject}</p>
+                        <p>⏱️ <strong>Duration:</strong> ${data.duration} Mins</p>
+                        <p>🎯 <strong>Total Marks:</strong> ${data.totalMarks}</p>
+                        <p>📌 <strong>Questions:</strong> ${data.questions ? data.questions.length : 0}</p>
+                    </div>
+                    <button onclick="startJeeTest('${data.id}')" class="start-btn" style="border:none; cursor:pointer; font-family:'Poppins',sans-serif;">Start Test</button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        document.getElementById("subjectFilters").addEventListener("click", (e) => {
+            const btn = e.target.closest(".filter-btn");
+            if (!btn) return;
+            document.querySelectorAll("#subjectFilters .filter-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderJeeTests(btn.dataset.subject);
+        });
     </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
