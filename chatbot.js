@@ -67,6 +67,14 @@ class OlympiadMentorChatbot {
             }
             #oq-cb-trigger:hover { transform: scale(1.05); }
             .oq-cb-pulse { animation: oqCbPulseAnim 2s infinite; }
+            #oq-wa-button {
+                position: fixed; bottom: 100px; right: 25px; width: 56px; height: 56px;
+                border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center;
+                cursor: pointer; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+                z-index: 99998; transition: transform 0.3s;
+            }
+            #oq-wa-button:hover { transform: scale(1.08); }
+            #oq-wa-button svg { width: 30px; height: 30px; }
             @keyframes oqCbPulseAnim {
                 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6); }
                 70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
@@ -132,6 +140,7 @@ class OlympiadMentorChatbot {
             @media (max-width: 480px) {
                 #oq-cb-window { bottom: 0; right: 0; width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; border: none; }
                 #oq-cb-trigger { bottom: 80px; } /* Above mobile footer */
+                #oq-wa-button { bottom: 155px; } /* Stacked above mobile chat trigger */
             }
         `;
         document.head.appendChild(style);
@@ -140,6 +149,9 @@ class OlympiadMentorChatbot {
     injectHTML() {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = `
+            <a id="oq-wa-button" href="https://wa.me/919431813838?text=${encodeURIComponent("Hi, I have a query about OlympiadQuiz.")}" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.258.594 4.428 1.72 6.35L3.2 28.8l6.62-1.686a12.74 12.74 0 0 0 6.181 1.586h.006c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.806-12.7zm0 23.36a10.53 10.53 0 0 1-5.37-1.47l-.385-.228-3.928 1.001 1.05-3.83-.25-.393a10.55 10.55 0 0 1-1.617-5.64c0-5.83 4.746-10.576 10.582-10.576 2.827 0 5.484 1.102 7.48 3.1a10.51 10.51 0 0 1 3.096 7.48c0 5.836-4.746 10.556-10.658 10.556zm5.79-7.914c-.317-.159-1.878-.927-2.169-1.033-.291-.106-.503-.159-.715.16-.212.317-.822 1.032-1.008 1.244-.185.212-.37.238-.688.08-.317-.16-1.34-.494-2.552-1.575-.943-.84-1.58-1.878-1.765-2.196-.185-.318-.02-.49.14-.648.143-.143.318-.37.476-.556.16-.185.212-.318.318-.53.106-.212.053-.397-.026-.556-.08-.16-.715-1.723-.98-2.36-.258-.62-.52-.536-.715-.546l-.61-.011c-.212 0-.556.08-.847.397-.291.318-1.111 1.086-1.111 2.65s1.138 3.072 1.297 3.284c.16.212 2.24 3.42 5.427 4.797.758.328 1.35.523 1.812.669.762.242 1.454.208 2.002.126.61-.091 1.878-.767 2.143-1.508.265-.74.265-1.375.185-1.508-.08-.132-.291-.212-.608-.37z"/></svg>
+            </a>
             <div id="oq-cb-trigger"><span style="font-size: 26px;">🧠</span> <span style="font-weight: 600; font-size: 15px; white-space: nowrap;">Chat with us</span><span id="oq-cb-badge">1</span></div>
             <div id="oq-cb-window">
                 <div class="oq-cb-header">
@@ -175,14 +187,17 @@ class OlympiadMentorChatbot {
         const win = document.getElementById('oq-cb-window');
         const trigger = document.getElementById('oq-cb-trigger');
         const badge = document.getElementById('oq-cb-badge');
-        
+        const waBtn = document.getElementById('oq-wa-button');
+
         if (this.isOpen) {
             win.style.display = 'none';
             trigger.style.display = 'flex';
+            if (waBtn) waBtn.style.display = 'flex';
             this.isOpen = false;
         } else {
             win.style.display = 'flex';
             trigger.style.display = 'none';
+            if (waBtn) waBtn.style.display = 'none';
             trigger.classList.remove('oq-cb-pulse');
             badge.style.display = 'none';
             this.isOpen = true;
