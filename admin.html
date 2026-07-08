@@ -647,6 +647,40 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <div id="whatsapp-section" class="panel" style="border-top: 2px solid #25D366;">
+        <div class="panel-header">
+            <h2 style="color:#25D366;">💬 WhatsApp Alerts (Manual Send)</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Generates one-click "Send via WhatsApp" links for users who opted in to WhatsApp notifications and have a verified mobile number. Click each link to open WhatsApp with your message pre-filled, then hit send. This does not send automatically — true bulk automated sending requires a WhatsApp Business API provider (Brevo WhatsApp Campaigns, Gupshup, Interakt, etc.), which isn't set up yet.</p>
+            <form id="waForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label>Send To</label>
+                        <select id="waTargetType" onchange="toggleWaTargetValue()">
+                            <option value="All Users">All Opted-In Users</option>
+                            <option value="By Class">By Class</option>
+                            <option value="Recent Registrations">Recent Registrations (Last 7 Days)</option>
+                            <option value="Selected Users">Selected Users (Emails/Phones)</option>
+                        </select>
+                    </div>
+                    <div id="waTargetValueContainer" style="display:none;">
+                        <label id="waTargetValueLabel">Target Value</label>
+                        <input type="text" id="waTargetValue" placeholder="e.g. 6 or comma separated emails/phones">
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <label>Message <span id="waCharCount" style="float: right; font-size: 12px; color: var(--muted);">0 chars</span></label>
+                    <textarea id="waMessage" placeholder="e.g., Hi! Your Live Quiz Arena result is out. Check your dashboard now." style="height: 100px;" oninput="updateWaCharCount()" required></textarea>
+                </div>
+                <div style="margin-top: 10px; background: var(--subtle); padding: 10px; border-radius: 8px; border: 1px solid var(--border);"><strong style="font-size: 12px;">Preview:</strong><p id="waPreview" style="font-size: 13px; margin: 5px 0 0 0; color: var(--text); word-wrap: break-word;">...</p></div>
+                <button type="submit" id="genWaLinksBtn" class="upload" style="background: #25D366; width: 100%; margin-top: 20px;">🔗 Generate WhatsApp Links</button>
+            </form>
+            <div id="waLinksStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600;"></div>
+            <div id="waLinksList" style="margin-top: 10px; max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+    </div>
+
     <div id="push-section" class="panel" style="border-top: 2px solid var(--accent);">
         <div class="panel-header">
             <h2 style="color:var(--accent);">🔔 Push Notifications</h2>
@@ -4140,6 +4174,106 @@ document.getElementById("smsForm")?.addEventListener("submit", async (e) => {
     } finally {
         btn.disabled = false;
         btn.innerText = "📲 Send SMS Alerts";
+    }
+});
+
+window.toggleWaTargetValue = function() {
+    const type = document.getElementById("waTargetType").value;
+    const container = document.getElementById("waTargetValueContainer");
+    const label = document.getElementById("waTargetValueLabel");
+    const input = document.getElementById("waTargetValue");
+
+    if (type === "By Class") { container.style.display = "block"; label.innerText = "Class Number"; input.placeholder = "e.g. 6"; }
+    else if (type === "Selected Users") { container.style.display = "block"; label.innerText = "Emails or Phones (Comma separated)"; input.placeholder = "e.g. user@gmail.com, 9876543210"; }
+    else { container.style.display = "none"; input.value = ""; }
+};
+
+window.updateWaCharCount = function() {
+    const msg = document.getElementById("waMessage").value;
+    document.getElementById("waCharCount").innerText = `${msg.length} chars`;
+    document.getElementById("waPreview").innerText = msg || "...";
+};
+
+document.getElementById("waForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("genWaLinksBtn");
+    const status = document.getElementById("waLinksStatus");
+    const listEl = document.getElementById("waLinksList");
+
+    const message = document.getElementById("waMessage").value.trim();
+    const targetType = document.getElementById("waTargetType").value;
+    const targetValue = document.getElementById("waTargetValue").value.trim();
+
+    if (!message) { alert("Please enter a message."); return; }
+
+    btn.disabled = true; btn.innerText = "⏳ Finding contacts...";
+    status.style.color = "var(--muted)";
+    status.innerText = "Querying opted-in users...";
+    listEl.innerHTML = "";
+
+    try {
+        const snapshot = await getDocs(collection(db, "users"));
+        const now = new Date().getTime();
+        const uniquePhones = new Map(); // phone -> name
+
+        snapshot.docs.forEach(docSnap => {
+            const data = docSnap.data();
+
+            // Consent + verification gate — only opted-in, verified-mobile users are eligible
+            if (data.whatsappOptIn !== true) return;
+            if (!(data.phoneVerified === true || data.mobileVerified === true)) return;
+
+            let add = false;
+            if (targetType === "All Users") {
+                add = true;
+            } else if (targetType === "By Class" && targetValue) {
+                if (String(data.class) === String(targetValue) || String(data.studentClass) === String(targetValue)) add = true;
+            } else if (targetType === "Recent Registrations") {
+                if (data.createdAt && data.createdAt.toDate) {
+                    const diff = now - data.createdAt.toDate().getTime();
+                    if (diff <= 7 * 24 * 60 * 60 * 1000) add = true;
+                }
+            } else if (targetType === "Selected Users" && targetValue) {
+                const targets = targetValue.split(",").map(t => t.trim().toLowerCase());
+                if (targets.includes(String(data.email || "").toLowerCase()) || targets.includes(String(data.phone || data.phoneNumber || ""))) add = true;
+            }
+
+            if (!add) return;
+
+            const rawPhone = data.phone || data.phoneNumber || "";
+            let phone = String(rawPhone).replace(/\D/g, '');
+            if (phone.length === 10) phone = '91' + phone;
+            if (phone.length < 11) return;
+
+            if (!uniquePhones.has(phone)) {
+                uniquePhones.set(phone, data.name || data.fullName || "Student");
+            }
+        });
+
+        const contacts = Array.from(uniquePhones.entries());
+        btn.disabled = false; btn.innerText = "🔗 Generate WhatsApp Links";
+
+        if (contacts.length === 0) {
+            status.style.color = "var(--danger)";
+            status.innerText = "No opted-in users with a verified mobile number match this target.";
+            return;
+        }
+
+        status.style.color = "var(--success)";
+        status.innerText = `✅ Found ${contacts.length} contact(s). Click each link below to open WhatsApp with your message pre-filled, then hit send.`;
+
+        const encodedMsg = encodeURIComponent(message);
+        listEl.innerHTML = contacts.map(([phone, name]) => `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
+                <div style="font-size:13px;"><strong>${name}</strong><br><span style="color:var(--muted);">+${phone}</span></div>
+                <a href="https://wa.me/${phone}?text=${encodedMsg}" target="_blank" rel="noopener" style="background:#25D366; color:#fff; padding:8px 16px; border-radius:8px; font-size:12px; font-weight:700; text-decoration:none;">💬 Send</a>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error("WhatsApp link generation error:", error);
+        btn.disabled = false; btn.innerText = "🔗 Generate WhatsApp Links";
+        status.style.color = "var(--danger)";
+        status.innerText = "❌ Failed to generate links: " + error.message;
     }
 });
 
