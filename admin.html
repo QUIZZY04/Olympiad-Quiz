@@ -632,9 +632,19 @@ border-top:1px solid var(--border);
                         </select>
                     </div>
                     <div id="smsTargetValueContainer" style="display:none;">
-                        <label id="smsTargetValueLabel">Target Value</label>
-                        <input type="text" id="smsTargetValue" placeholder="e.g. 6 or comma separated emails">
+                        <label id="smsTargetValueLabel">Class Number</label>
+                        <input type="text" id="smsTargetValueVisible" placeholder="e.g. 6" oninput="document.getElementById('smsTargetValue').value=this.value">
                     </div>
+                </div>
+                <input type="hidden" id="smsTargetValue">
+                <div id="smsTargetSelection" style="display:none; margin-top: 15px;">
+                    <label>Select Specific Users</label>
+                    <input type="text" id="smsUserSearch" placeholder="Search by name, email or phone..." oninput="filterSmsContacts()" style="margin-top: 5px; margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 12px; font-weight: 600; color: var(--success);"><span id="selectedSmsCount">0</span> Selected</span>
+                        <button type="button" onclick="clearSmsSelection()" style="padding: 4px 10px; font-size: 11px; margin: 0; background: var(--bg); color: var(--danger); border: 1px solid var(--border);">Clear Selection</button>
+                    </div>
+                    <div id="smsTargetList" style="height: 200px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--surface);"></div>
                 </div>
                 <div style="margin-top: 15px;">
                     <label>SMS Message <span id="smsCharCount" style="float: right; font-size: 12px; color: var(--muted);">0 chars (1 SMS)</span></label>
@@ -677,7 +687,7 @@ border-top:1px solid var(--border);
                         <button type="button" onclick="clearWaSelection()" style="padding: 4px 10px; font-size: 11px; margin: 0; background: var(--bg); color: var(--danger); border: 1px solid var(--border);">Clear Selection</button>
                     </div>
                     <div id="waTargetList" style="height: 200px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--surface);"></div>
-                    <p class="muted" style="font-size: 11px; margin-top: 6px;">Only users who opted in to WhatsApp notifications and have a verified mobile number are listed here.</p>
+                    <p class="muted" style="font-size: 11px; margin-top: 6px;">All users with a phone number are listed here. "✅ Opted-in" users have agreed to WhatsApp notifications — messaging others manually is at your discretion.</p>
                 </div>
                 <div style="margin-top: 15px;">
                     <label>Message <span id="waCharCount" style="float: right; font-size: 12px; color: var(--muted);">0 chars</span></label>
@@ -4138,13 +4148,75 @@ document.getElementById("pushNotificationForm")?.addEventListener("submit", asyn
 
 window.toggleSmsTargetValue = function() {
     const type = document.getElementById("smsTargetType").value;
-    const container = document.getElementById("smsTargetValueContainer");
-    const label = document.getElementById("smsTargetValueLabel");
-    const input = document.getElementById("smsTargetValue");
-    
-    if (type === "By Class") { container.style.display = "block"; label.innerText = "Class Number"; input.placeholder = "e.g. 6"; } 
-    else if (type === "Selected Users") { container.style.display = "block"; label.innerText = "Emails or Phones (Comma separated)"; input.placeholder = "e.g. user@gmail.com, 9876543210"; } 
-    else { container.style.display = "none"; input.value = ""; }
+    const classContainer = document.getElementById("smsTargetValueContainer");
+    const selectionContainer = document.getElementById("smsTargetSelection");
+    document.getElementById("smsTargetValue").value = "";
+
+    classContainer.style.display = "none";
+    selectionContainer.style.display = "none";
+
+    if (type === "By Class") {
+        classContainer.style.display = "block";
+    } else if (type === "Selected Users") {
+        selectionContainer.style.display = "block";
+        if (document.getElementById("smsTargetList").innerHTML.trim() === "") {
+            loadSmsContactsForSelection();
+        }
+    }
+};
+
+window.loadSmsContactsForSelection = async function() {
+    const list = document.getElementById("smsTargetList");
+    list.innerHTML = "<div style='color:var(--muted); text-align:center;'>Loading contacts...</div>";
+    try {
+        const snap = await getDocs(collection(db, "users"));
+        const uniqueContacts = new Map(); // identifier (email or phone) -> display info
+
+        snap.forEach(docSnap => {
+            const rawPhone = String(docSnap.data().phone || docSnap.data().phoneNumber || "").trim();
+            const email = String(docSnap.data().email || "").trim().toLowerCase();
+            if (!rawPhone && !email) return;
+
+            const identifier = email || rawPhone;
+            const data = docSnap.data();
+            if (!uniqueContacts.has(identifier) || (data.name && data.name !== 'Student')) {
+                uniqueContacts.set(identifier, { name: data.name || data.fullName || 'Student', email, phone: rawPhone });
+            }
+        });
+
+        let html = "";
+        uniqueContacts.forEach((info, identifier) => {
+            const contactBits = [info.email, info.phone].filter(Boolean).join(' · ');
+            html += `<label class="sms-user-row" style="display:flex; align-items:center; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                        <input type="checkbox" value="${identifier}" onchange="updateSmsSelectionCount()" style="width:auto; margin:0;">
+                        <span class="user-text">${info.name} (${contactBits})</span>
+                     </label>`;
+        });
+
+        list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users found</div>";
+        updateSmsSelectionCount();
+    } catch (e) {
+        list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
+    }
+};
+
+window.filterSmsContacts = function() {
+    const term = document.getElementById("smsUserSearch").value.toLowerCase();
+    document.querySelectorAll(".sms-user-row").forEach(row => {
+        const text = row.querySelector(".user-text").innerText.toLowerCase();
+        row.style.display = text.includes(term) ? "flex" : "none";
+    });
+};
+
+window.updateSmsSelectionCount = function() {
+    const checked = Array.from(document.querySelectorAll('#smsTargetList input[type="checkbox"]:checked'));
+    document.getElementById("selectedSmsCount").innerText = checked.length;
+    document.getElementById("smsTargetValue").value = checked.map(cb => cb.value).join(",");
+};
+
+window.clearSmsSelection = function() {
+    document.querySelectorAll('#smsTargetList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    updateSmsSelectionCount();
 };
 
 window.updateSmsCharCount = function() {
@@ -4212,31 +4284,39 @@ window.loadWaContactsForSelection = async function() {
     list.innerHTML = "<div style='color:var(--muted); text-align:center;'>Loading contacts...</div>";
     try {
         const snap = await getDocs(collection(db, "users"));
-        const uniqueContacts = new Map(); // phone -> name
+        const uniqueContacts = new Map(); // phone -> {name, optedIn, verified}
 
         snap.forEach(docSnap => {
             const data = docSnap.data();
-            if (data.whatsappOptIn !== true) return;
-            if (!(data.phoneVerified === true || data.mobileVerified === true)) return;
 
             let phone = String(data.phone || data.phoneNumber || "").replace(/\D/g, '');
             if (phone.length === 10) phone = '91' + phone;
             if (phone.length < 11) return;
 
+            const isVerified = !!(data.phoneVerified === true || data.mobileVerified === true);
+            const isOptedIn = data.whatsappOptIn === true;
+
             if (!uniqueContacts.has(phone) || (data.name && data.name !== 'Student')) {
-                uniqueContacts.set(phone, data.name || data.fullName || 'Student');
+                uniqueContacts.set(phone, { name: data.name || data.fullName || 'Student', optedIn: isOptedIn, verified: isVerified });
             }
         });
 
         let html = "";
-        uniqueContacts.forEach((name, phone) => {
-            html += `<label class="wa-user-row" style="display:flex; align-items:center; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
-                        <input type="checkbox" value="${phone}" onchange="updateWaSelectionCount()" style="width:auto; margin:0;">
-                        <span class="user-text">${name} (+${phone})</span>
+        uniqueContacts.forEach((info, phone) => {
+            const badge = info.optedIn
+                ? `<span style="color:#059669; font-weight:700;">✅ Opted-in</span>`
+                : `<span style="color:var(--muted);">— Not opted-in</span>`;
+            const verifiedTag = info.verified ? "" : ` <span style="color:var(--danger);">(unverified)</span>`;
+            html += `<label class="wa-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                        <span style="display:flex; align-items:center; gap:10px;">
+                            <input type="checkbox" value="${phone}" onchange="updateWaSelectionCount()" style="width:auto; margin:0;">
+                            <span class="user-text">${info.name} (+${phone})${verifiedTag}</span>
+                        </span>
+                        <span style="font-size:11px; white-space:nowrap;">${badge}</span>
                      </label>`;
         });
 
-        list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No opted-in users with a verified mobile number found.</div>";
+        list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users with a phone number found.</div>";
         updateWaSelectionCount();
     } catch (e) {
         list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
