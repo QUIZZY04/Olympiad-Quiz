@@ -665,9 +665,19 @@ border-top:1px solid var(--border);
                         </select>
                     </div>
                     <div id="waTargetValueContainer" style="display:none;">
-                        <label id="waTargetValueLabel">Target Value</label>
-                        <input type="text" id="waTargetValue" placeholder="e.g. 6 or comma separated emails/phones">
+                        <label id="waTargetValueLabel">Class Number</label>
+                        <input type="text" id="waTargetValue" placeholder="e.g. 6">
                     </div>
+                </div>
+                <div id="waTargetSelection" style="display:none; margin-top: 15px;">
+                    <label>Select Specific Users</label>
+                    <input type="text" id="waUserSearch" placeholder="Search by name or phone..." oninput="filterWaContacts()" style="margin-top: 5px; margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                        <span style="font-size: 12px; font-weight: 600; color: #25D366;"><span id="selectedWaCount">0</span> Selected</span>
+                        <button type="button" onclick="clearWaSelection()" style="padding: 4px 10px; font-size: 11px; margin: 0; background: var(--bg); color: var(--danger); border: 1px solid var(--border);">Clear Selection</button>
+                    </div>
+                    <div id="waTargetList" style="height: 200px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--surface);"></div>
+                    <p class="muted" style="font-size: 11px; margin-top: 6px;">Only users who opted in to WhatsApp notifications and have a verified mobile number are listed here.</p>
                 </div>
                 <div style="margin-top: 15px;">
                     <label>Message <span id="waCharCount" style="float: right; font-size: 12px; color: var(--muted);">0 chars</span></label>
@@ -4179,13 +4189,76 @@ document.getElementById("smsForm")?.addEventListener("submit", async (e) => {
 
 window.toggleWaTargetValue = function() {
     const type = document.getElementById("waTargetType").value;
-    const container = document.getElementById("waTargetValueContainer");
-    const label = document.getElementById("waTargetValueLabel");
+    const classContainer = document.getElementById("waTargetValueContainer");
+    const selectionContainer = document.getElementById("waTargetSelection");
     const input = document.getElementById("waTargetValue");
 
-    if (type === "By Class") { container.style.display = "block"; label.innerText = "Class Number"; input.placeholder = "e.g. 6"; }
-    else if (type === "Selected Users") { container.style.display = "block"; label.innerText = "Emails or Phones (Comma separated)"; input.placeholder = "e.g. user@gmail.com, 9876543210"; }
-    else { container.style.display = "none"; input.value = ""; }
+    classContainer.style.display = "none";
+    selectionContainer.style.display = "none";
+    input.value = "";
+
+    if (type === "By Class") {
+        classContainer.style.display = "block";
+    } else if (type === "Selected Users") {
+        selectionContainer.style.display = "block";
+        if (document.getElementById("waTargetList").innerHTML.trim() === "") {
+            loadWaContactsForSelection();
+        }
+    }
+};
+
+window.loadWaContactsForSelection = async function() {
+    const list = document.getElementById("waTargetList");
+    list.innerHTML = "<div style='color:var(--muted); text-align:center;'>Loading contacts...</div>";
+    try {
+        const snap = await getDocs(collection(db, "users"));
+        const uniqueContacts = new Map(); // phone -> name
+
+        snap.forEach(docSnap => {
+            const data = docSnap.data();
+            if (data.whatsappOptIn !== true) return;
+            if (!(data.phoneVerified === true || data.mobileVerified === true)) return;
+
+            let phone = String(data.phone || data.phoneNumber || "").replace(/\D/g, '');
+            if (phone.length === 10) phone = '91' + phone;
+            if (phone.length < 11) return;
+
+            if (!uniqueContacts.has(phone) || (data.name && data.name !== 'Student')) {
+                uniqueContacts.set(phone, data.name || data.fullName || 'Student');
+            }
+        });
+
+        let html = "";
+        uniqueContacts.forEach((name, phone) => {
+            html += `<label class="wa-user-row" style="display:flex; align-items:center; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                        <input type="checkbox" value="${phone}" onchange="updateWaSelectionCount()" style="width:auto; margin:0;">
+                        <span class="user-text">${name} (+${phone})</span>
+                     </label>`;
+        });
+
+        list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No opted-in users with a verified mobile number found.</div>";
+        updateWaSelectionCount();
+    } catch (e) {
+        list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
+    }
+};
+
+window.filterWaContacts = function() {
+    const term = document.getElementById("waUserSearch").value.toLowerCase();
+    document.querySelectorAll(".wa-user-row").forEach(row => {
+        const text = row.querySelector(".user-text").innerText.toLowerCase();
+        row.style.display = text.includes(term) ? "flex" : "none";
+    });
+};
+
+window.updateWaSelectionCount = function() {
+    const count = document.querySelectorAll('#waTargetList input[type="checkbox"]:checked').length;
+    document.getElementById("selectedWaCount").innerText = count;
+};
+
+window.clearWaSelection = function() {
+    document.querySelectorAll('#waTargetList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    updateWaSelectionCount();
 };
 
 window.updateWaCharCount = function() {
@@ -4205,6 +4278,20 @@ document.getElementById("waForm")?.addEventListener("submit", async (e) => {
     const targetValue = document.getElementById("waTargetValue").value.trim();
 
     if (!message) { alert("Please enter a message."); return; }
+
+    if (targetType === "Selected Users") {
+        const checkedPhones = new Set(Array.from(document.querySelectorAll('#waTargetList input[type="checkbox"]:checked')).map(cb => cb.value));
+        if (checkedPhones.size === 0) { alert("Please select at least one user from the list."); return; }
+
+        const uniquePhones = new Map();
+        document.querySelectorAll('#waTargetList input[type="checkbox"]:checked').forEach(cb => {
+            const name = cb.closest('.wa-user-row').querySelector('.user-text').innerText.split(' (+')[0];
+            uniquePhones.set(cb.value, name);
+        });
+
+        renderWaLinks(Array.from(uniquePhones.entries()), message, status, listEl);
+        return;
+    }
 
     btn.disabled = true; btn.innerText = "⏳ Finding contacts...";
     status.style.color = "var(--muted)";
@@ -4233,9 +4320,6 @@ document.getElementById("waForm")?.addEventListener("submit", async (e) => {
                     const diff = now - data.createdAt.toDate().getTime();
                     if (diff <= 7 * 24 * 60 * 60 * 1000) add = true;
                 }
-            } else if (targetType === "Selected Users" && targetValue) {
-                const targets = targetValue.split(",").map(t => t.trim().toLowerCase());
-                if (targets.includes(String(data.email || "").toLowerCase()) || targets.includes(String(data.phone || data.phoneNumber || ""))) add = true;
             }
 
             if (!add) return;
@@ -4252,23 +4336,7 @@ document.getElementById("waForm")?.addEventListener("submit", async (e) => {
 
         const contacts = Array.from(uniquePhones.entries());
         btn.disabled = false; btn.innerText = "🔗 Generate WhatsApp Links";
-
-        if (contacts.length === 0) {
-            status.style.color = "var(--danger)";
-            status.innerText = "No opted-in users with a verified mobile number match this target.";
-            return;
-        }
-
-        status.style.color = "var(--success)";
-        status.innerText = `✅ Found ${contacts.length} contact(s). Click each link below to open WhatsApp with your message pre-filled, then hit send.`;
-
-        const encodedMsg = encodeURIComponent(message);
-        listEl.innerHTML = contacts.map(([phone, name]) => `
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
-                <div style="font-size:13px;"><strong>${name}</strong><br><span style="color:var(--muted);">+${phone}</span></div>
-                <a href="https://wa.me/${phone}?text=${encodedMsg}" target="_blank" rel="noopener" style="background:#25D366; color:#fff; padding:8px 16px; border-radius:8px; font-size:12px; font-weight:700; text-decoration:none;">💬 Send</a>
-            </div>
-        `).join('');
+        renderWaLinks(contacts, message, status, listEl);
     } catch (error) {
         console.error("WhatsApp link generation error:", error);
         btn.disabled = false; btn.innerText = "🔗 Generate WhatsApp Links";
@@ -4276,6 +4344,26 @@ document.getElementById("waForm")?.addEventListener("submit", async (e) => {
         status.innerText = "❌ Failed to generate links: " + error.message;
     }
 });
+
+function renderWaLinks(contacts, message, status, listEl) {
+    if (contacts.length === 0) {
+        status.style.color = "var(--danger)";
+        status.innerText = "No opted-in users with a verified mobile number match this target.";
+        listEl.innerHTML = "";
+        return;
+    }
+
+    status.style.color = "var(--success)";
+    status.innerText = `✅ Found ${contacts.length} contact(s). Click each link below to open WhatsApp with your message pre-filled, then hit send.`;
+
+    const encodedMsg = encodeURIComponent(message);
+    listEl.innerHTML = contacts.map(([phone, name]) => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
+            <div style="font-size:13px;"><strong>${name}</strong><br><span style="color:var(--muted);">+${phone}</span></div>
+            <a href="https://wa.me/${phone}?text=${encodedMsg}" target="_blank" rel="noopener" style="background:#25D366; color:#fff; padding:8px 16px; border-radius:8px; font-size:12px; font-weight:700; text-decoration:none;">💬 Send</a>
+        </div>
+    `).join('');
+}
 
 window.appendStudyContent = async function() {
     const cls = document.getElementById('studyClass').value;
