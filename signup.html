@@ -435,10 +435,12 @@ async function updateUserState(user, state, extraData = {}) {
     };
 
     if (user.email) data.email = user.email;
+    data.googleLinked = providerIds.includes('google.com');
     if (user.phoneNumber) {
         data.phone = user.phoneNumber;
         data.phoneNumber = user.phoneNumber;
         data.phoneVerified = true;
+        data.mobileVerified = true;
     }
     if (providerIds.length > 0 && !extraData.primaryAuth) {
         data.primaryAuth = providerIds[0];

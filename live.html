@@ -456,7 +456,19 @@
                 if (adminTab) adminTab.style.display = "inline";
             }
         }
-        loadSessions(user);
+        await loadSessions(user);
+
+        // Resume a live-test unlock that was paused for mobile verification
+        if (user && user.phoneNumber) {
+            const pending = sessionStorage.getItem('pendingLiveUnlock');
+            if (pending) {
+                sessionStorage.removeItem('pendingLiveUnlock');
+                try {
+                    const { sessionId, price, title } = JSON.parse(pending);
+                    setTimeout(() => window.handleUnlock(sessionId, price, title), 500);
+                } catch (e) { console.warn('Failed to resume pending unlock:', e); }
+            }
+        }
     });
 
     window.updateGradeFilter = (g) => {
@@ -1017,6 +1029,13 @@
         const user = auth.currentUser;
         if (!user) {
             document.getElementById('loginPromptModal').style.display = 'flex';
+            return;
+        }
+
+        // Require a verified mobile number before registration (free or paid) can proceed
+        if (!user.phoneNumber) {
+            sessionStorage.setItem('pendingLiveUnlock', JSON.stringify({ sessionId, price, title }));
+            window.location.href = 'verify-mobile.html?returnTo=' + encodeURIComponent('live.html');
             return;
         }
 

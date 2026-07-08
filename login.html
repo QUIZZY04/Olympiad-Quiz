@@ -470,6 +470,22 @@ function initRecaptcha() {
 }
 initRecaptcha();
 
+function syncProviderState(user) {
+    const providerIds = user.providerData.map(p => p.providerId);
+    const sync = {
+        authProviders: providerIds,
+        googleLinked: providerIds.includes('google.com'),
+        lastLoginAt: serverTimestamp()
+    };
+    if (user.phoneNumber) {
+        sync.phone = user.phoneNumber;
+        sync.phoneNumber = user.phoneNumber;
+        sync.phoneVerified = true;
+        sync.mobileVerified = true;
+    }
+    return setDoc(doc(db, "users", user.uid), sync, { merge: true });
+}
+
 async function evaluateAuthState(user) {
     if (isRedirecting) return;
     if (!user) {
@@ -485,6 +501,9 @@ async function evaluateAuthState(user) {
 
     console.log("Auth user:", user.uid);
     console.log("Firestore data:", data);
+
+    // Non-blocking sync of provider/mobile verification state — does not affect redirect timing or UI
+    syncProviderState(user).catch(e => console.warn("Provider sync failed:", e));
 
     if (data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted)) {
         console.log("Redirect decision: dashboard");

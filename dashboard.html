@@ -143,6 +143,27 @@
     .hero-btn-outline { background: rgba(255,255,255,0.1); color: var(--brand-contrast); border: 1px solid var(--brand-contrast); padding: 14px 28px; border-radius: 12px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: 0.3s; backdrop-filter: blur(5px); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
     .hero-btn-outline:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
+    .acc-cards-wrapper { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+    .acc-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--brand); border-radius: 16px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; box-shadow: var(--shadow-sm); }
+    .acc-card-info { display: flex; align-items: flex-start; gap: 14px; flex: 1; min-width: 240px; }
+    .acc-card-icon { font-size: 26px; background: var(--subtle, #fff7ed); color: var(--brand-text); width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .acc-card-text h4 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .acc-card-text p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
+    .acc-card-actions { display: flex; align-items: center; gap: 10px; }
+    .acc-card-btn { background: var(--brand); color: var(--brand-contrast); border: none; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 13px; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+    .acc-card-btn:hover { background: var(--accent); transform: translateY(-1px); }
+    .acc-card-dismiss { background: transparent; border: none; color: var(--muted); font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: underline; }
+
+    .profile-completion-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px 24px; margin-bottom: 40px; box-shadow: var(--shadow-sm); }
+    .pc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .pc-header h4 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+    .pc-header .pc-percent { font-size: 18px; font-weight: 800; color: var(--brand-text); }
+    .pc-bar-track { background: var(--border); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 12px; }
+    .pc-bar-fill { background: linear-gradient(90deg, var(--brand), var(--accent)); height: 100%; border-radius: 99px; transition: width 0.5s ease; }
+    .pc-checklist { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12.5px; color: var(--muted); }
+    .pc-checklist span.done { color: var(--success); font-weight: 600; }
+    .pc-checklist span.pending { color: var(--muted); }
+
     .sleek-banner { background: #fff7ed; border: 1px solid #ffedd5; color: var(--text); padding: 12px 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: nowrap; gap: 15px; overflow: hidden; position: relative; }
     .sleek-banner .badge { background: var(--brand); color: var(--brand-contrast); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; z-index: 2; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .scrolling-text-container { flex: 1; overflow: hidden; white-space: nowrap; display: flex; align-items: center; }
@@ -346,6 +367,42 @@
                     <div class="label">Points</div>
                 </div>
             </div>
+        </div>
+
+        <div id="acmCardsWrapper" class="acc-cards-wrapper" style="display:none;">
+            <div id="acmVerifyMobileCard" class="acc-card" style="display:none;">
+                <div class="acc-card-info">
+                    <div class="acc-card-icon">📱</div>
+                    <div class="acc-card-text">
+                        <h4>Complete Your Profile</h4>
+                        <p>Verify your mobile number to receive WhatsApp Result Alerts, Live Test Reminders, Certificates, Payment Confirmation, and OTP Login.</p>
+                    </div>
+                </div>
+                <div class="acc-card-actions">
+                    <button class="acc-card-btn" onclick="window.goVerifyMobile()">Verify Mobile</button>
+                </div>
+            </div>
+            <div id="acmLinkGoogleCard" class="acc-card" style="display:none;">
+                <div class="acc-card-info">
+                    <div class="acc-card-icon">🔐</div>
+                    <div class="acc-card-text">
+                        <h4>Secure Your Account</h4>
+                        <p>Link your Google Account for easy login, account recovery, secure access, and sync across devices.</p>
+                    </div>
+                </div>
+                <div class="acc-card-actions">
+                    <button class="acc-card-btn" id="acmLinkGoogleBtn" onclick="window.goLinkGoogle()">Link Google</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="profileCompletionCard" class="profile-completion-card" style="display:none;">
+            <div class="pc-header">
+                <h4>Profile Completion</h4>
+                <span class="pc-percent" id="pcPercentText">0%</span>
+            </div>
+            <div class="pc-bar-track"><div class="pc-bar-fill" id="pcBarFill" style="width:0%;"></div></div>
+            <div class="pc-checklist" id="pcChecklist"></div>
         </div>
 
         <div id="liveSessionWrapper" style="min-height: 85px;">
@@ -699,7 +756,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth,onAuthStateChanged,signOut,linkWithPopup,GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { initializeFirestore, doc, getDoc, setDoc, serverTimestamp, collection, query, where, orderBy, limit, getDocs, arrayUnion, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
 
@@ -754,6 +811,9 @@ onAuthStateChanged(auth, async (user) => {
 
             // Show forced profile completion popup when user has >2 tests and profile is incomplete
             if (!isAdmin) await checkAndShowProfilePopup(user, data);
+
+            // Non-blocking account-completion cards + profile completion widget
+            if (!isAdmin) renderAccountCompletionUI(user, data);
 
             // --- Dashboard Visibility Logic for Grade 11 & 12 ---
             uClass = data.class || data.studentClass || "";
@@ -1099,6 +1159,113 @@ async function checkAndShowProfilePopup(user, userData) {
     }, 1500);
 }
 // ===== END PROFILE COMPLETION CHECK =====
+
+// ===== ACCOUNT COMPLETION CARDS (Google linking / Mobile verification) =====
+window.goVerifyMobile = function() {
+    window.location.href = 'verify-mobile.html?returnTo=' + encodeURIComponent('dashboard.html');
+};
+
+window.goLinkGoogle = async function() {
+    const btn = document.getElementById('acmLinkGoogleBtn');
+    const originalText = btn.innerText;
+    btn.disabled = true; btn.innerText = 'Linking...';
+
+    try {
+        const provider = new GoogleAuthProvider();
+        const result = await linkWithPopup(auth.currentUser, provider);
+        const providerIds = result.user.providerData.map(p => p.providerId);
+
+        await setDoc(doc(db, "users", result.user.uid), {
+            googleLinked: true,
+            authProviders: providerIds,
+            email: result.user.email || "",
+            lastProfileUpdate: serverTimestamp()
+        }, { merge: true });
+
+        document.getElementById('acmLinkGoogleCard').style.display = 'none';
+        updateCardsVisibility();
+        alert("✅ Google account linked successfully!");
+    } catch (e) {
+        if (e.code === 'auth/credential-already-in-use' || e.code === 'auth/email-already-in-use') {
+            alert("This Google account is already linked to a different OlympiadQuiz account. Please sign in with that account directly, or use a different Google account.");
+        } else if (e.code === 'auth/provider-already-linked') {
+            alert("Your Google account is already linked.");
+            document.getElementById('acmLinkGoogleCard').style.display = 'none';
+        } else if (e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request') {
+            // User cancelled — no error needed
+        } else if (e.code === 'auth/network-request-failed') {
+            alert("Network error. Please check your connection and try again.");
+        } else {
+            alert("Could not link Google account: " + e.message);
+        }
+        btn.disabled = false; btn.innerText = originalText;
+    }
+};
+
+function updateCardsVisibility() {
+    const verifyCard = document.getElementById('acmVerifyMobileCard');
+    const linkCard = document.getElementById('acmLinkGoogleCard');
+    const wrapper = document.getElementById('acmCardsWrapper');
+    const anyVisible = verifyCard.style.display !== 'none' || linkCard.style.display !== 'none';
+    wrapper.style.display = anyVisible ? 'flex' : 'none';
+}
+
+function renderAccountCompletionUI(user, data) {
+    const providerIds = user.providerData.map(p => p.providerId);
+    const isGoogleLinked = providerIds.includes('google.com');
+    const isMobileVerified = !!(user.phoneNumber || data.phoneVerified || data.mobileVerified);
+
+    const verifyCard = document.getElementById('acmVerifyMobileCard');
+    const linkCard = document.getElementById('acmLinkGoogleCard');
+
+    // Case 1: Google-authenticated but no verified mobile
+    if (isGoogleLinked && !isMobileVerified) {
+        verifyCard.style.display = 'flex';
+    } else {
+        verifyCard.style.display = 'none';
+    }
+
+    // Case 2: Mobile-authenticated but Google not linked
+    if (!isGoogleLinked && isMobileVerified) {
+        linkCard.style.display = 'flex';
+    } else {
+        linkCard.style.display = 'none';
+    }
+
+    updateCardsVisibility();
+    renderProfileCompletion(user, data, isGoogleLinked, isMobileVerified);
+}
+
+function renderProfileCompletion(user, data, isGoogleLinked, isMobileVerified) {
+    const checks = [
+        { label: 'Google Linked', done: isGoogleLinked },
+        { label: 'Mobile Verified', done: isMobileVerified },
+        { label: 'Name', done: !!data.name },
+        { label: 'Grade', done: !!(data.class || data.studentClass) },
+        { label: 'Parent Details', done: !!(data.parentName || data.parentMobile) },
+        { label: 'Notification Preference', done: !!data.notificationPreference }
+    ];
+
+    const doneCount = checks.filter(c => c.done).length;
+    const percent = Math.round((doneCount / checks.length) * 100);
+
+    const card = document.getElementById('profileCompletionCard');
+    if (percent >= 100) {
+        card.style.display = 'none';
+    } else {
+        card.style.display = 'block';
+        document.getElementById('pcPercentText').innerText = percent + '%';
+        document.getElementById('pcBarFill').style.width = percent + '%';
+        document.getElementById('pcChecklist').innerHTML = checks.map(c =>
+            `<span class="${c.done ? 'done' : 'pending'}">${c.done ? '✔' : '✖'} ${c.label}</span>`
+        ).join('');
+    }
+
+    // Persist the computed percentage for admin visibility (non-blocking, additive field only)
+    setDoc(doc(db, "users", user.uid), { profileCompletion: percent, lastProfileUpdate: serverTimestamp() }, { merge: true })
+        .catch(e => console.warn('profileCompletion sync failed:', e));
+}
+// ===== END ACCOUNT COMPLETION CARDS =====
 window.submitDashboardFeedback = async () => {
     const rating = document.getElementById("dbFbRating").value;
     const comment = document.getElementById("dbFbText").value;

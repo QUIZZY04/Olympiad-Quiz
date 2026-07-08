@@ -176,6 +176,9 @@
                     <div class="view-item"><label>School Name and Address</label><p id="viewSchoolName">-</p></div>
                     <div class="view-item full-width"><label>Mobile Number</label><p id="viewPhoneNumber" style="display:flex; align-items:center; gap:8px;">Not verified</p></div>
                     <div class="view-item full-width" id="viewEmailRow" style="display:none;"><label>Email Address</label><p id="viewEmailAddress">-</p></div>
+                    <div class="view-item" id="viewParentNameRow" style="display:none;"><label>Parent/Guardian Name</label><p id="viewParentName">-</p></div>
+                    <div class="view-item" id="viewParentMobileRow" style="display:none;"><label>Parent/Guardian Mobile</label><p id="viewParentMobile">-</p></div>
+                    <div class="view-item" id="viewParentEmailRow" style="display:none;"><label>Parent/Guardian Email</label><p id="viewParentEmail">-</p></div>
                 </div>
             </div>
 
@@ -236,6 +239,25 @@
                         <div class="form-group">
                             <label for="schoolName">School Name and Address *</label>
                             <input type="text" id="schoolName" required>
+                        </div>
+                    </div>
+
+                    <!-- Parent/Guardian Details (Optional) -->
+                    <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--border);">
+                        <label style="display:block; font-weight:700; font-size:0.85rem; color:var(--muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">Parent/Guardian Details (Optional)</label>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="parentName">Parent/Guardian Name</label>
+                                <input type="text" id="parentName">
+                            </div>
+                            <div class="form-group">
+                                <label for="parentMobile">Parent/Guardian Mobile</label>
+                                <input type="tel" id="parentMobile" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="parentEmail">Parent/Guardian Email</label>
+                                <input type="email" id="parentEmail">
+                            </div>
                         </div>
                     </div>
 
@@ -501,6 +523,9 @@
                 document.getElementById('gender').value = data.gender || '';
                 document.getElementById('studentClass').value = data.studentClass || data.class || '';
                 document.getElementById('schoolName').value = data.schoolName || '';
+                document.getElementById('parentName').value = data.parentName || '';
+                document.getElementById('parentMobile').value = data.parentMobile || '';
+                document.getElementById('parentEmail').value = data.parentEmail || '';
 
                 // Populate view fields
                 document.getElementById('viewStudentName').innerText = data.name || '-';
@@ -513,6 +538,9 @@
                 document.getElementById('viewGender').innerText = data.gender || '-';
                 document.getElementById('viewStudentClass').innerText = (data.studentClass || data.class || '').replace('class', 'Class ') || '-';
                 document.getElementById('viewSchoolName').innerText = data.schoolName || '-';
+                if (data.parentName) { document.getElementById('viewParentName').innerText = data.parentName; document.getElementById('viewParentNameRow').style.display = 'block'; }
+                if (data.parentMobile) { document.getElementById('viewParentMobile').innerText = data.parentMobile; document.getElementById('viewParentMobileRow').style.display = 'block'; }
+                if (data.parentEmail) { document.getElementById('viewParentEmail').innerText = data.parentEmail; document.getElementById('viewParentEmailRow').style.display = 'block'; }
 
                 if (data.photoURL) {
                     document.getElementById('imagePreview').src = data.photoURL;
@@ -627,6 +655,9 @@
                 studentClass: document.getElementById('studentClass').value,
                 class: document.getElementById('studentClass').value,
                 schoolName: document.getElementById('schoolName').value.trim(),
+                parentName: document.getElementById('parentName').value.trim(),
+                parentMobile: document.getElementById('parentMobile').value.trim(),
+                parentEmail: document.getElementById('parentEmail').value.trim(),
                 photoURL: photoURL,
                 profileUpdatedAt: serverTimestamp()
             };

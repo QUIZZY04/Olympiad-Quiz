@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Verify Mobile Number - OlympiadQuiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="style.css" as="style">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8fafc; --surface: #ffffff; --subtle: #fff7ed; --text: #111827; --muted: #64748b;
+      --border: #e2e8f0; --brand: #ff6b00; --accent: #ff8c1a; --danger: #ef4444; --success: #10b981;
+      --brand-text: #c2410c; --brand-contrast: #111827;
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body {
+      background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column; visibility: hidden;
+      background-image:
+        radial-gradient(circle at 0% 0%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(255, 140, 26, 0.05) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+    .container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+    .card {
+      width: 100%; max-width: 440px; background: var(--surface); border-radius: 24px;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 40px; text-align: center;
+    }
+    .icon-badge {
+      width: 64px; height: 64px; background: var(--subtle); color: var(--brand-text); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 16px;
+    }
+    h1 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+    input {
+      width: 100%; padding: 14px 16px; margin-bottom: 15px; background: #f8fafc; border: 1px solid var(--border);
+      border-radius: 12px; color: var(--text); font-size: 14px; outline: none; transition: 0.2s;
+    }
+    input:focus { border-color: var(--brand); box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.1); background: var(--surface); }
+    .main-btn {
+      width: 100%; padding: 14px 16px; background: var(--brand); color: var(--brand-contrast); border: none;
+      border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+    }
+    .main-btn:hover { background: var(--accent); transform: translateY(-2px); }
+    .main-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .ghost-btn {
+      width: 100%; padding: 12px; margin-top: 10px; background: transparent; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 12px; font-weight: 600; font-size: 13px; cursor: pointer;
+    }
+    .ghost-btn:hover { color: var(--text); border-color: var(--brand-text); }
+    .hidden { display: none !important; }
+    .btn-row { display: flex; gap: 12px; margin-top: 8px; }
+    .btn-row button {
+      flex: 1; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; border: 1px solid var(--border);
+    }
+    .btn-yes { background: var(--brand); color: var(--brand-contrast); border-color: var(--brand) !important; }
+    .btn-no { background: var(--surface); color: var(--muted); }
+    .whatsapp-list { text-align: left; margin: 0 0 24px; padding-left: 20px; color: var(--text); font-size: 13.5px; line-height: 1.9; }
+    .success-check { font-size: 48px; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card" id="cardBox">
+
+    <!-- STEP 1: ENTER NUMBER -->
+    <div id="stepNumber">
+      <div class="icon-badge">📱</div>
+      <h1>Verify Your Mobile Number</h1>
+      <p class="subtitle">Add a verified mobile number to your account to receive result alerts, live test reminders, and certificates.</p>
+      <form id="numberForm">
+        <div style="display:flex; gap:10px; margin-bottom:15px;">
+          <input type="text" value="+91" readonly style="width:70px; margin-bottom:0; text-align:center; font-weight:700; background:var(--border); color:var(--muted); cursor:not-allowed;">
+          <input type="tel" id="mobileInput" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" title="Enter exactly 10 digits" required style="margin-bottom:0; flex:1;">
+        </div>
+        <div id="recaptcha-container"></div>
+        <button type="submit" id="sendOtpBtn" class="main-btn">Send OTP</button>
+      </form>
+      <button type="button" class="ghost-btn" onclick="window.skipVerification()">Skip for now</button>
+    </div>
+
+    <!-- STEP 2: ENTER OTP -->
+    <div id="stepOtp" class="hidden">
+      <div class="icon-badge">🔐</div>
+      <h1>Enter OTP</h1>
+      <p class="subtitle">We sent a 6-digit code to <strong id="otpPhoneDisplay"></strong></p>
+      <form id="otpForm">
+        <input type="text" id="otpInput" placeholder="6-digit OTP" required>
+        <button type="submit" id="verifyOtpBtn" class="main-btn">Verify Mobile</button>
+      </form>
+      <button type="button" class="ghost-btn" onclick="window.resetToNumberStep()">← Change Number</button>
+    </div>
+
+    <!-- STEP 3: WHATSAPP OPT-IN -->
+    <div id="stepOptIn" class="hidden">
+      <div class="success-check">✅</div>
+      <h1>Mobile Verified!</h1>
+      <p class="subtitle">Would you like to receive updates on WhatsApp?</p>
+      <ul class="whatsapp-list">
+        <li>WhatsApp Result Alerts</li>
+        <li>Live Test Reminders</li>
+        <li>Certificates</li>
+        <li>Payment Confirmation</li>
+        <li>Important Notifications</li>
+      </ul>
+      <div class="btn-row">
+        <button type="button" class="btn-no" onclick="window.saveWhatsappPreference(false)">No Thanks</button>
+        <button type="button" class="btn-yes" onclick="window.saveWhatsappPreference(true)">Yes, Notify Me</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: DONE -->
+    <div id="stepDone" class="hidden">
+      <div class="success-check">🎉</div>
+      <h1>All Set!</h1>
+      <p class="subtitle">Redirecting you back...</p>
+    </div>
+
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, RecaptchaVerifier, linkWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+  authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+  projectId: "olympiad-portal-d2a5e",
+  storageBucket: "olympiad-portal-d2a5e.firebasestorage.app",
+  messagingSenderId: "341855557503",
+  appId: "1:341855557503:web:5cb0c3a9ee424a6db0ec4a"
+};
+
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const urlParams = new URLSearchParams(window.location.search);
+let returnTo = urlParams.get('returnTo') || 'dashboard.html';
+try {
+    const parsed = new URL(returnTo, window.location.origin);
+    returnTo = parsed.origin === window.location.origin ? (parsed.pathname + parsed.search + parsed.hash) : 'dashboard.html';
+} catch (e) { returnTo = 'dashboard.html'; }
+
+let confirmationResult = null;
+let currentUser = null;
+
+function showStep(id) {
+    document.querySelectorAll('.card > div').forEach(d => d.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function initRecaptcha() {
+    if (window.vmRecaptchaVerifier) {
+        try { window.vmRecaptchaVerifier.clear(); } catch (e) {}
+    }
+    window.vmRecaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
+    window.vmRecaptchaVerifier.render().catch(console.error);
+}
+
+window.resetToNumberStep = function() {
+    document.getElementById('mobileInput').value = '';
+    document.getElementById('otpInput').value = '';
+    document.getElementById('sendOtpBtn').disabled = false;
+    document.getElementById('sendOtpBtn').innerText = 'Send OTP';
+    showStep('stepNumber');
+    initRecaptcha();
+};
+
+window.skipVerification = function() {
+    window.location.href = returnTo;
+};
+
+async function markMobileVerified(user) {
+    const providerIds = user.providerData.map(p => p.providerId);
+    await setDoc(doc(db, "users", user.uid), {
+        phone: user.phoneNumber,
+        phoneNumber: user.phoneNumber,
+        phoneVerified: true,
+        mobileVerified: true,
+        googleLinked: providerIds.includes('google.com'),
+        authProviders: providerIds,
+        lastProfileUpdate: serverTimestamp()
+    }, { merge: true });
+}
+
+window.saveWhatsappPreference = async function(optIn) {
+    try {
+        await setDoc(doc(db, "users", currentUser.uid), {
+            whatsappOptIn: optIn,
+            notificationPreference: optIn ? 'whatsapp_sms' : 'email_only',
+            lastProfileUpdate: serverTimestamp()
+        }, { merge: true });
+    } catch (e) {
+        console.warn('Failed to save WhatsApp preference:', e);
+    }
+    showStep('stepDone');
+    setTimeout(() => { window.location.href = returnTo; }, 1200);
+};
+
+onAuthStateChanged(auth, async (user) => {
+    document.body.style.visibility = 'visible';
+    if (!user) {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.replace("login.html");
+        return;
+    }
+    currentUser = user;
+    await user.reload().catch(e => console.warn(e));
+
+    if (user.phoneNumber) {
+        // Already has a verified phone (e.g. verified elsewhere) — just ensure Firestore is in sync, then ask opt-in once.
+        await markMobileVerified(user).catch(e => console.warn(e));
+        showStep('stepOptIn');
+        return;
+    }
+
+    showStep('stepNumber');
+    initRecaptcha();
+});
+
+document.getElementById('numberForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const raw = document.getElementById('mobileInput').value.trim();
+    const phone = "+91" + raw;
+    const btn = document.getElementById('sendOtpBtn');
+    btn.disabled = true; btn.innerText = "Sending...";
+
+    try {
+        confirmationResult = await linkWithPhoneNumber(currentUser, phone, window.vmRecaptchaVerifier);
+        document.getElementById('otpPhoneDisplay').innerText = phone;
+        showStep('stepOtp');
+    } catch (err) {
+        let msg = "Could not send OTP. Please try again.";
+        if (err.code === 'auth/invalid-phone-number') msg = "Invalid mobile number. Please check and try again.";
+        else if (err.code === 'auth/too-many-requests') msg = "Too many attempts. Please try again later.";
+        else if (err.code === 'auth/credential-already-in-use') msg = "This mobile number is already linked to a different account. Please log in with that account directly, or use a different number.";
+        else if (err.code === 'auth/provider-already-linked') {
+            // Already linked in this session — just proceed
+            await markMobileVerified(auth.currentUser).catch(() => {});
+            showStep('stepOptIn');
+            return;
+        } else if (err.code === 'auth/network-request-failed') msg = "Network error. Please check your connection and try again.";
+
+        alert(msg);
+        btn.disabled = false; btn.innerText = "Send OTP";
+        if (window.vmRecaptchaVerifier) { window.vmRecaptchaVerifier.clear(); initRecaptcha(); }
+    }
+});
+
+document.getElementById('otpForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const code = document.getElementById('otpInput').value.trim();
+    const btn = document.getElementById('verifyOtpBtn');
+    btn.disabled = true; btn.innerText = "Verifying...";
+
+    try {
+        const result = await confirmationResult.confirm(code);
+        await markMobileVerified(result.user);
+        showStep('stepOptIn');
+    } catch (err) {
+        let msg = "Verification failed. Please try again.";
+        if (err.code === 'auth/invalid-verification-code') msg = "Incorrect OTP. Please try again.";
+        else if (err.code === 'auth/code-expired') msg = "OTP expired. Please request a new one.";
+        else if (err.code === 'auth/network-request-failed') msg = "Network error. Please check your connection and try again.";
+
+        alert(msg);
+        btn.disabled = false; btn.innerText = "Verify Mobile";
+    }
+});
+</script>
+</body>
+</html>
