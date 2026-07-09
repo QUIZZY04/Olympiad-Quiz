@@ -342,14 +342,23 @@
 
                     <div style="text-align: left; margin: 15px 0; font-size: 13px;">
                         <label style="display: flex; gap: 8px; margin-bottom: 8px; cursor: pointer;">
-                            <input type="checkbox" id="emailConsent" checked required style="width: auto; margin: 0;">
+                            <input type="checkbox" id="emailConsent" checked required style="width: auto; margin: 0; margin-top: 2px; flex-shrink: 0;">
                             <span style="color: var(--text);">I agree to receive important account-related updates via Email. <span style="color: var(--danger);">*</span></span>
                         </label>
-                        <label style="display: flex; gap: 8px; margin-bottom: 4px; cursor: pointer;">
-                            <input type="checkbox" id="promoConsent" checked style="width: auto; margin: 0;">
-                            <span style="color: var(--text);">Get test alerts & updates via SMS and WhatsApp.</span>
+                        <label style="display: flex; gap: 8px; margin-bottom: 6px; cursor: pointer; align-items: flex-start;">
+                            <input type="checkbox" id="promoConsent" checked style="width: auto; margin: 0; margin-top: 3px; flex-shrink: 0;">
+                            <span style="color: var(--text); line-height: 1.5;">
+                                I agree to receive result alerts, live test reminders, and tips via
+                                <strong style="color: #25D366;">WhatsApp</strong> &amp; SMS from OlympiadQuiz.
+                            </span>
                         </label>
-                        <div style="color: var(--muted); font-size: 11px; margin-left: 22px;">You can unsubscribe anytime.</div>
+                        <div style="color: var(--muted); font-size: 11px; margin-left: 24px; line-height: 1.6;">
+                            Max 1–2 messages/week. No spam. Unsubscribe anytime by replying STOP.<br>
+                            By opting in, you agree to our
+                            <a href="privacy-policy.html" target="_blank" style="color: var(--brand-text); text-decoration: underline; font-weight: 600;">Privacy Policy</a>
+                            and
+                            <a href="term.html" target="_blank" style="color: var(--brand-text); text-decoration: underline; font-weight: 600;">Terms &amp; Conditions</a>.
+                        </div>
                     </div>
 
                     <button type="submit" class="main-btn" id="btnSaveProfile">Create Account</button>
