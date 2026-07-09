@@ -677,7 +677,9 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
             email: email || user.email || "",
             class: cls,
             email_consent: true,
-            promo_consent: promoConsent
+            promo_consent: promoConsent,
+            whatsappOptIn: promoConsent,
+            notificationPreference: promoConsent ? 'whatsapp_sms' : 'email_only'
         });
 
         localStorage.setItem("isLoggedIn", "true");
