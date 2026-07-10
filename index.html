@@ -715,10 +715,10 @@
             try {
                 let snap;
                 try {
-                    const q = query(collection(db, colName), orderBy("timestamp", "desc"), limit(15));
+                    const q = query(collection(db, colName), orderBy("timestamp", "desc"));
                     snap = await getDocs(q);
                 } catch(err) {
-                    const qFallback = query(collection(db, colName), limit(50));
+                    const qFallback = query(collection(db, colName));
                     snap = await getDocs(qFallback);
                 }
                 
@@ -745,7 +745,6 @@
             return timeB - timeA;
         });
         
-        realFeedbacks = realFeedbacks.slice(0, 15);
         
         const fallbacks = [
             { name: "Ananya Sharma", suggestion: "The mock tests are exactly like the real NSO exam. The detailed solutions helped me clear my doubts and secure an international rank.", rating: "5 Star", class: "AIR 12, SOF NSO" },
@@ -776,7 +775,7 @@
             }
         }
         
-        allTestimonials = mixed.slice(0, 15);
+        allTestimonials = mixed;
         renderTestimonialGrid();
     }
 
