@@ -275,22 +275,57 @@
   </style>
 <style>
     /* Dark Mode specific card styling overrides */
-    .modern-card {
-        background: #111827 !important;
-        border: 1px solid #1f2937 !important;
+    body {
+        background: #090d16 !important;
         color: #f3f4f6 !important;
     }
-    .modern-card h3 {
-        color: #f3f4f6 !important;
+    h1, h2, h3, h4, h5, h6 {
+        color: #ffffff !important;
     }
-    .modern-card p {
-        color: #9ca3af !important;
+    p, span, li, summary {
+        color: #cbd5e1 !important;
     }
+    /* Fixed Contrast issues in Hero Panel */
     .hero-panel {
-        background: linear-gradient(135deg, #1e1b4b 0%, #111827 100%) !important;
+        background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%) !important;
         border: 1px solid #312e81 !important;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
     }
+    #userGreeting {
+        color: #ffffff !important;
+        font-weight: 800;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+    #heroSubtitle {
+        color: #cbd5e1 !important; /* Perfect WCAG AAA contrast */
+    }
+    /* Fixed Contrast in Hero Buttons */
+    .hero-btn {
+        background: #6366f1 !important;
+        color: #ffffff !important;
+        border: 2px solid #6366f1 !important;
+    }
+    .hero-btn:hover {
+        background: #4f46e5 !important;
+        border-color: #4f46e5 !important;
+    }
+    .hero-btn-outline {
+        background: rgba(99, 102, 241, 0.15) !important;
+        color: #ffffff !important;
+        border: 2px solid #818cf8 !important;
+    }
+    .hero-btn-outline:hover {
+        background: #6366f1 !important;
+        border-color: #6366f1 !important;
+        color: #ffffff !important;
+    }
+    .hero-panel .hero-btn[style*="background: #1e293b"] {
+        background: #374151 !important;
+        color: #ffffff !important;
+        border: 2px solid #4b5563 !important;
+    }
+    
+    /* Dynamic stat cards contrast */
     .hero-stat-card {
         background: rgba(255, 255, 255, 0.05) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -301,23 +336,55 @@
     .hero-stat-card .label {
         color: #a5b4fc !important;
     }
+    
+    /* Modern card grid style overrides */
+    .modern-card {
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+        color: #f3f4f6 !important;
+    }
+    .modern-card:hover {
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.25) !important;
+    }
+    .modern-card h3 {
+        color: #ffffff !important;
+    }
+    .modern-card p {
+        color: #9ca3af !important;
+    }
+    
+    /* Navbar fixed contrast */
     .navbar {
-        background: rgba(17, 24, 39, 0.8) !important;
+        background: rgba(11, 15, 25, 0.95) !important;
         border-bottom: 1px solid #1f2937 !important;
+        backdrop-filter: blur(12px);
     }
     .nav-link {
         color: #d1d5db !important;
     }
+    .nav-link:hover, .nav-link.active {
+        color: #818cf8 !important;
+    }
     .logo-text {
         color: #ffffff !important;
     }
+    
+    /* Account Completion banner contrast */
     .acc-card {
-        background: #1f2937 !important;
-        border: 1px solid #374151 !important;
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+        box-shadow: var(--shadow-md) !important;
     }
-    .acc-card-text strong, .acc-card-text p {
-        color: #f3f4f6 !important;
+    .acc-card-text strong {
+        color: #ffffff !important;
+        font-size: 1.15rem;
     }
+    .acc-card-text p {
+        color: #9ca3af !important;
+    }
+    
+    /* Profile Completion widget contrast */
     .profile-completion-card {
         background: #111827 !important;
         border: 1px solid #1f2937 !important;
@@ -325,18 +392,67 @@
     .pc-header h4 {
         color: #ffffff !important;
     }
+    .pc-checklist span {
+        color: #cbd5e1 !important;
+    }
     .pc-item {
-        color: #d1d5db !important;
+        color: #9ca3af !important;
+    }
+    .pc-item.done {
+        color: #10b981 !important;
     }
     .pc-bar-track {
-        background: #374151 !important;
+        background: #1f2937 !important;
     }
+    .pc-bar-fill {
+        background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%) !important;
+    }
+    
+    /* General elements override */
+    .rich-text-section {
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+        border-left: 6px solid #6366f1 !important;
+        color: #cbd5e1 !important;
+    }
+    .rich-text-section h2 {
+        color: #ffffff !important;
+    }
+    .rich-text-section li {
+        color: #d1d5db !important;
+    }
+    .info-section div[style*="background: var(--surface)"] {
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+    }
+    .info-section details {
+        background: #151c2c !important;
+        border: 1px solid #1f2937 !important;
+    }
+    .info-section summary {
+        color: #a5b4fc !important;
+    }
+    .info-section summary:hover {
+        color: #c084fc !important;
+    }
+    .stats-section .stat-box {
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+    }
+    .stats-section .stat-box h3 {
+        color: #818cf8 !important;
+    }
+    .stats-section .stat-box p {
+        color: #9ca3af !important;
+    }
+    
     .sleek-banner {
-        background: linear-gradient(90deg, #312e81 0%, #4338ca 100%) !important;
+        background: linear-gradient(90deg, #1e1b4b 0%, #312e81 100%) !important;
     }
     .btn-logout {
-        border-color: #374151 !important;
+        border-color: #1f2937 !important;
         color: #d1d5db !important;
+        background: #111827 !important;
     }
     .btn-logout:hover {
         background: #1f2937 !important;
@@ -380,9 +496,9 @@
     <nav class="navbar">
         <div class="navbar-inner">
             <!-- Left: Logo -->
-            <a href="senior-dashboard.html" class="navbar-logo">
+            <a href="/" class="navbar-logo">
                 <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;">
-                <span class="logo-text">OlympiadQuiz Senior</span>
+                <span class="logo-text">OlympiadQuiz</span>
             </a>
 
             <!-- Center: Links (Desktop) -->
@@ -516,173 +632,145 @@
 
         <div id="juniorGridWrapper" style="min-height: 450px;">
         <section class="main-menu-grid">
-            <!-- JEE Main -->
-            <div class="modern-card card-blue animate-up delay-1" onclick="location.href='jee_main.html'">
+            <div class="modern-card card-blue animate-up delay-1" onclick="location.href='mock.html'">
                 <div class="card-content">
-                    <h3>📐 JEE Main Mocks</h3>
-                    <p>Take full syllabus mock tests and chemistry/maths/physics practice papers formatted exactly like the official CBT exam.</p>
+                    <h3>Free Mock Tests</h3>
+                    <p>Full-length papers curated for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more. Test your speed and accuracy.</p>
                 </div>
                 <div class="icon-wrapper">📝</div>
             </div>
-            <!-- JEE Advanced -->
-            <div class="modern-card card-indigo animate-up delay-2" onclick="location.href='jee-list.html'">
+            <div class="modern-card card-purple animate-up delay-2" onclick="location.href='chapterwise.html'">
                 <div class="card-content">
-                    <h3>🎓 JEE Advanced Prep</h3>
-                    <p>Attempt multi-correct, numerical value, and matrix match mock tests with negative marking to target the IITs.</p>
+                    <h3>Chapterwise Quiz</h3>
+                    <p>Practice topics from your science and math books curated for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more. Master every concept.</p>
                 </div>
-                <div class="icon-wrapper">🏫</div>
+                <div class="icon-wrapper">📖</div>
             </div>
-            <!-- NEET Mock Test -->
-            <div class="modern-card card-green animate-up delay-3" onclick="location.href='neet.html'">
+        <div class="modern-card card-rose animate-up delay-3" onclick="location.href='hots.html'" style="overflow: visible;">
+            <div style="position: absolute; top: -10px; right: 15px; background: #e11d48; color: white; padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 800; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4); z-index: 10;">RANK BOOSTER</div>
                 <div class="card-content">
-                    <h3>⚕️ NEET Mock Series</h3>
-                    <p>Practice standard mock tests with Biology (Botany + Zoology), Chemistry, and Physics fully aligned with NTA pattern.</p>
+                    <h3>H.O.T.S Challenge</h3>
+                    <p>Master the <b style="color: var(--brand-text);">Achiever-section style questions</b> that separate Top Rankers from the rest — the exact edge that boosts your AIR.</p>
                 </div>
-                <div class="icon-wrapper">🔬</div>
+                <div class="icon-wrapper">🧠</div>
             </div>
-            <!-- Chapterwise Practice -->
-            <div class="modern-card card-rose animate-up delay-4" onclick="location.href='chapterwise.html'">
+            <div class="modern-card card-pink live-quiz-card animate-up delay-4" onclick="location.href='live.html'">
                 <div class="card-content">
-                    <h3>📖 Chapterwise MCQs</h3>
-                    <p>Target your weak topics and practice specific chapters from Chemistry, Physics, Mathematics, or Biology.</p>
+                    <h3>Live Quiz Arena</h3>
+                    <p>Click here to Register for Live Test 🚀</p>
                 </div>
-                <div class="icon-wrapper">📚</div>
+                <div class="icon-wrapper">⚡</div>
             </div>
-            <!-- Analytics -->
-            <div class="modern-card card-teal animate-up delay-5" onclick="location.href='analytics.html'">
+            <div class="modern-card card-orange animate-up delay-5" onclick="location.href='tricks.html'">
                 <div class="card-content">
-                    <h3>📊 Scorecard & Insights</h3>
-                    <p>Analyze your progress, accuracy trends, speed patterns, and review detailed answer keys for all your attempts.</p>
+                    <h3>Olympiad Tricks</h3>
+                    <p>Learn shortcut methods and smart strategies for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more to solve problems faster.</p>
                 </div>
-                <div class="icon-wrapper">📈</div>
+                <div class="icon-wrapper">💡</div>
             </div>
-            <!-- Share Feedback -->
+            <div class="modern-card card-green animate-up delay-6" onclick="location.href='olympiads.html'">
+                <div class="card-content">
+                    <h3>Official Olympiads</h3>
+                    <p>Explore various national and international exams and visit official sites.</p>
+                </div>
+                <div class="icon-wrapper">🔗</div>
+            </div>
+            <div class="modern-card card-teal animate-up delay-6" onclick="location.href='analytics.html'">
+                <div class="card-content">
+                    <h3>Performance Analytics</h3>
+                    <p>Track your growth, identify weak areas, and monitor your progress over time.</p>
+                </div>
+                <div class="icon-wrapper">📊</div>
+            </div>
+            <div class="modern-card card-video animate-up delay-6" onclick="location.href='video-tutorials.html'">
+                <div class="card-content">
+                    <h3>Video Tutorials</h3>
+                    <p>Master complex topics visually. Watch expertly curated video lessons for <b style="color: #0284c7;">Math, Science, English & Reasoning</b>.</p>
+                </div>
+                <div class="icon-wrapper">📺</div>
+            </div>
+            <div class="modern-card card-rose animate-up delay-6" onclick="location.href='know-why.html'">
+                <div class="card-content">
+                    <h3>Know Why ??</h3>
+                    <p>Discover mind-blowing scientific facts that will make you completely crazy to know more.</p>
+                </div>
+                <div class="icon-wrapper">❓</div>
+            </div>
+            <!-- ADDED SECTION: JEE Advanced -->
+            <div class="modern-card card-indigo animate-up delay-6" onclick="location.href='jee-list.html'">
+                <div class="card-content">
+                    <h3>JEE Advanced Mock Tests</h3>
+                    <p>Practice with Multi-Correct questions and strict grading to crack the toughest engineering entrance.</p>
+                </div>
+                <div class="icon-wrapper">🎓</div>
+            </div>
+            <!-- FEEDBACK CARD -->
             <div class="modern-card card-orange animate-up delay-6" onclick="openFeedbackModal()">
                 <div class="card-content">
-                    <h3>💬 Share Experience</h3>
-                    <p>Tell us how you liked the test interface or suggest changes to help us improve your learning dashboard.</p>
+                    <h3>💬 Share Feedback</h3>
+                    <p>Help us improve OlympiadQuiz by sharing your experience and suggestions.</p>
                 </div>
                 <div class="icon-wrapper">⭐</div>
             </div>
         </section>
-        </div>
-
-        <!-- SENIOR COMPETITIVE GRID (CLASS 11-12) -->
-        <section class="main-menu-grid" id="seniorGrid" style="display:none; margin-bottom: 50px;">
-            <div class="modern-card card-blue" onclick="location.href='jee_main.html'">
-                <div class="card-content">
-                    <h3>JEE Main</h3><p>Full Mocks, Subject & Chapter-wise tests for engineering aspirants.</p>
-                </div>
-                <div class="icon-wrapper">📐</div>
-            </div>
-            <div class="modern-card card-indigo" onclick="location.href='jee-list.html'">
-                <div class="card-content">
-                    <h3>JEE Advanced</h3><p>Rigorous multi-correct mocks to crack the IITs.</p>
-                </div>
-                <div class="icon-wrapper">🎓</div>
-            </div>
-            <div class="modern-card card-green" onclick="location.href='neet.html'">
-                <div class="card-content">
-                    <h3>NEET</h3><p>Comprehensive Biology, Physics, and Chemistry practice.</p>
-                </div>
-                <div class="icon-wrapper">⚕️</div>
-            </div>
-        </section>
-
         <!-- SENIOR RICH TEXT SECTION -->
-        <section id="seniorRichText" class="rich-text-section animate-up delay-6" style="display:none; margin-bottom: 50px;">
-            <h2>🎯 Crack JEE & NEET: The Ultimate Blueprint</h2>
-            <p>Welcome to the senior arena. The next two years are critical for your career in engineering or medicine. Preparation requires more than just reading—it demands strategic practice and precise execution.</p>
+        <section id="seniorRichText" class="rich-text-section animate-up delay-6" style="margin-bottom: 50px;">
+            <h2>🎯 Crack JEE & NEET: The Ultimate CBT Blueprint</h2>
+            <p>Welcome to the senior competitive prep hub. Cracking national-level entrances like IIT JEE and NEET demands structured effort, deep concept clarity, and strict test-taking stamina. Reading textbooks is only 30% of the battle; the remaining 70% is rigorous practice.</p>
             <ul>
-                <li><span class="highlight">JEE Main & Advanced:</span> Focus on high-weightage topics, practice multi-correct questions, and build speed through our rigorous CBT mock tests.</li>
-                <li><span class="highlight">NEET Aspirants:</span> Master NCERT line-by-line for Biology. Build strong conceptual foundations in Physics and Chemistry to score 650+.</li>
-                <li><span class="highlight">Analyze and Adapt:</span> Always review your mock test mistakes. Identifying and rectifying errors is the key to jumping percentiles.</li>
+                <li><span class="highlight">JEE Main & Advanced:</span> Master multi-correct patterns, numerical type questions, and negative scoring rules using our standard CBT exam interface.</li>
+                <li><span class="highlight">NEET (Medical):</span> Solidify NCERT concepts across Botany and Zoology, and solve timed physics & chemistry mock tests to build rapid calculation skills.</li>
+                <li><span class="highlight">Analyze Performance Trends:</span> Visit the <strong>Scorecard & Insights</strong> section after every mock attempt to review detailed solutions and patch your conceptual loopholes.</li>
             </ul>
-            <p>Consistency is your superpower. <b style="color: var(--text);">Stay focused, keep practicing, and claim your seat!</b></p>
+            <p>Consistency is key to a top percentile. <b style="color: var(--text);">Stay focused, practice daily, and claim your seat!</b></p>
         </section>
 
         <!-- SENIOR FAQ SECTION -->
-        <section id="seniorFaq" class="info-section animate-up delay-6" style="display:none; margin-bottom: 50px;">
+        <section id="seniorFaq" class="info-section animate-up delay-6" style="margin-bottom: 50px;">
             <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-md);">
-                <h2 style="font-size: 1.8rem; color: var(--text); margin-bottom: 25px; font-weight: 800;">Frequently Asked Questions (JEE & NEET)</h2>
+                <h2 style="font-size: 1.8rem; color: var(--text); margin-bottom: 25px; font-weight: 800;">Frequently Asked Questions (JEE & NEET Mocks)</h2>
                 <div style="display: flex; flex-direction: column; gap: 15px;">
                     <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Are the JEE and NEET mock tests based on the latest NTA pattern?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Yes, all our full-length and chapter-wise mock tests are strictly aligned with the latest NTA and NMC syllabuses, including the updated marking schemes and CBT interfaces.</p>
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Are the JEE and NEET mock tests based on the latest NTA patterns?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Yes, all our full-length mock tests and chapter-wise practice series are updated to reflect the latest NTA and NMC curriculum changes, including exact marking schemes.</p>
                     </details>
                     <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">How should I balance board exams with competitive prep?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Focus on mastering the NCERT textbook concepts first, as they form the foundation for both Boards and JEE/NEET. Allocate weekends strictly for competitive mock tests and higher-level problem solving.</p>
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">How is the negative marking calculated in mock tests?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Our CBT engine features standard exam rules: +4 marks for correct answers and -1 mark for incorrect responses on JEE Main and NEET. JEE Advanced mocks support partial and decimal grading templates matching IIT-level regulations.</p>
                     </details>
                     <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Do you provide solutions for the mock tests?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Absolutely. Detailed, step-by-step solutions and performance analytics are available immediately after you submit any mock test to help you understand your mistakes.</p>
-                    </details>
-                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">How is the All India Rank (AIR) calculated in Live Mock Tests?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Your AIR is calculated dynamically based on your relative performance (percentile scoring) against all other students who participated in that specific Live Arena session across the country.</p>
-                    </details>
-                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Are there negative marks in the mock tests?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Yes, our tests simulate the exact marking scheme of the real exams. JEE Main and NEET tests carry a -1 negative mark for incorrect answers, while JEE Advanced tests feature complex partial marking and negative marking per the actual exam format.</p>
-                    </details>
-                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Can I attempt the tests on a mobile phone?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Yes, our platform is fully responsive and optimized for mobile devices. However, for the best experience resembling the actual CBT (Computer Based Test), we highly recommend taking full-length mock tests on a desktop or laptop.</p>
-                    </details>
-                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">What are Multi-Correct Questions in JEE Advanced mock tests?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Multi-correct questions are those where one or more options can be correct. Our testing engine fully supports this format, including the intricate partial marking rules (+1 for each correct option chosen, provided no incorrect option is selected, and -2 if any incorrect option is selected).</p>
-                    </details>
-                    <details style="background: var(--bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border);">
-                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Is there any specific strategy for attempting the NEET biology section?</summary>
-                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Since Biology accounts for 50% of the NEET score, we advise students to attempt this section first and aim to complete it within 40-45 minutes. Our chapter-wise Botany and Zoology quizzes are designed to improve both your accuracy and speed.</p>
+                        <summary style="font-weight: 700; cursor: pointer; color: var(--brand-text); outline: none; font-size: 1.05rem;">Can I practice chapter-wise tests before taking a full syllabus mock?</summary>
+                        <p style="margin-top: 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.6;">Absolutely. Use the <strong>Chapterwise MCQs</strong> menu card to choose specific topics in Physics, Chemistry, Biology, or Mathematics to construct customized practice blocks.</p>
                     </details>
                 </div>
             </div>
         </section>
 
-        <section class="study-banner animate-up delay-6" onclick="location.href='study.html'">
-            <div class="desktop-only" style="flex: 0 0 200px; height: 150px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
-                <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=600&q=80&fm=webp" alt="IMO mock test free and NSO study material for Olympiad preparation" width="600" height="400" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: 0.4s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-            </div>
-            <div class="study-banner-content" style="flex: 1;">
-                <h2>📚 Comprehensive Study Material</h2>
-                <p>Build a strong foundation before you practice. Access expertly curated notes, important formulas, and core concepts for your upcoming exams.</p>
-                <div class="study-chips">
-                    <span class="study-chip imo">📐 IMO (Maths)</span>
-                    <span class="study-chip nso">🔬 NSO (Science)</span>
-                    <span class="study-chip ieo">📖 IEO (English)</span>
-                    <span class="study-chip iro">🧠 IRO (Reasoning)</span>
-                </div>
-            </div>
-            <div class="study-banner-btn">Explore Notes &rarr;</div>
-        </section>
-
+        <!-- HIGH-OCTANE PREP INFO SECTION -->
         <section class="info-section animate-up delay-6" style="margin-bottom: 50px;">
             <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-md);">
                 <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
                     <div class="desktop-only" style="flex: 0 0 280px; height: 260px; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-md);">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80&fm=webp" alt="Students taking free practice test Olympiad in India" width="600" height="400" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80&fm=webp" alt="Students preparing for JEE and NEET competitive exams" width="600" height="400" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                     </div>
                     <div style="flex: 1; min-width: 300px;">
-                        <h2 style="font-size: 1.8rem; color: var(--text); margin-bottom: 15px; font-weight: 800;">Master Your Olympiad Journey</h2>
-                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px;">Success in Olympiads like SOF, SilverZone, and CREST requires more than just reading textbooks. It demands a strategic approach to problem-solving, time management, and conceptual clarity.</p>
-                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">Start by taking a <strong style="color: var(--brand-text);">Free Mock Test</strong> to benchmark your current standing. Then, use the <strong style="color: var(--brand-text);">Chapterwise Quizzes</strong> to target specific weak areas, and explore our <strong style="color: var(--brand-text);">Olympiad Tricks</strong> to learn time-saving shortcuts!</p>
+                        <h2 style="font-size: 1.8rem; color: var(--text); margin-bottom: 15px; font-weight: 800;">High-Octane JEE & NEET Exam Preparation</h2>
+                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px;">Cracking national-level competitive exams like JEE Main, JEE Advanced, and NEET requires rigorous concept application, mental agility, and flawless time-management. Standard school-level preparation is not enough.</p>
+                        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">Our platform replicates the exact <strong>Computer-Based Test (CBT)</strong> environment. Use our multi-correct practice engine, detailed solution keys, and predictive All India Rankings to identify your weak spots and systematically boost your rank.</p>
                     </div>
                     <div style="flex: 1; min-width: 300px; display: grid; gap: 15px;">
                         <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s;" onmouseover="this.style.borderColor='var(--brand)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateX(0)';">
-                            <div style="font-size: 24px; background: rgba(56, 189, 248, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #0284c7; flex-shrink: 0;">🎯</div>
+                            <div style="font-size: 24px; background: rgba(99, 102, 241, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #818cf8; flex-shrink: 0;">🎯</div>
                             <div>
-                                <h4 style="font-size: 1.1rem; color: var(--text); margin-bottom: 5px; font-weight: 700;">Targeted Practice</h4>
-                                <p style="font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.5;">Focus heavily on chapters with lower accuracy to maximize your overall score improvement.</p>
+                                <h4 style="font-size: 1.1rem; color: var(--text); margin-bottom: 5px; font-weight: 700;">Precise Analytics</h4>
+                                <p style="font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.5;">Target chapter-wise accuracy levels and review detailed explanations for every single physics, chemistry, biology, and math question.</p>
                             </div>
                         </div>
-                        <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s;" onmouseover="this.style.borderColor='var(--warning)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateX(0)';">
-                            <div style="font-size: 24px; background: rgba(250, 204, 21, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #d97706; flex-shrink: 0;">⚡</div>
+                        <div style="display: flex; gap: 15px; align-items: flex-start; background: var(--bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: 0.3s;" onmouseover="this.style.borderColor='var(--accent)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateX(0)';">
+                            <div style="font-size: 24px; background: rgba(168, 85, 247, 0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #c084fc; flex-shrink: 0;">⚡</div>
                             <div>
-                                <h4 style="font-size: 1.1rem; color: var(--text); margin-bottom: 5px; font-weight: 700;">Live Competition</h4>
-                                <p style="font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.5;">Join weekend arenas regularly to experience real exam pressure and benchmark against peers.</p>
+                                <h4 style="font-size: 1.1rem; color: var(--text); margin-bottom: 5px; font-weight: 700;">Strict CBT Mode</h4>
+                                <p style="font-size: 0.9rem; color: var(--muted); margin: 0; line-height: 1.5;">Attempt JEE Advanced and NEET mock tests under real time limits with exact negative marking schemes.</p>
                             </div>
                         </div>
                     </div>
@@ -690,31 +778,32 @@
             </div>
         </section>
 
-        <!-- Rich Text Section -->
-        <section class="rich-text-section animate-up delay-6">
-            <h2>🏆 How to Maximize Your Dashboard</h2>
-            <p>Your dashboard is your central command center for Olympiad success. To get the most out of your preparation, we recommend following a structured daily routine.</p>
+        <!-- PERCENTILE BOOSTER STRATEGIES -->
+        <section class="rich-text-section animate-up delay-6" style="margin-bottom: 40px;">
+            <h2>🏆 Strategies to Maximize Your JEE & NEET Percentile</h2>
+            <p>Preparing for high-stakes national entrances requires consistent practice and deliberate reflection. To build competitive test-taking endurance, we recommend a disciplined strategy:</p>
             <ul>
-                <li><span class="highlight">Daily Chapterwise Practice:</span> Dedicate at least 30 minutes every day to master individual topics before jumping into full-length tests.</li>
-                <li><span class="highlight">Analyze Your Mistakes:</span> Always visit the <strong>Performance Analytics</strong> section after a test to identify your weak areas.</li>
-                <li><span class="highlight">Weekend Live Arenas:</span> Participate in our live weekend quizzes to experience real exam pressure and benchmark your national ranking.</li>
-                <li><span class="highlight">Review Study Material:</span> If you consistently score low in a specific topic, go back to the <strong>Study Material</strong> section and review the core concepts.</li>
+                <li><span class="highlight">Simulated Mock Practice:</span> Attempt at least one full-length NEET or JEE Main mock test weekly under exam-like conditions, ideally during the actual exam slot (9 AM - 12 PM or 2 PM - 5 PM).</li>
+                <li><span class="highlight">Deep Error Analysis:</span> Spend double the exam duration analyzing your errors. Re-solve questions you got wrong or skipped without looking at the solutions first.</li>
+                <li><span class="highlight">Target Chapter-Wise Weaknesses:</span> If your accuracy in a specific chapter (e.g., Rotational Dynamics or Organic Chemistry mechanisms) falls below 70%, utilize our <strong>Chapterwise MCQs</strong> to master it.</li>
+                <li><span class="highlight">Build Speed & Accuracy:</span> Practice omitting questionable answers to minimize negative marks. Protecting your score from negative marks is key to climbing top percentiles.</li>
             </ul>
-            <p>Consistency is the key to unlocking your true potential. <b style="color: var(--text);">Keep practicing, keep improving!</b></p>
+            <p>Endurance and grit build top ranks. <b style="color: var(--text);">Keep pushing, refine your strategy daily!</b></p>
         </section>
 
-        <section class="stats-section animate-up delay-6">
+        <!-- SENIOR STATS -->
+        <section class="stats-section animate-up delay-6" style="margin-bottom: 50px;">
             <div class="stat-box">
-                <h3>15,420+</h3>
-                <p>Registered Students</p>
+                <h3>12,500+</h3>
+                <p>JEE & NEET Aspirants</p>
             </div>
             <div class="stat-box">
-                <h3>120,500+</h3>
-                <p>Questions Attempted</p>
+                <h3>85,000+</h3>
+                <p>Mock Questions Solved</p>
             </div>
             <div class="stat-box">
-                <h3>350+</h3>
-                <p>Schools Participating</p>
+                <h3>98.7%</h3>
+                <p>Real CBT Mock Accuracy</p>
             </div>
         </section>
     </main>
@@ -887,9 +976,13 @@ onAuthStateChanged(auth, async (user) => {
             uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
             
             if (uClass && !isAdmin) {
-                if (uClass < 11) {
-                    window.location.replace("dashboard.html");
+                if (uClass >= 11) {
+                    window.location.replace("senior-dashboard.html");
                     return;
+                } else {
+                    // Grade 1-10: Hide JEE card
+                    const jeeCard = document.querySelector('.card-indigo');
+                    if (jeeCard) jeeCard.style.display = 'none';
                 }
             }
         }
