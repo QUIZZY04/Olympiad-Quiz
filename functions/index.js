@@ -204,6 +204,14 @@ exports.sendBulkEmail = onCall({
 
   const { subject, htmlContent, targetEmails } = request.data;
 
+  // Strict email validator — Brevo rejects anything that doesn't match RFC format
+  const isValidEmail = (email) => {
+    if (!email || typeof email !== "string") return false;
+    const trimmed = email.trim();
+    // Must be non-empty, contain exactly one @, no spaces, and match basic RFC pattern
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed);
+  };
+
   // 2. Input Validation
   if (!subject || !htmlContent) {
     throw new HttpsError("invalid-argument", "The function must be called with 'subject' and 'htmlContent' arguments.");
@@ -217,8 +225,11 @@ exports.sendBulkEmail = onCall({
     
     if (targetEmails && Array.isArray(targetEmails) && targetEmails.length > 0) {
       targetEmails.forEach((email) => {
-        if (email && typeof email === "string" && email.includes("@")) {
-          uniqueEmails.add(email.trim());
+        const trimmed = (email || "").trim();
+        if (isValidEmail(trimmed)) {
+          uniqueEmails.add(trimmed);
+        } else if (trimmed) {
+          console.warn(`Skipping invalid email from targetEmails: "${trimmed}"`);
         }
       });
     } else {
@@ -239,9 +250,11 @@ exports.sendBulkEmail = onCall({
 
         snapshot.docs.forEach((doc) => {
           if (doc.data().email_consent === false) return;
-          const email = doc.data().email;
-          if (email && typeof email === "string" && email.includes("@")) {
-            uniqueEmails.add(email.trim());
+          const email = (doc.data().email || "").trim();
+          if (isValidEmail(email)) {
+            uniqueEmails.add(email);
+          } else if (email) {
+            console.warn(`Skipping invalid email from Firestore doc ${doc.id}: "${email}"`);
           }
         });
 
@@ -264,7 +277,15 @@ exports.sendBulkEmail = onCall({
 
     for (let i = 0; i < emailList.length; i += batchSize) {
       const batch = emailList.slice(i, i + batchSize);
-      const bccList = batch.map((email) => ({ email }));
+      // Final safety filter — ensures no malformed email reaches Brevo
+      const bccList = batch
+        .filter((email) => isValidEmail(email))
+        .map((email) => ({ email: email.trim() }));
+
+      if (bccList.length === 0) {
+        console.warn(`Batch ${Math.floor(i / batchSize) + 1} had no valid emails after final filter. Skipping.`);
+        continue;
+      }
 
       console.log(`Sending batch ${Math.floor(i / batchSize) + 1} of ${Math.ceil(emailList.length / batchSize)}...`);
 
