@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Block senior grades from opening chapterwise.html
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        const cachedClass = localStorage.getItem("userClass");
+        if (cachedClass) {
+            const uClassVal = parseInt(cachedClass.replace(/[^0-9]/g, ''));
+            if (uClassVal && uClassVal >= 11) {
+                window.location.replace("senior-dashboard.html");
+            }
+        }
+    }
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Chapterwise Olympiad Practice 2026 | Class 1-10 Quizzes</title>
@@ -1341,6 +1353,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script type="module" src="chatbot.js"></script>
 
+
+
+
 <!-- Dynamic Navbar Adjuster for Senior Exam Pages -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -1360,7 +1375,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a href="jee_main.html" class="nav-link ${page === 'jee_main.html' ? 'active' : ''}">JEE Main</a>
                     <a href="jee-list.html" class="nav-link ${page === 'jee-list.html' ? 'active' : ''}">JEE Advanced</a>
                     <a href="neet.html" class="nav-link ${page === 'neet.html' ? 'active' : ''}">NEET</a>
-                    <a href="chapterwise.html" class="nav-link ${page === 'chapterwise.html' ? 'active' : ''}">Practice</a>
                     <a href="analytics.html" class="nav-link ${page === 'analytics.html' ? 'active' : ''}">Analytics</a>
                     <a href="leaderboard.html" class="nav-link ${page === 'leaderboard.html' ? 'active' : ''}">Leaderboard</a>
                 `;
