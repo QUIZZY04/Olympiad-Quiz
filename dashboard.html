@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Instant redirection check using cached localStorage to avoid layout flashes
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        const cachedClass = localStorage.getItem("userClass");
+        if (cachedClass) {
+            const uClassVal = parseInt(cachedClass.replace(/[^0-9]/g, ''));
+            if (uClassVal && uClassVal >= 11) {
+                window.location.replace("senior-dashboard.html");
+            }
+        }
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="robots" content="noindex, nofollow">

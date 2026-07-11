@@ -505,6 +505,7 @@ async function evaluateAuthState(user) {
             isRedirecting = true;
             localStorage.setItem("isLoggedIn", "true");
             let uClass = data.class || data.studentClass || "";
+            localStorage.setItem("userClass", String(uClass));
             uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
             if (uClass && uClass >= 11) {
                 window.location.replace("senior-dashboard.html");
