@@ -276,5 +276,48 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 <script type="module" src="chatbot.js"></script>
+
+
+
+
+<!-- Dynamic Navbar Adjuster for Senior Exam Pages -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const cachedClass = localStorage.getItem("userClass");
+    if (cachedClass) {
+        const uClassVal = parseInt(cachedClass.replace(/[^0-9]/g, ''));
+        if (uClassVal && uClassVal >= 11) {
+            // Find navbar links container
+            const navLinks = document.querySelector(".navbar-links");
+            if (navLinks) {
+                // Determine current page to mark it active
+                const path = window.location.pathname;
+                const page = path.substring(path.lastIndexOf('/') + 1);
+                
+                navLinks.innerHTML = `
+                    <a href="senior-dashboard.html" class="nav-link ${page === 'senior-dashboard.html' ? 'active' : ''}">Dashboard</a>
+                    <a href="jee_main.html" class="nav-link ${page === 'jee_main.html' ? 'active' : ''}">JEE Main</a>
+                    <a href="jee-list.html" class="nav-link ${page === 'jee-list.html' ? 'active' : ''}">JEE Advanced</a>
+                    <a href="neet.html" class="nav-link ${page === 'neet.html' ? 'active' : ''}">NEET</a>
+                    <a href="chapterwise.html" class="nav-link ${page === 'chapterwise.html' ? 'active' : ''}">Practice</a>
+                    <a href="analytics.html" class="nav-link ${page === 'analytics.html' ? 'active' : ''}">Analytics</a>
+                    <a href="leaderboard.html" class="nav-link ${page === 'leaderboard.html' ? 'active' : ''}">Leaderboard</a>
+                `;
+            }
+            
+            // Adjust logo link and text
+            const logoLink = document.querySelector(".navbar-logo");
+            if (logoLink) {
+                logoLink.href = "senior-dashboard.html";
+                const logoText = logoLink.querySelector(".logo-text");
+                if (logoText) {
+                    logoText.innerText = "OlympiadQuiz Senior";
+                }
+            }
+        }
+    }
+});
+</script>
+
 </body>
 </html>
