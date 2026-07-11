@@ -209,8 +209,9 @@
             </div>
         </div>
 
-        <div style="margin-top: 40px; margin-bottom: 20px;">
-            <h2 style="font-size: 1.8rem; color: var(--text); font-weight: 800; text-align: center;">Explore Dynamic NEET Tests</h2>
+        <div style="margin-top: 40px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <h2 style="font-size: 1.8rem; color: var(--text); font-weight: 800; margin: 0;">Explore Dynamic NEET Tests</h2>
+            <a href="neet-leaderboard.html" class="start-btn" style="background: var(--accent); width: auto; padding: 12px 24px; margin: 0; text-decoration: none;">🏆 View NEET Leaderboard</a>
         </div>
 
     <div class="filter-bar">
@@ -451,6 +452,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+
+
 <!-- Dynamic Navbar Adjuster for Senior Exam Pages -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -470,8 +474,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a href="jee_main.html" class="nav-link ${page === 'jee_main.html' ? 'active' : ''}">JEE Main</a>
                     <a href="jee-list.html" class="nav-link ${page === 'jee-list.html' ? 'active' : ''}">JEE Advanced</a>
                     <a href="neet.html" class="nav-link ${page === 'neet.html' ? 'active' : ''}">NEET</a>
+                    <a href="jee-leaderboard.html" class="nav-link ${page === 'jee-leaderboard.html' ? 'active' : ''}">JEE Leaderboard</a>
+                    <a href="neet-leaderboard.html" class="nav-link ${page === 'neet-leaderboard.html' ? 'active' : ''}">NEET Leaderboard</a>
                     <a href="analytics.html" class="nav-link ${page === 'analytics.html' ? 'active' : ''}">Analytics</a>
-                    <a href="leaderboard.html" class="nav-link ${page === 'leaderboard.html' ? 'active' : ''}">Leaderboard</a>
                 `;
             }
             

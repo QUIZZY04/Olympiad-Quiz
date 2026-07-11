@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>JEE Top Rankers Leaderboard | Olympiad Portal</title>
+    <title>NEET Top Rankers Leaderboard | Olympiad Portal</title>
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
     
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <a href="live.html" class="nav-link">Live Arena</a>
-            <a href="jee-leaderboard.html" class="nav-link active">JEE Leaderboard</a>
+            <a href="neet-leaderboard.html" class="nav-link active">NEET Leaderboard</a>
             <div class="nav-dropdown">
                 <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
@@ -132,9 +132,9 @@
 
     <div class="container">
         <div class="header">
-            <div class="breadcrumb" style="justify-content: center;"><a href="/">🏠 Home</a> <span class="separator">/</span> <span>JEE Leaderboard</span></div>
-            <h1>JEE <span>Top Rankers</span> Leaderboard</h1>
-            <p>Global rankings covering all Multi-Correct and Single-Correct IIT JEE Mock exams.</p>
+            <div class="breadcrumb" style="justify-content: center;"><a href="/">🏠 Home</a> <span class="separator">/</span> <span>NEET Leaderboard</span></div>
+            <h1>NEET <span>Top Rankers</span> Leaderboard</h1>
+            <p>Global rankings covering all Biology, Chemistry, and Physics NEET Mock exams.</p>
         </div>
 
         <div class="filter-container">
@@ -233,7 +233,7 @@
                 snap.forEach(doc => {
                     const data = doc.data();
                     // Backward compatibility: Support old tests that had JEE in title or new tests with examType
-                    if (data.examType === "JEE" || (data.testTitle && data.testTitle.toUpperCase().includes("JEE"))) {
+                    if (data.examType === "NEET" || (data.testTitle && data.testTitle.toUpperCase().includes("NEET"))) {
                         allRecords.push({ ...data, id: doc.id });
                     }
                 });
