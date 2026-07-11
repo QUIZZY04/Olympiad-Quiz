@@ -365,7 +365,7 @@
             </select>
         </div>
 
-        <div class="mock-grid">
+        <div class="mock-grid" id="olympiadGrid">
             <!-- IMO -->
             <div class="subject-card-large" onclick="startMock('maths')">
                 <span class="free-badge">Free</span>
@@ -405,6 +405,33 @@
                 <h2>IGKO - General Knowledge</h2>
                 <p>Test your awareness with our general knowledge mock tests covering current affairs, life skills, and more.</p>
                 <button class="btn-start-mock">Start IGKO Test →</button>
+            </div>
+        </div>
+
+        <div class="mock-grid" id="seniorGrid" style="display: none;">
+            <!-- JEE Main -->
+            <div class="subject-card-large" onclick="location.href='jee_main.html'">
+                <span class="free-badge">Free</span>
+                <div class="icon-bg">📐</div>
+                <h2>JEE Main Mock Test</h2>
+                <p>Full syllabus mock tests, subject-wise, and chapter-wise CBT practice for engineering aspirants.</p>
+                <button class="btn-start-mock" style="background:#ff6b00; box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);">Start JEE Main →</button>
+            </div>
+            <!-- JEE Advanced -->
+            <div class="subject-card-large" onclick="location.href='jee-list.html'">
+                <span class="free-badge">Free</span>
+                <div class="icon-bg">🎓</div>
+                <h2>JEE Advanced Mock Test</h2>
+                <p>Practice with multi-correct questions, numerical answers, and strict grading to crack the IITs.</p>
+                <button class="btn-start-mock" style="background:#ff6b00; box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);">Start JEE Advanced →</button>
+            </div>
+            <!-- NEET -->
+            <div class="subject-card-large" onclick="location.href='neet.html'">
+                <span class="free-badge">Free</span>
+                <div class="icon-bg">⚕️</div>
+                <h2>NEET Mock Test</h2>
+                <p>Full mock papers and chapter-wise practice covering Biology, Physics, and Chemistry for medical aspirants.</p>
+                <button class="btn-start-mock" style="background:#ff6b00; box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25);">Start NEET Test →</button>
             </div>
         </div>
 
@@ -577,6 +604,35 @@
             proceed();
         }
     }
+
+    window.updateGridVisibility = function() {
+        const classSelect = document.getElementById("classSelect");
+        if (!classSelect) return;
+        const clsVal = classSelect.value;
+        const isSenior = (clsVal === 'class11' || clsVal === 'class12');
+        
+        const olympiadGrid = document.getElementById("olympiadGrid");
+        const seniorGrid = document.getElementById("seniorGrid");
+        
+        if (olympiadGrid && seniorGrid) {
+            if (isSenior) {
+                olympiadGrid.style.display = "none";
+                seniorGrid.style.display = "flex";
+            } else {
+                olympiadGrid.style.display = "flex";
+                seniorGrid.style.display = "none";
+            }
+        }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const classSelect = document.getElementById("classSelect");
+        if (classSelect) {
+            classSelect.addEventListener("change", window.updateGridVisibility);
+            // Run initially to match selected value
+            window.updateGridVisibility();
+        }
+    });
 </script>
 
 <script type="module">
@@ -622,12 +678,13 @@
             const userDoc = await getDoc(doc(db, "users", user.uid));
             if (userDoc.exists()) {
                 let uClass = userDoc.data().class || userDoc.data().studentClass;
-            if (uClass && !isAdmin) {
+                if (uClass && !isAdmin) {
                     if (!uClass.toString().startsWith('class')) uClass = 'class' + uClass;
                     const classSelect = document.getElementById("classSelect");
                     if (classSelect) {
                         classSelect.value = uClass;
                         classSelect.disabled = true;
+                        if (window.updateGridVisibility) window.updateGridVisibility();
                     }
                 }
             }

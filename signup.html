@@ -504,7 +504,13 @@ async function evaluateAuthState(user) {
             console.log("[signup] Redirect decision: dashboard (registrationCompleted=true)");
             isRedirecting = true;
             localStorage.setItem("isLoggedIn", "true");
-            window.location.replace("dashboard.html");
+            let uClass = data.class || data.studentClass || "";
+            uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
+            if (uClass && uClass >= 11) {
+                window.location.replace("senior-dashboard.html");
+            } else {
+                window.location.replace("dashboard.html");
+            }
             return;
         }
 
@@ -708,7 +714,13 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
             if (!isRedirecting) {
                 isRedirecting = true;
                 sessionStorage.removeItem("redirectAfterLogin");
-                window.location.replace("dashboard.html");
+                const selectedClass = document.getElementById("classSelect") ? document.getElementById("classSelect").value : "";
+                const uClassNum = parseInt(String(selectedClass).replace(/[^0-9]/g, ''));
+                if (uClassNum && uClassNum >= 11) {
+                    window.location.replace("senior-dashboard.html");
+                } else {
+                    window.location.replace("dashboard.html");
+                }
             }
         }, 1500);
 

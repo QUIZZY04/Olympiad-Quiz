@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Dashboard - OlympiadQuiz</title>
+  <title>Senior Dashboard (JEE & NEET) - OlympiadQuiz</title>
   
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
@@ -273,6 +273,105 @@
     .rich-text-section li { color: #334155; font-size: 1rem; line-height: 1.6; margin-bottom: 12px; }
     .rich-text-section .highlight { color: var(--brand-text); font-weight: 700; }
   </style>
+<style>
+    /* Dark Mode specific card styling overrides */
+    .modern-card {
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+        color: #f3f4f6 !important;
+    }
+    .modern-card h3 {
+        color: #f3f4f6 !important;
+    }
+    .modern-card p {
+        color: #9ca3af !important;
+    }
+    .hero-panel {
+        background: linear-gradient(135deg, #1e1b4b 0%, #111827 100%) !important;
+        border: 1px solid #312e81 !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+    }
+    .hero-stat-card {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    .hero-stat-card .val {
+        color: #ffffff !important;
+    }
+    .hero-stat-card .label {
+        color: #a5b4fc !important;
+    }
+    .navbar {
+        background: rgba(17, 24, 39, 0.8) !important;
+        border-bottom: 1px solid #1f2937 !important;
+    }
+    .nav-link {
+        color: #d1d5db !important;
+    }
+    .logo-text {
+        color: #ffffff !important;
+    }
+    .acc-card {
+        background: #1f2937 !important;
+        border: 1px solid #374151 !important;
+    }
+    .acc-card-text strong, .acc-card-text p {
+        color: #f3f4f6 !important;
+    }
+    .profile-completion-card {
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+    }
+    .pc-header h4 {
+        color: #ffffff !important;
+    }
+    .pc-item {
+        color: #d1d5db !important;
+    }
+    .pc-bar-track {
+        background: #374151 !important;
+    }
+    .sleek-banner {
+        background: linear-gradient(90deg, #312e81 0%, #4338ca 100%) !important;
+    }
+    .btn-logout {
+        border-color: #374151 !important;
+        color: #d1d5db !important;
+    }
+    .btn-logout:hover {
+        background: #1f2937 !important;
+        color: #ffffff !important;
+    }
+    .footer {
+        background: #090d16 !important;
+        border-top: 1px solid #1f2937 !important;
+    }
+    .footer p {
+        color: #6b7280 !important;
+    }
+    .feedback-modal-content {
+        background: #111827 !important;
+        border: 1px solid #1f2937 !important;
+        color: #f3f4f6 !important;
+    }
+    .feedback-modal-content h3 {
+        color: #ffffff !important;
+    }
+    .feedback-modal-content textarea {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #ffffff !important;
+    }
+    .feedback-modal-content label {
+        color: #d1d5db !important;
+    }
+    .star-rating .star {
+        color: #374151 !important;
+    }
+    .star-rating .star.active {
+        color: #fbbf24 !important;
+    }
+    </style>
 </head>
 
 <body>
@@ -281,9 +380,9 @@
     <nav class="navbar">
         <div class="navbar-inner">
             <!-- Left: Logo -->
-            <a href="/" class="navbar-logo">
+            <a href="senior-dashboard.html" class="navbar-logo">
                 <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;">
-                <span class="logo-text">OlympiadQuiz</span>
+                <span class="logo-text">OlympiadQuiz Senior</span>
             </a>
 
             <!-- Center: Links (Desktop) -->
@@ -343,7 +442,7 @@
             <div class="hero-left">
                 <div style="display: inline-block; padding: 6px 12px; background: rgba(255,255,255,0.2); border-radius: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);">Level Up Your Skills 🚀</div>
                 <h1 id="userGreeting">Welcome to Dashboard</h1>
-                <p id="heroSubtitle">Your personal command center for Olympiad success. Track your progress, attempt live arenas, and master concepts.</p>
+                <p id="heroSubtitle">Your personal command center for JEE & NEET success. Track your progress, attempt full mock tests, and master complex concepts.</p>
                 <div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
                     <a href="chapterwise.html" class="hero-btn">Start Practice</a>
                     <a href="analytics.html" class="hero-btn-outline">View Analytics</a>
@@ -417,83 +516,51 @@
 
         <div id="juniorGridWrapper" style="min-height: 450px;">
         <section class="main-menu-grid">
-            <div class="modern-card card-blue animate-up delay-1" onclick="location.href='mock.html'">
+            <!-- JEE Main -->
+            <div class="modern-card card-blue animate-up delay-1" onclick="location.href='jee_main.html'">
                 <div class="card-content">
-                    <h3>Free Mock Tests</h3>
-                    <p>Full-length papers curated for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more. Test your speed and accuracy.</p>
+                    <h3>📐 JEE Main Mocks</h3>
+                    <p>Take full syllabus mock tests and chemistry/maths/physics practice papers formatted exactly like the official CBT exam.</p>
                 </div>
                 <div class="icon-wrapper">📝</div>
             </div>
-            <div class="modern-card card-purple animate-up delay-2" onclick="location.href='chapterwise.html'">
+            <!-- JEE Advanced -->
+            <div class="modern-card card-indigo animate-up delay-2" onclick="location.href='jee-list.html'">
                 <div class="card-content">
-                    <h3>Chapterwise Quiz</h3>
-                    <p>Practice topics from your science and math books curated for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more. Master every concept.</p>
+                    <h3>🎓 JEE Advanced Prep</h3>
+                    <p>Attempt multi-correct, numerical value, and matrix match mock tests with negative marking to target the IITs.</p>
                 </div>
-                <div class="icon-wrapper">📖</div>
+                <div class="icon-wrapper">🏫</div>
             </div>
-        <div class="modern-card card-rose animate-up delay-3" onclick="location.href='hots.html'" style="overflow: visible;">
-            <div style="position: absolute; top: -10px; right: 15px; background: #e11d48; color: white; padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 800; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4); z-index: 10;">RANK BOOSTER</div>
+            <!-- NEET Mock Test -->
+            <div class="modern-card card-green animate-up delay-3" onclick="location.href='neet.html'">
                 <div class="card-content">
-                    <h3>H.O.T.S Challenge</h3>
-                    <p>Master the <b style="color: var(--brand-text);">Achiever-section style questions</b> that separate Top Rankers from the rest — the exact edge that boosts your AIR.</p>
+                    <h3>⚕️ NEET Mock Series</h3>
+                    <p>Practice standard mock tests with Biology (Botany + Zoology), Chemistry, and Physics fully aligned with NTA pattern.</p>
                 </div>
-                <div class="icon-wrapper">🧠</div>
+                <div class="icon-wrapper">🔬</div>
             </div>
-            <div class="modern-card card-pink live-quiz-card animate-up delay-4" onclick="location.href='live.html'">
+            <!-- Chapterwise Practice -->
+            <div class="modern-card card-rose animate-up delay-4" onclick="location.href='chapterwise.html'">
                 <div class="card-content">
-                    <h3>Live Quiz Arena</h3>
-                    <p>Click here to Register for Live Test 🚀</p>
+                    <h3>📖 Chapterwise MCQs</h3>
+                    <p>Target your weak topics and practice specific chapters from Chemistry, Physics, Mathematics, or Biology.</p>
                 </div>
-                <div class="icon-wrapper">⚡</div>
+                <div class="icon-wrapper">📚</div>
             </div>
-            <div class="modern-card card-orange animate-up delay-5" onclick="location.href='tricks.html'">
+            <!-- Analytics -->
+            <div class="modern-card card-teal animate-up delay-5" onclick="location.href='analytics.html'">
                 <div class="card-content">
-                    <h3>Olympiad Tricks</h3>
-                    <p>Learn shortcut methods and smart strategies for <b style="color: var(--brand-text);">SOF NSO, IMO, IEO</b>, <b style="color: var(--brand-text);">SilverZone iOS, IOM</b> and more to solve problems faster.</p>
+                    <h3>📊 Scorecard & Insights</h3>
+                    <p>Analyze your progress, accuracy trends, speed patterns, and review detailed answer keys for all your attempts.</p>
                 </div>
-                <div class="icon-wrapper">💡</div>
+                <div class="icon-wrapper">📈</div>
             </div>
-            <div class="modern-card card-green animate-up delay-6" onclick="location.href='olympiads.html'">
-                <div class="card-content">
-                    <h3>Official Olympiads</h3>
-                    <p>Explore various national and international exams and visit official sites.</p>
-                </div>
-                <div class="icon-wrapper">🔗</div>
-            </div>
-            <div class="modern-card card-teal animate-up delay-6" onclick="location.href='analytics.html'">
-                <div class="card-content">
-                    <h3>Performance Analytics</h3>
-                    <p>Track your growth, identify weak areas, and monitor your progress over time.</p>
-                </div>
-                <div class="icon-wrapper">📊</div>
-            </div>
-            <div class="modern-card card-video animate-up delay-6" onclick="location.href='video-tutorials.html'">
-                <div class="card-content">
-                    <h3>Video Tutorials</h3>
-                    <p>Master complex topics visually. Watch expertly curated video lessons for <b style="color: #0284c7;">Math, Science, English & Reasoning</b>.</p>
-                </div>
-                <div class="icon-wrapper">📺</div>
-            </div>
-            <div class="modern-card card-rose animate-up delay-6" onclick="location.href='know-why.html'">
-                <div class="card-content">
-                    <h3>Know Why ??</h3>
-                    <p>Discover mind-blowing scientific facts that will make you completely crazy to know more.</p>
-                </div>
-                <div class="icon-wrapper">❓</div>
-            </div>
-            <!-- ADDED SECTION: JEE Advanced -->
-            <div class="modern-card card-indigo animate-up delay-6" onclick="location.href='jee-list.html'">
-                <div class="card-content">
-                    <h3>JEE Advanced Mock Tests</h3>
-                    <p>Practice with Multi-Correct questions and strict grading to crack the toughest engineering entrance.</p>
-                </div>
-                <div class="icon-wrapper">🎓</div>
-            </div>
-            <!-- FEEDBACK CARD -->
+            <!-- Share Feedback -->
             <div class="modern-card card-orange animate-up delay-6" onclick="openFeedbackModal()">
                 <div class="card-content">
-                    <h3>💬 Share Feedback</h3>
-                    <p>Help us improve OlympiadQuiz by sharing your experience and suggestions.</p>
+                    <h3>💬 Share Experience</h3>
+                    <p>Tell us how you liked the test interface or suggest changes to help us improve your learning dashboard.</p>
                 </div>
                 <div class="icon-wrapper">⭐</div>
             </div>
@@ -820,13 +887,9 @@ onAuthStateChanged(auth, async (user) => {
             uClass = parseInt(String(uClass).replace(/[^0-9]/g, ''));
             
             if (uClass && !isAdmin) {
-                if (uClass >= 11) {
-                    window.location.replace("senior-dashboard.html");
+                if (uClass < 11) {
+                    window.location.replace("dashboard.html");
                     return;
-                } else {
-                    // Grade 1-10: Hide JEE card
-                    const jeeCard = document.querySelector('.card-indigo');
-                    if (jeeCard) jeeCard.style.display = 'none';
                 }
             }
         }
@@ -1130,7 +1193,7 @@ async function checkAndShowProfilePopup(user, userData) {
 
 // ===== ACCOUNT COMPLETION CARDS (Google linking / Mobile verification) =====
 window.goVerifyMobile = function() {
-    window.location.href = 'verify-mobile.html?returnTo=' + encodeURIComponent('dashboard.html');
+    window.location.href = 'verify-mobile.html?returnTo=' + encodeURIComponent('senior-dashboard.html');
 };
 
 window.goLinkGoogle = async function() {
