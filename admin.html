@@ -4992,10 +4992,10 @@ window.initUserActivityLog = async function() {
                 where("date", ">=", startDate),
                 where("date", "<=", endDate),
                 orderBy("date", "desc"), 
-                limit(150)
+                limit(1000)
             );
         } else {
-            actQuery = query(collection(db, "leaderboard"), orderBy("date", "desc"), limit(150));
+            actQuery = query(collection(db, "leaderboard"), orderBy("date", "desc"), limit(1000));
         }
 
         const snap = await getDocs(actQuery);
@@ -5010,7 +5010,8 @@ window.initUserActivityLog = async function() {
                     const u = uDoc.data();
                     userDataMap[uid] = {
                         name: u.name || u.fullName || '',
-                        phone: u.phone || u.phoneNumber || ''
+                        phone: u.phone || u.phoneNumber || '',
+                        class: u.class || u.studentClass || ''
                     };
                 }
             } catch(e) {}
@@ -5037,7 +5038,7 @@ window.initUserActivityLog = async function() {
                 const email = d.email || "N/A";
                 const mobile = userData.phone || "N/A";
 
-                const grd = (d.studentClass || d.class || "N/A").toString().replace("class", "G");
+                const grd = (d.studentClass || d.class || userData.class || "N/A").toString().replace("class", "G");
                 const subj = d.subject || "N/A";
 
                 if (searchTerm && !name.toLowerCase().includes(searchTerm) && !email.toLowerCase().includes(searchTerm)) return;
