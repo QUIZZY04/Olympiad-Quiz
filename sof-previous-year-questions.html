@@ -297,7 +297,7 @@ body {
     <h1>SOF Previous Year <span>Questions with Answers</span></h1>
     <p>Practice real exam-style questions from SOF IMO, NSO, IEO, and IGKO. Filter by exam, class, and year — then click to reveal the answer and explanation instantly.</p>
     <div class="stat-row">
-        <div class="stat-pill"><span>📋</span> 150+ Questions</div>
+        <div class="stat-pill"><span>📋</span> 250+ Questions</div>
         <div class="stat-pill"><span>✅</span> Instant Answers</div>
         <div class="stat-pill"><span>📚</span> IMO · NSO · IEO · IGKO</div>
         <div class="stat-pill"><span>🎯</span> Class 3–10</div>
@@ -1510,6 +1510,721 @@ const PYQ_DATA = [
         opts: ["Red Blood Cells (RBCs)", "White Blood Cells (WBCs)", "Platelets", "Plasma"],
         ans: 2,
         exp: "Platelets (thrombocytes) aggregate and release clotting factors at the site of a cut, producing a fibrin mesh to form a clot and stop bleeding."
+    },
+    {
+        id: 151, exam: "IMO", cls: "3", year: "2024", section: "Mathematical Reasoning",
+        q: "What is the place value of 7 in the number 8,745?",
+        opts: ["7", "70", "700", "7,000"],
+        ans: 2,
+        exp: "In the number 8,745, the digit 7 is in the hundreds place. Therefore, its place value is 7 × 100 = 700."
+    },
+    {
+        id: 152, exam: "IMO", cls: "3", year: "2024", section: "Everyday Mathematics",
+        q: "Karan buys 3 packets of biscuits for ₹15 each and 2 packets of chips for ₹20 each. How much does he spend in total?",
+        opts: ["₹65", "₹75", "₹85", "₹95"],
+        ans: 2,
+        exp: "Cost of biscuits = 3 × 15 = ₹45. Cost of chips = 2 × 20 = ₹40. Total spend = 45 + 40 = ₹85."
+    },
+    {
+        id: 153, exam: "IMO", cls: "4", year: "2023", section: "Mathematical Reasoning",
+        q: "Which of the following is equivalent to the fraction 3/12?",
+        opts: ["1/3", "1/4", "1/6", "2/9"],
+        ans: 1,
+        exp: "To simplify 3/12, divide both numerator and denominator by their greatest common divisor, which is 3. (3 ÷ 3) / (12 ÷ 3) = 1/4."
+    },
+    {
+        id: 154, exam: "IMO", cls: "4", year: "2023", section: "Logical Reasoning",
+        q: "If tomorrow is Sunday, what day was the day before yesterday?",
+        opts: ["Wednesday", "Thursday", "Friday", "Saturday"],
+        ans: 1,
+        exp: "If tomorrow is Sunday, then today is Saturday. Yesterday was Friday, and the day before yesterday was Thursday."
+    },
+    {
+        id: 155, exam: "IMO", cls: "5", year: "2024", section: "Mathematical Reasoning",
+        q: "The volume of a cuboid is 120 cm³. If its length is 6 cm and width is 5 cm, what is its height?",
+        opts: ["3 cm", "4 cm", "5 cm", "6 cm"],
+        ans: 1,
+        exp: "Volume of a cuboid = length × width × height. 120 = 6 × 5 × height → 120 = 30 × height → height = 120 ÷ 30 = 4 cm."
+    },
+    {
+        id: 156, exam: "IMO", cls: "5", year: "2023", section: "Logical Reasoning",
+        q: "In a certain code language, 'FRUIT' is written as 'HTWKV'. How is 'APPLE' written in that language?",
+        opts: ["CRRNG", "CRPNG", "BRRNG", "CQQNG"],
+        ans: 0,
+        exp: "The pattern is a shift of +2 for each letter: F(+2)→H, R(+2)→T, U(+2)→W, I(+2)→K, T(+2)→V. Applying this to APPLE: A(+2)→C, P(+2)→R, P(+2)→R, L(+2)→N, E(+2)→G. Hence, 'CRRNG'."
+    },
+    {
+        id: 157, exam: "IMO", cls: "6", year: "2024", section: "Mathematical Reasoning",
+        q: "Find the ratio of 40 paise to ₹2.",
+        opts: ["1 : 5", "1 : 2", "1 : 10", "1 : 4"],
+        ans: 0,
+        exp: "Convert both quantities to the same units. ₹2 = 200 paise. Ratio = 40 / 200 = 4 / 20 = 1 / 5. So, the ratio is 1 : 5."
+    },
+    {
+        id: 158, exam: "IMO", cls: "6", year: "2023", section: "Mathematical Reasoning",
+        q: "What is the value of 1.25 + 0.05 × 2 - 0.1?",
+        opts: ["1.25", "1.35", "1.20", "2.50"],
+        ans: 0,
+        exp: "Follow BODMAS rules. First perform multiplication: 0.05 × 2 = 0.10. Then add: 1.25 + 0.10 = 1.35. Finally subtract: 1.35 - 0.1 = 1.25."
+    },
+    {
+        id: 159, exam: "IMO", cls: "7", year: "2024", section: "Mathematical Reasoning",
+        q: "If 2x - 3 = 11, find the value of x² + 1.",
+        opts: ["37", "50", "65", "82"],
+        ans: 1,
+        exp: "Solve for x first: 2x - 3 = 11 → 2x = 14 → x = 7. Now find x² + 1 = 7² + 1 = 49 + 1 = 50."
+    },
+    {
+        id: 160, exam: "IMO", cls: "7", year: "2023", section: "Logical Reasoning",
+        q: "Find the missing number in the sequence: 3, 9, 27, 81, ?",
+        opts: ["162", "243", "324", "120"],
+        ans: 1,
+        exp: "Each number in the sequence is multiplied by 3 to get the next term. 3 × 3 = 9; 9 × 3 = 27; 27 × 3 = 81; 81 × 3 = 243."
+    },
+    {
+        id: 161, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "What is the value of √(3² + 4² + 12²)?",
+        opts: ["13", "14", "15", "17"],
+        ans: 0,
+        exp: "Calculate the terms under the square root: 3² = 9, 4² = 16, 12² = 144. Sum = 9 + 16 + 144 = 169. √169 = 13."
+    },
+    {
+        id: 162, exam: "IMO", cls: "8", year: "2023", section: "Achievers Section",
+        q: "If 3⁴ × 9² = 3ˣ, find the value of x.",
+        opts: ["6", "7", "8", "10"],
+        ans: 2,
+        exp: "Express 9 in terms of base 3: 9 = 3². So 9² = (3²)² = 3⁴. The expression becomes 3⁴ × 3⁴ = 3⁴⁺⁴ = 3⁸. Thus, x = 8."
+    },
+    {
+        id: 163, exam: "IMO", cls: "9", year: "2024", section: "Mathematical Reasoning",
+        q: "A bag contains 5 red balls and 3 green balls. One ball is drawn at random. What is the probability that the drawn ball is green?",
+        opts: ["5/8", "3/8", "3/5", "1/2"],
+        ans: 1,
+        exp: "Total number of balls = 5 + 3 = 8. Number of green balls = 3. Probability of drawing a green ball = Favoured outcomes / Total outcomes = 3/8."
+    },
+    {
+        id: 164, exam: "IMO", cls: "9", year: "2023", section: "Mathematical Reasoning",
+        q: "Find the coordinates of the midpoint of the line segment joining the points A(2, 4) and B(8, 10).",
+        opts: ["(5, 7)", "(6, 8)", "(4, 6)", "(10, 14)"],
+        ans: 0,
+        exp: "Midpoint formula: ((x₁ + x₂)/2, (y₁ + y₂)/2). x-midpoint = (2 + 8)/2 = 5. y-midpoint = (4 + 10)/2 = 7. Midpoint is (5, 7)."
+    },
+    {
+        id: 165, exam: "IMO", cls: "10", year: "2024", section: "Mathematical Reasoning",
+        q: "If the product of the zeroes of the quadratic polynomial f(x) = x² - 5x + k is 6, find the value of k.",
+        opts: ["-6", "5", "6", "-5"],
+        ans: 2,
+        exp: "For a quadratic polynomial ax² + bx + c, the product of zeroes is given by c/a. Here, c = k and a = 1. Product = k/1 = k. Since the product is 6, k = 6."
+    },
+    {
+        id: 166, exam: "IMO", cls: "10", year: "2023", section: "Achievers Section",
+        q: "If sin θ + cos θ = √2 sin(90° - θ), find the value of cot θ.",
+        opts: ["√2 - 1", "√2 + 1", "1", "1/√2"],
+        ans: 1,
+        exp: "Recall sin(90° - θ) = cos θ. So sin θ + cos θ = √2 cos θ. Divide the entire equation by sin θ: 1 + cot θ = √2 cot θ → √2 cot θ - cot θ = 1 → cot θ(√2 - 1) = 1 → cot θ = 1/(√2 - 1) = √2 + 1."
+    },
+    {
+        id: 167, exam: "NSO", cls: "3", year: "2024", section: "Science",
+        q: "Which of the following birds cannot fly?",
+        opts: ["Peacock", "Eagle", "Kiwi", "Sparrow"],
+        ans: 2,
+        exp: "Kiwis are flightless birds native to New Zealand. They have tiny vestigial wings hidden under their hair-like feathers."
+    },
+    {
+        id: 168, exam: "NSO", cls: "3", year: "2023", section: "Science",
+        q: "What is the main source of water on Earth?",
+        opts: ["Rivers", "Lakes", "Groundwater", "Rain"],
+        ans: 3,
+        exp: "Rain is the primary natural source of fresh water on Earth. It replenishes other water bodies like rivers, lakes, ponds, and groundwater."
+    },
+    {
+        id: 169, exam: "NSO", cls: "4", year: "2024", section: "Science",
+        q: "Which part of our body helps in filtering and removing waste from the blood?",
+        opts: ["Heart", "Lungs", "Kidneys", "Stomach"],
+        ans: 2,
+        exp: "The kidneys act as a biological filter, clearing waste products and excess water from the blood to form urine."
+    },
+    {
+        id: 170, exam: "NSO", cls: "4", year: "2023", section: "Science",
+        q: "Which of the following is a physical property of matter?",
+        opts: ["Combustibility", "Acidity", "Density", "Rusting capacity"],
+        ans: 2,
+        exp: "Density is a physical property that can be observed and measured without changing the chemical identity of the substance. Combustibility, acidity, and rusting are chemical properties."
+    },
+    {
+        id: 171, exam: "NSO", cls: "5", year: "2024", section: "Science",
+        q: "Which nutrient is mainly responsible for bodybuilding and tissue repair?",
+        opts: ["Carbohydrate", "Protein", "Fat", "Vitamin"],
+        ans: 1,
+        exp: "Proteins are the building blocks of the body, essential for muscle growth, cellular structure, and repairing worn-out tissues."
+    },
+    {
+        id: 172, exam: "NSO", cls: "5", year: "2023", section: "Science",
+        q: "Which of the following is a non-renewable source of energy?",
+        opts: ["Wind energy", "Solar energy", "Coal", "Biomass"],
+        ans: 2,
+        exp: "Coal is a fossil fuel that takes millions of years to form and cannot be easily replenished once used, making it a non-renewable resource."
+    },
+    {
+        id: 173, exam: "NSO", cls: "6", year: "2024", section: "Science",
+        q: "In which plant part does the production of food (photosynthesis) mostly occur?",
+        opts: ["Stem", "Root", "Leaf", "Flower"],
+        ans: 2,
+        exp: "Photosynthesis occurs mainly in the leaves of plants, which contain chlorophyll to capture light energy."
+    },
+    {
+        id: 174, exam: "NSO", cls: "6", year: "2023", section: "Science",
+        q: "What is the process of conversion of liquid water to water vapor below its boiling point called?",
+        opts: ["Boiling", "Evaporation", "Condensation", "Sublimation"],
+        ans: 1,
+        exp: "Evaporation is the transition of a liquid to a gas at any temperature below its boiling point, occurring at the surface of the liquid."
+    },
+    {
+        id: 175, exam: "NSO", cls: "7", year: "2024", section: "Science",
+        q: "Which of the following is a physical change?",
+        opts: ["Rusting of iron", "Burning of wood", "Melting of butter", "Digestion of food"],
+        ans: 2,
+        exp: "Melting of butter is a physical change because it only changes states and no new substance is formed. Rusting, burning, and digestion are chemical changes."
+    },
+    {
+        id: 176, exam: "NSO", cls: "7", year: "2023", section: "Science",
+        q: "What type of soil has the highest water-holding capacity?",
+        opts: ["Sandy soil", "Clayey soil", "Loamy soil", "Silty soil"],
+        ans: 1,
+        exp: "Clayey soil has very fine particles with minimal spaces between them, allowing it to hold a large amount of water compared to other soils."
+    },
+    {
+        id: 177, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Which hormone is secreted by the adrenal glands to prepare the body for 'fight or flight'?",
+        opts: ["Thyroxine", "Insulin", "Adrenaline", "Estrogen"],
+        ans: 2,
+        exp: "Adrenaline is released in response to stress or danger, increasing heart rate, blood pressure, and energy output to prepare the body to react."
+    },
+    {
+        id: 178, exam: "NSO", cls: "8", year: "2023", section: "Science",
+        q: "What is the SI unit of force?",
+        opts: ["Joule", "Pascal", "Newton", "Watt"],
+        ans: 2,
+        exp: "The SI unit of force is the Newton (N), named after Sir Isaac Newton. Joule is for energy, Pascal is for pressure, and Watt is for power."
+    },
+    {
+        id: 179, exam: "NSO", cls: "9", year: "2024", section: "Science",
+        q: "Which tissue in plants is responsible for transporting water and minerals absorbed from the soil to the leaves?",
+        opts: ["Phloem", "Xylem", "Parenchyma", "Sclerenchyma"],
+        ans: 1,
+        exp: "Xylem tissue transports water and dissolved minerals upward from roots. Phloem tissue transports prepared food downwards and outwards."
+    },
+    {
+        id: 180, exam: "NSO", cls: "9", year: "2023", section: "Science",
+        q: "What is the chemical name of common salt?",
+        opts: ["Sodium bicarbonate", "Sodium chloride", "Calcium carbonate", "Sodium hydroxide"],
+        ans: 1,
+        exp: "Common salt is chemically known as Sodium Chloride (NaCl)."
+    },
+    {
+        id: 181, exam: "NSO", cls: "10", year: "2024", section: "Science",
+        q: "Which metal is stored under kerosene to prevent it from reacting with moisture and oxygen in the air?",
+        opts: ["Sodium", "Iron", "Gold", "Copper"],
+        ans: 0,
+        exp: "Sodium is highly reactive. It reacts vigorously with water and oxygen, which is why it is stored under kerosene to prevent accidental ignition."
+    },
+    {
+        id: 182, exam: "NSO", cls: "10", year: "2023", section: "Achievers Section",
+        q: "A direct current of 2 A flows through a resistor of 10 Ω for 5 minutes. Calculate the heat generated.",
+        opts: ["100 J", "1200 J", "12000 J", "6000 J"],
+        ans: 2,
+        exp: "Formula: H = I²Rt. Current I = 2 A, Resistance R = 10 Ω, Time t = 5 minutes = 300 seconds. H = 2² × 10 × 300 = 4 × 10 × 300 = 12,000 Joules."
+    },
+    {
+        id: 183, exam: "IEO", cls: "3", year: "2024", section: "English",
+        q: "Which of the following is an adjective?",
+        opts: ["Slowly", "Run", "Beautiful", "Table"],
+        ans: 2,
+        exp: "'Beautiful' is an adjective because it describes a noun (e.g., a beautiful flower). Slowly is an adverb, Run is a verb, and Table is a noun."
+    },
+    {
+        id: 184, exam: "IEO", cls: "3", year: "2023", section: "English",
+        q: "Choose the correct spelling.",
+        opts: ["Tomorrow", "Tommorow", "Tomorrowe", "Tommorrow"],
+        ans: 0,
+        exp: "The correct spelling is 'Tomorrow' (one 'm', two 'r's)."
+    },
+    {
+        id: 185, exam: "IEO", cls: "4", year: "2024", section: "English",
+        q: "Fill in the blank with correct pronoun: Reema is my friend. ________ plays tennis very well.",
+        opts: ["He", "She", "It", "They"],
+        ans: 1,
+        exp: "Reema is a female name, so we use the subject pronoun 'She'."
+    },
+    {
+        id: 186, exam: "IEO", cls: "4", year: "2023", section: "English",
+        q: "Choose the antonym (opposite word) of 'LARGE'.",
+        opts: ["Huge", "Tiny", "Broad", "Heavy"],
+        ans: 1,
+        exp: "The antonym of 'Large' is 'Tiny'. Huge and broad are synonyms/related in size, and heavy describes weight."
+    },
+    {
+        id: 187, exam: "IEO", cls: "5", year: "2024", section: "English",
+        q: "Complete the sentence with correct verb form: They ________ their homework before dinner yesterday.",
+        opts: ["finish", "finishing", "finished", "will finish"],
+        ans: 2,
+        exp: "Since the time mentioned is in the past ('yesterday'), we use the simple past tense form of the verb, which is 'finished'."
+    },
+    {
+        id: 188, exam: "IEO", cls: "5", year: "2023", section: "English",
+        q: "Fill in the blank with correct article: Copper is ________ useful metal.",
+        opts: ["a", "an", "the", "No article"],
+        ans: 0,
+        exp: "Although 'useful' begins with the vowel letter 'u', it starts with a consonant /j/ sound ('yoo-se-ful'). Hence, we use the article 'a'."
+    },
+    {
+        id: 189, exam: "IEO", cls: "6", year: "2024", section: "English",
+        q: "Identify the noun in the sentence: The doctor examined the patient carefully.",
+        opts: ["examined", "doctor", "carefully", "the"],
+        ans: 1,
+        exp: "'Doctor' is a naming word (person), so it is a noun. 'Examined' is a verb, 'carefully' is an adverb."
+    },
+    {
+        id: 190, exam: "IEO", cls: "6", year: "2023", section: "English",
+        q: "Choose the word that means 'to make something better'.",
+        opts: ["Improve", "Destroy", "Neglect", "Ignore"],
+        ans: 0,
+        exp: "'Improve' means to make or become better. Destroy, neglect, and ignore are antonyms or unrelated."
+    },
+    {
+        id: 191, exam: "IEO", cls: "7", year: "2024", section: "English",
+        q: "Complete the sentence: None of the luggage ________ arrived yet.",
+        opts: ["has", "have", "were", "are"],
+        ans: 0,
+        exp: "'Luggage' is an uncountable noun and always takes a singular verb. Therefore, 'has' is correct."
+    },
+    {
+        id: 192, exam: "IEO", cls: "7", year: "2023", section: "English",
+        q: "Choose the synonym of 'HOSTILE'.",
+        opts: ["Friendly", "Unfriendly", "Welcoming", "Gentle"],
+        ans: 1,
+        exp: "'Hostile' means showing or feeling active opposition or unfriendliness. Hence, the synonym is 'Unfriendly'."
+    },
+    {
+        id: 193, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Select the sentence with correct punctuation.",
+        opts: [
+            "What a beautiful day.",
+            "What a beautiful day!",
+            "what a beautiful day",
+            "What, a beautiful day?"
+        ],
+        ans: 1,
+        exp: "This is an exclamatory sentence expressing strong emotion, so it must start with a capital letter and end with an exclamation mark."
+    },
+    {
+        id: 194, exam: "IEO", cls: "8", year: "2023", section: "English",
+        q: "Fill in the blank with correct modal: You ________ smoke in public areas; it is forbidden by law.",
+        opts: ["shouldn't", "mustn't", "needn't", "don't have to"],
+        ans: 1,
+        exp: "We use 'mustn't' (must not) to express prohibition or something that is illegal/forbidden by rules."
+    },
+    {
+        id: 195, exam: "IEO", cls: "9", year: "2024", section: "English",
+        q: "Complete the sentence with correct verb form: If she ________ here, she would help us.",
+        opts: ["is", "was", "were", "would be"],
+        ans: 2,
+        exp: "This is a Type 2 conditional sentence (imaginary/contrary to present fact). We use the past subjunctive form 'were' for all subjects in the 'if' clause."
+    },
+    {
+        id: 196, exam: "IEO", cls: "9", year: "2023", section: "English",
+        q: "Choose the word closest in meaning to 'METICULOUS'.",
+        opts: ["Careless", "Thorough", "Lazy", "Rough"],
+        ans: 1,
+        exp: "'Meticulous' means showing great attention to detail; very careful and precise. Hence, 'Thorough' is the closest synonym."
+    },
+    {
+        id: 197, exam: "IEO", cls: "10", year: "2024", section: "English",
+        q: "Choose the correct passive form: 'They are building a new highway.'",
+        opts: [
+            "A new highway is built by them.",
+            "A new highway was being built by them.",
+            "A new highway is being built by them.",
+            "A new highway has been built by them."
+        ],
+        ans: 2,
+        exp: "Active present continuous: Subject + am/is/are + V-ing + Object. Passive structure: Object + am/is/are + being + V₃ + by + Subject. So it becomes: 'A new highway is being built by them.'"
+    },
+    {
+        id: 198, exam: "IEO", cls: "10", year: "2023", section: "English",
+        q: "Identify the correct meaning of the idiom: 'Spill the beans'",
+        opts: [
+            "To waste food",
+            "To reveal a secret prematurely",
+            "To work very hard",
+            "To buy groceries"
+        ],
+        ans: 1,
+        exp: "'Spill the beans' is an idiomatic expression that means to disclose secret information, especially unintentionally."
+    },
+    {
+        id: 199, exam: "IGKO", cls: "3", year: "2024", section: "General Knowledge",
+        q: "Which is the smallest state of India by land area?",
+        opts: ["Sikkim", "Goa", "Tripura", "Mizoram"],
+        ans: 1,
+        exp: "Goa is the smallest state in India by land area (3,702 km²). Rajasthan is the largest."
+    },
+    {
+        id: 200, exam: "IGKO", cls: "3", year: "2023", section: "General Knowledge",
+        q: "Which gas do humans inhale to survive?",
+        opts: ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
+        ans: 1,
+        exp: "Humans breathe in oxygen from the air, which is used by our cells to produce energy."
+    },
+    {
+        id: 201, exam: "IGKO", cls: "4", year: "2024", section: "General Knowledge",
+        q: "Who was the first President of independent India?",
+        opts: ["Dr. Rajendra Prasad", "Dr. B.R. Ambedkar", "Jawaharlal Nehru", "Mahatma Gandhi"],
+        ans: 0,
+        exp: "Dr. Rajendra Prasad served as the first President of India from 1950 to 1962. Jawaharlal Nehru was the first Prime Minister."
+    },
+    {
+        id: 202, exam: "IGKO", cls: "4", year: "2023", section: "General Knowledge",
+        q: "Which is the tallest animal on Earth?",
+        opts: ["Elephant", "Giraffe", "Ostrich", "Kangaroo"],
+        ans: 1,
+        exp: "The giraffe is the tallest living terrestrial animal, reaching heights of up to 5.8 meters (19 feet)."
+    },
+    {
+        id: 203, exam: "IGKO", cls: "5", year: "2024", section: "General Knowledge",
+        q: "Which is the largest bone in the human body?",
+        opts: ["Stapes", "Femur", "Humerus", "Tibia"],
+        ans: 1,
+        exp: "The femur (thigh bone) is the longest and strongest bone in the human body. The stapes (in the middle ear) is the smallest."
+    },
+    {
+        id: 204, exam: "IGKO", cls: "5", year: "2023", section: "General Knowledge",
+        q: "Which country hosted the first Modern Olympic Games in 1896?",
+        opts: ["France", "USA", "Greece", "United Kingdom"],
+        ans: 2,
+        exp: "The first modern Olympic Games were held in Athens, Greece, in 1896, commemorating the ancient Olympics which originated in Greece."
+    },
+    {
+        id: 205, exam: "IGKO", cls: "6", year: "2024", section: "General Knowledge",
+        q: "Which instrument is used to measure atmospheric pressure?",
+        opts: ["Thermometer", "Barometer", "Anemometer", "Hygrometer"],
+        ans: 1,
+        exp: "A barometer is used to measure atmospheric pressure. Thermometer measures temperature, Anemometer measures wind speed, and Hygrometer measures humidity."
+    },
+    {
+        id: 206, exam: "IGKO", cls: "6", year: "2023", section: "General Knowledge",
+        q: "Which scientist proposed the theory of relativity?",
+        opts: ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Stephen Hawking"],
+        ans: 1,
+        exp: "Albert Einstein developed the Special and General Theories of Relativity, revolutionizing modern physics."
+    },
+    {
+        id: 207, exam: "IGKO", cls: "7", year: "2024", section: "General Knowledge",
+        q: "Which is the largest continent on Earth by both area and population?",
+        opts: ["Africa", "North America", "Europe", "Asia"],
+        ans: 3,
+        exp: "Asia is the largest continent in the world, covering approximately 30% of the Earth's total land area and home to over 60% of the global population."
+    },
+    {
+        id: 208, exam: "IGKO", cls: "7", year: "2023", section: "General Knowledge",
+        q: "What is the capital city of France?",
+        opts: ["London", "Rome", "Berlin", "Paris"],
+        ans: 3,
+        exp: "Paris is the capital and most populous city of France."
+    },
+    {
+        id: 209, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Who was the first human to step onto the surface of the Moon?",
+        opts: ["Yuri Gagarin", "Neil Armstrong", "Buzz Aldrin", "Michael Collins"],
+        ans: 1,
+        exp: "Neil Armstrong was the commander of the Apollo 11 mission and became the first person to walk on the Moon on July 20, 1969. Yuri Gagarin was the first human in space."
+    },
+    {
+        id: 210, exam: "IGKO", cls: "8", year: "2023", section: "General Knowledge",
+        q: "Which organs in fish allow them to breathe dissolved oxygen under water?",
+        opts: ["Lungs", "Gills", "Skin", "Fins"],
+        ans: 1,
+        exp: "Gills are respiratory organs in aquatic organisms that extract dissolved oxygen from water and excrete carbon dioxide."
+    },
+    {
+        id: 211, exam: "IGKO", cls: "9", year: "2024", section: "General Knowledge",
+        q: "Which is the largest organ in the human body?",
+        opts: ["Liver", "Brain", "Skin", "Small Intestine"],
+        ans: 2,
+        exp: "The skin is the largest organ of the body, covering the entire external surface and accounting for about 16% of body weight."
+    },
+    {
+        id: 212, exam: "IGKO", cls: "9", year: "2023", section: "General Knowledge",
+        q: "In which year did the First World War begin?",
+        opts: ["1912", "1914", "1918", "1939"],
+        ans: 1,
+        exp: "World War I began on July 28, 1914, following the assassination of Archduke Franz Ferdinand, and ended on November 11, 1918."
+    },
+    {
+        id: 213, exam: "IGKO", cls: "10", year: "2024", section: "General Knowledge",
+        q: "Which is the largest country in the world by land area?",
+        opts: ["Canada", "USA", "China", "Russia"],
+        ans: 3,
+        exp: "Russia is the largest country by land area, covering over 17 million square kilometers, spanning across eastern Europe and northern Asia."
+    },
+    {
+        id: 214, exam: "IGKO", cls: "10", year: "2023", section: "General Knowledge",
+        q: "What is the study of weather and climate called?",
+        opts: ["Geology", "Ecology", "Meteorology", "Astrology"],
+        ans: 2,
+        exp: "Meteorology is the scientific study of the atmosphere, focused on weather processes, forecasting, and climate science."
+    },
+    {
+        id: 215, exam: "IMO", cls: "3", year: "2024", section: "Logical Reasoning",
+        q: "Find the odd one out from the following options.",
+        opts: ["Circle", "Triangle", "Square", "Rectangle"],
+        ans: 0,
+        exp: "Triangle, Square, and Rectangle are polygons with straight sides. A circle is a curved shape with no straight sides or vertices."
+    },
+    {
+        id: 216, exam: "IMO", cls: "4", year: "2024", section: "Mathematical Reasoning",
+        q: "How many lines of symmetry does a circle have?",
+        opts: ["1", "2", "4", "Infinite"],
+        ans: 3,
+        exp: "A circle has an infinite number of lines of symmetry. Any straight line passing through the center of a circle divides it into two symmetrical halves."
+    },
+    {
+        id: 217, exam: "IMO", cls: "5", year: "2024", section: "Everyday Mathematics",
+        q: "A vendor sells 2 liters of milk for ₹110. How much will 5 liters of milk cost?",
+        opts: ["₹220", "₹250", "₹275", "₹300"],
+        ans: 2,
+        exp: "Cost of 1 liter of milk = 110 ÷ 2 = ₹55. Cost of 5 liters = 55 × 5 = ₹275."
+    },
+    {
+        id: 218, exam: "IMO", cls: "6", year: "2024", section: "Achievers Section",
+        q: "If x = -2 and y = 3, what is the value of 2x² - 3xy + y²?",
+        opts: ["17", "23", "29", "35"],
+        ans: 3,
+        exp: "Substitute values: 2(-2)² - 3(-2)(3) + 3² = 2(4) - (-18) + 9 = 8 + 18 + 9 = 35."
+    },
+    {
+        id: 219, exam: "IMO", cls: "7", year: "2024", section: "Achievers Section",
+        q: "Find the value of (2³ × 3⁴ × 4) / (3² × 32).",
+        opts: ["6", "9", "12", "18"],
+        ans: 1,
+        exp: "Simplify terms: 4 = 2², 32 = 2⁵. Numerator = 2³ × 3⁴ × 2² = 2⁵ × 3⁴. Denominator = 3² × 2⁵. Equation becomes: (2⁵ × 3⁴) / (2⁵ × 3²) = 3⁴⁻² = 3² = 9."
+    },
+    {
+        id: 220, exam: "IMO", cls: "8", year: "2024", section: "Achievers Section",
+        q: "By what smallest number should 675 be multiplied to obtain a perfect cube?",
+        opts: ["2", "3", "5", "7"],
+        ans: 2,
+        exp: "Prime factorization of 675: 675 = 5 × 135 = 5 × 5 × 27 = 5² × 3³. To make it a perfect cube, we need prime factors in triplets. We have 3³ (complete) and 5² (needs one more 5). So we multiply by 5."
+    },
+    {
+        id: 221, exam: "IMO", cls: "9", year: "2024", section: "Achievers Section",
+        q: "If the radius of a sphere is doubled, what is the ratio of the volume of the new sphere to that of the original sphere?",
+        opts: ["2 : 1", "4 : 1", "8 : 1", "6 : 1"],
+        ans: 2,
+        exp: "Volume of a sphere V = (4/3)πr³. If radius is doubled to 2r, new volume V' = (4/3)π(2r)³ = (4/3)π(8r³) = 8V. Ratio of new to original is 8V : V = 8 : 1."
+    },
+    {
+        id: 222, exam: "IMO", cls: "10", year: "2024", section: "Achievers Section",
+        q: "Find the value of k for which the quadratic equation kx(x - 2) + 6 = 0 has two equal roots.",
+        opts: ["0", "6", "0 or 6", "No value"],
+        ans: 1,
+        exp: "Rewrite the equation: kx² - 2kx + 6 = 0. Here, a = k, b = -2k, c = 6. For equal roots, discriminant D = b² - 4ac = 0. (-2k)² - 4(k)(6) = 0 → 4k² - 24k = 0 → 4k(k - 6) = 0. So k = 0 or k = 6. Since k cannot be 0 (otherwise it's not quadratic), k = 6."
+    },
+    {
+        id: 223, exam: "NSO", cls: "3", year: "2024", section: "Science",
+        q: "Which of the following is a living thing?",
+        opts: ["Stone", "Plastic toy", "Mushroom", "Water bottle"],
+        ans: 2,
+        exp: "Mushrooms are fungi, which are living organisms. Stones, plastic toys, and water bottles are non-living things."
+    },
+    {
+        id: 224, exam: "NSO", cls: "4", year: "2024", section: "Science",
+        q: "Which gas do plants absorb from the atmosphere for photosynthesis?",
+        opts: ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
+        ans: 2,
+        exp: "Plants absorb carbon dioxide (CO₂) from the atmosphere and use it along with water and sunlight to synthesize food."
+    },
+    {
+        id: 225, exam: "NSO", cls: "5", year: "2024", section: "Science",
+        q: "What is the clean, colorless liquid that forms when ice melts?",
+        opts: ["Liquid ice", "Liquid nitrogen", "Water", "Oxygen"],
+        ans: 2,
+        exp: "Ice is the solid state of water. When it melts, it returns to its liquid form, which is water."
+    },
+    {
+        id: 226, exam: "NSO", cls: "6", year: "2024", section: "Science",
+        q: "Which of the following joint types is found in our elbow, allowing movement in only one plane (similar to a door hinge)?",
+        opts: ["Ball and socket joint", "Hinge joint", "Pivotal joint", "Fixed joint"],
+        ans: 1,
+        exp: "The elbow has a hinge joint that allows back-and-forth movement in one direction only."
+    },
+    {
+        id: 227, exam: "NSO", cls: "7", year: "2024", section: "Science",
+        q: "Which acid is present in Tamarind, giving it a sour taste?",
+        opts: ["Citric acid", "Tartaric acid", "Oxalic acid", "Acetic acid"],
+        ans: 1,
+        exp: "Tamarind contains tartaric acid. Citrus fruits contain citric acid, vinegar contains acetic acid, and tomatoes contain oxalic acid."
+    },
+    {
+        id: 228, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "What is the process of coating iron sheets with a layer of zinc to protect them from rusting called?",
+        opts: ["Alloying", "Galvanisation", "Vulcanisation", "Electroplating"],
+        ans: 1,
+        exp: "Galvanisation is the process of applying a protective zinc coating to steel or iron to prevent rusting."
+    },
+    {
+        id: 229, exam: "NSO", cls: "9", year: "2024", section: "Science",
+        q: "Which of the following describes the rate of change of velocity?",
+        opts: ["Speed", "Displacement", "Acceleration", "Momentum"],
+        ans: 2,
+        exp: "Acceleration is defined as the rate of change of velocity per unit time (a = (v-u)/t)."
+    },
+    {
+        id: 230, exam: "NSO", cls: "10", year: "2024", section: "Science",
+        q: "What is the focus of a spherical mirror when parallel rays of light meet after reflection?",
+        opts: ["Principal Focus", "Pole", "Center of curvature", "Aperture"],
+        ans: 0,
+        exp: "The point on the principal axis where parallel rays of light converge (or appear to diverge from) after reflection is called the principal focus."
+    },
+    {
+        id: 231, exam: "IEO", cls: "3", year: "2024", section: "English",
+        q: "Choose the correct collective noun: A ________ of lions was resting under the tree.",
+        opts: ["herd", "pride", "flock", "pack"],
+        ans: 1,
+        exp: "The collective noun for a group of lions is a 'pride'. Herd is for cattle, flock is for birds/sheep, and pack is for wolves/dogs."
+    },
+    {
+        id: 232, exam: "IEO", cls: "4", year: "2024", section: "English",
+        q: "Choose the correct preposition: The book is ________ the table.",
+        opts: ["on", "at", "in", "for"],
+        ans: 0,
+        exp: "The book is resting on the surface of the table, so the preposition of place 'on' is correct."
+    },
+    {
+        id: 233, exam: "IEO", cls: "5", year: "2024", section: "English",
+        q: "Choose the correct singular form of 'LIVES'.",
+        opts: ["Life", "Live", "Lifes", "Lifs"],
+        ans: 0,
+        exp: "The singular of 'lives' is 'life'. Nouns ending in 'fe' or 'f' often change to 'ves' in the plural (e.g., knife→knives, wife→wives)."
+    },
+    {
+        id: 234, exam: "IEO", cls: "6", year: "2024", section: "English",
+        q: "Identify the conjunction in the sentence: She did not study, so she failed.",
+        opts: ["study", "so", "she", "failed"],
+        ans: 1,
+        exp: "'So' is a coordinating conjunction linking the cause (did not study) to the effect (failed)."
+    },
+    {
+        id: 235, exam: "IEO", cls: "7", year: "2024", section: "English",
+        q: "Select the correct pronoun: Every student must bring ________ own notebook.",
+        opts: ["his", "their", "our", "its"],
+        ans: 1,
+        exp: "Although 'every student' is singular, modern English uses singular 'their' (or his/her) to be gender-neutral and refer back to indefinite pronouns. 'their' is the standard choice here."
+    },
+    {
+        id: 236, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Choose the synonym of 'FRAGILE'.",
+        opts: ["Strong", "Tough", "Delicate", "Heavy"],
+        ans: 2,
+        exp: "'Fragile' means easily broken or damaged. 'Delicate' is the closest synonym. Strong and tough are antonyms."
+    },
+    {
+        id: 237, exam: "IEO", cls: "9", year: "2024", section: "English",
+        q: "Fill in the blank with correct tense: By next December, she ________ in this company for five years.",
+        opts: ["will work", "will have worked", "works", "has worked"],
+        ans: 1,
+        exp: "We use the Future Perfect tense ('will have worked') to describe an action that will be completed at a specific point in the future."
+    },
+    {
+        id: 238, exam: "IEO", cls: "10", year: "2024", section: "English",
+        q: "Identify the figure of speech in: 'The wind whispered secrets in my ear.'",
+        opts: ["Metaphor", "Simile", "Personification", "Alliteration"],
+        ans: 2,
+        exp: "Giving human qualities (whispering secrets) to a non-human entity (the wind) is called personification."
+    },
+    {
+        id: 239, exam: "IGKO", cls: "3", year: "2024", section: "General Knowledge",
+        q: "Which is the tallest mountain in the world?",
+        opts: ["K2", "Mount Everest", "Kangchenjunga", "Mount Kilimanjaro"],
+        ans: 1,
+        exp: "Mount Everest, located in the Himalayas on the Nepal-China border, is the highest mountain above sea level at 8,848.86 meters."
+    },
+    {
+        id: 240, exam: "IGKO", cls: "4", year: "2024", section: "General Knowledge",
+        q: "Which gas is known as the 'Laughing Gas'?",
+        opts: ["Nitrous oxide", "Carbon monoxide", "Sulfur dioxide", "Nitric oxide"],
+        ans: 0,
+        exp: "Nitrous oxide (N₂O) is called laughing gas because of its intoxicating effects when inhaled."
+    },
+    {
+        id: 241, exam: "IGKO", cls: "5", year: "2024", section: "General Knowledge",
+        q: "What is the capital of India?",
+        opts: ["Mumbai", "New Delhi", "Kolkata", "Chennai"],
+        ans: 1,
+        exp: "New Delhi is the official capital city of India."
+    },
+    {
+        id: 242, exam: "IGKO", cls: "6", year: "2024", section: "General Knowledge",
+        q: "Who painted the famous artwork 'Mona Lisa'?",
+        opts: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Michelangelo"],
+        ans: 1,
+        exp: "The Mona Lisa was painted by the Italian Renaissance artist Leonardo da Vinci in the early 16th century."
+    },
+    {
+        id: 243, exam: "IGKO", cls: "7", year: "2024", section: "General Knowledge",
+        q: "Which organ in the human body pumps blood?",
+        opts: ["Lungs", "Brain", "Heart", "Kidneys"],
+        ans: 2,
+        exp: "The heart is the muscular organ responsible for pumping blood throughout the circulatory system."
+    },
+    {
+        id: 244, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Which country is the largest by population in the world?",
+        opts: ["China", "India", "USA", "Indonesia"],
+        ans: 1,
+        exp: "According to UN estimates, India surpassed China to become the world's most populous country."
+    },
+    {
+        id: 245, exam: "IGKO", cls: "9", year: "2024", section: "General Knowledge",
+        q: "What is the unit of electric power?",
+        opts: ["Joule", "Watt", "Volt", "Ampere"],
+        ans: 1,
+        exp: "The unit of electric power is the Watt (W), named after Scottish engineer James Watt."
+    },
+    {
+        id: 246, exam: "IGKO", cls: "10", year: "2024", section: "General Knowledge",
+        q: "Which ocean is the deepest in the world?",
+        opts: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+        ans: 2,
+        exp: "The Pacific Ocean is the deepest ocean, housing the Mariana Trench, which drops to a depth of nearly 11,000 meters."
+    },
+    {
+        id: 247, exam: "IMO", cls: "3", year: "2024", section: "Logical Reasoning",
+        q: "Which of the following options completes the pattern? 2, 4, 8, 16, 32, ?",
+        opts: ["40", "48", "64", "80"],
+        ans: 2,
+        exp: "The sequence is geometric, where each term is multiplied by 2: 2×2=4, 4×2=8, 8×2=16, 16×2=32, 32×2=64."
+    },
+    {
+        id: 248, exam: "NSO", cls: "3", year: "2024", section: "Science",
+        q: "Which plant part holds the plant firmly in the soil and absorbs water?",
+        opts: ["Stem", "Root", "Leaf", "Flower"],
+        ans: 1,
+        exp: "Roots anchor the plant securely in the soil and absorb water and essential minerals."
+    },
+    {
+        id: 249, exam: "IEO", cls: "3", year: "2024", section: "English",
+        q: "Choose the correct spelling of the animal name.",
+        opts: ["Giraffe", "Girafe", "Girrafe", "Jiraffe"],
+        ans: 0,
+        exp: "The correct spelling is 'Giraffe'."
+    },
+    {
+        id: 250, exam: "IGKO", cls: "3", year: "2024", section: "General Knowledge",
+        q: "Which planet is closest to the Sun?",
+        opts: ["Venus", "Earth", "Mercury", "Mars"],
+        ans: 2,
+        exp: "Mercury is the closest planet to the Sun in our Solar System, orbiting at an average distance of about 58 million kilometers."
     }
 ];
 
