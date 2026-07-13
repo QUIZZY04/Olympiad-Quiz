@@ -1,9 +1,16 @@
 /**
  * Centralized Authentication System for OlympiadQuiz
  * Protects test launches and features while keeping SEO pages strictly public.
+ *
+ * Profile-completion enforcement (2026 update):
+ *   - protectPage()   → full-page guard (hard redirect if not auth'd or profile incomplete)
+ *   - requireLogin()  → inline guard for "Start Test" buttons on public pages
+ *   Both now verify Firestore `registrationCompleted || signupCompleted || profileCompleted`
+ *   before granting access. Incomplete-profile users are sent to signup.html?mode=completion.
  */
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
  
 const firebaseConfig = {
@@ -17,6 +24,7 @@ const firebaseConfig = {
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 let currentUser = null;
 let isAuthReady = false;
@@ -34,6 +42,23 @@ onAuthStateChanged(auth, (user) => {
     authCallbacks = [];
 });
 
+/**
+ * Returns true if the Firestore user document indicates a completed profile.
+ * Checks all three legacy + current flags for backward compatibility.
+ */
+async function isProfileComplete(uid) {
+    try {
+        const userDoc = await getDoc(doc(db, "users", uid));
+        if (!userDoc.exists()) return false;
+        const data = userDoc.data();
+        return !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+    } catch (e) {
+        console.warn("[AuthGuard] Firestore profile check failed:", e);
+        // Fail-open on network error to avoid false lockouts on intermittent failures
+        return true;
+    }
+}
+
 export const AuthGuard = {
     checkAuth: function(callback) {
         if (isAuthReady) {
@@ -43,14 +68,26 @@ export const AuthGuard = {
         }
     },
 
-    // Use this function on public HTML pages for "Start Test" buttons
+    /**
+     * Use on public HTML pages for "Start Test" / feature buttons.
+     * Checks: authenticated AND profile complete.
+     * If not authenticated → shows login modal.
+     * If authenticated but profile incomplete → redirects to signup completion.
+     */
     requireLogin: function(actionCallback) {
-        this.checkAuth((user) => {
-            if (user) {
-                if (actionCallback) actionCallback();
-            } else {
+        this.checkAuth(async (user) => {
+            if (!user) {
                 this.showLoginModal(actionCallback);
+                return;
             }
+            // Check profile completion
+            const complete = await isProfileComplete(user.uid);
+            if (!complete) {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.replace("signup.html?mode=completion");
+                return;
+            }
+            if (actionCallback) actionCallback();
         });
     },
 
@@ -113,11 +150,25 @@ export const AuthGuard = {
         modal.style.display = 'flex';
     },
 
+    /**
+     * Full-page protection guard.
+     * Call at the top of any fully-authenticated page.
+     * Checks: authenticated AND profile complete.
+     * If not authenticated → redirects to login.html.
+     * If profile incomplete → redirects to signup.html?mode=completion.
+     */
     protectPage: function() {
-        this.checkAuth((user) => {
+        this.checkAuth(async (user) => {
             if (!user) {
                 sessionStorage.setItem("redirectAfterLogin", window.location.href);
                 window.location.replace("login.html");
+                return;
+            }
+            // Check profile completion in Firestore
+            const complete = await isProfileComplete(user.uid);
+            if (!complete) {
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                window.location.replace("signup.html?mode=completion");
             }
         });
     }

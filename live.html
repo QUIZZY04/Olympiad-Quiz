@@ -450,6 +450,29 @@
                 }
             });
         } else {
+            // Profile completion gate: verify the user has completed signup before accessing Live Arena
+            try {
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+                    const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+                    const isProfileComplete = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+                    if (!isProfileComplete && !isAdmin) {
+                        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                        window.location.replace("signup.html?mode=completion");
+                        return;
+                    }
+                } else {
+                    // No Firestore document at all → profile not complete
+                    sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                    window.location.replace("signup.html?mode=completion");
+                    return;
+                }
+            } catch (e) {
+                console.warn("[live.html] Profile check failed:", e);
+                // Fail-open on network error to avoid locking out users
+            }
+
             localStorage.setItem("isLoggedIn", "true");
             if (user.email === "madhhu52@gmail.com") {
                 const adminTab = document.getElementById("adminTab");

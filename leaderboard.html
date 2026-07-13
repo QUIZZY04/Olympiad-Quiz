@@ -532,6 +532,28 @@ sessionStorage.setItem("redirectAfterLogin", window.location.href);
 window.location.replace("login.html")
 return
 }
+
+// Profile completion gate: verify the user has completed signup before viewing leaderboard
+try {
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const isAdminCheck = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
+    if (!userDoc.exists()) {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.replace("signup.html?mode=completion");
+        return;
+    }
+    const data = userDoc.data();
+    const isProfileComplete = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+    if (!isProfileComplete && !isAdminCheck) {
+        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+        window.location.replace("signup.html?mode=completion");
+        return;
+    }
+} catch (e) {
+    console.warn("[leaderboard] Profile check failed:", e);
+    // Fail-open on network error
+}
+
 document.body.style.visibility = 'visible';
 
 const isAdminUser = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";

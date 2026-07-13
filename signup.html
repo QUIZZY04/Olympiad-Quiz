@@ -499,9 +499,10 @@ async function evaluateAuthState(user) {
             await updateUserState(user, 'AUTHENTICATED');
         }
 
-        // CRITICAL FIX: Bypass forced onboarding flow for legacy users who already completed registration
-        if (data && data.registrationCompleted) {
-            console.log("[signup] Redirect decision: dashboard (registrationCompleted=true)");
+        // CRITICAL FIX: Bypass forced onboarding flow for users who already completed registration
+        // Check all three flags for backward compatibility with existing user records
+        if (data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted)) {
+            console.log("[signup] Redirect decision: dashboard (profile already completed)");
             isRedirecting = true;
             localStorage.setItem("isLoggedIn", "true");
             let uClass = data.class || data.studentClass || "";
