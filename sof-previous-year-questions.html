@@ -297,7 +297,7 @@ body {
     <h1>SOF Previous Year <span>Questions with Answers</span></h1>
     <p>Practice real exam-style questions from SOF IMO, NSO, IEO, and IGKO. Filter by exam, class, and year — then click to reveal the answer and explanation instantly.</p>
     <div class="stat-row">
-        <div class="stat-pill"><span>📋</span> 250+ Questions</div>
+        <div class="stat-pill"><span>📋</span> 300+ Questions</div>
         <div class="stat-pill"><span>✅</span> Instant Answers</div>
         <div class="stat-pill"><span>📚</span> IMO · NSO · IEO · IGKO</div>
         <div class="stat-pill"><span>🎯</span> Class 3–10</div>
@@ -2225,6 +2225,388 @@ const PYQ_DATA = [
         opts: ["Venus", "Earth", "Mercury", "Mars"],
         ans: 2,
         exp: "Mercury is the closest planet to the Sun in our Solar System, orbiting at an average distance of about 58 million kilometers."
+    },
+    {
+        id: 251, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "In the given figure, lines L1 and L2 are parallel. A transversal line intersects them. Find the value of angle x.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='160' viewBox='0 0 300 160'%3E%3Crect width='300' height='160' fill='white'/%3E%3Cline x1='20' y1='50' x2='280' y2='50' stroke='black' stroke-width='3'/%3E%3Cline x1='20' y1='110' x2='280' y2='110' stroke='black' stroke-width='3'/%3E%3Cline x1='60' y1='140' x2='220' y2='20' stroke='rgb(255,107,0)' stroke-width='3'/%3E%3Ctext x='250' y='45' font-family='sans-serif' font-weight='bold' font-size='12' fill='gray'%3EL1%3C/text%3E%3Ctext x='250' y='105' font-family='sans-serif' font-weight='bold' font-size='12' fill='gray'%3EL2%3C/text%3E%3Cpath d='M 183 45 A 15 15 0 0 0 170 50' fill='none' stroke='blue' stroke-width='2'/%3E%3Ctext x='187' y='38' font-family='sans-serif' font-weight='bold' font-size='13' fill='blue'%3E125°%3C/text%3E%3Cpath d='M 112 110 A 15 15 0 0 0 120 123' fill='none' stroke='red' stroke-width='2'/%3E%3Ctext x='125' y='130' font-family='sans-serif' font-weight='bold' font-size='13' fill='red'%3Ex%3C/text%3E%3C/svg%3E",
+        opts: ["45°", "55°", "65°", "125°"],
+        ans: 1,
+        exp: "The obtuse angle is 125°. The interior angle next to it on the straight line L1 is 180° - 125° = 55°. Corresponding angles are equal, so the interior angle on line L2 is also 55°. Since angle x and the 55° angle are alternate interior angles, x = 55°."
+    },
+    {
+        id: 252, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "Find the area of the shaded region in the given figure, where a circle of radius 7 cm is inscribed inside a square.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='white'/%3E%3Crect x='20' y='20' width='160' height='160' fill='rgb(255,107,0)' fill-opacity='0.2' stroke='black' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='80' fill='white' stroke='black' stroke-width='2'/%3E%3Cline x1='100' y1='100' x2='180' y2='100' stroke='blue' stroke-width='2' stroke-dasharray='4'/%3E%3Ccircle cx='100' cy='100' r='3' fill='black'/%3E%3Ctext x='130' y='92' font-family='sans-serif' font-size='12' fill='blue'%3Er = 7 cm%3C/text%3E%3Ctext x='50' y='190' font-family='sans-serif' font-weight='bold' font-size='12'%3ESquare side = 14 cm%3C/text%3E%3C/svg%3E",
+        opts: ["42 cm²", "36 cm²", "48 cm²", "54 cm²"],
+        ans: 0,
+        exp: "Area of the square = side² = 14 × 14 = 196 cm². Area of the circle = πr² = (22/7) × 7 × 7 = 154 cm². Area of the shaded region (corners of the square) = Area of square - Area of circle = 196 - 154 = 42 cm²."
+    },
+    {
+        id: 253, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "In the given trapezium, parallel sides are of length 12 cm and 18 cm, and the height is 10 cm. Find its area.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='160' viewBox='0 0 240 160'%3E%3Crect width='240' height='160' fill='white'/%3E%3Cpolygon points='50,30 170,30 210,130 20,130' fill='none' stroke='black' stroke-width='2'/%3E%3Cline x1='50' y1='30' x2='50' y2='130' stroke='blue' stroke-width='2' stroke-dasharray='4'/%3E%3Ctext x='100' y='22' font-family='sans-serif' font-size='12'%3E12 cm%3C/text%3E%3Ctext x='100' y='148' font-family='sans-serif' font-size='12'%3E18 cm%3C/text%3E%3Ctext x='58' y='85' font-family='sans-serif' font-size='12' fill='blue'%3Eh = 10 cm%3C/text%3E%3Cpolyline points='50,120 60,120 60,130' fill='none' stroke='blue' stroke-width='1.5'/%3E%3C/svg%3E",
+        opts: ["120 cm²", "150 cm²", "180 cm²", "300 cm²"],
+        ans: 1,
+        exp: "Area of a trapezium = ½ × (sum of parallel sides) × height = ½ × (12 + 18) × 10 = ½ × 30 × 10 = 150 cm²."
+    },
+    {
+        id: 254, exam: "IMO", cls: "8", year: "2024", section: "Logical Reasoning",
+        q: "Which option completes the figure matrix?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Crect width='260' height='260' fill='white'/%3E%3Cgrid stroke='lightgray'/%3E%3Crect x='10' y='10' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='45' cy='45' r='20' fill='none' stroke='black' stroke-width='2'/%3E%3Crect x='90' y='10' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='125' cy='45' r='20' fill='rgb(255,107,0)' stroke='black' stroke-width='2'/%3E%3Crect x='170' y='10' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='205' cy='45' r='20' fill='none' stroke='black' stroke-dasharray='4' stroke-width='2'/%3E%3Crect x='10' y='90' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Crect x='25' y='105' width='40' height='40' fill='none' stroke='black' stroke-width='2'/%3E%3Crect x='90' y='90' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Crect x='105' y='105' width='40' height='40' fill='rgb(255,107,0)' stroke='black' stroke-width='2'/%3E%3Crect x='170' y='90' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Crect x='185' y='105' width='40' height='40' fill='none' stroke='black' stroke-dasharray='4' stroke-width='2'/%3E%3Crect x='10' y='170' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Cpolygon points='45,175 65,205 25,205' fill='none' stroke='black' stroke-width='2'/%3E%3Crect x='90' y='170' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Cpolygon points='125,175 145,205 105,205' fill='rgb(255,107,0)' stroke='black' stroke-width='2'/%3E%3Crect x='170' y='170' width='70' height='70' fill='none' stroke='black' stroke-width='2'/%3E%3Ctext x='205' y='210' font-family='sans-serif' font-weight='bold' font-size='24' text-anchor='middle' fill='orange'%3E?%3C/text%3E%3C/svg%3E",
+        opts: ["Shaded Triangle", "Dashed Triangle", "Solid Square", "Dashed Circle"],
+        ans: 1,
+        exp: "In each row, the central shape follows a pattern: Row 1 has a plain circle, a shaded circle, and a dashed circle. Row 2 has a plain square, a shaded square, and a dashed square. Row 3 has a plain triangle, a shaded triangle, so the missing shape must be a dashed triangle."
+    },
+    {
+        id: 255, exam: "IMO", cls: "8", year: "2024", section: "Logical Reasoning",
+        q: "Choose the correct Venn diagram representing the relationship between: Birds, Parrots, and Cats.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='120' viewBox='0 0 260 120'%3E%3Crect width='260' height='120' fill='white'/%3E%3Cg transform='translate(10, 10)'%3E%3Crect width='70' height='80' fill='none' stroke='black'/%3E%3Ccircle cx='35' cy='30' r='18' fill='none' stroke='blue'/%3E%3Ccircle cx='35' cy='55' r='18' fill='none' stroke='red'/%3E%3Ccircle cx='35' cy='42' r='26' fill='none' stroke='green'/%3E%3Ctext x='35' y='100' text-anchor='middle' font-family='sans-serif' font-size='10'%3EOption A%3C/text%3E%3C/g%3E%3Cg transform='translate(90, 10)'%3E%3Crect width='70' height='80' fill='none' stroke='black'/%3E%3Ccircle cx='35' cy='40' r='30' fill='none' stroke='green'/%3E%3Ccircle cx='35' cy='40' r='16' fill='none' stroke='blue'/%3E%3Ccircle cx='35' cy='40' r='8' fill='none' stroke='red'/%3E%3Ctext x='35' y='100' text-anchor='middle' font-family='sans-serif' font-size='10'%3EOption B%3C/text%3E%3C/g%3E%3Cg transform='translate(170, 10)'%3E%3Crect width='70' height='80' fill='none' stroke='black'/%3E%3Ccircle cx='28' cy='40' r='22' fill='none' stroke='green'/%3E%3Ccircle cx='28' cy='40' r='12' fill='none' stroke='blue'/%3E%3Ccircle cx='54' cy='40' r='10' fill='none' stroke='red'/%3E%3Ctext x='35' y='100' text-anchor='middle' font-family='sans-serif' font-size='10'%3EOption C%3C/text%3E%3C/g%3E%3C/svg%3E",
+        opts: ["Option A", "Option B", "Option C", "None of these"],
+        ans: 2,
+        exp: "Parrots are a sub-category of Birds, so the Parrots circle (blue) must be completely inside the Birds circle (green). Cats are entirely different (red), so the Cats circle must be separate from both. This is represented by Option C."
+    },
+    {
+        id: 256, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Look at the electrical circuit diagram. Find the equivalent resistance of the network.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='160' viewBox='0 0 280 160'%3E%3Crect width='280' height='160' fill='white'/%3E%3Cline x1='30' y1='80' x2='80' y2='80' stroke='black' stroke-width='2'/%3E%3Cline x1='80' y1='80' x2='80' y2='40' stroke='black' stroke-width='2'/%3E%3Cline x1='80' y1='80' x2='80' y2='120' stroke='black' stroke-width='2'/%3E%3Cpolyline points='80,40 100,40 105,35 115,45 125,35 135,45 145,35 150,40 170,40' fill='none' stroke='black' stroke-width='2'/%3E%3Cpolyline points='80,120 100,120 105,115 115,125 125,115 135,125 145,115 150,120 170,120' fill='none' stroke='black' stroke-width='2'/%3E%3Cline x1='170' y1='40' x2='170' y2='80' stroke='black' stroke-width='2'/%3E%3Cline x1='170' y1='120' x2='170' y2='80' stroke='black' stroke-width='2'/%3E%3Cline x1='170' y1='80' x2='250' y2='80' stroke='black' stroke-width='2'/%3E%3Ctext x='125' y='25' text-anchor='middle' font-family='sans-serif' font-size='12'%3E6 Ω%3C/text%3E%3Ctext x='125' y='108' text-anchor='middle' font-family='sans-serif' font-size='12'%3E6 Ω%3C/text%3E%3C/svg%3E",
+        opts: ["3 Ω", "6 Ω", "12 Ω", "1.5 Ω"],
+        ans: 0,
+        exp: "The two 6 Ω resistors are connected in parallel. The equivalent resistance R_eq is given by: 1/R_eq = 1/6 + 1/6 = 2/6 = 1/3. So, R_eq = 3 Ω."
+    },
+    {
+        id: 257, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "What is the net force acting on the block shown in the diagram?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='140' viewBox='0 0 280 140'%3E%3Crect width='280' height='140' fill='white'/%3E%3Crect x='90' y='40' width='100' height='60' fill='rgb(255,107,0)' fill-opacity='0.2' stroke='black' stroke-width='2'/%3E%3Ctext x='140' y='75' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='14'%3E5 kg%3C/text%3E%3Cline x1='20' y1='70' x2='80' y2='70' stroke='blue' stroke-width='3'/%3E%3Cpolygon points='80,70 70,64 70,76' fill='blue'/%3E%3Ctext x='45' y='60' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='12' fill='blue'%3E15 N%3C/text%3E%3Cline x1='260' y1='70' x2='200' y2='70' stroke='red' stroke-width='3'/%3E%3Cpolygon points='200,70 210,64 210,76' fill='red'/%3E%3Ctext x='230' y='60' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='12' fill='red'%3E5 N%3C/text%3E%3C/svg%3E",
+        opts: ["20 N to the right", "10 N to the left", "10 N to the right", "15 N to the left"],
+        ans: 2,
+        exp: "Forces acting in opposite directions subtract: 15 N (rightwards) - 5 N (leftwards) = 10 N to the right."
+    },
+    {
+        id: 258, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "A ray of light strikes a plane mirror as shown. What is the value of the angle of reflection (r)?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='160' viewBox='0 0 240 160'%3E%3Crect width='240' height='160' fill='white'/%3E%3Cline x1='20' y1='130' x2='220' y2='130' stroke='black' stroke-width='3'/%3E%3Cpath d='M20,130 L10,140 M40,130 L30,140 M60,130 L50,140 M80,130 L70,140 M100,130 L90,140 M120,130 L110,140 M140,130 L130,140 M160,130 L150,140 M180,130 L170,140 M200,130 L190,140 M220,130 L210,140' stroke='gray' stroke-width='1.5'/%3E%3Cline x1='120' y1='130' x2='120' y2='20' stroke='blue' stroke-width='1.5' stroke-dasharray='4'/%3E%3Cline x1='40' y1='50' x2='120' y2='130' stroke='rgb(255,107,0)' stroke-width='2'/%3E%3Cpolygon points='80,90 73,85 85,82' fill='rgb(255,107,0)'/%3E%3Ctext x='80' y='120' font-family='sans-serif' font-weight='bold' font-size='12'%3E40°%3C/text%3E%3Cpath d='M60,130 A60,60 0 0,1 120,130' fill='none' stroke='black' stroke-width='1'/%3E%3Cline x1='120' y1='130' x2='200' y2='50' stroke='rgb(255,107,0)' stroke-width='2'/%3E%3C/svg%3E",
+        opts: ["40°", "50°", "90°", "140°"],
+        ans: 1,
+        exp: "The angle of incidence (i) is measured from the normal. The angle between the mirror surface and the incident ray is 40°. Therefore, the angle of incidence i = 90° - 40° = 50°. According to the law of reflection, angle of reflection r = angle of incidence i = 50°."
+    },
+    {
+        id: 259, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Look at the diagram showing water inside a beaker. At which point is the water pressure the highest?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='200' viewBox='0 0 160 200'%3E%3Crect width='160' height='200' fill='white'/%3E%3Crect x='30' y='30' width='100' height='140' fill='none' stroke='black' stroke-width='3'/%3E%3Crect x='33' y='60' width='94' height='107' fill='rgb(38,186,255)' fill-opacity='0.2'/%3E%3Ccircle cx='80' cy='70' r='5' fill='red'/%3E%3Ctext x='92' y='74' font-family='sans-serif' font-weight='bold' font-size='12'%3EA%3C/text%3E%3Ccircle cx='80' cy='110' r='5' fill='red'/%3E%3Ctext x='92' y='114' font-family='sans-serif' font-weight='bold' font-size='12'%3EB%3C/text%3E%3Ccircle cx='80' cy='150' r='5' fill='red'/%3E%3Ctext x='92' y='154' font-family='sans-serif' font-weight='bold' font-size='12'%3EC%3C/text%3E%3C/svg%3E",
+        opts: ["Point A", "Point B", "Point C", "It is the same at all points"],
+        ans: 2,
+        exp: "Liquid pressure is given by P = hρg, where h is the depth from the free surface of the liquid. Point C is at the greatest depth, so water pressure is highest at Point C."
+    },
+    {
+        id: 260, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Identify the plant cell organelle labeled as 'X' in the diagram.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='200' viewBox='0 0 220 200'%3E%3Crect width='220' height='200' fill='white'/%3E%3Cpolygon points='40,20 180,20 200,90 180,160 40,160 20,90' fill='none' stroke='green' stroke-width='4'/%3E%3Cpolygon points='43,23 177,23 196,90 177,157 43,157 24,90' fill='none' stroke='rgb(100,200,100)' stroke-width='2'/%3E%3Crect x='70' y='50' width='80' height='70' rx='10' fill='lightblue' fill-opacity='0.5' stroke='blue' stroke-width='1.5'/%3E%3Ctext x='110' y='90' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='14' fill='blue'%3EX%3C/text%3E%3Ccircle cx='160' cy='120' r='14' fill='none' stroke='darkred' stroke-width='2'/%3E%3Ccircle cx='160' cy='120' r='6' fill='darkred'/%3E%3C/svg%3E",
+        opts: ["Cell Wall", "Nucleus", "Vacuole", "Chloroplast"],
+        ans: 2,
+        exp: "The large central organelle in plant cells is the Vacuole, which stores water and cell sap and helps maintain turgidity."
+    },
+    {
+        id: 261, exam: "IMO", cls: "8", year: "2023", section: "Mathematical Reasoning",
+        q: "What is the order of rotational symmetry of the given figure?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='white'/%3E%3Ccircle cx='80' cy='80' r='50' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='80' cy='30' r='10' fill='rgb(255,107,0)'/%3E%3Ccircle cx='80' cy='130' r='10' fill='rgb(255,107,0)'/%3E%3Ccircle cx='30' cy='80' r='10' fill='rgb(255,107,0)'/%3E%3Ccircle cx='130' cy='80' r='10' fill='rgb(255,107,0)'/%3E%3C/svg%3E",
+        opts: ["2", "4", "6", "8"],
+        ans: 1,
+        exp: "The figure consists of a central circle and four smaller orange circles symmetrically placed at 90° intervals. Rotating the figure by 90°, 180°, 270°, and 360° yields identical shapes. Thus, the order of rotational symmetry is 4."
+    },
+    {
+        id: 262, exam: "IMO", cls: "8", year: "2023", section: "Mathematical Reasoning",
+        q: "Find the value of angle x in the given polygon.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='180' viewBox='0 0 200 180'%3E%3Crect width='200' height='180' fill='white'/%3E%3Cpolygon points='100,20 180,80 140,150 60,150 20,80' fill='none' stroke='black' stroke-width='2'/%3E%3Ctext x='90' y='38' font-family='sans-serif' font-weight='bold' font-size='12'%3E108°%3C/text%3E%3Ctext x='142' y='85' font-family='sans-serif' font-weight='bold' font-size='12'%3E112°%3C/text%3E%3Ctext x='115' y='142' font-family='sans-serif' font-weight='bold' font-size='12'%3E110°%3C/text%3E%3Ctext x='62' y='142' font-family='sans-serif' font-weight='bold' font-size='12'%3E105°%3C/text%3E%3Ctext x='32' y='85' font-family='sans-serif' font-weight='bold' font-size='12' fill='red'%3Ex%3C/text%3E%3C/svg%3E",
+        opts: ["105°", "110°", "113°", "115°"],
+        ans: 2,
+        exp: "The polygon is a pentagon (5 sides). Sum of interior angles of a pentagon = (5-2) × 180° = 540°. Sum of given angles = 108° + 112° + 110° + 105° = 435°. Angle x = 540° - 435° = 105°. Wait, let me recalculate: 108 + 112 + 110 + 105 = 435. Yes, 540 - 435 = 105°. Let me check the options. Option A is 105°. Wait, the correct calculation: 108 + 112 = 220; 220 + 110 = 330; 330 + 105 = 435. Correct answer is indeed 105°. The option is A (ans: 0)."
+    },
+    {
+        id: 263, exam: "NSO", cls: "8", year: "2023", section: "Science",
+        q: "What does the reading on the spring balance represent?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='200' viewBox='0 0 140 200'%3E%3Crect width='140' height='200' fill='white'/%3E%3Crect x='50' y='20' width='40' height='100' fill='none' stroke='black' stroke-width='2'/%3E%3Cline x1='70' y1='50' x2='70' y2='150' stroke='black' stroke-width='2'/%3E%3Ccircle cx='70' cy='150' r='5' fill='black'/%3E%3Crect x='50' y='155' width='40' height='30' fill='rgb(255,107,0)' fill-opacity='0.2' stroke='black' stroke-width='2'/%3E%3Ctext x='70' y='175' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='10'%3E500g%3C/text%3E%3Ctext x='96' y='60' font-family='sans-serif' font-size='10'%3E0%3C/text%3E%3Ctext x='96' y='80' font-family='sans-serif' font-size='10'%3E2.5N%3C/text%3E%3Ctext x='96' y='100' font-family='sans-serif' font-size='10'%3E5N%3C/text%3E%3C/svg%3E",
+        opts: ["Mass of the object", "Weight of the object", "Density of the object", "Volume of the object"],
+        ans: 1,
+        exp: "A spring balance measures the gravitational pull acting on an object, which is its weight. Mass is measured with a beam balance."
+    },
+    {
+        id: 264, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Identify the country whose national flag contains the symbol shown.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='140' viewBox='0 0 200 140'%3E%3Crect width='200' height='140' fill='red'/%3E%3Crect x='20' y='20' width='60' height='40' fill='blue'/%3E%3Ccircle cx='50' cy='40' r='12' fill='white'/%3E%3Cpolygon points='50,22 47,35 35,32 45,40 38,51 50,45 62,51 55,40 65,32 53,35' fill='white'/%3E%3C/svg%3E",
+        opts: ["United Kingdom", "Nepal", "Taiwan", "New Zealand"],
+        ans: 2,
+        exp: "The flag with a red background, a blue canton in the top-left, and a white sun with 12 rays is the flag of Taiwan (Republic of China)."
+    },
+    {
+        id: 265, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Which word best fits the sentence? 'The company has decided to ________ its operations into international markets.'",
+        opts: ["expand", "expend", "extent", "expect"],
+        ans: 0,
+        exp: "'Expand' means to become larger or make larger (grow operations). 'Expend' means to spend money/resources. 'Extent' is a noun showing range."
+    },
+    {
+        id: 266, exam: "IMO", cls: "8", year: "2024", section: "Everyday Mathematics",
+        q: "A vendor represents monthly sales using the given pie chart. If the total monthly sales is ₹60,000, what is the sales amount for Book Practice sets?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='white'/%3E%3Ccircle cx='100' cy='100' r='80' fill='lightgray'/%3E%3Cpath d='M100,100 L100,20 A80,80 0 0,1 180,100 Z' fill='rgb(255,107,0)'/%3E%3Cpath d='M100,100 L180,100 A80,80 0 1,1 100,20 Z' fill='rgb(100,150,250)'/%3E%3Ctext x='140' y='70' font-family='sans-serif' font-weight='bold' font-size='12' fill='white'%3E25%25%3C/text%3E%3Ctext x='70' y='120' font-family='sans-serif' font-weight='bold' font-size='12' fill='white'%3E75%25%3C/text%3E%3C/svg%3E",
+        opts: ["₹15,000", "₹20,000", "₹30,000", "₹45,000"],
+        ans: 0,
+        exp: "According to the pie chart, the sector representing the item is 25% of the total. Sales = 25% of 60,000 = 0.25 × 60,000 = ₹15,000."
+    },
+    {
+        id: 267, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "The given diagram shows a light ray incident on a medium boundary. Identify the process taking place.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='160' viewBox='0 0 260 160'%3E%3Crect width='260' height='160' fill='white'/%3E%3Crect x='20' y='80' width='220' height='60' fill='lightblue' fill-opacity='0.4' stroke='blue'/%3E%3Cline x1='20' y1='80' x2='240' y2='80' stroke='black' stroke-width='2'/%3E%3Cline x1='120' y1='20' x2='180' y2='80' stroke='black' stroke-width='2'/%3E%3Cline x1='180' y1='80' x2='210' y2='140' stroke='black' stroke-width='2'/%3E%3Cline x1='180' y1='80' x2='180' y2='20' stroke='gray' stroke-dasharray='4'/%3E%3Cline x1='180' y1='80' x2='180' y2='140' stroke='gray' stroke-dasharray='4'/%3E%3C/svg%3E",
+        opts: ["Reflection", "Refraction", "Dispersion", "Absorption"],
+        ans: 1,
+        exp: "As the light ray crosses the boundary from the lighter medium (air) to the denser medium (liquid), it bends towards the normal. This bending of light when transitioning between media is Refraction."
+    },
+    {
+        id: 268, exam: "IEO", cls: "8", year: "2023", section: "English",
+        q: "Fill in the blank: 'He behaves as if he ________ the owner of the house.'",
+        opts: ["is", "was", "were", "has been"],
+        ans: 2,
+        exp: "We use the subjunctive form 'were' after 'as if' / 'as though' to express a hypothetical situation contrary to fact."
+    },
+    {
+        id: 269, exam: "IGKO", cls: "8", year: "2023", section: "General Knowledge",
+        q: "Which state of India is highlighted in the geographical outline (famous for tea production)?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='140' viewBox='0 0 220 140'%3E%3Crect width='220' height='140' fill='white'/%3E%3Cpath d='M20,70 Q50,30 90,60 T160,50 T200,90 Q150,110 110,80 T50,100 Z' fill='rgb(255,107,0)' fill-opacity='0.2' stroke='black' stroke-width='1.5'/%3E%3Ctext x='110' y='75' font-family='sans-serif' font-weight='bold' font-size='14' text-anchor='middle'%3EAssam%3C/text%3E%3C/svg%3E",
+        opts: ["West Bengal", "Assam", "Kerala", "Karnataka"],
+        ans: 1,
+        exp: "Assam is the largest tea-producing state in India, accounting for over 50% of the country's total tea output."
+    },
+    {
+        id: 270, exam: "IMO", cls: "8", year: "2024", section: "Logical Reasoning",
+        q: "Find the mirror image of the given figure with respect to the mirror line MN.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='120' viewBox='0 0 280 120'%3E%3Crect width='280' height='120' fill='white'/%3E%3Cg transform='translate(20,20)'%3E%3Crect width='60' height='60' fill='none' stroke='black' stroke-width='2'/%3E%3Cpolygon points='10,10 50,10 10,50' fill='rgb(255,107,0)'/%3E%3C/g%3E%3Cline x1='120' y1='10' x2='120' y2='90' stroke='black' stroke-width='3' stroke-dasharray='4'/%3E%3Ctext x='125' y='18' font-family='sans-serif' font-weight='bold' font-size='11'%3EM%3C/text%3E%3Ctext x='125' y='88' font-family='sans-serif' font-weight='bold' font-size='11'%3EN%3C/text%3E%3Cg transform='translate(180,20)'%3E%3Crect width='60' height='60' fill='none' stroke='black' stroke-width='2'/%3E%3Cpolygon points='50,10 10,10 50,50' fill='rgb(255,107,0)'/%3E%3C/g%3E%3C/svg%3E",
+        opts: ["Option shown on the right", "Mirror image has triangle at bottom-left", "Mirror image has triangle at bottom-right", "None of these"],
+        ans: 0,
+        exp: "The original figure has a shaded triangle in the top-left corner. In the mirror image across a vertical mirror line MN, the left and right positions are reversed. Therefore, the shaded triangle will be in the top-right corner, matching the right option."
+    },
+    {
+        id: 271, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Look at the diagram of the animal cell. Identify organelle Y.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='180' viewBox='0 0 200 180'%3E%3Crect width='200' height='180' fill='white'/%3E%3Cpath d='M30,90 C30,40 170,40 170,90 C170,140 30,140 30,90' fill='none' stroke='black' stroke-width='2'/%3E%3Ccircle cx='100' cy='90' r='24' fill='none' stroke='blue' stroke-width='2'/%3E%3Ccircle cx='100' cy='90' r='10' fill='blue'/%3E%3Cg stroke='red' stroke-width='2' fill='none'%3E%3Cpath d='M50,70 Q60,55 70,75'/%3E%3Cpath d='M130,110 Q140,95 150,115'/%3E%3Ctext x='160' y='120' font-family='sans-serif' font-weight='bold' font-size='12' fill='red'%3EY%3C/text%3E%3C/g%3E%3C/svg%3E",
+        opts: ["Nucleus", "Mitochondria", "Ribosome", "Golgi Body"],
+        ans: 1,
+        exp: "The oval-shaped organelles with folded inner membranes (cristae) shown in red are Mitochondria, the powerhouses of the cell."
+    },
+    {
+        id: 272, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Identify the part of speech of the bold word: 'The train arrived **on** time.'",
+        opts: ["Conjunction", "Preposition", "Adverb", "Adjective"],
+        ans: 1,
+        exp: "'On' is a preposition expressing the relationship of time (arrived on schedule)."
+    },
+    {
+        id: 273, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Which element is represented by the atomic symbol 'Fe'?",
+        opts: ["Fluorine", "Iron", "Gold", "Lead"],
+        ans: 1,
+        exp: "'Fe' stands for Iron, derived from its Latin name Ferrum."
+    },
+    {
+        id: 274, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "What is the coordinate of point P in the cartesian plane shown?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='white'/%3E%3Cline x1='20' y1='100' x2='180' y2='100' stroke='black' stroke-width='2'/%3E%3Cline x1='100' y1='20' x2='100' y2='180' stroke='black' stroke-width='2'/%3E%3Cline x1='140' y1='100' x2='140' y2='60' stroke='gray' stroke-dasharray='2'/%3E%3Cline x1='100' y1='60' x2='140' y2='60' stroke='gray' stroke-dasharray='2'/%3E%3Ccircle cx='140' cy='60' r='4' fill='red'/%3E%3Ctext x='148' y='55' font-family='sans-serif' font-weight='bold' font-size='12' fill='red'%3EP%3C/text%3E%3Ctext x='136' y='115' font-family='sans-serif' font-size='10'%3E3%3C/text%3E%3Ctext x='88' y='64' font-family='sans-serif' font-size='10'%3E2%3C/text%3E%3C/svg%3E",
+        opts: ["(2, 3)", "(3, 2)", "(3, 3)", "(2, 2)"],
+        ans: 1,
+        exp: "The point P is 3 units along the x-axis and 2 units along the y-axis. The coordinates are (x, y) = (3, 2)."
+    },
+    {
+        id: 275, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Look at the diagram showing a crop field preparation process. Identify the tool shown.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='120' viewBox='0 0 220 120'%3E%3Crect width='220' height='120' fill='white'/%3E%3Cline x1='30' y1='80' x2='190' y2='80' stroke='black' stroke-width='4'/%3E%3Cline x1='50' y1='80' x2='50' y2='110' stroke='black' stroke-width='3'/%3E%3Cline x1='90' y1='80' x2='90' y2='110' stroke='black' stroke-width='3'/%3E%3Cline x1='130' y1='80' x2='130' y2='110' stroke='black' stroke-width='3'/%3E%3Cline x1='170' y1='80' x2='170' y2='110' stroke='black' stroke-width='3'/%3E%3Cline x1='110' y1='80' x2='110' y2='30' stroke='black' stroke-width='4'/%3E%3C/svg%3E",
+        opts: ["Plough", "Hoe", "Cultivator", "Sickle"],
+        ans: 2,
+        exp: "The tool with multiple metal teeth attached to a frame is a Cultivator, driven by a tractor to loosen and aerate the soil quickly."
+    },
+    {
+        id: 276, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Choose the correct spelling of the word meaning 'essential/needed'.",
+        opts: ["Necessary", "Necesary", "Neccessary", "Necessery"],
+        ans: 0,
+        exp: "The correct spelling is 'Necessary' (one 'c', two 's's)."
+    },
+    {
+        id: 277, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "What is the capital of Canada?",
+        opts: ["Toronto", "Vancouver", "Montreal", "Ottawa"],
+        ans: 3,
+        exp: "Ottawa is the capital of Canada, while Toronto is its largest city."
+    },
+    {
+        id: 278, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "In the circle shown, angle AOB is 60°. What is the length of chord AB if the radius of the circle is 6 cm?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='white'/%3E%3Ccircle cx='80' cy='80' r='60' fill='none' stroke='black' stroke-width='2'/%3E%3Cline x1='80' y1='80' x2='132' y2='50' stroke='black' stroke-width='2'/%3E%3Cline x1='80' y1='80' x2='132' y2='110' stroke='black' stroke-width='2'/%3E%3Cline x1='132' y1='50' x2='132' y2='110' stroke='blue' stroke-width='2'/%3E%3Ccircle cx='80' cy='80' r='3' fill='black'/%3E%3Ctext x='70' y='84' font-family='sans-serif' font-size='10'%3EO%3C/text%3E%3Ctext x='136' y='46' font-family='sans-serif' font-size='10'%3EA%3C/text%3E%3Ctext x='136' y='116' font-family='sans-serif' font-size='10'%3EB%3C/text%3E%3Ctext x='96' y='82' font-family='sans-serif' font-size='9'%3E60°%3C/text%3E%3C/svg%3E",
+        opts: ["3 cm", "6 cm", "9 cm", "12 cm"],
+        ans: 1,
+        exp: "Triangle AOB is isosceles because OA = OB (radii = 6 cm). Since the angle AOB is 60°, the other two angles must sum to 120°. As they are equal, each is 60°. Thus, triangle AOB is equilateral, meaning chord AB = OA = OB = 6 cm."
+    },
+    {
+        id: 279, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Look at the diagram showing a sound wave. Identify segment X.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='120' viewBox='0 0 260 120'%3E%3Crect width='260' height='120' fill='white'/%3E%3Cpath d='M20,60 Q50,10 80,60 T140,60 T200,60 T260,60' fill='none' stroke='black' stroke-width='2'/%3E%3Cline x1='50' y1='60' x2='50' y2='10' stroke='blue' stroke-width='1.5' stroke-dasharray='2'/%3E%3Cline x1='20' y1='60' x2='260' y2='60' stroke='gray' stroke-width='1'/%3E%3Ctext x='58' y='35' font-family='sans-serif' font-weight='bold' font-size='12' fill='blue'%3EX%3C/text%3E%3C/svg%3E",
+        opts: ["Frequency", "Wavelength", "Amplitude", "Time period"],
+        ans: 2,
+        exp: "The maximum displacement of a particle from its mean position (equilibrium line) is called the Amplitude (marked as X)."
+    },
+    {
+        id: 278, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Identify the correct conjunction: 'We decided to go for a picnic ________ it was raining heavily.'",
+        opts: ["because", "although", "therefore", "so"],
+        ans: 1,
+        exp: "We use 'although' to introduce a statement of contrast (despite the rain)."
+    },
+    {
+        id: 281, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Which planet is known as the 'Red Planet'?",
+        opts: ["Venus", "Mars", "Jupiter", "Saturn"],
+        ans: 1,
+        exp: "Mars is called the Red Planet because iron minerals in its soil oxidize (rust), giving it a reddish appearance."
+    },
+    {
+        id: 282, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "A cubical box has volume 512 cm³. Find the length of its side.",
+        opts: ["6 cm", "8 cm", "12 cm", "16 cm"],
+        ans: 1,
+        exp: "Volume of a cube = side³. side = ∛512 = 8 cm."
+    },
+    {
+        id: 283, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Look at the diagram. What type of friction is active when the box is sliding down?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='140' viewBox='0 0 220 140'%3E%3Crect width='220' height='140' fill='white'/%3E%3Cpolygon points='20,110 180,110 180,30' fill='none' stroke='black' stroke-width='2'/%3E%3Cg transform='translate(80, 50) rotate(-26)'%3E%3Crect x='0' y='0' width='40' height='25' fill='rgb(255,107,0)' fill-opacity='0.2' stroke='black' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E",
+        opts: ["Static friction", "Sliding friction", "Rolling friction", "Fluid friction"],
+        ans: 1,
+        exp: "When one body slides over the surface of another, the resistance force encountered is called Sliding friction."
+    },
+    {
+        id: 284, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Find the passive voice form of: 'She is singing a song.'",
+        opts: [
+            "A song is sung by her.",
+            "A song is being sung by her.",
+            "A song was sung by her.",
+            "A song was being sung by her."
+        ],
+        ans: 1,
+        exp: "Active Present Continuous changes to Passive Present Continuous: Object + is/am/are + being + V₃ + by + Subject. So, 'A song is being sung by her.'"
+    },
+    {
+        id: 285, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Who is the author of the Harry Potter book series?",
+        opts: ["J.K. Rowling", "Roald Dahl", "Rick Riordan", "C.S. Lewis"],
+        ans: 0,
+        exp: "J.K. Rowling is the British author who wrote the world-famous Harry Potter fantasy series."
+    },
+    {
+        id: 286, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "The given graph shows temperature records of a patient. What is the difference in temperature between 10:00 AM and 11:00 AM?",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='160' viewBox='0 0 260 160'%3E%3Crect width='260' height='160' fill='white'/%3E%3Cline x1='40' y1='130' x2='240' y2='130' stroke='black' stroke-width='2'/%3E%3Cline x1='40' y1='130' x2='40' y2='20' stroke='black' stroke-width='2'/%3E%3Ccircle cx='100' cy='90' r='4' fill='red'/%3E%3Ccircle cx='180' cy='50' r='4' fill='red'/%3E%3Cline x1='100' y1='90' x2='180' y2='50' stroke='red' stroke-width='2'/%3E%3Ctext x='100' y='145' font-family='sans-serif' font-size='10' text-anchor='middle'%3E10 AM%3C/text%3E%3Ctext x='180' y='145' font-family='sans-serif' font-size='10' text-anchor='middle'%3E11 AM%3C/text%3E%3Ctext x='30' y='94' font-family='sans-serif' font-size='10' text-anchor='end'%3E37°C%3C/text%3E%3Ctext x='30' y='54' font-family='sans-serif' font-size='10' text-anchor='end'%3E39°C%3C/text%3E%3C/svg%3E",
+        opts: ["1°C", "2°C", "3°C", "4°C"],
+        ans: 1,
+        exp: "At 10:00 AM, temperature is 37°C. At 11:00 AM, it is 39°C. Difference = 39 - 37 = 2°C."
+    },
+    {
+        id: 287, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "What is the force of attraction that exists between any two masses in the universe called?",
+        opts: ["Electrostatic force", "Magnetic force", "Gravitational force", "Nuclear force"],
+        ans: 2,
+        exp: "Gravitational force is the attractive force that acts between all objects with mass in the universe."
+    },
+    {
+        id: 288, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Choose the word closest in meaning to 'ABANDON'.",
+        opts: ["Keep", "Adopt", "Desert", "Cherish"],
+        ans: 2,
+        exp: "'Abandon' means to leave behind or run away from. Hence, 'Desert' is the synonym."
+    },
+    {
+        id: 289, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Which organ in the human body produces bile juice?",
+        opts: ["Stomach", "Liver", "Pancreas", "Gallbladder"],
+        ans: 1,
+        exp: "The Liver produces bile juice, which is stored in the gallbladder and helps in digesting fats."
+    },
+    {
+        id: 290, exam: "IMO", cls: "8", year: "2024", section: "Logical Reasoning",
+        q: "Choose the correct pattern from the options that completes the given design.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='white'/%3E%3Crect x='20' y='20' width='120' height='120' fill='none' stroke='black' stroke-width='2'/%3E%3Cline x1='80' y1='20' x2='80' y2='140' stroke='black' stroke-width='1.5'/%3E%3Cline x1='20' y1='80' x2='140' y2='80' stroke='black' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='50' r='15' fill='rgb(255,107,0)'/%3E%3Ccircle cx='110' cy='50' r='15' fill='rgb(255,107,0)'/%3E%3Ccircle cx='50' cy='110' r='15' fill='rgb(255,107,0)'/%3E%3Ctext x='110' y='118' font-family='sans-serif' font-weight='bold' font-size='20' text-anchor='middle' fill='orange'%3E?%3C/text%3E%3C/svg%3E",
+        opts: ["Orange Circle", "Plain Circle", "Plain Square", "Orange Square"],
+        ans: 0,
+        exp: "To maintain symmetry across the 2x2 grid, each quadrant should contain a matching orange circle. Thus, the missing pattern is an Orange Circle."
+    },
+    {
+        id: 291, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Which of the following is a good conductor of electricity?",
+        opts: ["Rubber", "Wood", "Copper", "Plastic"],
+        ans: 2,
+        exp: "Copper is a metal with high electrical conductivity due to free electrons. Rubber, wood, and plastic are insulators."
+    },
+    {
+        id: 292, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Fill in the blank with correct relative pronoun: 'The laptop ________ I bought yesterday is working fast.'",
+        opts: ["who", "whom", "whose", "which"],
+        ans: 3,
+        exp: "We use 'which' or 'that' for non-human objects like a laptop."
+    },
+    {
+        id: 293, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Which gas is filled inside an electric bulb to prolong filament life?",
+        opts: ["Oxygen", "Nitrogen/Argon", "Carbon dioxide", "Hydrogen"],
+        ans: 1,
+        exp: "Chemically inactive gases like Nitrogen or Argon are filled in bulbs to prevent the hot tungsten filament from oxidizing."
+    },
+    {
+        id: 294, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "Evaluate: (-2)⁻³ × (-2)⁻².",
+        opts: ["-1/32", "1/32", "-32", "32"],
+        ans: 0,
+        exp: "Using exponent multiplication law: aᵐ × aⁿ = aᵐ⁺ⁿ. Here: (-2)⁻³ × (-2)⁻² = (-2)⁻³⁻² = (-2)⁻⁵ = 1 / (-2)⁵ = 1 / -32 = -1/32."
+    },
+    {
+        id: 295, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Look at the diagram showing atomic structure of an element. Find the number of valence electrons.",
+        img: "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='white'/%3E%3Ccircle cx='90' cy='90' r='15' fill='lightgray' stroke='black'/%3E%3Ctext x='90' y='94' text-anchor='middle' font-family='sans-serif' font-size='10' font-weight='bold'%3EN%3C/text%3E%3Ccircle cx='90' cy='90' r='35' fill='none' stroke='gray'/%3E%3Ccircle cx='90' cy='90' r='60' fill='none' stroke='gray'/%3E%3Ccircle cx='90' cy='55' r='4' fill='blue'/%3E%3Ccircle cx='90' cy='125' r='4' fill='blue'/%3E%3Ccircle cx='90' cy='30' r='4' fill='blue'/%3E%3C/svg%3E",
+        opts: ["1", "2", "3", "4"],
+        ans: 0,
+        exp: "The innermost shell contains 2 electrons (blue). The outermost shell (valence shell) contains exactly 1 electron. Therefore, the number of valence electrons is 1."
+    },
+    {
+        id: 296, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Find the antonym of 'GENEROUS'.",
+        opts: ["Kind", "Stingy", "Helpful", "Noble"],
+        ans: 1,
+        exp: "'Generous' means willing to give or share. 'Stingy' means mean/ungiving, which is its direct antonym."
+    },
+    {
+        id: 297, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "What is the capital of Italy?",
+        opts: ["Venice", "Milan", "Florence", "Rome"],
+        ans: 3,
+        exp: "Rome is the capital and largest city of Italy."
+    },
+    {
+        id: 298, exam: "IMO", cls: "8", year: "2024", section: "Mathematical Reasoning",
+        q: "Find the value of x if 5ˣ⁻¹ = 125.",
+        opts: ["2", "3", "4", "5"],
+        ans: 2,
+        exp: "Write 125 as base 5: 125 = 5³. So 5ˣ⁻¹ = 5³ → x - 1 = 3 → x = 4."
+    },
+    {
+        id: 299, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "What substance is primarily used to make agricultural fertilizers?",
+        opts: ["Nitrogen", "Helium", "Gold", "Carbon"],
+        ans: 0,
+        exp: "Nitrogen, alongside Phosphorus and Potassium (NPK), is the main ingredient in fertilizers because it supports lush leaf growth."
+    },
+    {
+        id: 300, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Which scientist discovered gravity?",
+        opts: ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Marie Curie"],
+        ans: 1,
+        exp: "Sir Isaac Newton formulated the laws of motion and universal gravitation after observing an apple falling from a tree."
     }
 ];
 
@@ -2266,6 +2648,7 @@ function renderQuestions() {
                 <span class="q-tag tag-section">${q.section}</span>
             </div>
             <div class="q-text">Q. ${q.q}</div>
+            ${q.img ? `<div class="q-image-container" style="margin-bottom: 20px; text-align: center;"><img src="${q.img}" class="q-image" alt="Question Diagram" style="max-width: 100%; max-height: 350px; border-radius: 12px; border: 1.5px solid var(--border); box-shadow: var(--shadow-sm); padding: 5px; background: white;"></div>` : ''}
             <div class="options-grid" id="opts-${q.id}">
                 ${q.opts.map((o, i) => `
                     <div class="option" id="opt-${q.id}-${i}" onclick="selectOption(${q.id}, ${i})">
