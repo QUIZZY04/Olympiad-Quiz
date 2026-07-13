@@ -297,7 +297,7 @@ body {
     <h1>SOF Previous Year <span>Questions with Answers</span></h1>
     <p>Practice real exam-style questions from SOF IMO, NSO, IEO, and IGKO. Filter by exam, class, and year — then click to reveal the answer and explanation instantly.</p>
     <div class="stat-row">
-        <div class="stat-pill"><span>📋</span> 100+ Questions</div>
+        <div class="stat-pill"><span>📋</span> 150+ Questions</div>
         <div class="stat-pill"><span>✅</span> Instant Answers</div>
         <div class="stat-pill"><span>📚</span> IMO · NSO · IEO · IGKO</div>
         <div class="stat-pill"><span>🎯</span> Class 3–10</div>
@@ -1134,12 +1134,376 @@ const PYQ_DATA = [
         ans: 1,
         exp: "Alexander Graham Bell is credited with inventing the telephone in 1876. He was the first to be awarded a patent for the telephone on March 7, 1876. Thomas Edison invented the phonograph and practical light bulb, Nikola Tesla made advances in AC electricity, and Guglielmo Marconi developed radio."
     },
+    },
     {
-        id: 100, exam: "IMO", cls: "10", year: "2021", section: "Achievers Section",
-        q: "In an Arithmetic Progression (AP), if the first term a = 5 and common difference d = 3, what is the 20th term?",
-        opts: ["57", "62", "62", "62"],
+        id: 101, exam: "IMO", cls: "5", year: "2024", section: "Mathematical Reasoning",
+        q: "What is the Roman numeral representation of 149?",
+        opts: ["CIL", "CXLIX", "CXXXXIX", "CLIX"],
         ans: 1,
-        exp: "nth term of AP: aₙ = a + (n−1)d. a₂₀ = 5 + (20−1)×3 = 5 + 19×3 = 5 + 57 = 62."
+        exp: "100 = C, 40 = XL (10 before 50), 9 = IX (1 before 10). Combining them: C + XL + IX = CXLIX."
+    },
+    {
+        id: 102, exam: "IMO", cls: "5", year: "2024", section: "Logical Reasoning",
+        q: "Which number replaces the question mark? 12, 15, 21, 30, 42, ?",
+        opts: ["54", "55", "57", "60"],
+        ans: 2,
+        exp: "Look at the differences: 15 - 12 = 3. 21 - 15 = 6. 30 - 21 = 9. 42 - 30 = 12. The pattern is multiples of 3. The next difference should be 15. Next term = 42 + 15 = 57."
+    },
+    {
+        id: 103, exam: "IMO", cls: "6", year: "2023", section: "Logical Reasoning",
+        q: "If code for CAT is 24 and SAD is 24, what is the code for SHE?",
+        opts: ["32", "30", "28", "26"],
+        ans: 0,
+        exp: "Using alphabetical positions: A=1, B=2, ..., Z=26. CAT = C(3) + A(1) + T(20) = 24. SAD = S(19) + A(1) + D(4) = 24. For SHE: S(19) + H(8) + E(5) = 32."
+    },
+    {
+        id: 104, exam: "IMO", cls: "6", year: "2023", section: "Everyday Mathematics",
+        q: "A rectangular park is 20 m long and 15 m wide. A path of uniform width 2 m is constructed all around the outside of the park. Find the area of the path.",
+        opts: ["120 m²", "144 m²", "156 m²", "180 m²"],
+        ans: 2,
+        exp: "Inner dimensions: 20 m by 15 m. Inner Area = 20 × 15 = 300 m². Path width is 2 m. Outer dimensions: length = 20 + 2×2 = 24 m, width = 15 + 2×2 = 19 m. Outer Area = 24 × 19 = 456 m². Path Area = Outer Area - Inner Area = 456 - 300 = 156 m²."
+    },
+    {
+        id: 105, exam: "IMO", cls: "7", year: "2024", section: "Achievers Section",
+        q: "The mean of 5 observations is 15. If one observation is excluded, the mean of the remaining observations becomes 13. What is the value of the excluded observation?",
+        opts: ["20", "21", "23", "25"],
+        ans: 2,
+        exp: "Sum of 5 observations = 5 × 15 = 75. Sum of remaining 4 observations = 4 × 13 = 52. Excluded observation = Sum of 5 - Sum of 4 = 75 - 52 = 23."
+    },
+    {
+        id: 106, exam: "IMO", cls: "7", year: "2024", section: "Mathematical Reasoning",
+        q: "Which of the following is equal to (x/y)⁻²?",
+        opts: ["x²/y²", "y²/x²", "-x²/y²", "-y²/x²"],
+        ans: 1,
+        exp: "Negative exponent rule states that a⁻ⁿ = 1/aⁿ. So (x/y)⁻² = (y/x)² = y²/x²."
+    },
+    {
+        id: 107, exam: "IMO", cls: "8", year: "2024", section: "Logical Reasoning",
+        q: "Pointing to a man, a woman says: 'He is the only son of my mother's husband.' How is the man related to the woman?",
+        opts: ["Father", "Uncle", "Brother", "Cousin"],
+        ans: 2,
+        exp: "'My mother's husband' is the woman's father. 'Only son of my father' is the woman's brother. Therefore, the man is her brother."
+    },
+    {
+        id: 108, exam: "IMO", cls: "8", year: "2023", section: "Mathematical Reasoning",
+        q: "Find the smallest square number that is divisible by each of the numbers 8, 15 and 20.",
+        opts: ["900", "1600", "3600", "2500"],
+        ans: 2,
+        exp: "Find LCM of 8, 15, and 20. 8 = 2³, 15 = 3 × 5, 20 = 2² × 5. LCM = 2³ × 3 × 5 = 8 × 15 = 120. Prime factorization of 120 is 2³ × 3¹ × 5¹ = 2² × 2¹ × 3¹ × 5¹. To make it a perfect square, we multiply by missing factors (2, 3, and 5) → 120 × 2 × 3 × 5 = 120 × 30 = 3600."
+    },
+    {
+        id: 109, exam: "IMO", cls: "9", year: "2024", section: "Mathematical Reasoning",
+        q: "If the area of an equilateral triangle is 16√3 cm², what is its perimeter?",
+        opts: ["20 cm", "24 cm", "28 cm", "32 cm"],
+        ans: 1,
+        exp: "Area of equilateral triangle = (√3/4) × side² = 16√3. Dividing both sides by √3: side²/4 = 16 → side² = 64 → side = 8 cm. Perimeter = 3 × side = 3 × 8 = 24 cm."
+    },
+    {
+        id: 110, exam: "IMO", cls: "9", year: "2023", section: "Logical Reasoning",
+        q: "Which fraction comes next in the sequence? 1/2, 3/4, 5/8, 7/16, ?",
+        opts: ["9/24", "9/32", "11/32", "10/32"],
+        ans: 1,
+        exp: "Numerators form an odd number sequence: 1, 3, 5, 7 → Next is 9. Denominators double each time: 2, 4, 8, 16 → Next is 32. Thus, the next fraction is 9/32."
+    },
+    {
+        id: 111, exam: "IMO", cls: "10", year: "2024", section: "Mathematical Reasoning",
+        q: "Find the sum of all two-digit natural numbers that are divisible by 4.",
+        opts: ["1188", "1210", "1240", "1320"],
+        ans: 0,
+        exp: "The two-digit numbers divisible by 4 are 12, 16, 20, ..., 96. This is an AP with first term a = 12, common difference d = 4, and last term l = 96. 96 = 12 + (n - 1) × 4 → 84 = (n - 1) × 4 → n - 1 = 21 → n = 22. Sum Sₙ = (n/2)(a + l) = (22/2)(12 + 96) = 11 × 108 = 1188."
+    },
+    {
+        id: 112, exam: "IMO", cls: "10", year: "2023", section: "Achievers Section",
+        q: "A solid sphere of radius 6 cm is melted and recast into a hollow cylinder of uniform thickness. If the external radius of the base of the cylinder is 5 cm and its height is 32 cm, find the thickness of the cylinder.",
+        opts: ["1 cm", "2 cm", "0.5 cm", "1.5 cm"],
+        ans: 0,
+        exp: "Volume of sphere = (4/3)πr³ = (4/3)π × 6³ = 288π cm³. Volume of hollow cylinder = π(R² - r²)h = π(5² - r²) × 32. Setting volumes equal: 32π(25 - r²) = 288π → 32(25 - r²) = 288 → 25 - r² = 9 → r² = 16 → r = 4 cm (internal radius). Thickness = External radius - Internal radius = 5 - 4 = 1 cm."
+    },
+    {
+        id: 113, exam: "NSO", cls: "5", year: "2024", section: "Science",
+        q: "Which of the following processes represents the transition of water vapor directly into liquid water?",
+        opts: ["Evaporation", "Condensation", "Freezing", "Melting"],
+        ans: 1,
+        exp: "Condensation is the process where water vapor (gas) changes state back to liquid water upon cooling, such as when water droplets form on the outside of a cold glass."
+    },
+    {
+        id: 114, exam: "NSO", cls: "5", year: "2023", section: "Science",
+        q: "What is the structural material that forms the exoskeleton of insects?",
+        opts: ["Cellulose", "Keratin", "Chitin", "Calcium carbonate"],
+        ans: 2,
+        exp: "Chitin is a tough, nitrogen-containing polysaccharide that forms the protective exoskeleton of insects and other arthropods, as well as the cell walls of fungi."
+    },
+    {
+        id: 115, exam: "NSO", cls: "6", year: "2024", section: "Science",
+        q: "Which vitamin deficiency causes the disease Scurvy, characterized by bleeding gums and slow wound healing?",
+        opts: ["Vitamin A", "Vitamin B1", "Vitamin C", "Vitamin D"],
+        ans: 2,
+        exp: "Scurvy is caused by a deficiency of Vitamin C (ascorbic acid). Citrus fruits like lemons, oranges, and limes are excellent sources of Vitamin C."
+    },
+    {
+        id: 116, exam: "NSO", cls: "6", year: "2023", section: "Science",
+        q: "Which plant part contains stomata, which open and close to facilitate gas exchange and transpiration?",
+        opts: ["Root tip", "Bark", "Leaf surface", "Petal"],
+        ans: 2,
+        exp: "Stomata are tiny pores located primarily on the undersides of leaves. They regulate the intake of carbon dioxide and release of oxygen and water vapor."
+    },
+    {
+        id: 117, exam: "NSO", cls: "7", year: "2024", section: "Science",
+        q: "What type of acid is present in the sting of an ant, causing a burning sensation?",
+        opts: ["Citric acid", "Formic acid", "Acetic acid", "Lactic acid"],
+        ans: 1,
+        exp: "Ant sting contains formic acid (methanoic acid). Neutralizing it with a mild base like baking soda (sodium hydrogen carbonate) or calamine lotion helps relieve the pain."
+    },
+    {
+        id: 118, exam: "NSO", cls: "7", year: "2023", section: "Science",
+        q: "A direct current of heat transfer that happens only in fluids (liquids and gases) via actual mass movement of molecules is called:",
+        opts: ["Conduction", "Convection", "Radiation", "Insulation"],
+        ans: 1,
+        exp: "Convection is the heat transfer mechanism in fluids where warmer, less dense fluid rises and cooler, denser fluid sinks, forming a circulation loop."
+    },
+    {
+        id: 119, exam: "NSO", cls: "8", year: "2024", section: "Science",
+        q: "Which cell organelle is known as the 'suicide bag' of the cell because it contains hydrolytic enzymes that digest cellular waste?",
+        opts: ["Mitochondria", "Lysosome", "Ribosome", "Golgi apparatus"],
+        ans: 1,
+        exp: "Lysosomes contain powerful digestive enzymes. If a cell is damaged or dies, lysosomes burst and digest their own cell, which is why they are called suicide bags."
+    },
+    {
+        id: 120, exam: "NSO", cls: "8", year: "2023", section: "Science",
+        q: "What is the force per unit area acting on a surface called?",
+        opts: ["Friction", "Tension", "Pressure", "Gravity"],
+        ans: 2,
+        exp: "Pressure is defined as force divided by the area over which it is applied (P = F/A). Its SI unit is the Pascal (Pa), equivalent to 1 N/m²."
+    },
+    {
+        id: 121, exam: "NSO", cls: "9", year: "2024", section: "Science",
+        q: "What is the chemical formula of washing soda?",
+        opts: ["NaHCO₃", "Na₂CO₃ · 10H₂O", "CaOCl₂", "NaOH"],
+        ans: 1,
+        exp: "Washing soda is sodium carbonate decahydrate, Na₂CO₃ · 10H₂O. NaHCO₃ is baking soda, and CaOCl₂ is bleaching powder."
+    },
+    {
+        id: 122, exam: "NSO", cls: "9", year: "2023", section: "Science",
+        q: "A body of mass 2 kg falls from rest. What is its kinetic energy after 3 seconds of free fall? (Take g = 10 m/s²)",
+        opts: ["300 J", "600 J", "900 J", "1200 J"],
+        ans: 2,
+        exp: "Initial velocity u = 0, time t = 3 s. Velocity after 3s: v = u + gt = 0 + 10×3 = 30 m/s. Kinetic Energy = ½mv² = ½ × 2 × 30² = 900 Joules."
+    },
+    {
+        id: 123, exam: "NSO", cls: "10", year: "2024", section: "Science",
+        q: "Which of the following organic compounds is the main component of CNG (Compressed Natural Gas)?",
+        opts: ["Methane", "Ethane", "Propane", "Butane"],
+        ans: 0,
+        exp: "Methane (CH₄) constitutes up to 90% of Compressed Natural Gas (CNG). LPG (Liquefied Petroleum Gas) mainly contains propane and butane."
+    },
+    {
+        id: 124, exam: "NSO", cls: "10", year: "2023", section: "Achievers Section",
+        q: "An object is placed at a distance of 15 cm in front of a concave mirror of focal length 10 cm. Find the nature and position of the image.",
+        opts: [
+            "Real, inverted, and formed 30 cm in front of the mirror",
+            "Virtual, erect, and formed 30 cm behind the mirror",
+            "Real, inverted, and formed 15 cm in front of the mirror",
+            "Real, inverted, and formed 60 cm in front of the mirror"
+        ],
+        ans: 0,
+        exp: "Mirror formula: 1/v + 1/u = 1/f. Object distance u = -15 cm, focal length f = -10 cm (concave mirror). 1/v = 1/f - 1/u = 1/(-10) - 1/(-15) = -1/10 + 1/15 = (-3+2)/30 = -1/30. So v = -30 cm. The negative sign indicates a real, inverted image formed 30 cm in front of the mirror."
+    },
+    {
+        id: 125, exam: "IEO", cls: "5", year: "2024", section: "English",
+        q: "Complete the sentence with correct relative pronoun: The boy ________ won the race is my cousin.",
+        opts: ["which", "who", "whom", "whose"],
+        ans: 1,
+        exp: "We use 'who' as the subject pronoun for people. 'Which' is for things/animals, 'whom' is the object pronoun, and 'whose' shows possession."
+    },
+    {
+        id: 126, exam: "IEO", cls: "5", year: "2023", section: "English",
+        q: "Find the word with correct spelling.",
+        opts: ["Receive", "Recieve", "Recievee", "Riceive"],
+        ans: 0,
+        exp: "The correct spelling is 'Receive'. Remember the rule: 'I before E, except after C' when the sound is /i:/."
+    },
+    {
+        id: 127, exam: "IEO", cls: "6", year: "2024", section: "English",
+        q: "Choose the synonym of 'CONCISE'.",
+        opts: ["Lengthy", "Brief", "Complex", "Detailed"],
+        ans: 1,
+        exp: "'Concise' means giving a lot of information clearly and in a few words; brief and to the point. Lengthy and detailed are antonyms."
+    },
+    {
+        id: 128, exam: "IEO", cls: "6", year: "2023", section: "English",
+        q: "Fill in the blank with correct conjunction: He worked hard, ________ he failed to clear the exam.",
+        opts: ["so", "because", "yet", "or"],
+        ans: 2,
+        exp: "We use 'yet' or 'but' to show contrast. 'He worked hard, yet he failed' expresses that despite the effort, the result was negative."
+    },
+    {
+        id: 129, exam: "IEO", cls: "7", year: "2024", section: "English",
+        q: "Identify the part of speech of the bold word: She walked **slowly** through the quiet park.",
+        opts: ["Adjective", "Adverb", "Noun", "Verb"],
+        ans: 1,
+        exp: "'Slowly' is an adverb because it modifies the verb 'walked' by describing how she walked."
+    },
+    {
+        id: 130, exam: "IEO", cls: "7", year: "2023", section: "English",
+        q: "Choose the correct indirect speech for: Father said, 'I am busy now.'",
+        opts: [
+            "Father said that he was busy now.",
+            "Father said that he was busy then.",
+            "Father said that I was busy then.",
+            "Father told he is busy now."
+        ],
+        ans: 1,
+        exp: "In reported speech, simple present changes to simple past ('am' → 'was'), pronouns change ('I' → 'he'), and time expressions change ('now' → 'then'). So it becomes: 'Father said that he was busy then.'"
+    },
+    {
+        id: 131, exam: "IEO", cls: "8", year: "2024", section: "English",
+        q: "Fill in the blank with correct auxiliary verb: Neither Rohan nor his friends ________ present yesterday.",
+        opts: ["was", "were", "is", "are"],
+        ans: 1,
+        exp: "When subjects are joined by 'neither... nor', the verb agrees with the closer subject. 'Friends' is plural, and the time is past ('yesterday'), so the plural past verb 'were' is correct."
+    },
+    {
+        id: 132, exam: "IEO", cls: "8", year: "2023", section: "English",
+        q: "Choose the correct meaning of the idiom: 'Bite the bullet'",
+        opts: [
+            "To be shot in battle",
+            "To face a difficult situation with courage",
+            "To make a foolish mistake",
+            "To run away from danger"
+        ],
+        ans: 1,
+        exp: "'Bite the bullet' means to endure a painful or difficult situation with resilience and courage, facing it directly."
+    },
+    {
+        id: 133, exam: "IEO", cls: "9", year: "2024", section: "English",
+        q: "Choose the antonym of 'COMPASSIONATE'.",
+        opts: ["Merciful", "Sympathetic", "Callous", "Kind"],
+        ans: 2,
+        exp: "'Compassionate' means feeling or showing sympathy and concern for others. 'Callous' means showing an insensitive and cruel disregard for others (cruel/unfeeling), which is the opposite."
+    },
+    {
+        id: 134, exam: "IEO", cls: "9", year: "2023", section: "English",
+        q: "Identify the sentence written in the Subjunctive mood.",
+        opts: [
+            "If it rains, we will stay indoors.",
+            "I wish I were the president.",
+            "He goes to school every day.",
+            "Please turn off the lights."
+        ],
+        ans: 1,
+        exp: "The subjunctive mood expresses wishes, hypothetical situations, or commands contrary to fact. 'I wish I were' (using 'were' instead of 'was' for singular first-person) is the classic subjunctive structure."
+    },
+    {
+        id: 135, exam: "IEO", cls: "10", year: "2024", section: "English",
+        q: "Complete the sentence: If I had known you were coming, I ________ you at the station.",
+        opts: ["would meet", "will meet", "would have met", "had met"],
+        ans: 2,
+        exp: "This is a Type 3 conditional sentence (past unfulfilled condition). Structure: If + past perfect, would have + past participle. Hence, 'would have met' is correct."
+    },
+    {
+        id: 136, exam: "IEO", cls: "10", year: "2023", section: "English",
+        q: "Choose the word that is correctly spelled.",
+        opts: ["Accommodate", "Acommodate", "Accomodate", "Acomodate"],
+        ans: 0,
+        exp: "The correct spelling is 'Accommodate' — it has two 'c's and two 'm's."
+    },
+    {
+        id: 137, exam: "IGKO", cls: "5", year: "2024", section: "General Knowledge",
+        q: "Which scientist discovered Penicillin, the world's first effective antibiotic, in 1928?",
+        opts: ["Louis Pasteur", "Alexander Fleming", "Robert Koch", "Edward Jenner"],
+        ans: 1,
+        exp: "Alexander Fleming discovered Penicillin in 1928 at St. Mary's Hospital, London, when he noticed mold (Penicillium notatum) contaminating a petri dish had killed the surrounding bacteria."
+    },
+    {
+        id: 138, exam: "IGKO", cls: "5", year: "2023", section: "General Knowledge",
+        q: "Which is the highest waterfall in the world?",
+        opts: ["Niagara Falls", "Victoria Falls", "Angel Falls", "Iguazu Falls"],
+        ans: 2,
+        exp: "Angel Falls in Venezuela is the highest uninterrupted waterfall in the world, with a height of 979 meters (3,212 feet) and a plunge of 807 meters."
+    },
+    {
+        id: 139, exam: "IGKO", cls: "6", year: "2024", section: "General Knowledge",
+        q: "Which layer of the atmosphere contains the ozone layer, which absorbs harmful ultraviolet radiation?",
+        opts: ["Troposphere", "Stratosphere", "Mesosphere", "Thermosphere"],
+        ans: 1,
+        exp: "The ozone layer is located in the Stratosphere, approximately 15 to 35 km above the Earth's surface."
+    },
+    {
+        id: 140, exam: "IGKO", cls: "6", year: "2023", section: "General Knowledge",
+        q: "In computer terminology, what does 'RAM' stand for?",
+        opts: ["Read Access Memory", "Random Access Memory", "Rapid Action Module", "Run Active Mode"],
+        ans: 1,
+        exp: "RAM stands for Random Access Memory, which is volatile temporary storage utilized by computers to store active operating data."
+    },
+    {
+        id: 141, exam: "IGKO", cls: "7", year: "2024", section: "General Knowledge",
+        q: "Which country is called the 'Land of the Rising Sun'?",
+        opts: ["China", "Japan", "Norway", "Thailand"],
+        ans: 1,
+        exp: "Japan is known as the 'Land of the Rising Sun' (Nihon / Nippon) because it lies to the east of the Asian continent, where the sun appears to rise first."
+    },
+    {
+        id: 142, exam: "IGKO", cls: "7", year: "2023", section: "General Knowledge",
+        q: "Which organelle is called the powerhouse of the cell?",
+        opts: ["Nucleus", "Mitochondria", "Ribosome", "Chloroplast"],
+        ans: 1,
+        exp: "Mitochondria are called powerhouses because they produce ATP (Adenosine Triphosphate), the energy currency of the cell, through cellular respiration."
+    },
+    {
+        id: 143, exam: "IGKO", cls: "8", year: "2024", section: "General Knowledge",
+        q: "Who is known as the 'Father of the Indian Constitution'?",
+        opts: ["Mahatma Gandhi", "Dr. B.R. Ambedkar", "Jawaharlal Nehru", "Dr. Rajendra Prasad"],
+        ans: 1,
+        exp: "Dr. Bhimrao Ramji Ambedkar was the Chairman of the Drafting Committee of the Constituent Assembly and is regarded as the Father of the Indian Constitution."
+    },
+    {
+        id: 144, exam: "IGKO", cls: "8", year: "2023", section: "General Knowledge",
+        q: "What is the currency of Japan?",
+        opts: ["Yuan", "Won", "Yen", "Baht"],
+        ans: 2,
+        exp: "The currency of Japan is the Yen (¥). Yuan is of China, Won is of Korea, and Baht is of Thailand."
+    },
+    {
+        id: 145, exam: "IGKO", cls: "9", year: "2024", section: "General Knowledge",
+        q: "Which is the largest hot desert in the world?",
+        opts: ["Gobi Desert", "Kalahari Desert", "Sahara Desert", "Thar Desert"],
+        ans: 2,
+        exp: "The Sahara Desert in Africa is the largest hot desert in the world, covering over 9 million square kilometers. (Antarctic and Arctic deserts are larger, but they are cold polar deserts)."
+    },
+    {
+        id: 146, exam: "IGKO", cls: "9", year: "2023", section: "General Knowledge",
+        q: "Which international organization was founded in 1945 to replace the League of Nations and maintain international peace?",
+        opts: ["World Bank", "United Nations (UN)", "NATO", "World Trade Organization (WTO)"],
+        ans: 1,
+        exp: "The United Nations (UN) was established on October 24, 1945, immediately after World War II, to prevent future global conflicts."
+    },
+    {
+        id: 147, exam: "IGKO", cls: "10", year: "2024", section: "General Knowledge",
+        q: "Which Indian monument was built by Shah Jahan in memory of his wife Mumtaz Mahal?",
+        opts: ["Red Fort", "Qutub Minar", "Taj Mahal", "Hawa Mahal"],
+        ans: 2,
+        exp: "The Taj Mahal in Agra was built by Mughal Emperor Shah Jahan between 1631 and 1648 in memory of his favorite wife, Mumtaz Mahal."
+    },
+    {
+        id: 148, exam: "IGKO", cls: "10", year: "2023", section: "General Knowledge",
+        q: "Which gas is most abundant in the Earth's atmosphere?",
+        opts: ["Oxygen", "Carbon dioxide", "Nitrogen", "Argon"],
+        ans: 2,
+        exp: "Nitrogen is the most abundant gas in the atmosphere, making up about 78.08%. Oxygen is second at 20.95%, followed by Argon at 0.93% and Carbon dioxide at 0.04%."
+    },
+    {
+        id: 149, exam: "IMO", cls: "4", year: "2024", section: "Mathematical Reasoning",
+        q: "How many lines of symmetry does a regular hexagon have?",
+        opts: ["4", "5", "6", "8"],
+        ans: 2,
+        exp: "A regular polygon with 'n' sides has exactly 'n' lines of symmetry. Since a hexagon has 6 sides, it has 6 lines of symmetry (3 passing through opposite vertices, and 3 through midpoints of opposite sides)."
+    },
+    {
+        id: 150, exam: "NSO", cls: "4", year: "2024", section: "Science",
+        q: "Which constituent of blood is responsible for blood clotting at the site of a cut or wound?",
+        opts: ["Red Blood Cells (RBCs)", "White Blood Cells (WBCs)", "Platelets", "Plasma"],
+        ans: 2,
+        exp: "Platelets (thrombocytes) aggregate and release clotting factors at the site of a cut, producing a fibrin mesh to form a clot and stop bleeding."
     }
 ];
 
