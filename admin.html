@@ -3956,7 +3956,26 @@ window.createSession = async () => {
         });
 
         setStatus("✅ Session Created Successfully!", "success");
-        location.reload(); // Refresh to show the new session in the managed list
+        
+        // Clear manual IDs fields and range fields so new questions can be entered
+        document.getElementById("sessManualIds").value = "";
+        document.getElementById("sessAchManualIds").value = "";
+        document.getElementById("sessStartId").value = "";
+        document.getElementById("sessEndId").value = "";
+        document.getElementById("sessAchStartId").value = "";
+        document.getElementById("sessAchEndId").value = "";
+
+        // Reload the managed sessions list programmatically
+        if (typeof window.loadSessions === 'function') {
+            await window.loadSessions();
+        }
+
+        // Update suggestions if function exists
+        if (typeof window.updateSessSuggestions === 'function') {
+            window.updateSessSuggestions();
+        }
+
+        resetBtn();
     } catch (err) {
         console.error("Session Creation Error:", err);
         setStatus("❌ Critical Error: " + err.message);
