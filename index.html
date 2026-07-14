@@ -648,7 +648,7 @@
 <!-- DYNAMIC BLOG & TESTIMONIAL SCRIPTS -->
 <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, collection, query, orderBy, limit, getDocs, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
     import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const firebaseConfig = {
@@ -745,8 +745,34 @@
             const timeB = b.timestamp?.toMillis ? b.timestamp.toMillis() : 0;
             return timeB - timeA;
         });
-        
-        
+
+        // Resolve actual student names from 'users' collection in Firestore if name is missing or "Student"
+        const userCache = {};
+        const namePromises = realFeedbacks.map(async (data) => {
+            if (data.uid && data.uid !== "anonymous" && (!data.name || data.name === "Student")) {
+                if (userCache[data.uid]) {
+                    data.name = userCache[data.uid];
+                } else {
+                    try {
+                        const uSnap = await getDoc(doc(db, "users", data.uid));
+                        if (uSnap.exists()) {
+                            const uData = uSnap.data();
+                            const fetchedName = uData.name || uData.fullName || uData.displayName;
+                            if (fetchedName && fetchedName !== "Student") {
+                                data.name = fetchedName;
+                                userCache[data.uid] = fetchedName;
+                            }
+                        }
+                    } catch(e) {
+                        console.warn(`Failed to resolve student name for uid ${data.uid}:`, e.message);
+                    }
+                }
+            }
+            if (data.name === "Guest" || data.name === "Visitor" || data.name === "User" || data.name === "anonymous") {
+                data.name = "Student";
+            }
+        });
+        await Promise.all(namePromises);
         const fallbacks = [
             { name: "Ananya Sharma", suggestion: "The mock tests are exactly like the real NSO exam. The detailed solutions helped me clear my doubts and secure an international rank.", rating: "5 Star", class: "AIR 12, SOF NSO" },
             { name: "Rahul Verma", suggestion: "I loved the chapter-wise practice feature. It allowed me to focus on my weak areas in Mathematics before taking the full IMO mock tests.", rating: "5 Star", class: "Class 8 Student" },
