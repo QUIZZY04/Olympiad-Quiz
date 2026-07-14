@@ -213,6 +213,98 @@
             .seo-section h2, .rich-text-section h2 { font-size: 1.5rem; }
             .modal-content { padding: 25px 20px; }
         }
+
+        /* FAQ Accordion Styling */
+        .faq-section {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        .faq-section h2 {
+            color: #0f172a;
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .faq-section h2 span {
+            color: var(--brand);
+        }
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: var(--surface);
+        }
+        .faq-item:hover {
+            border-color: var(--brand);
+            box-shadow: var(--shadow-sm);
+        }
+        .faq-question {
+            padding: 20px 24px;
+            background: var(--surface);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #0f172a;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        .faq-question:hover {
+            background: var(--subtle);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0, 1, 0, 1);
+            background: var(--surface);
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .faq-answer-inner {
+            padding: 0 24px 20px 24px;
+        }
+        .faq-item.active {
+            border-color: var(--brand);
+            box-shadow: var(--shadow-sm);
+        }
+        .faq-item.active .faq-question {
+            background: var(--subtle);
+            color: var(--brand);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+        }
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--muted);
+            font-weight: 700;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: var(--brand);
+        }
+        @media (max-width: 768px) {
+            .faq-section { padding: 25px 20px; }
+            .faq-section h2 { font-size: 1.5rem; }
+            .faq-question { padding: 15px 18px; font-size: 0.95rem; }
+            .faq-answer-inner { padding: 0 18px 15px 18px; }
+        }
     </style>
     <script type="module" src="auth-guard.js"></script>
     <script type="application/ld+json">
@@ -487,6 +579,79 @@
             </ul>
             <p>Consistent practice with our <strong>Olympiad online test free</strong> tools bridges the gap between basic learning and high-performance execution. Maximize your potential and join thousands of students benefiting from our platform today!</p>
         </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions (FAQ) - <span>Olympiad Prep</span></h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I access the free Olympiad mock tests for IMO and NSO?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            You can access all our online Olympiad tests completely free of charge. Simply select your grade (Class 1 to 10), choose your subject (Mathematics Olympiad IMO, Science Olympiad NSO, English Olympiad IEO, or Logical Reasoning IRO), and start practicing instantly under real exam conditions without any fees.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are these online mock tests aligned with the latest 2026 Olympiad exam patterns?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes, all mock test papers on this platform are meticulously structured according to the latest SOF (Science Olympiad Foundation), SilverZone, and CREST exam syllabus. The questions reflect the actual exam difficulty levels, marking schemes, and question distributions.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How does the Olympiad mock test help in improving my national rank?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Our mock tests feature real exam simulations with timers, which build your speed and accuracy. Upon completing a test, you get instant performance analytics, detailed solutions for all questions, and an All India Rank. This helps you target your weak areas and significantly boost your actual Olympiad ranking.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do the mock tests include the advanced Achievers Section questions?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes, absolutely! Every full-length Olympiad mock test includes a dedicated Achievers Section featuring High-Order Thinking Skills (HOTS) questions. These questions carry higher weightage (2 or 3 marks each) in actual exams like the IMO and NSO, and mastering them is critical for securing top ranks.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I practice chapter-wise sample papers in addition to full mock tests?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes, our platform provides a comprehensive study package. In addition to full-length Olympiad mock tests, we offer interactive chapter-wise practice tests in the <a href="chapterwise.html" style="color: var(--brand); font-weight: 600;">Chapterwise Zone</a> so you can strengthen individual topics before attempting the full mock papers.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the recommended strategy for using these free Olympiad sample papers?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            We recommend starting with chapter-wise practice to build concept clarity. Once you are comfortable with individual topics, attempt our full-length free IMO and NSO mock tests under strict timed conditions. Analyze the detailed scorecard and review the step-by-step solutions for any incorrect answers to continuously improve.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Confirmation Modal -->
@@ -542,6 +707,27 @@
 </div>
 
 <script>
+    // FAQ Accordion Interactivity
+    document.addEventListener('DOMContentLoaded', () => {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Toggle clicked item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    });
+
     let pendingSubject = "";
 
     function startMock(subject) {
