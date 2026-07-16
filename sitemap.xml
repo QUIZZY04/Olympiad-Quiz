@@ -594,18 +594,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://olympiadquiz.org/imo-mock-test.html</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://olympiadquiz.org/nso-mock-test.html</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://olympiadquiz.org/jee-main-pyq.html</loc>
     <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
