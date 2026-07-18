@@ -1155,3 +1155,210 @@ exports.sendErrorReportAckEmail = onDocumentCreated(
     } catch (error) { console.error("Error sending error report ack email:", error.message); }
   }
 );
+
+// =================================================================
+// 8. WHATSAPP CLOUD API INTEGRATION (NEW - ADDITIVE ONLY)
+// =================================================================
+// Everything below is new. It does not modify, remove, or re-declare
+// any export above this line. It reuses `onCall`, `HttpsError`,
+// `onDocumentCreated`, `onDocumentWritten`, `admin`, and `db` already
+// imported/initialized earlier in this file. See functions/whatsapp/
+// and functions/config.js for the implementation, and
+// functions/whatsapp/README.md for full setup + deployment docs.
+
+const { WHATSAPP_SECRETS, COLLECTIONS: WHATSAPP_COLLECTIONS } = require("./config");
+const { whatsappWebhook } = require("./whatsapp/webhook");
+const {
+  whatsappReminder24h,
+  whatsappReminder1h,
+  whatsappWeeklyNewsletter,
+  whatsappFestivalGreeting,
+  whatsappBirthdayGreeting,
+} = require("./whatsapp/scheduler");
+const whatsappService = require("./whatsapp/whatsappService");
+
+// --- 8a. Webhook (GET verify + POST events) ---
+exports.whatsappWebhook = whatsappWebhook;
+
+// --- 8b. Scheduled jobs (24h/1h reminders, newsletter, festival & birthday greetings) ---
+exports.whatsappReminder24h = whatsappReminder24h;
+exports.whatsappReminder1h = whatsappReminder1h;
+exports.whatsappWeeklyNewsletter = whatsappWeeklyNewsletter;
+exports.whatsappFestivalGreeting = whatsappFestivalGreeting;
+exports.whatsappBirthdayGreeting = whatsappBirthdayGreeting;
+
+/**
+ * Admin-only: send a one-off WhatsApp broadcast to a filtered slice of
+ * the `users` collection. Mirrors the exact admin check already used by
+ * sendBulkSMS / sendPushNotification above.
+ */
+exports.sendWhatsAppBroadcast = onCall({
+  secrets: WHATSAPP_SECRETS,
+  timeoutSeconds: 540,
+  memory: "512MiB",
+}, async (request) => {
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
+
+  const { message, targetType, targetValue, useTemplate } = request.data;
+  if (!message || !targetType) {
+    throw new HttpsError("invalid-argument", "Message and targetType are required.");
+  }
+
+  try {
+    return await whatsappService.sendBroadcast({ message, targetType, targetValue, useTemplate });
+  } catch (error) {
+    console.error("WhatsApp Broadcast Error:", error);
+    throw new HttpsError("internal", "Failed to send WhatsApp broadcast.");
+  }
+});
+
+/**
+ * Generates and sends a WhatsApp OTP. Standalone utility, independent of
+ * Firebase Phone Auth - does not touch the existing login/signup OTP flow.
+ * Callable by any authenticated user (rate limiting is the caller's
+ * responsibility if exposed to end users; tighten to admin-only if this
+ * is only meant for internal/support use).
+ */
+exports.generateAndSendWhatsAppOtp = onCall({
+  secrets: WHATSAPP_SECRETS,
+}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "You must be logged in.");
+  }
+  const { phoneNumber } = request.data;
+  if (!phoneNumber) {
+    throw new HttpsError("invalid-argument", "phoneNumber is required.");
+  }
+  try {
+    return await whatsappService.generateAndSendOtp(phoneNumber);
+  } catch (error) {
+    console.error("WhatsApp OTP send error:", error);
+    throw new HttpsError("internal", "Failed to send WhatsApp OTP.");
+  }
+});
+
+/** Verifies a code sent by generateAndSendWhatsAppOtp(). */
+exports.verifyWhatsAppOtp = onCall({}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "You must be logged in.");
+  }
+  const { otpId, code } = request.data;
+  if (!otpId || !code) {
+    throw new HttpsError("invalid-argument", "otpId and code are required.");
+  }
+  try {
+    return await whatsappService.verifyOtp(otpId, code);
+  } catch (error) {
+    console.error("WhatsApp OTP verify error:", error);
+    throw new HttpsError("internal", "Failed to verify WhatsApp OTP.");
+  }
+});
+
+/**
+ * NEW Firestore trigger on the SAME document path already watched by
+ * `sendLiveQuizRegistrationEmail` above (users/{uid}/purchases/{sessionId}).
+ * Firestore supports multiple independent triggers on one document path,
+ * so this runs alongside the existing email function without altering it.
+ * Sends both a payment-success and a registration-success WhatsApp message.
+ */
+exports.notifyWhatsAppOnPurchase = onDocumentCreated(
+  {
+    document: "users/{uid}/purchases/{sessionId}",
+    secrets: WHATSAPP_SECRETS,
+  },
+  async (event) => {
+    const { uid, sessionId } = event.params;
+    const purchase = event.data?.data();
+    if (!purchase) return;
+
+    try {
+      const userSnap = await db.collection("users").doc(uid).get();
+      if (!userSnap.exists) return;
+      const user = userSnap.data();
+      if (!user.phone) return;
+
+      const sessionSnap = await db.collection("test_sessions").doc(sessionId).get();
+      const session = sessionSnap.exists ? sessionSnap.data() : {};
+      const sessionTitle = session.title || "LIVE Olympiad Test";
+      const grade = session.class || "1-10";
+      const dateTimeText = session.startTime
+        ? session.startTime.toDate().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" })
+        : "To be announced";
+
+      await whatsappService.sendPaymentSuccess(user.phone, {
+        name: user.name || "Student",
+        amount: purchase.amount || 0,
+        sessionTitle,
+        orderId: purchase.orderId || purchase.paymentId || sessionId,
+      });
+
+      await whatsappService.sendRegistrationSuccess(user.phone, {
+        name: user.name || "Student",
+        sessionTitle,
+        grade,
+        dateTimeText,
+      });
+    } catch (error) {
+      console.error(`notifyWhatsAppOnPurchase failed for user ${uid}, session ${sessionId}:`, error.message);
+    }
+  }
+);
+
+/**
+ * NEW Firestore trigger on the SAME document path already watched by
+ * `sendResultEmail` above (leaderboard/{resultId}). Sends a WhatsApp
+ * result notification, and additionally a certificate notification for
+ * Live Quiz (Championship) entries.
+ */
+exports.notifyWhatsAppOnResult = onDocumentWritten(
+  {
+    document: "leaderboard/{resultId}",
+    secrets: WHATSAPP_SECRETS,
+  },
+  async (event) => {
+    const afterData = event.data?.after.data();
+    const beforeData = event.data?.before.data();
+    if (!afterData) return;
+
+    // Same "unchanged" guard as sendResultEmail, so a background write
+    // doesn't trigger a duplicate WhatsApp notification.
+    if (beforeData) {
+      const scoreUnchanged = beforeData.score === afterData.score;
+      const dateUnchanged = beforeData.date?.toMillis() === afterData.date?.toMillis();
+      if (scoreUnchanged && dateUnchanged) return;
+    }
+
+    const { uid, score, total, rank, isChampionship, topicName } = afterData;
+    if (typeof score === "undefined" || typeof total === "undefined" || !uid) return;
+
+    try {
+      const userSnap = await db.collection("users").doc(uid).get();
+      if (!userSnap.exists) return;
+      const user = userSnap.data();
+      if (!user.phone) return;
+
+      const subject = afterData.subject
+        ? afterData.subject.charAt(0).toUpperCase() + afterData.subject.slice(1)
+        : "General";
+
+      await whatsappService.sendResult(user.phone, {
+        name: user.name || "Student",
+        subject: topicName ? `${subject} - ${topicName}` : subject,
+        score,
+        total,
+        rank,
+      });
+
+      if (isChampionship === true) {
+        await whatsappService.sendCertificate(user.phone, {
+          name: user.name || "Student",
+          subject,
+        });
+      }
+    } catch (error) {
+      console.error(`notifyWhatsAppOnResult failed for uid ${uid}:`, error.message);
+    }
+  }
+);
