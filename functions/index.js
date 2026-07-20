@@ -1174,8 +1174,10 @@ const {
   whatsappWeeklyNewsletter,
   whatsappFestivalGreeting,
   whatsappBirthdayGreeting,
+  whatsappScheduledBroadcastPoller,
 } = require("./whatsapp/scheduler");
 const whatsappService = require("./whatsapp/whatsappService");
+const whatsappAdmin = require("./whatsapp/admin");
 
 // --- 8a. Webhook (GET verify + POST events) ---
 exports.whatsappWebhook = whatsappWebhook;
@@ -1186,6 +1188,7 @@ exports.whatsappReminder1h = whatsappReminder1h;
 exports.whatsappWeeklyNewsletter = whatsappWeeklyNewsletter;
 exports.whatsappFestivalGreeting = whatsappFestivalGreeting;
 exports.whatsappBirthdayGreeting = whatsappBirthdayGreeting;
+exports.whatsappScheduledBroadcastPoller = whatsappScheduledBroadcastPoller;
 
 /**
  * Admin-only: send a one-off WhatsApp broadcast to a filtered slice of
@@ -1273,6 +1276,9 @@ exports.notifyWhatsAppOnPurchase = onDocumentCreated(
     const purchase = event.data?.data();
     if (!purchase) return;
 
+    const { enabled: registrationEnabled } = await whatsappAdmin.getAutomationSetting("live_test_registration");
+    if (!registrationEnabled) return;
+
     try {
       const userSnap = await db.collection("users").doc(uid).get();
       if (!userSnap.exists) return;
@@ -1282,23 +1288,18 @@ exports.notifyWhatsAppOnPurchase = onDocumentCreated(
       const sessionSnap = await db.collection("test_sessions").doc(sessionId).get();
       const session = sessionSnap.exists ? sessionSnap.data() : {};
       const sessionTitle = session.title || "LIVE Olympiad Test";
-      const grade = session.class || "1-10";
-      const dateTimeText = session.startTime
-        ? session.startTime.toDate().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" })
+      const testDate = session.startTime
+        ? session.startTime.toDate().toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium" })
         : "To be announced";
+      const testTime = session.startTime
+        ? session.startTime.toDate().toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", timeStyle: "short" })
+        : "-";
 
-      await whatsappService.sendPaymentSuccess(user.phone, {
+      await whatsappService.sendLiveRegistrationWhatsApp(user.phone, {
         name: user.name || "Student",
-        amount: purchase.amount || 0,
-        sessionTitle,
-        orderId: purchase.orderId || purchase.paymentId || sessionId,
-      });
-
-      await whatsappService.sendRegistrationSuccess(user.phone, {
-        name: user.name || "Student",
-        sessionTitle,
-        grade,
-        dateTimeText,
+        testName: sessionTitle,
+        testDate,
+        testTime,
       });
     } catch (error) {
       console.error(`notifyWhatsAppOnPurchase failed for user ${uid}, session ${sessionId}:`, error.message);
@@ -1308,9 +1309,9 @@ exports.notifyWhatsAppOnPurchase = onDocumentCreated(
 
 /**
  * NEW Firestore trigger on the SAME document path already watched by
- * `sendResultEmail` above (leaderboard/{resultId}). Sends a WhatsApp
- * result notification, and additionally a certificate notification for
- * Live Quiz (Championship) entries.
+ * `sendResultEmail` above (leaderboard/{resultId}). Sends the Phase 1
+ * "Live Test Result Notification" WhatsApp message. Certificate-ready
+ * notification is deferred to a future phase - see the comment below.
  */
 exports.notifyWhatsAppOnResult = onDocumentWritten(
   {
@@ -1343,22 +1344,71 @@ exports.notifyWhatsAppOnResult = onDocumentWritten(
         ? afterData.subject.charAt(0).toUpperCase() + afterData.subject.slice(1)
         : "General";
 
-      await whatsappService.sendResult(user.phone, {
-        name: user.name || "Student",
-        subject: topicName ? `${subject} - ${topicName}` : subject,
-        score,
-        total,
-        rank,
-      });
-
-      if (isChampionship === true) {
-        await whatsappService.sendCertificate(user.phone, {
+      const { enabled: resultEnabled } = await whatsappAdmin.getAutomationSetting("live_test_result");
+      if (resultEnabled) {
+        await whatsappService.sendResultWhatsApp(user.phone, {
           name: user.name || "Student",
-          subject,
+          testName: topicName ? `${subject} - ${topicName}` : subject,
         });
       }
+
+      // Certificate-ready WhatsApp notification is intentionally not
+      // automated (only 3 automated notifications are approved for
+      // production). Wire this back in via whatsappService.sendCertificate()
+      // + a "certificate_notification" automation setting if/when approved.
     } catch (error) {
       console.error(`notifyWhatsAppOnResult failed for uid ${uid}:`, error.message);
     }
   }
 );
+
+/**
+ * NEW Firestore trigger on the SAME document path already watched by
+ * `triggerWelcomeEmail` above (users/{uid}). Sends the Phase 1 "Account
+ * Creation Confirmation" WhatsApp message once registration is complete -
+ * same `registrationCompleted` gate as the welcome email, so this fires at
+ * the exact same moment, well after Firebase Auth/OTP has already finished.
+ * Independent of `triggerWelcomeEmail`: the welcome email keeps sending
+ * exactly as before, this is purely an additional channel.
+ */
+exports.notifyWhatsAppOnAccountCreated = onDocumentWritten(
+  {
+    document: "users/{uid}",
+    secrets: WHATSAPP_SECRETS,
+  },
+  async (event) => {
+    const uid = event.params.uid;
+    const afterData = event.data?.after.data();
+    if (!afterData) return;
+
+    const { phone, whatsappWelcomeSent, registrationCompleted } = afterData;
+    if (whatsappWelcomeSent || !phone || registrationCompleted !== true) return;
+
+    const { enabled } = await whatsappAdmin.getAutomationSetting("account_creation");
+    if (!enabled) return;
+
+    try {
+      await whatsappService.sendAccountCreatedWhatsApp(phone, { name: afterData.name || "Student" });
+      await event.data.after.ref.update({ whatsappWelcomeSent: true });
+    } catch (error) {
+      console.error(`notifyWhatsAppOnAccountCreated failed for uid ${uid}:`, error.message);
+    }
+  }
+);
+
+// --- 8f. Admin console additions (NEW) - WhatsApp Manager panel backend ---
+// See functions/whatsapp/admin.js. Every callable there uses the same
+// admin-email gate as sendBulkEmail/sendBulkSMS/sendPushNotification/
+// sendWhatsAppBroadcast above.
+exports.lookupWhatsAppUser = whatsappAdmin.lookupWhatsAppUser;
+exports.sendWhatsApp = whatsappAdmin.sendWhatsApp;
+exports.scheduleBroadcast = whatsappAdmin.scheduleBroadcast;
+exports.pauseScheduledBroadcast = whatsappAdmin.pauseScheduledBroadcast;
+exports.resumeScheduledBroadcast = whatsappAdmin.resumeScheduledBroadcast;
+exports.cancelScheduledBroadcast = whatsappAdmin.cancelScheduledBroadcast;
+exports.syncTemplates = whatsappAdmin.syncTemplates;
+exports.getTemplateList = whatsappAdmin.getTemplateList;
+exports.getWhatsAppStats = whatsappAdmin.getWhatsAppStats;
+exports.getAutomatedMessageStats = whatsappAdmin.getAutomatedMessageStats;
+exports.retryFailedMessage = whatsappAdmin.retryFailedMessage;
+exports.getWhatsAppSettingsInfo = whatsappAdmin.getWhatsAppSettingsInfo;

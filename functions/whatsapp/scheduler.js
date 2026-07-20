@@ -20,13 +20,16 @@
  */
 
 const { onSchedule } = require("firebase-functions/v2/scheduler");
-const { db, WHATSAPP_SECRETS } = require("../config");
+const { db, admin, WHATSAPP_SECRETS, COLLECTIONS } = require("../config");
 const {
   sendReminder24Hours,
   sendReminder1Hour,
   sendBroadcast,
   sendWhatsAppMessage,
 } = require("./whatsappService");
+const { getAutomationSetting } = require("./admin");
+
+const FieldValue = admin.firestore.FieldValue;
 
 const TIME_ZONE = "Asia/Kolkata";
 
@@ -125,6 +128,9 @@ async function sendReminderBatch(recipients, sendFn, sentFlagField) {
 const whatsappReminder24h = onSchedule(
   { schedule: "every 60 minutes", timeZone: TIME_ZONE, secrets: WHATSAPP_SECRETS },
   async () => {
+    const { enabled } = await getAutomationSetting("reminder_24h");
+    if (!enabled) { console.log("whatsappReminder24h: disabled via whatsapp_settings, skipping."); return; }
+
     const recipients = await findPendingReminders(23, 25, "whatsappReminder24hSentAt");
     const sentCount = await sendReminderBatch(recipients, sendReminder24Hours, "whatsappReminder24hSentAt");
     console.log(`whatsappReminder24h: sent ${sentCount}/${recipients.length} reminders.`);
@@ -137,6 +143,9 @@ const whatsappReminder24h = onSchedule(
 const whatsappReminder1h = onSchedule(
   { schedule: "every 15 minutes", timeZone: TIME_ZONE, secrets: WHATSAPP_SECRETS },
   async () => {
+    const { enabled } = await getAutomationSetting("reminder_1h");
+    if (!enabled) { console.log("whatsappReminder1h: disabled via whatsapp_settings, skipping."); return; }
+
     const recipients = await findPendingReminders(0.75, 1.25, "whatsappReminder1hSentAt");
     const sentCount = await sendReminderBatch(recipients, sendReminder1Hour, "whatsappReminder1hSentAt");
     console.log(`whatsappReminder1h: sent ${sentCount}/${recipients.length} reminders.`);
@@ -149,6 +158,9 @@ const whatsappReminder1h = onSchedule(
 const whatsappWeeklyNewsletter = onSchedule(
   { schedule: "0 10 * * 1", timeZone: TIME_ZONE, secrets: WHATSAPP_SECRETS },
   async () => {
+    const { enabled } = await getAutomationSetting("weekly_newsletter");
+    if (!enabled) { console.log("whatsappWeeklyNewsletter: disabled via whatsapp_settings, skipping."); return; }
+
     // TODO: customize this weekly highlight, or pull it from a Firestore
     // "content"/"announcements" doc if you want it editable from the admin panel.
     const highlight = "New mock tests and study guides are live this week on OlympiadQuiz!";
@@ -172,6 +184,9 @@ const FIXED_DATE_FESTIVALS = {
 const whatsappFestivalGreeting = onSchedule(
   { schedule: "0 9 * * *", timeZone: TIME_ZONE, secrets: WHATSAPP_SECRETS },
   async () => {
+    const { enabled } = await getAutomationSetting("festival_greeting");
+    if (!enabled) { console.log("whatsappFestivalGreeting: disabled via whatsapp_settings, skipping."); return; }
+
     const todayKey = new Date().toLocaleDateString("en-CA", { timeZone: TIME_ZONE }).slice(5); // "MM-DD"
     const festivalName = FIXED_DATE_FESTIVALS[todayKey];
     if (!festivalName) return;
@@ -190,6 +205,9 @@ const whatsappFestivalGreeting = onSchedule(
 const whatsappBirthdayGreeting = onSchedule(
   { schedule: "0 9 * * *", timeZone: TIME_ZONE, secrets: WHATSAPP_SECRETS },
   async () => {
+    const { enabled } = await getAutomationSetting("birthday_greeting");
+    if (!enabled) { console.log("whatsappBirthdayGreeting: disabled via whatsapp_settings, skipping."); return; }
+
     const todayKey = new Date().toLocaleDateString("en-CA", { timeZone: TIME_ZONE }).slice(5); // "MM-DD"
 
     // `dob` is a plain string field (from an <input type="date">, see
@@ -213,10 +231,49 @@ const whatsappBirthdayGreeting = onSchedule(
   }
 );
 
+// ---------------------------------------------------------------------
+// 16f. Admin console: scheduled-broadcast poller (NEW)
+// ---------------------------------------------------------------------
+// Picks up whatsapp_schedule docs (written by scheduleBroadcast() in
+// functions/whatsapp/admin.js) once their scheduledFor time has passed.
+// "paused" rows are simply excluded by the status filter below - no
+// separate pause-handling logic is needed.
+const whatsappScheduledBroadcastPoller = onSchedule(
+  { schedule: "every 5 minutes", timeZone: TIME_ZONE, secrets: WHATSAPP_SECRETS },
+  async () => {
+    const dueSnap = await db
+      .collection(COLLECTIONS.SCHEDULE)
+      .where("status", "==", "scheduled")
+      .where("scheduledFor", "<=", admin.firestore.Timestamp.now())
+      .get();
+
+    for (const doc of dueSnap.docs) {
+      const data = doc.data();
+      await doc.ref.update({ status: "sending", attemptedAt: FieldValue.serverTimestamp() });
+      try {
+        const result = await sendBroadcast({
+          message: data.message,
+          targetType: data.targetType,
+          targetValue: data.targetValue,
+          useTemplate: data.useTemplate,
+        });
+        await doc.ref.update({
+          status: "sent",
+          result: { sentCount: result.sentCount, failedCount: result.failedCount, totalUsers: result.totalUsers },
+        });
+      } catch (error) {
+        console.error(`whatsappScheduledBroadcastPoller: schedule ${doc.id} failed:`, error.message);
+        await doc.ref.update({ status: "failed", error: error.message });
+      }
+    }
+  }
+);
+
 module.exports = {
   whatsappReminder24h,
   whatsappReminder1h,
   whatsappWeeklyNewsletter,
   whatsappFestivalGreeting,
   whatsappBirthdayGreeting,
+  whatsappScheduledBroadcastPoller,
 };

@@ -5,6 +5,9 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
+<!-- Chart.js (WhatsApp Manager > Analytics tab only) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Panel - OlympiadQuiz</title>
@@ -236,6 +239,40 @@ border-top:1px solid var(--border);
   pointer-events: none;
   display: block; /* For Firefox */
   color: var(--muted);
+}
+
+/* WhatsApp Manager (admin console for the WhatsApp Cloud API integration) */
+.wam-tabs{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--border);
+    margin-bottom:16px;
+    padding-bottom:10px;
+}
+.wam-tab-btn{
+    margin:0;
+    padding:8px 14px;
+    font-size:13px;
+    font-weight:600;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    cursor:pointer;
+}
+.wam-tab-btn.active{
+    background:#25D366;
+    border-color:#25D366;
+    color:#fff;
+}
+.wam-tab-content table{ width:100%; }
+.wam-status-pill{
+    display:inline-block;
+    padding:3px 9px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:700;
 }
 </style>
 </head>
@@ -698,6 +735,225 @@ border-top:1px solid var(--border);
             </form>
             <div id="waLinksStatus" style="margin-top: 15px; font-size: 13px; font-weight: 600;"></div>
             <div id="waLinksList" style="margin-top: 10px; max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+    </div>
+
+    <div id="whatsapp-manager-section" class="panel" style="border-top: 2px solid #25D366;">
+        <div class="panel-header">
+            <h2 style="color:#25D366;">📱 WhatsApp Manager</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Admin console for the real WhatsApp Cloud API backend (Send/Broadcast/Templates/Logs). The panel above ("WhatsApp Alerts - Manual Send") is a separate, older wa.me-link tool kept as-is; this section calls the actual Cloud Functions.</p>
+
+            <div class="wam-tabs">
+                <button type="button" class="wam-tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+                <button type="button" class="wam-tab-btn" data-tab="templates">📄 Templates</button>
+                <button type="button" class="wam-tab-btn" data-tab="send">✉️ Send Individual</button>
+                <button type="button" class="wam-tab-btn" data-tab="broadcast">📢 Broadcast</button>
+                <button type="button" class="wam-tab-btn" data-tab="scheduled">🗓️ Scheduled</button>
+                <button type="button" class="wam-tab-btn" data-tab="automated">🤖 Automated</button>
+                <button type="button" class="wam-tab-btn" data-tab="logs">📜 Logs</button>
+                <button type="button" class="wam-tab-btn" data-tab="analytics">📈 Analytics</button>
+                <button type="button" class="wam-tab-btn" data-tab="settings">⚙️ Settings</button>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="wam-tab-content" data-tab-content="dashboard">
+                <div id="wamStatusPills" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;"></div>
+                <div id="wamDashboardGrid" class="summary-grid"><p class="muted">Loading...</p></div>
+                <div style="margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                    <div class="summary-card"><div class="label">Last Message Sent</div><div id="wamLastMessage" style="margin-top:8px; font-size:13px;">-</div></div>
+                    <div class="summary-card"><div class="label">Last Broadcast</div><div id="wamLastBroadcast" style="margin-top:8px; font-size:13px;">-</div></div>
+                </div>
+            </div>
+
+            <!-- Templates -->
+            <div class="wam-tab-content" data-tab-content="templates" style="display:none;">
+                <div style="display:flex; gap:10px; margin-bottom:14px;">
+                    <button type="button" class="upload" style="background:#25D366;" onclick="window.wamSyncTemplates()">🔄 Sync Templates</button>
+                    <button type="button" class="edit-btn" onclick="window.wamLoadTemplates()">↻ Refresh</button>
+                </div>
+                <div id="wamTemplatesStatus" class="muted"></div>
+                <table>
+                    <thead><tr><th>Template Name</th><th>Category</th><th>Language</th><th>Status</th><th>Last Updated</th><th>Preview</th></tr></thead>
+                    <tbody id="wamTemplatesBody"><tr><td colspan="6" class="muted">Click "Sync Templates" or "Refresh" to load.</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- Send Individual -->
+            <div class="wam-tab-content" data-tab-content="send" style="display:none;">
+                <div style="display:grid; grid-template-columns: 1fr 2fr auto; gap:12px; align-items:end;">
+                    <div>
+                        <label>Search By</label>
+                        <select id="wamSendLookupType">
+                            <option value="phone">Mobile</option>
+                            <option value="email">Email</option>
+                            <option value="uid">User ID</option>
+                            <option value="name">Name</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Value</label>
+                        <input type="text" id="wamSendLookupValue" placeholder="e.g. 9999999999">
+                    </div>
+                    <button type="button" class="edit-btn" onclick="window.wamSearchUser()">🔍 Search</button>
+                </div>
+                <div id="wamSendUserCard" style="display:none; margin-top:14px; background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:12px; font-size:13px;"></div>
+
+                <div id="wamSendForm" style="display:none; margin-top:18px; border-top:1px solid var(--border); padding-top:16px;">
+                    <div style="display:flex; gap:16px; margin-bottom:12px;">
+                        <label style="display:flex; align-items:center; gap:6px; font-weight:400;"><input type="radio" name="wamSendMode" value="template" checked style="width:auto;"> Template Message</label>
+                        <label style="display:flex; align-items:center; gap:6px; font-weight:400;"><input type="radio" name="wamSendMode" value="text" style="width:auto;"> Text Message</label>
+                    </div>
+                    <div id="wamSendTemplateBlock">
+                        <label>Template</label>
+                        <select id="wamSendTemplateSelect"></select>
+                        <div id="wamSendTemplateParams" style="margin-top:10px;"></div>
+                    </div>
+                    <div id="wamSendTextBlock" style="display:none;">
+                        <label>Message</label>
+                        <textarea id="wamSendTextMessage" style="height:90px;" placeholder="Only deliverable within the 24h customer service window."></textarea>
+                    </div>
+                    <p class="muted" style="margin-top:8px;">Media (image/document) messages aren't supported by the backend yet - text and template only.</p>
+                    <button type="button" class="upload" style="background:#25D366; margin-top:10px;" onclick="window.wamSendIndividual()">📤 Send</button>
+                    <div id="wamSendStatus" style="margin-top:12px; font-size:13px; font-weight:600; padding:12px; border-radius:8px; display:none; border:1px solid transparent;"></div>
+                </div>
+            </div>
+
+            <!-- Broadcast -->
+            <div class="wam-tab-content" data-tab-content="broadcast" style="display:none;">
+                <p class="muted">Uses the same targeting the SMS/manual-WhatsApp panels use. Only <strong>promo_consent = true</strong> users ever receive a broadcast (enforced server-side), regardless of what's shown as "opted-in" below.</p>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                    <div>
+                        <label>Send To</label>
+                        <select id="wamBcTargetType" onchange="window.wamToggleBcTargetValue()">
+                            <option value="All Users">All Users</option>
+                            <option value="By Class">By Class</option>
+                            <option value="Recent Registrations">Recent Registrations (Last 7 Days)</option>
+                            <option value="Selected Users">Selected Users (Emails/Phones)</option>
+                        </select>
+                    </div>
+                    <div id="wamBcTargetValueContainer" style="display:none;">
+                        <label>Class Number</label>
+                        <input type="text" id="wamBcTargetValue" placeholder="e.g. 6">
+                    </div>
+                </div>
+                <div id="wamBcTargetSelection" style="display:none; margin-top:15px;">
+                    <label>Select Specific Users</label>
+                    <input type="text" id="wamBcUserSearch" placeholder="Search by name or phone..." oninput="window.wamFilterBcContacts()" style="margin-top:5px; margin-bottom:10px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                        <span style="font-size:12px; font-weight:600; color:#25D366;"><span id="wamSelectedBcCount">0</span> Selected</span>
+                        <button type="button" onclick="window.wamClearBcSelection()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:var(--danger); border:1px solid var(--border);">Clear Selection</button>
+                    </div>
+                    <div id="wamBcTargetList" style="height:200px; overflow-y:auto; border:1px solid var(--border); border-radius:8px; padding:10px; background:var(--surface);"></div>
+                </div>
+                <div style="margin-top:15px;">
+                    <label style="display:flex; align-items:center; gap:6px; font-weight:400;"><input type="checkbox" id="wamBcUseTemplate" checked style="width:auto;" onchange="window.wamToggleBcMessageMode()"> Send via approved template (recommended - required outside the 24h window)</label>
+                </div>
+                <div id="wamBcTemplateBlock" style="margin-top:10px;">
+                    <label>Template</label>
+                    <select id="wamBcTemplateSelect"></select>
+                </div>
+                <div style="margin-top:15px;">
+                    <label>Message <span id="wamBcCharCount" style="float:right; font-size:12px; color:var(--muted);">0 chars</span></label>
+                    <textarea id="wamBcMessage" style="height:100px;" oninput="document.getElementById('wamBcCharCount').innerText = this.value.length + ' chars'" placeholder="Free text (used as the template's highlight/body param, or sent as-is if 'Send via template' is unchecked)."></textarea>
+                </div>
+                <div id="wamBcEstimate" class="muted" style="margin-top:10px;">Estimated recipients: click "Estimate" to calculate.</div>
+                <div style="display:flex; gap:10px; margin-top:15px;">
+                    <button type="button" class="edit-btn" onclick="window.wamEstimateBcRecipients()">🧮 Estimate Recipients</button>
+                    <button type="button" class="upload" style="background:#25D366;" onclick="window.wamSendBroadcast()">📢 Send Broadcast</button>
+                </div>
+                <div id="wamBcStatus" style="margin-top:15px; font-size:13px; font-weight:600; padding:12px; border-radius:8px; display:none; border:1px solid transparent;"></div>
+            </div>
+
+            <!-- Scheduled -->
+            <div class="wam-tab-content" data-tab-content="scheduled" style="display:none;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap:12px; align-items:end;">
+                    <div><label>Date</label><input type="date" id="wamSchedDate"></div>
+                    <div><label>Time</label><input type="time" id="wamSchedTime"></div>
+                    <div><label>Target Group</label>
+                        <select id="wamSchedTargetType">
+                            <option value="All Users">All Users</option>
+                            <option value="By Class">By Class</option>
+                            <option value="Recent Registrations">Recent Registrations</option>
+                        </select>
+                    </div>
+                    <div><label>Template (optional)</label><select id="wamSchedTemplateSelect"><option value="">-- Plain text --</option></select></div>
+                    <button type="button" class="upload" style="background:#25D366;" onclick="window.wamCreateSchedule()">➕ Schedule</button>
+                </div>
+                <div style="margin-top:12px;">
+                    <label>Message</label>
+                    <textarea id="wamSchedMessage" style="height:70px;" placeholder="Message body / template highlight text"></textarea>
+                </div>
+                <div id="wamSchedStatus" class="muted" style="margin-top:10px;"></div>
+                <table style="margin-top:16px;">
+                    <thead><tr><th>Scheduled For</th><th>Template</th><th>Target</th><th>Status</th><th>Actions</th></tr></thead>
+                    <tbody id="wamSchedBody"><tr><td colspan="5" class="muted">Loading...</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- Automated -->
+            <div class="wam-tab-content" data-tab-content="automated" style="display:none;">
+                <p class="muted">Only these 3 notifications are automated - nothing else sends automatically (no OTP, login, password reset, mobile/email verification, reminders, or promotional messages). Disabling one here stops that specific send the next time it would fire.</p>
+                <table>
+                    <thead><tr><th>Automation</th><th>Template Name</th><th>Enabled</th><th>Last Sent</th><th>Success</th><th>Failed</th><th>Actions</th></tr></thead>
+                    <tbody id="wamAutomatedBody"><tr><td colspan="7" class="muted">Loading...</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- Logs -->
+            <div class="wam-tab-content" data-tab-content="logs" style="display:none;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr auto auto; gap:12px; align-items:end;">
+                    <div><label>Search (phone/message)</label><input type="text" id="wamLogSearch" oninput="window.wamFilterLogs()" placeholder="Search..."></div>
+                    <div><label>Status</label>
+                        <select id="wamLogStatusFilter" onchange="window.wamFilterLogs()">
+                            <option value="">All</option>
+                            <option value="sent">Sent</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="read">Read</option>
+                            <option value="failed">Failed</option>
+                            <option value="received">Received</option>
+                        </select>
+                    </div>
+                    <div><label>Direction</label>
+                        <select id="wamLogDirectionFilter" onchange="window.wamFilterLogs()">
+                            <option value="">All</option>
+                            <option value="outbound">Outbound</option>
+                            <option value="inbound">Inbound</option>
+                        </select>
+                    </div>
+                    <button type="button" class="edit-btn" onclick="window.wamLoadLogs()">↻ Refresh</button>
+                    <button type="button" class="edit-btn" onclick="window.wamExportLogsCsv()">⬇️ Export CSV</button>
+                </div>
+                <p class="muted" style="margin-top:8px;">Shows the most recent 500 log rows (sent/delivered/read/failed/received).</p>
+                <table style="margin-top:10px;">
+                    <thead><tr><th>Recipient</th><th>Type</th><th>Template</th><th>Status</th><th>Timestamp</th><th>Retry</th></tr></thead>
+                    <tbody id="wamLogsBody"><tr><td colspan="6" class="muted">Loading...</td></tr></tbody>
+                </table>
+            </div>
+
+            <!-- Analytics -->
+            <div class="wam-tab-content" data-tab-content="analytics" style="display:none;">
+                <div id="wamAnalyticsGrid" class="summary-grid"><p class="muted">Loading...</p></div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px;">
+                    <div class="summary-card"><div class="label">Daily Messages (30d)</div><canvas id="wamTrendChart" height="180"></canvas></div>
+                    <div class="summary-card"><div class="label">Delivery / Read Trend (30d)</div><canvas id="wamDeliveryChart" height="180"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="wam-tab-content" data-tab-content="settings" style="display:none;">
+                <p class="muted">Read-only. Secrets are never shown - only whether each is configured.</p>
+                <div id="wamSettingsGrid" class="summary-grid"><p class="muted">Loading...</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="wamPreviewModal" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-top:0;">Template Preview</h2>
+            <div id="wamPreviewModalBody"></div>
+            <button type="button" class="delete" style="margin-top:16px;" onclick="document.getElementById('wamPreviewModal').style.display='none';">Close</button>
         </div>
     </div>
 
@@ -1731,6 +1987,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     else if (headerText.includes('Video Tutorials')) { window.updateVidTopics(); window.loadVideos(); }
                     else if (headerText.includes('Coupon Management')) { window.loadCoupons(); }
                     else if (headerText.includes('Bulk Email')) { window.loadUserEmailsForBroadcast(); }
+                    else if (headerText.includes('WhatsApp Manager')) { window.wamLoadDashboard(); wamLoadedTabs.add('dashboard'); }
                     else if (headerText.includes('Managed Test Sessions')) { window.loadSessions(); }
                     else if (headerText.includes('Live Quiz Registrations')) { window.loadRegSessionsList(); }
                     else if (headerText.includes('JEE Main & NEET')) { window.updateJmnTitleOptions(); window.loadJmnTestsList(); }
@@ -4463,6 +4720,727 @@ function renderWaLinks(contacts, message, status, listEl) {
         </div>
     `).join('');
 }
+
+// =====================================================================
+// WHATSAPP MANAGER — admin console for the WhatsApp Cloud API backend
+// (functions/whatsapp/admin.js). Separate from the wa.me-link panel above.
+// =====================================================================
+const wamFn = {
+    lookupUser: httpsCallable(functions, 'lookupWhatsAppUser'),
+    sendWhatsApp: httpsCallable(functions, 'sendWhatsApp'),
+    sendBroadcast: httpsCallable(functions, 'sendWhatsAppBroadcast'),
+    scheduleBroadcast: httpsCallable(functions, 'scheduleBroadcast'),
+    pauseSchedule: httpsCallable(functions, 'pauseScheduledBroadcast'),
+    resumeSchedule: httpsCallable(functions, 'resumeScheduledBroadcast'),
+    cancelSchedule: httpsCallable(functions, 'cancelScheduledBroadcast'),
+    syncTemplates: httpsCallable(functions, 'syncTemplates'),
+    getTemplateList: httpsCallable(functions, 'getTemplateList'),
+    getStats: httpsCallable(functions, 'getWhatsAppStats'),
+    getAutomatedStats: httpsCallable(functions, 'getAutomatedMessageStats'),
+    retryMessage: httpsCallable(functions, 'retryFailedMessage'),
+    getSettingsInfo: httpsCallable(functions, 'getWhatsAppSettingsInfo'),
+};
+
+const wamLoadedTabs = new Set();
+let wamTemplatesCache = [];
+let wamLogsCache = [];
+let wamTrendChartInstance = null;
+let wamDeliveryChartInstance = null;
+
+document.querySelectorAll('.wam-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.wam-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.wam-tab-content').forEach(c => c.style.display = 'none');
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.querySelector(`.wam-tab-content[data-tab-content="${tab}"]`).style.display = 'block';
+
+        if (!wamLoadedTabs.has(tab)) {
+            wamLoadedTabs.add(tab);
+            const loaders = {
+                dashboard: window.wamLoadDashboard,
+                templates: window.wamLoadTemplates,
+                send: window.wamLoadSendTab,
+                broadcast: window.wamLoadBroadcastTab,
+                scheduled: window.wamLoadScheduled,
+                automated: window.wamLoadAutomated,
+                logs: window.wamLoadLogs,
+                analytics: window.wamLoadAnalytics,
+                settings: window.wamLoadSettings,
+            };
+            loaders[tab]?.();
+        }
+    });
+});
+
+function wamSetStatus(el, kind, text) {
+    el.style.display = "block";
+    const colors = { info: "var(--brand)", success: "var(--success)", error: "var(--danger)" };
+    const backgrounds = { info: "rgba(79, 70, 229, 0.1)", success: "rgba(16, 185, 129, 0.1)", error: "rgba(239, 68, 68, 0.1)" };
+    el.style.color = colors[kind] || colors.info;
+    el.style.background = backgrounds[kind] || backgrounds.info;
+    el.style.borderColor = colors[kind] || colors.info;
+    el.innerText = text;
+}
+
+function wamFormatTimestamp(ts) {
+    if (!ts) return "-";
+    if (typeof ts === "string") return new Date(ts).toLocaleString("en-IN");
+    if (ts.seconds) return new Date(ts.seconds * 1000).toLocaleString("en-IN");
+    if (ts._seconds) return new Date(ts._seconds * 1000).toLocaleString("en-IN");
+    return "-";
+}
+
+// --- Dashboard ---
+window.wamLoadDashboard = async function() {
+    const grid = document.getElementById("wamDashboardGrid");
+    const pills = document.getElementById("wamStatusPills");
+    grid.innerHTML = "<p class='muted'>Loading...</p>";
+    try {
+        const [statsRes, settingsRes] = await Promise.all([wamFn.getStats(), wamFn.getSettingsInfo()]);
+        const s = statsRes.data;
+        const info = settingsRes.data;
+
+        const pill = (label, ok) => `<span class="wam-status-pill" style="background:${ok ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'}; color:${ok ? 'var(--success)' : 'var(--danger)'};">${ok ? '✅' : '❌'} ${label}</span>`;
+        pills.innerHTML =
+            pill("API Status", info.tokenConfigured) +
+            pill("Webhook Status", !!info.lastWebhookEventAt) +
+            pill("Phone Number Status", !!info.phoneNumberId);
+
+        grid.innerHTML = [
+            ["Messages Today", s.messagesToday],
+            ["Messages This Month", s.messagesThisMonth],
+            ["Successful", s.successful],
+            ["Failed", s.failed],
+            ["Pending", s.pending],
+        ].map(([label, value]) => `<div class="summary-card"><div class="label">${label}</div><div class="value">${value}</div></div>`).join("");
+
+        document.getElementById("wamLastMessage").innerText = s.lastMessageSent
+            ? `${s.lastMessageSent.phone || "-"} · ${s.lastMessageSent.category || ""} · ${wamFormatTimestamp(s.lastMessageSent.timestamp)}`
+            : "No messages sent yet.";
+        document.getElementById("wamLastBroadcast").innerText = s.lastBroadcast
+            ? `${s.lastBroadcast.targetType} · ${s.lastBroadcast.sentCount}/${s.lastBroadcast.totalUsers} sent · ${wamFormatTimestamp(s.lastBroadcast.createdAt)}`
+            : "No broadcasts sent yet.";
+    } catch (error) {
+        grid.innerHTML = `<p style="color:var(--danger);">Failed to load dashboard: ${error.message}</p>`;
+    }
+};
+
+// --- Templates ---
+window.wamLoadTemplates = async function() {
+    const status = document.getElementById("wamTemplatesStatus");
+    const body = document.getElementById("wamTemplatesBody");
+    body.innerHTML = `<tr><td colspan="6" class="muted">Loading...</td></tr>`;
+    try {
+        const res = await wamFn.getTemplateList();
+        wamTemplatesCache = res.data.templates || [];
+        wamRenderTemplatesTable();
+        status.innerText = `${wamTemplatesCache.length} template(s) cached.`;
+        wamPopulateTemplateDropdowns();
+    } catch (error) {
+        body.innerHTML = `<tr><td colspan="6" style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+    }
+};
+
+function wamRenderTemplatesTable() {
+    const body = document.getElementById("wamTemplatesBody");
+    if (wamTemplatesCache.length === 0) {
+        body.innerHTML = `<tr><td colspan="6" class="muted">No templates cached yet - click "Sync Templates".</td></tr>`;
+        return;
+    }
+    body.innerHTML = wamTemplatesCache.map(t => `
+        <tr>
+            <td>${t.name}</td>
+            <td>${t.category || "-"}</td>
+            <td>${t.language || "-"}</td>
+            <td><span class="badge" style="background:${t.status === 'APPROVED' ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'}; color:${t.status === 'APPROVED' ? 'var(--success)' : 'var(--danger)'};">${t.status || "-"}</span></td>
+            <td>${wamFormatTimestamp(t.syncedAt)}</td>
+            <td><button type="button" class="edit-btn" style="padding:4px 10px; font-size:11px;" onclick='window.wamPreviewTemplate(${JSON.stringify(t.id)})'>👁 Preview</button></td>
+        </tr>
+    `).join("");
+}
+
+window.wamPreviewTemplate = function(id) {
+    const t = wamTemplatesCache.find(x => x.id === id);
+    if (!t) return;
+    alert(`${t.name} (${t.language || "-"})\n\n${t.bodyText || "(no body text found)"}`);
+};
+
+window.wamSyncTemplates = async function() {
+    const status = document.getElementById("wamTemplatesStatus");
+    status.innerText = "⏳ Syncing templates from Meta...";
+    try {
+        const res = await wamFn.syncTemplates();
+        status.innerText = `✅ Synced ${res.data.syncedCount} template(s), removed ${res.data.deletedStaleCount} stale.`;
+        await window.wamLoadTemplates();
+    } catch (error) {
+        status.innerText = `❌ ${error.message}`;
+    }
+};
+
+function wamPopulateTemplateDropdowns() {
+    const options = wamTemplatesCache
+        .filter(t => t.status === "APPROVED")
+        .map(t => `<option value="${t.name}" data-vars="${t.variableCount || 0}">${t.name} (${t.variableCount || 0} var${t.variableCount === 1 ? '' : 's'})</option>`)
+        .join("");
+    ["wamSendTemplateSelect", "wamBcTemplateSelect", "wamSchedTemplateSelect"].forEach(id => {
+        const select = document.getElementById(id);
+        if (!select) return;
+        const keepFirst = id === "wamSchedTemplateSelect" ? (select.querySelector('option[value=""]')?.outerHTML || "") : "";
+        select.innerHTML = keepFirst + options;
+    });
+    window.wamRenderSendTemplateParams?.();
+}
+
+// --- Send Individual ---
+window.wamLoadSendTab = async function() {
+    if (wamTemplatesCache.length === 0) {
+        try { const res = await wamFn.getTemplateList(); wamTemplatesCache = res.data.templates || []; } catch (e) { /* templates optional here */ }
+    }
+    wamPopulateTemplateDropdowns();
+};
+
+document.getElementById("wamSendTemplateSelect")?.addEventListener("change", () => window.wamRenderSendTemplateParams());
+document.querySelectorAll('input[name="wamSendMode"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+        const isTemplate = document.querySelector('input[name="wamSendMode"]:checked').value === "template";
+        document.getElementById("wamSendTemplateBlock").style.display = isTemplate ? "block" : "none";
+        document.getElementById("wamSendTextBlock").style.display = isTemplate ? "none" : "block";
+    });
+});
+
+window.wamRenderSendTemplateParams = function() {
+    const select = document.getElementById("wamSendTemplateSelect");
+    const container = document.getElementById("wamSendTemplateParams");
+    if (!select || !container) return;
+    const count = Number(select.selectedOptions[0]?.dataset.vars || 0);
+    container.innerHTML = Array.from({ length: count }, (_, i) => `
+        <div style="margin-top:6px;"><label>Param {{${i + 1}}}</label><input type="text" class="wam-send-param" data-index="${i}"></div>
+    `).join("");
+};
+
+window.wamSearchUser = async function() {
+    const lookupType = document.getElementById("wamSendLookupType").value;
+    const lookupValue = document.getElementById("wamSendLookupValue").value.trim();
+    const card = document.getElementById("wamSendUserCard");
+    const form = document.getElementById("wamSendForm");
+    if (!lookupValue) { alert("Enter a value to search."); return; }
+
+    card.style.display = "block";
+    card.innerHTML = "Searching...";
+    form.style.display = "none";
+    try {
+        const res = await wamFn.lookupUser({ lookupType, lookupValue });
+        const u = res.data;
+        card.innerHTML = `<strong>${u.name || "(no name on file)"}</strong><br>
+            📧 ${u.email || "-"} &nbsp; 📱 ${u.phone || "-"} &nbsp; 🎓 Class ${u.class || "-"}<br>
+            Promo consent: ${u.promoConsent ? "✅ Yes" : "❌ No"}${u.uid ? "" : " <span class='muted'>(no user account found - sending to raw number)</span>"}`;
+        form.style.display = "block";
+        wamPopulateTemplateDropdowns();
+    } catch (error) {
+        card.innerHTML = `<span style="color:var(--danger);">${error.message}</span>`;
+    }
+};
+
+window.wamSendIndividual = async function() {
+    const status = document.getElementById("wamSendStatus");
+    const lookupType = document.getElementById("wamSendLookupType").value;
+    const lookupValue = document.getElementById("wamSendLookupValue").value.trim();
+    const useTemplate = document.querySelector('input[name="wamSendMode"]:checked').value === "template";
+
+    if (!confirm("Send this WhatsApp message now?")) return;
+
+    const payload = { lookupType, lookupValue, useTemplate };
+    if (useTemplate) {
+        payload.templateName = document.getElementById("wamSendTemplateSelect").value;
+        payload.bodyParams = Array.from(document.querySelectorAll(".wam-send-param")).map(i => i.value);
+    } else {
+        payload.message = document.getElementById("wamSendTextMessage").value;
+    }
+
+    wamSetStatus(status, "info", "⏳ Sending...");
+    try {
+        const res = await wamFn.sendWhatsApp(payload);
+        if (res.data.success) {
+            wamSetStatus(status, "success", `✅ Sent (message id: ${res.data.messageId || "n/a"})`);
+        } else {
+            wamSetStatus(status, "error", `❌ ${res.data.error || "Send failed."}`);
+        }
+    } catch (error) {
+        wamSetStatus(status, "error", `❌ ${error.message}`);
+    }
+};
+
+// --- Broadcast ---
+window.wamLoadBroadcastTab = async function() {
+    if (wamTemplatesCache.length === 0) {
+        try { const res = await wamFn.getTemplateList(); wamTemplatesCache = res.data.templates || []; } catch (e) { /* templates optional here */ }
+    }
+    wamPopulateTemplateDropdowns();
+    window.wamToggleBcMessageMode();
+};
+
+window.wamToggleBcTargetValue = function() {
+    const type = document.getElementById("wamBcTargetType").value;
+    document.getElementById("wamBcTargetValueContainer").style.display = type === "By Class" ? "block" : "none";
+    document.getElementById("wamBcTargetSelection").style.display = type === "Selected Users" ? "block" : "none";
+    if (type === "Selected Users" && document.getElementById("wamBcTargetList").innerHTML.trim() === "") {
+        window.wamLoadBcContactsForSelection();
+    }
+};
+
+window.wamToggleBcMessageMode = function() {
+    document.getElementById("wamBcTemplateBlock").style.display = document.getElementById("wamBcUseTemplate").checked ? "block" : "none";
+};
+
+window.wamLoadBcContactsForSelection = async function() {
+    const list = document.getElementById("wamBcTargetList");
+    list.innerHTML = "<div style='color:var(--muted); text-align:center;'>Loading contacts...</div>";
+    try {
+        const snap = await getDocs(collection(db, "users"));
+        const uniqueContacts = new Map();
+        snap.forEach(docSnap => {
+            const data = docSnap.data();
+            let phone = String(data.phone || data.phoneNumber || "").replace(/\D/g, '');
+            if (phone.length === 10) phone = '91' + phone;
+            if (phone.length < 11) return;
+            const isConsented = data.promo_consent === true;
+            if (!uniqueContacts.has(phone) || (data.name && data.name !== 'Student')) {
+                uniqueContacts.set(phone, { name: data.name || data.fullName || 'Student', consented: isConsented });
+            }
+        });
+        let html = "";
+        uniqueContacts.forEach((info, phone) => {
+            const badge = info.consented ? `<span style="color:#059669; font-weight:700;">✅ Promo consent</span>` : `<span style="color:var(--muted);">— No consent</span>`;
+            html += `<label class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                <span style="display:flex; align-items:center; gap:10px;">
+                    <input type="checkbox" value="${phone}" onchange="window.wamUpdateBcSelectionCount()" style="width:auto; margin:0;">
+                    <span class="wam-bc-user-text">${info.name} (+${phone})</span>
+                </span>
+                <span style="font-size:11px; white-space:nowrap;">${badge}</span>
+            </label>`;
+        });
+        list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users with a phone number found.</div>";
+        window.wamUpdateBcSelectionCount();
+    } catch (e) {
+        list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
+    }
+};
+
+window.wamFilterBcContacts = function() {
+    const term = document.getElementById("wamBcUserSearch").value.toLowerCase();
+    document.querySelectorAll(".wam-bc-user-row").forEach(row => {
+        row.style.display = row.querySelector(".wam-bc-user-text").innerText.toLowerCase().includes(term) ? "flex" : "none";
+    });
+};
+
+window.wamUpdateBcSelectionCount = function() {
+    const checked = document.querySelectorAll('#wamBcTargetList input[type="checkbox"]:checked');
+    document.getElementById("wamSelectedBcCount").innerText = checked.length;
+    document.getElementById("wamBcTargetValue").value = Array.from(checked).map(cb => cb.value).join(",");
+};
+
+window.wamClearBcSelection = function() {
+    document.querySelectorAll('#wamBcTargetList input[type="checkbox"]').forEach(cb => cb.checked = false);
+    window.wamUpdateBcSelectionCount();
+};
+
+window.wamEstimateBcRecipients = async function() {
+    const estimateEl = document.getElementById("wamBcEstimate");
+    const targetType = document.getElementById("wamBcTargetType").value;
+    const targetValue = document.getElementById("wamBcTargetValue").value;
+    estimateEl.innerText = "Calculating...";
+    try {
+        const snap = await getDocs(collection(db, "users"));
+        const now = Date.now();
+        const uniquePhones = new Set();
+        snap.forEach(docSnap => {
+            const data = docSnap.data();
+            if (data.promo_consent !== true) return;
+            let include = false;
+            if (targetType === "All Users") include = true;
+            else if (targetType === "By Class" && targetValue) {
+                if (String(data.class) === String(targetValue) || String(data.studentClass) === String(targetValue)) include = true;
+            } else if (targetType === "Recent Registrations") {
+                if (data.createdAt?.toDate) {
+                    const diff = now - data.createdAt.toDate().getTime();
+                    if (diff <= 7 * 24 * 60 * 60 * 1000) include = true;
+                }
+            } else if (targetType === "Selected Users" && targetValue) {
+                const targets = targetValue.split(",").map(t => t.trim().toLowerCase());
+                if (targets.includes(String(data.email).toLowerCase()) || targets.includes(String(data.phone))) include = true;
+            }
+            if (include && data.phone) {
+                let phone = String(data.phone).replace(/\D/g, '');
+                if (phone.length === 10) phone = '91' + phone;
+                if (phone.length >= 11) uniquePhones.add(phone);
+            }
+        });
+        estimateEl.innerText = `Estimated recipients: ${uniquePhones.size} (promo_consent=true users matching this target).`;
+    } catch (error) {
+        estimateEl.innerText = `Failed to estimate: ${error.message}`;
+    }
+};
+
+window.wamSendBroadcast = async function() {
+    const status = document.getElementById("wamBcStatus");
+    const message = document.getElementById("wamBcMessage").value;
+    const targetType = document.getElementById("wamBcTargetType").value;
+    const targetValue = document.getElementById("wamBcTargetValue").value;
+    const useTemplate = document.getElementById("wamBcUseTemplate").checked;
+
+    if (!message) { alert("Please enter a message."); return; }
+    if (!confirm(`⚠️ WARNING: You are about to send a WhatsApp broadcast to "${targetType}". Proceed?`)) return;
+
+    wamSetStatus(status, "info", "⏳ Sending broadcast...");
+    try {
+        const res = await wamFn.sendBroadcast({ message, targetType, targetValue, useTemplate });
+        if (res.data.success) {
+            wamSetStatus(status, "success", `✅ Sent ${res.data.sentCount}/${res.data.totalUsers} (failed: ${res.data.failedCount}).`);
+        } else {
+            wamSetStatus(status, "error", "❌ Broadcast failed.");
+        }
+    } catch (error) {
+        wamSetStatus(status, "error", `❌ ${error.message}`);
+    }
+};
+
+// --- Scheduled ---
+window.wamLoadScheduled = async function() {
+    if (wamTemplatesCache.length === 0) {
+        try { const res = await wamFn.getTemplateList(); wamTemplatesCache = res.data.templates || []; } catch (e) { /* templates optional here */ }
+    }
+    wamPopulateTemplateDropdowns();
+    await window.wamRefreshScheduleTable();
+};
+
+window.wamRefreshScheduleTable = async function() {
+    const body = document.getElementById("wamSchedBody");
+    body.innerHTML = `<tr><td colspan="5" class="muted">Loading...</td></tr>`;
+    try {
+        const snap = await getDocs(query(collection(db, "whatsapp_schedule"), orderBy("scheduledFor", "desc"), limit(100)));
+        if (snap.empty) {
+            body.innerHTML = `<tr><td colspan="5" class="muted">No scheduled broadcasts.</td></tr>`;
+            return;
+        }
+        body.innerHTML = snap.docs.map(docSnap => {
+            const d = docSnap.data();
+            const actions = [];
+            if (d.status === "scheduled") actions.push(`<button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamPauseSchedule('${docSnap.id}')">⏸ Pause</button>`);
+            if (d.status === "paused") actions.push(`<button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamResumeSchedule('${docSnap.id}')">▶ Resume</button>`);
+            if (["scheduled", "paused"].includes(d.status)) actions.push(`<button type="button" class="delete" style="padding:4px 8px; font-size:11px;" onclick="window.wamCancelSchedule('${docSnap.id}')">🗑 Cancel</button>`);
+            return `<tr>
+                <td>${wamFormatTimestamp(d.scheduledFor)}</td>
+                <td>${d.templateName || "(plain text)"}</td>
+                <td>${d.targetType}${d.targetValue ? " - " + d.targetValue : ""}</td>
+                <td><span class="badge">${d.status}</span></td>
+                <td>${actions.join(" ")}</td>
+            </tr>`;
+        }).join("");
+    } catch (error) {
+        body.innerHTML = `<tr><td colspan="5" style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+    }
+};
+
+window.wamCreateSchedule = async function() {
+    const status = document.getElementById("wamSchedStatus");
+    const date = document.getElementById("wamSchedDate").value;
+    const time = document.getElementById("wamSchedTime").value;
+    const message = document.getElementById("wamSchedMessage").value;
+    const targetType = document.getElementById("wamSchedTargetType").value;
+    const templateName = document.getElementById("wamSchedTemplateSelect").value;
+
+    if (!date || !time || !message) { alert("Date, time, and message are required."); return; }
+    const scheduledFor = new Date(`${date}T${time}`).toISOString();
+
+    status.innerText = "⏳ Scheduling...";
+    try {
+        await wamFn.scheduleBroadcast({
+            scheduledFor, message, targetType,
+            templateName: templateName || null,
+            useTemplate: !!templateName,
+        });
+        status.innerText = "✅ Scheduled.";
+        document.getElementById("wamSchedMessage").value = "";
+        await window.wamRefreshScheduleTable();
+    } catch (error) {
+        status.innerText = `❌ ${error.message}`;
+    }
+};
+
+window.wamPauseSchedule = async function(id) {
+    try { await wamFn.pauseSchedule({ scheduleId: id }); await window.wamRefreshScheduleTable(); }
+    catch (e) { alert(e.message); }
+};
+window.wamResumeSchedule = async function(id) {
+    try { await wamFn.resumeSchedule({ scheduleId: id }); await window.wamRefreshScheduleTable(); }
+    catch (e) { alert(e.message); }
+};
+window.wamCancelSchedule = async function(id) {
+    if (!confirm("Cancel this scheduled broadcast?")) return;
+    try { await wamFn.cancelSchedule({ scheduleId: id }); await window.wamRefreshScheduleTable(); }
+    catch (e) { alert(e.message); }
+};
+
+// --- Automated ---
+// Only these 3 automations exist in production. No OTP, login, password
+// reset, mobile/email verification, reminder, or promotional automation
+// is implemented - this list is intentionally exhaustive, not a sample.
+const WAM_AUTOMATIONS = [
+    {
+        key: "account_creation",
+        category: "account_created",
+        templateName: "oq_account_created_v1",
+        label: "Account Creation Confirmation",
+        sampleParams: ["Test Student"],
+        header: "🖼 Image header: OlympiadQuiz logo",
+        body: "🎉 Welcome to OlympiadQuiz.org!\n\nHello {{1}},\n\nYour account has been created successfully.\n\nYou can now enjoy\n✅ Free Mock Tests\n✅ Free Chapterwise Tests\n✅ HOTS Practice Tests\n✅ Instant Results with Detailed Solutions\n\nWe wish you a wonderful learning journey.\n\nBest wishes,\nTeam OlympiadQuiz",
+        button: "Visit Dashboard → https://olympiadquiz.org/dashboard.html",
+    },
+    {
+        key: "live_test_registration",
+        category: "live_test_registration",
+        templateName: "oq_live_test_registration_v1",
+        label: "Live Test Registration Confirmation",
+        sampleParams: ["Test Student", "IMO Level 1 Mock Test", "01 Jan 2026", "10:00 AM"],
+        header: "🖼 Image header: OlympiadQuiz logo",
+        body: "✅ Registration Confirmed!\n\nHello {{1}},\n\nYour registration has been confirmed successfully.\n\nTest\n📘 {{2}}\n\nDate\n📅 {{3}}\n\nTime\n🕚 {{4}}\n\nPlease login at least 10 minutes before the test.\n\nWe wish you all the best.\n\nTeam OlympiadQuiz",
+        button: "Open Dashboard → https://olympiadquiz.org/dashboard.html",
+    },
+    {
+        key: "live_test_result",
+        category: "live_test_result",
+        templateName: "oq_live_result_v1",
+        label: "Live Test Result Notification",
+        sampleParams: ["Test Student", "IMO Level 1 Mock Test"],
+        header: "🖼 Image header: OlympiadQuiz logo",
+        body: "🏆 Your Result is Ready!\n\nHello {{1}},\n\nYour result for\n📘 {{2}}\n\nhas been published.\n\nYou can now view\n📊 Marks\n🏅 Rank\n📝 Detailed Solutions\n\nKeep practicing and keep improving.\n\nTeam OlympiadQuiz",
+        button: "View Result → https://olympiadquiz.org/dashboard.html",
+    },
+];
+
+window.wamLoadAutomated = async function() {
+    const body = document.getElementById("wamAutomatedBody");
+    body.innerHTML = `<tr><td colspan="7" class="muted">Loading...</td></tr>`;
+    try {
+        const [settingsSnaps, statsRes] = await Promise.all([
+            Promise.all(WAM_AUTOMATIONS.map(a => getDoc(doc(db, "whatsapp_settings", a.key)))),
+            wamFn.getAutomatedStats(),
+        ]);
+        const statsByCategory = Object.fromEntries((statsRes.data.stats || []).map(s => [s.category, s]));
+
+        body.innerHTML = WAM_AUTOMATIONS.map((a, i) => {
+            const settingsData = settingsSnaps[i].exists() ? settingsSnaps[i].data() : {};
+            const enabled = settingsData.enabled !== false;
+            const stats = statsByCategory[a.category] || { successCount: 0, failureCount: 0, lastSentAt: null };
+            return `<tr>
+                <td>${a.label}</td>
+                <td><code>${a.templateName}</code></td>
+                <td><label style="display:flex; align-items:center; gap:6px; font-weight:400;">
+                    <input type="checkbox" data-key="${a.key}" class="wam-auto-toggle" ${enabled ? "checked" : ""} style="width:auto;" onchange="window.wamSaveAutomation('${a.key}')">
+                    ${enabled ? "Enabled" : "Disabled"}
+                </label></td>
+                <td>${wamFormatTimestamp(stats.lastSentAt)}</td>
+                <td style="color:var(--success); font-weight:700;">${stats.successCount}</td>
+                <td style="color:var(--danger); font-weight:700;">${stats.failureCount}</td>
+                <td style="white-space:nowrap;">
+                    <button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamPreviewAutomation('${a.key}')">👁 Preview</button>
+                    <button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamTestSendAutomation('${a.key}')">📤 Test Send</button>
+                </td>
+            </tr>`;
+        }).join("");
+    } catch (error) {
+        body.innerHTML = `<tr><td colspan="7" style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+    }
+};
+
+window.wamSaveAutomation = async function(key) {
+    const enabled = document.querySelector(`.wam-auto-toggle[data-key="${key}"]`).checked;
+    try {
+        await setDoc(doc(db, "whatsapp_settings", key), {
+            enabled, updatedAt: serverTimestamp(), updatedBy: auth.currentUser?.email || "admin",
+        }, { merge: true });
+        await window.wamLoadAutomated();
+    } catch (error) {
+        alert("Failed to save: " + error.message);
+        await window.wamLoadAutomated();
+    }
+};
+
+window.wamPreviewAutomation = function(key) {
+    const a = WAM_AUTOMATIONS.find(x => x.key === key);
+    if (!a) return;
+    document.getElementById("wamPreviewModalBody").innerHTML = `
+        <p class="muted" style="margin:0 0 10px;">${a.header}</p>
+        <div style="background:#e9fbe9; border:1px solid #25D366; border-radius:10px; padding:14px; white-space:pre-wrap; font-size:13px; line-height:1.5;">${a.body}</div>
+        <div style="margin-top:12px;"><a href="#" style="color:#25D366; font-weight:700; text-decoration:none;">🔘 ${a.button}</a></div>
+        <p class="muted" style="margin-top:14px;">Template name: <code>${a.templateName}</code> · Category: Utility</p>
+    `;
+    document.getElementById("wamPreviewModal").style.display = "flex";
+};
+
+window.wamTestSendAutomation = async function(key) {
+    const a = WAM_AUTOMATIONS.find(x => x.key === key);
+    if (!a) return;
+    const phone = prompt(`Send a test "${a.label}" message to which mobile number?\n(digits only, e.g. 9999999999)`);
+    if (!phone) return;
+    if (!confirm(`Send template "${a.templateName}" with sample data to ${phone}?`)) return;
+
+    try {
+        const res = await wamFn.sendWhatsApp({
+            lookupType: "phone",
+            lookupValue: phone,
+            useTemplate: true,
+            templateName: a.templateName,
+            bodyParams: a.sampleParams,
+        });
+        alert(res.data.success ? "✅ Test message sent." : `❌ ${res.data.error || "Send failed."}`);
+        await window.wamLoadAutomated();
+    } catch (error) {
+        alert("❌ " + error.message);
+    }
+};
+
+// --- Logs ---
+window.wamLoadLogs = async function() {
+    const body = document.getElementById("wamLogsBody");
+    body.innerHTML = `<tr><td colspan="6" class="muted">Loading...</td></tr>`;
+    try {
+        const snap = await getDocs(query(collection(db, "whatsapp_logs"), orderBy("timestamp", "desc"), limit(500)));
+        wamLogsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        window.wamFilterLogs();
+    } catch (error) {
+        body.innerHTML = `<tr><td colspan="6" style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+    }
+};
+
+window.wamFilterLogs = function() {
+    const term = (document.getElementById("wamLogSearch").value || "").toLowerCase();
+    const statusFilter = document.getElementById("wamLogStatusFilter").value;
+    const directionFilter = document.getElementById("wamLogDirectionFilter").value;
+
+    const filtered = wamLogsCache.filter(l => {
+        if (statusFilter && l.status !== statusFilter) return false;
+        if (directionFilter && l.direction !== directionFilter) return false;
+        if (term && !`${l.phone || ""} ${l.message || ""}`.toLowerCase().includes(term)) return false;
+        return true;
+    });
+
+    const body = document.getElementById("wamLogsBody");
+    if (filtered.length === 0) {
+        body.innerHTML = `<tr><td colspan="6" class="muted">No matching logs.</td></tr>`;
+        return;
+    }
+    body.innerHTML = filtered.map(l => {
+        const retryBtn = l.status === "failed"
+            ? `<button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamRetryLog('${l.id}')">🔁 Retry</button>`
+            : "-";
+        return `<tr>
+            <td>${l.phone || "-"}</td>
+            <td>${l.direction || "-"} / ${l.category || "-"}</td>
+            <td>${l.templateName || "-"}</td>
+            <td><span class="badge" style="background:${l.status === 'failed' ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.15)'}; color:${l.status === 'failed' ? 'var(--danger)' : 'var(--success)'};">${l.status || "-"}</span></td>
+            <td>${wamFormatTimestamp(l.timestamp)}</td>
+            <td>${retryBtn}</td>
+        </tr>`;
+    }).join("");
+};
+
+window.wamRetryLog = async function(logId) {
+    if (!confirm("Retry this failed message?")) return;
+    try {
+        const res = await wamFn.retryMessage({ logId });
+        alert(res.data.success ? "✅ Resent." : `❌ ${res.data.error || "Retry failed."}`);
+        await window.wamLoadLogs();
+    } catch (error) {
+        alert("❌ " + error.message);
+    }
+};
+
+window.wamExportLogsCsv = function() {
+    if (wamLogsCache.length === 0) { alert("No logs loaded to export."); return; }
+    const headers = ["phone", "direction", "category", "templateName", "status", "message", "timestamp"];
+    const rows = wamLogsCache.map(l => headers.map(h => {
+        const v = h === "timestamp" ? wamFormatTimestamp(l.timestamp) : (l[h] ?? "");
+        return `"${String(v).replace(/"/g, '""')}"`;
+    }).join(","));
+    const csv = [headers.join(","), ...rows].join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `whatsapp_logs_${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+};
+
+// --- Analytics ---
+window.wamLoadAnalytics = async function() {
+    const grid = document.getElementById("wamAnalyticsGrid");
+    grid.innerHTML = "<p class='muted'>Loading...</p>";
+    try {
+        const res = await wamFn.getStats();
+        const s = res.data;
+        grid.innerHTML = [
+            ["Messages Today", s.messagesToday],
+            ["Messages This Week", s.messagesThisWeek],
+            ["Messages This Month", s.messagesThisMonth],
+            ["Delivery %", s.deliveryRate + "%"],
+            ["Read %", s.readRate + "%"],
+            ["Failure %", s.failureRate + "%"],
+        ].map(([label, value]) => `<div class="summary-card"><div class="label">${label}</div><div class="value">${value}</div></div>`).join("");
+
+        const labels = s.trend.map(d => d.day.slice(5));
+        if (window.Chart) {
+            if (wamTrendChartInstance) wamTrendChartInstance.destroy();
+            if (wamDeliveryChartInstance) wamDeliveryChartInstance.destroy();
+
+            wamTrendChartInstance = new Chart(document.getElementById("wamTrendChart"), {
+                type: "line",
+                data: { labels, datasets: [
+                    { label: "Sent", data: s.trend.map(d => d.sent), borderColor: "#25D366", tension: 0.3 },
+                    { label: "Failed", data: s.trend.map(d => d.failed), borderColor: "#ef4444", tension: 0.3 },
+                ] },
+                options: { responsive: true, plugins: { legend: { position: "bottom" } } },
+            });
+
+            wamDeliveryChartInstance = new Chart(document.getElementById("wamDeliveryChart"), {
+                type: "line",
+                data: { labels, datasets: [
+                    { label: "Delivered", data: s.trend.map(d => d.delivered), borderColor: "#4f46e5", tension: 0.3 },
+                    { label: "Read", data: s.trend.map(d => d.read), borderColor: "#0ea5e9", tension: 0.3 },
+                ] },
+                options: { responsive: true, plugins: { legend: { position: "bottom" } } },
+            });
+        }
+    } catch (error) {
+        grid.innerHTML = `<p style="color:var(--danger);">Failed to load analytics: ${error.message}</p>`;
+    }
+};
+
+// --- Settings ---
+window.wamLoadSettings = async function() {
+    const grid = document.getElementById("wamSettingsGrid");
+    grid.innerHTML = "<p class='muted'>Loading...</p>";
+    try {
+        const res = await wamFn.getSettingsInfo();
+        const info = res.data;
+        const configuredPill = (ok) => `<span class="wam-status-pill" style="background:${ok ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'}; color:${ok ? 'var(--success)' : 'var(--danger)'};">${ok ? '✅ Configured' : '❌ Not configured'}</span>`;
+        const webhookUrl = `https://us-central1-${firebaseConfig.projectId}.cloudfunctions.net/whatsappWebhook`;
+
+        grid.innerHTML = [
+            ["Phone Number ID", info.phoneNumberId || "-"],
+            ["Business Account ID", info.businessAccountId || "Not configured - required for Sync Templates"],
+            ["Token (WHATSAPP_TOKEN)", configuredPill(info.tokenConfigured)],
+            ["App Secret", configuredPill(info.appSecretConfigured)],
+            ["Verify Token", configuredPill(info.verifyTokenConfigured)],
+            ["Webhook URL", webhookUrl],
+            ["Webhook Status", info.lastWebhookEventAt ? "✅ Last event: " + wamFormatTimestamp(info.lastWebhookEventAt) : "⚠️ No events recorded yet"],
+            ["Graph API Version", info.graphApiVersion],
+            ["Last Template Sync", info.lastTemplateSync ? wamFormatTimestamp(info.lastTemplateSync) : "Never"],
+        ].map(([label, value]) => `<div class="summary-card"><div class="label">${label}</div><div class="value" style="font-size:15px; word-break:break-all;">${value}</div></div>`).join("");
+    } catch (error) {
+        grid.innerHTML = `<p style="color:var(--danger);">Failed to load: ${error.message}</p>`;
+    }
+};
 
 window.appendStudyContent = async function() {
     const cls = document.getElementById('studyClass').value;

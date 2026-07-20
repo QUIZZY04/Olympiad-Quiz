@@ -62,7 +62,7 @@ const WEBHOOK_VERIFY_SECRETS = [SECRET_NAMES.VERIFY_TOKEN];
 // ---------------------------------------------------------------------
 // Meta Graph API
 // ---------------------------------------------------------------------
-const GRAPH_API_VERSION = "v21.0";
+const GRAPH_API_VERSION = "v23.0";
 const GRAPH_BASE_URL = `https://graph.facebook.com/${GRAPH_API_VERSION}`;
 
 /**
@@ -85,6 +85,9 @@ const COLLECTIONS = {
   PROCESSED_EVENTS: "whatsapp_processed_events", // webhook dedup ledger
   BROADCAST_LOGS: "whatsapp_broadcast_logs",     // summary per broadcast run
   OTP_CODES: "whatsapp_otp_codes",       // standalone WhatsApp OTP utility (NOT Firebase Auth)
+  TEMPLATES: "whatsapp_templates",       // admin console: cached Meta template metadata
+  SCHEDULE: "whatsapp_schedule",         // admin console: scheduled broadcasts
+  SETTINGS: "whatsapp_settings",         // admin console: automation on/off + delay per type
 };
 
 // Reuses the same single-admin model already hardcoded in index.js

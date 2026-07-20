@@ -22,6 +22,14 @@
 /** Template names as registered in Meta Business Manager. Rename here if
  *  you register them under different names - nothing else needs to change. */
 const TEMPLATE_NAMES = {
+  // Phase 1 automated notifications (production names, versioned per Meta's convention).
+  ACCOUNT_CREATED: "oq_account_created_v1",
+  LIVE_TEST_REGISTRATION: "oq_live_test_registration_v1",
+  LIVE_RESULT: "oq_live_result_v1",
+
+  // Existing/reserved templates - unused by the Phase 1 triggers, kept for
+  // whatever else already references them (generic send helpers, admin
+  // console ad-hoc sends).
   OTP: "otp_verification",
   PAYMENT_SUCCESS: "payment_success",
   REGISTRATION_SUCCESS: "registration_success",
@@ -35,6 +43,11 @@ const TEMPLATE_NAMES = {
 };
 
 const DEFAULT_LANGUAGE = "en";
+
+// Used as the (static, non-parameterized) IMAGE header on the 3 Phase 1
+// templates. Reuses the same asset already treated as "the logo" elsewhere
+// in this codebase (see the push-notification icon in functions/index.js).
+const OLYMPIADQUIZ_LOGO_URL = "https://olympiadquiz.org/favicon.png";
 
 /**
  * Builds a free-form text message payload (only valid inside the 24h
@@ -57,16 +70,20 @@ function buildTextMessagePayload(to, body) {
  * @param {string} templateName
  * @param {string} [languageCode]
  * @param {Array<string|number>} [bodyParams] - Values substituted into {{1}}, {{2}}, ... in order.
+ * @param {string} [headerImageUrl] - If the template's approved header is an
+ *   IMAGE header, pass a public HTTPS URL here to fill it (e.g. OLYMPIADQUIZ_LOGO_URL).
+ *   Omit for templates with no header or a non-image header - existing callers
+ *   that don't pass this keep working exactly as before.
  */
-function buildTemplateMessagePayload(to, templateName, languageCode = DEFAULT_LANGUAGE, bodyParams = []) {
-  const components = bodyParams.length
-    ? [
-        {
-          type: "body",
-          parameters: bodyParams.map((value) => ({ type: "text", text: String(value) })),
-        },
-      ]
-    : [];
+function buildTemplateMessagePayload(to, templateName, languageCode = DEFAULT_LANGUAGE, bodyParams = [], headerImageUrl = null) {
+  const components = [];
+
+  if (headerImageUrl) {
+    components.push({ type: "header", parameters: [{ type: "image", image: { link: headerImageUrl } }] });
+  }
+  if (bodyParams.length) {
+    components.push({ type: "body", parameters: bodyParams.map((value) => ({ type: "text", text: String(value) })) });
+  }
 
   return {
     messaging_product: "whatsapp",
@@ -110,6 +127,21 @@ function buildButtonsPayload(to, bodyText, buttons) {
 // Order of placeholders below MUST match the order params are passed in
 // whatsappService.js.
 // ---------------------------------------------------------------------
+
+/** {{1}} name */
+function accountCreatedParams({ name }) {
+  return [name];
+}
+
+/** {{1}} name, {{2}} test name, {{3}} test date, {{4}} test time */
+function liveTestRegistrationParams({ name, testName, testDate, testTime }) {
+  return [name, testName, testDate, testTime];
+}
+
+/** {{1}} name, {{2}} test name */
+function liveResultParams({ name, testName }) {
+  return [name, testName];
+}
 
 /** {{1}} name, {{2}} otp code, {{3}} expiry minutes */
 function otpParams({ name, otp, expiryMinutes = 10 }) {
@@ -159,9 +191,13 @@ function newsletterParams({ name, highlight }) {
 module.exports = {
   TEMPLATE_NAMES,
   DEFAULT_LANGUAGE,
+  OLYMPIADQUIZ_LOGO_URL,
   buildTextMessagePayload,
   buildTemplateMessagePayload,
   buildButtonsPayload,
+  accountCreatedParams,
+  liveTestRegistrationParams,
+  liveResultParams,
   otpParams,
   paymentSuccessParams,
   registrationSuccessParams,

@@ -360,6 +360,66 @@ async function sendCertificate(phoneNumber, details) {
 }
 
 // ---------------------------------------------------------------------
+// Phase 1 automated notification wrappers
+// ---------------------------------------------------------------------
+// Thin, purpose-named entry points for the ONLY 3 automated WhatsApp
+// notifications approved for production (account creation, live test
+// registration, live test result). Each one builds its own single
+// unified-template payload via buildTemplateMessagePayload/sendAndLog -
+// the same transport, retry, and logging path every other send in this
+// file uses - and adds a static IMAGE header (the OlympiadQuiz logo).
+//
+// Future automations (payment reminder, test reminder, certificate ready,
+// broadcast campaigns, OTP, etc.) should follow this exact shape: one
+// small wrapper here per event, its own template + params in templates.js,
+// and one trigger/callable invoking it - never inline payload-building in
+// a trigger, and never duplicating what's already here.
+
+/** Account Creation Confirmation. @param {string} phoneNumber @param {{name: string}} details */
+async function sendAccountCreatedWhatsApp(phoneNumber, details) {
+  const to = normalizePhoneNumber(phoneNumber);
+  if (!to) return { success: false, error: "Invalid phone number" };
+
+  const params = templates.accountCreatedParams(details);
+  const payload = templates.buildTemplateMessagePayload(
+    to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
+  );
+  return sendAndLog(payload, { category: "account_created" });
+}
+
+/**
+ * Live Test Registration Confirmation - single unified template (name,
+ * test name, date, time); no payment amount/order id in this message.
+ * @param {string} phoneNumber @param {{name: string, testName: string, testDate: string, testTime: string}} details
+ */
+async function sendLiveRegistrationWhatsApp(phoneNumber, details) {
+  const to = normalizePhoneNumber(phoneNumber);
+  if (!to) return { success: false, error: "Invalid phone number" };
+
+  const params = templates.liveTestRegistrationParams(details);
+  const payload = templates.buildTemplateMessagePayload(
+    to, templates.TEMPLATE_NAMES.LIVE_TEST_REGISTRATION, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
+  );
+  return sendAndLog(payload, { category: "live_test_registration" });
+}
+
+/**
+ * Live Test Result Notification. Certificate-ready notification remains a
+ * deliberately separate, not-yet-automated event - see sendCertificate() above.
+ * @param {string} phoneNumber @param {{name: string, testName: string}} details
+ */
+async function sendResultWhatsApp(phoneNumber, details) {
+  const to = normalizePhoneNumber(phoneNumber);
+  if (!to) return { success: false, error: "Invalid phone number" };
+
+  const params = templates.liveResultParams(details);
+  const payload = templates.buildTemplateMessagePayload(
+    to, templates.TEMPLATE_NAMES.LIVE_RESULT, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
+  );
+  return sendAndLog(payload, { category: "live_test_result" });
+}
+
+// ---------------------------------------------------------------------
 // 11. Broadcast
 // ---------------------------------------------------------------------
 
@@ -461,4 +521,7 @@ module.exports = {
   sendResult,
   sendCertificate,
   sendBroadcast,
+  sendAccountCreatedWhatsApp,
+  sendLiveRegistrationWhatsApp,
+  sendResultWhatsApp,
 };
