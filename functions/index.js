@@ -1364,12 +1364,16 @@ exports.notifyWhatsAppOnResult = onDocumentWritten(
 
 /**
  * NEW Firestore trigger on the SAME document path already watched by
- * `triggerWelcomeEmail` above (users/{uid}). Sends the Phase 1 "Account
- * Creation Confirmation" WhatsApp message once registration is complete -
+ * `triggerWelcomeEmail` above (users/{uid}). Sends the approved
+ * oq_account_created_v1 WhatsApp template once registration is complete -
  * same `registrationCompleted` gate as the welcome email, so this fires at
- * the exact same moment, well after Firebase Auth/OTP has already finished.
- * Independent of `triggerWelcomeEmail`: the welcome email keeps sending
- * exactly as before, this is purely an additional channel.
+ * the exact same moment (both triggered together off the same write),
+ * well after Firebase Auth/OTP has already finished. Independent of
+ * `triggerWelcomeEmail`: the welcome email keeps sending exactly as
+ * before, this is purely an additional channel. If Firebase Auth account
+ * creation had failed, no user document would exist to write this
+ * trigger's `registrationCompleted: true` in the first place, so there is
+ * nothing to gate separately for that case.
  */
 exports.notifyWhatsAppOnAccountCreated = onDocumentWritten(
   {
@@ -1388,9 +1392,31 @@ exports.notifyWhatsAppOnAccountCreated = onDocumentWritten(
     if (!enabled) return;
 
     try {
-      await whatsappService.sendAccountCreatedWhatsApp(phone, { name: afterData.name || "Student" });
+      // Same name-resolution fallback chain already used by sendResultEmail
+      // above: prefer the Firestore profile, fall back to the Auth display
+      // name, then a generic default.
+      let studentName = afterData.name;
+      if (!studentName) {
+        try {
+          const userRecord = await admin.auth().getUser(uid);
+          studentName = userRecord.displayName;
+        } catch (lookupError) {
+          console.warn(`notifyWhatsAppOnAccountCreated: could not resolve Auth displayName for uid ${uid}:`, lookupError.message);
+        }
+      }
+      studentName = studentName || "Student";
+
+      const result = await whatsappService.sendAccountCreatedWhatsApp(phone, { name: studentName, uid });
+      if (!result.success) {
+        // Fallback: template not found/disabled/rejected/unavailable, or any
+        // other Meta error. Already logged with the full Meta response by
+        // sendAndLog - just skip silently here and let signup continue.
+        console.warn(`notifyWhatsAppOnAccountCreated: WhatsApp send skipped for uid ${uid}:`, result.error);
+        return;
+      }
       await event.data.after.ref.update({ whatsappWelcomeSent: true });
     } catch (error) {
+      // Never let a WhatsApp failure affect signup/email - already logged above.
       console.error(`notifyWhatsAppOnAccountCreated failed for uid ${uid}:`, error.message);
     }
   }

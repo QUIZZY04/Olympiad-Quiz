@@ -139,6 +139,9 @@ async function sendAndLog(payload, logMeta) {
       templateName: payload.template?.name || null,
       messageId,
       category: logMeta.category,
+      uid: logMeta.uid,
+      studentName: logMeta.studentName,
+      metaResponse: result || null,
     });
     return { success: true, messageId };
   } catch (error) {
@@ -150,6 +153,9 @@ async function sendAndLog(payload, logMeta) {
       templateName: payload.template?.name || null,
       category: logMeta.category,
       error,
+      uid: logMeta.uid,
+      studentName: logMeta.studentName,
+      metaResponse: error.graphError || null,
     });
     return { success: false, error: error.message };
   }
@@ -367,7 +373,10 @@ async function sendCertificate(phoneNumber, details) {
 // registration, live test result). Each one builds its own single
 // unified-template payload via buildTemplateMessagePayload/sendAndLog -
 // the same transport, retry, and logging path every other send in this
-// file uses - and adds a static IMAGE header (the OlympiadQuiz logo).
+// file uses. Header/footer/button are per-template: sendAccountCreatedWhatsApp's
+// oq_account_created_v1 has these already configured in Meta (body-only
+// payload); the other two still pass a code-side IMAGE header until their
+// templates are confirmed approved with a header already baked in.
 //
 // Future automations (payment reminder, test reminder, certificate ready,
 // broadcast campaigns, OTP, etc.) should follow this exact shape: one
@@ -375,16 +384,21 @@ async function sendCertificate(phoneNumber, details) {
 // and one trigger/callable invoking it - never inline payload-building in
 // a trigger, and never duplicating what's already here.
 
-/** Account Creation Confirmation. @param {string} phoneNumber @param {{name: string}} details */
+/**
+ * Account Creation Confirmation - oq_account_created_v1 (APPROVED). Header,
+ * footer, and button are already configured on the approved template in
+ * Meta Business Manager, so only the body variable is sent here - no
+ * header/footer/button components are built in code for this template.
+ * @param {string} phoneNumber
+ * @param {{name: string, uid?: string}} details
+ */
 async function sendAccountCreatedWhatsApp(phoneNumber, details) {
   const to = normalizePhoneNumber(phoneNumber);
   if (!to) return { success: false, error: "Invalid phone number" };
 
   const params = templates.accountCreatedParams(details);
-  const payload = templates.buildTemplateMessagePayload(
-    to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
-  );
-  return sendAndLog(payload, { category: "account_created" });
+  const payload = templates.buildTemplateMessagePayload(to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params);
+  return sendAndLog(payload, { category: "account_created", uid: details.uid, studentName: details.name });
 }
 
 /**

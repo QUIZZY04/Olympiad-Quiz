@@ -43,6 +43,11 @@ async function logMessage(entry) {
     messageId: entry.messageId || null,
     category: entry.category || "general",
     error: entry.error ? String(entry.error.message || entry.error) : null,
+    // Optional, caller-supplied extras - null for every existing caller that
+    // doesn't pass them (no behavior change for any existing log entry shape).
+    uid: entry.uid || null,
+    studentName: entry.studentName || null,
+    metaResponse: entry.metaResponse || null,
     timestamp: FieldValue.serverTimestamp(),
   });
   return doc.id;
