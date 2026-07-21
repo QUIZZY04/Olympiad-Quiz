@@ -516,6 +516,19 @@ async function evaluateAuthState(user) {
             return;
         }
 
+        // Google sign-in users don't yet have a phone number - make verification
+        // mandatory before they can reach Complete Profile, reusing the exact
+        // existing stepPhoneAuth flow (its handlers already support linking a
+        // phone onto an authenticated Google session - see phoneSignupForm/pOtpForm).
+        if (!user.phoneNumber) {
+            console.log("[signup] Redirect decision: mandatory phone verification");
+            document.getElementById("phoneTitle").innerText = "Verify Mobile Number";
+            document.getElementById("phoneSubtitle").innerText = "A verified mobile number is required to complete your registration.";
+            showSection('stepPhoneAuth');
+            if (!window.signupRecaptchaVerifier) initRecaptcha();
+            return;
+        }
+
         console.log("[signup] Redirect decision: show Complete Profile card");
 
         await populateProfileForm(user, data);
