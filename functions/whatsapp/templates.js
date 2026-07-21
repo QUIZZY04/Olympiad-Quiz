@@ -42,7 +42,12 @@ const TEMPLATE_NAMES = {
   BIRTHDAY_GREETING: "birthday_greeting",
 };
 
-const DEFAULT_LANGUAGE = "en";
+// Must exactly match the language code Meta stores for each approved
+// template, not just what the WhatsApp Manager UI label says. Plain
+// "English" in Meta's template editor UI resolves to the "en_US" locale
+// code at the API level (confirmed via error #132001 "Template name does
+// not exist in the translation" when this was previously set to "en").
+const DEFAULT_LANGUAGE = "en_US";
 
 // Used as the (static, non-parameterized) IMAGE header on the 3 Phase 1
 // templates. Reuses the same asset already treated as "the logo" elsewhere
