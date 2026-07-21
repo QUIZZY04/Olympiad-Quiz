@@ -224,7 +224,8 @@
                 }
                 if (userDoc.exists()) {
                     const profileData = userDoc.data();
-                    const isProfileComplete = !!(profileData.registrationCompleted || profileData.signupCompleted || profileData.profileCompleted);
+                    const hasPhone = !!(user.phoneNumber || profileData.phone || profileData.phoneNumber);
+                    const isProfileComplete = !!(profileData.registrationCompleted || profileData.signupCompleted || profileData.profileCompleted) && hasPhone;
                     if (!isProfileComplete && !isAdminCheck) {
                         sessionStorage.setItem("redirectAfterLogin", window.location.href);
                         window.location.replace("signup.html?mode=completion");

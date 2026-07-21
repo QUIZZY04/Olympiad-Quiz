@@ -506,7 +506,10 @@ async function evaluateAuthState(user) {
     // Non-blocking sync of provider/mobile verification state — does not affect redirect timing or UI
     syncProviderState(user).catch(e => console.warn("Provider sync failed:", e));
 
-    if (data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted)) {
+    const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
+    const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
+
+    if (hasCompletedProfile && hasPhone) {
         console.log("Redirect decision: dashboard");
         isRedirecting = true;
         localStorage.setItem("isLoggedIn", "true");
@@ -515,7 +518,7 @@ async function evaluateAuthState(user) {
         return;
     }
 
-    console.log("Redirect decision: signup (incomplete profile)");
+    console.log("Redirect decision: signup (incomplete profile or missing phone)");
     isRedirecting = true;
     window.location.replace("signup.html?mode=completion");
 }

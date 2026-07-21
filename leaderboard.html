@@ -543,7 +543,8 @@ try {
         return;
     }
     const data = userDoc.data();
-    const isProfileComplete = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+    const hasPhone = !!(user.phoneNumber || data.phone || data.phoneNumber);
+    const isProfileComplete = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted) && hasPhone;
     if (!isProfileComplete && !isAdminCheck) {
         sessionStorage.setItem("redirectAfterLogin", window.location.href);
         window.location.replace("signup.html?mode=completion");

@@ -288,7 +288,8 @@
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
                     const data = userDoc.data();
-                    const isRegistered = data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true;
+                    const hasPhone = !!(user.phoneNumber || data?.phone || data?.phoneNumber);
+                    const isRegistered = (data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true) && hasPhone;
                     if (!isRegistered && !isAdmin) {
                         window.location.replace("signup.html?mode=completion");
                         return;

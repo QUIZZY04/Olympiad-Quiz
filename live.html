@@ -456,7 +456,8 @@
                 if (userDoc.exists()) {
                     const data = userDoc.data();
                     const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
-                    const isProfileComplete = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+                    const hasPhone = !!(user.phoneNumber || data.phone || data.phoneNumber);
+                    const isProfileComplete = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted) && hasPhone;
                     if (!isProfileComplete && !isAdmin) {
                         sessionStorage.setItem("redirectAfterLogin", window.location.href);
                         window.location.replace("signup.html?mode=completion");

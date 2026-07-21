@@ -6,7 +6,9 @@
  *   - protectPage()   → full-page guard (hard redirect if not auth'd or profile incomplete)
  *   - requireLogin()  → inline guard for "Start Test" buttons on public pages
  *   Both now verify Firestore `registrationCompleted || signupCompleted || profileCompleted`
- *   before granting access. Incomplete-profile users are sent to signup.html?mode=completion.
+ *   AND a phone number on file, before granting access. Incomplete-profile or
+ *   phoneless users (including pre-existing Google-only accounts) are sent to
+ *   signup.html?mode=completion, which forces phone verification.
  */
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -51,7 +53,9 @@ async function isProfileComplete(uid) {
         const userDoc = await getDoc(doc(db, "users", uid));
         if (!userDoc.exists()) return false;
         const data = userDoc.data();
-        return !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+        const hasCompletedProfile = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+        const hasPhone = !!(data.phone || data.phoneNumber);
+        return hasCompletedProfile && hasPhone;
     } catch (e) {
         console.warn("[AuthGuard] Firestore profile check failed:", e);
         // Fail-open on network error to avoid false lockouts on intermittent failures
