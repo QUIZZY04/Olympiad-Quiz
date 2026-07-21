@@ -1438,3 +1438,7 @@ exports.getWhatsAppStats = whatsappAdmin.getWhatsAppStats;
 exports.getAutomatedMessageStats = whatsappAdmin.getAutomatedMessageStats;
 exports.retryFailedMessage = whatsappAdmin.retryFailedMessage;
 exports.getWhatsAppSettingsInfo = whatsappAdmin.getWhatsAppSettingsInfo;
+exports.getAutomationSettings = whatsappAdmin.getAutomationSettings;
+exports.saveAutomationSetting = whatsappAdmin.saveAutomationSetting;
+exports.getScheduledBroadcasts = whatsappAdmin.getScheduledBroadcasts;
+exports.getWhatsAppLogs = whatsappAdmin.getWhatsAppLogs;

@@ -4739,6 +4739,10 @@ const wamFn = {
     getAutomatedStats: httpsCallable(functions, 'getAutomatedMessageStats'),
     retryMessage: httpsCallable(functions, 'retryFailedMessage'),
     getSettingsInfo: httpsCallable(functions, 'getWhatsAppSettingsInfo'),
+    getAutomationSettings: httpsCallable(functions, 'getAutomationSettings'),
+    saveAutomationSetting: httpsCallable(functions, 'saveAutomationSetting'),
+    getScheduledBroadcasts: httpsCallable(functions, 'getScheduledBroadcasts'),
+    getWhatsAppLogs: httpsCallable(functions, 'getWhatsAppLogs'),
 };
 
 const wamLoadedTabs = new Set();
@@ -5118,17 +5122,17 @@ window.wamRefreshScheduleTable = async function() {
     const body = document.getElementById("wamSchedBody");
     body.innerHTML = `<tr><td colspan="5" class="muted">Loading...</td></tr>`;
     try {
-        const snap = await getDocs(query(collection(db, "whatsapp_schedule"), orderBy("scheduledFor", "desc"), limit(100)));
-        if (snap.empty) {
+        const res = await wamFn.getScheduledBroadcasts();
+        const schedules = res.data.schedules || [];
+        if (schedules.length === 0) {
             body.innerHTML = `<tr><td colspan="5" class="muted">No scheduled broadcasts.</td></tr>`;
             return;
         }
-        body.innerHTML = snap.docs.map(docSnap => {
-            const d = docSnap.data();
+        body.innerHTML = schedules.map(d => {
             const actions = [];
-            if (d.status === "scheduled") actions.push(`<button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamPauseSchedule('${docSnap.id}')">⏸ Pause</button>`);
-            if (d.status === "paused") actions.push(`<button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamResumeSchedule('${docSnap.id}')">▶ Resume</button>`);
-            if (["scheduled", "paused"].includes(d.status)) actions.push(`<button type="button" class="delete" style="padding:4px 8px; font-size:11px;" onclick="window.wamCancelSchedule('${docSnap.id}')">🗑 Cancel</button>`);
+            if (d.status === "scheduled") actions.push(`<button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamPauseSchedule('${d.id}')">⏸ Pause</button>`);
+            if (d.status === "paused") actions.push(`<button type="button" class="edit-btn" style="padding:4px 8px; font-size:11px;" onclick="window.wamResumeSchedule('${d.id}')">▶ Resume</button>`);
+            if (["scheduled", "paused"].includes(d.status)) actions.push(`<button type="button" class="delete" style="padding:4px 8px; font-size:11px;" onclick="window.wamCancelSchedule('${d.id}')">🗑 Cancel</button>`);
             return `<tr>
                 <td>${wamFormatTimestamp(d.scheduledFor)}</td>
                 <td>${d.templateName || "(plain text)"}</td>
@@ -5223,14 +5227,14 @@ window.wamLoadAutomated = async function() {
     const body = document.getElementById("wamAutomatedBody");
     body.innerHTML = `<tr><td colspan="7" class="muted">Loading...</td></tr>`;
     try {
-        const [settingsSnaps, statsRes] = await Promise.all([
-            Promise.all(WAM_AUTOMATIONS.map(a => getDoc(doc(db, "whatsapp_settings", a.key)))),
+        const [settingsRes, statsRes] = await Promise.all([
+            wamFn.getAutomationSettings(),
             wamFn.getAutomatedStats(),
         ]);
         const statsByCategory = Object.fromEntries((statsRes.data.stats || []).map(s => [s.category, s]));
 
-        body.innerHTML = WAM_AUTOMATIONS.map((a, i) => {
-            const settingsData = settingsSnaps[i].exists() ? settingsSnaps[i].data() : {};
+        body.innerHTML = WAM_AUTOMATIONS.map((a) => {
+            const settingsData = settingsRes.data.settings?.[a.key] || {};
             const enabled = settingsData.enabled !== false;
             const stats = statsByCategory[a.category] || { successCount: 0, failureCount: 0, lastSentAt: null };
             return `<tr>
@@ -5257,9 +5261,7 @@ window.wamLoadAutomated = async function() {
 window.wamSaveAutomation = async function(key) {
     const enabled = document.querySelector(`.wam-auto-toggle[data-key="${key}"]`).checked;
     try {
-        await setDoc(doc(db, "whatsapp_settings", key), {
-            enabled, updatedAt: serverTimestamp(), updatedBy: auth.currentUser?.email || "admin",
-        }, { merge: true });
+        await wamFn.saveAutomationSetting({ key, enabled });
         await window.wamLoadAutomated();
     } catch (error) {
         alert("Failed to save: " + error.message);
@@ -5306,8 +5308,8 @@ window.wamLoadLogs = async function() {
     const body = document.getElementById("wamLogsBody");
     body.innerHTML = `<tr><td colspan="6" class="muted">Loading...</td></tr>`;
     try {
-        const snap = await getDocs(query(collection(db, "whatsapp_logs"), orderBy("timestamp", "desc"), limit(500)));
-        wamLogsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const res = await wamFn.getWhatsAppLogs({ limit: 500 });
+        wamLogsCache = res.data.logs || [];
         window.wamFilterLogs();
     } catch (error) {
         body.innerHTML = `<tr><td colspan="6" style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;

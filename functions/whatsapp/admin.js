@@ -412,6 +412,54 @@ exports.getAutomatedMessageStats = onCall({}, async (request) => {
 });
 
 // ---------------------------------------------------------------------
+// Server-side reads/writes for whatsapp_settings, whatsapp_schedule, and
+// whatsapp_logs - these collections are new and this project's deployed
+// Firestore rules (managed outside this repo) have no rule for them, so
+// admin.html can't read/write them directly from the client (it gets
+// "Missing or insufficient permissions"). Routing through the Admin SDK
+// here sidesteps that entirely without touching Firestore rules at all -
+// the same approach every other WhatsApp Manager tab already uses.
+// ---------------------------------------------------------------------
+
+const AUTOMATION_SETTING_KEYS = ["account_creation", "live_test_registration", "live_test_result"];
+
+exports.getAutomationSettings = onCall({}, async (request) => {
+  assertAdmin(request);
+  const snaps = await Promise.all(AUTOMATION_SETTING_KEYS.map((key) => db.collection(COLLECTIONS.SETTINGS).doc(key).get()));
+  const settings = {};
+  AUTOMATION_SETTING_KEYS.forEach((key, i) => {
+    settings[key] = snaps[i].exists ? snaps[i].data() : { enabled: true };
+  });
+  return { settings };
+});
+
+exports.saveAutomationSetting = onCall({}, async (request) => {
+  assertAdmin(request);
+  const { key, enabled } = request.data || {};
+  if (!key || typeof enabled !== "boolean") {
+    throw new HttpsError("invalid-argument", "key and enabled (boolean) are required.");
+  }
+  await db.collection(COLLECTIONS.SETTINGS).doc(key).set(
+    { enabled, updatedAt: FieldValue.serverTimestamp(), updatedBy: request.auth.token.email },
+    { merge: true }
+  );
+  return { success: true };
+});
+
+exports.getScheduledBroadcasts = onCall({}, async (request) => {
+  assertAdmin(request);
+  const snap = await db.collection(COLLECTIONS.SCHEDULE).orderBy("scheduledFor", "desc").limit(100).get();
+  return { schedules: snap.docs.map((d) => ({ id: d.id, ...d.data() })) };
+});
+
+exports.getWhatsAppLogs = onCall({}, async (request) => {
+  assertAdmin(request);
+  const limitCount = Math.min(Number(request.data?.limit) || 500, 1000);
+  const snap = await db.collection(COLLECTIONS.LOGS).orderBy("timestamp", "desc").limit(limitCount).get();
+  return { logs: snap.docs.map((d) => ({ id: d.id, ...d.data() })) };
+});
+
+// ---------------------------------------------------------------------
 // Retry a failed send (append-only - writes a NEW log row, never
 // mutates the original, matching messageLogger.js's existing design)
 // ---------------------------------------------------------------------
