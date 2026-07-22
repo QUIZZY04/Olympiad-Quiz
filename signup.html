@@ -417,6 +417,18 @@ window.showSection = function(id) {
     document.getElementById(id).classList.remove('hidden');
 };
 
+// Deep link from the phone-verification reminder email (and auth-guard.js's
+// completion redirects): jump straight to the phone step instead of
+// flashing the generic entry screen while auth state is still resolving.
+// If it turns out the session isn't authenticated, evaluateAuthState's
+// resetToEntry() below switches back to the entry screen automatically.
+const isCompletionMode = new URLSearchParams(location.search).get('mode') === 'completion';
+if (isCompletionMode) {
+    showSection('stepPhoneAuth');
+    document.getElementById("phoneTitle").innerText = "Complete Your Registration";
+    document.getElementById("phoneSubtitle").innerText = "Verify your mobile number to unlock Free Mock Tests and other features.";
+}
+
 // Initialize Invisible reCAPTCHA directly
 function initRecaptcha() {
     if (window.signupRecaptchaVerifier) {
@@ -530,8 +542,8 @@ async function evaluateAuthState(user) {
         // skipping Complete Profile since name/class are already on file.
         if (!hasPhone) {
             console.log("[signup] Redirect decision: mandatory phone verification");
-            document.getElementById("phoneTitle").innerText = "Verify Mobile Number";
-            document.getElementById("phoneSubtitle").innerText = "A verified mobile number is required to complete your registration.";
+            document.getElementById("phoneTitle").innerText = "Complete Your Registration";
+            document.getElementById("phoneSubtitle").innerText = "Verify your mobile number to unlock Free Mock Tests and other features.";
             showSection('stepPhoneAuth');
             if (!window.signupRecaptchaVerifier) initRecaptcha();
             return;

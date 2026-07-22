@@ -1442,3 +1442,10 @@ exports.getAutomationSettings = whatsappAdmin.getAutomationSettings;
 exports.saveAutomationSetting = whatsappAdmin.saveAutomationSetting;
 exports.getScheduledBroadcasts = whatsappAdmin.getScheduledBroadcasts;
 exports.getWhatsAppLogs = whatsappAdmin.getWhatsAppLogs;
+
+// =================================================================
+// 9. PHONE VERIFICATION REMINDER EMAIL (NEW - ADDITIVE ONLY)
+// =================================================================
+// See functions/emailReminders.js. Nudges Google signups who never
+// verified a mobile number to come back and finish registration.
+exports.phoneVerificationReminderEmail = require("./emailReminders").phoneVerificationReminderEmail;

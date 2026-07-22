@@ -495,32 +495,20 @@ async function evaluateAuthState(user) {
     }
 
     await user.reload().catch(e=>console.warn(e));
-    
-
-    const docSnap = await getDoc(doc(db, "users", user.uid));
-    const data = docSnap.exists() ? docSnap.data() : null;
 
     console.log("Auth user:", user.uid);
-    console.log("Firestore data:", data);
 
     // Non-blocking sync of provider/mobile verification state — does not affect redirect timing or UI
     syncProviderState(user).catch(e => console.warn("Provider sync failed:", e));
 
-    const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
-    const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
-
-    if (hasCompletedProfile && hasPhone) {
-        console.log("Redirect decision: dashboard");
-        isRedirecting = true;
-        localStorage.setItem("isLoggedIn", "true");
-        sessionStorage.removeItem("redirectAfterLogin");
-        window.location.replace(redirectUrl);
-        return;
-    }
-
-    console.log("Redirect decision: signup (incomplete profile or missing phone)");
+    // Sign-in only requires successful authentication. Profile/phone completion
+    // is enforced per-feature by auth-guard.js (requireLogin/protectPage) when
+    // the user tries to use a gated facility, not here at the login gate.
+    console.log("Redirect decision: dashboard");
     isRedirecting = true;
-    window.location.replace("signup.html?mode=completion");
+    localStorage.setItem("isLoggedIn", "true");
+    sessionStorage.removeItem("redirectAfterLogin");
+    window.location.replace(redirectUrl);
 }
 
 onAuthStateChanged(auth, async (user) => {
