@@ -385,10 +385,15 @@ async function sendCertificate(phoneNumber, details) {
 // a trigger, and never duplicating what's already here.
 
 /**
- * Account Creation Confirmation - oq_account_created_v1 (APPROVED). Header,
- * footer, and button are already configured on the approved template in
- * Meta Business Manager, so only the body variable is sent here - no
- * header/footer/button components are built in code for this template.
+ * Account Creation Confirmation - oq_account_created_v1 (APPROVED). Footer
+ * and button are static (no variables) on the approved template, so they
+ * need no component here - Meta renders them from the template definition
+ * alone. The header is a different case: its format is IMAGE, and Meta's
+ * Cloud API requires the media to be supplied in the header component on
+ * every send regardless of format - the "example" image given at template
+ * submission is only used for Meta's review, never reused at send time.
+ * Omitting it causes the send to fail (missing header parameter), so it's
+ * included here even though the header itself isn't parameterized text.
  * @param {string} phoneNumber
  * @param {{name: string, uid?: string}} details
  */
@@ -397,7 +402,9 @@ async function sendAccountCreatedWhatsApp(phoneNumber, details) {
   if (!to) return { success: false, error: "Invalid phone number" };
 
   const params = templates.accountCreatedParams(details);
-  const payload = templates.buildTemplateMessagePayload(to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params);
+  const payload = templates.buildTemplateMessagePayload(
+    to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
+  );
   return sendAndLog(payload, { category: "account_created", uid: details.uid, studentName: details.name });
 }
 
