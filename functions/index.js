@@ -1391,6 +1391,27 @@ exports.notifyWhatsAppOnAccountCreated = onDocumentWritten(
     const { enabled } = await whatsappAdmin.getAutomationSetting("account_creation");
     if (!enabled) return;
 
+    const userRef = event.data.after.ref;
+
+    // The signup wizard writes this doc several times in quick succession
+    // (NEW_USER -> AUTHENTICATED -> ACTIVE_USER, plus syncProviderState from
+    // both login.html and signup.html), each of which can retrigger this
+    // Firestore-write listener as a separate concurrent invocation. The
+    // whatsappWelcomeSent check above is only safe against a SINGLE prior
+    // invocation - it can't stop several of them racing each other and all
+    // reading `false` before any of them commits `true`, which produced the
+    // duplicate WhatsApp sends. A transaction closes that race: only one
+    // concurrent invocation's read-then-write can win, so only one proceeds
+    // to actually send. Same atomic-claim idiom as claimWebhookEvent() in
+    // functions/whatsapp/messageLogger.js.
+    const claimed = await db.runTransaction(async (tx) => {
+      const snap = await tx.get(userRef);
+      if (snap.data()?.whatsappWelcomeSent) return false;
+      tx.update(userRef, { whatsappWelcomeSent: true });
+      return true;
+    });
+    if (!claimed) return;
+
     try {
       // Same name-resolution fallback chain already used by sendResultEmail
       // above: prefer the Firestore profile, fall back to the Auth display
@@ -1410,14 +1431,17 @@ exports.notifyWhatsAppOnAccountCreated = onDocumentWritten(
       if (!result.success) {
         // Fallback: template not found/disabled/rejected/unavailable, or any
         // other Meta error. Already logged with the full Meta response by
-        // sendAndLog - just skip silently here and let signup continue.
+        // sendAndLog. Release the claim so a later write to this doc (or a
+        // manual retry) can try again instead of being permanently skipped.
         console.warn(`notifyWhatsAppOnAccountCreated: WhatsApp send skipped for uid ${uid}:`, result.error);
+        await userRef.update({ whatsappWelcomeSent: false }).catch(() => {});
         return;
       }
-      await event.data.after.ref.update({ whatsappWelcomeSent: true });
+      // whatsappWelcomeSent was already set true by the transaction above.
     } catch (error) {
       // Never let a WhatsApp failure affect signup/email - already logged above.
       console.error(`notifyWhatsAppOnAccountCreated failed for uid ${uid}:`, error.message);
+      await userRef.update({ whatsappWelcomeSent: false }).catch(() => {});
     }
   }
 );
