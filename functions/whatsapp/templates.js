@@ -43,11 +43,14 @@ const TEMPLATE_NAMES = {
 };
 
 // Must exactly match the language code Meta stores for each approved
-// template, not just what the WhatsApp Manager UI label says. Plain
-// "English" in Meta's template editor UI resolves to the "en_US" locale
-// code at the API level (confirmed via error #132001 "Template name does
-// not exist in the translation" when this was previously set to "en").
-const DEFAULT_LANGUAGE = "en_US";
+// template, not just what the WhatsApp Manager UI label says. Verified
+// directly against the Graph API (GET /{waba_id}/message_templates) for
+// oq_account_created_v1: Meta has it stored as "en", not "en_US" - the
+// previous assumption that plain "English" resolves to "en_US" was wrong
+// and caused every send to fail with error #132001 "Template name does
+// not exist in the translation". Re-verify per-template if this default
+// is ever wrong for a newly approved template with a different locale.
+const DEFAULT_LANGUAGE = "en";
 
 // Used as the (static, non-parameterized) IMAGE header on the 3 Phase 1
 // templates. Reuses the same asset already treated as "the logo" elsewhere
