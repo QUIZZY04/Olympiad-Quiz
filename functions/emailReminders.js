@@ -7,6 +7,15 @@
  * never finished registration - see signup.html's ACTIVE_USER state)
  * to come back and complete it, since verification gates access to
  * Free Mock Tests and other facilities via auth-guard.js.
+ *
+ * Runs once daily and caps sends at DAILY_SEND_LIMIT, oldest signups
+ * first, so the pre-existing backlog of abandoned Google signups is
+ * phased in gradually rather than emailed all at once. Candidates are
+ * fetched without a tight limit (bounded only by MAX_CANDIDATES_PER_RUN
+ * as a sane outer guard) because already-emailed users stay at the
+ * front of the createdAt-ascending order forever - a small candidate
+ * window would eventually be entirely "already sent" docs and stop
+ * making progress through the backlog.
  * =====================================================================
  */
 
@@ -15,6 +24,8 @@ const { admin, db } = require("./config");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 
 const GRACE_PERIOD_MS = 15 * 60 * 1000; // don't email someone still mid-OTP-entry
+const DAILY_SEND_LIMIT = 15;
+const MAX_CANDIDATES_PER_RUN = 5000; // outer guard on reads, not on emails sent
 const SITE_URL = "https://olympiadquiz.org/signup.html?mode=completion";
 
 const SENDER_INFO = {
@@ -73,7 +84,7 @@ function buildReminderEmail(name) {
 }
 
 exports.phoneVerificationReminderEmail = onSchedule(
-  { schedule: "every 10 minutes", timeZone: "Asia/Kolkata", secrets: ["BREVO_API_KEY"] },
+  { schedule: "0 10 * * *", timeZone: "Asia/Kolkata", secrets: ["BREVO_API_KEY"] },
   async () => {
     const cutoff = new Date(Date.now() - GRACE_PERIOD_MS);
 
@@ -82,13 +93,18 @@ exports.phoneVerificationReminderEmail = onSchedule(
       .where("registrationCompleted", "==", false)
       .where("googleLinked", "==", true)
       .where("createdAt", "<=", cutoff)
+      .orderBy("createdAt", "asc")
+      .limit(MAX_CANDIDATES_PER_RUN)
       .get();
 
     if (snap.empty) return;
 
     const brevoApi = getBrevoClient();
+    let sentCount = 0;
 
     for (const userDoc of snap.docs) {
+      if (sentCount >= DAILY_SEND_LIMIT) break;
+
       const data = userDoc.data();
       if (data.phone || data.phoneNumber) continue; // already verified, stuck elsewhere
       if (data.phoneReminderEmailSentAt) continue; // already emailed once
@@ -97,10 +113,13 @@ exports.phoneVerificationReminderEmail = onSchedule(
       try {
         await brevoApi.sendTransacEmail(buildReminderEmail(data.name || "Student"));
         await userDoc.ref.update({ phoneReminderEmailSentAt: admin.firestore.FieldValue.serverTimestamp() });
+        sentCount++;
         console.log(`Phone verification reminder sent to: ${data.email}`);
       } catch (error) {
         console.error(`phoneVerificationReminderEmail failed for uid ${userDoc.id}:`, error.message);
       }
     }
+
+    console.log(`phoneVerificationReminderEmail: sent ${sentCount}/${DAILY_SEND_LIMIT} today (${snap.docs.length} candidates read)`);
   }
 );
