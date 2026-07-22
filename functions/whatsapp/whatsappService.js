@@ -403,7 +403,7 @@ async function sendAccountCreatedWhatsApp(phoneNumber, details) {
 
   const params = templates.accountCreatedParams(details);
   const payload = templates.buildTemplateMessagePayload(
-    to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
+    to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params, templates.ACCOUNT_CREATED_HEADER_IMAGE_URL
   );
   return sendAndLog(payload, { category: "account_created", uid: details.uid, studentName: details.name });
 }

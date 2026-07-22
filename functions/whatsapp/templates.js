@@ -52,10 +52,17 @@ const TEMPLATE_NAMES = {
 // is ever wrong for a newly approved template with a different locale.
 const DEFAULT_LANGUAGE = "en";
 
-// Used as the (static, non-parameterized) IMAGE header on the 3 Phase 1
-// templates. Reuses the same asset already treated as "the logo" elsewhere
-// in this codebase (see the push-notification icon in functions/index.js).
+// Used as the (static, non-parameterized) IMAGE header on the 2 Phase 1
+// templates that aren't created in Meta yet (live test registration,
+// live test result). Reuses the same asset already treated as "the logo"
+// elsewhere in this codebase (see the push-notification icon in
+// functions/index.js).
 const OLYMPIADQUIZ_LOGO_URL = "https://olympiadquiz.org/favicon.png";
+
+// Rectangular (16:9) promotional banner used only as the account-creation
+// confirmation's header - deliberately separate from OLYMPIADQUIZ_LOGO_URL
+// above so the other two templates keep the square logo by default.
+const ACCOUNT_CREATED_HEADER_IMAGE_URL = "https://olympiadquiz.org/whatsapp_header.png";
 
 /**
  * Builds a free-form text message payload (only valid inside the 24h
@@ -200,6 +207,7 @@ module.exports = {
   TEMPLATE_NAMES,
   DEFAULT_LANGUAGE,
   OLYMPIADQUIZ_LOGO_URL,
+  ACCOUNT_CREATED_HEADER_IMAGE_URL,
   buildTextMessagePayload,
   buildTemplateMessagePayload,
   buildButtonsPayload,
