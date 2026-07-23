@@ -1215,11 +1215,12 @@ exports.sendWhatsAppBroadcast = onCall({
     consentAttested,
     sessionId,
     activityDays,
+    explicitPhones,
   } = request.data;
   if (!targetType) {
     throw new HttpsError("invalid-argument", "targetType is required.");
   }
-  if ((targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && !sessionId) {
+  if ((targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && !sessionId && !(explicitPhones && explicitPhones.length)) {
     throw new HttpsError("invalid-argument", "sessionId is required for the Live Test Registered/Not Registered filters.");
   }
   if (Array.isArray(extraContacts) && extraContacts.length && !consentAttested) {
@@ -1240,6 +1241,7 @@ exports.sendWhatsAppBroadcast = onCall({
       extraContacts,
       consentAttested,
       sessionId,
+      explicitPhones,
       activityDays,
     });
   } catch (error) {

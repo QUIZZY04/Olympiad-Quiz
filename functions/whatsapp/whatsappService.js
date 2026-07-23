@@ -610,6 +610,13 @@ function buildBroadcastVariables(templateName, message) {
  * @param {string} [options.sessionId] - Required for the two Live Test filters.
  * @param {number} [options.activityDays] - Required for the Activity filter
  *          ("active in the last N days", based on lastLoginAt).
+ * @param {Array<string>} [options.explicitPhones] - When provided (non-empty),
+ *          completely overrides the targetType-based filtering below: only
+ *          these exact phone numbers are considered (still consent-gated).
+ *          This is how the admin panel's per-filter checkbox list ("load the
+ *          matching students, let the admin uncheck a few") actually sends -
+ *          targetType/targetValue are still recorded for Campaign History
+ *          readability, but explicitPhones is what decides who receives it.
  * @returns {Promise<{success: boolean, campaignId: string, sentCount: number, failedCount: number, totalUsers: number}>}
  */
 async function sendBroadcast({
@@ -623,14 +630,21 @@ async function sendBroadcast({
   consentAttested = false,
   sessionId,
   activityDays,
+  explicitPhones,
 }) {
   const resolvedTemplateName = templateName || templates.TEMPLATE_NAMES.WEEKLY_NEWSLETTER;
   const now = Date.now();
   const uniqueNumbers = new Set();
 
+  const explicitSet = explicitPhones && explicitPhones.length
+    ? new Set(explicitPhones.map(normalizePhoneNumber).filter(Boolean))
+    : null;
+
   // One query up front for the live-test filters, rather than per-doc.
+  // Skipped entirely when explicitPhones is set - the admin already
+  // resolved and reviewed the exact recipient list client-side.
   let liveTestUids = null;
-  if ((targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && sessionId) {
+  if (!explicitSet && (targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && sessionId) {
     const purchasesSnap = await db
       .collectionGroup("purchases")
       .where("sessionId", "==", sessionId)
@@ -645,7 +659,10 @@ async function sendBroadcast({
     const data = doc.data();
     let include = false;
 
-    if (targetType === "All Users") {
+    if (explicitSet) {
+      const normalized = data.phone ? normalizePhoneNumber(data.phone) : null;
+      include = !!(normalized && explicitSet.has(normalized));
+    } else if (targetType === "All Users") {
       include = true;
     } else if (targetType === "By Class" && targetValue) {
       if (String(data.class) === String(targetValue) || String(data.studentClass) === String(targetValue)) {
