@@ -267,12 +267,19 @@ exports.syncTemplates = onCall(
         category: t.category || null,
         language: t.language || null,
         status: t.status || null,
-        components: t.components || [],
+        // Stored as JSON strings, not raw objects: Meta's BODY component
+        // includes example.body_text as an array of arrays (one example
+        // row per variable set, e.g. [["Rahul Sharma"]]), which Firestore
+        // flatly rejects ("Property array contains an invalid nested
+        // entity" - arrays can't directly contain other arrays). Nothing
+        // in admin.html reads these fields structurally (only bodyText/
+        // variableCount below), so JSON-stringifying costs nothing.
+        components: JSON.stringify(t.components || []),
         bodyText,
         variableCount,
         rejectedReason: t.rejected_reason || null,
         syncedAt: FieldValue.serverTimestamp(),
-        raw: t,
+        raw: JSON.stringify(t),
       });
     }
 
