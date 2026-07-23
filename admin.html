@@ -841,6 +841,7 @@ border-top:1px solid var(--border);
                             <option value="Selected Users">Selected Users (Emails/Phones)</option>
                             <option value="Mobile Verified">Mobile Verified</option>
                             <option value="WhatsApp Opt-in">WhatsApp Opt-in</option>
+                            <option value="Not Opted-in">Not Opted-in (view/export only)</option>
                             <option value="Live Test Registered">Live Test Registered (pick a session)</option>
                             <option value="Live Test Not Registered">Live Test Not Registered (pick a session)</option>
                             <option value="Activity">Activity (active in last N days)</option>
@@ -861,13 +862,15 @@ border-top:1px solid var(--border);
                 </div>
                 <input type="hidden" id="wamBcExplicitPhones">
                 <div id="wamBcTargetSelection" style="display:none; margin-top:15px;">
-                    <label>Matching Students <span class="muted" style="font-weight:400;">(everyone matching the filter above is pre-checked - untick anyone you want to skip)</span></label>
+                    <label id="wamBcSelectionLabel">Matching Students <span class="muted" style="font-weight:400;">(everyone matching the filter above is pre-checked - untick anyone you want to skip)</span></label>
+                    <p id="wamBcViewOnlyNote" class="muted" style="display:none; color:var(--danger); font-weight:600;">⚠️ View/export only - WhatsApp broadcasts cannot be sent to non-opted-in numbers (Meta policy). Use this list to follow up by another channel.</p>
                     <input type="text" id="wamBcUserSearch" placeholder="Search by name or phone..." oninput="window.wamFilterBcContacts()" style="margin-top:5px; margin-bottom:10px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                        <span style="font-size:12px; font-weight:600; color:#25D366;"><span id="wamSelectedBcCount">0</span> Selected</span>
+                        <span id="wamBcSelectedCountWrap" style="font-size:12px; font-weight:600; color:#25D366;"><span id="wamSelectedBcCount">0</span> Selected</span>
                         <span>
-                            <button type="button" onclick="window.wamSelectAllBcContacts()" style="padding:4px 10px; font-size:11px; margin:0 6px 0 0; background:var(--bg); color:var(--brand-text); border:1px solid var(--border);">Select All</button>
-                            <button type="button" onclick="window.wamClearBcSelection()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:var(--danger); border:1px solid var(--border);">Clear Selection</button>
+                            <button type="button" id="wamBcSelectAllBtn" onclick="window.wamSelectAllBcContacts()" style="padding:4px 10px; font-size:11px; margin:0 6px 0 0; background:var(--bg); color:var(--brand-text); border:1px solid var(--border);">Select All</button>
+                            <button type="button" id="wamBcClearBtn" onclick="window.wamClearBcSelection()" style="padding:4px 10px; font-size:11px; margin:0 6px 0 0; background:var(--bg); color:var(--danger); border:1px solid var(--border);">Clear Selection</button>
+                            <button type="button" onclick="window.wamExportBcContactsCsv()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:var(--text); border:1px solid var(--border);">⬇️ Export CSV</button>
                         </span>
                     </div>
                     <div id="wamBcTargetList" style="height:200px; overflow-y:auto; border:1px solid var(--border); border-radius:8px; padding:10px; background:var(--surface);"></div>
@@ -4802,6 +4805,7 @@ let wamTemplatesCache = [];
 let wamLogsCache = [];
 let wamCampaignsCache = [];
 let wamCsvContacts = [];
+let wamBcCurrentMatches = []; // {phone, name}[] currently shown in wamBcTargetList - powers Export CSV for any filter
 let wamTrendChartInstance = null;
 let wamDeliveryChartInstance = null;
 
@@ -5057,6 +5061,7 @@ window.wamLoadBroadcastTab = async function() {
 window.wamToggleBcTargetValue = function() {
     const type = document.getElementById("wamBcTargetType").value;
     const isLiveTest = type === "Live Test Registered" || type === "Live Test Not Registered";
+    const isViewOnly = type === "Not Opted-in";
     document.getElementById("wamBcTargetValueContainer").style.display = type === "By Class" ? "block" : "none";
     document.getElementById("wamBcSessionContainer").style.display = isLiveTest ? "block" : "none";
     document.getElementById("wamBcActivityContainer").style.display = type === "Activity" ? "block" : "none";
@@ -5064,6 +5069,10 @@ window.wamToggleBcTargetValue = function() {
     // "Selected Users" - whichever filter is picked, the admin sees exactly
     // who it matches (all pre-checked) and can untick anyone before sending.
     document.getElementById("wamBcTargetSelection").style.display = "block";
+    document.getElementById("wamBcViewOnlyNote").style.display = isViewOnly ? "block" : "none";
+    document.getElementById("wamBcSelectedCountWrap").style.display = isViewOnly ? "none" : "inline";
+    document.getElementById("wamBcSelectAllBtn").style.display = isViewOnly ? "none" : "inline-block";
+    document.getElementById("wamBcClearBtn").style.display = isViewOnly ? "none" : "inline-block";
 
     if (type === "Selected Users") {
         window.wamLoadBcContactsForSelection(); // unfiltered, manual pick - unchanged
@@ -5163,10 +5172,23 @@ window.wamLoadBcContactsForSelection = async function() {
             </label>`;
         });
         list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users with a phone number found.</div>";
+        wamBcCurrentMatches = Array.from(uniqueContacts.entries()).map(([phone, info]) => ({ phone, name: info.name }));
         window.wamUpdateBcSelectionCount();
     } catch (e) {
         list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
     }
+};
+
+window.wamExportBcContactsCsv = function() {
+    if (wamBcCurrentMatches.length === 0) { alert("No contacts loaded to export - pick a filter first."); return; }
+    const rows = wamBcCurrentMatches.map(c => `"${c.name.replace(/"/g, '""')}","${c.phone}"`);
+    const csv = ["name,phone", ...rows].join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    const filterLabel = document.getElementById("wamBcTargetType").value.toLowerCase().replace(/[^a-z0-9]+/g, "_");
+    link.download = `whatsapp_contacts_${filterLabel}_${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
 };
 
 /**
@@ -5197,9 +5219,19 @@ async function wamComputeBcMatches() {
     const matches = new Map();
     snap.forEach(docSnap => {
         const data = docSnap.data();
-        if (data.promo_consent !== true) return;
+        // "Not Opted-in" is the one deliberate inversion of this gate - it
+        // exists for viewing/exporting that list (e.g. to follow up by SMS
+        // or request opt-in some other way), never for sending WhatsApp to
+        // them. wamSendBroadcast() refuses to send for this filter, and the
+        // server's sendBroadcast() applies its own unconditional
+        // promo_consent === true gate regardless of what the client sends.
+        if (targetType === "Not Opted-in") {
+            if (data.promo_consent === true) return;
+        } else if (data.promo_consent !== true) {
+            return;
+        }
         let include = false;
-        if (targetType === "All Users") include = true;
+        if (targetType === "All Users" || targetType === "Not Opted-in") include = true;
         else if (targetType === "By Class" && targetValue) {
             if (String(data.class) === String(targetValue) || String(data.studentClass) === String(targetValue)) include = true;
         } else if (targetType === "Class 1-10 (Junior)" || targetType === "Class 11-12 (Senior)") {
@@ -5239,22 +5271,29 @@ async function wamComputeBcMatches() {
 
 /** Loads the checkbox list of students matching the currently selected
  * filter (all pre-checked) - "Selected Users" mode uses its own unfiltered
- * loader instead (wamLoadBcContactsForSelection). */
+ * loader instead (wamLoadBcContactsForSelection). "Not Opted-in" renders as
+ * a plain view/export list with no checkboxes, since it's never sendable. */
 window.wamLoadFilteredContactsForSelection = async function() {
     const list = document.getElementById("wamBcTargetList");
+    const isViewOnly = document.getElementById("wamBcTargetType").value === "Not Opted-in";
     list.innerHTML = "<div style='color:var(--muted); text-align:center;'>Loading matching students...</div>";
     try {
         const matches = await wamComputeBcMatches();
         let html = "";
         matches.forEach((info, phone) => {
-            html += `<label class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
-                <span style="display:flex; align-items:center; gap:10px;">
-                    <input type="checkbox" value="${phone}" checked onchange="window.wamUpdateBcSelectionCount()" style="width:auto; margin:0;">
+            html += isViewOnly
+                ? `<div class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); font-size:13px;">
                     <span class="wam-bc-user-text">${info.name} (+${phone})</span>
-                </span>
-            </label>`;
+                   </div>`
+                : `<label class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
+                    <span style="display:flex; align-items:center; gap:10px;">
+                        <input type="checkbox" value="${phone}" checked onchange="window.wamUpdateBcSelectionCount()" style="width:auto; margin:0;">
+                        <span class="wam-bc-user-text">${info.name} (+${phone})</span>
+                    </span>
+                   </label>`;
         });
         list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No matching students found.</div>";
+        wamBcCurrentMatches = Array.from(matches.entries()).map(([phone, info]) => ({ phone, name: info.name }));
         window.wamUpdateBcSelectionCount();
     } catch (e) {
         list.innerHTML = `<div style='color:var(--danger); text-align:center;'>${e.message}</div>`;
@@ -5322,6 +5361,11 @@ window.wamSendBroadcast = async function() {
     const consentAttested = document.getElementById("wamBcConsentAttested").checked;
     const explicitPhonesRaw = document.getElementById("wamBcExplicitPhones").value;
     const explicitPhones = explicitPhonesRaw ? explicitPhonesRaw.split(",").filter(Boolean) : [];
+
+    if (targetType === "Not Opted-in") {
+        alert("\"Not Opted-in\" is view/export only - sending WhatsApp broadcasts to non-opted-in numbers violates Meta's policy and risks the WhatsApp Business number being restricted. Use \"Export CSV\" to follow up by another channel instead.");
+        return;
+    }
 
     const templateSelect = document.getElementById("wamBcTemplateSelect");
     const templateVarCount = useTemplate ? Number(templateSelect.selectedOptions[0]?.dataset.vars || 0) : 0;

@@ -632,6 +632,16 @@ async function sendBroadcast({
   activityDays,
   explicitPhones,
 }) {
+  // "Not Opted-in" is a view/export-only filter in the admin UI (for
+  // following up by another channel) - never a sendable target. Rejected
+  // here too, not just in the UI, in case this callable is ever hit
+  // directly. The unconditional promo_consent === true gate below would
+  // already exclude everyone in this filter anyway, but reject outright so
+  // the failure mode is obvious rather than "0 sent, no explanation."
+  if (targetType === "Not Opted-in") {
+    return { success: false, error: "\"Not Opted-in\" is a view/export-only filter and cannot be used to send a broadcast." };
+  }
+
   const resolvedTemplateName = templateName || templates.TEMPLATE_NAMES.WEEKLY_NEWSLETTER;
   const now = Date.now();
   const uniqueNumbers = new Set();
