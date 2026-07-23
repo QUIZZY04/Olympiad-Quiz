@@ -545,6 +545,20 @@ async function sendResultWhatsApp(phoneNumber, details) {
 const BROADCAST_SEND_DELAY_MS = 60; // Small pacing delay, mirrors existing SMS broadcast throttling.
 
 /**
+ * Extracts a numeric class/grade from a user doc (`class`/`studentClass`,
+ * either a bare number or a string like "Class 11"), or null if absent/
+ * unparseable. Used by the Class 1-10 / Class 11-12 broadcast filters so
+ * junior and senior students can be targeted with separate campaigns
+ * (e.g. senior-only exam promotions) instead of one message to everyone.
+ */
+function parseClassNumber(data) {
+  const raw = data.class ?? data.studentClass;
+  if (raw === undefined || raw === null || raw === "") return null;
+  const n = parseInt(String(raw).replace(/[^0-9]/g, ""), 10);
+  return Number.isNaN(n) ? null : n;
+}
+
+/**
  * Picks the variables object for a broadcast's chosen template. The
  * broadcast UI only offers one free-text box, so this only fully covers
  * 0- and 1-variable templates (e.g. oq_free_mock_tests_v1 = 0,
@@ -574,9 +588,10 @@ function buildBroadcastVariables(templateName, message) {
  *                                      single body variable when it has one
  *                                      (see buildBroadcastVariables), or sent
  *                                      as plain text if `useTemplate` is false.
- * @param {"All Users"|"By Class"|"Recent Registrations"|"Selected Users"|
- *         "Mobile Verified"|"WhatsApp Opt-in"|"Live Test Registered"|
- *         "Live Test Not Registered"|"Activity"} options.targetType
+ * @param {"All Users"|"By Class"|"Class 1-10 (Junior)"|"Class 11-12 (Senior)"|
+ *         "Recent Registrations"|"Selected Users"|"Mobile Verified"|
+ *         "WhatsApp Opt-in"|"Live Test Registered"|"Live Test Not Registered"|
+ *         "Activity"} options.targetType
  * @param {string} [options.targetValue] - Class number (By Class) or comma
  *                                          list of emails/phones (Selected Users).
  * @param {boolean} [options.useTemplate=true] - Set false only for testing
@@ -636,6 +651,12 @@ async function sendBroadcast({
       if (String(data.class) === String(targetValue) || String(data.studentClass) === String(targetValue)) {
         include = true;
       }
+    } else if (targetType === "Class 1-10 (Junior)") {
+      const cls = parseClassNumber(data);
+      if (cls !== null && cls >= 1 && cls <= 10) include = true;
+    } else if (targetType === "Class 11-12 (Senior)") {
+      const cls = parseClassNumber(data);
+      if (cls !== null && cls >= 11 && cls <= 12) include = true;
     } else if (targetType === "Recent Registrations") {
       if (data.createdAt?.toDate) {
         const diff = now - data.createdAt.toDate().getTime();

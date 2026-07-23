@@ -834,7 +834,9 @@ border-top:1px solid var(--border);
                         <label>Send To</label>
                         <select id="wamBcTargetType" onchange="window.wamToggleBcTargetValue()">
                             <option value="All Users">All Users</option>
-                            <option value="By Class">By Class</option>
+                            <option value="By Class">By Class (exact)</option>
+                            <option value="Class 1-10 (Junior)">Class 1-10 (Junior)</option>
+                            <option value="Class 11-12 (Senior)">Class 11-12 (Senior)</option>
                             <option value="Recent Registrations">Recent Registrations (Last 7 Days)</option>
                             <option value="Selected Users">Selected Users (Emails/Phones)</option>
                             <option value="Mobile Verified">Mobile Verified</option>
@@ -5190,6 +5192,13 @@ window.wamEstimateBcRecipients = async function() {
             if (targetType === "All Users") include = true;
             else if (targetType === "By Class" && targetValue) {
                 if (String(data.class) === String(targetValue) || String(data.studentClass) === String(targetValue)) include = true;
+            } else if (targetType === "Class 1-10 (Junior)" || targetType === "Class 11-12 (Senior)") {
+                const raw = data.class ?? data.studentClass;
+                const cls = raw != null ? parseInt(String(raw).replace(/[^0-9]/g, ''), 10) : NaN;
+                if (!isNaN(cls)) {
+                    if (targetType === "Class 1-10 (Junior)" && cls >= 1 && cls <= 10) include = true;
+                    if (targetType === "Class 11-12 (Senior)" && cls >= 11 && cls <= 12) include = true;
+                }
             } else if (targetType === "Recent Registrations") {
                 if (data.createdAt?.toDate) {
                     const diff = now - data.createdAt.toDate().getTime();
