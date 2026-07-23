@@ -866,6 +866,23 @@
             const highlight = document.getElementById(`highlight-${s.id}`);
             const cpArea = document.getElementById(`coupon-area-${s.id}`);
 
+            // Admin bypass: skip payment/registration/time-window/already-
+            // attempted gating entirely - always show a live, clickable
+            // "Join Quiz" so the admin can open and re-attempt any session
+            // for testing/QA, regardless of its actual schedule or access state.
+            if (isAdminUser) {
+                pill.innerText = "ADMIN ACCESS"; pill.className = "status-pill status-live";
+                if (highlight) highlight.innerHTML = "🛠️ Admin: Always Open";
+                if (timerEl.innerText !== "Admin bypass active") {
+                    timerEl.innerText = "Admin bypass active";
+                    timerEl.style.fontSize = "16px"; timerEl.style.letterSpacing = "1px";
+                }
+                if (cpArea) cpArea.style.display = "none";
+                btn.innerText = "Join Quiz (Admin)"; btn.className = "join-btn btn-unlocked"; btn.disabled = false;
+                btn.onclick = () => handleJoin(s.id, s.class, s.subject);
+                return;
+            }
+
             if (now > s.end) {
                 pill.innerText = "Ended"; pill.className = "status-pill status-ended";
                 if (timerEl.innerText !== "00:00:00") {

@@ -1321,12 +1321,16 @@ try {
             localStorage.setItem("selectedClass", sClass);
             localStorage.setItem("selectedSubject", sSub);
 
-            // Check if already attempted
-            const attemptCheck = await getDocs(query(collection(db, "leaderboard"), where("uid", "==", auth.currentUser.uid), where("sessionId", "==", sId), limit(1)));
-            if (!attemptCheck.empty) {
-                alert("You have already attempted this live quiz!");
-                window.location.replace("analytics.html");
-                return;
+            // Check if already attempted - admin is exempt so the same live
+            // session can be re-attempted any number of times for testing/QA.
+            const isAdminUser = auth.currentUser.email && auth.currentUser.email.trim().toLowerCase() === "madhhu52@gmail.com";
+            if (!isAdminUser) {
+                const attemptCheck = await getDocs(query(collection(db, "leaderboard"), where("uid", "==", auth.currentUser.uid), where("sessionId", "==", sId), limit(1)));
+                if (!attemptCheck.empty) {
+                    alert("You have already attempted this live quiz!");
+                    window.location.replace("analytics.html");
+                    return;
+                }
             }
 
             if(sData.duration) totalTime = sData.duration * 60;
