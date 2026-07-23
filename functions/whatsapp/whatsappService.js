@@ -19,6 +19,8 @@
 
 const { getMessagesEndpoint, COLLECTIONS, db, admin } = require("../config");
 const templates = require("./templates");
+const templateRegistry = require("./templateRegistry");
+const mediaService = require("./mediaService");
 const { logOutbound, logBroadcastSummary } = require("./messageLogger");
 
 const FieldValue = admin.firestore.FieldValue;
@@ -141,6 +143,10 @@ async function sendAndLog(payload, logMeta) {
       category: logMeta.category,
       uid: logMeta.uid,
       studentName: logMeta.studentName,
+      language: logMeta.language,
+      variables: logMeta.variables,
+      headerMedia: logMeta.headerMedia,
+      campaignId: logMeta.campaignId,
       metaResponse: result || null,
     });
     return { success: true, messageId };
@@ -155,10 +161,97 @@ async function sendAndLog(payload, logMeta) {
       error,
       uid: logMeta.uid,
       studentName: logMeta.studentName,
+      language: logMeta.language,
+      variables: logMeta.variables,
+      headerMedia: logMeta.headerMedia,
+      campaignId: logMeta.campaignId,
       metaResponse: error.graphError || null,
     });
     return { success: false, error: error.message };
   }
+}
+
+// ---------------------------------------------------------------------
+// 2b. Centralized template send - the ONE function every template send
+// in this app (automated trigger, admin Send Individual, admin
+// Broadcast, future features) should go through. No other part of the
+// codebase should call the Meta Graph API directly.
+// ---------------------------------------------------------------------
+
+/**
+ * Converts a {1: "Rahul", 2: "IMO"} variables object into the positional
+ * ["Rahul", "IMO"] array buildTemplateMessagePayload expects, in {{1}},
+ * {{2}}, ... order regardless of key insertion order.
+ * @param {Object<number|string, string|number>} variables
+ */
+function variablesToParams(variables = {}) {
+  return Object.keys(variables)
+    .map(Number)
+    .sort((a, b) => a - b)
+    .map((key) => variables[key]);
+}
+
+/**
+ * The generic notification primitive: sendTemplate({templateName,
+ * phoneNumber, language, variables, media}). Looks the template up in
+ * templateRegistry.js first:
+ *   - If registered and NOT "ACTIVE" (i.e. "PENDING"), refuses to send -
+ *     this is the actual enforcement behind "must remain inactive until
+ *     Meta approves it", not just a comment/convention.
+ *   - If registered and ACTIVE, uses its known language/header as
+ *     defaults (still overridable per-call).
+ *   - If NOT registered at all, falls through and trusts the caller -
+ *     preserves the admin panel's existing ability to ad-hoc send ANY
+ *     template that's approved in Meta (synced into whatsapp_templates)
+ *     without requiring a registry entry for every possible template.
+ *
+ * @param {Object} args
+ * @param {string} args.templateName
+ * @param {string} args.phoneNumber
+ * @param {string} [args.language] - Overrides the registry's language if passed.
+ * @param {Object<number|string,string|number>} [args.variables] - e.g. {1: "Rahul Sharma"}.
+ * @param {{type: "image"|"video"|"document", url: string}} [args.media] - Overrides the registry's default header media if passed.
+ * @param {string} [args.uid]
+ * @param {string} [args.studentName]
+ * @param {string} [args.campaignId] - Set by sendBroadcast() to correlate a campaign's log rows.
+ * @param {string} [args.category] - Overrides the default `template:${templateName}` log
+ *   category. Existing admin stats (getAutomatedMessageStats in admin.js) hard-code the
+ *   legacy category strings ("account_created", "live_test_registration", "live_test_result")
+ *   for the 3 Phase-1 automations - their wrappers below pass this explicitly so those
+ *   dashboards keep working unchanged. New callers should just omit it.
+ * @returns {Promise<{success: boolean, messageId?: string, error?: string}>}
+ */
+async function sendTemplate({ templateName, phoneNumber, language, variables = {}, media, uid, studentName, campaignId, category }) {
+  const to = normalizePhoneNumber(phoneNumber);
+  if (!to) return { success: false, error: "Invalid phone number" };
+
+  const entry = templateRegistry.get(templateName);
+  if (entry && entry.status !== "ACTIVE") {
+    console.warn(`sendTemplate: refused to send "${templateName}" - registry status is ${entry.status}, not ACTIVE.`);
+    return { success: false, error: `Template ${templateName} is not active (${entry.status})` };
+  }
+
+  let headerMedia;
+  try {
+    headerMedia = mediaService.resolve(entry?.header, media);
+  } catch (mediaError) {
+    console.error(`sendTemplate: media resolution failed for "${templateName}":`, mediaError.message);
+    return { success: false, error: mediaError.message };
+  }
+
+  const resolvedLanguage = language || entry?.language || templates.DEFAULT_LANGUAGE;
+  const params = variablesToParams(variables);
+  const payload = templates.buildTemplateMessagePayload(to, templateName, resolvedLanguage, params, headerMedia);
+
+  return sendAndLog(payload, {
+    category: category || `template:${templateName}`,
+    uid,
+    studentName,
+    language: resolvedLanguage,
+    variables,
+    headerMedia,
+    campaignId,
+  });
 }
 
 // ---------------------------------------------------------------------
@@ -186,19 +279,20 @@ async function sendWhatsAppMessage(phoneNumber, message) {
 // ---------------------------------------------------------------------
 
 /**
- * Sends an approved template message with dynamic body parameters.
+ * Legacy-shaped entry point (positional params array instead of a
+ * variables object) kept for any external caller expecting the old
+ * signature. Delegates to sendTemplate() - no direct Graph API/payload
+ * building here anymore.
  *
  * @param {string} phoneNumber
  * @param {string} templateName - Must exist & be approved in Meta Business Manager.
  * @param {Array<string|number>} [bodyParams] - Values for {{1}}, {{2}}, ... in order.
  * @param {string} [languageCode]
  */
-async function sendTemplateMessage(phoneNumber, templateName, bodyParams = [], languageCode = templates.DEFAULT_LANGUAGE) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const payload = templates.buildTemplateMessagePayload(to, templateName, languageCode, bodyParams);
-  return sendAndLog(payload, { category: `template:${templateName}` });
+async function sendTemplateMessage(phoneNumber, templateName, bodyParams = [], languageCode) {
+  const variables = {};
+  bodyParams.forEach((value, i) => { variables[i + 1] = value; });
+  return sendTemplate({ templateName, phoneNumber, language: languageCode, variables });
 }
 
 // ---------------------------------------------------------------------
@@ -288,12 +382,13 @@ async function verifyOtp(otpId, code) {
  * @param {{name: string, amount: number|string, sessionTitle: string, orderId: string}} details
  */
 async function sendPaymentSuccess(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.paymentSuccessParams(details);
-  const payload = templates.buildTemplateMessagePayload(to, templates.TEMPLATE_NAMES.PAYMENT_SUCCESS, templates.DEFAULT_LANGUAGE, params);
-  return sendAndLog(payload, { category: "payment_success" });
+  const [name, amount, sessionTitle, orderId] = templates.paymentSuccessParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.PAYMENT_SUCCESS,
+    phoneNumber,
+    variables: { 1: name, 2: amount, 3: sessionTitle, 4: orderId },
+    category: "payment_success",
+  });
 }
 
 // ---------------------------------------------------------------------
@@ -305,12 +400,13 @@ async function sendPaymentSuccess(phoneNumber, details) {
  * @param {{name: string, sessionTitle: string, grade: string|number, dateTimeText: string}} details
  */
 async function sendRegistrationSuccess(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.registrationSuccessParams(details);
-  const payload = templates.buildTemplateMessagePayload(to, templates.TEMPLATE_NAMES.REGISTRATION_SUCCESS, templates.DEFAULT_LANGUAGE, params);
-  return sendAndLog(payload, { category: "registration_success" });
+  const [name, sessionTitle, grade, dateTimeText] = templates.registrationSuccessParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.REGISTRATION_SUCCESS,
+    phoneNumber,
+    variables: { 1: name, 2: sessionTitle, 3: grade, 4: dateTimeText },
+    category: "registration_success",
+  });
 }
 
 // ---------------------------------------------------------------------
@@ -319,22 +415,24 @@ async function sendRegistrationSuccess(phoneNumber, details) {
 
 /** @param {string} phoneNumber @param {{name: string, sessionTitle: string, dateTimeText: string}} details */
 async function sendReminder24Hours(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.reminderParams(details);
-  const payload = templates.buildTemplateMessagePayload(to, templates.TEMPLATE_NAMES.REMINDER_24H, templates.DEFAULT_LANGUAGE, params);
-  return sendAndLog(payload, { category: "reminder_24h" });
+  const [name, sessionTitle, dateTimeText] = templates.reminderParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.REMINDER_24H,
+    phoneNumber,
+    variables: { 1: name, 2: sessionTitle, 3: dateTimeText },
+    category: "reminder_24h",
+  });
 }
 
 /** @param {string} phoneNumber @param {{name: string, sessionTitle: string, dateTimeText: string}} details */
 async function sendReminder1Hour(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.reminderParams(details);
-  const payload = templates.buildTemplateMessagePayload(to, templates.TEMPLATE_NAMES.REMINDER_1H, templates.DEFAULT_LANGUAGE, params);
-  return sendAndLog(payload, { category: "reminder_1h" });
+  const [name, sessionTitle, dateTimeText] = templates.reminderParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.REMINDER_1H,
+    phoneNumber,
+    variables: { 1: name, 2: sessionTitle, 3: dateTimeText },
+    category: "reminder_1h",
+  });
 }
 
 // ---------------------------------------------------------------------
@@ -357,12 +455,13 @@ async function sendResult(phoneNumber, details) {
 
 /** @param {string} phoneNumber @param {{name, subject}} details */
 async function sendCertificate(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.certificateParams(details);
-  const payload = templates.buildTemplateMessagePayload(to, templates.TEMPLATE_NAMES.CERTIFICATE, templates.DEFAULT_LANGUAGE, params);
-  return sendAndLog(payload, { category: "certificate" });
+  const [name, subject] = templates.certificateParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.CERTIFICATE,
+    phoneNumber,
+    variables: { 1: name, 2: subject },
+    category: "certificate",
+  });
 }
 
 // ---------------------------------------------------------------------
@@ -398,14 +497,15 @@ async function sendCertificate(phoneNumber, details) {
  * @param {{name: string, uid?: string}} details
  */
 async function sendAccountCreatedWhatsApp(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.accountCreatedParams(details);
-  const payload = templates.buildTemplateMessagePayload(
-    to, templates.TEMPLATE_NAMES.ACCOUNT_CREATED, templates.DEFAULT_LANGUAGE, params, templates.ACCOUNT_CREATED_HEADER_IMAGE_URL
-  );
-  return sendAndLog(payload, { category: "account_created", uid: details.uid, studentName: details.name });
+  const [name] = templates.accountCreatedParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.ACCOUNT_CREATED,
+    phoneNumber,
+    variables: { 1: name },
+    uid: details.uid,
+    studentName: details.name,
+    category: "account_created",
+  });
 }
 
 /**
@@ -414,14 +514,13 @@ async function sendAccountCreatedWhatsApp(phoneNumber, details) {
  * @param {string} phoneNumber @param {{name: string, testName: string, testDate: string, testTime: string}} details
  */
 async function sendLiveRegistrationWhatsApp(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.liveTestRegistrationParams(details);
-  const payload = templates.buildTemplateMessagePayload(
-    to, templates.TEMPLATE_NAMES.LIVE_TEST_REGISTRATION, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
-  );
-  return sendAndLog(payload, { category: "live_test_registration" });
+  const [name, testName, testDate, testTime] = templates.liveTestRegistrationParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.LIVE_TEST_REGISTRATION,
+    phoneNumber,
+    variables: { 1: name, 2: testName, 3: testDate, 4: testTime },
+    category: "live_test_registration",
+  });
 }
 
 /**
@@ -430,14 +529,13 @@ async function sendLiveRegistrationWhatsApp(phoneNumber, details) {
  * @param {string} phoneNumber @param {{name: string, testName: string}} details
  */
 async function sendResultWhatsApp(phoneNumber, details) {
-  const to = normalizePhoneNumber(phoneNumber);
-  if (!to) return { success: false, error: "Invalid phone number" };
-
-  const params = templates.liveResultParams(details);
-  const payload = templates.buildTemplateMessagePayload(
-    to, templates.TEMPLATE_NAMES.LIVE_RESULT, templates.DEFAULT_LANGUAGE, params, templates.OLYMPIADQUIZ_LOGO_URL
-  );
-  return sendAndLog(payload, { category: "live_test_result" });
+  const [name, testName] = templates.liveResultParams(details);
+  return sendTemplate({
+    templateName: templates.TEMPLATE_NAMES.LIVE_RESULT,
+    phoneNumber,
+    variables: { 1: name, 2: testName },
+    category: "live_test_result",
+  });
 }
 
 // ---------------------------------------------------------------------
@@ -447,29 +545,86 @@ async function sendResultWhatsApp(phoneNumber, details) {
 const BROADCAST_SEND_DELAY_MS = 60; // Small pacing delay, mirrors existing SMS broadcast throttling.
 
 /**
- * Sends a message to a filtered slice of the `users` collection.
- * Mirrors the exact same targeting rules as the existing sendBulkSMS
- * Cloud Function (All Users / By Class / Recent Registrations / Selected
- * Users) so admins get consistent behavior across SMS and WhatsApp.
+ * Picks the variables object for a broadcast's chosen template. The
+ * broadcast UI only offers one free-text box, so this only fully covers
+ * 0- and 1-variable templates (e.g. oq_free_mock_tests_v1 = 0,
+ * weekly_newsletter's highlight slot = 1); a 2+-variable template only
+ * gets {{1}} filled - extend the admin UI with per-variable inputs
+ * before using this for anything richer.
+ */
+function buildBroadcastVariables(templateName, message) {
+  if (templateName === templates.TEMPLATE_NAMES.WEEKLY_NEWSLETTER) {
+    return { 1: "there", 2: message }; // exact legacy shape, unchanged
+  }
+  const entry = templateRegistry.get(templateName);
+  const variableCount = entry?.variableCount ?? (message ? 1 : 0);
+  if (!variableCount) return {};
+  return { 1: message || "" };
+}
+
+/**
+ * Sends a message/template to a filtered slice of the `users` collection,
+ * optionally merged with CSV-uploaded contacts. Mirrors the existing
+ * sendBulkSMS targeting rules (All Users / By Class / Recent
+ * Registrations / Selected Users) plus newer filters for the WhatsApp
+ * Manager's campaign builder.
  *
  * @param {Object} options
- * @param {string} options.message - Free text (sent as a template body param
- *                                    via a generic template, or as plain
- *                                    text if `useTemplate` is false and you
- *                                    are certain every recipient is inside
- *                                    an open 24h session window).
- * @param {"All Users"|"By Class"|"Recent Registrations"|"Selected Users"} options.targetType
- * @param {string} [options.targetValue]
- * @param {boolean} [options.useTemplate=true] - Send via WEEKLY_NEWSLETTER
- *                                                template (recommended);
- *                                                set false only for testing
+ * @param {string} [options.message] - Free text; used as the chosen template's
+ *                                      single body variable when it has one
+ *                                      (see buildBroadcastVariables), or sent
+ *                                      as plain text if `useTemplate` is false.
+ * @param {"All Users"|"By Class"|"Recent Registrations"|"Selected Users"|
+ *         "Mobile Verified"|"WhatsApp Opt-in"|"Live Test Registered"|
+ *         "Live Test Not Registered"|"Activity"} options.targetType
+ * @param {string} [options.targetValue] - Class number (By Class) or comma
+ *                                          list of emails/phones (Selected Users).
+ * @param {boolean} [options.useTemplate=true] - Set false only for testing
  *                                                inside your own session window.
- * @returns {Promise<{success: boolean, sentCount: number, failedCount: number, totalUsers: number}>}
+ * @param {string} [options.templateName] - Defaults to WEEKLY_NEWSLETTER,
+ *                                           matching every existing caller
+ *                                           (scheduler crons, legacy admin UI)
+ *                                           that doesn't pass one.
+ * @param {string} [options.campaignName] - Label shown in Campaign History.
+ * @param {Array<{phone: string, name?: string}>} [options.extraContacts] -
+ *          CSV-uploaded contacts, merged in only if `consentAttested` is true.
+ * @param {boolean} [options.consentAttested=false] - Admin's on-screen
+ *          confirmation that extraContacts opted in to WhatsApp messages -
+ *          required because these aren't Firestore users and have no
+ *          promo_consent field to check.
+ * @param {string} [options.sessionId] - Required for the two Live Test filters.
+ * @param {number} [options.activityDays] - Required for the Activity filter
+ *          ("active in the last N days", based on lastLoginAt).
+ * @returns {Promise<{success: boolean, campaignId: string, sentCount: number, failedCount: number, totalUsers: number}>}
  */
-async function sendBroadcast({ message, targetType, targetValue, useTemplate = true }) {
-  const snapshot = await db.collection("users").get();
-  const uniqueNumbers = new Set();
+async function sendBroadcast({
+  message,
+  targetType,
+  targetValue,
+  useTemplate = true,
+  templateName,
+  campaignName,
+  extraContacts = [],
+  consentAttested = false,
+  sessionId,
+  activityDays,
+}) {
+  const resolvedTemplateName = templateName || templates.TEMPLATE_NAMES.WEEKLY_NEWSLETTER;
   const now = Date.now();
+  const uniqueNumbers = new Set();
+
+  // One query up front for the live-test filters, rather than per-doc.
+  let liveTestUids = null;
+  if ((targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && sessionId) {
+    const purchasesSnap = await db
+      .collectionGroup("purchases")
+      .where("sessionId", "==", sessionId)
+      .where("status", "==", "CAPTURED")
+      .get();
+    liveTestUids = new Set(purchasesSnap.docs.map((d) => d.ref.parent.parent.id));
+  }
+
+  const snapshot = await db.collection("users").get();
 
   snapshot.docs.forEach((doc) => {
     const data = doc.data();
@@ -491,22 +646,59 @@ async function sendBroadcast({ message, targetType, targetValue, useTemplate = t
       if (targets.includes(String(data.email).toLowerCase()) || targets.includes(String(data.phone))) {
         include = true;
       }
+    } else if (targetType === "Mobile Verified") {
+      if (data.phoneVerified === true || data.mobileVerified === true) include = true;
+    } else if (targetType === "WhatsApp Opt-in") {
+      // Explicit, visible version of the consent gate below - same
+      // result, since that gate is always enforced regardless of
+      // targetType, but this makes the filter's intent clear in the UI.
+      if (data.promo_consent === true) include = true;
+    } else if (targetType === "Live Test Registered" && liveTestUids) {
+      if (liveTestUids.has(doc.id)) include = true;
+    } else if (targetType === "Live Test Not Registered" && liveTestUids) {
+      if (!liveTestUids.has(doc.id)) include = true;
+    } else if (targetType === "Activity" && activityDays) {
+      if (data.lastLoginAt?.toDate) {
+        const diff = now - data.lastLoginAt.toDate().getTime();
+        if (diff <= activityDays * 24 * 60 * 60 * 1000) include = true;
+      }
     }
 
-    // Same consent flag already used to gate promotional SMS.
+    // Same consent flag already used to gate promotional SMS - applies
+    // regardless of targetType, unchanged from before.
     if (include && data.phone && data.promo_consent === true) {
       const normalized = normalizePhoneNumber(data.phone);
       if (normalized) uniqueNumbers.add(normalized);
     }
   });
 
+  // CSV-uploaded contacts aren't Firestore users, so there's no
+  // promo_consent field to check - only merged in with an explicit
+  // admin attestation that they opted in (see AskUserQuestion decision).
+  if (consentAttested) {
+    extraContacts.forEach((contact) => {
+      const normalized = normalizePhoneNumber(contact.phone);
+      if (normalized) uniqueNumbers.add(normalized);
+    });
+  }
+
   const phoneList = Array.from(uniqueNumbers);
   let sentCount = 0;
   let failedCount = 0;
 
+  // Pre-generate the campaign id so every recipient's whatsapp_logs row
+  // (written inside the loop below) can carry it, before the summary
+  // document itself is written at the end.
+  const campaignId = db.collection(COLLECTIONS.BROADCAST_LOGS).doc().id;
+
   for (const phone of phoneList) {
     const result = useTemplate
-      ? await sendTemplateMessage(phone, templates.TEMPLATE_NAMES.WEEKLY_NEWSLETTER, templates.newsletterParams({ name: "there", highlight: message }))
+      ? await sendTemplate({
+          templateName: resolvedTemplateName,
+          phoneNumber: phone,
+          variables: buildBroadcastVariables(resolvedTemplateName, message),
+          campaignId,
+        })
       : await sendWhatsAppMessage(phone, message);
 
     if (result.success) sentCount++;
@@ -516,6 +708,9 @@ async function sendBroadcast({ message, targetType, targetValue, useTemplate = t
   }
 
   await logBroadcastSummary({
+    campaignId,
+    campaignName: campaignName || "",
+    templateName: useTemplate ? resolvedTemplateName : null,
     message,
     targetType,
     targetValue: targetValue || "",
@@ -524,13 +719,14 @@ async function sendBroadcast({ message, targetType, targetValue, useTemplate = t
     failedCount,
   });
 
-  return { success: true, sentCount, failedCount, totalUsers: phoneList.length };
+  return { success: true, campaignId, sentCount, failedCount, totalUsers: phoneList.length };
 }
 
 module.exports = {
   normalizePhoneNumber,
   callGraphApi,
   sendWhatsAppMessage,
+  sendTemplate,
   sendTemplateMessage,
   sendOTP,
   generateAndSendOtp,

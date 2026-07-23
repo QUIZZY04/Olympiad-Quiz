@@ -85,16 +85,18 @@ function buildTextMessagePayload(to, body) {
  * @param {string} templateName
  * @param {string} [languageCode]
  * @param {Array<string|number>} [bodyParams] - Values substituted into {{1}}, {{2}}, ... in order.
- * @param {string} [headerImageUrl] - If the template's approved header is an
- *   IMAGE header, pass a public HTTPS URL here to fill it (e.g. OLYMPIADQUIZ_LOGO_URL).
- *   Omit for templates with no header or a non-image header - existing callers
- *   that don't pass this keep working exactly as before.
+ * @param {{format: "IMAGE"|"VIDEO"|"DOCUMENT", url: string}|string|null} [headerMedia] -
+ *   Result of mediaService.resolve(), or (for backward compatibility with
+ *   any external caller still passing a plain URL) a bare image URL string.
+ *   Omit for templates with no header or a non-media header.
  */
-function buildTemplateMessagePayload(to, templateName, languageCode = DEFAULT_LANGUAGE, bodyParams = [], headerImageUrl = null) {
+function buildTemplateMessagePayload(to, templateName, languageCode = DEFAULT_LANGUAGE, bodyParams = [], headerMedia = null) {
   const components = [];
 
-  if (headerImageUrl) {
-    components.push({ type: "header", parameters: [{ type: "image", image: { link: headerImageUrl } }] });
+  const media = typeof headerMedia === "string" ? { format: "IMAGE", url: headerMedia } : headerMedia;
+  if (media?.url) {
+    const key = media.format.toLowerCase(); // "image" | "video" | "document"
+    components.push({ type: "header", parameters: [{ type: key, [key]: { link: media.url } }] });
   }
   if (bodyParams.length) {
     components.push({ type: "body", parameters: bodyParams.map((value) => ({ type: "text", text: String(value) })) });

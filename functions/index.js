@@ -1204,13 +1204,44 @@ exports.sendWhatsAppBroadcast = onCall({
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 
-  const { message, targetType, targetValue, useTemplate } = request.data;
-  if (!message || !targetType) {
-    throw new HttpsError("invalid-argument", "Message and targetType are required.");
+  const {
+    message,
+    targetType,
+    targetValue,
+    useTemplate,
+    templateName,
+    campaignName,
+    extraContacts,
+    consentAttested,
+    sessionId,
+    activityDays,
+  } = request.data;
+  if (!targetType) {
+    throw new HttpsError("invalid-argument", "targetType is required.");
+  }
+  if ((targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && !sessionId) {
+    throw new HttpsError("invalid-argument", "sessionId is required for the Live Test Registered/Not Registered filters.");
+  }
+  if (Array.isArray(extraContacts) && extraContacts.length && !consentAttested) {
+    throw new HttpsError(
+      "invalid-argument",
+      "consentAttested must be true to include CSV-uploaded contacts - confirm they opted in to WhatsApp messages first."
+    );
   }
 
   try {
-    return await whatsappService.sendBroadcast({ message, targetType, targetValue, useTemplate });
+    return await whatsappService.sendBroadcast({
+      message,
+      targetType,
+      targetValue,
+      useTemplate,
+      templateName,
+      campaignName,
+      extraContacts,
+      consentAttested,
+      sessionId,
+      activityDays,
+    });
   } catch (error) {
     console.error("WhatsApp Broadcast Error:", error);
     throw new HttpsError("internal", "Failed to send WhatsApp broadcast.");
@@ -1466,6 +1497,8 @@ exports.getAutomationSettings = whatsappAdmin.getAutomationSettings;
 exports.saveAutomationSetting = whatsappAdmin.saveAutomationSetting;
 exports.getScheduledBroadcasts = whatsappAdmin.getScheduledBroadcasts;
 exports.getWhatsAppLogs = whatsappAdmin.getWhatsAppLogs;
+exports.getCampaignHistory = whatsappAdmin.getCampaignHistory;
+exports.getCampaignDetail = whatsappAdmin.getCampaignDetail;
 
 // =================================================================
 // 9. PHONE VERIFICATION REMINDER EMAIL (NEW - ADDITIVE ONLY)

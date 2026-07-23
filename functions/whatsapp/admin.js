@@ -31,6 +31,7 @@ const {
   ADMIN_EMAIL,
 } = require("../config");
 const whatsappService = require("./whatsappService");
+const templateRegistry = require("./templateRegistry");
 
 const FieldValue = admin.firestore.FieldValue;
 const Timestamp = admin.firestore.Timestamp;
@@ -137,9 +138,19 @@ exports.sendWhatsApp = onCall({ secrets: WHATSAPP_SECRETS, timeoutSeconds: 60 },
   const user = await resolveUserByLookup(lookupType, lookupValue);
   const phone = user._resolvedPhone;
 
-  return useTemplate
-    ? await whatsappService.sendTemplateMessage(phone, templateName, bodyParams || [])
-    : await whatsappService.sendWhatsAppMessage(phone, message);
+  if (!useTemplate) {
+    return await whatsappService.sendWhatsAppMessage(phone, message);
+  }
+
+  const variables = {};
+  (bodyParams || []).forEach((value, i) => { variables[i + 1] = value; });
+  return await whatsappService.sendTemplate({
+    templateName,
+    phoneNumber: phone,
+    variables,
+    uid: user.id,
+    studentName: user.name,
+  });
 });
 
 // ---------------------------------------------------------------------
@@ -286,11 +297,42 @@ exports.syncTemplates = onCall(
   }
 );
 
-/** Cached read only - no live Graph API call. Powers all template dropdowns. */
+/**
+ * Cached read only - no live Graph API call. Powers all template dropdowns.
+ * Cross-references templateRegistry.js so the Templates tab shows, per
+ * template, whether the app itself has it wired up and active:
+ *   - "ACTIVE"          - approved in Meta AND safe to send (registry + Meta agree)
+ *   - "PENDING"         - registered in the app but deliberately not sendable yet
+ *   - "NOT_REGISTERED"  - approved in Meta but the app has no registry entry for it
+ *                         (still sendable ad-hoc via Send Individual/Broadcast)
+ * Also surfaces registry entries Meta hasn't returned at all (e.g. not yet
+ * approved, or a sync hasn't run since it was approved) as "NOT_SYNCED".
+ */
 exports.getTemplateList = onCall({}, async (request) => {
   assertAdmin(request);
   const snap = await db.collection(COLLECTIONS.TEMPLATES).orderBy("name").get();
-  return { templates: snap.docs.map((d) => ({ id: d.id, ...d.data() })) };
+  const metaTemplates = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  const syncedNames = new Set(metaTemplates.map((t) => t.name));
+
+  const withAppStatus = metaTemplates.map((t) => ({
+    ...t,
+    appStatus: templateRegistry.get(t.name)?.status || "NOT_REGISTERED",
+  }));
+
+  const unsynced = templateRegistry
+    .list()
+    .filter((t) => !syncedNames.has(t.name))
+    .map((t) => ({
+      id: null,
+      name: t.name,
+      category: t.category,
+      language: t.language,
+      status: "NOT_SYNCED",
+      variableCount: t.variableCount,
+      appStatus: t.status,
+    }));
+
+  return { templates: [...withAppStatus, ...unsynced] };
 });
 
 // ---------------------------------------------------------------------
@@ -457,6 +499,45 @@ exports.getWhatsAppLogs = onCall({}, async (request) => {
   const limitCount = Math.min(Number(request.data?.limit) || 500, 1000);
   const snap = await db.collection(COLLECTIONS.LOGS).orderBy("timestamp", "desc").limit(limitCount).get();
   return { logs: snap.docs.map((d) => ({ id: d.id, ...d.data() })) };
+});
+
+// ---------------------------------------------------------------------
+// Campaign History - whatsapp_broadcast_logs already gets one summary
+// doc per completed sendBroadcast() run (messageLogger.js); this just
+// gives that collection its own list + per-recipient detail view instead
+// of only surfacing the last 20 inside Dashboard stats.
+// ---------------------------------------------------------------------
+
+exports.getCampaignHistory = onCall({}, async (request) => {
+  assertAdmin(request);
+  const limitCount = Math.min(Number(request.data?.limit) || 100, 500);
+  const snap = await db.collection(COLLECTIONS.BROADCAST_LOGS).orderBy("createdAt", "desc").limit(limitCount).get();
+  return { campaigns: snap.docs.map((d) => ({ id: d.id, ...d.data() })) };
+});
+
+exports.getCampaignDetail = onCall({}, async (request) => {
+  assertAdmin(request);
+  const { campaignId } = request.data || {};
+  if (!campaignId) throw new HttpsError("invalid-argument", "campaignId is required.");
+
+  const campaignRef = db.collection(COLLECTIONS.BROADCAST_LOGS).doc(campaignId);
+  const [campaignSnap, logsSnap] = await Promise.all([
+    campaignRef.get(),
+    db.collection(COLLECTIONS.LOGS).where("campaignId", "==", campaignId).orderBy("timestamp", "desc").limit(1000).get(),
+  ]);
+  if (!campaignSnap.exists) throw new HttpsError("not-found", "Campaign not found.");
+
+  const logs = logsSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  const delivered = logs.filter((l) => l.status === "delivered" || l.status === "read").length;
+  const failed = logs.filter((l) => l.status === "failed").length;
+  const sent = logs.filter((l) => l.status === "sent").length;
+  const pending = Math.max(sent - delivered, 0);
+
+  return {
+    campaign: { id: campaignSnap.id, ...campaignSnap.data() },
+    logs,
+    summary: { delivered, failed, pending, total: logs.length },
+  };
 });
 
 // ---------------------------------------------------------------------
