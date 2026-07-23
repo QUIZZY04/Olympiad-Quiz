@@ -202,7 +202,7 @@ exports.sendBulkEmail = onCall({
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 
-  const { subject, htmlContent, targetEmails } = request.data;
+  const { subject, htmlContent, targetEmails, extraContacts, consentAttested } = request.data;
 
   // Strict email validator — Brevo rejects anything that doesn't match RFC format
   const isValidEmail = (email) => {
@@ -215,6 +215,17 @@ exports.sendBulkEmail = onCall({
   // 2. Input Validation
   if (!subject || !htmlContent) {
     throw new HttpsError("invalid-argument", "The function must be called with 'subject' and 'htmlContent' arguments.");
+  }
+  // extraContacts = CSV-uploaded addresses that aren't Firestore users at
+  // all (e.g. unregistered leads) - require the same on-screen attestation
+  // pattern already used for WhatsApp's CSV contact upload, since these
+  // people never went through email_consent (there's no Firestore doc to
+  // check consent against in the first place).
+  if (Array.isArray(extraContacts) && extraContacts.length && !consentAttested) {
+    throw new HttpsError(
+      "invalid-argument",
+      "consentAttested must be true to include CSV-uploaded contacts - confirm they're OK to receive promotional email first."
+    );
   }
 
   console.log("Starting bulk email process...");
@@ -260,6 +271,20 @@ exports.sendBulkEmail = onCall({
 
         lastDoc = snapshot.docs[snapshot.docs.length - 1];
       }
+    }
+
+    // CSV-uploaded contacts (unregistered leads) - merged in only with the
+    // admin's explicit consent attestation (checked above). Additive to
+    // whichever path (targetEmails / all Firestore users) ran above.
+    if (consentAttested && Array.isArray(extraContacts)) {
+      extraContacts.forEach((contact) => {
+        const trimmed = (contact?.email || "").trim();
+        if (isValidEmail(trimmed)) {
+          uniqueEmails.add(trimmed);
+        } else if (trimmed) {
+          console.warn(`Skipping invalid email from extraContacts: "${trimmed}"`);
+        }
+      });
     }
 
     const emailList = Array.from(uniqueEmails);

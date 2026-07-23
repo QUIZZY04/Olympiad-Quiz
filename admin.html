@@ -634,6 +634,15 @@ border-top:1px solid var(--border);
                     </div>
                     <div id="emailTargetList" style="height: 200px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--surface);"></div>
                 </div>
+                <div style="margin-bottom: 15px; background: var(--subtle); border: 1px solid var(--border); border-radius: 8px; padding: 12px;">
+                    <label>Upload Contacts (CSV - one per line: <code>email,name</code>) - for unregistered leads not in the users list</label>
+                    <input type="file" id="emailCsvFile" accept=".csv,text/csv" onchange="window.handleEmailCsvUpload(event)" style="margin-top: 6px;">
+                    <div id="emailCsvStatus" class="muted" style="margin-top: 6px; font-size: 12px;"></div>
+                    <label id="emailConsentLabel" style="display:none; align-items:center; gap:6px; font-weight:400; margin-top:10px;">
+                        <input type="checkbox" id="emailConsentAttested" style="width:auto;">
+                        I confirm these uploaded contacts are OK to receive promotional email from OlympiadQuiz.
+                    </label>
+                </div>
                 <div>
                     <label>Subject Line</label>
                     <input type="text" id="emailSubject" placeholder="e.g., Live Quiz Starting This Weekend!" required>
@@ -4292,6 +4301,32 @@ window.createSession = async () => {
     }
 };
 
+let emailCsvContacts = [];
+
+/** Parses a simple "email,name" per-line CSV client-side - same pattern as
+ * the WhatsApp Broadcast tab's contact upload (window.wamHandleCsvUpload).
+ * Lets the admin promo-email leads who were never added as a Firestore user
+ * (so they're outside the "All Users" / "Selected Users" targeting below). */
+window.handleEmailCsvUpload = function(event) {
+    const file = event.target.files[0];
+    const statusEl = document.getElementById("emailCsvStatus");
+    const consentLabel = document.getElementById("emailConsentLabel");
+    if (!file) { emailCsvContacts = []; statusEl.innerText = ""; consentLabel.style.display = "none"; return; }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        const lines = String(reader.result).split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        emailCsvContacts = lines.map(line => {
+            const [email, name] = line.split(",").map(v => (v || "").trim());
+            return { email, name: name || "" };
+        }).filter(c => c.email);
+        statusEl.innerText = `${emailCsvContacts.length} contact(s) parsed from ${file.name}.`;
+        consentLabel.style.display = emailCsvContacts.length ? "flex" : "none";
+    };
+    reader.onerror = () => { statusEl.innerText = "Failed to read file."; };
+    reader.readAsText(file);
+};
+
 window.toggleEmailTarget = function() {
     const type = document.getElementById("emailTargetType").value;
     const container = document.getElementById("emailTargetSelection");
@@ -4366,18 +4401,26 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
     const content = quill.root.innerHTML; // Get HTML content from Quill editor
 
     const targetType = document.getElementById("emailTargetType").value;
+    const consentAttested = document.getElementById("emailConsentAttested").checked;
     let targetEmails = [];
-    
+
     if (targetType === "selected") {
         const checkboxes = document.querySelectorAll('#emailTargetList input[type="checkbox"]:checked');
         targetEmails = Array.from(checkboxes).map(cb => cb.value);
-        if (targetEmails.length === 0) {
-            alert("Please select at least one user from the list.");
+        if (targetEmails.length === 0 && emailCsvContacts.length === 0) {
+            alert("Please select at least one user from the list, or upload CSV contacts.");
             return;
         }
-        if (!confirm(`⚠️ WARNING: You are about to send an email to ${targetEmails.length} selected user(s). Proceed?`)) return;
+    }
+    if (emailCsvContacts.length && !consentAttested) {
+        alert("Check the consent confirmation box before sending to uploaded CSV contacts.");
+        return;
+    }
+    const csvNote = emailCsvContacts.length ? ` + ${emailCsvContacts.length} CSV contact(s)` : "";
+    if (targetType === "selected") {
+        if (!confirm(`⚠️ WARNING: You are about to send an email to ${targetEmails.length} selected user(s)${csvNote}. Proceed?`)) return;
     } else {
-        if (!confirm("⚠️ WARNING: You are about to send an email to ALL registered users. This action cannot be undone. Proceed?")) return;
+        if (!confirm(`⚠️ WARNING: You are about to send an email to ALL registered users${csvNote}. This action cannot be undone. Proceed?`)) return;
     }
 
     btn.disabled = true;
@@ -4392,8 +4435,14 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
         // FIX 1: Correct function name from 'sendBulkEmails' to 'sendBulkEmail'
         const sendBulkEmailFn = httpsCallable(functions, 'sendBulkEmail');
         // FIX 2: Correct payload keys from 'content' to 'htmlContent' as expected by the backend
-        const result = await sendBulkEmailFn({ subject: subject, htmlContent: content, targetEmails: targetEmails });
-        
+        const result = await sendBulkEmailFn({
+            subject: subject,
+            htmlContent: content,
+            targetEmails: targetEmails,
+            extraContacts: emailCsvContacts,
+            consentAttested: consentAttested,
+        });
+
         // FIX 3: Handle the new JSON response structure from the backend function
         if (result.data.success) {
             status.style.background = "rgba(16, 185, 129, 0.1)";
@@ -4401,9 +4450,14 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
             status.style.borderColor = "var(--success)";
             status.innerText = result.data.message;
             alert(result.data.message);
-            
+
             document.getElementById("emailSubject").value = "";
             quill.setContents([]); // Clear the Quill editor
+            emailCsvContacts = [];
+            document.getElementById("emailCsvFile").value = "";
+            document.getElementById("emailCsvStatus").innerText = "";
+            document.getElementById("emailConsentLabel").style.display = "none";
+            document.getElementById("emailConsentAttested").checked = false;
         } else {
             // Handle failures gracefully returned by the function
             status.style.background = "rgba(239, 68, 68, 0.1)";
