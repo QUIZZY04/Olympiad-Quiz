@@ -4766,7 +4766,13 @@ function renderWaLinks(contacts, message, status, listEl) {
 const wamFn = {
     lookupUser: httpsCallable(functions, 'lookupWhatsAppUser'),
     sendWhatsApp: httpsCallable(functions, 'sendWhatsApp'),
-    sendBroadcast: httpsCallable(functions, 'sendWhatsAppBroadcast'),
+    // Broadcasts can take several minutes for a large audience (Meta API
+    // round-trip + pacing delay per recipient) - the SDK's default ~70s
+    // client timeout would abort the wait long before the server (itself
+    // configured for up to 540s, see sendWhatsAppBroadcast in index.js) is
+    // actually done, showing a misleading "deadline-exceeded" even though
+    // the broadcast is still completing successfully in the background.
+    sendBroadcast: httpsCallable(functions, 'sendWhatsAppBroadcast', { timeout: 540000 }),
     scheduleBroadcast: httpsCallable(functions, 'scheduleBroadcast'),
     pauseSchedule: httpsCallable(functions, 'pauseScheduledBroadcast'),
     resumeSchedule: httpsCallable(functions, 'resumeScheduledBroadcast'),
