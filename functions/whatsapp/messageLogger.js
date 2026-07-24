@@ -35,6 +35,8 @@ const FieldValue = admin.firestore.FieldValue;
  * @param {Object} [entry.variables] - The {1: "x", 2: "y"} variables object passed to sendTemplate().
  * @param {{format: string, url: string}} [entry.headerMedia] - Header media reference used, if any.
  * @param {string} [entry.campaignId] - Correlates this row to a `whatsapp_broadcast_logs` campaign.
+ * @param {string} [entry.sessionId] - test_sessions id, for live-test promotion/result sends
+ *   (also serves as "Live Test ID" - there's no separate entity for that in this data model).
  * @returns {Promise<string>} The new log document ID.
  */
 async function logMessage(entry) {
@@ -56,6 +58,7 @@ async function logMessage(entry) {
     variables: entry.variables || null,
     headerMedia: entry.headerMedia || null,
     campaignId: entry.campaignId || null,
+    sessionId: entry.sessionId || null,
     timestamp: FieldValue.serverTimestamp(),
   });
   return doc.id;

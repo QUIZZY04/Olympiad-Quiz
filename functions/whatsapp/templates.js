@@ -25,7 +25,10 @@ const TEMPLATE_NAMES = {
   // Phase 1 automated notifications (production names, versioned per Meta's convention).
   ACCOUNT_CREATED: "oq_account_created_v1",
   LIVE_TEST_REGISTRATION: "oq_live_test_registration_v1",
-  LIVE_RESULT: "oq_live_result_v1",
+  // Repointed to the actually-approved name (verified via Graph API) -
+  // the old "oq_live_result_v1" guess was never created in Meta.
+  LIVE_RESULT: "oq_live_test_result_v1",
+  LIVE_TEST_PROMOTION: "oq_live_test_promotion_v1",
 
   // Existing/reserved templates - unused by the Phase 1 triggers, kept for
   // whatever else already references them (generic send helpers, admin
@@ -155,9 +158,14 @@ function liveTestRegistrationParams({ name, testName, testDate, testTime }) {
   return [name, testName, testDate, testTime];
 }
 
-/** {{1}} name, {{2}} test name */
-function liveResultParams({ name, testName }) {
-  return [name, testName];
+/** {{1}} name, {{2}} test name, {{3}} class, {{4}} score, {{5}} total marks, {{6}} national rank, {{7}} percentile */
+function liveResultParams({ name, testName, className, score, total, rank, percentile }) {
+  return [name, testName, className, score, total, rank, percentile];
+}
+
+/** {{1}} name, {{2}} test name, {{3}} class, {{4}} test date, {{5}} test time, {{6}} test price, {{7}} coupon code, {{8}} discounted price */
+function liveTestPromotionParams({ name, testName, className, testDate, testTime, testPrice, couponCode, discountedPrice }) {
+  return [name, testName, className, testDate, testTime, testPrice, couponCode, discountedPrice];
 }
 
 /** {{1}} name, {{2}} otp code, {{3}} expiry minutes */
@@ -216,6 +224,7 @@ module.exports = {
   accountCreatedParams,
   liveTestRegistrationParams,
   liveResultParams,
+  liveTestPromotionParams,
   otpParams,
   paymentSuccessParams,
   registrationSuccessParams,

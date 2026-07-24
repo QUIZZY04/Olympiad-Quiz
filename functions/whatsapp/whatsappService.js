@@ -21,6 +21,7 @@ const { getMessagesEndpoint, COLLECTIONS, db, admin } = require("../config");
 const templates = require("./templates");
 const templateRegistry = require("./templateRegistry");
 const mediaService = require("./mediaService");
+const liveTestData = require("./liveTestData");
 const { logOutbound, logBroadcastSummary } = require("./messageLogger");
 
 const FieldValue = admin.firestore.FieldValue;
@@ -147,6 +148,7 @@ async function sendAndLog(payload, logMeta) {
       variables: logMeta.variables,
       headerMedia: logMeta.headerMedia,
       campaignId: logMeta.campaignId,
+      sessionId: logMeta.sessionId,
       metaResponse: result || null,
     });
     return { success: true, messageId };
@@ -165,6 +167,7 @@ async function sendAndLog(payload, logMeta) {
       variables: logMeta.variables,
       headerMedia: logMeta.headerMedia,
       campaignId: logMeta.campaignId,
+      sessionId: logMeta.sessionId,
       metaResponse: error.graphError || null,
     });
     return { success: false, error: error.message };
@@ -214,6 +217,10 @@ function variablesToParams(variables = {}) {
  * @param {string} [args.uid]
  * @param {string} [args.studentName]
  * @param {string} [args.campaignId] - Set by sendBroadcast() to correlate a campaign's log rows.
+ * @param {string} [args.sessionId] - test_sessions id, when this send is tied to a live
+ *   test (promotion campaign or result notification) - logged for Campaign Logs' "Live
+ *   Test ID"/"Session ID" requirement (this codebase has no separate "Live Test" entity;
+ *   test_sessions IS the live test, so one field covers both).
  * @param {string} [args.category] - Overrides the default `template:${templateName}` log
  *   category. Existing admin stats (getAutomatedMessageStats in admin.js) hard-code the
  *   legacy category strings ("account_created", "live_test_registration", "live_test_result")
@@ -221,7 +228,7 @@ function variablesToParams(variables = {}) {
  *   dashboards keep working unchanged. New callers should just omit it.
  * @returns {Promise<{success: boolean, messageId?: string, error?: string}>}
  */
-async function sendTemplate({ templateName, phoneNumber, language, variables = {}, media, uid, studentName, campaignId, category }) {
+async function sendTemplate({ templateName, phoneNumber, language, variables = {}, media, uid, studentName, campaignId, sessionId, category }) {
   const to = normalizePhoneNumber(phoneNumber);
   if (!to) return { success: false, error: "Invalid phone number" };
 
@@ -251,6 +258,7 @@ async function sendTemplate({ templateName, phoneNumber, language, variables = {
     variables,
     headerMedia,
     campaignId,
+    sessionId,
   });
 }
 
@@ -524,17 +532,22 @@ async function sendLiveRegistrationWhatsApp(phoneNumber, details) {
 }
 
 /**
- * Live Test Result Notification. Certificate-ready notification remains a
- * deliberately separate, not-yet-automated event - see sendCertificate() above.
- * @param {string} phoneNumber @param {{name: string, testName: string}} details
+ * Live Test Result Notification - oq_live_test_result_v1 (APPROVED, header
+ * is a static TEXT header, no media parameter needed). Certificate-ready
+ * notification remains a deliberately separate, not-yet-automated event -
+ * see sendCertificate() above.
+ * @param {string} phoneNumber
+ * @param {{name: string, testName: string, className: string|number, score: number, total: number, rank: number, percentile: number, uid?: string, sessionId?: string}} details
  */
 async function sendResultWhatsApp(phoneNumber, details) {
-  const [name, testName] = templates.liveResultParams(details);
+  const [name, testName, className, score, total, rank, percentile] = templates.liveResultParams(details);
   return sendTemplate({
     templateName: templates.TEMPLATE_NAMES.LIVE_RESULT,
     phoneNumber,
-    variables: { 1: name, 2: testName },
+    variables: { 1: name, 2: testName, 3: className, 4: score, 5: total, 6: rank, 7: percentile },
     category: "live_test_result",
+    uid: details.uid,
+    sessionId: details.sessionId,
   });
 }
 
@@ -564,11 +577,37 @@ function parseClassNumber(data) {
  * 0- and 1-variable templates (e.g. oq_free_mock_tests_v1 = 0,
  * weekly_newsletter's highlight slot = 1); a 2+-variable template only
  * gets {{1}} filled - extend the admin UI with per-variable inputs
- * before using this for anything richer.
+ * before using this for anything richer. The one exception is
+ * oq_live_test_promotion_v1: its {{2}}-{{6}} and {{8}} come from
+ * `sessionPromoData` (pre-fetched once per broadcast run by
+ * sendBroadcast(), never per recipient) and are never hardcoded, per the
+ * session-driven pricing requirement; {{7}} (coupon code) comes from the
+ * admin's own pre-existing Coupon Management system instead - picked at
+ * campaign-send time, not stored on the session (there is no per-session
+ * coupon concept in this app - coupons are global and admin-selected).
+ * Only {{1}} (the recipient's own name) varies per person.
+ *
+ * @param {string} templateName
+ * @param {string} message - Free text for single-variable templates.
+ * @param {string} [recipientName] - This recipient's name, if known.
+ * @param {Object} [sessionPromoData] - Result of liveTestData.getSessionPromoData(), for the promotion template only.
+ * @param {string} [couponCode] - Admin-selected code from the existing `coupons` collection, for the promotion template only.
  */
-function buildBroadcastVariables(templateName, message) {
+function buildBroadcastVariables(templateName, message, recipientName, sessionPromoData, couponCode) {
   if (templateName === templates.TEMPLATE_NAMES.WEEKLY_NEWSLETTER) {
     return { 1: "there", 2: message }; // exact legacy shape, unchanged
+  }
+  if (templateName === templates.TEMPLATE_NAMES.LIVE_TEST_PROMOTION && sessionPromoData) {
+    return {
+      1: recipientName || "Student",
+      2: sessionPromoData.testName,
+      3: sessionPromoData.className,
+      4: sessionPromoData.testDate,
+      5: sessionPromoData.testTime,
+      6: sessionPromoData.testPrice,
+      7: couponCode || "N/A",
+      8: sessionPromoData.discountedPrice,
+    };
   }
   const entry = templateRegistry.get(templateName);
   const variableCount = entry?.variableCount ?? (message ? 1 : 0);
@@ -617,6 +656,9 @@ function buildBroadcastVariables(templateName, message) {
  *          matching students, let the admin uncheck a few") actually sends -
  *          targetType/targetValue are still recorded for Campaign History
  *          readability, but explicitPhones is what decides who receives it.
+ * @param {string} [options.couponCode] - For oq_live_test_promotion_v1 only:
+ *          the admin's chosen code from the existing Coupon Management
+ *          system (the `coupons` collection) - {{7}} on that template.
  * @returns {Promise<{success: boolean, campaignId: string, sentCount: number, failedCount: number, totalUsers: number}>}
  */
 async function sendBroadcast({
@@ -631,6 +673,7 @@ async function sendBroadcast({
   sessionId,
   activityDays,
   explicitPhones,
+  couponCode,
 }) {
   // "Not Opted-in" is a view/export-only filter in the admin UI (for
   // following up by another channel) - never a sendable target. Rejected
@@ -644,7 +687,7 @@ async function sendBroadcast({
 
   const resolvedTemplateName = templateName || templates.TEMPLATE_NAMES.WEEKLY_NEWSLETTER;
   const now = Date.now();
-  const uniqueNumbers = new Set();
+  const uniqueNumbers = new Map(); // phone -> recipient name
 
   const explicitSet = explicitPhones && explicitPhones.length
     ? new Set(explicitPhones.map(normalizePhoneNumber).filter(Boolean))
@@ -716,7 +759,7 @@ async function sendBroadcast({
     // regardless of targetType, unchanged from before.
     if (include && data.phone && data.promo_consent === true) {
       const normalized = normalizePhoneNumber(data.phone);
-      if (normalized) uniqueNumbers.add(normalized);
+      if (normalized) uniqueNumbers.set(normalized, data.name || data.fullName || "Student");
     }
   });
 
@@ -726,11 +769,19 @@ async function sendBroadcast({
   if (consentAttested) {
     extraContacts.forEach((contact) => {
       const normalized = normalizePhoneNumber(contact.phone);
-      if (normalized) uniqueNumbers.add(normalized);
+      if (normalized) uniqueNumbers.set(normalized, contact.name || "there");
     });
   }
 
-  const phoneList = Array.from(uniqueNumbers);
+  // For the live-test promotion template, session-driven vars {{2}}-{{8}}
+  // are fetched ONCE here (never per-recipient, never hardcoded) - see
+  // buildBroadcastVariables() above.
+  let sessionPromoData = null;
+  if (resolvedTemplateName === templates.TEMPLATE_NAMES.LIVE_TEST_PROMOTION && sessionId) {
+    sessionPromoData = await liveTestData.getSessionPromoData(sessionId);
+  }
+
+  const recipients = Array.from(uniqueNumbers.entries()); // [phone, name][]
   let sentCount = 0;
   let failedCount = 0;
 
@@ -739,13 +790,14 @@ async function sendBroadcast({
   // document itself is written at the end.
   const campaignId = db.collection(COLLECTIONS.BROADCAST_LOGS).doc().id;
 
-  for (const phone of phoneList) {
+  for (const [phone, name] of recipients) {
     const result = useTemplate
       ? await sendTemplate({
           templateName: resolvedTemplateName,
           phoneNumber: phone,
-          variables: buildBroadcastVariables(resolvedTemplateName, message),
+          variables: buildBroadcastVariables(resolvedTemplateName, message, name, sessionPromoData, couponCode),
           campaignId,
+          sessionId,
         })
       : await sendWhatsAppMessage(phone, message);
 
@@ -762,12 +814,91 @@ async function sendBroadcast({
     message,
     targetType,
     targetValue: targetValue || "",
-    totalUsers: phoneList.length,
+    sessionId: sessionId || null,
+    totalUsers: recipients.length,
     sentCount,
     failedCount,
   });
 
-  return { success: true, campaignId, sentCount, failedCount, totalUsers: phoneList.length };
+  return { success: true, campaignId, sentCount, failedCount, totalUsers: recipients.length };
+}
+
+/**
+ * Sends oq_live_test_result_v1 to every participant of a completed live
+ * test session - the manual counterpart to notifyWhatsAppOnResult's
+ * automatic per-student trigger. Doesn't fit sendBroadcast()'s model:
+ * results are inherently per-student data (score/rank differ for every
+ * recipient), not a shared-variables campaign, so this is its own small
+ * loop reusing the same rank/percentile computation, campaignId, and
+ * Campaign History logging pattern.
+ *
+ * No promo_consent gate - matches the existing precedent that UTILITY/
+ * transactional automated sends (oq_account_created_v1, and this exact
+ * template's own automatic trigger) never check it; only a phone number
+ * on file is required.
+ *
+ * @param {Object} options
+ * @param {string} options.sessionId
+ * @returns {Promise<{success: boolean, campaignId?: string, sentCount: number, failedCount: number, totalUsers: number, error?: string}>}
+ */
+async function sendLiveTestResultCampaign({ sessionId }) {
+  if (!sessionId) return { success: false, error: "sessionId is required.", sentCount: 0, failedCount: 0, totalUsers: 0 };
+
+  const [sessionPromo, rankings] = await Promise.all([
+    liveTestData.getSessionPromoData(sessionId),
+    liveTestData.computeLiveTestRankings(sessionId),
+  ]);
+  if (!sessionPromo) return { success: false, error: "Session not found.", sentCount: 0, failedCount: 0, totalUsers: 0 };
+  if (rankings.size === 0) return { success: true, sentCount: 0, failedCount: 0, totalUsers: 0 };
+
+  const uids = Array.from(rankings.keys());
+  const userSnaps = await Promise.all(uids.map((uid) => db.collection("users").doc(uid).get()));
+
+  const campaignId = db.collection(COLLECTIONS.BROADCAST_LOGS).doc().id;
+  let sentCount = 0;
+  let failedCount = 0;
+  let totalUsers = 0;
+
+  for (let i = 0; i < uids.length; i++) {
+    const uid = uids[i];
+    const userSnap = userSnaps[i];
+    if (!userSnap.exists) continue;
+    const user = userSnap.data();
+    if (!user.phone) continue;
+
+    totalUsers++;
+    const ranking = rankings.get(uid);
+
+    const result = await sendResultWhatsApp(user.phone, {
+      name: user.name || "Student",
+      testName: sessionPromo.testName,
+      className: sessionPromo.className,
+      score: ranking.score,
+      total: ranking.total,
+      rank: ranking.rank,
+      percentile: ranking.percentile,
+      uid,
+      sessionId,
+    });
+
+    if (result.success) sentCount++;
+    else failedCount++;
+
+    await sleep(BROADCAST_SEND_DELAY_MS);
+  }
+
+  await logBroadcastSummary({
+    campaignId,
+    campaignName: `Live Test Results - ${sessionPromo.testName}`,
+    templateName: templates.TEMPLATE_NAMES.LIVE_RESULT,
+    targetType: "Live Test Results (manual)",
+    sessionId,
+    totalUsers,
+    sentCount,
+    failedCount,
+  });
+
+  return { success: true, campaignId, sentCount, failedCount, totalUsers };
 }
 
 module.exports = {
@@ -786,6 +917,7 @@ module.exports = {
   sendResult,
   sendCertificate,
   sendBroadcast,
+  sendLiveTestResultCampaign,
   sendAccountCreatedWhatsApp,
   sendLiveRegistrationWhatsApp,
   sendResultWhatsApp,

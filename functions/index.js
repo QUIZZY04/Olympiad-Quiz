@@ -1203,6 +1203,7 @@ const {
 } = require("./whatsapp/scheduler");
 const whatsappService = require("./whatsapp/whatsappService");
 const whatsappAdmin = require("./whatsapp/admin");
+const liveTestData = require("./whatsapp/liveTestData");
 
 // --- 8a. Webhook (GET verify + POST events) ---
 exports.whatsappWebhook = whatsappWebhook;
@@ -1241,6 +1242,7 @@ exports.sendWhatsAppBroadcast = onCall({
     sessionId,
     activityDays,
     explicitPhones,
+    couponCode,
   } = request.data;
   if (!targetType) {
     throw new HttpsError("invalid-argument", "targetType is required.");
@@ -1268,10 +1270,39 @@ exports.sendWhatsAppBroadcast = onCall({
       sessionId,
       explicitPhones,
       activityDays,
+      couponCode,
     });
   } catch (error) {
     console.error("WhatsApp Broadcast Error:", error);
     throw new HttpsError("internal", "Failed to send WhatsApp broadcast.");
+  }
+});
+
+/**
+ * Admin-only: sends oq_live_test_result_v1 to every participant of a
+ * completed live test session - the manual counterpart to
+ * notifyWhatsAppOnResult's automatic per-student trigger. Same admin
+ * gate as sendWhatsAppBroadcast above.
+ */
+exports.sendLiveTestResultCampaign = onCall({
+  secrets: WHATSAPP_SECRETS,
+  timeoutSeconds: 540,
+  memory: "512MiB",
+}, async (request) => {
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
+
+  const { sessionId } = request.data;
+  if (!sessionId) {
+    throw new HttpsError("invalid-argument", "sessionId is required.");
+  }
+
+  try {
+    return await whatsappService.sendLiveTestResultCampaign({ sessionId });
+  } catch (error) {
+    console.error("Live Test Result Campaign Error:", error);
+    throw new HttpsError("internal", "Failed to send live test result campaign.");
   }
 });
 
@@ -1389,8 +1420,15 @@ exports.notifyWhatsAppOnResult = onDocumentWritten(
       if (scoreUnchanged && dateUnchanged) return;
     }
 
-    const { uid, score, total, rank, isChampionship, topicName } = afterData;
+    const { uid, score, total, sessionId, isChampionship } = afterData;
     if (typeof score === "undefined" || typeof total === "undefined" || !uid) return;
+
+    // oq_live_test_result_v1 is explicitly live-test wording ("Live Test
+    // result," "National Rank") - only send it for actual live-test
+    // (championship) attempts, not mock/chapterwise/HOTS leaderboard
+    // writes this same trigger also fires on today. Real rank/percentile
+    // also only make sense against a session's championship participants.
+    if (!isChampionship || !sessionId) return;
 
     try {
       const userSnap = await db.collection("users").doc(uid).get();
@@ -1398,15 +1436,24 @@ exports.notifyWhatsAppOnResult = onDocumentWritten(
       const user = userSnap.data();
       if (!user.phone) return;
 
-      const subject = afterData.subject
-        ? afterData.subject.charAt(0).toUpperCase() + afterData.subject.slice(1)
-        : "General";
-
       const { enabled: resultEnabled } = await whatsappAdmin.getAutomationSetting("live_test_result");
       if (resultEnabled) {
+        const [sessionPromo, rankings] = await Promise.all([
+          liveTestData.getSessionPromoData(sessionId),
+          liveTestData.computeLiveTestRankings(sessionId),
+        ]);
+        const ranking = rankings.get(uid);
+
         await whatsappService.sendResultWhatsApp(user.phone, {
           name: user.name || "Student",
-          testName: topicName ? `${subject} - ${topicName}` : subject,
+          testName: sessionPromo?.testName || "Live Olympiad Test",
+          className: sessionPromo?.className || "-",
+          score,
+          total,
+          rank: ranking?.rank ?? "-",
+          percentile: ranking?.percentile ?? "-",
+          uid,
+          sessionId,
         });
       }
 

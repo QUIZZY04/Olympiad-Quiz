@@ -56,6 +56,27 @@ const REGISTRY = {
     variableCount: 0,
     trigger: "Manual only - Send Individual / Broadcast campaigns. No automatic trigger.",
   },
+  oq_live_test_promotion_v1: {
+    name: "oq_live_test_promotion_v1",
+    category: "MARKETING",
+    language: "en", // verified via Graph API 2026-07-24 (spec said en_US - wrong, same recurring gotcha)
+    status: "ACTIVE",
+    header: { type: "IMAGE", defaultMediaUrl: ACCOUNT_CREATED_HEADER_IMAGE_URL }, // reuse existing banner until a dedicated live-test banner is uploaded
+    variableCount: 8, // name, testName, className, testDate, testTime, testPrice, couponCode, discountedPrice
+    trigger: "Manual only - Broadcast campaigns, session-driven (see functions/whatsapp/liveTestData.js). No automatic trigger.",
+  },
+  oq_live_test_result_v1: {
+    name: "oq_live_test_result_v1",
+    category: "UTILITY",
+    language: "en", // verified via Graph API 2026-07-24 (spec said en_US - wrong)
+    status: "ACTIVE",
+    // Verified via Graph API: this template's header format is TEXT ("LIVE
+    // TEST RESULT"), NOT an image as an earlier spec claimed - a static
+    // text header needs no media parameter at send time.
+    header: { type: "NONE" },
+    variableCount: 7, // name, testName, className, score, total, rank, percentile
+    trigger: "Automatic - notifyWhatsAppOnResult (index.js), per student immediately on their live-test leaderboard write. Also sendable as a manual per-session campaign. This is the real approved name - supersedes the old oq_live_result_v1 guess below.",
+  },
 
   // -------------------------------------------------------------------
   // Pre-existing production templates (unchanged behavior - registered
@@ -122,7 +143,7 @@ const REGISTRY = {
   oq_live_result_v1: {
     name: "oq_live_result_v1", category: "UTILITY", language: DEFAULT_LANGUAGE, status: "PENDING",
     header: { type: "IMAGE", defaultMediaUrl: OLYMPIADQUIZ_LOGO_URL }, variableCount: 2,
-    trigger: "Automatic once ACTIVE - notifyWhatsAppOnResult (index.js). Confirmed NOT in Meta yet. NOTE: the spec's future-template list calls this 'oq_live_test_result_v1' (with 'test') - different from this existing wired-up name. Reconcile which one Meta actually creates before flipping to ACTIVE.",
+    trigger: "SUPERSEDED - Meta approved 'oq_live_test_result_v1' (with 'test') instead, registered above and now wired to notifyWhatsAppOnResult. This name was never created in Meta; kept PENDING (unsendable) rather than deleted in case it's ever revived under this exact name.",
   },
   oq_test_reminder_v1: {
     name: "oq_test_reminder_v1", category: "UTILITY", language: DEFAULT_LANGUAGE, status: "PENDING",

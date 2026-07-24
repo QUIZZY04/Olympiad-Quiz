@@ -838,6 +838,7 @@ border-top:1px solid var(--border);
                     <label>Campaign Name</label>
                     <input type="text" id="wamBcCampaignName" placeholder="e.g. Free Mock Test Push - July">
                 </div>
+                <div id="wamBcAudienceSection">
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
                     <div>
                         <label>Send To</label>
@@ -862,8 +863,13 @@ border-top:1px solid var(--border);
                     </div>
                 </div>
                 <div id="wamBcSessionContainer" style="display:none; margin-top:15px;">
-                    <label>Live Test Session</label>
+                    <label id="wamBcSessionLabel">Live Test Session</label>
                     <select id="wamBcSessionSelect" onchange="window.wamOnBcFilterParamChange()"><option value="">Loading sessions...</option></select>
+                </div>
+                <div id="wamBcPromoExtras" style="display:none; margin-top:15px; background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:12px;">
+                    <label>Coupon Code <span class="muted" style="font-weight:400;">(from your existing Coupon Management list - {{7}} on this template)</span></label>
+                    <select id="wamBcCouponSelect" onchange="window.wamOnBcFilterParamChange()"><option value="">-- No coupon --</option></select>
+                    <div id="wamBcPromoPreview" class="muted" style="margin-top:10px; font-size:12px; line-height:1.6;"></div>
                 </div>
                 <div id="wamBcActivityContainer" style="display:none; margin-top:15px;">
                     <label>Active within the last N days</label>
@@ -893,23 +899,33 @@ border-top:1px solid var(--border);
                         I confirm these uploaded contacts have opted in to receive WhatsApp messages from OlympiadQuiz.
                     </label>
                 </div>
+                </div>
                 <div style="margin-top:15px;">
                     <label style="display:flex; align-items:center; gap:6px; font-weight:400;"><input type="checkbox" id="wamBcUseTemplate" checked style="width:auto;" onchange="window.wamToggleBcMessageMode()"> Send via approved template (recommended - required outside the 24h window)</label>
                 </div>
                 <div id="wamBcTemplateBlock" style="margin-top:10px;">
                     <label>Template</label>
-                    <select id="wamBcTemplateSelect"></select>
+                    <select id="wamBcTemplateSelect" onchange="window.wamOnBcTemplateChange()"></select>
                 </div>
-                <div style="margin-top:15px;">
+                <div id="wamBcResultsExtras" style="display:none; margin-top:15px; background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:12px;">
+                    <p class="muted" style="margin:0 0 10px;">oq_live_test_result_v1 has no separate audience picker - it sends to exactly whoever has a result (leaderboard entry) for the completed live test you select, with each student's own score/rank/percentile.</p>
+                    <label>Completed Live Test</label>
+                    <select id="wamBcResultsSessionSelect"><option value="">Loading sessions...</option></select>
+                    <button type="button" class="upload" style="background:#25D366; margin-top:12px; width:100%;" onclick="window.wamSendLiveTestResultCampaign()">🏆 Send Results to All Participants</button>
+                    <div id="wamBcResultsStatus" style="margin-top:12px; font-size:13px; font-weight:600; padding:12px; border-radius:8px; display:none; border:1px solid transparent;"></div>
+                </div>
+                <div id="wamBcMessageBlock" style="margin-top:15px;">
                     <label>Message <span id="wamBcCharCount" style="float:right; font-size:12px; color:var(--muted);">0 chars</span></label>
                     <textarea id="wamBcMessage" style="height:100px;" oninput="document.getElementById('wamBcCharCount').innerText = this.value.length + ' chars'" placeholder="Free text (used as the template's single body variable, if it has one - e.g. oq_free_mock_tests_v1 has none and ignores this; or sent as-is if 'Send via template' is unchecked)."></textarea>
                 </div>
-                <div id="wamBcEstimate" class="muted" style="margin-top:10px;">Estimated recipients: click "Estimate" to calculate.</div>
-                <div style="display:flex; gap:10px; margin-top:15px;">
-                    <button type="button" class="edit-btn" onclick="window.wamEstimateBcRecipients()">🧮 Estimate Recipients</button>
-                    <button type="button" class="upload" style="background:#25D366;" onclick="window.wamSendBroadcast()">📢 Send Broadcast</button>
+                <div id="wamBcNormalActions">
+                    <div id="wamBcEstimate" class="muted" style="margin-top:10px;">Estimated recipients: click "Estimate" to calculate.</div>
+                    <div style="display:flex; gap:10px; margin-top:15px;">
+                        <button type="button" class="edit-btn" onclick="window.wamEstimateBcRecipients()">🧮 Estimate Recipients</button>
+                        <button type="button" class="upload" style="background:#25D366;" onclick="window.wamSendBroadcast()">📢 Send Broadcast</button>
+                    </div>
+                    <div id="wamBcStatus" style="margin-top:15px; font-size:13px; font-weight:600; padding:12px; border-radius:8px; display:none; border:1px solid transparent;"></div>
                 </div>
-                <div id="wamBcStatus" style="margin-top:15px; font-size:13px; font-weight:600; padding:12px; border-radius:8px; display:none; border:1px solid transparent;"></div>
             </div>
 
             <!-- Campaign History -->
@@ -4852,6 +4868,7 @@ const wamFn = {
     getWhatsAppLogs: httpsCallable(functions, 'getWhatsAppLogs'),
     getCampaignHistory: httpsCallable(functions, 'getCampaignHistory'),
     getCampaignDetail: httpsCallable(functions, 'getCampaignDetail'),
+    sendLiveTestResultCampaign: httpsCallable(functions, 'sendLiveTestResultCampaign', { timeout: 540000 }),
 };
 
 const wamLoadedTabs = new Set();
@@ -5103,6 +5120,11 @@ window.wamSendIndividual = async function() {
 };
 
 // --- Broadcast ---
+const WAM_PROMOTION_TEMPLATE = "oq_live_test_promotion_v1";
+const WAM_RESULTS_TEMPLATE = "oq_live_test_result_v1";
+function wamIsPromoTemplate() { return document.getElementById("wamBcTemplateSelect").value === WAM_PROMOTION_TEMPLATE; }
+function wamIsResultsTemplate() { return document.getElementById("wamBcTemplateSelect").value === WAM_RESULTS_TEMPLATE; }
+
 window.wamLoadBroadcastTab = async function() {
     if (wamTemplatesCache.length === 0) {
         try { const res = await wamFn.getTemplateList(); wamTemplatesCache = res.data.templates || []; } catch (e) { /* templates optional here */ }
@@ -5112,12 +5134,41 @@ window.wamLoadBroadcastTab = async function() {
     window.wamToggleBcTargetValue(); // populates the matching-students checklist for the default filter
 };
 
+/** Switches the form between three shapes: normal broadcast, the live-test
+ * promotion campaign (session + coupon picker, no free-text message), and
+ * the live-test results campaign (no audience picker at all - audience is
+ * implicit: whoever has a result for the selected session). */
+window.wamOnBcTemplateChange = function() {
+    const isPromo = wamIsPromoTemplate();
+    const isResults = wamIsResultsTemplate();
+
+    document.getElementById("wamBcAudienceSection").style.display = isResults ? "none" : "block";
+    document.getElementById("wamBcMessageBlock").style.display = (isPromo || isResults) ? "none" : "block";
+    document.getElementById("wamBcNormalActions").style.display = isResults ? "none" : "block";
+    document.getElementById("wamBcPromoExtras").style.display = isPromo ? "block" : "none";
+    document.getElementById("wamBcResultsExtras").style.display = isResults ? "block" : "none";
+
+    if (!isResults) window.wamToggleBcTargetValue(); // re-derive session-picker visibility etc. for the (now visible) audience section
+    if (isPromo) {
+        if (document.getElementById("wamBcCouponSelect").options.length <= 1) window.wamLoadBcCouponsForPicker();
+        window.wamRenderBcPromoPreview();
+    }
+    if (isResults && document.getElementById("wamBcResultsSessionSelect").options.length <= 1) {
+        window.wamLoadBcResultsSessionsForPicker();
+    }
+};
+
 window.wamToggleBcTargetValue = function() {
     const type = document.getElementById("wamBcTargetType").value;
-    const isLiveTest = type === "Live Test Registered" || type === "Live Test Not Registered";
+    const isLiveTestFilter = type === "Live Test Registered" || type === "Live Test Not Registered";
+    const isPromo = wamIsPromoTemplate();
     const isViewOnly = type === "Not Opted-in";
     document.getElementById("wamBcTargetValueContainer").style.display = type === "By Class" ? "block" : "none";
-    document.getElementById("wamBcSessionContainer").style.display = isLiveTest ? "block" : "none";
+    // Shown for the live-test audience filters AND for the promotion
+    // template (which needs a session for its {{2}}-{{8}} vars regardless
+    // of who the audience filter targets).
+    document.getElementById("wamBcSessionContainer").style.display = (isLiveTestFilter || isPromo) ? "block" : "none";
+    document.getElementById("wamBcSessionLabel").innerText = isPromo && !isLiveTestFilter ? "Live Test Session (for message content)" : "Live Test Session";
     document.getElementById("wamBcActivityContainer").style.display = type === "Activity" ? "block" : "none";
     // The matching-students checklist is now shown for every filter, not just
     // "Selected Users" - whichever filter is picked, the admin sees exactly
@@ -5128,10 +5179,15 @@ window.wamToggleBcTargetValue = function() {
     document.getElementById("wamBcSelectAllBtn").style.display = isViewOnly ? "none" : "inline-block";
     document.getElementById("wamBcClearBtn").style.display = isViewOnly ? "none" : "inline-block";
 
+    if (isLiveTestFilter && document.getElementById("wamBcSessionSelect").options.length <= 1) {
+        window.wamLoadBcSessionsForPicker();
+    } else if (isPromo && document.getElementById("wamBcSessionSelect").options.length <= 1) {
+        window.wamLoadBcSessionsForPicker();
+    }
+
     if (type === "Selected Users") {
         window.wamLoadBcContactsForSelection(); // unfiltered, manual pick - unchanged
-    } else if (isLiveTest) {
-        if (document.getElementById("wamBcSessionSelect").options.length <= 1) window.wamLoadBcSessionsForPicker();
+    } else if (isLiveTestFilter) {
         document.getElementById("wamBcTargetList").innerHTML = "<div style='color:var(--muted); text-align:center;'>Pick a session above to load matching students.</div>";
         window.wamUpdateBcSelectionCount();
     } else if (type === "By Class" && !document.getElementById("wamBcTargetValue").value) {
@@ -5144,11 +5200,105 @@ window.wamToggleBcTargetValue = function() {
 
 /** Re-loads the matching-students checklist when a filter parameter (class
  * number, live test session, activity window) changes after a filter was
- * already picked. */
+ * already picked; also refreshes the promotion preview if that session/
+ * coupon selection is what changed. */
 window.wamOnBcFilterParamChange = function() {
+    if (wamIsPromoTemplate()) window.wamRenderBcPromoPreview();
     const type = document.getElementById("wamBcTargetType").value;
     if (type === "Selected Users") return; // manual mode, unaffected by these fields
-    window.wamLoadFilteredContactsForSelection();
+    const isLiveTestFilter = type === "Live Test Registered" || type === "Live Test Not Registered";
+    if (isLiveTestFilter || !wamIsPromoTemplate()) window.wamLoadFilteredContactsForSelection();
+};
+
+/** Populates the Coupon Code dropdown from the SAME `coupons` collection
+ * the existing Coupon Management panel manages - no new coupon concept,
+ * just letting the admin pick one of their existing codes to advertise. */
+window.wamLoadBcCouponsForPicker = async function() {
+    const select = document.getElementById("wamBcCouponSelect");
+    select.innerHTML = `<option value="">Loading coupons...</option>`;
+    try {
+        const snap = await getDocs(collection(db, "coupons"));
+        const now = Date.now();
+        const options = snap.docs
+            .map(d => d.data())
+            .filter(c => !c.expiry || (c.expiry.toDate ? c.expiry.toDate().getTime() >= now : true))
+            .map(c => `<option value="${c.name}">${c.name}${c.expiry?.toDate ? ` (expires ${c.expiry.toDate().toLocaleDateString('en-IN')})` : ''}</option>`)
+            .join("");
+        select.innerHTML = `<option value="">-- No coupon --</option>` + options;
+    } catch (error) {
+        select.innerHTML = `<option value="">Failed to load: ${error.message}</option>`;
+    }
+};
+
+/** Read-only preview of the session-driven vars ({{2}}-{{8}}) so the admin
+ * can visually confirm price/coupon/discounted price before sending -
+ * these are never hardcoded, always read from the selected session +
+ * coupon dropdown. */
+window.wamRenderBcPromoPreview = async function() {
+    const preview = document.getElementById("wamBcPromoPreview");
+    const sessionId = document.getElementById("wamBcSessionSelect").value;
+    const couponCode = document.getElementById("wamBcCouponSelect").value;
+    if (!sessionId) { preview.innerHTML = "Pick a session above to preview the message variables."; return; }
+    try {
+        const snap = await getDoc(doc(db, "test_sessions", sessionId));
+        if (!snap.exists()) { preview.innerHTML = "Session not found."; return; }
+        const s = snap.data();
+        const testDate = s.startTime?.toDate ? s.startTime.toDate().toLocaleDateString("en-IN", { dateStyle: "medium" }) : "-";
+        const testTime = s.startTime?.toDate ? s.startTime.toDate().toLocaleTimeString("en-IN", { timeStyle: "short" }) : "-";
+        const discounted = (s.priceAfterCoupon !== undefined && s.priceAfterCoupon !== null) ? s.priceAfterCoupon : (s.price ?? 0);
+        preview.innerHTML = `
+            <strong>{{2}} Test:</strong> ${s.title || "-"} &nbsp; <strong>{{3}} Class:</strong> ${s.class ?? "-"}<br>
+            <strong>{{4}} Date:</strong> ${testDate} &nbsp; <strong>{{5}} Time:</strong> ${testTime}<br>
+            <strong>{{6}} Price:</strong> ₹${s.price ?? 0} &nbsp; <strong>{{7}} Coupon:</strong> ${couponCode || "N/A"} &nbsp; <strong>{{8}} Discounted:</strong> ₹${discounted}
+        `;
+    } catch (error) {
+        preview.innerHTML = `Failed to load: ${error.message}`;
+    }
+};
+
+/** Session picker for the results campaign, filtered to sessions whose
+ * endTime has already passed - "Completed Live Test" per the UI label. */
+window.wamLoadBcResultsSessionsForPicker = async function() {
+    const select = document.getElementById("wamBcResultsSessionSelect");
+    select.innerHTML = `<option value="">Loading sessions...</option>`;
+    try {
+        const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(100)));
+        const now = Date.now();
+        const options = snap.docs
+            .filter(d => {
+                const end = d.data().endTime?.toDate?.();
+                return end && end.getTime() < now;
+            })
+            .map(d => {
+                const s = d.data();
+                const when = s.startTime?.toDate ? s.startTime.toDate().toLocaleString("en-IN") : "-";
+                return `<option value="${d.id}">${s.title || d.id} (Class ${s.class || "-"}, ${when})</option>`;
+            }).join("");
+        select.innerHTML = `<option value="">-- Select a completed session --</option>` + (options || "");
+        if (!options) select.innerHTML += `<option value="" disabled>No completed sessions found</option>`;
+    } catch (error) {
+        select.innerHTML = `<option value="">Failed to load: ${error.message}</option>`;
+    }
+};
+
+window.wamSendLiveTestResultCampaign = async function() {
+    const status = document.getElementById("wamBcResultsStatus");
+    const sessionId = document.getElementById("wamBcResultsSessionSelect").value;
+    if (!sessionId) { alert("Pick a completed live test session first."); return; }
+    const sessionTitle = document.getElementById("wamBcResultsSessionSelect").selectedOptions[0]?.innerText || sessionId;
+    if (!confirm(`⚠️ WARNING: Send the oq_live_test_result_v1 result message to every participant of "${sessionTitle}"? Proceed?`)) return;
+
+    wamSetStatus(status, "info", "⏳ Sending result notifications...");
+    try {
+        const res = await wamFn.sendLiveTestResultCampaign({ sessionId });
+        if (res.data.success) {
+            wamSetStatus(status, "success", `✅ Sent ${res.data.sentCount}/${res.data.totalUsers} (failed: ${res.data.failedCount}). Campaign id: ${res.data.campaignId || "-"}`);
+        } else {
+            wamSetStatus(status, "error", `❌ ${res.data.error || "Campaign failed."}`);
+        }
+    } catch (error) {
+        wamSetStatus(status, "error", `❌ ${error.message}`);
+    }
 };
 
 /** Populates the Live Test session picker via a direct Firestore read - same
@@ -5411,10 +5561,12 @@ window.wamSendBroadcast = async function() {
     const useTemplate = document.getElementById("wamBcUseTemplate").checked;
     const campaignName = document.getElementById("wamBcCampaignName").value.trim();
     const sessionId = document.getElementById("wamBcSessionSelect").value;
+    const couponCode = document.getElementById("wamBcCouponSelect").value;
     const activityDays = Number(document.getElementById("wamBcActivityDays").value) || undefined;
     const consentAttested = document.getElementById("wamBcConsentAttested").checked;
     const explicitPhonesRaw = document.getElementById("wamBcExplicitPhones").value;
     const explicitPhones = explicitPhonesRaw ? explicitPhonesRaw.split(",").filter(Boolean) : [];
+    const isPromo = wamIsPromoTemplate();
 
     if (targetType === "Not Opted-in") {
         alert("\"Not Opted-in\" is view/export only - sending WhatsApp broadcasts to non-opted-in numbers violates Meta's policy and risks the WhatsApp Business number being restricted. Use \"Export CSV\" to follow up by another channel instead.");
@@ -5423,9 +5575,12 @@ window.wamSendBroadcast = async function() {
 
     const templateSelect = document.getElementById("wamBcTemplateSelect");
     const templateVarCount = useTemplate ? Number(templateSelect.selectedOptions[0]?.dataset.vars || 0) : 0;
-    if (useTemplate && templateVarCount > 0 && !message) { alert("This template has a body variable - please enter a message."); return; }
+    // The promotion template's vars all come from the session + coupon
+    // picker, not the free-text box (which is hidden for it) - skip the
+    // "message required" check for it specifically.
+    if (useTemplate && templateVarCount > 0 && !message && !isPromo) { alert("This template has a body variable - please enter a message."); return; }
     if (!useTemplate && !message) { alert("Please enter a message."); return; }
-    if ((targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && !sessionId) {
+    if ((targetType === "Live Test Registered" || targetType === "Live Test Not Registered" || isPromo) && !sessionId) {
         alert("Pick a live test session first."); return;
     }
     // The matching-students checklist is always shown now - if it's empty,
@@ -5452,6 +5607,7 @@ window.wamSendBroadcast = async function() {
             extraContacts: wamCsvContacts,
             consentAttested,
             sessionId: sessionId || undefined,
+            couponCode: isPromo ? (couponCode || undefined) : undefined,
             activityDays,
             explicitPhones: explicitPhones.length ? explicitPhones : undefined,
         });
@@ -5623,11 +5779,11 @@ const WAM_AUTOMATIONS = [
     {
         key: "live_test_result",
         category: "live_test_result",
-        templateName: "oq_live_result_v1",
+        templateName: "oq_live_test_result_v1",
         label: "Live Test Result Notification",
-        sampleParams: ["Test Student", "IMO Level 1 Mock Test"],
-        header: "🖼 Image header: OlympiadQuiz logo",
-        body: "🏆 Your Result is Ready!\n\nHello {{1}},\n\nYour result for\n📘 {{2}}\n\nhas been published.\n\nYou can now view\n📊 Marks\n🏅 Rank\n📝 Detailed Solutions\n\nKeep practicing and keep improving.\n\nTeam OlympiadQuiz",
+        sampleParams: ["Test Student", "IMO Level 1 Mock Test", "8", "42", "50", "3", "94.5"],
+        header: "📝 Text header: \"LIVE TEST RESULT\" (no image)",
+        body: "🎉 Congratulations {{1}}\n\n*Your Live Test result is ready*\n\n📘 Test: {{2}}\n👨‍🎓 Class: {{3}}\n\n🏅 Score: {{4}} / {{5}}\n🎖 National Rank: {{6}}\n📊 Percentile: {{7}}\n\nKeep practicing to improve your performance and achieve greater success in future Olympiads.\n\nClick the button below to view your detailed result, performance analysis, and solutions.",
         button: "View Result → https://olympiadquiz.org/dashboard.html",
     },
 ];
