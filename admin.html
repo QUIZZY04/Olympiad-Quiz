@@ -820,6 +820,18 @@ border-top:1px solid var(--border);
                         <label>Template</label>
                         <select id="wamSendTemplateSelect"></select>
                         <div id="wamSendTemplateParams" style="margin-top:10px;"></div>
+                        <div id="wamSendPromoExtras" style="display:none; margin-top:10px; background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:12px;">
+                            <label>Live Test Session</label>
+                            <select id="wamSendPromoSessionSelect"><option value="">Loading sessions...</option></select>
+                            <label style="margin-top:10px;">Coupon Code <span class="muted" style="font-weight:400;">(from Coupon Management)</span></label>
+                            <select id="wamSendPromoCouponSelect"><option value="">-- No coupon --</option></select>
+                            <div id="wamSendPromoPreview" class="muted" style="margin-top:10px; font-size:12px; line-height:1.6;"></div>
+                        </div>
+                        <div id="wamSendResultsExtras" style="display:none; margin-top:10px; background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:12px;">
+                            <label>Completed Live Test</label>
+                            <select id="wamSendResultsSessionSelect"><option value="">Loading sessions...</option></select>
+                            <div id="wamSendResultsPreview" class="muted" style="margin-top:10px; font-size:12px; line-height:1.6;"></div>
+                        </div>
                     </div>
                     <div id="wamSendTextBlock" style="display:none;">
                         <label>Message</label>
@@ -4869,6 +4881,7 @@ const wamFn = {
     getCampaignHistory: httpsCallable(functions, 'getCampaignHistory'),
     getCampaignDetail: httpsCallable(functions, 'getCampaignDetail'),
     sendLiveTestResultCampaign: httpsCallable(functions, 'sendLiveTestResultCampaign', { timeout: 540000 }),
+    getLiveTestResultPreview: httpsCallable(functions, 'getLiveTestResultPreview'),
 };
 
 const wamLoadedTabs = new Set();
@@ -4877,6 +4890,9 @@ let wamLogsCache = [];
 let wamCampaignsCache = [];
 let wamCsvContacts = [];
 let wamBcCurrentMatches = []; // {phone, name}[] currently shown in wamBcTargetList - powers Export CSV for any filter
+let wamSendResolvedUser = null; // {uid, name, email, phone, class} from the last Send Individual lookup
+let wamSendPromoData = null; // cached session+coupon vars for oq_live_test_promotion_v1, set by wamRenderSendPromoPreview
+let wamSendResultsData = null; // cached computed result vars for oq_live_test_result_v1, set by wamRenderSendResultsPreview
 let wamTrendChartInstance = null;
 let wamDeliveryChartInstance = null;
 
@@ -5061,10 +5077,178 @@ window.wamRenderSendTemplateParams = function() {
     const select = document.getElementById("wamSendTemplateSelect");
     const container = document.getElementById("wamSendTemplateParams");
     if (!select || !container) return;
+    const templateName = select.value;
+    const isPromo = templateName === WAM_PROMOTION_TEMPLATE;
+    const isResults = templateName === WAM_RESULTS_TEMPLATE;
+
+    document.getElementById("wamSendPromoExtras").style.display = isPromo ? "block" : "none";
+    document.getElementById("wamSendResultsExtras").style.display = isResults ? "block" : "none";
+
+    if (isPromo) {
+        container.innerHTML = ""; // all 8 vars come from the session/coupon picker + resolved recipient's name
+        if (document.getElementById("wamSendPromoSessionSelect").options.length <= 1) window.wamLoadSendPromoSessionsForPicker();
+        if (document.getElementById("wamSendPromoCouponSelect").options.length <= 1) window.wamLoadSendPromoCouponsForPicker();
+        window.wamRenderSendPromoPreview();
+        return;
+    }
+    if (isResults) {
+        container.innerHTML = ""; // all 7 vars come from the computed result + resolved recipient
+        if (document.getElementById("wamSendResultsSessionSelect").options.length <= 1) window.wamLoadSendResultsSessionsForPicker();
+        window.wamRenderSendResultsPreview();
+        return;
+    }
+
     const count = Number(select.selectedOptions[0]?.dataset.vars || 0);
     container.innerHTML = Array.from({ length: count }, (_, i) => `
         <div style="margin-top:6px;"><label>Param {{${i + 1}}}</label><input type="text" class="wam-send-param" data-index="${i}"></div>
     `).join("");
+};
+
+/** Same upcoming/same-day-grouped session picker as the Broadcast tab
+ * (window.wamLoadBcSessionsForPicker), targeting Send Individual's own
+ * select element instead. */
+window.wamLoadSendPromoSessionsForPicker = async function() {
+    const select = document.getElementById("wamSendPromoSessionSelect");
+    select.innerHTML = `<option value="">Loading sessions...</option>`;
+    try {
+        const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "asc"), limit(200)));
+        const now = Date.now();
+        const upcoming = snap.docs.filter(d => {
+            const end = d.data().endTime?.toDate?.();
+            return !end || end.getTime() > now;
+        });
+        const byDate = new Map();
+        upcoming.forEach(d => {
+            const start = d.data().startTime?.toDate?.();
+            const dateKey = start ? start.toISOString().slice(0, 10) : "unknown";
+            if (!byDate.has(dateKey)) byDate.set(dateKey, []);
+            byDate.get(dateKey).push({ id: d.id, data: d.data() });
+        });
+        let options = "";
+        byDate.forEach((group) => {
+            const when = group[0].data.startTime?.toDate ? group[0].data.startTime.toDate().toLocaleString("en-IN") : "-";
+            if (group.length === 1) {
+                const s = group[0].data;
+                options += `<option value="${group[0].id}">${s.title || group[0].id} (Class ${s.class ?? "-"}, ${when})</option>`;
+            } else {
+                const classes = group.map(g => g.data.class).filter(c => c !== undefined && c !== null).sort((a, b) => a - b);
+                const classLabel = classes.length ? `Classes ${classes[0]}-${classes[classes.length - 1]}` : `${group.length} sessions`;
+                const ids = group.map(g => g.id).join(",");
+                options += `<option value="${ids}">📅 ${group[0].data.title || "Live Test"} - ${classLabel} (${when})</option>`;
+            }
+        });
+        select.innerHTML = `<option value="">-- Select a session --</option>` + (options || `<option value="" disabled>No upcoming sessions found</option>`);
+        select.onchange = window.wamRenderSendPromoPreview;
+    } catch (error) {
+        select.innerHTML = `<option value="">Failed to load: ${error.message}</option>`;
+    }
+};
+
+/** Same Coupon Management-backed dropdown as the Broadcast tab. */
+window.wamLoadSendPromoCouponsForPicker = async function() {
+    const select = document.getElementById("wamSendPromoCouponSelect");
+    select.innerHTML = `<option value="">Loading coupons...</option>`;
+    try {
+        const snap = await getDocs(collection(db, "coupons"));
+        const now = Date.now();
+        const options = snap.docs
+            .map(d => d.data())
+            .filter(c => !c.expiry || (c.expiry.toDate ? c.expiry.toDate().getTime() >= now : true))
+            .map(c => `<option value="${c.name}">${c.name}${c.expiry?.toDate ? ` (expires ${c.expiry.toDate().toLocaleDateString('en-IN')})` : ''}</option>`)
+            .join("");
+        select.innerHTML = `<option value="">-- No coupon --</option>` + options;
+        select.onchange = window.wamRenderSendPromoPreview;
+    } catch (error) {
+        select.innerHTML = `<option value="">Failed to load: ${error.message}</option>`;
+    }
+};
+
+/** Fetches the selected session(s) + coupon and shows a read-only preview,
+ * caching the result in wamSendPromoData for wamSendIndividual() to use -
+ * {{1}} is always the already-resolved recipient's name (never typed). */
+window.wamRenderSendPromoPreview = async function() {
+    const preview = document.getElementById("wamSendPromoPreview");
+    const sessionIdValue = document.getElementById("wamSendPromoSessionSelect").value;
+    const couponCode = document.getElementById("wamSendPromoCouponSelect").value;
+    wamSendPromoData = null;
+    if (!sessionIdValue) { preview.innerHTML = "Pick a session above to preview the message variables."; return; }
+    try {
+        const ids = sessionIdValue.split(",").map(id => id.trim()).filter(Boolean);
+        const snaps = await Promise.all(ids.map(id => getDoc(doc(db, "test_sessions", id))));
+        const sessions = snaps.filter(snap => snap.exists()).map(snap => snap.data());
+        if (sessions.length === 0) { preview.innerHTML = "Session not found."; return; }
+
+        const first = sessions[0];
+        const testDate = first.startTime?.toDate ? first.startTime.toDate().toLocaleDateString("en-IN", { dateStyle: "medium" }) : "-";
+        const testTime = first.startTime?.toDate ? first.startTime.toDate().toLocaleTimeString("en-IN", { timeStyle: "short" }) : "-";
+        const discounted = (first.priceAfterCoupon !== undefined && first.priceAfterCoupon !== null) ? first.priceAfterCoupon : (first.price ?? 0);
+        const classNumbers = sessions.map(s => s.class).filter(c => c !== undefined && c !== null);
+        let className = "-";
+        if (classNumbers.length === 1) className = String(classNumbers[0]);
+        else if (classNumbers.length > 1) {
+            const min = Math.min(...classNumbers), max = Math.max(...classNumbers);
+            className = min === max ? String(min) : `${min} to ${max}`;
+        }
+
+        wamSendPromoData = { testName: first.title || "Live Olympiad Test", className, testDate, testTime, testPrice: first.price ?? 0, couponCode: couponCode || "N/A", discountedPrice: discounted };
+        preview.innerHTML = `
+            <strong>{{1}} Name:</strong> ${wamSendResolvedUser?.name || "(recipient's name)"}<br>
+            <strong>{{2}} Test:</strong> ${wamSendPromoData.testName} &nbsp; <strong>{{3}} Class:</strong> ${className}<br>
+            <strong>{{4}} Date:</strong> ${testDate} &nbsp; <strong>{{5}} Time:</strong> ${testTime}<br>
+            <strong>{{6}} Price:</strong> ₹${wamSendPromoData.testPrice} &nbsp; <strong>{{7}} Coupon:</strong> ${wamSendPromoData.couponCode} &nbsp; <strong>{{8}} Discounted:</strong> ₹${discounted}
+        `;
+    } catch (error) {
+        preview.innerHTML = `Failed to load: ${error.message}`;
+    }
+};
+
+/** Same completed-session picker as the Broadcast tab's results campaign. */
+window.wamLoadSendResultsSessionsForPicker = async function() {
+    const select = document.getElementById("wamSendResultsSessionSelect");
+    select.innerHTML = `<option value="">Loading sessions...</option>`;
+    try {
+        const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(100)));
+        const now = Date.now();
+        const options = snap.docs
+            .filter(d => {
+                const end = d.data().endTime?.toDate?.();
+                return end && end.getTime() < now;
+            })
+            .map(d => {
+                const s = d.data();
+                const when = s.startTime?.toDate ? s.startTime.toDate().toLocaleString("en-IN") : "-";
+                return `<option value="${d.id}">${s.title || d.id} (Class ${s.class || "-"}, ${when})</option>`;
+            }).join("");
+        select.innerHTML = `<option value="">-- Select a completed session --</option>` + (options || `<option value="" disabled>No completed sessions found</option>`);
+        select.onchange = window.wamRenderSendResultsPreview;
+    } catch (error) {
+        select.innerHTML = `<option value="">Failed to load: ${error.message}</option>`;
+    }
+};
+
+/** Fetches this specific recipient's computed rank/percentile/score for the
+ * selected session (via the getLiveTestResultPreview callable, which reuses
+ * the exact same ranking computation as the automatic trigger and the bulk
+ * campaign), caching it in wamSendResultsData for wamSendIndividual(). */
+window.wamRenderSendResultsPreview = async function() {
+    const preview = document.getElementById("wamSendResultsPreview");
+    const sessionId = document.getElementById("wamSendResultsSessionSelect").value;
+    wamSendResultsData = null;
+    if (!sessionId) { preview.innerHTML = "Pick a completed session above."; return; }
+    if (!wamSendResolvedUser?.uid) { preview.innerHTML = "Search for a registered user above first (this template needs their result, not just a raw phone number)."; return; }
+    preview.innerHTML = "Loading result...";
+    try {
+        const res = await wamFn.getLiveTestResultPreview({ sessionId, uid: wamSendResolvedUser.uid });
+        wamSendResultsData = res.data;
+        preview.innerHTML = `
+            <strong>{{1}} Name:</strong> ${wamSendResolvedUser.name || "-"}<br>
+            <strong>{{2}} Test:</strong> ${res.data.testName} &nbsp; <strong>{{3}} Class:</strong> ${res.data.className}<br>
+            <strong>{{4}} Score:</strong> ${res.data.score} / <strong>{{5}} Total:</strong> ${res.data.total}<br>
+            <strong>{{6}} Rank:</strong> ${res.data.rank} &nbsp; <strong>{{7}} Percentile:</strong> ${res.data.percentile}
+        `;
+    } catch (error) {
+        preview.innerHTML = `<span style="color:var(--danger);">${error.message}</span>`;
+    }
 };
 
 window.wamSearchUser = async function() {
@@ -5080,13 +5264,16 @@ window.wamSearchUser = async function() {
     try {
         const res = await wamFn.lookupUser({ lookupType, lookupValue });
         const u = res.data;
+        wamSendResolvedUser = u;
         card.innerHTML = `<strong>${u.name || "(no name on file)"}</strong><br>
             📧 ${u.email || "-"} &nbsp; 📱 ${u.phone || "-"} &nbsp; 🎓 Class ${u.class || "-"}<br>
             Promo consent: ${u.promoConsent ? "✅ Yes" : "❌ No"}${u.uid ? "" : " <span class='muted'>(no user account found - sending to raw number)</span>"}`;
         form.style.display = "block";
         wamPopulateTemplateDropdowns();
+        window.wamRenderSendTemplateParams(); // re-check in case a live-test template was already selected
     } catch (error) {
         card.innerHTML = `<span style="color:var(--danger);">${error.message}</span>`;
+        wamSendResolvedUser = null;
     }
 };
 
@@ -5095,12 +5282,26 @@ window.wamSendIndividual = async function() {
     const lookupType = document.getElementById("wamSendLookupType").value;
     const lookupValue = document.getElementById("wamSendLookupValue").value.trim();
     const useTemplate = document.querySelector('input[name="wamSendMode"]:checked').value === "template";
+    const templateName = document.getElementById("wamSendTemplateSelect").value;
+    const isPromo = useTemplate && templateName === WAM_PROMOTION_TEMPLATE;
+    const isResults = useTemplate && templateName === WAM_RESULTS_TEMPLATE;
+
+    if (isPromo && !wamSendPromoData) { alert("Pick a live test session above first."); return; }
+    if (isResults && !wamSendResultsData) { alert("Pick a completed session above first (and make sure the recipient has a result for it)."); return; }
 
     if (!confirm("Send this WhatsApp message now?")) return;
 
     const payload = { lookupType, lookupValue, useTemplate };
-    if (useTemplate) {
-        payload.templateName = document.getElementById("wamSendTemplateSelect").value;
+    if (isPromo) {
+        payload.templateName = templateName;
+        const d = wamSendPromoData;
+        payload.bodyParams = [wamSendResolvedUser?.name || "Student", d.testName, d.className, d.testDate, d.testTime, d.testPrice, d.couponCode, d.discountedPrice];
+    } else if (isResults) {
+        payload.templateName = templateName;
+        const d = wamSendResultsData;
+        payload.bodyParams = [wamSendResolvedUser?.name || "Student", d.testName, d.className, d.score, d.total, d.rank, d.percentile];
+    } else if (useTemplate) {
+        payload.templateName = templateName;
         payload.bodyParams = Array.from(document.querySelectorAll(".wam-send-param")).map(i => i.value);
     } else {
         payload.message = document.getElementById("wamSendTextMessage").value;

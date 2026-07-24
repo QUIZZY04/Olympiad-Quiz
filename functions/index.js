@@ -1307,6 +1307,43 @@ exports.sendLiveTestResultCampaign = onCall({
 });
 
 /**
+ * Admin-only, read-only: computed oq_live_test_result_v1 variables
+ * (testName/className/score/total/rank/percentile) for ONE student in
+ * ONE session - powers the Send Individual tab's auto-population for
+ * this template, reusing the exact same ranking computation as the
+ * automatic trigger and the bulk campaign (functions/whatsapp/liveTestData.js)
+ * rather than duplicating it client-side.
+ */
+exports.getLiveTestResultPreview = onCall({}, async (request) => {
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
+
+  const { sessionId, uid } = request.data;
+  if (!sessionId || !uid) {
+    throw new HttpsError("invalid-argument", "sessionId and uid are required.");
+  }
+
+  const [sessionPromo, rankings] = await Promise.all([
+    liveTestData.getSessionPromoData(sessionId),
+    liveTestData.computeLiveTestRankings(sessionId),
+  ]);
+  if (!sessionPromo) throw new HttpsError("not-found", "Session not found.");
+
+  const ranking = rankings.get(uid);
+  if (!ranking) throw new HttpsError("not-found", "This student has no result for that session yet.");
+
+  return {
+    testName: sessionPromo.testName,
+    className: sessionPromo.className,
+    score: ranking.score,
+    total: ranking.total,
+    rank: ranking.rank,
+    percentile: ranking.percentile,
+  };
+});
+
+/**
  * Generates and sends a WhatsApp OTP. Standalone utility, independent of
  * Firebase Phone Auth - does not touch the existing login/signup OTP flow.
  * Callable by any authenticated user (rate limiting is the caller's
