@@ -16,12 +16,22 @@
 const { db } = require("../config");
 
 /**
- * Reads a test_sessions doc and shapes it into the 7 session-driven
- * variables oq_live_test_promotion_v1 needs ({{2}} through {{8}} - {{1}}
- * is always the recipient's own name, resolved by the caller).
+ * Reads one or more test_sessions docs and shapes them into the 7
+ * session-driven variables oq_live_test_promotion_v1 needs ({{2}}
+ * through {{8}} - {{1}} is always the recipient's own name, resolved by
+ * the caller).
+ *
+ * Accepts EITHER a single session id OR a comma-separated list of them -
+ * the latter is how the admin panel represents a "same-day, all classes"
+ * group (e.g. one live-test event that has a separate test_sessions doc
+ * per class 1-10, all sharing the same date/time/price). testName/
+ * testDate/testTime/testPrice/discountedPrice are taken from the first
+ * session in the group (assumed shared across a same-day group);
+ * className becomes a range ("1 to 10") when the group spans more than
+ * one class, or the single class number when there's just one session.
  *
  * IMPORTANT: testPrice/discountedPrice are read straight off the session
- * document, never hardcoded. Coupon code is deliberately NOT read here -
+ * document(s), never hardcoded. Coupon code is deliberately NOT read here -
  * this app already has a separate, global Coupon Management system (the
  * `coupons` collection, admin.html's "Coupon Management" panel) that
  * isn't tied to any one session; the admin picks which existing coupon
@@ -29,28 +39,42 @@ const { db } = require("../config");
  * `couponCode` param), rather than this reading a session-level field
  * that doesn't exist in that system.
  *
- * @param {string} sessionId
+ * @param {string} sessionId - single id, or comma-separated ids for a group.
  * @returns {Promise<{testName: string, className: string, testDate: string, testTime: string, testPrice: number|string, discountedPrice: number|string}|null>}
  */
 async function getSessionPromoData(sessionId) {
-  const snap = await db.collection("test_sessions").doc(sessionId).get();
-  if (!snap.exists) return null;
-  const s = snap.data();
+  const ids = String(sessionId).split(",").map((id) => id.trim()).filter(Boolean);
+  if (ids.length === 0) return null;
 
-  const testDate = s.startTime?.toDate
-    ? s.startTime.toDate().toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium" })
+  const snaps = await Promise.all(ids.map((id) => db.collection("test_sessions").doc(id).get()));
+  const sessions = snaps.filter((snap) => snap.exists).map((snap) => snap.data());
+  if (sessions.length === 0) return null;
+
+  const first = sessions[0];
+  const testDate = first.startTime?.toDate
+    ? first.startTime.toDate().toLocaleDateString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium" })
     : "To be announced";
-  const testTime = s.startTime?.toDate
-    ? s.startTime.toDate().toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", timeStyle: "short" })
+  const testTime = first.startTime?.toDate
+    ? first.startTime.toDate().toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", timeStyle: "short" })
     : "-";
 
+  const classNumbers = sessions.map((s) => s.class).filter((c) => c !== undefined && c !== null);
+  let className = "-";
+  if (classNumbers.length === 1) {
+    className = String(classNumbers[0]);
+  } else if (classNumbers.length > 1) {
+    const min = Math.min(...classNumbers);
+    const max = Math.max(...classNumbers);
+    className = min === max ? String(min) : `${min} to ${max}`;
+  }
+
   return {
-    testName: s.title || "Live Olympiad Test",
-    className: s.class !== undefined && s.class !== null ? String(s.class) : "-",
+    testName: first.title || "Live Olympiad Test",
+    className,
     testDate,
     testTime,
-    testPrice: s.price !== undefined && s.price !== null ? s.price : 0,
-    discountedPrice: s.priceAfterCoupon !== undefined && s.priceAfterCoupon !== null ? s.priceAfterCoupon : (s.price ?? 0),
+    testPrice: first.price !== undefined && first.price !== null ? first.price : 0,
+    discountedPrice: first.priceAfterCoupon !== undefined && first.priceAfterCoupon !== null ? first.priceAfterCoupon : (first.price ?? 0),
   };
 }
 

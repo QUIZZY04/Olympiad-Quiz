@@ -695,12 +695,16 @@ async function sendBroadcast({
 
   // One query up front for the live-test filters, rather than per-doc.
   // Skipped entirely when explicitPhones is set - the admin already
-  // resolved and reviewed the exact recipient list client-side.
+  // resolved and reviewed the exact recipient list client-side. sessionId
+  // may be a comma-separated group (the admin panel's "same-day, all
+  // classes" session picker) - Firestore's "in" handles up to 10 values,
+  // conveniently matching the "classes 1-10" use case this exists for.
   let liveTestUids = null;
   if (!explicitSet && (targetType === "Live Test Registered" || targetType === "Live Test Not Registered") && sessionId) {
+    const sessionIds = String(sessionId).split(",").map((id) => id.trim()).filter(Boolean).slice(0, 10);
     const purchasesSnap = await db
       .collectionGroup("purchases")
-      .where("sessionId", "==", sessionId)
+      .where("sessionId", "in", sessionIds)
       .where("status", "==", "CAPTURED")
       .get();
     liveTestUids = new Set(purchasesSnap.docs.map((d) => d.ref.parent.parent.id));

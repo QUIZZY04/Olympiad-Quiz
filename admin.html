@@ -5232,24 +5232,40 @@ window.wamLoadBcCouponsForPicker = async function() {
 
 /** Read-only preview of the session-driven vars ({{2}}-{{8}}) so the admin
  * can visually confirm price/coupon/discounted price before sending -
- * these are never hardcoded, always read from the selected session +
- * coupon dropdown. */
+ * these are never hardcoded, always read from the selected session(s) +
+ * coupon dropdown. Mirrors liveTestData.getSessionPromoData() server-side:
+ * when a grouped (comma-separated) same-day session is selected, testName/
+ * date/time/price come from the first session and className becomes a
+ * range (e.g. "1 to 10"). */
 window.wamRenderBcPromoPreview = async function() {
     const preview = document.getElementById("wamBcPromoPreview");
-    const sessionId = document.getElementById("wamBcSessionSelect").value;
+    const sessionIdValue = document.getElementById("wamBcSessionSelect").value;
     const couponCode = document.getElementById("wamBcCouponSelect").value;
-    if (!sessionId) { preview.innerHTML = "Pick a session above to preview the message variables."; return; }
+    if (!sessionIdValue) { preview.innerHTML = "Pick a session above to preview the message variables."; return; }
     try {
-        const snap = await getDoc(doc(db, "test_sessions", sessionId));
-        if (!snap.exists()) { preview.innerHTML = "Session not found."; return; }
-        const s = snap.data();
-        const testDate = s.startTime?.toDate ? s.startTime.toDate().toLocaleDateString("en-IN", { dateStyle: "medium" }) : "-";
-        const testTime = s.startTime?.toDate ? s.startTime.toDate().toLocaleTimeString("en-IN", { timeStyle: "short" }) : "-";
-        const discounted = (s.priceAfterCoupon !== undefined && s.priceAfterCoupon !== null) ? s.priceAfterCoupon : (s.price ?? 0);
+        const ids = sessionIdValue.split(",").map(id => id.trim()).filter(Boolean);
+        const snaps = await Promise.all(ids.map(id => getDoc(doc(db, "test_sessions", id))));
+        const sessions = snaps.filter(snap => snap.exists()).map(snap => snap.data());
+        if (sessions.length === 0) { preview.innerHTML = "Session not found."; return; }
+
+        const first = sessions[0];
+        const testDate = first.startTime?.toDate ? first.startTime.toDate().toLocaleDateString("en-IN", { dateStyle: "medium" }) : "-";
+        const testTime = first.startTime?.toDate ? first.startTime.toDate().toLocaleTimeString("en-IN", { timeStyle: "short" }) : "-";
+        const discounted = (first.priceAfterCoupon !== undefined && first.priceAfterCoupon !== null) ? first.priceAfterCoupon : (first.price ?? 0);
+
+        const classNumbers = sessions.map(s => s.class).filter(c => c !== undefined && c !== null);
+        let className = "-";
+        if (classNumbers.length === 1) className = String(classNumbers[0]);
+        else if (classNumbers.length > 1) {
+            const min = Math.min(...classNumbers), max = Math.max(...classNumbers);
+            className = min === max ? String(min) : `${min} to ${max}`;
+        }
+
         preview.innerHTML = `
-            <strong>{{2}} Test:</strong> ${s.title || "-"} &nbsp; <strong>{{3}} Class:</strong> ${s.class ?? "-"}<br>
+            ${sessions.length > 1 ? `<p style="margin:0 0 8px; color:var(--brand-text); font-weight:600;">Combined: ${sessions.length} sessions, one common message.</p>` : ''}
+            <strong>{{2}} Test:</strong> ${first.title || "-"} &nbsp; <strong>{{3}} Class:</strong> ${className}<br>
             <strong>{{4}} Date:</strong> ${testDate} &nbsp; <strong>{{5}} Time:</strong> ${testTime}<br>
-            <strong>{{6}} Price:</strong> ₹${s.price ?? 0} &nbsp; <strong>{{7}} Coupon:</strong> ${couponCode || "N/A"} &nbsp; <strong>{{8}} Discounted:</strong> ₹${discounted}
+            <strong>{{6}} Price:</strong> ₹${first.price ?? 0} &nbsp; <strong>{{7}} Coupon:</strong> ${couponCode || "N/A"} &nbsp; <strong>{{8}} Discounted:</strong> ₹${discounted}
         `;
     } catch (error) {
         preview.innerHTML = `Failed to load: ${error.message}`;
@@ -5306,25 +5322,45 @@ window.wamSendLiveTestResultCampaign = async function() {
  * for the Live Test manager), not a new callable. */
 /** Upcoming-only session picker (shared by the Live Test Registered/Not
  * Registered audience filter and the Promotion campaign) - excludes any
- * session whose endTime has already passed, per your request. Ordered
- * soonest-first, which is what you actually want when picking which
- * session to promote or check registrations for. */
+ * session whose endTime has already passed. Sessions sharing the same
+ * calendar date are grouped into ONE combined option (e.g. a single live
+ * test event scheduled as separate per-class sessions for classes 1-10)
+ * instead of listing every class individually - selecting it sends one
+ * common message using the shared date/time/price and a class range like
+ * "1 to 10". A date with only one session still shows normally. */
 window.wamLoadBcSessionsForPicker = async function() {
     const select = document.getElementById("wamBcSessionSelect");
     select.innerHTML = `<option value="">Loading sessions...</option>`;
     try {
         const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "asc"), limit(200)));
         const now = Date.now();
-        const options = snap.docs
-            .filter(d => {
-                const end = d.data().endTime?.toDate?.();
-                return !end || end.getTime() > now; // keep upcoming + currently-live, drop already-ended
-            })
-            .map(d => {
-                const s = d.data();
-                const when = s.startTime?.toDate ? s.startTime.toDate().toLocaleString("en-IN") : "-";
-                return `<option value="${d.id}">${s.title || d.id} (Class ${s.class || "-"}, ${when})</option>`;
-            }).join("");
+        const upcoming = snap.docs.filter(d => {
+            const end = d.data().endTime?.toDate?.();
+            return !end || end.getTime() > now;
+        });
+
+        const byDate = new Map(); // "YYYY-MM-DD" -> [{id, data}]
+        upcoming.forEach(d => {
+            const start = d.data().startTime?.toDate?.();
+            const dateKey = start ? start.toISOString().slice(0, 10) : "unknown";
+            if (!byDate.has(dateKey)) byDate.set(dateKey, []);
+            byDate.get(dateKey).push({ id: d.id, data: d.data() });
+        });
+
+        let options = "";
+        byDate.forEach((group) => {
+            const when = group[0].data.startTime?.toDate ? group[0].data.startTime.toDate().toLocaleString("en-IN") : "-";
+            if (group.length === 1) {
+                const s = group[0].data;
+                options += `<option value="${group[0].id}">${s.title || group[0].id} (Class ${s.class ?? "-"}, ${when})</option>`;
+            } else {
+                const classes = group.map(g => g.data.class).filter(c => c !== undefined && c !== null).sort((a, b) => a - b);
+                const classLabel = classes.length ? `Classes ${classes[0]}-${classes[classes.length - 1]}` : `${group.length} sessions`;
+                const ids = group.map(g => g.id).join(",");
+                options += `<option value="${ids}">📅 ${group[0].data.title || "Live Test"} - ${classLabel} (${when}) - ${group.length} sessions, one common message</option>`;
+            }
+        });
+
         select.innerHTML = `<option value="">-- Select a session --</option>` + (options || `<option value="" disabled>No upcoming sessions found</option>`);
     } catch (error) {
         select.innerHTML = `<option value="">Failed to load: ${error.message}</option>`;
