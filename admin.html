@@ -5304,17 +5304,28 @@ window.wamSendLiveTestResultCampaign = async function() {
 /** Populates the Live Test session picker via a direct Firestore read - same
  * pattern already used elsewhere in this admin panel (e.g. loadSessions()
  * for the Live Test manager), not a new callable. */
+/** Upcoming-only session picker (shared by the Live Test Registered/Not
+ * Registered audience filter and the Promotion campaign) - excludes any
+ * session whose endTime has already passed, per your request. Ordered
+ * soonest-first, which is what you actually want when picking which
+ * session to promote or check registrations for. */
 window.wamLoadBcSessionsForPicker = async function() {
     const select = document.getElementById("wamBcSessionSelect");
     select.innerHTML = `<option value="">Loading sessions...</option>`;
     try {
-        const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(100)));
-        const options = snap.docs.map(d => {
-            const s = d.data();
-            const when = s.startTime?.toDate ? s.startTime.toDate().toLocaleString("en-IN") : "-";
-            return `<option value="${d.id}">${s.title || d.id} (Class ${s.class || "-"}, ${when})</option>`;
-        }).join("");
-        select.innerHTML = `<option value="">-- Select a session --</option>` + options;
+        const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "asc"), limit(200)));
+        const now = Date.now();
+        const options = snap.docs
+            .filter(d => {
+                const end = d.data().endTime?.toDate?.();
+                return !end || end.getTime() > now; // keep upcoming + currently-live, drop already-ended
+            })
+            .map(d => {
+                const s = d.data();
+                const when = s.startTime?.toDate ? s.startTime.toDate().toLocaleString("en-IN") : "-";
+                return `<option value="${d.id}">${s.title || d.id} (Class ${s.class || "-"}, ${when})</option>`;
+            }).join("");
+        select.innerHTML = `<option value="">-- Select a session --</option>` + (options || `<option value="" disabled>No upcoming sessions found</option>`);
     } catch (error) {
         select.innerHTML = `<option value="">Failed to load: ${error.message}</option>`;
     }
