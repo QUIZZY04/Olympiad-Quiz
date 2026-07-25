@@ -258,9 +258,34 @@
         <p style="font-size:14px;">© 2026 OlympiadQuiz. All rights reserved.</p>
     </footer>
 
+    <script>
+        /* Mobile Menu Toggle */
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.querySelector('.navbar-links');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+        }
+
+        /* Mobile Dropdown Toggle */
+        document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    const dropdown = this.closest('.nav-dropdown');
+                    document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
+                        if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); }
+                    });
+                    dropdown.classList.toggle('open');
+                }
+            });
+        });
+    </script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         const firebaseConfig = { apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY", authDomain: "olympiad-portal-d2a5e.firebaseapp.com", projectId: "olympiad-portal-d2a5e" };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -268,7 +293,9 @@
         onAuthStateChanged(auth, (user) => {
             const authLink = document.getElementById('navAuthLink');
             if (user && authLink) {
-                authLink.innerText ventDefault(); window.logout(); };
+                authLink.innerText = "Logout";
+                authLink.href = "#";
+                authLink.onclick = (e) => { e.preventDefault(); window.logout(); };
                 authLink.style.background = "var(--danger)";
             }
         });

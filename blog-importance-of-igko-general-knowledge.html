@@ -193,6 +193,31 @@
     <p style="font-size:13px;margin:0;">© 2026 OlympiadQuiz. All rights reserved.</p>
 </footer>
 <script>
+    /* Mobile Menu Toggle */
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.navbar-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+
+    /* Mobile Dropdown Toggle */
+    document.querySelectorAll('.nav-dropdown .nav-link').forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                const dropdown = this.closest('.nav-dropdown');
+                document.querySelectorAll('.nav-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) { openDropdown.classList.remove('open'); }
+                });
+                dropdown.classList.toggle('open');
+            }
+        });
+    });
+</script>
+<script>
     document.querySelectorAll('.toc-box a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const t = document.getElementById(a.getAttribute('href').substring(1)); if (t) window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }));
 </script>
 </body>
