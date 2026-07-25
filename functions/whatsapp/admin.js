@@ -723,16 +723,22 @@ exports.getConversationThread = onCall({}, async (request) => {
   if (!phone) throw new HttpsError("invalid-argument", "phone is required.");
 
   const limitCount = Math.min(Number(request.data?.limit) || 200, 500);
+  // Fetch the MOST RECENT N (order DESC, then reverse) - a heavily-used
+  // number can easily have 200+ historical log rows (OTPs, broadcasts,
+  // account-creation attempts, etc. going back weeks), so ordering ASC
+  // with a limit would return the OLDEST N and never reach today's
+  // actual conversation (the same bug shape as getUpcomingTests earlier).
   const snap = await db
     .collection(COLLECTIONS.LOGS)
     .where("phone", "==", phone)
-    .orderBy("timestamp", "asc")
+    .orderBy("timestamp", "desc")
     .limit(limitCount)
     .get();
 
   const messages = snap.docs
     .map((d) => ({ id: d.id, ...d.data() }))
-    .filter((m) => m.category !== "status_update");
+    .filter((m) => m.category !== "status_update")
+    .reverse();
 
   return { messages };
 });
