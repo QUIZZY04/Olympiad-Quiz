@@ -1101,7 +1101,7 @@ border-top:1px solid var(--border);
                 <div style="display:flex; gap:8px;">
                     <button type="button" onclick="window.wamRefreshChatThread()" title="Refresh" style="background:rgba(255,255,255,0.15); color:white; border:none; padding:8px 10px; border-radius:8px; cursor:pointer;">🔄</button>
                     <button type="button" onclick="window.wamResolveFromChat()" title="Resolve - bot resumes for this number" style="background:rgba(255,255,255,0.15); color:white; border:none; padding:8px 10px; border-radius:8px; cursor:pointer; font-size:12px; font-weight:600;">✅ Resolve</button>
-                    <button type="button" onclick="document.getElementById('wamChatModal').style.display='none';" style="background:rgba(255,255,255,0.15); color:white; border:none; padding:8px 10px; border-radius:8px; cursor:pointer;">✕</button>
+                    <button type="button" onclick="window.wamCloseChatModal()" style="background:rgba(255,255,255,0.15); color:white; border:none; padding:8px 10px; border-radius:8px; cursor:pointer;">✕</button>
                 </div>
             </div>
             <div id="wamChatThread" style="flex:1; overflow-y:auto; padding:16px; background:#e5ddd5; display:flex; flex-direction:column; gap:8px;">
@@ -6513,15 +6513,29 @@ window.wamResolveHandover = async function(handoverId) {
 // --- Human Handover: live chat panel ---
 let wamChatPhone = null;
 let wamChatHandoverId = null;
+let wamChatPollTimer = null;
+let wamChatLastSignature = null; // cheap change-detection so polling doesn't yank scroll position when nothing's new
+const WAM_CHAT_POLL_MS = 4000;
 
 window.wamOpenChatModal = function(phone, handoverId) {
     wamChatPhone = phone;
     wamChatHandoverId = handoverId;
+    wamChatLastSignature = null;
     document.getElementById("wamChatPhoneLabel").innerText = "+" + phone;
     document.getElementById("wamChatReplyInput").value = "";
     document.getElementById("wamChatSendStatus").innerText = "";
     document.getElementById("wamChatModal").style.display = "flex";
     window.wamRefreshChatThread();
+
+    if (wamChatPollTimer) clearInterval(wamChatPollTimer);
+    wamChatPollTimer = setInterval(() => window.wamRefreshChatThread(), WAM_CHAT_POLL_MS);
+};
+
+window.wamCloseChatModal = function() {
+    if (wamChatPollTimer) { clearInterval(wamChatPollTimer); wamChatPollTimer = null; }
+    wamChatPhone = null;
+    wamChatHandoverId = null;
+    document.getElementById("wamChatModal").style.display = "none";
 };
 
 window.wamRefreshChatThread = async function() {
@@ -6530,6 +6544,14 @@ window.wamRefreshChatThread = async function() {
     try {
         const res = await wamFn.getConversationThread({ phone: wamChatPhone, limit: 200 });
         const messages = res.data.messages || [];
+
+        // Cheap signature (count + last message id) - skip re-render/re-scroll
+        // when polling finds nothing new, so it doesn't disturb the admin
+        // mid-scroll or mid-typing every 4 seconds.
+        const signature = messages.length + ":" + (messages[messages.length - 1]?.id || "");
+        if (signature === wamChatLastSignature) return;
+        wamChatLastSignature = signature;
+
         if (messages.length === 0) {
             thread.innerHTML = "<p class='muted' style='text-align:center;'>No messages yet.</p>";
             return;
@@ -6564,6 +6586,7 @@ window.wamSendChatReply = async function() {
         await wamFn.sendWhatsApp({ lookupType: "phone", lookupValue: wamChatPhone, useTemplate: false, message: text });
         input.value = "";
         status.innerText = "";
+        wamChatLastSignature = null; // force the next refresh to re-render even if count momentarily matches
         await window.wamRefreshChatThread();
     } catch (error) {
         status.style.color = "var(--danger)";
@@ -6572,11 +6595,11 @@ window.wamSendChatReply = async function() {
 };
 
 window.wamResolveFromChat = async function() {
-    if (!wamChatHandoverId) { document.getElementById("wamChatModal").style.display = "none"; return; }
+    if (!wamChatHandoverId) { window.wamCloseChatModal(); return; }
     if (!confirm("Mark this handover as resolved? The AI Assistant will resume replying to this number.")) return;
     try {
         await wamFn.resolveHandover({ handoverId: wamChatHandoverId });
-        document.getElementById("wamChatModal").style.display = "none";
+        window.wamCloseChatModal();
         await wamLoadAiHandovers();
     } catch (error) {
         alert("Failed to resolve: " + error.message);
