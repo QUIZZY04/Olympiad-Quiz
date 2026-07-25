@@ -627,3 +627,83 @@ exports.getWhatsAppSettingsInfo = onCall(
 );
 
 module.exports.getAutomationSetting = getAutomationSetting;
+
+// ---------------------------------------------------------------------
+// AI Assistant tab (admin.html "🤖 AI Assistant") - basic Phase-1 admin
+// surface for whatsapp_ai_settings / whatsapp_ai_logs / whatsapp_handover.
+// Same assertAdmin() gate as every callable above. Never returns the
+// OPENAI_API_KEY value - settings docs never store secrets, only config.
+// ---------------------------------------------------------------------
+
+const aiSettingsModule = require("./aiSettings");
+
+exports.getAiSettings = onCall({}, async (request) => {
+  assertAdmin(request);
+  const settings = await aiSettingsModule.getAiSettings();
+  return { settings };
+});
+
+exports.saveAiSettings = onCall({}, async (request) => {
+  assertAdmin(request);
+  const data = request.data || {};
+  const allowedFields = [
+    "enabled", "model", "systemPrompt", "greetingMessage", "fallbackReply",
+    "faqs", "historyLimit", "maxToolIterations", "maxOutputTokens", "temperature",
+    "dailyAiTurnCapPerPhone",
+  ];
+  const update = {};
+  allowedFields.forEach((key) => {
+    if (data[key] !== undefined) update[key] = data[key];
+  });
+  if (Object.keys(update).length === 0) {
+    throw new HttpsError("invalid-argument", "No valid settings fields provided.");
+  }
+  update.updatedAt = FieldValue.serverTimestamp();
+  update.updatedBy = request.auth.token.email;
+
+  await db.collection(COLLECTIONS.AI_SETTINGS).doc("config").set(update, { merge: true });
+  aiSettingsModule.invalidateCache();
+  return { success: true };
+});
+
+exports.getAiLogs = onCall({}, async (request) => {
+  assertAdmin(request);
+  const limitCount = Math.min(Number(request.data?.limit) || 100, 500);
+  const snap = await db.collection(COLLECTIONS.AI_LOGS).orderBy("createdAt", "desc").limit(limitCount).get();
+  return { logs: snap.docs.map((d) => ({ id: d.id, ...d.data() })) };
+});
+
+exports.getOpenHandovers = onCall({}, async (request) => {
+  assertAdmin(request);
+  const snap = await db
+    .collection(COLLECTIONS.HANDOVER)
+    .where("status", "==", "open")
+    .orderBy("createdAt", "asc")
+    .limit(200)
+    .get();
+  return { handovers: snap.docs.map((d) => ({ id: d.id, ...d.data() })) };
+});
+
+exports.resolveHandover = onCall({}, async (request) => {
+  assertAdmin(request);
+  const { handoverId } = request.data || {};
+  if (!handoverId) throw new HttpsError("invalid-argument", "handoverId is required.");
+
+  const handoverRef = db.collection(COLLECTIONS.HANDOVER).doc(handoverId);
+  const handoverSnap = await handoverRef.get();
+  if (!handoverSnap.exists) throw new HttpsError("not-found", "Handover request not found.");
+
+  const { phone } = handoverSnap.data();
+  await handoverRef.update({
+    status: "resolved",
+    resolvedAt: FieldValue.serverTimestamp(),
+    resolvedBy: request.auth.token.email,
+  });
+  if (phone) {
+    await db.collection(COLLECTIONS.CONVERSATIONS).doc(phone).set(
+      { status: "active", handoverReason: null, handoverAt: null },
+      { merge: true }
+    );
+  }
+  return { success: true };
+});

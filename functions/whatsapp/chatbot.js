@@ -2,12 +2,25 @@
  * =====================================================================
  * WHATSAPP CHATBOT
  * =====================================================================
- * Simple, dependency-free keyword-matching chatbot. Kept deliberately
- * modular: `getReply()` is the only thing webhook.js calls, so swapping
- * the matching strategy (or wiring in a real AI backend later) never
- * requires touching webhook.js.
+ * `getReply()` is the only thing webhook.js calls, so swapping the
+ * matching strategy never requires touching webhook.js. Two modes,
+ * switched by the admin.html "AI Assistant" tab
+ * (whatsapp_ai_settings.enabled, DEFAULT: false):
+ *
+ *   - enabled=false (default): the original dependency-free keyword
+ *     matcher below, unchanged, byte-for-byte identical to before the AI
+ *     Assistant existed.
+ *   - enabled=true: every message routes through aiEngine.js's real
+ *     OpenAI-powered conversational agent instead (including greetings
+ *     like "Hi" - it replaces the keyword menu, not just supplements it,
+ *     per the AI Assistant spec's own example flow). Any error from the
+ *     engine gracefully degrades to the keyword+fallback path below for
+ *     that single message, so a bad AI response never breaks a reply.
  * =====================================================================
  */
+
+const aiSettings = require("./aiSettings");
+const aiEngine = require("./aiEngine");
 
 /**
  * Ordered list of {keywords, reply} rules. First match wins, so put more
@@ -100,15 +113,27 @@ async function getAiReply(incomingText, context = {}) {
 }
 
 /**
- * Main entry point used by webhook.js. Tries the keyword rules first
- * (fast, free, deterministic), then falls back to the AI placeholder,
- * then a generic fallback message.
+ * Main entry point used by webhook.js.
  *
  * @param {string} incomingText
- * @param {Object} [context]
- * @returns {Promise<string>}
+ * @param {Object} [context] - { phone } at minimum.
+ * @returns {Promise<string|null>} A reply to send, or null to send
+ *          nothing at all (e.g. a conversation already flagged
+ *          human_required by the AI Assistant - see aiEngine.js).
  */
 async function getReply(incomingText, context = {}) {
+  const settings = await aiSettings.getAiSettings();
+
+  if (settings.enabled) {
+    try {
+      return await aiEngine.handleTurn({ phone: context.phone, text: incomingText, settings });
+    } catch (error) {
+      console.error("chatbot.getReply: aiEngine.handleTurn failed, falling back to keyword flow:", error.message);
+      // Fall through to the legacy behavior below for this one message -
+      // the AI Assistant misbehaving must never break a reply entirely.
+    }
+  }
+
   const keywordReply = matchKeywordReply(incomingText);
   if (keywordReply) return keywordReply;
 

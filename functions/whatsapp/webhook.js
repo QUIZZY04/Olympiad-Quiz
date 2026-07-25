@@ -21,7 +21,7 @@
 
 const crypto = require("crypto");
 const { onRequest } = require("firebase-functions/v2/https");
-const { WHATSAPP_SECRETS, WEBHOOK_VERIFY_SECRETS, SECRET_NAMES } = require("../config");
+const { WHATSAPP_SECRETS, WEBHOOK_VERIFY_SECRETS, AI_SECRETS, SECRET_NAMES } = require("../config");
 const { logInbound, logStatusUpdate, claimWebhookEvent } = require("./messageLogger");
 const chatbot = require("./chatbot");
 const { sendWhatsAppMessage } = require("./whatsappService");
@@ -92,7 +92,10 @@ async function processValue(value) {
 
     try {
       const reply = await chatbot.getReply(text, { phone: fromPhone });
-      await sendWhatsAppMessage(fromPhone, reply);
+      // `reply` can be null (e.g. a conversation flagged human_required by
+      // the AI Assistant) - staying silent is a valid, intentional outcome,
+      // not an error. Every other path returns a string exactly as before.
+      if (reply) await sendWhatsAppMessage(fromPhone, reply);
     } catch (error) {
       console.error(`Chatbot reply failed for ${fromPhone}:`, error.message);
     }
@@ -151,10 +154,13 @@ async function handleIncomingEvent(req, res) {
  */
 const whatsappWebhook = onRequest(
   {
-    secrets: [...new Set([...WHATSAPP_SECRETS, ...WEBHOOK_VERIFY_SECRETS])],
+    secrets: [...new Set([...WHATSAPP_SECRETS, ...WEBHOOK_VERIFY_SECRETS, ...AI_SECRETS])],
     cors: false,
-    timeoutSeconds: 30,
-    memory: "256MiB",
+    // Bumped from 30s/256MiB: the AI Assistant's tool-calling loop (when
+    // enabled) can involve several sequential OpenAI round-trips per
+    // inbound message. Harmless while whatsapp_ai_settings.enabled=false.
+    timeoutSeconds: 60,
+    memory: "512MiB",
   },
   async (req, res) => {
     if (req.method === "GET") {

@@ -1625,6 +1625,13 @@ exports.getWhatsAppLogs = whatsappAdmin.getWhatsAppLogs;
 exports.getCampaignHistory = whatsappAdmin.getCampaignHistory;
 exports.getCampaignDetail = whatsappAdmin.getCampaignDetail;
 
+// AI Assistant admin tab (Phase 1)
+exports.getAiSettings = whatsappAdmin.getAiSettings;
+exports.saveAiSettings = whatsappAdmin.saveAiSettings;
+exports.getAiLogs = whatsappAdmin.getAiLogs;
+exports.getOpenHandovers = whatsappAdmin.getOpenHandovers;
+exports.resolveHandover = whatsappAdmin.resolveHandover;
+
 // =================================================================
 // 9. PHONE VERIFICATION REMINDER EMAIL (NEW - ADDITIVE ONLY)
 // =================================================================

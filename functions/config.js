@@ -45,6 +45,7 @@ const SECRET_NAMES = {
   VERIFY_TOKEN: "WHATSAPP_VERIFY_TOKEN",           // Custom string used for GET /webhook handshake
   APP_SECRET: "WHATSAPP_APP_SECRET",               // Meta App Secret, used to verify X-Hub-Signature-256
   BUSINESS_ACCOUNT_ID: "WHATSAPP_BUSINESS_ACCOUNT_ID", // WABA ID (optional, for template management)
+  OPENAI_API_KEY: "OPENAI_API_KEY",                // OpenAI Responses API key (AI WhatsApp Assistant)
 };
 
 // Convenience array: pass this to any function's `secrets` option to make
@@ -58,6 +59,11 @@ const WHATSAPP_SECRETS = [
 // The webhook GET-verification handshake only ever needs the verify token,
 // so it gets its own (smaller) secret list.
 const WEBHOOK_VERIFY_SECRETS = [SECRET_NAMES.VERIFY_TOKEN];
+
+// Secrets needed by the AI Assistant engine (functions/whatsapp/aiEngine.js).
+// Kept separate from WHATSAPP_SECRETS so non-AI functions never need to
+// declare an OpenAI dependency.
+const AI_SECRETS = [SECRET_NAMES.OPENAI_API_KEY];
 
 // ---------------------------------------------------------------------
 // Meta Graph API
@@ -88,6 +94,10 @@ const COLLECTIONS = {
   TEMPLATES: "whatsapp_templates",       // admin console: cached Meta template metadata
   SCHEDULE: "whatsapp_schedule",         // admin console: scheduled broadcasts
   SETTINGS: "whatsapp_settings",         // admin console: automation on/off + delay per type
+  CONVERSATIONS: "whatsapp_conversations", // AI Assistant: one doc per WhatsApp number (uid link, status, lock)
+  AI_SETTINGS: "whatsapp_ai_settings",     // AI Assistant: singleton config doc (enabled, model, prompt, FAQs)
+  AI_LOGS: "whatsapp_ai_logs",             // AI Assistant: one doc per AI turn (tokens, cost, latency)
+  HANDOVER: "whatsapp_handover",           // AI Assistant: human-handover requests
 };
 
 // Reuses the same single-admin model already hardcoded in index.js
@@ -102,6 +112,7 @@ module.exports = {
   SECRET_NAMES,
   WHATSAPP_SECRETS,
   WEBHOOK_VERIFY_SECRETS,
+  AI_SECRETS,
   GRAPH_API_VERSION,
   GRAPH_BASE_URL,
   getMessagesEndpoint,

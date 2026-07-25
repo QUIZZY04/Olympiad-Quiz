@@ -765,6 +765,7 @@ border-top:1px solid var(--border);
                 <button type="button" class="wam-tab-btn" data-tab="logs">📜 Logs</button>
                 <button type="button" class="wam-tab-btn" data-tab="analytics">📈 Analytics</button>
                 <button type="button" class="wam-tab-btn" data-tab="settings">⚙️ Settings</button>
+                <button type="button" class="wam-tab-btn" data-tab="ai">🤖 AI Assistant</button>
             </div>
 
             <!-- Dashboard -->
@@ -1033,6 +1034,50 @@ border-top:1px solid var(--border);
             <div class="wam-tab-content" data-tab-content="settings" style="display:none;">
                 <p class="muted">Read-only. Secrets are never shown - only whether each is configured.</p>
                 <div id="wamSettingsGrid" class="summary-grid"><p class="muted">Loading...</p></div>
+            </div>
+
+            <!-- AI Assistant (Phase 1) -->
+            <div class="wam-tab-content" data-tab-content="ai" style="display:none;">
+                <p class="muted">Conversational AI agent for inbound WhatsApp messages (OpenAI, tool-calling against live student data). <strong>Disabled by default</strong> - the existing keyword-based auto-replies keep working exactly as before until you enable this.</p>
+
+                <div style="background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:16px; margin-top:12px;">
+                    <label style="display:flex; align-items:center; gap:8px; font-weight:700;">
+                        <input type="checkbox" id="wamAiEnabled" style="width:auto;"> Enable AI Assistant
+                    </label>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:12px;">
+                        <div>
+                            <label>Model</label>
+                            <input type="text" id="wamAiModel" placeholder="gpt-4o-mini">
+                        </div>
+                        <div>
+                            <label>Daily reply cap per phone number</label>
+                            <input type="number" id="wamAiDailyCap" min="1" placeholder="40">
+                        </div>
+                    </div>
+                    <label style="margin-top:12px; display:block;">System Prompt</label>
+                    <textarea id="wamAiSystemPrompt" style="height:110px;"></textarea>
+                    <label style="margin-top:12px; display:block;">Greeting Message <span class="muted" style="font-weight:400;">(shown to the model as a style guide for "Hi"/new conversations)</span></label>
+                    <textarea id="wamAiGreeting" style="height:80px;"></textarea>
+                    <label style="margin-top:12px; display:block;">Fallback Message <span class="muted" style="font-weight:400;">(used if the AI call fails)</span></label>
+                    <textarea id="wamAiFallback" style="height:60px;"></textarea>
+                    <label style="margin-top:12px; display:block;">FAQs <span class="muted" style="font-weight:400;">(one per line, format: <code>question | answer</code>)</span></label>
+                    <textarea id="wamAiFaqs" style="height:120px;" placeholder="What is OlympiadQuiz? | OlympiadQuiz is a free Olympiad exam practice platform..."></textarea>
+                    <button type="button" class="upload" style="margin-top:14px;" onclick="window.wamSaveAiSettings()">💾 Save AI Settings</button>
+                    <div id="wamAiSettingsStatus" style="margin-top:10px; font-size:13px; font-weight:600; padding:10px; border-radius:8px; display:none; border:1px solid transparent;"></div>
+                </div>
+
+                <h3 style="margin-top:24px;">🙋 Human Handover Requests</h3>
+                <p class="muted">Conversations the AI escalated to a human - the AI stays silent on these numbers until resolved here.</p>
+                <table style="margin-top:8px;">
+                    <thead><tr><th>Phone</th><th>Reason</th><th>Requested</th><th>Action</th></tr></thead>
+                    <tbody id="wamAiHandoverBody"><tr><td colspan="4" class="muted">Loading...</td></tr></tbody>
+                </table>
+
+                <h3 style="margin-top:24px;">📜 Recent AI Conversations</h3>
+                <table style="margin-top:8px;">
+                    <thead><tr><th>Phone</th><th>Prompt</th><th>Response</th><th>Tools Used</th><th>Tokens</th><th>Cost</th><th>Latency</th><th>Timestamp</th></tr></thead>
+                    <tbody id="wamAiLogsBody"><tr><td colspan="8" class="muted">Loading...</td></tr></tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -4886,6 +4931,11 @@ const wamFn = {
     getCampaignDetail: httpsCallable(functions, 'getCampaignDetail'),
     sendLiveTestResultCampaign: httpsCallable(functions, 'sendLiveTestResultCampaign', { timeout: 540000 }),
     getLiveTestResultPreview: httpsCallable(functions, 'getLiveTestResultPreview'),
+    getAiSettings: httpsCallable(functions, 'getAiSettings'),
+    saveAiSettings: httpsCallable(functions, 'saveAiSettings'),
+    getAiLogs: httpsCallable(functions, 'getAiLogs'),
+    getOpenHandovers: httpsCallable(functions, 'getOpenHandovers'),
+    resolveHandover: httpsCallable(functions, 'resolveHandover'),
 };
 
 const wamLoadedTabs = new Set();
@@ -4922,6 +4972,7 @@ document.querySelectorAll('.wam-tab-btn').forEach(btn => {
                 logs: window.wamLoadLogs,
                 analytics: window.wamLoadAnalytics,
                 settings: window.wamLoadSettings,
+                ai: window.wamLoadAiTab,
             };
             loaders[tab]?.();
         }
@@ -6347,6 +6398,115 @@ window.wamLoadSettings = async function() {
         grid.innerHTML = `<p style="color:var(--danger);">Failed to load: ${error.message}</p>`;
     }
 };
+
+// --- AI Assistant (Phase 1) ---
+window.wamLoadAiTab = async function() {
+    await Promise.all([wamLoadAiSettingsForm(), wamLoadAiHandovers(), wamLoadAiLogs()]);
+};
+
+async function wamLoadAiSettingsForm() {
+    try {
+        const res = await wamFn.getAiSettings();
+        const s = res.data.settings;
+        document.getElementById("wamAiEnabled").checked = !!s.enabled;
+        document.getElementById("wamAiModel").value = s.model || "";
+        document.getElementById("wamAiDailyCap").value = s.dailyAiTurnCapPerPhone || "";
+        document.getElementById("wamAiSystemPrompt").value = s.systemPrompt || "";
+        document.getElementById("wamAiGreeting").value = s.greetingMessage || "";
+        document.getElementById("wamAiFallback").value = s.fallbackReply || "";
+        document.getElementById("wamAiFaqs").value = (s.faqs || []).map(f => `${f.q} | ${f.a}`).join("\n");
+    } catch (error) {
+        wamSetStatus(document.getElementById("wamAiSettingsStatus"), "error", `Failed to load settings: ${error.message}`);
+    }
+}
+
+window.wamSaveAiSettings = async function() {
+    const status = document.getElementById("wamAiSettingsStatus");
+    const faqs = document.getElementById("wamAiFaqs").value
+        .split("\n")
+        .map(line => line.trim())
+        .filter(Boolean)
+        .map(line => {
+            const [q, ...rest] = line.split("|");
+            return { q: (q || "").trim(), a: rest.join("|").trim() };
+        })
+        .filter(f => f.q && f.a);
+
+    wamSetStatus(status, "info", "⏳ Saving...");
+    try {
+        await wamFn.saveAiSettings({
+            enabled: document.getElementById("wamAiEnabled").checked,
+            model: document.getElementById("wamAiModel").value.trim() || "gpt-4o-mini",
+            dailyAiTurnCapPerPhone: Number(document.getElementById("wamAiDailyCap").value) || 40,
+            systemPrompt: document.getElementById("wamAiSystemPrompt").value,
+            greetingMessage: document.getElementById("wamAiGreeting").value,
+            fallbackReply: document.getElementById("wamAiFallback").value,
+            faqs,
+        });
+        wamSetStatus(status, "success", "✅ AI settings saved.");
+    } catch (error) {
+        wamSetStatus(status, "error", `❌ ${error.message}`);
+    }
+};
+
+async function wamLoadAiHandovers() {
+    const body = document.getElementById("wamAiHandoverBody");
+    body.innerHTML = `<tr><td colspan="4" class="muted">Loading...</td></tr>`;
+    try {
+        const res = await wamFn.getOpenHandovers();
+        const handovers = res.data.handovers || [];
+        if (handovers.length === 0) {
+            body.innerHTML = `<tr><td colspan="4" class="muted">No open handover requests.</td></tr>`;
+            return;
+        }
+        body.innerHTML = handovers.map(h => `
+            <tr>
+                <td>${h.phone}</td>
+                <td>${(h.reason || "-").replace(/</g, "&lt;")}</td>
+                <td>${wamFormatTimestamp(h.createdAt)}</td>
+                <td><button type="button" class="upload" style="padding:6px 12px; font-size:12px;" onclick="window.wamResolveHandover('${h.id}')">✅ Resolve</button></td>
+            </tr>`).join("");
+    } catch (error) {
+        body.innerHTML = `<tr><td colspan="4" style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+    }
+}
+
+window.wamResolveHandover = async function(handoverId) {
+    if (!confirm("Mark this handover as resolved? The AI Assistant will resume replying to this number.")) return;
+    try {
+        await wamFn.resolveHandover({ handoverId });
+        await wamLoadAiHandovers();
+    } catch (error) {
+        alert("Failed to resolve: " + error.message);
+    }
+};
+
+async function wamLoadAiLogs() {
+    const body = document.getElementById("wamAiLogsBody");
+    body.innerHTML = `<tr><td colspan="8" class="muted">Loading...</td></tr>`;
+    try {
+        const res = await wamFn.getAiLogs({ limit: 100 });
+        const logs = res.data.logs || [];
+        if (logs.length === 0) {
+            body.innerHTML = `<tr><td colspan="8" class="muted">No AI conversations yet.</td></tr>`;
+            return;
+        }
+        const truncate = (s, n) => (s && s.length > n ? s.slice(0, n) + "…" : (s || "-"));
+        body.innerHTML = logs.map(l => `
+            <tr>
+                <td>${l.phone}</td>
+                <td style="max-width:200px; overflow-wrap:break-word;">${truncate((l.promptText || "").replace(/</g, "&lt;"), 80)}</td>
+                <td style="max-width:200px; overflow-wrap:break-word;">${truncate((l.finalReplyText || "").replace(/</g, "&lt;"), 80)}</td>
+                <td>${(l.toolCalls || []).join(", ") || "-"}</td>
+                <td>${l.tokensUsed?.total ?? "-"}</td>
+                <td>$${(l.estimatedCostUsd || 0).toFixed(4)}</td>
+                <td>${l.latencyMs ? l.latencyMs + "ms" : "-"}</td>
+                <td style="white-space:nowrap;">${wamFormatTimestamp(l.createdAt)}</td>
+            </tr>`).join("");
+    } catch (error) {
+        body.innerHTML = `<tr><td colspan="8" style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+    }
+}
 
 window.appendStudyContent = async function() {
     const cls = document.getElementById('studyClass').value;
