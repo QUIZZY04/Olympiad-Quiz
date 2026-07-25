@@ -25,13 +25,11 @@ const { db, admin } = require("../config");
 const { normalizePhoneNumber } = require("./whatsappService");
 const { TOOL_DEFS, executeTool } = require("./aiTools");
 const { logAiTurn } = require("./aiLogger");
+const conversationStore = require("./conversationStore");
 
 const FieldValue = admin.firestore.FieldValue;
-const CONV = "whatsapp_conversations";
 const MSGS = "whatsapp_messages";
 
-const HANDOVER_HOLDING_MSG = "Thanks for your patience — our team will reply here shortly. 🙏";
-const HANDOVER_COOLDOWN_MS = 60 * 60 * 1000; // don't repeat the holding message more than once/hour
 const LOCK_LEASE_MS = 20000; // self-expiring in-flight lock, survives a crashed invocation
 const DAILY_CAP_FALLBACK =
   "You've reached today's automated-reply limit for this number. Please try again tomorrow, or visit https://olympiadquiz.org.";
@@ -40,29 +38,6 @@ let _client = null;
 function client() {
   if (!_client) _client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   return _client;
-}
-
-/** Resolves a WhatsApp phone number to an existing users/{uid}, caching
- * the result on the conversation doc so this query runs at most once per
- * phone number, not once per message. Hedges against `users.phone` being
- * stored with or without the "91" prefix (both forms exist in the data). */
-async function resolveUid(phone, cachedUid) {
-  if (cachedUid) return cachedUid;
-  const last10 = phone.slice(-10);
-  // `users.phone`/`phoneNumber` isn't stored consistently across the
-  // codebase - some docs have plain digits ("917488826838"), some have a
-  // "+" prefix ("+917488826838") from Firebase Phone Auth. Hedge against
-  // both, for both the full normalized number and the bare 10-digit form.
-  const candidates = [phone, last10, `+${phone}`, `+${last10}`];
-  for (const field of ["phone", "phoneNumber"]) {
-    try {
-      const snap = await db.collection("users").where(field, "in", candidates).limit(1).get();
-      if (!snap.empty) return snap.docs[0].id;
-    } catch (error) {
-      console.error(`aiEngine.resolveUid: query on ${field} failed:`, error.message);
-    }
-  }
-  return null;
 }
 
 async function loadHistory(convRef, historyLimit) {
@@ -112,35 +87,22 @@ async function persistTurn(convRef, userText, assistantText, toolNamesUsed) {
  * @param {string} args.phone - raw inbound sender number (Meta's `msg.from`).
  * @param {string} args.text - the inbound message text.
  * @param {Object} args.settings - result of aiSettings.getAiSettings().
+ * @param {{ref, data}} [args.conversation] - already resolved by the caller
+ *        (chatbot.js) to check the handover gate before routing here -
+ *        pass it through to avoid a second Firestore read. Falls back to
+ *        resolving it here if omitted (e.g. direct/test invocation).
  * @returns {Promise<string|null>} the reply to send, or null to send nothing.
  */
-async function handleTurn({ phone: rawPhone, text, settings }) {
+async function handleTurn({ phone: rawPhone, text, settings, conversation }) {
   const phone = normalizePhoneNumber(rawPhone) || rawPhone;
-  const convRef = db.collection(CONV).doc(phone);
-  const snap = await convRef.get();
-  const conv = snap.exists ? snap.data() : {};
-
-  if (!snap.exists) {
-    await convRef.set({
-      phone,
-      uid: null,
-      status: "active",
-      turnCount: 0,
-      createdAt: FieldValue.serverTimestamp(),
-      updatedAt: FieldValue.serverTimestamp(),
-    });
-  }
+  const { ref: convRef, data: conv } = conversation || (await conversationStore.getOrCreateConversation(phone));
 
   // --- Gate 1: human handover already requested - stay silent (with an
-  // occasional holding message) and spend zero tokens. ---
-  if (conv.status === "human_required") {
-    const lastAck = conv.lastHandoverAckAt?.toMillis?.() || 0;
-    if (Date.now() - lastAck > HANDOVER_COOLDOWN_MS) {
-      await convRef.update({ lastHandoverAckAt: FieldValue.serverTimestamp() });
-      return HANDOVER_HOLDING_MSG;
-    }
-    return null;
-  }
+  // occasional holding message) and spend zero tokens. Normally already
+  // caught by chatbot.js before this is even called; kept here too as
+  // defense-in-depth for any direct caller. ---
+  const handoverCheck = await conversationStore.checkHandoverGate(convRef, conv);
+  if (handoverCheck.blocked) return handoverCheck.reply;
 
   // --- Gate 2: short in-flight lease lock, guards against two inbound
   // messages from the same number racing each other into overlapping
@@ -157,7 +119,7 @@ async function handleTurn({ phone: rawPhone, text, settings }) {
     return DAILY_CAP_FALLBACK;
   }
 
-  const uid = await resolveUid(phone, conv.uid);
+  const uid = await conversationStore.resolveUid(phone, conv.uid);
   if (uid && uid !== conv.uid) {
     await convRef.update({ uid, uidResolvedAt: FieldValue.serverTimestamp() });
   }

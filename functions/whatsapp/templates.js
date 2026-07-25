@@ -142,6 +142,36 @@ function buildButtonsPayload(to, bodyText, buttons) {
   };
 }
 
+/**
+ * Builds an interactive LIST payload (session message, no template
+ * approval required) - used for the AI Assistant's main menu, which
+ * needs more than the 3 options a reply-buttons message allows (up to
+ * 10 rows across sections). Tapping a row sends back
+ * `interactive.list_reply.id` on the next inbound webhook event.
+ * @param {string} to
+ * @param {{header?: string, bodyText: string, buttonText: string, sections: Array<{title: string, rows: Array<{id: string, title: string, description?: string}>}>}} opts
+ */
+function buildListPayload(to, { header, bodyText, buttonText, sections }) {
+  const interactive = {
+    type: "list",
+    body: { text: bodyText },
+    action: {
+      button: (buttonText || "Menu").slice(0, 20),
+      sections: sections.map((s) => ({
+        title: s.title.slice(0, 24),
+        rows: s.rows.slice(0, 10).map((r) => ({
+          id: r.id,
+          title: r.title.slice(0, 24),
+          description: r.description ? r.description.slice(0, 72) : undefined,
+        })),
+      })),
+    },
+  };
+  if (header) interactive.header = { type: "text", text: header.slice(0, 60) };
+
+  return { messaging_product: "whatsapp", to, type: "interactive", interactive };
+}
+
 // ---------------------------------------------------------------------
 // Suggested body text for each template, to submit to Meta for approval.
 // Order of placeholders below MUST match the order params are passed in
@@ -221,6 +251,7 @@ module.exports = {
   buildTextMessagePayload,
   buildTemplateMessagePayload,
   buildButtonsPayload,
+  buildListPayload,
   accountCreatedParams,
   liveTestRegistrationParams,
   liveResultParams,

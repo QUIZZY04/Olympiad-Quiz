@@ -1,151 +1,86 @@
 /**
  * =====================================================================
- * WHATSAPP CHATBOT
+ * WHATSAPP CHATBOT - MAIN ROUTER
  * =====================================================================
- * `getReply()` is the only thing webhook.js calls, so swapping the
- * matching strategy never requires touching webhook.js. Two modes,
- * switched by the admin.html "AI Assistant" tab
- * (whatsapp_ai_settings.enabled, DEFAULT: false):
+ * `getReply()` is the only thing webhook.js calls. Precedence, cheapest
+ * (and most deterministic) first - this is deliberate: the goal is to
+ * resolve as many student questions as possible with zero OpenAI cost,
+ * using real Firestore data via the same tool layer the AI uses, and
+ * only fall through to OpenAI for genuinely open-ended free text:
  *
- *   - enabled=false (default): the original dependency-free keyword
- *     matcher below, unchanged, byte-for-byte identical to before the AI
- *     Assistant existed.
- *   - enabled=true: every message routes through aiEngine.js's real
- *     OpenAI-powered conversational agent instead (including greetings
- *     like "Hi" - it replaces the keyword menu, not just supplements it,
- *     per the AI Assistant spec's own example flow). Any error from the
- *     engine gracefully degrades to the keyword+fallback path below for
- *     that single message, so a bad AI response never breaks a reply.
+ *   1. Human handover gate - if a conversation is flagged
+ *      human_required, BOTH the menu router and the AI stay silent
+ *      (shared check, see conversationStore.js).
+ *   2. Interactive tap (button/list reply) - always deterministic,
+ *      routed straight to menuRouter.js, never touches OpenAI.
+ *   3. Keyword-classified free text ("hi", "result", "mock test", ...) -
+ *      ALSO routed to menuRouter.js (same handlers as #2, just reached
+ *      via typed words instead of a tap) - still zero OpenAI cost.
+ *   4. Only once neither #2 nor #3 matched: if the AI Assistant is
+ *      enabled (admin.html toggle, default OFF), fall through to
+ *      aiEngine.js's real OpenAI-powered agent for free-form questions
+ *      ("explain photosynthesis", ambiguous phrasing, follow-ups).
+ *   5. If AI is disabled or the engine errors: FALLBACK_REPLY, nudging
+ *      the student back to the menu.
  * =====================================================================
  */
 
 const aiSettings = require("./aiSettings");
 const aiEngine = require("./aiEngine");
-
-/**
- * Ordered list of {keywords, reply} rules. First match wins, so put more
- * specific phrases before generic ones if you add new rules.
- */
-const RULES = [
-  {
-    keywords: ["hi", "hello", "hey", "menu", "start"],
-    reply:
-      "Hi! 👋 Welcome to *OlympiadQuiz*.\n\n" +
-      "Reply with any of these to continue:\n" +
-      "• *Mock Test* - free practice tests\n" +
-      "• *Result* - check your latest score\n" +
-      "• *Certificate* - about your e-certificate\n" +
-      "• *Payment* - payment/subscription help\n" +
-      "• *Contact* - talk to our support team",
-  },
-  {
-    keywords: ["mock test", "mock", "test", "practice"],
-    reply:
-      "You can attempt free IMO, NSO, IEO, IRO, IGKO, JEE Main & NEET mock tests here:\n" +
-      "https://olympiadquiz.org/mock.html",
-  },
-  {
-    keywords: ["result", "score", "rank"],
-    reply:
-      "You can view your latest results and All India Rank by logging in at:\n" +
-      "https://olympiadquiz.org/dashboard.html",
-  },
-  {
-    keywords: ["certificate"],
-    reply:
-      "Your e-certificate (for Live Arena participation) is emailed to your registered email address after the event. " +
-      "Check your inbox/spam folder, or log in to your dashboard to confirm your participation status.",
-  },
-  {
-    keywords: ["payment", "refund", "subscription", "razorpay"],
-    reply:
-      "For payment or subscription queries, please share your registered email/phone and order ID here, " +
-      "or reach us at https://olympiadquiz.org/contact.html - our team will help you shortly.",
-  },
-  {
-    keywords: ["contact", "help", "support"],
-    reply:
-      "You can reach our support team anytime at https://olympiadquiz.org/contact.html, " +
-      "or just describe your issue here and we'll get back to you.",
-  },
-];
+const menuRouter = require("./menuRouter");
+const conversationStore = require("./conversationStore");
+const { normalizePhoneNumber } = require("./whatsappService");
 
 const FALLBACK_REPLY =
-  "Sorry, I didn't quite get that. 🙏 Reply *Hi* to see the menu, or visit https://olympiadquiz.org for help.";
-
-/**
- * Matches free-text input against the keyword rules above.
- * @param {string} incomingText
- * @returns {string|null} A reply, or null if nothing matched at all
- *                          (distinct from the fallback, so callers can
- *                          decide whether to hand off elsewhere).
- */
-function matchKeywordReply(incomingText) {
-  if (!incomingText) return null;
-  const normalized = incomingText.trim().toLowerCase();
-
-  for (const rule of RULES) {
-    if (rule.keywords.some((keyword) => normalized.includes(keyword))) {
-      return rule.reply;
-    }
-  }
-  return null;
-}
-
-/**
- * =====================================================================
- * FUTURE AI PLACEHOLDER (feature #19)
- * =====================================================================
- * Swap this out once an OpenAI (or other LLM) backend is wired up.
- * Signature is intentionally async + accepts a `context` object now so
- * adding a real implementation later needs no caller changes.
- *
- * @param {string} incomingText
- * @param {Object} [context] - e.g. { phone, name, history } for future use.
- * @returns {Promise<string|null>} A generated reply, or null to fall
- *                                   through to FALLBACK_REPLY.
- */
-async function getAiReply(incomingText, context = {}) {
-  // TODO: integrate OpenAI (or similar) here. Example shape:
-  //   const completion = await openai.chat.completions.create({...});
-  //   return completion.choices[0].message.content;
-  return null;
-}
+  "Sorry, I didn't quite get that. 🙏 Reply *Menu* to see what I can help with, or visit https://olympiadquiz.org for help.";
 
 /**
  * Main entry point used by webhook.js.
  *
  * @param {string} incomingText
- * @param {Object} [context] - { phone } at minimum.
- * @returns {Promise<string|null>} A reply to send, or null to send
- *          nothing at all (e.g. a conversation already flagged
- *          human_required by the AI Assistant - see aiEngine.js).
+ * @param {Object} [context] - { phone, interactiveId } - interactiveId is
+ *        set when the inbound message is a button/list tap (its `id`),
+ *        extracted by webhook.js from Meta's payload.
+ * @returns {Promise<string|{interactiveList:Object}|null>} A reply to
+ *          send (plain text or an interactive list payload), or null to
+ *          send nothing at all (e.g. human_required silence).
  */
 async function getReply(incomingText, context = {}) {
-  const settings = await aiSettings.getAiSettings();
+  const rawPhone = context.phone;
+  const phone = normalizePhoneNumber(rawPhone) || rawPhone;
 
-  if (settings.enabled) {
-    try {
-      return await aiEngine.handleTurn({ phone: context.phone, text: incomingText, settings });
-    } catch (error) {
-      console.error("chatbot.getReply: aiEngine.handleTurn failed, falling back to keyword flow:", error.message);
-      // Fall through to the legacy behavior below for this one message -
-      // the AI Assistant misbehaving must never break a reply entirely.
-    }
+  const conversation = await conversationStore.getOrCreateConversation(phone);
+  const handoverCheck = await conversationStore.checkHandoverGate(conversation.ref, conversation.data);
+  if (handoverCheck.blocked) return handoverCheck.reply;
+
+  const uid = await conversationStore.resolveUid(phone, conversation.data.uid);
+  if (uid && uid !== conversation.data.uid) {
+    await conversation.ref.update({ uid, uidResolvedAt: new Date() }).catch(() => {});
+  }
+  const serverContext = { phone, uid };
+
+  // --- Deterministic layer: interactive tap first, then keyword intent -
+  // both zero OpenAI cost, both backed by real Firestore data. ---
+  const actionId = context.interactiveId || menuRouter.classifyIntent(incomingText);
+  if (actionId) {
+    const menuReply = await menuRouter.handleAction(actionId, serverContext);
+    if (menuReply !== null) return menuReply;
+    // actionId was an interactive id the router doesn't recognize (e.g.
+    // a stale button from before a menu redesign) - fall through below
+    // rather than silently dropping the message.
   }
 
-  const keywordReply = matchKeywordReply(incomingText);
-  if (keywordReply) return keywordReply;
-
-  const aiReply = await getAiReply(incomingText, context);
-  if (aiReply) return aiReply;
+  // --- OpenAI layer: only for text that matched nothing deterministic. ---
+  const settings = await aiSettings.getAiSettings();
+  if (settings.enabled) {
+    try {
+      return await aiEngine.handleTurn({ phone, text: incomingText, settings, conversation });
+    } catch (error) {
+      console.error("chatbot.getReply: aiEngine.handleTurn failed, falling back:", error.message);
+    }
+  }
 
   return FALLBACK_REPLY;
 }
 
-module.exports = {
-  getReply,
-  matchKeywordReply,
-  getAiReply,
-  FALLBACK_REPLY,
-};
+module.exports = { getReply, FALLBACK_REPLY };

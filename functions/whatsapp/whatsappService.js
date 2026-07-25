@@ -282,6 +282,55 @@ async function sendWhatsAppMessage(phoneNumber, message) {
   return sendAndLog(payload, { category: "text" });
 }
 
+/**
+ * Sends an interactive LIST message (up to 10 tappable rows across
+ * sections) - used by the AI Assistant's deterministic menu router so
+ * common questions can be answered by a tap instead of free text,
+ * spending zero OpenAI tokens. See templates.buildListPayload for shape.
+ */
+async function sendInteractiveList(phoneNumber, listOpts) {
+  const to = normalizePhoneNumber(phoneNumber);
+  if (!to) return { success: false, error: "Invalid phone number" };
+
+  const payload = templates.buildListPayload(to, listOpts);
+  return sendAndLog(payload, { category: "menu" });
+}
+
+/**
+ * Sends up to 3 interactive reply buttons - used by the menu router for
+ * short follow-up prompts (e.g. "Back to Menu" / "Talk to Support").
+ */
+async function sendInteractiveButtons(phoneNumber, bodyText, buttons) {
+  const to = normalizePhoneNumber(phoneNumber);
+  if (!to) return { success: false, error: "Invalid phone number" };
+
+  const payload = templates.buildButtonsPayload(to, bodyText, buttons);
+  return sendAndLog(payload, { category: "menu" });
+}
+
+/**
+ * Marks the given inbound message as read AND shows the "typing..."
+ * indicator to the sender for up to ~25s (Meta clears it automatically
+ * once we send our actual reply, or after the timeout). Fire-and-forget
+ * by design - a failure here must never block or fail the actual reply,
+ * so it deliberately does NOT go through sendAndLog/whatsapp_logs (this
+ * isn't a message, just a UI courtesy signal).
+ * @param {string} messageId - the inbound message's `msg.id` from the webhook.
+ */
+async function sendTypingIndicator(messageId) {
+  if (!messageId) return;
+  try {
+    await callGraphApi({
+      messaging_product: "whatsapp",
+      status: "read",
+      message_id: messageId,
+      typing_indicator: { type: "text" },
+    });
+  } catch (error) {
+    console.error("sendTypingIndicator: failed (non-fatal):", error.message);
+  }
+}
+
 // ---------------------------------------------------------------------
 // 4. Template message
 // ---------------------------------------------------------------------
@@ -909,6 +958,9 @@ module.exports = {
   normalizePhoneNumber,
   callGraphApi,
   sendWhatsAppMessage,
+  sendInteractiveList,
+  sendInteractiveButtons,
+  sendTypingIndicator,
   sendTemplate,
   sendTemplateMessage,
   sendOTP,

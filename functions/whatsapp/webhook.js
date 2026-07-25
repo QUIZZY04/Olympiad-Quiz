@@ -24,7 +24,7 @@ const { onRequest } = require("firebase-functions/v2/https");
 const { WHATSAPP_SECRETS, WEBHOOK_VERIFY_SECRETS, AI_SECRETS, SECRET_NAMES } = require("../config");
 const { logInbound, logStatusUpdate, claimWebhookEvent } = require("./messageLogger");
 const chatbot = require("./chatbot");
-const { sendWhatsAppMessage } = require("./whatsappService");
+const { sendWhatsAppMessage, sendInteractiveList, sendInteractiveButtons, sendTypingIndicator } = require("./whatsappService");
 
 /**
  * Validates Meta's X-Hub-Signature-256 header against the raw request
@@ -86,16 +86,34 @@ async function processValue(value) {
     }
 
     const fromPhone = msg.from;
-    const text = msg.text?.body || msg.button?.text || msg.interactive?.button_reply?.title || "";
+    // Interactive taps carry a stable `id` (menu_* action) - text-typed
+    // messages don't. `text` still captures a human-readable fallback
+    // (button/list title) for logging even when interactiveId drives
+    // the actual routing.
+    const interactiveId = msg.interactive?.list_reply?.id || msg.interactive?.button_reply?.id || null;
+    const text = msg.text?.body || msg.button?.text || msg.interactive?.list_reply?.title || msg.interactive?.button_reply?.title || "";
 
     await logInbound({ phone: fromPhone, message: text, messageId: msg.id, category: "chatbot" });
 
+    // Fire-and-forget: shows the "typing..." indicator immediately so the
+    // student knows their message is being handled, whether the actual
+    // reply ends up being an instant menu lookup or a slower AI call.
+    // Never awaited - a slow/failed Graph API call here must not delay
+    // (or break) generating the real reply.
+    sendTypingIndicator(msg.id).catch(() => {});
+
     try {
-      const reply = await chatbot.getReply(text, { phone: fromPhone });
-      // `reply` can be null (e.g. a conversation flagged human_required by
-      // the AI Assistant) - staying silent is a valid, intentional outcome,
-      // not an error. Every other path returns a string exactly as before.
-      if (reply) await sendWhatsAppMessage(fromPhone, reply);
+      const reply = await chatbot.getReply(text, { phone: fromPhone, interactiveId });
+      // `reply` can be null (e.g. a conversation flagged human_required),
+      // a plain string (normal text reply), or {interactiveList:...} (the
+      // deterministic menu router's tappable main menu).
+      if (reply?.interactiveList) {
+        await sendInteractiveList(fromPhone, reply.interactiveList);
+      } else if (reply?.interactiveButtons) {
+        await sendInteractiveButtons(fromPhone, reply.interactiveButtons.bodyText, reply.interactiveButtons.buttons);
+      } else if (reply) {
+        await sendWhatsAppMessage(fromPhone, reply);
+      }
     } catch (error) {
       console.error(`Chatbot reply failed for ${fromPhone}:`, error.message);
     }
