@@ -88,15 +88,21 @@ async function getUserProfileImpl(uid) {
 // ---------------------------------------------------------------------
 async function getUpcomingTestsImpl(classFilter, subjectFilter) {
   const now = admin.firestore.Timestamp.now();
+  // Filter server-side on endTime (NOT client-side after an arbitrary
+  // limit) - test_sessions accumulates one doc per class per weekly test
+  // going back months, so `orderBy(startTime).limit(50)` would silently
+  // return only the OLDEST 50 (all already-past) sessions and never reach
+  // anything upcoming. An inequality filter + orderBy on the SAME field
+  // (endTime) doesn't need a new composite index.
   const snap = await db
     .collection("test_sessions")
-    .orderBy("startTime", "asc")
+    .where("endTime", ">", now)
+    .orderBy("endTime", "asc")
     .limit(50)
     .get();
 
   const upcoming = snap.docs.filter((d) => {
     const s = d.data();
-    if (s.endTime && s.endTime.toMillis() <= now.toMillis()) return false;
     if (classFilter && String(s.class) !== String(classFilter)) return false;
     if (subjectFilter && s.subject && String(s.subject).toLowerCase() !== String(subjectFilter).toLowerCase()) return false;
     return true;
