@@ -41,9 +41,10 @@ const FALLBACK_REPLY =
  * @param {Object} [context] - { phone, interactiveId } - interactiveId is
  *        set when the inbound message is a button/list tap (its `id`),
  *        extracted by webhook.js from Meta's payload.
- * @returns {Promise<string|{interactiveList:Object}|null>} A reply to
- *          send (plain text or an interactive list payload), or null to
- *          send nothing at all (e.g. human_required silence).
+ * @returns {Promise<string|{interactiveList:Object}|{text:string,followUpButtons:Object|null}|null>}
+ *          A reply to send - plain text, an interactive list payload, or
+ *          text paired with a "want anything else?" follow-up prompt -
+ *          or null to send nothing at all (e.g. human_required silence).
  */
 async function getReply(incomingText, context = {}) {
   const rawPhone = context.phone;
@@ -64,7 +65,15 @@ async function getReply(incomingText, context = {}) {
   const actionId = context.interactiveId || menuRouter.classifyIntent(incomingText);
   if (actionId) {
     const menuReply = await menuRouter.handleAction(actionId, serverContext);
-    if (menuReply !== null) return menuReply;
+    if (menuReply !== null) {
+      // The main menu IS the "what next" moment, and a few actions
+      // (escalation, goodbye, the free-text bridge) don't want a
+      // "anything else?" prompt tacked on - everything else does.
+      if (typeof menuReply === "string" && !menuRouter.NO_FOLLOWUP_ACTIONS.has(actionId)) {
+        return { text: menuReply, followUpButtons: menuRouter.FOLLOWUP_BUTTONS };
+      }
+      return menuReply;
+    }
     // actionId was an interactive id the router doesn't recognize (e.g.
     // a stale button from before a menu redesign) - fall through below
     // rather than silently dropping the message.
@@ -74,7 +83,10 @@ async function getReply(incomingText, context = {}) {
   const settings = await aiSettings.getAiSettings();
   if (settings.enabled) {
     try {
-      return await aiEngine.handleTurn({ phone, text: incomingText, settings, conversation });
+      const result = await aiEngine.handleTurn({ phone, text: incomingText, settings, conversation });
+      if (!result.text) return null;
+      if (result.skipFollowUp) return result.text;
+      return { text: result.text, followUpButtons: menuRouter.FOLLOWUP_BUTTONS };
     } catch (error) {
       console.error("chatbot.getReply: aiEngine.handleTurn failed, falling back:", error.message);
     }

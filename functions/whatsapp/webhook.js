@@ -105,12 +105,20 @@ async function processValue(value) {
     try {
       const reply = await chatbot.getReply(text, { phone: fromPhone, interactiveId });
       // `reply` can be null (e.g. a conversation flagged human_required),
-      // a plain string (normal text reply), or {interactiveList:...} (the
-      // deterministic menu router's tappable main menu).
+      // a plain string (normal text reply), {interactiveList:...} (the
+      // deterministic menu router's tappable main menu),
+      // {interactiveButtons:...} (a standalone quick-reply prompt), or
+      // {text, followUpButtons} (an answer followed by a "want anything
+      // else?" quick-reply prompt as a second message).
       if (reply?.interactiveList) {
         await sendInteractiveList(fromPhone, reply.interactiveList);
       } else if (reply?.interactiveButtons) {
         await sendInteractiveButtons(fromPhone, reply.interactiveButtons.bodyText, reply.interactiveButtons.buttons);
+      } else if (reply?.text !== undefined) {
+        await sendWhatsAppMessage(fromPhone, reply.text);
+        if (reply.followUpButtons) {
+          await sendInteractiveButtons(fromPhone, reply.followUpButtons.bodyText, reply.followUpButtons.buttons);
+        }
       } else if (reply) {
         await sendWhatsAppMessage(fromPhone, reply);
       }

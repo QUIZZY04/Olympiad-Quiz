@@ -63,7 +63,24 @@ const STATIC_REPLIES = {
   payment:
     "For payment or subscription queries, please share your registered email/phone and order ID here, or reach us at https://olympiadquiz.org/contact.html - our team will help you shortly.",
   askAnything: "Sure! 😊 Type your question and I'll do my best to help.",
+  goodbye: "Thank you for chatting with *OlympiadQuiz*! 🎓 Keep practicing, stay curious, and best of luck with your exams. Bye for now, and happy learning! 👋✨",
 };
+
+/** Shown by chatbot.js after most replies, prompting the student to
+ * either keep going or wrap up - see NO_FOLLOWUP_ACTIONS below for the
+ * cases (main menu, escalation, goodbye, etc.) that skip this. */
+const FOLLOWUP_BUTTONS = {
+  bodyText: "Would you like anything else? 😊",
+  buttons: [
+    { id: "menu_continue", title: "Yes, more help" },
+    { id: "menu_close", title: "No, that's all" },
+  ],
+};
+
+/** Action ids whose own reply already IS the "what next" moment (the
+ * menu itself), or a natural conversation end/handoff - chatbot.js skips
+ * appending FOLLOWUP_BUTTONS after these. */
+const NO_FOLLOWUP_ACTIONS = new Set(["menu_root", "menu_continue", "menu_ask_anything", "menu_human", "menu_close"]);
 
 // ---------------------------------------------------------------------
 // Formatters - plain JS, no LLM involved. Each takes the exact object
@@ -166,6 +183,7 @@ function buildMainMenu() {
 async function handleAction(actionId, serverContext) {
   switch (actionId) {
     case "menu_root":
+    case "menu_continue":
       return buildMainMenu();
     case "menu_live_tests":
       return formatUpcomingTests(await aiTools.executeTool("getUpcomingTests", {}, serverContext));
@@ -187,9 +205,11 @@ async function handleAction(actionId, serverContext) {
       return handleHuman(serverContext);
     case "menu_ask_anything":
       return STATIC_REPLIES.askAnything;
+    case "menu_close":
+      return STATIC_REPLIES.goodbye;
     default:
       return null;
   }
 }
 
-module.exports = { classifyIntent, handleAction, buildMainMenu };
+module.exports = { classifyIntent, handleAction, buildMainMenu, FOLLOWUP_BUTTONS, NO_FOLLOWUP_ACTIONS };

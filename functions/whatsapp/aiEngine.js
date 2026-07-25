@@ -91,7 +91,11 @@ async function persistTurn(convRef, userText, assistantText, toolNamesUsed) {
  *        (chatbot.js) to check the handover gate before routing here -
  *        pass it through to avoid a second Firestore read. Falls back to
  *        resolving it here if omitted (e.g. direct/test invocation).
- * @returns {Promise<string|null>} the reply to send, or null to send nothing.
+ * @returns {Promise<{text: string|null, skipFollowUp: boolean}>} `text` is
+ *          the reply to send (null = send nothing). `skipFollowUp` tells
+ *          chatbot.js not to append the "anything else?" prompt - true
+ *          for gate short-circuits (holding messages, lock, daily cap)
+ *          and whenever the model itself escalated to a human this turn.
  */
 async function handleTurn({ phone: rawPhone, text, settings, conversation }) {
   const phone = normalizePhoneNumber(rawPhone) || rawPhone;
@@ -102,13 +106,13 @@ async function handleTurn({ phone: rawPhone, text, settings, conversation }) {
   // caught by chatbot.js before this is even called; kept here too as
   // defense-in-depth for any direct caller. ---
   const handoverCheck = await conversationStore.checkHandoverGate(convRef, conv);
-  if (handoverCheck.blocked) return handoverCheck.reply;
+  if (handoverCheck.blocked) return { text: handoverCheck.reply, skipFollowUp: true };
 
   // --- Gate 2: short in-flight lease lock, guards against two inbound
   // messages from the same number racing each other into overlapping
   // OpenAI calls (a real risk once a turn can take several seconds). ---
   const lockUntil = conv.aiLockUntil?.toMillis?.() || 0;
-  if (lockUntil > Date.now()) return null;
+  if (lockUntil > Date.now()) return { text: null, skipFollowUp: true };
   await convRef.update({ aiLockUntil: admin.firestore.Timestamp.fromMillis(Date.now() + LOCK_LEASE_MS) });
 
   // --- Gate 3: per-phone daily cost cap. ---
@@ -116,7 +120,7 @@ async function handleTurn({ phone: rawPhone, text, settings, conversation }) {
   const dailyCount = conv.dailyTurnCountDate === today ? conv.dailyTurnCount || 0 : 0;
   if (dailyCount >= (settings.dailyAiTurnCapPerPhone || 40)) {
     await convRef.update({ aiLockUntil: FieldValue.delete() });
-    return DAILY_CAP_FALLBACK;
+    return { text: DAILY_CAP_FALLBACK, skipFollowUp: true };
   }
 
   const uid = await conversationStore.resolveUid(phone, conv.uid);
@@ -222,8 +226,10 @@ async function handleTurn({ phone: rawPhone, text, settings, conversation }) {
   // If the model itself called escalateToHuman this turn, still deliver
   // its final natural-language reply (e.g. "Sure, connecting you now...")
   // - the SILENCE behavior only kicks in on the student's NEXT message,
-  // once conv.status is already human_required (Gate 1 above).
-  return finalText;
+  // once conv.status is already human_required (Gate 1 above). No
+  // "anything else?" follow-up in that case though - a human is taking
+  // over, prompting for more just adds noise.
+  return { text: finalText, skipFollowUp: handoverTriggered };
 }
 
 module.exports = { handleTurn };
