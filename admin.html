@@ -6588,34 +6588,45 @@ window.loadRegistrations = async () => {
                 continue;
             }
 
-            const userRef = purchaseDoc.ref.parent.parent; 
+            const userRef = purchaseDoc.ref.parent.parent;
             let userName = "Unknown";
             let userEmail = "Unknown";
             let userClass = "Unknown";
             let rawClass = null;
-            
+            let profileClass = null;
+
             if (userRef) {
                 const userSnap = await getDoc(userRef);
                 if (userSnap.exists()) {
                     const uData = userSnap.data();
                     userName = uData.name || uData.fullName || uData.displayName || "Unknown";
                     userEmail = uData.email || pData.email || "Unknown";
-                    
-                    rawClass = uData.class || uData.studentClass || uData.grade || uData.Class;
+
+                    profileClass = uData.class || uData.studentClass || uData.grade || uData.Class;
                 } else {
                     userEmail = pData.email || "Unknown";
                 }
-                
+
                 // If name is still unknown, display the UID so you can identify the account in Firebase
                 if (userName === "Unknown" && userRef.id) {
                     userName = `UID: ${userRef.id.substring(0, 8)}...`;
                 }
             }
 
-            // Fallback: If user profile lacks class, use the class from the session they registered for
-            if (!rawClass || String(rawClass).trim() === "") {
-                rawClass = sessionClassCache[pData.sessionId] || pData.class || pData.studentClass;
-            }
+            // Which per-class session this registration is actually FOR is the
+            // primary signal here - "All Sessions" groups all 10 per-class
+            // variants of the same live-test event together, so showing the
+            // student's own profile class first (the old behavior) silently
+            // masked cases where they registered for a different class's
+            // session than their own (e.g. a Class 6 student who also
+            // registered for the Class 2 session by mistake looked like a
+            // same-class "duplicate" instead of a cross-class registration).
+            // Profile class is only a fallback for older session docs with no
+            // `class` field.
+            const sessionClass = sessionClassCache[pData.sessionId];
+            rawClass = (sessionClass !== undefined && sessionClass !== null && String(sessionClass).trim() !== "")
+                ? sessionClass
+                : (profileClass || pData.class || pData.studentClass);
 
             if (rawClass !== undefined && rawClass !== null && String(rawClass).trim() !== "") {
                 let classStr = String(rawClass).trim();
@@ -6623,6 +6634,12 @@ window.loadRegistrations = async () => {
                     userClass = classStr.replace(/^class\s*/i, "Class ");
                 } else {
                     userClass = "Class " + classStr;
+                }
+                // Flag when the session's class differs from the student's own
+                // profile class - a strong signal of an accidental wrong-class
+                // registration worth double-checking.
+                if (profileClass && String(profileClass).replace(/[^0-9]/g, "") !== String(rawClass).replace(/[^0-9]/g, "")) {
+                    userClass += ` ⚠️ (profile: Class ${String(profileClass).replace(/[^0-9]/g, "") || profileClass})`;
                 }
             } else {
                 userClass = "Unknown";
