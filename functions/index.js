@@ -1132,27 +1132,41 @@ const ackEmailHtml = (name, title, message) => `<body style="background-color: #
 </body>`;
 
 /**
- * Triggered when a new document is created in the 'feedbacks' collection (General Experience Feedback).
+ * Triggered when an admin sets/edits `adminReply` on a 'feedbacks' doc
+ * (General Experience Feedback) via admin.html's "Reply" button. Replaces
+ * the old sendFeedbackAckEmail, which emailed every submitter immediately
+ * on creation regardless of whether anyone had looked at their feedback -
+ * now the student only hears back once admin actually replies.
  */
-exports.sendFeedbackAckEmail = onDocumentCreated(
+exports.sendFeedbackReplyEmail = onDocumentWritten(
   {
     document: "feedbacks/{docId}",
     secrets: ["BREVO_API_KEY"],
   },
   async (event) => {
-    const data = event.data?.data();
-    if (!data || !data.email || data.email === "N/A") return;
+    const afterData = event.data?.after?.data();
+    const beforeData = event.data?.before?.data();
+    if (!afterData || !afterData.email || afterData.email === "N/A") return;
+
+    const newReply = (afterData.adminReply || "").trim();
+    const oldReply = (beforeData?.adminReply || "").trim();
+    // Fires on the reply being set for the first time AND on edits to an
+    // existing reply - but never on deleteReplyExpFB() clearing it back to "".
+    if (!newReply || newReply === oldReply) return;
 
     try {
       const brevoApi = getBrevoClient();
       const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
       sendSmtpEmail.sender = SENDER_INFO;
-      sendSmtpEmail.to = [{ email: data.email, name: data.name || "Student" }];
-      sendSmtpEmail.subject = "Thank you for your Feedback! 🌟";
-      const msg = "Thank you for taking the time to share your experience and feedback with us. Your insights are incredibly valuable and help us continuously improve our platform for all students.";
-      sendSmtpEmail.htmlContent = ackEmailHtml(data.name || "Student", "Thank You for Your Feedback! 🌟", msg);
+      sendSmtpEmail.to = [{ email: afterData.email, name: afterData.name || "Student" }];
+      sendSmtpEmail.subject = "We've Replied to Your Feedback 💬";
+      const escapedReply = newReply
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/\n/g, "<br>");
+      const msg = `Thank you for sharing your feedback with us. Our team has reviewed it and replied:</p><div style="background-color:#f8fafc; border-left:4px solid #4f46e5; border-radius:8px; padding:16px; margin:20px 0; font-size:15px; color:#1e293b;">${escapedReply}</div><p style="font-size:16px; margin:0;">`;
+      sendSmtpEmail.htmlContent = ackEmailHtml(afterData.name || "Student", "We've Replied to Your Feedback 💬", msg);
       await brevoApi.sendTransacEmail(sendSmtpEmail);
-    } catch (error) { console.error("Error sending feedback ack email:", error.message); }
+    } catch (error) { console.error("Error sending feedback reply email:", error.message); }
   }
 );
 
