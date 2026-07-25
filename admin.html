@@ -892,14 +892,18 @@ border-top:1px solid var(--border);
                     <label id="wamBcSelectionLabel">Matching Students <span class="muted" style="font-weight:400;">(nobody is pre-selected - tick who you want to send to, or use Select All)</span></label>
                     <p id="wamBcViewOnlyNote" class="muted" style="display:none; color:var(--danger); font-weight:600;">⚠️ View/export only - WhatsApp broadcasts cannot be sent to non-opted-in numbers (Meta policy). Use this list to follow up by another channel.</p>
                     <input type="text" id="wamBcUserSearch" placeholder="Search by name or phone..." oninput="window.wamFilterBcContacts()" style="margin-top:5px; margin-bottom:10px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; flex-wrap:wrap; gap:8px;">
                         <span id="wamBcSelectedCountWrap" style="font-size:12px; font-weight:600; color:#25D366;"><span id="wamSelectedBcCount">0</span> Selected</span>
-                        <span>
-                            <button type="button" id="wamBcSelectAllBtn" onclick="window.wamSelectAllBcContacts()" style="padding:4px 10px; font-size:11px; margin:0 6px 0 0; background:var(--bg); color:var(--brand-text); border:1px solid var(--border);">Select All</button>
-                            <button type="button" id="wamBcClearBtn" onclick="window.wamClearBcSelection()" style="padding:4px 10px; font-size:11px; margin:0 6px 0 0; background:var(--bg); color:var(--danger); border:1px solid var(--border);">Clear Selection</button>
+                        <span style="display:flex; align-items:center; flex-wrap:wrap; gap:6px;">
+                            <input type="number" id="wamBcBatchSize" min="1" value="25" title="Batch size" style="width:55px; padding:4px; font-size:11px; margin:0;">
+                            <button type="button" id="wamBcNextBatchBtn" onclick="window.wamSelectNextBcBatch()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:#25D366; border:1px solid var(--border);">➡️ Select Next Batch</button>
+                            <button type="button" id="wamBcSelectAllBtn" onclick="window.wamSelectAllBcContacts()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:var(--brand-text); border:1px solid var(--border);">Select All</button>
+                            <button type="button" id="wamBcClearBtn" onclick="window.wamClearBcSelection()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:var(--danger); border:1px solid var(--border);">Clear Selection</button>
+                            <button type="button" onclick="window.wamResetBcBatchProgress()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:var(--muted); border:1px solid var(--border);">↺ Reset Batch Progress</button>
                             <button type="button" onclick="window.wamExportBcContactsCsv()" style="padding:4px 10px; font-size:11px; margin:0; background:var(--bg); color:var(--text); border:1px solid var(--border);">⬇️ Export CSV</button>
                         </span>
                     </div>
+                    <div id="wamBcBatchProgress" class="muted" style="font-size:11px; margin-bottom:6px;"></div>
                     <div id="wamBcTargetList" style="height:200px; overflow-y:auto; border:1px solid var(--border); border-radius:8px; padding:10px; background:var(--surface);"></div>
                 </div>
                 <div style="margin-top:15px; background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:12px;">
@@ -4890,6 +4894,7 @@ let wamLogsCache = [];
 let wamCampaignsCache = [];
 let wamCsvContacts = [];
 let wamBcCurrentMatches = []; // {phone, name}[] currently shown in wamBcTargetList - powers Export CSV for any filter
+let wamBcSentBatchPhones = new Set(); // phones already sent to via a broadcast in this admin session - lets "Select Next Batch" skip repeats
 let wamSendResolvedUser = null; // {uid, name, email, phone, class} from the last Send Individual lookup
 let wamSendPromoData = null; // cached session+coupon vars for oq_live_test_promotion_v1, set by wamRenderSendPromoPreview
 let wamSendResultsData = null; // cached computed result vars for oq_live_test_result_v1, set by wamRenderSendResultsPreview
@@ -5615,10 +5620,11 @@ window.wamLoadBcContactsForSelection = async function() {
         let html = "";
         uniqueContacts.forEach((info, phone) => {
             const badge = info.consented ? `<span style="color:#059669; font-weight:700;">✅ Promo consent</span>` : `<span style="color:var(--muted);">— No consent</span>`;
+            const sentTag = wamBcSentBatchPhones.has(phone) ? ` <span style="color:var(--muted); font-style:italic;">(sent this session)</span>` : "";
             html += `<label class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
                 <span style="display:flex; align-items:center; gap:10px;">
                     <input type="checkbox" value="${phone}" onchange="window.wamUpdateBcSelectionCount()" style="width:auto; margin:0;">
-                    <span class="wam-bc-user-text">${info.name} (+${phone})</span>
+                    <span class="wam-bc-user-text">${info.name} (+${phone})${sentTag}</span>
                 </span>
                 <span style="font-size:11px; white-space:nowrap;">${badge}</span>
             </label>`;
@@ -5626,6 +5632,7 @@ window.wamLoadBcContactsForSelection = async function() {
         list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No users with a phone number found.</div>";
         wamBcCurrentMatches = Array.from(uniqueContacts.entries()).map(([phone, info]) => ({ phone, name: info.name }));
         window.wamUpdateBcSelectionCount();
+        window.wamRenderBcBatchProgress();
     } catch (e) {
         list.innerHTML = `<div style='color:var(--danger); text-align:center;'>Error: ${e.message}</div>`;
     }
@@ -5734,6 +5741,7 @@ window.wamLoadFilteredContactsForSelection = async function() {
         const matches = await wamComputeBcMatches();
         let html = "";
         matches.forEach((info, phone) => {
+            const sentTag = wamBcSentBatchPhones.has(phone) ? ` <span style="color:var(--muted); font-style:italic;">(sent this session)</span>` : "";
             html += isViewOnly
                 ? `<div class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); font-size:13px;">
                     <span class="wam-bc-user-text">${info.name} (+${phone})</span>
@@ -5741,13 +5749,14 @@ window.wamLoadFilteredContactsForSelection = async function() {
                 : `<label class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
                     <span style="display:flex; align-items:center; gap:10px;">
                         <input type="checkbox" value="${phone}" onchange="window.wamUpdateBcSelectionCount()" style="width:auto; margin:0;">
-                        <span class="wam-bc-user-text">${info.name} (+${phone})</span>
+                        <span class="wam-bc-user-text">${info.name} (+${phone})${sentTag}</span>
                     </span>
                    </label>`;
         });
         list.innerHTML = html || "<div style='color:var(--muted); text-align:center;'>No matching students found.</div>";
         wamBcCurrentMatches = Array.from(matches.entries()).map(([phone, info]) => ({ phone, name: info.name }));
         window.wamUpdateBcSelectionCount();
+        window.wamRenderBcBatchProgress();
     } catch (e) {
         list.innerHTML = `<div style='color:var(--danger); text-align:center;'>${e.message}</div>`;
     }
@@ -5782,6 +5791,47 @@ window.wamSelectAllBcContacts = function() {
 window.wamClearBcSelection = function() {
     document.querySelectorAll('#wamBcTargetList input[type="checkbox"]').forEach(cb => cb.checked = false);
     window.wamUpdateBcSelectionCount();
+};
+
+/** Ticks the next N (batch size input) contacts in the currently-rendered
+ * list that haven't already been sent to in this admin session, skipping
+ * anyone marked "(sent this session)" - so repeatedly clicking this walks
+ * through the whole list in non-overlapping batches without the admin
+ * having to track who's left by hand. Respects the search box's current
+ * filter (hidden rows are skipped). */
+window.wamSelectNextBcBatch = function() {
+    const batchSize = Math.max(1, Number(document.getElementById("wamBcBatchSize").value) || 25);
+    const rows = Array.from(document.querySelectorAll('#wamBcTargetList .wam-bc-user-row'));
+    let picked = 0;
+    rows.forEach(row => {
+        const cb = row.querySelector('input[type="checkbox"]');
+        if (!cb) return;
+        const eligible = row.style.display !== "none" && !wamBcSentBatchPhones.has(cb.value);
+        cb.checked = eligible && picked < batchSize;
+        if (cb.checked) picked++;
+    });
+    window.wamUpdateBcSelectionCount();
+    if (picked === 0) {
+        alert("Everyone currently in the list has already been sent to in this session. Click \"Reset Batch Progress\" to start over, or pick a different filter.");
+    }
+};
+
+/** Clears the "already sent this session" memory so Select Next Batch
+ * starts back from the top of the list - use this when deliberately
+ * starting a fresh round of sends (e.g. a different campaign/day). */
+window.wamResetBcBatchProgress = function() {
+    if (wamBcSentBatchPhones.size && !confirm(`Forget the ${wamBcSentBatchPhones.size} contact(s) marked as already sent this session? "Select Next Batch" will include them again.`)) return;
+    wamBcSentBatchPhones.clear();
+    window.wamRenderBcBatchProgress();
+    document.querySelectorAll('#wamBcTargetList .wam-bc-user-text').forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/ <span style="color:var\(--muted\); font-style:italic;">\(sent this session\)<\/span>/g, "");
+    });
+};
+
+window.wamRenderBcBatchProgress = function() {
+    const el = document.getElementById("wamBcBatchProgress");
+    if (!el) return;
+    el.innerText = wamBcSentBatchPhones.size ? `${wamBcSentBatchPhones.size} contact(s) already sent to in this batching session (skipped by "Select Next Batch").` : "";
 };
 
 window.wamEstimateBcRecipients = async function() {
@@ -5862,6 +5912,20 @@ window.wamSendBroadcast = async function() {
         });
         if (res.data.success) {
             wamSetStatus(status, "success", `✅ Sent ${res.data.sentCount}/${res.data.totalUsers} (failed: ${res.data.failedCount}). Campaign id: ${res.data.campaignId}`);
+            // Mark these numbers as done for this session so "Select Next
+            // Batch" moves on to fresh recipients instead of repeating them.
+            explicitPhones.forEach(phone => wamBcSentBatchPhones.add(phone));
+            document.querySelectorAll('#wamBcTargetList .wam-bc-user-row').forEach(row => {
+                const cb = row.querySelector('input[type="checkbox"]');
+                if (!cb || !wamBcSentBatchPhones.has(cb.value)) return;
+                cb.checked = false;
+                const textEl = row.querySelector('.wam-bc-user-text');
+                if (textEl && !textEl.innerHTML.includes("sent this session")) {
+                    textEl.innerHTML += ` <span style="color:var(--muted); font-style:italic;">(sent this session)</span>`;
+                }
+            });
+            window.wamUpdateBcSelectionCount();
+            window.wamRenderBcBatchProgress();
         } else {
             wamSetStatus(status, "error", "❌ Broadcast failed.");
         }
