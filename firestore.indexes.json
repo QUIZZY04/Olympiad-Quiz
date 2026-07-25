@@ -18,6 +18,14 @@
       ]
     },
     {
+      "collectionGroup": "whatsapp_logs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "phone", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "whatsapp_handover",
       "queryScope": "COLLECTION",
       "fields": [

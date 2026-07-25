@@ -707,3 +707,32 @@ exports.resolveHandover = onCall({}, async (request) => {
   }
   return { success: true };
 });
+
+/**
+ * Powers the Handover "💬 Chat" panel - the full message thread for one
+ * phone number, so an admin can see what the student has said (and
+ * everything sent back, whether by the bot or by a human) in one place
+ * before replying via the existing sendWhatsApp callable. Reuses
+ * whatsapp_logs as-is (already records every inbound/outbound message
+ * via messageLogger.js) - no new collection needed. status_update rows
+ * (delivered/read receipts, not actual messages) are excluded.
+ */
+exports.getConversationThread = onCall({}, async (request) => {
+  assertAdmin(request);
+  const { phone } = request.data || {};
+  if (!phone) throw new HttpsError("invalid-argument", "phone is required.");
+
+  const limitCount = Math.min(Number(request.data?.limit) || 200, 500);
+  const snap = await db
+    .collection(COLLECTIONS.LOGS)
+    .where("phone", "==", phone)
+    .orderBy("timestamp", "asc")
+    .limit(limitCount)
+    .get();
+
+  const messages = snap.docs
+    .map((d) => ({ id: d.id, ...d.data() }))
+    .filter((m) => m.category !== "status_update");
+
+  return { messages };
+});

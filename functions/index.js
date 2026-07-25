@@ -1631,6 +1631,7 @@ exports.saveAiSettings = whatsappAdmin.saveAiSettings;
 exports.getAiLogs = whatsappAdmin.getAiLogs;
 exports.getOpenHandovers = whatsappAdmin.getOpenHandovers;
 exports.resolveHandover = whatsappAdmin.resolveHandover;
+exports.getConversationThread = whatsappAdmin.getConversationThread;
 
 // =================================================================
 // 9. PHONE VERIFICATION REMINDER EMAIL (NEW - ADDITIVE ONLY)
