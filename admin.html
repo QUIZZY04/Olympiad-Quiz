@@ -889,7 +889,7 @@ border-top:1px solid var(--border);
                 </div>
                 <input type="hidden" id="wamBcExplicitPhones">
                 <div id="wamBcTargetSelection" style="display:none; margin-top:15px;">
-                    <label id="wamBcSelectionLabel">Matching Students <span class="muted" style="font-weight:400;">(everyone matching the filter above is pre-checked - untick anyone you want to skip)</span></label>
+                    <label id="wamBcSelectionLabel">Matching Students <span class="muted" style="font-weight:400;">(nobody is pre-selected - tick who you want to send to, or use Select All)</span></label>
                     <p id="wamBcViewOnlyNote" class="muted" style="display:none; color:var(--danger); font-weight:600;">⚠️ View/export only - WhatsApp broadcasts cannot be sent to non-opted-in numbers (Meta policy). Use this list to follow up by another channel.</p>
                     <input type="text" id="wamBcUserSearch" placeholder="Search by name or phone..." oninput="window.wamFilterBcContacts()" style="margin-top:5px; margin-bottom:10px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
@@ -5722,9 +5722,10 @@ async function wamComputeBcMatches() {
 }
 
 /** Loads the checkbox list of students matching the currently selected
- * filter (all pre-checked) - "Selected Users" mode uses its own unfiltered
- * loader instead (wamLoadBcContactsForSelection). "Not Opted-in" renders as
- * a plain view/export list with no checkboxes, since it's never sendable. */
+ * filter (nobody pre-checked - admin ticks exactly who they want, or uses
+ * Select All) - "Selected Users" mode uses its own unfiltered loader instead
+ * (wamLoadBcContactsForSelection). "Not Opted-in" renders as a plain
+ * view/export list with no checkboxes, since it's never sendable. */
 window.wamLoadFilteredContactsForSelection = async function() {
     const list = document.getElementById("wamBcTargetList");
     const isViewOnly = document.getElementById("wamBcTargetType").value === "Not Opted-in";
@@ -5739,7 +5740,7 @@ window.wamLoadFilteredContactsForSelection = async function() {
                    </div>`
                 : `<label class="wam-bc-user-row" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 5px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0;">
                     <span style="display:flex; align-items:center; gap:10px;">
-                        <input type="checkbox" value="${phone}" checked onchange="window.wamUpdateBcSelectionCount()" style="width:auto; margin:0;">
+                        <input type="checkbox" value="${phone}" onchange="window.wamUpdateBcSelectionCount()" style="width:auto; margin:0;">
                         <span class="wam-bc-user-text">${info.name} (+${phone})</span>
                     </span>
                    </label>`;
