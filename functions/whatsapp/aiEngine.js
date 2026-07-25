@@ -49,9 +49,14 @@ function client() {
 async function resolveUid(phone, cachedUid) {
   if (cachedUid) return cachedUid;
   const last10 = phone.slice(-10);
+  // `users.phone`/`phoneNumber` isn't stored consistently across the
+  // codebase - some docs have plain digits ("917488826838"), some have a
+  // "+" prefix ("+917488826838") from Firebase Phone Auth. Hedge against
+  // both, for both the full normalized number and the bare 10-digit form.
+  const candidates = [phone, last10, `+${phone}`, `+${last10}`];
   for (const field of ["phone", "phoneNumber"]) {
     try {
-      const snap = await db.collection("users").where(field, "in", [phone, last10]).limit(1).get();
+      const snap = await db.collection("users").where(field, "in", candidates).limit(1).get();
       if (!snap.empty) return snap.docs[0].id;
     } catch (error) {
       console.error(`aiEngine.resolveUid: query on ${field} failed:`, error.message);
