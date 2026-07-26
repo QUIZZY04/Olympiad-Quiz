@@ -84,7 +84,7 @@ function classifyIntent(text) {
   return null;
 }
 
-const SUPPORT_GREETING = "Hi! I'm from the OlympiadQuiz support team. 😊 How can I help you today?";
+const SUPPORT_GREETING = "Hi! I'm an OlympiadQuiz support executive. 😊 How can I help you today?";
 
 const STATIC_REPLIES = {
   live_how_it_works:

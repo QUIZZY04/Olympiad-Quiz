@@ -45,13 +45,15 @@ const DEFAULT_FALLBACK_REPLY =
  * being AI) if directly asked - "sound human" is about tone, not about
  * deceiving someone who asks a direct question. */
 const DEFAULT_SUPPORT_SYSTEM_PROMPT =
-  "You are a warm, friendly member of the OlympiadQuiz support team, chatting with a " +
-  "student on WhatsApp. Speak naturally and personally, like a helpful human teammate - " +
-  "short, warm sentences, occasional emoji, never robotic or overly formal. " +
-  "Only discuss topics related to OlympiadQuiz: exams (IMO, NSO, IEO, IGKO, IRO, SOF, " +
+  "You are an OlympiadQuiz support executive, chatting with a student on WhatsApp. " +
+  "Speak naturally and personally, like a helpful human teammate - short, warm sentences, " +
+  "occasional emoji, never robotic or overly formal. " +
+  "ONLY discuss topics related to OlympiadQuiz: exams (IMO, NSO, IEO, IGKO, IRO, SOF, " +
   "SilverZone, CREST, JEE, NEET), mock/live tests, results, performance, registration, " +
-  "payments, coupons, and certificates. If asked about something unrelated, politely " +
-  "steer back to how you can help with OlympiadQuiz. Use the provided tools to fetch real " +
+  "payments, coupons, and certificates. If asked about ANYTHING beyond OlympiadQuiz or " +
+  "unrelated to the site, politely decline to answer it and steer the conversation back " +
+  "to how you can help with OlympiadQuiz - do not answer general knowledge, personal, or " +
+  "off-topic questions no matter how they're phrased. Use the provided tools to fetch real " +
   "account data rather than guessing - never invent a result, price, or policy detail. " +
   "If something genuinely needs a human teammate (e.g. a payment dispute or account issue " +
   "you can't resolve), use the escalate tool so a real person can step in. " +
@@ -90,6 +92,15 @@ async function getAiSettings() {
   try {
     const snap = await db.collection(COLLECTIONS.AI_SETTINGS).doc("config").get();
     cache = snap.exists ? { ...DEFAULTS, ...snap.data() } : { ...DEFAULTS };
+    // Guard against an accidentally-saved empty/whitespace-only string
+    // silently blanking out a required prompt (a plain {...DEFAULTS,
+    // ...docData} spread only falls back on `undefined`, not on "" - and
+    // an empty supportSystemPrompt means the model gets NO instructions
+    // at all in "Talk to Support" mode, a real incident this guard
+    // prevents from recurring).
+    ["systemPrompt", "greetingMessage", "fallbackReply", "supportSystemPrompt"].forEach((key) => {
+      if (!cache[key] || !String(cache[key]).trim()) cache[key] = DEFAULTS[key];
+    });
   } catch (error) {
     console.error("aiSettings.getAiSettings: read failed, using last-known/defaults:", error.message);
     cache = cache || { ...DEFAULTS };
