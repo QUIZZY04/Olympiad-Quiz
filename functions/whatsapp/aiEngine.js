@@ -236,10 +236,14 @@ async function handleTurn({ phone: rawPhone, text, settings, conversation, suppo
   // If the model itself called escalateToHuman this turn, still deliver
   // its final natural-language reply (e.g. "Sure, connecting you now...")
   // - the SILENCE behavior only kicks in on the student's NEXT message,
-  // once conv.status is already human_required (Gate 1 above). No
-  // "anything else?" follow-up in that case though - a human is taking
-  // over, prompting for more just adds noise.
-  return { text: finalText, skipFollowUp: handoverTriggered };
+  // once conv.status is already human_required (Gate 1 above).
+  //
+  // No "anything else?" quick-reply buttons in support mode, ever - the
+  // whole point of "Talk to Support" is to feel like an ordinary human
+  // WhatsApp chat (short, plain replies), not a bot popping up menu-style
+  // options after every message. Same applies once escalated - a human
+  // is taking over, prompting for more just adds noise.
+  return { text: finalText, skipFollowUp: supportMode || handoverTriggered };
 }
 
 module.exports = { handleTurn };
