@@ -1087,6 +1087,8 @@ border-top:1px solid var(--border);
                     <textarea id="wamAiGreeting" style="height:80px;"></textarea>
                     <label style="margin-top:12px; display:block;">Fallback Message <span class="muted" style="font-weight:400;">(used if the AI call fails)</span></label>
                     <textarea id="wamAiFallback" style="height:60px;"></textarea>
+                    <label style="margin-top:12px; display:block;">🙋 "Talk to Support" Persona Prompt <span class="muted" style="font-weight:400;">(used only once a student taps/types "Talk to Support" - a human-sounding teammate, not the general assistant above)</span></label>
+                    <textarea id="wamAiSupportPrompt" style="height:110px;"></textarea>
                     <label style="margin-top:12px; display:block;">FAQs <span class="muted" style="font-weight:400;">(one per line, format: <code>question | answer</code>)</span></label>
                     <textarea id="wamAiFaqs" style="height:120px;" placeholder="What is OlympiadQuiz? | OlympiadQuiz is a free Olympiad exam practice platform..."></textarea>
                     <button type="button" class="upload" style="margin-top:14px;" onclick="window.wamSaveAiSettings()">💾 Save AI Settings</button>
@@ -6467,6 +6469,7 @@ async function wamLoadAiSettingsForm() {
         document.getElementById("wamAiSystemPrompt").value = s.systemPrompt || "";
         document.getElementById("wamAiGreeting").value = s.greetingMessage || "";
         document.getElementById("wamAiFallback").value = s.fallbackReply || "";
+        document.getElementById("wamAiSupportPrompt").value = s.supportSystemPrompt || "";
         document.getElementById("wamAiFaqs").value = (s.faqs || []).map(f => `${f.q} | ${f.a}`).join("\n");
     } catch (error) {
         wamSetStatus(document.getElementById("wamAiSettingsStatus"), "error", `Failed to load settings: ${error.message}`);
@@ -6494,6 +6497,7 @@ window.wamSaveAiSettings = async function() {
             systemPrompt: document.getElementById("wamAiSystemPrompt").value,
             greetingMessage: document.getElementById("wamAiGreeting").value,
             fallbackReply: document.getElementById("wamAiFallback").value,
+            supportSystemPrompt: document.getElementById("wamAiSupportPrompt").value,
             faqs,
         });
         wamSetStatus(status, "success", "✅ AI settings saved.");

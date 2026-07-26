@@ -2,18 +2,22 @@
  * =====================================================================
  * AI ASSISTANT - DETERMINISTIC MENU ROUTER
  * =====================================================================
- * Answers as many student questions as possible with ZERO OpenAI calls:
- * an interactive WhatsApp list menu + keyword-matched intents, both
- * backed by the SAME real Firestore data the AI tools use (via
- * aiTools.executeTool) - never a hallucination, never a stale hardcoded
- * string pretending to be live data.
+ * A full "information portal" for OlympiadQuiz, answered with ZERO
+ * OpenAI calls wherever possible: a tappable WhatsApp list menu with
+ * elaborate sub-menus (Live Tests, Mock Tests, Olympiad Guidance,
+ * Registration & Account, Payments & Certificates), each backed by
+ * either real Firestore data (via aiTools.executeTool - never a
+ * hallucination) or curated static content mirroring the site's own
+ * copy. Free text is also keyword-classified into the same actions, so
+ * typing "IMO" gets the same elaborate answer as tapping through the
+ * Mock Tests submenu.
  *
- * OpenAI (aiEngine.js) is only ever reached for free text that matches
- * NEITHER an interactive tap NOR a keyword intent below - i.e. genuinely
- * open-ended questions ("explain photosynthesis", ambiguous phrasing).
- * This is deliberately the FIRST thing chatbot.js checks, before the AI
- * settings/engine are even consulted, so it works whether or not the AI
- * Assistant is enabled - it's a cheaper, faster layer on its own.
+ * "Talk to Support" is intentionally NOT handled by handleAction() in
+ * the normal case - chatbot.js intercepts that action id specially to
+ * start an OpenAI-powered support persona conversation instead (see
+ * chatbot.js/aiEngine.js). handleHuman()/the "menu_human" case here is
+ * kept as the safe fallback chatbot.js uses when the AI Assistant is
+ * disabled - it still needs to do SOMETHING useful.
  *
  * Every handler returns one of:
  *   - a plain string (sent as a normal text message)
@@ -25,50 +29,137 @@
 const aiTools = require("./aiTools");
 
 // ---------------------------------------------------------------------
-// Keyword -> action intent classifier (replaces the old static RULES -
-// same trigger words, but now routed to real-data-backed handlers below
-// instead of fixed canned text).
+// Keyword -> action intent classifier. Specific exam names resolve
+// straight to their elaborate answer (matching what tapping through a
+// submenu would give); generic category words open the relevant
+// submenu instead.
 // ---------------------------------------------------------------------
+// Ordered MOST-SPECIFIC-FIRST: classifyIntent uses first-match-wins, so a
+// longer/more specific phrase (e.g. "improve score", "login help") must be
+// listed BEFORE any shorter rule whose keyword it happens to contain
+// (e.g. "score" alone, or the generic "help" catch-all) - otherwise the
+// generic rule would win by appearing earlier, which is exactly backwards.
+// The greeting/menu catch-all is deliberately LAST for this reason.
 const KEYWORD_ACTIONS = [
-  { keywords: ["hi", "hello", "hey", "menu", "start", "help"], action: "menu_root" },
+  { keywords: ["imo", "maths olympiad", "math olympiad"], action: "mock_imo" },
+  { keywords: ["nso"], action: "mock_nso" },
+  { keywords: ["ieo"], action: "mock_ieo" },
+  { keywords: ["igko", "general knowledge"], action: "mock_igko" },
+  { keywords: ["iro", "reasoning olympiad"], action: "mock_iro" },
+  { keywords: ["jee", "neet"], action: "mock_jee_neet" },
   { keywords: ["live test", "live arena", "upcoming test", "upcoming live"], action: "menu_live_tests" },
-  { keywords: ["mock test", "mock", "practice"], action: "menu_mock_tests" },
+  { keywords: ["mock test", "mock", "practice test"], action: "menu_mock_tests" },
+  { keywords: ["olympiad guidance", "guidance", "how to prepare"], action: "menu_guidance" },
+  { keywords: ["study plan"], action: "guide_study_plan" },
+  { keywords: ["improve score", "improve rank", "boost score", "improve my"], action: "guide_improve_score" },
+  { keywords: ["tips", "suggestion", "strategy", "pro tips"], action: "guide_prep_tips" },
+  { keywords: ["syllabus"], action: "guide_syllabus" },
   { keywords: ["result", "score", "rank"], action: "menu_my_result" },
   { keywords: ["performance", "how am i doing", "progress", "analytics"], action: "menu_performance" },
   { keywords: ["coupon", "offer", "discount"], action: "menu_coupons" },
-  { keywords: ["certificate"], action: "menu_certificate" },
-  { keywords: ["payment", "refund", "subscription", "razorpay"], action: "menu_payment" },
-  { keywords: ["register", "registration", "signup", "sign up"], action: "menu_registration" },
-  { keywords: ["contact"], action: "menu_root" },
+  { keywords: ["certificate"], action: "cert_info" },
+  { keywords: ["payment", "refund", "subscription", "razorpay"], action: "pay_help" },
+  { keywords: ["login", "log in", "forgot password", "can't login", "cannot login"], action: "reg_login_help" },
+  { keywords: ["register", "registration", "signup", "sign up"], action: "reg_how_to" },
   { keywords: ["human", "agent", "support team", "talk to someone", "talk to support", "real person"], action: "menu_human" },
+  { keywords: ["hi", "hello", "hey", "menu", "start", "help", "contact"], action: "menu_root" },
 ];
+
+/** Multi-word phrases are safe as plain substring checks. Single-word
+ * keywords use a word-boundary regex instead - a plain .includes("hi")
+ * would false-positive-match "hi" inside "this"/"history"/etc. */
+function keywordMatches(normalized, keyword) {
+  if (keyword.includes(" ")) return normalized.includes(keyword);
+  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(?:^|[^a-z])${escaped}(?:$|[^a-z])`).test(normalized);
+}
 
 /** @returns {string|null} a menu action id, or null if nothing matched. */
 function classifyIntent(text) {
   if (!text) return null;
   const normalized = text.trim().toLowerCase();
   for (const rule of KEYWORD_ACTIONS) {
-    if (rule.keywords.some((k) => normalized.includes(k))) return rule.action;
+    if (rule.keywords.some((k) => keywordMatches(normalized, k))) return rule.action;
   }
   return null;
 }
 
+const SUPPORT_GREETING = "Hi! I'm from the OlympiadQuiz support team. 😊 How can I help you today?";
+
 const STATIC_REPLIES = {
-  mock_tests:
-    "You can attempt free IMO, NSO, IEO, IRO, IGKO, JEE Main & NEET mock tests here:\nhttps://olympiadquiz.org/mock.html",
-  registration:
+  live_how_it_works:
+    "🏆 *Live Quiz Arena* is the ultimate battleground — compete nationally in real-time against thousands of students.\n\n" +
+    "You get an *All India Rank (AIR)*, a percentile score, and a participation certificate upon completion.\n\n" +
+    "Join here: https://olympiadquiz.org/live.html",
+  live_fees:
+    "💰 *Live Test Fees & Registration*\n\n" +
+    "Each live test has its own registration fee, shown when you open it. Coupon codes (if available) apply automatically at checkout for a discounted price.\n\n" +
+    "Check *Coupons & Offers* in the menu for currently active codes, and *Live Tests* for exact pricing per session.\n\n" +
+    "Register here: https://olympiadquiz.org/live.html",
+  mock_start: "📝 All our mock tests (IMO, NSO, IEO, IGKO, JEE, NEET) in one place:\nhttps://olympiadquiz.org/mock.html",
+  mock_imo:
+    "📐 *International Mathematics Olympiad (IMO)* tests your mathematical and logical reasoning skills.\n\n" +
+    "*To excel:*\n1. Master your school syllabus\n2. Practice High-Order Thinking (H.O.T.S) questions\n3. Take timed mock tests\n\n" +
+    "We have chapter-wise quizzes and full-length mock tests to help you prepare.\n\n" +
+    "Start here: https://olympiadquiz.org/imo-free-mock-test.html",
+  mock_nso:
+    "🔬 *National Science Olympiad (NSO)* evaluates your conceptual understanding of Physics, Chemistry, and Biology.\n\n" +
+    "*Key to success:* understand the 'why' behind every phenomenon and practice application-based questions.\n\n" +
+    "Start here: https://olympiadquiz.org/nso-free-mock-test.html",
+  mock_ieo:
+    "📚 *International English Olympiad (IEO)* focuses on grammar, vocabulary, and reading comprehension.\n\n" +
+    "*Preparation tips:*\n1. Read English newspapers/storybooks daily\n2. Practice tenses and prepositions\n3. Attempt our chapter-wise grammar quizzes\n\n" +
+    "Start here: https://olympiadquiz.org/ieo-free-mock-test.html",
+  mock_igko:
+    "🌍 *International General Knowledge Olympiad (IGKO)* covers current affairs, life skills, and general awareness.\n\n" +
+    "*How to prepare:* stay updated with recent events and practice our mock tests.\n\n" +
+    "Start here: https://olympiadquiz.org/igko-free-mock-test.html",
+  mock_iro:
+    "🧩 *International Reasoning Olympiad (IRO)* tests verbal and non-verbal logical reasoning skills.\n\n" +
+    "*How to prepare:* practice pattern recognition, analogies, and puzzle-style questions regularly.\n\n" +
+    "Start here: https://olympiadquiz.org/iro-free-mock-test.html",
+  mock_jee_neet:
+    "⚕️📐 We have dedicated CBT mock tests for *JEE Main, JEE Advanced, and NEET*, based on the latest NTA/NMC syllabus — full syllabus mocks, chapter-wise practice, and Previous Year Questions.\n\n" +
+    "JEE Main: https://olympiadquiz.org/jee_main.html\nNEET: https://olympiadquiz.org/neet.html",
+  guide_prep_tips:
+    "🌟 *Pro Tips for cracking any competitive exam:*\n\n" +
+    "1. *Consistency* — practice 30-45 min daily\n2. *Analyze* — always review mistakes after a mock test\n" +
+    "3. *Time Management* — use a timer while practicing\n4. *Concepts First* — clear basics before H.O.T.S problems\n\n" +
+    "Want the full 30-day study plan? Just ask, or check the Olympiad Guidance menu!",
+  guide_study_plan:
+    "📅 *30-Day Master Study Plan:*\n\n" +
+    "*Days 1-10 (Foundation):* clear basic concepts using NCERT + our Study Material\n" +
+    "*Days 11-20 (Targeted Practice):* chapter-wise quizzes to find weak spots\n" +
+    "*Days 21-25 (PYQs):* solve Previous Year Questions to learn the exam pattern\n" +
+    "*Days 26-30 (Simulation):* full-length mock tests with a strict timer — review every mistake!\n\n" +
+    "Study Material: https://olympiadquiz.org/study.html",
+  guide_improve_score:
+    "📈 *To improve your score and rank:*\n\n" +
+    "1. *Analyze* — check your Dashboard for weak chapters\n2. *Target* — practice those chapters in Chapter-wise Practice\n" +
+    "3. *Review* — always read the detailed solutions after a test\n4. *Compete* — join Live Arenas to build exam temperament\n\n" +
+    "Chapter-wise Practice: https://olympiadquiz.org/chapterwise.html",
+  guide_syllabus:
+    "📋 Our syllabus follows the latest SOF, SilverZone, and other Olympiad body guidelines.\n\n" +
+    "SOF Syllabus: https://olympiadquiz.org/sof-syllabus.html\n" +
+    "SilverZone Syllabus: https://olympiadquiz.org/silverzone-syllabus.html\n" +
+    "CREST Syllabus: https://olympiadquiz.org/crest-syllabus.html",
+  reg_how_to:
     "To register, visit https://olympiadquiz.org/signup.html and sign in with Google or your mobile number - it takes less than a minute! 🎉",
-  certificate:
+  reg_login_help:
+    "🔑 *Login / Access Help*\n\n" +
+    "Sign in with Google or your registered mobile number: https://olympiadquiz.org/login.html\n\n" +
+    "Forgot your password (email login)? Reset it here: https://olympiadquiz.org/forgot-password.html\n\n" +
+    "Still stuck? Tap *Talk to Support* from the menu.",
+  cert_info:
     "Your e-certificate (for Live Arena participation) is emailed to your registered email address after the event. Check your inbox/spam folder, or log in to your dashboard to confirm your participation status.",
-  payment:
+  pay_help:
     "For payment or subscription queries, please share your registered email/phone and order ID here, or reach us at https://olympiadquiz.org/contact.html - our team will help you shortly.",
-  askAnything: "Sure! 😊 Type your question and I'll do my best to help.",
   goodbye: "Thank you for chatting with *OlympiadQuiz*! 🎓 Keep practicing, stay curious, and best of luck with your exams. Bye for now, and happy learning! 👋✨",
 };
 
 /** Shown by chatbot.js after most replies, prompting the student to
  * either keep going or wrap up - see NO_FOLLOWUP_ACTIONS below for the
- * cases (main menu, escalation, goodbye, etc.) that skip this. */
+ * cases (menus, escalation, goodbye, etc.) that skip this. */
 const FOLLOWUP_BUTTONS = {
   bodyText: "Would you like anything else? 😊",
   buttons: [
@@ -77,14 +168,16 @@ const FOLLOWUP_BUTTONS = {
   ],
 };
 
-/** Action ids whose own reply already IS the "what next" moment (the
- * menu itself), or a natural conversation end/handoff - chatbot.js skips
- * appending FOLLOWUP_BUTTONS after these. */
-const NO_FOLLOWUP_ACTIONS = new Set(["menu_root", "menu_continue", "menu_ask_anything", "menu_human", "menu_close"]);
+/** Action ids whose own reply already IS the "what next" moment (a
+ * menu/submenu list), or a natural conversation end/handoff - chatbot.js
+ * skips appending FOLLOWUP_BUTTONS after these. */
+const NO_FOLLOWUP_ACTIONS = new Set([
+  "menu_root", "menu_continue", "menu_close", "menu_human",
+  "menu_live_tests", "menu_mock_tests", "menu_guidance", "menu_registration", "menu_payment",
+]);
 
 // ---------------------------------------------------------------------
-// Formatters - plain JS, no LLM involved. Each takes the exact object
-// shape aiTools.executeTool() already returns for that tool.
+// Formatters for tool-backed (real data) answers - plain JS, no LLM.
 // ---------------------------------------------------------------------
 
 function formatUpcomingTests(result) {
@@ -139,9 +232,25 @@ function formatCoupons(result) {
   return `Active coupons:\n\n${lines.join("\n")}\n\nApply at checkout on https://olympiadquiz.org`;
 }
 
+/** Fallback used ONLY when the AI Assistant is disabled - "Talk to
+ * Support" still needs to do something useful, so it creates a real
+ * human-handover ticket immediately (the pre-AI behavior). When AI is
+ * enabled, chatbot.js intercepts "menu_human" before this is ever
+ * reached and starts the AI support-persona conversation instead. */
 async function handleHuman(serverContext) {
   await aiTools.executeTool("escalateToHuman", { reason: "Requested via WhatsApp menu/keyword" }, serverContext);
   return "Sure! 🙋 Connecting you with our support team - they'll reply here shortly.";
+}
+
+function buildSubmenu(header, bodyText, rows) {
+  return {
+    interactiveList: {
+      header,
+      bodyText,
+      buttonText: "View Options",
+      sections: [{ title: header, rows: [...rows, { id: "menu_root", title: "🏠 Main Menu", description: "Back to the start" }] }],
+    },
+  };
 }
 
 /** The main entry-point menu, sent for "Hi"/"menu"/first contact - zero
@@ -151,20 +260,21 @@ function buildMainMenu() {
   return {
     interactiveList: {
       header: "OlympiadQuiz Assistant",
-      bodyText: "Hi! 👋 How can I help you today? Tap an option below, or just type your question.",
+      bodyText: "Hi! 👋 Welcome to OlympiadQuiz - your complete information portal. Tap an option below, or just type your question.",
       buttonText: "View Options",
       sections: [
         {
           title: "How can we help?",
           rows: [
-            { id: "menu_live_tests", title: "📅 Live Tests", description: "Upcoming tests & registration" },
-            { id: "menu_mock_tests", title: "📝 Mock Tests", description: "Free practice tests" },
+            { id: "menu_live_tests", title: "📅 Live Tests", description: "Upcoming tests, fees & how it works" },
+            { id: "menu_mock_tests", title: "📝 Mock Tests", description: "IMO, NSO, IEO, IGKO, JEE, NEET" },
+            { id: "menu_guidance", title: "🎓 Olympiad Guidance", description: "Study plans, tips & syllabus" },
             { id: "menu_my_result", title: "🏆 My Result", description: "Your latest score & rank" },
             { id: "menu_performance", title: "📊 My Performance", description: "Trend & weak areas" },
             { id: "menu_coupons", title: "🎟️ Coupons & Offers", description: "Active discount codes" },
-            { id: "menu_registration", title: "🧾 Registration Help", description: "How to sign up" },
-            { id: "menu_human", title: "🙋 Talk to Support", description: "Connect with our team" },
-            { id: "menu_ask_anything", title: "💬 Ask Anything Else", description: "Type your own question" },
+            { id: "menu_registration", title: "🧾 Registration & Account", description: "Sign up & login help" },
+            { id: "menu_payment", title: "💳 Payments & Certificates", description: "Billing & e-certificates" },
+            { id: "menu_human", title: "🙋 Talk to Support", description: "Chat with our team" },
           ],
         },
       ],
@@ -172,9 +282,53 @@ function buildMainMenu() {
   };
 }
 
+function buildLiveTestsMenu() {
+  return buildSubmenu("Live Tests", "📅 Everything about our Live Quiz Arena:", [
+    { id: "live_upcoming", title: "🗓️ Upcoming Tests", description: "See what's scheduled" },
+    { id: "live_how_it_works", title: "ℹ️ How It Works", description: "Rank, percentile & certificate" },
+    { id: "live_fees", title: "💰 Fees & Registration", description: "Pricing & coupons" },
+  ]);
+}
+
+function buildMockTestsMenu() {
+  return buildSubmenu("Mock Tests", "📝 Free mock tests by exam:", [
+    { id: "mock_imo", title: "📐 IMO", description: "Maths Olympiad" },
+    { id: "mock_nso", title: "🔬 NSO", description: "Science Olympiad" },
+    { id: "mock_ieo", title: "📚 IEO", description: "English Olympiad" },
+    { id: "mock_igko", title: "🌍 IGKO", description: "General Knowledge" },
+    { id: "mock_iro", title: "🧩 IRO", description: "Reasoning Olympiad" },
+    { id: "mock_jee_neet", title: "⚕️ JEE & NEET", description: "Engineering & Medical" },
+    { id: "mock_start", title: "🚀 Start a Mock Test", description: "Jump straight in" },
+  ]);
+}
+
+function buildGuidanceMenu() {
+  return buildSubmenu("Olympiad Guidance", "🎓 Preparation guidance & resources:", [
+    { id: "guide_prep_tips", title: "🌟 Pro Tips", description: "General exam strategy" },
+    { id: "guide_study_plan", title: "📅 30-Day Study Plan", description: "Step-by-step roadmap" },
+    { id: "guide_improve_score", title: "📈 Improve My Score", description: "How to raise your rank" },
+    { id: "guide_syllabus", title: "📋 Syllabus", description: "SOF, SilverZone, CREST" },
+  ]);
+}
+
+function buildRegistrationMenu() {
+  return buildSubmenu("Registration & Account", "🧾 Account help:", [
+    { id: "reg_how_to", title: "✍️ How to Register", description: "Sign up in a minute" },
+    { id: "reg_login_help", title: "🔑 Login / Forgot Password", description: "Access issues" },
+  ]);
+}
+
+function buildPaymentMenu() {
+  return buildSubmenu("Payments & Certificates", "💳 Billing & certificates:", [
+    { id: "pay_help", title: "💳 Payment Help", description: "Subscription & billing" },
+    { id: "cert_info", title: "📜 Certificate Info", description: "When & how you get it" },
+  ]);
+}
+
 /**
- * @param {string} actionId - a menu_* id, either tapped (interactive
- *        reply) or classified from free text (classifyIntent above).
+ * @param {string} actionId - a menu or submenu-item id, either tapped
+ *        (interactive reply) or classified from free text (see
+ *        classifyIntent above).
  * @param {{phone: string, uid: string|null}} serverContext
  * @returns {Promise<string|{interactiveList: Object}|null>} null means
  *          "not a recognized action" - caller should fall through
@@ -186,9 +340,39 @@ async function handleAction(actionId, serverContext) {
     case "menu_continue":
       return buildMainMenu();
     case "menu_live_tests":
+      return buildLiveTestsMenu();
+    case "live_upcoming":
       return formatUpcomingTests(await aiTools.executeTool("getUpcomingTests", {}, serverContext));
+    case "live_how_it_works":
+      return STATIC_REPLIES.live_how_it_works;
+    case "live_fees":
+      return STATIC_REPLIES.live_fees;
     case "menu_mock_tests":
-      return STATIC_REPLIES.mock_tests;
+      return buildMockTestsMenu();
+    case "mock_imo":
+      return STATIC_REPLIES.mock_imo;
+    case "mock_nso":
+      return STATIC_REPLIES.mock_nso;
+    case "mock_ieo":
+      return STATIC_REPLIES.mock_ieo;
+    case "mock_igko":
+      return STATIC_REPLIES.mock_igko;
+    case "mock_iro":
+      return STATIC_REPLIES.mock_iro;
+    case "mock_jee_neet":
+      return STATIC_REPLIES.mock_jee_neet;
+    case "mock_start":
+      return STATIC_REPLIES.mock_start;
+    case "menu_guidance":
+      return buildGuidanceMenu();
+    case "guide_prep_tips":
+      return STATIC_REPLIES.guide_prep_tips;
+    case "guide_study_plan":
+      return STATIC_REPLIES.guide_study_plan;
+    case "guide_improve_score":
+      return STATIC_REPLIES.guide_improve_score;
+    case "guide_syllabus":
+      return STATIC_REPLIES.guide_syllabus;
     case "menu_my_result":
       return formatLatestResult(await aiTools.executeTool("getLatestResult", {}, serverContext));
     case "menu_performance":
@@ -196,15 +380,19 @@ async function handleAction(actionId, serverContext) {
     case "menu_coupons":
       return formatCoupons(await aiTools.executeTool("getCoupons", {}, serverContext));
     case "menu_registration":
-      return STATIC_REPLIES.registration;
-    case "menu_certificate":
-      return STATIC_REPLIES.certificate;
+      return buildRegistrationMenu();
+    case "reg_how_to":
+      return STATIC_REPLIES.reg_how_to;
+    case "reg_login_help":
+      return STATIC_REPLIES.reg_login_help;
     case "menu_payment":
-      return STATIC_REPLIES.payment;
+      return buildPaymentMenu();
+    case "pay_help":
+      return STATIC_REPLIES.pay_help;
+    case "cert_info":
+      return STATIC_REPLIES.cert_info;
     case "menu_human":
       return handleHuman(serverContext);
-    case "menu_ask_anything":
-      return STATIC_REPLIES.askAnything;
     case "menu_close":
       return STATIC_REPLIES.goodbye;
     default:
@@ -212,4 +400,11 @@ async function handleAction(actionId, serverContext) {
   }
 }
 
-module.exports = { classifyIntent, handleAction, buildMainMenu, FOLLOWUP_BUTTONS, NO_FOLLOWUP_ACTIONS };
+module.exports = {
+  classifyIntent,
+  handleAction,
+  buildMainMenu,
+  FOLLOWUP_BUTTONS,
+  NO_FOLLOWUP_ACTIONS,
+  SUPPORT_GREETING,
+};

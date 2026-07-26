@@ -647,7 +647,7 @@ exports.saveAiSettings = onCall({}, async (request) => {
   assertAdmin(request);
   const data = request.data || {};
   const allowedFields = [
-    "enabled", "model", "systemPrompt", "greetingMessage", "fallbackReply",
+    "enabled", "model", "systemPrompt", "greetingMessage", "fallbackReply", "supportSystemPrompt",
     "faqs", "historyLimit", "maxToolIterations", "maxOutputTokens", "temperature",
     "dailyAiTurnCapPerPhone",
   ];

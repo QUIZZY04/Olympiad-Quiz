@@ -91,13 +91,21 @@ async function persistTurn(convRef, userText, assistantText, toolNamesUsed) {
  *        (chatbot.js) to check the handover gate before routing here -
  *        pass it through to avoid a second Firestore read. Falls back to
  *        resolving it here if omitted (e.g. direct/test invocation).
+ * @param {boolean} [args.supportMode] - true while this conversation is in
+ *        the "Talk to Support" persona (conversation.mode === "support",
+ *        set by chatbot.js) - uses settings.supportSystemPrompt instead
+ *        of the general settings.systemPrompt, so the model introduces
+ *        itself and behaves like a human OlympiadQuiz teammate rather
+ *        than a general Q&A assistant, while keeping the exact same
+ *        tool access (so it can actually help, not just chat) and the
+ *        same ability to escalate to a real human if truly needed.
  * @returns {Promise<{text: string|null, skipFollowUp: boolean}>} `text` is
  *          the reply to send (null = send nothing). `skipFollowUp` tells
  *          chatbot.js not to append the "anything else?" prompt - true
  *          for gate short-circuits (holding messages, lock, daily cap)
  *          and whenever the model itself escalated to a human this turn.
  */
-async function handleTurn({ phone: rawPhone, text, settings, conversation }) {
+async function handleTurn({ phone: rawPhone, text, settings, conversation, supportMode }) {
   const phone = normalizePhoneNumber(rawPhone) || rawPhone;
   const { ref: convRef, data: conv } = conversation || (await conversationStore.getOrCreateConversation(phone));
 
@@ -132,7 +140,9 @@ async function handleTurn({ phone: rawPhone, text, settings, conversation }) {
   const serverContext = { phone, uid, faqs: settings.faqs || [] };
   const startedAt = Date.now();
 
-  const instructions = `${settings.systemPrompt}\n\nSuggested greeting style for a new/greeting message (adapt naturally, don't repeat verbatim every time): ${settings.greetingMessage}`;
+  const instructions = supportMode
+    ? settings.supportSystemPrompt
+    : `${settings.systemPrompt}\n\nSuggested greeting style for a new/greeting message (adapt naturally, don't repeat verbatim every time): ${settings.greetingMessage}`;
   let input = [...historyToInput(history), { role: "user", content: text }];
 
   let response;
