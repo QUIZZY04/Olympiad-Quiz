@@ -39,9 +39,10 @@ function getBrevoClient() {
   return new SibApiV3Sdk.TransactionalEmailsApi();
 }
 
-function buildReminderEmail(name) {
+function buildReminderEmail(name, email) {
   const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
   sendSmtpEmail.sender = SENDER_INFO;
+  sendSmtpEmail.to = [{ email, name: name || "Student" }];
   sendSmtpEmail.subject = "Finish setting up your OlympiadQuiz account";
   sendSmtpEmail.htmlContent = `<body style="background-color: #f5f7fb; margin: 0; padding: 0; font-family: Arial, sans-serif;">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -111,7 +112,7 @@ exports.phoneVerificationReminderEmail = onSchedule(
       if (!data.email) continue;
 
       try {
-        await brevoApi.sendTransacEmail(buildReminderEmail(data.name || "Student"));
+        await brevoApi.sendTransacEmail(buildReminderEmail(data.name || "Student", data.email));
         await userDoc.ref.update({ phoneReminderEmailSentAt: admin.firestore.FieldValue.serverTimestamp() });
         sentCount++;
         console.log(`Phone verification reminder sent to: ${data.email}`);

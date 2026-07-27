@@ -1639,3 +1639,44 @@ exports.getConversationThread = whatsappAdmin.getConversationThread;
 // See functions/emailReminders.js. Nudges Google signups who never
 // verified a mobile number to come back and finish registration.
 exports.phoneVerificationReminderEmail = require("./emailReminders").phoneVerificationReminderEmail;
+
+/** Powers the admin.html "Phone Verification Reminders" panel - lists
+ * exactly who has actually been sent this email (phoneReminderEmailSentAt
+ * is only ever set AFTER a real successful Brevo send - see
+ * emailReminders.js), plus a live count of still-pending candidates. */
+exports.getPhoneReminderEmailLog = onCall({}, async (request) => {
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
+
+  const sentSnap = await db
+    .collection("users")
+    .where("phoneReminderEmailSentAt", ">", new Date(0))
+    .orderBy("phoneReminderEmailSentAt", "desc")
+    .limit(500)
+    .get();
+
+  const sent = sentSnap.docs.map((d) => {
+    const u = d.data();
+    return {
+      uid: d.id,
+      name: u.name || u.fullName || "Student",
+      email: u.email || null,
+      createdAt: u.createdAt || null,
+      phoneReminderEmailSentAt: u.phoneReminderEmailSentAt,
+      registrationCompleted: u.registrationCompleted === true,
+    };
+  });
+
+  const pendingSnap = await db
+    .collection("users")
+    .where("registrationCompleted", "==", false)
+    .where("googleLinked", "==", true)
+    .get();
+  const pendingCount = pendingSnap.docs.filter((d) => {
+    const u = d.data();
+    return !u.phone && !u.phoneNumber && !u.phoneReminderEmailSentAt;
+  }).length;
+
+  return { sent, pendingCount };
+});
