@@ -1642,10 +1642,12 @@ exports.phoneVerificationReminderEmail = require("./emailReminders").phoneVerifi
 
 const emailReminders = require("./emailReminders");
 
-/** Powers the admin.html "Phone Verification Reminders" panel - EVERY
- * Google-signup user to date (latest first), with a Mobile Verified
- * column and a running reminder count, so the admin can see at a glance
- * who still needs a nudge and pick exactly who to email manually. */
+/** Powers the admin.html "Phone Verification Reminders" panel - ONLY
+ * Google-signup users who have NOT verified a mobile number yet (latest
+ * first), with a running reminder count, so the admin can see exactly
+ * who still needs a nudge and pick who to email manually. Anyone who has
+ * since verified their phone is left out entirely - they no longer need
+ * this reminder. */
 exports.getPhoneReminderEmailLog = onCall({}, async (request) => {
   if (request.auth?.token?.email !== "madhhu52@gmail.com") {
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
@@ -1658,18 +1660,20 @@ exports.getPhoneReminderEmailLog = onCall({}, async (request) => {
     .limit(1000)
     .get();
 
-  const users = snap.docs.map((d) => {
-    const u = d.data();
-    return {
-      uid: d.id,
-      name: u.name || u.fullName || "Student",
-      email: u.email || null,
-      createdAt: u.createdAt || null,
-      mobileVerified: !!(u.phone || u.phoneNumber),
-      reminderSentCount: u.phoneReminderEmailSentCount || (u.phoneReminderEmailSentAt ? 1 : 0),
-      lastReminderSentAt: u.phoneReminderEmailSentAt || null,
-    };
-  });
+  const users = snap.docs
+    .map((d) => {
+      const u = d.data();
+      return {
+        uid: d.id,
+        name: u.name || u.fullName || "Student",
+        email: u.email || null,
+        createdAt: u.createdAt || null,
+        mobileVerified: !!(u.phone || u.phoneNumber),
+        reminderSentCount: u.phoneReminderEmailSentCount || (u.phoneReminderEmailSentAt ? 1 : 0),
+        lastReminderSentAt: u.phoneReminderEmailSentAt || null,
+      };
+    })
+    .filter((u) => !u.mobileVerified);
 
   const settingsSnap = await db.doc(emailReminders.SETTINGS_DOC).get();
   const autoSendEnabled = settingsSnap.exists && settingsSnap.data().autoSendEnabled === true;
