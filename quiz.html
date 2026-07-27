@@ -143,8 +143,21 @@ box-shadow: var(--shadow-md);
 .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--text); }
 .legend-box { width: 16px; height: 16px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: white; }
 
-/* Hide the quiz-top-bar floating timer — navbar timer handles desktop */
-.desktop-timer { display: none !important; }
+/* Timer lives here now (right-aligned above the quiz container, next to
+   the subject/topic info on the left) instead of in the navbar. */
+.desktop-timer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(239, 68, 68, 0.1);
+    color: #b91c1c;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
 
 /* Mobile sticky subject+timer bar */
 #mobileQuizBar {
@@ -179,6 +192,7 @@ box-shadow: var(--shadow-md);
         font-size: 13px;
     }
     #timerWrap { display: none !important; }
+    .desktop-timer { display: none !important; } /* mobile uses the sticky #mobileQuizBar timer instead */
 }
 @media (max-width:850px){
 .quiz-top-bar { margin-top: 5px !important; margin-bottom: 5px !important; }
@@ -265,7 +279,6 @@ box-shadow: var(--shadow-md);
 
         <!-- Right: CTA -->
         <div class="navbar-actions">
-            <a id="timerWrap" class="desktop-only" style="background: rgba(239, 68, 68, 0.1) !important; color: #b91c1c !important; border: 1px solid rgba(239, 68, 68, 0.2); pointer-events: none; display: flex; align-items: center; gap: 4px; font-size: 0.85rem !important; padding: 6px 12px; border-radius: 8px; font-weight: 700;">⏳ <span id="timer">--:--</span></a>
             <a id="adminTab" href="admin.html" class="nav-link" style="display:none; color:var(--success);">Admin</a>
             <a onclick="logout()" class="btn-login login-link" style="background-color: var(--danger); cursor: pointer;">Logout</a>
             <!-- Mobile Menu Toggle -->
