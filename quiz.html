@@ -201,7 +201,6 @@ box-shadow: var(--shadow-md);
 .grid{grid-template-columns:repeat(auto-fill,minmax(45px,1fr))}
 .quiz-buttons{flex-wrap:wrap !important; gap:12px !important; padding-top:24px !important;}
 .btn{min-width:100px !important; font-size:0.9rem !important; padding:12px 10px !important;}
-.nav-spacer{display:none;}
 #quizHeaderInfo{min-width:0; width: auto;}
 #quizTitle{font-size:1.1rem !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 #quizSubtitle{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
@@ -297,16 +296,13 @@ box-shadow: var(--shadow-md);
     <span class="mob-timer">⏳ <span id="timer-mobile">--:--</span></span>
 </div>
 
-<div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; gap: 25px; align-items: center;" class="quiz-top-bar">
-    <div style="flex: 2.8; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-info-timer">
-        <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
-            <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 0; line-height: 1.2; letter-spacing: -0.01em;"></h1>
-            <p id="quizSubtitle" style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;"></p>
-        </div>
-        <!-- Floating Desktop Timer (Visible only on Laptop/Desktop) -->
-        <div class="desktop-timer">⏳ <span id="timer-desktop">--:--</span></div>
+<div style="max-width: 1400px; margin: 20px auto 5px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-top-bar">
+    <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
+        <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 0; line-height: 1.2; letter-spacing: -0.01em;"></h1>
+        <p id="quizSubtitle" style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;"></p>
     </div>
-    <div style="flex: 0 0 320px;" class="nav-spacer"></div>
+    <!-- Floating Desktop Timer (Visible only on Laptop/Desktop) -->
+    <div class="desktop-timer">⏳ <span id="timer-desktop">--:--</span></div>
 </div>
 
 <main class="quiz-container">
