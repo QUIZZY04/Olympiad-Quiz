@@ -1640,43 +1640,77 @@ exports.getConversationThread = whatsappAdmin.getConversationThread;
 // verified a mobile number to come back and finish registration.
 exports.phoneVerificationReminderEmail = require("./emailReminders").phoneVerificationReminderEmail;
 
-/** Powers the admin.html "Phone Verification Reminders" panel - lists
- * exactly who has actually been sent this email (phoneReminderEmailSentAt
- * is only ever set AFTER a real successful Brevo send - see
- * emailReminders.js), plus a live count of still-pending candidates. */
+const emailReminders = require("./emailReminders");
+
+/** Powers the admin.html "Phone Verification Reminders" panel - EVERY
+ * Google-signup user to date (latest first), with a Mobile Verified
+ * column and a running reminder count, so the admin can see at a glance
+ * who still needs a nudge and pick exactly who to email manually. */
 exports.getPhoneReminderEmailLog = onCall({}, async (request) => {
   if (request.auth?.token?.email !== "madhhu52@gmail.com") {
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 
-  const sentSnap = await db
+  const snap = await db
     .collection("users")
-    .where("phoneReminderEmailSentAt", ">", new Date(0))
-    .orderBy("phoneReminderEmailSentAt", "desc")
-    .limit(500)
+    .where("googleLinked", "==", true)
+    .orderBy("createdAt", "desc")
+    .limit(1000)
     .get();
 
-  const sent = sentSnap.docs.map((d) => {
+  const users = snap.docs.map((d) => {
     const u = d.data();
     return {
       uid: d.id,
       name: u.name || u.fullName || "Student",
       email: u.email || null,
       createdAt: u.createdAt || null,
-      phoneReminderEmailSentAt: u.phoneReminderEmailSentAt,
-      registrationCompleted: u.registrationCompleted === true,
+      mobileVerified: !!(u.phone || u.phoneNumber),
+      reminderSentCount: u.phoneReminderEmailSentCount || (u.phoneReminderEmailSentAt ? 1 : 0),
+      lastReminderSentAt: u.phoneReminderEmailSentAt || null,
     };
   });
 
-  const pendingSnap = await db
-    .collection("users")
-    .where("registrationCompleted", "==", false)
-    .where("googleLinked", "==", true)
-    .get();
-  const pendingCount = pendingSnap.docs.filter((d) => {
-    const u = d.data();
-    return !u.phone && !u.phoneNumber && !u.phoneReminderEmailSentAt;
-  }).length;
+  const settingsSnap = await db.doc(emailReminders.SETTINGS_DOC).get();
+  const autoSendEnabled = settingsSnap.exists && settingsSnap.data().autoSendEnabled === true;
 
-  return { sent, pendingCount };
+  return { users, autoSendEnabled };
+});
+
+/** The admin.html "Send Reminder" button - sends to exactly one user, on
+ * demand, no dedup (the admin may deliberately resend). */
+exports.sendPhoneReminderEmailManually = onCall({ secrets: ["BREVO_API_KEY"] }, async (request) => {
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
+  const { uid } = request.data || {};
+  if (!uid) throw new HttpsError("invalid-argument", "uid is required.");
+
+  const userRef = db.collection("users").doc(uid);
+  const userSnap = await userRef.get();
+  if (!userSnap.exists) throw new HttpsError("not-found", "User not found.");
+
+  try {
+    await emailReminders.sendReminderEmailToUser(userRef, userSnap.data());
+  } catch (error) {
+    throw new HttpsError("internal", `Failed to send: ${error.message}`);
+  }
+  return { success: true };
+});
+
+/** Admin toggle for the automatic daily batch - defaults to OFF (see
+ * emailReminders.js); manual per-user sends above are unaffected either
+ * way, this only gates the scheduled job. */
+exports.saveEmailReminderAutoSetting = onCall({}, async (request) => {
+  if (request.auth?.token?.email !== "madhhu52@gmail.com") {
+    throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
+  }
+  const { enabled } = request.data || {};
+  if (typeof enabled !== "boolean") throw new HttpsError("invalid-argument", "enabled (boolean) is required.");
+
+  await db.doc(emailReminders.SETTINGS_DOC).set(
+    { autoSendEnabled: enabled, updatedAt: admin.firestore.FieldValue.serverTimestamp(), updatedBy: request.auth.token.email },
+    { merge: true }
+  );
+  return { success: true };
 });

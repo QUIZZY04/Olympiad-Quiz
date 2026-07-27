@@ -693,12 +693,21 @@ border-top:1px solid var(--border);
             <button type="button" class="edit-btn" onclick="window.loadPhoneReminderLog()">↻ Refresh</button>
         </div>
         <div class="panel-content">
-            <p class="muted">Automatic daily email (runs 10am IST, max 15/day) nudging students who signed up with Google but never verified a mobile number - see <code>functions/emailReminders.js</code>. This lists everyone who has actually been sent it.</p>
-            <div id="phoneReminderStats" class="summary-grid"><p class="muted">Loading...</p></div>
+            <p class="muted">Every user who signed up with Google, latest first. Nudge anyone who hasn't verified a mobile number yet by clicking "Send Reminder" - see <code>functions/emailReminders.js</code>.</p>
+
+            <label style="display:flex; align-items:center; gap:8px; font-weight:600; background:var(--subtle); border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-top:12px;">
+                <input type="checkbox" id="phoneReminderAutoEnabled" style="width:auto;" onchange="window.saveEmailReminderAutoSetting()">
+                Enable automatic daily reminder emails (10am IST, max 15/day) - currently <b>OFF by default</b>, manual sending only
+            </label>
+            <div id="phoneReminderAutoStatus" class="muted" style="margin-top:6px; font-size:12px;"></div>
+
+            <div id="phoneReminderStats" class="summary-grid" style="margin-top:16px;"><p class="muted">Loading...</p></div>
+
+            <input type="text" id="phoneReminderSearch" placeholder="Search by name or email..." oninput="window.filterPhoneReminderRows()" style="margin-top:16px;">
             <div style="overflow-x:auto;">
-                <table style="margin-top:16px;">
-                    <thead><tr><th>Name</th><th>Email</th><th>Account Created</th><th>Reminder Sent</th><th>Registration Completed?</th></tr></thead>
-                    <tbody id="phoneReminderLogBody"><tr><td colspan="5" class="muted">Loading...</td></tr></tbody>
+                <table style="margin-top:8px;">
+                    <thead><tr><th>Name</th><th>Email</th><th>Account Created</th><th>Mobile Verified?</th><th>Reminders Sent</th><th>Action</th></tr></thead>
+                    <tbody id="phoneReminderLogBody"><tr><td colspan="6" class="muted">Loading...</td></tr></tbody>
                 </table>
             </div>
         </div>
@@ -4632,37 +4641,97 @@ document.getElementById("bulkEmailForm")?.addEventListener("submit", async (e) =
     }
 });
 
+let phoneReminderUsersCache = [];
+
 window.loadPhoneReminderLog = async function() {
     const statsEl = document.getElementById("phoneReminderStats");
     const body = document.getElementById("phoneReminderLogBody");
     statsEl.innerHTML = "<p class='muted'>Loading...</p>";
-    body.innerHTML = "<tr><td colspan='5' class='muted'>Loading...</td></tr>";
+    body.innerHTML = "<tr><td colspan='6' class='muted'>Loading...</td></tr>";
     try {
         const fn = httpsCallable(functions, 'getPhoneReminderEmailLog');
         const res = await fn();
-        const { sent, pendingCount } = res.data;
+        const { users, autoSendEnabled } = res.data;
+        phoneReminderUsersCache = users || [];
 
+        document.getElementById("phoneReminderAutoEnabled").checked = !!autoSendEnabled;
+
+        const verifiedCount = phoneReminderUsersCache.filter(u => u.mobileVerified).length;
+        const notVerifiedCount = phoneReminderUsersCache.length - verifiedCount;
         statsEl.innerHTML = [
-            ["Reminders Sent (all-time)", sent.length],
-            ["Still Pending (not yet emailed)", pendingCount],
-            ["Daily Send Cap", "15/day"],
+            ["Total Google Signups", phoneReminderUsersCache.length],
+            ["Mobile Verified", verifiedCount],
+            ["Not Yet Verified", notVerifiedCount],
         ].map(([label, value]) => `<div class="summary-card"><div class="label">${label}</div><div class="value">${value}</div></div>`).join("");
 
-        if (sent.length === 0) {
-            body.innerHTML = "<tr><td colspan='5' class='muted'>No reminder emails sent yet.</td></tr>";
-            return;
-        }
-        body.innerHTML = sent.map(u => `
-            <tr>
-                <td>${u.name}</td>
-                <td>${u.email || "-"}</td>
-                <td>${wamFormatTimestamp(u.createdAt)}</td>
-                <td>${wamFormatTimestamp(u.phoneReminderEmailSentAt)}</td>
-                <td>${u.registrationCompleted ? "✅ Yes" : "❌ Still pending"}</td>
-            </tr>`).join("");
+        window.renderPhoneReminderRows(phoneReminderUsersCache);
     } catch (error) {
         statsEl.innerHTML = `<p style="color:var(--danger);">Failed to load: ${error.message}</p>`;
-        body.innerHTML = `<tr><td colspan='5' style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+        body.innerHTML = `<tr><td colspan='6' style="color:var(--danger);">Failed to load: ${error.message}</td></tr>`;
+    }
+};
+
+window.renderPhoneReminderRows = function(users) {
+    const body = document.getElementById("phoneReminderLogBody");
+    if (!users.length) {
+        body.innerHTML = "<tr><td colspan='6' class='muted'>No Google signups found.</td></tr>";
+        return;
+    }
+    body.innerHTML = users.map(u => {
+        const ticks = u.reminderSentCount > 0 ? "✅".repeat(Math.min(u.reminderSentCount, 10)) + ` (${u.reminderSentCount})` : "-";
+        const verifiedLabel = u.mobileVerified ? "✅ Yes" : "❌ No";
+        const actionCell = u.mobileVerified
+            ? `<span class="muted">Already verified</span>`
+            : `<button type="button" class="upload" style="padding:6px 12px; font-size:12px;" onclick="window.sendPhoneReminderManually('${u.uid}', this)">📧 Send Reminder</button>`;
+        return `<tr data-search="${(u.name + ' ' + (u.email || '')).toLowerCase().replace(/"/g, '')}">
+            <td>${u.name}</td>
+            <td>${u.email || "-"}</td>
+            <td>${wamFormatTimestamp(u.createdAt)}</td>
+            <td>${verifiedLabel}</td>
+            <td style="white-space:nowrap;">${ticks}</td>
+            <td>${actionCell}</td>
+        </tr>`;
+    }).join("");
+};
+
+window.filterPhoneReminderRows = function() {
+    const term = document.getElementById("phoneReminderSearch").value.toLowerCase();
+    document.querySelectorAll("#phoneReminderLogBody tr").forEach(row => {
+        const haystack = row.dataset.search || "";
+        row.style.display = haystack.includes(term) ? "" : "none";
+    });
+};
+
+window.sendPhoneReminderManually = async function(uid, btnEl) {
+    if (!confirm("Send the phone-verification reminder email to this user now?")) return;
+    btnEl.disabled = true;
+    btnEl.innerText = "⏳ Sending...";
+    try {
+        const fn = httpsCallable(functions, 'sendPhoneReminderEmailManually');
+        await fn({ uid });
+        await window.loadPhoneReminderLog();
+    } catch (error) {
+        alert("Failed to send: " + error.message);
+        btnEl.disabled = false;
+        btnEl.innerText = "📧 Send Reminder";
+    }
+};
+
+window.saveEmailReminderAutoSetting = async function() {
+    const checkbox = document.getElementById("phoneReminderAutoEnabled");
+    const status = document.getElementById("phoneReminderAutoStatus");
+    const enabled = checkbox.checked;
+    status.style.color = "var(--muted)";
+    status.innerText = "Saving...";
+    try {
+        const fn = httpsCallable(functions, 'saveEmailReminderAutoSetting');
+        await fn({ enabled });
+        status.style.color = "var(--success)";
+        status.innerText = enabled ? "✅ Automatic daily reminders ENABLED." : "✅ Automatic daily reminders disabled - manual sending only.";
+    } catch (error) {
+        checkbox.checked = !enabled; // revert on failure
+        status.style.color = "var(--danger)";
+        status.innerText = "Failed to save: " + error.message;
     }
 };
 

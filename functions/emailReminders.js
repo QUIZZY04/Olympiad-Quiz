@@ -2,20 +2,21 @@
  * =====================================================================
  * PHONE VERIFICATION REMINDER EMAIL
  * =====================================================================
- * Additive-only: a single scheduled function that nudges users who
- * signed up with Google but never verified a mobile number (and so
- * never finished registration - see signup.html's ACTIVE_USER state)
- * to come back and complete it, since verification gates access to
- * Free Mock Tests and other facilities via auth-guard.js.
+ * Nudges users who signed up with Google but never verified a mobile
+ * number (and so never finished registration - see signup.html's
+ * ACTIVE_USER state) to come back and complete it, since verification
+ * gates access to Free Mock Tests and other facilities via auth-guard.js.
  *
- * Runs once daily and caps sends at DAILY_SEND_LIMIT, oldest signups
- * first, so the pre-existing backlog of abandoned Google signups is
- * phased in gradually rather than emailed all at once. Candidates are
- * fetched without a tight limit (bounded only by MAX_CANDIDATES_PER_RUN
- * as a sane outer guard) because already-emailed users stay at the
- * front of the createdAt-ascending order forever - a small candidate
- * window would eventually be entirely "already sent" docs and stop
- * making progress through the backlog.
+ * Two send paths share the same email-building/send logic
+ * (sendReminderEmailToUser below):
+ *   - The scheduled job (automatic, once daily) - gated OFF by default
+ *     via email_reminder_settings/config.autoSendEnabled (admin.html has
+ *     a toggle for this in the Phone Verification Reminders panel).
+ *     Only ever auto-sends once per user (skips anyone already emailed).
+ *   - The admin.html "Send Reminder" button (manual, per-user, on
+ *     demand) - functions/index.js's sendPhoneReminderEmailManually
+ *     callable. No dedup - the admin can resend as many times as they
+ *     choose; phoneReminderEmailSentCount tracks how many times total.
  * =====================================================================
  */
 
@@ -27,6 +28,7 @@ const GRACE_PERIOD_MS = 15 * 60 * 1000; // don't email someone still mid-OTP-ent
 const DAILY_SEND_LIMIT = 15;
 const MAX_CANDIDATES_PER_RUN = 5000; // outer guard on reads, not on emails sent
 const SITE_URL = "https://olympiadquiz.org/signup.html?mode=completion";
+const SETTINGS_DOC = "email_reminder_settings/config";
 
 const SENDER_INFO = {
   email: "admin@olympiadquiz.org",
@@ -84,9 +86,38 @@ function buildReminderEmail(name, email) {
   return sendSmtpEmail;
 }
 
+/**
+ * Sends the reminder to one user doc and records the send (increments
+ * phoneReminderEmailSentCount, updates phoneReminderEmailSentAt to now).
+ * Shared by both the scheduled job and the manual admin-triggered send -
+ * one place owns "what does sending a reminder actually do".
+ * @param {FirebaseFirestore.DocumentReference} userRef
+ * @param {{name?: string, email?: string}} data - the user doc's data.
+ * @throws if the user has no email, or the Brevo send itself fails.
+ */
+async function sendReminderEmailToUser(userRef, data) {
+  if (!data.email) throw new Error("This user has no email on file.");
+  const brevoApi = getBrevoClient();
+  await brevoApi.sendTransacEmail(buildReminderEmail(data.name || "Student", data.email));
+  await userRef.update({
+    phoneReminderEmailSentAt: admin.firestore.FieldValue.serverTimestamp(),
+    phoneReminderEmailSentCount: admin.firestore.FieldValue.increment(1),
+  });
+}
+
 exports.phoneVerificationReminderEmail = onSchedule(
   { schedule: "0 10 * * *", timeZone: "Asia/Kolkata", secrets: ["BREVO_API_KEY"] },
   async () => {
+    // Default OFF - an admin must explicitly enable this in admin.html's
+    // Phone Verification Reminders panel. Manual per-user sends (the
+    // "Send Reminder" button) are NOT gated by this - only the automatic
+    // daily batch is.
+    const settingsSnap = await db.doc(SETTINGS_DOC).get();
+    if (!settingsSnap.exists || settingsSnap.data().autoSendEnabled !== true) {
+      console.log("phoneVerificationReminderEmail: autoSendEnabled is false - skipping automatic run.");
+      return;
+    }
+
     const cutoff = new Date(Date.now() - GRACE_PERIOD_MS);
 
     const snap = await db
@@ -100,7 +131,6 @@ exports.phoneVerificationReminderEmail = onSchedule(
 
     if (snap.empty) return;
 
-    const brevoApi = getBrevoClient();
     let sentCount = 0;
 
     for (const userDoc of snap.docs) {
@@ -108,12 +138,11 @@ exports.phoneVerificationReminderEmail = onSchedule(
 
       const data = userDoc.data();
       if (data.phone || data.phoneNumber) continue; // already verified, stuck elsewhere
-      if (data.phoneReminderEmailSentAt) continue; // already emailed once
+      if (data.phoneReminderEmailSentAt) continue; // automatic send is one-time-only per user
       if (!data.email) continue;
 
       try {
-        await brevoApi.sendTransacEmail(buildReminderEmail(data.name || "Student", data.email));
-        await userDoc.ref.update({ phoneReminderEmailSentAt: admin.firestore.FieldValue.serverTimestamp() });
+        await sendReminderEmailToUser(userDoc.ref, data);
         sentCount++;
         console.log(`Phone verification reminder sent to: ${data.email}`);
       } catch (error) {
@@ -124,3 +153,6 @@ exports.phoneVerificationReminderEmail = onSchedule(
     console.log(`phoneVerificationReminderEmail: sent ${sentCount}/${DAILY_SEND_LIMIT} today (${snap.docs.length} candidates read)`);
   }
 );
+
+exports.sendReminderEmailToUser = sendReminderEmailToUser;
+exports.SETTINGS_DOC = SETTINGS_DOC;
