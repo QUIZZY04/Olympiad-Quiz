@@ -5379,13 +5379,36 @@ async function wamRenderSessionCheckboxList(listElId, hiddenInputId, onChange) {
             container.innerHTML = `<div class="muted" style="padding:8px;">No upcoming sessions found.</div>`;
             return;
         }
-        const updateFn = `window.wamOnSessionChecklistChange('${listElId}','${hiddenInputId}')`;
-        const rows = upcoming.map(d => {
+
+        // One row per TEST (same date + same title), not per Firestore doc -
+        // a test scheduled as a separate per-class session (class 1, 2, ... 10)
+        // is one line here with a combined "Classes 1-10" label, ticking it
+        // sends the comma-joined ids of every class under that test as one
+        // group. Different titles on the same date (e.g. IMO + IRO) stay as
+        // separate lines instead of being merged together.
+        const groups = new Map(); // "dateKey::title" -> {title, subject, items: [{id, data}]}
+        upcoming.forEach(d => {
             const s = d.data();
-            const when = s.startTime?.toDate ? s.startTime.toDate().toLocaleString("en-IN") : "-";
+            const start = s.startTime?.toDate?.();
+            const dateKey = start ? start.toISOString().slice(0, 10) : "unknown";
+            const title = s.title || d.id;
+            const key = dateKey + "::" + title;
+            if (!groups.has(key)) groups.set(key, { title, subject: s.subject, items: [] });
+            groups.get(key).items.push({ id: d.id, data: s });
+        });
+
+        const updateFn = `window.wamOnSessionChecklistChange('${listElId}','${hiddenInputId}')`;
+        const rows = Array.from(groups.values()).map(group => {
+            const first = group.items[0].data;
+            const when = first.startTime?.toDate ? first.startTime.toDate().toLocaleString("en-IN") : "-";
+            const classes = group.items.map(it => it.data.class).filter(c => c !== undefined && c !== null).sort((a, b) => a - b);
+            const classLabel = classes.length === 0 ? "-"
+                : classes.length === 1 ? String(classes[0])
+                : (classes[0] === classes[classes.length - 1] ? String(classes[0]) : `${classes[0]} to ${classes[classes.length - 1]}`);
+            const ids = group.items.map(it => it.id).join(",");
             return `<label style="display:flex; align-items:center; gap:8px; padding:6px 8px; border-bottom:1px solid var(--border); cursor:pointer; font-size:13px; margin:0; font-weight:400;">
-                <input type="checkbox" value="${d.id}" class="wam-session-cb-${listElId}" onchange="${updateFn}" style="width:auto; margin:0;">
-                <span>${s.title || d.id} <span class="muted">(${s.subject || "-"})</span> - Class ${s.class ?? "-"} - ${when}</span>
+                <input type="checkbox" value="${ids}" class="wam-session-cb-${listElId}" onchange="${updateFn}" style="width:auto; margin:0;">
+                <span>${group.title} <span class="muted">(${group.subject || "-"})</span> - Class ${classLabel} - ${when}</span>
             </label>`;
         }).join("");
         container.innerHTML = `
