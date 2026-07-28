@@ -22,13 +22,17 @@ const { db } = require("../config");
  * the caller).
  *
  * Accepts EITHER a single session id OR a comma-separated list of them -
- * the latter is how the admin panel represents a "same-day, all classes"
- * group (e.g. one live-test event that has a separate test_sessions doc
- * per class 1-10, all sharing the same date/time/price). testName/
- * testDate/testTime/testPrice/discountedPrice are taken from the first
- * session in the group (assumed shared across a same-day group);
- * className becomes a range ("1 to 10") when the group spans more than
- * one class, or the single class number when there's just one session.
+ * the admin panel lets the admin freely tick any combination of upcoming
+ * sessions (e.g. an IMO Maths session plus an IRO Reasoning session on the
+ * same day). testDate/testTime/testPrice/discountedPrice are taken from
+ * the first session in the group (date/time/coupon are meant to be shared
+ * across whatever's picked); className becomes a range ("1 to 10") when
+ * the group spans more than one class, or the single class number when
+ * there's just one session. testName lists every DISTINCT title in the
+ * group as "Title (Subject)" (e.g. "IMO (Maths), IRO (Reasoning)") - if
+ * every selected session shares the same title (the common case of one
+ * test split into a same-day session per class), testName stays a plain
+ * single title with no subject suffix.
  *
  * IMPORTANT: testPrice/discountedPrice are read straight off the session
  * document(s), never hardcoded. Coupon code is deliberately NOT read here -
@@ -68,8 +72,17 @@ async function getSessionPromoData(sessionId) {
     className = min === max ? String(min) : `${min} to ${max}`;
   }
 
+  const distinctTitles = [];
+  sessions.forEach((s) => {
+    const title = s.title || "Live Olympiad Test";
+    if (!distinctTitles.some((t) => t.title === title)) distinctTitles.push({ title, subject: s.subject });
+  });
+  const testName = distinctTitles.length <= 1
+    ? distinctTitles[0].title
+    : distinctTitles.map((t) => (t.subject ? `${t.title} (${t.subject})` : t.title)).join(", ");
+
   return {
-    testName: first.title || "Live Olympiad Test",
+    testName,
     className,
     testDate,
     testTime,
