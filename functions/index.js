@@ -1718,3 +1718,17 @@ exports.saveEmailReminderAutoSetting = onCall({}, async (request) => {
   );
   return { success: true };
 });
+
+// =================================================================
+// 10. PREMIUM / FREE-TIER TEST ATTEMPT RATE LIMITING
+// =================================================================
+const testLimits = require("./premium/testLimits");
+const premiumSubscriptions = require("./premium/subscriptions");
+
+exports.canStartTest = testLimits.canStartTest;
+exports.markTestAttemptProgress = testLimits.markTestAttemptProgress;
+exports.completeTestAttempt = testLimits.completeTestAttempt;
+
+exports.createPremiumPlan = premiumSubscriptions.createPremiumPlan;
+exports.createPremiumSubscription = premiumSubscriptions.createPremiumSubscription;
+exports.razorpayWebhook = premiumSubscriptions.razorpayWebhook;

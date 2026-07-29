@@ -229,6 +229,7 @@ box-shadow: var(--shadow-md);
     footer { margin-top: 20px; padding: 15px; }
 }
 </style>
+<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 </head>
 <body>
 <nav class="navbar">
@@ -388,6 +389,7 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc, deleteDoc, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { showRemainingNotice, showBlockedModal, hideBlockedModal } from "./premiumGate.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -1039,6 +1041,12 @@ let current=0, questions=[], selectedAnswers=[], visitedQuestions=[], quizSubmit
 const isChampionship=localStorage.getItem("isChampionship")==="true";
 let totalTime=1800;
 
+// Premium / free-tier rate limiting - attemptId returned by canStartTest,
+// used by markTestAttemptProgress (first answer) and completeTestAttempt
+// (on finish). Stays null for championship tests, which aren't rate-limited.
+let currentAttemptId = null;
+let hasReportedProgress = false;
+
 let violationsCount = 0;
 const MAX_VIOLATIONS = 3;
 let isQuizActive = false;
@@ -1207,6 +1215,55 @@ function goBackToSelection() {
     }
 }
 
+/** Upgrade-to-Premium flow, triggered from the blocked-test modal. Creates
+ * a Razorpay subscription for the logged-in user (server-side, via the
+ * createPremiumSubscription callable) then opens Razorpay Checkout in
+ * subscription mode (subscription_id instead of order_id) - same
+ * checkout.js script and options shape already used for one-off live-test
+ * payments in live.html, just swapping which id is passed. isPremium
+ * itself is only ever set by the razorpayWebhook Cloud Function once
+ * Razorpay confirms the first charge, never set from this client code. */
+async function handleUpgradeClick() {
+    const btn = document.getElementById('pgUpgradeBtn');
+    if (btn) { btn.disabled = true; btn.innerText = "Preparing checkout..."; }
+    try {
+        const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
+        const { data: sub } = await createPremiumSubscription();
+
+        const options = {
+            key: sub.keyId,
+            subscription_id: sub.subscriptionId,
+            name: "OlympiadQuiz",
+            description: "Premium - unlimited test attempts (₹299/month)",
+            handler: function() {
+                hideBlockedModal();
+                alert("Payment received! Premium activates within a minute or two once it's confirmed - refresh the page then.");
+            },
+            modal: {
+                ondismiss: function() {
+                    if (btn) { btn.disabled = false; btn.innerText = "⭐ Upgrade to Premium - ₹299/month, unlimited tests"; }
+                }
+            },
+            prefill: {
+                name: auth.currentUser?.displayName || "Student",
+                email: auth.currentUser?.email || "",
+                contact: auth.currentUser?.phoneNumber || ""
+            },
+            theme: { color: "#ff6b00" }
+        };
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function() {
+            alert("Payment was not completed.");
+            if (btn) { btn.disabled = false; btn.innerText = "⭐ Upgrade to Premium - ₹299/month, unlimited tests"; }
+        });
+        rzp.open();
+    } catch (err) {
+        console.error("Upgrade flow failed:", err);
+        alert("Couldn't start checkout right now. Please try again in a moment.");
+        if (btn) { btn.disabled = false; btn.innerText = "⭐ Upgrade to Premium - ₹299/month, unlimited tests"; }
+    }
+}
+
 onAuthStateChanged(auth, async(user)=>{
     if(!user){ 
         sessionStorage.setItem("redirectAfterLogin", window.location.href);
@@ -1249,6 +1306,30 @@ onAuthStateChanged(auth, async(user)=>{
             }
         } catch(e) {
             // If check fails, allow the test to proceed
+        }
+    }
+
+    // Free-tier rate limit - server-enforced (canStartTest), championship
+    // tests are exempt (they already have their own per-session Razorpay
+    // paywall) and so is admin. Fails OPEN on a network/function error -
+    // this is a business/UX limit, not a security gate, so a transient
+    // failure here should never be able to block a legitimate test.
+    if (!isChampionship && !isAdmin) {
+        const isHotsTest = localStorage.getItem("isHotsTest") === "true";
+        const isMockTest = localStorage.getItem("isMockTest") === "true";
+        const testType = isHotsTest ? "hots" : (isMockTest ? "mock" : "chapterwise");
+        try {
+            const canStartTest = httpsCallable(functions, 'canStartTest');
+            const { data: gate } = await canStartTest({ testType });
+            if (!gate.allowed) {
+                document.getElementById('fullscreenOverlay').style.display = 'none';
+                showBlockedModal(gate.unlocksAt, handleUpgradeClick, () => window.location.replace("dashboard.html"));
+                return;
+            }
+            currentAttemptId = gate.attemptId || null;
+            if (gate.remaining === 1) showRemainingNotice(gate.remaining);
+        } catch (gateError) {
+            console.error("canStartTest failed - allowing test to proceed:", gateError);
         }
     }
 
@@ -1488,7 +1569,17 @@ document.getElementById("options").innerHTML=html;
 updateGrid();
 }
 
-function saveAnswer(v){ selectedAnswers[current]=v; updateGrid(); }
+function saveAnswer(v){
+    selectedAnswers[current]=v;
+    updateGrid();
+    // Fire-and-forget: proves this attempt wasn't abandoned untouched, so
+    // canStartTest's rolling-window count doesn't exclude it as void. Only
+    // needs to fire once per attempt, not on every answer change.
+    if (currentAttemptId && !hasReportedProgress) {
+        hasReportedProgress = true;
+        httpsCallable(functions, 'markTestAttemptProgress')({ attemptId: currentAttemptId }).catch(e => console.warn("markTestAttemptProgress failed:", e));
+    }
+}
 function nextQuestion(){ if(current<questions.length-1){current++; loadQuestion();} }
 function prevQuestion(){ if(current>0){current--; loadQuestion();} }
 function jumpTo(i){ current=i; loadQuestion(); }
@@ -1629,6 +1720,10 @@ async function submitQuiz(){
             questions: questions,
             userAnswers: selectedAnswers
         });
+
+        if (currentAttemptId) {
+            httpsCallable(functions, 'completeTestAttempt')({ attemptId: currentAttemptId }).catch(e => console.warn("completeTestAttempt failed:", e));
+        }
 
         // Trigger the Result Email Cloud Function asynchronously
         if (auth.currentUser && auth.currentUser.email) {
