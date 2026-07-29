@@ -146,7 +146,7 @@
     .divider::before, .divider::after { content: ""; flex: 1; border-bottom: 1px solid var(--border); }
     .divider::before { margin-right: 15px; } .divider::after { margin-left: 15px; }
     
-    #btnGoogleEntry, #btnLinkGoogle { margin-bottom: 24px; }
+    #btnLinkGoogle { margin-bottom: 24px; }
 
     .already-member { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); display: block; text-align: center; }
     .already-member a { color: var(--brand-text); text-decoration: none; font-weight: 800; }
@@ -174,7 +174,7 @@
       .divider { margin-bottom: 10px; font-size: 11px; }
       .already-member { margin-top: 10px; padding-top: 10px; color: var(--text) !important; font-weight: 500; font-size: 13px; }
       .already-member a { text-decoration: underline; }
-      #btnGoogleEntry, #btnLinkGoogle { margin-bottom: 15px !important; }
+      #btnLinkGoogle { margin-bottom: 15px !important; }
     }
   </style>
 <!-- Google tag (gtag.js) -->
@@ -282,17 +282,10 @@
             <!-- STEP 1: UNIFIED ENTRY -->
             <div id="stepUnifiedEntry">
                 <h2>Create Your Free Account</h2>
-                <p class="subtitle">Sign up securely using Google, Mobile, or Email.</p>
-                
-                <button type="button" id="btnGoogleEntry" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
-                    Continue with Google
-                </button>
-                
-                <div class="divider">or</div>
-                
-                <button type="button" id="btnPhoneEntry" class="social-btn">📱 Continue with Mobile</button>
-                
+                <p class="subtitle">Verify your mobile number, then link Google to finish your profile.</p>
+
+                <button type="button" id="btnPhoneEntry" class="main-btn">📱 Continue with Mobile</button>
+
                 <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
             </div>
 
@@ -314,6 +307,16 @@
                     <button type="submit" id="pVerifyBtn" class="main-btn">Verify Mobile</button>
                     <button type="button" class="social-btn" style="margin-top: 15px;" onclick="cancelPhoneAuth()">← Cancel</button>
                 </form>
+            </div>
+
+            <!-- STEP 3: LINK GOOGLE (mandatory, right after phone verification) -->
+            <div id="stepLinkGoogle" class="hidden">
+                <h2>One Last Step</h2>
+                <p class="subtitle">Link your Google account to securely save your name &amp; email.</p>
+                <button type="button" id="btnLinkGoogle" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
+                    Continue with Google
+                </button>
             </div>
 
             <!-- STEP 6: COMPLETE PROFILE -->
@@ -379,7 +382,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, signInWithPopup, GoogleAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, signInWithCredential, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, GoogleAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -549,6 +552,18 @@ async function evaluateAuthState(user) {
             return;
         }
 
+        // Mandatory Google linking - runs right after phone verification for
+        // brand-new signups (mobile-first flow). Pre-existing accounts that
+        // signed up via Google before this flow was inverted already have
+        // google.com in providerIds, so this is skipped for them - they go
+        // straight to Complete Profile same as before.
+        const hasGoogleLinked = providerIds.includes('google.com');
+        if (!hasGoogleLinked) {
+            console.log("[signup] Redirect decision: mandatory Google linking");
+            showSection('stepLinkGoogle');
+            return;
+        }
+
         console.log("[signup] Redirect decision: show Complete Profile card");
 
         await populateProfileForm(user, data);
@@ -585,30 +600,42 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 // 1. Unified Entry Actions
-document.getElementById("btnGoogleEntry").onclick = async () => {
-    const btn = document.getElementById("btnGoogleEntry");
-    btn.disabled = true; btn.innerHTML = "Authenticating...";
+
+const linkGoogleBtnHtml = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
+
+// Links Google onto the already phone-verified currentUser (mandatory step
+// right after phone auth in this mobile-first flow). If that Google account
+// already exists as a SEPARATE, older account (auth/credential-already-in-use
+// - e.g. someone who originally signed up the old Google-first way), offer to
+// sign into that existing account instead, mirroring the merge pattern
+// already used on the phone-linking side (pOtpForm below).
+document.getElementById("btnLinkGoogle").onclick = async () => {
+    const btn = document.getElementById("btnLinkGoogle");
+    btn.disabled = true; btn.innerHTML = "Linking...";
     try {
-        const result = await signInWithPopup(auth, provider);
+        const result = await linkWithPopup(auth.currentUser, provider);
         await evaluateAuthState(result.user);
     } catch (e) {
-        if (e.code === 'auth/account-exists-with-different-credential') {
-            const email = e.customData?.email;
-            if (email) {
+        if (e.code === 'auth/credential-already-in-use') {
+            const confirmMerge = confirm("This Google account is already registered with OlympiadQuiz. Do you want to log into that existing account instead? (You'll be asked to verify your mobile number on it if it doesn't have one yet.)");
+            if (confirmMerge) {
                 try {
-                    const methods = await fetchSignInMethodsForEmail(auth, email);
-                    alert(`An account already exists with ${email}. Please log in using ${methods.join(" or ")} to link your Google account.`);
-                } catch (fetchErr) {
-                    alert("An account already exists with the same email. Please log in using Email or Phone, then link Google.");
+                    const cred = GoogleAuthProvider.credentialFromError(e);
+                    const signInResult = await signInWithCredential(auth, cred);
+                    await evaluateAuthState(signInResult.user);
+                } catch (mergeError) {
+                    alert("Could not log into that account: " + mergeError.message);
+                    btn.disabled = false; btn.innerHTML = linkGoogleBtnHtml;
                 }
             } else {
-                alert("An account already exists with the same email. Please log in using Email or Phone, then link Google.");
+                btn.disabled = false; btn.innerHTML = linkGoogleBtnHtml;
             }
         } else if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
-            alert("Google Sign-In Failed: " + e.message);
+            alert("Google linking failed: " + e.message);
+            btn.disabled = false; btn.innerHTML = linkGoogleBtnHtml;
+        } else {
+            btn.disabled = false; btn.innerHTML = linkGoogleBtnHtml;
         }
-        btn.disabled = false;
-        btn.innerHTML = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
     }
 };
 
