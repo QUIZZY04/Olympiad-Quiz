@@ -26,6 +26,7 @@ const {
   PREMIUM_PRICE_INR,
   PREMIUM_PLAN_PERIOD,
   PREMIUM_PLAN_INTERVAL,
+  COLLECTIONS,
 } = require("./config");
 
 const RAZORPAY_API_BASE = "https://api.razorpay.com/v1";
@@ -160,6 +161,15 @@ async function setPremiumBySubscriptionId(subscriptionId, notesUid, updates) {
  * subscription.cancelled, subscription.completed, subscription.halted,
  * payment.failed. Copy the "Webhook Secret" shown there and set it via:
  *   firebase functions:secrets:set RAZORPAY_WEBHOOK_SECRET
+ *
+ * payment.failed is logged (paymentFailures collection) for visibility but
+ * deliberately does NOT revoke isPremium on its own - Razorpay auto-retries
+ * a failed renewal charge over several days before giving up, and a single
+ * failure is usually transient (temporary insufficient balance, a bank OTP
+ * timeout, etc.), not an actual cancellation. Only subscription.halted
+ * (retries exhausted), subscription.cancelled, and subscription.completed
+ * revoke access - punishing a paying customer for one transient failure
+ * that resolves itself on retry would be wrong.
  */
 exports.razorpayWebhook = onRequest({
   secrets: ["RAZORPAY_WEBHOOK_SECRET"],
@@ -209,10 +219,23 @@ exports.razorpayWebhook = onRequest({
       }
       case "subscription.cancelled":
       case "subscription.completed":
-      case "subscription.halted":
-      case "payment.failed": {
+      case "subscription.halted": {
         await setPremiumBySubscriptionId(subscriptionId, notesUid, {
           isPremium: false,
+        });
+        break;
+      }
+      case "payment.failed": {
+        // Visibility only - does NOT touch isPremium. See doc comment above.
+        const paymentEntity = req.body.payload?.payment?.entity;
+        console.warn("razorpayWebhook: payment.failed for subscription", subscriptionId, "- isPremium NOT revoked (waiting for halted/cancelled/completed).");
+        await db.collection(COLLECTIONS.PAYMENT_FAILURES).add({
+          subscriptionId,
+          uid: notesUid || null,
+          errorCode: paymentEntity?.error_code || null,
+          errorDescription: paymentEntity?.error_description || null,
+          amount: paymentEntity?.amount ?? null,
+          occurredAt: admin.firestore.FieldValue.serverTimestamp(),
         });
         break;
       }

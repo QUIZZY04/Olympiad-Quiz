@@ -16,8 +16,17 @@
  * quiz.html's <style> block (--brand, --brand-text, --surface, --border,
  * --muted, --text, --danger, --shadow-lg) so it matches the existing
  * fullscreenOverlay/warningModal look without inventing new colors.
+ *
+ * The blocked modal also opens a LIVE Firestore listener on the user's own
+ * doc while it's showing - if isPremium flips true (the webhook fires
+ * after a successful upgrade, possibly completed in a different tab), the
+ * modal clears itself immediately without the user needing to refresh or
+ * even return focus to this tab. Same auto-clear happens if the countdown
+ * simply reaches zero naturally.
  * =====================================================================
  */
+
+import { onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 let injected = false;
 
@@ -87,6 +96,7 @@ export function showRemainingNotice(remaining) {
 }
 
 let countdownTimer = null;
+let premiumUnsubscribe = null;
 
 /**
  * Full-screen modal blocking test access until unlocksAtMs. Doesn't touch
@@ -96,8 +106,13 @@ let countdownTimer = null;
  * @param {number} unlocksAtMs - epoch ms from canStartTest's response.
  * @param {() => void} onUpgrade - called when the Upgrade button is clicked.
  * @param {() => void} [onBack] - called when "Go back" is clicked.
+ * @param {{db: import("firebase/firestore").Firestore, uid: string, onResolved: () => void}} [live] -
+ *   when provided, opens a live onSnapshot listener on users/{uid} so the
+ *   modal clears itself the instant isPremium flips true (e.g. upgraded in
+ *   another tab) - onResolved is also called when the countdown reaches
+ *   zero naturally, so neither path ever needs a manual page refresh.
  */
-export function showBlockedModal(unlocksAtMs, onUpgrade, onBack) {
+export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
   injectStyles();
   let overlay = document.getElementById("pgBlockOverlay");
   if (!overlay) {
@@ -127,8 +142,9 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack) {
   function tick() {
     const remainingMs = unlocksAtMs - Date.now();
     if (remainingMs <= 0) {
-      countdownEl.textContent = "Unlocked! Refresh to start.";
+      countdownEl.textContent = "Unlocked! Loading your test...";
       clearInterval(countdownTimer);
+      if (live?.onResolved) live.onResolved();
       return;
     }
     const h = Math.floor(remainingMs / 3600000);
@@ -139,10 +155,22 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack) {
   if (countdownTimer) clearInterval(countdownTimer);
   tick();
   countdownTimer = setInterval(tick, 1000);
+
+  if (premiumUnsubscribe) { premiumUnsubscribe(); premiumUnsubscribe = null; }
+  if (live?.db && live?.uid) {
+    premiumUnsubscribe = onSnapshot(doc(live.db, "users", live.uid), (snap) => {
+      if (snap.exists() && snap.data().isPremium === true) {
+        countdownEl.textContent = "Premium activated! Loading your test...";
+        clearInterval(countdownTimer);
+        if (live.onResolved) live.onResolved();
+      }
+    });
+  }
 }
 
 export function hideBlockedModal() {
   const overlay = document.getElementById("pgBlockOverlay");
   if (overlay) overlay.style.display = "none";
   if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+  if (premiumUnsubscribe) { premiumUnsubscribe(); premiumUnsubscribe = null; }
 }

@@ -13,6 +13,17 @@ hardcoded anywhere else.
 - `subscriptions.js` - `createPremiumPlan` (one-time bootstrap), `createPremiumSubscription`,
   `razorpayWebhook`.
 
+## Premium revocation vs. payment failures
+
+`isPremium` is only ever revoked on `subscription.halted` (Razorpay's retries
+exhausted), `subscription.cancelled`, or `subscription.completed`. A single
+`payment.failed` event does **not** revoke access - Razorpay auto-retries a failed
+renewal charge over several days, and one failure is usually transient (temporary
+insufficient balance, a bank OTP timeout, etc.), not an actual cancellation. Failures
+are still logged to the `paymentFailures` collection (subscriptionId, uid, Razorpay's
+error code/description, timestamp) for visibility - check that collection if you want
+to see how often renewals are failing, or build an admin view over it later.
+
 ## How the rolling window is computed
 
 `canStartTest` queries `testAttempts` for `uid == <user> AND startedAt >= (now - 4h)`,

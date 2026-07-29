@@ -46,6 +46,7 @@ const PREMIUM_PLAN_ID = process.env.RAZORPAY_PREMIUM_PLAN_ID || null;
 // ---------------------------------------------------------------------
 const COLLECTIONS = {
   TEST_ATTEMPTS: "testAttempts",
+  PAYMENT_FAILURES: "paymentFailures", // visibility log only - never gates isPremium on its own
 };
 
 module.exports = {

@@ -1323,7 +1323,14 @@ onAuthStateChanged(auth, async(user)=>{
             const { data: gate } = await canStartTest({ testType });
             if (!gate.allowed) {
                 document.getElementById('fullscreenOverlay').style.display = 'none';
-                showBlockedModal(gate.unlocksAt, handleUpgradeClick, () => window.location.replace("dashboard.html"));
+                showBlockedModal(gate.unlocksAt, handleUpgradeClick, () => window.location.replace("dashboard.html"), {
+                    db, uid: user.uid,
+                    // Fires the instant isPremium flips true (live listener) OR
+                    // the countdown naturally hits zero - reload re-runs the
+                    // whole gate fresh rather than trying to resume mid-flow,
+                    // simplest way to guarantee a clean state either way.
+                    onResolved: () => window.location.reload()
+                });
                 return;
             }
             currentAttemptId = gate.attemptId || null;

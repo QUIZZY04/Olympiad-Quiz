@@ -209,5 +209,14 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // ========================
+    // 18. Payment Failures (Premium webhook visibility log)
+    // ========================
+    // Server-only, same reasoning as testAttempts above - only
+    // razorpayWebhook (Admin SDK) ever writes here.
+    match /paymentFailures/{docId} {
+      allow read, write: if false;
+    }
+
   }
 }
