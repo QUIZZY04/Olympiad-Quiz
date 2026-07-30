@@ -291,8 +291,15 @@ box-shadow: var(--shadow-md);
     </div>
 </nav>
 
-<!-- Mobile sticky subject+timer bar (hidden on desktop) -->
-<div id="mobileQuizBar">
+<!-- Mobile sticky subject+timer bar (hidden on desktop via its own CSS
+     rule). Also force-hidden inline until canStartTest confirms not
+     blocked, same reasoning as quiz-top-bar/quiz-container below - on
+     mobile widths this would otherwise show blank/placeholder content
+     during the gate check. Reveal clears the inline override (rather than
+     setting a fixed value), so the existing CSS (hidden on desktop, flex
+     on mobile) still decides visibility correctly for the current
+     viewport. -->
+<div id="mobileQuizBar" style="display:none;">
     <span id="mobileQuizSubject"></span>
     <span class="mob-timer">⏳ <span id="timer-mobile">--:--</span></span>
 </div>
@@ -346,7 +353,11 @@ box-shadow: var(--shadow-md);
 </aside>
 </main>
 
-<div style="max-width:1400px; margin:20px auto 0; padding:0 5%; text-align:left;">
+<!-- Hidden by default alongside .quiz-top-bar/.quiz-container until
+     canStartTest confirms not blocked - otherwise this floated visibly on
+     its own during the gate check, showing as a stray "Back to Selection"
+     button/screen while everything else was (correctly) hidden. -->
+<div id="quizBackToSelectionWrap" style="display:none; max-width:1400px; margin:20px auto 0; padding:0 5%; text-align:left;">
   <button class="btn btn-prev" style="max-width:240px;" onclick="goBackToSelection()">
     Back to Selection
   </button>
@@ -1314,17 +1325,20 @@ onAuthStateChanged(auth, async(user)=>{
     }
 
     // Not blocked (or the check doesn't apply, e.g. championship/admin) -
-    // reveal the header + quiz container now that we know it's safe to.
-    // Clearing the inline style (rather than setting "flex") lets the
-    // existing CSS class rules (including the mobile @media overrides)
-    // take over exactly as if display:none was never set.
-    // Both elements' flex layout is only ever declared inline (there's no
-    // separate .quiz-top-bar/.quiz-container display rule to "fall back
-    // to"), so clearing to "" would revert to the browser default
-    // (block), breaking the title/timer and question/palette flex layout -
-    // must restore "flex" explicitly, matching each element's original value.
+    // reveal the header, quiz container, and "Back to Selection" button now
+    // that we know it's safe to. The first two must be restored to "flex"
+    // explicitly (not cleared to "") - their flex layout is only ever
+    // declared inline, with no separate CSS class rule to fall back to, so
+    // clearing to "" would revert them to the browser default (block) and
+    // break the title/timer and question/palette layout.
     document.querySelector('.quiz-top-bar').style.display = "flex";
     document.querySelector('main.quiz-container').style.display = "flex";
+    document.getElementById('quizBackToSelectionWrap').style.display = "block";
+    // #mobileQuizBar has its own real CSS rule (hidden on desktop, flex on
+    // mobile via @media) to fall back to, so clearing the inline override
+    // (rather than forcing a fixed value) lets that existing rule decide
+    // visibility correctly for whatever the current viewport is.
+    document.getElementById('mobileQuizBar').style.display = "";
 
     await loadQuestions();
     if (questions.length > 0) {
