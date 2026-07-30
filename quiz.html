@@ -1371,8 +1371,13 @@ onAuthStateChanged(auth, async(user)=>{
     // Clearing the inline style (rather than setting "flex") lets the
     // existing CSS class rules (including the mobile @media overrides)
     // take over exactly as if display:none was never set.
-    document.querySelector('.quiz-top-bar').style.display = "";
-    document.querySelector('main.quiz-container').style.display = "";
+    // Both elements' flex layout is only ever declared inline (there's no
+    // separate .quiz-top-bar/.quiz-container display rule to "fall back
+    // to"), so clearing to "" would revert to the browser default
+    // (block), breaking the title/timer and question/palette flex layout -
+    // must restore "flex" explicitly, matching each element's original value.
+    document.querySelector('.quiz-top-bar').style.display = "flex";
+    document.querySelector('main.quiz-container').style.display = "flex";
 
     await loadQuestions();
     if (questions.length > 0) {
