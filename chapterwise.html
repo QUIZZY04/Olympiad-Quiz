@@ -234,6 +234,7 @@
         }
     </style>
     <script type="module" src="auth-guard.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 </head>
 <body>
 <nav class="navbar">
@@ -1214,7 +1215,10 @@
             localStorage.setItem("isChampionship", "false");
             localStorage.removeItem("isHotsTest");
             localStorage.removeItem("activeHotsId");
-            window.location.href = "quiz.html";
+            // Checks the free-tier limit BEFORE navigating - a blocked user
+            // sees the pricing modal right here instead of quiz.html opening
+            // and bouncing them back.
+            window.__guardQuizNavigation("chapterwise", () => { window.location.href = "quiz.html"; });
         };
 
         if (window.AuthGuard) {
@@ -1237,6 +1241,7 @@
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { guardQuizNavigation } from "./premiumGate.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -1248,6 +1253,11 @@
     };
 
     const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+    // Exposed for confirmStartQuiz() (a classic, non-module script below) to
+    // call - checks the free-tier limit BEFORE navigating to quiz.html, so a
+    // blocked user sees the pricing modal right here instead of quiz.html
+    // opening and bouncing them back.
+    window.__guardQuizNavigation = (testType, navigate) => guardQuizNavigation(app, testType, navigate);
     const auth = getAuth(app);
     const db = getFirestore(app);
 

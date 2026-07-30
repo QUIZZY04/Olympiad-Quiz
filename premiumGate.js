@@ -26,7 +26,9 @@
  * =====================================================================
  */
 
-import { onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { onSnapshot, doc, getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 
 let injected = false;
 
@@ -281,4 +283,95 @@ export function hideBlockedModal() {
   if (overlay) overlay.style.display = "none";
   if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
   if (premiumUnsubscribe) { premiumUnsubscribe(); premiumUnsubscribe = null; }
+}
+
+/**
+ * Shared Razorpay-subscription-checkout flow for the Silver/Gold plan
+ * buttons - one implementation used by every page that can show the
+ * pricing modal (quiz.html, chapterwise.html, mock.html, hots.html)
+ * instead of each duplicating the same Checkout.js wiring. Requires
+ * https://checkout.razorpay.com/v1/checkout.js to already be loaded on
+ * the page. isPremium itself is only ever set by the razorpayWebhook
+ * Cloud Function once Razorpay confirms the first charge, never here.
+ * @param {import("firebase/app").FirebaseApp} app
+ * @param {"silver"|"gold"} tier
+ */
+export async function startUpgradeCheckout(app, tier) {
+  const auth = getAuth(app);
+  const functions = getFunctions(app);
+  const btn = document.getElementById(tier === "gold" ? "pgGoldBtn" : "pgSilverBtn");
+  const originalText = btn ? btn.textContent : "";
+  if (btn) { btn.disabled = true; btn.textContent = "Preparing checkout..."; }
+  const tierLabel = tier === "gold" ? "Gold - ₹1999/year" : "Silver - ₹299/month";
+  try {
+    const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
+    const { data: sub } = await createPremiumSubscription({ tier });
+
+    const options = {
+      key: sub.keyId,
+      subscription_id: sub.subscriptionId,
+      name: "OlympiadQuiz",
+      description: `Premium ${tierLabel} - unlimited test attempts`,
+      handler: function () {
+        hideBlockedModal();
+        alert("Payment received! Premium activates within a minute or two once it's confirmed - refresh the page then.");
+      },
+      modal: {
+        ondismiss: function () {
+          if (btn) { btn.disabled = false; btn.textContent = originalText; }
+        }
+      },
+      prefill: {
+        name: auth.currentUser?.displayName || "Student",
+        email: auth.currentUser?.email || "",
+        contact: auth.currentUser?.phoneNumber || ""
+      },
+      theme: { color: tier === "gold" ? "#d9a406" : "#ff6b00" }
+    };
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function () {
+      alert("Payment was not completed.");
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
+    });
+    rzp.open();
+  } catch (err) {
+    console.error("Upgrade flow failed:", err);
+    alert("Couldn't start checkout right now. Please try again in a moment.");
+    if (btn) { btn.disabled = false; btn.textContent = originalText; }
+  }
+}
+
+/**
+ * Call this right before navigating a selection page (chapterwise.html/
+ * mock.html/hots.html) to quiz.html. Runs a DRY-RUN canStartTest check -
+ * dryRun never creates an attempt record, quiz.html's own (non-dry-run)
+ * check does that - so a blocked user sees the pricing modal right here,
+ * on the selection page, instead of quiz.html opening and bouncing them
+ * back. Fails OPEN (navigates anyway) on any check error, same reasoning
+ * as quiz.html's own gate: this is a business/UX limit, not a security
+ * gate, so a transient failure should never block a legitimate test.
+ * @param {import("firebase/app").FirebaseApp} app
+ * @param {"chapterwise"|"mock"|"hots"} testType
+ * @param {() => void} navigate - called once it's safe to go to quiz.html.
+ */
+export async function guardQuizNavigation(app, testType, navigate) {
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  if (!user) { navigate(); return; } // not logged in - the page's own login-guard handles this
+  try {
+    const functions = getFunctions(app);
+    const canStartTest = httpsCallable(functions, 'canStartTest');
+    const { data: gate } = await canStartTest({ testType, dryRun: true });
+    if (!gate.allowed) {
+      showBlockedModal(gate.unlocksAt, (tier) => startUpgradeCheckout(app, tier), () => hideBlockedModal(), {
+        db: getFirestore(app),
+        uid: user.uid,
+        onResolved: () => { hideBlockedModal(); navigate(); },
+      });
+      return;
+    }
+  } catch (e) {
+    console.error("guardQuizNavigation: canStartTest dry-run failed - allowing:", e);
+  }
+  navigate();
 }

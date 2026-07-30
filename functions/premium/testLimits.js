@@ -57,8 +57,17 @@ async function isPremiumActive(uid) {
 
 /**
  * Callable. Call before rendering any chapterwise/mock/HOTS test.
- * @param {{testType: string, testId?: string}} request.data
- * @returns {{allowed: true, attemptId: string, isPremium?: true, remaining?: number, limit?: number, windowHours?: number} |
+ *
+ * @param {{testType: string, testId?: string, dryRun?: boolean}} request.data
+ *   dryRun:true checks the limit WITHOUT creating an attempt record - used
+ *   by the selection pages (chapterwise.html/mock.html/hots.html) to decide
+ *   whether to navigate to quiz.html at all, so a blocked user sees the
+ *   pricing modal right there instead of a flash of quiz.html before it
+ *   bounces them back. quiz.html itself still calls this WITHOUT dryRun
+ *   right before rendering - that's the one authoritative, attempt-
+ *   creating call; the dry-run pre-check never writes anything, so the
+ *   two calls together never double-count a single test as 2 attempts.
+ * @returns {{allowed: true, attemptId?: string, isPremium?: true, remaining?: number, limit?: number, windowHours?: number} |
  *           {allowed: false, unlocksAt: number, limit: number, windowHours: number}}
  */
 exports.canStartTest = onCall(async (request) => {
@@ -66,7 +75,7 @@ exports.canStartTest = onCall(async (request) => {
     throw new HttpsError("unauthenticated", "You must be logged in to start a test.");
   }
   const uid = request.auth.uid;
-  const { testType, testId } = request.data || {};
+  const { testType, testId, dryRun } = request.data || {};
 
   // Only chapterwise/mock/HOTS are rate-limited - live championship tests
   // already have their own per-session Razorpay paywall and aren't
@@ -92,6 +101,7 @@ exports.canStartTest = onCall(async (request) => {
   ]);
 
   if (isPremium) {
+    if (dryRun) return { allowed: true, isPremium: true };
     const attemptRef = await db.collection(COLLECTIONS.TEST_ATTEMPTS).add({
       uid,
       testId: testId || null,
@@ -113,6 +123,15 @@ exports.canStartTest = onCall(async (request) => {
     return {
       allowed: false,
       unlocksAt: oldestStartMs + WINDOW_MS,
+      limit: FREE_TEST_LIMIT,
+      windowHours: FREE_TEST_WINDOW_HOURS,
+    };
+  }
+
+  if (dryRun) {
+    return {
+      allowed: true,
+      remaining: FREE_TEST_LIMIT - counted.length - 1,
       limit: FREE_TEST_LIMIT,
       windowHours: FREE_TEST_WINDOW_HOURS,
     };

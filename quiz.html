@@ -392,7 +392,7 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 import { getFirestore, collection, query, where, getDocs, addDoc, serverTimestamp, doc, getDoc, deleteDoc, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
 import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-import { showRemainingNotice, showBlockedModal, hideBlockedModal } from "./premiumGate.js";
+import { showRemainingNotice, showBlockedModal, hideBlockedModal, startUpgradeCheckout } from "./premiumGate.js";
 
 const firebaseConfig={
 apiKey:"AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -1218,59 +1218,6 @@ function goBackToSelection() {
     }
 }
 
-/** Upgrade-to-Premium flow, triggered from the blocked-test pricing table
- * (one of the Silver/Gold plan buttons). Creates a Razorpay subscription
- * for the logged-in user against the chosen tier (server-side, via the
- * createPremiumSubscription callable) then opens Razorpay Checkout in
- * subscription mode (subscription_id instead of order_id) - same
- * checkout.js script and options shape already used for one-off live-test
- * payments in live.html, just swapping which id is passed. isPremium
- * itself is only ever set by the razorpayWebhook Cloud Function once
- * Razorpay confirms the first charge, never set from this client code.
- * @param {"silver"|"gold"} tier
- */
-async function handleUpgradeClick(tier) {
-    const btn = document.getElementById(tier === "gold" ? "pgGoldBtn" : "pgSilverBtn");
-    const originalText = btn ? btn.textContent : "";
-    if (btn) { btn.disabled = true; btn.textContent = "Preparing checkout..."; }
-    const tierLabel = tier === "gold" ? "Gold - ₹1999/year" : "Silver - ₹299/month";
-    try {
-        const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
-        const { data: sub } = await createPremiumSubscription({ tier });
-
-        const options = {
-            key: sub.keyId,
-            subscription_id: sub.subscriptionId,
-            name: "OlympiadQuiz",
-            description: `Premium ${tierLabel} - unlimited test attempts`,
-            handler: function() {
-                hideBlockedModal();
-                alert("Payment received! Premium activates within a minute or two once it's confirmed - refresh the page then.");
-            },
-            modal: {
-                ondismiss: function() {
-                    if (btn) { btn.disabled = false; btn.textContent = originalText; }
-                }
-            },
-            prefill: {
-                name: auth.currentUser?.displayName || "Student",
-                email: auth.currentUser?.email || "",
-                contact: auth.currentUser?.phoneNumber || ""
-            },
-            theme: { color: tier === "gold" ? "#d9a406" : "#ff6b00" }
-        };
-        const rzp = new Razorpay(options);
-        rzp.on('payment.failed', function() {
-            alert("Payment was not completed.");
-            if (btn) { btn.disabled = false; btn.textContent = originalText; }
-        });
-        rzp.open();
-    } catch (err) {
-        console.error("Upgrade flow failed:", err);
-        alert("Couldn't start checkout right now. Please try again in a moment.");
-        if (btn) { btn.disabled = false; btn.textContent = originalText; }
-    }
-}
 
 onAuthStateChanged(auth, async(user)=>{
     if(!user){ 
@@ -1351,7 +1298,7 @@ onAuthStateChanged(auth, async(user)=>{
 
     if (gateResult && !gateResult.allowed) {
         document.getElementById('fullscreenOverlay').style.display = 'none';
-        showBlockedModal(gateResult.unlocksAt, handleUpgradeClick, () => window.location.replace("dashboard.html"), {
+        showBlockedModal(gateResult.unlocksAt, (tier) => startUpgradeCheckout(app, tier), () => window.location.replace("dashboard.html"), {
             db, uid: user.uid,
             // Fires the instant isPremium flips true (live listener) OR
             // the countdown naturally hits zero - reload re-runs the
