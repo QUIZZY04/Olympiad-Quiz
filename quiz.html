@@ -297,7 +297,7 @@ box-shadow: var(--shadow-md);
     <span class="mob-timer">⏳ <span id="timer-mobile">--:--</span></span>
 </div>
 
-<div style="max-width: 1400px; width: 100%; margin: 20px auto 5px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-top-bar">
+<div style="max-width: 1400px; width: 100%; margin: 20px auto 5px; padding: 0 5%; display: none; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;" class="quiz-top-bar">
     <div id="quizHeaderInfo" style="text-align: left; margin: 0;">
         <h1 id="quizTitle" style="font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 0; line-height: 1.2; letter-spacing: -0.01em;"></h1>
         <p id="quizSubtitle" style="font-size: 0.9rem; color: var(--muted); margin-top: 5px;"></p>
@@ -306,7 +306,10 @@ box-shadow: var(--shadow-md);
     <div class="desktop-timer">⏳ <span id="timer-desktop">--:--</span></div>
 </div>
 
-<main class="quiz-container">
+<!-- Hidden by default (display:none inline above/below) until canStartTest
+     confirms the user isn't blocked - prevents a flash of the quiz
+     header/container before the free-test-limit pricing modal appears. -->
+<main class="quiz-container" style="display:none;">
 <section class="question-section section">
 <div style="display:flex;justify-content:space-between; align-items: center; font-weight:700; font-size:14px; color:var(--muted);">
     <span id="displaySubject">Progress</span>
@@ -1362,6 +1365,14 @@ onAuthStateChanged(auth, async(user)=>{
         currentAttemptId = gateResult.attemptId || null;
         if (gateResult.remaining === 1) showRemainingNotice(gateResult.remaining);
     }
+
+    // Not blocked (or the check doesn't apply, e.g. championship/admin) -
+    // reveal the header + quiz container now that we know it's safe to.
+    // Clearing the inline style (rather than setting "flex") lets the
+    // existing CSS class rules (including the mobile @media overrides)
+    // take over exactly as if display:none was never set.
+    document.querySelector('.quiz-top-bar').style.display = "";
+    document.querySelector('main.quiz-container').style.display = "";
 
     await loadQuestions();
     if (questions.length > 0) {
