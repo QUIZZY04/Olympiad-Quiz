@@ -1283,8 +1283,17 @@ onAuthStateChanged(auth, async(user)=>{
         document.getElementById("deleteQuestionBtn").style.display = "inline-block";
     }
 
-    // Block 3rd+ test attempt when profile is incomplete
-    if (!isAdmin) {
+    // Profile-completeness check and the free-tier rate-limit check used to
+    // run one after another (two separate network round trips stacked up
+    // before any question could render). They don't depend on each other's
+    // result, so they now run CONCURRENTLY - cuts roughly half the combined
+    // wait off every test start. Trade-off: in the rare case a user both
+    // has an incomplete profile AND already has 2+ historical results (the
+    // only combination that triggers the redirect below), canStartTest's
+    // attempt record still gets created even though we redirect instead of
+    // testing - a minor, rare inefficiency, not a correctness bug.
+    let profileRedirectNeeded = false;
+    const profileCheckPromise = isAdmin ? Promise.resolve() : (async () => {
         try {
             const userDoc = await getDoc(doc(db, 'users', user.uid));
             const userData = userDoc.exists() ? userDoc.data() : {};
@@ -1304,45 +1313,54 @@ onAuthStateChanged(auth, async(user)=>{
 
             if (!profileComplete) {
                 const snap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid)));
-                if (snap.size >= 2) {
-                    window.location.replace('profile.html?complete=1');
-                    return;
-                }
+                if (snap.size >= 2) profileRedirectNeeded = true;
             }
         } catch(e) {
             // If check fails, allow the test to proceed
         }
-    }
+    })();
 
     // Free-tier rate limit - server-enforced (canStartTest), championship
     // tests are exempt (they already have their own per-session Razorpay
     // paywall) and so is admin. Fails OPEN on a network/function error -
     // this is a business/UX limit, not a security gate, so a transient
     // failure here should never be able to block a legitimate test.
-    if (!isChampionship && !isAdmin) {
+    let gateResult = null;
+    const gateCheckPromise = (isChampionship || isAdmin) ? Promise.resolve() : (async () => {
         const isHotsTest = localStorage.getItem("isHotsTest") === "true";
         const isMockTest = localStorage.getItem("isMockTest") === "true";
         const testType = isHotsTest ? "hots" : (isMockTest ? "mock" : "chapterwise");
         try {
             const canStartTest = httpsCallable(functions, 'canStartTest');
             const { data: gate } = await canStartTest({ testType });
-            if (!gate.allowed) {
-                document.getElementById('fullscreenOverlay').style.display = 'none';
-                showBlockedModal(gate.unlocksAt, handleUpgradeClick, () => window.location.replace("dashboard.html"), {
-                    db, uid: user.uid,
-                    // Fires the instant isPremium flips true (live listener) OR
-                    // the countdown naturally hits zero - reload re-runs the
-                    // whole gate fresh rather than trying to resume mid-flow,
-                    // simplest way to guarantee a clean state either way.
-                    onResolved: () => window.location.reload()
-                });
-                return;
-            }
-            currentAttemptId = gate.attemptId || null;
-            if (gate.remaining === 1) showRemainingNotice(gate.remaining);
+            gateResult = gate;
         } catch (gateError) {
             console.error("canStartTest failed - allowing test to proceed:", gateError);
         }
+    })();
+
+    await Promise.all([profileCheckPromise, gateCheckPromise]);
+
+    if (profileRedirectNeeded) {
+        window.location.replace('profile.html?complete=1');
+        return;
+    }
+
+    if (gateResult && !gateResult.allowed) {
+        document.getElementById('fullscreenOverlay').style.display = 'none';
+        showBlockedModal(gateResult.unlocksAt, handleUpgradeClick, () => window.location.replace("dashboard.html"), {
+            db, uid: user.uid,
+            // Fires the instant isPremium flips true (live listener) OR
+            // the countdown naturally hits zero - reload re-runs the
+            // whole gate fresh rather than trying to resume mid-flow,
+            // simplest way to guarantee a clean state either way.
+            onResolved: () => window.location.reload()
+        });
+        return;
+    }
+    if (gateResult) {
+        currentAttemptId = gateResult.attemptId || null;
+        if (gateResult.remaining === 1) showRemainingNotice(gateResult.remaining);
     }
 
     await loadQuestions();

@@ -75,7 +75,23 @@ exports.canStartTest = onCall(async (request) => {
     return { allowed: true };
   }
 
-  if (await isPremiumActive(uid)) {
+  // The premium check and the attempt-window query are independent reads -
+  // run them concurrently instead of sequentially (only query attempts
+  // *after* confirming non-premium) to cut this function's own latency
+  // roughly in half for the common case. Costs a handful of extra reads
+  // for premium users (whose query result then goes unused), which is a
+  // negligible trade for a function on the hot path of every test start.
+  const windowStart = admin.firestore.Timestamp.fromMillis(Date.now() - WINDOW_MS);
+  const [isPremium, snap] = await Promise.all([
+    isPremiumActive(uid),
+    db.collection(COLLECTIONS.TEST_ATTEMPTS)
+      .where("uid", "==", uid)
+      .where("startedAt", ">=", windowStart)
+      .orderBy("startedAt", "asc")
+      .get(),
+  ]);
+
+  if (isPremium) {
     const attemptRef = await db.collection(COLLECTIONS.TEST_ATTEMPTS).add({
       uid,
       testId: testId || null,
@@ -88,13 +104,6 @@ exports.canStartTest = onCall(async (request) => {
     });
     return { allowed: true, attemptId: attemptRef.id, isPremium: true };
   }
-
-  const windowStart = admin.firestore.Timestamp.fromMillis(Date.now() - WINDOW_MS);
-  const snap = await db.collection(COLLECTIONS.TEST_ATTEMPTS)
-    .where("uid", "==", uid)
-    .where("startedAt", ">=", windowStart)
-    .orderBy("startedAt", "asc")
-    .get();
 
   const counted = filterCountedAttempts(snap.docs);
 
