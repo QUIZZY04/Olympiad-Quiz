@@ -1215,33 +1215,38 @@ function goBackToSelection() {
     }
 }
 
-/** Upgrade-to-Premium flow, triggered from the blocked-test modal. Creates
- * a Razorpay subscription for the logged-in user (server-side, via the
+/** Upgrade-to-Premium flow, triggered from the blocked-test pricing table
+ * (one of the Silver/Gold plan buttons). Creates a Razorpay subscription
+ * for the logged-in user against the chosen tier (server-side, via the
  * createPremiumSubscription callable) then opens Razorpay Checkout in
  * subscription mode (subscription_id instead of order_id) - same
  * checkout.js script and options shape already used for one-off live-test
  * payments in live.html, just swapping which id is passed. isPremium
  * itself is only ever set by the razorpayWebhook Cloud Function once
- * Razorpay confirms the first charge, never set from this client code. */
-async function handleUpgradeClick() {
-    const btn = document.getElementById('pgUpgradeBtn');
-    if (btn) { btn.disabled = true; btn.innerText = "Preparing checkout..."; }
+ * Razorpay confirms the first charge, never set from this client code.
+ * @param {"silver"|"gold"} tier
+ */
+async function handleUpgradeClick(tier) {
+    const btn = document.getElementById(tier === "gold" ? "pgGoldBtn" : "pgSilverBtn");
+    const originalText = btn ? btn.textContent : "";
+    if (btn) { btn.disabled = true; btn.textContent = "Preparing checkout..."; }
+    const tierLabel = tier === "gold" ? "Gold - ₹1999/year" : "Silver - ₹299/month";
     try {
         const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
-        const { data: sub } = await createPremiumSubscription();
+        const { data: sub } = await createPremiumSubscription({ tier });
 
         const options = {
             key: sub.keyId,
             subscription_id: sub.subscriptionId,
             name: "OlympiadQuiz",
-            description: "Premium - unlimited test attempts (₹299/month)",
+            description: `Premium ${tierLabel} - unlimited test attempts`,
             handler: function() {
                 hideBlockedModal();
                 alert("Payment received! Premium activates within a minute or two once it's confirmed - refresh the page then.");
             },
             modal: {
                 ondismiss: function() {
-                    if (btn) { btn.disabled = false; btn.innerText = "⭐ Upgrade to Premium - ₹299/month, unlimited tests"; }
+                    if (btn) { btn.disabled = false; btn.textContent = originalText; }
                 }
             },
             prefill: {
@@ -1249,18 +1254,18 @@ async function handleUpgradeClick() {
                 email: auth.currentUser?.email || "",
                 contact: auth.currentUser?.phoneNumber || ""
             },
-            theme: { color: "#ff6b00" }
+            theme: { color: tier === "gold" ? "#d9a406" : "#ff6b00" }
         };
         const rzp = new Razorpay(options);
         rzp.on('payment.failed', function() {
             alert("Payment was not completed.");
-            if (btn) { btn.disabled = false; btn.innerText = "⭐ Upgrade to Premium - ₹299/month, unlimited tests"; }
+            if (btn) { btn.disabled = false; btn.textContent = originalText; }
         });
         rzp.open();
     } catch (err) {
         console.error("Upgrade flow failed:", err);
         alert("Couldn't start checkout right now. Please try again in a moment.");
-        if (btn) { btn.disabled = false; btn.innerText = "⭐ Upgrade to Premium - ₹299/month, unlimited tests"; }
+        if (btn) { btn.disabled = false; btn.textContent = originalText; }
     }
 }
 

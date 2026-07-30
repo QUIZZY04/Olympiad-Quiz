@@ -50,28 +50,79 @@ function injectStyles() {
     #pgBlockOverlay {
       display: none; position: fixed; inset: 0; z-index: 10500;
       background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(5px);
-      align-items: center; justify-content: center; padding: 20px;
+      align-items: center; justify-content: center; padding: 24px;
+      overflow-y: auto;
     }
     #pgBlockOverlay .pg-box {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 32px 28px; max-width: 420px; width: 100%;
-      text-align: center; box-shadow: var(--shadow-lg, 0 20px 40px rgba(0,0,0,0.3));
+      border-radius: 24px; padding: 40px 44px; max-width: 980px; width: 100%;
+      text-align: center; box-shadow: var(--shadow-lg, 0 25px 50px rgba(0,0,0,0.35));
+      margin: auto;
     }
-    #pgBlockOverlay .pg-icon { font-size: 44px; margin-bottom: 12px; }
-    #pgBlockOverlay h2 { color: var(--brand-text); font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
-    #pgBlockOverlay p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
+    #pgBlockOverlay .pg-icon { font-size: 48px; margin-bottom: 14px; }
+    #pgBlockOverlay h2 { color: var(--brand-text); font-size: 1.7rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em; }
+    #pgBlockOverlay .pg-lead { color: var(--muted); font-size: 1rem; line-height: 1.5; margin-bottom: 22px; }
     #pgCountdown {
-      font-size: 2rem; font-weight: 800; color: var(--danger, #ef4444);
+      font-size: 2.1rem; font-weight: 800; color: var(--danger, #ef4444);
       background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2);
-      border-radius: 14px; padding: 14px; margin-bottom: 22px; letter-spacing: 1px;
+      border-radius: 14px; padding: 14px; margin: 0 auto 30px; letter-spacing: 1px;
+      max-width: 320px;
     }
-    #pgBlockOverlay .pg-upgrade-btn {
-      width: 100%; padding: 14px 16px; background: var(--brand); color: #111827;
-      border: none; border-radius: 12px; font-weight: 800; font-size: 15px;
-      cursor: pointer; margin-bottom: 10px; transition: 0.2s;
+    #pgBlockOverlay .pg-plans-heading {
+      font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); margin-bottom: 18px;
     }
-    #pgBlockOverlay .pg-upgrade-btn:hover { transform: translateY(-2px); }
+    #pgBlockOverlay .pg-plans {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-bottom: 24px; align-items: stretch;
+    }
+    #pgBlockOverlay .pg-plan {
+      background: var(--bg, #f8fafc); border: 1.5px solid var(--border);
+      border-radius: 18px; padding: 26px 20px; display: flex; flex-direction: column;
+      text-align: left; position: relative;
+    }
+    #pgBlockOverlay .pg-plan-gold {
+      background: linear-gradient(180deg, rgba(217,164,6,0.08), rgba(217,164,6,0.02));
+      border: 2px solid #d9a406; transform: scale(1.03);
+      box-shadow: 0 12px 28px rgba(217,164,6,0.18);
+    }
+    #pgBlockOverlay .pg-plan-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: #d9a406; color: #fff; font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 14px;
+      border-radius: 999px; white-space: nowrap; box-shadow: 0 4px 8px rgba(217,164,6,0.35);
+    }
+    #pgBlockOverlay .pg-plan-name { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+    #pgBlockOverlay .pg-plan-gold .pg-plan-name { color: #a3760a; }
+    #pgBlockOverlay .pg-plan-price { font-size: 1.9rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+    #pgBlockOverlay .pg-plan-price span { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+    #pgBlockOverlay .pg-plan-save { font-size: 0.78rem; font-weight: 700; color: #15803d; margin-top: 4px; margin-bottom: 4px; }
+    #pgBlockOverlay .pg-plan-features { list-style: none; margin: 16px 0 20px; padding: 0; flex: 1; }
+    #pgBlockOverlay .pg-plan-features li {
+      display: flex; align-items: flex-start; gap: 8px; font-size: 0.85rem;
+      color: var(--text); margin-bottom: 10px; line-height: 1.35;
+    }
+    #pgBlockOverlay .pg-plan-features li.pg-feature-off { color: var(--muted); }
+    #pgBlockOverlay .pg-feature-icon { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; margin-top: 1px; }
+    #pgBlockOverlay .pg-feature-icon.pg-yes { background: #dcfce7; color: #15803d; }
+    #pgBlockOverlay .pg-feature-icon.pg-no { background: var(--border); color: var(--muted); }
+    #pgBlockOverlay .pg-plan-btn {
+      width: 100%; padding: 12px 14px; border-radius: 10px; font-weight: 800;
+      font-size: 0.9rem; cursor: pointer; border: 1.5px solid var(--brand);
+      background: var(--surface); color: var(--brand-text); transition: 0.2s;
+    }
+    #pgBlockOverlay .pg-plan-btn:hover { background: var(--subtle, #fff7ed); }
+    #pgBlockOverlay .pg-plan-btn-gold { background: #d9a406; border-color: #d9a406; color: #fff; }
+    #pgBlockOverlay .pg-plan-btn-gold:hover { background: #b8890a; }
+    #pgBlockOverlay .pg-plan-btn-disabled { background: var(--border); border-color: var(--border); color: var(--muted); cursor: default; }
+    #pgBlockOverlay .pg-plan-btn-disabled:hover { background: var(--border); }
     #pgBlockOverlay .pg-back-link { color: var(--muted); font-size: 13px; text-decoration: underline; cursor: pointer; background: none; border: none; }
+
+    @media (max-width: 760px) {
+      #pgBlockOverlay .pg-box { padding: 28px 20px; }
+      #pgBlockOverlay .pg-plans { grid-template-columns: 1fr; }
+      #pgBlockOverlay .pg-plan-gold { transform: none; }
+    }
   `;
   document.head.appendChild(style);
 }
@@ -98,13 +149,29 @@ export function showRemainingNotice(remaining) {
 let countdownTimer = null;
 let premiumUnsubscribe = null;
 
+// Pricing display copy - mirrors functions/premium/config.js's PREMIUM_TIERS.
+// If those prices ever change, update both places (backend is the source
+// of truth for what's actually charged; this is display-only).
+const SILVER_PRICE_INR = 299;
+const GOLD_PRICE_INR = 1999;
+const GOLD_SAVINGS_PCT = Math.round((1 - GOLD_PRICE_INR / (SILVER_PRICE_INR * 12)) * 100);
+
+function featureLi(text, included) {
+  const icon = included
+    ? `<span class="pg-feature-icon pg-yes">&#10003;</span>`
+    : `<span class="pg-feature-icon pg-no">&#8211;</span>`;
+  return `<li class="${included ? "" : "pg-feature-off"}">${icon}<span>${text}</span></li>`;
+}
+
 /**
- * Full-screen modal blocking test access until unlocksAtMs. Doesn't touch
- * navigation (no history/redirect manipulation) - the user can still use
- * the navbar/back button to go elsewhere, they just can't get past this
- * overlay to reach the quiz itself.
+ * Full-screen modal blocking test access until unlocksAtMs, showing a
+ * professional 3-column pricing table (Current/Silver/Gold) so the
+ * upgrade decision is presented clearly, not squeezed into an afterthought
+ * button. Doesn't touch navigation (no history/redirect manipulation) -
+ * the user can still use the navbar/back button to go elsewhere, they
+ * just can't get past this overlay to reach the quiz itself.
  * @param {number} unlocksAtMs - epoch ms from canStartTest's response.
- * @param {() => void} onUpgrade - called when the Upgrade button is clicked.
+ * @param {(tier: "silver"|"gold") => void} onUpgrade - called with the chosen tier when a plan button is clicked.
  * @param {() => void} [onBack] - called when "Go back" is clicked.
  * @param {{db: import("firebase/firestore").Firestore, uid: string, onResolved: () => void}} [live] -
  *   when provided, opens a live onSnapshot listener on users/{uid} so the
@@ -122,15 +189,56 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
       <div class="pg-box">
         <div class="pg-icon">⏱️</div>
         <h2>Free Test Limit Reached</h2>
-        <p>You've used your 2 free tests for this 4-hour window. Your next free test unlocks in:</p>
+        <p class="pg-lead">You've used your 2 free tests for this 4-hour window. Your next free test unlocks in:</p>
         <div id="pgCountdown">--:--:--</div>
-        <button class="pg-upgrade-btn" id="pgUpgradeBtn">⭐ Upgrade to Premium - ₹299/month, unlimited tests</button>
+        <div class="pg-plans-heading">Or continue right now with unlimited tests</div>
+        <div class="pg-plans">
+          <div class="pg-plan">
+            <div class="pg-plan-name">Current Plan</div>
+            <div class="pg-plan-price">Free</div>
+            <ul class="pg-plan-features">
+              ${featureLi("2 tests every 4 hours", true)}
+              ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("Basic performance analytics", true)}
+              ${featureLi("Unlimited test attempts", false)}
+              ${featureLi("Priority support", false)}
+            </ul>
+            <button class="pg-plan-btn pg-plan-btn-disabled" disabled>Your Current Plan</button>
+          </div>
+          <div class="pg-plan">
+            <div class="pg-plan-name">Silver Plan</div>
+            <div class="pg-plan-price">&#8377;${SILVER_PRICE_INR}<span>/month</span></div>
+            <ul class="pg-plan-features">
+              ${featureLi("Unlimited test attempts", true)}
+              ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("Detailed performance analytics", true)}
+              ${featureLi("No waiting between tests", true)}
+              ${featureLi("Priority support", false)}
+            </ul>
+            <button class="pg-plan-btn" id="pgSilverBtn">Choose Silver</button>
+          </div>
+          <div class="pg-plan pg-plan-gold">
+            <div class="pg-plan-badge">Best Value</div>
+            <div class="pg-plan-name">Gold Plan</div>
+            <div class="pg-plan-price">&#8377;${GOLD_PRICE_INR}<span>/year</span></div>
+            <div class="pg-plan-save">Save ${GOLD_SAVINGS_PCT}% vs. monthly</div>
+            <ul class="pg-plan-features">
+              ${featureLi("Unlimited test attempts", true)}
+              ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("Detailed performance analytics", true)}
+              ${featureLi("No waiting between tests", true)}
+              ${featureLi("Priority support", true)}
+            </ul>
+            <button class="pg-plan-btn pg-plan-btn-gold" id="pgGoldBtn">Choose Gold</button>
+          </div>
+        </div>
         <button class="pg-back-link" id="pgBackBtn">Go back</button>
       </div>
     `;
     document.body.appendChild(overlay);
   }
-  document.getElementById("pgUpgradeBtn").onclick = () => onUpgrade && onUpgrade();
+  document.getElementById("pgSilverBtn").onclick = () => onUpgrade && onUpgrade("silver");
+  document.getElementById("pgGoldBtn").onclick = () => onUpgrade && onUpgrade("gold");
   document.getElementById("pgBackBtn").onclick = () => {
     hideBlockedModal();
     onBack && onBack();

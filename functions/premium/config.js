@@ -32,14 +32,30 @@ const ABANDON_VOID_WINDOW_MINUTES = 2;   // an attempt with 0 answers older than
 const RATE_LIMITED_TEST_TYPES = ["chapterwise", "mock", "hots"];
 
 // ---------------------------------------------------------------------
-// Premium subscription
+// Premium subscription - two tiers, both grant the same unlimited-tests
+// bypass in canStartTest (isPremium is a single boolean regardless of
+// tier); premiumTier ("silver"|"gold") is stored purely for display/
+// record-keeping and to tell the two apart in the pricing table.
 // ---------------------------------------------------------------------
-const PREMIUM_PRICE_INR = 299;
-const PREMIUM_PLAN_PERIOD = "monthly";
-const PREMIUM_PLAN_INTERVAL = 1; // bill every 1 month
-// Set once createPremiumPlan (see subscriptions.js) has been run and its
-// plan_id captured - every createPremiumSubscription call references this.
-const PREMIUM_PLAN_ID = process.env.RAZORPAY_PREMIUM_PLAN_ID || null;
+const PREMIUM_TIERS = {
+  silver: {
+    label: "Silver",
+    priceInr: 299,
+    period: "monthly",
+    interval: 1, // bill every 1 month
+    // Set once createPremiumPlan (see subscriptions.js) has been run for
+    // this tier and its plan_id captured - createPremiumSubscription reads
+    // this at call time.
+    planId: process.env.RAZORPAY_SILVER_PLAN_ID || process.env.RAZORPAY_PREMIUM_PLAN_ID || null,
+  },
+  gold: {
+    label: "Gold",
+    priceInr: 1999,
+    period: "yearly",
+    interval: 1, // bill every 1 year
+    planId: process.env.RAZORPAY_GOLD_PLAN_ID || null,
+  },
+};
 
 // ---------------------------------------------------------------------
 // Firestore collection names
@@ -56,9 +72,6 @@ module.exports = {
   FREE_TEST_WINDOW_HOURS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
-  PREMIUM_PRICE_INR,
-  PREMIUM_PLAN_PERIOD,
-  PREMIUM_PLAN_INTERVAL,
-  PREMIUM_PLAN_ID,
+  PREMIUM_TIERS,
   COLLECTIONS,
 };

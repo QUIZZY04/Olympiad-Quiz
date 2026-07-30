@@ -23,34 +23,41 @@ const {
   admin,
   db,
   ADMIN_EMAIL,
-  PREMIUM_PRICE_INR,
-  PREMIUM_PLAN_PERIOD,
-  PREMIUM_PLAN_INTERVAL,
+  PREMIUM_TIERS,
   COLLECTIONS,
 } = require("./config");
 
 const RAZORPAY_API_BASE = "https://api.razorpay.com/v1";
+
+// Every secret any tier's planId might read from, declared statically (v2
+// functions require secrets to be listed up front, not chosen at runtime).
+const ALL_PLAN_ID_SECRETS = ["RAZORPAY_SILVER_PLAN_ID", "RAZORPAY_GOLD_PLAN_ID", "RAZORPAY_PREMIUM_PLAN_ID"];
 
 function razorpayAuthHeader() {
   return "Basic " + Buffer.from(process.env.RAZORPAY_KEY_ID + ":" + process.env.RAZORPAY_KEY_SECRET).toString("base64");
 }
 
 /**
- * One-time bootstrap, admin-only. Creates the recurring ₹299/month Plan in
- * Razorpay and returns its plan_id. Run this ONCE (e.g. from the browser
- * console on admin.html, or any authenticated admin context, via
+ * One-time bootstrap, admin-only. Creates the recurring Plan in Razorpay
+ * for the given tier ("silver" or "gold") and returns its plan_id. Run
+ * once per tier (e.g. from the browser console on admin.html via
  * httpsCallable), then:
- *   firebase functions:secrets:set RAZORPAY_PREMIUM_PLAN_ID
+ *   firebase functions:secrets:set RAZORPAY_SILVER_PLAN_ID   (or _GOLD_)
  * pasting the returned id as the value, and redeploy createPremiumSubscription.
  * Safe to call again if needed - Razorpay just creates another Plan object,
  * it doesn't mutate/duplicate-detect, so only ever run this when you
- * actually want a new Plan (e.g. changing the price later).
+ * actually want a new Plan (e.g. changing a tier's price later).
  */
 exports.createPremiumPlan = onCall({
   secrets: ["RAZORPAY_KEY_ID", "RAZORPAY_KEY_SECRET"],
 }, async (request) => {
   if (!request.auth || request.auth.token.email !== ADMIN_EMAIL) {
     throw new HttpsError("permission-denied", "Admin only.");
+  }
+  const tier = request.data?.tier;
+  const tierConfig = PREMIUM_TIERS[tier];
+  if (!tierConfig) {
+    throw new HttpsError("invalid-argument", `tier must be one of: ${Object.keys(PREMIUM_TIERS).join(", ")}`);
   }
 
   const response = await fetch(`${RAZORPAY_API_BASE}/plans`, {
@@ -60,11 +67,11 @@ exports.createPremiumPlan = onCall({
       "Authorization": razorpayAuthHeader(),
     },
     body: JSON.stringify({
-      period: PREMIUM_PLAN_PERIOD,
-      interval: PREMIUM_PLAN_INTERVAL,
+      period: tierConfig.period,
+      interval: tierConfig.interval,
       item: {
-        name: "OlympiadQuiz Premium",
-        amount: PREMIUM_PRICE_INR * 100, // paise
+        name: `OlympiadQuiz ${tierConfig.label}`,
+        amount: tierConfig.priceInr * 100, // paise
         currency: "INR",
         description: "Unlimited test attempts on OlympiadQuiz",
       },
@@ -76,27 +83,34 @@ exports.createPremiumPlan = onCall({
     throw new HttpsError("internal", "Razorpay plan creation failed: " + plan.error.description);
   }
 
-  console.log("Premium Plan created:", plan.id, "- set this as RAZORPAY_PREMIUM_PLAN_ID.");
+  const secretName = tier === "gold" ? "RAZORPAY_GOLD_PLAN_ID" : "RAZORPAY_SILVER_PLAN_ID";
+  console.log(`${tierConfig.label} Plan created:`, plan.id, `- set this as ${secretName}.`);
   return { planId: plan.id };
 });
 
 /**
  * Callable. Creates a Razorpay Subscription for the logged-in user against
- * the configured Premium plan. Returns just enough for the frontend to
- * open Razorpay Checkout in subscription mode (subscription_id instead of
- * order_id) - actual isPremium/premiumExpiresAt is only ever set by the
- * webhook below, never here (this function only creates the subscription
- * object, it doesn't know whether the user actually completes payment).
+ * the requested tier's plan ("silver" or "gold"). Returns just enough for
+ * the frontend to open Razorpay Checkout in subscription mode
+ * (subscription_id instead of order_id) - actual isPremium/premiumExpiresAt/
+ * premiumTier is only ever set by the webhook below, never here (this
+ * function only creates the subscription object, it doesn't know whether
+ * the user actually completes payment).
  */
 exports.createPremiumSubscription = onCall({
-  secrets: ["RAZORPAY_KEY_ID", "RAZORPAY_KEY_SECRET", "RAZORPAY_PREMIUM_PLAN_ID"],
+  secrets: ["RAZORPAY_KEY_ID", "RAZORPAY_KEY_SECRET", ...ALL_PLAN_ID_SECRETS],
 }, async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "You must be logged in to subscribe.");
   }
-  const planId = process.env.RAZORPAY_PREMIUM_PLAN_ID;
+  const tier = request.data?.tier;
+  const tierConfig = PREMIUM_TIERS[tier];
+  if (!tierConfig) {
+    throw new HttpsError("invalid-argument", `tier must be one of: ${Object.keys(PREMIUM_TIERS).join(", ")}`);
+  }
+  const planId = tierConfig.planId;
   if (!planId) {
-    throw new HttpsError("failed-precondition", "Premium plan isn't configured yet.");
+    throw new HttpsError("failed-precondition", `The ${tierConfig.label} plan isn't configured yet.`);
   }
 
   const uid = request.auth.uid;
@@ -109,8 +123,8 @@ exports.createPremiumSubscription = onCall({
     body: JSON.stringify({
       plan_id: planId,
       customer_notify: 1,
-      total_count: 120, // 10 years of monthly cycles - Razorpay requires a count; this is effectively "until cancelled"
-      notes: { uid }, // read back in the webhook payload to identify the user
+      total_count: tier === "gold" ? 10 : 120, // 10 yearly cycles / 120 monthly cycles - Razorpay requires a count; effectively "until cancelled"
+      notes: { uid, tier }, // read back in the webhook payload to identify the user + tier
     }),
   });
 
@@ -172,7 +186,7 @@ async function setPremiumBySubscriptionId(subscriptionId, notesUid, updates) {
  * that resolves itself on retry would be wrong.
  */
 exports.razorpayWebhook = onRequest({
-  secrets: ["RAZORPAY_WEBHOOK_SECRET"],
+  secrets: ["RAZORPAY_WEBHOOK_SECRET", ...ALL_PLAN_ID_SECRETS],
 }, async (req, res) => {
   const signature = req.headers["x-razorpay-signature"];
   if (!signature) {
@@ -203,6 +217,19 @@ exports.razorpayWebhook = onRequest({
     return;
   }
 
+  // Tier comes primarily from notes.tier (set at subscription-creation
+  // time in createPremiumSubscription above); falls back to matching
+  // plan_id against the configured tiers for older subscriptions created
+  // before notes.tier existed.
+  function resolveTier() {
+    if (subEntity.notes?.tier && PREMIUM_TIERS[subEntity.notes.tier]) return subEntity.notes.tier;
+    const planId = subEntity.plan_id;
+    for (const [tierKey, tierConfig] of Object.entries(PREMIUM_TIERS)) {
+      if (tierConfig.planId && tierConfig.planId === planId) return tierKey;
+    }
+    return null;
+  }
+
   try {
     switch (event) {
       case "subscription.activated":
@@ -213,6 +240,7 @@ exports.razorpayWebhook = onRequest({
         await setPremiumBySubscriptionId(subscriptionId, notesUid, {
           isPremium: true,
           premiumExpiresAt,
+          premiumTier: resolveTier(),
           razorpaySubscriptionId: subscriptionId,
         });
         break;
