@@ -40,7 +40,7 @@ const RATE_LIMITED_TEST_TYPES = ["chapterwise", "mock", "hots"];
 const PREMIUM_TIERS = {
   silver: {
     label: "Silver",
-    priceInr: 299,
+    priceInr: 199,
     period: "monthly",
     interval: 1, // bill every 1 month
     // Set once createPremiumPlan (see subscriptions.js) has been run for
@@ -50,7 +50,7 @@ const PREMIUM_TIERS = {
   },
   gold: {
     label: "Gold",
-    priceInr: 1999,
+    priceInr: 999,
     period: "yearly",
     interval: 1, // bill every 1 year
     planId: process.env.RAZORPAY_GOLD_PLAN_ID || null,

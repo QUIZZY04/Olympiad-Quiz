@@ -154,8 +154,8 @@ let premiumUnsubscribe = null;
 // Pricing display copy - mirrors functions/premium/config.js's PREMIUM_TIERS.
 // If those prices ever change, update both places (backend is the source
 // of truth for what's actually charged; this is display-only).
-const SILVER_PRICE_INR = 299;
-const GOLD_PRICE_INR = 1999;
+const SILVER_PRICE_INR = 199;
+const GOLD_PRICE_INR = 999;
 const GOLD_SAVINGS_PCT = Math.round((1 - GOLD_PRICE_INR / (SILVER_PRICE_INR * 12)) * 100);
 
 function featureLi(text, included) {
@@ -302,7 +302,7 @@ export async function startUpgradeCheckout(app, tier) {
   const btn = document.getElementById(tier === "gold" ? "pgGoldBtn" : "pgSilverBtn");
   const originalText = btn ? btn.textContent : "";
   if (btn) { btn.disabled = true; btn.textContent = "Preparing checkout..."; }
-  const tierLabel = tier === "gold" ? "Gold - ₹1999/year" : "Silver - ₹299/month";
+  const tierLabel = tier === "gold" ? `Gold - ₹${GOLD_PRICE_INR}/year` : `Silver - ₹${SILVER_PRICE_INR}/month`;
   try {
     const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
     const { data: sub } = await createPremiumSubscription({ tier });
