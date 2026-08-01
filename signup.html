@@ -282,9 +282,16 @@
             <!-- STEP 1: UNIFIED ENTRY -->
             <div id="stepUnifiedEntry">
                 <h2>Create Your Free Account</h2>
-                <p class="subtitle">Verify your mobile number, then link Google to finish your profile.</p>
+                <p class="subtitle">Sign up in seconds with Google, or verify your mobile number instead.</p>
 
-                <button type="button" id="btnPhoneEntry" class="main-btn">📱 Continue with Mobile</button>
+                <button type="button" id="btnGoogleEntry" class="main-btn" style="background: #4285F4; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;">
+                    Continue with Google
+                </button>
+
+                <div class="divider">or</div>
+
+                <button type="button" id="btnPhoneEntry" class="social-btn">📱 Continue with Mobile</button>
 
                 <p class="already-member">Already a member? <a href="login.html">Sign In</a></p>
             </div>
@@ -382,7 +389,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, GoogleAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -534,16 +541,25 @@ async function evaluateAuthState(user) {
             return;
         }
 
-        // Mandatory phone verification - covers BOTH brand-new Google sign-ins
-        // (hasCompletedProfile false) AND pre-existing Google-only accounts that
-        // completed registration before this gate existed (hasCompletedProfile
-        // true but no phone on file). Reuses the exact existing stepPhoneAuth
-        // flow - its handlers already support linking a phone onto an
-        // authenticated Google session (see phoneSignupForm/pOtpForm). Once
-        // verified, evaluateAuthState re-runs and (for the pre-existing-account
-        // case) takes the bypass branch above straight to the dashboard,
-        // skipping Complete Profile since name/class are already on file.
-        if (!hasPhone) {
+        const hasGoogleLinked = providerIds.includes('google.com');
+
+        // Brand-new signups that chose "Continue with Google" on the entry
+        // screen (signInWithPopup, no completed profile yet) skip the
+        // mandatory phone gate entirely - mobile verification is optional for
+        // them, deferred to a dismissible prompt on the dashboard instead.
+        const isNewGoogleFirstSignup = hasGoogleLinked && !hasCompletedProfile;
+
+        // Mandatory phone verification - covers BOTH brand-new mobile-first
+        // signups (hasCompletedProfile false, no Google yet) AND pre-existing
+        // Google-only accounts that completed registration before this gate
+        // existed (hasCompletedProfile true but no phone on file). Reuses the
+        // exact existing stepPhoneAuth flow - its handlers already support
+        // linking a phone onto an authenticated Google session (see
+        // phoneSignupForm/pOtpForm). Once verified, evaluateAuthState re-runs
+        // and (for the pre-existing-account case) takes the bypass branch
+        // above straight to the dashboard, skipping Complete Profile since
+        // name/class are already on file.
+        if (!hasPhone && !isNewGoogleFirstSignup) {
             console.log("[signup] Redirect decision: mandatory phone verification");
             document.getElementById("phoneTitle").innerText = "Complete Your Registration";
             document.getElementById("phoneSubtitle").innerText = "Verify your mobile number to unlock Free Mock Tests and other features.";
@@ -553,11 +569,10 @@ async function evaluateAuthState(user) {
         }
 
         // Mandatory Google linking - runs right after phone verification for
-        // brand-new signups (mobile-first flow). Pre-existing accounts that
-        // signed up via Google before this flow was inverted already have
-        // google.com in providerIds, so this is skipped for them - they go
-        // straight to Complete Profile same as before.
-        const hasGoogleLinked = providerIds.includes('google.com');
+        // brand-new signups that chose the mobile-first path. Skipped for
+        // anyone who already has google.com in providerIds, whether that's a
+        // mobile-first user who just linked Google, or a Google-first signup
+        // that never went through the phone step at all.
         if (!hasGoogleLinked) {
             console.log("[signup] Redirect decision: mandatory Google linking");
             showSection('stepLinkGoogle');
@@ -602,6 +617,27 @@ onAuthStateChanged(auth, async (user) => {
 // 1. Unified Entry Actions
 
 const linkGoogleBtnHtml = `<img src="https://developers.google.com/static/identity/images/g-logo.png" alt="Google" style="width:22px; background: white; border-radius: 50%; padding: 2px;"> Continue with Google`;
+
+// Direct account creation via Google (alternative to the mobile-first path
+// below). No phone step required here - evaluateAuthState's
+// isNewGoogleFirstSignup check routes straight to Complete Profile, and
+// mobile verification is deferred to a dismissible prompt on the dashboard.
+document.getElementById("btnGoogleEntry").onclick = async () => {
+    const btn = document.getElementById("btnGoogleEntry");
+    btn.disabled = true; btn.innerHTML = "Authenticating...";
+    try {
+        const result = await signInWithPopup(auth, provider);
+        await evaluateAuthState(result.user);
+    } catch (e) {
+        if (e.code === 'auth/account-exists-with-different-credential') {
+            alert("An account already exists with the same email. Please log in using Email or Phone, then link Google.");
+        } else if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
+            alert("Google Sign-In Failed: " + e.message);
+        }
+        btn.disabled = false;
+        btn.innerHTML = linkGoogleBtnHtml;
+    }
+};
 
 // Links Google onto the already phone-verified currentUser (mandatory step
 // right after phone auth in this mobile-first flow). If that Google account

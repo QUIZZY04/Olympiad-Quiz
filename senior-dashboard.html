@@ -138,6 +138,54 @@
         #hotsPromoToast .promo-title { font-size: 1.4rem; }
     }
 
+    #mobileVerifyPromptModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(6px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2600;
+        padding: 20px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+    }
+    #mobileVerifyPromptModal.show { opacity: 1; pointer-events: auto; }
+    #mobileVerifyPromptModal .promo-card {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
+        color: #fff;
+        border-radius: 28px;
+        padding: 44px 40px 36px;
+        text-align: center;
+        box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        transform: scale(0.92) translateY(15px);
+        transition: transform 0.35s ease;
+    }
+    #mobileVerifyPromptModal.show .promo-card { transform: scale(1) translateY(0); }
+    #mobileVerifyPromptModal .promo-icon { font-size: 3rem; margin-bottom: 10px; line-height: 1; }
+    #mobileVerifyPromptModal .promo-title { font-weight: 800; font-size: 1.5rem; margin-bottom: 14px; line-height: 1.3; }
+    #mobileVerifyPromptModal .promo-body { font-size: 0.98rem; color: rgba(255,255,255,0.95); line-height: 1.6; margin-bottom: 28px; }
+    #mobileVerifyPromptModal .promo-actions { display: flex; gap: 14px; }
+    #mobileVerifyPromptModal .promo-cta {
+        display: inline-block; flex: 1; text-align: center; padding: 14px 18px;
+        background: #fff; color: #075E54; font-weight: 800; font-size: 1rem;
+        border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+    #mobileVerifyPromptModal .promo-cancel {
+        flex: 1; padding: 14px 18px; background: rgba(255,255,255,0.15); color: #fff;
+        font-weight: 700; font-size: 1rem; border: 1px solid rgba(255,255,255,0.45);
+        border-radius: 12px; cursor: pointer;
+    }
+    @media (max-width: 480px) {
+        #mobileVerifyPromptModal .promo-card { padding: 34px 22px 28px; }
+        #mobileVerifyPromptModal .promo-title { font-size: 1.25rem; }
+    }
+
     .hero-panel { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%); border-radius: 24px; padding: 48px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: var(--shadow-lg); flex-wrap: wrap; gap: 40px; }
     .hero-panel::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
     .hero-left { position: relative; z-index: 1; flex: 1; min-width: 300px; }
@@ -830,6 +878,19 @@
         </div>
     </div>
 
+    <!-- Mobile Number Verification Prompt (dismissible, once per session) -->
+    <div id="mobileVerifyPromptModal">
+        <div class="promo-card">
+            <div class="promo-icon">📱</div>
+            <div class="promo-title">Verify Your Mobile Number</div>
+            <div class="promo-body">Get your <strong>results, live test alerts, and new announcements</strong> straight on WhatsApp. Verifying only takes a few seconds — and it's completely optional.</div>
+            <div class="promo-actions">
+                <button type="button" class="promo-cancel" onclick="document.getElementById('mobileVerifyPromptModal').classList.remove('show')">Cancel</button>
+                <button type="button" class="promo-cta" onclick="window.goVerifyMobile()">Verify Now</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="site-footer">
         <div class="footer-links">
             <a href="imo-free-mock-test.html" target="_blank">IMO Guide</a>
@@ -916,6 +977,11 @@ onAuthStateChanged(auth, async (user) => {
 
             // Non-blocking account-completion cards + profile completion widget
             if (!isAdmin) renderAccountCompletionUI(user, data);
+
+            // Friendly, dismissible mobile-verification popup (once per
+            // session) - separate from the persistent acc-card banner above,
+            // which keeps showing on every visit regardless of Cancel here.
+            if (!isAdmin) maybeShowMobileVerifyPrompt(user, data);
 
             // --- Dashboard Visibility Logic for Grade 11 & 12 ---
             uClass = data.class || data.studentClass || "";
@@ -1301,6 +1367,25 @@ function renderAccountCompletionUI(user, data) {
 
     updateCardsVisibility();
     renderProfileCompletion(user, data, isGoogleLinked, isMobileVerified);
+}
+
+// Friendly, dismissible popup version of the "verify your mobile" nudge -
+// shown at most once per browser session (sessionStorage flag) so Cancel
+// actually feels like Cancel, unlike the always-visible acc-card banner
+// above which intentionally keeps reappearing on every visit.
+function maybeShowMobileVerifyPrompt(user, data) {
+    const providerIds = user.providerData.map(p => p.providerId);
+    const isGoogleLinked = providerIds.includes('google.com');
+    const isMobileVerified = !!(user.phoneNumber || data.phoneVerified || data.mobileVerified);
+
+    if (!isGoogleLinked || isMobileVerified) return;
+    if (sessionStorage.getItem('mobileVerifyPromptShown') === 'true') return;
+    sessionStorage.setItem('mobileVerifyPromptShown', 'true');
+
+    setTimeout(() => {
+        const modal = document.getElementById('mobileVerifyPromptModal');
+        if (modal) modal.classList.add('show');
+    }, 2500);
 }
 
 function renderProfileCompletion(user, data, isGoogleLinked, isMobileVerified) {
