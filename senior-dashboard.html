@@ -841,11 +841,17 @@
             <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:28px;">
                 You've completed <strong>2+ tests!</strong> Please finish your profile to unlock accurate rankings, personalised certificates, and test notifications.
             </p>
-            <a href="profile.html?complete=1"
-               style="display:block; padding:14px 20px; background:var(--brand); color:white; font-weight:800; font-size:1rem; border-radius:12px; text-decoration:none; box-shadow:0 4px 15px rgba(255,107,0,0.3); transition:0.2s;"
-               onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-                Complete Profile Now →
-            </a>
+            <div style="display:flex; gap:12px;">
+                <button type="button" onclick="document.getElementById('profileCompletePopup').style.display='none'"
+                    style="flex:1; padding:14px 16px; border-radius:12px; background:var(--border); color:var(--text); font-weight:700; font-size:0.95rem; border:none; cursor:pointer;">
+                    Later
+                </button>
+                <a href="profile.html?complete=1"
+                   style="flex:1; display:block; padding:14px 16px; background:var(--brand); color:white; font-weight:800; font-size:0.95rem; border-radius:12px; text-decoration:none; box-shadow:0 4px 15px rgba(255,107,0,0.3); transition:0.2s;"
+                   onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                    Complete Profile Now →
+                </a>
+            </div>
         </div>
     </div>
 
@@ -1284,6 +1290,10 @@ async function checkAndShowProfilePopup(user, userData) {
 
     if (profileComplete) return;
 
+    // Shown at most once per session ("Later" dismisses it, same as the
+    // mobile-verify popup) instead of resurfacing on every single visit.
+    if (sessionStorage.getItem('profileCompletePromptShown') === 'true') return;
+
     // Count total test attempts from leaderboard
     try {
         const snap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid)));
@@ -1292,6 +1302,7 @@ async function checkAndShowProfilePopup(user, userData) {
         return;
     }
 
+    sessionStorage.setItem('profileCompletePromptShown', 'true');
     setTimeout(() => {
         const popup = document.getElementById('profileCompletePopup');
         if (popup) popup.style.display = 'flex';
