@@ -652,20 +652,6 @@
 
 <!-- DYNAMIC BLOG & TESTIMONIAL SCRIPTS -->
 <script type="module">
-    import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, query, orderBy, limit, getDocs, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
-        authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
-        projectId: "olympiad-portal-d2a5e"
-    };
-
-    const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-
     function loadBlogs() {
         const blogGrid = document.getElementById("blogGrid");
         if (!blogGrid) return;
@@ -709,7 +695,7 @@
         }
     };
 
-    async function loadTestimonials() {
+    async function loadTestimonials({ db, collection, query, orderBy, getDocs, getDoc, doc }) {
         const grid = document.getElementById("testimonialGrid");
         let realFeedbacks = [];
         
@@ -882,20 +868,46 @@
         }
     };
 
-    // Execute functions on page load
+    // Static blog cards need no network calls - render immediately.
     loadBlogs();
-    loadTestimonials(); // Execute immediately to prevent "Loading real reviews..." from hanging
-    
-    // Authenticate anonymously so real feedback can be fetched even if Firestore rules require login
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            signInAnonymously(auth).catch(err => console.warn("Anonymous auth failed:", err));
-        } else {
-            // Re-fetch if we temporarily fell back to designed reviews due to delayed permissions
-            if (allTestimonials.length > 0 && allTestimonials[0].name === "Ananya Sharma") {
-                loadTestimonials();
+
+    // The Firestore/Auth bundle (~180KB of JS plus Firebase Auth's helper
+    // iframe) is only needed for the below-the-fold testimonials section, so
+    // it's dynamically imported after the page's load event instead of via a
+    // top-level static import - keeps it from competing with fonts/CSS/hero
+    // image for bandwidth and main-thread time on throttled mobile.
+    window.addEventListener('load', async () => {
+        const [{ initializeApp, getApps, getApp }, firestoreMod, authMod] = await Promise.all([
+            import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"),
+            import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"),
+            import("https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"),
+        ]);
+        const { getFirestore, collection, query, orderBy, limit, getDocs, getDoc, doc } = firestoreMod;
+        const { getAuth, signInAnonymously, onAuthStateChanged } = authMod;
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+            authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+            projectId: "olympiad-portal-d2a5e"
+        };
+        const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const fb = { db, collection, query, orderBy, getDocs, getDoc, doc };
+
+        loadTestimonials(fb); // Execute immediately to prevent "Loading real reviews..." from hanging
+
+        // Authenticate anonymously so real feedback can be fetched even if Firestore rules require login
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                signInAnonymously(auth).catch(err => console.warn("Anonymous auth failed:", err));
+            } else {
+                // Re-fetch if we temporarily fell back to designed reviews due to delayed permissions
+                if (allTestimonials.length > 0 && allTestimonials[0].name === "Ananya Sharma") {
+                    loadTestimonials(fb);
+                }
             }
-        }
+        });
     });
 </script>
 <script type="module" src="chatbot.js?v=3"></script>
