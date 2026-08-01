@@ -958,7 +958,13 @@ onAuthStateChanged(auth, async (user) => {
         if (userDoc.exists()) {
             const data = userDoc.data();
             const hasPhone = !!(user.phoneNumber || data?.phone || data?.phoneNumber);
-            const isRegistered = (data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true) && hasPhone;
+            const isGoogleLinked = user.providerData.some(p => p.providerId === 'google.com') || data?.googleLinked === true;
+            // A verified phone is only required when the account has no
+            // Google identity to fall back on - Google-first signups (see
+            // signup.html's isNewGoogleFirstSignup path) are allowed in with
+            // mobile still unverified; maybeShowMobileVerifyPrompt below
+            // nudges them to add it instead of gating entry entirely.
+            const isRegistered = (data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true) && (hasPhone || isGoogleLinked);
 
             console.log("UID:", user.uid);
             console.log("User Data:", data);
