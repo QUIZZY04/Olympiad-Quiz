@@ -687,8 +687,17 @@ async function refreshWeekly(){
 // Grade-range bucketing (Grades 1-10 vs Grades 11-12) mirrors the exact
 // convention used by dashboard.html's senior redirect: parse the digits out
 // of the "classN" string and split on >= 11.
-function classRangeOf(studentClass) {
-    const n = parseInt(String(studentClass || "").replace(/[^0-9]/g, ""));
+function classRangeOf(d) {
+    // JEE/NEET practice results never carry a studentClass field - they're
+    // identified by examType (or, for older records, testTitle) instead, the
+    // same fallback jee-leaderboard.html uses. Treat them as senior
+    // regardless, since those are exclusively Grade 11-12 exams.
+    const examType = String(d.examType || "").toUpperCase();
+    const testTitle = String(d.testTitle || "").toUpperCase();
+    if (examType === "JEE" || examType === "NEET" || testTitle.includes("JEE") || testTitle.includes("NEET")) {
+        return "senior";
+    }
+    const n = parseInt(String(d.studentClass || "").replace(/[^0-9]/g, ""));
     if (!n) return "unknown";
     return n >= 11 ? "senior" : "junior";
 }
@@ -727,7 +736,7 @@ async function refreshDaily(){
                 return; // Exclude documents without a date if a date filter is applied
             }
 
-            const range = classRangeOf(d.studentClass);
+            const range = classRangeOf(d);
             if (range === "senior") seniorDocs.push(doc);
             else if (range === "junior") juniorDocs.push(doc);
         });
@@ -849,7 +858,7 @@ tbody.innerHTML+=`
 <td style="color:var(--brand-text);font-weight:700">${d.score}/${d.total||30}</td>
 <td style="white-space:nowrap;">${typeLabel}</td>
 <td style="text-transform:capitalize;">${d.subject||"NA"}</td>
-<td>${(d.studentClass||"").replace("class","G")}</td>
+<td>${d.studentClass ? d.studentClass.replace("class","G") : (d.examType || "NA")}</td>
 <td>${d.date?d.date.toDate().toLocaleDateString("en-GB"):"NA"}</td>
 ${adminCell}
 </tr>`
