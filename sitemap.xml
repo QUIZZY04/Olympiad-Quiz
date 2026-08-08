@@ -438,6 +438,12 @@
 
   <!-- ================= Newly Added Pages ================= -->
   <url>
+    <loc>https://olympiadquiz.org/blog-maths-olympiad-preparation-guide.html</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://olympiadquiz.org/blog-improve-speed-accuracy-olympiad.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
