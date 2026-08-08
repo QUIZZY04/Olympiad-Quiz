@@ -385,24 +385,9 @@ font-size:14px;
     <div class="filter-box">
 
     <h3>Daily Practice Filters</h3>
+    <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-top: -5px; margin-bottom: 5px;">Rankings are shown separately below for Grades 1-10 and Grades 11-12.</p>
 
     <div class="filter-row">
-
-    <select id="dailyGrade">
-    <option value="all">All Grades</option>
-    <option value="class1">Grade 1</option>
-    <option value="class2">Grade 2</option>
-    <option value="class3">Grade 3</option>
-    <option value="class4">Grade 4</option>
-    <option value="class5">Grade 5</option>
-    <option value="class6">Grade 6</option>
-    <option value="class7">Grade 7</option>
-    <option value="class8">Grade 8</option>
-    <option value="class9">Grade 9</option>
-    <option value="class10">Grade 10</option>
-    <option value="class11">Grade 11</option>
-    <option value="class12">Grade 12</option>
-    </select>
 
     <select id="dailySubject">
     <option value="all">All Subjects</option>
@@ -451,8 +436,8 @@ font-size:14px;
     <div class="lb-card">
 
     <div class="card-header">
-    <h2>📚 Daily Practice</h2>
-    <span id="dailyLabel">GLOBAL</span>
+    <h2>📚 Daily Practice — Grades 1-10</h2>
+    <span id="dailyLabelJunior">GLOBAL</span>
     </div>
 
     <div class="table-responsive">
@@ -470,7 +455,36 @@ font-size:14px;
     </tr>
     </thead>
 
-    <tbody id="dailyBody"></tbody>
+    <tbody id="dailyBodyJunior"></tbody>
+
+    </table>
+    </div>
+
+    </div>
+
+    <div class="lb-card">
+
+    <div class="card-header">
+    <h2>📚 Daily Practice — Grades 11-12</h2>
+    <span id="dailyLabelSenior">GLOBAL</span>
+    </div>
+
+    <div class="table-responsive">
+    <table>
+
+    <thead>
+    <tr>
+    <th>Rank</th>
+    <th>Participant</th>
+    <th>Score</th>
+    <th>Type</th>
+    <th>Sub</th>
+    <th>Grd</th>
+    <th>Date</th>
+    </tr>
+    </thead>
+
+    <tbody id="dailyBodySenior"></tbody>
 
     </table>
     </div>
@@ -568,8 +582,11 @@ if (user.email === "madhhu52@gmail.com") {
     const weeklyHead = document.querySelector("#weeklyBody").previousElementSibling.querySelector("tr");
     if (!weeklyHead.innerHTML.includes("Action")) weeklyHead.innerHTML += "<th>Action</th>";
     
-    const dailyHead = document.querySelector("#dailyBody").previousElementSibling.querySelector("tr");
-    if (!dailyHead.innerHTML.includes("Action")) dailyHead.innerHTML += "<th>Action</th>";
+    const dailyHeadJunior = document.querySelector("#dailyBodyJunior").previousElementSibling.querySelector("tr");
+    if (!dailyHeadJunior.innerHTML.includes("Action")) dailyHeadJunior.innerHTML += "<th>Action</th>";
+
+    const dailyHeadSenior = document.querySelector("#dailyBodySenior").previousElementSibling.querySelector("tr");
+    if (!dailyHeadSenior.innerHTML.includes("Action")) dailyHeadSenior.innerHTML += "<th>Action</th>";
 }
     // Initial load - Live Quiz leaderboard is hidden, so only load Daily Practice
     refreshDaily();
@@ -667,32 +684,42 @@ async function refreshWeekly(){
     renderWeekly(finalDocs, tbody);
 }
 
+// Grade-range bucketing (Grades 1-10 vs Grades 11-12) mirrors the exact
+// convention used by dashboard.html's senior redirect: parse the digits out
+// of the "classN" string and split on >= 11.
+function classRangeOf(studentClass) {
+    const n = parseInt(String(studentClass || "").replace(/[^0-9]/g, ""));
+    if (!n) return "unknown";
+    return n >= 11 ? "senior" : "junior";
+}
+
 async function refreshDaily(){
-    const tbody=document.getElementById("dailyBody");
-    const gradeFilter = document.getElementById("dailyGrade").value;
+    const tbodyJunior = document.getElementById("dailyBodyJunior");
+    const tbodySenior = document.getElementById("dailyBodySenior");
     const subjectFilter = document.getElementById("dailySubject").value;
     const dateFilter = document.getElementById("dailyDate").value;
 
-    tbody.innerHTML="<tr><td colspan='7'>Loading...</td></tr>";
+    tbodyJunior.innerHTML="<tr><td colspan='7'>Loading...</td></tr>";
+    tbodySenior.innerHTML="<tr><td colspan='7'>Loading...</td></tr>";
 
     try {
         let constraints = [];
-        if (gradeFilter !== "all") constraints.push(where("studentClass", "==", gradeFilter));
         if (subjectFilter !== "all") constraints.push(where("subject", "==", subjectFilter));
-        
+
         const q = constraints.length > 0 ? query(collection(db, "leaderboard"), ...constraints) : collection(db, "leaderboard");
         const snap=await getDocs(q);
-        
-        let allDocs = [];
+
+        let juniorDocs = [];
+        let seniorDocs = [];
         snap.forEach(doc => {
             const d = doc.data();
             if (d.isChampionship === true) return; // Exclude live quiz results
-            
+
             if (dateFilter && d.date) {
                 const docDate = d.date.toDate();
                 const [year, month, day] = dateFilter.split("-").map(Number);
-                if (docDate.getFullYear() !== year || 
-                    docDate.getMonth() !== (month - 1) || 
+                if (docDate.getFullYear() !== year ||
+                    docDate.getMonth() !== (month - 1) ||
                     docDate.getDate() !== day) {
                     return;
                 }
@@ -700,25 +727,36 @@ async function refreshDaily(){
                 return; // Exclude documents without a date if a date filter is applied
             }
 
-            allDocs.push(doc);
+            const range = classRangeOf(d.studentClass);
+            if (range === "senior") seniorDocs.push(doc);
+            else if (range === "junior") juniorDocs.push(doc);
         });
 
-        if (allDocs.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No practice results found.</td></tr>";
-            return;
-        }
-        
-        allDocs.sort((a, b) => {
+        const byScoreThenDate = (a, b) => {
             const scoreDiff = (b.data().score || 0) - (a.data().score || 0);
             if (scoreDiff !== 0) return scoreDiff;
             const dateA = a.data().date ? a.data().date.toMillis() : 0;
             const dateB = b.data().date ? b.data().date.toMillis() : 0;
             return dateB - dateA;
-        });
-        renderDaily(allDocs.slice(0, 30), tbody);
+        };
+        juniorDocs.sort(byScoreThenDate);
+        seniorDocs.sort(byScoreThenDate);
+
+        if (juniorDocs.length === 0) {
+            tbodyJunior.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No practice results found.</td></tr>";
+        } else {
+            renderDaily(juniorDocs.slice(0, 30), tbodyJunior);
+        }
+
+        if (seniorDocs.length === 0) {
+            tbodySenior.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No practice results found.</td></tr>";
+        } else {
+            renderDaily(seniorDocs.slice(0, 30), tbodySenior);
+        }
     } catch (e) {
         console.error(e);
-        tbody.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error loading practice scores.</td></tr>";
+        tbodyJunior.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error loading practice scores.</td></tr>";
+        tbodySenior.innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error loading practice scores.</td></tr>";
     }
 }
 
@@ -822,7 +860,6 @@ rank++;
 document.getElementById("weeklyGrade").addEventListener("change", () => loadSessionsList().then(refreshWeekly));
 document.getElementById("weeklySubject").addEventListener("change", () => loadSessionsList().then(refreshWeekly));
 document.getElementById("weeklySession").addEventListener("change",refreshWeekly)
-document.getElementById("dailyGrade").addEventListener("change",refreshDaily)
 document.getElementById("dailySubject").addEventListener("change",refreshDaily)
 document.getElementById("dailyDate").addEventListener("change",refreshDaily)
 
