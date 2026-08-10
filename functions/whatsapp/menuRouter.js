@@ -12,12 +12,11 @@
  * typing "IMO" gets the same elaborate answer as tapping through the
  * Mock Tests submenu.
  *
- * "Talk to Support" is intentionally NOT handled by handleAction() in
- * the normal case - chatbot.js intercepts that action id specially to
- * start an OpenAI-powered support persona conversation instead (see
- * chatbot.js/aiEngine.js). handleHuman()/the "menu_human" case here is
- * kept as the safe fallback chatbot.js uses when the AI Assistant is
- * disabled - it still needs to do SOMETHING useful.
+ * "Talk to Support" (menu_human) always resolves right here, via
+ * handleHuman() below - an instant, real handover ticket
+ * (escalateToHuman), never an AI persona. See admin.html's WhatsApp
+ * Manager > AI Assistant tab for the open-handovers inbox and one-on-one
+ * chat UI a real admin uses to actually reply.
  *
  * Every handler returns one of:
  *   - a plain string (sent as a normal text message)
@@ -54,10 +53,12 @@ const KEYWORD_ACTIONS = [
   { keywords: ["improve score", "improve rank", "boost score", "improve my"], action: "guide_improve_score" },
   { keywords: ["tips", "suggestion", "strategy", "pro tips"], action: "guide_prep_tips" },
   { keywords: ["syllabus"], action: "guide_syllabus" },
+  { keywords: ["success guide", "success guides", "study guide", "blog", "article"], action: "guide_success_guides" },
   { keywords: ["result", "score", "rank"], action: "menu_my_result" },
   { keywords: ["performance", "how am i doing", "progress", "analytics"], action: "menu_performance" },
   { keywords: ["coupon", "offer", "discount"], action: "menu_coupons" },
   { keywords: ["certificate"], action: "cert_info" },
+  { keywords: ["how to subscribe", "take subscription", "buy premium", "upgrade to premium", "silver plan", "gold plan", "premium plan", "go premium"], action: "pay_subscribe_howto" },
   { keywords: ["payment", "refund", "subscription", "razorpay"], action: "pay_help" },
   { keywords: ["login", "log in", "forgot password", "can't login", "cannot login"], action: "reg_login_help" },
   { keywords: ["register", "registration", "signup", "sign up"], action: "reg_how_to" },
@@ -83,8 +84,6 @@ function classifyIntent(text) {
   }
   return null;
 }
-
-const SUPPORT_GREETING = "Hi! I'm an OlympiadQuiz support executive. 😊 How can I help you today?";
 
 const STATIC_REPLIES = {
   live_how_it_works:
@@ -143,6 +142,9 @@ const STATIC_REPLIES = {
     "SOF Syllabus: https://olympiadquiz.org/sof-syllabus.html\n" +
     "SilverZone Syllabus: https://olympiadquiz.org/silverzone-syllabus.html\n" +
     "CREST Syllabus: https://olympiadquiz.org/crest-syllabus.html",
+  guide_success_guides:
+    "📖 *Success Guides* — free, in-depth articles written by our team on exam strategy, time management, and topper habits.\n\n" +
+    "Browse all of them here: https://olympiadquiz.org/blog.html",
   reg_how_to:
     "To register, visit https://olympiadquiz.org/signup.html and sign in with Google or your mobile number - it takes less than a minute! 🎉",
   reg_login_help:
@@ -152,8 +154,14 @@ const STATIC_REPLIES = {
     "Still stuck? Tap *Talk to Support* from the menu.",
   cert_info:
     "Your e-certificate (for Live Arena participation) is emailed to your registered email address after the event. Check your inbox/spam folder, or log in to your dashboard to confirm your participation status.",
+  pay_subscribe_howto:
+    "💎 *Go Premium — Unlimited Tests*\n\n" +
+    "Free accounts get 2 tests per 4 hours. Upgrade for unlimited access:\n\n" +
+    "🥈 *Silver* — ₹199/month\n🥇 *Gold* — ₹999/year (best value)\n\n" +
+    "*How to subscribe:*\n1. Log in at https://olympiadquiz.org/dashboard.html\n2. Start any Mock/Chapterwise/HOTS test\n3. Once you hit the free-test limit, tap *Upgrade* on the popup and choose Silver or Gold\n4. Pay securely via Razorpay — Premium activates instantly\n\n" +
+    "Already subscribed but facing an issue? Tap *Payment Issue* from the menu instead.",
   pay_help:
-    "For payment or subscription queries, please share your registered email/phone and order ID here, or reach us at https://olympiadquiz.org/contact.html - our team will help you shortly.",
+    "❗ *Payment / Subscription Issue*\n\nFor billing problems, failed payments, or refund queries, please share your registered email/phone and order ID here, or reach us at https://olympiadquiz.org/contact.html - our team will help you shortly.",
   goodbye: "Thank you for chatting with *OlympiadQuiz*! 🎓 Keep practicing, stay curious, and best of luck with your exams. Bye for now, and happy learning! 👋✨",
 };
 
@@ -232,11 +240,10 @@ function formatCoupons(result) {
   return `Active coupons:\n\n${lines.join("\n")}\n\nApply at checkout on https://olympiadquiz.org`;
 }
 
-/** Fallback used ONLY when the AI Assistant is disabled - "Talk to
- * Support" still needs to do something useful, so it creates a real
- * human-handover ticket immediately (the pre-AI behavior). When AI is
- * enabled, chatbot.js intercepts "menu_human" before this is ever
- * reached and starts the AI support-persona conversation instead. */
+/** "Talk to Support" - creates a real human-handover ticket immediately,
+ * regardless of whether the AI Assistant is enabled. An admin sees it in
+ * admin.html's WhatsApp Manager > AI Assistant tab (open handovers list +
+ * one-on-one chat modal) and replies manually. */
 async function handleHuman(serverContext) {
   await aiTools.executeTool("escalateToHuman", { reason: "Requested via WhatsApp menu/keyword" }, serverContext);
   return "Sure! 🙋 Connecting you with our support team - they'll reply here shortly.";
@@ -308,6 +315,7 @@ function buildGuidanceMenu() {
     { id: "guide_study_plan", title: "📅 30-Day Study Plan", description: "Step-by-step roadmap" },
     { id: "guide_improve_score", title: "📈 Improve My Score", description: "How to raise your rank" },
     { id: "guide_syllabus", title: "📋 Syllabus", description: "SOF, SilverZone, CREST" },
+    { id: "guide_success_guides", title: "📖 Success Guides", description: "Full articles & strategies" },
   ]);
 }
 
@@ -320,7 +328,8 @@ function buildRegistrationMenu() {
 
 function buildPaymentMenu() {
   return buildSubmenu("Payments & Certificates", "💳 Billing & certificates:", [
-    { id: "pay_help", title: "💳 Payment Help", description: "Subscription & billing" },
+    { id: "pay_subscribe_howto", title: "💎 How to Subscribe", description: "Silver & Gold plans" },
+    { id: "pay_help", title: "❗ Payment Issue", description: "Billing, refund & failed payment" },
     { id: "cert_info", title: "📜 Certificate Info", description: "When & how you get it" },
   ]);
 }
@@ -373,6 +382,8 @@ async function handleAction(actionId, serverContext) {
       return STATIC_REPLIES.guide_improve_score;
     case "guide_syllabus":
       return STATIC_REPLIES.guide_syllabus;
+    case "guide_success_guides":
+      return STATIC_REPLIES.guide_success_guides;
     case "menu_my_result":
       return formatLatestResult(await aiTools.executeTool("getLatestResult", {}, serverContext));
     case "menu_performance":
@@ -387,6 +398,8 @@ async function handleAction(actionId, serverContext) {
       return STATIC_REPLIES.reg_login_help;
     case "menu_payment":
       return buildPaymentMenu();
+    case "pay_subscribe_howto":
+      return STATIC_REPLIES.pay_subscribe_howto;
     case "pay_help":
       return STATIC_REPLIES.pay_help;
     case "cert_info":
@@ -406,5 +419,4 @@ module.exports = {
   buildMainMenu,
   FOLLOWUP_BUTTONS,
   NO_FOLLOWUP_ACTIONS,
-  SUPPORT_GREETING,
 };
