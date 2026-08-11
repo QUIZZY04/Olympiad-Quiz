@@ -159,9 +159,16 @@ body {
     .hero-content { text-align: center; }
     .hero-content h1 { font-size: 1.8rem; }
     .hero-image { display: none; }
-    
+
     body { padding-top: 60px; }
 }
+
+.oq-spinner {
+    width: 36px; height: 36px; margin: 0 auto;
+    border: 4px solid var(--border); border-top-color: var(--card-color, var(--brand));
+    border-radius: 50%; animation: oq-spin 0.8s linear infinite;
+}
+@keyframes oq-spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -499,7 +506,7 @@ window.fetchHotsSets = async function() {
             else if (data.subject === 'igko') { cardColor = '#8b5cf6'; cardText = '#6d28d9'; bgLight = 'rgba(139, 92, 246, 0.1)'; }
 
             html += `
-            <div class="hots-card" style="--card-color: ${cardColor}; --card-text: ${cardText}; --card-bg: ${bgLight};" onclick="startHotsTest('${id}', '${docClass}', '${data.subject}')">
+            <div class="hots-card" style="--card-color: ${cardColor}; --card-text: ${cardText}; --card-bg: ${bgLight};" onclick="startHotsTest('${id}', '${docClass}', '${data.subject}', this)">
                 <span class="card-badge">${data.subject.toUpperCase()} - ${docClass.replace('class', 'Class ')}</span>
                 <h3 class="card-title">${data.title}</h3>
                 <p class="card-desc">${data.desc || 'Higher Order Thinking Skills Challenge. Test your advanced problem-solving abilities.'}</p>
@@ -524,22 +531,44 @@ window.fetchHotsSets = async function() {
 document.getElementById("classSelect").addEventListener("change", window.fetchHotsSets);
 document.getElementById("subjectSelect").addEventListener("change", window.fetchHotsSets);
 
-window.startHotsTest = function(id, cls, sub) {
+window.startHotsTest = function(id, cls, sub, cardEl) {
+    // No confirmation modal on this page - the card itself gives the
+    // loading feedback while the free-tier limit check is in flight, so a
+    // click always looks like it worked instead of silently pausing.
+    if (cardEl && cardEl.dataset.oqLoading === "true") return; // ignore repeat clicks
+    const originalCardHTML = cardEl ? cardEl.innerHTML : null;
+    const showCardLoading = () => {
+        if (!cardEl) return;
+        cardEl.dataset.oqLoading = "true";
+        cardEl.style.pointerEvents = "none";
+        cardEl.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:120px;">
+            <div class="oq-spinner"></div>
+            <p style="margin-top:12px; font-weight:700; color: var(--card-text, #c2410c);">Opening Test...</p>
+        </div>`;
+    };
+    const resetCardLoading = () => {
+        if (!cardEl || originalCardHTML === null) return;
+        cardEl.innerHTML = originalCardHTML;
+        cardEl.style.pointerEvents = "";
+        cardEl.dataset.oqLoading = "false";
+    };
+
     const proceed = () => {
         localStorage.setItem("isHotsTest", "true");
         localStorage.setItem("activeHotsId", id);
         localStorage.setItem("selectedClass", cls);
         localStorage.setItem("selectedSubject", sub);
-        
+
         // Clear conflicting modes
         localStorage.removeItem("isMockTest");
         localStorage.removeItem("isChampionship");
         localStorage.removeItem("activeSessionId");
 
+        showCardLoading();
         // Checks the free-tier limit BEFORE navigating - a blocked user
         // sees the pricing modal right here instead of quiz.html opening
         // and bouncing them back.
-        guardQuizNavigation(app, "hots", () => { window.location.href = "quiz.html"; });
+        guardQuizNavigation(app, "hots", () => { window.location.href = "quiz.html"; }, resetCardLoading);
     };
 
     if (window.AuthGuard) {

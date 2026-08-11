@@ -409,26 +409,40 @@
         <div class="modal-header">
             <h2 style="color: var(--brand); font-weight: 800;">Ready to Begin?</h2>
         </div>
-        <div class="quiz-details" style="background: var(--subtle); padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: left;">
-            <p style="margin-bottom: 5px;"><strong>Grade:</strong> <span id="modalGrade"></span></p>
-            <p style="margin-bottom: 5px;"><strong>Subject:</strong> <span id="modalSubject"></span></p>
-            <p><strong>Topic:</strong> <span id="modalTopic"></span></p>
+        <div id="quizConfirmBody">
+            <div class="quiz-details" style="background: var(--subtle); padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: left;">
+                <p style="margin-bottom: 5px;"><strong>Grade:</strong> <span id="modalGrade"></span></p>
+                <p style="margin-bottom: 5px;"><strong>Subject:</strong> <span id="modalSubject"></span></p>
+                <p><strong>Topic:</strong> <span id="modalTopic"></span></p>
+            </div>
+            <div class="quiz-rules" style="text-align: left; margin-bottom: 25px;">
+                <h3 style="font-size: 1rem; margin-bottom: 10px; color: var(--text);">Quiz Rules:</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">✅ Practice test for your selected chapter.</li>
+                    <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">⏱️ The timer will start as soon as you begin.</li>
+                    <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">🚫 Do not refresh or exit during the test.</li>
+                    <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">📝 Review your answers before finishing.</li>
+                </ul>
+            </div>
+            <div style="display: flex; gap: 15px; margin-top: 20px;">
+                <button onclick="closeQuizModal()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--border); color: var(--text); font-weight: 700; border: none; cursor: pointer;">Cancel</button>
+                <button onclick="confirmStartQuiz()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--brand); color: var(--brand-contrast); font-weight: 700; border: none; cursor: pointer;">Start Test</button>
+            </div>
         </div>
-        <div class="quiz-rules" style="text-align: left; margin-bottom: 25px;">
-            <h3 style="font-size: 1rem; margin-bottom: 10px; color: var(--text);">Quiz Rules:</h3>
-            <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">✅ Practice test for your selected chapter.</li>
-                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">⏱️ The timer will start as soon as you begin.</li>
-                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">🚫 Do not refresh or exit during the test.</li>
-                <li style="margin-bottom: 8px; font-size: 0.9rem; color: var(--muted);">📝 Review your answers before finishing.</li>
-            </ul>
-        </div>
-        <div style="display: flex; gap: 15px; margin-top: 20px;">
-            <button onclick="closeQuizModal()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--border); color: var(--text); font-weight: 700; border: none; cursor: pointer;">Cancel</button>
-            <button onclick="confirmStartQuiz()" style="flex: 1; padding: 12px; border-radius: 10px; background: var(--brand); color: var(--brand-contrast); font-weight: 700; border: none; cursor: pointer;">Start Test</button>
+        <div id="quizConfirmLoading" style="display:none; text-align: center; padding: 30px 0;">
+            <div class="oq-spinner"></div>
+            <p style="margin-top: 18px; font-weight: 700; color: var(--brand); font-size: 1.05rem;">Opening Test...</p>
         </div>
     </div>
 </div>
+<style>
+    .oq-spinner {
+        width: 42px; height: 42px; margin: 0 auto;
+        border: 4px solid var(--border); border-top-color: var(--brand);
+        border-radius: 50%; animation: oq-spin 0.8s linear infinite;
+    }
+    @keyframes oq-spin { to { transform: rotate(360deg); } }
+</style>
 
 <footer style="text-align:center;padding:30px;background:var(--surface);border-top:1px solid var(--border);color:var(--muted);margin-top:auto;">
     <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px;">
@@ -1179,6 +1193,7 @@
             document.getElementById('modalGrade').innerText = document.getElementById("classSelect").options[document.getElementById("classSelect").selectedIndex].text;
             document.getElementById('modalSubject').innerText = subjectNames[currentSubject];
             document.getElementById('modalTopic').innerText = `${topicCode} - ${topicName}`;
+            resetQuizConfirmModalState();
             document.getElementById('quizConfirmModal').style.display = 'flex';
         };
 
@@ -1198,6 +1213,20 @@
         document.getElementById('quizConfirmModal').style.display = 'none';
     }
 
+    // Toggles the modal between its normal (details+rules+buttons) state and
+    // a "Opening Test..." loading state - shown while the free-tier limit
+    // check is in flight, so a click always gets immediate visual feedback
+    // instead of a silent pause. Reset back to normal on blocked (the
+    // pricing modal takes over) or whenever the confirm modal is reopened.
+    function resetQuizConfirmModalState() {
+        document.getElementById('quizConfirmBody').style.display = 'block';
+        document.getElementById('quizConfirmLoading').style.display = 'none';
+    }
+    function showQuizConfirmLoading() {
+        document.getElementById('quizConfirmBody').style.display = 'none';
+        document.getElementById('quizConfirmLoading').style.display = 'block';
+    }
+
     function confirmStartQuiz() {
         const proceed = () => {
             const selectedClass = document.getElementById("classSelect").value;
@@ -1215,10 +1244,11 @@
             localStorage.setItem("isChampionship", "false");
             localStorage.removeItem("isHotsTest");
             localStorage.removeItem("activeHotsId");
+            showQuizConfirmLoading();
             // Checks the free-tier limit BEFORE navigating - a blocked user
             // sees the pricing modal right here instead of quiz.html opening
             // and bouncing them back.
-            window.__guardQuizNavigation("chapterwise", () => { window.location.href = "quiz.html"; });
+            window.__guardQuizNavigation("chapterwise", () => { window.location.href = "quiz.html"; }, resetQuizConfirmModalState);
         };
 
         if (window.AuthGuard) {
@@ -1257,7 +1287,7 @@
     // call - checks the free-tier limit BEFORE navigating to quiz.html, so a
     // blocked user sees the pricing modal right here instead of quiz.html
     // opening and bouncing them back.
-    window.__guardQuizNavigation = (testType, navigate) => guardQuizNavigation(app, testType, navigate);
+    window.__guardQuizNavigation = (testType, navigate, onBlocked) => guardQuizNavigation(app, testType, navigate, onBlocked);
     const auth = getAuth(app);
     const db = getFirestore(app);
 

@@ -353,8 +353,12 @@ export async function startUpgradeCheckout(app, tier) {
  * @param {import("firebase/app").FirebaseApp} app
  * @param {"chapterwise"|"mock"|"hots"} testType
  * @param {() => void} navigate - called once it's safe to go to quiz.html.
+ * @param {() => void} [onBlocked] - called right before the pricing modal is
+ *        shown, so the caller can reset any "Opening Test..." loading state
+ *        it put up while this dry-run check was in flight. Not called on
+ *        the allowed path, since navigate() unloads the page anyway.
  */
-export async function guardQuizNavigation(app, testType, navigate) {
+export async function guardQuizNavigation(app, testType, navigate, onBlocked) {
   const auth = getAuth(app);
   const user = auth.currentUser;
   if (!user) { navigate(); return; } // not logged in - the page's own login-guard handles this
@@ -363,6 +367,7 @@ export async function guardQuizNavigation(app, testType, navigate) {
     const canStartTest = httpsCallable(functions, 'canStartTest');
     const { data: gate } = await canStartTest({ testType, dryRun: true });
     if (!gate.allowed) {
+      onBlocked?.();
       showBlockedModal(gate.unlocksAt, (tier) => startUpgradeCheckout(app, tier), () => hideBlockedModal(), {
         db: getFirestore(app),
         uid: user.uid,
