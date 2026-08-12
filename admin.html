@@ -1927,6 +1927,14 @@ border-top:1px solid var(--border);
         <h2>Edit Test Session</h2>
         <input type="hidden" id="editSessId">
         <label>Title</label><input type="text" id="editSessTitle">
+        <label>Subject</label>
+        <select id="editSessSubject">
+            <option value="maths">Mathematics</option>
+            <option value="science">Science</option>
+            <option value="english">English</option>
+            <option value="reasoning">Reasoning</option>
+            <option value="igko">General Knowledge</option>
+        </select>
         <label>Class</label>
         <select id="editSessClass">
             <option value="1">Class 1</option>
@@ -2891,6 +2899,7 @@ window.openSessionEdit = async (id) => {
     if (docSnap.exists()) {
         const data = docSnap.data();
         document.getElementById("editSessId").value = id;
+        document.getElementById("editSessSubject").value = data.subject;
         document.getElementById("editSessClass").value = data.class;
         document.getElementById("editSessTitle").value = data.title;
         document.getElementById("editSessPrice").value = data.price;
@@ -2921,6 +2930,7 @@ window.saveSessionEdit = async () => {
 
     const updateData = {
         title: document.getElementById("editSessTitle").value,
+        subject: document.getElementById("editSessSubject").value,
         class: parseInt(document.getElementById("editSessClass").value),
         price: parseInt(document.getElementById("editSessPrice").value),
         priceAfterCoupon: editPriceAfterCoupon,
