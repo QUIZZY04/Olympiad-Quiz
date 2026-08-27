@@ -194,7 +194,7 @@ img {
    ========================================================================== */
 
 .hero-section {
-    padding: 72px 0 96px;
+    padding: 44px 0 28px;
     position: relative;
     background:
         radial-gradient(ellipse 55% 80% at 88% 45%, rgba(30,58,138,0.09) 0%, transparent 65%),
@@ -225,7 +225,7 @@ img {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     box-shadow: 0 2px 8px rgba(194,65,12,0.12);
 }
 
@@ -234,7 +234,7 @@ img {
     font-weight: 800;
     line-height: 1.08;
     letter-spacing: -2px;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     color: var(--navy);
 }
 
@@ -244,8 +244,8 @@ img {
 .hero-subheading {
     font-size: 1.05rem;
     color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 32px;
+    line-height: 1.6;
+    margin-bottom: 22px;
     max-width: 500px;
 }
 
@@ -289,7 +289,7 @@ img {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-top: 16px;
+    margin-top: 12px;
 }
 
 .avatar-group {
@@ -375,6 +375,100 @@ img {
 .rank-sublabel { font-size: 0.45rem; font-weight: 500; color: var(--text-muted); }
 
 /* ==========================================================================
+   3c. HERO QUICK EXAM NAVIGATION (Olympiad / JEE / NEET)
+   ========================================================================== */
+
+.hero-path-nav { margin-top: 16px; }
+
+.hero-path-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.path-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.path-card {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    border: none;
+    border-radius: 16px;
+    padding: 22px 24px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    transition: all 0.25s ease;
+}
+
+.path-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.2);
+}
+
+.path-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
+.path-icon svg { width: 29px; height: 29px; }
+
+.path-text { flex: 1; min-width: 0; }
+.path-text h3 { font-size: 1.26rem; font-weight: 800; color: #ffffff; margin: 0 0 3px; line-height: 1.2; }
+.path-text p {
+    font-size: 0.96rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.path-arrow {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.85);
+    transition: transform 0.25s ease;
+}
+
+.path-card:hover .path-arrow { transform: translateX(3px); }
+
+.path-orange { background-color: #C2410C; }
+.path-blue { background-color: #1D4ED8; }
+.path-green { background-color: #15803D; }
+
+@media (max-width: 900px) {
+    .hero-path-nav { margin-top: 20px; }
+    .path-cards { gap: 10px; }
+    .path-card { flex-direction: column; text-align: center; padding: 12px 8px; gap: 6px; }
+    .path-text p { display: none; }
+    .path-arrow { display: none; }
+}
+
+@media (max-width: 600px) {
+    .hero-path-nav { margin-top: 18px; }
+    .path-cards { gap: 8px; }
+    .path-card { padding: 10px 6px; border-radius: 14px; }
+    .path-icon { width: 32px; height: 32px; }
+    .path-icon svg { width: 18px; height: 18px; }
+    .path-text h3 { font-size: 0.78rem; }
+}
+
+/* ==========================================================================
    4. QUIZ SECTION
    ========================================================================== */
 
@@ -384,7 +478,7 @@ img {
 
 .stats-bar {
     background: var(--navy);
-    padding: 44px 0;
+    padding: 13px 0;
     position: relative;
 }
 
@@ -1075,7 +1169,7 @@ img {
 }
 
 @media (max-width: 600px) {
-    .hero-section { padding-top: 44px; padding-bottom: 48px; }
+    .hero-section { padding-top: 36px; padding-bottom: 32px; }
     .hero-left h1 { font-size: 2.2rem; letter-spacing: -0.6px; }
     .hero-subheading { font-size: 0.95rem; }
     .hero-buttons { flex-direction: column; }
