@@ -10,7 +10,7 @@
  *
  * "Abandoned" attempts (0 answers, started more than
  * ABANDON_VOID_WINDOW_MINUTES ago, never completed) are excluded from the
- * rolling-window count computed on the fly in countActiveAttempts() below -
+ * day's count computed on the fly in filterCountedAttempts() below -
  * there's no need for a separate scheduled sweep job, since the only place
  * this distinction matters is right here, at count time.
  * =====================================================================
@@ -21,14 +21,28 @@ const {
   admin,
   db,
   FREE_TEST_LIMIT,
-  FREE_TEST_WINDOW_HOURS,
+  IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
   COLLECTIONS,
 } = require("./config");
 
-const WINDOW_MS = FREE_TEST_WINDOW_HOURS * 60 * 60 * 1000;
+const DAY_MS = 24 * 60 * 60 * 1000;
 const VOID_CUTOFF_MS = ABANDON_VOID_WINDOW_MINUTES * 60 * 1000;
+
+/**
+ * Calendar-day boundaries in IST for whichever instant `nowMs` falls in.
+ * A free user's 2 attempts reset at 00:00 IST, not on a rolling 24h timer -
+ * so someone who tests at 11pm and again at 11:30pm is blocked until
+ * midnight (~30 min later), not until ~11pm the next day.
+ * @param {number} nowMs
+ * @returns {{startOfDayMs: number, startOfNextDayMs: number}}
+ */
+function getIstDayBounds(nowMs) {
+  const shifted = nowMs + IST_OFFSET_MS;
+  const startOfDayMs = Math.floor(shifted / DAY_MS) * DAY_MS - IST_OFFSET_MS;
+  return { startOfDayMs, startOfNextDayMs: startOfDayMs + DAY_MS };
+}
 
 /**
  * @param {FirebaseFirestore.QueryDocumentSnapshot[]} docs - attempts within the window, ordered by startedAt asc.
@@ -67,8 +81,8 @@ async function isPremiumActive(uid) {
  *   right before rendering - that's the one authoritative, attempt-
  *   creating call; the dry-run pre-check never writes anything, so the
  *   two calls together never double-count a single test as 2 attempts.
- * @returns {{allowed: true, attemptId?: string, isPremium?: true, remaining?: number, limit?: number, windowHours?: number} |
- *           {allowed: false, unlocksAt: number, limit: number, windowHours: number}}
+ * @returns {{allowed: true, attemptId?: string, isPremium?: true, remaining?: number, limit?: number} |
+ *           {allowed: false, unlocksAt: number, limit: number}}
  */
 exports.canStartTest = onCall(async (request) => {
   if (!request.auth) {
@@ -90,12 +104,13 @@ exports.canStartTest = onCall(async (request) => {
   // roughly in half for the common case. Costs a handful of extra reads
   // for premium users (whose query result then goes unused), which is a
   // negligible trade for a function on the hot path of every test start.
-  const windowStart = admin.firestore.Timestamp.fromMillis(Date.now() - WINDOW_MS);
+  const { startOfDayMs, startOfNextDayMs } = getIstDayBounds(Date.now());
+  const dayStart = admin.firestore.Timestamp.fromMillis(startOfDayMs);
   const [isPremium, snap] = await Promise.all([
     isPremiumActive(uid),
     db.collection(COLLECTIONS.TEST_ATTEMPTS)
       .where("uid", "==", uid)
-      .where("startedAt", ">=", windowStart)
+      .where("startedAt", ">=", dayStart)
       .orderBy("startedAt", "asc")
       .get(),
   ]);
@@ -118,13 +133,10 @@ exports.canStartTest = onCall(async (request) => {
   const counted = filterCountedAttempts(snap.docs);
 
   if (counted.length >= FREE_TEST_LIMIT) {
-    const oldest = counted[0];
-    const oldestStartMs = oldest.data().startedAt.toMillis();
     return {
       allowed: false,
-      unlocksAt: oldestStartMs + WINDOW_MS,
+      unlocksAt: startOfNextDayMs,
       limit: FREE_TEST_LIMIT,
-      windowHours: FREE_TEST_WINDOW_HOURS,
     };
   }
 
@@ -133,7 +145,6 @@ exports.canStartTest = onCall(async (request) => {
       allowed: true,
       remaining: FREE_TEST_LIMIT - counted.length - 1,
       limit: FREE_TEST_LIMIT,
-      windowHours: FREE_TEST_WINDOW_HOURS,
     };
   }
 
@@ -153,7 +164,6 @@ exports.canStartTest = onCall(async (request) => {
     attemptId: attemptRef.id,
     remaining: FREE_TEST_LIMIT - counted.length - 1,
     limit: FREE_TEST_LIMIT,
-    windowHours: FREE_TEST_WINDOW_HOURS,
   };
 });
 

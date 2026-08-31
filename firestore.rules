@@ -218,5 +218,17 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // ========================
+    // 19. Live Test Credit Claims (Gold/Diamond included-tests monthly counter)
+    // ========================
+    // Server-only, same reasoning as testAttempts above - only
+    // claimIncludedLiveTest (Admin SDK) ever reads/writes here. This is the
+    // security backstop for the monthly credit count itself; the resulting
+    // users/{uid}/purchases/{sessionId} doc still follows the existing
+    // purchases rule above.
+    match /liveTestCreditClaims/{docId} {
+      allow read, write: if false;
+    }
+
   }
 }

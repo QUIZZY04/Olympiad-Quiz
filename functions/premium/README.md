@@ -1,6 +1,6 @@
 # Premium / Free-Tier Rate Limiting
 
-Free users get **2 test attempts per rolling 4-hour window** (chapterwise/mock/HOTS only -
+Free users get **2 test attempts per calendar day (resets at 00:00 IST)** (chapterwise/mock/HOTS only -
 live championship tests have their own separate per-session Razorpay paywall and are
 never rate-limited here). Premium (₹299/month via Razorpay Subscriptions) bypasses the
 limit entirely. All the tunable numbers live in [`config.js`](./config.js) - nothing is
@@ -24,39 +24,22 @@ are still logged to the `paymentFailures` collection (subscriptionId, uid, Razor
 error code/description, timestamp) for visibility - check that collection if you want
 to see how often renewals are failing, or build an admin view over it later.
 
-## How the rolling window is computed
+## How the daily reset is computed
 
-`canStartTest` queries `testAttempts` for `uid == <user> AND startedAt >= (now - 4h)`,
-then excludes any attempt that's "abandoned" - `questionsAnswered == 0`, never completed,
-and started more than 2 minutes ago (`ABANDON_VOID_WINDOW_MINUTES` in config.js). No
+`canStartTest` computes the current calendar day's boundaries in IST (UTC+5:30, no DST
+so a fixed offset is always correct - see `getIstDayBounds` in `testLimits.js`), then
+queries `testAttempts` for `uid == <user> AND startedAt >= <00:00 IST today>`. It then
+excludes any attempt that's "abandoned" - `questionsAnswered == 0`, never completed, and
+started more than 2 minutes ago (`ABANDON_VOID_WINDOW_MINUTES` in config.js). No
 scheduled sweep job is needed - this exclusion is computed on the fly, at query time,
-every time `canStartTest` runs.
+every time `canStartTest` runs. A blocked user's `unlocksAt` is always the *next* IST
+midnight, not "first attempt's time + 24h" - so testing at 11:58pm and 11:59pm still
+only costs 2 minutes of waiting, not a full day.
 
-## Testing the rolling window locally, without waiting 4 real hours
+## Testing the daily reset locally, without waiting until real midnight
 
-Two options, from fastest to most realistic:
-
-### Option A - shrink the constants temporarily (fastest)
-
-In `functions/premium/config.js`, temporarily set:
-
-```js
-const FREE_TEST_LIMIT = 2;
-const FREE_TEST_WINDOW_HOURS = 2 / 60;       // 2 minutes instead of 4 hours
-const ABANDON_VOID_WINDOW_MINUTES = 0.25;    // 15 seconds instead of 2 minutes
-```
-
-Run the emulator suite (`firebase emulators:start --only functions,firestore,auth`),
-sign in as a test user in the app pointed at the emulator, and take 3 tests within a
-couple of minutes - the whole rolling-window/unlock cycle now plays out in under 5
-minutes of real wall-clock time. **Revert these numbers before deploying to production**
-- don't ship the shrunk values.
-
-### Option B - seed `testAttempts` docs directly with a backdated `startedAt` (more realistic, no waiting at all)
-
-Since `canStartTest` only cares about how old each attempt's `startedAt` is relative to
-`Date.now()` at query time, you can seed attempts with an artificially old timestamp
-directly in the emulator's Firestore, no need to shrink any constant:
+Seed `testAttempts` docs directly with a backdated `startedAt` so they land earlier the
+same IST day, no need to touch any constant:
 
 ```js
 // Run inside the Firestore emulator (e.g. via a small script using
@@ -69,27 +52,26 @@ const now = Date.now();
 await db.collection("testAttempts").add({
   uid: "TEST_UID",
   testType: "mock",
-  startedAt: admin.firestore.Timestamp.fromMillis(now - 3.9 * 60 * 60 * 1000), // 3h54m ago
-  completedAt: admin.firestore.Timestamp.fromMillis(now - 3.8 * 60 * 60 * 1000),
+  startedAt: admin.firestore.Timestamp.fromMillis(now - 30 * 60 * 1000), // 30 min ago
+  completedAt: admin.firestore.Timestamp.fromMillis(now - 25 * 60 * 1000),
   questionsAnswered: 10,
   voided: false,
 });
 await db.collection("testAttempts").add({
   uid: "TEST_UID",
   testType: "mock",
-  startedAt: admin.firestore.Timestamp.fromMillis(now - 3.5 * 60 * 60 * 1000), // 3h30m ago
-  completedAt: admin.firestore.Timestamp.fromMillis(now - 3.4 * 60 * 60 * 1000),
+  startedAt: admin.firestore.Timestamp.fromMillis(now - 10 * 60 * 1000), // 10 min ago
+  completedAt: admin.firestore.Timestamp.fromMillis(now - 5 * 60 * 1000),
   questionsAnswered: 10,
   voided: false,
 });
 ```
 
-Then call `canStartTest({testType: "mock"})` as `TEST_UID` - it should return
-`allowed: false` with `unlocksAt` equal to the first attempt's `startedAt` (3h54m ago) +
-4 hours, i.e. ~6 minutes from now. Adjust the `3.9`/`3.5` hour offsets to land the
-"unlock" a minute or two in the future for a quick real-time countdown-modal check, or
-push them further in the past (e.g. `4.1` hours ago) to confirm the window has already
-rolled and a 3rd attempt is allowed again.
+Then call `canStartTest({testType: "mock"})` as `TEST_UID` - as long as both seeded
+timestamps fall on the same IST calendar day as "now", it should return `allowed: false`
+with `unlocksAt` equal to the next IST midnight. To exercise the "already past midnight"
+reset path instead, seed both attempts with a `startedAt` from *yesterday* (IST) and
+confirm a 3rd attempt today is allowed again.
 
 ### Testing the abandon-void logic
 
@@ -126,9 +108,32 @@ Razorpay can't reach `localhost`, so for local webhook testing either:
 ## Production setup checklist (one-time, done as part of this feature's rollout)
 
 - [x] `RAZORPAY_PREMIUM_PLAN_ID` secret set (Plan created via `createPremiumPlan`/the Plans API).
+- [ ] Run `createPremiumPlan({tier: "diamond"})` once and set the returned plan_id as
+      `RAZORPAY_DIAMOND_PLAN_ID` (Silver/Gold's plan_ids should already be set from the
+      original rollout - only Diamond is new).
+- [ ] If Gold's price/billing interval actually changed in Razorpay (₹399/quarterly instead
+      of the old ₹999/yearly), re-run `createPremiumPlan({tier: "gold"})` to create a new
+      Plan object reflecting it and update `RAZORPAY_GOLD_PLAN_ID` - Razorpay Plans are
+      immutable once created, existing Gold subscribers stay on the old Plan/price until
+      they resubscribe.
 - [ ] Register the deployed `razorpayWebhook` URL in the Razorpay Dashboard
       (Settings → Webhooks), subscribed to: `subscription.activated`, `subscription.charged`,
       `subscription.cancelled`, `subscription.completed`, `subscription.halted`, `payment.failed`.
 - [ ] Replace the placeholder `RAZORPAY_WEBHOOK_SECRET` value with the real one shown by
       the Razorpay Dashboard when you register the webhook, then redeploy
       `razorpayWebhook` (secret changes require a redeploy to take effect).
+
+## Gold/Diamond included All India Live Test credits
+
+Gold and Diamond subscribers get a limited number of Live Test entries included free each
+calendar month (2 for Gold, 4 for Diamond - `LIVE_TEST_MONTHLY_CREDITS` in `config.js`),
+worth ₹99/entry (`LIVE_TEST_CREDIT_VALUE_INR`) at the normal per-session price. This is
+handled entirely in [`liveTestCredits.js`](./liveTestCredits.js)'s `claimIncludedLiveTest` -
+`live.html` calls it before falling back to the paid Razorpay Orders flow. The monthly
+counter (`liveTestCreditClaims/{uid}_{yyyy-M}`, IST calendar month) and the resulting
+`users/{uid}/purchases/{sessionId}` doc are written atomically in one Firestore transaction,
+so a user can't rack up more free entries than their plan allows by retrying the call.
+
+Personal guidance for upcoming Olympiads (Diamond-only, see `PERSONAL_GUIDANCE_TIERS`) is a
+manual perk (outreach via WhatsApp/email) - nothing in this codebase automates it, the flag
+just exists so the pricing card can advertise it consistently.

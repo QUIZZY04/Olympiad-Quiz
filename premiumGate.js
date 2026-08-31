@@ -57,7 +57,7 @@ function injectStyles() {
     }
     #pgBlockOverlay .pg-box {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 24px; padding: 40px 44px; max-width: 980px; width: 100%;
+      border-radius: 24px; padding: 40px 44px; max-width: 1180px; width: 100%;
       text-align: center; box-shadow: var(--shadow-lg, 0 25px 50px rgba(0,0,0,0.35));
       margin: auto;
     }
@@ -75,33 +75,36 @@ function injectStyles() {
       color: var(--muted); margin-bottom: 18px;
     }
     #pgBlockOverlay .pg-plans {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
       margin-bottom: 24px; align-items: stretch;
     }
     #pgBlockOverlay .pg-plan {
       background: var(--bg, #f8fafc); border: 1.5px solid var(--border);
-      border-radius: 18px; padding: 26px 20px; display: flex; flex-direction: column;
+      border-radius: 18px; padding: 24px 18px; display: flex; flex-direction: column;
       text-align: left; position: relative;
     }
-    #pgBlockOverlay .pg-plan-gold {
-      background: linear-gradient(180deg, rgba(217,164,6,0.08), rgba(217,164,6,0.02));
-      border: 2px solid #d9a406; transform: scale(1.03);
-      box-shadow: 0 12px 28px rgba(217,164,6,0.18);
+    #pgBlockOverlay .pg-plan-gold { border-color: rgba(255, 107, 0, 0.4); }
+    #pgBlockOverlay .pg-plan-gold .pg-plan-name { color: var(--brand-text); }
+    #pgBlockOverlay .pg-plan-diamond {
+      background: linear-gradient(180deg, rgba(2,132,199,0.08), rgba(2,132,199,0.02));
+      border: 2px solid #0284c7; transform: scale(1.03);
+      box-shadow: 0 12px 28px rgba(2,132,199,0.18);
     }
     #pgBlockOverlay .pg-plan-badge {
       position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-      background: #d9a406; color: #fff; font-size: 11px; font-weight: 800;
+      color: #fff; font-size: 11px; font-weight: 800;
       text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 14px;
-      border-radius: 999px; white-space: nowrap; box-shadow: 0 4px 8px rgba(217,164,6,0.35);
+      border-radius: 999px; white-space: nowrap;
     }
+    #pgBlockOverlay .pg-plan-diamond .pg-plan-badge { background: #0284c7; box-shadow: 0 4px 8px rgba(2,132,199,0.35); }
     #pgBlockOverlay .pg-plan-name { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
-    #pgBlockOverlay .pg-plan-gold .pg-plan-name { color: #a3760a; }
-    #pgBlockOverlay .pg-plan-price { font-size: 1.9rem; font-weight: 800; color: var(--text); line-height: 1.1; }
-    #pgBlockOverlay .pg-plan-price span { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
-    #pgBlockOverlay .pg-plan-save { font-size: 0.78rem; font-weight: 700; color: #15803d; margin-top: 4px; margin-bottom: 4px; }
+    #pgBlockOverlay .pg-plan-diamond .pg-plan-name { color: #0369a1; }
+    #pgBlockOverlay .pg-plan-price { font-size: 1.7rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+    #pgBlockOverlay .pg-plan-price span { font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+    #pgBlockOverlay .pg-plan-save { font-size: 0.76rem; font-weight: 700; color: #15803d; margin-top: 4px; margin-bottom: 4px; }
     #pgBlockOverlay .pg-plan-features { list-style: none; margin: 16px 0 20px; padding: 0; flex: 1; }
     #pgBlockOverlay .pg-plan-features li {
-      display: flex; align-items: flex-start; gap: 8px; font-size: 0.85rem;
+      display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem;
       color: var(--text); margin-bottom: 10px; line-height: 1.35;
     }
     #pgBlockOverlay .pg-plan-features li.pg-feature-off { color: var(--muted); }
@@ -110,20 +113,23 @@ function injectStyles() {
     #pgBlockOverlay .pg-feature-icon.pg-no { background: var(--border); color: var(--muted); }
     #pgBlockOverlay .pg-plan-btn {
       width: 100%; padding: 12px 14px; border-radius: 10px; font-weight: 800;
-      font-size: 0.9rem; cursor: pointer; border: 1.5px solid var(--brand);
+      font-size: 0.88rem; cursor: pointer; border: 1.5px solid var(--brand);
       background: var(--surface); color: var(--brand-text); transition: 0.2s;
     }
     #pgBlockOverlay .pg-plan-btn:hover { background: var(--subtle, #fff7ed); }
-    #pgBlockOverlay .pg-plan-btn-gold { background: #d9a406; border-color: #d9a406; color: #fff; }
-    #pgBlockOverlay .pg-plan-btn-gold:hover { background: #b8890a; }
+    #pgBlockOverlay .pg-plan-btn-diamond { background: #0284c7; border-color: #0284c7; color: #fff; }
+    #pgBlockOverlay .pg-plan-btn-diamond:hover { background: #0369a1; }
     #pgBlockOverlay .pg-plan-btn-disabled { background: var(--border); border-color: var(--border); color: var(--muted); cursor: default; }
     #pgBlockOverlay .pg-plan-btn-disabled:hover { background: var(--border); }
     #pgBlockOverlay .pg-back-link { color: var(--muted); font-size: 13px; text-decoration: underline; cursor: pointer; background: none; border: none; }
 
-    @media (max-width: 760px) {
+    @media (max-width: 900px) {
+      #pgBlockOverlay .pg-plans { grid-template-columns: repeat(2, 1fr); }
+      #pgBlockOverlay .pg-plan-diamond { transform: none; }
+    }
+    @media (max-width: 520px) {
       #pgBlockOverlay .pg-box { padding: 28px 20px; }
       #pgBlockOverlay .pg-plans { grid-template-columns: 1fr; }
-      #pgBlockOverlay .pg-plan-gold { transform: none; }
     }
   `;
   document.head.appendChild(style);
@@ -140,7 +146,7 @@ export function showRemainingNotice(remaining) {
   el.id = "pgNotice";
   el.innerHTML = `
     <span style="font-size:20px;">⏳</span>
-    <span>${remaining} free test${remaining === 1 ? "" : "s"} remaining in the next 4 hours.</span>
+    <span>${remaining} free test${remaining === 1 ? "" : "s"} remaining today.</span>
     <span class="pg-close" title="Dismiss">&times;</span>
   `;
   document.body.appendChild(el);
@@ -151,12 +157,19 @@ export function showRemainingNotice(remaining) {
 let countdownTimer = null;
 let premiumUnsubscribe = null;
 
-// Pricing display copy - mirrors functions/premium/config.js's PREMIUM_TIERS.
-// If those prices ever change, update both places (backend is the source
-// of truth for what's actually charged; this is display-only).
+// Pricing display copy - mirrors functions/premium/config.js's PREMIUM_TIERS
+// and LIVE_TEST_MONTHLY_CREDITS/LIVE_TEST_CREDIT_VALUE_INR. If those ever
+// change, update both places (backend is the source of truth for what's
+// actually charged/granted; this is display-only).
 const SILVER_PRICE_INR = 199;
-const GOLD_PRICE_INR = 999;
-const GOLD_SAVINGS_PCT = Math.round((1 - GOLD_PRICE_INR / (SILVER_PRICE_INR * 12)) * 100);
+const GOLD_PRICE_INR = 399;       // billed every 3 months
+const DIAMOND_PRICE_INR = 999;    // billed yearly
+const GOLD_LIVE_TESTS_PER_MONTH = 2;
+const DIAMOND_LIVE_TESTS_PER_MONTH = 4;
+const LIVE_TEST_VALUE_INR = 99;
+// Savings vs. paying the Silver monthly price for the same span (3 months / 1 year).
+const GOLD_SAVINGS_PCT = Math.round((1 - GOLD_PRICE_INR / (SILVER_PRICE_INR * 3)) * 100);
+const DIAMOND_SAVINGS_PCT = Math.round((1 - DIAMOND_PRICE_INR / (SILVER_PRICE_INR * 12)) * 100);
 
 function featureLi(text, included) {
   const icon = included
@@ -167,13 +180,13 @@ function featureLi(text, included) {
 
 /**
  * Full-screen modal blocking test access until unlocksAtMs, showing a
- * professional 3-column pricing table (Current/Silver/Gold) so the
+ * professional 4-column pricing table (Current/Silver/Gold/Diamond) so the
  * upgrade decision is presented clearly, not squeezed into an afterthought
  * button. Doesn't touch navigation (no history/redirect manipulation) -
  * the user can still use the navbar/back button to go elsewhere, they
  * just can't get past this overlay to reach the quiz itself.
  * @param {number} unlocksAtMs - epoch ms from canStartTest's response.
- * @param {(tier: "silver"|"gold") => void} onUpgrade - called with the chosen tier when a plan button is clicked.
+ * @param {(tier: "silver"|"gold"|"diamond") => void} onUpgrade - called with the chosen tier when a plan button is clicked.
  * @param {() => void} [onBack] - called when "Go back" is clicked.
  * @param {{db: import("firebase/firestore").Firestore, uid: string, onResolved: () => void}} [live] -
  *   when provided, opens a live onSnapshot listener on users/{uid} so the
@@ -191,7 +204,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
       <div class="pg-box">
         <div class="pg-icon">⏱️</div>
         <h2>Free Test Limit Reached</h2>
-        <p class="pg-lead">You've used your 2 free tests for this 4-hour window. Your next free test unlocks in:</p>
+        <p class="pg-lead">You've used your 2 free tests for today. Your next free test unlocks at midnight:</p>
         <div id="pgCountdown">--:--:--</div>
         <div class="pg-plans-heading">Or continue right now with unlimited tests</div>
         <div class="pg-plans">
@@ -199,10 +212,12 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
             <div class="pg-plan-name">Current Plan</div>
             <div class="pg-plan-price">Free</div>
             <ul class="pg-plan-features">
-              ${featureLi("2 tests every 4 hours", true)}
+              ${featureLi("2 tests every day", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
               ${featureLi("Basic performance analytics", true)}
               ${featureLi("Unlimited test attempts", false)}
+              ${featureLi("All India Live Tests included", false)}
+              ${featureLi("Personal Olympiad guidance", false)}
               ${featureLi("Priority support", false)}
             </ul>
             <button class="pg-plan-btn pg-plan-btn-disabled" disabled>Your Current Plan</button>
@@ -215,23 +230,42 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
               ${featureLi("All chapterwise &amp; mock tests", true)}
               ${featureLi("Detailed performance analytics", true)}
               ${featureLi("No waiting between tests", true)}
+              ${featureLi("All India Live Tests included", false)}
+              ${featureLi("Personal Olympiad guidance", false)}
               ${featureLi("Priority support", false)}
             </ul>
             <button class="pg-plan-btn" id="pgSilverBtn">Choose Silver</button>
           </div>
           <div class="pg-plan pg-plan-gold">
-            <div class="pg-plan-badge">Best Value</div>
             <div class="pg-plan-name">Gold Plan</div>
-            <div class="pg-plan-price">&#8377;${GOLD_PRICE_INR}<span>/year</span></div>
-            <div class="pg-plan-save">Save ${GOLD_SAVINGS_PCT}% vs. monthly</div>
+            <div class="pg-plan-price">&#8377;${GOLD_PRICE_INR}<span>/3 months</span></div>
+            <div class="pg-plan-save">Save ${GOLD_SAVINGS_PCT}% vs. Silver monthly</div>
             <ul class="pg-plan-features">
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
               ${featureLi("Detailed performance analytics", true)}
               ${featureLi("No waiting between tests", true)}
+              ${featureLi(`${GOLD_LIVE_TESTS_PER_MONTH} All India Live Tests/month (worth &#8377;${GOLD_LIVE_TESTS_PER_MONTH * LIVE_TEST_VALUE_INR})`, true)}
+              ${featureLi("Personal Olympiad guidance", false)}
+              ${featureLi("Priority support", false)}
+            </ul>
+            <button class="pg-plan-btn" id="pgGoldBtn">Choose Gold</button>
+          </div>
+          <div class="pg-plan pg-plan-diamond">
+            <div class="pg-plan-badge">Best Value</div>
+            <div class="pg-plan-name">Diamond Plan</div>
+            <div class="pg-plan-price">&#8377;${DIAMOND_PRICE_INR}<span>/year</span></div>
+            <div class="pg-plan-save">Save ${DIAMOND_SAVINGS_PCT}% vs. Silver monthly</div>
+            <ul class="pg-plan-features">
+              ${featureLi("Unlimited test attempts", true)}
+              ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("Detailed performance analytics", true)}
+              ${featureLi("No waiting between tests", true)}
+              ${featureLi(`${DIAMOND_LIVE_TESTS_PER_MONTH} All India Live Tests/month (worth &#8377;${DIAMOND_LIVE_TESTS_PER_MONTH * LIVE_TEST_VALUE_INR})`, true)}
+              ${featureLi("Personal guidance for upcoming Olympiads", true)}
               ${featureLi("Priority support", true)}
             </ul>
-            <button class="pg-plan-btn pg-plan-btn-gold" id="pgGoldBtn">Choose Gold</button>
+            <button class="pg-plan-btn pg-plan-btn-diamond" id="pgDiamondBtn">Choose Diamond</button>
           </div>
         </div>
         <button class="pg-back-link" id="pgBackBtn">Go back</button>
@@ -241,6 +275,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
   }
   document.getElementById("pgSilverBtn").onclick = () => onUpgrade && onUpgrade("silver");
   document.getElementById("pgGoldBtn").onclick = () => onUpgrade && onUpgrade("gold");
+  document.getElementById("pgDiamondBtn").onclick = () => onUpgrade && onUpgrade("diamond");
   document.getElementById("pgBackBtn").onclick = () => {
     hideBlockedModal();
     onBack && onBack();
@@ -285,24 +320,31 @@ export function hideBlockedModal() {
   if (premiumUnsubscribe) { premiumUnsubscribe(); premiumUnsubscribe = null; }
 }
 
+const BUTTON_ID_BY_TIER = { silver: "pgSilverBtn", gold: "pgGoldBtn", diamond: "pgDiamondBtn" };
+const TIER_LABEL = {
+  silver: `Silver - ₹${SILVER_PRICE_INR}/month`,
+  gold: `Gold - ₹${GOLD_PRICE_INR}/3 months`,
+  diamond: `Diamond - ₹${DIAMOND_PRICE_INR}/year`,
+};
+
 /**
- * Shared Razorpay-subscription-checkout flow for the Silver/Gold plan
- * buttons - one implementation used by every page that can show the
+ * Shared Razorpay-subscription-checkout flow for the Silver/Gold/Diamond
+ * plan buttons - one implementation used by every page that can show the
  * pricing modal (quiz.html, chapterwise.html, mock.html, hots.html)
  * instead of each duplicating the same Checkout.js wiring. Requires
  * https://checkout.razorpay.com/v1/checkout.js to already be loaded on
  * the page. isPremium itself is only ever set by the razorpayWebhook
  * Cloud Function once Razorpay confirms the first charge, never here.
  * @param {import("firebase/app").FirebaseApp} app
- * @param {"silver"|"gold"} tier
+ * @param {"silver"|"gold"|"diamond"} tier
  */
 export async function startUpgradeCheckout(app, tier) {
   const auth = getAuth(app);
   const functions = getFunctions(app);
-  const btn = document.getElementById(tier === "gold" ? "pgGoldBtn" : "pgSilverBtn");
+  const btn = document.getElementById(BUTTON_ID_BY_TIER[tier] || "pgSilverBtn");
   const originalText = btn ? btn.textContent : "";
   if (btn) { btn.disabled = true; btn.textContent = "Preparing checkout..."; }
-  const tierLabel = tier === "gold" ? `Gold - ₹${GOLD_PRICE_INR}/year` : `Silver - ₹${SILVER_PRICE_INR}/month`;
+  const tierLabel = TIER_LABEL[tier] || TIER_LABEL.silver;
   try {
     const createPremiumSubscription = httpsCallable(functions, 'createPremiumSubscription');
     const { data: sub } = await createPremiumSubscription({ tier });
@@ -326,7 +368,7 @@ export async function startUpgradeCheckout(app, tier) {
         email: auth.currentUser?.email || "",
         contact: auth.currentUser?.phoneNumber || ""
       },
-      theme: { color: tier === "gold" ? "#d9a406" : "#ff6b00" }
+      theme: { color: tier === "diamond" ? "#0284c7" : "#ff6b00" }
     };
     const rzp = new Razorpay(options);
     rzp.on('payment.failed', function () {

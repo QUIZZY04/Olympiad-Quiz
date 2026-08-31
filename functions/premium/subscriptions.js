@@ -31,7 +31,7 @@ const RAZORPAY_API_BASE = "https://api.razorpay.com/v1";
 
 // Every secret any tier's planId might read from, declared statically (v2
 // functions require secrets to be listed up front, not chosen at runtime).
-const ALL_PLAN_ID_SECRETS = ["RAZORPAY_SILVER_PLAN_ID", "RAZORPAY_GOLD_PLAN_ID", "RAZORPAY_PREMIUM_PLAN_ID"];
+const ALL_PLAN_ID_SECRETS = ["RAZORPAY_SILVER_PLAN_ID", "RAZORPAY_GOLD_PLAN_ID", "RAZORPAY_DIAMOND_PLAN_ID", "RAZORPAY_PREMIUM_PLAN_ID"];
 
 function razorpayAuthHeader() {
   return "Basic " + Buffer.from(process.env.RAZORPAY_KEY_ID + ":" + process.env.RAZORPAY_KEY_SECRET).toString("base64");
@@ -39,10 +39,10 @@ function razorpayAuthHeader() {
 
 /**
  * One-time bootstrap, admin-only. Creates the recurring Plan in Razorpay
- * for the given tier ("silver" or "gold") and returns its plan_id. Run
- * once per tier (e.g. from the browser console on admin.html via
- * httpsCallable), then:
- *   firebase functions:secrets:set RAZORPAY_SILVER_PLAN_ID   (or _GOLD_)
+ * for the given tier ("silver", "gold", or "diamond") and returns its
+ * plan_id. Run once per tier (e.g. from the browser console on admin.html
+ * via httpsCallable), then:
+ *   firebase functions:secrets:set RAZORPAY_SILVER_PLAN_ID   (or _GOLD_/_DIAMOND_)
  * pasting the returned id as the value, and redeploy createPremiumSubscription.
  * Safe to call again if needed - Razorpay just creates another Plan object,
  * it doesn't mutate/duplicate-detect, so only ever run this when you
@@ -83,14 +83,14 @@ exports.createPremiumPlan = onCall({
     throw new HttpsError("internal", "Razorpay plan creation failed: " + plan.error.description);
   }
 
-  const secretName = tier === "gold" ? "RAZORPAY_GOLD_PLAN_ID" : "RAZORPAY_SILVER_PLAN_ID";
+  const secretName = tier === "diamond" ? "RAZORPAY_DIAMOND_PLAN_ID" : tier === "gold" ? "RAZORPAY_GOLD_PLAN_ID" : "RAZORPAY_SILVER_PLAN_ID";
   console.log(`${tierConfig.label} Plan created:`, plan.id, `- set this as ${secretName}.`);
   return { planId: plan.id };
 });
 
 /**
  * Callable. Creates a Razorpay Subscription for the logged-in user against
- * the requested tier's plan ("silver" or "gold"). Returns just enough for
+ * the requested tier's plan ("silver", "gold", or "diamond"). Returns just enough for
  * the frontend to open Razorpay Checkout in subscription mode
  * (subscription_id instead of order_id) - actual isPremium/premiumExpiresAt/
  * premiumTier is only ever set by the webhook below, never here (this
@@ -123,7 +123,7 @@ exports.createPremiumSubscription = onCall({
     body: JSON.stringify({
       plan_id: planId,
       customer_notify: 1,
-      total_count: tier === "gold" ? 10 : 120, // 10 yearly cycles / 120 monthly cycles - Razorpay requires a count; effectively "until cancelled"
+      total_count: tierConfig.totalCount, // Razorpay requires a fixed count; picked per-tier to be effectively "until cancelled"
       notes: { uid, tier }, // read back in the webhook payload to identify the user + tier
     }),
   });

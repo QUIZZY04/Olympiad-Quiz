@@ -1724,6 +1724,7 @@ exports.saveEmailReminderAutoSetting = onCall({}, async (request) => {
 // =================================================================
 const testLimits = require("./premium/testLimits");
 const premiumSubscriptions = require("./premium/subscriptions");
+const liveTestCredits = require("./premium/liveTestCredits");
 
 exports.canStartTest = testLimits.canStartTest;
 exports.markTestAttemptProgress = testLimits.markTestAttemptProgress;
@@ -1732,3 +1733,5 @@ exports.completeTestAttempt = testLimits.completeTestAttempt;
 exports.createPremiumPlan = premiumSubscriptions.createPremiumPlan;
 exports.createPremiumSubscription = premiumSubscriptions.createPremiumSubscription;
 exports.razorpayWebhook = premiumSubscriptions.razorpayWebhook;
+
+exports.claimIncludedLiveTest = liveTestCredits.claimIncludedLiveTest;

@@ -20,10 +20,12 @@ if (!admin.apps.length) {
 const db = admin.firestore();
 
 // ---------------------------------------------------------------------
-// Free-tier rolling window rate limit
+// Free-tier daily rate limit
 // ---------------------------------------------------------------------
-const FREE_TEST_LIMIT = 2;              // attempts allowed per rolling window
-const FREE_TEST_WINDOW_HOURS = 4;       // rolling window size
+const FREE_TEST_LIMIT = 2;              // attempts allowed per calendar day
+// India has no DST, so a fixed UTC+5:30 offset is always correct for
+// computing "today"/"tomorrow" boundaries - no timezone library needed.
+const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
 const ABANDON_VOID_WINDOW_MINUTES = 2;   // an attempt with 0 answers older than this doesn't count
 
 // Only these test types are rate-limited. Live championship tests
@@ -32,10 +34,14 @@ const ABANDON_VOID_WINDOW_MINUTES = 2;   // an attempt with 0 answers older than
 const RATE_LIMITED_TEST_TYPES = ["chapterwise", "mock", "hots"];
 
 // ---------------------------------------------------------------------
-// Premium subscription - two tiers, both grant the same unlimited-tests
+// Premium subscription - three tiers, all grant the same unlimited-tests
 // bypass in canStartTest (isPremium is a single boolean regardless of
-// tier); premiumTier ("silver"|"gold") is stored purely for display/
-// record-keeping and to tell the two apart in the pricing table.
+// tier); premiumTier ("silver"|"gold"|"diamond") is stored on the user doc
+// to tell them apart for display and for the live-test credit perk below.
+// totalCount is Razorpay's required subscription cycle count - picked per
+// tier so each renews for roughly 10 years before Razorpay would need a
+// fresh subscription (silver/monthly=120, gold/quarterly=40, diamond/
+// yearly=10), effectively "until cancelled" for any real subscriber.
 // ---------------------------------------------------------------------
 const PREMIUM_TIERS = {
   silver: {
@@ -43,6 +49,7 @@ const PREMIUM_TIERS = {
     priceInr: 199,
     period: "monthly",
     interval: 1, // bill every 1 month
+    totalCount: 120,
     // Set once createPremiumPlan (see subscriptions.js) has been run for
     // this tier and its plan_id captured - createPremiumSubscription reads
     // this at call time.
@@ -50,12 +57,40 @@ const PREMIUM_TIERS = {
   },
   gold: {
     label: "Gold",
+    priceInr: 399,
+    period: "monthly",
+    interval: 3, // bill every 3 months (quarterly)
+    totalCount: 40,
+    planId: process.env.RAZORPAY_GOLD_PLAN_ID || null,
+  },
+  diamond: {
+    label: "Diamond",
     priceInr: 999,
     period: "yearly",
     interval: 1, // bill every 1 year
-    planId: process.env.RAZORPAY_GOLD_PLAN_ID || null,
+    totalCount: 10,
+    planId: process.env.RAZORPAY_DIAMOND_PLAN_ID || null,
   },
 };
+
+// ---------------------------------------------------------------------
+// All India Live Test credits included free each calendar month for
+// Gold/Diamond subscribers (Silver doesn't include any - same pay-per-test
+// pricing as a free user). Value below is display-only, matching the
+// live-test entry fee (see LIVE_TEST_CREDIT_VALUE_INR) so the pricing card
+// can show "worth ₹X" - the actual per-session price is still set wherever
+// live.html reads it, this constant is not the source of truth for that.
+// ---------------------------------------------------------------------
+const LIVE_TEST_MONTHLY_CREDITS = {
+  gold: 2,
+  diamond: 4,
+};
+const LIVE_TEST_CREDIT_VALUE_INR = 99;
+
+// Tiers that include free 1:1 guidance ahead of upcoming Olympiads -
+// display-only flag; the guidance itself is delivered manually (e.g. via
+// WhatsApp/email outreach), not something this codebase automates.
+const PERSONAL_GUIDANCE_TIERS = ["diamond"];
 
 // ---------------------------------------------------------------------
 // Firestore collection names
@@ -63,15 +98,19 @@ const PREMIUM_TIERS = {
 const COLLECTIONS = {
   TEST_ATTEMPTS: "testAttempts",
   PAYMENT_FAILURES: "paymentFailures", // visibility log only - never gates isPremium on its own
+  LIVE_TEST_CREDIT_CLAIMS: "liveTestCreditClaims",
 };
 
 module.exports = {
   admin,
   db,
   FREE_TEST_LIMIT,
-  FREE_TEST_WINDOW_HOURS,
+  IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
   PREMIUM_TIERS,
+  LIVE_TEST_MONTHLY_CREDITS,
+  LIVE_TEST_CREDIT_VALUE_INR,
+  PERSONAL_GUIDANCE_TIERS,
   COLLECTIONS,
 };

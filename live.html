@@ -1103,24 +1103,44 @@
         
         isProcessingPayment = true;
 
-        if (sessionPrice === 0) {
-            // --- Handle Free Unlock ---
+        // Gold/Diamond subscribers get a limited number of All India Live
+        // Tests included free each month - claim one before falling into
+        // the paid Razorpay flow below. The server enforces the monthly
+        // quota (and no-ops harmlessly if the plan doesn't include any),
+        // so a network hiccup here just means the paid flow runs instead.
+        let liveTestCreditGranted = false;
+        if (sessionPrice > 0) {
+            try {
+                const claimIncludedLiveTest = httpsCallable(functions, 'claimIncludedLiveTest');
+                const { data: claim } = await claimIncludedLiveTest({ sessionId });
+                liveTestCreditGranted = !!claim.granted;
+            } catch (e) {
+                console.warn("claimIncludedLiveTest check failed - continuing to normal payment:", e);
+            }
+        }
+
+        if (sessionPrice === 0 || liveTestCreditGranted) {
+            // --- Handle Free Unlock (₹0 session, or a plan-included live-test credit was just claimed) ---
             const btn = document.getElementById(`btn-${sessionId}`);
             if(btn) { btn.innerText = "PROCESSING......."; btn.disabled = true; }
             try {
                 window.showProcessingScreen();
-                // Create a 0-cost purchase record in Firestore
-                await setDoc(
-                    doc(db, "users", user.uid, "purchases", sessionId),
-                    {
-                        paid: true,
-                        time: serverTimestamp(),
-                        createdAt: serverTimestamp(),
-                        amount: 0,
-                        sessionId: sessionId,
-                        couponUsed: appliedCoupons[sessionId] || localStorage.getItem(`appliedCoupon_${sessionId}`) || null
-                    }
-                );
+                if (!liveTestCreditGranted) {
+                    // Only write the purchase doc ourselves for the ₹0/coupon
+                    // case - claimIncludedLiveTest already wrote it server-side,
+                    // atomically with the monthly-credit counter increment.
+                    await setDoc(
+                        doc(db, "users", user.uid, "purchases", sessionId),
+                        {
+                            paid: true,
+                            time: serverTimestamp(),
+                            createdAt: serverTimestamp(),
+                            amount: 0,
+                            sessionId: sessionId,
+                            couponUsed: appliedCoupons[sessionId] || localStorage.getItem(`appliedCoupon_${sessionId}`) || null
+                        }
+                    );
+                }
                 localStorage.setItem("activeSessionId", sessionId);
                 localStorage.setItem("activeSessionPrice", 0);
                 
@@ -1140,7 +1160,7 @@
                     sessionDate: sDate,
                     sessionTime: sTime,
                     amount: 0,
-                    paymentId: "FREE_UNLOCK"
+                    paymentId: liveTestCreditGranted ? "PLAN_INCLUDED_CREDIT" : "FREE_UNLOCK"
                 };
                 localStorage.setItem("paymentSuccessData", JSON.stringify(successData));
                 setTimeout(() => {
