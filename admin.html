@@ -1807,6 +1807,63 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <!-- PREMIUM SUBSCRIPTIONS SECTION -->
+    <div id="premium-subscriptions-section" class="panel" style="border-top: 2px solid #d9a406;">
+        <div class="panel-header">
+            <h2 style="color:#d9a406;">💎 Premium Subscriptions</h2>
+        </div>
+        <div class="panel-content">
+            <p class="muted">Students who have ever subscribed to Silver, Gold, or Diamond for unlimited test attempts.</p>
+            <div style="display:grid; grid-template-columns: 1fr auto auto auto; gap:15px; align-items:end; margin-bottom:20px;">
+                <div>
+                    <label>Search Name, Email or Phone</label>
+                    <input type="text" id="subsSearchInput" placeholder="Enter name, email, phone..." onkeydown="if(event.key==='Enter') loadPremiumSubscriptions()">
+                </div>
+                <div>
+                    <label>Filter by Plan</label>
+                    <select id="subsPlanFilter">
+                        <option value="">All Plans</option>
+                        <option value="silver">Silver</option>
+                        <option value="gold">Gold</option>
+                        <option value="diamond">Diamond</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Filter by Status</label>
+                    <select id="subsStatusFilter">
+                        <option value="">All</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Cancelled / Expired</option>
+                    </select>
+                </div>
+                <button class="upload" style="background: #d9a406;" onclick="loadPremiumSubscriptions()">Search / Refresh</button>
+            </div>
+            <div style="display:flex; gap:10px; margin-bottom:16px; font-size:13px;">
+                <span id="subsSummaryTotal" style="background:var(--bg,#f8fafc); border:1px solid var(--border); padding:6px 12px; border-radius:8px;">Total: —</span>
+                <span id="subsSummaryActive" style="background:#dcfce7; color:#15803d; padding:6px 12px; border-radius:8px; font-weight:700;">Active: —</span>
+                <span id="subsSummaryRevenue" style="background:#FFF4ED; color:#c2410c; padding:6px 12px; border-radius:8px; font-weight:700;">Est. Active MRR: —</span>
+            </div>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email & Phone</th>
+                            <th>Plan</th>
+                            <th>Status</th>
+                            <th>Subscribed On</th>
+                            <th>Current Period Ends</th>
+                            <th>Razorpay Subscription ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="premiumSubscriptionsTable">
+                        <tr><td colspan="7" style="text-align:center; color: var(--muted);">Click "Search / Refresh" to load subscriptions.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <!-- USER ACTIVITY SECTION -->
     <div class="panel" style="border-top: 2px solid var(--accent);">
         <div class="panel-header">
@@ -2221,6 +2278,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     else if (headerText.includes('H.O.T.S Problems')) { window.calculateNextHotsTitle(); window.loadHotsTestsList(); }
                     else if (headerText.includes('JEE Main PYQ')) { window.updatePyqTitleSuggestions(); window.loadJeePyqsList(); }
                     else if (headerText.includes('Student Profiles')) { window.loadStudentProfiles(); }
+                    else if (headerText.includes('Premium Subscriptions')) { window.loadPremiumSubscriptions(); }
                     else if (headerText.includes('User Activity Log')) { window.initUserActivityLog(); }
                     else if (headerText.includes('Search & Manage Questions')) { window.loadQuestions(); }
                     else if (headerText.includes('Schedule Weekly Test')) { window.updateSessSuggestions && window.updateSessSuggestions(); }
@@ -7307,6 +7365,94 @@ window.loadStudentProfiles = async function() {
 
     } catch (e) {
         console.error("Error loading profiles:", e);
+        tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error: ${e.message}</td></tr>`;
+    }
+};
+
+// Mirrors functions/premium/config.js's PREMIUM_TIERS - display/estimate only.
+const PREMIUM_TIER_INFO = {
+    silver:  { label: "Silver",  color: "#64748B", bg: "#F1F5F9", priceInr: 199, monthlyValueInr: 199 },
+    gold:    { label: "Gold",    color: "#c2410c", bg: "#FFF4ED", priceInr: 399, monthlyValueInr: 399 / 3 },
+    diamond: { label: "Diamond", color: "#0284c7", bg: "#EBF8FF", priceInr: 999, monthlyValueInr: 999 / 12 },
+};
+
+window.loadPremiumSubscriptions = async function() {
+    const tbody = document.getElementById("premiumSubscriptionsTable");
+    const searchInput = document.getElementById("subsSearchInput").value.trim().toLowerCase();
+    const planFilter = document.getElementById("subsPlanFilter").value.toLowerCase();
+    const statusFilter = document.getElementById("subsStatusFilter").value.toLowerCase();
+
+    tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>Loading subscriptions...</td></tr>";
+
+    try {
+        const snap = await getDocs(collection(db, "users"));
+
+        const subscribers = [];
+        snap.forEach(docSnap => {
+            const data = docSnap.data();
+            // Only users who have subscribed to a paid tier at some point -
+            // premiumTier is only ever set by the razorpayWebhook Cloud
+            // Function, never by the client, so this is trustworthy.
+            if (!data.premiumTier) return;
+            subscribers.push({ _uid: docSnap.id, ...data });
+        });
+
+        // Sort by subscription start descending (newest first)
+        subscribers.sort((a, b) => {
+            const ta = a.premiumStartedAt?.toDate ? a.premiumStartedAt.toDate().getTime() : 0;
+            const tb = b.premiumStartedAt?.toDate ? b.premiumStartedAt.toDate().getTime() : 0;
+            return tb - ta;
+        });
+
+        let html = "";
+        let found = 0;
+        let activeCount = 0;
+        let estMrr = 0;
+
+        subscribers.forEach(data => {
+            const name = data.name || data.fullName || data.displayName || "Student";
+            const email = (data.email || "N/A").trim();
+            const phone = (data.phone || data.mobile || "N/A").trim();
+            const tier = (data.premiumTier || "").toLowerCase();
+            const tierInfo = PREMIUM_TIER_INFO[tier] || { label: data.premiumTier || "Unknown", color: "#64748B", bg: "#F1F5F9", monthlyValueInr: 0 };
+            const isActive = data.isPremium === true;
+
+            if (planFilter && tier !== planFilter) return;
+            if (statusFilter === "active" && !isActive) return;
+            if (statusFilter === "inactive" && isActive) return;
+            const searchableString = `${name} ${email} ${phone}`.toLowerCase();
+            if (searchInput && !searchableString.includes(searchInput)) return;
+
+            const startedOn = data.premiumStartedAt?.toDate ? data.premiumStartedAt.toDate().toLocaleDateString("en-GB") : "N/A";
+            const expiresOn = data.premiumExpiresAt?.toDate ? data.premiumExpiresAt.toDate().toLocaleDateString("en-GB") : "N/A";
+            const subId = data.razorpaySubscriptionId || "N/A";
+
+            if (isActive) { activeCount++; estMrr += tierInfo.monthlyValueInr; }
+
+            html += `<tr>
+                <td><b>${name}</b></td>
+                <td><div style="font-size:12px;">✉️ ${email}<br>📞 ${phone}</div></td>
+                <td><span style="background:${tierInfo.bg}; color:${tierInfo.color}; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:800;">${tierInfo.label}</span></td>
+                <td>${isActive
+                    ? `<span style="color:#15803d; font-weight:700;">● Active</span>`
+                    : `<span style="color:var(--muted); font-weight:700;">○ Cancelled/Expired</span>`}</td>
+                <td>${startedOn}</td>
+                <td>${expiresOn}</td>
+                <td style="font-size:11px; font-family:monospace;">${subId}</td>
+            </tr>`;
+            found++;
+        });
+
+        tbody.innerHTML = found > 0
+            ? html
+            : "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No matching subscriptions found.</td></tr>";
+
+        document.getElementById("subsSummaryTotal").textContent = `Shown: ${found} (of ${subscribers.length} total)`;
+        document.getElementById("subsSummaryActive").textContent = `Active: ${activeCount}`;
+        document.getElementById("subsSummaryRevenue").textContent = `Est. Active MRR: ₹${Math.round(estMrr).toLocaleString("en-IN")}`;
+
+    } catch (e) {
+        console.error("Error loading premium subscriptions:", e);
         tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color: var(--danger);'>Error: ${e.message}</td></tr>`;
     }
 };

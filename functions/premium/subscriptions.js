@@ -232,7 +232,28 @@ exports.razorpayWebhook = onRequest({
 
   try {
     switch (event) {
-      case "subscription.activated":
+      // Fires once, the first time a subscription's payment succeeds - the
+      // only point where we know the true subscription start date. Records
+      // premiumStartedAt (from Razorpay's start_at) so the admin panel's
+      // Premium Subscriptions view can show it; subscription.charged below
+      // (fired on every renewal) deliberately does NOT touch this field.
+      case "subscription.activated": {
+        const premiumExpiresAt = subEntity.current_end
+          ? admin.firestore.Timestamp.fromMillis(subEntity.current_end * 1000)
+          : null;
+        const premiumStartedAt = subEntity.start_at
+          ? admin.firestore.Timestamp.fromMillis(subEntity.start_at * 1000)
+          : admin.firestore.FieldValue.serverTimestamp();
+        await setPremiumBySubscriptionId(subscriptionId, notesUid, {
+          isPremium: true,
+          premiumExpiresAt,
+          premiumTier: resolveTier(),
+          razorpaySubscriptionId: subscriptionId,
+          premiumStartedAt,
+          premiumCancelledAt: null,
+        });
+        break;
+      }
       case "subscription.charged": {
         const premiumExpiresAt = subEntity.current_end
           ? admin.firestore.Timestamp.fromMillis(subEntity.current_end * 1000)
@@ -250,6 +271,7 @@ exports.razorpayWebhook = onRequest({
       case "subscription.halted": {
         await setPremiumBySubscriptionId(subscriptionId, notesUid, {
           isPremium: false,
+          premiumCancelledAt: admin.firestore.FieldValue.serverTimestamp(),
         });
         break;
       }
