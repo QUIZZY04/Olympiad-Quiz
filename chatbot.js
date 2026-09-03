@@ -59,19 +59,21 @@ class OlympiadMentorChatbot {
                 --oqcb-shadow: 0 20px 40px rgba(0,0,0,0.15);
             }
             #oq-cb-trigger {
+            display: none !important;
             position: fixed; bottom: 25px; right: 25px; height: 60px; padding: 0 25px; gap: 10px;
             border-radius: 30px; background: linear-gradient(135deg, var(--oqcb-brand), var(--oqcb-accent));
-                color: white; display: flex; align-items: center; justify-content: center;
+                color: white; align-items: center; justify-content: center;
             cursor: pointer; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
                 z-index: 99999; transition: transform 0.3s;
             }
             #oq-cb-trigger:hover { transform: scale(1.05); }
             .oq-cb-pulse { animation: oqCbPulseAnim 2s infinite; }
             #oq-wa-button {
-                position: fixed; bottom: 100px; right: 25px; height: 56px; padding: 0 18px 0 8px; gap: 10px;
+                position: fixed; bottom: 25px; right: 25px; height: 56px; padding: 0 18px 0 8px; gap: 10px;
                 border-radius: 28px; background: #075E54; display: flex; align-items: center; justify-content: center;
                 cursor: pointer; box-shadow: 0 10px 25px rgba(7, 94, 84, 0.5);
                 z-index: 99998; transition: transform 0.3s; text-decoration: none;
+                touch-action: none;
             }
             #oq-wa-button:hover { transform: scale(1.05); }
             #oq-wa-button .oq-wa-icon-badge {
@@ -151,8 +153,7 @@ class OlympiadMentorChatbot {
 
             @media (max-width: 480px) {
                 #oq-cb-window { bottom: 0; right: 0; width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; border: none; }
-                #oq-cb-trigger { bottom: 80px; } /* Above mobile footer */
-                #oq-wa-button { bottom: 155px; } /* Stacked above mobile chat trigger */
+                #oq-wa-button { bottom: 80px; } /* Above mobile footer */
             }
         `;
         document.head.appendChild(style);
@@ -165,7 +166,7 @@ class OlympiadMentorChatbot {
                 <span class="oq-wa-icon-badge"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="white"><path d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.258.594 4.428 1.72 6.35L3.2 28.8l6.62-1.686a12.74 12.74 0 0 0 6.181 1.586h.006c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.806-12.7zm0 23.36a10.53 10.53 0 0 1-5.37-1.47l-.385-.228-3.928 1.001 1.05-3.83-.25-.393a10.55 10.55 0 0 1-1.617-5.64c0-5.83 4.746-10.576 10.582-10.576 2.827 0 5.484 1.102 7.48 3.1a10.51 10.51 0 0 1 3.096 7.48c0 5.836-4.746 10.556-10.658 10.556zm5.79-7.914c-.317-.159-1.878-.927-2.169-1.033-.291-.106-.503-.159-.715.16-.212.317-.822 1.032-1.008 1.244-.185.212-.37.238-.688.08-.317-.16-1.34-.494-2.552-1.575-.943-.84-1.58-1.878-1.765-2.196-.185-.318-.02-.49.14-.648.143-.143.318-.37.476-.556.16-.185.212-.318.318-.53.106-.212.053-.397-.026-.556-.08-.16-.715-1.723-.98-2.36-.258-.62-.52-.536-.715-.546l-.61-.011c-.212 0-.556.08-.847.397-.291.318-1.111 1.086-1.111 2.65s1.138 3.072 1.297 3.284c.16.212 2.24 3.42 5.427 4.797.758.328 1.35.523 1.812.669.762.242 1.454.208 2.002.126.61-.091 1.878-.767 2.143-1.508.265-.74.265-1.375.185-1.508-.08-.132-.291-.212-.608-.37z"/></svg></span>
                 <span class="oq-wa-text">
                     <span class="oq-wa-number">+91 94318 13838</span>
-                    <span class="oq-wa-cta">Send Hi for details</span>
+                    <span class="oq-wa-cta">Chat with us</span>
                 </span>
             </a>
             <div id="oq-cb-trigger"><span style="font-size: 26px;">🧠</span> <span style="font-weight: 600; font-size: 15px; white-space: nowrap;">Chat with us</span><span id="oq-cb-badge">1</span></div>
@@ -196,6 +197,60 @@ class OlympiadMentorChatbot {
         document.getElementById('oq-cb-send').addEventListener('click', () => this.handleUserSubmit());
         document.getElementById('oq-cb-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.handleUserSubmit();
+        });
+        this.initWaDrag();
+    }
+
+    /**
+     * Lets a user drag the floating WhatsApp button out of the way on
+     * touchscreens, in case it's sitting on top of a test option/button it
+     * doesn't know about. A tap still opens WhatsApp as normal - only a
+     * real drag (past a small threshold, so it doesn't eat normal taps)
+     * switches the button from its default bottom/right corner anchoring to
+     * a free-floating left/top position, clamped to stay on-screen.
+     */
+    initWaDrag() {
+        const btn = document.getElementById('oq-wa-button');
+        if (!btn) return;
+        const DRAG_THRESHOLD = 8;
+        let startX = 0, startY = 0, startLeft = 0, startTop = 0, dragging = false, moved = false;
+
+        btn.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            const rect = btn.getBoundingClientRect();
+            startX = touch.clientX;
+            startY = touch.clientY;
+            startLeft = rect.left;
+            startTop = rect.top;
+            dragging = true;
+            moved = false;
+        }, { passive: true });
+
+        btn.addEventListener('touchmove', (e) => {
+            if (!dragging) return;
+            const touch = e.touches[0];
+            const dx = touch.clientX - startX;
+            const dy = touch.clientY - startY;
+            if (!moved && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
+            moved = true;
+            e.preventDefault();
+            const rect = btn.getBoundingClientRect();
+            const newLeft = Math.max(4, Math.min(startLeft + dx, window.innerWidth - rect.width - 4));
+            const newTop = Math.max(4, Math.min(startTop + dy, window.innerHeight - rect.height - 4));
+            btn.style.left = `${newLeft}px`;
+            btn.style.top = `${newTop}px`;
+            btn.style.right = 'auto';
+            btn.style.bottom = 'auto';
+        }, { passive: false });
+
+        btn.addEventListener('touchend', () => { dragging = false; });
+
+        // Suppress the WhatsApp navigation only when this touch ended a real drag.
+        btn.addEventListener('click', (e) => {
+            if (moved) {
+                e.preventDefault();
+                moved = false;
+            }
         });
     }
 
