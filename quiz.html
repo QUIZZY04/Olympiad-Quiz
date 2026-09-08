@@ -1250,15 +1250,14 @@ onAuthStateChanged(auth, async(user)=>{
         document.getElementById("deleteQuestionBtn").style.display = "inline-block";
     }
 
-    // Profile-completeness check and the free-tier rate-limit check used to
-    // run one after another (two separate network round trips stacked up
-    // before any question could render). They don't depend on each other's
-    // result, so they now run CONCURRENTLY - cuts roughly half the combined
-    // wait off every test start. Trade-off: in the rare case a user both
-    // has an incomplete profile AND already has 2+ historical results (the
-    // only combination that triggers the redirect below), canStartTest's
-    // attempt record still gets created even though we redirect instead of
-    // testing - a minor, rare inefficiency, not a correctness bug.
+    // Profile-completeness check and the free-tier rate-limit check run
+    // CONCURRENTLY (two independent network round trips, neither depends on
+    // the other's result) - cuts roughly half the combined wait off every
+    // test start. An incomplete profile (missing grade/class, phone, or
+    // school) is redirected immediately, with no grace period - previously
+    // this only triggered after 2+ historical results existed, which is
+    // exactly how incomplete profiles (missing grade/phone) ended up able
+    // to take tests and appear in the admin panel with "N/A" fields.
     let profileRedirectNeeded = false;
     const profileCheckPromise = isAdmin ? Promise.resolve() : (async () => {
         try {
@@ -1278,10 +1277,7 @@ onAuthStateChanged(auth, async(user)=>{
             else if (isPhoneOnly)  profileComplete = hasBasicInfo && hasEmail;
             else                   profileComplete = hasBasicInfo;
 
-            if (!profileComplete) {
-                const snap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid)));
-                if (snap.size >= 2) profileRedirectNeeded = true;
-            }
+            if (!profileComplete) profileRedirectNeeded = true;
         } catch(e) {
             // If check fails, allow the test to proceed
         }

@@ -502,12 +502,36 @@ async function evaluateAuthState(user) {
     // Non-blocking sync of provider/mobile verification state — does not affect redirect timing or UI
     syncProviderState(user).catch(e => console.warn("Provider sync failed:", e));
 
-    // Sign-in only requires successful authentication. Profile/phone completion
-    // is enforced per-feature by auth-guard.js (requireLogin/protectPage) when
-    // the user tries to use a gated facility, not here at the login gate.
-    console.log("Redirect decision: dashboard");
+    // Registration must be fully completed (name, class/grade, verified
+    // phone) before landing anywhere else. This used to be "enforced
+    // per-feature by auth-guard.js when the user tries to use a gated
+    // facility" - but redirectAfterLogin can point straight at a quiz page,
+    // and not every quiz page calls auth-guard.js, so a bare sign-in could
+    // land directly on a test with no name/grade/phone on file. Checking
+    // here, at the one place every sign-in passes through, closes that gap
+    // regardless of what any individual page does or doesn't check.
+    let profileComplete = false;
+    try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const data = userDoc.exists() ? userDoc.data() : null;
+        const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
+        const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
+        profileComplete = hasCompletedProfile && hasPhone;
+    } catch (e) {
+        console.warn("Profile completeness check failed - allowing through:", e);
+        profileComplete = true; // fail-open on a transient network error only
+    }
+
     isRedirecting = true;
     localStorage.setItem("isLoggedIn", "true");
+
+    if (!profileComplete) {
+        console.log("Redirect decision: signup completion (incomplete profile)");
+        window.location.replace("signup.html?mode=completion");
+        return;
+    }
+
+    console.log("Redirect decision: dashboard");
     sessionStorage.removeItem("redirectAfterLogin");
     window.location.replace(redirectUrl);
 }

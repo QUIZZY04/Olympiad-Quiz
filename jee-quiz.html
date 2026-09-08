@@ -312,7 +312,7 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         document.body.style.visibility = 'visible';
         if (!user) {
                 sessionStorage.setItem("redirectAfterLogin", window.location.href);
@@ -323,6 +323,26 @@
                 document.getElementById("adminTab").style.display = "inline";
             }
             document.getElementById("studentName").innerText = user.displayName || user.email.split('@')[0];
+
+            // A test must never start for an incomplete profile (missing
+            // grade/class or verified phone) - this used to only be checked
+            // on the selection page before navigating here, which several
+            // sign-in paths could bypass entirely.
+            if (!isAdmin) {
+                try {
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    const data = userDoc.exists() ? userDoc.data() : null;
+                    const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
+                    const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
+                    if (!hasCompletedProfile || !hasPhone) {
+                        sessionStorage.setItem("redirectAfterLogin", window.location.href);
+                        window.location.replace("signup.html?mode=completion");
+                        return;
+                    }
+                } catch (e) {
+                    console.warn("Profile completeness check failed - allowing through:", e);
+                }
+            }
         }
     });
 
