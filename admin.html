@@ -5437,12 +5437,18 @@ async function wamRenderSessionCheckboxList(listElId, hiddenInputId, onChange) {
     hidden.value = "";
     hidden.dataset.loaded = "1";
     try {
-        const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "asc"), limit(200)));
+        // Ordered DESC (newest startTime first), not ASC - with enough historical
+        // sessions accumulated, an ASC-ordered limit(200) only ever returns the
+        // OLDEST 200 docs, silently cutting off genuinely upcoming sessions once
+        // the collection grows past that count. Fetching newest-first guarantees
+        // any upcoming session is included, then .reverse() below restores the
+        // soonest-first display order the rest of this function expects.
+        const snap = await getDocs(query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(200)));
         const now = Date.now();
         const upcoming = snap.docs.filter(d => {
             const end = d.data().endTime?.toDate?.();
             return !end || end.getTime() > now;
-        });
+        }).reverse();
         if (upcoming.length === 0) {
             container.innerHTML = `<div class="muted" style="padding:8px;">No upcoming sessions found.</div>`;
             return;
