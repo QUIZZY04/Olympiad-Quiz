@@ -156,8 +156,8 @@ const STATIC_REPLIES = {
     "Your e-certificate (for Live Arena participation) is emailed to your registered email address after the event. Check your inbox/spam folder, or log in to your dashboard to confirm your participation status.",
   pay_subscribe_howto:
     "💎 *Go Premium — Unlimited Tests*\n\n" +
-    "Free accounts get 2 tests per day. Upgrade for unlimited access:\n\n" +
-    "🥈 *Silver* — ₹199/month\n🥇 *Gold* — ₹399/3 months (+2 free All India Live Tests/month)\n💎 *Diamond* — ₹999/year (+4 free All India Live Tests/month + personal Olympiad guidance, best value)\n\n" +
+    "Free accounts get 1 test/day (up to 4/week). Upgrade for unlimited access:\n\n" +
+    "🥈 *Silver* — ₹99/month\n🥇 *Gold* — ₹199/3 months (+2 free All India Live Tests/month)\n💎 *Diamond* — ₹599/year (+4 free All India Live Tests/month + personal Olympiad guidance, best value)\n\n" +
     "*How to subscribe:*\n1. Log in at https://olympiadquiz.org/dashboard.html\n2. Start any Mock/Chapterwise/HOTS test\n3. Once you hit the free-test limit, tap *Upgrade* on the popup and choose Silver, Gold, or Diamond\n4. Pay securely via Razorpay — Premium activates instantly\n\n" +
     "Already subscribed but facing an issue? Tap *Payment Issue* from the menu instead.",
   pay_help:

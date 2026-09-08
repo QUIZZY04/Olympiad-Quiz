@@ -20,13 +20,24 @@ if (!admin.apps.length) {
 const db = admin.firestore();
 
 // ---------------------------------------------------------------------
-// Free-tier daily rate limit
-// ---------------------------------------------------------------------
-const FREE_TEST_LIMIT = 2;              // attempts allowed per calendar day
+// Free-tier rate limit - two caps, both must be satisfied: 1 attempt per
+// calendar day AND 4 attempts per calendar week (Monday-Sunday, IST).
 // India has no DST, so a fixed UTC+5:30 offset is always correct for
-// computing "today"/"tomorrow" boundaries - no timezone library needed.
+// computing day/week boundaries - no timezone library needed.
+// ---------------------------------------------------------------------
+const FREE_TEST_LIMIT = 1;              // attempts allowed per calendar day
+const FREE_TEST_WEEKLY_LIMIT = 4;       // attempts allowed per calendar week
 const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
 const ABANDON_VOID_WINDOW_MINUTES = 2;   // an attempt with 0 answers older than this doesn't count
+
+// ---------------------------------------------------------------------
+// Silver is capped, not truly unlimited (Gold/Diamond remain fully
+// unlimited) - same two-cap shape as the free tier, just far more
+// generous: 1 calendar day AND 1 calendar month (1st-to-1st, IST), both
+// must be satisfied.
+// ---------------------------------------------------------------------
+const SILVER_DAILY_LIMIT = 4;
+const SILVER_MONTHLY_LIMIT = 40;
 
 // Only these test types are rate-limited. Live championship tests
 // (isChampionship / test_sessions-based) already have their own per-session
@@ -46,7 +57,7 @@ const RATE_LIMITED_TEST_TYPES = ["chapterwise", "mock", "hots"];
 const PREMIUM_TIERS = {
   silver: {
     label: "Silver",
-    priceInr: 199,
+    priceInr: 99,
     period: "monthly",
     interval: 1, // bill every 1 month
     totalCount: 120,
@@ -57,7 +68,7 @@ const PREMIUM_TIERS = {
   },
   gold: {
     label: "Gold",
-    priceInr: 399,
+    priceInr: 199,
     period: "monthly",
     interval: 3, // bill every 3 months (quarterly)
     totalCount: 40,
@@ -65,7 +76,7 @@ const PREMIUM_TIERS = {
   },
   diamond: {
     label: "Diamond",
-    priceInr: 999,
+    priceInr: 599,
     period: "yearly",
     interval: 1, // bill every 1 year
     totalCount: 10,
@@ -105,6 +116,9 @@ module.exports = {
   admin,
   db,
   FREE_TEST_LIMIT,
+  FREE_TEST_WEEKLY_LIMIT,
+  SILVER_DAILY_LIMIT,
+  SILVER_MONTHLY_LIMIT,
   IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
