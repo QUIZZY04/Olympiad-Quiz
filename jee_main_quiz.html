@@ -295,16 +295,20 @@
         document.getElementById("studentName").innerText = user.displayName || user.email.split('@')[0];
 
         // A test must never start for an incomplete profile (missing
-        // grade/class or verified phone) - this used to only be checked on
-        // the selection page before navigating here, which several sign-in
-        // paths could bypass entirely.
+        // grade/class) - this used to only be checked on the selection page
+        // before navigating here, which several sign-in paths could bypass
+        // entirely. Phone stays optional/deferred for Google-only accounts,
+        // matching signup.html's own design - only phone-first/mixed
+        // accounts are required to have one on file.
         if (!isAdmin) {
             try {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 const data = userDoc.exists() ? userDoc.data() : null;
                 const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
+                const providerIds = user.providerData.map(p => p.providerId);
+                const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
                 const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
-                if (!hasCompletedProfile || !hasPhone) {
+                if (!hasCompletedProfile || (!isGoogleOnly && !hasPhone)) {
                     sessionStorage.setItem("redirectAfterLogin", window.location.href);
                     window.location.replace("signup.html?mode=completion");
                     return;

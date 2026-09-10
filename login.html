@@ -502,21 +502,30 @@ async function evaluateAuthState(user) {
     // Non-blocking sync of provider/mobile verification state — does not affect redirect timing or UI
     syncProviderState(user).catch(e => console.warn("Provider sync failed:", e));
 
-    // Registration must be fully completed (name, class/grade, verified
-    // phone) before landing anywhere else. This used to be "enforced
-    // per-feature by auth-guard.js when the user tries to use a gated
-    // facility" - but redirectAfterLogin can point straight at a quiz page,
-    // and not every quiz page calls auth-guard.js, so a bare sign-in could
-    // land directly on a test with no name/grade/phone on file. Checking
-    // here, at the one place every sign-in passes through, closes that gap
-    // regardless of what any individual page does or doesn't check.
+    // Registration must be fully completed (name, class/grade) before
+    // landing anywhere else. This used to be "enforced per-feature by
+    // auth-guard.js when the user tries to use a gated facility" - but
+    // redirectAfterLogin can point straight at a quiz page, and not every
+    // quiz page calls auth-guard.js, so a bare sign-in could land directly
+    // on a test with no name/grade on file. Checking here, at the one place
+    // every sign-in passes through, closes that gap regardless of what any
+    // individual page does or doesn't check.
+    //
+    // Phone verification itself is mandatory for phone-first signups (it's
+    // literally their login method) but stays optional/deferred for
+    // accounts that signed up with Google only - forcing it here would
+    // block them from ever taking a test, contradicting signup.html's own
+    // documented design (phone deferred to a dismissible dashboard prompt
+    // for that group, never a hard gate).
     let profileComplete = false;
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const data = userDoc.exists() ? userDoc.data() : null;
         const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
+        const providerIds = user.providerData.map(p => p.providerId);
+        const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
         const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
-        profileComplete = hasCompletedProfile && hasPhone;
+        profileComplete = hasCompletedProfile && (isGoogleOnly || hasPhone);
     } catch (e) {
         console.warn("Profile completeness check failed - allowing through:", e);
         profileComplete = true; // fail-open on a transient network error only

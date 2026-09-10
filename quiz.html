@@ -1269,11 +1269,14 @@ onAuthStateChanged(auth, async(user)=>{
             const isPhoneOnly  = providers.includes('phone')  && !providers.includes('google.com');
 
             const hasBasicInfo = !!(userData.name && (userData.studentClass || userData.class) && userData.schoolName);
-            const hasPhone = !!(user.phoneNumber || userData.phoneVerified);
             const hasEmail = !!(user.email || userData.email);
 
+            // Phone stays optional/deferred for Google-only accounts,
+            // matching signup.html's own design (a dismissible dashboard
+            // prompt, never a hard gate) - only phone-first accounts are
+            // required to have a verified phone on file.
             let profileComplete;
-            if (isGoogleOnly)      profileComplete = hasBasicInfo && hasPhone;
+            if (isGoogleOnly)      profileComplete = hasBasicInfo;
             else if (isPhoneOnly)  profileComplete = hasBasicInfo && hasEmail;
             else                   profileComplete = hasBasicInfo;
 
