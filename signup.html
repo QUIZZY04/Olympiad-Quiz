@@ -525,8 +525,12 @@ async function evaluateAuthState(user) {
         // Check all three flags for backward compatibility with existing user records
         const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
         const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
+        // Google-only accounts (no phone auth provider) never need a phone
+        // to be considered done - it's permanently optional/deferred for
+        // them, not just during their very first signup.
+        const isGoogleOnlyAccount = providerIds.includes('google.com') && !providerIds.includes('phone');
 
-        if (hasCompletedProfile && hasPhone) {
+        if (hasCompletedProfile && (hasPhone || isGoogleOnlyAccount)) {
             console.log("[signup] Redirect decision: dashboard (profile already completed)");
             isRedirecting = true;
             localStorage.setItem("isLoggedIn", "true");
@@ -543,23 +547,17 @@ async function evaluateAuthState(user) {
 
         const hasGoogleLinked = providerIds.includes('google.com');
 
-        // Brand-new signups that chose "Continue with Google" on the entry
-        // screen (signInWithPopup, no completed profile yet) skip the
-        // mandatory phone gate entirely - mobile verification is optional for
-        // them, deferred to a dismissible prompt on the dashboard instead.
-        const isNewGoogleFirstSignup = hasGoogleLinked && !hasCompletedProfile;
-
-        // Mandatory phone verification - covers BOTH brand-new mobile-first
-        // signups (hasCompletedProfile false, no Google yet) AND pre-existing
-        // Google-only accounts that completed registration before this gate
-        // existed (hasCompletedProfile true but no phone on file). Reuses the
-        // exact existing stepPhoneAuth flow - its handlers already support
+        // Mandatory phone verification - only for mobile-first signups
+        // (hasCompletedProfile false, no Google yet) and mixed accounts
+        // that have linked BOTH Google and phone providers. Any account
+        // signing in/up via Google alone - whether this is their very
+        // first visit or a later one - permanently skips this gate; mobile
+        // verification is entirely optional for them, deferred to a
+        // dismissible prompt on the dashboard instead. Reuses the exact
+        // existing stepPhoneAuth flow - its handlers already support
         // linking a phone onto an authenticated Google session (see
-        // phoneSignupForm/pOtpForm). Once verified, evaluateAuthState re-runs
-        // and (for the pre-existing-account case) takes the bypass branch
-        // above straight to the dashboard, skipping Complete Profile since
-        // name/class are already on file.
-        if (!hasPhone && !isNewGoogleFirstSignup) {
+        // phoneSignupForm/pOtpForm).
+        if (!hasPhone && !isGoogleOnlyAccount) {
             console.log("[signup] Redirect decision: mandatory phone verification");
             document.getElementById("phoneTitle").innerText = "Complete Your Registration";
             document.getElementById("phoneSubtitle").innerText = "Verify your mobile number to unlock Free Mock Tests and other features.";

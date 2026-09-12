@@ -5,10 +5,11 @@
  * Profile-completion enforcement (2026 update):
  *   - protectPage()   → full-page guard (hard redirect if not auth'd or profile incomplete)
  *   - requireLogin()  → inline guard for "Start Test" buttons on public pages
- *   Both now verify Firestore `registrationCompleted || signupCompleted || profileCompleted`
- *   AND a phone number on file, before granting access. Incomplete-profile or
- *   phoneless users (including pre-existing Google-only accounts) are sent to
- *   signup.html?mode=completion, which forces phone verification.
+ *   Both verify Firestore `registrationCompleted || signupCompleted || profileCompleted`,
+ *   plus a phone number on file - EXCEPT for Google-only accounts (no phone
+ *   auth provider linked), for whom phone stays permanently optional/deferred
+ *   to a dismissible dashboard prompt, never a hard gate. Users failing this
+ *   check are sent to signup.html?mode=completion.
  */
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -47,15 +48,22 @@ onAuthStateChanged(auth, (user) => {
 /**
  * Returns true if the Firestore user document indicates a completed profile.
  * Checks all three legacy + current flags for backward compatibility.
+ * Phone is only required for accounts that aren't Google-only - a Google
+ * sign-in with no phone provider linked can have a fully complete profile
+ * without ever verifying a phone number (deferred to a dismissible
+ * dashboard prompt instead, same policy as signup.html).
+ * @param {import("firebase/auth").User} user
  */
-async function isProfileComplete(uid) {
+async function isProfileComplete(user) {
     try {
-        const userDoc = await getDoc(doc(db, "users", uid));
+        const userDoc = await getDoc(doc(db, "users", user.uid));
         if (!userDoc.exists()) return false;
         const data = userDoc.data();
         const hasCompletedProfile = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
-        const hasPhone = !!(data.phone || data.phoneNumber);
-        return hasCompletedProfile && hasPhone;
+        const providerIds = user.providerData.map(p => p.providerId);
+        const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
+        const hasPhone = !!(user.phoneNumber || data.phone || data.phoneNumber);
+        return hasCompletedProfile && (isGoogleOnly || hasPhone);
     } catch (e) {
         console.warn("[AuthGuard] Firestore profile check failed:", e);
         // Fail-open on network error to avoid false lockouts on intermittent failures
@@ -85,7 +93,7 @@ export const AuthGuard = {
                 return;
             }
             // Check profile completion
-            const complete = await isProfileComplete(user.uid);
+            const complete = await isProfileComplete(user);
             if (!complete) {
                 sessionStorage.setItem("redirectAfterLogin", window.location.href);
                 window.location.replace("signup.html?mode=completion");
@@ -169,7 +177,7 @@ export const AuthGuard = {
                 return;
             }
             // Check profile completion in Firestore
-            const complete = await isProfileComplete(user.uid);
+            const complete = await isProfileComplete(user);
             if (!complete) {
                 sessionStorage.setItem("redirectAfterLogin", window.location.href);
                 window.location.replace("signup.html?mode=completion");

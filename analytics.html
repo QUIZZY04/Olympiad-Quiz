@@ -316,10 +316,11 @@ onAuthStateChanged(auth, async (user) => {
 
     const providerIds = user.providerData.map(p => p.providerId);
     const hasEmailOrGoogle = providerIds.includes("password") || providerIds.includes("google.com");
+    const isGoogleOnly = providerIds.includes("google.com") && !providerIds.includes("phone");
     const hasPhone = providerIds.includes("phone") || !!user.phoneNumber;
     const isAdmin = user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com";
 
-    if ((!hasEmailOrGoogle || !hasPhone) && !isAdmin) {
+    if ((!hasEmailOrGoogle || (!isGoogleOnly && !hasPhone)) && !isAdmin) {
         window.location.replace("signup.html?mode=completion");
         return;
     }

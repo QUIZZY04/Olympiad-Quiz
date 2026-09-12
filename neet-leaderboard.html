@@ -225,8 +225,10 @@
                 }
                 if (userDoc.exists()) {
                     const profileData = userDoc.data();
+                    const providerIds = user.providerData.map(p => p.providerId);
+                    const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
                     const hasPhone = !!(user.phoneNumber || profileData.phone || profileData.phoneNumber);
-                    const isProfileComplete = !!(profileData.registrationCompleted || profileData.signupCompleted || profileData.profileCompleted) && hasPhone;
+                    const isProfileComplete = !!(profileData.registrationCompleted || profileData.signupCompleted || profileData.profileCompleted) && (isGoogleOnly || hasPhone);
                     if (!isProfileComplete && !isAdminCheck) {
                         sessionStorage.setItem("redirectAfterLogin", window.location.href);
                         window.location.replace("signup.html?mode=completion");
