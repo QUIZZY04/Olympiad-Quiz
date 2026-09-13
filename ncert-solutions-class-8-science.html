@@ -70,22 +70,67 @@
     .q-toggle svg { width: 20px; height: 20px; }
     .q-card.open .q-toggle { transform: rotate(45deg); color: var(--brand); }
     
-    .q-answer { display: none; padding: 0 20px 20px; border-top: 1px dashed var(--border); background: #fafafa; }
+    .q-answer { display: none; padding: 0 20px 22px; border-top: 2px solid transparent; background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #fdf4ff 100%); }
     .q-card.open .q-answer { display: block; }
-    .answer-box { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-top: 16px; }
-    .answer-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #16a34a; letter-spacing: 0.04em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-    .answer-text { font-size: 0.9rem; color: #1e293b; line-height: 1.65; }
+    .q-card.open { border-color: #a5b4fc; box-shadow: 0 0 0 3px rgba(139,92,246,0.08), 0 8px 20px rgba(0,0,0,0.08); }
+    .q-card.open .q-head { background: linear-gradient(135deg, #f5f3ff 0%, #eff6ff 100%); }
+
+    .answer-box {
+      background: linear-gradient(135deg, #ffffff 0%, #fefce8 60%, #fff7ed 100%);
+      border: 1.5px solid #fbbf24;
+      border-left: 4px solid #f59e0b;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 16px;
+      box-shadow: 0 2px 12px rgba(251,191,36,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .answer-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #059669, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .answer-text { font-size: 0.9rem; color: #1e293b; line-height: 1.72; }
     .answer-text p { margin-bottom: 10px; }
     .answer-text p:last-child { margin-bottom: 0; }
     .answer-text ul, .answer-text ol { margin-left: 20px; margin-bottom: 10px; }
-    .answer-text li { margin-bottom: 4px; }
+    .answer-text li { margin-bottom: 6px; }
+    .answer-text strong { color: #1e3a5f; }
+    .answer-text em { color: #7c3aed; font-style: italic; }
 
-    .marking-scheme { margin-top: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; font-size: 0.8rem; }
-    .marking-title { font-weight: 700; color: var(--navy); margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
-    .marking-row { display: flex; justify-content: space-between; border-bottom: 1px solid #edf2f7; padding: 4px 0; }
+    .marking-scheme {
+      margin-top: 16px;
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      border: 1.5px solid #c4b5fd;
+      border-left: 4px solid #7c3aed;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.8rem;
+      box-shadow: 0 2px 8px rgba(124,58,237,0.08);
+    }
+    .marking-title {
+      font-weight: 800;
+      color: #5b21b6;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .marking-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ddd6fe; padding: 5px 0; }
     .marking-row:last-child { border-bottom: none; }
-    .marking-key { color: var(--slate); }
-    .marking-marks { font-weight: 700; color: var(--brand-text); }
+    .marking-key { color: #4c1d95; font-weight: 500; }
+    .marking-marks { font-weight: 800; color: #dc2626; background: #fee2e2; padding: 1px 8px; border-radius: 10px; font-size: 0.75rem; }
 
     .mob-sidebar-toggle { display: none; position: fixed; bottom: 20px; right: 20px; background: var(--brand); color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 14px rgba(255,107,0,0.4); z-index: 999; cursor: pointer; }
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 950; }
