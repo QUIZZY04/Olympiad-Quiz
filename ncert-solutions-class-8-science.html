@@ -135,6 +135,44 @@
     .mob-sidebar-toggle { display: none; position: fixed; bottom: 20px; right: 20px; background: var(--brand); color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 4px 14px rgba(255,107,0,0.4); z-index: 999; cursor: pointer; }
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 950; }
 
+    /* Chapter switching */
+    .chapter-section { display: none; animation: fadeSlideIn 0.35s ease; }
+    .chapter-section.active-chapter { display: block; }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Active chapter breadcrumb bar */
+    .chapter-breadcrumb {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chapter-breadcrumb .bc-label { font-size: 0.75rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .chapter-breadcrumb .bc-title { font-size: 1rem; font-weight: 800; color: white; }
+    .chapter-breadcrumb .bc-nav { display: flex; gap: 8px; }
+    .chapter-breadcrumb .bc-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .chapter-breadcrumb .bc-btn:hover { background: var(--brand); border-color: var(--brand); }
+    .chapter-breadcrumb .bc-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
     @media (max-width: 900px) {
       .main-layout { flex-direction: column; }
       .sidebar { position: fixed; left: -320px; top: 0; height: 100vh; z-index: 960; transition: left 0.3s; }
@@ -178,27 +216,28 @@
     <div class="sidebar-title">Select Chapter (16 Chapters)</div>
     <input type="text" class="search-box" placeholder="Search chapters..." onkeyup="filterChapters(this.value)">
     <ul class="chapter-nav">
-      <li><a href="#ch1" class="active"><span class="ch-num">1</span>Crop Production (11 Qs)</a></li>
-      <li><a href="#ch2"><span class="ch-num">2</span>Microorganisms (9 Qs)</a></li>
-      <li><a href="#ch3"><span class="ch-num">3</span>Synthetic Fibres (15 Qs)</a></li>
-      <li><a href="#ch4"><span class="ch-num">4</span>Metals & Non-Metals (11 Qs)</a></li>
-      <li><a href="#ch5"><span class="ch-num">5</span>Coal & Petroleum (9 Qs)</a></li>
-      <li><a href="#ch6"><span class="ch-num">6</span>Combustion & Flame (13 Qs)</a></li>
-      <li><a href="#ch7"><span class="ch-num">7</span>Conservation of Plants/Animals (11 Qs)</a></li>
-      <li><a href="#ch8"><span class="ch-num">8</span>Cell — Structure & Functions (10 Qs)</a></li>
-      <li><a href="#ch9"><span class="ch-num">9</span>Reproduction in Animals (10 Qs)</a></li>
-      <li><a href="#ch10"><span class="ch-num">10</span>Reaching Age of Adolescence (10 Qs)</a></li>
-      <li><a href="#ch11"><span class="ch-num">11</span>Force & Pressure (10 Qs)</a></li>
-      <li><a href="#ch12"><span class="ch-num">12</span>Friction (10 Qs)</a></li>
-      <li><a href="#ch13"><span class="ch-num">13</span>Sound (13 Qs)</a></li>
-      <li><a href="#ch14"><span class="ch-num">14</span>Chemical Effects of Current (12 Qs)</a></li>
-      <li><a href="#ch15"><span class="ch-num">15</span>Some Natural Phenomena (12 Qs)</a></li>
-      <li><a href="#ch16"><span class="ch-num">16</span>Light (17 Qs)</a></li>
+      <li><a href="#ch1" onclick="showChapter('ch1');return false;" class="active" id="nav-ch1"><span class="ch-num">1</span>Crop Production (11 Qs)</a></li>
+      <li><a href="#ch2" onclick="showChapter('ch2');return false;" id="nav-ch2"><span class="ch-num">2</span>Microorganisms (9 Qs)</a></li>
+      <li><a href="#ch3" onclick="showChapter('ch3');return false;" id="nav-ch3"><span class="ch-num">3</span>Synthetic Fibres (15 Qs)</a></li>
+      <li><a href="#ch4" onclick="showChapter('ch4');return false;" id="nav-ch4"><span class="ch-num">4</span>Metals &amp; Non-Metals (11 Qs)</a></li>
+      <li><a href="#ch5" onclick="showChapter('ch5');return false;" id="nav-ch5"><span class="ch-num">5</span>Coal &amp; Petroleum (9 Qs)</a></li>
+      <li><a href="#ch6" onclick="showChapter('ch6');return false;" id="nav-ch6"><span class="ch-num">6</span>Combustion &amp; Flame (13 Qs)</a></li>
+      <li><a href="#ch7" onclick="showChapter('ch7');return false;" id="nav-ch7"><span class="ch-num">7</span>Conservation of Plants/Animals (11 Qs)</a></li>
+      <li><a href="#ch8" onclick="showChapter('ch8');return false;" id="nav-ch8"><span class="ch-num">8</span>Cell — Structure &amp; Functions (10 Qs)</a></li>
+      <li><a href="#ch9" onclick="showChapter('ch9');return false;" id="nav-ch9"><span class="ch-num">9</span>Reproduction in Animals (10 Qs)</a></li>
+      <li><a href="#ch10" onclick="showChapter('ch10');return false;" id="nav-ch10"><span class="ch-num">10</span>Reaching Age of Adolescence (10 Qs)</a></li>
+      <li><a href="#ch11" onclick="showChapter('ch11');return false;" id="nav-ch11"><span class="ch-num">11</span>Force &amp; Pressure (10 Qs)</a></li>
+      <li><a href="#ch12" onclick="showChapter('ch12');return false;" id="nav-ch12"><span class="ch-num">12</span>Friction (10 Qs)</a></li>
+      <li><a href="#ch13" onclick="showChapter('ch13');return false;" id="nav-ch13"><span class="ch-num">13</span>Sound (13 Qs)</a></li>
+      <li><a href="#ch14" onclick="showChapter('ch14');return false;" id="nav-ch14"><span class="ch-num">14</span>Chemical Effects of Current (12 Qs)</a></li>
+      <li><a href="#ch15" onclick="showChapter('ch15');return false;" id="nav-ch15"><span class="ch-num">15</span>Some Natural Phenomena (12 Qs)</a></li>
+      <li><a href="#ch16" onclick="showChapter('ch16');return false;" id="nav-ch16"><span class="ch-num">16</span>Light (17 Qs)</a></li>
     </ul>
   </aside>
 
   <main class="main-content">
-<section class="chapter-section" id="ch1"><div class="chapter-header"><div class="ch-badge">1</div><div class="chapter-header-info"><h2>Chapter 1: Crop Production and Management</h2><p>NCERT Exercise Solutions — CBSE Word Count &amp; Marking Scheme</p></div></div>
+    <div class="chapter-breadcrumb" id="chapter-breadcrumb"></div>
+<section class="chapter-section active-chapter" id="ch1"><div class="chapter-breadcrumb"><div class="bc-info"><span class="bc-label">Chapter 1 of 16</span><div class="bc-title">Crop Production and Management</div></div><div class="bc-nav"><button class="bc-btn" onclick="prevChapter()" id="prevBtn" disabled>← Previous</button><button class="bc-btn" onclick="nextChapter()" id="nextBtn">Next →</button></div></div><div class="chapter-header"><div class="ch-badge">1</div><div class="chapter-header-info"><h2>Chapter 1: Crop Production and Management</h2><p>NCERT Exercise Solutions — CBSE Word Count &amp; Marking Scheme</p></div></div>
       <div class="q-card" id="q1_1">
         <div class="q-head" onclick="toggleQ('q1_1')">
           <div class="q-num">Q1</div>
@@ -3511,57 +3550,125 @@
 </button>
 
 <script>
+// ── Chapter list (for breadcrumb prev/next navigation) ──────────────────────
+const CHAPTERS = [
+  { id:'ch1',  title:'Chapter 1: Crop Production and Management',        qs:11 },
+  { id:'ch2',  title:'Chapter 2: Microorganisms: Friend and Foe',         qs:9  },
+  { id:'ch3',  title:'Chapter 3: Synthetic Fibres and Plastics',          qs:15 },
+  { id:'ch4',  title:'Chapter 4: Materials: Metals and Non-Metals',       qs:11 },
+  { id:'ch5',  title:'Chapter 5: Coal and Petroleum',                     qs:9  },
+  { id:'ch6',  title:'Chapter 6: Combustion and Flame',                   qs:13 },
+  { id:'ch7',  title:'Chapter 7: Conservation of Plants and Animals',     qs:11 },
+  { id:'ch8',  title:'Chapter 8: Cell — Structure and Functions',         qs:10 },
+  { id:'ch9',  title:'Chapter 9: Reproduction in Animals',                qs:10 },
+  { id:'ch10', title:'Chapter 10: Reaching the Age of Adolescence',       qs:10 },
+  { id:'ch11', title:'Chapter 11: Force and Pressure',                    qs:10 },
+  { id:'ch12', title:'Chapter 12: Friction',                              qs:10 },
+  { id:'ch13', title:'Chapter 13: Sound',                                 qs:13 },
+  { id:'ch14', title:'Chapter 14: Chemical Effects of Electric Current',  qs:12 },
+  { id:'ch15', title:'Chapter 15: Some Natural Phenomena',                qs:12 },
+  { id:'ch16', title:'Chapter 16: Light',                                 qs:17 }
+];
+
+let currentChapterIndex = 0;
+
+// ── Render breadcrumb navigation bar ────────────────────────────────────────
+function renderBreadcrumb(idx) {
+  const ch = CHAPTERS[idx];
+  const container = document.getElementById('chapter-breadcrumb');
+  const prevDisabled = idx === 0 ? 'disabled' : '';
+  const nextDisabled = idx === CHAPTERS.length - 1 ? 'disabled' : '';
+  container.innerHTML = `
+    <div>
+      <div class="bc-label">📖 Now Viewing</div>
+      <div class="bc-title">${ch.title} &nbsp;<span style="font-size:0.78rem;font-weight:600;background:rgba(255,107,0,0.25);padding:2px 10px;border-radius:12px;">${ch.qs} Questions</span></div>
+    </div>
+    <div class="bc-nav">
+      <button class="bc-btn" onclick="navigateChapter(${idx - 1})" ${prevDisabled}>◀ Prev</button>
+      <button class="bc-btn" onclick="navigateChapter(${idx + 1})" ${nextDisabled}>Next ▶</button>
+    </div>
+  `;
+}
+
+// ── Show a single chapter, hide all others ───────────────────────────────────
+function showChapter(chId) {
+  // Find index
+  const idx = CHAPTERS.findIndex(c => c.id === chId);
+  if (idx === -1) return;
+  currentChapterIndex = idx;
+
+  // Hide all sections
+  document.querySelectorAll('.chapter-section').forEach(s => s.classList.remove('active-chapter'));
+
+  // Show selected section
+  const target = document.getElementById(chId);
+  if (target) target.classList.add('active-chapter');
+
+  // Update sidebar active link
+  document.querySelectorAll('.chapter-nav li a').forEach(a => a.classList.remove('active'));
+  const activeLink = document.getElementById('nav-' + chId);
+  if (activeLink) {
+    activeLink.classList.add('active');
+    activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  // Update breadcrumb
+  renderBreadcrumb(idx);
+
+  // Update URL hash without page jump
+  history.replaceState(null, '', '#' + chId);
+
+  // Scroll main content to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Close mobile sidebar if open
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+}
+
+function navigateChapter(idx) {
+  if (idx < 0 || idx >= CHAPTERS.length) return;
+  showChapter(CHAPTERS[idx].id);
+}
+
+// ── Toggle individual Q-cards ────────────────────────────────────────────────
 function toggleQ(id) {
   const card = document.getElementById(id);
   if (!card) return;
-  const isOpen = card.classList.contains('open');
-  card.classList.toggle('open', !isOpen);
+  card.classList.toggle('open');
 }
 
-const sections = document.querySelectorAll('.chapter-section');
-const navLinks = document.querySelectorAll('.chapter-nav li a');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(a => a.classList.remove('active'));
-      const id = entry.target.id;
-      const active = document.querySelector(`.chapter-nav a[href="#${id}"]`);
-      if (active) { active.classList.add('active'); active.scrollIntoView({ block: 'nearest' }); }
-    }
-  });
-}, { rootMargin: '-30% 0px -60% 0px' });
-sections.forEach(s => observer.observe(s));
-
+// ── Progress bar (scroll within current chapter view) ───────────────────────
 window.addEventListener('scroll', () => {
   const docH = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = (window.scrollY / docH) * 100;
+  const progress = docH > 0 ? (window.scrollY / docH) * 100 : 0;
   document.getElementById('progressBar').style.width = progress + '%';
 });
 
+// ── Sidebar toggle (mobile) ──────────────────────────────────────────────────
 function toggleSidebar() {
-  const sb = document.getElementById('sidebar');
-  const ov = document.getElementById('sidebarOverlay');
-  sb.classList.toggle('open');
-  ov.classList.toggle('show');
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
 }
 document.getElementById('sidebarOverlay').addEventListener('click', () => {
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('show');
 });
 
-const menuToggle = document.getElementById('mobile-menu-toggle');
-const navbarLinks = document.querySelector('.navbar-links');
-if (menuToggle && navbarLinks) {
-  menuToggle.addEventListener('click', () => { navbarLinks.classList.toggle('active'); menuToggle.classList.toggle('active'); });
-}
-
+// ── Chapter search filter ────────────────────────────────────────────────────
 function filterChapters(val) {
   const query = val.toLowerCase();
-  const links = document.querySelectorAll('.chapter-nav li');
-  links.forEach(li => {
+  document.querySelectorAll('.chapter-nav li').forEach(li => {
     li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
   });
 }
+
+// ── Init: read hash or default to ch1 ───────────────────────────────────────
+(function init() {
+  const hash = window.location.hash.replace('#', '');
+  const validId = CHAPTERS.find(c => c.id === hash);
+  showChapter(validId ? hash : 'ch1');
+})();
 </script>
 </body>
 </html>
