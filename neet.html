@@ -310,9 +310,9 @@
                 if (userDoc.exists()) {
                     const data = userDoc.data();
                     const providerIds = user.providerData.map(p => p.providerId);
-                    const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
+                    const isNonPhoneAccount = !providerIds.includes('phone') || providerIds.includes('google.com') || providerIds.includes('password') || !!(user.email || data?.email);
                     const hasPhone = !!(user.phoneNumber || data?.phone || data?.phoneNumber);
-                    const isRegistered = (data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true) && (isGoogleOnly || hasPhone);
+                    const isRegistered = (data?.registrationCompleted === true || data?.signupCompleted === true || data?.profileCompleted === true || !!(data?.name && (data?.studentClass || data?.class))) && (isNonPhoneAccount || hasPhone);
                     if (!isRegistered && !isAdmin) {
                         window.location.replace("signup.html?mode=completion");
                         return;

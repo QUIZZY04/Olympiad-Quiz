@@ -334,11 +334,11 @@
                 try {
                     const userDoc = await getDoc(doc(db, "users", user.uid));
                     const data = userDoc.exists() ? userDoc.data() : null;
-                    const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
+                    const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted || (data.name && (data.studentClass || data.class))));
                     const providerIds = user.providerData.map(p => p.providerId);
-                    const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
+                    const isNonPhoneAccount = !providerIds.includes('phone') || providerIds.includes('google.com') || providerIds.includes('password') || !!(user.email || (data && data.email));
                     const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
-                    if (!hasCompletedProfile || (!isGoogleOnly && !hasPhone)) {
+                    if (!hasCompletedProfile || (!isNonPhoneAccount && !hasPhone)) {
                         sessionStorage.setItem("redirectAfterLogin", window.location.href);
                         window.location.replace("signup.html?mode=completion");
                         return;

@@ -59,11 +59,11 @@ async function isProfileComplete(user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (!userDoc.exists()) return false;
         const data = userDoc.data();
-        const hasCompletedProfile = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted);
+        const hasCompletedProfile = !!(data.registrationCompleted || data.signupCompleted || data.profileCompleted || (data.name && (data.studentClass || data.class)));
         const providerIds = user.providerData.map(p => p.providerId);
-        const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
+        const isNonPhoneAccount = !providerIds.includes('phone') || providerIds.includes('google.com') || providerIds.includes('password') || !!(user.email || data.email);
         const hasPhone = !!(user.phoneNumber || data.phone || data.phoneNumber);
-        return hasCompletedProfile && (isGoogleOnly || hasPhone);
+        return hasCompletedProfile && (isNonPhoneAccount || hasPhone);
     } catch (e) {
         console.warn("[AuthGuard] Firestore profile check failed:", e);
         // Fail-open on network error to avoid false lockouts on intermittent failures

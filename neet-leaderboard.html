@@ -226,9 +226,9 @@
                 if (userDoc.exists()) {
                     const profileData = userDoc.data();
                     const providerIds = user.providerData.map(p => p.providerId);
-                    const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
+                    const isNonPhoneAccount = !providerIds.includes('phone') || providerIds.includes('google.com') || providerIds.includes('password') || !!(user.email || profileData?.email);
                     const hasPhone = !!(user.phoneNumber || profileData.phone || profileData.phoneNumber);
-                    const isProfileComplete = !!(profileData.registrationCompleted || profileData.signupCompleted || profileData.profileCompleted) && (isGoogleOnly || hasPhone);
+                    const isProfileComplete = !!(profileData.registrationCompleted || profileData.signupCompleted || profileData.profileCompleted || (profileData.name && (profileData.studentClass || profileData.class))) && (isNonPhoneAccount || hasPhone);
                     if (!isProfileComplete && !isAdminCheck) {
                         sessionStorage.setItem("redirectAfterLogin", window.location.href);
                         window.location.replace("signup.html?mode=completion");

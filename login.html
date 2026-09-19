@@ -521,11 +521,11 @@ async function evaluateAuthState(user) {
     try {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const data = userDoc.exists() ? userDoc.data() : null;
-        const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted));
+        const hasCompletedProfile = !!(data && (data.registrationCompleted || data.signupCompleted || data.profileCompleted || (data.name && (data.studentClass || data.class))));
         const providerIds = user.providerData.map(p => p.providerId);
-        const isGoogleOnly = providerIds.includes('google.com') && !providerIds.includes('phone');
+        const isNonPhoneAccount = !providerIds.includes('phone') || providerIds.includes('google.com') || providerIds.includes('password') || !!(user.email || (data && data.email));
         const hasPhone = !!(user.phoneNumber || (data && (data.phone || data.phoneNumber)));
-        profileComplete = hasCompletedProfile && (isGoogleOnly || hasPhone);
+        profileComplete = hasCompletedProfile && (isNonPhoneAccount || hasPhone);
     } catch (e) {
         console.warn("Profile completeness check failed - allowing through:", e);
         profileComplete = true; // fail-open on a transient network error only
