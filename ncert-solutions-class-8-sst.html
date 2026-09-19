@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Solutions Class 8 Social Science (SST) — History, Geography, Civics | CBSE 2024-25</title>
+  <meta name="description" content="Free NCERT Solutions for Class 8 Social Science (History, Geography, Civics). Complete exercise questions & answers as per latest CBSE Board Marking Scheme 2024-25 and maximum word count guidelines.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand:#c2410c;--brand-hover:#9a3412;--brand-light:#fff7ed;--brand-text:#9a3412;
+      --navy:#0f172a;--slate:#334155;--muted:#64748b;--light-bg:#f8fafc;
+      --border:#e2e8f0;--shadow:0 4px 6px -1px rgba(0,0,0,0.05),0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-hover:0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -4px rgba(0,0,0,0.1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--light-bg);color:var(--slate);line-height:1.6;}
+    .top-progress{position:fixed;top:0;left:0;height:3px;background:var(--brand);z-index:1000;transition:width 0.1s;}
+    .navbar{background:var(--navy);color:white;padding:14px 24px;position:sticky;top:0;z-index:900;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,0.15);}
+    .nav-brand{font-size:1.25rem;font-weight:800;color:white;text-decoration:none;display:flex;align-items:center;gap:8px;}
+    .nav-brand span{color:#fb923c;}
+    .navbar-links{display:flex;align-items:center;gap:20px;list-style:none;}
+    .navbar-links a{color:#cbd5e1;text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s;}
+    .navbar-links a:hover,.navbar-links a.active{color:white;}
+    .hero-banner{background:linear-gradient(135deg,#0f172a 0%,#431407 100%);color:white;padding:36px 24px;text-align:center;border-bottom:3px solid var(--brand);}
+    .hero-banner h1{font-size:1.85rem;font-weight:800;margin-bottom:8px;}
+    .hero-banner p{color:#fdba74;font-size:0.95rem;max-width:760px;margin:0 auto 16px;}
+    .hero-badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+    .hero-badge{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;color:#e2e8f0;}
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb-bar{background:white;border-bottom:1px solid var(--border);padding:14px 36px;position:sticky;top:60px;z-index:800;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+    .breadcrumb-inner{max-width:1160px;margin:0 auto;}
+    .breadcrumb-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:0.06em;margin-bottom:10px;}
+    .breadcrumb-chips{display:flex;gap:6px;flex-wrap:wrap;}
+    .bc-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#f8fafc;color:var(--slate);transition:all 0.18s;user-select:none;}
+    .bc-chip:hover{border-color:var(--brand);color:var(--brand-text);background:var(--brand-light);transform:translateY(-1px);}
+    .bc-chip.active{background:var(--brand);color:white;border-color:var(--brand);box-shadow:0 3px 10px rgba(194,65,12,0.35);transform:translateY(-1px);}
+    .bc-chip .bc-n{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:rgba(0,0,0,0.12);border-radius:50%;font-size:0.68rem;font-weight:800;}
+    .bc-chip.active .bc-n{background:rgba(255,255,255,0.25);}
+
+    /* ── LAYOUT ── */
+    .main-layout{display:flex;max-width:1420px;margin:0 auto;min-height:calc(100vh - 180px);}
+    .sidebar{width:340px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:117px;height:calc(100vh - 117px);overflow-y:auto;flex-shrink:0;}
+    .sidebar-title{font-size:0.85rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:0.05em;margin-bottom:12px;}
+    .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:0.85rem;margin-bottom:16px;font-family:inherit;}
+    .search-box:focus{outline:none;border-color:var(--brand);}
+    .sec-group-title{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:var(--brand);margin:14px 0 6px 8px;}
+    .chapter-nav{list-style:none;}
+    .chapter-nav li{margin-bottom:4px;}
+    .chapter-nav li a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:var(--slate);text-decoration:none;font-size:0.825rem;font-weight:500;transition:all 0.15s;cursor:pointer;}
+    .chapter-nav li a:hover{background:var(--brand-light);color:var(--brand-text);}
+    .chapter-nav li a.active{background:var(--brand);color:white;font-weight:600;}
+    .ch-num{width:22px;height:22px;background:rgba(0,0,0,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;}
+    .chapter-nav li a.active .ch-num{background:rgba(255,255,255,0.25);color:white;}
+    .main-content{flex:1;padding:0 36px 36px;max-width:1080px;}
+
+    /* ── CHAPTER SECTIONS ── */
+    .chapter-section{margin-bottom:48px;scroll-margin-top:130px;padding-top:28px;}
+    .chapter-section.hidden{display:none;}
+    .chapter-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border);}
+    .ch-badge{width:46px;height:46px;background:var(--brand);color:white;border-radius:12px;font-size:1.15rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .chapter-header-info h2{font-size:1.4rem;font-weight:800;color:var(--navy);}
+    .chapter-header-info p{font-size:0.825rem;color:var(--muted);margin-top:2px;}
+
+    /* ── Q CARDS ── */
+    .q-card{background:white;border:1px solid var(--border);border-radius:12px;margin-bottom:18px;box-shadow:var(--shadow);transition:all 0.2s;overflow:hidden;}
+    .q-card:hover{border-color:#fed7aa;box-shadow:var(--shadow-hover);}
+    .q-head{padding:16px 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;user-select:none;background:white;}
+    .q-num{background:var(--brand-light);color:var(--brand-text);font-weight:700;font-size:0.8rem;padding:4px 10px;border-radius:6px;flex-shrink:0;margin-top:2px;}
+    .q-text{flex:1;font-weight:600;color:var(--navy);font-size:0.95rem;line-height:1.5;}
+    .q-marks{background:#f1f5f9;color:var(--slate);font-size:0.725rem;font-weight:600;padding:4px 10px;border-radius:12px;flex-shrink:0;white-space:nowrap;}
+    .q-toggle{color:var(--muted);transition:transform 0.2s;flex-shrink:0;margin-top:4px;}
+    .q-toggle svg{width:20px;height:20px;}
+    .q-card.open .q-toggle{transform:rotate(45deg);color:var(--brand);}
+
+    /* ── COLORFUL ANSWER BACKGROUNDS ── */
+    .q-answer{display:none;padding:0 16px 18px;border-top:2px dashed rgba(194,65,12,0.12);}
+    .q-card.open .q-answer{display:block;}
+    .answer-bg-1 {background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);}
+    .answer-bg-2 {background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);}
+    .answer-bg-3 {background:linear-gradient(135deg,#fdf4ff 0%,#f5d0fe 100%);}
+    .answer-bg-4 {background:linear-gradient(135deg,#eef2ff 0%,#e0e7ff 100%);}
+    .answer-bg-5 {background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);}
+    .answer-bg-6 {background:linear-gradient(135deg,#f0fdfa 0%,#ccfbf1 100%);}
+    .answer-bg-7 {background:linear-gradient(135deg,#fff1f2 0%,#fecdd3 100%);}
+    .answer-bg-8 {background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);}
+
+    .answer-box{border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:18px;margin-top:14px;background:rgba(255,255,255,0.85);backdrop-filter:blur(4px);}
+    .answer-label{font-size:0.75rem;font-weight:700;text-transform:uppercase;color:#c2410c;letter-spacing:0.04em;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+    .answer-text{font-size:0.9rem;color:#1e293b;line-height:1.65;}
+    .answer-text p{margin-bottom:10px;}
+    .answer-text p:last-child{margin-bottom:0;}
+    .answer-text ul,.answer-text ol{margin-left:20px;margin-bottom:10px;}
+    .answer-text li{margin-bottom:6px;}
+    .answer-text strong{color:#0f172a;}
+
+    .marking-scheme{margin-top:14px;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.07);border-radius:8px;padding:12px 14px;font-size:0.8rem;}
+    .marking-title{font-weight:700;color:var(--navy);margin-bottom:6px;}
+    .marking-row{display:flex;justify-content:space-between;border-bottom:1px solid #edf2f7;padding:4px 0;}
+    .marking-row:last-child{border-bottom:none;}
+    .marking-key{color:var(--slate);}
+    .marking-marks{font-weight:700;color:var(--brand-text);}
+
+    /* ── CBQ ── */
+    .cbq-section{margin-top:40px;border:2px solid var(--brand);border-radius:12px;background:linear-gradient(to right,#fff7ed,#ffffff);overflow:hidden;box-shadow:0 4px 15px rgba(194,65,12,0.1);}
+    .cbq-header{background:linear-gradient(90deg,#7c2d12,#c2410c);color:white;padding:16px 20px;font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:space-between;}
+    .cbq-badge{font-size:0.75rem;background:rgba(255,255,255,0.2);padding:4px 10px;border-radius:12px;}
+    .cbq-body{padding:20px;}
+    .cbq-card{border:1px solid #fed7aa;background:white;padding:16px;border-radius:8px;margin-bottom:16px;}
+    .cbq-type{font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:8px;color:#c2410c;}
+    .cbq-question{font-size:0.95rem;color:#334155;margin-bottom:12px;line-height:1.6;}
+    .cbq-show-btn{text-align:left;padding:10px 14px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:6px;cursor:pointer;font-size:0.9rem;font-family:inherit;width:100%;}
+    .cbq-answer{display:none;margin-top:12px;padding:14px;background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;font-size:0.9rem;color:#7c2d12;line-height:1.6;}
+
+    /* ── PREV/NEXT ── */
+    .ch-nav-btns{display:flex;justify-content:space-between;margin-top:32px;padding-top:20px;border-top:1px solid var(--border);}
+    .ch-nav-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-weight:700;font-size:0.88rem;cursor:pointer;border:1.5px solid var(--border);background:white;color:var(--slate);transition:all 0.2s;font-family:inherit;}
+    .ch-nav-btn:hover:not(:disabled){background:var(--brand);color:white;border-color:var(--brand);box-shadow:0 4px 12px rgba(194,65,12,0.3);}
+    .ch-nav-btn:disabled{opacity:0.35;cursor:not-allowed;}
+    .ch-nav-btn.next{background:var(--brand);color:white;border-color:var(--brand);}
+    .ch-nav-btn.next:hover:not(:disabled){background:var(--brand-hover);}
+
+    .mob-sidebar-toggle{display:none;position:fixed;bottom:20px;right:20px;background:var(--brand);color:white;border:none;padding:12px 20px;border-radius:30px;font-weight:700;font-size:0.9rem;box-shadow:0 4px 14px rgba(194,65,12,0.4);z-index:999;cursor:pointer;}
+    .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:950;}
+    @media(max-width:900px){
+      .main-layout{flex-direction:column;}
+      .sidebar{position:fixed;left:-340px;top:0;height:100vh;z-index:960;transition:left 0.3s;}
+      .sidebar.open{left:0;}
+      .sidebar-overlay.show{display:block;}
+      .mob-sidebar-toggle{display:block;}
+      .main-content{padding:0 16px 28px;}
+      .breadcrumb-bar{padding:12px 16px;top:57px;}
+      .bc-chip{font-size:0.72rem;padding:4px 9px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-progress" id="progressBar"></div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">Olympiad<span>Quiz</span></a>
+  <ul class="navbar-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ncert-solutions.html" class="active">NCERT Solutions</a></li>
+    <li><a href="chapterwise.html">Chapterwise Test</a></li>
+    <li><a href="mock.html">Mock Test</a></li>
+  </ul>
+</nav>
+
+<header class="hero-banner">
+  <h1>NCERT Solutions Class 8 Social Science (SST)</h1>
+  <p>Complete Exercise Questions &amp; Answers for History, Geography &amp; Civics based on latest CBSE Rationalised Syllabus 2024-25. Formatted strictly according to CBSE marking scheme word counts.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">📜 History (Our Pasts - III)</span>
+    <span class="hero-badge">🌍 Geography (Resources &amp; Dev.)</span>
+    <span class="hero-badge">⚖️ Civics (Social &amp; Political Life)</span>
+    <span class="hero-badge">🎯 CBSE Board Marking Scheme</span>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <div class="breadcrumb-label">Quick Jump to Chapter (19 Chapters Total):</div>
+    <div class="breadcrumb-chips" id="breadcrumbChips">
+      <!-- Generated via JS -->
+    </div>
+  </div>
+</div>
+
+<div class="main-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-title">Select Chapter</div>
+    <input type="text" class="search-box" placeholder="Search chapters..." oninput="filterChapters(this.value)">
+    
+    <div class="sec-group-title">📜 History (Our Pasts - III)</div>
+    <ul class="chapter-nav" id="chapterNavHistory"></ul>
+
+    <div class="sec-group-title">🌍 Geography (Resources &amp; Dev.)</div>
+    <ul class="chapter-nav" id="chapterNavGeography"></ul>
+
+    <div class="sec-group-title">⚖️ Civics (Social &amp; Political Life)</div>
+    <ul class="chapter-nav" id="chapterNavCivics"></ul>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="mob-sidebar-toggle" onclick="toggleSidebar()">📚 All Chapters</button>
+
+  <main class="main-content">
+
+    <!-- ==================== HISTORY CHAPTER 1 ==================== -->
+    <section class="chapter-section" id="ch1">
+      <div class="chapter-header">
+        <div class="ch-badge">H1</div>
+        <div class="chapter-header-info">
+          <h2>History Chapter 1: How, When and Where</h2>
+          <p>Understanding Periodisation, Colonial Records, Official Sources &amp; Historical Timelines</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q1_1">
+        <div class="q-head" onclick="toggleQ('q1_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">State whether true or false: (a) James Mill divided Indian history into three periods — Hindu, Muslim, Christian. (b) Official documents help us understand what the people of the country think. (c) The British thought surveys were important for effective administration.</div>
+          <span class="q-marks">3 Marks</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <ul>
+                <li><strong>(a) False.</strong> James Mill, a Scottish economist and political philosopher, divided Indian history into three distinct religious periods: <strong>Hindu, Muslim, and British</strong> (not Christian).</li>
+                <li><strong>(b) False.</strong> Official documents record what British colonial officials thought, what they were interested in, and what they wished to preserve for posterity. They <strong>do not reflect the feelings, beliefs, or daily struggles of ordinary Indian citizens</strong> (such as peasants, tribal groups, or laborers).</li>
+                <li><strong>(c) True.</strong> The British believed that a country had to be properly known before it could be effectively administered. Hence, detailed revenue surveys, botanical surveys, and population censuses were conducted regularly across India.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (3 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">(a) Correct Identification (False) &amp; explanation of Mill's periodisation (Hindu, Muslim, British)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">(b) Correct Identification (False) &amp; explanation of official vs popular perspectives</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">(c) Correct Identification (True) &amp; rationale behind British administrative surveys</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="q1_2">
+        <div class="q-head" onclick="toggleQ('q1_2')">
+          <span class="q-num">Q2</span>
+          <div class="q-text">What is the problem with the periodisation of Indian history that James Mill offers?</div>
+          <span class="q-marks">3 Marks (~80 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>James Mill's division of Indian history into <strong>Hindu, Muslim, and British</strong> periods suffers from critical historical flaws and colonial bias:</p>
+              <ul>
+                <li><strong>Religious Labeling of Eras:</strong> It is inappropriate to characterize an entire historical period solely by the religion of the ruling monarchs. During the rule of Hindu or Muslim kings, a wide variety of faiths existed side by side.</li>
+                <li><strong>Ignored Socio-Economic Progress:</strong> Mill assumed that Asian societies were at a lower level of civilization than Europe. His classification falsely implied that progress and enlightenment only began with British colonial rule.</li>
+                <li><strong>Subjugation of Diverse Local History:</strong> Periodisation based on rulers neglects the socio-economic transformations, culture, and lives of ordinary farmers, artisans, and merchants across regional kingdoms.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (3 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Flaw 1: Unjustified religious classification of entire historical eras</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Flaw 2: Eurocentric prejudice portraying Indian society as backward prior to British rule</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Flaw 3: Exclusion of ordinary people's lives, culture, and regional diversity</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="q1_3">
+        <div class="q-head" onclick="toggleQ('q1_3')">
+          <span class="q-num">Q3</span>
+          <div class="q-text">Why did the British preserve official documents, and how did they store them?</div>
+          <span class="q-marks">5 Marks (~120 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The British believed that the act of writing was vital for institutional administration. Every instruction, plan, policy decision, agreement, and investigation had to be clearly documented.</p>
+
+              <p><strong>Reasons for Preserving Documents:</strong></p>
+              <ul>
+                <li><strong>Administrative Reference:</strong> Written records served as an authoritative reference for future administrators to review decisions and precedents.</li>
+                <li><strong>Policy Debate and Accountability:</strong> Properly documented records allowed matters to be studied, debated, and cited in official correspondence across revenue and military departments.</li>
+              </ul>
+
+              <p><strong>Storage Mechanisms Established:</strong></p>
+              <ul>
+                <li><strong>Record Rooms Attached to Institutions:</strong> Specialized record rooms were attached to every administrative institution — Village Tehsildar offices, Collectorates, Commissionerate offices, and Secretariat departments.</li>
+                <li><strong>Specialized Institutions:</strong> Archives and Museums were established in major provincial capitals and imperial centers (e.g., National Archives of India in New Delhi) to store vital treaties, state papers, and maps securely.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Explanation of British administrative philosophy regarding documentation</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Purpose 1: Reference and consistency in policy execution</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Purpose 2: Scientific study, debate, and inter-departmental communication</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Storage 1: Attached record rooms across local &amp; provincial administrative offices</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Storage 2: Establishment of specialized National Archives &amp; Museums</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CBQ Section -->
+      <div class="cbq-section">
+        <div class="cbq-header">
+          <span>🧠 Competency-Based Question (CBQ) — History Ch 1</span>
+          <span class="cbq-badge">CBSE Board Pattern</span>
+        </div>
+        <div class="cbq-body">
+          <div class="cbq-card">
+            <div class="cbq-type">Source-Based Analysis</div>
+            <div class="cbq-question">
+              "Official records tell us what the officials thought, what they were interested in, and what they wished to preserve. But these documents do not always help us understand what other people in the country felt, or what lay behind their actions."<br><br>
+              <strong>Question:</strong> Name two alternative non-official sources historians use to reconstruct the lives of ordinary Indians during the colonial period.
+            </div>
+            <button class="cbq-show-btn" onclick="this.nextElementSibling.style.display='block'">Show Answer &amp; Explanation</button>
+            <div class="cbq-answer">
+              <strong>Answer:</strong><br>
+              1. <strong>Diaries of Individuals, Autobiographies &amp; Travelogues:</strong> Personal accounts written by pilgrims, travelers, and nationalist leaders (e.g., Mahatma Gandhi, Nehru).<br>
+              2. <strong>Vernacular Literature, Folklore &amp; Regional Newspapers:</strong> Novels, poems, folk songs, and regional newspapers (like <em>Kesari</em>) that voiced public grievances and peasant realities.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HISTORY CHAPTER 2 ==================== -->
+    <section class="chapter-section hidden" id="ch2">
+      <div class="chapter-header">
+        <div class="ch-badge">H2</div>
+        <div class="chapter-header-info">
+          <h2>History Chapter 2: From Trade to Territory</h2>
+          <p>The Company Establishes Power — Battle of Plassey, Buxar, Subsidiary Alliance &amp; Doctrine of Lapse</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q2_1">
+        <div class="q-head" onclick="toggleQ('q2_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What led to the Battle of Plassey in 1757?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The Battle of Plassey (23 June 1757) between Nawab Siraj-ud-Daulah of Bengal and the English East India Company led by Robert Clive was triggered by several escalating factors:</p>
+              <ul>
+                <li><strong>Misuse of Trade Privileges (Dastaks):</strong> The East India Company misused duty-free trading rights granted by Mughal emperors for private trade, depriving Bengal of huge tax revenue.</li>
+                <li><strong>Unauthorized Fortification:</strong> The British began fortifying Fort William in Calcutta without seeking permission from Nawab Siraj-ud-Daulah.</li>
+                <li><strong>Nawab's Attack on Kasimbazar:</strong> Enraged by the Company's defiance, Siraj-ud-Daulah marched with 30,000 soldiers, captured the factory at Kasimbazar, and took control of Fort William.</li>
+                <li><strong>Clive's Military Expedition:</strong> Robert Clive was dispatched from Madras with naval and infantry reinforcements to recapture Calcutta.</li>
+                <li><strong>Conspiracy with Mir Jafar:</strong> Clive secretly conspired with Mir Jafar (the Nawab’s Commander-in-Chief), promising to make him Nawab of Bengal if he betrayed Siraj-ud-Daulah during the battle.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Factor 1: Misuse of trade tax exemptions (dastaks) by EIC servants</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 2: Unauthorised fortification of Fort William in Calcutta</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 3: Nawab Siraj-ud-Daulah's military raid on Kasimbazar</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 4: Robert Clive's arrival with Madras reinforcements</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 5: Conspiracy with Mir Jafar leading to battlefield betrayal</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="q2_2">
+        <div class="q-head" onclick="toggleQ('q2_2')">
+          <span class="q-num">Q2</span>
+          <div class="q-text">Explain the terms: (a) Subsidiary Alliance (b) Doctrine of Lapse.</div>
+          <span class="q-marks">5 Marks (~150 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p><strong>(a) Subsidiary Alliance (Introduced by Lord Wellesley, 1798–1805):</strong></p>
+              <ul>
+                <li>Indian rulers entering this alliance were not allowed to maintain independent armed forces.</li>
+                <li>They were protected by the East India Company but had to pay for the "subsidiary forces" maintained for their protection.</li>
+                <li>If an Indian ruler failed to make payment, part of his territory was annexed as penalty (e.g., Nawab of Awadh in 1801 and Hyderabad).</li>
+              </ul>
+
+              <p><strong>(b) Doctrine of Lapse (Introduced by Lord Dalhousie, 1848–1856):</strong></p>
+              <ul>
+                <li>If an Indian ruler of a protected state died without a natural male heir, his kingdom would 'lapse' and become part of Company territory.</li>
+                <li>Adopted sons were denied succession to the throne.</li>
+                <li>Kingdoms annexed under this doctrine included Satara (1848), Sambalpur (1850), Udaipur (1852), Nagpur (1853), and Jhansi (1854).</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Subsidiary Alliance: Governor-General name, non-independent forces rule</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Subsidiary Alliance: Financial penalty and territory annexation clause</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Doctrine of Lapse: Governor-General name, natural heir requirement</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Doctrine of Lapse: Examples of annexed kingdoms (Satara, Jhansi, Nagpur)</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HISTORY CHAPTER 3 ==================== -->
+    <section class="chapter-section hidden" id="ch3">
+      <div class="chapter-header">
+        <div class="ch-badge">H3</div>
+        <div class="chapter-header-info">
+          <h2>History Chapter 3: Ruling the Countryside</h2>
+          <p>Permanent Settlement, Mahalwari, Ryotwari Systems &amp; The Blue Rebellion (Indigo)</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q3_1">
+        <div class="q-head" onclick="toggleQ('q3_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">Describe the main features of the Permanent Settlement introduced by Lord Cornwallis in 1793.</div>
+          <span class="q-marks">5 Marks (~130 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The Permanent Settlement was introduced in Bengal, Bihar, and Orissa in 1793 by Governor-General Lord Cornwallis:</p>
+              <ul>
+                <li><strong>Recognition of Zamindars:</strong> Rajas and Talukdars were recognized as Zamindars and made landowners.</li>
+                <li><strong>Fixed Revenue Assessment:</strong> The amount of land revenue to be paid to the East India Company was fixed permanently in perpetuity; it was never to be increased in the future.</li>
+                <li><strong>Collection from Peasants:</strong> Zamindars were given the task of collecting rent from cultivators and paying the fixed revenue to the Company.</li>
+                <li><strong>Loss of Zamindari Rights:</strong> If a Zamindar failed to pay the fixed revenue on time, his Zamindari was auctioned off by the British.</li>
+                <li><strong>Objective &amp; Flaw:</strong> The British hoped it would ensure a regular revenue flow and encourage Zamindars to invest in land improvement. In reality, revenue was fixed too high, Zamindars neglected land improvement, and peasants were left at the mercy of oppressive rents.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Feature 1: Year (1793), Governor-General (Cornwallis) &amp; Zamindar recognition</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Feature 2: Permanently fixed revenue demand</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Feature 3: Role of Zamindars as revenue collectors from peasants</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Feature 4: Sunset clause &amp; auctioning of non-paying Zamindaris</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Feature 5: Impact on peasants and failure of land investment objective</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="q3_2">
+        <div class="q-head" onclick="toggleQ('q3_2')">
+          <span class="q-num">Q2</span>
+          <div class="q-text">What was the 'Blue Rebellion' of 1859? Why did ryots refuse to grow indigo?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>In March 1859, thousands of ryots (peasants) in Bengal declared that they would no longer grow indigo, initiating the famous <strong>Indigo Revolt or Blue Rebellion</strong>.</p>
+
+              <p><strong>Reasons Ryots Refused to Grow Indigo:</strong></p>
+              <ul>
+                <li><strong>Unremunerative Prices:</strong> The price planters paid for indigo was extremely low, locking peasants into an unending cycle of debt loans (advances).</li>
+                <li><strong>Loss of Fertile Soil:</strong> Planters insisted that indigo be cultivated on the most fertile soils where peasants preferred growing rice. Indigo's deep roots exhausted the soil rapidly, making it unfit for subsequent rice cultivation.</li>
+                <li><strong>Coercion and Oppression:</strong> Planters used physical intimidation, lathiyals (armed henchmen), and illegal seizure of cattle to force farmers into signing contracts.</li>
+              </ul>
+
+              <p><strong>Outcome:</strong> The British government appointed the Indigo Commission in 1860, which held planters guilty and allowed ryots to refuse future indigo cultivation. Indigo production in Bengal collapsed and shifted to Bihar.</p>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Context: Year (1859), region (Bengal), and nature of Blue Rebellion</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Reason 1: Low prices &amp; perpetual debt trap of advance loans</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Reason 2: Soil exhaustion &amp; competition with food crops (rice)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Reason 3: Physical coercion by planters' lathiyals</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Outcome: Indigo Commission (1860) recommendations &amp; collapse in Bengal</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HISTORY CHAPTER 4 ==================== -->
+    <section class="chapter-section hidden" id="ch4">
+      <div class="chapter-header">
+        <div class="ch-badge">H4</div>
+        <div class="chapter-header-info">
+          <h2>History Chapter 4: Tribals, Dikus and the Vision of a Golden Age</h2>
+          <p>Jhum Cultivation, Impact of British Forest Laws, Birsa Munda &amp; Ulgulan Movement</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q4_1">
+        <div class="q-head" onclick="toggleQ('q4_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What was Birsa Munda's vision of a 'Golden Age'? What did he want to achieve through the Ulgulan movement?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>Birsa Munda urged his followers to revive a golden past (<em>Satyug</em>) — an era when Mundas lived a virtuous life, constructed embankments, tapped natural springs, and lived in harmony without harming relatives.</p>
+
+              <p><strong>Objectives of the Ulgulan (Great Tumult) Movement:</strong></p>
+              <ul>
+                <li><strong>Expulsion of Dikus:</strong> To drive out all outsiders — money-lenders (dikus), Hindu landlords, Christian missionaries, and British officials — whom Birsa held responsible for Munda misery.</li>
+                <li><strong>Restoration of Tribal Rights:</strong> To reclaim ancestral land rights and freedom to practice traditional shifting agriculture (jhum).</li>
+                <li><strong>Establishment of Munda Raj:</strong> To set up an independent Munda Raj with Birsa Munda as its head.</li>
+                <li><strong>Moral Reform:</strong> Birsa urged Mundas to stop drinking liquor, clean their villages, and abandon belief in witchcraft and sorcery.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Concept: Birsa Munda's vision of Satyug (Golden Age)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Objective 1: Elimination of Dikus (money-lenders, missionaries, British)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Objective 2: Reclaiming customary forest &amp; land rights</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Objective 3: Establishing self-governing Munda Raj</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Objective 4: Internal social and moral purification among tribal society</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HISTORY CHAPTER 5 ==================== -->
+    <section class="chapter-section hidden" id="ch5">
+      <div class="chapter-header">
+        <div class="ch-badge">H5</div>
+        <div class="chapter-header-info">
+          <h2>History Chapter 5: When People Rebel 1857 and After</h2>
+          <p>Causes of 1857 Revolt, Leaders (Mangal Pandey, Rani Lakshmibai, Bahadur Shah Zafar) &amp; Post-1857 Changes</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q5_1">
+        <div class="q-head" onclick="toggleQ('q5_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What were the political, economic, military, and religious causes of the Revolt of 1857?</div>
+          <span class="q-marks">5 Marks (~150 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The 1857 Revolt was the culmination of widespread discontent against British rule across multiple spheres:</p>
+              <ul>
+                <li><strong>Political Causes:</strong> Annexation of Awadh (1856) on grounds of misgovernance and enforcement of the Doctrine of Lapse (annexing Jhansi, Satara, Nagpur) alienated Indian rulers.</li>
+                <li><strong>Economic Causes:</strong> Heavy land tax assessments, ruin of traditional handicrafts by cheap British machine-made goods, and loss of livelihood for artisans and peasants.</li>
+                <li><strong>Military Causes:</strong> Sepoys faced discrimination in pay, promotion, and allowances compared to European soldiers. The General Service Enlistment Act (1856) forced them to serve overseas, violating Hindu religious taboos.</li>
+                <li><strong>Religious &amp; Social Causes:</strong> Fear of mass conversion to Christianity by missionaries and social reform laws (Sati abolition, Widow remarriage) were viewed as interference in traditional customs.</li>
+                <li><strong>Immediate Cause:</strong> Introduction of the new Enfield Rifle, whose cartridges were greased with cow and pig fat, offending both Hindu and Muslim sepoys.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Political Causes (Doctrine of Lapse, Awadh annexation)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Economic Causes (Land revenue, de-industrialization of artisans)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Military Causes (Sepoy pay discrepancy, General Service Act 1856)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Religious/Social Causes (Missionary activity, legislative reforms)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Immediate Cause (Greased Enfield Rifle cartridges)</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="q5_2">
+        <div class="q-head" onclick="toggleQ('q5_2')">
+          <span class="q-num">Q2</span>
+          <div class="q-text">What major changes were introduced by the British after suppressing the Revolt of 1857?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>Under the Government of India Act 1858 passed by the British Parliament, the administrative framework of India underwent fundamental changes:</p>
+              <ul>
+                <li><strong>Transfer of Power:</strong> Governance of India was transferred directly from the East India Company to the British Crown. A Secretary of State for India was appointed in London.</li>
+                <li><strong>Viceroy Appointment:</strong> The Governor-General of India was given the title of Viceroy (representative of the Crown).</li>
+                <li><strong>Protection of Native Rulers:</strong> All ruling chiefs were assured that their territories would never be annexed in the future. The Doctrine of Lapse was officially abolished.</li>
+                <li><strong>Army Restructuring:</strong> The proportion of European soldiers in the army was increased, and Indian sepoys were recruited primarily from Gorkhas, Sikhs, and Pathans rather than Awadh or Bihar.</li>
+                <li><strong>Non-Interference Policy:</strong> The British decided to respect the customary religious and social practices of the people of India.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Transfer of power to British Crown &amp; Secretary of State</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Title of Viceroy for Governor-General</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Abolition of Doctrine of Lapse &amp; guarantee to native rulers</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Re-organisation of Army (higher European ratio, martial race recruitment)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Policy of non-interference in Indian religious/social customs</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HISTORY CHAPTER 6 ==================== -->
+    <section class="chapter-section hidden" id="ch6">
+      <div class="chapter-header">
+        <div class="ch-badge">H6</div>
+        <div class="chapter-header-info">
+          <h2>History Chapter 6: Making of the National Movement 1870s–1947</h2>
+          <p>Formation of INC, Moderates vs Radicals, Partition of Bengal, Non-Cooperation, Civil Disobedience &amp; Quit India</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q6_1">
+        <div class="q-head" onclick="toggleQ('q6_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">Differentiate between Moderates and Radicals (Extremists) in the Indian National Congress.</div>
+          <span class="q-marks">5 Marks (~150 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>During the early decades of the Indian National Congress (1885–1905), two distinct ideologies emerged:</p>
+              <ul>
+                <li><strong>Leadership &amp; Figures:</strong> Moderates were led by Dadabhai Naoroji, W.C. Bonnerjee, and Gopal Krishna Gokhale. Radicals were led by Bal Gangadhar Tilak, Bipin Chandra Pal, and Lala Lajpat Rai (Lal-Bal-Pal).</li>
+                <li><strong>Methods of Struggle:</strong> Moderates believed in constitutional methods — petitions, prayers, resolutions, and peaceful representation to the British government. Radicals advocated direct action, boycotts of British goods, passive resistance, and mass mobilization.</li>
+                <li><strong>Attitude Towards British Rule:</strong> Moderates believed the British had a sense of justice and fairness and wanted self-government within the Empire. Radicals believed the British were exploitation-focused and declared: <em>"Swaraj is my birthright and I shall have it!"</em></li>
+                <li><strong>Mass Base:</strong> Moderates appealed mainly to educated urban elites. Radicals extended the movement to peasants, workers, and the wider public.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Key Leaders: Moderates (Naoroji, Gokhale) vs Radicals (Lal-Bal-Pal)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Methods: Petitions &amp; Resolutions vs Boycotts &amp; Mass Agitation</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Goal &amp; Attitude: Trust in British justice vs Demand for Swaraj</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Social Base: Urban educated elites vs Broader popular masses</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-card" id="q6_2">
+        <div class="q-head" onclick="toggleQ('q6_2')">
+          <span class="q-num">Q2</span>
+          <div class="q-text">Explain the significance of the Dandi Salt March led by Mahatma Gandhi in 1930.</div>
+          <span class="q-marks">3 Marks (~80 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>In 1930, Mahatma Gandhi launched the <strong>Civil Disobedience Movement</strong> with the historic Dandi March:</p>
+              <ul>
+                <li><strong>Choice of Salt:</strong> Salt was a universal necessity used by rich and poor alike. The British monopoly on salt manufacture and heavy salt tax symbolized colonial oppression.</li>
+                <li><strong>The March:</strong> Gandhiji and 78 followers walked 240 miles from Sabarmati Ashram to the coastal town of Dandi, breaking the salt law by manufacturing salt from seawater on 6 April 1930.</li>
+                <li><strong>Impact:</strong> It united all sections of Indian society and triggered nationwide defiance of colonial laws, picketing of liquor shops, and boycott of foreign cloth.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (3 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Reason for choosing Salt (universal item, unfair tax)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Details of March (Sabarmati to Dandi, breaking salt law on 6 April 1930)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">National Impact (Launch of Civil Disobedience Movement)</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GEOGRAPHY CHAPTER 1 (CH 7) ==================== -->
+    <section class="chapter-section hidden" id="ch7">
+      <div class="chapter-header">
+        <div class="ch-badge">G1</div>
+        <div class="chapter-header-info">
+          <h2>Geography Chapter 1: Resources</h2>
+          <p>Types of Resources — Natural, Human-Made, Human Resources &amp; Sustainable Development</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q7_1">
+        <div class="q-head" onclick="toggleQ('q7_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What is Sustainable Development? State its fundamental principles.</div>
+          <span class="q-marks">5 Marks (~130 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p><strong>Definition:</strong> Sustainable Development means carefully utilizing resources so that besides meeting the needs of the present generation, it also preserves resources for future generations.</p>
+
+              <p><strong>Principles of Sustainable Development:</strong></p>
+              <ul>
+                <li><strong>Respect and Care:</strong> Respect and care for all forms of life on Earth.</li>
+                <li><strong>Improve Quality of Human Life:</strong> Enhance human well-being while conserving planetary life-support systems.</li>
+                <li><strong>Conserve Earth’s Vitality &amp; Diversity:</strong> Protect biodiversity, natural ecosystems, and non-renewable energy sources.</li>
+                <li><strong>Minimize Resource Depletion:</strong> Minimize the depletion of natural resources through recycling, reuse, and renewable alternatives.</li>
+                <li><strong>Change Personal Attitudes:</strong> Change personal attitudes and practices toward the environment and empower local communities to care for their surroundings.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Standard Definition of Sustainable Development</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Principle 1 &amp; 2: Care for all life &amp; improving human life quality</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Principle 3: Conserving Earth's biodiversity &amp; ecological vitality</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Principle 4: Minimizing natural resource depletion</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Principle 5: Environmental awareness &amp; community participation</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GEOGRAPHY CHAPTER 2 (CH 8) ==================== -->
+    <section class="chapter-section hidden" id="ch8">
+      <div class="chapter-header">
+        <div class="ch-badge">G2</div>
+        <div class="chapter-header-info">
+          <h2>Geography Chapter 2: Land, Soil, Water, Natural Vegetation and Wildlife Resources</h2>
+          <p>Soil Conservation Methods, Water Scarcity &amp; Forest Protection</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q8_1">
+        <div class="q-head" onclick="toggleQ('q8_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">Explain five effective methods of soil conservation used in agriculture.</div>
+          <span class="q-marks">5 Marks (~150 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>Soil erosion and degradation are major threats to agriculture. Key soil conservation practices include:</p>
+              <ul>
+                <li><strong>Mulching:</strong> The bare ground between plants is covered with a layer of organic matter like straw to retain soil moisture.</li>
+                <li><strong>Contour Barriers:</strong> Stones, grass, and soil are used to build barriers along contours. Trenches are made in front of barriers to collect water.</li>
+                <li><strong>Terrace Farming:</strong> Broad flat steps or terraces are made on steep slopes so that flat surfaces are available to grow crops, reducing surface runoff and soil erosion.</li>
+                <li><strong>Intercropping:</strong> Different crops are grown in alternate rows and are sown at different times to protect the soil from rain wash.</li>
+                <li><strong>Shelter Belts:</strong> In coastal and dry regions, rows of trees are planted to check wind movement to protect soil cover.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Mulching: Organic cover &amp; moisture retention mechanism</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Contour Barriers: Stones/grass barriers &amp; water trenches</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Terrace Farming: Flat steps on hill slopes preventing runoff</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Intercropping: Alternate row cropping against rain wash</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Shelter Belts: Tree rows checking wind movement in dry zones</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GEOGRAPHY CHAPTER 3 (CH 9) ==================== -->
+    <section class="chapter-section hidden" id="ch9">
+      <div class="chapter-header">
+        <div class="ch-badge">G3</div>
+        <div class="chapter-header-info">
+          <h2>Geography Chapter 3: Agriculture</h2>
+          <p>Types of Farming — Commercial, Subsistence, Intensive, Plantation &amp; Major Crops</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q9_1">
+        <div class="q-head" onclick="toggleQ('q9_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">Differentiate between Subsistence Farming and Commercial Farming.</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>Agriculture can be classified into subsistence and commercial farming based on purpose and techniques:</p>
+              <ul>
+                <li><strong>Purpose:</strong> Subsistence farming is practiced to meet the needs of the farmer's family. Commercial farming is practiced primarily for sale in the market to earn profit.</li>
+                <li><strong>Land Size &amp; Technology:</strong> Subsistence farming uses small land plots, low levels of technology, and household labor. Commercial farming uses large land tracts, heavy capital investment, and modern machinery.</li>
+                <li><strong>Crop Yield &amp; Inputs:</strong> Subsistence farming relies on traditional seeds and monsoon rains. Commercial farming uses High Yielding Variety (HYV) seeds, chemical fertilizers, pesticides, and modern irrigation systems.</li>
+                <li><strong>Examples:</strong> Subsistence: Intensive subsistence paddy cultivation, shifting cultivation. Commercial: Commercial grain farming, Plantation agriculture (Tea, Coffee, Rubber).</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Purpose: Family consumption vs Market sale for profit</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Inputs &amp; Scale: Small plots &amp; manual labor vs Large estates &amp; machinery</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Technology: Traditional seeds vs HYV seeds, fertilizers &amp; irrigation</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Examples for both types</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GEOGRAPHY CHAPTER 4 (CH 10) ==================== -->
+    <section class="chapter-section hidden" id="ch10">
+      <div class="chapter-header">
+        <div class="ch-badge">G4</div>
+        <div class="chapter-header-info">
+          <h2>Geography Chapter 4: Industries</h2>
+          <p>Classification of Industries, Factors Affecting Location &amp; Major Industrial Regions</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q10_1">
+        <div class="q-head" onclick="toggleQ('q10_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What factors influence the location of an industry? Explain any five.</div>
+          <span class="q-marks">5 Marks (~130 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The location of industries is determined by economic, geographical, and infrastructural factors:</p>
+              <ul>
+                <li><strong>Raw Material:</strong> Proximity to raw materials reduces transport costs, especially for weight-losing raw materials like iron ore and sugarcane.</li>
+                <li><strong>Power Supply:</strong> Uninterrupted electrical power is essential for running heavy machinery and processing plants.</li>
+                <li><strong>Labor Availability:</strong> Availability of cheap skilled and unskilled labor (e.g., textile industry in Gujarat/Maharashtra).</li>
+                <li><strong>Transport Facilities:</strong> Efficient network of railways, roadways, and ports for bringing raw materials and distributing finished goods.</li>
+                <li><strong>Market &amp; Capital:</strong> Proximity to large consumer markets and access to banking/capital for investment.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Factor 1: Raw Material proximity</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 2: Power Supply infrastructure</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 3: Labor availability (skilled &amp; unskilled)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 4: Transport and logistics network</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Factor 5: Market proximity &amp; Financial capital</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GEOGRAPHY CHAPTER 5 (CH 11) ==================== -->
+    <section class="chapter-section hidden" id="ch11">
+      <div class="chapter-header">
+        <div class="ch-badge">G5</div>
+        <div class="chapter-header-info">
+          <h2>Geography Chapter 5: Human Resources</h2>
+          <p>Population Distribution, Density, Growth Rate &amp; Population Pyramid</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q11_1">
+        <div class="q-head" onclick="toggleQ('q11_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What is a Population Pyramid? How does it help in understanding the demographic profile of a nation?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>A <strong>Population Pyramid</strong> (or Age-Sex Pyramid) is a graphical representation showing the distribution of various age groups in a population, divided into males and females.</p>
+
+              <p><strong>Demographic Insights Provided by Population Pyramid:</strong></p>
+              <ul>
+                <li><strong>Age-Group Breakdown:</strong> Shows total population divided into age groups (e.g., 0–14 years, 15–65 years, 65+ years).</li>
+                <li><strong>Birth and Death Rates:</strong> A broad base indicates high birth rates; a narrowing top shows death rates across older age brackets.</li>
+                <li><strong>Dependency Ratio:</strong> Clearly displays the number of dependents (young below 15 and elderly above 65) relative to the economically active working-age population (15–64 years).</li>
+                <li><strong>Economic Potential:</strong> Pyramids with a broad middle section (like India) signal a expanding workforce and high demographic dividend.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Definition of Population Pyramid (Age-Sex Pyramid)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Insight 1: Age-group breakdown &amp; male-female ratio</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Insight 2: Reflection of birth &amp; mortality rates</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Insight 3: Calculation of Dependency Ratio</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Insight 4: Planning for workforce &amp; demographic dividend</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CIVICS CHAPTER 1 (CH 12) ==================== -->
+    <section class="chapter-section hidden" id="ch12">
+      <div class="chapter-header">
+        <div class="ch-badge">C1</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 1: The Indian Constitution</h2>
+          <p>Key Features — Federalism, Parliamentary Form, Separation of Powers, Fundamental Rights &amp; Secularism</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q12_1">
+        <div class="q-head" onclick="toggleQ('q12_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">Explain the key features of the Indian Constitution.</div>
+          <span class="q-marks">5 Marks (~150 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The Constitution of India guarantees democracy, equality, and liberty through five key features:</p>
+              <ul>
+                <li><strong>Federalism:</strong> Existence of more than one level of government in the country (Central, State, and Panchayati Raj/Local levels).</li>
+                <li><strong>Parliamentary Form of Government:</strong> Representatives are directly elected by the people based on Universal Adult Suffrage. Every citizen above 18 has the right to vote.</li>
+                <li><strong>Separation of Powers:</strong> Three organs of state — Legislature (makes laws), Executive (implements laws), and Judiciary (interprets laws) — act as checks and balances on each other.</li>
+                <li><strong>Fundamental Rights:</strong> Guaranteed Rights (Part III) protect citizens against arbitrary state power and majority tyranny (e.g., Right to Equality, Right to Freedom).</li>
+                <li><strong>Secularism:</strong> A secular state is one in which the state does not officially promote any one religion as the state religion.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Federalism: Multi-tier governance system</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Parliamentary System &amp; Universal Adult Suffrage</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Separation of Powers (Legislature, Executive, Judiciary)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Fundamental Rights (Protection against state power)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Secularism (State neutrality toward religion)</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CIVICS CHAPTER 2 (CH 13) ==================== -->
+    <section class="chapter-section hidden" id="ch13">
+      <div class="chapter-header">
+        <div class="ch-badge">C2</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 2: Understanding Secularism</h2>
+          <p>Indian Secularism vs Western Secularism &amp; State Distance/Intervention</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q13_1">
+        <div class="q-head" onclick="toggleQ('q13_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">How is Indian Secularism different from the Western (US) concept of Secularism?</div>
+          <span class="q-marks">3 Marks (~90 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>While both systems promote religious freedom, Indian Secularism differs fundamentally from Western (American) Secularism:</p>
+              <ul>
+                <li><strong>Strict Water-tight Separation (Western):</strong> In the US Constitution, there is a strict separation between religion and state — neither the state nor religion can interfere in the affairs of the other under any circumstances.</li>
+                <li><strong>Principled Distance &amp; Intervention (Indian):</strong> In India, the state maintains a 'principled distance' but can intervene in religious matters to uphold constitutional ideals. For instance, the Indian state banned <em>Untouchability</em> and reformed personal laws to end gender discrimination.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (3 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Western Secularism: Strict non-interference / water-tight separation</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Indian Secularism: Principled distance with right to intervene against oppression</span><span class="marking-marks">1.5 Marks</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CIVICS CHAPTER 3 (CH 14) ==================== -->
+    <section class="chapter-section hidden" id="ch14">
+      <div class="chapter-header">
+        <div class="ch-badge">C3</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 3: Parliament and the Making of Laws</h2>
+          <p>Role of Parliament, Lok Sabha vs Rajya Sabha &amp; Law-Making Process</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q14_1">
+        <div class="q-head" onclick="toggleQ('q14_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What are the main functions of the Parliament of India?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The Parliament of India (consisting of the President, Lok Sabha, and Rajya Sabha) performs several vital functions:</p>
+              <ul>
+                <li><strong>Law-Making (Legislative):</strong> Parliament is the supreme law-making body in India. It introduces, debates, and passes bills on matters listed in the Union and Concurrent Lists.</li>
+                <li><strong>Control &amp; Guide the Executive:</strong> Members of Parliament question ministers during Question Hour, ensuring accountability of the government. Parliament can pass a No-Confidence Motion to remove the government.</li>
+                <li><strong>Financial Control:</strong> Parliament controls the nation's finances. The government cannot levy taxes or spend money without Parliamentary approval (Budget).</li>
+                <li><strong>Representation of Diverse Interests:</strong> Parliament gives voice to various socio-cultural groups and regions across India.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Supreme legislative &amp; law-making authority</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Executive oversight via Question Hour &amp; No-Confidence Motion</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Financial control over taxation &amp; Annual Budget approval</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Representation of diverse national interests</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CIVICS CHAPTER 4 (CH 15) ==================== -->
+    <section class="chapter-section hidden" id="ch15">
+      <div class="chapter-header">
+        <div class="ch-badge">C4</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 4: Judiciary</h2>
+          <p>Independence of Judiciary, Structure of Courts &amp; Judicial Review</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q15_1">
+        <div class="q-head" onclick="toggleQ('q15_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What is meant by an 'Independent Judiciary'? Why is it essential for democracy?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p><strong>Independent Judiciary</strong> means that the judicial branch of government is free from political pressure or control by the Legislature and Executive organs.</p>
+
+              <p><strong>Key Aspects &amp; Importance:</strong></p>
+              <ul>
+                <li><strong>No Interference:</strong> Other organs of government cannot interfere in the decisions of judges or dictate verdicts.</li>
+                <li><strong>Security of Tenure:</strong> Judges of the Supreme Court and High Courts are appointed with minimal political interference and are extremely difficult to remove (requires impeachment).</li>
+                <li><strong>Protection of Fundamental Rights:</strong> An independent judiciary ensures that any citizen can approach courts (via PILs or writs) if their rights are violated by the state or powerful entities.</li>
+                <li><strong>Judicial Review:</strong> The judiciary has the power to strike down laws passed by Parliament if they violate the basic structure of the Constitution.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Definition of Judicial Independence</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Non-interference by Executive/Legislature</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Security of Tenure &amp; impeachment safeguards</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Enforcement &amp; protection of Fundamental Rights</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Power of Judicial Review over unconstitutional legislation</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CIVICS CHAPTER 5 & 6 (CH 16 & 17) ==================== -->
+    <section class="chapter-section hidden" id="ch16">
+      <div class="chapter-header">
+        <div class="ch-badge">C5</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 5: Understanding Marginalisation</h2>
+          <p>Social &amp; Economic Marginalisation — Adivasis, Minorities &amp; Development</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q16_1">
+        <div class="q-head" onclick="toggleQ('q16_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What does 'Marginalisation' mean? Explain how Adivasis have experienced marginalisation in modern India.</div>
+          <span class="q-marks">5 Marks (~150 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p><strong>Marginalisation</strong> refers to a social process by which certain communities are pushed to the margins of society, denied equal rights, economic opportunities, and social status.</p>
+
+              <p><strong>Marginalisation of Adivasis (Tribals):</strong></p>
+              <ul>
+                <li><strong>Displacement from Forests:</strong> Clearing of forests for timber, mining, and dams forced Adivasis off their ancestral homelands, destroying their traditional hunter-gatherer livelihoods.</li>
+                <li><strong>Loss of Identity:</strong> Loss of forest lands deprived them of their cultural identity, sacred sites, and traditional medicinal knowledge.</li>
+                <li><strong>Poverty &amp; Migration:</strong> Displaced Adivasis were forced to migrate to urban centers as low-paid wage laborers in construction and domestic work.</li>
+                <li><strong>Stereotyping:</strong> Adivasis are often stereotypically portrayed in media as 'exotic', 'primitive', and 'backward', leading to social discrimination.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Definition of Marginalisation</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Displacement due to industrialisation &amp; mining</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Loss of ancestral land, culture &amp; livelihood</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Economic distress &amp; urban wage-labor migration</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Social stereotyping and discrimination</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter-section hidden" id="ch17">
+      <div class="chapter-header">
+        <div class="ch-badge">C6</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 6: Confronting Marginalisation</h2>
+          <p>Constitutional Safeguards, SC/ST Prevention of Atrocities Act 1989 &amp; Reservations</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q17_1">
+        <div class="q-head" onclick="toggleQ('q17_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What is the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989? Why was it enacted?</div>
+          <span class="q-marks">3 Marks (~90 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>The <strong>SC/ST Prevention of Atrocities Act, 1989</strong> was framed in response to demands by Dalit and tribal groups for protection against violence and humiliation inflicted by dominant castes.</p>
+              <ul>
+                <li><strong>Punishes Physical &amp; Moral Violence:</strong> Criminalizes humiliating actions such as forcing someone to eat inedible substances, stripping, or land grabbing.</li>
+                <li><strong>Protects Land Rights:</strong> Penalizes anyone who dispossesses Dalits or Adivasis of their land or forces them into bonded labor.</li>
+                <li><strong>Ensures Dignity:</strong> Guarantees legal remedies and protection against caste-based discrimination and systemic atrocities.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (3 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Background &amp; Purpose of the 1989 Act</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Key provisions criminalising physical &amp; social atrocities</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Protection of customary land &amp; personal dignity</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CIVICS CHAPTER 7 & 8 (CH 18 & 19) ==================== -->
+    <section class="chapter-section hidden" id="ch18">
+      <div class="chapter-header">
+        <div class="ch-badge">C7</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 7: Public Facilities</h2>
+          <p>Water as Part of Right to Life (Article 21), Government Role &amp; Sanitation</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q18_1">
+        <div class="q-head" onclick="toggleQ('q18_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">Why should public facilities (like water, healthcare, electricity) be provided by the government and not left to private companies?</div>
+          <span class="q-marks">5 Marks (~140 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>Public facilities relate to basic human needs guaranteed under the Fundamental Right to Life (Article 21):</p>
+              <ul>
+                <li><strong>Profit vs Welfare:</strong> Private companies operate for profit. If public facilities like water supply or healthcare are privatized, costs rise steeply, making them unaffordable for poor citizens.</li>
+                <li><strong>Universal Access:</strong> The government's responsibility is to ensure equitable distribution so that everyone receives basic amenities regardless of income level.</li>
+                <li><strong>Right to Life Alignment:</strong> Access to clean drinking water and sanitation is directly linked to disease prevention and survival. Supreme Court judgments have recognized water as an integral component of Article 21.</li>
+                <li><strong>Inability of Market Mechanism:</strong> Private companies will not invest in unprofitable rural or remote regions, leaving large populations excluded.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Link to Article 21 (Fundamental Right to Life)</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Profit motive of private companies vs Public Welfare</span><span class="marking-marks">1.5 Marks</span></div>
+              <div class="marking-row"><span class="marking-key">Equitable &amp; universal access obligation</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Market failure in low-profit rural/poor areas</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter-section hidden" id="ch19">
+      <div class="chapter-header">
+        <div class="ch-badge">C8</div>
+        <div class="chapter-header-info">
+          <h2>Civics Chapter 8: Law and Social Justice</h2>
+          <p>Worker Protection Laws, Minimum Wages Act &amp; Environmental Protection (Bhopal Gas Tragedy)</p>
+        </div>
+      </div>
+
+      <div class="q-card open" id="q19_1">
+        <div class="q-head" onclick="toggleQ('q19_1')">
+          <span class="q-num">Q1</span>
+          <div class="q-text">What was the Bhopal Gas Tragedy (1984)? What major lessons were learned regarding environmental and labor enforcement?</div>
+          <span class="q-marks">5 Marks (~150 words)</span>
+          <span class="q-toggle"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </div>
+        <div class="q-answer">
+          <div class="answer-box">
+            <div class="answer-label">✅ CBSE Standard Model Answer</div>
+            <div class="answer-text">
+              <p>On the night of 2 December 1984, highly toxic Methyl Isocyanate (MIC) gas leaked from the Union Carbide pesticide plant in Bhopal, killing thousands of people and disabling hundreds of thousands for life.</p>
+
+              <p><strong>Lessons &amp; Changes in Environmental/Labor Laws:</strong></p>
+              <ul>
+                <li><strong>Enforcement of Safety Standards:</strong> Union Carbide had deliberately cut safety staff and maintenance costs. The tragedy highlighted that lax enforcement of safety laws endangers lives.</li>
+                <li><strong>Right to a Clean Environment:</strong> Supreme Court declared that Article 21 (Right to Life) includes the Right to the Enjoyment of Pollution-Free Water and Air.</li>
+                <li><strong>Environment Protection Act 1986:</strong> Spurred the passage of comprehensive environmental laws making polluters financially liable ('Polluter Pays Principle').</li>
+                <li><strong>Strict Employer Liability:</strong> Foreign and domestic companies operating hazardous industries are held strictly liable for industrial disasters.</li>
+              </ul>
+            </div>
+            <div class="marking-scheme">
+              <div class="marking-title">📋 CBSE Marking Scheme (5 Marks Breakdown):</div>
+              <div class="marking-row"><span class="marking-key">Event Overview (Bhopal Gas Tragedy, 1984, MIC gas leak)</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Lax safety enforcement by multinational companies</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Recognition of Right to Pollution-Free Environment under Article 21</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Passage of Environment Protection Act 1986</span><span class="marking-marks">1 Mark</span></div>
+              <div class="marking-row"><span class="marking-key">Implementation of Polluter Pays Principle &amp; strict liability</span><span class="marking-marks">1 Mark</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="text-align:center;padding:30px;background:var(--navy);color:#cbd5e1;border-top:1px solid var(--border);margin-top:auto;">
+  <p>© 2026 OlympiadQuiz — <a href="/" style="color:white;">Home</a> · <a href="ncert-solutions.html" style="color:white;">NCERT Solutions</a> · <a href="privacy-policy.html" style="color:white;">Privacy Policy</a></p>
+</footer>
+
+<script>
+  const TOTAL_CHAPTERS = 19;
+  const chapterNames = {
+    1: "History Ch 1: How, When and Where",
+    2: "History Ch 2: Trade to Territory",
+    3: "History Ch 3: Ruling Countryside",
+    4: "History Ch 4: Tribals & Dikus",
+    5: "History Ch 5: 1857 Revolt",
+    6: "History Ch 6: National Movement",
+    7: "Geo Ch 1: Resources",
+    8: "Geo Ch 2: Soil, Water, Wildlife",
+    9: "Geo Ch 3: Agriculture",
+    10: "Geo Ch 4: Industries",
+    11: "Geo Ch 5: Human Resources",
+    12: "Civics Ch 1: Constitution",
+    13: "Civics Ch 2: Secularism",
+    14: "Civics Ch 3: Parliament",
+    15: "Civics Ch 4: Judiciary",
+    16: "Civics Ch 5: Marginalisation",
+    17: "Civics Ch 6: Confronting Marginalisation",
+    18: "Civics Ch 7: Public Facilities",
+    19: "Civics Ch 8: Law & Social Justice"
+  };
+
+  function applyAnswerColors() {
+    let globalIndex = 0;
+    document.querySelectorAll('.q-answer').forEach(ans => {
+      globalIndex++;
+      const colorNum = (globalIndex % 8) + 1;
+      ans.className = 'q-answer answer-bg-' + colorNum;
+    });
+  }
+
+  function generateBreadcrumbs() {
+    const container = document.getElementById('breadcrumbChips');
+    if (!container) return;
+    let html = '';
+    for (let i = 1; i <= TOTAL_CHAPTERS; i++) {
+      html += `<div class="bc-chip ${i===1?'active':''}" data-ch="${i}" onclick="showChapter(${i})">
+        <span class="bc-n">${i}</span> Ch ${i}
+      </div>`;
+    }
+    container.innerHTML = html;
+  }
+
+  function generateSidebarNav() {
+    const historyList = document.getElementById('chapterNavHistory');
+    const geoList = document.getElementById('chapterNavGeography');
+    const civicsList = document.getElementById('chapterNavCivics');
+
+    for (let i = 1; i <= TOTAL_CHAPTERS; i++) {
+      const li = document.createElement('li');
+      li.innerHTML = `<a onclick="showChapter(${i})" class="${i===1?'active':''}">
+        <span class="ch-num">${i}</span> ${chapterNames[i]}
+      </a>`;
+      if (i <= 6) historyList.appendChild(li);
+      else if (i <= 11) geoList.appendChild(li);
+      else civicsList.appendChild(li);
+    }
+  }
+
+  function injectNavButtons() {
+    document.querySelectorAll('.chapter-section').forEach((section, idx) => {
+      const n = idx + 1;
+      const div = document.createElement('div');
+      div.className = 'ch-nav-btns';
+      div.innerHTML = `
+        <button class="ch-nav-btn" onclick="showChapter(${n-1})" ${n===1?'disabled':''}>
+          ← ${n>1 ? 'Ch ' + (n-1) : ''}
+        </button>
+        <button class="ch-nav-btn next" onclick="showChapter(${n+1})" ${n===TOTAL_CHAPTERS?'disabled':''}>
+          ${n<TOTAL_CHAPTERS ? 'Ch ' + (n+1) : ''} →
+        </button>`;
+      section.appendChild(div);
+    });
+  }
+
+  function showChapter(n) {
+    if (n < 1 || n > TOTAL_CHAPTERS) return;
+    document.querySelectorAll('.chapter-section').forEach(sec => {
+      sec.classList.toggle('hidden', sec.id !== 'ch' + n);
+    });
+    document.querySelectorAll('.chapter-nav a').forEach((a, i) => {
+      a.classList.toggle('active', i + 1 === n);
+    });
+    document.querySelectorAll('#breadcrumbChips .bc-chip').forEach(chip => {
+      chip.classList.toggle('active', parseInt(chip.dataset.ch) === n);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('show');
+  }
+
+  function toggleQ(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('show');
+  }
+
+  function filterChapters(query) {
+    const q = query.toLowerCase();
+    document.querySelectorAll('.chapter-nav li').forEach(item => {
+      item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+
+  window.addEventListener('scroll', function() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('progressBar').style.width = ((scrollTop / scrollHeight) * 100) + '%';
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    applyAnswerColors();
+    generateBreadcrumbs();
+    generateSidebarNav();
+    injectNavButtons();
+    showChapter(1);
+  });
+</script>
+</body>
+</html>
