@@ -2235,15 +2235,10 @@ onAuthStateChanged(auth, (user) => {
 
 // --- ACCORDION INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Pre-fill the User Activity Log date filter with today's date (cosmetic default only -
-    // clearing it and refreshing still shows all-time activity, see initUserActivityLog)
+    // Keep User Activity Log date filter blank by default so opening the log shows recent activity across all dates.
     const activityDateFilter = document.getElementById('activityDateFilter');
-    if (activityDateFilter && !activityDateFilter.value) {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        activityDateFilter.value = `${year}-${month}-${day}`;
+    if (activityDateFilter) {
+        activityDateFilter.value = '';
     }
 
     const headers = document.querySelectorAll('.panel-header');

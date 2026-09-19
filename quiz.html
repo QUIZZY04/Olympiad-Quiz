@@ -1268,7 +1268,7 @@ onAuthStateChanged(auth, async(user)=>{
             const isGoogleOnly = providers.includes('google.com') && !providers.includes('phone');
             const isPhoneOnly  = providers.includes('phone')  && !providers.includes('google.com');
 
-            const hasBasicInfo = !!(userData.name && (userData.studentClass || userData.class) && userData.schoolName);
+            const hasBasicInfo = !!((userData.name || user.displayName) && (userData.studentClass || userData.class) || userData.registrationCompleted || userData.signupCompleted || userData.profileCompleted);
             const hasEmail = !!(user.email || userData.email);
 
             // Phone stays optional/deferred for Google-only accounts,
