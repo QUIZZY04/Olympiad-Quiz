@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NCERT Solutions Class 8 Social Science (SST) — All 19 Chapters History, Geography, Civics | CBSE 2024-25</title>
-  <meta name="description" content="Complete NCERT Solutions for Class 8 Social Science (History, Geography, Civics). All 19 chapters with 100% complete exercise questions & answers as per latest CBSE Board Marking Scheme 2024-25 and maximum word count guidelines.">
+  <title>NCERT Solutions Class 8 Social Science (SST) — All 19 Chapters History, Geography, Civics | CBSE 2026-27</title>
+  <meta name="description" content="Complete NCERT Solutions for Class 8 Social Science (History, Geography, Civics). All 19 chapters with 100% complete exercise questions & answers as per latest CBSE Board Marking Scheme 2026-27 and maximum word count guidelines.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <style>
     :root {
       --brand:#c2410c;--brand-hover:#9a3412;--brand-light:#fff7ed;--brand-text:#9a3412;
@@ -18,12 +19,7 @@
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:'Inter',sans-serif;background:var(--light-bg);color:var(--slate);line-height:1.6;}
     .top-progress{position:fixed;top:0;left:0;height:3px;background:var(--brand);z-index:1000;transition:width 0.1s;}
-    .navbar{background:var(--navy);color:white;padding:14px 24px;position:sticky;top:0;z-index:900;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,0.15);}
-    .nav-brand{font-size:1.25rem;font-weight:800;color:white;text-decoration:none;display:flex;align-items:center;gap:8px;}
-    .nav-brand span{color:#fb923c;}
-    .navbar-links{display:flex;align-items:center;gap:20px;list-style:none;}
-    .navbar-links a{color:#cbd5e1;text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s;}
-    .navbar-links a:hover,.navbar-links a.active{color:white;}
+    
     .hero-banner{background:linear-gradient(135deg,#0f172a 0%,#431407 100%);color:white;padding:36px 24px;text-align:center;border-bottom:3px solid var(--brand);}
     .hero-banner h1{font-size:1.85rem;font-weight:800;margin-bottom:8px;}
     .hero-banner p{color:#fdba74;font-size:0.95rem;max-width:760px;margin:0 auto 16px;}
@@ -142,21 +138,43 @@
 <div class="top-progress" id="progressBar"></div>
 
 <nav class="navbar">
-  <a href="index.html" class="nav-brand">Olympiad<span>Quiz</span></a>
-  <ul class="navbar-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="ncert-solutions.html" class="active">NCERT Solutions</a></li>
-    <li><a href="chapterwise.html">Chapterwise Test</a></li>
-    <li><a href="mock.html">Mock Test</a></li>
-  </ul>
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html">All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
+          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
+          <a href="ncert-solutions-class-8-sst.html" style="color:#c2410c;background:#fff7ed;font-weight:700;">Class 8 Social Science</a>
+        </div>
+      </div>
+      <a href="study.html" class="nav-link">Study Material</a>
+      <a href="chapterwise.html" class="nav-link">Chapterwise Test</a>
+      <a href="mock.html" class="nav-link">Mock Test</a>
+      <a href="hots.html" class="nav-link">HOTS Challenge</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
 </nav>
 
 <div class="hero-banner">
   <h1>NCERT Solutions for Class 8 Social Science (SST)</h1>
-  <p>100% Complete Exercise Solutions for History (Our Pasts - III), Geography (Resources &amp; Development), and Civics (Social &amp; Political Life - III) | Latest CBSE Syllabus 2024-25</p>
+  <p>100% Complete Exercise Solutions for History (Our Pasts - III), Geography (Resources &amp; Development), and Civics (Social &amp; Political Life - III) | Latest CBSE Syllabus 2026-27</p>
   <div class="hero-badges">
     <span class="hero-badge">📚 All 19 Chapters Covered</span>
-    <span class="hero-badge">🎯 CBSE Marking Scheme Included</span>
+    <span class="hero-badge">🎯 CBSE Marking Scheme 2026-27 Included</span>
     <span class="hero-badge">✍️ Max Word Count Answers</span>
     <span class="hero-badge">💡 Competency Based Questions (CBQs)</span>
   </div>
@@ -3384,7 +3402,7 @@
 </div>
 
 <footer style="text-align:center;padding:30px;background:var(--navy);color:#cbd5e1;border-top:1px solid var(--border);margin-top:auto;">
-  <p>© 2026 OlympiadQuiz — <a href="/" style="color:white;">Home</a> · <a href="ncert-solutions.html" style="color:white;">NCERT Solutions</a> · <a href="privacy-policy.html" style="color:white;">Privacy Policy</a></p>
+  <p>© 2026 OlympiadQuiz — <a href="/" style="color:white;">Home</a> · <a href="ncert-solutions.html" style="color:white;">NCERT Solutions (2026-27)</a> · <a href="privacy-policy.html" style="color:white;">Privacy Policy</a></p>
 </footer>
 
 <script>
@@ -3509,6 +3527,15 @@
     generateSidebarNav();
     injectNavButtons();
     showChapter(1);
+
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const links = document.getElementById('navLinks');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        links.classList.toggle('active');
+      });
+    }
   });
 </script>
 </body>
