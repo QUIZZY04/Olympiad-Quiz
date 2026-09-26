@@ -1230,6 +1230,14 @@ exports.whatsappFestivalGreeting = whatsappFestivalGreeting;
 exports.whatsappBirthdayGreeting = whatsappBirthdayGreeting;
 exports.whatsappScheduledBroadcastPoller = whatsappScheduledBroadcastPoller;
 
+// --- 8c. Monday Live Quiz Agent (Gemini Flash Free Tier) ---
+const {
+  mondayLiveQuizScheduler,
+  generateMondayQuizManual,
+} = require("./quizAgent/scheduler");
+exports.mondayLiveQuizScheduler = mondayLiveQuizScheduler;
+exports.generateMondayQuizManual = generateMondayQuizManual;
+
 /**
  * Admin-only: send a one-off WhatsApp broadcast to a filtered slice of
  * the `users` collection. Mirrors the exact admin check already used by

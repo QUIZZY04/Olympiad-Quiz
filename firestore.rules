@@ -113,6 +113,11 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // 14b. System Settings (AI live quiz rotation & settings)
+    match /system_settings/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
     // ========================
     // 15. USSC FINANCE FORUM
     // ========================

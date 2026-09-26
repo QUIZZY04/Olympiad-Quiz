@@ -1200,6 +1200,120 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <!-- AI Monday Live Quiz Agent Panel (Gemini Flash Free Tier) -->
+    <div class="panel" style="border-top: 3px solid #8b5cf6;">
+        <div class="panel-header">
+            <h2 style="color: #8b5cf6; display: flex; align-items: center; gap: 8px;">
+                <span>🤖 AI Monday Live Quiz Agent (Gemini Flash)</span>
+                <span id="qaRotationBadge" style="font-size: 11px; padding: 4px 10px; background: rgba(139, 92, 246, 0.15); color: #7c3aed; border-radius: 12px; font-weight: 700;">Loading rotation...</span>
+            </h2>
+        </div>
+        <div class="panel-content">
+            <!-- API Key Banner -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <label style="margin: 0; font-weight: 700; color: #1e293b;">🔑 Google Gemini API Key (Free Tier)</label>
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #6366f1; font-size: 12px; text-decoration: none; font-weight: 600;">Get Free API Key from Google AI Studio ↗</a>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="password" id="qaApiKey" placeholder="Paste your AI Studio Gemini API Key here (e.g. AIzaSy...)" style="flex: 1; margin: 0;">
+                    <button class="upload" onclick="window.qaSaveApiKey()" style="margin: 0; padding: 10px 18px; background: #6366f1; white-space: nowrap;">Save Key</button>
+                </div>
+                <div style="font-size: 11px; color: #64748b; margin-top: 6px;">* Completely free: 15 Requests/Min, 1,500 Requests/Day. Saved locally in browser and synced with Cloud Functions.</div>
+            </div>
+
+            <!-- Quiz Parameters Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                <div>
+                    <label>Rotating Subject</label>
+                    <select id="qaSubject">
+                        <option value="maths">Mathematics (IMO)</option>
+                        <option value="science">Science (NSO)</option>
+                        <option value="english">English (IEO)</option>
+                        <option value="reasoning">Logical Reasoning</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Live Quiz Date</label>
+                    <input type="date" id="qaDate">
+                </div>
+                <div>
+                    <label>Start Time (IST)</label>
+                    <input type="time" id="qaTime" value="18:00">
+                </div>
+                <div>
+                    <label>Duration (Minutes)</label>
+                    <input type="number" id="qaDuration" value="40">
+                </div>
+                <div>
+                    <label>Questions per Class</label>
+                    <input type="number" id="qaCount" value="15" min="5" max="35">
+                </div>
+                <div>
+                    <label>Price (₹ / Free)</label>
+                    <input type="number" id="qaPrice" value="0">
+                </div>
+            </div>
+
+            <!-- Target Classes Selector -->
+            <div style="margin-top: 20px; padding: 15px; background: #fdf4ff; border: 1px solid #f0abfc; border-radius: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <label style="margin: 0; font-weight: 700; color: #86198f;">🎯 Target Grade Levels (Classes 1 to 10)</label>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" onclick="window.qaSelectAllClasses(true)" style="background: #a855f7; color: white; border: none; padding: 4px 10px; font-size: 11px; border-radius: 6px; cursor: pointer;">Select All</button>
+                        <button type="button" onclick="window.qaSelectAllClasses(false)" style="background: #e2e8f0; color: #334155; border: none; padding: 4px 10px; font-size: 11px; border-radius: 6px; cursor: pointer;">Deselect All</button>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="1" checked> Class 1</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="2" checked> Class 2</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="3" checked> Class 3</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="4" checked> Class 4</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="5" checked> Class 5</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="6" checked> Class 6</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="7" checked> Class 7</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="8" checked> Class 8</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="9" checked> Class 9</label>
+                    <label style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; cursor:pointer;"><input type="checkbox" class="qa-class-chk" value="10" checked> Class 10</label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 12px; margin-top: 20px;">
+                <button id="qaGenBtn" class="upload" onclick="window.qaStartGeneration(false)" style="flex: 2; background: linear-gradient(135deg, #7c3aed, #6366f1); padding: 12px; font-size: 14px;">
+                    🚀 Generate & Preview Live Quiz (Classes 1–10)
+                </button>
+                <button id="qaAutoBtn" class="upload" onclick="window.qaStartGeneration(true)" style="flex: 1; background: linear-gradient(135deg, #059669, #10b981); padding: 12px; font-size: 14px;">
+                    ⚡ Auto-Generate & Publish
+                </button>
+            </div>
+
+            <!-- Progress & Live Terminal Output -->
+            <div style="margin-top: 15px;">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 4px;">
+                    <span id="qaProgressLabel">Ready to generate.</span>
+                </div>
+                <div style="width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
+                    <div id="qaProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #7c3aed, #3b82f6); transition: width 0.3s;"></div>
+                </div>
+                <div id="qaLogConsole" style="background: #0f172a; border-radius: 8px; padding: 12px; font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; max-height: 180px; overflow-y: auto; margin-top: 10px; border: 1px solid #1e293b;">
+                    <div style="color: #64748b;">AI Live Quiz Agent status: Idle. Click 'Generate' to run.</div>
+                </div>
+            </div>
+
+            <!-- Preview & Final Publish -->
+            <div style="margin-top: 20px;">
+                <h3 style="font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 10px;">📋 Generated Questions Preview</h3>
+                <div id="qaPreviewContainer">
+                    <p style="color: var(--muted); text-align: center; padding: 20px; font-size: 13px;">No questions generated in this session yet.</p>
+                </div>
+                <button id="qaPublishBtn" class="upload" onclick="window.qaPublishAll()" style="display: none; width: 100%; margin-top: 15px; background: #059669; font-size: 15px; padding: 14px;">
+                    🚀 Publish All to Live Arena
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="panel" style="border-top: 2px solid var(--warning);">
         <div class="panel-header">
             <h2 style="color: var(--warning);">📅 Schedule Weekly Test</h2>
@@ -2136,6 +2250,16 @@ const auth=getAuth(app);
 const storage = getStorage(app);
 const functions = getFunctions(app);
 
+// Expose Firebase Firestore references for Quiz Agent client
+window.firebaseDb = db;
+window.firebaseDoc = doc;
+window.firebaseSetDoc = setDoc;
+window.firebaseAddDoc = addDoc;
+window.firebaseCollection = collection;
+window.firebaseGetDoc = getDoc;
+window.firebaseTimestamp = Timestamp;
+window.firebaseServerTimestamp = serverTimestamp;
+
 const quill = new Quill('#email-editor', {
     theme: 'snow',
     placeholder: 'Paste your beautifully formatted email here. Images will be uploaded automatically.',
@@ -2276,6 +2400,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     else if (headerText.includes('Premium Subscriptions')) { window.loadPremiumSubscriptions(); }
                     else if (headerText.includes('User Activity Log')) { window.initUserActivityLog(); }
                     else if (headerText.includes('Search & Manage Questions')) { window.loadQuestions(); }
+                    else if (headerText.includes('AI Monday Live Quiz Agent')) { window.initQuizAgentPanel && window.initQuizAgentPanel(); }
                     else if (headerText.includes('Schedule Weekly Test')) { window.updateSessSuggestions && window.updateSessSuggestions(); }
                     panel.dataset.loaded = 'true';
                 }
@@ -7664,6 +7789,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script src="quizAgentClient.js"></script>
 </body>
 
 <!-- Deferred Analytics to eliminate Total Blocking Time -->
