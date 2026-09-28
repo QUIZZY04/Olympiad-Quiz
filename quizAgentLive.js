@@ -133,9 +133,15 @@
     "gemini-3.5-flash"         // Mid-tier fallback
   ];
 
+  // OpenAI models (primary provider if key is available)
+  const OPENAI_MODELS = [
+    "gpt-4o-mini",   // Best value: fast, cheap, JSON-reliable, high rate limits
+    "gpt-4o"         // Fallback: more capable but slower
+  ];
+
   const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
-  const GEMINI_MODEL_VERSION = "v7";
+  const GEMINI_MODEL_VERSION = "v8";
 
   /**
    * Call Gemini Flash API with smart fallback:
@@ -255,7 +261,132 @@
       appendLog(`→ Falling back from ${model} to next available model...`, "warn");
     }
 
-    throw lastError || new Error("All Gemini model endpoints failed. Please check your API key quota at https://ai.dev/rate-limit");
+    throw lastError || new Error("All Gemini model endpoints failed. Check quota at https://ai.dev/rate-limit");
+  }
+
+  /**
+   * Call OpenAI API (gpt-4o-mini → gpt-4o fallback)
+   * Much higher rate limits than Gemini free tier.
+   */
+  async function callOpenAIRaw({ apiKey, prompt }) {
+    let lastError = null;
+
+    for (const model of OPENAI_MODELS) {
+      const maxRetries = 3;
+
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+          const res = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model,
+              messages: [{
+                role: "system",
+                content: "You are an expert Olympiad question paper setter. Always respond with a valid JSON array only. No markdown, no explanation."
+              }, {
+                role: "user",
+                content: prompt
+              }],
+              temperature: 0.5,
+              max_tokens: 16000
+            })
+          });
+
+          if (!res.ok) {
+            const errText = await res.text();
+            lastError = new Error(`OpenAI HTTP ${res.status} (${model}): ${errText}`);
+
+            if (res.status === 401) {
+              throw new Error("OpenAI API key is invalid or expired. Please check your key at https://platform.openai.com/api-keys");
+            }
+            if (res.status === 429) {
+              // OpenAI rate limit — wait and retry
+              let waitSec = (attempt + 1) * 5;
+              try {
+                const errJson = JSON.parse(errText);
+                const msg = errJson?.error?.message || "";
+                const match = msg.match(/(\d+\.?\d*)\s*seconds?/i);
+                if (match) waitSec = Math.ceil(parseFloat(match[1])) + 1;
+              } catch (_) {}
+              if (attempt < maxRetries) {
+                appendLog(`⏳ OpenAI ${model}: Rate limited. Waiting ${waitSec}s (${attempt + 1}/${maxRetries})...`, "warn");
+                await new Promise(r => setTimeout(r, waitSec * 1000));
+                continue;
+              }
+              appendLog(`⚠ OpenAI ${model}: Rate limit exhausted. Trying next model...`, "warn");
+              break;
+            }
+            if ([500, 502, 503, 504].includes(res.status) && attempt < maxRetries) {
+              const waitSec = (attempt + 1) * 3;
+              appendLog(`⏳ OpenAI ${model}: HTTP ${res.status}. Retrying in ${waitSec}s...`, "warn");
+              await new Promise(r => setTimeout(r, waitSec * 1000));
+              continue;
+            }
+            appendLog(`⚠ OpenAI ${model}: HTTP ${res.status}. Switching to next model...`, "warn");
+            break;
+          }
+
+          const json = await res.json();
+          const rawText = json?.choices?.[0]?.message?.content;
+          if (!rawText) throw new Error(`OpenAI (${model}) returned empty response.`);
+
+          // Robustly extract JSON array
+          let cleaned = rawText.trim();
+          if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+          else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+          if (!cleaned.startsWith("[")) {
+            const startIdx = cleaned.indexOf("[");
+            const endIdx = cleaned.lastIndexOf("]");
+            if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+              cleaned = cleaned.substring(startIdx, endIdx + 1);
+            }
+          }
+
+          const parsed = JSON.parse(cleaned);
+          if (!Array.isArray(parsed)) throw new Error(`OpenAI (${model}) output is not a JSON array.`);
+          appendLog(`✓ Questions generated via OpenAI ${model}.`, "success");
+          return parsed;
+
+        } catch (err) {
+          lastError = err;
+          if (err.message && (err.message.includes("invalid") || err.message.includes("401"))) throw err;
+          if (!err.message || (!err.message.includes("503") && !err.message.includes("500"))) break;
+          if (attempt < maxRetries) {
+            const waitSec = (attempt + 1) * 3;
+            appendLog(`⏳ OpenAI ${model}: Error. Retrying in ${waitSec}s...`, "warn");
+            await new Promise(r => setTimeout(r, waitSec * 1000));
+          }
+        }
+      }
+
+      appendLog(`→ Falling back from OpenAI ${model} to next model...`, "warn");
+    }
+
+    throw lastError || new Error("All OpenAI endpoints failed.");
+  }
+
+  /**
+   * Auto-select provider: OpenAI (if key available) → Gemini fallback
+   */
+  async function callAI({ openAIKey, geminiKey, prompt }) {
+    if (openAIKey) {
+      try {
+        return await callOpenAIRaw({ apiKey: openAIKey, prompt });
+      } catch (err) {
+        // If invalid key, rethrow immediately
+        if (err.message && (err.message.includes("invalid") || err.message.includes("401"))) throw err;
+        appendLog(`⚠ OpenAI failed: ${err.message}. Trying Gemini fallback...`, "warn");
+        if (!geminiKey) throw err;
+      }
+    }
+    if (geminiKey) {
+      return await callGeminiRaw({ apiKey: geminiKey, prompt });
+    }
+    throw new Error("No API key available. Please save an OpenAI or Gemini API key.");
   }
 
   function normalizeQuestion(item, classNum, subject, dateCompact, idx, isAchiever = false) {
@@ -307,7 +438,7 @@
   /**
    * Generate 40 Regular Questions (1 mark each, MINIMUM 30 words, 30% numerical, SVG where needed)
    */
-  async function generateRegularPart({ apiKey, classNum, subject, count = 40, dateCompact }) {
+  async function generateRegularPart({ openAIKey, geminiKey, classNum, subject, count = 40, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || ["General Curriculum"];
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
@@ -349,7 +480,7 @@ SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanat
 ]
 Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
-    const raw = await callGeminiRaw({ apiKey, prompt });
+    const raw = await callAI({ openAIKey, geminiKey, prompt });
     return raw.slice(0, count).map((item, idx) => normalizeQuestion(item, classNum, subject, dateCompact, idx, false));
   }
 
@@ -357,7 +488,7 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
    * Generate 10 Achievers HOTS Questions
    * Class 1–5: min 35 words | Class 6–10: min 40 words | 30% numerical | SVG where needed
    */
-  async function generateAchieverPart({ apiKey, classNum, subject, count = 10, dateCompact }) {
+  async function generateAchieverPart({ openAIKey, geminiKey, classNum, subject, count = 10, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || ["General Curriculum"];
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
@@ -400,7 +531,7 @@ SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanat
 ]
 Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
-    const raw = await callGeminiRaw({ apiKey, prompt });
+    const raw = await callAI({ openAIKey, geminiKey, prompt });
     return raw.slice(0, count).map((item, idx) => normalizeQuestion(item, classNum, subject, dateCompact, idx, true));
   }
 
@@ -486,31 +617,64 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
     }
   };
 
+  window.qaSaveOpenAIKey = async function () {
+    const input = document.getElementById("qaOpenAIKey");
+    let key = (input.value || "").trim().replace(/^["']|["']$/g, "");
+    if (!key) {
+      alert("Please enter a valid OpenAI API Key (starts with sk-).");
+      return;
+    }
+    if (!key.startsWith("sk-")) {
+      alert("⚠️ OpenAI keys start with 'sk-'. You entered: " + key.substring(0, 10) + "...");
+    }
+    input.value = key;
+    try {
+      if (!window.firebaseSetDoc || !window.firebaseDoc || !window.firebaseDb) {
+        throw new Error("Firebase is not initialized yet.");
+      }
+      await window.firebaseSetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "ai_keys"), {
+        openAIApiKey: key,
+        updatedAt: window.firebaseServerTimestamp()
+      }, { merge: true });
+      alert("✅ OpenAI API Key saved securely in Firebase!");
+      appendLog("OpenAI API Key successfully saved in Firebase (system_settings/ai_keys).", "success");
+    } catch (e) {
+      console.error("Failed to save OpenAI key:", e);
+      alert("❌ Failed to save in Firebase: " + e.message);
+    }
+  };
+
   window.qaSelectAllClasses = function (select) {
     document.querySelectorAll(".qa-class-chk").forEach(chk => chk.checked = select);
   };
 
   window.initQuizAgentPanel = async function () {
     const keyInput = document.getElementById("qaApiKey");
+    const openAIKeyInput = document.getElementById("qaOpenAIKey");
     const dateInput = document.getElementById("qaDate");
 
-    try { localStorage.removeItem("admin_gemini_api_key"); } catch (e) {}
-
-    // Pre-fill target Sunday date (e.g. Coming Sunday 11:00 AM)
+    // Pre-fill target Sunday date
     if (dateInput && !dateInput.value) {
       dateInput.value = getNextSundayDateStr();
     }
 
-    // Fetch key and rotation exclusively from Firestore
+    // Fetch keys and rotation from Firestore
     try {
       if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
         const keySnap = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "ai_keys"));
         if (keySnap.exists()) {
           const keyData = keySnap.data();
+          if (keyData.openAIApiKey && openAIKeyInput) {
+            openAIKeyInput.value = keyData.openAIApiKey;
+            appendLog("OpenAI API key loaded from Firebase ✓", "success");
+          }
           if (keyData.geminiApiKey && keyInput) {
             keyInput.value = keyData.geminiApiKey;
-            appendLog("Gemini API key loaded from Firebase.", "info");
+            appendLog("Gemini API key loaded from Firebase ✓", "info");
           }
+          // Show which provider will be used
+          const provider = keyData.openAIApiKey ? "🟢 OpenAI (gpt-4o-mini)" : keyData.geminiApiKey ? "🔵 Gemini" : "❌ No key";
+          appendLog(`Active provider: ${provider}`, "info");
         }
 
         const snap = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "live_quiz_rotation"));
@@ -519,12 +683,8 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
           const nextSub = data.nextSubject || getNextSubject(data.lastSubject);
           const badge = document.getElementById("qaRotationBadge");
           const subjectSelect = document.getElementById("qaSubject");
-          if (badge) {
-            badge.innerText = `Turn: ${SUBJECT_DETAILS[nextSub]?.name || nextSub.toUpperCase()}`;
-          }
-          if (subjectSelect) {
-            subjectSelect.value = nextSub;
-          }
+          if (badge) badge.innerText = `Turn: ${SUBJECT_DETAILS[nextSub]?.name || nextSub.toUpperCase()}`;
+          if (subjectSelect) subjectSelect.value = nextSub;
         }
       }
     } catch (e) {
@@ -533,22 +693,31 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
   };
 
   window.qaStartGeneration = async function (autoPublish = false) {
-    let apiKey = (document.getElementById("qaApiKey").value || "").trim();
-    if (!apiKey) {
+    // Load both keys from UI or Firebase
+    let openAIKey = (document.getElementById("qaOpenAIKey")?.value || "").trim();
+    let geminiKey = (document.getElementById("qaApiKey")?.value || "").trim();
+
+    if (!openAIKey || !geminiKey) {
       try {
         if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
           const keySnap = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "ai_keys"));
-          if (keySnap.exists() && keySnap.data().geminiApiKey) {
-            apiKey = keySnap.data().geminiApiKey.trim();
-            document.getElementById("qaApiKey").value = apiKey;
+          if (keySnap.exists()) {
+            const keyData = keySnap.data();
+            if (!openAIKey && keyData.openAIApiKey) {
+              openAIKey = keyData.openAIApiKey.trim();
+              if (document.getElementById("qaOpenAIKey")) document.getElementById("qaOpenAIKey").value = openAIKey;
+            }
+            if (!geminiKey && keyData.geminiApiKey) {
+              geminiKey = keyData.geminiApiKey.trim();
+              if (document.getElementById("qaApiKey")) document.getElementById("qaApiKey").value = geminiKey;
+            }
           }
         }
       } catch (e) {}
     }
 
-    if (!apiKey) {
-      alert("Please enter and save your Gemini API Key in Firebase first.");
-      document.getElementById("qaApiKey").focus();
+    if (!openAIKey && !geminiKey) {
+      alert("Please save an OpenAI or Gemini API Key first.");
       return;
     }
 
@@ -584,7 +753,10 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
     appendLog(`Creating Live Quiz on Monday 6 AM for Target Sunday: ${targetSundayDate} at ${timeStr} AM IST...`, "info");
     appendLog(`Subject: ${SUBJECT_DETAILS[subject]?.olympiad || subject} | Classes: ${selectedClasses.join(", ")}`, "info");
     appendLog(`Format: 40 Regular (1 Mark) + 10 Achievers HOTS (2 Marks) = 50 Qs (60 Marks total)`, "info");
-    appendLog(`⚡ Engine [${GEMINI_MODEL_VERSION}]: Primary=${GEMINI_MODELS[0]} | Fallback chain: ${GEMINI_MODELS.slice(1).join(" → ")} | Quota-aware smart fallback active`, "info");
+    const activeProvider = openAIKey
+      ? `🟢 OpenAI (gpt-4o-mini → gpt-4o)${geminiKey ? " + Gemini fallback" : ""}`
+      : `🔵 Gemini (${GEMINI_MODELS.join(" → ")})`;
+    appendLog(`⚡ Engine [${GEMINI_MODEL_VERSION}] Provider: ${activeProvider}`, "info");
 
     let successCount = 0;
     for (let i = 0; i < selectedClasses.length; i++) {
@@ -596,7 +768,8 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
       try {
         // Step 1: 40 Regular questions
         const regularQuestions = await generateRegularPart({
-          apiKey,
+          openAIKey,
+          geminiKey,
           classNum: clsNum,
           subject,
           count: 40,
@@ -604,14 +777,15 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
         });
         appendLog(`   ✓ Class ${clsNum}: 40 Regular questions verified.`, "success");
 
-        // Pause 1.5s
+        // Pause 1.5s between regular and achiever
         await new Promise(r => setTimeout(r, 1500));
 
         // Step 2: 10 Achiever questions
         setProgress(baseProgress + 5, `Generating Class ${clsNum}: 10 Achiever Questions (HOTS)...`);
-        appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 10 Achievers Questions (2 marks, 25-55 words HOTS)...`, "info");
+        appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 10 Achievers Questions (2 marks, HOTS)...`, "info");
         const achieverQuestions = await generateAchieverPart({
-          apiKey,
+          openAIKey,
+          geminiKey,
           classNum: clsNum,
           subject,
           count: 10,

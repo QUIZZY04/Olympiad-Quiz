@@ -1223,19 +1223,39 @@ border-top:1px solid var(--border);
                 </div>
             </div>
 
-            <!-- API Key Banner -->
+            <!-- AI Provider API Keys -->
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <label style="margin: 0; font-weight: 700; color: #1e293b;">🔑 Google Gemini API Key (Saved in Firebase)</label>
-                    <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #6366f1; font-size: 12px; text-decoration: none; font-weight: 600;">Get Free API Key from Google AI Studio ↗</a>
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 13px;">🔑 AI Provider Keys (Stored in Firebase — auto-selects best available)</div>
+
+                <!-- OpenAI Key -->
+                <div style="margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label style="margin: 0; font-weight: 600; color: #059669; font-size: 12px;">🟢 OpenAI API Key <span style="font-weight:400; color:#64748b;">(Recommended: gpt-4o-mini — high limits, fast)</span></label>
+                        <a href="https://platform.openai.com/api-keys" target="_blank" style="color: #059669; font-size: 11px; text-decoration: none; font-weight: 600;">Get OpenAI Key ↗</a>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="password" id="qaOpenAIKey" placeholder="sk-proj-... or sk-..." style="flex: 1; margin: 0; border-color: #a7f3d0;">
+                        <button class="upload" onclick="window.qaSaveOpenAIKey()" style="margin: 0; padding: 8px 14px; background: #059669; white-space: nowrap; font-size: 12px;">💾 Save</button>
+                    </div>
                 </div>
-                <div style="display: flex; gap: 10px;">
-                    <input type="password" id="qaApiKey" placeholder="Paste your AI Studio Gemini API Key here (e.g. AIzaSy...)" style="flex: 1; margin: 0;">
-                    <button class="upload" onclick="window.qaTestApiKey()" style="margin: 0; padding: 10px 18px; background: #0284c7; white-space: nowrap;">⚡ Test Key</button>
-                    <button class="upload" onclick="window.qaSaveApiKey()" style="margin: 0; padding: 10px 18px; background: #6366f1; white-space: nowrap;">💾 Save to Firebase</button>
+
+                <!-- Gemini Key -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label style="margin: 0; font-weight: 600; color: #6366f1; font-size: 12px;">🔵 Google Gemini API Key <span style="font-weight:400; color:#64748b;">(Fallback — free tier 20 req/day)</span></label>
+                        <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #6366f1; font-size: 11px; text-decoration: none; font-weight: 600;">Get Gemini Key ↗</a>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="password" id="qaApiKey" placeholder="AIzaSy..." style="flex: 1; margin: 0;">
+                        <button class="upload" onclick="window.qaSaveApiKey()" style="margin: 0; padding: 8px 14px; background: #6366f1; white-space: nowrap; font-size: 12px;">💾 Save</button>
+                    </div>
                 </div>
-                <div style="font-size: 11px; color: #64748b; margin-top: 6px;">* Stored directly in your Firebase database (<code>system_settings/ai_keys</code>). Free tier: 15 RPM / 1,500 RPD.</div>
+
+                <div style="font-size: 11px; color: #64748b; margin-top: 8px; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+                    💡 <b>If OpenAI key is saved → uses OpenAI (gpt-4o-mini).</b> If only Gemini key → uses Gemini. For best results, save both.
+                </div>
             </div>
+
 
             <!-- Quiz Parameters Grid -->
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
