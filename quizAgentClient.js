@@ -125,60 +125,94 @@
     if (lbl) lbl.innerText = label;
   }
 
-  const GEMINI_MODELS = ["gemini-3.8-flash", "gemini-2.5-flash", "gemini-1.5-flash"];
+  const GEMINI_MODELS = [
+    "gemini-2.0-flash",
+    "gemini-2.5-flash",
+    "gemini-1.5-flash",
+    "gemini-2.0-flash-lite"
+  ];
+
+  const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
   /**
-   * Call Gemini Flash API with structured JSON output and automatic fallback
+   * Call Gemini Flash API with exponential backoff retry and automatic multi-model fallback.
+   * Handles 503 (model overloaded / high demand) and 429 (rate limits) gracefully.
    */
   async function callGeminiRaw({ apiKey, prompt }) {
     let lastError = null;
+
     for (const model of GEMINI_MODELS) {
-      try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const maxRetries = 2;
+      let modelSucceeded = false;
 
-        const res = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: {
-              temperature: 0.35,
-              topP: 0.95,
-              responseMimeType: "application/json"
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+          const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }],
+              generationConfig: {
+                temperature: 0.35,
+                topP: 0.95,
+                responseMimeType: "application/json"
+              }
+            })
+          });
+
+          if (!res.ok) {
+            const errText = await res.text();
+            
+            // Check if transient error (503 high demand spike, 429 rate limit, 500/502/504)
+            if (RETRYABLE_STATUS_CODES.includes(res.status) && attempt < maxRetries) {
+              const waitSec = (attempt + 1) * 2;
+              appendLog(`Model ${model} returned HTTP ${res.status} (high demand/busy). Retrying in ${waitSec}s (attempt ${attempt + 1}/${maxRetries})...`, "warn");
+              await new Promise(r => setTimeout(r, waitSec * 1000));
+              continue;
             }
-          })
-        });
 
-        if (!res.ok) {
-          const errText = await res.text();
-          if (res.status === 404) {
-            console.warn(`Model ${model} returned 404, falling back to next model...`);
-            lastError = new Error(`Gemini HTTP 404 (${model}): ${errText}`);
+            throw new Error(`Gemini HTTP ${res.status} (${model}): ${errText}`);
+          }
+
+          const json = await res.json();
+          const rawText = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (!rawText) throw new Error(`Gemini (${model}) returned empty response.`);
+
+          let cleaned = rawText.trim();
+          if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+          else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+
+          const parsed = JSON.parse(cleaned);
+          if (!Array.isArray(parsed)) throw new Error(`Gemini (${model}) output is not a JSON array.`);
+          return parsed;
+
+        } catch (err) {
+          lastError = err;
+          // If 404 (model not found), don't retry this model, switch immediately
+          if (err.message && err.message.includes("404")) {
+            console.warn(`Model ${model} 404 not found. Trying next fallback...`);
+            break;
+          }
+
+          // If retryable and attempts remain, continue retry loop
+          if (attempt < maxRetries && RETRYABLE_STATUS_CODES.some(code => err.message && err.message.includes(`HTTP ${code}`))) {
+            const waitSec = (attempt + 1) * 2;
+            appendLog(`Model ${model} spike. Retrying in ${waitSec}s...`, "warn");
+            await new Promise(r => setTimeout(r, waitSec * 1000));
             continue;
           }
-          throw new Error(`Gemini HTTP ${res.status}: ${errText}`);
+
+          // If retries for this model are exhausted, break to try next model in GEMINI_MODELS
+          break;
         }
-
-        const json = await res.json();
-        const rawText = json?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!rawText) throw new Error("Gemini returned empty response.");
-
-        let cleaned = rawText.trim();
-        if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
-        else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
-
-        const parsed = JSON.parse(cleaned);
-        if (!Array.isArray(parsed)) throw new Error("Response is not a JSON array.");
-        return parsed;
-      } catch (err) {
-        if (err.message && err.message.includes("404")) {
-          lastError = err;
-          continue;
-        }
-        throw err;
       }
+
+      appendLog(`Model ${model} unavailable/overloaded. Falling back to next available model...`, "warn");
     }
-    throw lastError || new Error("All Gemini model endpoints failed.");
+
+    throw lastError || new Error("All Gemini model endpoints failed. Please check API key or try again in a few moments.");
   }
 
   function normalizeQuestion(item, classNum, subject, dateCompact, idx, isAchiever = false) {
@@ -325,25 +359,36 @@ Return ONLY the raw JSON array containing exactly ${count} question objects.`;
       let passed = false;
       let lastErrText = "";
       for (const model of GEMINI_MODELS) {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
-        const res = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ parts: [{ text: "Hello" }] }] })
-        });
-        if (res.ok) {
-          passed = true;
-          alert(`✅ SUCCESS!\n\nYour Gemini API Key is 100% valid, active, and connected to ${model}!`);
-          appendLog(`✅ Gemini API Key test PASSED with model ${model}! Ready for live quiz generation.`, "success");
-          break;
-        } else {
-          const err = await res.json();
-          lastErrText = err?.error?.message || ("HTTP " + res.status);
-          if (res.status === 404) continue;
-          throw new Error(lastErrText);
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+          const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: [{ parts: [{ text: "Hello" }] }] })
+          });
+          if (res.ok) {
+            passed = true;
+            alert(`✅ SUCCESS!\n\nYour Gemini API Key is 100% valid, active, and connected to ${model}!`);
+            appendLog(`✅ Gemini API Key test PASSED with model ${model}! Ready for live quiz generation.`, "success");
+            break;
+          } else {
+            const err = await res.json().catch(() => ({}));
+            lastErrText = err?.error?.message || ("HTTP " + res.status);
+            if (res.status === 404 || res.status === 503 || res.status === 429) {
+              appendLog(`Model ${model} unavailable (HTTP ${res.status}). Trying next model...`, "warn");
+              continue;
+            }
+            throw new Error(lastErrText);
+          }
+        } catch (e) {
+          lastErrText = e.message;
+          if (lastErrText && (lastErrText.includes("503") || lastErrText.includes("429") || lastErrText.includes("404"))) {
+            continue;
+          }
+          throw e;
         }
       }
-      if (!passed) throw new Error(lastErrText || "Model unavailable.");
+      if (!passed) throw new Error(lastErrText || "All model endpoints are currently busy or unavailable. Please try again shortly.");
     } catch (e) {
       alert("❌ API Key Test Failed:\n\n" + e.message + "\n\nTip: Go to https://aistudio.google.com/app/apikey, click Copy on your key (starts with 'AIzaSy...'), and paste it here.");
       appendLog("❌ API Key Test Failed: " + e.message, "error");
