@@ -1,19 +1,38 @@
 /**
  * Cloud Function Cron and OnCall handler for Monday Live Quiz Generation
+ * Runs on Monday 6:00 AM IST, generating a 50-question live quiz for the coming Sunday 11:00 AM IST.
+ * 40 Regular questions (1 mark) + 10 Achiever questions (2 marks) = 60 Marks total.
  */
 
 const { onSchedule } = require("firebase-functions/v2/scheduler");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
 const { db, admin } = require("../config");
 const { getNextSubject } = require("./syllabus");
-const { generateQuizForClass } = require("./geminiEngine");
+const { generateFullLiveQuizForClass } = require("./geminiEngine");
 const { uploadQuizSessions } = require("./sessionUploader");
 
 const TIME_ZONE = "Asia/Kolkata";
 
 /**
+ * Calculates the upcoming Sunday date (YYYY-MM-DD) in Asia/Kolkata time
+ * If run on Monday, Sunday is 6 days away.
+ */
+function getComingSundayDateStr() {
+  const now = new Date();
+  const d = new Date(now.toLocaleString("en-US", { timeZone: TIME_ZONE }));
+  const currentDay = d.getDay(); // 0 is Sunday, 1 is Monday
+  let daysUntilSunday = (7 - currentDay) % 7;
+  if (daysUntilSunday === 0) daysUntilSunday = 7; // Target next Sunday
+  d.setDate(d.getDate() + daysUntilSunday);
+
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+}
+
+/**
  * Helper to fetch Gemini API Key
- * Checks environment, process.env, and Firestore settings
  */
 async function resolveGeminiApiKey() {
   if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY.trim()) {
@@ -36,21 +55,21 @@ async function resolveGeminiApiKey() {
 }
 
 /**
- * Core generation runner that can be called by both cron and onCall
+ * Core generation runner
  */
 async function runMondayQuizPipeline({
   targetSubject = null,
   classes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  questionsPerClass = 15,
-  dateStr = null,
-  startTimeStr = "18:00",
-  duration = 40,
-  price = 0,
+  targetSundayDate = null,
+  startTimeStr = "11:00",
+  duration = 60,
+  price = 99,
+  priceAfterCoupon = 59,
   apiKey = null
 }) {
   const effectiveApiKey = apiKey || (await resolveGeminiApiKey());
   if (!effectiveApiKey) {
-    throw new Error("Gemini API key is not configured. Please set GEMINI_API_KEY in environment or Admin Settings.");
+    throw new Error("Gemini API key is not configured. Please save it in the Admin Panel or Firestore.");
   }
 
   // Determine current rotation subject if not provided
@@ -65,22 +84,11 @@ async function runMondayQuizPipeline({
     }
   }
 
-  // Default target date: Today if running on Monday, or the coming Monday
-  let targetDate = dateStr;
-  if (!targetDate) {
-    const now = new Date();
-    // In Asia/Kolkata timezone:
-    const kolkataDateStr = new Intl.DateTimeFormat("en-CA", {
-      timeZone: TIME_ZONE,
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit"
-    }).format(now);
-    targetDate = kolkataDateStr; // YYYY-MM-DD
-  }
+  const effectiveSunday = targetSundayDate || getComingSundayDateStr();
+  const dateCompact = effectiveSunday.replace(/-/g, "");
 
-  const dateCompact = targetDate.replace(/-/g, "");
-  console.log(`[QUIZ AGENT] Starting live quiz generation for Subject: ${subject}, Date: ${targetDate}, Classes: ${classes.join(",")}`);
+  console.log(`[QUIZ AGENT] Creating Live Quiz on Monday 6 AM for Coming Sunday: ${effectiveSunday} 11:00 AM IST`);
+  console.log(`[QUIZ AGENT] Subject: ${subject} | Classes: ${classes.join(",")}`);
 
   const classResults = [];
   const errors = [];
@@ -88,22 +96,18 @@ async function runMondayQuizPipeline({
   for (let i = 0; i < classes.length; i++) {
     const classNum = classes[i];
     try {
-      console.log(`[QUIZ AGENT] Generating Class ${classNum} ${subject}...`);
-      const questions = await generateQuizForClass({
+      console.log(`[QUIZ AGENT] Generating Class ${classNum} (40 Regular + 10 Achievers)...`);
+      const quiz = await generateFullLiveQuizForClass({
         apiKey: effectiveApiKey,
         classNum,
         subject,
-        count: questionsPerClass,
-        dateStr: dateCompact
+        dateCompact
       });
 
-      classResults.push({
-        classNum,
-        subject,
-        questions
-      });
+      classResults.push(quiz);
+      console.log(`   ✅ Class ${classNum}: ${quiz.regularQuestions.length} Regular + ${quiz.achieverQuestions.length} Achiever questions ready.`);
 
-      // Pause 2 seconds between calls to adhere comfortably to Gemini Free Tier RPM (15 RPM)
+      // Pacing pause (2 seconds) for free tier rate limits
       if (i < classes.length - 1) {
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
@@ -117,23 +121,28 @@ async function runMondayQuizPipeline({
     throw new Error(`Failed to generate questions for any class. Errors: ${JSON.stringify(errors)}`);
   }
 
-  // Upload to Firestore
-  console.log(`[QUIZ AGENT] Uploading ${classResults.length} classes to Firestore...`);
+  // Upload to Firestore: Writes questions & creates test_sessions for coming Sunday 11:00 AM IST
+  console.log(`[QUIZ AGENT] Uploading ${classResults.length} classes to Firestore for Sunday ${effectiveSunday} 11:00 AM...`);
   const uploadResult = await uploadQuizSessions({
     db,
     admin,
     classResults,
-    dateStr: targetDate,
+    targetSundayDateStr: effectiveSunday,
     startTimeStr,
     duration,
-    price
+    price,
+    priceAfterCoupon
   });
 
   // Log execution
   await db.collection("system_settings").doc("live_quiz_logs").collection("runs").add({
     subject,
     classesGenerated: classResults.map(c => c.classNum),
+    targetSunday: effectiveSunday,
+    liveStartTime: `${effectiveSunday} ${startTimeStr} IST`,
     errors,
+    totalRegular: uploadResult.totalRegularUploaded,
+    totalAchiever: uploadResult.totalAchieverUploaded,
     totalQuestions: uploadResult.totalQuestionsUploaded,
     sessionIds: uploadResult.createdSessions.map(s => s.id),
     timestamp: admin.firestore.FieldValue.serverTimestamp(),
@@ -143,7 +152,8 @@ async function runMondayQuizPipeline({
   return {
     success: true,
     subject,
-    date: targetDate,
+    targetSunday: effectiveSunday,
+    liveTime: `${effectiveSunday} 11:00 AM IST`,
     classesCount: classResults.length,
     sessions: uploadResult.createdSessions,
     totalQuestions: uploadResult.totalQuestionsUploaded,
@@ -158,14 +168,14 @@ const mondayLiveQuizScheduler = onSchedule(
   {
     schedule: "0 6 * * 1",
     timeZone: TIME_ZONE,
-    timeoutSeconds: 540, // 9 minutes to allow rate-limited generation
+    timeoutSeconds: 540,
     memory: "512MiB"
   },
   async (event) => {
     console.log("[CRON] Monday Live Quiz Scheduler triggered at 6:00 AM IST");
     try {
       const result = await runMondayQuizPipeline({});
-      console.log("[CRON] Monday Live Quiz generation successful:", result);
+      console.log("[CRON] Monday Live Quiz generation successful for coming Sunday:", result);
     } catch (err) {
       console.error("[CRON] Monday Live Quiz Scheduler error:", err);
     }
@@ -185,17 +195,17 @@ const generateMondayQuizManual = onCall(
       throw new HttpsError("permission-denied", "Only site administrators can trigger the quiz generator.");
     }
 
-    const { subject, classes, count, date, startTime, duration, price, apiKey } = request.data || {};
+    const { subject, classes, date, startTime, duration, price, priceAfterCoupon, apiKey } = request.data || {};
 
     try {
       const result = await runMondayQuizPipeline({
         targetSubject: subject,
         classes: classes || [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        questionsPerClass: count || 15,
-        dateStr: date,
-        startTimeStr: startTime || "18:00",
-        duration: duration || 40,
-        price: price || 0,
+        targetSundayDate: date,
+        startTimeStr: startTime || "11:00",
+        duration: duration || 60,
+        price: price != null ? price : 99,
+        priceAfterCoupon: priceAfterCoupon != null ? priceAfterCoupon : 59,
         apiKey
       });
 
@@ -208,6 +218,7 @@ const generateMondayQuizManual = onCall(
 );
 
 module.exports = {
+  getComingSundayDateStr,
   mondayLiveQuizScheduler,
   generateMondayQuizManual,
   runMondayQuizPipeline

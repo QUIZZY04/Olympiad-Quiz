@@ -1,28 +1,41 @@
 /**
  * Gemini Quiz Generation Engine
- * Uses Gemini Flash (Free Tier) to generate high-quality Olympiad questions
- * strictly adhering to the user's JSON schema.
+ * Generates:
+ * - 40 Regular Questions (1 mark each, crisp conceptual Olympiad standard)
+ * - 10 Achiever Section Questions (2 marks each, multi-step HOTS / challenging hardship)
+ * Matching the exact structure of previous Olympiad Live Quizzes (e.g. 27 Sept 2026).
  */
 
 const { getTopicsForClass, SUBJECT_DETAILS } = require("./syllabus");
 
 const GEMINI_MODEL = "gemini-2.0-flash";
 
+const OLYMPIAD_CODES = {
+  maths: "IMO (Maths)",
+  science: "NSO (Science)",
+  english: "IEO (English)",
+  reasoning: "IRO (Reasoning)"
+};
+
 /**
  * Clean and normalize a question object to ensure strict adherence to the schema
  */
-function validateAndNormalizeQuestion(qObj, classNum, subject, dateStr, index) {
+function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, index, isAchiever = false) {
   if (!qObj || typeof qObj !== "object") {
     throw new Error(`Item ${index + 1} is not a valid question object.`);
   }
 
   const clsStr = "class" + classNum;
   const subStr = (subject || "maths").toLowerCase();
+  const subShort = subStr === "maths" ? "m" : subStr === "science" ? "s" : subStr === "english" ? "eng" : "rea";
   const subPrefix = (SUBJECT_DETAILS[subStr] && SUBJECT_DETAILS[subStr].codePrefix) || "Q";
 
-  // Build clean ID: e.g. c3_eng_live_20261005_001
+  // ID format matching previous live quiz format:
+  // Regular: c4_m_std_001
+  // Achiever: c4_m_ultra_001
   const padIndex = String(index + 1).padStart(3, "0");
-  const fallbackId = `c${classNum}_${subStr}_live_${dateStr}_${padIndex}`;
+  const typeTag = isAchiever ? "ultra" : "std";
+  const fallbackId = `c${classNum}_${subShort}_${typeTag}_${padIndex}`;
   const id = (qObj.id && typeof qObj.id === "string" && !qObj.id.includes("/")) ? qObj.id : fallbackId;
 
   // Question Text
@@ -39,11 +52,10 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateStr, index) {
   // Answer index: 0, 1, 2, or 3
   let a = parseInt(qObj.a != null ? qObj.a : qObj.answer, 10);
   if (isNaN(a) || a < 0 || a > 3) {
-    // If given as letter 'A', 'B', 'C', 'D'
     if (typeof qObj.a === "string" && /^[A-D]$/i.test(qObj.a.trim())) {
       a = qObj.a.trim().toUpperCase().charCodeAt(0) - 65;
     } else {
-      a = 0; // fallback to 0
+      a = 0;
     }
   }
 
@@ -52,7 +64,7 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateStr, index) {
 
   // Hint & Solution
   const hint = String(qObj.hint || "").trim();
-  const sol = String(qObj.sol || qObj.solution || qObj.explanation || "Correct answer is option: " + o[a]).trim();
+  const sol = String(qObj.sol || qObj.solution || qObj.explanation || "Correct option is: " + o[a]).trim();
 
   return {
     id,
@@ -66,69 +78,21 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateStr, index) {
     topic,
     hint,
     sol,
-    sub_type: "SCQ"
+    sub_type: "SCQ",
+    isAchiever: !!isAchiever
   };
 }
 
 /**
- * Generate questions for a specific class and subject using Gemini API
+ * Call Gemini Flash API with structured JSON output
  */
-async function generateQuizForClass({ apiKey, classNum, subject, count = 15, dateStr = "" }) {
-  if (!apiKey) {
-    throw new Error("Gemini API key is required. Obtain a free key at https://aistudio.google.com/app/apikey");
-  }
-
-  const effectiveDateStr = dateStr || new Date().toISOString().slice(0, 10).replace(/-/g, "");
-  const topics = getTopicsForClass(classNum, subject);
-  const subjectMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "GEN" };
-
-  const prompt = `You are an elite, expert Olympiad exam creator for ${subjectMeta.olympiad} (${subjectMeta.name}).
-Your task is to generate exactly ${count} original, high-quality, concept-testing multiple-choice questions for Class ${classNum} students.
-
-Curriculum/Topic focus for this week:
-${topics.map((t, idx) => `Topic ${subjectMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
-
-STRICT GUIDELINES:
-1. Appropriateness: Tailored accurately to cognitive level of Class ${classNum}.
-2. Quality: Test conceptual clarity and logical thinking. Avoid overly trivial rote-memory questions.
-3. Options: Exactly 4 options ('o') per question. Only ONE option must be clearly correct. Options should be distinct, unambiguous, and plausible.
-4. Correct Answer: 'a' must be the 0-indexed number of the correct option (0, 1, 2, or 3).
-5. Math / Formula formatting: Use clear standard Unicode (e.g. cm², 1/2, ×, ÷, ², √) rather than raw broken LaTeX.
-6. Schema: Every item MUST strictly follow this exact JSON schema:
-[
-  {
-    "id": "c${classNum}_${subject}_live_${effectiveDateStr}_001",
-    "class": "class${classNum}",
-    "subject": "${subject}",
-    "q": "Complete question text",
-    "image_name": "",
-    "image_description": "",
-    "o": [
-      "Option 1",
-      "Option 2",
-      "Option 3",
-      "Option 4"
-    ],
-    "a": 0,
-    "topic": "${subjectMeta.codePrefix}01",
-    "hint": "Brief pedagogical clue to help a stuck student",
-    "sol": "Step-by-step logical explanation and reasoning",
-    "sub_type": "SCQ"
-  }
-]
-
-Return ONLY the valid raw JSON array containing the ${count} question objects. Do NOT include markdown code blocks, do NOT write \`\`\`json or any commentary outside the array.`;
-
+async function callGeminiRaw({ apiKey, prompt }) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
 
   const requestBody = {
-    contents: [
-      {
-        parts: [{ text: prompt }]
-      }
-    ],
+    contents: [{ parts: [{ text: prompt }] }],
     generationConfig: {
-      temperature: 0.3,
+      temperature: 0.35,
       topP: 0.95,
       responseMimeType: "application/json"
     }
@@ -147,40 +111,151 @@ Return ONLY the valid raw JSON array containing the ${count} question objects. D
 
   const result = await response.json();
   const textOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!textOutput) throw new Error("Gemini returned an empty response.");
 
-  if (!textOutput) {
-    throw new Error("Gemini returned an empty response.");
+  let cleaned = textOutput.trim();
+  if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+  else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+
+  const parsed = JSON.parse(cleaned);
+  if (!Array.isArray(parsed)) throw new Error("Gemini output is not a JSON array.");
+  return parsed;
+}
+
+/**
+ * Generate 40 Regular Questions (1 mark each)
+ */
+async function generateRegularQuestions({ apiKey, classNum, subject, count = 40, dateCompact = "" }) {
+  const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
+  const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
+  const topics = getTopicsForClass(classNum, subject);
+  const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+
+  const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
+Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
+
+CURRICULUM TOPICS TO COVER:
+${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
+
+STRICT DIFFICULTY & WORD COUNT STANDARDS:
+1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}. Focus on conceptual clarity, arithmetic fluency, and accurate application.
+2. Question Length: Maintain concise, precise, direct problem statements (between 12 and 30 words per question). Avoid unnecessary storytelling.
+3. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
+4. Correct Answer: 'a' must be 0, 1, 2, or 3.
+5. Symbols: Use standard clean Unicode (e.g. cm², 1/2, ×, ÷, ², √, ₹) rather than broken LaTeX.
+6. Schema (strictly adhere):
+[
+  {
+    "id": "c${classNum}_${subShort}_std_001",
+    "class": "class${classNum}",
+    "subject": "${subject}",
+    "q": "Concise 12-30 word question text",
+    "image_name": "",
+    "image_description": "",
+    "o": ["Opt A", "Opt B", "Opt C", "Opt D"],
+    "a": 0,
+    "topic": "${subMeta.codePrefix}01",
+    "hint": "Pedagogical clue",
+    "sol": "Direct step-by-step solution",
+    "sub_type": "SCQ"
   }
+]
+Return ONLY the raw JSON array containing exactly ${count} question objects.`;
 
-  // Parse JSON
-  let cleanedText = textOutput.trim();
-  if (cleanedText.startsWith("```json")) {
-    cleanedText = cleanedText.replace(/^```json\s*/, "").replace(/\s*```$/, "");
-  } else if (cleanedText.startsWith("```")) {
-    cleanedText = cleanedText.replace(/^```\s*/, "").replace(/\s*```$/, "");
-  }
-
-  let questionsArray;
-  try {
-    questionsArray = JSON.parse(cleanedText);
-  } catch (err) {
-    throw new Error(`Failed to parse Gemini JSON output: ${err.message}\nRaw output preview: ${cleanedText.slice(0, 200)}`);
-  }
-
-  if (!Array.isArray(questionsArray)) {
-    throw new Error("Gemini did not return a JSON array of questions.");
-  }
-
-  // Normalize and validate each question
-  const validatedQuestions = questionsArray.map((q, idx) =>
-    validateAndNormalizeQuestion(q, classNum, subject, effectiveDateStr, idx)
+  const rawArray = await callGeminiRaw({ apiKey, prompt });
+  return rawArray.slice(0, count).map((q, idx) =>
+    validateAndNormalizeQuestion(q, classNum, subject, dateCompact, idx, false)
   );
+}
 
-  return validatedQuestions;
+/**
+ * Generate 10 Achievers Section Questions (2 marks each, HOTS)
+ */
+async function generateAchieverQuestions({ apiKey, classNum, subject, count = 10, dateCompact = "" }) {
+  const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
+  const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
+  const topics = getTopicsForClass(classNum, subject);
+  const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+
+  const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
+Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
+
+CURRICULUM TOPICS TO COVER:
+${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
+
+STRICT DIFFICULTY & HARDSHIP STANDARDS:
+1. Hardship Level: High-difficulty Achievers/HOTS Section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined concepts (e.g. ratio with perimeter, two-stage algebra, tricky exceptions, advanced analogies).
+2. Question Length: Substantial, detailed scenario-based problem statements (between 25 and 55 words per question).
+3. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
+4. Correct Answer: 'a' must be 0, 1, 2, or 3.
+5. Symbols: Use standard clean Unicode (e.g. cm², 1/2, ×, ÷, ², √, ₹).
+6. Schema (strictly adhere):
+[
+  {
+    "id": "c${classNum}_${subShort}_ultra_001",
+    "class": "class${classNum}",
+    "subject": "${subject}",
+    "q": "Challenging multi-step 25-55 word question text",
+    "image_name": "",
+    "image_description": "",
+    "o": ["Opt A", "Opt B", "Opt C", "Opt D"],
+    "a": 0,
+    "topic": "${subMeta.codePrefix}01",
+    "hint": "Thoughtful clue pointing to the tricky step",
+    "sol": "Detailed comprehensive step-by-step mathematical/logical proof",
+    "sub_type": "SCQ"
+  }
+]
+Return ONLY the raw JSON array containing exactly ${count} question objects.`;
+
+  const rawArray = await callGeminiRaw({ apiKey, prompt });
+  return rawArray.slice(0, count).map((q, idx) =>
+    validateAndNormalizeQuestion(q, classNum, subject, dateCompact, idx, true)
+  );
+}
+
+/**
+ * Generate full 50-Question Live Quiz for a Class:
+ * 40 Regular (1 Mark) + 10 Achievers (2 Marks) = 50 Questions (60 Marks total)
+ */
+async function generateFullLiveQuizForClass({ apiKey, classNum, subject, dateCompact = "" }) {
+  if (!apiKey) throw new Error("Gemini API key is required.");
+
+  // Generate 40 Regular Questions
+  const regularQuestions = await generateRegularQuestions({
+    apiKey,
+    classNum,
+    subject,
+    count: 40,
+    dateCompact
+  });
+
+  // Pacing pause (1.5s) to stay within Gemini Free Tier RPM
+  await new Promise(r => setTimeout(r, 1500));
+
+  // Generate 10 Achievers Questions (HOTS)
+  const achieverQuestions = await generateAchieverQuestions({
+    apiKey,
+    classNum,
+    subject,
+    count: 10,
+    dateCompact
+  });
+
+  return {
+    classNum,
+    subject,
+    regularQuestions,
+    achieverQuestions,
+    totalCount: regularQuestions.length + achieverQuestions.length
+  };
 }
 
 module.exports = {
   GEMINI_MODEL,
-  generateQuizForClass,
+  OLYMPIAD_CODES,
+  generateRegularQuestions,
+  generateAchieverQuestions,
+  generateFullLiveQuizForClass,
   validateAndNormalizeQuestion
 };

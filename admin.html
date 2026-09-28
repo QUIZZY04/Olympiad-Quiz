@@ -1204,22 +1204,33 @@ border-top:1px solid var(--border);
     <div class="panel" style="border-top: 3px solid #8b5cf6;">
         <div class="panel-header">
             <h2 style="color: #8b5cf6; display: flex; align-items: center; gap: 8px;">
-                <span>🤖 AI Monday Live Quiz Agent (Gemini Flash)</span>
+                <span>🤖 AI Monday Live Quiz Agent (Sunday 11:00 AM Live Olympiad)</span>
                 <span id="qaRotationBadge" style="font-size: 11px; padding: 4px 10px; background: rgba(139, 92, 246, 0.15); color: #7c3aed; border-radius: 12px; font-weight: 700;">Loading rotation...</span>
             </h2>
         </div>
         <div class="panel-content">
+            <!-- Schedule & Format Notice -->
+            <div style="background: linear-gradient(135deg, rgba(79,70,229,0.06), rgba(139,92,246,0.06)); border: 1px solid rgba(139,92,246,0.25); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px;">
+                <div style="font-weight: 800; font-size: 14px; color: #4338ca; margin-bottom: 4px;">
+                    🗓️ Schedule: Created on Monday 6:00 AM → Live Quiz on Coming Sunday at 11:00 AM IST
+                </div>
+                <div style="font-size: 12px; color: #475569; line-height: 1.6;">
+                    • <b>6-Day Registration Window:</b> Live sessions appear on <code>live.html</code> from Monday morning so students have 6 full days to register.<br>
+                    • <b>Exam Structure:</b> <b>40 Regular Questions</b> (1 Mark each, 12–30 words) + <b>10 Achievers HOTS Questions</b> (2 Marks each, 25–55 words) = <b>50 Questions / 60 Marks</b> total (60 Minutes).
+                </div>
+            </div>
+
             <!-- API Key Banner -->
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <label style="margin: 0; font-weight: 700; color: #1e293b;">🔑 Google Gemini API Key (Free Tier)</label>
+                    <label style="margin: 0; font-weight: 700; color: #1e293b;">🔑 Google Gemini API Key (Saved in Firebase)</label>
                     <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #6366f1; font-size: 12px; text-decoration: none; font-weight: 600;">Get Free API Key from Google AI Studio ↗</a>
                 </div>
                 <div style="display: flex; gap: 10px;">
                     <input type="password" id="qaApiKey" placeholder="Paste your AI Studio Gemini API Key here (e.g. AIzaSy...)" style="flex: 1; margin: 0;">
-                    <button class="upload" onclick="window.qaSaveApiKey()" style="margin: 0; padding: 10px 18px; background: #6366f1; white-space: nowrap;">Save Key</button>
+                    <button class="upload" onclick="window.qaSaveApiKey()" style="margin: 0; padding: 10px 18px; background: #6366f1; white-space: nowrap;">Save to Firebase</button>
                 </div>
-                <div style="font-size: 11px; color: #64748b; margin-top: 6px;">* Completely free: 15 Requests/Min, 1,500 Requests/Day. Saved locally in browser and synced with Cloud Functions.</div>
+                <div style="font-size: 11px; color: #64748b; margin-top: 6px;">* Stored directly in your Firebase database (<code>system_settings/ai_keys</code>). Free tier: 15 RPM / 1,500 RPD.</div>
             </div>
 
             <!-- Quiz Parameters Grid -->
@@ -1230,28 +1241,28 @@ border-top:1px solid var(--border);
                         <option value="maths">Mathematics (IMO)</option>
                         <option value="science">Science (NSO)</option>
                         <option value="english">English (IEO)</option>
-                        <option value="reasoning">Logical Reasoning</option>
+                        <option value="reasoning">Logical Reasoning (IRO)</option>
                     </select>
                 </div>
                 <div>
-                    <label>Live Quiz Date</label>
+                    <label>Coming Sunday Date</label>
                     <input type="date" id="qaDate">
                 </div>
                 <div>
                     <label>Start Time (IST)</label>
-                    <input type="time" id="qaTime" value="18:00">
+                    <input type="time" id="qaTime" value="11:00">
                 </div>
                 <div>
                     <label>Duration (Minutes)</label>
-                    <input type="number" id="qaDuration" value="40">
+                    <input type="number" id="qaDuration" value="60">
                 </div>
                 <div>
-                    <label>Questions per Class</label>
-                    <input type="number" id="qaCount" value="15" min="5" max="35">
+                    <label>Question Structure</label>
+                    <input type="text" value="40 Reg (1M) + 10 Ach (2M)" readonly style="background: #f1f5f9; cursor: not-allowed; font-weight: 600;">
                 </div>
                 <div>
-                    <label>Price (₹ / Free)</label>
-                    <input type="number" id="qaPrice" value="0">
+                    <label>Price (₹ / Coupon ₹59)</label>
+                    <input type="number" id="qaPrice" value="99">
                 </div>
             </div>
 
