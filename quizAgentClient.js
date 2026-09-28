@@ -154,9 +154,8 @@
             body: JSON.stringify({
               contents: [{ parts: [{ text: prompt }] }],
               generationConfig: {
-                temperature: 0.35,
-                topP: 0.95,
-                responseMimeType: "application/json"
+                temperature: 0.4,
+                topP: 0.95
               }
             })
           });
@@ -179,9 +178,18 @@
           const rawText = json?.candidates?.[0]?.content?.parts?.[0]?.text;
           if (!rawText) throw new Error(`Gemini (${model}) returned empty response.`);
 
+          // Robustly extract JSON array - strip markdown fences and find the [ ... ] block
           let cleaned = rawText.trim();
           if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
           else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+          // If still not starting with '[', try to extract the JSON array
+          if (!cleaned.startsWith("[")) {
+            const startIdx = cleaned.indexOf("[");
+            const endIdx = cleaned.lastIndexOf("]");
+            if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+              cleaned = cleaned.substring(startIdx, endIdx + 1);
+            }
+          }
 
           const parsed = JSON.parse(cleaned);
           if (!Array.isArray(parsed)) throw new Error(`Gemini (${model}) output is not a JSON array.`);
@@ -237,13 +245,19 @@
       }
     }
 
+    // SVG inline image support
+    const svgData = String(item.svg_data || "").trim();
+    const imageName = svgData ? `svg_inline_${padIdx}` : String(item.image_name || "").trim();
+    const imageDescription = String(item.image_description || "").trim();
+
     return {
       id,
       class: "class" + classNum,
       subject,
       q,
-      image_name: "",
-      image_description: "",
+      image_name: imageName,
+      image_description: imageDescription,
+      svg_data: svgData,
       o,
       a,
       topic: String(item.topic || `${subMeta.codePrefix}01`).toUpperCase(),
@@ -255,12 +269,13 @@
   }
 
   /**
-   * Generate 40 Regular Questions (1 mark each, 12-30 words, concise, standard Olympiad level)
+   * Generate 40 Regular Questions (1 mark each, MINIMUM 30 words, 30% numerical, SVG where needed)
    */
   async function generateRegularPart({ apiKey, classNum, subject, count = 40, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || ["General Curriculum"];
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+    const numericalMin = Math.ceil(count * 0.30);
 
     const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
 Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
@@ -268,42 +283,50 @@ Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${
 CURRICULUM TOPICS TO COVER:
 ${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
 
-STRICT DIFFICULTY & WORD COUNT STANDARDS:
+STRICT STANDARDS (MUST BE FOLLOWED):
 1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}. Focus on conceptual clarity, arithmetic fluency, and accurate application.
-2. Question Length: Maintain concise, precise, direct problem statements (between 12 and 30 words per question). Avoid unnecessary storytelling.
-3. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
-4. Correct Answer: 'a' must be 0, 1, 2, or 3.
-5. Symbols: Use standard clean Unicode (e.g. cm², 1/2, ×, ÷, ², √, ₹) rather than broken LaTeX.
-6. Schema (strictly adhere):
+2. Question Length: MINIMUM 30 words per question. Use clear, precise language. Include context and specific values. Do NOT write short 1-line questions.
+3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual computation, calculation, or number-work (not just definitions or identification).
+4. SVG Images: For questions involving shapes, geometry diagrams, number lines, bar graphs, clocks, patterns, grids, or figures — include an SVG drawing in the 'svg_data' field. Leave 'svg_data' as empty string if no image is needed.
+5. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
+6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
+7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½, ¾) — never LaTeX.
+8. Distribute questions evenly across all listed topics.
+
+SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanation):
 [
   {
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Concise 12-30 word question text",
+    "q": "Minimum 30-word question text with full context and specific numbers",
+    "svg_data": "",
     "image_name": "",
     "image_description": "",
-    "o": ["Opt A", "Opt B", "Opt C", "Opt D"],
+    "o": ["Option A", "Option B", "Option C", "Option D"],
     "a": 0,
     "topic": "${subMeta.codePrefix}01",
-    "hint": "Pedagogical clue",
-    "sol": "Direct step-by-step solution",
+    "hint": "Pedagogical clue pointing to the key concept",
+    "sol": "Step-by-step solution with working",
     "sub_type": "SCQ"
   }
 ]
-Return ONLY the raw JSON array containing exactly ${count} question objects.`;
+Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
     const raw = await callGeminiRaw({ apiKey, prompt });
     return raw.slice(0, count).map((item, idx) => normalizeQuestion(item, classNum, subject, dateCompact, idx, false));
   }
 
   /**
-   * Generate 10 Achievers Section Questions (2 marks each, 25-55 words, challenging HOTS)
+   * Generate 10 Achievers HOTS Questions
+   * Class 1–5: min 35 words | Class 6–10: min 40 words | 30% numerical | SVG where needed
    */
   async function generateAchieverPart({ apiKey, classNum, subject, count = 10, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || ["General Curriculum"];
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+    const minWords = classNum <= 5 ? 35 : 40;
+    const numericalMin = Math.ceil(count * 0.30);
 
     const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
 Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
@@ -311,30 +334,35 @@ Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills
 CURRICULUM TOPICS TO COVER:
 ${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
 
-STRICT DIFFICULTY & HARDSHIP STANDARDS:
-1. Hardship Level: High-difficulty Achievers/HOTS Section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined concepts (e.g. ratio with perimeter, two-stage algebra, tricky exceptions, advanced analogies).
-2. Question Length: Substantial, detailed scenario-based problem statements (between 25 and 55 words per question).
-3. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
-4. Correct Answer: 'a' must be 0, 1, 2, or 3.
-5. Symbols: Use standard clean Unicode (e.g. cm², 1/2, ×, ÷, ², √, ₹).
-6. Schema (strictly adhere):
+STRICT STANDARDS (MUST BE FOLLOWED):
+1. Hardship Level: High-difficulty Achievers/HOTS. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined concepts (e.g. ratio with perimeter, two-stage algebra, tricky exceptions, advanced analogies).
+2. Question Length: MINIMUM ${minWords} words per question. Use detailed, scenario-based problem statements. Include all necessary context, numbers, and conditions.
+3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual multi-step computation or calculation.
+4. SVG Images: For questions involving shapes, geometry diagrams, number lines, tables, graphs, patterns, figures, or grid problems — include an SVG drawing in the 'svg_data' field. Leave 'svg_data' as empty string if no image is needed.
+5. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
+6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
+7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½, ¾) — never LaTeX.
+8. Distribute questions across all listed topics.
+
+SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanation):
 [
   {
     "id": "c${classNum}_${subShort}_ultra_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Challenging multi-step 25-55 word question text",
+    "q": "Minimum ${minWords}-word challenging HOTS question with full context and specific values",
+    "svg_data": "",
     "image_name": "",
     "image_description": "",
-    "o": ["Opt A", "Opt B", "Opt C", "Opt D"],
+    "o": ["Tricky Option A", "Tricky Option B", "Tricky Option C", "Tricky Option D"],
     "a": 0,
     "topic": "${subMeta.codePrefix}01",
-    "hint": "Thoughtful clue pointing to the tricky step",
-    "sol": "Detailed comprehensive step-by-step mathematical/logical proof",
+    "hint": "Clue pointing to the tricky multi-step approach",
+    "sol": "Detailed step-by-step mathematical/logical solution with all working shown",
     "sub_type": "SCQ"
   }
 ]
-Return ONLY the raw JSON array containing exactly ${count} question objects.`;
+Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
     const raw = await callGeminiRaw({ apiKey, prompt });
     return raw.slice(0, count).map((item, idx) => normalizeQuestion(item, classNum, subject, dateCompact, idx, true));

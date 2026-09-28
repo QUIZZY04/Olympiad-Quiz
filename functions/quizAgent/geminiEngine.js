@@ -105,9 +105,8 @@ async function callGeminiRaw({ apiKey, prompt }) {
         const requestBody = {
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
-            temperature: 0.35,
-            topP: 0.95,
-            responseMimeType: "application/json"
+            temperature: 0.4,
+            topP: 0.95
           }
         };
 
@@ -138,6 +137,14 @@ async function callGeminiRaw({ apiKey, prompt }) {
         let cleaned = textOutput.trim();
         if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
         else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+        // If still not starting with '[', extract the JSON array
+        if (!cleaned.startsWith("[")) {
+          const startIdx = cleaned.indexOf("[");
+          const endIdx = cleaned.lastIndexOf("]");
+          if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+            cleaned = cleaned.substring(startIdx, endIdx + 1);
+          }
+        }
 
         const parsed = JSON.parse(cleaned);
         if (!Array.isArray(parsed)) throw new Error(`Gemini (${model}) output is not a JSON array.`);
@@ -168,13 +175,14 @@ async function callGeminiRaw({ apiKey, prompt }) {
 }
 
 /**
- * Generate 40 Regular Questions (1 mark each)
+ * Generate 40 Regular Questions (1 mark each, min 30 words, 30% numerical, SVG where needed)
  */
 async function generateRegularQuestions({ apiKey, classNum, subject, count = 40, dateCompact = "" }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+  const numericalMin = Math.ceil(count * 0.30);
 
   const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
 Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
@@ -182,30 +190,35 @@ Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${
 CURRICULUM TOPICS TO COVER:
 ${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
 
-STRICT DIFFICULTY & WORD COUNT STANDARDS:
-1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}. Focus on conceptual clarity, arithmetic fluency, and accurate application.
-2. Question Length: Maintain concise, precise, direct problem statements (between 12 and 30 words per question). Avoid unnecessary storytelling.
-3. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
-4. Correct Answer: 'a' must be 0, 1, 2, or 3.
-5. Symbols: Use standard clean Unicode (e.g. cm², 1/2, ×, ÷, ², √, ₹) rather than broken LaTeX.
-6. Schema (strictly adhere):
+STRICT STANDARDS (MUST BE FOLLOWED):
+1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}.
+2. Question Length: MINIMUM 30 words per question. Include context and specific values. Do NOT write short 1-line questions.
+3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual computation or calculation.
+4. SVG Images: For questions involving shapes, geometry diagrams, number lines, clocks, patterns, grids, or graphs — include SVG in 'svg_data'. Leave empty string if not needed.
+5. Options: Exactly 4 distinct options. Only ONE correct answer.
+6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
+7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½) — never LaTeX.
+8. Distribute questions evenly across all listed topics.
+
+SCHEMA (return ONLY the JSON array — no markdown, no explanation):
 [
   {
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Concise 12-30 word question text",
+    "q": "Minimum 30-word question with full context and specific numbers",
+    "svg_data": "",
     "image_name": "",
     "image_description": "",
-    "o": ["Opt A", "Opt B", "Opt C", "Opt D"],
+    "o": ["Option A", "Option B", "Option C", "Option D"],
     "a": 0,
     "topic": "${subMeta.codePrefix}01",
-    "hint": "Pedagogical clue",
-    "sol": "Direct step-by-step solution",
+    "hint": "Pedagogical clue pointing to the key concept",
+    "sol": "Step-by-step solution with working",
     "sub_type": "SCQ"
   }
 ]
-Return ONLY the raw JSON array containing exactly ${count} question objects.`;
+Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
   const rawArray = await callGeminiRaw({ apiKey, prompt });
   return rawArray.slice(0, count).map((q, idx) =>
@@ -214,13 +227,16 @@ Return ONLY the raw JSON array containing exactly ${count} question objects.`;
 }
 
 /**
- * Generate 10 Achievers Section Questions (2 marks each, HOTS)
+ * Generate 10 Achievers HOTS Questions
+ * Class 1-5: min 35 words | Class 6-10: min 40 words | 30% numerical | SVG where needed
  */
 async function generateAchieverQuestions({ apiKey, classNum, subject, count = 10, dateCompact = "" }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+  const minWords = classNum <= 5 ? 35 : 40;
+  const numericalMin = Math.ceil(count * 0.30);
 
   const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
 Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
@@ -228,30 +244,35 @@ Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills
 CURRICULUM TOPICS TO COVER:
 ${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
 
-STRICT DIFFICULTY & HARDSHIP STANDARDS:
-1. Hardship Level: High-difficulty Achievers/HOTS Section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined concepts (e.g. ratio with perimeter, two-stage algebra, tricky exceptions, advanced analogies).
-2. Question Length: Substantial, detailed scenario-based problem statements (between 25 and 55 words per question).
-3. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
-4. Correct Answer: 'a' must be 0, 1, 2, or 3.
-5. Symbols: Use standard clean Unicode (e.g. cm², 1/2, ×, ÷, ², √, ₹).
-6. Schema (strictly adhere):
+STRICT STANDARDS (MUST BE FOLLOWED):
+1. Hardship Level: High-difficulty Achievers/HOTS. Every question must test multi-step logical deduction, complex word problems, non-routine cases, and combined concepts.
+2. Question Length: MINIMUM ${minWords} words per question. Use detailed scenario-based problem statements with all context, numbers, and conditions specified.
+3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual multi-step computation or calculation.
+4. SVG Images: For questions involving shapes, geometry diagrams, number lines, tables, graphs, patterns, or grid problems — include SVG in 'svg_data'. Leave empty string if not needed.
+5. Options: Exactly 4 tricky distractor options. Only ONE unambiguously correct answer.
+6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
+7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½) — never LaTeX.
+8. Distribute questions across all listed topics.
+
+SCHEMA (return ONLY the JSON array — no markdown, no explanation):
 [
   {
     "id": "c${classNum}_${subShort}_ultra_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Challenging multi-step 25-55 word question text",
+    "q": "Minimum ${minWords}-word HOTS question with full context and specific values",
+    "svg_data": "",
     "image_name": "",
     "image_description": "",
-    "o": ["Opt A", "Opt B", "Opt C", "Opt D"],
+    "o": ["Tricky Option A", "Tricky Option B", "Tricky Option C", "Tricky Option D"],
     "a": 0,
     "topic": "${subMeta.codePrefix}01",
-    "hint": "Thoughtful clue pointing to the tricky step",
-    "sol": "Detailed comprehensive step-by-step mathematical/logical proof",
+    "hint": "Clue pointing to the tricky multi-step approach",
+    "sol": "Detailed step-by-step solution with all working shown",
     "sub_type": "SCQ"
   }
 ]
-Return ONLY the raw JSON array containing exactly ${count} question objects.`;
+Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
   const rawArray = await callGeminiRaw({ apiKey, prompt });
   return rawArray.slice(0, count).map((q, idx) =>
