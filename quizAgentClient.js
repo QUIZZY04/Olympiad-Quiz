@@ -133,16 +133,20 @@
 
   const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
+  const GEMINI_MODEL_VERSION = "v6";
+
   /**
-   * Call Gemini Flash API with exponential backoff retry and automatic multi-model fallback.
-   * Handles 503 (model overloaded / high demand) and 429 (rate limits) gracefully.
+   * Call Gemini Flash API with smart fallback:
+   * - 429 DAILY quota exhausted → skip to next model immediately
+   * - 429 RPM (per minute) → wait retryDelay from API response, then retry same model
+   * - 503 high demand → exponential backoff on same model, then fall back
+   * - 404 model not found → skip to next model immediately
    */
   async function callGeminiRaw({ apiKey, prompt }) {
     let lastError = null;
 
     for (const model of GEMINI_MODELS) {
-      const maxRetries = 2;
-      let modelSucceeded = false;
+      const maxRetries = 3;
 
       for (let attempt = 0; attempt <= maxRetries; attempt++) {
         try {
@@ -162,16 +166,53 @@
 
           if (!res.ok) {
             const errText = await res.text();
-            
-            // Check if transient error (503 high demand spike, 429 rate limit, 500/502/504)
-            if (RETRYABLE_STATUS_CODES.includes(res.status) && attempt < maxRetries) {
-              const waitSec = (attempt + 1) * 2;
-              appendLog(`Model ${model} returned HTTP ${res.status} (high demand/busy). Retrying in ${waitSec}s (attempt ${attempt + 1}/${maxRetries})...`, "warn");
+            lastError = new Error(`Gemini HTTP ${res.status} (${model}): ${errText}`);
+
+            if (res.status === 404) {
+              appendLog(`⚠ Model ${model} not found (404). Switching to next model...`, "warn");
+              break; // skip to next model
+            }
+
+            if (res.status === 429) {
+              // Parse the error body to detect daily vs per-minute quota
+              let errJson = {};
+              try { errJson = JSON.parse(errText); } catch (_) {}
+              const quotaId = errJson?.error?.details?.find(d => d.quotaId)?.quotaId || "";
+              const isDaily = quotaId.toLowerCase().includes("perday") || quotaId.toLowerCase().includes("day");
+
+              if (isDaily) {
+                appendLog(`🚫 ${model}: Daily quota exhausted (${quotaId}). Switching to next model...`, "warn");
+                break; // daily limit hit → skip to next model immediately, no retry
+              }
+
+              // Per-minute rate limit — parse retryDelay from API response or use backoff
+              let retryDelaySec = 5;
+              const retryDelayStr = errJson?.error?.details?.find(d => d["@type"]?.includes("RetryInfo"))?.retryDelay || "";
+              if (retryDelayStr) {
+                const parsed = parseFloat(retryDelayStr);
+                if (!isNaN(parsed)) retryDelaySec = Math.ceil(parsed) + 1;
+              } else {
+                retryDelaySec = (attempt + 1) * 5;
+              }
+
+              if (attempt < maxRetries) {
+                appendLog(`⏳ ${model}: Rate limited (429 RPM). Waiting ${retryDelaySec}s before retry (${attempt + 1}/${maxRetries})...`, "warn");
+                await new Promise(r => setTimeout(r, retryDelaySec * 1000));
+                continue;
+              }
+              appendLog(`⚠ ${model}: Rate limit retries exhausted. Switching to next model...`, "warn");
+              break;
+            }
+
+            if ([500, 502, 503, 504].includes(res.status) && attempt < maxRetries) {
+              const waitSec = (attempt + 1) * 3;
+              appendLog(`⏳ ${model}: HTTP ${res.status} (high demand). Retrying in ${waitSec}s (${attempt + 1}/${maxRetries})...`, "warn");
               await new Promise(r => setTimeout(r, waitSec * 1000));
               continue;
             }
 
-            throw new Error(`Gemini HTTP ${res.status} (${model}): ${errText}`);
+            appendLog(`⚠ ${model}: HTTP ${res.status}. Switching to next model...`, "warn");
+            break;
           }
 
           const json = await res.json();
@@ -182,7 +223,6 @@
           let cleaned = rawText.trim();
           if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
           else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
-          // If still not starting with '[', try to extract the JSON array
           if (!cleaned.startsWith("[")) {
             const startIdx = cleaned.indexOf("[");
             const endIdx = cleaned.lastIndexOf("]");
@@ -193,33 +233,27 @@
 
           const parsed = JSON.parse(cleaned);
           if (!Array.isArray(parsed)) throw new Error(`Gemini (${model}) output is not a JSON array.`);
+          appendLog(`✓ Questions generated via ${model}.`, "success");
           return parsed;
 
         } catch (err) {
           lastError = err;
-          // If 404 (model not found), don't retry this model, switch immediately
-          if (err.message && err.message.includes("404")) {
-            console.warn(`Model ${model} 404 not found. Trying next fallback...`);
+          // Only break out of retry loop for non-transient errors
+          if (!err.message || (!err.message.includes("503") && !err.message.includes("500"))) {
             break;
           }
-
-          // If retryable and attempts remain, continue retry loop
-          if (attempt < maxRetries && RETRYABLE_STATUS_CODES.some(code => err.message && err.message.includes(`HTTP ${code}`))) {
-            const waitSec = (attempt + 1) * 2;
-            appendLog(`Model ${model} spike. Retrying in ${waitSec}s...`, "warn");
+          if (attempt < maxRetries) {
+            const waitSec = (attempt + 1) * 3;
+            appendLog(`⏳ ${model}: Error. Retrying in ${waitSec}s...`, "warn");
             await new Promise(r => setTimeout(r, waitSec * 1000));
-            continue;
           }
-
-          // If retries for this model are exhausted, break to try next model in GEMINI_MODELS
-          break;
         }
       }
 
-      appendLog(`Model ${model} unavailable/overloaded. Falling back to next available model...`, "warn");
+      appendLog(`→ Falling back from ${model} to next available model...`, "warn");
     }
 
-    throw lastError || new Error("All Gemini model endpoints failed. Please check API key or try again in a few moments.");
+    throw lastError || new Error("All Gemini model endpoints failed. Please check your API key quota at https://ai.dev/rate-limit");
   }
 
   function normalizeQuestion(item, classNum, subject, dateCompact, idx, isAchiever = false) {
@@ -548,7 +582,7 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
     appendLog(`Creating Live Quiz on Monday 6 AM for Target Sunday: ${targetSundayDate} at ${timeStr} AM IST...`, "info");
     appendLog(`Subject: ${SUBJECT_DETAILS[subject]?.olympiad || subject} | Classes: ${selectedClasses.join(", ")}`, "info");
     appendLog(`Format: 40 Regular (1 Mark) + 10 Achievers HOTS (2 Marks) = 50 Qs (60 Marks total)`, "info");
-    appendLog(`⚡ Engine: ${GEMINI_MODELS[0]} (Failovers: ${GEMINI_MODELS.slice(1).join(", ")}) [v5]`, "info");
+    appendLog(`⚡ Engine [${GEMINI_MODEL_VERSION}]: Primary=${GEMINI_MODELS[0]} | Fallback chain: ${GEMINI_MODELS.slice(1).join(" → ")} | Quota-aware smart fallback active`, "info");
 
     let successCount = 0;
     for (let i = 0; i < selectedClasses.length; i++) {
