@@ -17,68 +17,86 @@
     reasoning: { name: "Logical Reasoning", olympiad: "IRO (Reasoning)", codePrefix: "R" }
   };
 
+  // Topic lists/codes copied verbatim from chapterwise.html's `sofTopics`
+  // object - the canonical topic taxonomy used across the rest of the site.
+  // Each topic is {code, name}; codes are as-authored there, not recomputed
+  // here (avoids the zero-padding bug a naive "0"+index scheme hits once a
+  // class has 10+ topics, e.g. Class 8 Science has 16).
   const SYLLABUS_BY_CLASS = {
     1: {
-      maths: ["Number Sense & Counting up to 100", "Addition & Subtraction (1-2 digits)", "Shapes & Space", "Measurement", "Time & Money", "Patterns"],
-      science: ["Living & Non-Living Things", "Plants Around Us", "Animals Around Us", "Human Body & Senses", "Good Habits & Safety", "Air, Water & Weather"],
-      english: ["Nouns & Common Words", "Pronouns (I, You, He, She, It)", "Action Words (Verbs)", "Articles (A, An)", "Opposites & Rhyming Words", "Simple Prepositions"],
-      reasoning: ["Patterns & Sequences", "Odd One Out", "Measuring Units", "Geometrical Shapes", "Spatial Understanding", "Grouping of Figures"]
+      maths: [{ code: "M01", name: "Number Sense" }, { code: "M02", name: "Addition" }, { code: "M03", name: "Subtraction" }, { code: "M04", name: "Lengths, Weights and Comparisons" }, { code: "M05", name: "Time" }, { code: "M06", name: "Money" }, { code: "M07", name: "Geometrical Shapes" }],
+      science: [{ code: "S01", name: "Plants" }, { code: "S02", name: "Animals" }, { code: "S03", name: "Human Body" }, { code: "S04", name: "Food" }, { code: "S05", name: "Housing and Clothing" }, { code: "S06", name: "Family and Festivals" }, { code: "S07", name: "Good Habits and Safety Rules" }, { code: "S08", name: "Transport and Communication" }, { code: "S09", name: "Air, Water and Weather" }, { code: "S10", name: "Earth and Universe" }],
+      english: [{ code: "E01", name: "Word Power (Letters & Words)" }, { code: "E02", name: "Nouns and Pronouns" }, { code: "E03", name: "Verbs and Adjectives" }, { code: "E04", name: "Prepositions and Articles" }, { code: "E05", name: "Tenses and Punctuation" }, { code: "E06", name: "Reading Comprehension" }, { code: "E07", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Patterns" }, { code: "R02", name: "Odd One Out" }, { code: "R03", name: "Measuring Units" }, { code: "R04", name: "Geometrical Shapes" }, { code: "R05", name: "Spatial Understanding" }, { code: "R06", name: "Grouping and Analogy" }, { code: "R07", name: "Ranking Test" }]
     },
     2: {
-      maths: ["Numbers up to 1000", "Addition & Subtraction with Regrouping", "Multiplication basics", "Fractions Introduction", "Money & Measurement", "Time & Calendar"],
-      science: ["Types of Plants & Uses", "Animal Habitats & Eating Habits", "Bones & Muscles", "Food & Health", "Housing & Clothing", "Sun, Moon & Stars"],
-      english: ["Singular & Plural Nouns", "Possessives", "Adjectives", "Helping Verbs", "Punctuation & Capitalization", "Compound Words & Homophones"],
-      reasoning: ["Number Patterns", "Analogy & Classification", "Alphabet Test", "Coding-Decoding (Simple)", "Mirror Images", "Embedded Figures"]
+      maths: [{ code: "M01", name: "Number Sense" }, { code: "M02", name: "Computation Operations" }, { code: "M03", name: "Length, Weight, Capacity" }, { code: "M04", name: "Time and Money" }, { code: "M05", name: "Lines, Shapes and Solids" }, { code: "M06", name: "Pictographs" }],
+      science: [{ code: "S01", name: "Plants" }, { code: "S02", name: "Animals" }, { code: "S03", name: "Human Body" }, { code: "S04", name: "Food" }, { code: "S05", name: "Housing and Clothing" }, { code: "S06", name: "Family and Festivals" }, { code: "S07", name: "Good Habits and Safety Rules" }, { code: "S08", name: "Transport and Communication" }, { code: "S09", name: "Air, Water and Weather" }, { code: "S10", name: "Earth and Universe" }],
+      english: [{ code: "E01", name: "Word Power" }, { code: "E02", name: "Nouns and Pronouns" }, { code: "E03", name: "Verbs, Adjectives and Adverbs" }, { code: "E04", name: "Prepositions and Conjunctions" }, { code: "E05", name: "Articles and Tenses" }, { code: "E06", name: "Punctuation and Jumbled Words" }, { code: "E07", name: "Reading Comprehension" }, { code: "E08", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Patterns" }, { code: "R02", name: "Measuring Units" }, { code: "R03", name: "Odd One Out" }, { code: "R04", name: "Series Completion" }, { code: "R05", name: "Geometrical Shapes" }, { code: "R06", name: "Analogy and Ranking Test" }, { code: "R07", name: "Grouping and Coding-Decoding" }]
     },
     3: {
-      maths: ["4-Digit Numbers & Place Value", "Arithmetic Operations (+, -, ×, ÷)", "Fractions", "Length, Weight & Capacity", "Time & Calendar", "Geometry & Perimeter"],
-      science: ["Plant Parts & Photosynthesis", "Birds & Nests", "Insects & Life Cycles", "Earth & Solar System", "Matter: Solids, Liquids & Gases", "Pollution & Environment"],
-      english: ["Noun Types (Common, Proper, Collective, Abstract)", "Pronouns", "Tenses", "Adverbs", "Prepositions & Conjunctions", "Idioms & Vocabulary"],
-      reasoning: ["Analogy & Classification", "Series Completion", "Ranking & Ordering", "Blood Relations (Basics)", "Direction Sense", "Logical Deduction"]
+      maths: [{ code: "M01", name: "Number Sense (Up to 10,000)" }, { code: "M02", name: "Addition, Subtraction, Multiplication" }, { code: "M03", name: "Division & Fractions (Basic)" }, { code: "M04", name: "Money (Indian Currency)" }, { code: "M05", name: "Measurement (Length, Weight, Capacity)" }, { code: "M06", name: "Time, Money & Calendar" }, { code: "M07", name: "Geometry & Symmetry" }, { code: "M08", name: "Data Handling (Bar Graphs)" }],
+      science: [{ code: "S01", name: "Plants and Animals" }, { code: "S02", name: "Birds" }, { code: "S03", name: "Food" }, { code: "S04", name: "Housing, Clothing and Occupation" }, { code: "S05", name: "Transport and Communication" }, { code: "S06", name: "Human Body" }, { code: "S07", name: "Earth and Universe" }, { code: "S08", name: "Matter and Materials" }, { code: "S09", name: "Light, Sound and Force" }, { code: "S10", name: "Our Environment" }],
+      english: [{ code: "E01", name: "Word Power" }, { code: "E02", name: "Synonyms and Antonyms" }, { code: "E03", name: "Nouns, Pronouns and Verbs" }, { code: "E04", name: "Adverbs and Adjectives" }, { code: "E05", name: "Articles and Prepositions" }, { code: "E06", name: "Conjunctions and Tenses" }, { code: "E07", name: "Punctuation and Jumbled Words" }, { code: "E08", name: "Reading Comprehension" }, { code: "E09", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Patterns" }, { code: "R02", name: "Analogy and Classification" }, { code: "R03", name: "Alphabet Test" }, { code: "R04", name: "Coding-Decoding" }, { code: "R05", name: "Ranking Test" }, { code: "R06", name: "Grouping and Figure Matrix" }, { code: "R07", name: "Mirror Images and Geometrical Shapes" }, { code: "R08", name: "Days, Dates and Combinations" }]
     },
     4: {
-      maths: ["5-Digit & 6-Digit Numbers", "Factors & Multiples (HCF/LCM)", "Fractions & Decimals", "Perimeter & Area", "Angles & Lines", "Data Handling"],
-      science: ["Plant & Animal Adaptations", "Life Cycles & Reproduction", "Digestive & Excretory Systems", "Force, Work & Simple Machines", "States of Matter", "Soil Types"],
-      english: ["Subject-Verb Agreement", "Transitive/Intransitive Verbs", "Modal Auxiliaries", "Comparative/Superlative Adjectives", "Relative Pronouns", "Vocabulary & Idioms"],
-      reasoning: ["Coding-Decoding", "Mathematical Operations", "Number Matrix", "Direction Sense", "Venn Diagrams", "Paper Folding & Cutting"]
+      maths: [{ code: "M01", name: "Number Sense" }, { code: "M02", name: "Computation Operations" }, { code: "M03", name: "Fractions" }, { code: "M04", name: "Length, Weight and Capacity" }, { code: "M05", name: "Time and Money" }, { code: "M06", name: "Geometry" }, { code: "M07", name: "Perimeter and Area" }, { code: "M08", name: "Data Handling" }],
+      science: [{ code: "S01", name: "Plants" }, { code: "S02", name: "Animals" }, { code: "S03", name: "Food and Digestion" }, { code: "S04", name: "Human Needs" }, { code: "S05", name: "Matter and Materials" }, { code: "S06", name: "Force, Work and Energy" }, { code: "S07", name: "Our Environment" }, { code: "S08", name: "Earth and Universe" }],
+      english: [{ code: "E01", name: "Word Power" }, { code: "E02", name: "Synonyms and Antonyms" }, { code: "E03", name: "Nouns, Pronouns and Verbs" }, { code: "E04", name: "Adverbs and Adjectives" }, { code: "E05", name: "Articles and Prepositions" }, { code: "E06", name: "Conjunctions and Tenses" }, { code: "E07", name: "Punctuation and Jumbled Words" }, { code: "E08", name: "Reading Comprehension" }, { code: "E09", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Patterns" }, { code: "R02", name: "Alphabet Test" }, { code: "R03", name: "Coding-Decoding" }, { code: "R04", name: "Ranking Test" }, { code: "R05", name: "Mirror Images" }, { code: "R06", name: "Geometrical Shapes" }, { code: "R07", name: "Direction Sense" }, { code: "R08", name: "Analogy and Classification" }]
     },
     5: {
-      maths: ["Large Numbers & Roman Numerals", "Operations on Large Numbers", "Factors, Primes, LCM & HCF", "Fraction Operations & Decimals", "Percentage & Profit/Loss", "Geometry & Angles"],
-      science: ["Circulatory, Nervous & Skeletal Systems", "Germs, Diseases & Immunity", "Plant Reproduction & Seeds", "Natural Disasters", "Atmosphere", "Light & Shadows"],
-      english: ["Complex Tenses", "Active & Passive Voice", "Direct & Indirect Speech", "Correlative Conjunctions", "Conditionals (If-clauses)", "Advanced Vocabulary"],
-      reasoning: ["Blood Relations & Family Tree", "Seating Arrangement", "Direction & Distance", "Cube & Dice", "Figure Matrix", "Statement & Conclusion"]
+      maths: [{ code: "M01", name: "Number Sense" }, { code: "M02", name: "Computation Operations" }, { code: "M03", name: "Fractions and Decimals" }, { code: "M04", name: "Measurement" }, { code: "M05", name: "Angles" }, { code: "M06", name: "Perimeter, Area and Volume" }, { code: "M07", name: "Data Handling" }],
+      science: [{ code: "S01", name: "Animals" }, { code: "S02", name: "Plants" }, { code: "S03", name: "Human Body and Health" }, { code: "S04", name: "Water" }, { code: "S05", name: "Matter and Materials" }, { code: "S06", name: "Force, Work and Energy" }, { code: "S07", name: "Our Environment" }, { code: "S08", name: "Earth and Universe" }],
+      english: [{ code: "E01", name: "Word Power" }, { code: "E02", name: "Synonyms and Antonyms" }, { code: "E03", name: "Idioms and Phrases" }, { code: "E04", name: "Nouns, Pronouns and Verbs" }, { code: "E05", name: "Adverbs and Adjectives" }, { code: "E06", name: "Articles, Prepositions and Conjunctions" }, { code: "E07", name: "Tenses" }, { code: "E08", name: "Active/Passive and Direct/Indirect" }, { code: "E09", name: "Reading Comprehension" }, { code: "E10", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Patterns" }, { code: "R02", name: "Analogy and Classification" }, { code: "R03", name: "Geometrical Shapes" }, { code: "R04", name: "Mirror and Water Images" }, { code: "R05", name: "Direction Sense" }, { code: "R06", name: "Ranking Test and Alphabet Test" }, { code: "R07", name: "Logical Sequence and Puzzle Test" }, { code: "R08", name: "Coding-Decoding" }]
     },
     6: {
-      maths: ["Knowing Our Numbers & Integers", "Divisibility & Primes", "Basic Geometry & Polygons", "Fractions & Decimals", "Algebraic Expressions", "Ratio, Proportion & Unitary Method", "Mensuration"],
-      science: ["Food Components & Nutrients", "Separation of Substances", "Plants: Structure & Functions", "Body Movements & Joints", "Motion & Measurement", "Light & Electricity"],
-      english: ["Clauses & Phrases", "Gerunds & Infinitives", "Modal Verbs", "Tenses Mastery", "Reported Speech", "Phrasal Verbs & Advanced Idioms"],
-      reasoning: ["Analytical Reasoning & Grids", "Mathematical Operations", "Clock & Calendar", "Blood Relations", "Venn Diagrams & Syllogisms", "Non-Verbal Series"]
+      maths: [{ code: "M01", name: "Knowing our Numbers" }, { code: "M02", name: "Whole Numbers" }, { code: "M03", name: "Playing with Numbers" }, { code: "M04", name: "Basic Geometrical Ideas" }, { code: "M05", name: "Understanding Elementary Shapes" }, { code: "M06", name: "Integers" }, { code: "M07", name: "Fractions" }, { code: "M08", name: "Decimals" }, { code: "M09", name: "Data Handling" }, { code: "M10", name: "Mensuration" }, { code: "M11", name: "Algebra" }, { code: "M12", name: "Ratio and Proportion" }, { code: "M13", name: "Symmetry" }, { code: "M14", name: "Practical Geometry" }],
+      science: [{ code: "S01", name: "Food and Its Components" }, { code: "S02", name: "Sorting Materials" }, { code: "S03", name: "Separation of Substances" }, { code: "S04", name: "Getting to Know Plants" }, { code: "S05", name: "Body Movements" }, { code: "S06", name: "Living Organisms and Surroundings" }, { code: "S07", name: "Motion and Measurement" }, { code: "S08", name: "Light, Shadows and Reflections" }, { code: "S09", name: "Electricity and Circuits" }, { code: "S10", name: "Fun with Magnets" }, { code: "S11", name: "Air and Water" }],
+      english: [{ code: "E01", name: "Synonyms, Antonyms, Analogies" }, { code: "E02", name: "One Word Substitutions" }, { code: "E03", name: "Idioms and Phrases" }, { code: "E04", name: "Parts of Speech" }, { code: "E05", name: "Articles and Tenses" }, { code: "E06", name: "Active/Passive and Direct/Indirect" }, { code: "E07", name: "Punctuation" }, { code: "E08", name: "Reading Comprehension" }, { code: "E09", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Series Completion" }, { code: "R02", name: "Analogy and Classification" }, { code: "R03", name: "Coding-Decoding" }, { code: "R04", name: "Blood Relations" }, { code: "R05", name: "Direction Sense Test" }, { code: "R06", name: "Logical Venn Diagrams" }, { code: "R07", name: "Mirror/Water Images and Paper Folding" }, { code: "R08", name: "Figure Matrix and Cubes/Dice" }]
     },
     7: {
-      maths: ["Integers & Properties", "Fractions, Decimals & Rational Numbers", "Simple Equations", "Lines, Angles & Triangles", "Comparing Quantities (Percentage, SI, Profit/Loss)", "Exponents & Powers", "Perimeter & Area"],
-      science: ["Nutrition in Plants & Animals", "Heat & Heat Transfer", "Acids, Bases & Salts", "Physical & Chemical Changes", "Respiration in Organisms", "Motion & Time", "Electric Current & Magnets"],
-      english: ["Complex Sentences", "Active & Passive Transformations", "Direct/Indirect Speech", "Preposition Collocations", "Sentence Correction", "Advanced Vocabulary"],
-      reasoning: ["Coded Inequalities", "Sequential Puzzles", "Coded Blood Relations", "Direction Sense with Angles", "Cause & Effect", "Non-Verbal Transformations"]
+      maths: [{ code: "M01", name: "Integers" }, { code: "M02", name: "Fractions and Decimals" }, { code: "M03", name: "Data Handling" }, { code: "M04", name: "Simple Equations" }, { code: "M05", name: "Lines and Angles" }, { code: "M06", name: "The Triangle and its Properties" }, { code: "M07", name: "Congruence of Triangles" }, { code: "M08", name: "Comparing Quantities" }, { code: "M09", name: "Rational Numbers" }, { code: "M10", name: "Practical Geometry" }, { code: "M11", name: "Perimeter and Area" }, { code: "M12", name: "Algebraic Expressions" }, { code: "M13", name: "Exponents and Powers" }, { code: "M14", name: "Symmetry" }, { code: "M15", name: "Visualising Solid Shapes" }],
+      science: [{ code: "S01", name: "Nutrition in Plants and Animals" }, { code: "S02", name: "Heat" }, { code: "S03", name: "Acids, Bases and Salts" }, { code: "S04", name: "Physical and Chemical Changes" }, { code: "S05", name: "Respiration in Organisms" }, { code: "S06", name: "Transportation in Plants and Animals" }, { code: "S07", name: "Reproduction in Plants" }, { code: "S08", name: "Motion and Time" }, { code: "S09", name: "Electric Current and its Effects" }, { code: "S10", name: "Light" }, { code: "S11", name: "Forests and Wastewater Story" }],
+      english: [{ code: "E01", name: "Synonyms, Antonyms, Analogies" }, { code: "E02", name: "Spellings and One Word Substitutions" }, { code: "E03", name: "Idioms and Phrases" }, { code: "E04", name: "Parts of Speech" }, { code: "E05", name: "Articles and Tenses" }, { code: "E06", name: "Active/Passive and Direct/Indirect" }, { code: "E07", name: "Punctuation" }, { code: "E08", name: "Reading Comprehension" }, { code: "E09", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Series Completion" }, { code: "R02", name: "Analogy and Classification" }, { code: "R03", name: "Coding-Decoding" }, { code: "R04", name: "Blood Relations" }, { code: "R05", name: "Direction Sense Test" }, { code: "R06", name: "Logical Venn Diagrams" }, { code: "R07", name: "Mirror/Water Images and Paper Folding" }, { code: "R08", name: "Cubes, Dice and Figure Matrix" }]
     },
     8: {
-      maths: ["Rational Numbers", "Linear Equations in One Variable", "Understanding Quadrilaterals", "Square & Cube Roots", "Comparing Quantities (Compound Interest)", "Algebraic Expressions & Identities", "Mensuration & Volume", "Exponents"],
-      science: ["Microorganisms", "Coal & Petroleum", "Conservation of Plants & Animals", "Reproduction & Endocrine System", "Force, Pressure & Friction", "Sound (Frequency, Pitch)", "Light (Reflection, Refraction)"],
-      english: ["Subject-Verb Concord", "Verbals (Participles, Gerunds)", "Complex Speech", "Sentence Transformation", "Determiners & Quantifiers", "Etymology & Advanced Idioms"],
-      reasoning: ["Advanced Coding-Decoding", "Floor & Parameter Puzzles", "Syllogisms", "Input-Output Steps", "Data Sufficiency", "Cube Folding"]
+      maths: [{ code: "M01", name: "Rational Numbers" }, { code: "M02", name: "Linear Equations in One Variable" }, { code: "M03", name: "Understanding Quadrilaterals" }, { code: "M04", name: "Practical Geometry" }, { code: "M05", name: "Data Handling" }, { code: "M06", name: "Squares and Square Roots" }, { code: "M07", name: "Cubes and Cube Roots" }, { code: "M08", name: "Comparing Quantities" }, { code: "M09", name: "Algebraic Expressions and Identities" }, { code: "M10", name: "Visualising Solid Shapes" }, { code: "M11", name: "Mensuration" }, { code: "M12", name: "Exponents and Powers" }, { code: "M13", name: "Direct and Inverse Proportions" }, { code: "M14", name: "Factorisation" }, { code: "M15", name: "Intro to Graphs and Playing with Numbers" }],
+      science: [{ code: "S01", name: "Crop Production and Management" }, { code: "S02", name: "Microorganisms" }, { code: "S03", name: "Synthetic Fibres and Plastics" }, { code: "S04", name: "Materials: Metals and Non-Metals" }, { code: "S05", name: "Coal and Petroleum" }, { code: "S06", name: "Combustion and Flame" }, { code: "S07", name: "Conservation of Plants and Animals" }, { code: "S08", name: "Cell Structure and Functions" }, { code: "S09", name: "Reproduction and Adolescence" }, { code: "S10", name: "Force, Pressure and Friction" }, { code: "S11", name: "Sound" }, { code: "S12", name: "Chemical Effects of Electric Current" }, { code: "S13", name: "Some Natural Phenomena" }, { code: "S14", name: "Light" }, { code: "S15", name: "Stars and Solar System" }, { code: "S16", name: "Pollution of Air and Water" }],
+      english: [{ code: "E01", name: "Synonyms, Antonyms, Analogies" }, { code: "E02", name: "Spellings and One Word Substitutions" }, { code: "E03", name: "Idioms and Phrases" }, { code: "E04", name: "Parts of Speech" }, { code: "E05", name: "Articles and Tenses" }, { code: "E06", name: "Active/Passive and Direct/Indirect" }, { code: "E07", name: "Punctuation" }, { code: "E08", name: "Reading Comprehension" }, { code: "E09", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Series Completion" }, { code: "R02", name: "Analogy and Classification" }, { code: "R03", name: "Coding-Decoding" }, { code: "R04", name: "Blood Relations" }, { code: "R05", name: "Direction Sense Test" }, { code: "R06", name: "Logical Venn Diagrams" }, { code: "R07", name: "Alphabet and Ranking Test" }, { code: "R08", name: "Mirror/Water Images and Figure Matrix" }]
     },
     9: {
-      maths: ["Number Systems & Real Numbers", "Polynomials & Remainder Theorem", "Coordinate Geometry & Linear Equations", "Lines, Angles & Triangles", "Quadrilaterals & Circles", "Heron's Formula & Surface Areas", "Probability"],
-      science: ["Matter in Our Surroundings", "Atoms & Molecules", "Cell Organelles", "Tissues", "Motion (Equations & Graphs)", "Newton's Laws of Motion", "Gravitation & Floatation", "Work, Energy & Power"],
-      english: ["Advanced Grammar & Error Spotting", "Parallelism", "Conditionals & Subjunctive", "Nuanced Vocabulary", "Tone & Register", "Connectors & Discourse Markers"],
-      reasoning: ["Critical Reasoning", "Matrix & Circular Arrangements", "Mathematical Inequalities", "Venn Logic", "Cube Painting & Cuts", "Spatial Visualisation"]
+      maths: [{ code: "M01", name: "Number Systems" }, { code: "M02", name: "Polynomials" }, { code: "M03", name: "Coordinate Geometry" }, { code: "M04", name: "Linear Equations in Two Variables" }, { code: "M05", name: "Introduction to Euclid's Geometry" }, { code: "M06", name: "Lines and Angles" }, { code: "M07", name: "Triangles" }, { code: "M08", name: "Quadrilaterals" }, { code: "M09", name: "Areas of Parallelograms and Triangles" }, { code: "M10", name: "Circles" }, { code: "M11", name: "Constructions" }, { code: "M12", name: "Heron's Formula" }, { code: "M13", name: "Surface Areas and Volumes" }, { code: "M14", name: "Statistics" }, { code: "M15", name: "Probability" }],
+      science: [{ code: "S01", name: "Matter in Our Surroundings" }, { code: "S02", name: "Is Matter Around Us Pure" }, { code: "S03", name: "Atoms and Molecules" }, { code: "S04", name: "Structure of the Atom" }, { code: "S05", name: "The Fundamental Unit of Life" }, { code: "S06", name: "Tissues" }, { code: "S07", name: "Diversity in Living Organisms" }, { code: "S08", name: "Motion" }, { code: "S09", name: "Force and Laws of Motion" }, { code: "S10", name: "Gravitation" }, { code: "S11", name: "Work and Energy" }, { code: "S12", name: "Sound" }, { code: "S13", name: "Why Do We Fall Ill" }, { code: "S14", name: "Natural Resources" }, { code: "S15", name: "Improvement in Food Resources" }],
+      english: [{ code: "E01", name: "Synonyms, Antonyms, Analogies" }, { code: "E02", name: "Spellings and One Word Substitutions" }, { code: "E03", name: "Idioms and Phrases" }, { code: "E04", name: "Parts of Speech" }, { code: "E05", name: "Articles and Tenses" }, { code: "E06", name: "Active/Passive and Direct/Indirect" }, { code: "E07", name: "Clauses" }, { code: "E08", name: "Reading Comprehension" }, { code: "E09", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Series Completion" }, { code: "R02", name: "Analogy and Classification" }, { code: "R03", name: "Coding-Decoding" }, { code: "R04", name: "Blood Relations" }, { code: "R05", name: "Direction Sense Test" }, { code: "R06", name: "Logical Venn Diagrams" }, { code: "R07", name: "Alphabet and Ranking Test" }, { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }]
     },
     10: {
-      maths: ["Real Numbers", "Polynomials", "Pair of Linear Equations", "Quadratic Equations", "Arithmetic Progressions (AP)", "Triangles & Similarity", "Coordinate Geometry", "Trigonometry", "Circles & Tangents", "Surface Areas & Volumes", "Statistics & Probability"],
-      science: ["Chemical Reactions & Equations", "Acids, Bases & Salts", "Metals & Non-metals", "Carbon Compounds", "Life Processes", "Control & Coordination", "Reproduction & Heredity", "Light (Reflection & Refraction)", "Electricity (Ohm's Law)", "Magnetic Effects"],
-      english: ["Advanced Syntax Transformation", "Phrasal Verbs & Idioms", "Grammatical Concord", "Complex Punctuation", "Lexical Precision", "High-Level Verbal Aptitude"],
-      reasoning: ["Logical Deduction & Truth-Tellers", "Advanced Seating & Scheduling", "Cause & Effect", "Decision Making", "Complex Directions", "Non-Verbal Grouping"]
+      maths: [{ code: "M01", name: "Real Numbers" }, { code: "M02", name: "Polynomials" }, { code: "M03", name: "Pair of Linear Equations in Two Variables" }, { code: "M04", name: "Quadratic Equations" }, { code: "M05", name: "Arithmetic Progressions" }, { code: "M06", name: "Triangles" }, { code: "M07", name: "Coordinate Geometry" }, { code: "M08", name: "Introduction to Trigonometry" }, { code: "M09", name: "Some Applications of Trigonometry" }, { code: "M10", name: "Circles" }, { code: "M11", name: "Constructions" }, { code: "M12", name: "Areas Related to Circles" }, { code: "M13", name: "Surface Areas and Volumes" }, { code: "M14", name: "Statistics" }, { code: "M15", name: "Probability" }],
+      science: [{ code: "S01", name: "Chemical Reactions and Equations" }, { code: "S02", name: "Acids, Bases and Salts" }, { code: "S03", name: "Metals and Non-Metals" }, { code: "S04", name: "Carbon and Its Compounds" }, { code: "S05", name: "Periodic Classification of Elements" }, { code: "S06", name: "Life Processes" }, { code: "S07", name: "Control and Coordination" }, { code: "S08", name: "How Do Organisms Reproduce" }, { code: "S09", name: "Heredity and Evolution" }, { code: "S10", name: "Light - Reflection and Refraction" }, { code: "S11", name: "Human Eye and Colourful World" }, { code: "S12", name: "Electricity" }, { code: "S13", name: "Magnetic Effects of Electric Current" }, { code: "S14", name: "Sources of Energy" }, { code: "S15", name: "Our Environment" }, { code: "S16", name: "Management of Natural Resources" }],
+      english: [{ code: "E01", name: "Synonyms, Antonyms, Analogies" }, { code: "E02", name: "Spellings and One Word Substitutions" }, { code: "E03", name: "Idioms and Phrases" }, { code: "E04", name: "Parts of Speech" }, { code: "E05", name: "Articles and Tenses" }, { code: "E06", name: "Active/Passive and Direct/Indirect" }, { code: "E07", name: "Clauses" }, { code: "E08", name: "Reading Comprehension" }, { code: "E09", name: "Spoken and Written Expression" }],
+      reasoning: [{ code: "R01", name: "Series Completion" }, { code: "R02", name: "Analogy and Classification" }, { code: "R03", name: "Coding-Decoding" }, { code: "R04", name: "Blood Relations" }, { code: "R05", name: "Direction Sense Test" }, { code: "R06", name: "Logical Venn Diagrams" }, { code: "R07", name: "Alphabet and Ranking Test" }, { code: "R08", name: "Mirror/Water Images and Cubes/Dice" }]
     }
   };
+
+  /**
+   * Builds a per-topic question-count breakdown. `topics` is {code, name}[].
+   * Stating the exact per-topic quota in the prompt (rather than a vague
+   * "distribute evenly") is what actually gets every topic covered instead
+   * of the model clustering on a handful of them.
+   */
+  function buildTopicPlan(topics, count) {
+    const n = topics.length;
+    const base = Math.floor(count / n);
+    const remainder = count % n;
+    return topics.map((t, idx) => ({ code: t.code, name: t.name, qty: base + (idx < remainder ? 1 : 0) }));
+  }
 
   let generatedDataStore = []; // Array of { classNum, subject, regularQuestions, achieverQuestions }
 
@@ -412,6 +430,18 @@
       }
     }
 
+    // Shuffle option order so the correct answer's position is genuinely
+    // random - LLMs have a strong bias toward placing the correct option at
+    // a particular index, which would let students learn to guess by
+    // pattern instead of solving. Enforced here in code, not left to the
+    // prompt alone.
+    const correctOptionText = o[a];
+    for (let i = o.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [o[i], o[j]] = [o[j], o[i]];
+    }
+    a = o.indexOf(correctOptionText);
+
     // SVG inline image support
     const svgData = String(item.svg_data || "").trim();
     const imageName = svgData ? `svg_inline_${padIdx}` : String(item.image_name || "").trim();
@@ -436,29 +466,33 @@
   }
 
   /**
-   * Generate 40 Regular Questions (1 mark each, MINIMUM 30 words, 30% numerical, SVG where needed)
+   * Generate 40 Regular Questions (1 mark each).
+   * Word count: Class 1-5 => 30 words min, Class 6-10 => 40 words min.
+   * 30% numerical, SVG where the topic needs one, every topic covered.
    */
   async function generateRegularPart({ openAIKey, geminiKey, classNum, subject, count = 40, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
-    const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || ["General Curriculum"];
+    const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || [{ code: (subMeta.codePrefix || "Q") + "01", name: "General Curriculum" }];
+    const plan = buildTopicPlan(topics, count);
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+    const minWords = classNum <= 5 ? 30 : 40;
     const numericalMin = Math.ceil(count * 0.30);
 
     const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
 Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
 
-CURRICULUM TOPICS TO COVER:
-${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
+TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
+${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
 STRICT STANDARDS (MUST BE FOLLOWED):
 1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}. Focus on conceptual clarity, arithmetic fluency, and accurate application.
-2. Question Length: MINIMUM 30 words per question. Use clear, precise language. Include context and specific values. Do NOT write short 1-line questions.
+2. Question Length: MINIMUM ${minWords} words per question. Use clear, precise language. Include context and specific values. Do NOT write short 1-line questions.
 3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual computation, calculation, or number-work (not just definitions or identification).
-4. SVG Images: For questions involving shapes, geometry diagrams, number lines, bar graphs, clocks, patterns, grids, or figures — include an SVG drawing in the 'svg_data' field. Leave 'svg_data' as empty string if no image is needed.
-5. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
-6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
-7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½, ¾) — never LaTeX.
-8. Distribute questions evenly across all listed topics.
+4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
+5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, bar graphs, clocks, patterns, grids, or figures — include a clear labelled SVG in the 'svg_data' field for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
+6. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
+7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position. 'a' must be 0, 1, 2, or 3 (0-indexed).
+8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
 
 SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanation):
 [
@@ -466,13 +500,13 @@ SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanat
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum 30-word question text with full context and specific numbers",
+    "q": "Minimum ${minWords}-word question text with full context and specific numbers",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
     "o": ["Option A", "Option B", "Option C", "Option D"],
     "a": 0,
-    "topic": "${subMeta.codePrefix}01",
+    "topic": "${plan[0].code}",
     "hint": "Pedagogical clue pointing to the key concept",
     "sol": "Step-by-step solution with working",
     "sub_type": "SCQ"
@@ -485,31 +519,34 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
   }
 
   /**
-   * Generate 10 Achievers HOTS Questions
-   * Class 1–5: min 35 words | Class 6–10: min 40 words | 30% numerical | SVG where needed
+   * Generate 10 Achievers HOTS Questions - ULTRA HIGH DIFFICULTY.
+   * Word count: Class 1-5 => 35 words min, Class 6-10 => 45 words min.
+   * 30% numerical, SVG where the topic needs one, every topic covered.
    */
   async function generateAchieverPart({ openAIKey, geminiKey, classNum, subject, count = 10, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
-    const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || ["General Curriculum"];
+    const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || [{ code: (subMeta.codePrefix || "Q") + "01", name: "General Curriculum" }];
+    const plan = buildTopicPlan(topics, count);
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-    const minWords = classNum <= 5 ? 35 : 40;
+    const minWords = classNum <= 5 ? 35 : 45;
     const numericalMin = Math.ceil(count * 0.30);
 
     const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
 Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
+These are ULTRA HIGH DIFFICULTY questions - the hardest section of the paper, reserved for top-ranking students only.
 
-CURRICULUM TOPICS TO COVER:
-${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
+TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
+${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
 STRICT STANDARDS (MUST BE FOLLOWED):
-1. Hardship Level: High-difficulty Achievers/HOTS. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined concepts (e.g. ratio with perimeter, two-stage algebra, tricky exceptions, advanced analogies).
+1. Difficulty Level: ULTRA HIGH DIFFICULTY Achievers/HOTS - noticeably harder than the regular section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined/cross-topic concepts (e.g. ratio with perimeter, two-stage algebra, tricky exceptions, advanced analogies). A question that could appear in the Regular section is NOT acceptable here.
 2. Question Length: MINIMUM ${minWords} words per question. Use detailed, scenario-based problem statements. Include all necessary context, numbers, and conditions.
 3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual multi-step computation or calculation.
-4. SVG Images: For questions involving shapes, geometry diagrams, number lines, tables, graphs, patterns, figures, or grid problems — include an SVG drawing in the 'svg_data' field. Leave 'svg_data' as empty string if no image is needed.
-5. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
-6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
-7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½, ¾) — never LaTeX.
-8. Distribute questions across all listed topics.
+4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
+5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, tables, graphs, patterns, figures, or grid problems — include a clear labelled SVG in the 'svg_data' field for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
+6. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
+7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position. 'a' must be 0, 1, 2, or 3 (0-indexed).
+8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
 
 SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanation):
 [
@@ -523,7 +560,7 @@ SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanat
     "image_description": "",
     "o": ["Tricky Option A", "Tricky Option B", "Tricky Option C", "Tricky Option D"],
     "a": 0,
-    "topic": "${subMeta.codePrefix}01",
+    "topic": "${plan[0].code}",
     "hint": "Clue pointing to the tricky multi-step approach",
     "sol": "Detailed step-by-step mathematical/logical solution with all working shown",
     "sub_type": "SCQ"

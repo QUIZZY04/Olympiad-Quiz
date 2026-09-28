@@ -33,6 +33,28 @@ const OLYMPIAD_CODES = {
 };
 
 /**
+ * Builds a per-topic question-count breakdown. `topics` is the {code,
+ * name}[] list from syllabus.js (codes are canonical - M01, M02, ... M15 -
+ * copied from chapterwise.html's sofTopics, not recomputed here). Splitting
+ * `count` evenly across every listed topic and stating the exact per-topic
+ * quota in the prompt (rather than a vague "distribute evenly") is what
+ * actually gets every topic covered instead of the model clustering on a
+ * handful of them.
+ * @param {{code: string, name: string}[]} topics
+ * @returns {{code: string, name: string, qty: number}[]}
+ */
+function buildTopicPlan(topics, count) {
+  const n = topics.length;
+  const base = Math.floor(count / n);
+  const remainder = count % n;
+  return topics.map((t, idx) => ({
+    code: t.code,
+    name: t.name,
+    qty: base + (idx < remainder ? 1 : 0)
+  }));
+}
+
+/**
  * Clean and normalize a question object to ensure strict adherence to the schema
  */
 function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, index, isAchiever = false) {
@@ -73,6 +95,20 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
       a = 0;
     }
   }
+
+  // Shuffle option order so the correct answer's position is genuinely
+  // random - LLMs have a strong, well-documented bias toward placing the
+  // correct option at a particular index (often 0 or the position shown in
+  // the schema example), which would let students learn to guess by
+  // pattern instead of actually solving the question. This is enforced
+  // here in code rather than left to the prompt, since prompt instructions
+  // alone are not reliable enough for something students could exploit.
+  const correctOptionText = o[a];
+  for (let i = o.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [o[i], o[j]] = [o[j], o[i]];
+  }
+  a = o.indexOf(correctOptionText);
 
   // Topic Code
   const topic = String(qObj.topic || `${subPrefix}01`).trim().toUpperCase();
@@ -301,30 +337,34 @@ async function callAIRaw({ openAIKey, geminiKey, prompt }) {
 }
 
 /**
- * Generate 40 Regular Questions (1 mark each, min 30 words, 30% numerical, SVG where needed)
+ * Generate 40 Regular Questions (1 mark each).
+ * Word count: Class 1-5 => 30 words min, Class 6-10 => 40 words min.
+ * 30% numerical, SVG where the topic needs one, every topic covered.
  */
 async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 40, dateCompact = "" }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
+  const plan = buildTopicPlan(topics, count);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
+  const minWords = classNum <= 5 ? 30 : 40;
   const numericalMin = Math.ceil(count * 0.30);
 
   const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
 Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
 
-CURRICULUM TOPICS TO COVER:
-${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
+TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
+${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
 STRICT STANDARDS (MUST BE FOLLOWED):
 1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}.
-2. Question Length: MINIMUM 30 words per question. Include context and specific values. Do NOT write short 1-line questions.
+2. Question Length: MINIMUM ${minWords} words per question. Include context and specific values. Do NOT write short 1-line questions.
 3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual computation or calculation.
-4. SVG Images: For questions involving shapes, geometry diagrams, number lines, clocks, patterns, grids, or graphs — include SVG in 'svg_data'. Leave empty string if not needed.
-5. Options: Exactly 4 distinct options. Only ONE correct answer.
-6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
-7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½) — never LaTeX.
-8. Distribute questions evenly across all listed topics.
+4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
+5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, clocks, patterns, grids, or graphs — include a clear labelled SVG in 'svg_data' for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
+6. Options: Exactly 4 distinct options. Only ONE correct answer.
+7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position (e.g. always first). 'a' must be 0, 1, 2, or 3 (0-indexed).
+8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
 
 SCHEMA (return ONLY the JSON array — no markdown, no explanation):
 [
@@ -332,13 +372,13 @@ SCHEMA (return ONLY the JSON array — no markdown, no explanation):
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum 30-word question with full context and specific numbers",
+    "q": "Minimum ${minWords}-word question with full context and specific numbers",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
     "o": ["Option A", "Option B", "Option C", "Option D"],
     "a": 0,
-    "topic": "${subMeta.codePrefix}01",
+    "topic": "${plan[0].code}",
     "hint": "Pedagogical clue pointing to the key concept",
     "sol": "Step-by-step solution with working",
     "sub_type": "SCQ"
@@ -353,32 +393,35 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
 }
 
 /**
- * Generate 10 Achievers HOTS Questions
- * Class 1-5: min 35 words | Class 6-10: min 40 words | 30% numerical | SVG where needed
+ * Generate 10 Achievers HOTS Questions - ULTRA HIGH DIFFICULTY.
+ * Word count: Class 1-5 => 35 words min, Class 6-10 => 45 words min.
+ * 30% numerical, SVG where the topic needs one, every topic covered.
  */
 async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 10, dateCompact = "" }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
+  const plan = buildTopicPlan(topics, count);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-  const minWords = classNum <= 5 ? 35 : 40;
+  const minWords = classNum <= 5 ? 35 : 45;
   const numericalMin = Math.ceil(count * 0.30);
 
   const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
 Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
+These are ULTRA HIGH DIFFICULTY questions - the hardest section of the paper, reserved for top-ranking students only.
 
-CURRICULUM TOPICS TO COVER:
-${topics.map((t, idx) => `Topic ${subMeta.codePrefix}0${idx + 1}: ${t}`).join("\n")}
+TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
+${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
 STRICT STANDARDS (MUST BE FOLLOWED):
-1. Hardship Level: High-difficulty Achievers/HOTS. Every question must test multi-step logical deduction, complex word problems, non-routine cases, and combined concepts.
+1. Difficulty Level: ULTRA HIGH DIFFICULTY Achievers/HOTS - noticeably harder than the regular section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, and combined/cross-topic concepts. A question that could appear in the Regular section is NOT acceptable here.
 2. Question Length: MINIMUM ${minWords} words per question. Use detailed scenario-based problem statements with all context, numbers, and conditions specified.
 3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual multi-step computation or calculation.
-4. SVG Images: For questions involving shapes, geometry diagrams, number lines, tables, graphs, patterns, or grid problems — include SVG in 'svg_data'. Leave empty string if not needed.
-5. Options: Exactly 4 tricky distractor options. Only ONE unambiguously correct answer.
-6. Correct Answer: 'a' must be 0, 1, 2, or 3 (0-indexed).
-7. Symbols: Use clean Unicode (e.g. cm², ×, ÷, ², √, ₹, ½) — never LaTeX.
-8. Distribute questions across all listed topics.
+4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
+5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, tables, graphs, patterns, or grid problems — include a clear labelled SVG in 'svg_data' for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
+6. Options: Exactly 4 tricky distractor options. Only ONE unambiguously correct answer.
+7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position (e.g. always first). 'a' must be 0, 1, 2, or 3 (0-indexed).
+8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
 
 SCHEMA (return ONLY the JSON array — no markdown, no explanation):
 [
@@ -392,7 +435,7 @@ SCHEMA (return ONLY the JSON array — no markdown, no explanation):
     "image_description": "",
     "o": ["Tricky Option A", "Tricky Option B", "Tricky Option C", "Tricky Option D"],
     "a": 0,
-    "topic": "${subMeta.codePrefix}01",
+    "topic": "${plan[0].code}",
     "hint": "Clue pointing to the tricky multi-step approach",
     "sol": "Detailed step-by-step solution with all working shown",
     "sub_type": "SCQ"
