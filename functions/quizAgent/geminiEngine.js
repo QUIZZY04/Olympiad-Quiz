@@ -269,7 +269,8 @@ async function generateFullLiveQuizForClass({ apiKey, classNum, subject, dateCom
 }
 
 module.exports = {
-  GEMINI_MODEL,
+  GEMINI_MODELS,
+  GEMINI_MODEL: GEMINI_MODELS[0],
   OLYMPIAD_CODES,
   generateRegularQuestions,
   generateAchieverQuestions,
