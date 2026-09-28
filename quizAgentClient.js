@@ -244,19 +244,24 @@ Return ONLY the raw JSON array containing the ${count} question objects. No mark
       alert("Please enter a valid Gemini API Key.");
       return;
     }
-    localStorage.setItem("admin_gemini_api_key", key);
 
-    // Save to Firestore system_settings/ai_keys for Cloud Functions as well
+    // Remove any previous localStorage keys to ensure it is only in Firebase
+    try { localStorage.removeItem("admin_gemini_api_key"); } catch (e) {}
+
+    // Save exclusively to Firestore system_settings/ai_keys
     try {
-      if (window.firebaseSetDoc && window.firebaseDoc && window.firebaseDb) {
-        await window.firebaseSetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "ai_keys"), {
-          geminiApiKey: key,
-          updatedAt: window.firebaseServerTimestamp()
-        }, { merge: true });
+      if (!window.firebaseSetDoc || !window.firebaseDoc || !window.firebaseDb) {
+        throw new Error("Firebase is not initialized yet.");
       }
-      alert("✅ Gemini API Key saved locally and in Firestore!");
+      await window.firebaseSetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "ai_keys"), {
+        geminiApiKey: key,
+        updatedAt: window.firebaseServerTimestamp()
+      }, { merge: true });
+      alert("✅ Gemini API Key saved securely in Firebase!");
+      appendLog("Gemini API Key successfully updated in Firebase (system_settings/ai_keys).", "success");
     } catch (e) {
-      alert("✅ API Key saved locally (Firestore sync skipped: " + e.message + ")");
+      console.error("Failed to save API key in Firestore:", e);
+      alert("❌ Failed to save in Firebase: " + e.message);
     }
   };
 
@@ -267,18 +272,28 @@ Return ONLY the raw JSON array containing the ${count} question objects. No mark
   window.initQuizAgentPanel = async function () {
     const keyInput = document.getElementById("qaApiKey");
     const dateInput = document.getElementById("qaDate");
-    const savedKey = localStorage.getItem("admin_gemini_api_key");
-    if (savedKey && keyInput && !keyInput.value) {
-      keyInput.value = savedKey;
-    }
+
+    // Clear legacy localStorage key
+    try { localStorage.removeItem("admin_gemini_api_key"); } catch (e) {}
 
     if (dateInput && !dateInput.value) {
       dateInput.value = getNextMondayDateStr();
     }
 
-    // Read current rotation from Firestore
+    // Fetch key and rotation exclusively from Firestore
     try {
       if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
+        // 1. Fetch API Key from Firebase
+        const keySnap = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "ai_keys"));
+        if (keySnap.exists()) {
+          const keyData = keySnap.data();
+          if (keyData.geminiApiKey && keyInput) {
+            keyInput.value = keyData.geminiApiKey;
+            appendLog("Gemini API key loaded from Firebase.", "info");
+          }
+        }
+
+        // 2. Fetch Rotation state from Firebase
         const snap = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "live_quiz_rotation"));
         if (snap.exists()) {
           const data = snap.data();
@@ -294,14 +309,26 @@ Return ONLY the raw JSON array containing the ${count} question objects. No mark
         }
       }
     } catch (e) {
-      console.warn("Could not load rotation status:", e);
+      console.warn("Could not load settings from Firebase:", e);
     }
   };
 
   window.qaStartGeneration = async function (autoPublish = false) {
-    const apiKey = (document.getElementById("qaApiKey").value || "").trim();
+    let apiKey = (document.getElementById("qaApiKey").value || "").trim();
     if (!apiKey) {
-      alert("Please provide a Gemini API Key first.");
+      try {
+        if (window.firebaseGetDoc && window.firebaseDoc && window.firebaseDb) {
+          const keySnap = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, "system_settings", "ai_keys"));
+          if (keySnap.exists() && keySnap.data().geminiApiKey) {
+            apiKey = keySnap.data().geminiApiKey.trim();
+            document.getElementById("qaApiKey").value = apiKey;
+          }
+        }
+      } catch (e) {}
+    }
+
+    if (!apiKey) {
+      alert("Please enter and save your Gemini API Key in Firebase first.");
       document.getElementById("qaApiKey").focus();
       return;
     }
