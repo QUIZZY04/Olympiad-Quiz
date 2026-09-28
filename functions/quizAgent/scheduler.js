@@ -32,26 +32,35 @@ function getComingSundayDateStr() {
 }
 
 /**
- * Helper to fetch Gemini API Key
+ * Resolves both provider keys (env var override first, then the same
+ * system_settings/ai_keys Firestore doc the Admin Panel's quizAgentLive.js
+ * tool saves to) - so saving an OpenAI key there also switches the
+ * automated Monday cron job over to OpenAI, with zero extra configuration.
+ * OpenAI is preferred as the primary provider when both are available
+ * (higher/more predictable rate limits than Gemini's free tier).
  */
-async function resolveGeminiApiKey() {
-  if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY.trim()) {
-    return process.env.GEMINI_API_KEY.trim();
-  }
+async function resolveApiKeys() {
+  let openAIKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY.trim() ? process.env.OPENAI_API_KEY.trim() : null;
+  let geminiKey = process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY.trim() ? process.env.GEMINI_API_KEY.trim() : null;
+
+  if (openAIKey && geminiKey) return { openAIKey, geminiKey };
 
   try {
     const docSnap = await db.collection("system_settings").doc("ai_keys").get();
     if (docSnap.exists) {
       const data = docSnap.data();
-      if (data.geminiApiKey && data.geminiApiKey.trim()) {
-        return data.geminiApiKey.trim();
+      if (!openAIKey && data.openAIApiKey && data.openAIApiKey.trim()) {
+        openAIKey = data.openAIApiKey.trim();
+      }
+      if (!geminiKey && data.geminiApiKey && data.geminiApiKey.trim()) {
+        geminiKey = data.geminiApiKey.trim();
       }
     }
   } catch (err) {
-    console.warn("Could not read geminiApiKey from system_settings/ai_keys:", err.message);
+    console.warn("Could not read ai_keys from system_settings/ai_keys:", err.message);
   }
 
-  return null;
+  return { openAIKey, geminiKey };
 }
 
 /**
@@ -65,11 +74,16 @@ async function runMondayQuizPipeline({
   duration = 60,
   price = 99,
   priceAfterCoupon = 59,
-  apiKey = null
+  apiKey = null,
+  openAIApiKey = null
 }) {
-  const effectiveApiKey = apiKey || (await resolveGeminiApiKey());
-  if (!effectiveApiKey) {
-    throw new Error("Gemini API key is not configured. Please save it in the Admin Panel or Firestore.");
+  const resolved = await resolveApiKeys();
+  // apiKey (legacy param name) is treated as a Gemini key override, kept for
+  // backward compatibility with any existing manual caller.
+  const effectiveGeminiKey = apiKey || resolved.geminiKey;
+  const effectiveOpenAIKey = openAIApiKey || resolved.openAIKey;
+  if (!effectiveOpenAIKey && !effectiveGeminiKey) {
+    throw new Error("No AI API key is configured. Please save an OpenAI or Gemini key in the Admin Panel.");
   }
 
   // Determine current rotation subject if not provided
@@ -98,7 +112,8 @@ async function runMondayQuizPipeline({
     try {
       console.log(`[QUIZ AGENT] Generating Class ${classNum} (40 Regular + 10 Achievers)...`);
       const quiz = await generateFullLiveQuizForClass({
-        apiKey: effectiveApiKey,
+        openAIKey: effectiveOpenAIKey,
+        geminiKey: effectiveGeminiKey,
         classNum,
         subject,
         dateCompact
@@ -146,7 +161,8 @@ async function runMondayQuizPipeline({
     totalQuestions: uploadResult.totalQuestionsUploaded,
     sessionIds: uploadResult.createdSessions.map(s => s.id),
     timestamp: admin.firestore.FieldValue.serverTimestamp(),
-    triggeredBy: apiKey ? "manual_admin" : "scheduled_cron"
+    aiProviderPreferred: effectiveOpenAIKey ? "openai" : "gemini",
+    triggeredBy: (apiKey || openAIApiKey) ? "manual_admin" : "scheduled_cron"
   });
 
   return {
@@ -195,7 +211,7 @@ const generateMondayQuizManual = onCall(
       throw new HttpsError("permission-denied", "Only site administrators can trigger the quiz generator.");
     }
 
-    const { subject, classes, date, startTime, duration, price, priceAfterCoupon, apiKey } = request.data || {};
+    const { subject, classes, date, startTime, duration, price, priceAfterCoupon, apiKey, openAIApiKey } = request.data || {};
 
     try {
       const result = await runMondayQuizPipeline({
@@ -206,7 +222,8 @@ const generateMondayQuizManual = onCall(
         duration: duration || 60,
         price: price != null ? price : 99,
         priceAfterCoupon: priceAfterCoupon != null ? priceAfterCoupon : 59,
-        apiKey
+        apiKey,
+        openAIApiKey
       });
 
       return result;

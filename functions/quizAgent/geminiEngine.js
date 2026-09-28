@@ -14,6 +14,15 @@ const GEMINI_MODELS = [
   "gemini-2.0-flash-lite"
 ];
 
+// OpenAI is the primary provider when a key is available (higher rate limits,
+// more reliable than Gemini's free tier) - Gemini remains the fallback.
+// Mirrors quizAgentLive.js's client-side provider logic exactly, so the
+// automated Monday cron job behaves the same as a manual admin-panel run.
+const OPENAI_MODELS = [
+  "gpt-4o-mini",
+  "gpt-4o"
+];
+
 const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
 const OLYMPIAD_CODES = {
@@ -175,9 +184,126 @@ async function callGeminiRaw({ apiKey, prompt }) {
 }
 
 /**
+ * Call OpenAI API (gpt-4o-mini -> gpt-4o fallback) with the same JSON-array
+ * contract as callGeminiRaw. Much higher/more predictable rate limits than
+ * Gemini's free tier, which is why it's tried first when a key is available.
+ */
+async function callOpenAIRaw({ apiKey, prompt }) {
+  let lastError = null;
+
+  for (const model of OPENAI_MODELS) {
+    const maxRetries = 2;
+
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model,
+            messages: [
+              { role: "system", content: "You are an expert Olympiad question paper setter. Always respond with a valid JSON array only. No markdown, no explanation." },
+              { role: "user", content: prompt }
+            ],
+            temperature: 0.5,
+            max_tokens: 16000
+          })
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+
+          if (response.status === 401) {
+            throw new Error("OpenAI API key is invalid or expired. Please check your key at https://platform.openai.com/api-keys");
+          }
+
+          if (RETRYABLE_STATUS_CODES.includes(response.status) && attempt < maxRetries) {
+            let waitSec = (attempt + 1) * 3;
+            if (response.status === 429) {
+              try {
+                const errJson = JSON.parse(errorText);
+                const match = (errJson?.error?.message || "").match(/(\d+\.?\d*)\s*seconds?/i);
+                if (match) waitSec = Math.ceil(parseFloat(match[1])) + 1;
+              } catch (_) { /* ignore parse failure, use default backoff */ }
+            }
+            console.warn(`OpenAI ${model} returned HTTP ${response.status}. Retrying in ${waitSec}s (attempt ${attempt + 1}/${maxRetries})...`);
+            await new Promise(r => setTimeout(r, waitSec * 1000));
+            continue;
+          }
+
+          throw new Error(`OpenAI API error (${response.status}) on ${model}: ${errorText}`);
+        }
+
+        const result = await response.json();
+        const textOutput = result?.choices?.[0]?.message?.content;
+        if (!textOutput) throw new Error(`OpenAI (${model}) returned an empty response.`);
+
+        let cleaned = textOutput.trim();
+        if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+        else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+        if (!cleaned.startsWith("[")) {
+          const startIdx = cleaned.indexOf("[");
+          const endIdx = cleaned.lastIndexOf("]");
+          if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+            cleaned = cleaned.substring(startIdx, endIdx + 1);
+          }
+        }
+
+        const parsed = JSON.parse(cleaned);
+        if (!Array.isArray(parsed)) throw new Error(`OpenAI (${model}) output is not a JSON array.`);
+        return parsed;
+
+      } catch (err) {
+        lastError = err;
+        // Invalid/expired key is never worth retrying or falling back on model-by-model
+        if (err.message && (err.message.includes("invalid") || err.message.includes("401"))) throw err;
+
+        if (attempt < maxRetries && RETRYABLE_STATUS_CODES.some(code => err.message && err.message.includes(`(${code})`))) {
+          const waitSec = (attempt + 1) * 3;
+          console.warn(`OpenAI ${model} transient error. Retrying in ${waitSec}s...`);
+          await new Promise(r => setTimeout(r, waitSec * 1000));
+          continue;
+        }
+
+        break;
+      }
+    }
+
+    console.warn(`OpenAI ${model} unavailable or overloaded. Trying next fallback model...`);
+  }
+
+  throw lastError || new Error("All OpenAI model endpoints failed.");
+}
+
+/**
+ * Provider auto-select: OpenAI first if a key is available (skipped
+ * entirely, not retried, on an invalid-key error so a bad OpenAI key can't
+ * silently block generation when a working Gemini key is also configured),
+ * then Gemini as fallback.
+ */
+async function callAIRaw({ openAIKey, geminiKey, prompt }) {
+  if (openAIKey) {
+    try {
+      return await callOpenAIRaw({ apiKey: openAIKey, prompt });
+    } catch (err) {
+      if (err.message && (err.message.includes("invalid") || err.message.includes("401"))) throw err;
+      console.warn(`OpenAI generation failed: ${err.message}. Trying Gemini fallback...`);
+      if (!geminiKey) throw err;
+    }
+  }
+  if (geminiKey) {
+    return await callGeminiRaw({ apiKey: geminiKey, prompt });
+  }
+  throw new Error("No API key available - provide an OpenAI or Gemini API key.");
+}
+
+/**
  * Generate 40 Regular Questions (1 mark each, min 30 words, 30% numerical, SVG where needed)
  */
-async function generateRegularQuestions({ apiKey, classNum, subject, count = 40, dateCompact = "" }) {
+async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 40, dateCompact = "" }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
@@ -220,7 +346,7 @@ SCHEMA (return ONLY the JSON array — no markdown, no explanation):
 ]
 Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
-  const rawArray = await callGeminiRaw({ apiKey, prompt });
+  const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
   return rawArray.slice(0, count).map((q, idx) =>
     validateAndNormalizeQuestion(q, classNum, subject, dateCompact, idx, false)
   );
@@ -230,7 +356,7 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
  * Generate 10 Achievers HOTS Questions
  * Class 1-5: min 35 words | Class 6-10: min 40 words | 30% numerical | SVG where needed
  */
-async function generateAchieverQuestions({ apiKey, classNum, subject, count = 10, dateCompact = "" }) {
+async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 10, dateCompact = "" }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
@@ -274,7 +400,7 @@ SCHEMA (return ONLY the JSON array — no markdown, no explanation):
 ]
 Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
 
-  const rawArray = await callGeminiRaw({ apiKey, prompt });
+  const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
   return rawArray.slice(0, count).map((q, idx) =>
     validateAndNormalizeQuestion(q, classNum, subject, dateCompact, idx, true)
   );
@@ -284,24 +410,30 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
  * Generate full 50-Question Live Quiz for a Class:
  * 40 Regular (1 Mark) + 10 Achievers (2 Marks) = 50 Questions (60 Marks total)
  */
-async function generateFullLiveQuizForClass({ apiKey, classNum, subject, dateCompact = "" }) {
-  if (!apiKey) throw new Error("Gemini API key is required.");
+async function generateFullLiveQuizForClass({ apiKey, openAIKey, geminiKey, classNum, subject, dateCompact = "" }) {
+  const effectiveGeminiKey = geminiKey || apiKey;
+  if (!openAIKey && !effectiveGeminiKey) {
+    throw new Error("An OpenAI or Gemini API key is required.");
+  }
 
   // Generate 40 Regular Questions
   const regularQuestions = await generateRegularQuestions({
-    apiKey,
+    openAIKey,
+    geminiKey: effectiveGeminiKey,
     classNum,
     subject,
     count: 40,
     dateCompact
   });
 
-  // Pacing pause (1.5s) to stay within Gemini Free Tier RPM
+  // Pacing pause (1.5s) - mainly relevant to Gemini Free Tier RPM; harmless
+  // when running on OpenAI, which has far more headroom.
   await new Promise(r => setTimeout(r, 1500));
 
   // Generate 10 Achievers Questions (HOTS)
   const achieverQuestions = await generateAchieverQuestions({
-    apiKey,
+    openAIKey,
+    geminiKey: effectiveGeminiKey,
     classNum,
     subject,
     count: 10,
@@ -320,6 +452,7 @@ async function generateFullLiveQuizForClass({ apiKey, classNum, subject, dateCom
 module.exports = {
   GEMINI_MODELS,
   GEMINI_MODEL: GEMINI_MODELS[0],
+  OPENAI_MODELS,
   OLYMPIAD_CODES,
   generateRegularQuestions,
   generateAchieverQuestions,
