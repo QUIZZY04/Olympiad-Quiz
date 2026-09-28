@@ -125,15 +125,17 @@
     if (lbl) lbl.innerText = label;
   }
 
+  // Current Gemini models (September 2026)
+  // gemini-2.0-flash was shut down June 2026; Google remaps it to gemini-3.8-flash
   const GEMINI_MODELS = [
-    "gemini-2.0-flash",
-    "gemini-1.5-flash",
-    "gemini-2.0-flash-lite"
+    "gemini-3.5-flash-lite",   // Highest free quota, fastest
+    "gemini-3.8-flash",        // Flagship, lower daily free quota
+    "gemini-3.5-flash"         // Mid-tier fallback
   ];
 
   const RETRYABLE_STATUS_CODES = [429, 500, 502, 503, 504];
 
-  const GEMINI_MODEL_VERSION = "v6";
+  const GEMINI_MODEL_VERSION = "v7";
 
   /**
    * Call Gemini Flash API with smart fallback:
