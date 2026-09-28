@@ -290,13 +290,45 @@ Return ONLY the raw JSON array containing exactly ${count} question objects.`;
 
   // --- PUBLIC CONTROLLER EXPORTS ---
 
+  window.qaTestApiKey = async function () {
+    let key = (document.getElementById("qaApiKey").value || "").trim().replace(/^["']|["']$/g, "");
+    if (!key) {
+      alert("Please enter an API key to test.");
+      return;
+    }
+
+    if (!key.startsWith("AIzaSy")) {
+      alert("⚠️ Note: Standard Gemini API keys start with 'AIzaSy' and are 39 characters long.\nYou entered: " + key + "\nPlease check your Google AI Studio dashboard.");
+    }
+
+    appendLog("Testing Gemini API Key with Google...", "info");
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents: [{ parts: [{ text: "Hello" }] }] })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err?.error?.message || ("HTTP " + res.status));
+      }
+      alert("✅ SUCCESS!\n\nYour Gemini API Key is 100% valid, active, and connected to Google Gemini Flash!");
+      appendLog("✅ Gemini API Key test PASSED! Ready for live quiz generation.", "success");
+    } catch (e) {
+      alert("❌ API Key Test Failed:\n\n" + e.message + "\n\nTip: Go to https://aistudio.google.com/app/apikey, click Copy on your key (starts with 'AIzaSy...'), and paste it here.");
+      appendLog("❌ API Key Test Failed: " + e.message, "error");
+    }
+  };
+
   window.qaSaveApiKey = async function () {
     const input = document.getElementById("qaApiKey");
-    const key = (input.value || "").trim();
+    let key = (input.value || "").trim().replace(/^["']|["']$/g, "");
     if (!key) {
       alert("Please enter a valid Gemini API Key.");
       return;
     }
+    input.value = key;
 
     try { localStorage.removeItem("admin_gemini_api_key"); } catch (e) {}
 
