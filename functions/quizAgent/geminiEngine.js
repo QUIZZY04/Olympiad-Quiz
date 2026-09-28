@@ -8,7 +8,7 @@
 
 const { getTopicsForClass, SUBJECT_DETAILS } = require("./syllabus");
 
-const GEMINI_MODEL = "gemini-2.0-flash";
+const GEMINI_MODELS = ["gemini-3.8-flash", "gemini-2.5-flash", "gemini-1.5-flash"];
 
 const OLYMPIAD_CODES = {
   maths: "IMO (Maths)",
@@ -84,42 +84,59 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
 }
 
 /**
- * Call Gemini Flash API with structured JSON output
+ * Call Gemini Flash API with structured JSON output and automatic fallback
  */
 async function callGeminiRaw({ apiKey, prompt }) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
+  let lastError = null;
+  for (const model of GEMINI_MODELS) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-  const requestBody = {
-    contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: {
-      temperature: 0.35,
-      topP: 0.95,
-      responseMimeType: "application/json"
+      const requestBody = {
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.35,
+          topP: 0.95,
+          responseMimeType: "application/json"
+        }
+      };
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody)
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        if (response.status === 404) {
+          console.warn(`Model ${model} returned 404, falling back to next model...`);
+          lastError = new Error(`Gemini API error (${response.status}): ${errorText}`);
+          continue;
+        }
+        throw new Error(`Gemini API error (${response.status}): ${errorText}`);
+      }
+
+      const result = await response.json();
+      const textOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!textOutput) throw new Error("Gemini returned an empty response.");
+
+      let cleaned = textOutput.trim();
+      if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+      else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+
+      const parsed = JSON.parse(cleaned);
+      if (!Array.isArray(parsed)) throw new Error("Gemini output is not a JSON array.");
+      return parsed;
+    } catch (err) {
+      if (err.message && err.message.includes("404")) {
+        lastError = err;
+        continue;
+      }
+      throw err;
     }
-  };
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(requestBody)
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Gemini API error (${response.status}): ${errorText}`);
   }
-
-  const result = await response.json();
-  const textOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!textOutput) throw new Error("Gemini returned an empty response.");
-
-  let cleaned = textOutput.trim();
-  if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
-  else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
-
-  const parsed = JSON.parse(cleaned);
-  if (!Array.isArray(parsed)) throw new Error("Gemini output is not a JSON array.");
-  return parsed;
+  throw lastError || new Error("All Gemini model endpoints failed.");
 }
 
 /**

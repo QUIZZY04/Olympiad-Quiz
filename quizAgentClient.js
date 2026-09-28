@@ -125,41 +125,60 @@
     if (lbl) lbl.innerText = label;
   }
 
+  const GEMINI_MODELS = ["gemini-3.8-flash", "gemini-2.5-flash", "gemini-1.5-flash"];
+
   /**
-   * Call Gemini Flash API with structured JSON output
+   * Call Gemini Flash API with structured JSON output and automatic fallback
    */
   async function callGeminiRaw({ apiKey, prompt }) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    let lastError = null;
+    for (const model of GEMINI_MODELS) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.35,
-          topP: 0.95,
-          responseMimeType: "application/json"
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.35,
+              topP: 0.95,
+              responseMimeType: "application/json"
+            }
+          })
+        });
+
+        if (!res.ok) {
+          const errText = await res.text();
+          if (res.status === 404) {
+            console.warn(`Model ${model} returned 404, falling back to next model...`);
+            lastError = new Error(`Gemini HTTP 404 (${model}): ${errText}`);
+            continue;
+          }
+          throw new Error(`Gemini HTTP ${res.status}: ${errText}`);
         }
-      })
-    });
 
-    if (!res.ok) {
-      const errText = await res.text();
-      throw new Error(`Gemini HTTP ${res.status}: ${errText}`);
+        const json = await res.json();
+        const rawText = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!rawText) throw new Error("Gemini returned empty response.");
+
+        let cleaned = rawText.trim();
+        if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+        else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
+
+        const parsed = JSON.parse(cleaned);
+        if (!Array.isArray(parsed)) throw new Error("Response is not a JSON array.");
+        return parsed;
+      } catch (err) {
+        if (err.message && err.message.includes("404")) {
+          lastError = err;
+          continue;
+        }
+        throw err;
+      }
     }
-
-    const json = await res.json();
-    const rawText = json?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!rawText) throw new Error("Gemini returned empty response.");
-
-    let cleaned = rawText.trim();
-    if (cleaned.startsWith("```json")) cleaned = cleaned.replace(/^```json\s*/, "").replace(/\s*```$/, "");
-    else if (cleaned.startsWith("```")) cleaned = cleaned.replace(/^```\s*/, "").replace(/\s*```$/, "");
-
-    const parsed = JSON.parse(cleaned);
-    if (!Array.isArray(parsed)) throw new Error("Response is not a JSON array.");
-    return parsed;
+    throw lastError || new Error("All Gemini model endpoints failed.");
   }
 
   function normalizeQuestion(item, classNum, subject, dateCompact, idx, isAchiever = false) {
@@ -303,18 +322,28 @@ Return ONLY the raw JSON array containing exactly ${count} question objects.`;
 
     appendLog("Testing Gemini API Key with Google...", "info");
     try {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contents: [{ parts: [{ text: "Hello" }] }] })
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err?.error?.message || ("HTTP " + res.status));
+      let passed = false;
+      let lastErrText = "";
+      for (const model of GEMINI_MODELS) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ parts: [{ text: "Hello" }] }] })
+        });
+        if (res.ok) {
+          passed = true;
+          alert(`✅ SUCCESS!\n\nYour Gemini API Key is 100% valid, active, and connected to ${model}!`);
+          appendLog(`✅ Gemini API Key test PASSED with model ${model}! Ready for live quiz generation.`, "success");
+          break;
+        } else {
+          const err = await res.json();
+          lastErrText = err?.error?.message || ("HTTP " + res.status);
+          if (res.status === 404) continue;
+          throw new Error(lastErrText);
+        }
       }
-      alert("✅ SUCCESS!\n\nYour Gemini API Key is 100% valid, active, and connected to Google Gemini Flash!");
-      appendLog("✅ Gemini API Key test PASSED! Ready for live quiz generation.", "success");
+      if (!passed) throw new Error(lastErrText || "Model unavailable.");
     } catch (e) {
       alert("❌ API Key Test Failed:\n\n" + e.message + "\n\nTip: Go to https://aistudio.google.com/app/apikey, click Copy on your key (starts with 'AIzaSy...'), and paste it here.");
       appendLog("❌ API Key Test Failed: " + e.message, "error");
