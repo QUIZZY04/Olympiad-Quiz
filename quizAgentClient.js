@@ -126,8 +126,6 @@
   }
 
   const GEMINI_MODELS = [
-    "gemini-3.8-flash",
-    "gemini-2.5-flash",
     "gemini-2.0-flash",
     "gemini-1.5-flash",
     "gemini-2.0-flash-lite"
@@ -522,6 +520,7 @@ Return ONLY the raw JSON array containing exactly ${count} question objects.`;
     appendLog(`Creating Live Quiz on Monday 6 AM for Target Sunday: ${targetSundayDate} at ${timeStr} AM IST...`, "info");
     appendLog(`Subject: ${SUBJECT_DETAILS[subject]?.olympiad || subject} | Classes: ${selectedClasses.join(", ")}`, "info");
     appendLog(`Format: 40 Regular (1 Mark) + 10 Achievers HOTS (2 Marks) = 50 Qs (60 Marks total)`, "info");
+    appendLog(`⚡ Engine: ${GEMINI_MODELS[0]} (Failovers: ${GEMINI_MODELS.slice(1).join(", ")}) [v5]`, "info");
 
     let successCount = 0;
     for (let i = 0; i < selectedClasses.length; i++) {
