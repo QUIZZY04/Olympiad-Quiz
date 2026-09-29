@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN5D87BQXP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZN5D87BQXP');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing - Silver, Gold &amp; Diamond Premium Plans | OlympiadQuiz</title>
+<meta name="description" content="Compare OlympiadQuiz premium plans. Silver ₹99/month, Gold ₹199/3 months, Diamond ₹599/year - unlimited test attempts, detailed analytics, All India Live Tests and personal Olympiad guidance.">
+<link rel="canonical" href="https://olympiadquiz.org/pricing.html">
+<meta property="og:title" content="Pricing - Silver, Gold &amp; Diamond Premium Plans | OlympiadQuiz">
+<meta property="og:description" content="Compare OlympiadQuiz premium plans and choose the one that's right for you - Silver, Gold or Diamond.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://olympiadquiz.org/hero.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="style.css" as="style">
+<link rel="stylesheet" href="style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://olympiadquiz.org/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Pricing",
+    "item": "https://olympiadquiz.org/pricing.html"
+  }]
+}
+</script>
+<style>
+    :root {
+        --brand: #ff6b00;
+        --border: #e2e8f0;
+        --text: #111827;
+        --surface: #ffffff;
+        --muted: #475569;
+        --brand-text: #c2410c;
+        --brand-contrast: #111827;
+    }
+    body { background: #f8fafc; color: var(--text); }
+
+    .pricing-header { text-align: center; padding: 60px 20px 40px; background: linear-gradient(135deg, #fff7ed, #ffffff); border-bottom: 1px solid var(--border); }
+    .pricing-header h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; }
+    .pricing-header h1 span { color: var(--brand-text); }
+    .pricing-header p { color: var(--muted); font-size: 18px; max-width: 640px; margin: 0 auto; }
+
+    .pg-plans {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      margin: 50px 0; align-items: stretch;
+    }
+    .pg-plan {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 20px; padding: 28px 22px; display: flex; flex-direction: column;
+      text-align: left; position: relative; box-shadow: 0 8px 20px rgba(0,0,0,.03);
+    }
+    .pg-plan-gold { border-color: rgba(255, 107, 0, 0.4); }
+    .pg-plan-gold .pg-plan-name { color: var(--brand-text); }
+    .pg-plan-diamond {
+      background: linear-gradient(180deg, rgba(2,132,199,0.08), rgba(2,132,199,0.02));
+      border: 2px solid #0284c7; transform: scale(1.03);
+      box-shadow: 0 14px 30px rgba(2,132,199,0.18);
+    }
+    .pg-plan-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      color: #fff; font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 14px;
+      border-radius: 999px; white-space: nowrap; background: #0284c7;
+      box-shadow: 0 4px 8px rgba(2,132,199,0.35);
+    }
+    .pg-plan-name { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 10px; }
+    .pg-plan-diamond .pg-plan-name { color: #0369a1; }
+    .pg-plan-price { font-size: 1.9rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+    .pg-plan-price span { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+    .pg-plan-save { font-size: 0.8rem; font-weight: 700; color: #15803d; margin-top: 5px; margin-bottom: 4px; }
+    .pg-plan-features { list-style: none; margin: 18px 0 22px; padding: 0; flex: 1; }
+    .pg-plan-features li {
+      display: flex; align-items: flex-start; gap: 8px; font-size: 0.85rem;
+      color: var(--text); margin-bottom: 11px; line-height: 1.4;
+    }
+    .pg-plan-features li.pg-feature-off { color: var(--muted); }
+    .pg-feature-icon { flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; margin-top: 1px; }
+    .pg-feature-icon.pg-yes { background: #dcfce7; color: #15803d; }
+    .pg-feature-icon.pg-no { background: var(--border); color: var(--muted); }
+    .pg-plan-btn {
+      width: 100%; padding: 13px 14px; border-radius: 10px; font-weight: 800;
+      font-size: 0.9rem; cursor: pointer; border: 1.5px solid var(--brand);
+      background: var(--surface); color: var(--brand-text); transition: 0.2s;
+    }
+    .pg-plan-btn:hover { background: #fff7ed; }
+    .pg-plan-btn-diamond { background: #0284c7; border-color: #0284c7; color: #fff; }
+    .pg-plan-btn-diamond:hover { background: #0369a1; }
+    .pg-plan-btn-disabled { background: var(--border); border-color: var(--border); color: var(--muted); cursor: default; }
+    .pg-plan-btn-disabled:hover { background: var(--border); }
+
+    @media (max-width: 900px) {
+      .pg-plans { grid-template-columns: repeat(2, 1fr); }
+      .pg-plan-diamond { transform: none; }
+    }
+    @media (max-width: 560px) {
+      .pg-plans { grid-template-columns: 1fr; }
+    }
+
+    .pricing-faq { max-width: 800px; margin: 20px auto 70px; }
+    .pricing-faq h2 { text-align: center; font-size: 28px; font-weight: 800; margin-bottom: 30px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 14px; margin-bottom: 14px; overflow: hidden; background: var(--surface); }
+    .faq-question { padding: 18px 22px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-question::after { content: '+'; font-size: 22px; color: var(--brand-text); transition: 0.2s; }
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 22px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .faq-item.open .faq-answer { padding-bottom: 18px; }
+
+    .pricing-note { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 40px; }
+</style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="/" class="navbar-logo">
+            <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height: 32px; width: auto;" loading="lazy">
+            <span class="logo-text">OlympiadQuiz</span>
+        </a>
+        <div class="navbar-links">
+            <a href="/" class="nav-link">Home</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="mock.html">Mock Tests</a>
+                    <a href="chapterwise.html">Chapterwise</a>
+                    <a href="hots.html">HOTS Challenge</a>
+                    <a href="study.html">Study Material</a>
+                    <a href="blog.html">Success Guides</a>
+                    <a href="sof-previous-year-questions.html">SOF PYQs</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a href="olympiad-syllabus.html" class="nav-link">Syllabus <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="sof-syllabus.html">SOF Olympiads</a>
+                    <a href="silverzone-syllabus.html">SilverZone</a>
+                    <a href="crest-syllabus.html">CREST Olympiads</a>
+                    <a href="nstse-syllabus.html">NSTSE</a>
+                    <a href="spellbee-syllabus.html">SpellBee</a>
+                    <a href="hummingbird-syllabus.html">Humming Bird</a>
+                    <a href="ogo-syllabus.html">Orange Olympiad</a>
+                </div>
+            </div>
+            <a href="live.html" class="nav-link">Live Arena</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link">Senior Exams <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="jee-list.html">JEE Advanced</a>
+                    <a href="jee_main.html">JEE Main</a>
+                    <a href="neet.html">NEET</a>
+                    <a href="jee-main-pyq.html">JEE PYQs</a>
+                </div>
+            </div>
+            <a href="pricing.html" class="nav-link active" style="color: #c2410c;">Pricing</a>
+        </div>
+        <div class="navbar-actions">
+            <a href="login.html" class="btn-login">Login</a>
+            <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<header class="pricing-header">
+    <div class="container" style="max-width: 800px; padding: 0;">
+        <div class="breadcrumb" style="justify-content: center;"><a href="/">🏠 Home</a> <span class="separator">/</span> <span>Pricing</span></div>
+        <div style="display:inline-block; padding:8px 16px; background:#ffedd5; color:var(--brand-text); border-radius:999px; font-size:13px; font-weight:700; margin-bottom:15px;">Premium Membership</div>
+        <h1>Simple, Transparent <span>Pricing</span></h1>
+        <p>Start free, upgrade anytime. Silver, Gold and Diamond unlock unlimited test attempts, detailed analytics, All India Live Tests and more.</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="pg-plans">
+        <div class="pg-plan">
+            <div class="pg-plan-name">Free</div>
+            <div class="pg-plan-price">&#8377;0<span>/forever</span></div>
+            <ul class="pg-plan-features">
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>1 test/day, up to 4/week</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>All chapterwise &amp; mock tests</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Performance analytics</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Unlimited test attempts</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>All India Live Tests included</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Personal Olympiad guidance</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Priority support</span></li>
+            </ul>
+            <a href="signup.html" class="pg-plan-btn" style="text-align:center;text-decoration:none;display:block;">Get Started</a>
+        </div>
+        <div class="pg-plan">
+            <div class="pg-plan-name">Silver Plan</div>
+            <div class="pg-plan-price">&#8377;99<span>/month</span></div>
+            <ul class="pg-plan-features">
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Up to 4 tests/day, 40/month</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>All chapterwise &amp; mock tests</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Detailed performance analytics</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>No waiting between tests</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>All India Live Tests included</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Personal Olympiad guidance</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Priority support</span></li>
+            </ul>
+            <button class="pg-plan-btn" id="pgSilverBtn">Choose Silver</button>
+        </div>
+        <div class="pg-plan pg-plan-gold">
+            <div class="pg-plan-name">Gold Plan</div>
+            <div class="pg-plan-price">&#8377;199<span>/3 months</span></div>
+            <div class="pg-plan-save">Save 33% vs. Silver monthly</div>
+            <ul class="pg-plan-features">
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Unlimited test attempts</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>All chapterwise &amp; mock tests</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Detailed performance analytics</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>No waiting between tests</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>2 All India Live Tests/month (worth &#8377;198)</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Personal Olympiad guidance</span></li>
+                <li class="pg-feature-off"><span class="pg-feature-icon pg-no">&#8211;</span><span>Priority support</span></li>
+            </ul>
+            <button class="pg-plan-btn" id="pgGoldBtn">Choose Gold</button>
+        </div>
+        <div class="pg-plan pg-plan-diamond">
+            <div class="pg-plan-badge">Best Value</div>
+            <div class="pg-plan-name">Diamond Plan</div>
+            <div class="pg-plan-price">&#8377;599<span>/year</span></div>
+            <div class="pg-plan-save">Save 50% vs. Silver monthly</div>
+            <ul class="pg-plan-features">
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Unlimited test attempts</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>All chapterwise &amp; mock tests</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Detailed performance analytics</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>No waiting between tests</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>4 All India Live Tests/month (worth &#8377;396)</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Personal guidance for upcoming Olympiads</span></li>
+                <li><span class="pg-feature-icon pg-yes">&#10003;</span><span>Priority support</span></li>
+            </ul>
+            <button class="pg-plan-btn pg-plan-btn-diamond" id="pgDiamondBtn">Choose Diamond</button>
+        </div>
+    </div>
+    <p class="pricing-note">Prices in INR, billed via Razorpay. Cancel anytime - premium access continues until the end of your current billing period.</p>
+
+    <div class="pricing-faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">What happens when I run out of tests on the Free plan?</div>
+            <div class="faq-answer">You get 1 test a day, up to 4 a week, on the Free plan. Once you hit that limit, you'll see a countdown until your next test unlocks - or you can upgrade to Silver, Gold or Diamond for unlimited or much higher limits right away.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Is Silver really capped, unlike Gold and Diamond?</div>
+            <div class="faq-answer">Yes. Silver (₹99/month) gives you up to 4 tests a day and 40 a month - a big step up from Free, but not unlimited. Gold and Diamond remove the daily/monthly cap entirely, so you can attempt as many chapterwise and mock tests as you like.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">What are "All India Live Tests" and how do the credits work?</div>
+            <div class="faq-answer">Live Tests are timed, All India ranked tests held on a schedule (see Live Arena). Each normally costs ₹99 to enter. Gold includes 2 Live Test credits every month (worth ₹198) and Diamond includes 4 every month (worth ₹396) - both automatically, at no extra cost.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">What does "Personal Olympiad guidance" in Diamond include?</div>
+            <div class="faq-answer">Diamond members get personal guidance for upcoming Olympiad exams - help with exam selection, preparation strategy, and priority support from our team, on top of everything included in Gold.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Can I cancel or change my plan later?</div>
+            <div class="faq-answer">Yes, you can cancel anytime from your dashboard. You'll keep premium access until the end of your current billing period (monthly for Silver, every 3 months for Gold, yearly for Diamond) - no partial refunds, but no further charges either.</div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer" style="background:#0f172a;color:#fff;padding:50px 20px;text-align:center;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:25px;margin-bottom:20px;">
+        <a href="/" style="color:#fff;text-decoration:none;font-weight:700;font-size:14px;">Home</a>
+        <a href="blog.html" style="color:#fff;text-decoration:none;font-weight:700;font-size:14px;">Success Guides</a>
+        <a href="contact.html" style="color:#fff;text-decoration:none;font-weight:700;font-size:14px;">Contact Us</a>
+        <a href="privacy-policy.html" style="color:#fff;text-decoration:none;font-weight:700;font-size:14px;">Privacy Policy</a>
+        <a href="term.html" style="color:#fff;text-decoration:none;font-weight:700;font-size:14px;">Terms &amp; Conditions</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px;opacity:0.8;">© 2026 OlympiadQuiz. All rights reserved.</p>
+</footer>
+
+<script>
+    window.toggleFaq = function(element) {
+        const item = element.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(other => {
+            other.classList.remove('open');
+            const otherAns = other.querySelector('.faq-answer');
+            if (otherAns) otherAns.style.maxHeight = null;
+        });
+        if (!isOpen) {
+            item.classList.add('open');
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+    };
+
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.navbar-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { startUpgradeCheckout } from "./premiumGate.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
+    authDomain: "olympiad-portal-d2a5e.firebaseapp.com",
+    projectId: "olympiad-portal-d2a5e",
+    storageBucket: "olympiad-portal-d2a5e.firebasestorage.app"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+function handleUpgradeClick(tier) {
+    if (!auth.currentUser) {
+        sessionStorage.setItem("redirectAfterLogin", "pricing.html?tier=" + tier);
+        window.location.href = "login.html";
+        return;
+    }
+    startUpgradeCheckout(app, tier);
+}
+
+document.getElementById("pgSilverBtn").onclick = () => handleUpgradeClick("silver");
+document.getElementById("pgGoldBtn").onclick = () => handleUpgradeClick("gold");
+document.getElementById("pgDiamondBtn").onclick = () => handleUpgradeClick("diamond");
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        const params = new URLSearchParams(window.location.search);
+        const tier = params.get("tier");
+        if (tier && ["silver", "gold", "diamond"].includes(tier)) {
+            startUpgradeCheckout(app, tier);
+        }
+    }
+});
+</script>
+
+<script type="module" src="chatbot.js?v=3"></script>
+</body>
+</html>
