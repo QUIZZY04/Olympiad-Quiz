@@ -349,8 +349,13 @@ const TIER_LABEL = {
  * Cloud Function once Razorpay confirms the first charge, never here.
  * @param {import("firebase/app").FirebaseApp} app
  * @param {"silver"|"gold"|"diamond"} tier
+ * @param {(status: "success"|"cancelled"|"failed"|"error") => void} [onSettled] -
+ *   optional, called once the checkout flow reaches a final state. Every
+ *   existing caller omits this (plain 2-arg calls keep working unchanged);
+ *   it exists so a caller with no pg-plan buttons on screen (e.g. a
+ *   post-signup upsell) can still know when to move on.
  */
-export async function startUpgradeCheckout(app, tier) {
+export async function startUpgradeCheckout(app, tier, onSettled) {
   const auth = getAuth(app);
   const functions = getFunctions(app);
   const btn = document.getElementById(BUTTON_ID_BY_TIER[tier] || "pgSilverBtn");
@@ -369,10 +374,12 @@ export async function startUpgradeCheckout(app, tier) {
       handler: function () {
         hideBlockedModal();
         alert("Payment received! Premium activates within a minute or two once it's confirmed - refresh the page then.");
+        onSettled && onSettled("success");
       },
       modal: {
         ondismiss: function () {
           if (btn) { btn.disabled = false; btn.textContent = originalText; }
+          onSettled && onSettled("cancelled");
         }
       },
       prefill: {
@@ -386,12 +393,14 @@ export async function startUpgradeCheckout(app, tier) {
     rzp.on('payment.failed', function () {
       alert("Payment was not completed.");
       if (btn) { btn.disabled = false; btn.textContent = originalText; }
+      onSettled && onSettled("failed");
     });
     rzp.open();
   } catch (err) {
     console.error("Upgrade flow failed:", err);
     alert("Couldn't start checkout right now. Please try again in a moment.");
     if (btn) { btn.disabled = false; btn.textContent = originalText; }
+    onSettled && onSettled("error");
   }
 }
 

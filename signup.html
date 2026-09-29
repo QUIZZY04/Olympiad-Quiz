@@ -26,6 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="preload" href="style.css" as="style">
   <link rel="stylesheet" href="style.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
   <style>
     :root {
       --bg: #f8fafc;
@@ -156,6 +157,24 @@
     
     .link-btn { background: none; border: none; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
     .link-btn:hover { text-decoration: underline; }
+
+    .plan-select { text-align: left; margin: 5px 0 15px; }
+    .plan-select-label { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; display: block; }
+    .plan-option {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px; margin-bottom: 8px;
+      border: 1.5px solid var(--border); border-radius: 12px; cursor: pointer; transition: 0.2s;
+      background: var(--surface);
+    }
+    .plan-option:hover { border-color: var(--brand); }
+    .plan-option.selected { border-color: var(--brand); background: var(--subtle); }
+    .plan-option input[type="radio"] { width: auto; margin: 0; flex-shrink: 0; }
+    .plan-option-info { flex: 1; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .plan-option-name { font-weight: 700; font-size: 14px; color: var(--text); }
+    .plan-badge { font-size: 10px; font-weight: 800; color: #0284c7; background: rgba(2,132,199,0.1); padding: 2px 7px; border-radius: 999px; margin-left: 6px; text-transform: uppercase; }
+    .plan-option-price { font-weight: 800; font-size: 14px; color: var(--brand-text); white-space: nowrap; }
+    .plan-option-price small { font-weight: 600; font-size: 11px; color: var(--muted); }
+    .plan-option-desc { display: block; width: 100%; font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .plan-compare-link { display: inline-block; margin-bottom: 10px; font-size: 12px; color: var(--brand-text); text-decoration: underline; }
 
     /* CUSTOM THEMATIC MODAL */
     #customModal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); justify-content:center; align-items:center; }
@@ -350,6 +369,39 @@
                         <option value="class12">Grade 12</option>
                     </select>
 
+                    <div class="plan-select">
+                        <span class="plan-select-label">Choose your plan (you can change this anytime)</span>
+                        <label class="plan-option selected" data-tier="free">
+                            <input type="radio" name="planChoice" value="free" checked>
+                            <div style="flex:1;">
+                                <div class="plan-option-info"><span class="plan-option-name">Free</span><span class="plan-option-price">&#8377;0</span></div>
+                                <div class="plan-option-desc">1 test/day, up to 4/week</div>
+                            </div>
+                        </label>
+                        <label class="plan-option" data-tier="silver">
+                            <input type="radio" name="planChoice" value="silver">
+                            <div style="flex:1;">
+                                <div class="plan-option-info"><span class="plan-option-name">Silver</span><span class="plan-option-price">&#8377;99<small>/month</small></span></div>
+                                <div class="plan-option-desc">Up to 4 tests/day, 40/month + detailed analytics</div>
+                            </div>
+                        </label>
+                        <label class="plan-option" data-tier="gold">
+                            <input type="radio" name="planChoice" value="gold">
+                            <div style="flex:1;">
+                                <div class="plan-option-info"><span class="plan-option-name">Gold</span><span class="plan-option-price">&#8377;199<small>/3 months</small></span></div>
+                                <div class="plan-option-desc">Unlimited tests + 2 All India Live Tests/month</div>
+                            </div>
+                        </label>
+                        <label class="plan-option" data-tier="diamond">
+                            <input type="radio" name="planChoice" value="diamond">
+                            <div style="flex:1;">
+                                <div class="plan-option-info"><span class="plan-option-name">Diamond<span class="plan-badge">Best Value</span></span><span class="plan-option-price">&#8377;599<small>/year</small></span></div>
+                                <div class="plan-option-desc">Unlimited tests + 4 Live Tests/month + personal guidance</div>
+                            </div>
+                        </label>
+                        <a href="pricing.html" target="_blank" rel="noopener" class="plan-compare-link">Compare full plan details &rarr;</a>
+                    </div>
+
                     <div style="text-align: left; margin: 15px 0; font-size: 13px;">
                         <label style="display: flex; gap: 8px; margin-bottom: 8px; cursor: pointer;">
                             <input type="checkbox" id="emailConsent" checked required style="width: auto; margin: 0; margin-top: 2px; flex-shrink: 0;">
@@ -391,6 +443,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signOut, RecaptchaVerifier, signInWithPhoneNumber, linkWithPhoneNumber, linkWithPopup, signInWithPopup, GoogleAuthProvider, linkWithCredential, onAuthStateChanged, getAdditionalUserInfo, PhoneAuthProvider, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { startUpgradeCheckout } from "./premiumGate.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB49W61ggHHJcAJ5WyYTmX13I8NofsggSY",
@@ -748,13 +801,26 @@ document.getElementById("pOtpForm").addEventListener("submit", async (e) => {
     }
 });
 
-// 3. Complete Profile Actions
+// 3a. Plan selector UI - highlight the chosen card, relabel the submit button
+const PLAN_TIER_LABEL = { free: "Free", silver: "Silver", gold: "Gold", diamond: "Diamond" };
+document.querySelectorAll('.plan-option').forEach(option => {
+    option.addEventListener('click', () => {
+        document.querySelectorAll('.plan-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        const tier = option.dataset.tier;
+        const submitBtn = document.getElementById('btnSaveProfile');
+        submitBtn.textContent = tier === 'free' ? 'Create Account' : `Create Account & Continue to ${PLAN_TIER_LABEL[tier]} Payment`;
+    });
+});
+
+// 3b. Complete Profile Actions
 document.getElementById("completeProfileForm").onsubmit = async (e) => {
     e.preventDefault();
     const name = document.getElementById("cName").value.trim();
     const email = document.getElementById("cEmail").value.trim();
     const cls = document.getElementById("cClassSelect").value;
     const promoConsent = document.getElementById("promoConsent").checked;
+    const selectedPlan = document.querySelector('input[name="planChoice"]:checked')?.value || 'free';
     const btn = document.getElementById("completeProfileForm").querySelector('button[type="submit"]');
     
     // Stricter validation for real names (only letters/spaces, min 3 chars)
@@ -782,31 +848,55 @@ document.getElementById("completeProfileForm").onsubmit = async (e) => {
         });
 
         localStorage.setItem("isLoggedIn", "true");
-        
+        sessionStorage.removeItem("redirectAfterLogin");
+
+        const uClassNum = parseInt(String(cls).replace(/[^0-9]/g, ''));
+        const destination = (uClassNum && uClassNum >= 11) ? "senior-dashboard.html" : "dashboard.html";
+
         const modal = document.getElementById('customModal');
-        if (modal) {
-            modal.innerHTML = `
-                <div class="modal-box">
-                    <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
-                    <h2 style="color: var(--brand-text); margin-bottom: 15px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">Your Account successfully created</h2>
-                </div>
-            `;
-            modal.style.display = 'flex';
-        }
-        
-        setTimeout(() => {
-            if (!isRedirecting) {
-                isRedirecting = true;
-                sessionStorage.removeItem("redirectAfterLogin");
-                const selectedClass = document.getElementById("classSelect") ? document.getElementById("classSelect").value : "";
-                const uClassNum = parseInt(String(selectedClass).replace(/[^0-9]/g, ''));
-                if (uClassNum && uClassNum >= 11) {
-                    window.location.replace("senior-dashboard.html");
-                } else {
-                    window.location.replace("dashboard.html");
-                }
+
+        if (selectedPlan === 'free') {
+            if (modal) {
+                modal.innerHTML = `
+                    <div class="modal-box">
+                        <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
+                        <h2 style="color: var(--brand-text); margin-bottom: 15px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">Your Account successfully created</h2>
+                    </div>
+                `;
+                modal.style.display = 'flex';
             }
-        }, 1500);
+            setTimeout(() => {
+                if (!isRedirecting) {
+                    isRedirecting = true;
+                    window.location.replace(destination);
+                }
+            }, 1500);
+        } else {
+            // Paid plan chosen at signup: create the account first (already done
+            // above), then hand straight off to the same Razorpay checkout used
+            // everywhere else on the site. Whether the user completes, cancels,
+            // or the payment fails, onSettled always fires exactly once, so the
+            // account they just created is never left stranded on this page.
+            if (modal) {
+                modal.innerHTML = `
+                    <div class="modal-box">
+                        <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
+                        <h2 style="color: var(--brand-text); margin-bottom: 10px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px;">Account created!</h2>
+                        <p style="color: var(--muted); font-size: 14px;">Opening secure checkout for your ${PLAN_TIER_LABEL[selectedPlan]} plan...</p>
+                    </div>
+                `;
+                modal.style.display = 'flex';
+            }
+            setTimeout(async () => {
+                if (modal) modal.style.display = 'none';
+                await startUpgradeCheckout(app, selectedPlan, () => {
+                    if (!isRedirecting) {
+                        isRedirecting = true;
+                        window.location.replace(destination);
+                    }
+                });
+            }, 900);
+        }
 
     } catch (error) {
         alert("Issue creating account: " + error.message);
