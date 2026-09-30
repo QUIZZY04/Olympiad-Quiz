@@ -24,6 +24,7 @@ const {
   FREE_TEST_WEEKLY_LIMIT,
   SILVER_DAILY_LIMIT,
   SILVER_MONTHLY_LIMIT,
+  SILVER_COOLDOWN_MINUTES,
   IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
@@ -32,6 +33,7 @@ const {
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const VOID_CUTOFF_MS = ABANDON_VOID_WINDOW_MINUTES * 60 * 1000;
+const SILVER_COOLDOWN_MS = SILVER_COOLDOWN_MINUTES * 60 * 1000;
 
 /**
  * Calendar-day boundaries in IST for whichever instant `nowMs` falls in.
@@ -184,8 +186,18 @@ exports.canStartTest = onCall(async (request) => {
     return startedAtMs >= startOfDayMs;
   });
 
-  // Silver: capped, not unlimited - 4/day AND 40/month, both must be satisfied.
+  // Silver: capped, not unlimited - 4/day AND 40/month, both must be
+  // satisfied, PLUS a fixed cooldown after every attempt (Gold/Diamond have
+  // none). Checked first since it's the cap most likely to be hit day-to-day.
   if (isPremium && tier === "silver") {
+    if (monthCounted.length > 0) {
+      const lastAttempt = monthCounted[monthCounted.length - 1].data();
+      const lastStartedAtMs = lastAttempt.startedAt?.toMillis ? lastAttempt.startedAt.toMillis() : 0;
+      const cooldownEndsMs = lastStartedAtMs + SILVER_COOLDOWN_MS;
+      if (now < cooldownEndsMs) {
+        return { allowed: false, unlocksAt: cooldownEndsMs, limit: SILVER_DAILY_LIMIT, isPremium: true };
+      }
+    }
     if (dailyCounted.length >= SILVER_DAILY_LIMIT) {
       return { allowed: false, unlocksAt: startOfNextDayMs, limit: SILVER_DAILY_LIMIT, isPremium: true };
     }

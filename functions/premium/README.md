@@ -113,15 +113,22 @@ Razorpay can't reach `localhost`, so for local webhook testing either:
 - [x] `RAZORPAY_PREMIUM_PLAN_ID` secret set (Plan created via `createPremiumPlan`/the Plans API).
 - [x] `RAZORPAY_SILVER_PLAN_ID`, `RAZORPAY_GOLD_PLAN_ID`, `RAZORPAY_DIAMOND_PLAN_ID` set
       (Gold quarterly + Diamond bootstrapped when those tiers were introduced).
-- [ ] **Prices were cut again** (Silver ₹199→₹99/month, Gold ₹399→₹199/3 months, Diamond
-      ₹999→₹599/year) - Razorpay Plans are immutable once created, so existing Plan objects
-      still reflect the OLD prices. Run `createPremiumPlan({tier: "silver"})`,
-      `createPremiumPlan({tier: "gold"})`, and `createPremiumPlan({tier: "diamond"})` again
-      (each creates a fresh Plan at whatever `PREMIUM_TIERS[tier].priceInr` currently says),
-      then update all three `RAZORPAY_*_PLAN_ID` secrets with the new plan_ids and redeploy
+- [ ] **Prices changed again** (Silver ₹99→₹199/month, Gold ₹199→₹299/3 months, Diamond
+      unchanged at ₹599/year; Silver also gained a 1-hour cooldown between attempts -
+      `SILVER_COOLDOWN_MINUTES` in `config.js`, enforced in `testLimits.js`) - Razorpay
+      Plans are immutable once created, so the existing Silver/Gold Plan objects still
+      reflect the OLD prices until you bootstrap new ones. Run
+      `createPremiumPlan({tier: "silver"})` and `createPremiumPlan({tier: "gold"})` again
+      (each creates a fresh Plan at whatever `PREMIUM_TIERS[tier].priceInr` currently says -
+      Diamond doesn't need re-running since its price didn't change), then update
+      `RAZORPAY_SILVER_PLAN_ID`/`RAZORPAY_GOLD_PLAN_ID` with the new plan_ids and redeploy
       `createPremiumSubscription`/`razorpayWebhook`. Existing subscribers keep paying their
-      old price on the old Plan until they cancel and resubscribe - this only affects new
-      checkouts.
+      original price on their original Plan for as long as they stay subscribed - this only
+      affects checkouts started after the new plan_ids go live. (An earlier price cut noted
+      here as a still-open checklist item was superseded by this change before it was ever
+      actioned - if the live Razorpay Plans still reflect an even older price than ₹99/₹199,
+      the same steps above resolve it too, just re-run for whichever prices
+      `PREMIUM_TIERS` currently holds.)
 - [ ] Register the deployed `razorpayWebhook` URL in the Razorpay Dashboard
       (Settings → Webhooks), subscribed to: `subscription.activated`, `subscription.charged`,
       `subscription.cancelled`, `subscription.completed`, `subscription.halted`, `payment.failed`.

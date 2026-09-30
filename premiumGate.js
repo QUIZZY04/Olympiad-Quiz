@@ -161,11 +161,12 @@ let premiumUnsubscribe = null;
 // and LIVE_TEST_MONTHLY_CREDITS/LIVE_TEST_CREDIT_VALUE_INR. If those ever
 // change, update both places (backend is the source of truth for what's
 // actually charged/granted; this is display-only).
-const SILVER_PRICE_INR = 99;
-const GOLD_PRICE_INR = 199;       // billed every 3 months
+const SILVER_PRICE_INR = 199;
+const GOLD_PRICE_INR = 299;       // billed every 3 months
 const DIAMOND_PRICE_INR = 599;    // billed yearly
 const SILVER_DAILY_LIMIT = 4;     // Silver is capped, not unlimited - mirrors functions/premium/config.js
 const SILVER_MONTHLY_LIMIT = 40;
+const SILVER_COOLDOWN_MINUTES = 60; // fixed wait after every Silver attempt - mirrors functions/premium/config.js
 const GOLD_LIVE_TESTS_PER_MONTH = 2;
 const DIAMOND_LIVE_TESTS_PER_MONTH = 4;
 const LIVE_TEST_VALUE_INR = 99;
@@ -239,7 +240,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, blockedTi
               ${featureLi(`Up to ${SILVER_DAILY_LIMIT} tests/day, ${SILVER_MONTHLY_LIMIT}/month`, true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
               ${featureLi("Detailed performance analytics", true)}
-              ${featureLi("No waiting between tests", true)}
+              ${featureLi(`${SILVER_COOLDOWN_MINUTES}-minute wait between tests`, true)}
               ${featureLi("All India Live Tests included", false)}
               ${featureLi("Personal Olympiad guidance", false)}
               ${featureLi("Priority support", false)}

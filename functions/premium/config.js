@@ -34,10 +34,12 @@ const ABANDON_VOID_WINDOW_MINUTES = 2;   // an attempt with 0 answers older than
 // Silver is capped, not truly unlimited (Gold/Diamond remain fully
 // unlimited) - same two-cap shape as the free tier, just far more
 // generous: 1 calendar day AND 1 calendar month (1st-to-1st, IST), both
-// must be satisfied.
+// must be satisfied. On top of those caps, Silver also enforces a fixed
+// cooldown between any two attempts (Gold/Diamond have no cooldown at all).
 // ---------------------------------------------------------------------
 const SILVER_DAILY_LIMIT = 4;
 const SILVER_MONTHLY_LIMIT = 40;
+const SILVER_COOLDOWN_MINUTES = 60;
 
 // Only these test types are rate-limited. Live championship tests
 // (isChampionship / test_sessions-based) already have their own per-session
@@ -53,11 +55,22 @@ const RATE_LIMITED_TEST_TYPES = ["chapterwise", "mock", "hots"];
 // tier so each renews for roughly 10 years before Razorpay would need a
 // fresh subscription (silver/monthly=120, gold/quarterly=40, diamond/
 // yearly=10), effectively "until cancelled" for any real subscriber.
+//
+// priceInr here is what createPremiumPlan (see subscriptions.js) charges
+// for a BRAND NEW Razorpay Plan going forward - it does NOT retroactively
+// change what any existing subscriber pays. Razorpay Plans are immutable
+// once created, and an existing subscription stays bound to the plan_id
+// (and therefore the price) it was created against for its whole
+// lifetime. So raising priceInr here and creating a new Plan/plan_id for
+// it (see subscriptions.js's createPremiumPlan doc comment) only affects
+// people who subscribe AFTER the new plan_id is live - anyone who already
+// subscribed keeps their original price for as long as they stay
+// subscribed, with zero code changes required to preserve that.
 // ---------------------------------------------------------------------
 const PREMIUM_TIERS = {
   silver: {
     label: "Silver",
-    priceInr: 99,
+    priceInr: 199,
     period: "monthly",
     interval: 1, // bill every 1 month
     totalCount: 120,
@@ -68,7 +81,7 @@ const PREMIUM_TIERS = {
   },
   gold: {
     label: "Gold",
-    priceInr: 199,
+    priceInr: 299,
     period: "monthly",
     interval: 3, // bill every 3 months (quarterly)
     totalCount: 40,
@@ -119,6 +132,7 @@ module.exports = {
   FREE_TEST_WEEKLY_LIMIT,
   SILVER_DAILY_LIMIT,
   SILVER_MONTHLY_LIMIT,
+  SILVER_COOLDOWN_MINUTES,
   IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
