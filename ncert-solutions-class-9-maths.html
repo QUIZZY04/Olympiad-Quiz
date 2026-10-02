@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Solutions Class 9 Maths — All 12 Chapters | CBSE Marking Scheme 2026-27</title>
+  <meta name="description" content="Free NCERT Solutions for Class 9 Mathematics all 12 chapters. Step-by-step answers as per CBSE Marking Scheme 2026-27 with CBQ, Assertion-Reason, and HOTS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--brand:#4f46e5;--brand-hover:#4338ca;--brand-light:#eef2ff;--brand-text:#3730a3;--navy:#0f172a;--slate:#334155;--muted:#64748b;--light-bg:#f8fafc;--border:#e2e8f0;--shadow:0 4px 6px -1px rgba(0,0,0,0.05);--shadow-hover:0 10px 15px -3px rgba(0,0,0,0.1);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--light-bg);color:var(--slate);line-height:1.6;}
+    .top-progress{position:fixed;top:0;left:0;height:3px;background:var(--brand);z-index:1000;transition:width .1s;}
+    .navbar{background:#0f172a;border-bottom:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:900;}
+    .navbar-inner{max-width:1380px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .navbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .logo-text{font-size:1.15rem;font-weight:800;color:white;}
+    .logo-text span{color:#818cf8;}
+    .navbar-links{display:flex;align-items:center;gap:8px;}
+    .nav-link{color:#94a3b8;font-size:0.85rem;font-weight:600;padding:6px 12px;border-radius:8px;text-decoration:none;transition:0.2s;display:flex;align-items:center;gap:4px;}
+    .nav-link:hover{color:white;background:rgba(255,255,255,0.06);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown:hover .nav-dropdown-content{display:block !important;}
+    .nav-dropdown-content{display:none;position:absolute;top:100%;left:0;background:white;border:1px solid #e2e8f0;border-radius:10px;min-width:230px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:1000;padding:6px;}
+    .nav-dropdown-content a{display:block;padding:8px 14px;color:#334155;text-decoration:none;font-size:0.85rem;border-radius:6px;transition:0.2s;}
+    .nav-dropdown-content a:hover{background:#f1f5f9;color:#0f172a !important;}
+    .navbar-actions{display:flex;align-items:center;gap:10px;}
+    .btn-login{background:#4f46e5;color:white;font-size:0.82rem;font-weight:700;padding:7px 18px;border-radius:8px;text-decoration:none;transition:0.2s;}
+    .btn-login:hover{background:#4338ca;}
+    .navbar-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;}
+    .navbar-toggle span{display:block;width:22px;height:2px;background:white;border-radius:2px;}
+    .hero-banner{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);color:white;padding:36px 24px;text-align:center;border-bottom:3px solid var(--brand);}
+    .hero-banner h1{font-size:1.85rem;font-weight:800;margin-bottom:8px;}
+    .hero-banner p{color:#a5b4fc;font-size:.95rem;max-width:720px;margin:0 auto 16px;}
+    .hero-badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+    .hero-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:600;color:#e2e8f0;}
+    .breadcrumb-bar{background:white;border-bottom:1px solid var(--border);padding:14px 36px;position:sticky;top:60px;z-index:800;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .breadcrumb-label{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.06em;margin-bottom:10px;}
+    .breadcrumb-chips{display:flex;gap:6px;flex-wrap:wrap;}
+    .bc-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#f8fafc;color:var(--slate);transition:all .18s;user-select:none;}
+    .bc-chip:hover{border-color:var(--brand);color:var(--brand-text);background:var(--brand-light);}
+    .bc-chip.active{background:var(--brand);color:white;border-color:var(--brand);box-shadow:0 3px 10px rgba(79,70,229,.35);}
+    .bc-chip .bc-n{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:rgba(0,0,0,.12);border-radius:50%;font-size:.68rem;font-weight:800;}
+    .bc-chip.active .bc-n{background:rgba(255,255,255,.25);}
+    .main-layout{display:flex;max-width:1380px;margin:0 auto;}
+    .sidebar{width:300px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:117px;height:calc(100vh - 117px);overflow-y:auto;flex-shrink:0;}
+    .sidebar-title{font-size:.85rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.05em;margin-bottom:12px;}
+    .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;margin-bottom:16px;font-family:inherit;}
+    .search-box:focus{outline:none;border-color:var(--brand);}
+    .chapter-nav{list-style:none;}
+    .chapter-nav li{margin-bottom:4px;}
+    .chapter-nav li a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;color:var(--slate);text-decoration:none;font-size:.85rem;font-weight:500;transition:all .15s;cursor:pointer;}
+    .chapter-nav li a:hover{background:var(--brand-light);color:var(--brand-text);}
+    .chapter-nav li a.active{background:var(--brand);color:white;font-weight:600;}
+    .ch-num{width:22px;height:22px;background:rgba(0,0,0,.06);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;}
+    .chapter-nav li a.active .ch-num{background:rgba(255,255,255,.25);color:white;}
+    .main-content{flex:1;padding:0 36px 36px;min-width:0;}
+    .chapter-section{margin-bottom:48px;scroll-margin-top:130px;padding-top:28px;}
+    .chapter-section.hidden{display:none;}
+    .chapter-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border);}
+    .ch-badge{width:42px;height:42px;background:var(--brand);color:white;border-radius:12px;font-size:1.15rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .chapter-header-info h2{font-size:1.4rem;font-weight:800;color:var(--navy);}
+    .chapter-header-info p{font-size:.825rem;color:var(--muted);margin-top:2px;}
+    .q-card{background:white;border:1px solid var(--border);border-radius:12px;margin-bottom:18px;box-shadow:var(--shadow);transition:all .2s;overflow:hidden;}
+    .q-card:hover{border-color:#c7d2fe;box-shadow:var(--shadow-hover);}
+    .q-head{padding:16px 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;user-select:none;}
+    .q-num{background:var(--brand-light);color:var(--brand-text);font-weight:700;font-size:.8rem;padding:4px 10px;border-radius:6px;flex-shrink:0;margin-top:2px;}
+    .q-text{flex:1;font-weight:600;color:var(--navy);font-size:.95rem;line-height:1.5;}
+    .q-marks{background:#f1f5f9;color:var(--slate);font-size:.725rem;font-weight:600;padding:4px 10px;border-radius:12px;flex-shrink:0;white-space:nowrap;}
+    .q-toggle{color:var(--muted);transition:transform .2s;flex-shrink:0;margin-top:4px;}
+    .q-toggle svg{width:20px;height:20px;}
+    .q-card.open .q-toggle{transform:rotate(45deg);color:var(--brand);}
+    .q-answer{display:none;padding:0 16px 18px;border-top:2px dashed rgba(79,70,229,.12);}
+    .q-card.open .q-answer{display:block;}
+    .answer-box{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:18px;margin-top:14px;background:rgba(255,255,255,.9);}
+    .answer-label{font-size:.75rem;font-weight:700;text-transform:uppercase;color:#16a34a;letter-spacing:.04em;margin-bottom:10px;}
+    .answer-text{font-size:.9rem;color:#1e293b;line-height:1.7;}
+    .answer-text p{margin-bottom:10px;}
+    .answer-text p:last-child{margin-bottom:0;}
+    .answer-text ul,.answer-text ol{margin-left:20px;margin-bottom:10px;}
+    .answer-text li{margin-bottom:6px;}
+    .math{font-family:'Courier New',monospace;background:rgba(79,70,229,.08);padding:2px 7px;border-radius:4px;font-size:.88rem;font-weight:600;color:#3730a3;}
+    .step{display:block;background:#f8fafc;border-left:3px solid var(--brand);padding:8px 12px;margin:6px 0;border-radius:0 6px 6px 0;font-size:.88rem;}
+    .marking-scheme{margin-top:14px;background:#f8fafc;border:1px solid rgba(0,0,0,.07);border-radius:8px;padding:12px 14px;font-size:.8rem;}
+    .marking-title{font-weight:700;color:var(--navy);margin-bottom:6px;}
+    .marking-row{display:flex;justify-content:space-between;border-bottom:1px solid #edf2f7;padding:4px 0;}
+    .marking-row:last-child{border-bottom:none;}
+    .marking-key{color:var(--slate);}
+    .marking-marks{font-weight:700;color:var(--brand-text);}
+    .cbq-section{margin-top:40px;border:2px solid var(--brand);border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(79,70,229,.1);}
+    .cbq-header{background:linear-gradient(90deg,#3730a3,#4f46e5);color:white;padding:16px 20px;font-weight:800;font-size:1.05rem;display:flex;align-items:center;justify-content:space-between;}
+    .cbq-badge{font-size:.75rem;background:rgba(255,255,255,.2);padding:4px 10px;border-radius:12px;}
+    .cbq-body{padding:20px;background:linear-gradient(to right,#eef2ff,#fff);}
+    .cbq-card{border:1px solid #c7d2fe;background:white;padding:16px;border-radius:8px;margin-bottom:16px;}
+    .cbq-type{font-size:.75rem;font-weight:700;text-transform:uppercase;margin-bottom:8px;}
+    .cbq-question{font-size:.95rem;color:#334155;margin-bottom:12px;line-height:1.6;}
+    .cbq-show-btn{text-align:left;padding:10px 14px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:6px;cursor:pointer;font-size:.9rem;font-family:inherit;width:100%;}
+    .cbq-answer{display:none;margin-top:12px;padding:12px;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;font-size:.9rem;color:#312e81;line-height:1.65;}
+    .ex-div{font-size:.82rem;font-weight:700;text-transform:uppercase;color:var(--brand-text);background:var(--brand-light);border:1px solid #c7d2fe;border-radius:8px;padding:8px 16px;margin:24px 0 16px;display:inline-block;letter-spacing:.04em;}
+    .ch-nav-btns{display:flex;justify-content:space-between;margin-top:32px;padding-top:20px;border-top:1px solid var(--border);}
+    .ch-nav-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:1.5px solid var(--border);background:white;color:var(--slate);transition:all .2s;font-family:inherit;}
+    .ch-nav-btn:hover:not(:disabled){background:var(--brand);color:white;border-color:var(--brand);}
+    .ch-nav-btn:disabled{opacity:.35;cursor:not-allowed;}
+    .ch-nav-btn.next{background:var(--brand);color:white;border-color:var(--brand);}
+    .data-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.85rem;}
+    .data-table th{background:var(--brand-light);color:var(--brand-text);padding:8px;border:1px solid #c7d2fe;text-align:left;}
+    .data-table td{padding:6px 8px;border:1px solid #e2e8f0;}
+    .data-table tr:nth-child(even) td{background:#f8fafc;}
+    .mob-toggle{display:none;position:fixed;bottom:20px;right:20px;background:var(--brand);color:white;border:none;padding:12px 20px;border-radius:30px;font-weight:700;font-size:.9rem;box-shadow:0 4px 14px rgba(79,70,229,.4);z-index:999;cursor:pointer;}
+    .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:950;}
+    @media(max-width:900px){
+      .main-layout{flex-direction:column;}
+      .sidebar{position:fixed;left:-320px;top:0;height:100vh;z-index:960;transition:left .3s;}
+      .sidebar.open{left:0;}
+      .sidebar-overlay.show{display:block;}
+      .mob-toggle{display:block;}
+      .main-content{padding:0 16px 28px;}
+      .breadcrumb-bar{padding:12px 16px;top:57px;}
+    }
+  </style>
+</head>
+<body>
+<div class="top-progress" id="progressBar"></div>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown" style="position:relative;">
+        <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-9-maths.html" style="font-weight:700;color:#4f46e5;background:#eef2ff;">Class 9 Maths ✨ (Active)</a>
+          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
+          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
+          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
+          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
+          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
+          <a href="ncert-solutions-class-8-sanskrit.html">Class 8 Sanskrit</a>
+        </div>
+      </div>
+      <a href="study.html" class="nav-link">Study Material</a>
+      <a href="chapterwise.html" class="nav-link">Chapterwise Test</a>
+      <a href="mock.html" class="nav-link">Mock Test</a>
+      <a href="hots.html" class="nav-link">HOTS Challenge</a>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-banner">
+  <h1>Class 9 Maths — NCERT Exercise Solutions</h1>
+  <p>Complete solutions for all exercise questions across <strong>12 chapters</strong> of NCERT Class 9 Mathematics (Rationalized Syllabus 2026-27). Step-by-step answers as per CBSE Marking Scheme with CBQ, HOTS &amp; Assertion-Reason.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">✅ All 12 Chapters</span>
+    <span class="hero-badge">📐 Rationalized CBSE 2026-27</span>
+    <span class="hero-badge">🔢 Step-by-Step Solutions</span>
+    <span class="hero-badge">📊 CBSE Marking Scheme</span>
+    <span class="hero-badge">🧠 CBQ &amp; HOTS Included</span>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-label">📐 Class 9 Maths — Jump to Chapter</div>
+  <div class="breadcrumb-chips" id="breadcrumbChips">
+    <span class="bc-chip active" onclick="showChapter(1)" data-ch="1"><span class="bc-n">1</span>Number Systems</span>
+    <span class="bc-chip" onclick="showChapter(2)" data-ch="2"><span class="bc-n">2</span>Polynomials</span>
+    <span class="bc-chip" onclick="showChapter(3)" data-ch="3"><span class="bc-n">3</span>Coord. Geometry</span>
+    <span class="bc-chip" onclick="showChapter(4)" data-ch="4"><span class="bc-n">4</span>Linear Equations</span>
+    <span class="bc-chip" onclick="showChapter(5)" data-ch="5"><span class="bc-n">5</span>Euclid's Geometry</span>
+    <span class="bc-chip" onclick="showChapter(6)" data-ch="6"><span class="bc-n">6</span>Lines &amp; Angles</span>
+    <span class="bc-chip" onclick="showChapter(7)" data-ch="7"><span class="bc-n">7</span>Triangles</span>
+    <span class="bc-chip" onclick="showChapter(8)" data-ch="8"><span class="bc-n">8</span>Quadrilaterals</span>
+    <span class="bc-chip" onclick="showChapter(9)" data-ch="9"><span class="bc-n">9</span>Circles</span>
+    <span class="bc-chip" onclick="showChapter(10)" data-ch="10"><span class="bc-n">10</span>Heron's Formula</span>
+    <span class="bc-chip" onclick="showChapter(11)" data-ch="11"><span class="bc-n">11</span>Surface &amp; Volume</span>
+    <span class="bc-chip" onclick="showChapter(12)" data-ch="12"><span class="bc-n">12</span>Statistics</span>
+  </div>
+</div>
+
+<div class="main-layout">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-title">12 Chapters</div>
+    <input type="text" class="search-box" placeholder="Search chapters..." onkeyup="filterChapters(this.value)">
+    <ul class="chapter-nav" id="chapterNav">
+      <li><a onclick="showChapter(1)" class="active"><span class="ch-num">1</span>Number Systems</a></li>
+      <li><a onclick="showChapter(2)"><span class="ch-num">2</span>Polynomials</a></li>
+      <li><a onclick="showChapter(3)"><span class="ch-num">3</span>Coordinate Geometry</a></li>
+      <li><a onclick="showChapter(4)"><span class="ch-num">4</span>Linear Equations in Two Variables</a></li>
+      <li><a onclick="showChapter(5)"><span class="ch-num">5</span>Introduction to Euclid's Geometry</a></li>
+      <li><a onclick="showChapter(6)"><span class="ch-num">6</span>Lines and Angles</a></li>
+      <li><a onclick="showChapter(7)"><span class="ch-num">7</span>Triangles</a></li>
+      <li><a onclick="showChapter(8)"><span class="ch-num">8</span>Quadrilaterals</a></li>
+      <li><a onclick="showChapter(9)"><span class="ch-num">9</span>Circles</a></li>
+      <li><a onclick="showChapter(10)"><span class="ch-num">10</span>Heron's Formula</a></li>
+      <li><a onclick="showChapter(11)"><span class="ch-num">11</span>Surface Areas and Volumes</a></li>
+      <li><a onclick="showChapter(12)"><span class="ch-num">12</span>Statistics</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+
+<!-- ══════════════════════════════════ CH1 ══════════════════════════════════ -->
+<section class="chapter-section" id="ch1">
+  <div class="chapter-header">
+    <div class="ch-badge">1</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 1: Number Systems</h2>
+      <p>NCERT Exercise 1.1 to 1.5 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 1.1</div>
+
+  <div class="q-card" id="q1_1">
+    <div class="q-head" onclick="toggleQ('q1_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Is zero a rational number? Can you write it in the form p/q, where p and q are integers and q ≠ 0?</div>
+      <div class="q-marks">1 Mark</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Yes, zero is a rational number.</strong></p>
+          <p>A rational number is any number that can be expressed in the form p/q, where p and q are integers and q ≠ 0. Zero can be written as:</p>
+          <p><span class="math">0 = 0/1 = 0/2 = 0/3 = 0/(−5)</span> etc.</p>
+          <p>In each case, p = 0 (an integer) and q ≠ 0 (a non-zero integer). Therefore zero fully satisfies the definition of a rational number. <strong>Hence, 0 is a rational number.</strong></p>
+          <p>Note: The set of rational numbers includes all integers (since any integer n = n/1), all fractions p/q, and zero.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct "Yes" with valid representation (e.g., 0 = 0/1)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1_2">
+    <div class="q-head" onclick="toggleQ('q1_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Find six rational numbers between 3 and 4.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>To find 6 rational numbers between 3 and 4, multiply both numbers by (6 + 1) = 7:</p>
+          <p><span class="math">3 = 21/7</span> &nbsp; and &nbsp; <span class="math">4 = 28/7</span></p>
+          <p>Six rational numbers between 21/7 and 28/7 are:</p>
+          <p><strong><span class="math">22/7, 23/7, 24/7, 25/7, 26/7, 27/7</span></strong></p>
+          <p><strong>Verification:</strong> 21/7 &lt; 22/7 &lt; 23/7 &lt; 24/7 &lt; 25/7 &lt; 26/7 &lt; 27/7 &lt; 28/7 ✓</p>
+          <p><em>Alternate:</em> Multiply by 10 → 3 = 30/10, 4 = 40/10 → six numbers: 31/10, 32/10, 33/10, 34/10, 35/10, 36/10.</p>
+          <p>There are infinitely many rational numbers between any two rational numbers; we have listed 6 here.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct method (equivalent fractions)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">All six correct rational numbers listed</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1_3">
+    <div class="q-head" onclick="toggleQ('q1_3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Find five rational numbers between 3/5 and 4/5.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Multiply numerator and denominator of both fractions by 6 to get equivalent fractions with a larger denominator:</p>
+          <p><span class="math">3/5 = 18/30</span> &nbsp; and &nbsp; <span class="math">4/5 = 24/30</span></p>
+          <p>Five rational numbers between 18/30 and 24/30:</p>
+          <p><strong><span class="math">19/30, 20/30, 21/30, 22/30, 23/30</span></strong></p>
+          <p>Simplified forms: <span class="math">19/30, 2/3, 7/10, 11/15, 23/30</span></p>
+          <p>All five values lie strictly between 3/5 and 4/5. Note: There are infinitely many rational numbers between any two rational numbers.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct conversion to equivalent fractions</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Five correct rational numbers between 3/5 and 4/5</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1_4">
+    <div class="q-head" onclick="toggleQ('q1_4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">State whether the following statements are true or false. Give reasons: (i) Every natural number is a whole number. (ii) Every integer is a whole number. (iii) Every rational number is a whole number.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) TRUE.</strong> Natural numbers = {1, 2, 3, 4, …} and Whole numbers = {0, 1, 2, 3, 4, …}. Every natural number is included within the set of whole numbers. The set of natural numbers is a proper subset of whole numbers. The only difference is that 0 is a whole number but not a natural number.</p>
+          <p><strong>(ii) FALSE.</strong> Integers include negative numbers: {…, −3, −2, −1, 0, 1, 2, 3, …}. Whole numbers only include {0, 1, 2, 3, …} — no negatives. Since negative integers (e.g., −1, −5) are NOT whole numbers, not every integer is a whole number. <em>Counter-example:</em> −3 is an integer but not a whole number.</p>
+          <p><strong>(iii) FALSE.</strong> Rational numbers include fractions (e.g., 1/2, −3/4, 7/5) and negative numbers. Whole numbers = {0, 1, 2, 3, …}. Most rational numbers (fractions like 1/2, and all negative rationals) are NOT whole numbers. <em>Counter-example:</em> 3/4 is rational but NOT a whole number.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct True/False with valid reason or counter-example</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 1.2</div>
+
+  <div class="q-card" id="q1_5">
+    <div class="q-head" onclick="toggleQ('q1_5')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">State whether the following statements are true or false. Justify your answers. (i) Every irrational number is a real number. (ii) Every point on the number line is of the form √m, where m is a natural number. (iii) Every real number is an irrational number.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) TRUE.</strong> The set of real numbers is composed of both rational numbers and irrational numbers: Real Numbers = Rationals ∪ Irrationals. Since irrational numbers (like √2, √3, π, e) are all part of the real number system by definition, every irrational number is necessarily a real number.</p>
+          <p><strong>(ii) FALSE.</strong> Every point on the number line represents a real number, but real numbers include negative numbers and fractions that cannot be expressed as √m (where m is natural). For instance, −2 cannot be written as √m for any natural m (since √m ≥ 0 always). Also, 1/2 = √(1/4) but 1/4 is not a natural number. Hence, the statement is false.</p>
+          <p><strong>(iii) FALSE.</strong> Real numbers include BOTH rational and irrational numbers. Rational numbers such as 2, −3, 1/2, 0.75 are all real numbers but they are NOT irrational. For example, 5 is a real number, and 5 = 5/1 is rational — so it is not irrational. Therefore, not every real number is irrational.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct answer with justification referencing definitions</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1_6">
+    <div class="q-head" onclick="toggleQ('q1_6')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Are the square roots of all positive integers irrational? If not, give an example of the square root of a number that is a rational number.</div>
+      <div class="q-marks">1 Mark</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>No.</strong> The square roots of all positive integers are NOT necessarily irrational.</p>
+          <p>When a positive integer is a perfect square, its square root is a rational number (in fact, a natural number). Examples:</p>
+          <ul>
+            <li><span class="math">√4 = 2</span> — rational (and a natural number)</li>
+            <li><span class="math">√9 = 3</span> — rational</li>
+            <li><span class="math">√16 = 4</span>, <span class="math">√25 = 5</span>, <span class="math">√100 = 10</span> — all rational</li>
+          </ul>
+          <p>Only the square roots of non-perfect-square positive integers (like √2, √3, √5, √7, √10, …) are irrational — they have non-terminating, non-repeating decimal expansions.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct "No" with valid example such as √4 = 2</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 1.3</div>
+
+  <div class="q-card" id="q1_7">
+    <div class="q-head" onclick="toggleQ('q1_7')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Write the following in decimal form and say what kind of decimal expansion each has: (i) 36/100 (ii) 1/11 (iii) 4⅛ (iv) 3/13 (v) 2/11 (vi) 329/400</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) 36/100 = 0.36</strong> — <em>Terminating decimal.</em> (Denominator 100 = 2² × 5², only prime factors 2 and 5.)</p>
+          <p><strong>(ii) 1/11 = 0.090909… = 0.0̄9̄</strong> — <em>Non-terminating repeating decimal.</em> Block "09" repeats indefinitely.</p>
+          <p><strong>(iii) 4⅛ = 33/8 = 4.125</strong> — <em>Terminating decimal.</em> (Denominator 8 = 2³, only prime factor 2.)</p>
+          <p><strong>(iv) 3/13 = 0.230769230769… = 0.2̄3̄0̄7̄6̄9̄</strong> — <em>Non-terminating repeating decimal.</em> Block "230769" repeats.</p>
+          <p><strong>(v) 2/11 = 0.181818… = 0.1̄8̄</strong> — <em>Non-terminating repeating decimal.</em> Block "18" repeats.</p>
+          <p><strong>(vi) 329/400 = 0.8225</strong> — <em>Terminating decimal.</em> (400 = 2⁴ × 5², only prime factors 2 and 5.)</p>
+          <p><em>Key rule:</em> A rational number p/q (in lowest terms) has a terminating decimal if and only if the denominator q has no prime factors other than 2 and 5.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct decimal with correct type (terminating / non-terminating repeating)</span><span class="marking-marks">½ Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1_8">
+    <div class="q-head" onclick="toggleQ('q1_8')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Express the following in the form p/q where p and q are integers and q ≠ 0: (i) 0.6̄ (ii) 0.4̄7̄ (iii) 0.00̄1̄</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) 0.6̄ = 0.6666…</strong></p>
+          <p>Let x = 0.6666… → 10x = 6.6666…</p>
+          <p>Subtracting: 10x − x = 6.6666… − 0.6666…</p>
+          <span class="step">9x = 6 → x = 6/9 = <strong>2/3</strong></span>
+
+          <p><strong>(ii) 0.4̄7̄ = 0.47777…</strong></p>
+          <p>Let x = 0.47777… → 10x = 4.7777…, 100x = 47.7777…</p>
+          <p>Subtracting 10x from 100x: 90x = 43</p>
+          <span class="step">x = <strong>43/90</strong></span>
+
+          <p><strong>(iii) 0.00̄1̄ = 0.001001001…</strong></p>
+          <p>Let x = 0.001001… → 1000x = 1.001001…</p>
+          <p>Subtracting: 999x = 1</p>
+          <span class="step">x = <strong>1/999</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct p/q with correct algebraic method</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 1.5 — Rationalization &amp; Laws of Exponents</div>
+
+  <div class="q-card" id="q1_9">
+    <div class="q-head" onclick="toggleQ('q1_9')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Classify the following numbers as rational or irrational: (i) 2 − √5 (ii) (3 + √23) − √23 (iii) 2√7/7√7 (iv) 1/√2 (v) 2π</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) 2 − √5:</strong> √5 is irrational. Difference of a rational number (2) and an irrational number (√5) is always irrational. → <strong>Irrational</strong></p>
+          <p><strong>(ii) (3 + √23) − √23 = 3:</strong> The irrational parts cancel. Result = 3, which is a rational number. → <strong>Rational</strong></p>
+          <p><strong>(iii) 2√7/7√7 = 2/7:</strong> The √7 in numerator and denominator cancel each other out. Result = 2/7, a rational number. → <strong>Rational</strong></p>
+          <p><strong>(iv) 1/√2:</strong> Since √2 is irrational, its reciprocal 1/√2 is also irrational. The decimal expansion of 1/√2 = 0.7071… is non-terminating and non-repeating. → <strong>Irrational</strong></p>
+          <p><strong>(v) 2π:</strong> π is a well-known irrational number. A non-zero rational number (2) multiplied by an irrational number (π) always gives an irrational result. → <strong>Irrational</strong></p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct classification with brief reasoning</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1_10">
+    <div class="q-head" onclick="toggleQ('q1_10')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Rationalise the denominators of the following: (i) 1/√7 (ii) 1/(√7 − √6) (iii) 1/(√5 + √2) (iv) 1/(√7 − 2)</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i)</strong> Multiply numerator and denominator by √7:</p>
+          <span class="step">1/√7 × √7/√7 = √7/7</span>
+          <p><strong>(ii)</strong> Multiply by conjugate (√7 + √6):</p>
+          <span class="step">1/(√7−√6) × (√7+√6)/(√7+√6) = (√7+√6)/(7−6) = <strong>√7 + √6</strong></span>
+          <p><strong>(iii)</strong> Multiply by conjugate (√5 − √2):</p>
+          <span class="step">1/(√5+√2) × (√5−√2)/(√5−√2) = (√5−√2)/(5−2) = <strong>(√5−√2)/3</strong></span>
+          <p><strong>(iv)</strong> Multiply by conjugate (√7 + 2):</p>
+          <span class="step">1/(√7−2) × (√7+2)/(√7+2) = (√7+2)/(7−4) = <strong>(√7+2)/3</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct rationalisation using conjugate × (a²−b²) identity</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q1_11">
+    <div class="q-head" onclick="toggleQ('q1_11')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Simplify: (i) 2^(2/3) · 2^(1/5) (ii) (1/3³)⁷ (iii) 11^(1/2) ÷ 11^(1/4) (iv) 7^(1/2) · 8^(1/2)</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i)</strong> Using aᵐ · aⁿ = aᵐ⁺ⁿ:</p>
+          <span class="step">2^(2/3) · 2^(1/5) = 2^(2/3 + 1/5) = 2^(10/15 + 3/15) = <strong>2^(13/15)</strong></span>
+          <p><strong>(ii)</strong> Using (aᵐ)ⁿ = aᵐⁿ:</p>
+          <span class="step">(1/3³)⁷ = (3⁻³)⁷ = 3⁻²¹ = <strong>1/3²¹</strong></span>
+          <p><strong>(iii)</strong> Using aᵐ ÷ aⁿ = aᵐ⁻ⁿ:</p>
+          <span class="step">11^(1/2) ÷ 11^(1/4) = 11^(1/2 − 1/4) = 11^(2/4 − 1/4) = <strong>11^(1/4)</strong></span>
+          <p><strong>(iv)</strong> Using aᵐ · bᵐ = (ab)ᵐ:</p>
+          <span class="step">7^(1/2) · 8^(1/2) = (7 × 8)^(1/2) = 56^(1/2) = <strong>√56 = 2√14</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct simplification using appropriate law of exponents</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 Competency Based Questions — Chapter 1</span><span class="cbq-badge">CBSE Pattern</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
+        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study</div>
+        <div class="cbq-question"><strong>Q1.</strong> A school has a square garden with area 50 m². The principal wants to fence all four sides.<br>(a) Find the side length. Is it rational or irrational?<br>(b) Find the perimeter (total fencing needed).<br>(c) If fencing costs ₹200 per metre, find the total cost.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>(a)</strong> Side = √50 = 5√2 m. Since √2 is irrational, 5√2 is <strong>irrational</strong>.<br><strong>(b)</strong> Perimeter = 4 × 5√2 = 20√2 ≈ 28.28 m.<br><strong>(c)</strong> Total cost = 20√2 × 200 = 4000√2 ≈ <strong>₹5,656.85</strong></div>
+      </div>
+      <div class="cbq-card" style="border-left:4px solid #6366f1;">
+        <div class="cbq-type" style="color:#6366f1;">⚖️ Assertion–Reason</div>
+        <div class="cbq-question"><strong>Assertion (A):</strong> √2 is an irrational number.<br><strong>Reason (R):</strong> A number whose decimal expansion is non-terminating and non-repeating is irrational.<br>(A) Both A and R are true, R is correct explanation of A.&nbsp; (B) Both true, R not correct explanation.&nbsp; (C) A true, R false.&nbsp; (D) A false, R true.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>Answer: (A)</strong> Both A and R are true and R correctly explains A. √2 = 1.41421356… is non-terminating and non-repeating, which satisfies the definition of irrational number given in R.</div>
+      </div>
+      <div class="cbq-card" style="border-left:4px solid #f59e0b;">
+        <div class="cbq-type" style="color:#f59e0b;">🧠 HOTS</div>
+        <div class="cbq-question"><strong>Q3.</strong> If a = 2 + √3, find a − 1/a. Is the result rational or irrational?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">a = 2 + √3<br>1/a = 1/(2+√3) = (2−√3)/[(2+√3)(2−√3)] = (2−√3)/(4−3) = 2−√3<br>a − 1/a = (2+√3) − (2−√3) = 2√3<br>Since √3 is irrational, <strong>2√3 is irrational</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" disabled>← Previous</button>
+    <button class="ch-nav-btn next" onclick="showChapter(2)">Chapter 2: Polynomials →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH2 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch2">
+  <div class="chapter-header">
+    <div class="ch-badge">2</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 2: Polynomials</h2>
+      <p>NCERT Exercise 2.1 to 2.5 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 2.1</div>
+
+  <div class="q-card" id="q2_1">
+    <div class="q-head" onclick="toggleQ('q2_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Which of the following expressions are polynomials in one variable, and which are not? State reasons: (i) 4x² − 3x + 7 (ii) y² + √2 (iii) 3√t + t√2 (iv) y + 2/y (v) x¹⁰ + y³ + t⁵⁰</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>A polynomial in one variable has only non-negative integer powers of that variable.</em></p>
+          <p><strong>(i) 4x² − 3x + 7:</strong> Powers of x are 2, 1, 0 — all non-negative integers. → <strong>Polynomial in one variable x</strong> ✓</p>
+          <p><strong>(ii) y² + √2:</strong> Power of y is 2 (non-negative integer); √2 is a constant (degree 0). → <strong>Polynomial in one variable y</strong> ✓</p>
+          <p><strong>(iii) 3√t + t√2 = 3t^(1/2) + √2·t:</strong> The term 3√t = 3t^(1/2) has exponent 1/2, which is NOT a non-negative integer. → <strong>NOT a polynomial</strong> ✗</p>
+          <p><strong>(iv) y + 2/y = y + 2y⁻¹:</strong> The term 2/y has exponent −1 (negative integer), which violates the polynomial condition. → <strong>NOT a polynomial</strong> ✗</p>
+          <p><strong>(v) x¹⁰ + y³ + t⁵⁰:</strong> All exponents are non-negative integers, but there are three different variables (x, y, t). → <strong>NOT a polynomial in one variable</strong> (it is a polynomial in three variables) ✗</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct Yes/No answer with valid reason</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q2_2">
+    <div class="q-head" onclick="toggleQ('q2_2')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Find the zero of the polynomial in each case: (i) p(x) = x + 5 (ii) p(x) = x − 5 (iii) p(x) = 2x + 5 (iv) p(x) = 3x − 2 (v) p(x) = 3x (vi) p(x) = ax, a ≠ 0 (vii) p(x) = cx + d, c ≠ 0</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>A <strong>zero of a polynomial</strong> p(x) is a value of x for which p(x) = 0. We set p(x) = 0 and solve for x.</p>
+          <p><strong>(i)</strong> x + 5 = 0 → <span class="math">x = −5</span></p>
+          <p><strong>(ii)</strong> x − 5 = 0 → <span class="math">x = 5</span></p>
+          <p><strong>(iii)</strong> 2x + 5 = 0 → 2x = −5 → <span class="math">x = −5/2</span></p>
+          <p><strong>(iv)</strong> 3x − 2 = 0 → 3x = 2 → <span class="math">x = 2/3</span></p>
+          <p><strong>(v)</strong> 3x = 0 → <span class="math">x = 0</span></p>
+          <p><strong>(vi)</strong> ax = 0, a ≠ 0 → <span class="math">x = 0</span></p>
+          <p><strong>(vii)</strong> cx + d = 0 → cx = −d → <span class="math">x = −d/c</span> (the zero of any linear polynomial cx + d is −d/c)</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct zero found by setting p(x) = 0</span><span class="marking-marks">½ Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 2.3 — Remainder Theorem</div>
+
+  <div class="q-card" id="q2_3">
+    <div class="q-head" onclick="toggleQ('q2_3')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Find the remainder when x³ + 3x² + 3x + 1 is divided by: (i) x + 1 (ii) x − 1/2 (iii) x (iv) x + π (v) 5 + 2x</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Let p(x) = x³ + 3x² + 3x + 1. Note: p(x) = (x + 1)³ — a perfect cube.</p>
+          <p>By the <strong>Remainder Theorem</strong>: when p(x) is divided by (x − a), remainder = p(a).</p>
+          <p><strong>(i) x + 1 → a = −1:</strong></p>
+          <span class="step">p(−1) = (−1)³ + 3(−1)² + 3(−1) + 1 = −1 + 3 − 3 + 1 = <strong>0</strong></span>
+          <p><strong>(ii) x − 1/2 → a = 1/2:</strong></p>
+          <span class="step">p(1/2) = 1/8 + 3/4 + 3/2 + 1 = 1/8 + 6/8 + 12/8 + 8/8 = <strong>27/8</strong></span>
+          <p><strong>(iii) x → a = 0:</strong></p>
+          <span class="step">p(0) = 0 + 0 + 0 + 1 = <strong>1</strong></span>
+          <p><strong>(iv) x + π → a = −π:</strong></p>
+          <span class="step">p(−π) = −π³ + 3π² − 3π + 1 = <strong>(1 − π)³</strong></span>
+          <p><strong>(v) 5 + 2x → a = −5/2:</strong></p>
+          <span class="step">p(−5/2) = −125/8 + 75/4 − 15/2 + 1 = −125/8 + 150/8 − 60/8 + 8/8 = <strong>−27/8</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct use of Remainder Theorem and p(a) for each part</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 2.4 — Factor Theorem</div>
+
+  <div class="q-card" id="q2_4">
+    <div class="q-head" onclick="toggleQ('q2_4')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Determine which of the following polynomials has (x + 1) as a factor: (i) x³ + x² + x + 1 (ii) x⁴ + x³ + x² + x + 1 (iii) x⁴ + 3x³ + 3x² + x + 1 (iv) x³ − x² − (2 + √2)x + √2</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Factor Theorem:</strong> (x + 1) is a factor of p(x) ⟺ p(−1) = 0.</p>
+          <p><strong>(i)</strong> p(−1) = −1 + 1 − 1 + 1 = <strong>0</strong> → (x + 1) <strong>IS a factor ✓</strong></p>
+          <p><strong>(ii)</strong> p(−1) = 1 − 1 + 1 − 1 + 1 = <strong>1 ≠ 0</strong> → (x + 1) is <strong>NOT a factor ✗</strong></p>
+          <p><strong>(iii)</strong> p(−1) = 1 − 3 + 3 − 1 + 1 = <strong>1 ≠ 0</strong> → (x + 1) is <strong>NOT a factor ✗</strong></p>
+          <p><strong>(iv)</strong> p(−1) = −1 − 1 + (2 + √2) + √2 = −2 + 2 + √2 + √2 = <strong>2√2 ≠ 0</strong> → (x + 1) is <strong>NOT a factor ✗</strong></p>
+          <p>Only polynomial (i) has (x + 1) as a factor. In fact, x³ + x² + x + 1 = x²(x + 1) + 1(x + 1) = (x + 1)(x² + 1).</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct p(−1) evaluation and conclusion for each</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 2.5 — Algebraic Identities</div>
+
+  <div class="q-card" id="q2_5">
+    <div class="q-head" onclick="toggleQ('q2_5')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Factorise: (i) x³ − 2x² − x + 2 (ii) x³ − 3x² − 9x − 5 (iii) x³ + 13x² + 32x + 20 (iv) 2y³ + y² − 2y − 1</div>
+      <div class="q-marks">8 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) x³ − 2x² − x + 2:</strong> Test x = 1: 1 − 2 − 1 + 2 = 0 ✓ → (x − 1) is a factor.<br>
+          Divide: x³ − 2x² − x + 2 = (x − 1)(x² − x − 2) = (x − 1)(x − 2)(x + 1)</p>
+          <span class="step">= <strong>(x − 1)(x + 1)(x − 2)</strong></span>
+          <p><strong>(ii) x³ − 3x² − 9x − 5:</strong> Test x = 5: 125 − 75 − 45 − 5 = 0 ✓ → (x − 5) is a factor.<br>
+          Divide: = (x − 5)(x² + 2x + 1) = (x − 5)(x + 1)²</p>
+          <span class="step">= <strong>(x − 5)(x + 1)²</strong></span>
+          <p><strong>(iii) x³ + 13x² + 32x + 20:</strong> Test x = −1: −1 + 13 − 32 + 20 = 0 ✓ → (x + 1) is a factor.<br>
+          Divide: = (x + 1)(x² + 12x + 20) = (x + 1)(x + 2)(x + 10)</p>
+          <span class="step">= <strong>(x + 1)(x + 2)(x + 10)</strong></span>
+          <p><strong>(iv) 2y³ + y² − 2y − 1:</strong> Test y = 1: 2 + 1 − 2 − 1 = 0 ✓ → (y − 1) is a factor.<br>
+          Divide: = (y − 1)(2y² + 3y + 1) = (y − 1)(2y + 1)(y + 1)</p>
+          <span class="step">= <strong>(y − 1)(y + 1)(2y + 1)</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Finding correct factor by trial + correct full factorisation</span><span class="marking-marks">2 Marks each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q2_6">
+    <div class="q-head" onclick="toggleQ('q2_6')">
+      <div class="q-num">Q16</div>
+      <div class="q-text">If x + y + z = 0, show that x³ + y³ + z³ = 3xyz.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>We know the algebraic identity:</p>
+          <p><span class="math">x³ + y³ + z³ − 3xyz = (x + y + z)(x² + y² + z² − xy − yz − zx)</span></p>
+          <p>Given: x + y + z = 0. Substituting on the right side:</p>
+          <span class="step">x³ + y³ + z³ − 3xyz = 0 × (x² + y² + z² − xy − yz − zx) = 0</span>
+          <p>Therefore:</p>
+          <span class="step"><strong>x³ + y³ + z³ = 3xyz &nbsp; ✓ Proved</strong></span>
+          <p><strong>Application:</strong> 1³ + (−3)³ + 2³: Here 1 + (−3) + 2 = 0, so 1 + (−27) + 8 = 3(1)(−3)(2) = −18. ✓</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct identity written</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Substituting x+y+z = 0 and simplification</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final correct conclusion</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 Competency Based Questions — Chapter 2</span><span class="cbq-badge">CBSE Pattern</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
+        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study</div>
+        <div class="cbq-question"><strong>Q1.</strong> A rectangular park has length (x + 3) m and breadth (x − 2) m.<br>(a) Find the area polynomial.<br>(b) Find the perimeter polynomial.<br>(c) If x = 5, find actual area and perimeter.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>(a)</strong> Area = (x+3)(x−2) = x² + x − 6 m²<br><strong>(b)</strong> Perimeter = 2[(x+3)+(x−2)] = 2(2x+1) = (4x+2) m<br><strong>(c)</strong> At x=5: Area = 25+5−6 = <strong>24 m²</strong>; Perimeter = 20+2 = <strong>22 m</strong></div>
+      </div>
+      <div class="cbq-card" style="border-left:4px solid #f59e0b;">
+        <div class="cbq-type" style="color:#f59e0b;">🧠 HOTS</div>
+        <div class="cbq-question"><strong>Q2.</strong> Without actual division, find the remainder when p(x) = x³ − 6x² + 11x − 6 is divided by (x − 1), (x − 2), and (x − 3). What do you conclude about the factors of p(x)?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">By Remainder Theorem:<br>p(1) = 1 − 6 + 11 − 6 = <strong>0</strong> → (x−1) is a factor<br>p(2) = 8 − 24 + 22 − 6 = <strong>0</strong> → (x−2) is a factor<br>p(3) = 27 − 54 + 33 − 6 = <strong>0</strong> → (x−3) is a factor<br><strong>Conclusion:</strong> p(x) = (x−1)(x−2)(x−3)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(1)">← Chapter 1</button>
+    <button class="ch-nav-btn next" onclick="showChapter(3)">Chapter 3: Coordinate Geometry →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH3 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch3">
+  <div class="chapter-header">
+    <div class="ch-badge">3</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 3: Coordinate Geometry</h2>
+      <p>NCERT Exercise 3.1 &amp; 3.2 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 3.1</div>
+  <div class="q-card" id="q3_1">
+    <div class="q-head" onclick="toggleQ('q3_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">How will you describe the position of a table lamp on your study table to another person?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>To describe the position of a table lamp on a study table, we need two reference lines (axes) and two measurements (coordinates):</p>
+          <ol>
+            <li>Choose one corner of the table as the <strong>reference point (origin)</strong>.</li>
+            <li>Measure the <strong>horizontal distance</strong> from the origin along one edge — say, 25 cm. This is the x-coordinate (abscissa).</li>
+            <li>Measure the <strong>perpendicular distance</strong> from the opposite edge — say, 30 cm. This is the y-coordinate (ordinate).</li>
+            <li>The position is described as the ordered pair <strong>(25 cm, 30 cm)</strong>.</li>
+          </ol>
+          <p>This is the fundamental idea of the <strong>Cartesian coordinate system</strong>: any point in a plane is uniquely identified by an ordered pair (x, y) measured from a fixed origin along two perpendicular axes.</p>
+          <p>This method was introduced by René Descartes and forms the basis of Coordinate Geometry, which connects algebra and geometry.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Two reference lines concept mentioned</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Position as ordered pair (x, y) explained</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 3.2</div>
+  <div class="q-card" id="q3_2">
+    <div class="q-head" onclick="toggleQ('q3_2')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Write the answer of each of the following: (i) What is the name of the horizontal and vertical lines in the Cartesian plane? (ii) What is the name of each part of the plane formed by these two lines? (iii) Write the name of the point where these two lines intersect.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i)</strong> The horizontal line is called the <strong>x-axis</strong> (also called abscissa axis) and the vertical line is called the <strong>y-axis</strong> (also called ordinate axis). Together, they are referred to as the <strong>coordinate axes</strong>.</p>
+          <p><strong>(ii)</strong> The two coordinate axes divide the plane into four regions called <strong>Quadrants</strong>:
+          <ul>
+            <li><strong>First Quadrant (I):</strong> x &gt; 0 and y &gt; 0 (both positive)</li>
+            <li><strong>Second Quadrant (II):</strong> x &lt; 0 and y &gt; 0 (x negative, y positive)</li>
+            <li><strong>Third Quadrant (III):</strong> x &lt; 0 and y &lt; 0 (both negative)</li>
+            <li><strong>Fourth Quadrant (IV):</strong> x &gt; 0 and y &lt; 0 (x positive, y negative)</li>
+          </ul></p>
+          <p><strong>(iii)</strong> The x-axis and y-axis intersect at the <strong>Origin</strong>, denoted by <strong>O</strong>. Its coordinates are <span class="math">(0, 0)</span>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct answer with proper terminology</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_3">
+    <div class="q-head" onclick="toggleQ('q3_3')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">See the figure and write the following: (i) Coordinates of B (ii) Point identified by (−3, −5) (iii) Abscissa of point D (iv) Ordinate of point H (v) Coordinates of L (vi) Coordinates of M</div>
+      <div class="q-marks">6 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Based on the standard NCERT Exercise 3.2 coordinate grid figure:</p>
+          <p><strong>(i) Coordinates of B:</strong> <span class="math">B = (−5, 2)</span></p>
+          <p><strong>(ii) Point identified by (−3, −5):</strong> The point is <strong>E</strong></p>
+          <p><strong>(iii) Abscissa (x-coordinate) of D:</strong> <span class="math">6</span></p>
+          <p><strong>(iv) Ordinate (y-coordinate) of H:</strong> <span class="math">−3</span></p>
+          <p><strong>(v) Coordinates of L:</strong> L lies on the y-axis → <span class="math">L = (0, 5)</span></p>
+          <p><strong>(vi) Coordinates of M:</strong> M lies on the x-axis → <span class="math">M = (−3, 0)</span></p>
+          <p><em>Note: The abscissa is the horizontal distance (x-coordinate) from the y-axis, and the ordinate is the vertical distance (y-coordinate) from the x-axis. A point on the y-axis has abscissa 0; a point on the x-axis has ordinate 0.</em></p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct coordinate/identification</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(2)">← Chapter 2</button>
+    <button class="ch-nav-btn next" onclick="showChapter(4)">Chapter 4: Linear Equations →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH4 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch4">
+  <div class="chapter-header">
+    <div class="ch-badge">4</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 4: Linear Equations in Two Variables</h2>
+      <p>NCERT Exercise 4.1 to 4.4 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 4.1</div>
+  <div class="q-card" id="q4_1">
+    <div class="q-head" onclick="toggleQ('q4_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">The cost of a notebook is twice the cost of a pen. Write a linear equation in two variables to represent this statement. (Let cost of a notebook be ₹x and pen be ₹y.)</div>
+      <div class="q-marks">1 Mark</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Let cost of a notebook = ₹x and cost of a pen = ₹y.</p>
+          <p>Given condition: Cost of notebook = 2 × Cost of pen</p>
+          <span class="step">x = 2y &nbsp;&nbsp; or equivalently, &nbsp;&nbsp; x − 2y = 0</span>
+          <p>This is a <strong>linear equation in two variables</strong> x and y, expressed in standard form ax + by + c = 0, where a = 1, b = −2, c = 0. It has infinitely many solutions.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct equation: x = 2y or x − 2y = 0</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 4.2</div>
+  <div class="q-card" id="q4_2">
+    <div class="q-head" onclick="toggleQ('q4_2')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Which one of the following options is true, and why? y = 3x + 5 has (i) a unique solution (ii) only two solutions (iii) infinitely many solutions</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Option (iii): Infinitely many solutions</strong> — This is true.</p>
+          <p><strong>Reason:</strong> A linear equation in two variables like y = 3x + 5 has infinitely many solutions. For every real value assigned to x, there is exactly one corresponding value of y, giving a solution pair (x, y). Since x can be any real number, there are infinitely many such pairs.</p>
+          <p>Some solutions:</p>
+          <ul>
+            <li>x = 0: y = 5 → solution <strong>(0, 5)</strong></li>
+            <li>x = 1: y = 8 → solution <strong>(1, 8)</strong></li>
+            <li>x = −1: y = 2 → solution <strong>(−1, 2)</strong></li>
+            <li>x = 2: y = 11 → solution <strong>(2, 11)</strong></li>
+          </ul>
+          <p>All these solution pairs, when plotted in the Cartesian plane, form a straight line — confirming that a linear equation in two variables represents a line with infinitely many points (solutions).</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct option (iii) identified</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Valid reason with examples</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q4_3">
+    <div class="q-head" onclick="toggleQ('q4_3')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Write four solutions for each of the following equations: (i) 2x + y = 7 (ii) πx + y = 9 (iii) x = 4y</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) 2x + y = 7</strong> (y = 7 − 2x):<br>x=0→y=7: <strong>(0,7)</strong> | x=1→y=5: <strong>(1,5)</strong> | x=2→y=3: <strong>(2,3)</strong> | x=3→y=1: <strong>(3,1)</strong></p>
+          <p><strong>(ii) πx + y = 9</strong> (y = 9 − πx):<br>x=0→y=9: <strong>(0,9)</strong> | x=1→y=9−π: <strong>(1, 9−π)</strong> | x=−1→y=9+π: <strong>(−1, 9+π)</strong> | x=2→y=9−2π: <strong>(2, 9−2π)</strong></p>
+          <p><strong>(iii) x = 4y</strong>:<br>y=0→x=0: <strong>(0,0)</strong> | y=1→x=4: <strong>(4,1)</strong> | y=−1→x=−4: <strong>(−4,−1)</strong> | y=2→x=8: <strong>(8,2)</strong></p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Four correct ordered pair solutions for each equation</span><span class="marking-marks">1 Mark per equation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 Competency Based Questions — Chapter 4</span><span class="cbq-badge">CBSE Pattern</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
+        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study</div>
+        <div class="cbq-question"><strong>Q1.</strong> Ramu buys x apples at ₹12 each and y mangoes at ₹8 each, spending exactly ₹100.<br>(a) Write a linear equation for this situation.<br>(b) Find two solutions.<br>(c) If Ramu buys 4 apples, how many mangoes can he buy?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>(a)</strong> 12x + 8y = 100 → 3x + 2y = 25<br><strong>(b)</strong> x=1 → 2y=22 → y=11: (1,11); x=3 → 2y=16 → y=8: (3,8)<br><strong>(c)</strong> 12(4) + 8y = 100 → 8y = 52 → y = 6.5 → Ramu can buy <strong>6 mangoes</strong> (with ₹4 remaining).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(3)">← Chapter 3</button>
+    <button class="ch-nav-btn next" onclick="showChapter(5)">Chapter 5: Euclid's Geometry →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH5 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch5">
+  <div class="chapter-header">
+    <div class="ch-badge">5</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 5: Introduction to Euclid's Geometry</h2>
+      <p>NCERT Exercise 5.1 &amp; 5.2 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 5.1</div>
+  <div class="q-card" id="q5_1">
+    <div class="q-head" onclick="toggleQ('q5_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Which of the following statements are true and which are false? Give reasons: (i) Only one line can pass through a single point. (ii) There are an infinite number of lines which pass through two distinct points. (iii) A terminated line can be produced indefinitely on both sides. (iv) If two circles are equal, then their radii are equal. (v) In the given figure, if AB = PQ and PQ = XY, then AB = XY.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) FALSE.</strong> Infinitely many lines can pass through a single point. According to Euclid's postulates, a unique line passes through two distinct points — not just one. Through any single given point, we can draw lines in all possible directions.</p>
+          <p><strong>(ii) FALSE.</strong> According to Euclid's first postulate: "A straight line may be drawn from any one point to any other point." This unique line through two distinct points is exactly ONE, not infinite. It is impossible to draw two different straight lines through the same two points.</p>
+          <p><strong>(iii) TRUE.</strong> This is Euclid's second postulate: "A terminated line can be produced indefinitely." A terminated line (line segment) can be extended infinitely in both directions, making it a full straight line.</p>
+          <p><strong>(iv) TRUE.</strong> Two circles are equal if and only if they completely coincide (superimpose on each other), which happens only when their radii are identical. This follows from Euclid's fourth axiom: "Things which coincide with one another are equal to one another."</p>
+          <p><strong>(v) TRUE.</strong> By Euclid's first axiom: "Things which are equal to the same thing are equal to one another." AB = PQ and PQ = XY. Since both AB and XY are equal to the same thing PQ, it follows that AB = XY. (This is the transitive property of equality.)</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct T/F with reason citing relevant Euclid's postulate/axiom</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 5.2</div>
+  <div class="q-card" id="q5_2">
+    <div class="q-head" onclick="toggleQ('q5_2')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">How would you rewrite Euclid's fifth postulate so that it would be easier to understand?</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Original Euclid's Fifth Postulate:</strong> "If a straight line falling on two straight lines makes the interior angles on the same side of it taken together less than two right angles, then the two straight lines, if produced indefinitely, meet on that side on which the sum of angles is less than two right angles."</p>
+          <p><strong>Simplified / Equivalent Version (Playfair's Axiom):</strong></p>
+          <p><em>"For every line l and for every point P not lying on l, there exists a <strong>unique</strong> line m passing through P and parallel to l."</em></p>
+          <p><strong>Key Consequences of the Fifth Postulate:</strong></p>
+          <ul>
+            <li>Two distinct lines cannot be parallel to each other AND intersect (they are either parallel OR they meet at exactly one point).</li>
+            <li>If a transversal intersects two parallel lines, the co-interior (same-side interior) angles are supplementary (sum = 180°).</li>
+            <li>The angle sum of a triangle is exactly 180° in Euclidean geometry.</li>
+          </ul>
+          <p>This postulate distinguishes Euclidean geometry from non-Euclidean geometries (e.g., Spherical geometry, where no parallel lines exist; Hyperbolic geometry, where infinitely many parallels exist).</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct simplified equivalent statement (Playfair's Axiom)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Any valid implication or consequence</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(4)">← Chapter 4</button>
+    <button class="ch-nav-btn next" onclick="showChapter(6)">Chapter 6: Lines &amp; Angles →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH6 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch6">
+  <div class="chapter-header">
+    <div class="ch-badge">6</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 6: Lines and Angles</h2>
+      <p>NCERT Exercise 6.1 to 6.3 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 6.1</div>
+  <div class="q-card" id="q6_1">
+    <div class="q-head" onclick="toggleQ('q6_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">In the figure, lines AB and CD intersect at O. If ∠AOC + ∠BOE = 70° and ∠BOD = 40°, find ∠BOE and reflex ∠COE.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Given: Lines AB and CD intersect at O. ∠AOC + ∠BOE = 70°, ∠BOD = 40°.</p>
+          <p><strong>Step 1 — Find ∠AOC:</strong><br>
+          ∠AOC = ∠BOD = 40° &nbsp; (Vertically opposite angles)</p>
+          <p><strong>Step 2 — Find ∠BOE:</strong><br>
+          ∠AOC + ∠BOE = 70° (given)</p>
+          <span class="step">40° + ∠BOE = 70° → ∠BOE = 30°</span>
+          <p><strong>Step 3 — Find ∠COE:</strong><br>
+          ∠AOC + ∠COE + ∠BOE = 180° (angles on a straight line — AOB is a straight line)</p>
+          <span class="step">40° + ∠COE + 30° = 180° → ∠COE = 110°</span>
+          <p><strong>Step 4 — Find reflex ∠COE:</strong></p>
+          <span class="step">Reflex ∠COE = 360° − 110° = <strong>250°</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">∠AOC = 40° (vertically opposite angles)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">∠BOE = 30°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Reflex ∠COE = 250°</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 6.3</div>
+  <div class="q-card" id="q6_2">
+    <div class="q-head" onclick="toggleQ('q6_2')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">In the figure, sides QP and RQ of △PQR are produced to points S and T respectively. If ∠SPR = 135° and ∠PQT = 110°, find ∠PRQ.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Given: ∠SPR = 135°, ∠PQT = 110°.</p>
+          <p><strong>Step 1 — Find ∠QPR (interior angle at P):</strong><br>
+          QPS is a straight line → ∠QPR + ∠SPR = 180° (linear pair)</p>
+          <span class="step">∠QPR = 180° − 135° = 45°</span>
+          <p><strong>Step 2 — Find ∠PQR (interior angle at Q):</strong><br>
+          TQR is a straight line → ∠PQR + ∠PQT = 180° (linear pair)</p>
+          <span class="step">∠PQR = 180° − 110° = 70°</span>
+          <p><strong>Step 3 — Apply Angle Sum Property of △PQR:</strong><br>
+          ∠QPR + ∠PQR + ∠PRQ = 180°</p>
+          <span class="step">45° + 70° + ∠PRQ = 180° → ∠PRQ = 180° − 115° = <strong>65°</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">∠QPR = 45° and ∠PQR = 70° via linear pair</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">∠PRQ = 65° via angle sum property</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(5)">← Chapter 5</button>
+    <button class="ch-nav-btn next" onclick="showChapter(7)">Chapter 7: Triangles →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH7 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch7">
+  <div class="chapter-header">
+    <div class="ch-badge">7</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 7: Triangles</h2>
+      <p>NCERT Exercise 7.1 to 7.4 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 7.1</div>
+  <div class="q-card" id="q7_1">
+    <div class="q-head" onclick="toggleQ('q7_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">In quadrilateral ACBD, AC = AD and AB bisects ∠A. Show that △ABC ≅ △ABD. What can you say about BC and BD?</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong> AC = AD, AB bisects ∠A (i.e., ∠CAB = ∠DAB). AB = AB (common side).</p>
+          <p><strong>To Prove:</strong> △ABC ≅ △ABD and hence BC = BD.</p>
+          <p><strong>Proof — In △ABC and △ABD:</strong></p>
+          <ul>
+            <li>AC = AD &nbsp; (Given)</li>
+            <li>∠CAB = ∠DAB &nbsp; (AB bisects ∠A)</li>
+            <li>AB = AB &nbsp; (Common side)</li>
+          </ul>
+          <span class="step">∴ △ABC ≅ △ABD &nbsp; (by <strong>SAS</strong> Congruence Rule)</span>
+          <p><strong>Conclusion about BC and BD:</strong><br>
+          Since △ABC ≅ △ABD, by <strong>CPCT</strong> (Corresponding Parts of Congruent Triangles):</p>
+          <span class="step"><strong>BC = BD</strong></span>
+          <p>This shows that B is equidistant from C and D. Therefore B lies on the perpendicular bisector of CD.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Three correct corresponding parts (AC=AD, ∠CAB=∠DAB, AB=AB)</span><span class="marking-marks">1½ Marks</span></div>
+          <div class="marking-row"><span class="marking-key">SAS congruence + CPCT conclusion BC = BD</span><span class="marking-marks">1½ Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q7_2">
+    <div class="q-head" onclick="toggleQ('q7_2')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">AD and BC are equal perpendiculars to a line segment AB. Show that CD bisects AB.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong> AD ⊥ AB, BC ⊥ AB, AD = BC. Let O be the point where CD meets AB.</p>
+          <p><strong>To Prove:</strong> O is the midpoint of AB (i.e., OA = OB).</p>
+          <p><strong>In △OBC and △OAD:</strong></p>
+          <ul>
+            <li>∠BOC = ∠AOD &nbsp; (Vertically opposite angles at O)</li>
+            <li>∠OBC = ∠OAD = 90° &nbsp; (BC ⊥ AB and AD ⊥ AB)</li>
+            <li>BC = AD &nbsp; (Given)</li>
+          </ul>
+          <span class="step">∴ △OBC ≅ △OAD &nbsp; (by <strong>AAS</strong> Congruence Rule)</span>
+          <p>By CPCT: OB = OA</p>
+          <span class="step"><strong>∴ CD bisects AB at O. ✓ Proved</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct identification of three pairs and AAS</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">CPCT → OA = OB → CD bisects AB</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 7.2</div>
+  <div class="q-card" id="q7_3">
+    <div class="q-head" onclick="toggleQ('q7_3')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">In an isosceles triangle ABC, with AB = AC, the bisectors of ∠B and ∠C intersect each other at O. Join A to O. Show that: (i) OB = OC (ii) AO bisects ∠A.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong> △ABC, AB = AC. OB bisects ∠B, OC bisects ∠C. O is their intersection. AO is joined.</p>
+          <p><strong>(i) Prove OB = OC:</strong><br>
+          Since △ABC is isosceles with AB = AC: ∠ABC = ∠ACB (angles opposite equal sides).<br>
+          ∠OBC = ∠ABC/2 and ∠OCB = ∠ACB/2 (bisectors)<br>
+          Since ∠ABC = ∠ACB: <span class="math">∠OBC = ∠OCB</span></p>
+          <p>In △OBC: ∠OBC = ∠OCB → sides opposite equal angles are equal:</p>
+          <span class="step"><strong>OB = OC ✓</strong></span>
+          <p><strong>(ii) Prove AO bisects ∠A:</strong><br>
+          In △ABO and △ACO:</p>
+          <ul>
+            <li>AB = AC (given)</li>
+            <li>OB = OC (proved above)</li>
+            <li>AO = AO (common)</li>
+          </ul>
+          <span class="step">∴ △ABO ≅ △ACO &nbsp; (SSS Congruence)</span>
+          <p>By CPCT: ∠OAB = ∠OAC</p>
+          <span class="step"><strong>∴ AO bisects ∠A ✓</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Proof of OB = OC using ∠OBC = ∠OCB</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">SSS proof of △ABO ≅ △ACO + CPCT conclusion</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(6)">← Chapter 6</button>
+    <button class="ch-nav-btn next" onclick="showChapter(8)">Chapter 8: Quadrilaterals →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH8 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch8">
+  <div class="chapter-header">
+    <div class="ch-badge">8</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 8: Quadrilaterals</h2>
+      <p>NCERT Exercise 8.1 &amp; 8.2 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 8.1</div>
+  <div class="q-card" id="q8_1">
+    <div class="q-head" onclick="toggleQ('q8_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">The angles of a quadrilateral are in the ratio 3 : 5 : 9 : 13. Find all the angles of the quadrilateral.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Let the four angles be 3k, 5k, 9k, and 13k.</p>
+          <p>By the <strong>Angle Sum Property of a Quadrilateral</strong>: Sum of all angles = 360°</p>
+          <span class="step">3k + 5k + 9k + 13k = 360° → 30k = 360° → k = 12°</span>
+          <p>The four angles are:</p>
+          <ul>
+            <li>3k = 3 × 12° = <strong>36°</strong></li>
+            <li>5k = 5 × 12° = <strong>60°</strong></li>
+            <li>9k = 9 × 12° = <strong>108°</strong></li>
+            <li>13k = 13 × 12° = <strong>156°</strong></li>
+          </ul>
+          <p><strong>Verification:</strong> 36° + 60° + 108° + 156° = 360° ✓</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">30k = 360° → k = 12°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">All four angles correctly computed</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q8_2">
+    <div class="q-head" onclick="toggleQ('q8_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">If the diagonals of a parallelogram are equal, then show that it is a rectangle.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong> Parallelogram ABCD where diagonal AC = diagonal BD.</p>
+          <p><strong>To Prove:</strong> ABCD is a rectangle, i.e., ∠DAB = 90°.</p>
+          <p><strong>In △ABC and △DCB:</strong></p>
+          <ul>
+            <li>AB = DC &nbsp; (opposite sides of parallelogram)</li>
+            <li>BC = BC &nbsp; (common)</li>
+            <li>AC = DB &nbsp; (given — equal diagonals)</li>
+          </ul>
+          <span class="step">∴ △ABC ≅ △DCB &nbsp; (SSS Congruence)</span>
+          <p>By CPCT: ∠ABC = ∠DCB</p>
+          <p>Since AB ∥ DC (opposite sides of parallelogram), BC is a transversal:<br>
+          ∠ABC + ∠DCB = 180° (co-interior angles)</p>
+          <span class="step">∠ABC + ∠ABC = 180° → 2∠ABC = 180° → ∠ABC = 90°</span>
+          <p>Since one angle = 90° and opposite angles of a parallelogram are equal, all four angles = 90°.</p>
+          <span class="step"><strong>∴ ABCD is a rectangle. ✓</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">△ABC ≅ △DCB by SSS with three correct pairs</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">∠ABC = 90° using co-interior angles + rectangle conclusion</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 8.2 — Mid-Point Theorem</div>
+  <div class="q-card" id="q8_3">
+    <div class="q-head" onclick="toggleQ('q8_3')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">ABCD is a quadrilateral in which P, Q, R, S are mid-points of sides AB, BC, CD, DA. AC is a diagonal. Show that: (i) SR ∥ AC and SR = ½AC (ii) PQ = SR (iii) PQRS is a parallelogram.</div>
+      <div class="q-marks">6 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>(i) SR ∥ AC and SR = ½AC:</strong><br>
+          In △ACD: S is midpoint of AD and R is midpoint of CD.<br>
+          By the <strong>Mid-Point Theorem</strong>: The segment joining midpoints of two sides of a triangle is parallel to the third side and half its length.</p>
+          <span class="step">∴ SR ∥ AC and SR = ½AC ✓</span>
+          <p><strong>(ii) PQ = SR:</strong><br>
+          In △ABC: P is midpoint of AB and Q is midpoint of BC.<br>
+          By Mid-Point Theorem:</p>
+          <span class="step">PQ ∥ AC and PQ = ½AC</span>
+          <p>Since SR = ½AC and PQ = ½AC:</p>
+          <span class="step"><strong>PQ = SR ✓</strong></span>
+          <p><strong>(iii) PQRS is a parallelogram:</strong><br>
+          From (i): SR ∥ AC; From (ii): PQ ∥ AC → PQ ∥ SR<br>
+          Also PQ = SR (proved). Since one pair of opposite sides is both parallel and equal:</p>
+          <span class="step"><strong>PQRS is a parallelogram. ✓</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct Mid-Point Theorem application for (i)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Correct PQ = SR proof for (ii)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">PQRS is parallelogram conclusion</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(7)">← Chapter 7</button>
+    <button class="ch-nav-btn next" onclick="showChapter(9)">Chapter 9: Circles →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH9 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch9">
+  <div class="chapter-header">
+    <div class="ch-badge">9</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 9: Circles</h2>
+      <p>NCERT Exercise 9.1 to 9.3 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 9.1</div>
+  <div class="q-card" id="q9_1">
+    <div class="q-head" onclick="toggleQ('q9_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Prove that equal chords of congruent circles subtend equal angles at their centres.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Given:</strong> Two congruent circles with centres O and O', each of radius r. AB is a chord of the first circle, CD is a chord of the second circle, and AB = CD.</p>
+          <p><strong>To Prove:</strong> ∠AOB = ∠CO'D</p>
+          <p><strong>Proof — In △AOB and △CO'D:</strong></p>
+          <ul>
+            <li>OA = O'C = r &nbsp; (radii of congruent circles are equal)</li>
+            <li>OB = O'D = r &nbsp; (radii of congruent circles are equal)</li>
+            <li>AB = CD &nbsp; (Given — equal chords)</li>
+          </ul>
+          <span class="step">∴ △AOB ≅ △CO'D &nbsp; (SSS Congruence Rule)</span>
+          <p>By CPCT:</p>
+          <span class="step"><strong>∠AOB = ∠CO'D &nbsp; ✓ Proved</strong></span>
+          <p>Hence, equal chords of congruent circles subtend equal angles at their respective centres.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Three correct pairs of △AOB and △CO'D</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">SSS congruence + CPCT conclusion</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 9.2</div>
+  <div class="q-card" id="q9_2">
+    <div class="q-head" onclick="toggleQ('q9_2')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">In the given figure, A, B, C are three points on a circle with centre O such that ∠BOC = 30° and ∠AOB = 60°. If D is a point on the circle other than the arc ABC, find ∠ADC.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Given: ∠BOC = 30°, ∠AOB = 60°, O is the centre.</p>
+          <p><strong>Step 1 — Find ∠AOC:</strong></p>
+          <span class="step">∠AOC = ∠AOB + ∠BOC = 60° + 30° = 90°</span>
+          <p><strong>Step 2 — Apply the theorem:</strong><br>
+          The angle subtended by an arc at the centre is twice the angle subtended by it at any point on the remaining part of the circle.</p>
+          <p>Arc AC subtends ∠AOC = 90° at centre O, and ∠ADC at point D on the circle.</p>
+          <span class="step">∠AOC = 2 × ∠ADC</span>
+          <span class="step">90° = 2 × ∠ADC</span>
+          <span class="step">∠ADC = 90° / 2 = <strong>45°</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">∠AOC = 90° correctly computed</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Correct theorem applied: central angle = 2 × inscribed angle</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">∠ADC = 45°</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(8)">← Chapter 8</button>
+    <button class="ch-nav-btn next" onclick="showChapter(10)">Chapter 10: Heron's Formula →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH10 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch10">
+  <div class="chapter-header">
+    <div class="ch-badge">10</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 10: Heron's Formula</h2>
+      <p>NCERT Exercise 10.1 &amp; 10.2 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 10.1</div>
+  <div class="q-card" id="q10_1">
+    <div class="q-head" onclick="toggleQ('q10_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">A traffic signal board (equilateral triangle) has side 'a'. Find the area using Heron's formula. If perimeter = 180 cm, find the area of the board.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>For an equilateral triangle with all sides = a:</p>
+          <p>Semi-perimeter: <span class="math">s = (a + a + a)/2 = 3a/2</span></p>
+          <p><strong>Heron's Formula:</strong> Area = √[s(s−a)(s−b)(s−c)]</p>
+          <span class="step">= √[3a/2 · (3a/2 − a) · (3a/2 − a) · (3a/2 − a)]</span>
+          <span class="step">= √[3a/2 · a/2 · a/2 · a/2] = √[3a⁴/16] = (a²/4)√3</span>
+          <p><strong>∴ Area of equilateral triangle = (√3/4)a²</strong></p>
+          <p><strong>Given Perimeter = 180 cm:</strong></p>
+          <span class="step">3a = 180 → a = 60 cm</span>
+          <span class="step">Area = (√3/4) × (60)² = (√3/4) × 3600 = 900√3 cm²</span>
+          <span class="step">≈ 900 × 1.732 ≈ <strong>1558.8 cm²</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct Heron's formula setup → (√3/4)a²</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">a = 60 cm and area = 900√3 cm²</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q10_2">
+    <div class="q-head" onclick="toggleQ('q10_2')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">A triangular wall of a slide has sides 5 m, 12 m, 13 m. Find the cost of painting it at the rate of ₹1.80 per m².</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Sides: a = 5 m, b = 12 m, c = 13 m.</p>
+          <p><strong>Check:</strong> 5² + 12² = 25 + 144 = 169 = 13² → it is a right-angled triangle ✓</p>
+          <p><strong>Semi-perimeter:</strong> s = (5 + 12 + 13)/2 = 30/2 = 15 m</p>
+          <p><strong>Heron's Formula:</strong></p>
+          <span class="step">Area = √[15 × (15−5) × (15−12) × (15−13)]</span>
+          <span class="step">= √[15 × 10 × 3 × 2] = √900 = <strong>30 m²</strong></span>
+          <p>(Verify: ½ × 5 × 12 = 30 m² ✓ — right triangle shortcut)</p>
+          <p><strong>Cost of painting:</strong></p>
+          <span class="step">Cost = Area × Rate = 30 × ₹1.80 = <strong>₹54</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct s = 15 m and Heron's formula applied</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Area = 30 m² and cost = ₹54</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 10.2</div>
+  <div class="q-card" id="q10_3">
+    <div class="q-head" onclick="toggleQ('q10_3')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">A park ABCD has ∠C = 90°, AB = 9 m, BC = 12 m, CD = 5 m, AD = 8 m. Find the area of the park.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><strong>Step 1 — Find BD using Pythagoras (∠C = 90° in △BCD):</strong></p>
+          <span class="step">BD² = BC² + CD² = 144 + 25 = 169 → BD = 13 m</span>
+          <p><strong>Step 2 — Area of △BCD (right-angled at C):</strong></p>
+          <span class="step">Area₁ = ½ × BC × CD = ½ × 12 × 5 = 30 m²</span>
+          <p><strong>Step 3 — Area of △ABD by Heron's formula</strong> (AB = 9, AD = 8, BD = 13):<br>
+          s = (9 + 8 + 13)/2 = 15 m</p>
+          <span class="step">Area₂ = √[15 × 6 × 7 × 2] = √1260 = 6√35 ≈ 35.5 m²</span>
+          <p><strong>Step 4 — Total area:</strong></p>
+          <span class="step">Total = 30 + 35.5 ≈ <strong>65.5 m²</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">BD = 13 m by Pythagoras</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Area of △BCD = 30 m²</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Heron's formula for △ABD correctly applied</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Total area ≈ 65.5 m²</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 Competency Based Questions — Chapter 10</span><span class="cbq-badge">CBSE Pattern</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
+        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study</div>
+        <div class="cbq-question"><strong>Q1.</strong> A farmer's triangular field has sides 40 m, 24 m, and 32 m. He wants to grow crops on it.<br>(a) Find s (semi-perimeter).<br>(b) Find the area using Heron's formula.<br>(c) If cost of ploughing is ₹50/m², find total cost.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>(a)</strong> s = (40+24+32)/2 = 48 m<br><strong>(b)</strong> Area = √[48×8×24×16] = √147456 = <strong>384 m²</strong><br><strong>(c)</strong> Cost = 384 × ₹50 = <strong>₹19,200</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(9)">← Chapter 9</button>
+    <button class="ch-nav-btn next" onclick="showChapter(11)">Chapter 11: Surface Areas &amp; Volumes →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH11 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch11">
+  <div class="chapter-header">
+    <div class="ch-badge">11</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 11: Surface Areas and Volumes</h2>
+      <p>NCERT Exercise 11.1 to 11.7 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 11.1 — Cuboid &amp; Cube</div>
+  <div class="q-card" id="q11_1">
+    <div class="q-head" onclick="toggleQ('q11_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">A plastic box 1.5 m long, 1.25 m wide and 65 cm deep is open at the top. Find: (i) Sheet area needed (ii) Cost if 1 m² sheet costs ₹20.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>l = 1.5 m, b = 1.25 m, h = 65 cm = 0.65 m. Box is <strong>open at top</strong>.</p>
+          <p><strong>Lateral Surface Area (4 walls):</strong></p>
+          <span class="step">LSA = 2h(l + b) = 2 × 0.65 × (1.5 + 1.25) = 1.3 × 2.75 = 3.575 m²</span>
+          <p><strong>Bottom face:</strong></p>
+          <span class="step">= l × b = 1.5 × 1.25 = 1.875 m²</span>
+          <p><strong>(i) Total sheet area (no top):</strong></p>
+          <span class="step">= 3.575 + 1.875 = <strong>5.45 m²</strong></span>
+          <p><strong>(ii) Cost:</strong></p>
+          <span class="step">= 5.45 × ₹20 = <strong>₹109</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct LSA + bottom area with unit conversion</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Area = 5.45 m² and cost = ₹109</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 11.2 — Cylinder</div>
+  <div class="q-card" id="q11_2">
+    <div class="q-head" onclick="toggleQ('q11_2')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">The curved surface area of a right circular cylinder of height 14 cm is 88 cm². Find the diameter of the base.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>h = 14 cm, CSA = 88 cm². Formula: CSA = 2πrh</p>
+          <span class="step">88 = 2 × (22/7) × r × 14 = 88r → r = 1 cm</span>
+          <span class="step">Diameter = 2r = <strong>2 cm</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct formula and r = 1 cm</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Diameter = 2 cm</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 11.3 — Cone</div>
+  <div class="q-card" id="q11_3">
+    <div class="q-head" onclick="toggleQ('q11_3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Slant height and base diameter of a conical tomb are 25 m and 14 m. Find cost of white-washing its CSA at ₹210 per 100 m².</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>l = 25 m, diameter = 14 m → r = 7 m.</p>
+          <p><strong>CSA of cone = πrl:</strong></p>
+          <span class="step">= (22/7) × 7 × 25 = 22 × 25 = <strong>550 m²</strong></span>
+          <p><strong>Cost:</strong></p>
+          <span class="step">= (550/100) × 210 = 5.5 × 210 = <strong>₹1,155</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">r = 7 m and CSA = 550 m²</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Cost = ₹1,155</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 11.4 — Sphere</div>
+  <div class="q-card" id="q11_4">
+    <div class="q-head" onclick="toggleQ('q11_4')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Find the surface area of a sphere of radius: (i) 10.5 cm (ii) 5.6 cm (iii) 14 cm</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Surface area of sphere = 4πr²</p>
+          <p><strong>(i) r = 10.5 cm:</strong></p>
+          <span class="step">SA = 4 × (22/7) × (10.5)² = (88/7) × 110.25 = <strong>1386 cm²</strong></span>
+          <p><strong>(ii) r = 5.6 cm:</strong></p>
+          <span class="step">SA = 4 × (22/7) × (5.6)² = (88/7) × 31.36 ≈ <strong>394.24 cm²</strong></span>
+          <p><strong>(iii) r = 14 cm:</strong></p>
+          <span class="step">SA = 4 × (22/7) × (14)² = 4 × 22 × 28 = <strong>2464 cm²</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct SA using 4πr²</span><span class="marking-marks">1 Mark each</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 11.7 — Volume of Sphere / Hemisphere</div>
+  <div class="q-card" id="q11_5">
+    <div class="q-head" onclick="toggleQ('q11_5')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">A hemispherical bowl is made of steel 0.25 cm thick. Inner radius = 5 cm. Find the outer curved surface area.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Inner radius = 5 cm, thickness = 0.25 cm</p>
+          <span class="step">Outer radius R = 5 + 0.25 = 5.25 cm</span>
+          <p>Outer curved SA of hemisphere = 2πR²:</p>
+          <span class="step">= 2 × (22/7) × (5.25)² = (44/7) × 27.5625 = 44 × 3.9375 = <strong>173.25 cm²</strong></span>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Outer radius = 5.25 cm</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">2πR² = 173.25 cm²</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(10)">← Chapter 10</button>
+    <button class="ch-nav-btn next" onclick="showChapter(12)">Chapter 12: Statistics →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CH12 ══════════════════════════════════ -->
+<section class="chapter-section hidden" id="ch12">
+  <div class="chapter-header">
+    <div class="ch-badge">12</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 12: Statistics</h2>
+      <p>NCERT Exercise 12.1 &amp; 12.2 — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 12.1</div>
+  <div class="q-card" id="q12_1">
+    <div class="q-head" onclick="toggleQ('q12_1')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">The blood groups of 30 students: A, B, O, O, AB, O, A, O, B, A, O, B, A, O, O, A, AB, O, A, A, O, O, AB, B, A, O, B, A, B, O. Make a frequency distribution table and find the most common and rarest blood groups.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <tr><th>Blood Group</th><th>Tally Marks</th><th>Frequency</th></tr>
+            <tr><td>A</td><td>|||| ||||</td><td>9</td></tr>
+            <tr><td>B</td><td>||||  |</td><td>6</td></tr>
+            <tr><td>O</td><td>|||| |||| ||</td><td>12</td></tr>
+            <tr><td>AB</td><td>|||</td><td>3</td></tr>
+            <tr><td><strong>Total</strong></td><td></td><td><strong>30</strong></td></tr>
+          </table>
+          <p style="margin-top:12px;"><strong>Most common blood group:</strong> <strong>O</strong> with 12 students (highest frequency).</p>
+          <p><strong>Rarest blood group:</strong> <strong>AB</strong> with only 3 students (lowest frequency).</p>
+          <p><em>Note: A frequency distribution table organises raw data into groups, making it easier to interpret. Tally marks help count occurrences systematically.</em></p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct frequency distribution table (all four groups)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Most common: O (12 students)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Rarest: AB (3 students)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-div">Exercise 12.2</div>
+  <div class="q-card" id="q12_2">
+    <div class="q-head" onclick="toggleQ('q12_2')">
+      <div class="q-num">Q9</div>
+      <div class="q-text">100 surnames were picked from a telephone directory. Frequency distribution of number of letters: 1–4: 6, 4–7: 30, 7–10: 44, 10–13: 16, 13–16: 4. Draw a histogram and frequency polygon.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <tr><th>Class Interval (No. of Letters)</th><th>Frequency</th><th>Midpoint</th></tr>
+            <tr><td>1–4</td><td>6</td><td>2.5</td></tr>
+            <tr><td>4–7</td><td>30</td><td>5.5</td></tr>
+            <tr><td>7–10</td><td>44</td><td>8.5</td></tr>
+            <tr><td>10–13</td><td>16</td><td>11.5</td></tr>
+            <tr><td>13–16</td><td>4</td><td>14.5</td></tr>
+          </table>
+          <p style="margin-top:12px;"><strong>Steps to draw Histogram:</strong></p>
+          <ol>
+            <li>X-axis: Number of letters (1 to 16, continuous scale).</li>
+            <li>Y-axis: Frequency (0 to 50, scale of 10).</li>
+            <li>Draw adjacent rectangles (no gaps) with heights 6, 30, 44, 16, 4.</li>
+            <li>Label axes and give title: "Distribution of Number of Letters in Surnames".</li>
+          </ol>
+          <p><strong>Steps to draw Frequency Polygon:</strong></p>
+          <ol>
+            <li>Mark midpoints on top of each bar: (2.5, 6), (5.5, 30), (8.5, 44), (11.5, 16), (14.5, 4).</li>
+            <li>Add two imaginary end points: (−0.5, 0) before first class and (17.5, 0) after last class.</li>
+            <li>Join all these 7 points with straight lines to get the frequency polygon.</li>
+          </ol>
+          <p><strong>Key Observation:</strong> Maximum surnames (44) have 7–10 letters. The distribution is approximately bell-shaped, peaking at the 7–10 class.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct histogram (5 adjacent bars, labelled axes, uniform scale)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Correct midpoints identified</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Correct frequency polygon with imaginary end classes</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 Competency Based Questions — Chapter 12</span><span class="cbq-badge">CBSE Pattern</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
+        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study</div>
+        <div class="cbq-question"><strong>Q1.</strong> A teacher records marks (out of 50) of 20 students: 25, 38, 42, 30, 27, 35, 48, 22, 36, 40, 33, 29, 45, 17, 38, 43, 32, 28, 41, 35.<br>(a) Make a frequency distribution with class width 10 (starting from 10).<br>(b) Which class has maximum students?<br>(c) How many students scored more than 40?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>(a)</strong> 10–20: 1 | 20–30: 5 | 30–40: 8 | 40–50: 6 | Total: 20<br><strong>(b)</strong> Maximum students (8) are in class <strong>30–40</strong>.<br><strong>(c)</strong> Scores above 40 — 42, 48, 45, 43, 41 = <strong>5 students</strong>.</div>
+      </div>
+      <div class="cbq-card" style="border-left:4px solid #6366f1;">
+        <div class="cbq-type" style="color:#6366f1;">⚖️ Assertion–Reason</div>
+        <div class="cbq-question"><strong>Assertion (A):</strong> A histogram is drawn with no gaps between bars.<br><strong>Reason (R):</strong> A histogram represents continuous data where class intervals are contiguous (touch each other).<br>(A) Both A and R are true, R explains A.&nbsp; (B) Both true, R doesn't explain A.&nbsp; (C) A true, R false.&nbsp; (D) A false, R true.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>Answer: (A)</strong> Both A and R are true and R correctly explains A. In a histogram, data is continuous so class intervals share common boundaries — bars are adjacent with no gaps. Unlike bar graphs (which show discrete categories with gaps), histograms show continuous frequency distributions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(11)">← Chapter 11</button>
+    <button class="ch-nav-btn" disabled style="opacity:.4;cursor:not-allowed;">✅ All 12 Chapters Complete</button>
+  </div>
+</section>
+
+  </main>
+</div>
+
+<button class="mob-toggle" onclick="toggleSidebar()">☰ Chapters</button>
+
+<script>
+  window.addEventListener('scroll',()=>{
+    const d=document.documentElement;
+    document.getElementById('progressBar').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';
+  });
+
+  function toggleQ(id){document.getElementById(id).classList.toggle('open');}
+
+  let currentCh=1;
+  function showChapter(n){
+    document.getElementById('ch'+currentCh).classList.add('hidden');
+    currentCh=n;
+    const s=document.getElementById('ch'+n);
+    s.classList.remove('hidden');
+    s.scrollIntoView({behavior:'smooth',block:'start'});
+    document.querySelectorAll('.bc-chip').forEach(c=>c.classList.toggle('active',parseInt(c.dataset.ch)===n));
+    document.querySelectorAll('#chapterNav a').forEach((a,i)=>a.classList.toggle('active',i+1===n));
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('show');
+  }
+
+  function toggleSidebar(){
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('show');
+  }
+  document.getElementById('sidebarOverlay').addEventListener('click',()=>{
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('show');
+  });
+
+  function filterChapters(v){
+    document.querySelectorAll('#chapterNav li').forEach(li=>{
+      li.style.display=li.textContent.toLowerCase().includes(v.toLowerCase())?'':'none';
+    });
+  }
+
+  function toggleCBQ(btn){
+    const ans=btn.nextElementSibling;
+    const open=ans.style.display==='block';
+    ans.style.display=open?'none':'block';
+    btn.textContent=open?'▶ Show Answer':'▼ Hide Answer';
+  }
+
+  const mobToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('navLinks');
+  if (mobToggle && navLinks) {
+    mobToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobToggle.classList.toggle('active');
+    });
+  }
+</script>
+</body>
+</html>
