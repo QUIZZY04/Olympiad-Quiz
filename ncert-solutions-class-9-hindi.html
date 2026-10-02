@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Solutions Class 9 Hindi — Kshitij, Kritika, Sparsh &amp; Sanchayan (All 30 Units) | CBSE Marking Scheme 2026-27</title>
+  <meta name="description" content="Free NCERT Solutions for Class 9 Hindi — Kshitij Bhag-1, Kritika Bhag-1, Sparsh Bhag-1, Sanchayan Bhag-1. 100% question coverage with maximum word count answers as per CBSE Marking Scheme 2026-27, CBQs & Value-Based Questions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #ea580c;
+      --brand-hover: #c2410c;
+      --brand-light: #fff7ed;
+      --brand-text: #9a3412;
+      --navy: #0f172a;
+      --slate: #334155;
+      --muted: #64748b;
+      --light-bg: #f8fafc;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; background: var(--light-bg); color: var(--slate); line-height: 1.7; }
+    .top-progress { position: fixed; top: 0; left: 0; height: 3.5px; background: linear-gradient(90deg, #ea580c, #f59e0b); z-index: 1000; transition: width .1s; }
+    .navbar { background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 900; }
+    .navbar-inner { max-width: 1380px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .navbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-text { font-size: 1.15rem; font-weight: 800; color: white; }
+    .logo-text span { color: #fb923c; }
+    .navbar-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link { color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+    .nav-link:hover { color: white; background: rgba(255,255,255,0.06); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown:hover .nav-dropdown-content { display: block !important; }
+    .nav-dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #e2e8f0; border-radius: 10px; min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 1000; padding: 6px; }
+    .nav-dropdown-content a { display: block; padding: 8px 14px; color: #334155; text-decoration: none; font-size: 0.85rem; border-radius: 6px; transition: 0.2s; }
+    .nav-dropdown-content a:hover { background: #fff7ed; color: #ea580c !important; }
+    .navbar-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { background: #ea580c; color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
+    .btn-login:hover { background: #c2410c; }
+    .navbar-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .navbar-toggle span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+    
+    .hero-banner { background: linear-gradient(135deg, #7c2d12 0%, #0f172a 100%); color: white; padding: 36px 24px; text-align: center; border-bottom: 3.5px solid var(--brand); }
+    .hero-banner h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; font-family: 'Noto Sans Devanagari', sans-serif; }
+    .hero-banner p { color: #fed7aa; font-size: .95rem; max-width: 820px; margin: 0 auto 16px; line-height: 1.6; }
+    .hero-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); padding: 5px 14px; border-radius: 20px; font-size: .78rem; font-weight: 600; color: #ffedd5; }
+    
+    .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 36px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .breadcrumb-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+    .breadcrumb-label { font-size: .72rem; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; }
+    .book-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .book-tab { padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all 0.18s; }
+    .book-tab:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
+    .book-tab.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 2px 8px rgba(234,88,12,0.3); }
+    
+    .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; max-height: 88px; overflow-y: auto; }
+    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: .75rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
+    .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
+    .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(234,88,12,.35); }
+    .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 4px; background: rgba(0,0,0,.12); border-radius: 999px; font-size: .65rem; font-weight: 800; }
+    .bc-chip.active .bc-n { background: rgba(255,255,255,.25); }
+    
+    .main-layout { display: flex; max-width: 1380px; margin: 0 auto; }
+    .sidebar { width: 330px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 156px; height: calc(100vh - 156px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar-title { font-size: .82rem; font-weight: 800; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
+    .search-box:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(234,88,12,0.15); }
+    .sidebar-group-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--brand); letter-spacing: 0.05em; margin: 16px 0 6px 6px; display: flex; align-items: center; gap: 6px; }
+    .chapter-nav { list-style: none; margin-bottom: 14px; }
+    .chapter-nav li { margin-bottom: 3px; }
+    .chapter-nav li a { display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px; border-radius: 8px; color: var(--slate); text-decoration: none; font-size: .82rem; font-weight: 500; transition: all .15s; cursor: pointer; }
+    .chapter-nav li a:hover { background: var(--brand-light); color: var(--brand-text); }
+    .chapter-nav li a.active { background: var(--brand); color: white; }
+    .chapter-nav li a.active small { color: rgba(255,255,255,0.85) !important; }
+    .ch-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: rgba(0,0,0,.1); border-radius: 50%; font-size: .68rem; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .chapter-nav li a.active .ch-num { background: rgba(255,255,255,.25); }
+    .ch-txt { flex: 1; line-height: 1.35; }
+    
+    .main-content { flex: 1; padding: 28px 36px 60px; max-width: 920px; }
+    .chapter-header { background: linear-gradient(135deg, #7c2d12, #0f172a); color: white; padding: 24px 28px; border-radius: 16px; margin-bottom: 24px; box-shadow: var(--shadow-hover); display: flex; align-items: center; gap: 20px; border-left: 5px solid var(--brand); }
+    .ch-badge { width: 50px; height: 50px; background: rgba(255,255,255,.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 900; flex-shrink: 0; }
+    .ch-category { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; color: #fdba74; margin-bottom: 4px; }
+    .chapter-header-info h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 4px; font-family: 'Noto Sans Devanagari', sans-serif; }
+    .chapter-header-info p { font-size: .85rem; color: #fed7aa; line-height: 1.4; }
+    
+    .poem-display-box { background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fed7aa; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; box-shadow: var(--shadow); }
+    .poem-body { font-family: 'Noto Sans Devanagari', serif; font-size: 0.96rem; line-height: 2.0; color: #7c2d12; white-space: pre-line; }
+    .poet-name { text-align: right; font-weight: 800; color: #9a3412; margin-top: 10px; font-size: 0.9rem; }
+    
+    .ex-div { background: #f1f5f9; color: var(--navy); font-weight: 800; font-size: .88rem; padding: 10px 16px; border-radius: 8px; margin: 28px 0 16px; border-left: 4px solid var(--brand); }
+    .q-card { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 14px; box-shadow: var(--shadow); transition: box-shadow .2s; overflow: hidden; }
+    .q-card:hover { box-shadow: var(--shadow-hover); }
+    .q-head { display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px; cursor: pointer; user-select: none; }
+    .q-num { min-width: 36px; height: 36px; background: var(--brand); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 800; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+    .q-text { flex: 1; font-size: .92rem; font-weight: 600; color: var(--slate); line-height: 1.6; font-family: 'Noto Sans Devanagari', sans-serif; }
+    .q-marks { font-size: .75rem; font-weight: 700; color: var(--brand-text); background: var(--brand-light); padding: 4px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+    .q-toggle { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--muted); flex-shrink: 0; }
+    .q-toggle svg { width: 18px; height: 18px; }
+    .q-answer { display: none; border-top: 1px solid var(--border); }
+    .q-answer.open { display: block; }
+    .answer-box { padding: 20px 24px; background: #ffffff; }
+    .answer-label { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: #15803d; background: #dcfce7; display: inline-block; padding: 3px 10px; border-radius: 4px; margin-bottom: 12px; }
+    .answer-text { font-size: .92rem; line-height: 1.85; color: var(--slate); font-family: 'Noto Sans Devanagari', sans-serif; }
+    .answer-text p { margin-bottom: 10px; }
+    .answer-text ul, .answer-text ol { padding-left: 22px; margin-bottom: 10px; }
+    .answer-text li { margin-bottom: 6px; }
+    .answer-text strong { color: var(--navy); }
+    .answer-text blockquote { border-left: 3px solid var(--brand); padding-left: 14px; margin: 10px 0; font-style: italic; color: #9a3412; background: #fff7ed; padding: 8px 12px; border-radius: 4px; }
+    
+    .marking-scheme { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--border); background: #fafafa; padding: 12px 16px; border-radius: 8px; }
+    .marking-title { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 8px; }
+    .marking-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #f1f5f9; font-size: .82rem; gap: 12px; }
+    .marking-key { color: var(--slate); font-weight: 500; }
+    .marking-marks { font-weight: 700; color: var(--brand-text); background: var(--brand-light); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+    
+    .cbq-section { background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fed7aa; border-radius: 14px; padding: 22px; margin-top: 28px; }
+    .cbq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+    .cbq-header span:first-child { font-size: .88rem; font-weight: 800; color: #9a3412; font-family: 'Noto Sans Devanagari', sans-serif; }
+    .cbq-badge { background: #ea580c; color: white; padding: 3px 10px; border-radius: 999px; font-size: .72rem; font-weight: 700; }
+    .cbq-card { background: white; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .cbq-type { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+    .cbq-question { font-size: .9rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; line-height: 1.65; font-family: 'Noto Sans Devanagari', sans-serif; }
+    .cbq-show-btn { background: #ea580c; color: white; border: none; padding: 7px 16px; border-radius: 6px; font-size: .8rem; font-weight: 700; cursor: pointer; transition: .2s; }
+    .cbq-show-btn:hover { background: #c2410c; }
+    .cbq-answer { display: none; margin-top: 14px; padding-top: 12px; border-top: 1px solid #f1f5f9; font-size: .9rem; line-height: 1.8; color: var(--slate); font-family: 'Noto Sans Devanagari', sans-serif; }
+    .cbq-answer.open { display: block; }
+    
+    .chapter-nav-btns { display: flex; justify-content: space-between; align-items: center; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); gap: 12px; }
+    .ch-nav-btn { padding: 10px 20px; border-radius: 8px; font-size: .85rem; font-weight: 700; cursor: pointer; border: 1.5px solid var(--border); background: white; color: var(--slate); transition: .2s; }
+    .ch-nav-btn:hover { border-color: var(--brand); color: var(--brand); }
+    .ch-nav-btn.next { background: var(--brand); color: white; border-color: var(--brand); }
+    .ch-nav-btn.next:hover { background: var(--brand-hover); }
+    
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 950; }
+    .mob-sidebar-toggle { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 900; background: var(--brand); color: white; border: none; border-radius: 999px; padding: 12px 22px; font-weight: 700; font-size: .85rem; box-shadow: 0 4px 16px rgba(234,88,12,.4); cursor: pointer; }
+    
+    @media (max-width: 900px) {
+      .sidebar { position: fixed; top: 0; left: -340px; height: 100vh; z-index: 1000; transition: left .3s; box-shadow: 4px 0 20px rgba(0,0,0,.2); }
+      .sidebar.open { left: 0; }
+      .sidebar-overlay.show { display: block; }
+      .mob-sidebar-toggle { display: block; }
+      .main-content { padding: 20px 16px 40px; }
+      .breadcrumb-bar { padding: 12px 16px; top: 57px; }
+    }
+  </style>
+</head>
+<body>
+<div class="top-progress" id="progressBar"></div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link" style="color:white;font-weight:700;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-9-hindi.html" style="font-weight:700;color:#ea580c;background:#fff7ed;">Class 9 Hindi 🇮🇳 (Active)</a>
+          <a href="ncert-solutions-class-9-english.html" style="font-weight:700;color:#0284c7;">Class 9 English 📖</a>
+          <a href="ncert-solutions-class-9-science.html" style="font-weight:700;color:#059669;">Class 9 Science 🔬</a>
+          <a href="ncert-solutions-class-9-maths.html" style="font-weight:700;color:#4f46e5;">Class 9 Maths 📐</a>
+          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
+          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
+          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
+          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
+          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
+          <a href="ncert-solutions-class-8-sanskrit.html">Class 8 Sanskrit</a>
+        </div>
+      </div>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-banner">
+  <h1>कक्षा 9 हिंदी — सम्पूर्ण NCERT समाधान</h1>
+  <p>CBSE सत्र 2026-27 के <strong>100% संपूर्ण पाठ्यक्रम</strong> का प्रामाणिक समाधान। <strong>सभी 30 पाठ</strong>: क्षितिज भाग-1 (6 गद्य + 7 काव्य), कृतिका भाग-1 (3 पाठ), स्पर्श भाग-1 (5 गद्य + 5 काव्य), और संचयन भाग-1 (4 पाठ)। CBSE अंक योजना (Marking Scheme) के अनुसार <strong>अधिकतम शब्द-सीमा</strong> में सुगठित उत्तर एवं योग्यता आधारित प्रश्न (CBQs)।</p>
+  <div class="hero-badges">
+    <span class="hero-badge">📚 क्षितिज भाग-1 (13 पाठ)</span>
+    <span class="hero-badge">📖 कृतिका भाग-1 (3 पाठ)</span>
+    <span class="hero-badge">📙 स्पर्श भाग-1 (10 पाठ)</span>
+    <span class="hero-badge">📗 संचयन भाग-1 (4 पाठ)</span>
+    <span class="hero-badge">🎯 100% CBSE अंक योजना</span>
+    <span class="hero-badge">⚡ योग्यता एवं मूल्य आधारित प्रश्न (CBQs)</span>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-controls">
+    <div class="breadcrumb-label">📖 कक्षा 9 हिंदी — पुस्तक के अनुसार देखें:</div>
+    <div class="book-tabs">
+      <span class="book-tab active" onclick="filterBook('all')">🌟 सभी 30 पाठ</span>
+      <span class="book-tab" onclick="filterBook('kshitij-gadh')">📚 क्षितिज - गद्य (6)</span>
+      <span class="book-tab" onclick="filterBook('kshitij-kavya')">📝 क्षितिज - काव्य (7)</span>
+      <span class="book-tab" onclick="filterBook('kritika')">📖 कृतिका (3)</span>
+      <span class="book-tab" onclick="filterBook('sparsh-gadh')">📙 स्पर्श - गद्य (5)</span>
+      <span class="book-tab" onclick="filterBook('sparsh-kavya')">🖋️ स्पर्श - काव्य (5)</span>
+      <span class="book-tab" onclick="filterBook('sanchayan')">📗 संचयन (4)</span>
+    </div>
+  </div>
+  <div class="breadcrumb-chips" id="breadcrumbChips">
+    <span class="bc-chip active" onclick="showChapter(1)" data-ch="1" data-book="kshitij-gadh"><span class="bc-n">K1</span>दो बैलों की कथा</span>
+    <span class="bc-chip" onclick="showChapter(2)" data-ch="2" data-book="kshitij-gadh"><span class="bc-n">K2</span>ल्हासा की ओर</span>
+    <span class="bc-chip" onclick="showChapter(3)" data-ch="3" data-book="kshitij-gadh"><span class="bc-n">K3</span>उपभोक्तावाद की …</span>
+    <span class="bc-chip" onclick="showChapter(4)" data-ch="4" data-book="kshitij-gadh"><span class="bc-n">K4</span>साँवले सपनों की…</span>
+    <span class="bc-chip" onclick="showChapter(5)" data-ch="5" data-book="kshitij-gadh"><span class="bc-n">K5</span>प्रेमचंद के फटे…</span>
+    <span class="bc-chip" onclick="showChapter(6)" data-ch="6" data-book="kshitij-gadh"><span class="bc-n">K6</span>मेरे बचपन के दिन</span>
+    <span class="bc-chip" onclick="showChapter(7)" data-ch="7" data-book="kshitij-kavya"><span class="bc-n">KP7</span>साखियाँ एवं सबद</span>
+    <span class="bc-chip" onclick="showChapter(8)" data-ch="8" data-book="kshitij-kavya"><span class="bc-n">KP8</span>वाख</span>
+    <span class="bc-chip" onclick="showChapter(9)" data-ch="9" data-book="kshitij-kavya"><span class="bc-n">KP9</span>सवैये</span>
+    <span class="bc-chip" onclick="showChapter(10)" data-ch="10" data-book="kshitij-kavya"><span class="bc-n">KP10</span>कैदी और कोकिला</span>
+    <span class="bc-chip" onclick="showChapter(11)" data-ch="11" data-book="kshitij-kavya"><span class="bc-n">KP11</span>ग्राम श्री</span>
+    <span class="bc-chip" onclick="showChapter(12)" data-ch="12" data-book="kshitij-kavya"><span class="bc-n">KP12</span>मेघ आए</span>
+    <span class="bc-chip" onclick="showChapter(13)" data-ch="13" data-book="kshitij-kavya"><span class="bc-n">KP13</span>बच्चे काम पर जा…</span>
+    <span class="bc-chip" onclick="showChapter(14)" data-ch="14" data-book="kritika"><span class="bc-n">KR14</span>इस जल प्रलय में</span>
+    <span class="bc-chip" onclick="showChapter(15)" data-ch="15" data-book="kritika"><span class="bc-n">KR15</span>मेरे संग की औरत…</span>
+    <span class="bc-chip" onclick="showChapter(16)" data-ch="16" data-book="kritika"><span class="bc-n">KR16</span>रीढ़ की हड्डी</span>
+    <span class="bc-chip" onclick="showChapter(17)" data-ch="17" data-book="sparsh-gadh"><span class="bc-n">S17</span>दुःख का अधिकार</span>
+    <span class="bc-chip" onclick="showChapter(18)" data-ch="18" data-book="sparsh-gadh"><span class="bc-n">S18</span>एवरेस्ट : मेरी …</span>
+    <span class="bc-chip" onclick="showChapter(19)" data-ch="19" data-book="sparsh-gadh"><span class="bc-n">S19</span>तुम कब जाओगे, अ…</span>
+    <span class="bc-chip" onclick="showChapter(20)" data-ch="20" data-book="sparsh-gadh"><span class="bc-n">S20</span>चंद्रशेखर वेंकट…</span>
+    <span class="bc-chip" onclick="showChapter(21)" data-ch="21" data-book="sparsh-gadh"><span class="bc-n">S21</span>शुक्रतारे के सम…</span>
+    <span class="bc-chip" onclick="showChapter(22)" data-ch="22" data-book="sparsh-kavya"><span class="bc-n">SP22</span>पद</span>
+    <span class="bc-chip" onclick="showChapter(23)" data-ch="23" data-book="sparsh-kavya"><span class="bc-n">SP23</span>दोहे</span>
+    <span class="bc-chip" onclick="showChapter(24)" data-ch="24" data-book="sparsh-kavya"><span class="bc-n">SP24</span>गीत-अगीत</span>
+    <span class="bc-chip" onclick="showChapter(25)" data-ch="25" data-book="sparsh-kavya"><span class="bc-n">SP25</span>अग्नि पथ</span>
+    <span class="bc-chip" onclick="showChapter(26)" data-ch="26" data-book="sparsh-kavya"><span class="bc-n">SP26</span>नए इलाके में</span>
+    <span class="bc-chip" onclick="showChapter(27)" data-ch="27" data-book="sanchayan"><span class="bc-n">SN27</span>गिल्लू</span>
+    <span class="bc-chip" onclick="showChapter(28)" data-ch="28" data-book="sanchayan"><span class="bc-n">SN28</span>स्मृति</span>
+    <span class="bc-chip" onclick="showChapter(29)" data-ch="29" data-book="sanchayan"><span class="bc-n">SN29</span>कल्लू कुम्हार क…</span>
+    <span class="bc-chip" onclick="showChapter(30)" data-ch="30" data-book="sanchayan"><span class="bc-n">SN30</span>मेरा छोटा-सा नि…</span>
+  </div>
+</div>
+
+<div class="main-layout">
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-title">
+      <span>30 पाठ (Units)</span>
+      <span style="font-size:0.75rem;color:var(--brand);font-weight:700;">CBSE 2026-27</span>
+    </div>
+    <input type="text" class="search-box" placeholder="पाठ, लेखक या कवि खोजें..." onkeyup="filterChapters(this.value)">
+    
+    <div class="sidebar-group-title" id="titleKshitijGadh">📚 क्षितिज भाग-1 — गद्य खंड (1–6)</div>
+    <ul class="chapter-nav" id="navKshitijGadh">
+      <li data-book="kshitij-gadh"><a onclick="showChapter(1)" class="active"><span class="ch-num">1</span><span class="ch-txt">दो बैलों की कथा <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">प्रेमचंद</small></span></a></li>
+      <li data-book="kshitij-gadh"><a onclick="showChapter(2)"><span class="ch-num">2</span><span class="ch-txt">ल्हासा की ओर <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">राहुल सांकृत्यायन</small></span></a></li>
+      <li data-book="kshitij-gadh"><a onclick="showChapter(3)"><span class="ch-num">3</span><span class="ch-txt">उपभोक्तावाद की संस्कृति <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">श्यामाचरण दुबे</small></span></a></li>
+      <li data-book="kshitij-gadh"><a onclick="showChapter(4)"><span class="ch-num">4</span><span class="ch-txt">साँवले सपनों की याद <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">जाबिर हुसैन</small></span></a></li>
+      <li data-book="kshitij-gadh"><a onclick="showChapter(5)"><span class="ch-num">5</span><span class="ch-txt">प्रेमचंद के फटे जूते <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">हरिशंकर परसाई</small></span></a></li>
+      <li data-book="kshitij-gadh"><a onclick="showChapter(6)"><span class="ch-num">6</span><span class="ch-txt">मेरे बचपन के दिन <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">महादेवी वर्मा</small></span></a></li>
+    </ul>
+    
+    <div class="sidebar-group-title" id="titleKshitijKavya">📝 क्षितिज भाग-1 — काव्य खंड (7–13)</div>
+    <ul class="chapter-nav" id="navKshitijKavya">
+      <li data-book="kshitij-kavya"><a onclick="showChapter(7)"><span class="ch-num">7</span><span class="ch-txt">साखियाँ एवं सबद <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">कबीरदास</small></span></a></li>
+      <li data-book="kshitij-kavya"><a onclick="showChapter(8)"><span class="ch-num">8</span><span class="ch-txt">वाख <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">ललद्यद</small></span></a></li>
+      <li data-book="kshitij-kavya"><a onclick="showChapter(9)"><span class="ch-num">9</span><span class="ch-txt">सवैये <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">रसखान</small></span></a></li>
+      <li data-book="kshitij-kavya"><a onclick="showChapter(10)"><span class="ch-num">10</span><span class="ch-txt">कैदी और कोकिला <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">माखनलाल चतुर्वेदी</small></span></a></li>
+      <li data-book="kshitij-kavya"><a onclick="showChapter(11)"><span class="ch-num">11</span><span class="ch-txt">ग्राम श्री <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">सुमित्रानंदन पंत</small></span></a></li>
+      <li data-book="kshitij-kavya"><a onclick="showChapter(12)"><span class="ch-num">12</span><span class="ch-txt">मेघ आए <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">सर्वेश्वर दयाल सक्सेना</small></span></a></li>
+      <li data-book="kshitij-kavya"><a onclick="showChapter(13)"><span class="ch-num">13</span><span class="ch-txt">बच्चे काम पर जा रहे हैं <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">राजेश जोशी</small></span></a></li>
+    </ul>
+    
+    <div class="sidebar-group-title" id="titleKritika">📖 कृतिका भाग-1 — पूरक (14–16)</div>
+    <ul class="chapter-nav" id="navKritika">
+      <li data-book="kritika"><a onclick="showChapter(14)"><span class="ch-num">14</span><span class="ch-txt">इस जल प्रलय में <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">फणीश्वरनाथ रेणु</small></span></a></li>
+      <li data-book="kritika"><a onclick="showChapter(15)"><span class="ch-num">15</span><span class="ch-txt">मेरे संग की औरतें <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">मृदुला गर्ग</small></span></a></li>
+      <li data-book="kritika"><a onclick="showChapter(16)"><span class="ch-num">16</span><span class="ch-txt">रीढ़ की हड्डी <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">जगदीशचंद्र माथुर</small></span></a></li>
+    </ul>
+    
+    <div class="sidebar-group-title" id="titleSparshGadh">📙 स्पर्श भाग-1 — गद्य खंड (17–21)</div>
+    <ul class="chapter-nav" id="navSparshGadh">
+      <li data-book="sparsh-gadh"><a onclick="showChapter(17)"><span class="ch-num">17</span><span class="ch-txt">दुःख का अधिकार <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">यशपाल</small></span></a></li>
+      <li data-book="sparsh-gadh"><a onclick="showChapter(18)"><span class="ch-num">18</span><span class="ch-txt">एवरेस्ट : मेरी शिखर यात्रा <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">बचेंद्री पाल</small></span></a></li>
+      <li data-book="sparsh-gadh"><a onclick="showChapter(19)"><span class="ch-num">19</span><span class="ch-txt">तुम कब जाओगे, अतिथि <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">शरद जोशी</small></span></a></li>
+      <li data-book="sparsh-gadh"><a onclick="showChapter(20)"><span class="ch-num">20</span><span class="ch-txt">चंद्रशेखर वेंकट रामन् <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">धीरज मालवीय</small></span></a></li>
+      <li data-book="sparsh-gadh"><a onclick="showChapter(21)"><span class="ch-num">21</span><span class="ch-txt">शुक्रतारे के समान <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">स्वामी आनंद</small></span></a></li>
+    </ul>
+    
+    <div class="sidebar-group-title" id="titleSparshKavya">🖋️ स्पर्श भाग-1 — काव्य खंड (22–26)</div>
+    <ul class="chapter-nav" id="navSparshKavya">
+      <li data-book="sparsh-kavya"><a onclick="showChapter(22)"><span class="ch-num">22</span><span class="ch-txt">पद <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">रैदास</small></span></a></li>
+      <li data-book="sparsh-kavya"><a onclick="showChapter(23)"><span class="ch-num">23</span><span class="ch-txt">दोहे <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">रहीम</small></span></a></li>
+      <li data-book="sparsh-kavya"><a onclick="showChapter(24)"><span class="ch-num">24</span><span class="ch-txt">गीत-अगीत <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">रामधारी सिंह 'दिनकर'</small></span></a></li>
+      <li data-book="sparsh-kavya"><a onclick="showChapter(25)"><span class="ch-num">25</span><span class="ch-txt">अग्नि पथ <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">हरिवंश राय बच्चन</small></span></a></li>
+      <li data-book="sparsh-kavya"><a onclick="showChapter(26)"><span class="ch-num">26</span><span class="ch-txt">नए इलाके में / खुशबू रचते हैं हाथ <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">अरुण कमल</small></span></a></li>
+    </ul>
+    
+    <div class="sidebar-group-title" id="titleSanchayan">📗 संचयन भाग-1 — पूरक (27–30)</div>
+    <ul class="chapter-nav" id="navSanchayan">
+      <li data-book="sanchayan"><a onclick="showChapter(27)"><span class="ch-num">27</span><span class="ch-txt">गिल्लू <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">महादेवी वर्मा</small></span></a></li>
+      <li data-book="sanchayan"><a onclick="showChapter(28)"><span class="ch-num">28</span><span class="ch-txt">स्मृति <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">श्रीराम शर्मा</small></span></a></li>
+      <li data-book="sanchayan"><a onclick="showChapter(29)"><span class="ch-num">29</span><span class="ch-txt">कल्लू कुम्हार की उनाकोटी <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">के. विक्रम सिंह</small></span></a></li>
+      <li data-book="sanchayan"><a onclick="showChapter(30)"><span class="ch-num">30</span><span class="ch-txt">मेरा छोटा-सा निजी पुस्तकालय <small style="display:block;font-size:0.7rem;color:var(--muted);font-weight:400;">धर्मवीर भारती</small></span></a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div id="chapter-content-area">
+<section class="chapter-section" id="ch1" data-book="kshitij-gadh">
+  <div class="chapter-header">
+    <div class="ch-badge">1</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">क्षितिज भाग-1 (गद्य खंड)</div>
+      <h2>दो बैलों की कथा</h2>
+      <p>मुंशी प्रेमचंद | गद्य खंड — CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+  <div class="ex-div">प्रश्न-अभ्यास (पाठ्यपुस्तक के प्रश्न-उत्तर) — 100% कवरेज</div>
+
+  <div class="q-card" id="ch1-q1">
+    <div class="q-head" onclick="toggleQ('ch1-q1')">
+      <div class="q-num">प्रश्न 1</div>
+      <div class="q-text">कांजीहौस में हाजिरी क्यों ली जाती होगी?</div>
+      <div class="q-marks">2 अंक (30-40 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>कांजीहौस (Cattle Pound) एक प्रकार का पशुओं का कारागार या बंदीगृह होता था, जहाँ लावारिस, दूसरों के खेतों में चरने वाले अथवा आवारा घूमने वाले पशुओं को पकड़कर बंद किया जाता था।</p>
+<p>यहाँ प्रतिदिन पशुओं की हाजिरी निम्नलिखित कारणों से ली जाती होगी:</p>
+<ul>
+  <li><strong>पशुओं की सही संख्या की निगरानी:</strong> कांजीहौस में बंद सभी पशुओं की सही गिनती का दैनिक रिकॉर्ड रखा जा सके ताकि कोई पशु वहाँ से भाग न जाए।</li>
+  <li><strong>स्वास्थ्य एवं जीवित होने की पुष्टि:</strong> पशुओं की शारीरिक दशा व जीवित रहने की जानकारी प्राप्त की जा सके, क्योंकि भूख-प्यास के कारण कई दुर्बल पशु मर भी जाते थे।</li>
+  <li><strong>जवाबदेही एवं नीलामी प्रक्रिया:</strong> पशुओं के मालिकों से जुर्माना वसूलने अथवा तय समय पर नीलामी करने के लिए विधिवत कानूनी रिकॉर्ड बना रहे।</li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">पशुओं की दैनिक संख्या व सुरक्षा की निगरानी का उल्लेख</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">स्वास्थ्य, मृत्यु व कानूनी उत्तरदायित्व/नीलामी का स्पष्टीकरण</span><span class="marking-marks">0.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">भाषा एवं वर्तनी की शुद्धता</span><span class="marking-marks">0.5 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q2">
+    <div class="q-head" onclick="toggleQ('ch1-q2')">
+      <div class="q-num">प्रश्न 2</div>
+      <div class="q-text">छोटी बच्ची को बैलों के प्रति प्रेम क्यों उमड़ आया?</div>
+      <div class="q-marks">3 अंक (50-60 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>गया के घर में रहने वाली छोटी बच्ची की माँ मर चुकी थी और उसकी सौतेली माँ उस पर आए दिन अत्याचार करती थी तथा उसे कठोर यातनाएँ देती थी। बच्ची स्वयं को उपेक्षित, असहाय और अनाथ महसूस करती थी।</p>
+<p>जब उसने देखा कि गया ने हीरा और मोती को दिन भर हल में जोतकर मारा-पीटा और शाम को सूखा भूसा डालकर बाँध दिया, तो वह बैलों की मूक व्यथा और उनके स्वाभिमान भरे कष्ट को गहराई से समझ गई।</p>
+<p><strong>प्रेम उमड़ने का मुख्य कारण:</strong></p>
+<ul>
+  <li><strong>समान संवेदनात्मक पीड़ा:</strong> दोनों ही उस क्रूर परिवेश में बेसहारा, शोषित और प्रेम के भूखे थे। एक अनाथ बच्ची और मूक पशुओं के बीच आत्मीयता का गहरा बंधन स्थापित हो गया।</li>
+  <li><strong>मूक आत्मीयता:</strong> बच्ची अपनी सहानुभूति प्रकट करने के लिए रोज रात को चुपके से दोनों बैलों को एक-एक रोटी खिलाती थी, जिससे उनके बीच अटूट भावनात्मक रिश्ता बन गया।</li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">बच्ची की पारिवारिक पृष्ठभूमि (सौतेली माँ का अत्याचार) का उल्लेख</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">बैलों की दुर्दशा और बच्ची की व्यथा के बीच आत्मीय साम्य</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">भाषा-शैली व अभिव्यक्ति</span><span class="marking-marks">0.5 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q3">
+    <div class="q-head" onclick="toggleQ('ch1-q3')">
+      <div class="q-num">प्रश्न 3</div>
+      <div class="q-text">कहानी में बैलों के माध्यम से कौन-कौन से नीति-विषयक मूल्य उभर कर आए हैं?</div>
+      <div class="q-marks">5 अंक (100-120 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>मुंशी प्रेमचंद जी ने 'दो बैलों की कथा' के माध्यम से न केवल पशु-प्रेम को दर्शाया है, बल्कि मानवीय समाज के लिए अत्यंत महत्वपूर्ण नीति-विषयक (नैतिक) मूल्यों को भी उजागर किया है:</p>
+<ol>
+  <li><strong>स्वतंत्रता सर्वोपरि मूल्य है:</strong> स्वतंत्रता सहज और सरलता से नहीं मिलती। इसके लिए निरंतर संघर्ष, त्याग और कष्ट सहना पड़ता है। हीरा और मोती ने हर बंधन (गया की रस्सी, कांजीहौस की चारदीवारी, कसाई का खूँटा) को तोड़कर आजादी पाई।</li>
+  <li><strong>सच्ची मित्रता एवं परस्पर वफादारी:</strong> विपत्ति के समय एक-दूसरे का साथ कभी नहीं छोड़ना चाहिए। जब मोती कांजीहौस की दीवार तोड़कर अन्य जानवरों को भगा देता है, तब हीरा के बँधे होने के कारण वह स्वयं भी भागने से इनकार कर देता है।</li>
+  <li><strong>सहानुभूति व कृतज्ञता का भाव:</strong> बैलों ने उपकार करने वाली छोटी बच्ची का सम्मान किया और गया की पत्नी अथवा बच्ची को कोई नुकसान नहीं पहुँचाया, जो उनकी कृतज्ञता को दर्शाता है।</li>
+  <li><strong>मातृभूमि व गृह-प्रेम (देशभक्ति का प्रतीक):</strong> चाहे जितनी भी प्रताड़ना मिले, व्यक्ति का अपने मूल स्थान व स्वामी के प्रति अगाध प्रेम होता है। दोनों बैल अंततः झूरी की चरनी पर ही लौटकर आते हैं।</li>
+  <li><strong>नारी जाति का सम्मान:</strong> हीरा का कथन 'औरत जात पर सींग चलाना मना है' यह स्पष्ट करता है कि समाज में स्त्रियों के प्रति आदर व संरक्षण का भाव होना अनिवार्य है।</li>
+</ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">स्वतंत्रता का महत्व एवं संघर्षशीलता का विश्लेषण</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">सच्ची मित्रता, त्याग और परोपकार के उदाहरण</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">नारी सम्मान, कृतज्ञता व देशभक्ति प्रतीकार्थ की स्पष्टता</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">सुगठित भाषा एवं तर्कपूर्ण प्रस्तुति</span><span class="marking-marks">1.0 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q4">
+    <div class="q-head" onclick="toggleQ('ch1-q4')">
+      <div class="q-num">प्रश्न 4</div>
+      <div class="q-text">प्रस्तुत कहानी में प्रेमचंद ने गधे की किन स्वभावगत विशेषताओं के आधार पर उसके प्रति रूढ़ अर्थ 'मूर्ख' का प्रयोग न कर किस नए अर्थ की ओर संकेत किया है?</div>
+      <div class="q-marks">3 अंक (50-60 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>सामान्यतः समाज में गधे को उसकी अत्यधिक सरलता के कारण 'मूर्खता' का प्रतीक मान लिया गया है। किसी व्यक्ति को बेवकूफ कहना हो तो उसे 'गधा' कह दिया जाता है।</p>
+<p>परंतु प्रेमचंद जी ने गधे के स्वभाव के सकारात्मक व उदात्त गुणों को रेखांकित करते हुए उसे ऋषियों-मुनियों के समान सहनशील सिद्ध किया है:</p>
+<ul>
+  <li><strong>असीम सहनशीलता व संतोष:</strong> गधा कभी क्रोध नहीं करता, चाहे उसे सूखी घास दी जाए या पीटा जाए। उसके चेहरे पर कभी असंतोष की छाया तक नहीं दिखाई देती।</li>
+  <li><strong>समभाव (सुख-दुःख में एक समान):</strong> सुख हो या दुःख, लाभ हो या हानि, उसका स्वभाव सदैव शांत और अपरिवर्तित रहता है।</li>
+  <li><strong>ऋषि-तुल्य गरिमा:</strong> लेखक के अनुसार सद्गुणों की इतनी पराकाष्ठा केवल भारत के ऋषियों में पाई जाती है। अतः प्रेमचंद ने गधे को 'मूर्ख' के स्थान पर 'सत्याग्रही, परमसंतोषी और सहनशील प्राणी' का नया अर्थ प्रदान किया है।</li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">रूढ़ अर्थ (मूर्ख) का खंडन एवं सहनशीलता का वर्णन</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">ऋषि-मुनियों के समभाव व संतोष से तुलना</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">व्याकरणिक शुद्धता व सटीक निष्कर्ष</span><span class="marking-marks">0.5 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q5">
+    <div class="q-head" onclick="toggleQ('ch1-q5')">
+      <div class="q-num">प्रश्न 5</div>
+      <div class="q-text">किन घटनाओं से पता चलता है कि हीरा और मोती में गहरी दोस्ती थी?</div>
+      <div class="q-marks">4 अंक (70-80 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>कहानी में ऐसी अनेक मार्मिक घटनाएँ वर्णित हैं जिनसे हीरा और मोती की प्रगाढ़, निस्वार्थ और अनूठी मित्रता सिद्ध होती है:</p>
+<ul>
+  <li><strong>मूक भाषा में विचार-विनिमय:</strong> दोनों बैल एक-दूसरे को चाटकर, सूँघकर अपना प्रेम प्रकट करते थे और साँड़ों की तरह सींग मिलाकर केवल विनोद भाव से शक्ति आजमाते थे।</li>
+  <li><strong>हल में एक-दूसरे का भार सहना:</strong> गाड़ी या हल में जुतने पर दोनों की यही चेष्टा रहती थी कि ज्यादा बोझ मेरी गर्दन पर रहे, साथी को कम कष्ट हो।</li>
+  <li><strong>गया के घर से मिलकर भागना:</strong> जब गया उन्हें ले गया, तो दोनों ने सलाह करके रस्सियाँ तुड़ा लीं और एक साथ वापस झूरी के घर पहुँचे।</li>
+  <li><strong>साँड का मिलकर मुकाबला करना:</strong> जब विशाल साँड ने हमला किया, तो दोनों ने एक संगठित योजना बनाई—एक आगे से वार करता तो दूसरा पीछे से, और साँड को परास्त कर दिया।</li>
+  <li><strong>कांजीहौस में साथ निभाना:</strong> कांजीहौस की दीवार टूटने पर जब मोती भाग सकता था, तब भी वह हीरा को खूँटे से बँधा देखकर वहीं रुक गया और दोनों ने साथ में सजा भुगती।</li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">मूक प्रेम व हल में अधिक बोझ उठाने की चेष्टा</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">साँड से संयुक्त मुकाबला करने का उदाहरण</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">कांजीहौस में साथी के लिए स्वयं को संकट में डालने का त्याग</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">भाषा-प्रवाह एवं वर्तनी</span><span class="marking-marks">0.5 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q6">
+    <div class="q-head" onclick="toggleQ('ch1-q6')">
+      <div class="q-num">प्रश्न 6</div>
+      <div class="q-text">‘लेकिन औरत जात पर सींग चलाना मना है, यह भूल जाते हो।’ — हीरा के इस कथन के माध्यम से स्त्री के प्रति प्रेमचंद के दृष्टिकोण को स्पष्ट कीजिए।</div>
+      <div class="q-marks">3 अंक (50-60 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>जब गया के घर में मोती गुस्से में आकर गया की पत्नी पर हमला करने की बात कहता है, तब हीरा उसे यह कहकर शांत करता है कि स्त्री पर प्रहार करना हमारी मर्यादा के विरुद्ध है।</p>
+<p><strong>प्रेमचंद के दृष्टिकोण का विश्लेषण:</strong></p>
+<ul>
+  <li><strong>स्त्री सम्मान की भारतीय परंपरा:</strong> प्रेमचंद भारतीय संस्कृति के उस उदात्त मूल्य के प्रबल समर्थक थे जहाँ नारी को पूजनीय, अबला और संरक्षणीय माना गया है। पशु भी इस मर्यादा का पालन करते हैं।</li>
+  <li><strong>शारीरिक प्रताड़ना का कड़ा विरोध:</strong> लेखक समाज में स्त्रियों के प्रति होने वाले किसी भी प्रकार के शारीरिक या मानसिक अत्याचार के सख्त खिलाफ थे।</li>
+  <li><strong>संस्कार व नैतिकता:</strong> यह कथन सिद्ध करता है कि क्रोध या विपत्ति की चरम सीमा में भी नैतिक सीमाओं और मानवीय मर्यादाओं का उल्लंघन नहीं होना चाहिए।</li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">संदर्भ (हीरा-मोती का संवाद) की स्पष्टता</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">प्रेमचंद के स्त्री-सम्मान व अहिंसक दृष्टिकोण का विश्लेषण</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">अभिव्यक्ति एवं भाषा</span><span class="marking-marks">0.5 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q7">
+    <div class="q-head" onclick="toggleQ('ch1-q7')">
+      <div class="q-num">प्रश्न 7</div>
+      <div class="q-text">किसान जीवन वाले समाज में पशु और मनुष्य के आपसी संबंध को कहानी में किस तरह चित्रित किया गया है?</div>
+      <div class="q-marks">3 अंक (50-60 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>भारतीय ग्रामीण व कृषक संस्कृति में मनुष्य और पशु का संबंध केवल स्वामी और सेवक का नहीं, बल्कि एक परिवार के अभिन्न सदस्य जैसा होता है। कहानी में इसके दो परस्पर विरोधी पक्ष दिखाए गए हैं:</p>
+<ul>
+  <li><strong>आत्मीयता व प्रेम का संबंध (झूरी का चरित्र):</strong> झूरी अपने दोनों बैलों (हीरा-मोती) से पुत्रवत स्नेह करता था। वह उन्हें कभी मारता-पीटता नहीं था। उनके घर लौटने पर झूरी की आँखों से आनंद के आँसू बहने लगे और पूरा गाँव उनका स्वागत करता है।</li>
+  <li><strong>शोषण व स्वार्थ का संबंध (गया का चरित्र):</strong> गया जैसे स्वार्थी और संवेदनहीन लोग पशुओं से केवल कठोर श्रम लेना जानते हैं, उन्हें भरपेट भोजन या स्नेह नहीं देते।</li>
+</ul>
+<p>प्रेमचंद जी ने यह संदेश दिया है कि पशु भी केवल प्रेम और सम्मान की भाषा समझते हैं; यदि किसान उन्हें प्रेम दे, तो वे अपना सर्वस्व न्योछावर कर देते हैं।</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">झूरी के माध्यम से भावनात्मक पारिवारिक संबंध का निरूपण</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">गया के माध्यम से स्वार्थी शोषण की तुलना</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">ग्रामीण परिवेश में पशु-मानव सहअस्तित्व का सार</span><span class="marking-marks">1.0 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q8">
+    <div class="q-head" onclick="toggleQ('ch1-q8')">
+      <div class="q-num">प्रश्न 8</div>
+      <div class="q-text">‘इतना तो हो ही गया कि नौ-दस प्राणियों की जान बच गई। वे सब तो आशीर्वाद देंगे’ — मोती के इस कथन के आलोक में उसकी विशेषताएँ बताइए।</div>
+      <div class="q-marks">3 अंक (50-60 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p>मोती के इस कथन से उसके चरित्र की निम्नलिखित उदात्त विशेषताएँ प्रकट होती हैं:</p>
+<ul>
+  <li><strong>परोपकारी व दयालु स्वभाव:</strong> कांजीहौस की दीवार तोड़कर उसने घोड़ों, बकरियों, गधों और भैंसों को आजाद कराया। अपनी जान जोखिम में डालकर भी उसने असहाय मूक प्राणियों की रक्षा की।</li>
+  <li><strong>सकारात्मक एवं आशावादी दृष्टिकोण:</strong> खुद न भाग पाने और पुनः पकड़े जाने पर भी उसे निराशा नहीं हुई; उसे संतोष था कि उसके प्रयास से अनेक निर्दोष जीवों का जीवन बच गया।</li>
+  <li><strong>अदम्य विद्रोही साहस:</strong> वह अन्याय और अत्याचार को मूक रहकर सहने के पक्ष में नहीं था; उसने संगठित सत्ता के प्रतीक कांजीहौस की दीवार को ढहा दिया।</li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">परोपकार एवं निस्वार्थ सेवा भाव का उल्लेख</span><span class="marking-marks">1.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">आशावादिता एवं विद्रोही स्वभाव का विश्लेषण</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">भाषा एवं प्रस्तुति</span><span class="marking-marks">0.5 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="ch1-q9">
+    <div class="q-head" onclick="toggleQ('ch1-q9')">
+      <div class="q-num">प्रश्न 9</div>
+      <div class="q-text">आशय स्पष्ट कीजिए:<br>(क) 'अवश्य ही उनमें कोई ऐसी गुप्त शक्ति थी, जिससे जीवों में श्रेष्ठता का दावा करने वाला मनुष्य वंचित है।'<br>(ख) 'उस एक रोटी से उनकी भूख तो क्या शांत होती; पर दोनों के हृदय को मानो भोजन मिल गया।'</div>
+      <div class="q-marks">4 अंक (60-80 शब्द)</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer (अधिकतम शब्द-सीमा / Max Word Count)</div>
+        <div class="answer-text">
+<p><strong>(क) प्रथम कथन का आशय:</strong><br>
+मनुष्य स्वयं को समस्त सृष्टि का सर्वश्रेष्ठ प्राणी मानता है क्योंकि उसके पास विकसित बुद्धि और वाणी है। परंतु हीरा और मोती बिना बोले, केवल मूक भाव से एक-दूसरे के मन की बात, पीड़ा और प्रेम को समझ लेते थे। मनुष्य अपने स्वार्थ, छल-कपट और अहंकार के कारण इस निस्वार्थ संवेदनात्मक 'मूक प्रेम की शक्ति' से वंचित हो चुका है।</p>
+<p><strong>(ख) द्वितीय कथन का आशय:</strong><br>
+विशालकाय बैलों के लिए एक छोटी-सी रोटी पेट भरने के लिए नगण्य थी। परंतु उस रोटी में छोटी अनाथ बच्ची का निस्वार्थ प्रेम, करुणा और आत्मीयता समाहित थी। उस प्रेममयी अनुभूति ने बैलों की आत्मा को तृप्त कर दिया और उन्हें यह अहसास कराया कि इस निर्दयी संसार में भी कोई उनका अपना है।</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE अंक योजना (Marking Scheme) 2026-27</div>
+          <div class="marking-row"><span class="marking-key">भाग (क): मूक प्रेम व मनुष्य के अहंकार पर व्यंग्य की व्याख्या</span><span class="marking-marks">2.0 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">भाग (ख): प्रेम व आत्मीयता की आत्मिक तृप्ति का स्पष्टीकरण</span><span class="marking-marks">1.5 अंक</span></div>
+          <div class="marking-row"><span class="marking-key">भाषा की सटीकता</span><span class="marking-marks">0.5 अंक</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 योग्यता एवं मूल्य आधारित प्रश्न (Competency-Based Questions) — पाठ 1</span><span class="cbq-badge">CBSE 2026-27</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #f59e0b;">
+        <div class="cbq-type" style="color:#d97706;">मूल्यपरक प्रश्न (Value-Based Question)</div>
+        <div class="cbq-question">हीरा और मोती का संघर्ष भारत के स्वाधीनता संग्राम की किस ऐतिहासिक भावना का प्रतिनिधित्व करता है? सविस्तार स्पष्ट कीजिए।</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ उत्तर देखें / Show Answer</button>
+        <div class="cbq-answer"><p>'दो बैलों की कथा' केवल दो पशुओं की कहानी नहीं है, बल्कि यह परोक्ष रूप से तत्कालीन पराधीन भारत और स्वतंत्रता संग्राम का जीवंत रूपक है। जिस प्रकार हीरा और मोती को बिना किसी अपराध के गया के घर और बाद में कांजीहौस में गुलाम बना दिया गया, उसी प्रकार भारतीय जनता ब्रिटिश साम्राज्य के अधीन शोषित थी।</p><p>बैलों का बार-बार रस्सियाँ तोड़ना, संगठित होकर अत्याचार का मुकाबला करना और अंत तक हार न मानना यह सिखाता है कि आज़ादी मुफ्त में नहीं मिलती; उसके लिए निरंतर त्याग, बलिदान और एकजुटता की आवश्यकता होती है। प्रेमचंद जी ने बैलों के माध्यम से देशवासियों में स्वाधीनता की अलख जगाने का कार्य किया।</p></div>
+      </div>
+      <div class="cbq-card" style="border-left:4px solid #3b82f6;">
+        <div class="cbq-type" style="color:#2563eb;">दक्षता आधारित प्रश्न (Competency-Based Question)</div>
+        <div class="cbq-question">आज के आधुनिक समाज में जहाँ स्वार्थ और एकाकीपन बढ़ रहा है, हीरा और मोती की मित्रता से युवा पीढ़ी क्या सीख ले सकती है?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ उत्तर देखें / Show Answer</button>
+        <div class="cbq-answer"><p>आज के भौतिकवादी युग में संबंध अक्सर स्वार्थ, लाभ-हानि और दिखावे पर टिके होते हैं। ऐसे समय में हीरा और मोती की मित्रता अनुकरणीय आदर्श प्रस्तुत करती है। वे सुख और दुःख दोनों में अविभाज्य रहे। जब मोती कांजीहौस से भाग सकता था, उसने अपने मित्र हीरा का साथ नहीं छोड़ा।</p><p>युवा पीढ़ी को यह समझना होगा कि सच्ची मित्रता संकट की घड़ी में त्याग, परस्पर विश्वास, समान संवेदनशीलता और बिना शर्त सहयोग की माँग करती है। मित्रता का आधार भौतिक लाभ नहीं, बल्कि आत्मिक जुड़ाव होना चाहिए।</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="chapter-nav-btns">
+    <div></div>
+    <button class="ch-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ शीर्ष पर जाएँ (Top)</button>
+    <button class="ch-nav-btn next" onclick="showChapter(2)">अगला पाठ (Next) →</button>
+  </div>
+</section>
+
+    </div>
+  </main>
+</div>
+
+<button class="mob-sidebar-toggle" onclick="toggleSidebar()">📖 पाठ चुनें</button>
+
+<script src="chapters-c9h/chapters-data.js"></script>
+<script>
+  let currentCh = 1;
+
+  function toggleQ(qid) {
+    const el = document.getElementById(qid);
+    if (!el) return;
+    const ans = el.querySelector('.q-answer');
+    if (!ans) return;
+    ans.classList.toggle('open');
+  }
+
+  function toggleCBQ(btn) {
+    const card = btn.closest('.cbq-card');
+    if (!card) return;
+    const ans = card.querySelector('.cbq-answer');
+    if (!ans) return;
+    if (ans.classList.contains('open')) {
+      ans.classList.remove('open');
+      btn.textContent = '▶ उत्तर देखें / Show Answer';
+    } else {
+      ans.classList.add('open');
+      btn.textContent = '▼ उत्तर छुपाएँ / Hide Answer';
+    }
+  }
+
+  function showChapter(num) {
+    currentCh = num;
+    const area = document.getElementById('chapter-content-area');
+    
+    // Check preloaded bundle
+    if (window.PRELOADED_CHAPTERS && window.PRELOADED_CHAPTERS[num]) {
+      area.innerHTML = window.PRELOADED_CHAPTERS[num];
+      postChapterLoad(num);
+    } else {
+      // Fallback to fetch
+      area.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted);">लोड हो रहा है... / Loading...</div>';
+      fetch('chapters-c9h/ch' + num + '.html')
+        .then(res => {
+          if (!res.ok) throw new Error('File not found');
+          return res.text();
+        })
+        .then(html => {
+          area.innerHTML = html;
+          postChapterLoad(num);
+        })
+        .catch(err => {
+          console.error(err);
+          area.innerHTML = '<div style="text-align:center;padding:40px;color:#dc2626;">पाठ लोड करने में त्रुटि। कृपया पुनः प्रयास करें।</div>';
+        });
+    }
+  }
+
+  function postChapterLoad(num) {
+    // Update active nav in sidebar
+    document.querySelectorAll('.chapter-nav li a').forEach((a, i) => {
+      if (i + 1 === num) {
+        a.classList.add('active');
+        a.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      } else {
+        a.classList.remove('active');
+      }
+    });
+    
+    // Update active chip in breadcrumb
+    document.querySelectorAll('.bc-chip').forEach(chip => {
+      const chNum = parseInt(chip.getAttribute('data-ch'));
+      if (chNum === num) {
+        chip.classList.add('active');
+        chip.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+
+    // Open first 2 questions automatically
+    const firstTwo = document.querySelectorAll('#chapter-content-area .q-answer');
+    if (firstTwo.length > 0) firstTwo[0].classList.add('open');
+    if (firstTwo.length > 1) firstTwo[1].classList.add('open');
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeSidebarMobile();
+  }
+
+  function filterBook(bookKey) {
+    // Update active tab
+    document.querySelectorAll('.book-tab').forEach(t => t.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    
+    // Filter breadcrumb chips
+    document.querySelectorAll('.bc-chip').forEach(chip => {
+      const b = chip.getAttribute('data-book');
+      if (bookKey === 'all' || b === bookKey) {
+        chip.style.display = 'inline-flex';
+      } else {
+        chip.style.display = 'none';
+      }
+    });
+    
+    // Filter sidebar groups
+    const groups = [
+      { id: 'navKshitijGadh', title: 'titleKshitijGadh', key: 'kshitij-gadh' },
+      { id: 'navKshitijKavya', title: 'titleKshitijKavya', key: 'kshitij-kavya' },
+      { id: 'navKritika', title: 'titleKritika', key: 'kritika' },
+      { id: 'navSparshGadh', title: 'titleSparshGadh', key: 'sparsh-gadh' },
+      { id: 'navSparshKavya', title: 'titleSparshKavya', key: 'sparsh-kavya' },
+      { id: 'navSanchayan', title: 'titleSanchayan', key: 'sanchayan' }
+    ];
+    
+    groups.forEach(g => {
+      const list = document.getElementById(g.id);
+      const title = document.getElementById(g.title);
+      if (bookKey === 'all' || g.key === bookKey) {
+        if (list) list.style.display = 'block';
+        if (title) title.style.display = 'flex';
+      } else {
+        if (list) list.style.display = 'none';
+        if (title) title.style.display = 'none';
+      }
+    });
+  }
+
+  function filterChapters(q) {
+    q = q.toLowerCase().trim();
+    document.querySelectorAll('.chapter-nav li').forEach(li => {
+      const txt = li.textContent.toLowerCase();
+      if (txt.includes(q)) {
+        li.style.display = 'block';
+      } else {
+        li.style.display = 'none';
+      }
+    });
+  }
+
+  function toggleSidebar() {
+    const sb = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    sb.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
+
+  function closeSidebarMobile() {
+    const sb = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sb) sb.classList.remove('open');
+    if (overlay) overlay.classList.remove('show');
+  }
+
+  // Scroll progress
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    const bar = document.getElementById('progressBar');
+    if (bar) bar.style.width = scrolled + '%';
+  });
+
+  // Mobile menu toggle in navbar
+  document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
+    const links = document.getElementById('navLinks');
+    if (links) {
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    }
+  });
+
+  // Initial setup: Open first two questions in ch1
+  document.addEventListener('DOMContentLoaded', () => {
+    const firstTwo = document.querySelectorAll('#chapter-content-area .q-answer');
+    if (firstTwo.length > 0) firstTwo[0].classList.add('open');
+    if (firstTwo.length > 1) firstTwo[1].classList.add('open');
+  });
+</script>
+</body>
+</html>
