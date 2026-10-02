@@ -39,11 +39,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
-<link rel="preload" href="home.css?v=2.1" as="style">
-<link rel="stylesheet" href="home.css?v=2.1">
+<link rel="preload" href="home.css?v=3.0" as="style">
+<link rel="stylesheet" href="home.css?v=3.0">
 
 <style>
-/* The new, clean CSS will be loaded from home.css. This inline style is no longer needed. */
+.path-cards {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 14px !important;
+}
+.path-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+}
+.path-orange { background-color: #C2410C !important; }
+.path-blue { background-color: #1D4ED8 !important; }
+.path-green { background-color: #15803D !important; }
+.path-purple { background-color: #7C3AED !important; }
+
+@media (max-width: 1024px) {
+    .path-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+}
+@media (max-width: 900px) {
+    .path-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .path-card { flex-direction: column !important; text-align: center !important; padding: 12px 8px !important; gap: 6px !important; width: 100% !important; margin: 0 !important; }
+    .path-text p { display: none !important; }
+    .path-arrow { display: none !important; }
+}
+@media (max-width: 600px) {
+    .path-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+    .path-card { padding: 10px 6px !important; border-radius: 14px !important; }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -291,8 +318,8 @@
             <!-- QUICK EXAM NAVIGATION -->
             <div class="hero-path-nav">
                 <span class="hero-path-label">Jump straight to:</span>
-                <div class="path-cards">
-                    <a href="mock.html" class="path-card path-orange">
+                <div class="path-cards" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+                    <a href="mock.html" class="path-card path-orange" style="background-color: #C2410C; width: 100%; max-width: 100%; margin: 0;">
                         <div class="path-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 4h-3V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1H3a1 1 0 0 0-1 1v3c0 2.55 1.95 4.63 4.43 4.94A5.99 5.99 0 0 0 11 16.9V19H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2h-2v-2.1a5.99 5.99 0 0 0 4.57-3.96C20.05 12.63 22 10.55 22 8V5a1 1 0 0 0-1-1zM5 10.9A2.99 2.99 0 0 1 4 8V6h2v5.13c-.35-.05-.68-.13-1-.23zM19 10.9c-.32.1-.65.18-1 .23V6h2v2c0 1.25-.66 2.37-1 2.9z"/></svg>
                         </div>
@@ -302,7 +329,7 @@
                         </div>
                         <svg class="path-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="jee_main.html" class="path-card path-blue">
+                    <a href="jee_main.html" class="path-card path-blue" style="background-color: #1D4ED8; width: 100%; max-width: 100%; margin: 0;">
                         <div class="path-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.83 7.92L12 14.65 5.17 10.92 12 7.18l6.83 3.74z"/></svg>
                         </div>
@@ -312,7 +339,7 @@
                         </div>
                         <svg class="path-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="neet.html" class="path-card path-green">
+                    <a href="neet.html" class="path-card path-green" style="background-color: #15803D; width: 100%; max-width: 100%; margin: 0;">
                         <div class="path-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm6 11h-3v3h-2v-3H8v-2h3v-3h2v3h3v2z"/></svg>
                         </div>
@@ -322,15 +349,15 @@
                         </div>
                         <svg class="path-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="ncert-solutions.html" class="path-card path-purple">
+                    <a href="ncert-solutions.html" class="path-card path-purple" style="background-color: #7C3AED !important; width: 100%; max-width: 100%; margin: 0;">
                         <div class="path-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2H6c-1.2 0-2 .8-2 2v16c0 1.2.8 2 2 2h12c1.2 0 2-.8 2-2V4c0-1.2-.8-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
                         </div>
                         <div class="path-text">
-                            <h3>CBSE NCERT</h3>
-                            <p>Class 8 &amp; 9 Solutions</p>
+                            <h3 style="color: #ffffff;">CBSE NCERT</h3>
+                            <p style="color: rgba(255, 255, 255, 0.95);">Class 8 &amp; 9 Solutions</p>
                         </div>
-                        <svg class="path-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        <svg class="path-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: rgba(255, 255, 255, 0.85);"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>
             </div>
