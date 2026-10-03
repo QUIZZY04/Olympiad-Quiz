@@ -217,6 +217,38 @@ async function getFAQsImpl(topic, serverContext) {
   return { faqs: matched.length ? matched : faqs };
 }
 
+// Helper: collect and deduplicate FCM tokens across all admin user docs
+async function getAdminDeviceTokens() {
+  const tokenSet = new Set();
+  try {
+    const [snapEmailLower, snapEmailUpper, snapIsAdmin] = await Promise.all([
+      db.collection("userTokens").where("email", "==", "madhhu52@gmail.com").get(),
+      db.collection("userTokens").where("email", "==", "Madhhu52@gmail.com").get(),
+      db.collection("userTokens").where("isAdmin", "==", true).get(),
+    ]);
+
+    const addTokens = (snap) => {
+      snap.forEach((doc) => {
+        const d = doc.data();
+        if (d.tokens && Array.isArray(d.tokens)) {
+          d.tokens.forEach((t) => {
+            if (typeof t === "string" && t.trim().length > 10) tokenSet.add(t.trim());
+          });
+        } else if (d.token && typeof d.token === "string" && d.token.trim().length > 10) {
+          tokenSet.add(d.token.trim());
+        }
+      });
+    };
+
+    addTokens(snapEmailLower);
+    addTokens(snapEmailUpper);
+    addTokens(snapIsAdmin);
+  } catch (err) {
+    console.warn("[Handover] Error fetching admin tokens:", err.message);
+  }
+  return Array.from(tokenSet);
+}
+
 // ---------------------------------------------------------------------
 // 7. escalateToHuman - action tool, identity-scoped via serverContext only
 // ---------------------------------------------------------------------
@@ -243,43 +275,55 @@ async function escalateToHumanImpl(reason, serverContext) {
 
   // 1. Send FCM Web Push Notification to Admin devices (Mobile & Desktop)
   try {
-    const adminTokensSnap = await db.collection("userTokens")
-      .where("email", "==", "madhhu52@gmail.com")
-      .get();
-    const tokens = [];
-    adminTokensSnap.forEach((doc) => {
-      const d = doc.data();
-      if (d.tokens && Array.isArray(d.tokens)) {
-        tokens.push(...d.tokens);
-      } else if (d.token) {
-        tokens.push(d.token);
-      }
-    });
+    const tokens = await getAdminDeviceTokens();
 
     if (tokens.length > 0) {
-      await admin.messaging().sendEachForMulticast({
+      const pushTitle = "🚨 WhatsApp Human Handover Request!";
+      const pushBody = `Student +${serverContext.phone} requested help: "${reason || 'Support needed'}". Tap to reply!`;
+      const handoverUrl = `https://olympiadquiz.org/admin.html?tab=ai&handover=${handoverRef.id}`;
+
+      const response = await admin.messaging().sendEachForMulticast({
         notification: {
-          title: "🚨 WhatsApp Human Handover Request!",
-          body: `Student +${serverContext.phone} requested help: "${reason || 'Support needed'}". Tap to reply!`
+          title: pushTitle,
+          body: pushBody,
         },
         webpush: {
           headers: { Urgency: "high" },
           notification: {
+            title: pushTitle,
+            body: pushBody,
             icon: "https://olympiadquiz.org/favicon.png",
             badge: "https://olympiadquiz.org/favicon.png",
             vibrate: [500, 200, 500, 200, 800],
             requireInteraction: true,
-            click_action: "https://olympiadquiz.org/admin.html"
-          }
+            tag: `wam-handover-${handoverRef.id}`,
+            renotify: true,
+          },
+          fcmOptions: {
+            link: handoverUrl,
+          },
+        },
+        android: {
+          priority: "high",
+          notification: {
+            sound: "default",
+            clickAction: handoverUrl,
+          },
         },
         data: {
-          url: "https://olympiadquiz.org/admin.html",
+          url: handoverUrl,
           phone: String(serverContext.phone),
-          handoverId: handoverRef.id
+          handoverId: String(handoverRef.id),
+          title: pushTitle,
+          body: pushBody,
         },
-        tokens
+        tokens,
       });
-      console.log(`[Handover] Sent FCM push notification to ${tokens.length} admin device(s).`);
+      console.log(
+        `[Handover] Sent FCM push notification to ${tokens.length} admin device(s). Success: ${response.successCount}, Failed: ${response.failureCount}`
+      );
+    } else {
+      console.warn("[Handover] No admin FCM tokens found in userTokens to send push.");
     }
   } catch (pushErr) {
     console.warn("[Handover] Failed to send admin push notification:", pushErr.message);
@@ -288,9 +332,9 @@ async function escalateToHumanImpl(reason, serverContext) {
   // 2. Send instant WhatsApp alert to Admin's own WhatsApp number (919431813838)
   try {
     const { sendWhatsAppMessage } = require("./whatsappService");
-    const adminAlertText = `🚨 *OlympiadQuiz Admin Alert: Human Handover Request!*\n\n📱 *From Student:* +${serverContext.phone}\n💬 *Reason:* ${reason || "Student requested support"}\n\n👉 *Reply in Admin Panel:* https://olympiadquiz.org/admin.html`;
-    await sendWhatsAppMessage("919431813838", adminAlertText);
-    console.log("[Handover] Sent WhatsApp alert to Admin 919431813838.");
+    const adminAlertText = `🚨 *OlympiadQuiz Admin Alert: Human Handover Request!*\n\n📱 *From Student:* +${serverContext.phone}\n💬 *Reason:* ${reason || "Student requested support"}\n\n👉 *Reply in Admin Panel:* https://olympiadquiz.org/admin.html?tab=ai`;
+    const waResult = await sendWhatsAppMessage("919431813838", adminAlertText);
+    console.log("[Handover] WhatsApp alert to Admin 919431813838 result:", JSON.stringify(waResult));
   } catch (waErr) {
     console.warn("[Handover] Failed to send WhatsApp alert to admin:", waErr.message);
   }
@@ -361,4 +405,4 @@ async function executeTool(name, modelArgs, serverContext) {
   }
 }
 
-module.exports = { TOOL_DEFS, executeTool };
+module.exports = { TOOL_DEFS, executeTool, getAdminDeviceTokens };

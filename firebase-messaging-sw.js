@@ -15,15 +15,28 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage(function(payload) {
   console.log("[firebase-messaging-sw.js] Received background message ", payload);
   
-  // Note: Firebase SDK automatically displays the notification when the payload 
-  // includes a 'notification' object (which our backend sends).
-  // Do NOT call self.registration.showNotification here, as it will cause 
-  // duplicate notifications or break completely on Mobile Chrome.
+  // If payload does NOT include a 'notification' object, show manually:
+  if (!payload.notification) {
+    const title = payload.data?.title || "🚨 WhatsApp Human Handover Request!";
+    const options = {
+      body: payload.data?.body || "Student requested support. Tap to reply!",
+      icon: "https://olympiadquiz.org/favicon.png",
+      badge: "https://olympiadquiz.org/favicon.png",
+      vibrate: [500, 200, 500, 200, 800],
+      requireInteraction: true,
+      tag: payload.data?.handoverId ? ("wam-handover-" + payload.data.handoverId) : "handover-alert",
+      renotify: true,
+      data: {
+        url: payload.data?.url || "/admin.html?tab=ai"
+      }
+    };
+    return self.registration.showNotification(title, options);
+  }
 });
 
 self.addEventListener('notificationclick', function(event) {
   event.notification.close();
-  const urlToOpen = event.notification.data?.url || '/';
+  const urlToOpen = event.notification.data?.url || '/admin.html?tab=ai';
   
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(windowClients) {

@@ -409,6 +409,32 @@ border-top:1px solid var(--border);
     </div>
 </nav>
 
+<!-- TOP MOBILE & DESKTOP WHATSAPP HANDOVER MONITOR BAR -->
+<div id="wamMobileAlertBanner" style="display:none; max-width:1200px; margin: 12px auto 0 auto; padding: 0 15px;">
+    <div style="border-radius: 14px; padding: 12px 16px; background: linear-gradient(135deg, #075E54 0%, #128C7E 100%); color: #ffffff; box-shadow: 0 4px 15px rgba(7,94,84,0.25); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:26px;">🔔</span>
+            <div>
+                <div style="font-weight:800; font-size:14px; letter-spacing:0.3px;">WhatsApp Handover Mobile Alerts</div>
+                <div style="font-size:12px; opacity:0.92; margin-top:2px;" id="wamMobileBannerStatus">
+                    Checking push & sound status...
+                </div>
+            </div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button type="button" id="wamMobileEnableBtn" onclick="window.wamRequestNotificationPermission()" style="background:#25D366; color:#075E54; border:none; padding:8px 14px; border-radius:8px; font-weight:800; font-size:12px; cursor:pointer;">
+                🔔 Enable Alerts on Mobile
+            </button>
+            <button type="button" onclick="window.wamTestHandoverSound()" style="background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.4); padding:8px 12px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;">
+                🎵 Test Chime
+            </button>
+            <button type="button" onclick="window.wamSendTestPushToMobile()" style="background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.4); padding:8px 12px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;">
+                📲 Test Push
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- REAL-TIME WHATSAPP HANDOVER FLOATING ALERT (MOBILE & DESKTOP) -->
 <div id="wamHandoverFloatingAlert" class="wam-handover-alert" role="alert">
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
@@ -2481,10 +2507,16 @@ let uploadedImageUrls = {};
 let allQuestionWiseChapterRows = []; 
 
 onAuthStateChanged(auth, (user) => {
-    if (user && user.email === "madhhu52@gmail.com") {
+    if (user && user.email && user.email.trim().toLowerCase() === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
         if (typeof window.initWhatsAppHandoverMonitor === 'function') {
             window.initWhatsAppHandoverMonitor();
+        } else {
+            window.addEventListener('wamMonitorReady', () => {
+                if (typeof window.initWhatsAppHandoverMonitor === 'function') {
+                    window.initWhatsAppHandoverMonitor();
+                }
+            }, { once: true });
         }
     } else {
         window.location.href = "login.html";
@@ -7257,8 +7289,11 @@ window.wamRequestNotificationPermission = async function() {
             let swReg = null;
             if ('serviceWorker' in navigator) {
                 try {
-                    swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
-                } catch(e) {}
+                    await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+                    swReg = await navigator.serviceWorker.ready;
+                } catch(e) {
+                    console.warn("[Push] SW ready error:", e);
+                }
             }
             try {
                 const messaging = getMessaging();
@@ -7269,7 +7304,7 @@ window.wamRequestNotificationPermission = async function() {
                 if (currentToken && auth.currentUser) {
                     await setDoc(doc(db, "userTokens", auth.currentUser.uid), {
                         uid: auth.currentUser.uid,
-                        email: auth.currentUser.email || "madhhu52@gmail.com",
+                        email: (auth.currentUser.email || "madhhu52@gmail.com").toLowerCase().trim(),
                         tokens: arrayUnion(currentToken),
                         deviceType: /Mobi|Android|iPhone/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
                         userAgent: navigator.userAgent,
@@ -7277,6 +7312,7 @@ window.wamRequestNotificationPermission = async function() {
                         notificationsEnabled: true,
                         updatedAt: serverTimestamp()
                     }, { merge: true });
+                    console.log("[Push] Admin token saved successfully:", currentToken);
                 }
             } catch(tokenErr) {
                 console.warn("[Push] Token register error:", tokenErr);
@@ -7286,6 +7322,8 @@ window.wamRequestNotificationPermission = async function() {
             await wamShowSystemNotification("919431813838", "Mobile WhatsApp handover sound & alerts are now ACTIVE on this device! 🔔", "test_setup");
             window.wamTriggerHandoverAlertSound();
             alert("✅ Mobile Notifications & Sound Enabled! You should see the notification banner now.");
+        } else if (permission === "denied") {
+            alert("⚠️ Notification permission was blocked. Tap the lock/tune icon near your browser URL bar to Allow notifications for olympiadquiz.org.");
         }
     } catch(err) {
         alert("Notification permission error: " + err.message);
@@ -7295,20 +7333,71 @@ window.wamRequestNotificationPermission = async function() {
 window.wamUpdatePushUI = function() {
     const pushStatus = document.getElementById("wamPushStatusText");
     const pushBtn = document.getElementById("wamPushBtn");
+    const mobileBanner = document.getElementById("wamMobileAlertBanner");
+    const mobileStatus = document.getElementById("wamMobileBannerStatus");
+    const mobileBtn = document.getElementById("wamMobileEnableBtn");
+
+    if (mobileBanner) mobileBanner.style.display = "block";
+
     if (!("Notification" in window)) {
         if (pushStatus) pushStatus.innerText = "Push: Not Supported";
         if (pushBtn) pushBtn.style.display = "none";
+        if (mobileStatus) mobileStatus.innerText = "Web Push is not supported in this browser. Please use Chrome/Edge.";
+        if (mobileBtn) mobileBtn.style.display = "none";
         return;
     }
+
     if (Notification.permission === "granted") {
         if (pushStatus) { pushStatus.innerText = "Push: Allowed ✅"; pushStatus.style.color = "var(--success)"; }
         if (pushBtn) { pushBtn.innerText = "✅ Browser Alerts Active"; pushBtn.style.background = "#e5f8ee"; pushBtn.style.color = "#059669"; }
+        if (mobileStatus) {
+            mobileStatus.innerHTML = `🟢 <strong>Alerts Active</strong>: This device will ring &amp; vibrate on handover requests.`;
+        }
+        if (mobileBtn) {
+            mobileBtn.innerText = "✅ Alerts Active";
+            mobileBtn.style.background = "rgba(255,255,255,0.2)";
+            mobileBtn.style.color = "#ffffff";
+            mobileBtn.style.border = "1px solid rgba(255,255,255,0.4)";
+        }
     } else if (Notification.permission === "denied") {
         if (pushStatus) { pushStatus.innerText = "Push: Blocked in Browser ⚠️"; pushStatus.style.color = "var(--danger)"; }
         if (pushBtn) { pushBtn.innerText = "⚠️ Notifications Blocked"; }
+        if (mobileStatus) {
+            mobileStatus.innerHTML = `⚠️ <strong>Notifications Blocked</strong>: Tap the lock/tune icon in browser URL bar to allow notifications.`;
+        }
+        if (mobileBtn) {
+            mobileBtn.innerText = "⚠️ Blocked in Browser";
+            mobileBtn.style.background = "#ef4444";
+            mobileBtn.style.color = "#ffffff";
+        }
     } else {
         if (pushStatus) { pushStatus.innerText = "Push: Permission Needed"; pushStatus.style.color = "var(--warning)"; }
         if (pushBtn) { pushBtn.innerText = "🔔 Enable Browser Alerts"; }
+        if (mobileStatus) {
+            mobileStatus.innerHTML = `🔔 <strong>Mobile Handover Alerts Inactive</strong>: Tap "Enable Alerts on Mobile" to receive lockscreen push &amp; sound.`;
+        }
+        if (mobileBtn) {
+            mobileBtn.innerText = "🔔 Enable Alerts on Mobile";
+            mobileBtn.style.background = "#25D366";
+            mobileBtn.style.color = "#075E54";
+        }
+    }
+};
+
+window.wamSendTestPushToMobile = async function() {
+    wamUnlockAudio();
+    window.wamTriggerHandoverAlertSound();
+    try {
+        const testPushFn = httpsCallable(functions, "testAdminPushNotification");
+        const res = await testPushFn();
+        if (res.data?.success) {
+            alert(`✅ Push test sent from Cloud Functions! Target: ${res.data.totalTokens} token(s). Check your mobile notification bar/lockscreen.`);
+        } else {
+            alert(`⚠️ Test push: ${res.data?.error || 'No active tokens registered yet'}. Try tapping "Enable Alerts on Mobile" first.`);
+        }
+    } catch (e) {
+        await wamShowSystemNotification("919431813838", "Test WhatsApp handover notification on mobile! 🔔", "manual_test");
+        alert("🎵 Local notification & sound chime triggered on mobile!");
     }
 };
 
@@ -7400,7 +7489,7 @@ async function wamShowSystemNotification(phone, reason, handoverId) {
         icon: "https://olympiadquiz.org/favicon.png",
         badge: "https://olympiadquiz.org/favicon.png",
         tag: "wam-handover-" + handoverId,
-        data: { url: "/admin.html", phone, handoverId },
+        data: { url: "/admin.html?tab=ai", phone, handoverId },
         vibrate: [500, 250, 500, 250, 1000],
         requireInteraction: true
     };
@@ -7445,12 +7534,13 @@ window.initWhatsAppHandoverMonitor = async function() {
     window.wamUpdateSoundUI();
     window.wamUpdatePushUI();
 
-    // Register Service Worker for Mobile Notifications
+    // Register Service Worker for Mobile Notifications & ensure it is READY
     let swRegistration = null;
     if ('serviceWorker' in navigator) {
         try {
-            swRegistration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
-            console.log("[WhatsApp Handover] ServiceWorker registered:", swRegistration);
+            await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+            swRegistration = await navigator.serviceWorker.ready;
+            console.log("[WhatsApp Handover] ServiceWorker active & ready:", swRegistration);
         } catch (swRegErr) {
             console.warn("[WhatsApp Handover] ServiceWorker registration failed:", swRegErr);
         }
@@ -7467,7 +7557,7 @@ window.initWhatsAppHandoverMonitor = async function() {
             if (currentToken && auth.currentUser) {
                 await setDoc(doc(db, "userTokens", auth.currentUser.uid), {
                     uid: auth.currentUser.uid,
-                    email: auth.currentUser.email || "madhhu52@gmail.com",
+                    email: (auth.currentUser.email || "madhhu52@gmail.com").toLowerCase().trim(),
                     tokens: arrayUnion(currentToken),
                     deviceType: /Mobi|Android|iPhone/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
                     userAgent: navigator.userAgent,
@@ -7480,6 +7570,21 @@ window.initWhatsAppHandoverMonitor = async function() {
         }
     } catch (fcmErr) {
         console.warn("[WhatsApp Handover] FCM token registration:", fcmErr);
+    }
+
+    // Register foreground push notification listener
+    try {
+        const messaging = getMessaging();
+        onMessage(messaging, (payload) => {
+            console.log("[WhatsApp Handover] Foreground push received:", payload);
+            const title = payload.notification?.title || payload.data?.title || "🚨 WhatsApp Human Handover Request!";
+            const body = payload.notification?.body || payload.data?.body || "Student requested human support.";
+            const phone = payload.data?.phone || "";
+            const handoverId = payload.data?.handoverId || "";
+            window.wamTriggerHandoverAlert(phone, body, handoverId);
+        });
+    } catch (onMsgErr) {
+        console.warn("[WhatsApp Handover] Foreground push listener error:", onMsgErr);
     }
 
     // Real-time Firestore onSnapshot listener
@@ -7576,10 +7681,34 @@ window.initWhatsAppHandoverMonitor = async function() {
             } catch(e) {}
         }
     });
+
+    // Handle incoming URL parameters from push notification clicks (e.g. ?tab=ai&handover=XYZ)
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("tab") === "ai") {
+            setTimeout(() => {
+                const panel = document.getElementById("whatsapp-manager-section");
+                if (panel) {
+                    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                    panel.classList.add("active");
+                    const aiTabBtn = document.querySelector('.wam-tab-btn[data-tab="ai"]');
+                    if (aiTabBtn) aiTabBtn.click();
+                    const handoverId = urlParams.get("handover");
+                    const phone = urlParams.get("phone");
+                    if (handoverId && phone) {
+                        window.wamOpenChatModal(phone, handoverId);
+                    }
+                }
+            }, 500);
+        }
+    } catch(paramErr) {}
 };
 
+// Dispatch readiness event for onAuthStateChanged listener
+window.dispatchEvent(new CustomEvent('wamMonitorReady'));
+
 // Auto-run if admin user is already present
-if (auth.currentUser && auth.currentUser.email === "madhhu52@gmail.com") {
+if (auth.currentUser && auth.currentUser.email && auth.currentUser.email.trim().toLowerCase() === "madhhu52@gmail.com") {
     window.initWhatsAppHandoverMonitor();
 }
 

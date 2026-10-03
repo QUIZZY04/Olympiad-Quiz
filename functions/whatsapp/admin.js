@@ -37,7 +37,8 @@ const FieldValue = admin.firestore.FieldValue;
 const Timestamp = admin.firestore.Timestamp;
 
 function assertAdmin(request) {
-  if (request.auth?.token?.email !== ADMIN_EMAIL) {
+  const email = (request.auth?.token?.email || "").toLowerCase().trim();
+  if (email !== ADMIN_EMAIL.toLowerCase().trim()) {
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 }
@@ -741,4 +742,60 @@ exports.getConversationThread = onCall({}, async (request) => {
     .reverse();
 
   return { messages };
+});
+
+exports.testAdminPushNotification = onCall({}, async (request) => {
+  assertAdmin(request);
+  const { getAdminDeviceTokens } = require("./aiTools");
+  const tokens = await getAdminDeviceTokens();
+  if (tokens.length === 0) {
+    return { success: false, error: "No admin push tokens registered yet in userTokens. Please enable alerts on your mobile phone first." };
+  }
+  const testTitle = "🧪 Test WhatsApp Handover Alert";
+  const testBody = "Mobile push notification is working perfectly on this device! 🔔";
+  const targetUrl = "https://olympiadquiz.org/admin.html?tab=ai";
+
+  const response = await admin.messaging().sendEachForMulticast({
+    notification: {
+      title: testTitle,
+      body: testBody,
+    },
+    webpush: {
+      headers: { Urgency: "high" },
+      notification: {
+        title: testTitle,
+        body: testBody,
+        icon: "https://olympiadquiz.org/favicon.png",
+        badge: "https://olympiadquiz.org/favicon.png",
+        vibrate: [500, 200, 500, 200, 800],
+        requireInteraction: true,
+        tag: "test-handover-alert",
+        renotify: true,
+      },
+      fcmOptions: {
+        link: targetUrl,
+      },
+    },
+    android: {
+      priority: "high",
+      notification: {
+        sound: "default",
+        clickAction: targetUrl,
+      },
+    },
+    data: {
+      url: targetUrl,
+      title: testTitle,
+      body: testBody,
+      test: "true",
+    },
+    tokens,
+  });
+
+  return {
+    success: response.successCount > 0,
+    successCount: response.successCount,
+    failureCount: response.failureCount,
+    totalTokens: tokens.length,
+  };
 });
