@@ -228,6 +228,7 @@ async function escalateToHumanImpl(reason, serverContext) {
     reason: reason || "Student requested human support.",
     status: "open",
     createdAt: FieldValue.serverTimestamp(),
+    createdTimestamp: Date.now(),
     resolvedAt: null,
     resolvedBy: null,
   });
@@ -239,6 +240,61 @@ async function escalateToHumanImpl(reason, serverContext) {
     },
     { merge: true }
   );
+
+  // 1. Send FCM Web Push Notification to Admin devices (Mobile & Desktop)
+  try {
+    const adminTokensSnap = await db.collection("userTokens")
+      .where("email", "==", "madhhu52@gmail.com")
+      .get();
+    const tokens = [];
+    adminTokensSnap.forEach((doc) => {
+      const d = doc.data();
+      if (d.tokens && Array.isArray(d.tokens)) {
+        tokens.push(...d.tokens);
+      } else if (d.token) {
+        tokens.push(d.token);
+      }
+    });
+
+    if (tokens.length > 0) {
+      await admin.messaging().sendEachForMulticast({
+        notification: {
+          title: "🚨 WhatsApp Human Handover Request!",
+          body: `Student +${serverContext.phone} requested help: "${reason || 'Support needed'}". Tap to reply!`
+        },
+        webpush: {
+          headers: { Urgency: "high" },
+          notification: {
+            icon: "https://olympiadquiz.org/favicon.png",
+            badge: "https://olympiadquiz.org/favicon.png",
+            vibrate: [500, 200, 500, 200, 800],
+            requireInteraction: true,
+            click_action: "https://olympiadquiz.org/admin.html"
+          }
+        },
+        data: {
+          url: "https://olympiadquiz.org/admin.html",
+          phone: String(serverContext.phone),
+          handoverId: handoverRef.id
+        },
+        tokens
+      });
+      console.log(`[Handover] Sent FCM push notification to ${tokens.length} admin device(s).`);
+    }
+  } catch (pushErr) {
+    console.warn("[Handover] Failed to send admin push notification:", pushErr.message);
+  }
+
+  // 2. Send instant WhatsApp alert to Admin's own WhatsApp number (919431813838)
+  try {
+    const { sendWhatsAppMessage } = require("./whatsappService");
+    const adminAlertText = `🚨 *OlympiadQuiz Admin Alert: Human Handover Request!*\n\n📱 *From Student:* +${serverContext.phone}\n💬 *Reason:* ${reason || "Student requested support"}\n\n👉 *Reply in Admin Panel:* https://olympiadquiz.org/admin.html`;
+    await sendWhatsAppMessage("919431813838", adminAlertText);
+    console.log("[Handover] Sent WhatsApp alert to Admin 919431813838.");
+  } catch (waErr) {
+    console.warn("[Handover] Failed to send WhatsApp alert to admin:", waErr.message);
+  }
+
   return { success: true };
 }
 
