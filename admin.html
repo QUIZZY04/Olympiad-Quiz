@@ -304,6 +304,56 @@ border-top:1px solid var(--border);
        WhatsApp's own app, instead of a small centered card. */
     #wamChatModal .modal-content{ width:100%; max-width:100%; height:100dvh; max-height:100dvh; border-radius:0; }
 }
+
+/* WhatsApp Handover Real-Time Mobile Alert Banner & Badges */
+.wam-handover-alert {
+    position: fixed;
+    top: 14px;
+    left: 12px;
+    right: 12px;
+    max-width: 540px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #075E54 0%, #128C7E 100%);
+    color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(7, 94, 84, 0.45), 0 0 0 2px rgba(37, 211, 102, 0.65);
+    padding: 14px 18px;
+    z-index: 999999;
+    display: none;
+    animation: wamAlertSlideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1), wamAlertPulse 2s infinite ease-in-out;
+}
+@keyframes wamAlertSlideDown {
+    from { transform: translateY(-40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes wamAlertPulse {
+    0%, 100% { box-shadow: 0 16px 40px rgba(7, 94, 84, 0.45), 0 0 0 2px rgba(37, 211, 102, 0.65); }
+    50% { box-shadow: 0 20px 50px rgba(37, 211, 102, 0.75), 0 0 0 4px rgba(37, 211, 102, 0.95); }
+}
+@keyframes wamBellRing {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-22deg); }
+    40% { transform: rotate(22deg); }
+    60% { transform: rotate(-15deg); }
+    80% { transform: rotate(15deg); }
+}
+.wam-badge-pulse {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #ef4444;
+    color: #ffffff !important;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    animation: wamBadgePulseAnim 1.6s infinite ease-in-out;
+    vertical-align: middle;
+}
+@keyframes wamBadgePulseAnim {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); background: #dc2626; box-shadow: 0 0 12px rgba(239,68,68,0.7); }
+}
 </style>
 </head>
 <body>
@@ -343,7 +393,7 @@ border-top:1px solid var(--border);
             </div>
             <a href="live.html" class="nav-link">Live Arena</a>
             <a href="leaderboard.html" class="nav-link">Leaderboard</a>
-            <a href="admin.html" class="nav-link active">Admin</a>
+            <a href="admin.html" class="nav-link active">Admin <span id="wamNavHandoverBadge" class="wam-badge-pulse" style="display:none; margin-left:4px; font-size:10px; padding:2px 7px;">🚨 0</span></a>
         </div>
 
         <!-- Right: CTA -->
@@ -358,6 +408,28 @@ border-top:1px solid var(--border);
         </div>
     </div>
 </nav>
+
+<!-- REAL-TIME WHATSAPP HANDOVER FLOATING ALERT (MOBILE & DESKTOP) -->
+<div id="wamHandoverFloatingAlert" class="wam-handover-alert" role="alert">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span style="font-size:28px; animation:wamBellRing 1s infinite alternate; display:inline-block;">🔔</span>
+            <div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="wam-badge-pulse">🚨 HUMAN HANDOVER REQUEST</span>
+                    <span id="wamAlertTime" style="font-size:11px; opacity:0.85;">Just now</span>
+                </div>
+                <div style="font-weight:800; font-size:15px; margin-top:3px; letter-spacing:0.3px;" id="wamAlertPhone">+91-XXXXXXXXXX</div>
+                <div style="font-size:12.5px; opacity:0.95; margin-top:2px; max-width:300px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" id="wamAlertReason">Student requested human support</div>
+            </div>
+        </div>
+        <button type="button" onclick="window.wamDismissHandoverAlert()" title="Close alert" style="background:rgba(255,255,255,0.2); border:none; color:white; border-radius:50%; width:30px; height:30px; cursor:pointer; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">✕</button>
+    </div>
+    <div style="display:flex; gap:8px; margin-top:12px;">
+        <button type="button" id="wamAlertReplyBtn" onclick="window.wamGoToHandoverChatFromAlert()" style="flex:1; background:#25D366; color:#075E54; border:none; padding:10px 16px; border-radius:10px; font-weight:800; font-size:13.5px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15); display:inline-flex; align-items:center; justify-content:center; gap:6px;">💬 Open WhatsApp Chat &amp; Reply</button>
+        <button type="button" onclick="window.wamToggleHandoverSound()" id="wamAlertMuteBtn" style="background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.3); padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap;">🔇 Mute</button>
+    </div>
+</div>
 
 <div class="container">
     <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;">Admin Panel</h1>
@@ -804,8 +876,14 @@ border-top:1px solid var(--border);
     </div>
 
     <div id="whatsapp-manager-section" class="panel" style="border-top: 2px solid #25D366;">
-        <div class="panel-header">
-            <h2 style="color:#25D366;">📱 WhatsApp Manager</h2>
+        <div class="panel-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <h2 style="color:#25D366; margin:0;">📱 WhatsApp Manager</h2>
+                <span id="wamHeaderHandoverBadge" class="wam-badge-pulse" style="display:none;">🚨 0 Handovers</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <button type="button" onclick="event.stopPropagation(); window.wamTestHandoverSound();" style="background:rgba(37,211,102,0.15); color:#075E54; border:1px solid #25D366; padding:6px 12px; border-radius:8px; font-size:11.5px; font-weight:700; cursor:pointer;">🔊 Test Alert Sound</button>
+            </div>
         </div>
         <div class="panel-content">
             <p class="muted">Admin console for the real WhatsApp Cloud API backend (Send/Broadcast/Templates/Logs). The panel above ("WhatsApp Alerts - Manual Send") is a separate, older wa.me-link tool kept as-is; this section calls the actual Cloud Functions.</p>
@@ -821,7 +899,7 @@ border-top:1px solid var(--border);
                 <button type="button" class="wam-tab-btn" data-tab="logs">📜 Logs</button>
                 <button type="button" class="wam-tab-btn" data-tab="analytics">📈 Analytics</button>
                 <button type="button" class="wam-tab-btn" data-tab="settings">⚙️ Settings</button>
-                <button type="button" class="wam-tab-btn" data-tab="ai">🤖 AI Assistant</button>
+                <button type="button" class="wam-tab-btn" data-tab="ai">🤖 AI Assistant <span id="wamTabHandoverBadge" class="wam-badge-pulse" style="display:none; font-size:10px; padding:1px 6px; margin-left:4px;">0</span></button>
             </div>
 
             <!-- Dashboard -->
@@ -1125,6 +1203,23 @@ border-top:1px solid var(--border);
                     <textarea id="wamAiFaqs" style="height:120px;" placeholder="What is OlympiadQuiz? | OlympiadQuiz is a free Olympiad exam practice platform..."></textarea>
                     <button type="button" class="upload" style="margin-top:14px;" onclick="window.wamSaveAiSettings()">💾 Save AI Settings</button>
                     <div id="wamAiSettingsStatus" style="margin-top:10px; font-size:13px; font-weight:600; padding:10px; border-radius:8px; display:none; border:1px solid transparent;"></div>
+                </div>
+
+                <div style="background:linear-gradient(135deg, rgba(7,94,84,0.06) 0%, rgba(37,211,102,0.12) 100%); border:1.5px solid #25D366; border-radius:14px; padding:16px 18px; margin-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="font-size:26px;">🔔</span>
+                        <div>
+                            <div style="font-weight:800; color:#075E54; font-size:14.5px;">Mobile Handover Live Notifications &amp; Sound</div>
+                            <div style="font-size:12px; color:var(--muted); margin-top:2px;">
+                                Sound: <strong id="wamSoundStatusText" style="color:var(--success);">🟢 Active with Sound</strong> · Push: <span id="wamPushStatusText" style="color:var(--muted);">Checking Notifications...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                        <button type="button" onclick="window.wamToggleHandoverSound()" id="wamSoundToggleBtn" class="upload" style="background:#075E54; font-size:12px; padding:8px 14px; font-weight:700;">🔊 Sound: ON</button>
+                        <button type="button" onclick="window.wamTestHandoverSound()" class="upload" style="background:#25D366; color:#075E54; font-weight:800; font-size:12px; padding:8px 14px;">🎵 Test Alert Sound</button>
+                        <button type="button" onclick="window.wamRequestNotificationPermission()" id="wamPushBtn" class="upload" style="background:var(--surface); color:var(--text); border:1px solid var(--border); font-size:12px; padding:8px 14px; font-weight:600;">🔔 Enable Browser Alerts</button>
+                    </div>
                 </div>
 
                 <h3 style="margin-top:24px;">🙋 Human Handover Requests</h3>
@@ -2387,6 +2482,9 @@ let allQuestionWiseChapterRows = [];
 onAuthStateChanged(auth, (user) => {
     if (user && user.email === "madhhu52@gmail.com") {
         document.body.style.visibility = 'visible';
+        if (typeof window.initWhatsAppHandoverMonitor === 'function') {
+            window.initWhatsAppHandoverMonitor();
+        }
     } else {
         window.location.href = "login.html";
     }
@@ -7009,6 +7107,395 @@ window.wamResolveFromChat = async function() {
         alert("Failed to resolve: " + error.message);
     }
 };
+
+// =====================================================================
+// WHATSAPP HUMAN HANDOVER REAL-TIME NOTIFICATION & SOUND MONITOR
+// Powers immediate mobile audio, vibration, and push notifications
+// when any user asks for human support via WhatsApp.
+// =====================================================================
+let wamAudioCtx = null;
+let wamSoundEnabled = localStorage.getItem("wam_handover_sound") !== "false";
+let wamKnownOpenHandovers = new Set();
+let wamHandoverMonitorInitialized = false;
+let wamInitialSnapshotLoaded = false;
+let wamCurrentAlertHandover = null;
+let wamSoundRingtoneInterval = null;
+
+function wamGetAudioContext() {
+    if (!wamAudioCtx) {
+        const AudioClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioClass) {
+            wamAudioCtx = new AudioClass();
+        }
+    }
+    if (wamAudioCtx && wamAudioCtx.state === 'suspended') {
+        wamAudioCtx.resume().catch(() => {});
+    }
+    return wamAudioCtx;
+}
+
+// Unlock audio context on any user touch/click on mobile screen
+function wamUnlockAudio() {
+    try {
+        const ctx = wamGetAudioContext();
+        if (ctx && ctx.state === 'suspended') {
+            ctx.resume();
+        }
+        if (ctx) {
+            const buf = ctx.createBuffer(1, 1, 22050);
+            const src = ctx.createBufferSource();
+            src.buffer = buf;
+            src.connect(ctx.destination);
+            src.start(0);
+        }
+    } catch(e) {
+        // audio unlock quiet catch
+    }
+}
+document.addEventListener('touchstart', wamUnlockAudio, { passive: true });
+document.addEventListener('click', wamUnlockAudio, { passive: true });
+
+// Synthesize loud, pleasant multi-tone chime for mobile phone
+window.wamPlayChime = function() {
+    if (!wamSoundEnabled) return;
+    try {
+        const ctx = wamGetAudioContext();
+        if (!ctx) return;
+        if (ctx.state === 'suspended') {
+            ctx.resume().catch(() => {});
+        }
+        const now = ctx.currentTime;
+        // Distinctive 4-note ascending urgent chime: D5 -> A5 -> D6 -> F#6
+        const tones = [
+            { f: 587.33, t: 0.00, d: 0.18, vol: 0.75 },
+            { f: 880.00, t: 0.16, d: 0.20, vol: 0.85 },
+            { f: 1174.66, t: 0.34, d: 0.35, vol: 0.95 },
+            { f: 1479.98, t: 0.65, d: 0.55, vol: 0.90 }
+        ];
+        tones.forEach(n => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(n.f, now + n.t);
+            gain.gain.setValueAtTime(0.001, now + n.t);
+            gain.gain.linearRampToValueAtTime(n.vol, now + n.t + 0.025);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + n.t);
+            osc.stop(now + n.t + n.d + 0.05);
+        });
+    } catch (e) {
+        console.warn("[WhatsApp Handover] Audio chime error:", e);
+    }
+};
+
+window.wamTriggerHandoverAlertSound = function() {
+    if (!wamSoundEnabled) return;
+    // Play immediately
+    window.wamPlayChime();
+    // Vibrate device (pattern: 400ms on, 200ms off, 400ms on, 200ms off, 600ms on)
+    if (navigator.vibrate) {
+        navigator.vibrate([400, 200, 400, 200, 600, 300, 600]);
+    }
+    // Repeat chime twice at 1.4s and 2.8s
+    if (wamSoundRingtoneInterval) clearInterval(wamSoundRingtoneInterval);
+    let repeats = 0;
+    wamSoundRingtoneInterval = setInterval(() => {
+        repeats++;
+        if (repeats >= 2 || !wamCurrentAlertHandover) {
+            clearInterval(wamSoundRingtoneInterval);
+            wamSoundRingtoneInterval = null;
+            return;
+        }
+        window.wamPlayChime();
+        if (navigator.vibrate) navigator.vibrate([350, 150, 350, 150, 500]);
+    }, 1400);
+};
+
+window.wamTestHandoverSound = function() {
+    wamUnlockAudio();
+    window.wamTriggerHandoverAlertSound();
+    alert("🎵 Handover Alert Chime & Vibration triggered! If you heard it, your mobile sound is active and ready.");
+};
+
+window.wamToggleHandoverSound = function() {
+    wamSoundEnabled = !wamSoundEnabled;
+    localStorage.setItem("wam_handover_sound", wamSoundEnabled ? "true" : "false");
+    window.wamUpdateSoundUI();
+};
+
+window.wamUpdateSoundUI = function() {
+    const text = document.getElementById("wamSoundStatusText");
+    const btn = document.getElementById("wamSoundToggleBtn");
+    const muteBtn = document.getElementById("wamAlertMuteBtn");
+    if (text) {
+        text.innerText = wamSoundEnabled ? "🟢 Active with Sound" : "🔇 Sound Muted";
+        text.style.color = wamSoundEnabled ? "var(--success)" : "var(--muted)";
+    }
+    if (btn) {
+        btn.innerText = wamSoundEnabled ? "🔊 Sound: ON" : "🔇 Sound: OFF";
+        btn.style.background = wamSoundEnabled ? "#075E54" : "var(--border)";
+        btn.style.color = wamSoundEnabled ? "#ffffff" : "var(--text)";
+    }
+    if (muteBtn) {
+        muteBtn.innerText = wamSoundEnabled ? "🔇 Mute" : "🔊 Unmute";
+    }
+};
+
+window.wamRequestNotificationPermission = function() {
+    if (!("Notification" in window)) {
+        alert("This browser does not support Web Notifications.");
+        return;
+    }
+    Notification.requestPermission().then(permission => {
+        window.wamUpdatePushUI();
+        if (permission === "granted") {
+            try {
+                new Notification("✅ Handover Notifications Enabled!", {
+                    body: "You will now receive sound and banner alerts when students request support.",
+                    icon: "favicon.png"
+                });
+            } catch(e) {}
+        }
+    });
+};
+
+window.wamUpdatePushUI = function() {
+    const pushStatus = document.getElementById("wamPushStatusText");
+    const pushBtn = document.getElementById("wamPushBtn");
+    if (!("Notification" in window)) {
+        if (pushStatus) pushStatus.innerText = "Push: Not Supported";
+        if (pushBtn) pushBtn.style.display = "none";
+        return;
+    }
+    if (Notification.permission === "granted") {
+        if (pushStatus) { pushStatus.innerText = "Push: Allowed ✅"; pushStatus.style.color = "var(--success)"; }
+        if (pushBtn) { pushBtn.innerText = "✅ Browser Alerts Active"; pushBtn.style.background = "#e5f8ee"; pushBtn.style.color = "#059669"; }
+    } else if (Notification.permission === "denied") {
+        if (pushStatus) { pushStatus.innerText = "Push: Blocked in Browser ⚠️"; pushStatus.style.color = "var(--danger)"; }
+        if (pushBtn) { pushBtn.innerText = "⚠️ Notifications Blocked"; }
+    } else {
+        if (pushStatus) { pushStatus.innerText = "Push: Permission Needed"; pushStatus.style.color = "var(--warning)"; }
+        if (pushBtn) { pushBtn.innerText = "🔔 Enable Browser Alerts"; }
+    }
+};
+
+function wamUpdateHandoverBadges(count) {
+    const navBadge = document.getElementById("wamNavHandoverBadge");
+    const headerBadge = document.getElementById("wamHeaderHandoverBadge");
+    const tabBadge = document.getElementById("wamTabHandoverBadge");
+    
+    if (navBadge) {
+        navBadge.style.display = count > 0 ? "inline-flex" : "none";
+        navBadge.innerText = `🚨 ${count}`;
+    }
+    if (headerBadge) {
+        headerBadge.style.display = count > 0 ? "inline-flex" : "none";
+        headerBadge.innerText = `🚨 ${count} Open Handover${count > 1 ? 's' : ''}`;
+    }
+    if (tabBadge) {
+        tabBadge.style.display = count > 0 ? "inline-flex" : "none";
+        tabBadge.innerText = `${count}`;
+    }
+}
+
+window.wamShowFloatingAlert = function(phone, reason, handoverId) {
+    wamCurrentAlertHandover = { phone, handoverId, reason };
+    const alertEl = document.getElementById("wamHandoverFloatingAlert");
+    if (!alertEl) return;
+    const phoneEl = document.getElementById("wamAlertPhone");
+    const reasonEl = document.getElementById("wamAlertReason");
+    const timeEl = document.getElementById("wamAlertTime");
+    
+    if (phoneEl) phoneEl.innerText = "+" + phone;
+    if (reasonEl) reasonEl.innerText = (reason || "Student requested human support").replace(/</g, "&lt;");
+    if (timeEl) timeEl.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    alertEl.style.display = "block";
+};
+
+window.wamDismissHandoverAlert = function() {
+    if (wamSoundRingtoneInterval) {
+        clearInterval(wamSoundRingtoneInterval);
+        wamSoundRingtoneInterval = null;
+    }
+    const alertEl = document.getElementById("wamHandoverFloatingAlert");
+    if (alertEl) alertEl.style.display = "none";
+    wamCurrentAlertHandover = null;
+};
+
+window.wamGoToHandoverChatFromAlert = function() {
+    if (!wamCurrentAlertHandover) return;
+    const { phone, handoverId } = wamCurrentAlertHandover;
+    window.wamGoToHandoverChat(phone, handoverId);
+};
+
+window.wamGoToHandoverChat = function(phone, handoverId) {
+    window.wamDismissHandoverAlert();
+    
+    // Expand WhatsApp Manager section if collapsed
+    const panel = document.getElementById("whatsapp-manager-section");
+    if (panel) {
+        if (!panel.classList.contains("active")) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            panel.classList.add("active");
+            if (panel.dataset.loaded !== 'true') {
+                window.wamLoadDashboard();
+                wamLoadedTabs.add('dashboard');
+                panel.dataset.loaded = 'true';
+            }
+        }
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // Switch to AI tab
+    const aiTabBtn = document.querySelector('.wam-tab-btn[data-tab="ai"]');
+    if (aiTabBtn) {
+        aiTabBtn.click();
+    }
+    
+    // Open chat modal
+    setTimeout(() => {
+        window.wamOpenChatModal(phone, handoverId);
+    }, 200);
+};
+
+function wamShowSystemNotification(phone, reason, handoverId) {
+    if ("Notification" in window && Notification.permission === "granted") {
+        try {
+            const notif = new Notification("🚨 WhatsApp Human Handover Request!", {
+                body: `Student +${phone} requested support: "${reason || 'Help requested'}". Tap to reply now.`,
+                icon: "favicon.png",
+                badge: "favicon.png",
+                tag: "wam-handover-" + handoverId,
+                requireInteraction: true,
+                vibrate: [400, 200, 400, 200, 600]
+            });
+            notif.onclick = () => {
+                window.focus();
+                window.wamGoToHandoverChat(phone, handoverId);
+                notif.close();
+            };
+        } catch(e) {
+            console.warn("[Notification] Show error:", e);
+        }
+    }
+}
+
+function wamTriggerHandoverAlert(phone, reason, handoverId) {
+    window.wamTriggerHandoverAlertSound();
+    window.wamShowFloatingAlert(phone, reason, handoverId);
+    wamShowSystemNotification(phone, reason, handoverId);
+}
+
+// Master Monitor initialization
+window.initWhatsAppHandoverMonitor = function() {
+    if (wamHandoverMonitorInitialized) return;
+    wamHandoverMonitorInitialized = true;
+    
+    window.wamUpdateSoundUI();
+    window.wamUpdatePushUI();
+    
+    // Real-time Firestore onSnapshot listener
+    try {
+        const handoverQuery = query(
+            collection(db, "whatsapp_handover"),
+            where("status", "==", "open")
+        );
+        
+        onSnapshot(handoverQuery, (snapshot) => {
+            const activeIds = new Set();
+            let newHandovers = [];
+            
+            snapshot.docChanges().forEach((change) => {
+                const docData = change.doc.data();
+                const id = change.doc.id;
+                
+                if (change.type === "added") {
+                    activeIds.add(id);
+                    if (!wamKnownOpenHandovers.has(id)) {
+                        wamKnownOpenHandovers.add(id);
+                        if (wamInitialSnapshotLoaded) {
+                            newHandovers.push({ id, ...docData });
+                        } else {
+                            // On first load, check if created recently (last 5 mins)
+                            const createdMs = docData.createdAt?.toMillis ? docData.createdAt.toMillis() : (docData.createdTimestamp || Date.now());
+                            if (Date.now() - createdMs < 5 * 60 * 1000) {
+                                newHandovers.push({ id, ...docData });
+                            }
+                        }
+                    }
+                } else if (change.type === "removed") {
+                    wamKnownOpenHandovers.delete(id);
+                }
+            });
+            
+            wamInitialSnapshotLoaded = true;
+            wamUpdateHandoverBadges(wamKnownOpenHandovers.size);
+            
+            if (newHandovers.length > 0) {
+                const latest = newHandovers[newHandovers.length - 1];
+                wamTriggerHandoverAlert(latest.phone, latest.reason, latest.id);
+                // Auto refresh table if tab is open
+                const body = document.getElementById("wamAiHandoverBody");
+                if (body && body.closest('.wam-tab-content')?.style.display !== 'none') {
+                    wamLoadAiHandovers();
+                }
+            } else if (wamKnownOpenHandovers.size === 0) {
+                window.wamDismissHandoverAlert();
+            }
+        }, (error) => {
+            console.warn("[WhatsApp Handover] Firestore onSnapshot failed, using polling fallback:", error);
+        });
+    } catch(err) {
+        console.warn("[WhatsApp Handover] Failed to attach onSnapshot:", err);
+    }
+    
+    // Background Polling Fallback (every 15 seconds)
+    setInterval(async () => {
+        try {
+            const res = await wamFn.getOpenHandovers();
+            const list = res.data?.handovers || [];
+            wamUpdateHandoverBadges(list.length);
+            
+            let detectedNew = false;
+            list.forEach(h => {
+                if (!wamKnownOpenHandovers.has(h.id)) {
+                    wamKnownOpenHandovers.add(h.id);
+                    detectedNew = true;
+                    wamTriggerHandoverAlert(h.phone, h.reason, h.id);
+                }
+            });
+            if (list.length === 0 && wamKnownOpenHandovers.size === 0) {
+                window.wamDismissHandoverAlert();
+            }
+        } catch(e) {
+            // Polling background silent catch
+        }
+    }, 15000);
+    
+    // Immediate check when admin returns to tab / unlocks mobile
+    document.addEventListener("visibilitychange", async () => {
+        if (!document.hidden) {
+            try {
+                const res = await wamFn.getOpenHandovers();
+                const list = res.data?.handovers || [];
+                wamUpdateHandoverBadges(list.length);
+                list.forEach(h => {
+                    if (!wamKnownOpenHandovers.has(h.id)) {
+                        wamKnownOpenHandovers.add(h.id);
+                        wamTriggerHandoverAlert(h.phone, h.reason, h.id);
+                    }
+                });
+            } catch(e) {}
+        }
+    });
+};
+
+// Auto-run if admin user is already present
+if (auth.currentUser && auth.currentUser.email === "madhhu52@gmail.com") {
+    window.initWhatsAppHandoverMonitor();
+}
 
 async function wamLoadAiLogs() {
     const body = document.getElementById("wamAiLogsBody");

@@ -235,5 +235,17 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // ========================
+    // 20. WhatsApp Handover & Conversations (WhatsApp Manager Live Support)
+    // ========================
+    match /whatsapp_handover/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    match /whatsapp_conversations/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
   }
 }
+
