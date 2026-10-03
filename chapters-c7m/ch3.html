@@ -1,0 +1,311 @@
+<section class="chapter-section" id="ch3">
+  <div class="chapter-header">
+    <div class="ch-badge">3</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 3: Data Handling</h2>
+      <p>NCERT Exercise 3.1 to 3.4 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Concepts &amp; Formulas Summary</div>
+    <ul class="concept-list">
+      <li><strong>Data &amp; Range:</strong>
+        Range = Highest Value - Lowest Value
+      </li>
+      <li><strong>Arithmetic Mean (Average):</strong>
+        Mean = (Sum of all observations)/(Number of observations)
+      </li>
+      <li><strong>Mode:</strong> The observation that occurs most frequently in the given data. A data set can have more than one mode (multimodal).</li>
+      <li><strong>Median:</strong> The middle observation when data is arranged in ascending or descending order.
+        <ul>
+          <li>For odd n: Median = ((n+1)/2)th observation.</li>
+        </ul>
+      </li>
+      <li><strong>Bar Graphs:</strong> Representation of numbers using bars of uniform width where lengths/heights are proportional to the frequencies. Double bar graphs compare two sets of data simultaneously.</li>
+      <li><strong>Probability (P):</strong> Measure of chance of an event happening:
+        P(Event) = (Number of favourable outcomes)/(Total number of possible outcomes)
+        0 ≤ P ≤ 1. Impossible event = 0, Certain event = 1.
+      </li>
+    </ul>
+  </div>
+
+  <!-- EXERCISE 3.1 -->
+  <div class="ex-div">Exercise 3.1</div>
+
+  <div class="q-card" id="q3_1_1">
+    <div class="q-head" onclick="toggleQ('q3_1_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Find the range of heights of any ten students of your class.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Sample Data (Heights in cm):</strong><br>
+            Let the heights of 10 students be: <span class="math">128, 132, 135, 139, 140, 142, 145, 148, 150, 152 cm</span>.
+          </div>
+          <div class="step">
+            <strong>Calculation of Range:</strong><br>
+            Highest height = <span class="math">152 cm</span><br>
+            Lowest height = <span class="math">128 cm</span><br>
+            <span class="math">Range = Highest height − Lowest height = 152 − 128 = <strong>24 cm</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Listing observations &amp; identifying max/min values</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Applying Range formula and correct result</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_1_2">
+    <div class="q-head" onclick="toggleQ('q3_1_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Find the mean of the first five whole numbers.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Step 1: Identify whole numbers:</strong><br>
+            The first five whole numbers are: <span class="math">0, 1, 2, 3, 4</span>.
+          </div>
+          <div class="step">
+            <strong>Step 2: Calculate sum and mean:</strong><br>
+            Sum = <span class="math">0 + 1 + 2 + 3 + 4 = 10</span>.<br>
+            Number of observations = <span class="math">5</span>.<br>
+            <span class="math">Mean = (Sum of observations)/(Number of observations) = 10/5 = <strong>2</strong></span>.
+          </div>
+          <p><strong>Conclusion:</strong> The mean of the first five whole numbers is <strong>2</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Listing correct numbers starting from 0</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mean formula &amp; final answer 2</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_1_3">
+    <div class="q-head" onclick="toggleQ('q3_1_3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">A cricketer scores the following runs in eight innings: 58, 76, 40, 35, 46, 45, 0, 100. Find the mean score.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Step 1: Sum of runs:</strong><br>
+            <span class="math">Total runs = 58 + 76 + 40 + 35 + 46 + 45 + 0 + 100 = <strong>400</strong></span>.
+          </div>
+          <div class="step">
+            <strong>Step 2: Number of innings:</strong><br>
+            <span class="math">n = 8</span>.
+          </div>
+          <div class="step">
+            <strong>Step 3: Mean score:</strong><br>
+            <span class="math">Mean = (Total runs)/(Number of innings) = 400/8 = <strong>50</strong></span>.
+          </div>
+          <p><strong>Conclusion:</strong> The mean score of the cricketer is <strong>50 runs</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Sum of observations = 400</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Mean = 400/8 = 50 runs</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 3.2 -->
+  <div class="ex-div">Exercise 3.2</div>
+
+  <div class="q-card" id="q3_2_1">
+    <div class="q-head" onclick="toggleQ('q3_2_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">The scores in mathematics test (out of 25) of 15 students is as follows: 19, 25, 23, 20, 9, 20, 15, 10, 5, 16, 25, 20, 24, 12, 20. Find the mode and median of this data. Are they same?</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Step 1: Arrange data in ascending order:</strong><br>
+            <span class="math">5, 9, 10, 12, 15, 16, 19, <strong>20</strong>, 20, 20, 20, 23, 24, 25, 25</span>.<br>
+            Total students, <span class="math">n = 15</span>.
+          </div>
+          <div class="step">
+            <strong>Step 2: Find Mode:</strong><br>
+            The score 20 occurs 4 times (highest frequency).<br>
+            Therefore, <strong>Mode = 20</strong>.
+          </div>
+          <div class="step">
+            <strong>Step 3: Find Median:</strong><br>
+            Since <span class="math">n = 15</span> is odd:<br>
+            <span class="math">Median = ((15+1)/2)th observation = 8th observation = <strong>20</strong></span>.
+          </div>
+          <div class="step">
+            <strong>Conclusion:</strong><br>
+            <strong>Yes</strong>, the mode and median are the same (both equal 20).
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Ascending order + Mode = 20</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Median = 8th value = 20</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Affirmative conclusion stating both are equal</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_2_2">
+    <div class="q-head" onclick="toggleQ('q3_2_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">The weights (in kg) of 15 students of a class are: 38, 42, 35, 37, 45, 50, 32, 43, 43, 40, 36, 38, 43, 38, 47.<br>(i) Find the mode and median of this data.<br>(ii) Is there more than one mode?</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Arranging in ascending order:</strong><br>
+            <span class="math">32, 35, 36, 37, 38, 38, 38, <strong>40</strong>, 42, 43, 43, 43, 45, 47, 50</span>.<br>
+            Total number of observations, <span class="math">n = 15</span>.
+          </div>
+          <div class="step">
+            <strong>(i) Mode and Median:</strong><br>
+            • Both <strong>38</strong> and <strong>43</strong> occur 3 times each (highest frequency).<br>
+            Therefore, <strong>Modes = 38 kg and 43 kg</strong> (bimodal).<br>
+            • <span class="math">Median = ((15+1)/2)th observation = 8th observation = <strong>40 kg</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii) Is there more than one mode?</strong><br>
+            <strong>Yes</strong>, there are two modes (38 kg and 43 kg).
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Modes: 38 and 43 kg</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Median: 40 kg</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Yes, with two modes mentioned</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 3.3 & 3.4 -->
+  <div class="ex-div">Exercise 3.3 &amp; 3.4 (Graphs &amp; Probability)</div>
+
+  <div class="q-card" id="q3_3_1">
+    <div class="q-head" onclick="toggleQ('q3_3_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Consider this data collected from a survey of a colony:<br>Cricket (Watch: 1240, Participate: 620), Basketball (Watch: 470, Participate: 320), Swimming (Watch: 510, Participate: 320), Hockey (Watch: 430, Participate: 250), Athletics (Watch: 250, Participate: 105).<br>(i) Which sport is most popular?<br>(ii) Which is more preferred, watching or participating in sports?</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i) Most popular sport:</strong><br>
+            Total people interested in Cricket = <span class="math">1240 + 620 = 1860</span>.<br>
+            Cricket has the highest bar for both watching and participating.<br>
+            <strong>Answer: Cricket is the most popular sport.</strong>
+          </div>
+          <div class="step">
+            <strong>(ii) Watching vs. Participating preference:</strong><br>
+            Total watching = <span class="math">1240 + 470 + 510 + 430 + 250 = <strong>2900</strong></span>.<br>
+            Total participating = <span class="math">620 + 320 + 320 + 250 + 105 = <strong>1615</strong></span>.<br>
+            Since <span class="math">2900 > 1615</span>, <strong>watching sports is preferred more</strong> than participating.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Identifying Cricket with total count</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): Calculating totals (2900 vs 1615) &amp; conclusion</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_4_1">
+    <div class="q-head" onclick="toggleQ('q3_4_1')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">There are 6 marbles in a box with numbers from 1 to 6 marked on each of them.<br>(i) What is the probability of drawing a marble with number 2?<br>(ii) What is the probability of drawing a marble with number 5?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Sample Space:</strong><br>
+            Total number of marbles = <span class="math">{1, 2, 3, 4, 5, 6} ⇒ n(S) = 6</span>.
+          </div>
+          <div class="step">
+            <strong>(i) Probability of drawing marble number 2:</strong><br>
+            Number 2 appears on only 1 marble ⇒ n(E) = 1.<br>
+            <span class="math">P(Number 2) = n(E)/n(S) = <strong>1/6</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii) Probability of drawing marble number 5:</strong><br>
+            Number 5 appears on only 1 marble ⇒ n(E) = 1.<br>
+            <span class="math">P(Number 5) = n(E)/n(S) = <strong>1/6</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Formula P = Favourable / Total outcomes</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Answers 1/6 for both parts</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ SECTION -->
+  <div class="cbq-section">
+    <div class="cbq-header">
+      <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
+      <span class="cbq-badge">CBSE Board Exam Pattern</span>
+    </div>
+    <div class="cbq-body">
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study: Die Roll Outcomes</div>
+        <div class="cbq-question"><strong>Problem:</strong> When a standard 6-faced die is thrown once, list the outcomes and find the probability of an event of getting: (i) a prime number, (ii) not a prime number, (iii) a number greater than 5, (iv) a number not greater than 5.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p>Total possible outcomes = <span class="math">{1, 2, 3, 4, 5, 6}</span>, total = 6.</p>
+          <p><strong>(i) Prime number:</strong> Outcomes are <span class="math">{2, 3, 5}</span> (3 outcomes) ⇒ P = 3/6 = <strong>1/2</strong>.</p>
+          <p><strong>(ii) Not a prime number:</strong> Outcomes are <span class="math">{1, 4, 6}</span> (3 outcomes) ⇒ P = 3/6 = <strong>1/2</strong>. (Note: 1 is neither prime nor composite).</p>
+          <p><strong>(iii) Number greater than 5:</strong> Only <span class="math">{6}</span> (1 outcome) ⇒ P = <strong>1/6</strong>.</p>
+          <p><strong>(iv) Number not greater than 5:</strong> Outcomes <span class="math">{1, 2, 3, 4, 5}</span> (5 outcomes) ⇒ P = <strong>5/6</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn prev" onclick="showChapter(2)">← Chapter 2: Fractions &amp; Decimals</button>
+    <button class="ch-nav-btn next" onclick="showChapter(4)">Chapter 4: Simple Equations →</button>
+  </div>
+</section>
