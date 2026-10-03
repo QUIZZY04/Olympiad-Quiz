@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Solutions Class 10 Maths — All 14 Chapters | CBSE Marking Scheme 2026-27</title>
+  <meta name="description" content="Free NCERT Solutions for Class 10 Maths (Mathematics) all 14 chapters. 100% question coverage with maximum word count step-by-step solutions as per CBSE Marking Scheme 2026-27, Case Study Questions & HOTS.">
+  <link rel="canonical" href="https://olympiadquiz.com/ncert-solutions-class-10-maths.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --brand: #4f46e5;
+      --brand-hover: #4338ca;
+      --brand-light: #eef2ff;
+      --brand-text: #3730a3;
+      --navy: #0f172a;
+      --slate: #334155;
+      --muted: #64748b;
+      --light-bg: #f8fafc;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--light-bg); color: var(--slate); line-height: 1.6; }
+    .top-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--brand); z-index: 1000; transition: width .1s; }
+    
+    /* Navbar */
+    .navbar { background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 900; }
+    .navbar-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .navbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-text { font-size: 1.15rem; font-weight: 800; color: white; }
+    .logo-text span { color: #818cf8; }
+    .navbar-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link { color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+    .nav-link:hover { color: white; background: rgba(255,255,255,0.06); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown:hover .nav-dropdown-content { display: block !important; }
+    .nav-dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #e2e8f0; border-radius: 10px; min-width: 250px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 1000; padding: 6px; }
+    .nav-dropdown-content a { display: block; padding: 8px 14px; color: #334155; text-decoration: none; font-size: 0.85rem; border-radius: 6px; transition: 0.2s; }
+    .nav-dropdown-content a:hover { background: #f1f5f9; color: #0f172a !important; }
+    .navbar-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { background: #4f46e5; color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
+    .btn-login:hover { background: #4338ca; }
+    .navbar-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .navbar-toggle span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+
+    /* Hero Banner */
+    .hero-banner { background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); color: white; padding: 40px 24px; text-align: center; border-bottom: 3px solid var(--brand); }
+    .hero-banner h1 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .hero-banner p { color: #c7d2fe; font-size: 0.98rem; max-width: 780px; margin: 0 auto 18px; line-height: 1.65; }
+    .hero-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); padding: 6px 14px; border-radius: 20px; font-size: .8rem; font-weight: 600; color: #e2e8f0; }
+
+    /* Breadcrumb Chips */
+    .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 32px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
+    .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
+    .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
+    .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(79,70,229,.35); }
+    .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
+    .bc-chip.active .bc-n { background: rgba(255,255,255,.25); }
+
+    /* Main Layout */
+    .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
+    .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
+    .search-box:focus { outline: none; border-color: var(--brand); }
+    .chapter-nav { list-style: none; }
+    .chapter-nav li { margin-bottom: 4px; }
+    .chapter-nav li a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; color: var(--slate); text-decoration: none; font-size: .84rem; font-weight: 500; transition: all .15s; cursor: pointer; }
+    .chapter-nav li a:hover { background: var(--brand-light); color: var(--brand-text); }
+    .chapter-nav li a.active { background: var(--brand); color: white; font-weight: 600; }
+    .ch-num { width: 22px; height: 22px; background: rgba(0,0,0,.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; }
+    .chapter-nav li a.active .ch-num { background: rgba(255,255,255,.25); color: white; }
+
+    .main-content { flex: 1; padding: 0 36px 36px; min-width: 0; }
+    .chapter-section { margin-bottom: 48px; scroll-margin-top: 130px; padding-top: 28px; }
+    .chapter-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+    .ch-badge { width: 44px; height: 44px; background: var(--brand); color: white; border-radius: 12px; font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(79,70,229,0.3); }
+    .chapter-header-info .ch-category { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--brand); letter-spacing: 0.05em; margin-bottom: 2px; }
+    .chapter-header-info h2 { font-size: 1.45rem; font-weight: 800; color: var(--navy); }
+    .chapter-header-info p { font-size: .825rem; color: var(--muted); margin-top: 2px; }
+
+    /* Question Cards & Marking Schemes */
+    .q-card { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 18px; box-shadow: var(--shadow); transition: all .2s; overflow: hidden; }
+    .q-card:hover { border-color: #c7d2fe; box-shadow: var(--shadow-hover); }
+    .q-head { padding: 16px 20px; display: flex; align-items: flex-start; gap: 14px; cursor: pointer; user-select: none; }
+    .q-num { background: var(--brand-light); color: var(--brand-text); font-weight: 700; font-size: .8rem; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
+    .q-text { flex: 1; font-weight: 600; color: var(--navy); font-size: .95rem; line-height: 1.5; }
+    .q-marks { background: #f1f5f9; color: var(--slate); font-size: .725rem; font-weight: 600; padding: 4px 10px; border-radius: 12px; flex-shrink: 0; white-space: nowrap; }
+    .q-toggle { color: var(--muted); transition: transform .2s; flex-shrink: 0; margin-top: 4px; }
+    .q-toggle svg { width: 20px; height: 20px; }
+    .q-card.open .q-toggle { transform: rotate(45deg); color: var(--brand); }
+    .q-answer { display: none; padding: 0 16px 18px; border-top: 2px dashed rgba(79,70,229,.12); }
+    .q-card.open .q-answer { display: block; }
+    .answer-box { border: 1px solid rgba(0,0,0,.08); border-radius: 12px; padding: 18px; margin-top: 14px; background: rgba(255,255,255,.9); }
+    .answer-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; color: #16a34a; letter-spacing: .04em; margin-bottom: 10px; }
+    .answer-text { font-size: .92rem; color: #1e293b; line-height: 1.7; }
+    .answer-text p { margin-bottom: 10px; }
+    .answer-text p:last-child { margin-bottom: 0; }
+    .answer-text ul, .answer-text ol { margin-left: 20px; margin-bottom: 10px; }
+    .answer-text li { margin-bottom: 6px; }
+
+    .marking-scheme { margin-top: 16px; background: #f8fafc; border: 1px solid rgba(0,0,0,.07); border-radius: 8px; padding: 12px 14px; font-size: .8rem; }
+    .marking-title { font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .marking-row { display: flex; justify-content: space-between; border-bottom: 1px solid #edf2f7; padding: 4px 0; }
+    .marking-row:last-child { border-bottom: none; }
+    .marking-key { color: var(--slate); }
+    .marking-marks { font-weight: 700; color: var(--brand-text); }
+
+    /* Competency & HOTS Section */
+    .cbq-section { margin-top: 40px; border: 2px solid var(--brand); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(79,70,229,.1); }
+    .cbq-header { background: linear-gradient(90deg, #3730a3, #4f46e5); color: white; padding: 16px 20px; font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; justify-content: space-between; }
+    .cbq-badge { font-size: .75rem; background: rgba(255,255,255,.2); padding: 4px 10px; border-radius: 12px; }
+    .cbq-body { padding: 20px; background: linear-gradient(to right, #eef2ff, #fff); }
+    .cbq-card { border: 1px solid #c7d2fe; background: white; padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+    .cbq-type { font-size: .75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+    .cbq-question { font-size: .95rem; color: #334155; margin-bottom: 12px; line-height: 1.6; }
+    .cbq-show-btn { text-align: left; padding: 10px 14px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: .9rem; font-family: inherit; width: 100%; font-weight: 600; color: #334155; }
+    .cbq-show-btn:hover { background: #e2e8f0; }
+    .cbq-answer { display: none; margin-top: 12px; padding: 12px; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 6px; font-size: .9rem; color: #312e81; line-height: 1.65; }
+
+    .ex-div { font-size: .82rem; font-weight: 700; text-transform: uppercase; color: var(--brand-text); background: var(--brand-light); border: 1px solid #c7d2fe; border-radius: 8px; padding: 8px 16px; margin: 24px 0 16px; display: inline-block; letter-spacing: .04em; }
+    .ch-nav-btns { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .ch-nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: .88rem; cursor: pointer; border: 1.5px solid var(--border); background: white; color: var(--slate); transition: all .2s; font-family: inherit; }
+    .ch-nav-btn:hover:not(:disabled) { background: var(--brand); color: white; border-color: var(--brand); }
+    .ch-nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .ch-nav-btn.next { background: var(--brand); color: white; border-color: var(--brand); }
+
+    .mob-toggle { display: none; position: fixed; bottom: 20px; right: 20px; background: var(--brand); color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: .9rem; box-shadow: 0 4px 14px rgba(79,70,229,.4); z-index: 999; cursor: pointer; }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 950; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    @media (max-width: 900px) {
+      .main-layout { flex-direction: column; }
+      .sidebar { position: fixed; left: -330px; top: 0; height: 100vh; z-index: 960; transition: left .3s; }
+      .sidebar.open { left: 0; }
+      .sidebar-overlay.show { display: block; }
+      .mob-toggle { display: block; }
+      .main-content { padding: 0 16px 28px; }
+      .breadcrumb-bar { padding: 12px 16px; top: 57px; }
+    }
+  </style>
+</head>
+<body>
+<div class="top-progress" id="progressBar"></div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown" style="position:relative;">
+        <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-10-maths.html" style="font-weight:700;color:#4f46e5;background:#eef2ff;">Class 10 Maths ✨ (Active)</a>
+          <a href="ncert-solutions-class-10-sst.html">Class 10 Social Science</a>
+          <a href="ncert-solutions-class-9-maths.html">Class 9 Maths</a>
+          <a href="ncert-solutions-class-9-science.html">Class 9 Science</a>
+          <a href="ncert-solutions-class-9-sst.html">Class 9 Social Science</a>
+          <a href="ncert-solutions-class-9-english.html">Class 9 English</a>
+          <a href="ncert-solutions-class-9-hindi.html">Class 9 Hindi</a>
+          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
+          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
+          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
+        </div>
+      </div>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-banner">
+  <h1>Class 10 Maths — NCERT Exercise Solutions</h1>
+  <p>Complete <strong>100% question coverage</strong> with maximum word count and step-by-step mathematical proofs across <strong>all 14 chapters</strong> of NCERT Class 10 Mathematics (CBSE Rationalized Syllabus 2026-27). Detailed CBSE marking schemes and Competency-Based Case Study Questions included.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">✅ All 14 Chapters (100% Questions)</span>
+    <span class="hero-badge">📐 CBSE Rationalized 2026-27</span>
+    <span class="hero-badge">🔢 Step-by-Step Marking Schemes</span>
+    <span class="hero-badge">🎯 Case Study Questions</span>
+    <span class="hero-badge">🧠 HOTS Included</span>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-label">📐 Class 10 Maths — Quick Chapter Jump</div>
+  <div class="breadcrumb-chips" id="breadcrumbChips">
+    <span class="bc-chip active" onclick="showChapter(1)" data-ch="1"><span class="bc-n">1</span>Real Numbers</span>
+    <span class="bc-chip" onclick="showChapter(2)" data-ch="2"><span class="bc-n">2</span>Polynomials</span>
+    <span class="bc-chip" onclick="showChapter(3)" data-ch="3"><span class="bc-n">3</span>Linear Equations</span>
+    <span class="bc-chip" onclick="showChapter(4)" data-ch="4"><span class="bc-n">4</span>Quadratic Equations</span>
+    <span class="bc-chip" onclick="showChapter(5)" data-ch="5"><span class="bc-n">5</span>Arithmetic Progressions</span>
+    <span class="bc-chip" onclick="showChapter(6)" data-ch="6"><span class="bc-n">6</span>Triangles</span>
+    <span class="bc-chip" onclick="showChapter(7)" data-ch="7"><span class="bc-n">7</span>Coordinate Geometry</span>
+    <span class="bc-chip" onclick="showChapter(8)" data-ch="8"><span class="bc-n">8</span>Intro to Trigonometry</span>
+    <span class="bc-chip" onclick="showChapter(9)" data-ch="9"><span class="bc-n">9</span>Applications of Trig</span>
+    <span class="bc-chip" onclick="showChapter(10)" data-ch="10"><span class="bc-n">10</span>Circles</span>
+    <span class="bc-chip" onclick="showChapter(11)" data-ch="11"><span class="bc-n">11</span>Areas Related to Circles</span>
+    <span class="bc-chip" onclick="showChapter(12)" data-ch="12"><span class="bc-n">12</span>Surface Areas &amp; Volumes</span>
+    <span class="bc-chip" onclick="showChapter(13)" data-ch="13"><span class="bc-n">13</span>Statistics</span>
+    <span class="bc-chip" onclick="showChapter(14)" data-ch="14"><span class="bc-n">14</span>Probability</span>
+  </div>
+</div>
+
+<div class="main-layout">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-title">14 Chapters</div>
+    <input type="text" class="search-box" placeholder="Search chapters..." onkeyup="filterChapters(this.value)">
+    <ul class="chapter-nav" id="chapterNav">
+      <li><a onclick="showChapter(1)" class="active"><span class="ch-num">1</span>Real Numbers</a></li>
+      <li><a onclick="showChapter(2)"><span class="ch-num">2</span>Polynomials</a></li>
+      <li><a onclick="showChapter(3)"><span class="ch-num">3</span>Pair of Linear Equations</a></li>
+      <li><a onclick="showChapter(4)"><span class="ch-num">4</span>Quadratic Equations</a></li>
+      <li><a onclick="showChapter(5)"><span class="ch-num">5</span>Arithmetic Progressions</a></li>
+      <li><a onclick="showChapter(6)"><span class="ch-num">6</span>Triangles</a></li>
+      <li><a onclick="showChapter(7)"><span class="ch-num">7</span>Coordinate Geometry</a></li>
+      <li><a onclick="showChapter(8)"><span class="ch-num">8</span>Introduction to Trigonometry</a></li>
+      <li><a onclick="showChapter(9)"><span class="ch-num">9</span>Some Applications of Trig</a></li>
+      <li><a onclick="showChapter(10)"><span class="ch-num">10</span>Circles</a></li>
+      <li><a onclick="showChapter(11)"><span class="ch-num">11</span>Areas Related to Circles</a></li>
+      <li><a onclick="showChapter(12)"><span class="ch-num">12</span>Surface Areas and Volumes</a></li>
+      <li><a onclick="showChapter(13)"><span class="ch-num">13</span>Statistics</a></li>
+      <li><a onclick="showChapter(14)"><span class="ch-num">14</span>Probability</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div id="chapter-content-area">
+<section class="chapter-section" id="ch1">
+  <div class="chapter-header">
+    <div class="ch-badge">1</div>
+    <div class="chapter-header-info">
+      <div class="ch-category">Mathematics • Class 10 Board Exam (NCERT Rationalized)</div>
+      <h2>Chapter 1: Real Numbers</h2>
+      <p>Fundamental Theorem of Arithmetic, HCF-LCM, Proof of Irrationality & Decimal Expansion — CBSE Board Marking Scheme 2026-27</p>
+    </div>
+  </div>
+  <div class="ex-div">NCERT In-Text & Exercise Questions — Board Examination Solutions</div>
+
+  <div class="q-card" id="c10m1q1">
+    <div class="q-head" onclick="toggleQ('c10m1q1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Express each number as a product of its prime factors: (i) 140, (ii) 156, (iii) 3825, (iv) 5005, (v) 7429.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Concept Statement</strong></p>
+<p>According to the <strong>Fundamental Theorem of Arithmetic</strong>, every composite number can be expressed (factorised) as a product of primes, and this factorisation is unique, apart from the order in which the prime factors occur.</p>
+
+<p><strong>Step 2: Prime Factorisation Calculations</strong></p>
+<ol>
+  <li><strong>(i) Express 140 as a product of prime factors:</strong><br>
+    $$140 = 2 	imes 70 = 2 	imes 2 	imes 35 = 2 	imes 2 	imes 5 	imes 7 = 2^2 	imes 5 	imes 7$$
+    <em>Conclusion:</em> $140 = 2^2 	imes 5^1 	imes 7^1$.
+  </li>
+  <li><strong>(ii) Express 156 as a product of prime factors:</strong><br>
+    $$156 = 2 	imes 78 = 2 	imes 2 	imes 39 = 2 	imes 2 	imes 3 	imes 13 = 2^2 	imes 3 	imes 13$$
+    <em>Conclusion:</em> $156 = 2^2 	imes 3^1 	imes 13^1$.
+  </li>
+  <li><strong>(iii) Express 3825 as a product of prime factors:</strong><br>
+    Sum of digits = $3 + 8 + 2 + 5 = 18$ (divisible by 3).<br>
+    $$3825 = 3 	imes 1275 = 3 	imes 3 	imes 425 = 3^2 	imes 5 	imes 85 = 3^2 	imes 5 	imes 5 	imes 17 = 3^2 	imes 5^2 	imes 17$$
+    <em>Conclusion:</em> $3825 = 3^2 	imes 5^2 	imes 17^1$.
+  </li>
+  <li><strong>(iv) Express 5005 as a product of prime factors:</strong><br>
+    $$5005 = 5 	imes 1001 = 5 	imes 7 	imes 143 = 5 	imes 7 	imes 11 	imes 13$$
+    <em>Conclusion:</em> $5005 = 5 	imes 7 	imes 11 	imes 13$.
+  </li>
+  <li><strong>(v) Express 7429 as a product of prime factors:</strong><br>
+    $$7429 = 17 	imes 437 = 17 	imes 19 	imes 23$$
+    <em>Conclusion:</em> $7429 = 17 	imes 19 	imes 23$.
+  </li>
+</ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Statement of Fundamental Theorem of Arithmetic</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Prime factorisation of 140, 156, and 3825</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Prime factorisation of 5005 and 7429 with correct exponents</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m1q2">
+    <div class="q-head" onclick="toggleQ('c10m1q2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Find the LCM and HCF of the following pairs of integers and verify that LCM × HCF = product of the two numbers: (i) 26 and 91, (ii) 510 and 92.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Formula and Relationship Statement</strong></p>
+<p>For any two positive integers $a$ and $b$:</p>
+<ul>
+  <li>$	ext{HCF}(a, b) = 	ext{Product of the smallest power of each common prime factor involved in the numbers.}$</li>
+  <li>$	ext{LCM}(a, b) = 	ext{Product of the greatest power of each prime factor involved in the numbers.}$</li>
+  <li><strong>Verification Formula:</strong> $	ext{HCF}(a, b) 	imes 	ext{LCM}(a, b) = a 	imes b$.</li>
+</ul>
+
+<p><strong>Step 2: Calculations and Verification</strong></p>
+<p><strong>(i) For 26 and 91:</strong></p>
+<ul>
+  <li>Prime factorisation of $26 = 2 	imes 13$</li>
+  <li>Prime factorisation of $91 = 7 	imes 13$</li>
+  <li>$	ext{HCF}(26, 91) = 13$</li>
+  <li>$	ext{LCM}(26, 91) = 2 	imes 7 	imes 13 = 182$</li>
+  <li><em>Verification:</em><br>
+    $	ext{LHS} = 	ext{HCF} 	imes 	ext{LCM} = 13 	imes 182 = 2366$<br>
+    $	ext{RHS} = 	ext{Product of numbers} = 26 	imes 91 = 2366$<br>
+    Since $	ext{LHS} = 	ext{RHS} = 2366$, the relationship is verified.
+  </li>
+</ul>
+
+<p><strong>(ii) For 510 and 92:</strong></p>
+<ul>
+  <li>Prime factorisation of $510 = 2 	imes 3 	imes 5 	imes 17$</li>
+  <li>Prime factorisation of $92 = 2^2 	imes 23$</li>
+  <li>$	ext{HCF}(510, 92) = 2^1 = 2$</li>
+  <li>$	ext{LCM}(510, 92) = 2^2 	imes 3 	imes 5 	imes 17 	imes 23 = 4 	imes 15 	imes 17 	imes 23 = 23460$</li>
+  <li><em>Verification:</em><br>
+    $	ext{LHS} = 	ext{HCF} 	imes 	ext{LCM} = 2 	imes 23460 = 46920$<br>
+    $	ext{RHS} = 510 	imes 92 = 46920$<br>
+    Since $	ext{LHS} = 	ext{RHS} = 46920$, verified.
+  </li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Prime factorisation and HCF/LCM definitions</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Correct computation of HCF and LCM for both pairs</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Step-by-step arithmetic verification: LHS (HCF x LCM) = RHS (a x b)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m1q3">
+    <div class="q-head" onclick="toggleQ('c10m1q3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Prove that √5 is irrational.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Assumption (Method of Contradiction)</strong></p>
+<p>Let us assume, on the contrary, that $\sqrt{5}$ is a rational number.</p>
+<p>Therefore, we can find coprime integers $a$ and $b$ (where $b 
+eq 0$) such that:</p>
+$$\sqrt{5} = rac{a}{b}$$
+<p>where $a$ and $b$ have no common factor other than 1.</p>
+
+<p><strong>Step 2: Squaring and Divisibility Analysis</strong></p>
+<p>Cross-multiplying, we obtain:</p>
+$$a = \sqrt{5}b$$
+<p>Squaring both sides, we get:</p>
+$$a^2 = 5b^2 \quad 	ext{--- (Equation 1)}$$
+<p>This implies that $5$ divides $a^2$.</p>
+<p><strong>Theorem:</strong> If $p$ is a prime number and $p$ divides $a^2$, then $p$ divides $a$, where $a$ is a positive integer.<br>
+Therefore, $5$ divides $a$.</p>
+
+<p><strong>Step 3: Substitution and Second Divisibility</strong></p>
+<p>Since $5$ divides $a$, we can write $a = 5c$ for some integer $c$.</p>
+<p>Substituting $a = 5c$ into Equation 1:</p>
+$$(5c)^2 = 5b^2$$
+$$25c^2 = 5b^2 \implies b^2 = 5c^2$$
+<p>This means that $5$ divides $b^2$, and hence by the same theorem, $5$ divides $b$.</p>
+
+<p><strong>Step 4: Conclusion of Contradiction</strong></p>
+<p>From above, $5$ divides both $a$ and $b$. Therefore, $a$ and $b$ have at least $5$ as a common factor.<br>
+But this contradicts our initial assumption that $a$ and $b$ are coprime (having no common factor other than 1).<br>
+This contradiction has arisen because of our incorrect assumption that $\sqrt{5}$ is rational.<br>
+<strong>Hence, we conclude that $\sqrt{5}$ is an irrational number.</strong></p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Contradiction hypothesis: root(5) = a/b with a, b coprime</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Squaring both sides to establish 5 divides a^2 and 5 divides a</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Substitution a = 5c to show 5 divides b^2 and 5 divides b</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Logical deduction of contradiction and final conclusion</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m1q4">
+    <div class="q-head" onclick="toggleQ('c10m1q4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Prove that 3 + 2√5 is irrational.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Assumption</strong></p>
+<p>Let us assume, on the contrary, that $3 + 2\sqrt{5}$ is a rational number.<br>
+Then there exist coprime integers $a$ and $b$ ($b 
+eq 0$) such that:</p>
+$$3 + 2\sqrt{5} = rac{a}{b}$$
+
+<p><strong>Step 2: Rearranging to Isolate the Radical</strong></p>
+<p>Subtracting $3$ from both sides:</p>
+$$2\sqrt{5} = rac{a}{b} - 3 = rac{a - 3b}{b}$$
+<p>Dividing both sides by $2$:</p>
+$$\sqrt{5} = rac{a - 3b}{2b}$$
+
+<p><strong>Step 3: Analysing Rationality</strong></p>
+<p>Since $a$ and $b$ are integers, $a - 3b$ is an integer and $2b$ is a non-zero integer.<br>
+Therefore, the quotient $rac{a - 3b}{2b}$ is a rational number.<br>
+This implies that $\sqrt{5}$ is a rational number.</p>
+
+<p><strong>Step 4: Contradiction and Conclusion</strong></p>
+<p>But this contradicts the known fact that $\sqrt{5}$ is irrational.<br>
+This contradiction has arisen because of our incorrect assumption that $3 + 2\sqrt{5}$ is rational.<br>
+<strong>Hence, $3 + 2\sqrt{5}$ is an irrational number.</strong></p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Assumption 3 + 2*root(5) = a/b with coprime a, b</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Algebraic isolation of root(5) = (a - 3b)/(2b)</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Reasoning showing LHS is irrational while RHS is rational</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Final deduction of contradiction and proof conclusion</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m1q5">
+    <div class="q-head" onclick="toggleQ('c10m1q5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Explain why 7 × 11 × 13 + 13 and 7 × 6 × 5 × 4 × 3 × 2 × 1 + 5 are composite numbers.</div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Factorising the Given Expression</strong></p>
+<p><strong>(i) For the number $7 	imes 11 	imes 13 + 13$:</strong></p>
+<ul>
+  <li>Taking out the common factor $13$:<br>
+    $$7 	imes 11 	imes 13 + 13 = 13 	imes (7 	imes 11 + 1) = 13 	imes (77 + 1) = 13 	imes 78$$
+  </li>
+  <li>Factorising $78$: $78 = 2 	imes 3 	imes 13$<br>
+    Therefore, the number can be expressed as:
+    $$2 	imes 3 	imes 13 	imes 13 = 2 	imes 3 	imes 13^2$$
+  </li>
+  <li><em>Reason:</em> Since this number has factors other than 1 and the number itself (namely 2, 3, 13), by definition of a composite number, it is a <strong>composite number</strong>.</li>
+</ul>
+
+<p><strong>(ii) For the number $7 	imes 6 	imes 5 	imes 4 	imes 3 	imes 2 	imes 1 + 5$:</strong></p>
+<ul>
+  <li>Taking out the common factor $5$:<br>
+    $$5 	imes (7 	imes 6 	imes 4 	imes 3 	imes 2 	imes 1 + 1) = 5 	imes (1008 + 1) = 5 	imes 1009$$
+  </li>
+  <li>Here, $1009$ cannot be factorised further (it is a prime number).</li>
+  <li><em>Reason:</em> The given number has $5$ and $1009$ as its prime factors, meaning it has more than two factors (1, 5, 1009, and the number itself). By the Fundamental Theorem of Arithmetic, any number that can be expressed as a product of two or more prime numbers is a composite number.<br>
+    <strong>Hence, both are composite numbers.</strong>
+  </li>
+</ul>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Definition of composite numbers (more than two factors)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Factorisation of 7 x 11 x 13 + 13 = 13 x 78 = 2 x 3 x 13^2</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Factorisation of 7 x 6 x 5 x 4 x 3 x 2 x 1 + 5 = 5 x 1009</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 Competency &amp; Case Study Questions (HOTS) — Chapter 1</span><span class="cbq-badge">CBSE Board 2026-27</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
+        <div class="cbq-type" style="color:#4f46e5;">Competency Real-Life Word Problem</div>
+        <div class="cbq-question"><strong>Question:</strong> There is a circular path around a sports field. Sonia takes 18 minutes to drive one round of the field, while Ravi takes 12 minutes for the same. Suppose they both start at the same point and at the same time, and go in the same direction. After how many minutes will they meet again at the starting point?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><p><strong>Step-by-step Solution:</strong></p><ul><li><strong>Mathematical Formulation:</strong> The time after which Sonia and Ravi will meet again at the starting point will be the <strong>Least Common Multiple (LCM)</strong> of the times taken by each to complete one round, i.e., $\text{LCM}(18, 12)$.</li><li><strong>Prime Factorisation:</strong><br>$$18 = 2 \times 3^2$$<br>$$12 = 2^2 \times 3$$</li><li><strong>Finding LCM:</strong><br>$$\text{LCM}(18, 12) = 2^2 \times 3^2 = 4 \times 9 = 36$$</li><li><strong>Conclusion:</strong> Hence, Sonia and Ravi will meet again at the starting point after <strong>36 minutes</strong>.</li></ul></div>
+      </div>
+      <div class="cbq-card" style="border-left:4px solid #ea580c;">
+        <div class="cbq-type" style="color:#ea580c;">Assertion & Reason Assessment</div>
+        <div class="cbq-question"><strong>Assertion (A):</strong> The HCF of two numbers is 5 and their product is 150, then their LCM is 30.<br><strong>Reason (R):</strong> For any two positive integers $a$ and $b$, $\text{HCF}(a, b) \times \text{LCM}(a, b) = a \times b$.<br><br>Evaluate whether Assertion (A) and Reason (R) are correct and if (R) explains (A).</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><p><strong>CBSE Board Solution:</strong></p><p><strong>Both Assertion (A) and Reason (R) are true, and Reason (R) is the correct explanation of Assertion (A).</strong></p><p><em>Calculation:</em><br>Using $\text{HCF} \times \text{LCM} = \text{Product of numbers}$:<br>$$5 \times \text{LCM} = 150 \implies \text{LCM} = \frac{150}{5} = 30.$$<br>Hence, Assertion (A) is completely true and directly follows from the formula stated in Reason (R).</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="chapter-nav-btns">
+    <div></div>
+    <button class="ch-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to Top</button>
+    <button class="ch-nav-btn next" onclick="showChapter(2)">Next Chapter →</button>
+  </div>
+</section>
+
+    </div>
+  </main>
+</div>
+
+<button class="mob-toggle" onclick="toggleSidebar()">☰ Chapters</button>
+
+<!-- Fallback Preloaded Chapter Data for offline/file:// protocol support -->
+<script src="chapters-c10m/chapters-data.js"></script>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const d = document.documentElement;
+    document.getElementById('progressBar').style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+  });
+
+  function toggleQ(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  }
+
+  function toggleCBQ(btn) {
+    const ans = btn.nextElementSibling;
+    const open = ans.style.display === 'block';
+    ans.style.display = open ? 'none' : 'block';
+    btn.textContent = open ? '▶ Show Answer' : '▼ Hide Answer';
+  }
+
+  let currentCh = 1;
+  const chapterCache = {};
+
+  async function showChapter(n, updateHistory = true) {
+    if (n < 1 || n > 14) return;
+    currentCh = n;
+
+    // Update chips & sidebar active states
+    document.querySelectorAll('.bc-chip').forEach(c => c.classList.toggle('active', parseInt(c.dataset.ch) === n));
+    document.querySelectorAll('#chapterNav a').forEach((a, i) => a.classList.toggle('active', i + 1 === n));
+
+    // Close mobile drawer
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('show');
+
+    const container = document.getElementById('chapter-content-area');
+
+    function renderContent(html) {
+      chapterCache[n] = html;
+      container.innerHTML = html;
+      if (updateHistory) window.location.hash = 'ch' + n;
+      scrollToContentTop();
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([container]);
+      }
+    }
+
+    // 1. Check in-memory cache
+    if (chapterCache[n]) {
+      renderContent(chapterCache[n]);
+      return;
+    }
+
+    // 2. Check preloaded global object (instant on file:// and http://)
+    if (window.CHAPTER_DATA && window.CHAPTER_DATA[n]) {
+      renderContent(window.CHAPTER_DATA[n]);
+      return;
+    }
+    if (window.PRELOADED_CHAPTERS && window.PRELOADED_CHAPTERS[n]) {
+      renderContent(window.PRELOADED_CHAPTERS[n]);
+      return;
+    }
+
+    // 3. Fallback to fetch for server environments
+    container.innerHTML = `
+      <div style="text-align:center;padding:70px 20px;color:var(--muted);">
+        <div style="font-size:2.5rem;margin-bottom:12px;animation:spin 1s infinite linear;">⚙️</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--navy);">Loading Chapter ${n} Solutions...</div>
+        <div style="font-size:0.85rem;margin-top:6px;">CBSE Step-by-Step Marking Scheme</div>
+      </div>`;
+
+    try {
+      const res = await fetch(`chapters-c10m/ch${n}.html`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const html = await res.text();
+      renderContent(html);
+    } catch (err) {
+      if (window.CHAPTER_DATA && window.CHAPTER_DATA[n]) {
+        renderContent(window.CHAPTER_DATA[n]);
+      } else {
+        container.innerHTML = `
+          <div style="text-align:center;padding:50px 20px;background:#fef2f2;border:1px solid #fecaca;border-radius:12px;margin:30px 0;">
+            <div style="font-size:2rem;margin-bottom:10px;">⚠️</div>
+            <h3 style="color:#b91c1c;margin-bottom:8px;">Chapter ${n} Solutions</h3>
+            <p style="color:#7f1d1d;font-size:0.9rem;margin-bottom:16px;">Direct chapter file available below:</p>
+            <a href="chapters-c10m/ch${n}.html" target="_blank" style="display:inline-block;padding:10px 20px;background:var(--brand);color:white;text-decoration:none;border-radius:8px;font-weight:700;">Open Chapter ${n} HTML File →</a>
+          </div>`;
+      }
+    }
+  }
+
+  function scrollToContentTop() {
+    const bc = document.querySelector('.breadcrumb-bar');
+    if (bc) {
+      const topOffset = bc.getBoundingClientRect().bottom + window.pageYOffset;
+      window.scrollTo({ top: topOffset - 75, behavior: 'smooth' });
+    }
+  }
+
+  // Handle URL hash on initial load
+  window.addEventListener('DOMContentLoaded', () => {
+    const initialContent = document.getElementById('chapter-content-area');
+    if (initialContent && initialContent.innerHTML.trim().length > 100) {
+      chapterCache[1] = initialContent.innerHTML;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([initialContent]);
+      }
+    }
+    const hash = window.location.hash;
+    const match = hash.match(/^#ch(\d+)$/);
+    if (match) {
+      const ch = parseInt(match[1]);
+      if (ch >= 1 && ch <= 14) {
+        showChapter(ch, false);
+      }
+    }
+  });
+
+  window.addEventListener('hashchange', () => {
+    const match = window.location.hash.match(/^#ch(\d+)$/);
+    if (match) {
+      const ch = parseInt(match[1]);
+      if (ch >= 1 && ch <= 14 && ch !== currentCh) {
+        showChapter(ch, false);
+      }
+    }
+  });
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('show');
+  }
+
+  document.getElementById('sidebarOverlay').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('show');
+  });
+
+  function filterChapters(v) {
+    document.querySelectorAll('#chapterNav li').forEach(li => {
+      li.style.display = li.textContent.toLowerCase().includes(v.toLowerCase()) ? '' : 'none';
+    });
+  }
+
+  const mobToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('navLinks');
+  if (mobToggle && navLinks) {
+    mobToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobToggle.classList.toggle('active');
+    });
+  }
+</script>
+</body>
+</html>
