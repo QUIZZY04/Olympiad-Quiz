@@ -4,66 +4,205 @@
     <div class="chapter-header-info">
       <div class="ch-category">Mathematics • Class 10 Board Exam (NCERT Rationalized)</div>
       <h2>Chapter 4: Quadratic Equations</h2>
-      <p>Standard Form, Factorisation, Quadratic Formula & Nature of Roots (Discriminant) — CBSE Board Marking Scheme 2026-27</p>
+      <p>Standard Form, Solution by Factorisation, Quadratic Formula & Nature of Roots (Discriminant) — CBSE Board Marking Scheme 2026-27</p>
     </div>
   </div>
-  <div class="ex-div">NCERT In-Text & Exercise Questions — Board Examination Solutions</div>
+  <div class="ex-div">NCERT Exercise 4.1: Checking Quadratic Equations & Word Formulations</div>
 
-  <div class="q-card" id="c10m4q1">
-    <div class="q-head" onclick="toggleQ('c10m4q1')">
-      <div class="q-num">Q1</div>
-      <div class="q-text">Find the roots of the following quadratic equations by factorisation: (i) 2x² + x - 6 = 0, (ii) √2x² + 7x + 5√2 = 0.</div>
-      <div class="q-marks">5 Marks</div>
+  <div class="q-card" id="c10m-ch4-q1">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q1')">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">Check whether the following are quadratic equations: (i) $(x + 1)^2 = 2(x - 3)$, (ii) $x^2 - 2x = (-2)(3 - x)$, (iii) $(x - 2)(x + 1) = (x - 1)(x + 3)$, (iv) $(x + 2)^3 = 2x(x^2 - 1)$.</div>
+      <div class="q-marks">[2 Marks]</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
         <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
         <div class="answer-text">
-<p><strong>(i) Method of Factorisation:</strong></p>
-<p>Solve $2x^2 + x - 6 = 0$:</p>
-<ol>
-  <li>Find two numbers whose product is $a 	imes c = 2 	imes (-6) = -12$ and sum is $b = 1$. The numbers are $4$ and $-3$.</li>
-  <li>Splitting the middle term:<br>
-    $$2x^2 + 4x - 3x - 6 = 0$$
-    $$2x(x + 2) - 3(x + 2) = 0$$
-    $$(2x - 3)(x + 2) = 0$$
-  </li>
-  <li>Zero-product rule:<br>
-    $$2x - 3 = 0 \implies x = rac{3}{2}$$
-    $$x + 2 = 0 \implies x = -2$$
-  </li>
-  <li><strong>Roots:</strong> $x = rac{3}{2}, -2$.</li>
-</ol>
+<p><strong>Definition:</strong></p>
+<p>An equation of the form $ax^2 + bx + c = 0$, where $a, b, c \in \mathbb{R}$ and $a \neq 0$, is called a quadratic equation in variable $x$ (degree 2).</p>
 
-<p><strong>(ii) Solving $\sqrt{2}x^2 + 7x + 5\sqrt{2} = 0$:</strong></p>
+<p><strong>Checking the Equations:</strong></p>
 <ol>
-  <li>Product $a 	imes c = \sqrt{2} 	imes 5\sqrt{2} = 5 	imes 2 = 10$, sum $b = 7$. The numbers are $5$ and $2$.</li>
-  <li>Splitting the middle term:<br>
-    $$\sqrt{2}x^2 + 2x + 5x + 5\sqrt{2} = 0$$
-    $$\sqrt{2}x(x + \sqrt{2}) + 5(x + \sqrt{2}) = 0$$
-    $$(\sqrt{2}x + 5)(x + \sqrt{2}) = 0$$
+  <li><strong>(i) $(x + 1)^2 = 2(x - 3)$:</strong><br>
+    $$x^2 + 2x + 1 = 2x - 6 \implies x^2 + 2x - 2x + 1 + 6 = 0 \implies x^2 + 7 = 0$$
+    Since the highest power of $x$ is 2 and the coefficient of $x^2$ is $1 \neq 0$, <strong>it is a quadratic equation</strong>.
   </li>
-  <li>Roots:<br>
-    $$\sqrt{2}x + 5 = 0 \implies x = -rac{5}{\sqrt{2}} = -rac{5\sqrt{2}}{2}$$
-    $$x + \sqrt{2} = 0 \implies x = -\sqrt{2}$$
+  <li><strong>(ii) $x^2 - 2x = (-2)(3 - x)$:</strong><br>
+    $$x^2 - 2x = -6 + 2x \implies x^2 - 4x + 6 = 0$$
+    It is of the standard form $ax^2 + bx + c = 0$ with $a = 1 \neq 0$. Hence, <strong>it is a quadratic equation</strong>.
   </li>
-  <li><strong>Roots:</strong> $x = -\sqrt{2}, -rac{5\sqrt{2}}{2}$.</li>
+  <li><strong>(iii) $(x - 2)(x + 1) = (x - 1)(x + 3)$:</strong><br>
+    $$x^2 - x - 2 = x^2 + 2x - 3 \implies -x - 2x - 2 + 3 = 0 \implies -3x + 1 = 0 \implies 3x - 1 = 0$$
+    The term containing $x^2$ cancels out ($a = 0$). Hence, <strong>it is NOT a quadratic equation</strong> (it is a linear equation).
+  </li>
+  <li><strong>(iv) $(x + 2)^3 = 2x(x^2 - 1)$:</strong><br>
+    $$x^3 + 3(x)^2(2) + 3(x)(2)^2 + 2^3 = 2x^3 - 2x$$
+    $$x^3 + 6x^2 + 12x + 8 = 2x^3 - 2x \implies -x^3 + 6x^2 + 14x + 8 = 0$$
+    The highest degree is 3 (cubic). Hence, <strong>it is NOT a quadratic equation</strong>.
+  </li>
 </ol>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Factorisation of 2x^2 + x - 6 = 0 with correct roots 3/2, -2</span><span class="marking-marks">2.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Factorisation of radical equation root(2)x^2 + 7x + 5*root(2) = 0</span><span class="marking-marks">2.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying and testing equations (i) and (ii)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying and testing equations (iii) and (iv)</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="q-card" id="c10m4q2">
-    <div class="q-head" onclick="toggleQ('c10m4q2')">
-      <div class="q-num">Q2</div>
-      <div class="q-text">Find the nature of the roots of the following quadratic equations. If the real roots exist, find them: (i) 2x² - 3x + 5 = 0, (ii) 3x² - 4√3x + 4 = 0, (iii) 2x² - 6x + 3 = 0.</div>
-      <div class="q-marks">5 Marks</div>
+  <div class="q-card" id="c10m-ch4-q2">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q2')">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">Represent the following situations in the form of quadratic equations: (i) Area of rectangular plot is $528\text{ m}^2$, length is $1\text{ m}$ more than twice its breadth, (ii) Product of two consecutive positive integers is 306, (iii) Rohan's mother is 26 years older than him; product of ages 3 years hence is 360.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Mathematical Formulation of Situations:</strong></p>
+<ol>
+  <li><strong>(i) Rectangular Plot:</strong><br>
+    Let the breadth of the plot be $x\text{ metres}$.<br>
+    Then its length is $(2x + 1)\text{ metres}$.<br>
+    $$\text{Area} = \text{Length} \times \text{Breadth} = (2x + 1)x = 2x^2 + x$$
+    Given Area $= 528\text{ m}^2$, so the equation is:
+    $$2x^2 + x - 528 = 0$$
+  </li>
+  <li><strong>(ii) Consecutive Positive Integers:</strong><br>
+    Let two consecutive positive integers be $x$ and $x + 1$.<br>
+    Their product is $x(x + 1) = 306$.<br>
+    $$x^2 + x - 306 = 0$$
+  </li>
+  <li><strong>(iii) Rohan's Mother's Age:</strong><br>
+    Let Rohan's present age be $x\text{ years}$. Mother's present age $= (x + 26)\text{ years}$.<br>
+    After 3 years: Rohan's age $= x + 3$, Mother's age $= x + 29$.<br>
+    Product of their ages: $(x + 3)(x + 29) = 360$<br>
+    $$x^2 + 32x + 87 = 360 \implies x^2 + 32x - 273 = 0$$
+  </li>
+</ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Formulating equation for rectangular plot</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formulating equation for consecutive integers</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formulating equation for age problem</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ex-div">NCERT Exercise 4.2: Solving Quadratic Equations by Factorisation</div>
+
+  <div class="q-card" id="c10m-ch4-q3">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q3')">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">Find the roots of the following quadratic equations by factorisation: (i) $x^2 - 3x - 10 = 0$, (ii) $2x^2 + x - 6 = 0$, (iii) $\sqrt{2}x^2 + 7x + 5\sqrt{2} = 0$, (iv) $2x^2 - x + \frac{1}{8} = 0$, (v) $100x^2 - 20x + 1 = 0$.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step-by-step Factorisation Solutions:</strong></p>
+<ol>
+  <li><strong>(i) $x^2 - 3x - 10 = 0$:</strong><br>
+    Product $= -10$, sum $= -3$. Factors are $-5$ and $+2$.<br>
+    $$x^2 - 5x + 2x - 10 = 0 \implies x(x - 5) + 2(x - 5) = 0 \implies (x - 5)(x + 2) = 0$$
+    <strong>Roots:</strong> $x = 5, -2$.
+  </li>
+  <li><strong>(ii) $2x^2 + x - 6 = 0$:</strong><br>
+    Product $= 2 \times (-6) = -12$, sum $= 1$. Factors are $+4$ and $-3$.<br>
+    $$2x^2 + 4x - 3x - 6 = 0 \implies 2x(x + 2) - 3(x + 2) = 0 \implies (2x - 3)(x + 2) = 0$$
+    <strong>Roots:</strong> $x = \frac{3}{2}, -2$.
+  </li>
+  <li><strong>(iii) $\sqrt{2}x^2 + 7x + 5\sqrt{2} = 0$:</strong><br>
+    Product $= \sqrt{2} \times 5\sqrt{2} = 5 \times 2 = 10$, sum $= 7$. Factors are $+5$ and $+2$.<br>
+    $$\sqrt{2}x^2 + 2x + 5x + 5\sqrt{2} = 0$$
+    $$\sqrt{2}x(x + \sqrt{2}) + 5(x + \sqrt{2}) = 0 \implies (\sqrt{2}x + 5)(x + \sqrt{2}) = 0$$
+    $$\sqrt{2}x + 5 = 0 \implies x = -\frac{5}{\sqrt{2}} = -\frac{5\sqrt{2}}{2}, \quad x + \sqrt{2} = 0 \implies x = -\sqrt{2}$$
+    <strong>Roots:</strong> $x = -\sqrt{2}, -\frac{5\sqrt{2}}{2}$.
+  </li>
+  <li><strong>(iv) $2x^2 - x + \frac{1}{8} = 0$:</strong><br>
+    Multiply by 8: $16x^2 - 8x + 1 = 0 \implies (4x - 1)^2 = 0$.<br>
+    <strong>Roots:</strong> $x = \frac{1}{4}, \frac{1}{4}$.
+  </li>
+  <li><strong>(v) $100x^2 - 20x + 1 = 0$:</strong><br>
+    $$(10x - 1)^2 = 0 \implies 10x - 1 = 0$$
+    <strong>Roots:</strong> $x = \frac{1}{10}, \frac{1}{10}$.
+  </li>
+</ol>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Factorisation and roots for (i) and (ii)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Middle term splitting and radical factorisation for (iii)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Perfect square factorisation for (iv) and (v)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch4-q4">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q4')">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">The altitude of a right triangle is 7 cm less than its base. If the hypotenuse is 13 cm, find the other two sides.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Set Up Geometric Variables</strong></p>
+<ul>
+  <li>Let the base of the right triangle be $x\text{ cm}$ ($x > 0$).</li>
+  <li>Then its altitude (height) $= (x - 7)\text{ cm}$.</li>
+  <li>Hypotenuse $= 13\text{ cm}$.</li>
+</ul>
+
+<p><strong>Step 2: Apply Pythagoras Theorem</strong></p>
+$$\text{Base}^2 + \text{Altitude}^2 = \text{Hypotenuse}^2$$
+$$x^2 + (x - 7)^2 = 13^2$$
+$$x^2 + (x^2 - 14x + 49) = 169$$
+$$2x^2 - 14x + 49 - 169 = 0$$
+$$2x^2 - 14x - 120 = 0$$
+<p>Dividing the entire equation by 2:</p>
+$$x^2 - 7x - 60 = 0$$
+
+<p><strong>Step 3: Factorise and Solve</strong></p>
+<p>Find two numbers whose product is $-60$ and sum is $-7$. These are $-12$ and $+5$:</p>
+$$x^2 - 12x + 5x - 60 = 0$$
+$$x(x - 12) + 5(x - 12) = 0 \implies (x - 12)(x + 5) = 0$$
+$$x = 12 \quad \text{or} \quad x = -5$$
+
+<p><strong>Step 4: Check Validity and Conclude</strong></p>
+<p>Since the side length of a geometric figure cannot be negative, $x \neq -5$. Therefore, $x = 12\text{ cm}$.</p>
+<ul>
+  <li>$\text{Base} = 12\text{ cm}$.</li>
+  <li>$\text{Altitude} = 12 - 7 = 5\text{ cm}$.</li>
+</ul>
+<p><strong>Verification:</strong> $12^2 + 5^2 = 144 + 25 = 169 = 13^2$. (Verified)</p>
+<p><strong>Final Answer:</strong> The other two sides are <strong>$12\text{ cm}$</strong> and <strong>$5\text{ cm}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Defining base x and altitude x - 7 and writing Pythagoras equation</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying to quadratic equation x^2 - 7x - 60 = 0</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving for x = 12 and finding sides 12 cm and 5 cm</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ex-div">NCERT Exercise 4.3: Quadratic Formula & Nature of Roots</div>
+
+  <div class="q-card" id="c10m-ch4-q5">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q5')">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">Find the nature of the roots of the following quadratic equations. If the real roots exist, find them: (i) $2x^2 - 3x + 5 = 0$, (ii) $3x^2 - 4\sqrt{3}x + 4 = 0$, (iii) $2x^2 - 6x + 3 = 0$.</div>
+      <div class="q-marks">[3 Marks]</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
@@ -71,101 +210,210 @@
         <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
         <div class="answer-text">
 <p><strong>1. Theory of the Discriminant and Nature of Roots:</strong></p>
-<p>For a quadratic equation $ax^2 + bx + c = 0$ ($a 
-eq 0$), the <strong>Discriminant</strong> is given by $D = b^2 - 4ac$:</p>
+<p>For a quadratic equation $ax^2 + bx + c = 0$ with $a \neq 0$, the <strong>Discriminant</strong> is defined as:</p>
+$$D = b^2 - 4ac$$
 <ul>
-  <li>If $D > 0$: Two distinct real roots exist: $x = rac{-b \pm \sqrt{D}}{2a}$.</li>
-  <li>If $D = 0$: Two equal real roots exist: $x = -rac{b}{2a}$.</li>
-  <li>If $D < 0$: No real roots exist (roots are imaginary).</li>
+  <li>If $D > 0$: The equation has <strong>two distinct real roots</strong> given by $x = \frac{-b \pm \sqrt{D}}{2a}$.</li>
+  <li>If $D = 0$: The equation has <strong>two equal real roots</strong> given by $x = -\frac{b}{2a}$.</li>
+  <li>If $D < 0$: The equation has <strong>no real roots</strong> (roots are non-real complex numbers).</li>
 </ul>
 
 <p><strong>2. (i) For $2x^2 - 3x + 5 = 0$:</strong></p>
 <ul>
   <li>Here $a = 2, b = -3, c = 5$.</li>
-  <li>$$D = b^2 - 4ac = (-3)^2 - 4(2)(5) = 9 - 40 = -31$$</li>
-  <li>Since $D < 0$, the equation has <strong>no real roots</strong>.</li>
+  <li>Discriminant:
+    $$D = b^2 - 4ac = (-3)^2 - 4(2)(5) = 9 - 40 = -31$$
+  </li>
+  <li>Since $D < 0$, this equation has <strong>no real roots</strong>.</li>
 </ul>
 
 <p><strong>3. (ii) For $3x^2 - 4\sqrt{3}x + 4 = 0$:</strong></p>
 <ul>
   <li>Here $a = 3, b = -4\sqrt{3}, c = 4$.</li>
-  <li>$$D = (-4\sqrt{3})^2 - 4(3)(4) = (16 	imes 3) - 48 = 48 - 48 = 0$$</li>
-  <li>Since $D = 0$, the equation has <strong>two equal real roots</strong>.</li>
-  <li>Finding the roots:<br>
-    $$x = rac{-b \pm \sqrt{D}}{2a} = rac{-(-4\sqrt{3}) \pm 0}{2(3)} = rac{4\sqrt{3}}{6} = rac{2\sqrt{3}}{3} = rac{2}{\sqrt{3}}$$
+  <li>Discriminant:
+    $$D = b^2 - 4ac = (-4\sqrt{3})^2 - 4(3)(4) = (16 \times 3) - 48 = 48 - 48 = 0$$
   </li>
-  <li><strong>Roots:</strong> $x = rac{2}{\sqrt{3}}, rac{2}{\sqrt{3}}$.</li>
+  <li>Since $D = 0$, the equation has <strong>two equal real roots</strong>.</li>
+  <li>Evaluating the roots:
+    $$x = \frac{-b \pm \sqrt{D}}{2a} = \frac{-(-4\sqrt{3}) \pm 0}{2(3)} = \frac{4\sqrt{3}}{6} = \frac{2\sqrt{3}}{3} = \frac{2}{\sqrt{3}}$$
+  </li>
+  <li><strong>Roots:</strong> $x = \frac{2}{\sqrt{3}}, \frac{2}{\sqrt{3}}$.</li>
 </ul>
 
 <p><strong>4. (iii) For $2x^2 - 6x + 3 = 0$:</strong></p>
 <ul>
   <li>Here $a = 2, b = -6, c = 3$.</li>
-  <li>$$D = (-6)^2 - 4(2)(3) = 36 - 24 = 12 > 0$$</li>
+  <li>Discriminant:
+    $$D = b^2 - 4ac = (-6)^2 - 4(2)(3) = 36 - 24 = 12 > 0$$
+  </li>
   <li>Since $D > 0$, the equation has <strong>two distinct real roots</strong>.</li>
-  <li>$$x = rac{-(-6) \pm \sqrt{12}}{2(2)} = rac{6 \pm 2\sqrt{3}}{4} = rac{2(3 \pm \sqrt{3})}{4} = rac{3 \pm \sqrt{3}}{2}$$</li>
-  <li><strong>Roots:</strong> $x = rac{3 + \sqrt{3}}{2}$ and $x = rac{3 - \sqrt{3}}{2}$.</li>
+  <li>Evaluating the roots:
+    $$x = \frac{-b \pm \sqrt{D}}{2a} = \frac{-(-6) \pm \sqrt{12}}{2(2)} = \frac{6 \pm 2\sqrt{3}}{4} = \frac{2(3 \pm \sqrt{3})}{4} = \frac{3 \pm \sqrt{3}}{2}$$
+  </li>
+  <li><strong>Roots:</strong> $x = \frac{3 + \sqrt{3}}{2}$ and $x = \frac{3 - \sqrt{3}}{2}$.</li>
 </ul>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Statement of Discriminant D = b^2 - 4ac conditions</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Equation (i): D = -31 < 0, proof of no real roots</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Equation (ii): D = 0, calculation of equal roots 2/root(3)</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Equation (iii): D = 12 > 0, calculation of distinct roots (3 +/- root(3))/2</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Equation (i): Calculation of D = -31 < 0 and stating no real roots</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Equation (ii): Calculation of D = 0 and determining equal roots 2/root(3)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Equation (iii): Calculation of D = 12 > 0 and determining distinct roots (3 +/- root(3))/2</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="q-card" id="c10m4q3">
-    <div class="q-head" onclick="toggleQ('c10m4q3')">
-      <div class="q-num">Q3</div>
-      <div class="q-text">A train travels 360 km at a uniform speed. If the speed had been 5 km/h more, it would have taken 1 hour less for the same journey. Find the speed of the train.</div>
-      <div class="q-marks">5 Marks</div>
+  <div class="q-card" id="c10m-ch4-q6">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q6')">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">Find the values of $k$ for each of the following quadratic equations, so that they have two equal roots: (i) $2x^2 + kx + 3 = 0$, (ii) $kx(x - 2) + 6 = 0$.</div>
+      <div class="q-marks">[3 Marks]</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
         <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
         <div class="answer-text">
-<p><strong>Step 1: Formulate the Mathematical Model</strong></p>
+<p><strong>Condition for Equal Roots:</strong></p>
+<p>A quadratic equation has two equal real roots if and only if its discriminant $D = b^2 - 4ac = 0$.</p>
+
+<p><strong>(i) $2x^2 + kx + 3 = 0$:</strong></p>
 <ul>
-  <li>Total distance to be covered = $360	ext{ km}$.</li>
-  <li>Let the uniform speed of the train be $x	ext{ km/h}$ ($x > 0$).</li>
-  <li>Time taken at original speed: $T_1 = rac{	ext{Distance}}{	ext{Speed}} = rac{360}{x}	ext{ hours}$.</li>
-  <li>If the speed had been $5	ext{ km/h}$ more, new speed = $(x + 5)	ext{ km/h}$.</li>
-  <li>Time taken at increased speed: $T_2 = rac{360}{x + 5}	ext{ hours}$.</li>
+  <li>Here $a = 2, b = k, c = 3$.</li>
+  <li>$D = b^2 - 4ac = k^2 - 4(2)(3) = k^2 - 24$.</li>
+  <li>For equal roots: $k^2 - 24 = 0 \implies k^2 = 24 \implies k = \pm\sqrt{24} = \pm 2\sqrt{6}$.</li>
+  <li><strong>Answer:</strong> $k = 2\sqrt{6}$ or $k = -2\sqrt{6}$.</li>
 </ul>
 
-<p><strong>Step 2: Set Up the Equation</strong></p>
-<p>According to the given condition, it would have taken 1 hour less for the same journey:</p>
-$$T_1 - T_2 = 1$$
-$$rac{360}{x} - rac{360}{x + 5} = 1$$
-
-<p><strong>Step 3: Simplify to a Quadratic Equation</strong></p>
-$$360 \left[rac{1}{x} - rac{1}{x + 5}ight] = 1$$
-$$360 \left[rac{(x + 5) - x}{x(x + 5)}ight] = 1$$
-$$360 \left[rac{5}{x^2 + 5x}ight] = 1$$
-$$1800 = x^2 + 5x \implies x^2 + 5x - 1800 = 0$$
-
-<p><strong>Step 4: Solve the Quadratic Equation</strong></p>
-<p>Splitting the middle term (product $-1800$, sum $5$): numbers are $45$ and $-40$.</p>
-$$x^2 + 45x - 40x - 1800 = 0$$
-$$x(x + 45) - 40(x + 45) = 0$$
-$$(x - 40)(x + 45) = 0$$
-$$\implies x = 40 \quad 	ext{or} \quad x = -45$$
-
-<p><strong>Step 5: Physical Feasibility and Conclusion</strong></p>
-<p>Since speed cannot be negative, we reject $x = -45$.<br>
-Therefore, $x = 40$.<br>
-<strong>Conclusion: The original uniform speed of the train is $40	ext{ km/h}$.</strong></p>
+<p><strong>(ii) $kx(x - 2) + 6 = 0$:</strong></p>
+<ul>
+  <li>Expand the equation: $kx^2 - 2kx + 6 = 0$.</li>
+  <li>Here $a = k, b = -2k, c = 6$. For a quadratic equation, $a = k \neq 0$.</li>
+  <li>$D = b^2 - 4ac = (-2k)^2 - 4(k)(6) = 4k^2 - 24k$.</li>
+  <li>For equal roots:
+    $$4k^2 - 24k = 0 \implies 4k(k - 6) = 0$$
+    $$k = 0 \quad \text{or} \quad k = 6$$
+  </li>
+  <li>If $k = 0$, the $x^2$ and $x$ terms vanish ($6 = 0$, impossible). Hence $k \neq 0$.</li>
+  <li><strong>Answer:</strong> $k = 6$.</li>
+</ul>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Variable assumption: speed = x, T1 = 360/x, T2 = 360/(x + 5)</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Equation formulation 360/x - 360/(x + 5) = 1</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Simplification to standard quadratic form x^2 + 5x - 1800 = 0</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Factorisation steps and rejection of negative root</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Final answer statement: Speed = 40 km/h</span><span class="marking-marks">0.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Statement of condition D = 0</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving for k in part (i): k = +/- 2*root(6)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Expanding and rejecting k = 0 to obtain k = 6 in part (ii)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch4-q7">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q7')">
+      <div class="q-num">Question 7</div>
+      <div class="q-text">A train travels 360 km at a uniform speed. If the speed had been 5 km/h more, it would have taken 1 hour less for the same journey. Find the speed of the train.</div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Define Variables & Travel Parameters</strong></p>
+<ul>
+  <li>Total distance of the journey = $360\text{ km}$.</li>
+  <li>Let the uniform speed of the train be $x\text{ km/h}$ ($x > 0$).</li>
+  <li>Time taken at normal speed: $T_1 = \frac{\text{Distance}}{\text{Speed}} = \frac{360}{x}\text{ hours}$.</li>
+  <li>If the speed is increased by $5\text{ km/h}$, the new speed $= (x + 5)\text{ km/h}$.</li>
+  <li>Time taken at increased speed: $T_2 = \frac{360}{x + 5}\text{ hours}$.</li>
+</ul>
+
+<p><strong>Step 2: Formulate the Algebraic Equation</strong></p>
+<p>According to the given condition, the journey takes 1 hour less at the increased speed:</p>
+$$T_1 - T_2 = 1$$
+$$\frac{360}{x} - \frac{360}{x + 5} = 1$$
+
+<p><strong>Step 3: Simplify into Standard Quadratic Form</strong></p>
+$$360 \left(\frac{1}{x} - \frac{1}{x + 5}\right) = 1$$
+$$360 \left[\frac{(x + 5) - x}{x(x + 5)}\right] = 1$$
+$$360 \left[\frac{5}{x^2 + 5x}\right] = 1$$
+$$\frac{1800}{x^2 + 5x} = 1 \implies x^2 + 5x = 1800$$
+$$x^2 + 5x - 1800 = 0$$
+
+<p><strong>Step 4: Solve the Quadratic Equation</strong></p>
+<p>Find two numbers whose product is $-1800$ and sum is $+5$. These are $+45$ and $-40$:</p>
+$$x^2 + 45x - 40x - 1800 = 0$$
+$$x(x + 45) - 40(x + 45) = 0$$
+$$(x + 45)(x - 40) = 0$$
+$$x = -45 \quad \text{or} \quad x = 40$$
+
+<p><strong>Step 5: Verify and Conclude</strong></p>
+<p>Speed of a train cannot be negative ($x > 0$), so $x \neq -45$. Thus, $x = 40\text{ km/h}$.</p>
+<p><em>Check:</em> Normal time $= 360 / 40 = 9\text{ hours}$. Increased speed time $= 360 / 45 = 8\text{ hours}$. Difference $= 9 - 8 = 1\text{ hour}$.</p>
+<p><strong>Final Answer:</strong> The uniform speed of the train is <strong>$40\text{ km/h}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Defining speed x and expressing times T1 = 360/x and T2 = 360/(x+5)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Setting up the equation 360/x - 360/(x+5) = 1</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying correctly to x^2 + 5x - 1800 = 0</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Factorising to find x = 40 (rejecting negative speed) and final answer</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch4-q8">
+    <div class="q-head" onclick="toggleQ('c10m-ch4-q8')">
+      <div class="q-num">Question 8</div>
+      <div class="q-text">Two water taps together can fill a tank in $9\frac{3}{8}$ hours. The tap of larger diameter takes 10 hours less than the smaller one to fill the tank separately. Find the time in which each tap can separately fill the tank.</div>
+      <div class="q-marks">[5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Problem Modeling</strong></p>
+<ul>
+  <li>Total time taken by both taps working together $= 9\frac{3}{8}\text{ hours} = \frac{75}{8}\text{ hours}$.</li>
+  <li>In 1 hour, the fraction of tank filled by both taps together $= \frac{1}{75/8} = \frac{8}{75}$.</li>
+  <li>Let the tap of smaller diameter take $x\text{ hours}$ to fill the tank alone ($x > 10$).</li>
+  <li>Then the tap of larger diameter takes $(x - 10)\text{ hours}$ to fill the tank alone.</li>
+</ul>
+
+<p><strong>Step 2: Formulate Equation</strong></p>
+<p>Fraction filled by smaller tap in 1 hour $= \frac{1}{x}$.<br>
+Fraction filled by larger tap in 1 hour $= \frac{1}{x - 10}$.</p>
+$$\frac{1}{x} + \frac{1}{x - 10} = \frac{8}{75}$$
+
+<p><strong>Step 3: Simplify Equation</strong></p>
+$$\frac{(x - 10) + x}{x(x - 10)} = \frac{8}{75}$$
+$$\frac{2x - 10}{x^2 - 10x} = \frac{8}{75} \implies \frac{2(x - 5)}{x^2 - 10x} = \frac{8}{75} \implies \frac{x - 5}{x^2 - 10x} = \frac{4}{75}$$
+$$75(x - 5) = 4(x^2 - 10x)$$
+$$75x - 375 = 4x^2 - 40x$$
+$$4x^2 - 40x - 75x + 375 = 0$$
+$$4x^2 - 115x + 375 = 0$$
+
+<p><strong>Step 4: Solve by Factorisation</strong></p>
+<p>Product $= 4 \times 375 = 1500$, sum $= -115$. The factors are $-100$ and $-15$:</p>
+$$4x^2 - 100x - 15x + 375 = 0$$
+$$4x(x - 25) - 15(x - 25) = 0 \implies (4x - 15)(x - 25) = 0$$
+$$x = 25 \quad \text{or} \quad x = \frac{15}{4} = 3.75$$
+
+<p><strong>Step 5: Check Feasibility</strong></p>
+<p>If $x = 3.75\text{ hours}$, then the time for larger tap would be $x - 10 = 3.75 - 10 = -6.25\text{ hours}$, which is impossible since time cannot be negative.<br>
+Therefore, $x = 25\text{ hours}$.</p>
+<ul>
+  <li>Time taken by smaller tap $= 25\text{ hours}$.</li>
+  <li>Time taken by larger tap $= 25 - 10 = 15\text{ hours}$.</li>
+</ul>
+
+<p><strong>Final Answer:</strong> The smaller tap takes <strong>25 hours</strong> and the larger tap takes <strong>15 hours</strong> separately to fill the tank.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Defining variables and setting work-rate equation 1/x + 1/(x-10) = 8/75</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying correctly to quadratic form 4x^2 - 115x + 375 = 0</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Factorising to get roots x = 25 and x = 3.75, rejecting 3.75</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Stating final times 25 hours and 15 hours</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
@@ -173,17 +421,24 @@ Therefore, $x = 40$.<br>
   <div class="cbq-section">
     <div class="cbq-header"><span>🎯 Competency &amp; Case Study Questions (HOTS) — Chapter 4</span><span class="cbq-badge">CBSE Board 2026-27</span></div>
     <div class="cbq-body">
-      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
-        <div class="cbq-type" style="color:#4f46e5;">Competency Real-Life Geometry Problem</div>
-        <div class="cbq-question"><strong>Question:</strong> The diagonal of a rectangular field is 60 metres more than the shorter side. If the longer side is 30 metres more than the shorter side, find the sides of the field.</div>
+      <div class="cbq-card" style="border-left:4px solid #818cf8;">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study Question • Environmental Landscape Design</div>
+        <div class="cbq-question">A park designer wants to fence a rectangular garden along a river bank (so only 3 sides require fencing). The total fencing wire available is 100 metres and the desired area is 1200 m². Can such a garden be designed? If yes, find its dimensions.</div>
         <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer"><p><strong>Step-by-step Solution:</strong></p><ol><li>Let the shorter side of the rectangular field be $x$ metres.</li><li>Then, longer side = $(x + 30)$ metres, and diagonal = $(x + 60)$ metres.</li><li>In a rectangle, the angle between sides is $90^\circ$. By <strong>Pythagoras Theorem</strong>:<br>$$(\text{Diagonal})^2 = (\text{Shorter side})^2 + (\text{Longer side})^2$$<br>$$(x + 60)^2 = x^2 + (x + 30)^2$$</li><li>Expand both sides:<br>$$x^2 + 120x + 3600 = x^2 + (x^2 + 60x + 900)$$<br>$$x^2 + 120x + 3600 = 2x^2 + 60x + 900$$<br>$$x^2 - 60x - 2700 = 0$$</li><li>Factorise: product $-2700$, sum $-60$ $\implies -90$ and $30$.<br>$$(x - 90)(x + 30) = 0 \implies x = 90 \text{ or } x = -30$$</li><li>Since length cannot be negative, $x = 90$.<br>Shorter side = <strong>90 m</strong>; Longer side = $90 + 30 =$ <strong>120 m</strong>.</li></ol></div>
-      </div>
-      <div class="cbq-card" style="border-left:4px solid #ea580c;">
-        <div class="cbq-type" style="color:#ea580c;">Assertion & Reason Assessment</div>
-        <div class="cbq-question"><strong>Assertion (A):</strong> The equation $(x - 2)^2 + 1 = 2x - 3$ is a quadratic equation.<br><strong>Reason (R):</strong> Any equation of the form $ax^2 + bx + c = 0$, where $a, b, c$ are real numbers and $a \neq 0$, is a quadratic equation in variable $x$.<br><br>Evaluate whether Assertion (A) and Reason (R) are correct and if (R) explains (A).</div>
-        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer"><p><strong>CBSE Board Solution:</strong></p><p><strong>Both Assertion (A) and Reason (R) are true, and Reason (R) is the correct explanation of Assertion (A).</strong></p><p><em>Simplification:</em><br>$$\text{LHS} = (x - 2)^2 + 1 = x^2 - 4x + 4 + 1 = x^2 - 4x + 5$$<br>Setting $\text{LHS} = \text{RHS}$:<br>$$x^2 - 4x + 5 = 2x - 3 \implies x^2 - 6x + 8 = 0$$<br>Since it has the standard form $ax^2 + bx + c = 0$ with $a = 1 \neq 0$, it is indeed a quadratic equation.</p></div>
+        <div class="cbq-answer"><p><strong>Step-by-step Solution:</strong></p>
+<ol>
+  <li>Let the two perpendicular sides be $x\text{ metres}$ each.</li>
+  <li>Then the side parallel to the river $= 100 - 2x\text{ metres}$.</li>
+  <li>Area equation: $x(100 - 2x) = 1200 \implies 100x - 2x^2 = 1200$.</li>
+  <li>Divide by 2: $-x^2 + 50x - 600 = 0 \implies x^2 - 50x + 600 = 0$.</li>
+  <li>Discriminant: $D = (-50)^2 - 4(1)(600) = 2500 - 2400 = 100 > 0$.<br>
+    Since $D > 0$, real solutions exist! The garden <strong>can be designed</strong>.
+  </li>
+  <li>Solve: $(x - 30)(x - 20) = 0 \implies x = 20\text{ or } x = 30$.<br>
+    If $x = 20\text{ m}$: Dimensions are $20\text{ m} \times 60\text{ m}$.<br>
+    If $x = 30\text{ m}$: Dimensions are $30\text{ m} \times 40\text{ m}$.
+  </li>
+</ol></div>
       </div>
     </div>
   </div>

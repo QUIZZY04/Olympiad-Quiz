@@ -4,160 +4,468 @@
     <div class="chapter-header-info">
       <div class="ch-category">Mathematics • Class 10 Board Exam (NCERT Rationalized)</div>
       <h2>Chapter 6: Triangles</h2>
-      <p>Similarity Criteria, Basic Proportionality Theorem (BPT Thales) Proof & Geometric Applications — CBSE Board Marking Scheme 2026-27</p>
+      <p>Basic Proportionality Theorem (Thales Theorem), Criteria for Similarity of Triangles & Proofs — CBSE Board Marking Scheme 2026-27</p>
     </div>
   </div>
-  <div class="ex-div">NCERT In-Text & Exercise Questions — Board Examination Solutions</div>
+  <div class="ex-div">Theorem 6.1: Basic Proportionality Theorem (Thales Theorem)</div>
 
-  <div class="q-card" id="c10m6q1">
-    <div class="q-head" onclick="toggleQ('c10m6q1')">
-      <div class="q-num">Q1</div>
-      <div class="q-text">State and prove Basic Proportionality Theorem (Thales' Theorem).</div>
-      <div class="q-marks">5 Marks</div>
+  <div class="q-card" id="c10m-ch6-q1">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q1')">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">State and prove the Basic Proportionality Theorem (Thales Theorem).</div>
+      <div class="q-marks">[5 Marks]</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
         <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
         <div class="answer-text">
-<p><strong>Theorem 6.1 (Basic Proportionality Theorem / Thales' Theorem):</strong></p>
-<p><em>Statement:</em> If a line is drawn parallel to one side of a triangle to intersect the other two sides in distinct points, the other two sides are divided in the same ratio.</p>
+<p><strong>Statement of the Basic Proportionality Theorem (Thales Theorem):</strong></p>
+<p>If a line is drawn parallel to one side of a triangle to intersect the other two sides in distinct points, then the other two sides are divided in the same ratio.</p>
 
-<p><strong>Proof:</strong></p>
+<p><strong>Mathematical Proof:</strong></p>
 <ol>
-  <li><strong>Given:</strong> A triangle $ABC$ in which a line parallel to side $BC$ intersects other two sides $AB$ and $AC$ at $D$ and $E$ respectively (i.e., $DE \parallel BC$).</li>
+  <li><strong>Given:</strong> A triangle $\Delta ABC$ in which a line $DE$ parallel to side $BC$ intersects sides $AB$ and $AC$ at points $D$ and $E$ respectively ($DE \parallel BC$).</li>
   <li><strong>To Prove:</strong>
     $$\frac{AD}{DB} = \frac{AE}{EC}$$
   </li>
   <li><strong>Construction:</strong>
     <ul>
-      <li>Join $B$ to $E$ and $C$ to $D$ (Draw line segments $BE$ and $CD$).</li>
+      <li>Join $B$ to $E$ and $C$ to $D$.</li>
       <li>Draw $DM \perp AC$ and $EN \perp AB$.</li>
     </ul>
   </li>
-  <li><strong>Proof Steps:</strong>
-    <ul>
-      <li>Area of a triangle = $\frac{1}{2} \times \text{base} \times \text{height}$.</li>
-      <li>$\text{ar}(\Delta ADE) = \frac{1}{2} \times AD \times EN$</li>
-      <li>$\text{ar}(\Delta BDE) = \frac{1}{2} \times DB \times EN$</li>
-      <li>Therefore, dividing the two areas:<br>
-        $$\frac{\text{ar}(\Delta ADE)}{\text{ar}(\Delta BDE)} = \frac{\frac{1}{2} \times AD \times EN}{\frac{1}{2} \times DB \times EN} = \frac{AD}{DB} \quad \text{--- (Equation 1)}$$
-      </li>
-      <li>Similarly, taking $AE$ and $EC$ as bases with height $DM$:<br>
-        $\text{ar}(\Delta ADE) = \frac{1}{2} \times AE \times DM$<br>
-        $\text{ar}(\Delta DEC) = \frac{1}{2} \times EC \times DM$<br>
-        $$\frac{\text{ar}(\Delta ADE)}{\text{ar}(\Delta DEC)} = \frac{\frac{1}{2} \times AE \times DM}{\frac{1}{2} \times EC \times DM} = \frac{AE}{EC} \quad \text{--- (Equation 2)}$$
-      </li>
-      <li>Note that $\Delta BDE$ and $\Delta DEC$ are on the same base $DE$ and between the same parallel lines $DE$ and $BC$.<br>
-        <strong>Geometric Theorem:</strong> Triangles on the same base and between the same parallels are equal in area.<br>
-        $$\text{ar}(\Delta BDE) = \text{ar}(\Delta DEC) \quad \text{--- (Equation 3)}$$
-      </li>
-      <li>From Equations (1), (2), and (3), the left-hand sides are equal. Therefore, equating right-hand sides:<br>
-        $$\frac{AD}{DB} = \frac{AE}{EC}$$
-      </li>
-    </ul>
+  <div class="math-diagram-wrap" style="margin: 18px auto; text-align: center; max-width: 460px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+  <svg viewBox="0 0 360 260" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="180,25 60,210 300,210" fill="#eef2ff" stroke="#4f46e5" stroke-width="2.5"/>
+  <line x1="120" y1="117" x2="240" y2="117" stroke="#dc2626" stroke-width="2.5"/>
+  <line x1="120" y1="117" x2="300" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="240" y1="117" x2="60" y2="210" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="240" y1="117" x2="150" y2="71" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <line x1="120" y1="117" x2="210" y2="71" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <circle cx="180" cy="25" r="4" fill="#1e1b4b"/>
+  <text x="180" y="16" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1e1b4b" text-anchor="middle">A</text>
+  <circle cx="60" cy="210" r="4" fill="#1e1b4b"/>
+  <text x="45" y="222" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1e1b4b">B</text>
+  <circle cx="300" cy="210" r="4" fill="#1e1b4b"/>
+  <text x="310" y="222" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1e1b4b">C</text>
+  <circle cx="120" cy="117" r="4" fill="#dc2626"/>
+  <text x="100" y="122" font-family="sans-serif" font-size="14" font-weight="bold" fill="#dc2626">D</text>
+  <circle cx="240" cy="117" r="4" fill="#dc2626"/>
+  <text x="250" y="122" font-family="sans-serif" font-size="14" font-weight="bold" fill="#dc2626">E</text>
+  <text x="135" y="65" font-family="sans-serif" font-size="12" font-weight="bold" fill="#059669">N</text>
+  <text x="218" y="65" font-family="sans-serif" font-size="12" font-weight="bold" fill="#059669">M</text>
+  <text x="180" y="110" font-family="sans-serif" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="middle">DE ∥ BC</text>
+</svg>
+  <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 8px;">Geometric Construction for Basic Proportionality Theorem (Thales Theorem)</div>
+</div>
+    <li><strong>Proof Steps:</strong>
+    <p>Recall that $\text{Area of a triangle} = \frac{1}{2} \times \text{base} \times \text{height}$.</p>
+    <p>In $\Delta ADE$, taking $AD$ as the base, the corresponding altitude is $EN$:</p>
+    $$\text{ar}(\Delta ADE) = \frac{1}{2} \times AD \times EN \quad \text{--- (1)}$$
+    <p>In $\Delta BDE$, taking $DB$ as the base, the altitude is also $EN$ (since $\Delta BDE$ is an obtuse-angled triangle):</p>
+    $$\text{ar}(\Delta BDE) = \frac{1}{2} \times DB \times EN \quad \text{--- (2)}$$
+    <p>Dividing equation (1) by equation (2):</p>
+    $$\frac{\text{ar}(\Delta ADE)}{\text{ar}(\Delta BDE)} = \frac{\frac{1}{2} \times AD \times EN}{\frac{1}{2} \times DB \times EN} = \frac{AD}{DB} \quad \text{--- (3)}$$
+    
+    <p>Similarly, taking $AE$ as the base of $\Delta ADE$, the altitude is $DM$:</p>
+    $$\text{ar}(\Delta ADE) = \frac{1}{2} \times AE \times DM \quad \text{--- (4)}$$
+    <p>In $\Delta CDE$, taking $EC$ as the base, the altitude is $DM$:</p>
+    $$\text{ar}(\Delta CDE) = \frac{1}{2} \times EC \times DM \quad \text{--- (5)}$$
+    <p>Dividing equation (4) by equation (5):</p>
+    $$\frac{\text{ar}(\Delta ADE)}{\text{ar}(\Delta CDE)} = \frac{\frac{1}{2} \times AE \times DM}{\frac{1}{2} \times EC \times DM} = \frac{AE}{EC} \quad \text{--- (6)}$$
+  </li>
+  <li><strong>Geometric Identity on Same Base & Between Same Parallels:</strong>
+    <p>Note that $\Delta BDE$ and $\Delta CDE$ lie on the <strong>same base $DE$</strong> and between the <strong>same parallel lines $DE$ and $BC$</strong>.</p>
+    $$\text{ar}(\Delta BDE) = \text{ar}(\Delta CDE) \quad \text{--- (7)}$$
+  </li>
+  <li><strong>Conclusion:</strong>
+    <p>From equations (3), (6), and (7), the left-hand sides are equal:</p>
+    $$\frac{AD}{DB} = \frac{AE}{EC}$$
+    <p>Hence, the theorem is proved.</p>
   </li>
 </ol>
-<p><strong>Hence Proved.</strong></p>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Correct Statement, Given, and To Prove</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Accurate Construction description (perpendiculars DM and EN, joining BE and CD)</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Area calculations leading to Equations 1 and 2</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Applying same base and parallels theorem and final equivalence</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Correct statement of Thales Theorem</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Given, To Prove, and Construction statements with diagram description</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Derivation of area ratios AD/DB and AE/EC</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Justification of ar(BDE) = ar(CDE) on same base between parallels and concluding proof</span><span class="marking-marks">1.5 Marks</span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="q-card" id="c10m6q2">
-    <div class="q-head" onclick="toggleQ('c10m6q2')">
-      <div class="q-num">Q2</div>
-      <div class="q-text">In triangle ABC, DE || AC and DF || AE. Prove that BF/FE = BE/EC.</div>
-      <div class="q-marks">5 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-<p><strong>Geometric Rider on Basic Proportionality Theorem:</strong></p>
-<p><strong>Given:</strong> In $\Delta ABC$, $DE \parallel AC$ and $DF \parallel AE$.</p>
-<p><strong>To Prove:</strong> $\frac{BF}{FE} = \frac{BE}{EC}$.</p>
+  <div class="ex-div">NCERT Exercise 6.2: Applications of BPT and Parallel Lines</div>
 
-<p><strong>Step-by-step Proof:</strong></p>
-<ol>
-  <li>In $\Delta ABE$:<br>
-    We are given that $DF \parallel AE$.<br>
-    Applying the <strong>Basic Proportionality Theorem (BPT)</strong> to $\Delta ABE$ with line $DF \parallel AE$:<br>
-    $$\frac{BD}{DA} = \frac{BF}{FE} \quad \text{--- (Equation 1)}$$
-  </li>
-  <li>In $\Delta ABC$:<br>
-    We are given that $DE \parallel AC$.<br>
-    Applying the <strong>Basic Proportionality Theorem (BPT)</strong> to $\Delta ABC$ with line $DE \parallel AC$:<br>
-    $$\frac{BD}{DA} = \frac{BE}{EC} \quad \text{--- (Equation 2)}$$
-  </li>
-  <li>From Equation (1) and Equation (2):<br>
-    Both $\frac{BF}{FE}$ and $\frac{BE}{EC}$ are equal to the common ratio $\frac{BD}{DA}$.<br>
-    Equating the two expressions:<br>
-    $$\frac{BF}{FE} = \frac{BE}{EC}$$
-  </li>
-</ol>
-<p><strong>Hence Proved.</strong></p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Application of BPT in triangle ABE to establish Equation 1</span><span class="marking-marks">2 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Application of BPT in triangle ABC to establish Equation 2</span><span class="marking-marks">2 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Transitive comparison proving BF/FE = BE/EC</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="q-card" id="c10m6q3">
-    <div class="q-head" onclick="toggleQ('c10m6q3')">
-      <div class="q-num">Q3</div>
-      <div class="q-text">A vertical pole of length 6 m casts a shadow 4 m long on the ground and at the same time a tower casts a shadow 28 m long. Find the height of the tower.</div>
-      <div class="q-marks">5 Marks</div>
+  <div class="q-card" id="c10m-ch6-q2">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q2')">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">In $\Delta ABC$, $DE \parallel BC$. (i) If $AD = 1.5\text{ cm}, DB = 3\text{ cm}, AE = 1\text{ cm}$, find $EC$. (ii) If $DB = 7.2\text{ cm}, AE = 1.8\text{ cm}, EC = 5.4\text{ cm}$, find $AD$.</div>
+      <div class="q-marks">[2 Marks]</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
         <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
         <div class="answer-text">
-<p><strong>Step 1: Given Information and Mathematical Diagram Model</strong></p>
+<p><strong>Applying Basic Proportionality Theorem:</strong></p>
+<p>In $\Delta ABC$, since $DE \parallel BC$, by BPT:</p>
+$$\frac{AD}{DB} = \frac{AE}{EC}$$
+
+<div class="math-diagram-wrap" style="margin: 18px auto; text-align: center; max-width: 460px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+  <svg viewBox="0 0 340 230" width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="170,25 50,195 290,195" fill="#f0fdf4" stroke="#059669" stroke-width="2.5"/>
+  <line x1="110" y1="110" x2="230" y2="110" stroke="#2563eb" stroke-width="2.5"/>
+  <circle cx="170" cy="25" r="4" fill="#1e1b4b"/><text x="170" y="16" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e1b4b" text-anchor="middle">A</text>
+  <circle cx="50" cy="195" r="4" fill="#1e1b4b"/><text x="35" y="205" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e1b4b">B</text>
+  <circle cx="290" cy="195" r="4" fill="#1e1b4b"/><text x="300" y="205" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e1b4b">C</text>
+  <circle cx="110" cy="110" r="4" fill="#2563eb"/><text x="92" y="115" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2563eb">D</text>
+  <circle cx="230" cy="110" r="4" fill="#2563eb"/><text x="240" y="115" font-family="sans-serif" font-size="13" font-weight="bold" fill="#2563eb">E</text>
+  <text x="120" y="65" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">1.5 cm</text>
+  <text x="65" y="160" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">3 cm</text>
+  <text x="210" y="65" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4338ca">1 cm</text>
+  <text x="270" y="160" font-family="sans-serif" font-size="11" font-weight="bold" fill="#b91c1c">EC</text>
+  <text x="170" y="103" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">DE ∥ BC</text>
+</svg>
+  <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 8px;">Figure: Triangle with Parallel Segment DE ∥ BC</div>
+</div>
+<p><strong>(i) Given $AD = 1.5\text{ cm}, DB = 3\text{ cm}, AE = 1\text{ cm}$. Find $EC$:</strong></p>
+$$\frac{1.5}{3} = \frac{1}{EC} \implies \frac{1}{2} = \frac{1}{EC} \implies EC = 2\text{ cm}$$
+
+<p><strong>(ii) Given $DB = 7.2\text{ cm}, AE = 1.8\text{ cm}, EC = 5.4\text{ cm}$. Find $AD$:</strong></p>
+$$\frac{AD}{7.2} = \frac{1.8}{5.4} \implies \frac{AD}{7.2} = \frac{1}{3} \implies AD = \frac{7.2}{3} = 2.4\text{ cm}$$
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Application of BPT and finding EC = 2 cm for part (i)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Application of BPT and finding AD = 2.4 cm for part (ii)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch6-q3">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q3')">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">In the given figure, $LM \parallel CB$ and $LN \parallel CD$, prove that $\frac{AM}{AB} = \frac{AN}{AD}$.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Given:</strong> In the given quadrilateral/triangle figure, $LM \parallel CB$ and $LN \parallel CD$.</p>
+<p><strong>To Prove:</strong> $\frac{AM}{AB} = \frac{AN}{AD}$.</p>
+
+<div class="math-diagram-wrap" style="margin: 18px auto; text-align: center; max-width: 460px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+  <svg viewBox="0 0 360 210" width="100%" height="180" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="100,30 260,30 320,175 40,175" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+  <line x1="100" y1="30" x2="320" y2="175" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="260" y1="30" x2="40" y2="175" stroke="#4f46e5" stroke-width="2"/>
+  <circle cx="100" cy="30" r="4" fill="#0f172a"/><text x="90" y="22" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">A</text>
+  <circle cx="260" cy="30" r="4" fill="#0f172a"/><text x="265" y="22" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">B</text>
+  <circle cx="320" cy="175" r="4" fill="#0f172a"/><text x="328" y="185" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">C</text>
+  <circle cx="40" cy="175" r="4" fill="#0f172a"/><text x="25" y="185" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">D</text>
+  <circle cx="180" cy="102" r="4" fill="#dc2626"/><text x="188" y="100" font-family="sans-serif" font-size="13" font-weight="bold" fill="#dc2626">O</text>
+  <text x="180" y="22" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">AB ∥ DC</text>
+</svg>
+  <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 8px;">Figure: Trapezium ABCD with Diagonals AC and BD Intersecting at O</div>
+</div>
+<p><strong>Proof:</strong></p>
+<ol>
+  <li>In $\Delta ABC$, since $LM \parallel CB$, by Basic Proportionality Theorem (BPT):<br>
+    $$\frac{AM}{MB} = \frac{AL}{LC}$$
+    Taking reciprocal and adding 1 to both sides (or using corollary $\frac{AM}{AM + MB} = \frac{AL}{AL + LC}$):<br>
+    $$\frac{AM}{AB} = \frac{AL}{AC} \quad \text{--- (1)}$$
+  </li>
+  <li>In $\Delta ADC$, since $LN \parallel CD$, by BPT:<br>
+    $$\frac{AN}{ND} = \frac{AL}{LC}$$
+    Similarly, using the corollary:<br>
+    $$\frac{AN}{AD} = \frac{AL}{AC} \quad \text{--- (2)}$$
+  </li>
+  <li>Comparing equations (1) and (2):<br>
+    Both $\frac{AM}{AB}$ and $\frac{AN}{AD}$ are equal to $\frac{AL}{AC}$.<br>
+    $$\frac{AM}{AB} = \frac{AN}{AD}$$
+  </li>
+</ol>
+<p>Hence proved.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Applying BPT in triangle ABC to establish AM/AB = AL/AC</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Applying BPT in triangle ADC to establish AN/AD = AL/AC</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Equating relations from (1) and (2) to complete proof</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch6-q4">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q4')">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">$ABCD$ is a trapezium in which $AB \parallel DC$ and its diagonals intersect each other at the point $O$. Show that $\frac{AO}{BO} = \frac{CO}{DO}$.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Given:</strong> $ABCD$ is a trapezium in which $AB \parallel DC$ and diagonals $AC$ and $BD$ intersect at point $O$.</p>
+<p><strong>To Prove:</strong> $\frac{AO}{BO} = \frac{CO}{DO}$ (or $\frac{AO}{CO} = \frac{BO}{DO}$).</p>
+
+<p><strong>Construction:</strong> Through point $O$, draw a line $OE \parallel AB$ intersecting $AD$ at $E$. (Since $AB \parallel DC$, $OE \parallel DC$ as well).</p>
+
+<div class="math-diagram-wrap" style="margin: 18px auto; text-align: center; max-width: 460px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+  <svg viewBox="0 0 360 210" width="100%" height="180" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="100,30 260,30 320,175 40,175" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+  <line x1="100" y1="30" x2="320" y2="175" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="260" y1="30" x2="40" y2="175" stroke="#4f46e5" stroke-width="2"/>
+  <circle cx="100" cy="30" r="4" fill="#0f172a"/><text x="90" y="22" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">A</text>
+  <circle cx="260" cy="30" r="4" fill="#0f172a"/><text x="265" y="22" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">B</text>
+  <circle cx="320" cy="175" r="4" fill="#0f172a"/><text x="328" y="185" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">C</text>
+  <circle cx="40" cy="175" r="4" fill="#0f172a"/><text x="25" y="185" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">D</text>
+  <circle cx="180" cy="102" r="4" fill="#dc2626"/><text x="188" y="100" font-family="sans-serif" font-size="13" font-weight="bold" fill="#dc2626">O</text>
+  <text x="180" y="22" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">AB ∥ DC</text>
+</svg>
+  <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 8px;">Figure: Trapezium ABCD with Diagonals AC and BD Intersecting at O</div>
+</div>
+<p><strong>Proof:</strong></p>
+<ol>
+  <li>In $\Delta ADC$, since $OE \parallel DC$, by BPT:<br>
+    $$\frac{AE}{ED} = \frac{AO}{OC} \quad \text{--- (1)}$$
+  </li>
+  <li>In $\Delta DAB$, since $EO \parallel AB$, by BPT:<br>
+    $$\frac{ED}{AE} = \frac{DO}{OB}$$
+    Taking reciprocal on both sides:<br>
+    $$\frac{AE}{ED} = \frac{BO}{OD} \quad \text{--- (2)}$$
+  </li>
+  <li>From equations (1) and (2):<br>
+    $$\frac{AO}{OC} = \frac{BO}{OD}$$
+    Cross-multiplying or rearranging:<br>
+    $$\frac{AO}{BO} = \frac{CO}{DO}$$
+  </li>
+</ol>
+<p>Hence proved.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Drawing line OE parallel to AB through point O</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Applying BPT in triangle ADC to get AE/ED = AO/OC</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Applying BPT in triangle DAB to get AE/ED = BO/OD and equating</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ex-div">NCERT Exercise 6.3: Criteria for Similarity of Triangles</div>
+
+  <div class="q-card" id="c10m-ch6-q5">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q5')">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">State which pairs of triangles are similar. Write the similarity criterion used and write the pairs of similar triangles in symbolic form: (i) $\angle A=\angle P=60^\circ, \angle B=\angle Q=80^\circ$, (ii) Triangle with sides 2, 2.5, 3 and triangle with sides 6, 4, 5.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Criteria for Similarity of Triangles:</strong></p>
 <ul>
-  <li>Let $AB$ be the vertical pole of height $6\text{ m}$.</li>
-  <li>Let $BC$ be the shadow cast by the pole on the level ground = $4\text{ m}$.</li>
-  <li>Let $PQ$ be the vertical tower of height $h\text{ m}$.</li>
-  <li>Let $QR$ be the shadow cast by the tower on the ground at the same time = $28\text{ m}$.</li>
+  <li><strong>AAA / AA:</strong> If two angles of one triangle are respectively equal to two angles of another triangle, the two triangles are similar.</li>
+  <li><strong>SSS:</strong> If the corresponding sides of two triangles are proportional, then the triangles are similar.</li>
+  <li><strong>SAS:</strong> If one angle of a triangle is equal to one angle of the other and the sides including these angles are proportional, then the triangles are similar.</li>
 </ul>
 
-<p><strong>Step 2: Proving Similarity of Triangles</strong></p>
-<p>Consider $\Delta ABC$ and $\Delta PQR$:</p>
+<p><strong>Analysis of Problems:</strong></p>
 <ol>
-  <li>$\angle B = \angle Q = 90^\circ$ (Both the pole and the tower stand vertically upright to the horizontal ground).</li>
-  <li>$\angle C = \angle R$ (Angular elevation of the Sun is the same for all objects in the vicinity at the same time).</li>
-  <li>Therefore, by <strong>AA Similarity Criterion</strong>:<br>
-    $$\Delta ABC \sim \Delta PQR$$
+  <li><strong>(i) $\Delta ABC$ and $\Delta PQR$ with $\angle A = \angle P = 60^\circ, \angle B = \angle Q = 80^\circ, \angle C = \angle R = 40^\circ$:</strong><br>
+    By <strong>AAA similarity criterion</strong>, $\Delta ABC \sim \Delta PQR$.
+  </li>
+  <li><strong>(ii) $AB=2, BC=2.5, CA=3$ and $PQ=6, QR=4, PR=5$:</strong><br>
+    $$\frac{AB}{QR} = \frac{2}{4} = \frac{1}{2}, \quad \frac{BC}{PR} = \frac{2.5}{5} = \frac{1}{2}, \quad \frac{CA}{PQ} = \frac{3}{6} = \frac{1}{2}$$
+    By <strong>SSS similarity criterion</strong>, $\Delta ABC \sim \Delta QRP$.
   </li>
 </ol>
-
-<p><strong>Step 3: Equating Corresponding Sides</strong></p>
-<p>Since corresponding sides of similar triangles are proportional:</p>
-$$\frac{AB}{PQ} = \frac{BC}{QR}$$
-$$\frac{6}{h} = \frac{4}{28}$$
-$$\frac{6}{h} = \frac{1}{7}$$
-$$h = 6 \times 7 = 42\text{ metres}$$
-
-<p><strong>Conclusion:</strong> The height of the tower is <strong>42 metres</strong>.</p>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Mathematical diagram representation of pole and tower shadows</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Proof of AA similarity (90 degree angle and equal sun elevation)</span><span class="marking-marks">2 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Setting up ratio of corresponding sides 6/h = 4/28</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Solving to obtain h = 42 metres with units</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Stating AAA similarity and symbolic representation for (i)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Checking ratios of sides and stating SSS similarity for (ii)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch6-q6">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q6')">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">A girl of height 90 cm is walking away from the base of a lamp-post at a speed of 1.2 m/s. If the lamp is 3.6 m above the ground, find the length of her shadow after 4 seconds.</div>
+      <div class="q-marks">[4 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Understand the Geometric Model</strong></p>
+<ul>
+  <li>Let $AB$ be the lamp-post: $AB = 3.6\text{ m}$.</li>
+  <li>Let $CD$ be the girl: $CD = 90\text{ cm} = 0.9\text{ m}$.</li>
+  <li>Speed of the girl $= 1.2\text{ m/s}$.</li>
+  <li>Time walked $= 4\text{ seconds}$.</li>
+  <li>Distance walked by the girl away from the lamp-post:
+    $$BD = \text{Speed} \times \text{Time} = 1.2 \times 4 = 4.8\text{ m}$$
+  </li>
+  <li>Let the length of her shadow after 4 seconds be $DE = x\text{ metres}$.</li>
+</ul>
+
+<div class="math-diagram-wrap" style="margin: 18px auto; text-align: center; max-width: 460px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+  <svg viewBox="0 0 380 230" width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+  <line x1="30" y1="200" x2="360" y2="200" stroke="#334155" stroke-width="2.5"/>
+  <!-- Lamp-post AB -->
+  <line x1="60" y1="200" x2="60" y2="40" stroke="#1e293b" stroke-width="4"/>
+  <circle cx="60" cy="36" r="7" fill="#f59e0b"/>
+  <!-- Girl CD -->
+  <line x1="220" y1="200" x2="220" y2="140" stroke="#4f46e5" stroke-width="3"/>
+  <circle cx="220" cy="135" r="5" fill="#4f46e5"/>
+  <!-- Ray of light from lamp A to shadow tip E -->
+  <line x1="60" y1="40" x2="330" y2="200" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="4,3"/>
+  <!-- Labels -->
+  <text x="60" y="25" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">A (Lamp)</text>
+  <text x="60" y="218" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">B</text>
+  <text x="220" y="122" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4f46e5" text-anchor="middle">C (Girl)</text>
+  <text x="220" y="218" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4f46e5" text-anchor="middle">D</text>
+  <text x="335" y="218" font-family="sans-serif" font-size="13" font-weight="bold" fill="#dc2626" text-anchor="middle">E (Shadow Tip)</text>
+  <!-- Dimension notes -->
+  <text x="25" y="120" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1e293b">3.6 m</text>
+  <text x="228" y="170" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4f46e5">0.9 m</text>
+  <text x="140" y="218" font-family="sans-serif" font-size="11" font-weight="bold" fill="#059669">BD = 4.8 m</text>
+  <text x="275" y="218" font-family="sans-serif" font-size="11" font-weight="bold" fill="#dc2626">DE = x</text>
+</svg>
+  <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 8px;">Figure: Similarity Model for Lamp-Post, Girl, and Shadow (AA Criterion)</div>
+</div>
+<p><strong>Step 2: Prove Triangles Similar</strong></p>
+<p>In $\Delta ABE$ and $\Delta CDE$:</p>
+<ul>
+  <li>$\angle B = \angle D = 90^\circ$ (both the lamp-post and the girl stand vertically upright).</li>
+  <li>$\angle E = \angle E$ (common angle of elevation to the top of the lamp).</li>
+</ul>
+<p>Therefore, by <strong>AA Similarity Criterion</strong>:</p>
+$$\Delta ABE \sim \Delta CDE$$
+
+<p><strong>Step 3: Equate Corresponding Sides & Solve for $x$</strong></p>
+$$\frac{BE}{DE} = \frac{AB}{CD}$$
+$$\frac{BD + DE}{DE} = \frac{3.6}{0.9}$$
+$$\frac{4.8 + x}{x} = 4$$
+$$4.8 + x = 4x \implies 3x = 4.8 \implies x = \frac{4.8}{3} = 1.6\text{ m}$$
+
+<p><strong>Final Answer:</strong> The length of the girl's shadow after 4 seconds is <strong>$1.6\text{ metres}$ (or $160\text{ cm}$)</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Calculating distance BD = 1.2 * 4 = 4.8 m and setting shadow DE = x</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Proving similarity of triangles ABE and CDE by AA criterion</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Setting up ratio (4.8 + x)/x = 3.6/0.9</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving for x = 1.6 m with conclusion</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch6-q7">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q7')">
+      <div class="q-num">Question 7</div>
+      <div class="q-text">A vertical pole of length 6 m casts a shadow 4 m long on the ground and at the same time a tower casts a shadow 28 m long. Find the height of the tower.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Step 1: Geometric Setup</strong></p>
+<ul>
+  <li>Vertical pole $AB = 6\text{ m}$, shadow $BC = 4\text{ m}$.</li>
+  <li>Tower $PQ = h\text{ m}$, shadow $QR = 28\text{ m}$.</li>
+  <li>Both observations are taken at the <strong>same time</strong>, meaning the sun's altitude (angle of elevation) $\angle C = \angle R$.</li>
+</ul>
+
+<p><strong>Step 2: Proving Similarity</strong></p>
+<p>In $\Delta ABC$ and $\Delta PQR$:</p>
+<ul>
+  <li>$\angle B = \angle Q = 90^\circ$ (vertical structures to the horizontal ground).</li>
+  <li>$\angle C = \angle R$ (angular elevation of the sun is identical at the same instant).</li>
+</ul>
+<p>By <strong>AA Similarity Criterion</strong>: $\Delta ABC \sim \Delta PQR$.</p>
+
+<p><strong>Step 3: Calculate Height of Tower</strong></p>
+$$\frac{AB}{PQ} = \frac{BC}{QR}$$
+$$\frac{6}{h} = \frac{4}{28} = \frac{1}{7}$$
+$$h = 6 \times 7 = 42\text{ m}$$
+
+<p><strong>Final Answer:</strong> The height of the tower is <strong>$42\text{ metres}$</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Establishing identical solar elevation angles at the same time</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Proving triangle similarity by AA criterion</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Setting up ratio 6/h = 4/28 and solving h = 42 m</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="q-card" id="c10m-ch6-q8">
+    <div class="q-head" onclick="toggleQ('c10m-ch6-q8')">
+      <div class="q-num">Question 8</div>
+      <div class="q-text">$D$ is a point on the side $BC$ of a triangle $ABC$ such that $\angle ADC = \angle BAC$. Show that $CA^2 = CB \times CD$.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Board Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+<p><strong>Given:</strong> $D$ is a point on side $BC$ of $\Delta ABC$ such that $\angle ADC = \angle BAC$.</p>
+<p><strong>To Prove:</strong> $CA^2 = CB \times CD$.</p>
+
+<div class="math-diagram-wrap" style="margin: 18px auto; text-align: center; max-width: 460px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+  <svg viewBox="0 0 360 210" width="100%" height="180" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="100,30 260,30 320,175 40,175" fill="#f8fafc" stroke="#334155" stroke-width="2.5"/>
+  <line x1="100" y1="30" x2="320" y2="175" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="260" y1="30" x2="40" y2="175" stroke="#4f46e5" stroke-width="2"/>
+  <circle cx="100" cy="30" r="4" fill="#0f172a"/><text x="90" y="22" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">A</text>
+  <circle cx="260" cy="30" r="4" fill="#0f172a"/><text x="265" y="22" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">B</text>
+  <circle cx="320" cy="175" r="4" fill="#0f172a"/><text x="328" y="185" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">C</text>
+  <circle cx="40" cy="175" r="4" fill="#0f172a"/><text x="25" y="185" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0f172a">D</text>
+  <circle cx="180" cy="102" r="4" fill="#dc2626"/><text x="188" y="100" font-family="sans-serif" font-size="13" font-weight="bold" fill="#dc2626">O</text>
+  <text x="180" y="22" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2563eb" text-anchor="middle">AB ∥ DC</text>
+</svg>
+  <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 8px;">Figure: Trapezium ABCD with Diagonals AC and BD Intersecting at O</div>
+</div>
+<p><strong>Proof:</strong></p>
+<ol>
+  <li>In $\Delta ABC$ and $\Delta DAC$:
+    <ul>
+      <li>$\angle BAC = \angle ADC$ (Given)</li>
+      <li>$\angle C = \angle C$ (Common angle to both triangles)</li>
+    </ul>
+  </li>
+  <li>Therefore, by <strong>AA Similarity Criterion</strong>:
+    $$\Delta ABC \sim \Delta DAC$$
+  </li>
+  <li>Since corresponding sides of similar triangles are proportional:
+    $$\frac{CA}{CD} = \frac{CB}{CA}$$
+  </li>
+  <li>Cross-multiplying gives:
+    $$CA \times CA = CB \times CD \implies CA^2 = CB \times CD$$
+  </li>
+</ol>
+<p>Hence proved.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme Breakdown 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Identifying common angle C and given equal angles</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Stating similarity Delta ABC ~ Delta DAC by AA criterion</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Setting up side ratio CA/CD = CB/CA and deriving CA^2 = CB * CD</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
@@ -165,18 +473,20 @@ $$h = 6 \times 7 = 42\text{ metres}$$
   <div class="cbq-section">
     <div class="cbq-header"><span>🎯 Competency &amp; Case Study Questions (HOTS) — Chapter 6</span><span class="cbq-badge">CBSE Board 2026-27</span></div>
     <div class="cbq-body">
-      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
-        <div class="cbq-type" style="color:#4f46e5;">Competency Real-Life Pythagoras Problem</div>
-        <div class="cbq-question"><strong>Question:</strong> A ladder 10 m long reaches a window 8 m above the ground. Find the distance of the foot of the ladder from the base of the wall.</div>
+      <div class="cbq-card" style="border-left:4px solid #818cf8;">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study Question • Architecture & Height Estimation</div>
+        <div class="cbq-question">A surveyor uses a 1.5 m tall sighting rod to measure the height of a monument. When placed 12 m from the base of the monument, the top of the rod and the top of the monument align with the line of sight from the ground 3 m behind the rod. Find the height of the monument.</div>
         <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer"><p><strong>Step-by-step Solution:</strong></p><ol><li>Let $AB$ be the wall with window at $A$, so $AB = 8	ext{ m}$.</li><li>Let $AC$ be the ladder resting against the window, so $AC = 10	ext{ m}$.</li><li>Let $BC = x	ext{ m}$ be the distance of the foot of the ladder from the base of the wall.</li><li>The wall is perpendicular to the ground, so $ngle ABC = 90^\circ$. In right-angled triangle $\Delta ABC$, by <strong>Pythagoras Theorem</strong>:<br>$$AC^2 = AB^2 + BC^2$$<br>$$10^2 = 8^2 + x^2$$<br>$$100 = 64 + x^2 \implies x^2 = 100 - 64 = 36$$<br>$$x = \sqrt{36} = 6	ext{ m}$$</li><li><strong>Conclusion:</strong> The distance of the foot of the ladder from the base of the wall is <strong>6 metres</strong>.</li></ol></div>
-      </div>
-      <div class="cbq-card" style="border-left:4px solid #ea580c;">
-        <div class="cbq-type" style="color:#ea580c;">Assertion & Reason Assessment</div>
-        <div class="cbq-question"><strong>Assertion (A):</strong> All congruent figures are similar, but all similar figures need not be congruent.<br><strong>Reason (R):</strong> Two polygons of the same number of sides are similar if their corresponding angles are equal and their corresponding sides are in the same ratio.<br><br>Evaluate whether Assertion (A) and Reason (R) are correct and if (R) explains (A).</div>
-        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer"><p><strong>CBSE Board Solution:</strong></p><p><strong>Both Assertion (A) and Reason (R) are true, and Reason (R) is the correct explanation of Assertion (A).</strong></p><p><em>Explanation:</em> Congruent figures have the exact same shape and same size (ratio of corresponding sides = 1), satisfying all similarity conditions. Similar figures have the same shape, but their sizes can differ (ratio of sides can be any positive constant $k 
-eq 1$), so they need not be congruent.</p></div>
+        <div class="cbq-answer"><p><strong>Step-by-step Solution:</strong></p>
+<ol>
+  <li>Let ground observation point be $E$. Rod $CD = 1.5\text{ m}$ is at distance $ED = 3\text{ m}$.</li>
+  <li>Monument $AB = H$ is at distance $BD = 12\text{ m}$ from rod, so total distance $EB = 3 + 12 = 15\text{ m}$.</li>
+  <li>By AA similarity between $\Delta CDE$ and $\Delta ABE$:
+    $$\frac{AB}{CD} = \frac{EB}{ED} \implies \frac{H}{1.5} = \frac{15}{3} = 5$$
+  </li>
+  <li>$H = 5 \times 1.5 = 7.5\text{ metres}$.</li>
+  <li><strong>Answer:</strong> The height of the monument is <strong>7.5 metres</strong>.</li>
+</ol></div>
       </div>
     </div>
   </div>
