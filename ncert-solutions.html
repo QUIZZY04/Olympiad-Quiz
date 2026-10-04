@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NCERT Solutions Hub | Class 10, 9 & 8 — All Subjects (CBSE 2026-27) | OlympiadQuiz</title>
-  <meta name="description" content="Free chapter-wise NCERT Solutions for Class 10, Class 9, and Class 8. 100% question coverage with step-by-step answers as per CBSE Marking Scheme 2026-27, Case Study Questions & HOTS.">
-  <meta name="keywords" content="NCERT solutions, NCERT solutions class 10 maths, NCERT solutions class 10 social science, NCERT solutions class 9, NCERT solutions class 8, CBSE marking scheme 2026-27">
+  <title>NCERT Solutions | Select Class &amp; Subject | OlympiadQuiz</title>
+  <meta name="description" content="Free chapter-wise NCERT Solutions. Select your Class and Subject to get step-by-step textbook solutions with CBSE Marking Scheme 2026-27.">
+  <meta name="keywords" content="NCERT solutions, CBSE solutions, NCERT solutions class 10, NCERT solutions class 9, NCERT solutions class 8, NCERT solutions class 7">
   <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions.html">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
-  <meta property="og:title" content="NCERT Solutions Hub | Class 10, 9 & 8 — CBSE 2026-27">
-  <meta property="og:description" content="Official CBSE Board-aligned NCERT solutions for Class 10, 9 & 8 with maximum word count and marking scheme breakdown.">
+  <meta property="og:title" content="NCERT Solutions | Select Class &amp; Subject | OlympiadQuiz">
+  <meta property="og:description" content="Select your Class and Subject to access complete, step-by-step NCERT textbook solutions aligned with CBSE Marking Scheme.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions.html">
 
@@ -21,7 +21,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/"},
-      {"@type": "ListItem", "position": 2, "name": "NCERT Solutions Hub", "item": "https://olympiadquiz.org/ncert-solutions.html"}
+      {"@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html"}
     ]
   }
   </script>
@@ -34,211 +34,327 @@
   <style>
     :root {
       --navy: #0f172a;
+      --navy-dark: #090d16;
       --slate: #334155;
       --muted: #64748b;
       --light-bg: #f8fafc;
       --border: #e2e8f0;
+      --border-focus: #ff6b00;
       --card-bg: #ffffff;
+      --brand: #ff6b00;
+      --brand-hover: #ea580c;
+      --brand-light: #fff7ed;
       --shadow-sm: 0 2px 8px rgba(15,23,42,0.04);
-      --shadow-md: 0 8px 24px rgba(15,23,42,0.08);
-      --shadow-hover: 0 16px 36px rgba(15,23,42,0.12);
-      
-      /* Subject Colors */
-      --c-maths: #4f46e5;
-      --c-maths-bg: #eef2ff;
-      --c-maths-border: #c7d2fe;
-      
-      --c-science: #059669;
-      --c-science-bg: #ecfdf5;
-      --c-science-border: #a7f3d0;
-      
-      --c-sst: #0d9488;
-      --c-sst-bg: #f0fdfa;
-      --c-sst-border: #99f6e4;
-      
-      --c-english: #0284c7;
-      --c-english-bg: #f0f9ff;
-      --c-english-border: #bae6fd;
-      
-      --c-hindi: #ea580c;
-      --c-hindi-bg: #fff7ed;
-      --c-hindi-border: #fed7aa;
-      
-      --c-sanskrit: #9333ea;
-      --c-sanskrit-bg: #faf5ff;
-      --c-sanskrit-border: #e9d5ff;
+      --shadow-md: 0 10px 30px rgba(15,23,42,0.08);
+      --shadow-lg: 0 20px 45px rgba(15,23,42,0.12);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--light-bg); color: var(--text); line-height: 1.6; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--light-bg);
+      color: #1e293b;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
     /* ── NAVBAR ── */
-    .navbar { background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 900; }
-    .navbar-inner { max-width: 1380px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .navbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-text { font-size: 1.15rem; font-weight: 800; color: white; }
-    .logo-text span { color: #818cf8; }
-    .navbar-links { display: flex; align-items: center; gap: 8px; }
-    .nav-link { color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
-    .nav-link:hover, .nav-link.active { color: white; background: rgba(255,255,255,0.06); }
-    .nav-dropdown { position: relative; }
-    .nav-dropdown:hover .nav-dropdown-content { display: block !important; }
-    .nav-dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #e2e8f0; border-radius: 10px; min-width: 250px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 1000; padding: 6px; }
-    .nav-dropdown-content a { display: block; padding: 8px 14px; color: #334155; text-decoration: none; font-size: 0.85rem; border-radius: 6px; transition: 0.2s; }
-    .nav-dropdown-content a:hover { background: #f1f5f9; color: #0f172a !important; }
-    .navbar-actions { display: flex; align-items: center; gap: 10px; }
-    .btn-login { background: #4f46e5; color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
-    .btn-login:hover { background: #4338ca; }
-    .navbar-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
-    .navbar-toggle span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+    .navbar {
+      background: #0f172a;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 900;
+    }
+    .navbar-inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-text {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: white;
+    }
+    .logo-text span {
+      color: #ff6b00;
+    }
+    .navbar-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-link {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: white;
+      background: rgba(255,255,255,0.06);
+    }
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-dropdown:hover .nav-dropdown-content {
+      display: block !important;
+    }
+    .nav-dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      min-width: 210px;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+      z-index: 1000;
+      padding: 8px 0;
+    }
+    .nav-dropdown-content a {
+      display: block;
+      padding: 10px 18px;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .nav-dropdown-content a:hover {
+      background: rgba(255,107,0,0.15);
+      color: #ff6b00;
+    }
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-dashboard-nav {
+      background: #ff6b00;
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-dashboard-nav:hover {
+      background: #ea580c;
+    }
+    .navbar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+    .navbar-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+    }
 
     /* ── HERO BANNER ── */
     .hub-hero {
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #0f172a 100%);
+      background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
       color: white;
-      padding: 56px 24px 64px;
+      padding: 64px 24px 84px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      border-bottom: 3px solid #4f46e5;
+      border-bottom: 3px solid #ff6b00;
     }
     .hub-hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+      background: radial-gradient(circle at 50% 30%, rgba(255, 107, 0, 0.12) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero-badge-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(99, 102, 241, 0.18);
-      color: #c7d2fe;
-      border: 1px solid rgba(199, 210, 254, 0.25);
-      padding: 6px 16px;
+      background: rgba(255, 107, 0, 0.15);
+      color: #fed7aa;
+      border: 1px solid rgba(255, 107, 0, 0.3);
+      padding: 6px 18px;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 18px;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
     }
     .hero-badge-pill .pulse-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
       box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
     }
     .hub-hero h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
       font-weight: 900;
       color: #ffffff;
-      line-height: 1.18;
+      line-height: 1.15;
       letter-spacing: -0.03em;
       max-width: 860px;
       margin: 0 auto 16px;
     }
     .hub-hero h1 span {
-      background: linear-gradient(135deg, #a5b4fc 0%, #38bdf8 100%);
+      background: linear-gradient(135deg, #ff8c1a 0%, #fbbf24 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hub-hero p {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: #cbd5e1;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── MAIN CONTENT AREA ── */
+    .page-wrap {
+      flex: 1;
+      max-width: 1040px;
+      width: 100%;
+      margin: -40px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ── SELECTOR CARD ── */
+    .ncert-selector-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      padding: 44px 40px;
+      box-shadow: var(--shadow-lg);
       max-width: 680px;
-      margin: 0 auto 28px;
-      line-height: 1.65;
+      margin: 0 auto 48px;
+      transition: all 0.3s ease;
     }
-    .hub-stats {
+    .selector-card-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .selector-icon-badge {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #ff6b00 0%, #ea580c 100%);
+      border-radius: 18px;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      font-size: 30px;
+      color: white;
+      box-shadow: 0 10px 24px rgba(255, 107, 0, 0.28);
     }
-    .stat-chip {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 8px 18px;
-      border-radius: 12px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: #f1f5f9;
-      display: inline-flex;
+    .selector-card-header h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .selector-card-header p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── FORM ELEMENTS ── */
+    .selector-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: flex;
       align-items: center;
       gap: 8px;
     }
-    .stat-chip strong { color: #818cf8; font-weight: 800; }
-
-    /* ── STICKY CONTROL BAR ── */
-    .control-bar {
-      position: sticky;
-      top: 60px;
-      z-index: 850;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
-      padding: 16px 24px;
+    .form-group label span.icon {
+      font-size: 1.1rem;
     }
-    .control-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .selector-group {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .selector-label {
-      font-size: 0.82rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Custom Dropdown */
-    .dropdown-wrapper {
+    .select-wrapper {
       position: relative;
-      min-width: 270px;
+      width: 100%;
     }
-    .class-select-dropdown {
+    .custom-select {
       width: 100%;
       appearance: none;
       -webkit-appearance: none;
-      background: white;
-      border: 2px solid #cbd5e1;
-      border-radius: 12px;
-      padding: 11px 40px 11px 16px;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 44px 14px 18px;
       font-family: inherit;
-      font-size: 0.92rem;
-      font-weight: 700;
+      font-size: 1rem;
+      font-weight: 600;
       color: var(--navy);
       cursor: pointer;
       outline: none;
       transition: all 0.2s ease;
       box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
-    .class-select-dropdown:hover {
-      border-color: #4f46e5;
+    .custom-select:hover:not(:disabled) {
+      border-color: #cbd5e1;
     }
-    .class-select-dropdown:focus {
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    .custom-select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.15);
     }
-    .dropdown-arrow {
+    .custom-select:disabled {
+      background: #f8fafc;
+      color: #94a3b8;
+      cursor: not-allowed;
+      border-color: #e2e8f0;
+    }
+    .select-arrow {
       position: absolute;
-      right: 14px;
+      right: 16px;
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
@@ -247,465 +363,107 @@
       align-items: center;
     }
 
-    /* Segmented Tab Buttons */
-    .class-tabs {
-      display: flex;
-      gap: 6px;
-      background: #f1f5f9;
-      padding: 4px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-    }
-    .tab-btn {
-      border: none;
-      background: transparent;
-      padding: 8px 16px;
-      border-radius: 9px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--slate);
-      cursor: pointer;
-      transition: all 0.18s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-    }
-    .tab-btn:hover {
-      color: var(--navy);
-      background: rgba(255, 255, 255, 0.6);
-    }
-    .tab-btn.active {
-      background: white;
-      color: var(--navy);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .tab-badge {
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 6px;
-      background: #e2e8f0;
-      color: #475569;
-    }
-    .tab-btn.active .tab-badge {
-      background: #4f46e5;
-      color: white;
-    }
-
-    /* Search Box */
-    .search-wrapper {
-      position: relative;
-      min-width: 240px;
-    }
-    .search-input {
+    /* ── SUBMIT BUTTON ── */
+    .btn-go-solution {
       width: 100%;
-      padding: 10px 14px 10px 38px;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 10px;
+      background: linear-gradient(135deg, #ff6b00 0%, #ea580c 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 24px;
       font-family: inherit;
-      font-size: 0.85rem;
-      outline: none;
-      transition: 0.2s;
-      background: #f8fafc;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.35);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
     }
-    .search-input:focus {
-      background: white;
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    .btn-go-solution:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 107, 0, 0.45);
+      background: linear-gradient(135deg, #ff7a1a 0%, #f97316 100%);
     }
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-      color: #94a3b8;
+    .btn-go-solution:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(255, 107, 0, 0.3);
     }
-
-    /* ── MAIN CONTENT CONTAINER ── */
-    .page-wrap {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
+    .btn-go-solution svg {
+      transition: transform 0.2s ease;
     }
-
-    /* ── CLASS SECTION STYLES ── */
-    .class-block {
-      margin-bottom: 56px;
-      scroll-margin-top: 130px;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-    .class-block.hidden {
-      display: none !important;
+    .btn-go-solution:hover svg {
+      transform: translateX(4px);
     }
 
-    .class-header-card {
+    /* ── SELECTION ALERT ── */
+    .selection-alert {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TRUST & HIGHLIGHTS ── */
+    .trust-section {
+      margin-top: 10px;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .trust-item {
       background: white;
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 20px 24px;
-      margin-bottom: 24px;
+      padding: 24px 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      text-align: center;
+      gap: 12px;
       box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .class-header-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .trust-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
     }
-    .class-avatar-badge {
+    .trust-icon-box {
       width: 48px;
       height: 48px;
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: white;
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .class-header-info h2 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--navy);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      letter-spacing: -0.01em;
-    }
-    .class-header-info p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .class-header-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .ch-pill {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: #f1f5f9;
-      color: #475569;
-      border: 1px solid #e2e8f0;
-    }
-
-    /* ── SUBJECT CARDS GRID ── */
-    .subject-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 24px;
-    }
-
-    /* ── COLOR-CODED SUBJECT CARD ── */
-    .subject-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      border: 1.5px solid var(--border);
-      padding: 28px 24px;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .subject-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      transition: height 0.2s ease;
-    }
-    .subject-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-    }
-    .subject-card:hover::before {
-      height: 7px;
-    }
-
-    /* Top Row in Card */
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .card-icon-container {
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-    .subject-card:hover .card-icon-container {
-      transform: scale(1.08);
-    }
-    .card-badge-row {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-    }
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .status-badge .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-    .units-count-pill {
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: var(--muted);
-      background: #f1f5f9;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-
-    /* Middle Details */
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-    .card-subtitle {
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-    .card-highlights {
-      list-style: none;
-      margin-bottom: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-    .card-highlights li {
-      font-size: 0.84rem;
-      color: #475569;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      line-height: 1.45;
-    }
-    .card-highlights li svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* Bottom Button */
-    .card-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .card-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      padding: 9px 18px;
-      border-radius: 10px;
-      color: white;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .card-btn svg {
-      transition: transform 0.2s ease;
-    }
-    .subject-card:hover .card-btn svg {
-      transform: translateX(4px);
-    }
-    .card-edition-note {
-      font-size: 0.72rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    /* ── COLOR THEMES FOR CARDS ── */
-    /* Maths Theme */
-    .subject-card.theme-maths { border-color: var(--c-maths-border); }
-    .subject-card.theme-maths::before { background: linear-gradient(90deg, #4f46e5, #818cf8); }
-    .subject-card.theme-maths .card-icon-container { background: var(--c-maths-bg); color: var(--c-maths); }
-    .subject-card.theme-maths .card-title { color: #1e1b4b; }
-    .subject-card.theme-maths .status-badge { background: #e0e7ff; color: #3730a3; }
-    .subject-card.theme-maths .card-highlights li svg { color: var(--c-maths); }
-    .subject-card.theme-maths .card-btn { background: var(--c-maths); }
-    .subject-card.theme-maths:hover { border-color: var(--c-maths); box-shadow: 0 12px 32px rgba(79, 70, 229, 0.16); }
-    .subject-card.theme-maths:hover .card-btn { background: #4338ca; }
-
-    /* Science Theme */
-    .subject-card.theme-science { border-color: var(--c-science-border); }
-    .subject-card.theme-science::before { background: linear-gradient(90deg, #059669, #34d399); }
-    .subject-card.theme-science .card-icon-container { background: var(--c-science-bg); color: var(--c-science); }
-    .subject-card.theme-science .card-title { color: #064e3b; }
-    .subject-card.theme-science .status-badge { background: #d1fae5; color: #065f46; }
-    .subject-card.theme-science .card-highlights li svg { color: var(--c-science); }
-    .subject-card.theme-science .card-btn { background: var(--c-science); }
-    .subject-card.theme-science:hover { border-color: var(--c-science); box-shadow: 0 12px 32px rgba(5, 150, 105, 0.16); }
-    .subject-card.theme-science:hover .card-btn { background: #047857; }
-
-    /* Social Science Theme */
-    .subject-card.theme-sst { border-color: var(--c-sst-border); }
-    .subject-card.theme-sst::before { background: linear-gradient(90deg, #0d9488, #2dd4bf); }
-    .subject-card.theme-sst .card-icon-container { background: var(--c-sst-bg); color: var(--c-sst); }
-    .subject-card.theme-sst .card-title { color: #134e4a; }
-    .subject-card.theme-sst .status-badge { background: #ccfbf1; color: #115e59; }
-    .subject-card.theme-sst .card-highlights li svg { color: var(--c-sst); }
-    .subject-card.theme-sst .card-btn { background: var(--c-sst); }
-    .subject-card.theme-sst:hover { border-color: var(--c-sst); box-shadow: 0 12px 32px rgba(13, 148, 136, 0.16); }
-    .subject-card.theme-sst:hover .card-btn { background: #0f766e; }
-
-    /* English Theme */
-    .subject-card.theme-english { border-color: var(--c-english-border); }
-    .subject-card.theme-english::before { background: linear-gradient(90deg, #0284c7, #38bdf8); }
-    .subject-card.theme-english .card-icon-container { background: var(--c-english-bg); color: var(--c-english); }
-    .subject-card.theme-english .card-title { color: #0c4a6e; }
-    .subject-card.theme-english .status-badge { background: #e0f2fe; color: #075985; }
-    .subject-card.theme-english .card-highlights li svg { color: var(--c-english); }
-    .subject-card.theme-english .card-btn { background: var(--c-english); }
-    .subject-card.theme-english:hover { border-color: var(--c-english); box-shadow: 0 12px 32px rgba(2, 132, 199, 0.16); }
-    .subject-card.theme-english:hover .card-btn { background: #0369a1; }
-
-    /* Hindi Theme */
-    .subject-card.theme-hindi { border-color: var(--c-hindi-border); }
-    .subject-card.theme-hindi::before { background: linear-gradient(90deg, #ea580c, #fb923c); }
-    .subject-card.theme-hindi .card-icon-container { background: var(--c-hindi-bg); color: var(--c-hindi); }
-    .subject-card.theme-hindi .card-title { color: #7c2d12; }
-    .subject-card.theme-hindi .status-badge { background: #ffedd5; color: #9a3412; }
-    .subject-card.theme-hindi .card-highlights li svg { color: var(--c-hindi); }
-    .subject-card.theme-hindi .card-btn { background: var(--c-hindi); }
-    .subject-card.theme-hindi:hover { border-color: var(--c-hindi); box-shadow: 0 12px 32px rgba(234, 88, 12, 0.16); }
-    .subject-card.theme-hindi:hover .card-btn { background: #c2410c; }
-
-    /* Sanskrit Theme */
-    .subject-card.theme-sanskrit { border-color: var(--c-sanskrit-border); }
-    .subject-card.theme-sanskrit::before { background: linear-gradient(90deg, #9333ea, #c084fc); }
-    .subject-card.theme-sanskrit .card-icon-container { background: var(--c-sanskrit-bg); color: var(--c-sanskrit); }
-    .subject-card.theme-sanskrit .card-title { color: #581c87; }
-    .subject-card.theme-sanskrit .status-badge { background: #f3e8ff; color: #6b21a8; }
-    .subject-card.theme-sanskrit .card-highlights li svg { color: var(--c-sanskrit); }
-    .subject-card.theme-sanskrit .card-btn { background: var(--c-sanskrit); }
-    .subject-card.theme-sanskrit:hover { border-color: var(--c-sanskrit); box-shadow: 0 12px 32px rgba(147, 51, 234, 0.16); }
-    .subject-card.theme-sanskrit:hover .card-btn { background: #7e22ce; }
-
-    /* ── TRUST & PEDAGOGY SECTION ── */
-    .trust-section {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px 32px;
-      margin-top: 20px;
-      margin-bottom: 50px;
-      box-shadow: var(--shadow-sm);
-    }
-    .trust-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--navy);
-      text-align: center;
-      margin-bottom: 8px;
-    }
-    .trust-subtitle {
-      font-size: 0.9rem;
-      color: var(--muted);
-      text-align: center;
-      max-width: 620px;
-      margin: 0 auto 32px;
-    }
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-    .trust-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .trust-icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
+      font-size: 22px;
       flex-shrink: 0;
     }
-    .trust-item h4 {
-      font-size: 0.95rem;
+    .trust-item h3 {
+      font-size: 1rem;
       font-weight: 700;
       color: var(--navy);
       margin-bottom: 4px;
     }
     .trust-item p {
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       color: var(--muted);
       line-height: 1.5;
-    }
-
-    /* ── OTHER CLASSES NOTICE ── */
-    .other-classes-notice {
-      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-      border: 1px dashed #cbd5e1;
-      border-radius: 18px;
-      padding: 24px 28px;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .other-classes-notice h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-    .other-classes-notice p {
-      font-size: 0.85rem;
-      color: var(--slate);
-      max-width: 600px;
-      margin: 0 auto;
     }
 
     /* ── FOOTER ── */
@@ -714,20 +472,28 @@
       border-top: 1px solid var(--border);
       padding: 32px 24px;
       text-align: center;
+      margin-top: auto;
     }
-    .page-footer p { font-size: 0.85rem; color: var(--muted); }
-    .page-footer a { color: #4f46e5; font-weight: 600; text-decoration: none; }
-    .page-footer a:hover { text-decoration: underline; }
+    .page-footer p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .page-footer a {
+      color: var(--brand);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .page-footer a:hover {
+      text-decoration: underline;
+    }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hub-hero { padding: 40px 18px 48px; }
-      .control-inner { flex-direction: column; align-items: stretch; }
-      .selector-group { flex-direction: column; align-items: stretch; }
-      .dropdown-wrapper, .search-wrapper { min-width: 100%; }
-      .class-tabs { overflow-x: auto; padding: 4px; }
-      .subject-grid { grid-template-columns: 1fr; }
-      .class-header-card { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 768px) {
+      .hub-hero { padding: 48px 18px 70px; }
+      .ncert-selector-card { padding: 32px 20px; }
+      .navbar-links { display: none; }
+      .navbar-toggle { display: flex; }
+      .page-wrap { margin-top: -30px; }
     }
   </style>
 </head>
@@ -745,743 +511,139 @@
       <div class="nav-dropdown">
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
-          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-          <a href="ncert-solutions-class-10-maths.html" style="font-weight:700;color:#4f46e5;">📐 Class 10 Maths ✨ <span style="background:#4f46e5;color:white;font-size:0.62rem;padding:2px 6px;border-radius:4px;margin-left:4px;">BOARD</span></a>
-          <a href="ncert-solutions-class-10-social-science.html" style="font-weight:700;color:#0d9488;">🏆 Class 10 Social Science ✨ <span style="background:#0d9488;color:white;font-size:0.62rem;padding:2px 6px;border-radius:4px;margin-left:4px;">BOARD</span></a>
-          <a href="ncert-solutions-class-9-maths.html" style="font-weight:700;color:#4f46e5;">📐 Class 9 Maths</a>
-          <a href="ncert-solutions-class-9-science.html" style="font-weight:700;color:#059669;">🔬 Class 9 Science</a>
-          <a href="ncert-solutions-class-9-social-science.html" style="font-weight:700;color:#0d9488;">🌍 Class 9 Social Science</a>
-          <a href="ncert-solutions-class-9-english.html" style="font-weight:700;color:#0284c7;">📖 Class 9 English</a>
-          <a href="ncert-solutions-class-9-hindi.html" style="font-weight:700;color:#ea580c;">🇮🇳 Class 9 Hindi</a>
-          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
-          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
-          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
-          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
-          <a href="ncert-solutions-class-8-hindi.html">Class 8 Hindi</a>
-          <a href="ncert-solutions-class-8-sanskrit.html">Class 8 Sanskrit</a>
-          <a href="ncert-solutions-class-7-maths.html" style="font-weight:700;color:#4f46e5;">📐 Class 7 Maths</a>
-          <a href="ncert-solutions-class-7-science.html" style="font-weight:700;color:#059669;">🔬 Class 7 Science</a>
-          <a href="ncert-solutions-class-7-english.html" style="font-weight:700;color:#0284c7;">📖 Class 7 English</a>
-          <a href="ncert-solutions-class-7-sst.html" style="font-weight:700;color:#0d9488;">🌍 Class 7 Social Science</a>
-          <a href="ncert-solutions-class-7-hindi.html" style="font-weight:700;color:#ea580c;">🇮🇳 Class 7 Hindi ✨ <span style="background:#ea580c;color:white;font-size:0.62rem;padding:2px 6px;border-radius:4px;margin-left:4px;">NEW</span></a>
+          <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub</a>
+          <a href="ncert-solutions.html#class7">Class 7</a>
+          <a href="ncert-solutions.html#class8">Class 8</a>
+          <a href="ncert-solutions.html#class9">Class 9</a>
+          <a href="ncert-solutions.html#class10">Class 10</a>
         </div>
       </div>
       <div class="nav-dropdown">
         <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
+          <a href="mock.html">Mock Tests</a>
+          <a href="chapterwise.html">Chapterwise</a>
+          <a href="hots.html">HOTS Challenge</a>
           <a href="study.html">Study Material</a>
-          <a href="ncert-solutions.html">NCERT Solutions Hub</a>
           <a href="blog.html">Success Guides</a>
-          <a href="sof-previous-year-questions.html">SOF PYQs</a>
         </div>
       </div>
-      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
     </div>
     <div class="navbar-actions">
-      <a href="login.html" class="btn-login">Login</a>
+      <a href="dashboard.html" class="btn-dashboard-nav">Dashboard</a>
       <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- HERO BANNER -->
 <header class="hub-hero">
   <div class="hero-badge-pill">
     <span class="pulse-dot"></span>
-    CBSE Rationalized Syllabus 2026-27 Aligned
+    CBSE Curriculum 2026-27 • Free Solutions
   </div>
-  <h1>Free NCERT Solutions Hub<br><span>Class 10, Class 9, Class 8 &amp; Class 7</span></h1>
-  <p>100% question coverage with maximum word count and step-by-step mathematical proofs as per official CBSE Board Marking Schemes. Includes Competency-Based Case Studies &amp; HOTS.</p>
-  <div class="hub-stats">
-    <div class="stat-chip"><strong>4</strong> Live Classes (10, 9, 8, 7)</div>
-    <div class="stat-chip"><strong>19</strong> Complete Subjects</div>
-    <div class="stat-chip"><strong>320+</strong> Chapters &amp; Units</div>
-    <div class="stat-chip"><strong>100%</strong> CBSE Marking Scheme</div>
-    <div class="stat-chip"><strong>FREE</strong> Forever</div>
-  </div>
+  <h1>NCERT Solutions <span>Hub</span></h1>
+  <p>Step-by-step textbook solutions strictly aligned with the latest CBSE Marking Scheme.</p>
 </header>
-
-<!-- STICKY CONTROL & CLASS SELECTOR BAR -->
-<section class="control-bar" id="classSelectorSection">
-  <div class="control-inner">
-    <div class="selector-group">
-      <div class="selector-label">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
-        Select Class:
-      </div>
-      <!-- DROPDOWN: Shows ONLY classes for which solutions have been launched -->
-      <div class="dropdown-wrapper">
-        <select class="class-select-dropdown" id="classSelectDropdown" onchange="onDropdownChange(this.value)" aria-label="Select Class for NCERT Solutions">
-          <option value="class10">🏆 Class 10 (3 Subjects — Maths, Science &amp; SST)</option>
-          <option value="class9">✨ Class 9 (5 Subjects — Maths, Science, SST, Eng, Hin)</option>
-          <option value="class8">🚀 Class 8 (6 Subjects — Maths, Sci, SST, Eng, Hin, Sans)</option>
-          <option value="class7">📐 Class 7 (5 Subjects — Maths, Science, English, SST &amp; Hindi)</option>
-          <option value="all">🌟 All Launched Classes (10, 9, 8 &amp; 7)</option>
-        </select>
-        <div class="dropdown-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-      </div>
-
-      <!-- INTERACTIVE TAB BUTTONS (Synced with Dropdown) -->
-      <div class="class-tabs" id="classTabs">
-        <button class="tab-btn active" data-class="class10" onclick="selectClass('class10')">
-          🏆 Class 10 <span class="tab-badge">3 Subs</span>
-        </button>
-        <button class="tab-btn" data-class="class9" onclick="selectClass('class9')">
-          ✨ Class 9 <span class="tab-badge">5 Subs</span>
-        </button>
-        <button class="tab-btn" data-class="class8" onclick="selectClass('class8')">
-          🚀 Class 8 <span class="tab-badge">6 Subs</span>
-        </button>
-        <button class="tab-btn" data-class="class7" onclick="selectClass('class7')">
-          📐 Class 7 <span class="tab-badge">5 Subs</span>
-        </button>
-        <button class="tab-btn" data-class="all" onclick="selectClass('all')">
-          🌟 All Classes
-        </button>
-      </div>
-    </div>
-
-    <!-- QUICK SEARCH INPUT -->
-    <div class="search-wrapper">
-      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" class="search-input" id="subjectSearchInput" placeholder="Quick search subjects..." onkeyup="filterSubjectCards(this.value)">
-    </div>
-  </div>
-</section>
 
 <!-- MAIN CONTENT WRAPPER -->
 <main class="page-wrap">
 
-  <!-- ========================================================================= -->
-  <!-- CLASS 10 SECTION (BOARD EXAM SPECIAL) -->
-  <!-- ========================================================================= -->
-  <section class="class-block" id="class10Block" data-class="class10">
-    <div class="class-header-card" style="border-left: 5px solid #4f46e5;">
-      <div class="class-header-left">
-        <div class="class-avatar-badge" style="background: linear-gradient(135deg, #4f46e5, #3730a3);">10</div>
-        <div class="class-header-info">
-          <h2>Class 10 — CBSE Board Exam Solutions <span>🏆</span></h2>
-          <p>Strictly aligned to CBSE 2026-27 Rationalized Guidelines • Maximum Word Count &amp; Complete Marking Schemes</p>
-        </div>
-      </div>
-      <div class="class-header-tags">
-        <span class="ch-pill">3 Board Subjects Live</span>
-        <span class="ch-pill">49 Units Total</span>
-        <span class="ch-pill">Case Study Questions</span>
-        <span class="ch-pill">HOTS Included</span>
-      </div>
+  <!-- SELECTOR CARD -->
+  <div class="ncert-selector-card">
+    <div class="selector-card-header">
+      <div class="selector-icon-badge">📚</div>
+      <h2>Select Class &amp; Subject</h2>
+      <p>Choose your class and subject below, then click to view complete NCERT solutions.</p>
     </div>
 
-    <div class="subject-grid">
-      <!-- Class 10 Maths Card (Royal Indigo) -->
-      <a href="ncert-solutions-class-10-maths.html" class="subject-card theme-maths" data-keywords="mathematics maths standard basic real numbers polynomials quadratic equations trigonometry circles statistics probability">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📐</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">14 Chapters • All Exercises</span>
-            </div>
+    <form class="selector-form" id="ncertFinderForm" onsubmit="event.preventDefault(); goToSolution();">
+      <!-- CLASS DROPDOWN -->
+      <div class="form-group">
+        <label for="classSelect">
+          <span class="icon">🏫</span>
+          <span>Select Class:</span>
+        </label>
+        <div class="select-wrapper">
+          <select class="custom-select" id="classSelect" onchange="onClassChange()" aria-label="Select Class">
+            <option value="" disabled selected>-- Choose Class --</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+          </select>
+          <div class="select-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <h3 class="card-title">Mathematics (Standard &amp; Basic)</h3>
-          <p class="card-subtitle">Class 10 NCERT Mathematics • Rationalized Edition</p>
-          <ul class="card-highlights">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>100% Chapter Coverage:</strong> Real Numbers, Quadratic Equations, Trigonometry, Circles &amp; Statistics.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>Accurate CBSE Marks Typology:</strong> Correct 1, 2, 3, 4 &amp; 5-mark distribution with step-by-step schemes.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>Visual Diagrams Included:</strong> Geometric constructions, triangles, circle tangents &amp; polynomial graphs.</span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">CBSE Board Exam 2026-27</span>
-          <span class="card-btn">Explore Solutions <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 10 Science Card (Emerald Green) -->
-      <a href="ncert-solutions-class-10-science.html" class="subject-card theme-science" data-keywords="science physics chemistry biology chemical reactions acids bases metals carbon life processes reproduction electricity magnetism light">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🔬</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">13 Chapters • Complete PCB</span>
-            </div>
-          </div>
-          <h3 class="card-title">Science (Physics, Chemistry &amp; Bio)</h3>
-          <p class="card-subtitle">Class 10 NCERT Science • Rationalized Edition</p>
-          <ul class="card-highlights">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>100% Chapter Coverage:</strong> Chemical Reactions, Acids &amp; Bases, Carbon, Life Processes, Light &amp; Electricity.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>Balanced Equations &amp; Ray Diagrams:</strong> Chemical equations with state symbols and labeled ray diagrams.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>Step-by-Step Marking Schemes:</strong> Authentic breakdown for VSA, SA-I, SA-II, and Long Answers.</span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">CBSE Board Exam 2026-27</span>
-          <span class="card-btn">Explore Solutions <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 10 Social Science Card (Teal Cyan) -->
-      <a href="ncert-solutions-class-10-social-science.html" class="subject-card theme-sst" data-keywords="social science sst history geography democratic politics civics economics resources nationalism development">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🌍</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">22 Units • All 4 Books</span>
-            </div>
-          </div>
-          <h3 class="card-title">Social Science (Board Edition)</h3>
-          <p class="card-subtitle">History, Geography, Democratic Politics &amp; Economics</p>
-          <ul class="card-highlights">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>Complete 4 Disciplines:</strong> India &amp; Contemporary World II, Contemporary India II, Democratic Politics II &amp; Economics.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>Maximum Word Count:</strong> In-depth points for 2-mark, 3-mark &amp; 5-mark board answers.</span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span><strong>44 Competency Questions:</strong> Case studies, assertion-reason &amp; map pointing tips.</span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">CBSE Board Exam 2026-27</span>
-          <span class="card-btn">Explore Solutions <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- CLASS 9 SECTION (COMPLETE 5-SUBJECT SUITE) -->
-  <!-- ========================================================================= -->
-  <section class="class-block" id="class9Block" data-class="class9">
-    <div class="class-header-card" style="border-left: 5px solid #059669;">
-      <div class="class-header-left">
-        <div class="class-avatar-badge" style="background: linear-gradient(135deg, #059669, #047857);">9</div>
-        <div class="class-header-info">
-          <h2>Class 9 — Complete NCERT Solutions Suite <span>✨</span></h2>
-          <p>All 5 Core Subjects Live • Full Question Coverage • CBSE Marking Scheme Breakdown</p>
         </div>
       </div>
-      <div class="class-header-tags">
-        <span class="ch-pill">5 Subjects Live</span>
-        <span class="ch-pill">100 Units Total</span>
-        <span class="ch-pill">Prose, Poetry, Proofs &amp; Numericals</span>
-      </div>
-    </div>
 
-    <div class="subject-grid">
-      <!-- Class 9 Maths Card (Royal Indigo) -->
-      <a href="ncert-solutions-class-9-maths.html" class="subject-card theme-maths" data-keywords="class 9 mathematics maths number systems polynomials coordinate geometry triangles circles heron">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📐</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">12 Chapters</span>
-            </div>
+      <!-- SUBJECT DROPDOWN -->
+      <div class="form-group">
+        <label for="subjectSelect">
+          <span class="icon">📖</span>
+          <span>Select Subject:</span>
+        </label>
+        <div class="select-wrapper">
+          <select class="custom-select" id="subjectSelect" disabled aria-label="Select Subject" onchange="onSubjectChange()">
+            <option value="" disabled selected>-- Select Class First --</option>
+          </select>
+          <div class="select-arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <h3 class="card-title">Mathematics</h3>
-          <p class="card-subtitle">Class 9 NCERT Mathematics</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>All 12 Chapters with step-by-step working.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Geometric proofs (Euclid, Triangles, Quadrilaterals, Circles).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>24 Competency &amp; Case Study questions.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 9 CBSE 2026-27</span>
-          <span class="card-btn">Open Maths <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 9 Science Card (Emerald Green) -->
-      <a href="ncert-solutions-class-9-science.html" class="subject-card theme-science" data-keywords="class 9 science physics chemistry biology matter cells tissues motion force gravitation atoms sound">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🔬</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">12 Chapters</span>
-            </div>
-          </div>
-          <h3 class="card-title">Science</h3>
-          <p class="card-subtitle">Physics, Chemistry &amp; Biology</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>In-text questions, chapter-end exercises &amp; experiments.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Physics numericals with proper SI units &amp; formulas.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Cell biology diagrams, tissue charts &amp; chemical formulas.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 9 CBSE 2026-27</span>
-          <span class="card-btn">Open Science <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 9 Social Science Card (Teal Cyan) -->
-      <a href="ncert-solutions-class-9-social-science.html" class="subject-card theme-sst" data-keywords="class 9 social science sst history geography democratic politics civics economics french revolution">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🌍</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">20 Units</span>
-            </div>
-          </div>
-          <h3 class="card-title">Social Science</h3>
-          <p class="card-subtitle">History, Geography, Civics &amp; Economics</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>History (5), Geography (6), Civics (5), Economics (4).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Full point-wise answers with dates, terms &amp; causes.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>40 Competency &amp; HOTS questions included.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 9 CBSE 2026-27</span>
-          <span class="card-btn">Open Social Science <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 9 English Card (Ocean Sky Blue) -->
-      <a href="ncert-solutions-class-9-english.html" class="subject-card theme-english" data-keywords="class 9 english beehive moments prose poetry the fun they had road not taken lost child">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📖</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">26 Units</span>
-            </div>
-          </div>
-          <h3 class="card-title">English Language &amp; Literature</h3>
-          <p class="card-subtitle">Beehive (Prose &amp; Poems) + Moments (Supplementary)</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Beehive (9 Prose + 8 Poems) &amp; Moments (9 Chapters).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Stanza-wise poetic devices, theme &amp; central idea.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Extract-based questions &amp; character sketches.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 9 CBSE 2026-27</span>
-          <span class="card-btn">Open English <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 9 Hindi Card (Sunset Orange) -->
-      <a href="ncert-solutions-class-9-hindi.html" class="subject-card theme-hindi" data-keywords="class 9 hindi kshitij kritika sparsh sanchayan do bailon ki katha kabir saakhiyan premchand">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🇮🇳</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">30 Units</span>
-            </div>
-          </div>
-          <h3 class="card-title">Hindi (Course A &amp; Course B)</h3>
-          <p class="card-subtitle">क्षितिज भाग 1, कृतिका भाग 1, स्पर्श भाग 1, संचयन भाग 1</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>क्षितिज (13) + कृतिका (3) + स्पर्श (10) + संचयन (4).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>सप्रसंग व्याख्या, भावार्थ, शिल्प-सौंदर्य व काव्य-सौंदर्य.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>CBSE मार्किंग स्कीम अनुसार अधिकतम शब्द सीमा में उत्तर.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 9 CBSE 2026-27</span>
-          <span class="card-btn">Open Hindi <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- CLASS 8 SECTION (MIDDLE SCHOOL 6-SUBJECT SUITE) -->
-  <!-- ========================================================================= -->
-  <section class="class-block" id="class8Block" data-class="class8">
-    <div class="class-header-card" style="border-left: 5px solid #0284c7;">
-      <div class="class-header-left">
-        <div class="class-avatar-badge" style="background: linear-gradient(135deg, #0284c7, #0369a1);">8</div>
-        <div class="class-header-info">
-          <h2>Class 8 — Middle School Complete Solutions <span>🚀</span></h2>
-          <p>All 6 Core NCERT Subjects • Chapterwise Questions &amp; Concept Summaries</p>
         </div>
       </div>
-      <div class="class-header-tags">
-        <span class="ch-pill">6 Subjects Live</span>
-        <span class="ch-pill">Full Middle School Curriculum</span>
-        <span class="ch-pill">NCERT Rationalized</span>
-      </div>
-    </div>
 
-    <div class="subject-grid">
-      <!-- Class 8 Maths (Royal Indigo) -->
-      <a href="ncert-solutions-class-8-maths.html" class="subject-card theme-maths" data-keywords="class 8 mathematics maths rational numbers linear equations quadrilaterals mensuration exponents">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📐</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">13 Chapters</span>
-            </div>
-          </div>
-          <h3 class="card-title">Mathematics</h3>
-          <p class="card-subtitle">Class 8 NCERT Mathematics</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Rational Numbers to Exponents &amp; Powers.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Algebraic expressions, factorisation &amp; mensuration.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Step-by-step methods as per latest NCERT book.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 8 CBSE 2026-27</span>
-          <span class="card-btn">Open Maths <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
+      <!-- ERROR / ALERT MESSAGE -->
+      <div id="selectionAlert" class="selection-alert" role="alert"></div>
 
-      <!-- Class 8 Science (Emerald Green) -->
-      <a href="ncert-solutions-class-8-science.html" class="subject-card theme-science" data-keywords="class 8 science crop production microorganisms combustion force pressure sound light cell">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🔬</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">16 Chapters</span>
-            </div>
-          </div>
-          <h3 class="card-title">Science</h3>
-          <p class="card-subtitle">Class 8 NCERT Science</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Crop production, microorganisms, sound, friction &amp; light.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Detailed explanations, diagrams &amp; activities.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Chapter-end review &amp; fill-in-the-blanks.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 8 CBSE 2026-27</span>
-          <span class="card-btn">Open Science <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
+      <!-- ACTION BUTTON -->
+      <button type="submit" id="goBtn" class="btn-go-solution">
+        <span>Go to NCER solution</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </form>
+  </div>
 
-      <!-- Class 8 Social Science (Teal Cyan) -->
-      <a href="ncert-solutions-class-8-sst.html" class="subject-card theme-sst" data-keywords="class 8 social science sst our pasts resources judiciary law social justice">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🌏</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">19 Chapters</span>
-            </div>
-          </div>
-          <h3 class="card-title">Social Science</h3>
-          <p class="card-subtitle">Our Pasts III, Resources &amp; Development, Social &amp; Political Life</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>History (Our Pasts III) complete solutions.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Geography (Resources &amp; Development) exercises.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Civics (Constitution, Judiciary, Secularism).</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 8 CBSE 2026-27</span>
-          <span class="card-btn">Open Social Science <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 8 English (Ocean Sky Blue) -->
-      <a href="ncert-solutions-class-8-english.html" class="subject-card theme-english" data-keywords="class 8 english honeydew it so happened best christmas present tsunami ant cricket">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📖</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">Honeydew &amp; It So Happened</span>
-            </div>
-          </div>
-          <h3 class="card-title">English</h3>
-          <p class="card-subtitle">Honeydew &amp; It So Happened</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Comprehension check questions with full answers.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Working with the text &amp; working with language.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Poem themes, rhyming schemes &amp; vocabulary.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 8 CBSE 2026-27</span>
-          <span class="card-btn">Open English <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 8 Hindi (Sunset Orange) -->
-      <a href="ncert-solutions-class-8-hindi.html" class="subject-card theme-hindi" data-keywords="class 8 hindi vasant bharat ki khoj dhwani lakh ki chudiyan bus ki yatra">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🇮🇳</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">वसंत &amp; भारत की खोज</span>
-            </div>
-          </div>
-          <h3 class="card-title">Hindi</h3>
-          <p class="card-subtitle">वसंत भाग 3 &amp; भारत की खोज</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>सभी पाठों व कविताओं के सरल शब्दार्थ व सारांश.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>पाठ से आगे व अनुमान और कल्पना के मानक उत्तर.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>भाषा की बात व व्याकरण के प्रश्नों का हल.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 8 CBSE 2026-27</span>
-          <span class="card-btn">Open Hindi <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 8 Sanskrit (Purple) -->
-      <a href="ncert-solutions-class-8-sanskrit.html" class="subject-card theme-sanskrit" data-keywords="class 8 sanskrit ruchira subhashitani bilasya vani na kadapi me shruta">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📜</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">रुचिरा भाग 3</span>
-            </div>
-          </div>
-          <h3 class="card-title">Sanskrit</h3>
-          <p class="card-subtitle">रुचिरा तृतीयो भागः</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>श्लोकों का अन्वय, हिंदी सरलार्थ एवं शब्दार्थ.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>एकपदेन उत्तरत व पूर्णवाक्येन उत्तरत अभ्यास हल.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>संधि, कारक, विभक्ति व धातुरूप व्याख्या सहित.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 8 CBSE 2026-27</span>
-          <span class="card-btn">Open Sanskrit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- CLASS 7 SECTION (MIDDLE SCHOOL MATHEMATICS) -->
-  <!-- ========================================================================= -->
-  <section class="class-block" id="class7Block" data-class="class7">
-    <div class="class-header-card" style="border-left: 5px solid #6366f1;">
-      <div class="class-header-left">
-        <div class="class-avatar-badge" style="background: linear-gradient(135deg, #6366f1, #4338ca);">7</div>
-        <div class="class-header-info">
-          <h2>Class 7 — Middle School Solutions <span>📐</span></h2>
-          <p>Rationalized NCERT 2026-27 Curriculum • 100% Question Coverage &amp; CBSE Marking Schemes</p>
-        </div>
-      </div>
-      <div class="class-header-tags">
-        <span class="ch-pill">120 Chapters &amp; Units (5 Subjects)</span>
-        <span class="ch-pill">Step-by-Step Marking Scheme</span>
-        <span class="ch-pill">Competency &amp; HOTS</span>
-      </div>
-    </div>
-
-    <div class="subject-grid">
-      <!-- Class 7 Maths (Royal Indigo) -->
-      <a href="ncert-solutions-class-7-maths.html" class="subject-card theme-maths" data-keywords="class 7 mathematics maths integers fractions decimals data handling simple equations lines angles triangles comparing quantities rational numbers perimeter area algebraic expressions exponents symmetry visualising solid shapes">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📐</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">13 Chapters</span>
-            </div>
-          </div>
-          <h3 class="card-title">Mathematics</h3>
-          <p class="card-subtitle">Class 7 NCERT Mathematics (Rationalized Edition)</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>All 13 chapters: Integers to Visualising Solid Shapes.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Step-by-step CBSE marking schemes (1M, 2M, 3M, 4M).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Competency-Based Questions (CBQs), Case Studies &amp; HOTS.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 7 CBSE 2026-27</span>
-          <span class="card-btn">Open Maths <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 7 Science (Emerald Green) -->
-      <a href="ncert-solutions-class-7-science.html" class="subject-card theme-science" data-keywords="class 7 science ncert solutions nutrition in plants nutrition in animals heat acids bases salts physical chemical changes respiration organisms transportation reproduction motion time electric current light forests wastewater">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🔬</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">13 Chapters</span>
-            </div>
-          </div>
-          <h3 class="card-title">Science</h3>
-          <p class="card-subtitle">Class 7 NCERT Science (Rationalized Edition)</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>All 13 chapters: Nutrition in Plants to Wastewater Story.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Step-by-step CBSE marking schemes (1M, 2M, 3M, 5M).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Competency-Based Questions (CBQs), Case Studies &amp; HOTS.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 7 CBSE 2026-27</span>
-          <span class="card-btn">Open Science <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 7 English (Ocean Blue) -->
-      <a href="ncert-solutions-class-7-english.html" class="subject-card theme-english" data-keywords="class 7 english ncert solutions honeycomb an alien hand three questions gift of chappals gopal hilsa fish ashes made trees bloom quality expert detectives invention vita wonk squirrel rebel shed chivvy trees talking fan meadow surprises garden snake tiny teacher bringing up kari golu grows nose chandni bear story tiger in house alien hand">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">📖</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">23 Units</span>
-            </div>
-          </div>
-          <h3 class="card-title">English</h3>
-          <p class="card-subtitle">Honeycomb &amp; An Alien Hand (Rationalized Edition)</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>All 23 units: 8 Prose, 8 Poems, 7 Supplementary Chapters.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Step-by-step CBSE marking schemes (1M, 2M, 3M, 5M).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Poetic Devices, Intext Checks, Chapter Exercises &amp; CBQs.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 7 CBSE 2026-27</span>
-          <span class="card-btn">Open English <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 7 Social Science (SST) -->
-      <a href="ncert-solutions-class-7-sst.html" class="subject-card theme-sst" data-keywords="class 7 social science sst ncert solutions history geography civics our pasts ii our environment social and political life ii tracing changes kings kingdoms delhi sultans mughals tribes nomads devotional paths regional cultures eighteenth century environment inside our earth our changing earth air water tropical subtropical deserts on equality health government state government boys girls women change media markets shirt in market">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🌍</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">23 Chapters</span>
-            </div>
-          </div>
-          <h3 class="card-title">Social Science (SST)</h3>
-          <p class="card-subtitle">History, Geography &amp; Civics (Rationalized Edition)</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>All 23 chapters: 8 History, 7 Geography, 8 Civics.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Step-by-step CBSE marking schemes (1M, 2M, 3M, 5M).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Give Reasons, Maps, Intext &amp; Competency-Based Case Studies.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 7 CBSE 2026-27</span>
-          <span class="card-btn">Open Social Science <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Class 7 Hindi (Saffron / Amber) -->
-      <a href="ncert-solutions-class-7-hindi.html" class="subject-card theme-hindi" data-keywords="class 7 hindi ncert solutions vasant bhag 2 bal mahabharat katha durva hum panchi unmukt gagan ke dadi maa himalaya ki betiyan kathputli mithaiwala rakt aur hamara sharir papa kho gaye sham ek kisan chidiya ki bacchi apurv anubhav rahim ke dohe kancha ek tinka khanpan ki badalti tasveer neelkanth bhor aur barkha veer kunwar singh dhanraj pillay ashram ka anumanit vyay viplav gayan devvrat bhishma pratijna kunti vidur karna drona lakshagriha draupadi swayamvar indraprastha chausar vanvas ajnatvas virat shanti doot krishna kurukshetra yuddha abhimanyu jayadrath vadh durva chidiya aur churungun robot gubbare par cheeta thodi dharti paun garo pustakein jo amar hain kabuliwala visvesvaraya pongal jwalkaribai sudha chandran">
-        <div>
-          <div class="card-top">
-            <div class="card-icon-container">🇮🇳</div>
-            <div class="card-badge-row">
-              <span class="status-badge"><span class="dot"></span> Live Now</span>
-              <span class="units-count-pill">48 Units</span>
-            </div>
-          </div>
-          <h3 class="card-title">Hindi</h3>
-          <p class="card-subtitle">वसंत भाग-2, बाल महाभारत कथा &amp; दूर्वा भाग-2 (CBSE 2026-27)</p>
-          <ul class="card-highlights">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>All 48 units: 20 Vasant, 10 Bal Mahabharat, 18 Durva.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Complete step-by-step CBSE marking schemes (1M, 2M, 3M, 5M).</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>भाषा की बात (व्याकरण), पाठ सार, चरित्र-चित्रण &amp; मूल्यपरक HOTS.</span></li>
-          </ul>
-        </div>
-        <div class="card-bottom">
-          <span class="card-edition-note">Class 7 CBSE 2026-27</span>
-          <span class="card-btn">Open Hindi <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
   <!-- TRUST & PEDAGOGICAL HIGHLIGHTS -->
-  <!-- ========================================================================= -->
   <section class="trust-section">
-    <h3 class="trust-title">Why OlympiadQuiz NCERT Solutions Stand Out</h3>
-    <p class="trust-subtitle">Engineered to help students score 100% in school and CBSE Board Examinations with crystal-clear explanations.</p>
     <div class="trust-grid">
       <div class="trust-item">
         <div class="trust-icon-box" style="background:#e0e7ff;color:#4f46e5;">🎯</div>
-        <div>
-          <h4>CBSE Marking Scheme</h4>
-          <p>Every answer is organized in the exact format CBSE evaluators look for: Given, Formula, Steps, and Conclusion.</p>
-        </div>
+        <h3>CBSE Marking Scheme</h3>
+        <p>Complete step-by-step mark allocations structured for board &amp; school evaluations.</p>
       </div>
       <div class="trust-item">
         <div class="trust-icon-box" style="background:#ecfdf5;color:#059669;">📐</div>
-        <div>
-          <h4>Mathematical Rigor</h4>
-          <p>Equations rendered with MathJax, complete proofs, zero skipped intermediate calculation steps.</p>
-        </div>
+        <h3>Mathematical Rigor</h3>
+        <p>Complete derivations, exact proofs, and zero skipped intermediate steps.</p>
       </div>
       <div class="trust-item">
         <div class="trust-icon-box" style="background:#f0fdfa;color:#0d9488;">🧠</div>
-        <div>
-          <h4>Competency &amp; HOTS</h4>
-          <p>Case study questions and assertion-reason problems built strictly on NEP 2020 competency guidelines.</p>
-        </div>
+        <h3>Competency Based</h3>
+        <p>Case study questions and assertion-reason problems built on NEP 2020 guidelines.</p>
       </div>
       <div class="trust-item">
         <div class="trust-icon-box" style="background:#fff7ed;color:#ea580c;">⚡</div>
-        <div>
-          <h4>100% Free &amp; Fast</h4>
-          <p>Instant loading with offline fallback bundle support. Zero paywalls, zero registration required.</p>
-        </div>
+        <h3>100% Free Access</h3>
+        <p>Instant loading with full mobile responsiveness. Zero paywalls, no login required.</p>
       </div>
     </div>
   </section>
-
-  <!-- ========================================================================= -->
-  <!-- NOTICE FOR UPCOMING CLASSES -->
-  <!-- ========================================================================= -->
-  <div class="other-classes-notice">
-    <h3>Looking for Class 6, 11, or 12 NCERT Solutions?</h3>
-    <p>Solutions for Classes 1 to 6 and Classes 11 &amp; 12 are currently under development by our senior subject matter experts for the 2026-27 rationalized curriculum. They will be launched soon!</p>
-  </div>
 
 </main>
 
 <!-- FOOTER -->
 <footer class="page-footer">
-  <p>© 2026 OlympiadQuiz — <a href="index.html">Home</a> · <a href="ncert-solutions.html">NCERT Solutions Hub</a> · <a href="blog.html">Success Guides</a> · <a href="mock.html">Free Mock Tests</a></p>
+  <p>© 2026 OlympiadQuiz — <a href="index.html">Home</a> · <a href="ncert-solutions.html">NCERT Solutions Hub</a> · <a href="dashboard.html">Dashboard</a> · <a href="mock.html">Free Mock Tests</a></p>
 </footer>
 
-<!-- INTERACTIVE SCRIPTS -->
+<!-- SCRIPTS -->
 <script>
   // Mobile navigation drawer
   const mobileToggle = document.getElementById('mobile-menu-toggle');
@@ -1493,87 +655,144 @@
     });
   }
 
-  // Handle class selection
-  function selectClass(clsKey) {
-    const blocks = document.querySelectorAll('.class-block');
-    const tabs = document.querySelectorAll('.tab-btn');
-    const dropdown = document.getElementById('classSelectDropdown');
+  // Data mapping: Class -> Available Subjects with URLs
+  const ncertSolutionsMap = {
+    "7": {
+      name: "Class 7",
+      subjects: [
+        { name: "Mathematics", url: "ncert-solutions-class-7-maths.html" },
+        { name: "Science", url: "ncert-solutions-class-7-science.html" },
+        { name: "Social Science", url: "ncert-solutions-class-7-sst.html" },
+        { name: "English", url: "ncert-solutions-class-7-english.html" },
+        { name: "Hindi", url: "ncert-solutions-class-7-hindi.html" }
+      ]
+    },
+    "8": {
+      name: "Class 8",
+      subjects: [
+        { name: "Mathematics", url: "ncert-solutions-class-8-maths.html" },
+        { name: "Science", url: "ncert-solutions-class-8-science.html" },
+        { name: "Social Science", url: "ncert-solutions-class-8-sst.html" },
+        { name: "English", url: "ncert-solutions-class-8-english.html" },
+        { name: "Hindi", url: "ncert-solutions-class-8-hindi.html" },
+        { name: "Sanskrit", url: "ncert-solutions-class-8-sanskrit.html" }
+      ]
+    },
+    "9": {
+      name: "Class 9",
+      subjects: [
+        { name: "Mathematics", url: "ncert-solutions-class-9-maths.html" },
+        { name: "Science", url: "ncert-solutions-class-9-science.html" },
+        { name: "Social Science", url: "ncert-solutions-class-9-social-science.html" },
+        { name: "English", url: "ncert-solutions-class-9-english.html" },
+        { name: "Hindi", url: "ncert-solutions-class-9-hindi.html" }
+      ]
+    },
+    "10": {
+      name: "Class 10",
+      subjects: [
+        { name: "Mathematics", url: "ncert-solutions-class-10-maths.html" },
+        { name: "Science", url: "ncert-solutions-class-10-science.html" },
+        { name: "Social Science", url: "ncert-solutions-class-10-social-science.html" }
+      ]
+    }
+  };
 
-    // 1. Update dropdown value
-    if (dropdown && dropdown.value !== clsKey) {
-      dropdown.value = clsKey;
+  const classSelect = document.getElementById('classSelect');
+  const subjectSelect = document.getElementById('subjectSelect');
+  const selectionAlert = document.getElementById('selectionAlert');
+
+  // Triggered when Class dropdown changes
+  function onClassChange() {
+    const selectedClass = classSelect.value;
+    hideAlert();
+
+    // Reset and repopulate subject dropdown
+    subjectSelect.innerHTML = '';
+
+    if (!selectedClass || !ncertSolutionsMap[selectedClass]) {
+      subjectSelect.disabled = true;
+      const defOption = document.createElement('option');
+      defOption.value = '';
+      defOption.textContent = '-- Select Class First --';
+      defOption.disabled = true;
+      defOption.selected = true;
+      subjectSelect.appendChild(defOption);
+      return;
     }
 
-    // 2. Update active tab
-    tabs.forEach(tab => {
-      tab.classList.toggle('active', tab.dataset.class === clsKey);
+    // Enable subject select
+    subjectSelect.disabled = false;
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = '-- Choose Subject --';
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    subjectSelect.appendChild(defaultOption);
+
+    const subjects = ncertSolutionsMap[selectedClass].subjects;
+    subjects.forEach(sub => {
+      const opt = document.createElement('option');
+      opt.value = sub.url;
+      opt.textContent = sub.name;
+      subjectSelect.appendChild(opt);
     });
 
-    // 3. Show/hide blocks
-    blocks.forEach(block => {
-      if (clsKey === 'all') {
-        block.classList.remove('hidden');
-      } else {
-        if (block.id === clsKey + 'Block' || block.dataset.class === clsKey) {
-          block.classList.remove('hidden');
-        } else {
-          block.classList.add('hidden');
-        }
-      }
-    });
+    // Update URL hash smoothly without reloading
+    history.replaceState(null, null, '#class' + selectedClass);
+  }
 
-    // 4. Update URL hash without jumping
-    if (clsKey !== 'all') {
-      history.replaceState(null, null, '#' + clsKey);
-    } else {
-      history.replaceState(null, null, '#all');
+  function onSubjectChange() {
+    hideAlert();
+  }
+
+  // Navigate to selected solution
+  function goToSolution() {
+    const classVal = classSelect.value;
+    const subjectUrl = subjectSelect.value;
+
+    if (!classVal) {
+      showAlert('Please select your Class first.');
+      classSelect.focus();
+      return;
     }
+
+    if (!subjectUrl) {
+      showAlert('Please select a Subject to continue.');
+      subjectSelect.focus();
+      return;
+    }
+
+    // Navigate to that class and subject NCERT solution
+    window.location.href = subjectUrl;
   }
 
-  function onDropdownChange(val) {
-    selectClass(val);
+  function showAlert(msg) {
+    selectionAlert.textContent = msg;
+    selectionAlert.style.display = 'block';
   }
 
-  // Filter subject cards by search input
-  function filterSubjectCards(query) {
-    const q = query.trim().toLowerCase();
-    const cards = document.querySelectorAll('.subject-card');
-
-    cards.forEach(card => {
-      const text = card.textContent.toLowerCase();
-      const keywords = (card.dataset.keywords || '').toLowerCase();
-      const matches = text.includes(q) || keywords.includes(q);
-      card.style.display = matches ? 'flex' : 'none';
-    });
+  function hideAlert() {
+    selectionAlert.style.display = 'none';
   }
 
-  // Handle URL hash on initial load
-  window.addEventListener('DOMContentLoaded', () => {
+  // Handle URL hash on initial load or back/forward navigation
+  function initFromHash() {
     const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (hash === 'class10' || hash === '10') {
-      selectClass('class10');
-    } else if (hash === 'class9' || hash === '9') {
-      selectClass('class9');
-    } else if (hash === 'class8' || hash === '8') {
-      selectClass('class8');
-    } else if (hash === 'class7' || hash === '7') {
-      selectClass('class7');
-    } else if (hash === 'all') {
-      selectClass('all');
-    } else {
-      // Default to Class 10 (most in-demand board class) or all
-      selectClass('all');
-    }
-  });
+    let classVal = '';
+    if (hash === 'class7' || hash === '7') classVal = '7';
+    else if (hash === 'class8' || hash === '8') classVal = '8';
+    else if (hash === 'class9' || hash === '9') classVal = '9';
+    else if (hash === 'class10' || hash === '10') classVal = '10';
 
-  window.addEventListener('hashchange', () => {
-    const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (hash === 'class10' || hash === '10') selectClass('class10');
-    else if (hash === 'class9' || hash === '9') selectClass('class9');
-    else if (hash === 'class8' || hash === '8') selectClass('class8');
-    else if (hash === 'class7' || hash === '7') selectClass('class7');
-    else if (hash === 'all') selectClass('all');
-  });
+    if (classVal) {
+      classSelect.value = classVal;
+      onClassChange();
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', initFromHash);
+  window.addEventListener('hashchange', initFromHash);
 </script>
 
 </body>
