@@ -1,0 +1,705 @@
+const fs = require('fs');
+const path = require('path');
+
+const ch1Content = fs.readFileSync(path.join(__dirname, '..', 'chapters-c10e', 'ch1.html'), 'utf8');
+
+const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NCERT Solutions for Class 10 English (First Flight &amp; Footprints) CBSE 2026-27 | OlympiadQuiz</title>
+  <meta name="description" content="Comprehensive Class 10 English NCERT Solutions for First Flight (Prose &amp; Poems) and Footprints without Feet supplementary reader. 100% textbook questions, step-by-step CBSE marking schemes &amp; competency questions.">
+  <meta name="keywords" content="ncert solutions class 10 english, first flight class 10 solutions, footprints without feet class 10 solutions, cbse class 10 english question answers 2026-27">
+  <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-10-english.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OlympiadQuiz">
+  <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-10-english.html">
+  <meta property="og:title" content="NCERT Solutions for Class 10 English (First Flight &amp; Footprints) CBSE 2026-27 | OlympiadQuiz">
+  <meta property="og:description" content="Comprehensive Class 10 English NCERT Solutions for First Flight (Prose &amp; Poems) and Footprints without Feet supplementary reader. 100% textbook questions, step-by-step CBSE marking schemes &amp; competency questions.">
+  <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@OlympiadQuiz">
+  <meta name="twitter:title" content="NCERT Solutions for Class 10 English (First Flight &amp; Footprints) CBSE 2026-27 | OlympiadQuiz">
+  <meta name="twitter:description" content="Comprehensive Class 10 English NCERT Solutions for First Flight (Prose &amp; Poems) and Footprints without Feet supplementary reader. 100% textbook questions, step-by-step CBSE marking schemes &amp; competency questions.">
+  <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
+
+  <!-- Search Engine Crawling -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://olympiadquiz.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "NCERT Solutions",
+        "item": "https://olympiadquiz.org/ncert-solutions.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Class 10",
+        "item": "https://olympiadquiz.org/ncert-solutions.html#class10"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "English",
+        "item": "https://olympiadquiz.org/ncert-solutions-class-10-english.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org LearningResource -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "NCERT Solutions for Class 10 English (First Flight & Footprints without Feet) CBSE 2026-27 | OlympiadQuiz",
+    "description": "Comprehensive Class 10 English NCERT Solutions for First Flight (Prose & Poems) and Footprints without Feet supplementary reader. 100% textbook questions, step-by-step CBSE marking schemes & competency questions.",
+    "educationalLevel": "CBSE Class 10",
+    "learningResourceType": "Textbook Solutions",
+    "inLanguage": "en",
+    "publisher": {
+      "@type": "Organization",
+      "name": "OlympiadQuiz",
+      "url": "https://olympiadquiz.org/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://olympiadquiz.org/favicon.png"
+      }
+    }
+  }
+  </script>
+
+  <!-- Schema.org FAQPage for Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are these Class 10 English NCERT solutions updated for the CBSE 2026-27 Board Exam?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all 28 units across First Flight Prose (9), First Flight Poems (10), and Footprints without Feet (9) strictly adhere to the latest rationalized NCERT textbooks and official CBSE 2026-27 Board guidelines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do these solutions provide step-by-step CBSE marking schemes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, every question features an explicit CBSE marking scheme breakdown with point-by-point mark allocations (1M, 2M, 3M, 5M, and 6M) aligned with official board evaluation rubrics."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are Competency-Based Questions (CBQs), Extract Questions, and HOTS included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, each unit incorporates competency-based case studies, extract-based analytical items, and Higher Order Thinking Skills (HOTS) questions in line with NEP 2020."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is registration or payment required to read these Class 10 English solutions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, all Class 10 NCERT solutions on OlympiadQuiz are 100% free with instant access and zero paywalls or mandatory account sign-up."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--brand:#0284c7;--brand-hover:#0369a1;--brand-light:#f0f9ff;--brand-text:#0369a1;--navy:#0f172a;--slate:#334155;--muted:#64748b;--light-bg:#f8fafc;--border:#e2e8f0;--shadow:0 4px 6px -1px rgba(0,0,0,0.05);--shadow-hover:0 10px 15px -3px rgba(0,0,0,0.1);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:var(--light-bg);color:var(--slate);line-height:1.6;}
+    .top-progress{position:fixed;top:0;left:0;height:3px;background:var(--brand);z-index:1000;transition:width .1s;}
+    .navbar{background:#0f172a;border-bottom:1px solid rgba(255,255,255,0.08);position:sticky;top:0;z-index:900;}
+    .navbar-inner{max-width:1380px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .navbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .logo-text{font-size:1.15rem;font-weight:800;color:white;}
+    .logo-text span{color:#38bdf8;}
+    .navbar-links{display:flex;align-items:center;gap:8px;}
+    .nav-link{color:#94a3b8;font-size:0.85rem;font-weight:600;padding:6px 12px;border-radius:8px;text-decoration:none;transition:0.2s;display:flex;align-items:center;gap:4px;}
+    .nav-link:hover{color:white;background:rgba(255,255,255,0.06);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown:hover .nav-dropdown-content{display:block !important;}
+    .nav-dropdown-content{display:none;position:absolute;top:100%;left:0;background:white;border:1px solid #e2e8f0;border-radius:10px;min-width:230px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:1000;padding:6px;}
+    .nav-dropdown-content a{display:block;padding:8px 14px;color:#334155;text-decoration:none;font-size:0.85rem;border-radius:6px;transition:0.2s;}
+    .nav-dropdown-content a:hover{background:#f1f5f9;color:#0f172a !important;}
+    .navbar-actions{display:flex;align-items:center;gap:10px;}
+    .btn-login{background:#0284c7;color:white;font-size:0.82rem;font-weight:700;padding:7px 18px;border-radius:8px;text-decoration:none;transition:0.2s;}
+    .btn-login:hover{background:#0369a1;}
+    .navbar-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;}
+    .navbar-toggle span{display:block;width:22px;height:2px;background:white;border-radius:2px;}
+    
+    .hero-banner{background:linear-gradient(135deg,#0c4a6e 0%,#0f172a 100%);color:white;padding:36px 24px;text-align:center;border-bottom:3px solid var(--brand);}
+    .hero-banner h1{font-size:1.85rem;font-weight:800;margin-bottom:8px;}
+    .hero-banner p{color:#bae6fd;font-size:.95rem;max-width:820px;margin:0 auto 16px;}
+    .hero-badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+    .hero-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:600;color:#e2e8f0;}
+    
+    .breadcrumb-bar{background:white;border-bottom:1px solid var(--border);padding:14px 36px;position:sticky;top:60px;z-index:800;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+    .breadcrumb-controls{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
+    .breadcrumb-label{font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--muted);letter-spacing:.06em;}
+    .book-tabs{display:flex;gap:6px;flex-wrap:wrap;}
+    .book-tab{padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:#f8fafc;color:var(--slate);transition:all 0.18s;}
+    .book-tab:hover{border-color:var(--brand);color:var(--brand-text);background:var(--brand-light);}
+    .book-tab.active{background:var(--brand);color:white;border-color:var(--brand);box-shadow:0 2px 8px rgba(2,132,199,0.3);}
+    
+    .breadcrumb-chips{display:flex;gap:6px;flex-wrap:wrap;max-height:85px;overflow-y:auto;}
+    .bc-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:.75rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#f8fafc;color:var(--slate);transition:all .18s;user-select:none;}
+    .bc-chip:hover{border-color:var(--brand);color:var(--brand-text);background:var(--brand-light);}
+    .bc-chip.active{background:var(--brand);color:white;border-color:var(--brand);box-shadow:0 3px 10px rgba(2,132,199,.35);}
+    .bc-chip .bc-n{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:rgba(0,0,0,.12);border-radius:50%;font-size:.65rem;font-weight:800;}
+    .bc-chip.active .bc-n{background:rgba(255,255,255,.25);}
+    
+    .main-layout{display:flex;max-width:1380px;margin:0 auto;}
+    .sidebar{width:320px;background:white;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:152px;height:calc(100vh - 152px);overflow-y:auto;flex-shrink:0;}
+    .sidebar-title{font-size:.82rem;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.05em;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
+    .search-box{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;margin-bottom:16px;font-family:inherit;}
+    .search-box:focus{outline:none;border-color:var(--brand);}
+    .sidebar-group-title{font-size:0.75rem;font-weight:800;text-transform:uppercase;color:var(--brand);letter-spacing:0.05em;margin:14px 0 6px 8px;display:flex;align-items:center;gap:6px;}
+    .chapter-nav{list-style:none;margin-bottom:14px;}
+    .chapter-nav li{margin-bottom:3px;}
+    .chapter-nav li a{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;color:var(--slate);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .15s;cursor:pointer;}
+    .chapter-nav li a:hover{background:var(--brand-light);color:var(--brand-text);}
+    .chapter-nav li a.active{background:var(--brand);color:white;}
+    .ch-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:rgba(0,0,0,.1);border-radius:50%;font-size:.68rem;font-weight:800;flex-shrink:0;}
+    .chapter-nav li a.active .ch-num{background:rgba(255,255,255,.25);}
+    
+    .main-content{flex:1;padding:28px 36px 60px;max-width:920px;}
+    .chapter-header{background:linear-gradient(135deg,#0c4a6e,#0f172a);color:white;padding:24px 28px;border-radius:16px;margin-bottom:24px;box-shadow:var(--shadow-hover);display:flex;align-items:center;gap:20px;}
+    .ch-badge{width:50px;height:50px;background:rgba(255,255,255,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:900;flex-shrink:0;}
+    .ch-category{font-size:0.72rem;font-weight:800;letter-spacing:0.06em;color:#7dd3fc;margin-bottom:4px;}
+    .chapter-header-info h2{font-size:1.3rem;font-weight:800;margin-bottom:4px;}
+    .chapter-header-info p{font-size:.85rem;color:#bae6fd;line-height:1.4;}
+    
+    .poem-display-box{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #bae6fd;border-radius:12px;padding:20px 24px;margin-bottom:24px;box-shadow:var(--shadow);}
+    .poem-body{font-family:Georgia,serif;font-style:italic;line-height:1.9;color:#0369a1;white-space:pre-line;font-size:0.95rem;}
+    .poet-name{text-align:right;font-weight:700;color:#0c4a6e;margin-top:10px;font-size:0.9rem;}
+    
+    .ex-div{background:#f1f5f9;color:var(--navy);font-weight:800;font-size:.88rem;padding:10px 16px;border-radius:8px;margin:28px 0 16px;border-left:4px solid var(--brand);}
+    .q-card{background:white;border:1px solid var(--border);border-radius:12px;margin-bottom:14px;box-shadow:var(--shadow);transition:box-shadow .2s;overflow:hidden;}
+    .q-card:hover{box-shadow:var(--shadow-hover);}
+    .q-head{display:flex;align-items:flex-start;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;}
+    .q-num{min-width:36px;height:36px;background:var(--brand);color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;flex-shrink:0;}
+    .q-text{flex:1;font-size:.9rem;font-weight:600;color:var(--slate);line-height:1.55;}
+    .q-marks{font-size:.75rem;font-weight:700;color:var(--brand-text);background:var(--brand-light);padding:4px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0;}
+    .q-toggle{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0;}
+    .q-toggle svg{width:18px;height:18px;}
+    .q-answer{display:none;border-top:1px solid var(--border);}
+    .q-answer.open{display:block;}
+    .answer-box{padding:20px 24px;background:#ffffff;}
+    .answer-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--brand-text);margin-bottom:12px;}
+    .answer-text{font-size:.9rem;line-height:1.75;color:var(--slate);}
+    .answer-text p{margin-bottom:10px;}
+    .answer-text ul,.answer-text ol{padding-left:22px;margin-bottom:10px;}
+    .answer-text li{margin-bottom:6px;}
+    .answer-text strong{color:var(--navy);}
+    .answer-text blockquote{border-left:3px solid var(--brand);padding-left:14px;margin:10px 0;font-style:italic;color:#0369a1;background:#f0f9ff;padding:8px 12px;border-radius:4px;}
+    
+    .marking-scheme{margin-top:16px;padding-top:14px;border-top:1px dashed var(--border);background:#fafafa;padding:12px 16px;border-radius:8px;}
+    .marking-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:8px;}
+    .marking-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #f1f5f9;font-size:.82rem;gap:12px;}
+    .marking-key{color:var(--slate);font-weight:500;}
+    .marking-marks{font-weight:700;color:var(--brand-text);background:var(--brand-light);padding:2px 8px;border-radius:4px;white-space:nowrap;}
+    
+    .cbq-section{background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border:2px solid #bae6fd;border-radius:14px;padding:22px;margin-top:28px;}
+    .cbq-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+    .cbq-header span:first-child{font-size:.88rem;font-weight:800;color:#0369a1;}
+    .cbq-badge{background:#0284c7;color:white;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700;}
+    .cbq-card{background:white;border-radius:10px;padding:16px 18px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+    .cbq-type{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+    .cbq-question{font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:12px;line-height:1.6;}
+    .cbq-show-btn{background:#0284c7;color:white;border:none;padding:7px 16px;border-radius:6px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.2s;}
+    .cbq-show-btn:hover{background:#0369a1;}
+    .cbq-answer{display:none;margin-top:14px;padding-top:12px;border-top:1px solid #f1f5f9;font-size:.88rem;line-height:1.7;color:var(--slate);}
+    .cbq-answer.open{display:block;}
+    
+    .chapter-nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:36px;padding-top:24px;border-top:1px solid var(--border);gap:12px;}
+    .ch-nav-btn{padding:10px 20px;border-radius:8px;font-size:.85rem;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:white;color:var(--slate);transition:.2s;}
+    .ch-nav-btn:hover{border-color:var(--brand);color:var(--brand);}
+    .ch-nav-btn.next{background:var(--brand);color:white;border-color:var(--brand);}
+    .ch-nav-btn.next:hover{background:var(--brand-hover);}
+    
+    .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:950;}
+    .mob-sidebar-toggle{display:none;position:fixed;bottom:20px;right:20px;z-index:900;background:var(--brand);color:white;border:none;border-radius:999px;padding:12px 22px;font-weight:700;font-size:.85rem;box-shadow:0 4px 16px rgba(2,132,199,.4);cursor:pointer;}
+    
+    @media(max-width:900px){
+      .sidebar{position:fixed;top:0;left:-330px;height:100vh;z-index:1000;transition:left .3s;box-shadow:4px 0 20px rgba(0,0,0,.2);}
+      .sidebar.open{left:0;}
+      .sidebar-overlay.show{display:block;}
+      .mob-sidebar-toggle{display:block;}
+      .main-content{padding:20px 16px 40px;}
+      .breadcrumb-bar{padding:12px 16px;top:57px;}
+    }
+  </style>
+
+  <style>
+  /* ── NCERT SUBJECT BREADCRUMB & SWITCHER ── */
+  .ncert-breadcrumb-nav {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 10px 24px;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .ncert-bc-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .ncert-bc-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    color: #64748b;
+    flex-wrap: wrap;
+  }
+  .ncert-bc-list a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s ease;
+  }
+  .ncert-bc-list a:hover {
+    color: #ff6b00;
+    text-decoration: underline;
+  }
+  .ncert-bc-sep {
+    color: #cbd5e1;
+    font-size: 0.75rem;
+  }
+  .ncert-bc-current {
+    color: #ff6b00;
+    font-weight: 700;
+  }
+  .ncert-bc-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .ncert-bc-switch-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    margin-right: 4px;
+  }
+  .ncert-bc-pill {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+  .ncert-bc-pill:hover {
+    background: #fff7ed;
+    color: #ea580c;
+    border-color: #fdba74;
+    transform: translateY(-1px);
+  }
+  .ncert-bc-pill.active {
+    background: #ff6b00;
+    color: #ffffff;
+    border-color: #ff6b00;
+    box-shadow: 0 2px 6px rgba(255,107,0,0.3);
+  }
+  @media (max-width: 768px) {
+    .ncert-breadcrumb-nav { padding: 8px 16px; }
+    .ncert-bc-switch { overflow-x: auto; width: 100%; padding-bottom: 2px; }
+  }
+  </style>
+</head>
+<body>
+<div class="top-progress" id="progressBar"></div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-logo">
+      <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+      <span class="logo-text">Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html" class="nav-link">Home</a>
+      <div class="nav-dropdown">
+        <a href="ncert-solutions.html" class="nav-link" style="color:white;font-weight:700;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="nav-dropdown-content">
+          <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
+          <a href="ncert-solutions-class-10-english.html" style="font-weight:700;color:#0284c7;background:#f0f9ff;">Class 10 English 📖 (Active)</a>
+          <a href="ncert-solutions-class-10-maths.html" style="font-weight:700;color:#4f46e5;">Class 10 Maths 📐</a>
+          <a href="ncert-solutions-class-10-science.html" style="font-weight:700;color:#059669;">Class 10 Science 🔬</a>
+          <a href="ncert-solutions-class-10-social-science.html" style="font-weight:700;color:#0d9488;">Class 10 Social Science 🏆</a>
+          <a href="ncert-solutions-class-9-english.html">Class 9 English 📖</a>
+          <a href="ncert-solutions-class-9-maths.html">Class 9 Maths</a>
+          <a href="ncert-solutions-class-9-science.html">Class 9 Science</a>
+          <a href="ncert-solutions-class-9-social-science.html">Class 9 Social Science</a>
+          <a href="ncert-solutions-class-9-hindi.html">Class 9 Hindi</a>
+          <a href="ncert-solutions-class-8-english.html">Class 8 English</a>
+          <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
+          <a href="ncert-solutions-class-8-science.html">Class 8 Science</a>
+          <a href="ncert-solutions-class-8-sst.html">Class 8 Social Science</a>
+        </div>
+      </div>
+      <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+    </div>
+    <div class="navbar-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- NCERT SUBJECT BREADCRUMB -->
+<nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
+  <div class="ncert-bc-container">
+    <ol class="ncert-bc-list">
+      <li><a href="index.html">Home</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li><a href="ncert-solutions.html#class10">Class 10</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li class="ncert-bc-current">English</li>
+    </ol>
+    <div class="ncert-bc-switch">
+      <span class="ncert-bc-switch-label">Switch Subject:</span>
+      <a href="ncert-solutions-class-10-maths.html" class="ncert-bc-pill">Maths</a>
+      <a href="ncert-solutions-class-10-science.html" class="ncert-bc-pill">Science</a>
+      <a href="ncert-solutions-class-10-social-science.html" class="ncert-bc-pill">Social Science</a>
+      <a href="ncert-solutions-class-10-english.html" class="ncert-bc-pill active">English</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-banner">
+  <h1>Class 10 English — NCERT Solutions</h1>
+  <p>Complete <strong>100% Question Coverage</strong> across <strong>all 28 units</strong>: First Flight Prose (9 Chapters), First Flight Poetry (10 Poems), and Footprints without Feet Supplementary Reader (9 Chapters). Maximum word-count answers as per CBSE Marking Scheme 2026-27 with Competency-Based &amp; Extract Questions.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">📚 First Flight Prose (9 Chapters)</span>
+    <span class="hero-badge">📝 First Flight Poetry (10 Poems)</span>
+    <span class="hero-badge">📖 Footprints without Feet (9 Chapters)</span>
+    <span class="hero-badge">🎯 100% CBSE Marking Scheme Breakdown</span>
+    <span class="hero-badge">⚡ CBQ &amp; Extract Questions</span>
+  </div>
+</header>
+
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-controls">
+    <div class="breadcrumb-label">📖 Class 10 English — Filter by Book:</div>
+    <div class="book-tabs">
+      <span class="book-tab active" onclick="filterBook('all')">🌟 All 28 Units</span>
+      <span class="book-tab" onclick="filterBook('prose')">📚 First Flight Prose (9)</span>
+      <span class="book-tab" onclick="filterBook('poetry')">📝 First Flight Poems (10)</span>
+      <span class="book-tab" onclick="filterBook('footprints')">📖 Footprints (9)</span>
+    </div>
+  </div>
+  <div class="breadcrumb-chips" id="breadcrumbChips">
+    <!-- Prose 1-9 -->
+    <span class="bc-chip active" onclick="showChapter(1)" data-ch="1" data-book="prose"><span class="bc-n">P1</span>A Letter to God</span>
+    <span class="bc-chip" onclick="showChapter(2)" data-ch="2" data-book="prose"><span class="bc-n">P2</span>Nelson Mandela</span>
+    <span class="bc-chip" onclick="showChapter(3)" data-ch="3" data-book="prose"><span class="bc-n">P3</span>Two Stories Flying</span>
+    <span class="bc-chip" onclick="showChapter(4)" data-ch="4" data-book="prose"><span class="bc-n">P4</span>Diary Anne Frank</span>
+    <span class="bc-chip" onclick="showChapter(5)" data-ch="5" data-book="prose"><span class="bc-n">P5</span>Glimpses of India</span>
+    <span class="bc-chip" onclick="showChapter(6)" data-ch="6" data-book="prose"><span class="bc-n">P6</span>Mijbil the Otter</span>
+    <span class="bc-chip" onclick="showChapter(7)" data-ch="7" data-book="prose"><span class="bc-n">P7</span>Madam Rides Bus</span>
+    <span class="bc-chip" onclick="showChapter(8)" data-ch="8" data-book="prose"><span class="bc-n">P8</span>Sermon Benares</span>
+    <span class="bc-chip" onclick="showChapter(9)" data-ch="9" data-book="prose"><span class="bc-n">P9</span>The Proposal</span>
+    <!-- Poetry 10-19 -->
+    <span class="bc-chip" onclick="showChapter(10)" data-ch="10" data-book="poetry"><span class="bc-n">Po1</span>Dust of Snow</span>
+    <span class="bc-chip" onclick="showChapter(11)" data-ch="11" data-book="poetry"><span class="bc-n">Po2</span>Fire and Ice</span>
+    <span class="bc-chip" onclick="showChapter(12)" data-ch="12" data-book="poetry"><span class="bc-n">Po3</span>Tiger in the Zoo</span>
+    <span class="bc-chip" onclick="showChapter(13)" data-ch="13" data-book="poetry"><span class="bc-n">Po4</span>Wild Animals</span>
+    <span class="bc-chip" onclick="showChapter(14)" data-ch="14" data-book="poetry"><span class="bc-n">Po5</span>The Ball Poem</span>
+    <span class="bc-chip" onclick="showChapter(15)" data-ch="15" data-book="poetry"><span class="bc-n">Po6</span>Amanda!</span>
+    <span class="bc-chip" onclick="showChapter(16)" data-ch="16" data-book="poetry"><span class="bc-n">Po7</span>The Trees</span>
+    <span class="bc-chip" onclick="showChapter(17)" data-ch="17" data-book="poetry"><span class="bc-n">Po8</span>Fog</span>
+    <span class="bc-chip" onclick="showChapter(18)" data-ch="18" data-book="poetry"><span class="bc-n">Po9</span>Custard Dragon</span>
+    <span class="bc-chip" onclick="showChapter(19)" data-ch="19" data-book="poetry"><span class="bc-n">Po10</span>For Anne Gregory</span>
+    <!-- Footprints 20-28 -->
+    <span class="bc-chip" onclick="showChapter(20)" data-ch="20" data-book="footprints"><span class="bc-n">F1</span>Triumph of Surgery</span>
+    <span class="bc-chip" onclick="showChapter(21)" data-ch="21" data-book="footprints"><span class="bc-n">F2</span>The Thief's Story</span>
+    <span class="bc-chip" onclick="showChapter(22)" data-ch="22" data-book="footprints"><span class="bc-n">F3</span>Midnight Visitor</span>
+    <span class="bc-chip" onclick="showChapter(23)" data-ch="23" data-book="footprints"><span class="bc-n">F4</span>Question of Trust</span>
+    <span class="bc-chip" onclick="showChapter(24)" data-ch="24" data-book="footprints"><span class="bc-n">F5</span>Footprints Feet</span>
+    <span class="bc-chip" onclick="showChapter(25)" data-ch="25" data-book="footprints"><span class="bc-n">F6</span>Making Scientist</span>
+    <span class="bc-chip" onclick="showChapter(26)" data-ch="26" data-book="footprints"><span class="bc-n">F7</span>The Necklace</span>
+    <span class="bc-chip" onclick="showChapter(27)" data-ch="27" data-book="footprints"><span class="bc-n">F8</span>Bholi</span>
+    <span class="bc-chip" onclick="showChapter(28)" data-ch="28" data-book="footprints"><span class="bc-n">F9</span>Book Saved Earth</span>
+  </div>
+</div>
+
+<div class="main-layout">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-title">
+      <span>28 Units</span>
+      <span style="font-size:0.75rem;color:var(--brand);font-weight:700;">CBSE 2026-27</span>
+    </div>
+    <input type="text" class="search-box" placeholder="Search chapters, poems, authors..." onkeyup="filterChapters(this.value)">
+    
+    <div class="sidebar-group-title" id="titleProse">📚 First Flight — Prose (1–9)</div>
+    <ul class="chapter-nav" id="navProse">
+      <li data-book="prose"><a onclick="showChapter(1)" class="active"><span class="ch-num">1</span>A Letter to God</a></li>
+      <li data-book="prose"><a onclick="showChapter(2)"><span class="ch-num">2</span>Nelson Mandela</a></li>
+      <li data-book="prose"><a onclick="showChapter(3)"><span class="ch-num">3</span>Two Stories about Flying</a></li>
+      <li data-book="prose"><a onclick="showChapter(4)"><span class="ch-num">4</span>From the Diary of Anne Frank</a></li>
+      <li data-book="prose"><a onclick="showChapter(5)"><span class="ch-num">5</span>Glimpses of India</a></li>
+      <li data-book="prose"><a onclick="showChapter(6)"><span class="ch-num">6</span>Mijbil the Otter</a></li>
+      <li data-book="prose"><a onclick="showChapter(7)"><span class="ch-num">7</span>Madam Rides the Bus</a></li>
+      <li data-book="prose"><a onclick="showChapter(8)"><span class="ch-num">8</span>The Sermon at Benares</a></li>
+      <li data-book="prose"><a onclick="showChapter(9)"><span class="ch-num">9</span>The Proposal</a></li>
+    </ul>
+    
+    <div class="sidebar-group-title" id="titlePoetry">📝 First Flight — Poems (10–19)</div>
+    <ul class="chapter-nav" id="navPoetry">
+      <li data-book="poetry"><a onclick="showChapter(10)"><span class="ch-num">10</span>Dust of Snow</a></li>
+      <li data-book="poetry"><a onclick="showChapter(11)"><span class="ch-num">11</span>Fire and Ice</a></li>
+      <li data-book="poetry"><a onclick="showChapter(12)"><span class="ch-num">12</span>A Tiger in the Zoo</a></li>
+      <li data-book="poetry"><a onclick="showChapter(13)"><span class="ch-num">13</span>How to Tell Wild Animals</a></li>
+      <li data-book="poetry"><a onclick="showChapter(14)"><span class="ch-num">14</span>The Ball Poem</a></li>
+      <li data-book="poetry"><a onclick="showChapter(15)"><span class="ch-num">15</span>Amanda!</a></li>
+      <li data-book="poetry"><a onclick="showChapter(16)"><span class="ch-num">16</span>The Trees</a></li>
+      <li data-book="poetry"><a onclick="showChapter(17)"><span class="ch-num">17</span>Fog</a></li>
+      <li data-book="poetry"><a onclick="showChapter(18)"><span class="ch-num">18</span>The Tale of Custard the Dragon</a></li>
+      <li data-book="poetry"><a onclick="showChapter(19)"><span class="ch-num">19</span>For Anne Gregory</a></li>
+    </ul>
+    
+    <div class="sidebar-group-title" id="titleFootprints">📖 Footprints without Feet (20–28)</div>
+    <ul class="chapter-nav" id="navFootprints">
+      <li data-book="footprints"><a onclick="showChapter(20)"><span class="ch-num">20</span>A Triumph of Surgery</a></li>
+      <li data-book="footprints"><a onclick="showChapter(21)"><span class="ch-num">21</span>The Thief's Story</a></li>
+      <li data-book="footprints"><a onclick="showChapter(22)"><span class="ch-num">22</span>The Midnight Visitor</a></li>
+      <li data-book="footprints"><a onclick="showChapter(23)"><span class="ch-num">23</span>A Question of Trust</a></li>
+      <li data-book="footprints"><a onclick="showChapter(24)"><span class="ch-num">24</span>Footprints without Feet</a></li>
+      <li data-book="footprints"><a onclick="showChapter(25)"><span class="ch-num">25</span>The Making of a Scientist</a></li>
+      <li data-book="footprints"><a onclick="showChapter(26)"><span class="ch-num">26</span>The Necklace</a></li>
+      <li data-book="footprints"><a onclick="showChapter(27)"><span class="ch-num">27</span>Bholi</a></li>
+      <li data-book="footprints"><a onclick="showChapter(28)"><span class="ch-num">28</span>The Book That Saved the Earth</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div id="chapter-content-area">
+${ch1Content}
+    </div>
+  </main>
+</div>
+
+<button class="mob-sidebar-toggle" onclick="toggleSidebar()">📖 Select Chapter</button>
+
+<script src="chapters-c10e/chapters-data.js"></script>
+<script>
+  let currentCh = 1;
+  const chaptersCache = {};
+
+  if (window.CHAPTERS_DATA) {
+    for (const [k, v] of Object.entries(window.CHAPTERS_DATA)) {
+      chaptersCache[k] = v;
+    }
+  }
+
+  function toggleQ(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const ans = el.querySelector('.q-answer');
+    if (ans) {
+      ans.classList.toggle('open');
+      const svg = el.querySelector('.q-toggle');
+      if (svg) {
+        svg.style.transform = ans.classList.contains('open') ? 'rotate(45deg)' : 'none';
+        svg.style.transition = 'transform 0.2s';
+      }
+    }
+  }
+
+  function toggleCBQ(btn) {
+    const ans = btn.nextElementSibling;
+    if (ans) {
+      ans.classList.toggle('open');
+      btn.textContent = ans.classList.contains('open') ? '▼ Hide Answer' : '▶ Show Answer';
+    }
+  }
+
+  async function showChapter(num, scroll = true) {
+    if (num < 1 || num > 28) return;
+    currentCh = num;
+
+    document.querySelectorAll('#sidebar .chapter-nav li a').forEach((a, idx) => {
+      a.classList.toggle('active', (idx + 1) === num);
+    });
+
+    document.querySelectorAll('.bc-chip').forEach(c => {
+      c.classList.toggle('active', parseInt(c.getAttribute('data-ch')) === num);
+    });
+
+    const area = document.getElementById('chapter-content-area');
+    if (chaptersCache[num]) {
+      area.innerHTML = chaptersCache[num];
+    } else {
+      try {
+        const res = await fetch(\`chapters-c10e/ch\${num}.html\`);
+        if (res.ok) {
+          const html = await res.text();
+          chaptersCache[num] = html;
+          area.innerHTML = html;
+        }
+      } catch (err) {
+        console.warn('Fetch error:', err);
+      }
+    }
+
+    history.replaceState(null, '', \`#ch\${num}\`);
+
+    if (scroll) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar && sidebar.classList.contains('open')) {
+      toggleSidebar();
+    }
+  }
+
+  function filterBook(book) {
+    document.querySelectorAll('.book-tab').forEach(t => {
+      t.classList.remove('active');
+    });
+    if (event && event.target) {
+      event.target.classList.add('active');
+    }
+
+    document.querySelectorAll('.bc-chip').forEach(c => {
+      if (book === 'all' || c.getAttribute('data-book') === book) {
+        c.style.display = 'inline-flex';
+      } else {
+        c.style.display = 'none';
+      }
+    });
+
+    const tProse = document.getElementById('titleProse');
+    const nProse = document.getElementById('navProse');
+    const tPoetry = document.getElementById('titlePoetry');
+    const nPoetry = document.getElementById('navPoetry');
+    const tFoot = document.getElementById('titleFootprints');
+    const nFoot = document.getElementById('navFootprints');
+
+    if (book === 'all') {
+      tProse.style.display = nProse.style.display = '';
+      tPoetry.style.display = nPoetry.style.display = '';
+      tFoot.style.display = nFoot.style.display = '';
+    } else if (book === 'prose') {
+      tProse.style.display = nProse.style.display = '';
+      tPoetry.style.display = nPoetry.style.display = 'none';
+      tFoot.style.display = nFoot.style.display = 'none';
+    } else if (book === 'poetry') {
+      tProse.style.display = nProse.style.display = 'none';
+      tPoetry.style.display = nPoetry.style.display = '';
+      tFoot.style.display = nFoot.style.display = 'none';
+    } else if (book === 'footprints') {
+      tProse.style.display = nProse.style.display = 'none';
+      tPoetry.style.display = nPoetry.style.display = 'none';
+      tFoot.style.display = nFoot.style.display = '';
+    }
+  }
+
+  function filterChapters(val) {
+    const q = val.toLowerCase().trim();
+    document.querySelectorAll('#sidebar .chapter-nav li').forEach(li => {
+      li.style.display = li.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('show');
+  }
+
+  document.getElementById('sidebarOverlay').addEventListener('click', toggleSidebar);
+
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progressBar').style.width = scrolled + '%';
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const match = window.location.hash.match(/^#ch(\\d+)$/);
+    if (match) {
+      const ch = parseInt(match[1]);
+      if (ch >= 1 && ch <= 28) {
+        showChapter(ch, false);
+      }
+    }
+  });
+
+  window.addEventListener('hashchange', () => {
+    const match = window.location.hash.match(/^#ch(\\d+)$/);
+    if (match) {
+      const ch = parseInt(match[1]);
+      if (ch >= 1 && ch <= 28 && ch !== currentCh) {
+        showChapter(ch, false);
+      }
+    }
+  });
+
+  const mobToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('navLinks');
+  if (mobToggle && navLinks) {
+    mobToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobToggle.classList.toggle('active');
+    });
+  }
+</script>
+</body>
+</html>
+`;
+
+fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-10-english.html'), htmlContent, 'utf8');
+console.log('Successfully generated ncert-solutions-class-10-english.html!');
