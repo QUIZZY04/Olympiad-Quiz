@@ -590,8 +590,15 @@
           <span>Select Subject:</span>
         </label>
         <div class="select-wrapper">
-          <select class="custom-select" id="subjectSelect" disabled aria-label="Select Subject" onchange="onSubjectChange()">
-            <option value="" disabled selected>-- Select Class First --</option>
+          <select class="custom-select" id="subjectSelect" aria-label="Select Subject" onchange="onSubjectChange()">
+            <option value="" disabled selected>-- Choose Subject --</option>
+            <option value="all">All Subjects</option>
+            <option value="maths">Mathematics</option>
+            <option value="science">Science</option>
+            <option value="sst">Social Science</option>
+            <option value="english">English</option>
+            <option value="hindi">Hindi</option>
+            <option value="sanskrit">Sanskrit</option>
           </select>
           <div class="select-arrow">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -604,10 +611,18 @@
 
       <!-- ACTION BUTTON -->
       <button type="submit" id="goBtn" class="btn-go-solution">
-        <span>Go to NCER solution</span>
+        <span>Go to NCERT SOlution</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </button>
     </form>
+
+    <!-- ALL SUBJECTS QUICK LIST MODAL / PANEL -->
+    <div id="allSubjectsPanel" style="display:none;margin-top:24px;padding:20px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:16px;">
+      <h3 id="allSubjectsTitle" style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <span>📚</span> Available Subjects
+      </h3>
+      <div id="allSubjectsList" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:10px;"></div>
+    </div>
   </div>
 
   <!-- TRUST & PEDAGOGICAL HIGHLIGHTS -->
@@ -706,23 +721,13 @@
   function onClassChange() {
     const selectedClass = classSelect.value;
     hideAlert();
+    const panel = document.getElementById('allSubjectsPanel');
+    if (panel) panel.style.display = 'none';
 
     // Reset and repopulate subject dropdown
+    const prevSub = subjectSelect.value;
     subjectSelect.innerHTML = '';
 
-    if (!selectedClass || !ncertSolutionsMap[selectedClass]) {
-      subjectSelect.disabled = true;
-      const defOption = document.createElement('option');
-      defOption.value = '';
-      defOption.textContent = '-- Select Class First --';
-      defOption.disabled = true;
-      defOption.selected = true;
-      subjectSelect.appendChild(defOption);
-      return;
-    }
-
-    // Enable subject select
-    subjectSelect.disabled = false;
     const defaultOption = document.createElement('option');
     defaultOption.value = '';
     defaultOption.textContent = '-- Choose Subject --';
@@ -730,26 +735,57 @@
     defaultOption.selected = true;
     subjectSelect.appendChild(defaultOption);
 
-    const subjects = ncertSolutionsMap[selectedClass].subjects;
-    subjects.forEach(sub => {
-      const opt = document.createElement('option');
-      opt.value = sub.url;
-      opt.textContent = sub.name;
-      subjectSelect.appendChild(opt);
-    });
+    // Keep "All Subjects" option
+    const allOpt = document.createElement('option');
+    allOpt.value = 'all';
+    allOpt.textContent = '🌟 All Subjects';
+    subjectSelect.appendChild(allOpt);
 
-    // Update URL hash smoothly without reloading
-    history.replaceState(null, null, '#class' + selectedClass);
+    if (selectedClass && ncertSolutionsMap[selectedClass]) {
+      const subjects = ncertSolutionsMap[selectedClass].subjects;
+      subjects.forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub.url;
+        opt.textContent = sub.name;
+        subjectSelect.appendChild(opt);
+      });
+      // Update URL hash smoothly without jumping
+      history.replaceState(null, null, '#class' + selectedClass);
+    } else {
+      const genericSubjects = [
+        { name: "Mathematics", key: "maths" },
+        { name: "Science", key: "science" },
+        { name: "Social Science", key: "sst" },
+        { name: "English", key: "english" },
+        { name: "Hindi", key: "hindi" },
+        { name: "Sanskrit", key: "sanskrit" }
+      ];
+      genericSubjects.forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub.key;
+        opt.textContent = sub.name;
+        subjectSelect.appendChild(opt);
+      });
+    }
+
+    if (prevSub === 'all') {
+      subjectSelect.value = 'all';
+    }
   }
 
   function onSubjectChange() {
     hideAlert();
+    const panel = document.getElementById('allSubjectsPanel');
+    if (panel) panel.style.display = 'none';
   }
 
   // Navigate to selected solution
   function goToSolution() {
     const classVal = classSelect.value;
-    const subjectUrl = subjectSelect.value;
+    const subjectVal = subjectSelect.value;
+    const panel = document.getElementById('allSubjectsPanel');
+    const list = document.getElementById('allSubjectsList');
+    const title = document.getElementById('allSubjectsTitle');
 
     if (!classVal) {
       showAlert('Please select your Class first.');
@@ -757,14 +793,48 @@
       return;
     }
 
-    if (!subjectUrl) {
+    if (!subjectVal) {
       showAlert('Please select a Subject to continue.');
       subjectSelect.focus();
       return;
     }
 
+    // If "All Subjects" is selected
+    if (subjectVal === 'all') {
+      const classInfo = ncertSolutionsMap[classVal];
+      if (classInfo && classInfo.subjects.length > 0) {
+        title.innerHTML = `<span>📚</span> ${classInfo.name} — All Available Subjects:`;
+        list.innerHTML = '';
+        classInfo.subjects.forEach(sub => {
+          const btn = document.createElement('a');
+          btn.href = sub.url;
+          btn.textContent = sub.name + ' →';
+          btn.style.cssText = 'display:block;padding:12px 16px;background:white;color:#0f172a;border:1.5px solid #cbd5e1;border-radius:12px;font-weight:700;font-size:0.9rem;text-decoration:none;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.03);transition:all 0.2s ease;';
+          btn.onmouseover = () => { btn.style.background = '#ff6b00'; btn.style.color = '#fff'; btn.style.borderColor = '#ff6b00'; };
+          btn.onmouseout = () => { btn.style.background = '#fff'; btn.style.color = '#0f172a'; btn.style.borderColor = '#cbd5e1'; };
+          list.appendChild(btn);
+        });
+        panel.style.display = 'block';
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+    }
+
+    // Specific subject navigation
+    let targetUrl = subjectVal;
+    if (!targetUrl.endsWith('.html')) {
+      const classInfo = ncertSolutionsMap[classVal];
+      const match = classInfo.subjects.find(s => s.url.includes(targetUrl));
+      if (match) {
+        targetUrl = match.url;
+      } else {
+        showAlert('This subject is not available for ' + classInfo.name + '. Please choose another.');
+        return;
+      }
+    }
+
     // Navigate to that class and subject NCERT solution
-    window.location.href = subjectUrl;
+    window.location.href = targetUrl;
   }
 
   function showAlert(msg) {

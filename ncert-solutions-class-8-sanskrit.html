@@ -178,6 +178,98 @@
       .hero-banner h1{font-size:1.4rem;}
     }
   </style>
+
+<style>
+/* ── NCERT SUBJECT BREADCRUMB & SWITCHER ── */
+.ncert-breadcrumb-nav {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 24px;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.ncert-bc-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.ncert-bc-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+  flex-wrap: wrap;
+}
+.ncert-bc-list a {
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+.ncert-bc-list a:hover {
+  color: #ff6b00;
+  text-decoration: underline;
+}
+.ncert-bc-sep {
+  color: #cbd5e1;
+  font-size: 0.75rem;
+}
+.ncert-bc-current {
+  color: #ff6b00;
+  font-weight: 700;
+}
+.ncert-bc-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ncert-bc-switch-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  margin-right: 4px;
+}
+.ncert-bc-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+.ncert-bc-pill:hover {
+  background: #fff7ed;
+  color: #ea580c;
+  border-color: #fdba74;
+  transform: translateY(-1px);
+}
+.ncert-bc-pill.active {
+  background: #ff6b00;
+  color: #ffffff;
+  border-color: #ff6b00;
+  box-shadow: 0 2px 6px rgba(255,107,0,0.3);
+}
+@media (max-width: 768px) {
+  .ncert-breadcrumb-nav { padding: 8px 16px; }
+  .ncert-bc-switch { overflow-x: auto; width: 100%; padding-bottom: 2px; }
+}
+</style>
 </head>
 <body>
 
@@ -221,6 +313,31 @@
     </div>
   </div>
 </nav>
+
+<!-- NCERT SUBJECT BREADCRUMB -->
+<nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
+  <div class="ncert-bc-container">
+    <ol class="ncert-bc-list">
+      <li><a href="index.html">Home</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li><a href="ncert-solutions.html#class8">Class 8</a></li>
+      <li class="ncert-bc-sep">/</li>
+      <li class="ncert-bc-current">Sanskrit</li>
+    </ol>
+    <div class="ncert-bc-switch">
+      <span class="ncert-bc-switch-label">Switch Subject:</span>
+      <a href="ncert-solutions-class-8-maths.html" class="ncert-bc-pill">Maths</a>
+      <a href="ncert-solutions-class-8-science.html" class="ncert-bc-pill">Science</a>
+      <a href="ncert-solutions-class-8-sst.html" class="ncert-bc-pill">Social Science</a>
+      <a href="ncert-solutions-class-8-english.html" class="ncert-bc-pill">English</a>
+      <a href="ncert-solutions-class-8-hindi.html" class="ncert-bc-pill">Hindi</a>
+      <a href="ncert-solutions-class-8-sanskrit.html" class="ncert-bc-pill active">Sanskrit</a>
+    </div>
+  </div>
+</nav>
+
 
 <header class="hero-banner">
   <h1>कक्षा 8 संस्कृत — रुचिरा भाग-3 | NCERT समाधान</h1>
