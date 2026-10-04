@@ -48,7 +48,7 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Which classes are covered in OlympiadQuiz NCERT Solutions?",
+        "name": "Which classes and subjects are covered in OlympiadQuiz NCERT Solutions?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "OlympiadQuiz provides 100% comprehensive NCERT textbook solutions for Class 7, Class 8, Class 9, and Class 10 across Mathematics, Science, Social Science, English, Hindi, and Sanskrit."
@@ -59,7 +59,7 @@
         "name": "Are these NCERT solutions updated for the latest 2026-27 CBSE syllabus?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, all solutions strictly follow the latest rationalized NCERT curriculum and CBSE Board examination rubrics for the 2026-27 academic session."
+          "text": "Yes, all solutions strictly follow the latest rationalized NCERT curriculum and CBSE Board examination rubrics for the 2026-27 academic session. Dropped and reorganized topics have been thoroughly accounted for."
         }
       },
       {
@@ -67,7 +67,15 @@
         "name": "Do answers include the official CBSE marking scheme?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, each answer breaks down step-by-step mark allocations (1-mark, 2-mark, 3-mark, and 5-mark distribution) to help students score maximum marks."
+          "text": "Yes, each answer breaks down step-by-step mark allocations (1-mark, 2-mark, 3-mark, and 5-mark distribution) with explicit allocations for Given Data, Formula, Calculation, and Conclusion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are Competency-Based Questions (CBQs), Case Studies, and HOTS included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, every chapter includes real-life case study questions, assertion-reason problem sets, and Higher Order Thinking Skills (HOTS) questions in line with NEP 2020."
         }
       },
       {
@@ -75,7 +83,31 @@
         "name": "Are the NCERT solutions completely free to access?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, all solutions are 100% free with no subscription, paywall, or login required."
+          "text": "Yes, all NCERT solutions on OlympiadQuiz are 100% free with no subscription, paywall, or login required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do NCERT textbook solutions help in Olympiad exam preparation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "School Olympiads like IMO, NSO, and NSTSE test deeper conceptual mastery of NCERT topics. Mastering our step-by-step solutions ensures solid mathematical and scientific foundations for competitive exams."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I navigate to my specific class and subject solution?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Select your Class from the dropdown, choose your Subject (or choose All Subjects), and click 'Go to NCERT SOlution'. On each solution page, you can also use the breadcrumb navigation bar to jump between subjects."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I access these solutions offline on a mobile phone or tablet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the solutions are mobile-optimized, fast-loading, and responsive across smartphones, tablets, and desktop browsers."
         }
       }
     ]
@@ -522,6 +554,126 @@
       line-height: 1.5;
     }
 
+    /* ── DETAILED FAQ SECTION ── */
+    .faq-section {
+      margin-top: 56px;
+      margin-bottom: 24px;
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .faq-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff7ed;
+      color: #ea580c;
+      border: 1px solid #fed7aa;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .faq-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .faq-header p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: white;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-item:hover {
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-md);
+    }
+    .faq-item[open] {
+      border-color: #ff6b00;
+      box-shadow: 0 8px 24px rgba(255, 107, 0, 0.08);
+    }
+    .faq-question {
+      padding: 18px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      user-select: none;
+      list-style: none;
+    }
+    .faq-question::-webkit-details-marker {
+      display: none;
+    }
+    .faq-chevron {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #64748b;
+      flex-shrink: 0;
+      transition: transform 0.25s ease, background 0.2s, color 0.2s;
+    }
+    .faq-item[open] .faq-chevron {
+      transform: rotate(180deg);
+      background: #fff7ed;
+      color: #ff6b00;
+    }
+    .faq-item[open] .faq-question {
+      color: #ff6b00;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .faq-answer {
+      padding: 18px 22px 22px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: #475569;
+      background: #fafaf9;
+    }
+    .faq-answer p {
+      margin-bottom: 10px;
+    }
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+    .faq-answer ul {
+      margin: 8px 0 12px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .faq-answer strong {
+      color: var(--navy);
+    }
+
     /* ── FOOTER ── */
     .page-footer {
       background: white;
@@ -704,6 +856,131 @@
         <h3>100% Free Access</h3>
         <p>Instant loading with full mobile responsiveness. Zero paywalls, no login required.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- DETAILED FAQ SECTION -->
+  <section class="faq-section" id="faqSection">
+    <div class="faq-header">
+      <div class="faq-badge">
+        <span>💡</span> Got Questions? • We Have Answers
+      </div>
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <p>Everything you need to know about our free NCERT textbook solutions, CBSE marking schemes, and exam preparation.</p>
+    </div>
+
+    <div class="faq-accordion">
+      <!-- FAQ 1 -->
+      <details class="faq-item" open>
+        <summary class="faq-question">
+          <span>Which classes and subjects are covered in OlympiadQuiz NCERT Solutions?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p>OlympiadQuiz offers comprehensive, 100% textbook question coverage for <strong>Classes 7, 8, 9, and 10</strong> across all core CBSE subjects:</p>
+          <ul>
+            <li><strong>Class 7:</strong> Mathematics, Science (Curiosity), Social Science (Our Pasts II, Our Environment, Social &amp; Political Life II), English (Honeycomb &amp; An Alien Hand), and Hindi (Vasant, Bal Mahabharat Katha, Durva).</li>
+            <li><strong>Class 8:</strong> Mathematics, Science, Social Science (Our Pasts III, Resources &amp; Development, Social &amp; Political Life III), English (Honeydew &amp; It So Happened), Hindi (Vasant &amp; Bharat Ki Khoj), and Sanskrit (Ruchira Bhag-3).</li>
+            <li><strong>Class 9:</strong> Mathematics, Science (Physics, Chemistry, Biology), Social Science (4 Books), English (Beehive &amp; Moments), and Hindi (Kshitij, Kritika, Sparsh, Sanchayan).</li>
+            <li><strong>Class 10:</strong> Mathematics (Standard &amp; Basic), Science (All 13 Chapters), and Social Science (All 4 Books — Board Exam Special Edition).</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- FAQ 2 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Are these solutions updated for the latest CBSE 2026-27 Rationalized Curriculum?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p><strong>Yes, absolutely.</strong> Every solution is 100% updated in strict adherence to the rationalized NCERT textbooks and syllabus notifications issued by the Central Board of Secondary Education (CBSE) for the <strong>2026-27 academic session</strong>.</p>
+          <p>All removed chapters, deleted exercises, and renumbered exercises have been factored in, guaranteeing that students study only what will actually appear in school unit tests, term exams, and Board examinations.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 3 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>How do these solutions follow the official CBSE Board Marking Scheme?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Our solutions are designed using the exact step-marking rubrics used by official CBSE evaluators:</p>
+          <ul>
+            <li><strong>Given Data &amp; Goal:</strong> Clearly established at the beginning of calculations and geometric proofs.</li>
+            <li><strong>Formulae &amp; Laws:</strong> Highlighted explicitly with mathematical justifications.</li>
+            <li><strong>Step Marks (1M, 2M, 3M, 5M):</strong> Clear step-by-step mark allocations so students learn how to structure answers to secure full marks.</li>
+            <li><strong>Final Conclusion &amp; Units:</strong> Boxed concluding statements with correct SI units.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- FAQ 4 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Are Competency-Based Questions (CBQs), Case Studies, and HOTS included?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p><strong>Yes!</strong> In accordance with NEP 2020 and CBSE's revised exam blueprint which requires 50% competency-focused assessment, each chapter includes:</p>
+          <ul>
+            <li><strong>Case-Based / Source-Based Questions:</strong> Contextual real-life passages with sub-questions.</li>
+            <li><strong>Assertion &amp; Reasoning Questions:</strong> In-depth conceptual analysis with clear rationale.</li>
+            <li><strong>Higher Order Thinking Skills (HOTS):</strong> Challenging multi-concept problems that test deep analytical understanding.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- FAQ 5 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Is there any subscription fee, paywall, or login required to access the solutions?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p><strong>No.</strong> All NCERT solutions on OlympiadQuiz are <strong>100% free forever</strong>. There are no paywalls, no trial limits, no credit card requirements, and no mandatory account sign-up. Students, parents, and educators can access all solutions freely anytime.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 6 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>How does mastering NCERT solutions help in Olympiad exams like IMO, NSO, and IEO?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p>NCERT textbooks form the conceptual bedrock of competitive school exams like the International Mathematics Olympiad (IMO), National Science Olympiad (NSO), and NSTSE. Olympiad questions rarely ask raw definitions; they test the application and logical extension of NCERT principles. Mastering our step-by-step solutions builds rock-solid foundational intuition, making advanced Level-1 and Level-2 Olympiad problems far easier to crack.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 7 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>How do I navigate to my specific class and subject solution?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Use our interactive solution finder at the top of this page:</p>
+          <ol style="margin: 8px 0 10px 20px; display: flex; flex-direction: column; gap: 4px;">
+            <li>Select your <strong>Class</strong> (Class 7, 8, 9, or 10) from the dropdown.</li>
+            <li>Select your <strong>Subject</strong> (or choose "All Subjects" to view the complete subject directory).</li>
+            <li>Click <strong>"Go to NCERT SOlution"</strong> to navigate directly.</li>
+          </ol>
+          <p>Inside every chapter solution page, you can also use our top breadcrumb switcher to jump between sibling subjects with a single click.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 8 -->
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Can I access and study these solutions comfortably on mobile phones?</span>
+          <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </summary>
+        <div class="faq-answer">
+          <p><strong>Yes, 100%.</strong> Every solution page is built with responsive, mobile-first design. Mathematical symbols and equations render crisp and sharp, chapter carousels scroll smoothly on touchscreen devices, and quick-navigation sidebars allow instant jumping between chapters without lagging.</p>
+        </div>
+      </details>
     </div>
   </section>
 
