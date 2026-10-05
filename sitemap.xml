@@ -12,6 +12,14 @@
   <!-- ================= NCERT Solutions ================= -->
   <url>
     <loc>https://olympiadquiz.org/ncert-solutions-class-10-maths.html</loc>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-10-sanskrit.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
