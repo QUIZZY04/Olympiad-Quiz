@@ -1,322 +1,322 @@
 <section class="chapter-section" id="ch6">
-  <div class="chapter-header">
-    <div class="ch-badge">6</div>
-    <div class="chapter-header-info">
-      <h2>Chapter 6: Cubes and Cube Roots</h2>
-      <p>NCERT Exercises 6.1 &amp; 6.2 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
-    </div>
-  </div>
+ <div class="chapter-header">
+ <div class="ch-badge">6</div>
+ <div class="chapter-header-info">
+ <h2>Chapter 6: Cubes and Cube Roots</h2>
+ <p>NCERT Exercises 6.1 &amp; 6.2 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
+ </div>
+ </div>
 
-  <div class="concept-card">
-    <div class="concept-header">📌 Key Concepts &amp; Properties Summary</div>
-    <ul class="concept-list">
-      <li><strong>Perfect Cube:</strong> A natural number <span class="math">m</span> is a perfect cube if <span class="math">m = n^3</span> for some natural number <span class="math">n</span>.</li>
-      <li><strong>Unit Digit Patterns of Cubes:</strong>
-        <ul>
-          <li>Numbers ending in 0, 1, 4, 5, 6, 9 have cubes ending in the exact same digit.</li>
-          <li>Numbers ending in 2 have cubes ending in 8, and vice versa (<span class="math">2 \leftrightarrow 8</span>).</li>
-          <li>Numbers ending in 3 have cubes ending in 7, and vice versa (<span class="math">3 \leftrightarrow 7</span>).</li>
-        </ul>
-      </li>
-      <li><strong>Prime Factors in Triples:</strong> Each prime factor of a perfect cube appears in groups of three (<span class="math">p^3</span>).</li>
-      <li><strong>Cube Root (<span class="math">\sqrt[3]{n}</span>):</strong> The inverse operation of cubing. If <span class="math">n^3 = m</span>, then <span class="math">\sqrt[3]{m} = n</span>.</li>
-      <li><strong>Estimation Method:</strong> Divide digits of the number into groups of three starting from the rightmost digit. Group 1 gives the unit digit, and Group 2 gives the ten's digit based on cube bounds.</li>
-    </ul>
-  </div>
+ <div class="concept-card">
+ <div class="concept-header">📌 Key Concepts &amp; Properties Summary</div>
+ <ul class="concept-list">
+ <li><strong>Perfect Cube:</strong> A natural number <span class="math">m</span> is a perfect cube if <span class="math">m = n³</span> for some natural number <span class="math">n</span>.</li>
+ <li><strong>Unit Digit Patterns of Cubes:</strong>
+ <ul>
+ <li>Numbers ending in 0, 1, 4, 5, 6, 9 have cubes ending in the exact same digit.</li>
+ <li>Numbers ending in 2 have cubes ending in 8, and vice versa (<span class="math">2 ↔ 8</span>).</li>
+ <li>Numbers ending in 3 have cubes ending in 7, and vice versa (<span class="math">3 ↔ 7</span>).</li>
+ </ul>
+ </li>
+ <li><strong>Prime Factors in Triples:</strong> Each prime factor of a perfect cube appears in groups of three (<span class="math">p³</span>).</li>
+ <li><strong>Cube Root (<span class="math">∛n</span>):</strong> The inverse operation of cubing. If <span class="math">n³ = m</span>, then <span class="math">∛m = n</span>.</li>
+ <li><strong>Estimation Method:</strong> Divide digits of the number into groups of three starting from the rightmost digit. Group 1 gives the unit digit, and Group 2 gives the ten's digit based on cube bounds.</li>
+ </ul>
+ </div>
 
-  <!-- EXERCISE 6.1 -->
-  <div class="ex-div">NCERT Exercise 6.1</div>
+ <!-- EXERCISE 6.1 -->
+ <div class="ex-div">NCERT Exercise 6.1</div>
 
-  <div class="q-card" id="q6_1_1">
-    <div class="q-head" onclick="toggleQ('q6_1_1')">
-      <div class="q-num">Q1</div>
-      <div class="q-text">Which of the following numbers are not perfect cubes?<br>
-      (i) 216 &nbsp;&nbsp; (ii) 128 &nbsp;&nbsp; (iii) 1000 &nbsp;&nbsp; (iv) 100 &nbsp;&nbsp; (v) 46656</div>
-      <div class="q-marks">3 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-          <p><em>Rule:</em> A number is a perfect cube if all its prime factors appear in complete triplets.</p>
-          <div class="step">
-            <strong>(i) 216:</strong> <span class="math">216 = (2 \times 2 \times 2) \times (3 \times 3 \times 3)</span>. All factors are in triplets. <span class="math">\implies</span> <strong>Perfect cube</strong> (<span class="math">6^3</span>).
-          </div>
-          <div class="step">
-            <strong>(ii) 128:</strong> <span class="math">128 = (2 \times 2 \times 2) \times (2 \times 2 \times 2) \times 2</span>. One 2 is left unpaired. <span class="math">\implies</span> <strong>NOT a perfect cube</strong>.
-          </div>
-          <div class="step">
-            <strong>(iii) 1000:</strong> <span class="math">1000 = (2 \times 2 \times 2) \times (5 \times 5 \times 5)</span>. <span class="math">\implies</span> <strong>Perfect cube</strong> (<span class="math">10^3</span>).
-          </div>
-          <div class="step">
-            <strong>(iv) 100:</strong> <span class="math">100 = 2 \times 2 \times 5 \times 5</span>. Neither 2 nor 5 form triplets. <span class="math">\implies</span> <strong>NOT a perfect cube</strong>.
-          </div>
-          <div class="step">
-            <strong>(v) 46656:</strong> <span class="math">46656 = 2^6 \times 3^6 = (2^3)^2 \times (3^3)^2</span>. Complete triplets. <span class="math">\implies</span> <strong>Perfect cube</strong> (<span class="math">36^3</span>).
-          </div>
-          <p><strong>Numbers that are NOT perfect cubes:</strong> <strong>128 and 100</strong>.</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Prime factorisation of each number</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Identification of 128 and 100 with reasoning</span><span class="marking-marks">1.5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="q-card" id="q6_1_1">
+ <div class="q-head" onclick="toggleQ('q6_1_1')">
+ <div class="q-num">Q1</div>
+ <div class="q-text">Which of the following numbers are not perfect cubes?<br>
+ (i) 216 &nbsp;&nbsp; (ii) 128 &nbsp;&nbsp; (iii) 1000 &nbsp;&nbsp; (iv) 100 &nbsp;&nbsp; (v) 46656</div>
+ <div class="q-marks">3 Marks</div>
+ <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+ </div>
+ <div class="q-answer">
+ <div class="answer-box">
+ <div class="answer-label">✅ CBSE Standard Answer</div>
+ <div class="answer-text">
+ <p><em>Rule:</em> A number is a perfect cube if all its prime factors appear in complete triplets.</p>
+ <div class="step">
+ <strong>(i) 216:</strong> <span class="math">216 = (2 × 2 × 2) × (3 × 3 × 3)</span>. All factors are in triplets. <span class="math"> ⇒ </span> <strong>Perfect cube</strong> (<span class="math">6³</span>).
+ </div>
+ <div class="step">
+ <strong>(ii) 128:</strong> <span class="math">128 = (2 × 2 × 2) × (2 × 2 × 2) × 2</span>. One 2 is left unpaired. <span class="math"> ⇒ </span> <strong>NOT a perfect cube</strong>.
+ </div>
+ <div class="step">
+ <strong>(iii) 1000:</strong> <span class="math">1000 = (2 × 2 × 2) × (5 × 5 × 5)</span>. <span class="math"> ⇒ </span> <strong>Perfect cube</strong> (<span class="math">10³</span>).
+ </div>
+ <div class="step">
+ <strong>(iv) 100:</strong> <span class="math">100 = 2 × 2 × 5 × 5</span>. Neither 2 nor 5 form triplets. <span class="math"> ⇒ </span> <strong>NOT a perfect cube</strong>.
+ </div>
+ <div class="step">
+ <strong>(v) 46656:</strong> <span class="math">46656 = 2⁶ × 3⁶ = (2³)² × (3³)²</span>. Complete triplets. <span class="math"> ⇒ </span> <strong>Perfect cube</strong> (<span class="math">36³</span>).
+ </div>
+ <p><strong>Numbers that are NOT perfect cubes:</strong> <strong>128 and 100</strong>.</p>
+ </div>
+ <div class="marking-scheme">
+ <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+ <div class="marking-row"><span class="marking-key">Prime factorisation of each number</span><span class="marking-marks">1.5 Marks</span></div>
+ <div class="marking-row"><span class="marking-key">Identification of 128 and 100 with reasoning</span><span class="marking-marks">1.5 Marks</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <div class="q-card" id="q6_1_2">
-    <div class="q-head" onclick="toggleQ('q6_1_2')">
-      <div class="q-num">Q2</div>
-      <div class="q-text">Find the smallest number by which each of the following numbers must be multiplied to obtain a perfect cube:<br>
-      (i) 243 &nbsp;&nbsp; (ii) 256 &nbsp;&nbsp; (iii) 72 &nbsp;&nbsp; (iv) 675 &nbsp;&nbsp; (v) 100</div>
-      <div class="q-marks">3 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-          <div class="step">
-            (i) <span class="math">243 = (3 \times 3 \times 3) \times 3 \times 3</span>. One more 3 is needed to complete the second triplet. Smallest multiplier = <strong>3</strong>.
-          </div>
-          <div class="step">
-            (ii) <span class="math">256 = (2^3) \times (2^3) \times (2 \times 2)</span>. One more 2 is needed. Smallest multiplier = <strong>2</strong>.
-          </div>
-          <div class="step">
-            (iii) <span class="math">72 = (2 \times 2 \times 2) \times (3 \times 3)</span>. One 3 is needed. Smallest multiplier = <strong>3</strong>.
-          </div>
-          <div class="step">
-            (iv) <span class="math">675 = (3 \times 3 \times 3) \times (5 \times 5)</span>. One 5 is needed. Smallest multiplier = <strong>5</strong>.
-          </div>
-          <div class="step">
-            (v) <span class="math">100 = (2 \times 2) \times (5 \times 5)</span>. One 2 and one 5 are needed. Smallest multiplier = <span class="math">2 \times 5 = <strong>10</strong></span>.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Prime factorisation shown for each</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Required multipliers: 3, 2, 3, 5, 10</span><span class="marking-marks">1.5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="q-card" id="q6_1_2">
+ <div class="q-head" onclick="toggleQ('q6_1_2')">
+ <div class="q-num">Q2</div>
+ <div class="q-text">Find the smallest number by which each of the following numbers must be multiplied to obtain a perfect cube:<br>
+ (i) 243 &nbsp;&nbsp; (ii) 256 &nbsp;&nbsp; (iii) 72 &nbsp;&nbsp; (iv) 675 &nbsp;&nbsp; (v) 100</div>
+ <div class="q-marks">3 Marks</div>
+ <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+ </div>
+ <div class="q-answer">
+ <div class="answer-box">
+ <div class="answer-label">✅ CBSE Standard Answer</div>
+ <div class="answer-text">
+ <div class="step">
+ (i) <span class="math">243 = (3 × 3 × 3) × 3 × 3</span>. One more 3 is needed to complete the second triplet. Smallest multiplier = <strong>3</strong>.
+ </div>
+ <div class="step">
+ (ii) <span class="math">256 = (2³) × (2³) × (2 × 2)</span>. One more 2 is needed. Smallest multiplier = <strong>2</strong>.
+ </div>
+ <div class="step">
+ (iii) <span class="math">72 = (2 × 2 × 2) × (3 × 3)</span>. One 3 is needed. Smallest multiplier = <strong>3</strong>.
+ </div>
+ <div class="step">
+ (iv) <span class="math">675 = (3 × 3 × 3) × (5 × 5)</span>. One 5 is needed. Smallest multiplier = <strong>5</strong>.
+ </div>
+ <div class="step">
+ (v) <span class="math">100 = (2 × 2) × (5 × 5)</span>. One 2 and one 5 are needed. Smallest multiplier = <span class="math">2 × 5 = <strong>10</strong></span>.
+ </div>
+ </div>
+ <div class="marking-scheme">
+ <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+ <div class="marking-row"><span class="marking-key">Prime factorisation shown for each</span><span class="marking-marks">1.5 Marks</span></div>
+ <div class="marking-row"><span class="marking-key">Required multipliers: 3, 2, 3, 5, 10</span><span class="marking-marks">1.5 Marks</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <div class="q-card" id="q6_1_3">
-    <div class="q-head" onclick="toggleQ('q6_1_3')">
-      <div class="q-num">Q3</div>
-      <div class="q-text">Find the smallest number by which each of the following numbers must be divided to obtain a perfect cube:<br>
-      (i) 81 &nbsp;&nbsp; (ii) 128 &nbsp;&nbsp; (iii) 135 &nbsp;&nbsp; (iv) 192 &nbsp;&nbsp; (v) 704</div>
-      <div class="q-marks">3 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-          <p><em>Rule:</em> Divide by all factors that do not form complete triplets.</p>
-          <div class="step">(i) <span class="math">81 = (3 \times 3 \times 3) \times 3</span>. Extra factor is 3. Smallest divisor = <strong>3</strong>.</div>
-          <div class="step">(ii) <span class="math">128 = (2^3) \times (2^3) \times 2</span>. Extra factor is 2. Smallest divisor = <strong>2</strong>.</div>
-          <div class="step">(iii) <span class="math">135 = (3 \times 3 \times 3) \times 5</span>. Extra factor is 5. Smallest divisor = <strong>5</strong>.</div>
-          <div class="step">(iv) <span class="math">192 = (2^3) \times (2^3) \times 3</span>. Extra factor is 3. Smallest divisor = <strong>3</strong>.</div>
-          <div class="step">(v) <span class="math">704 = (2^3) \times (2^3) \times 11</span>. Extra factor is 11. Smallest divisor = <strong>11</strong>.</div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Identification of extra unpaired factors</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Divisors: 3, 2, 5, 3, 11</span><span class="marking-marks">1.5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="q-card" id="q6_1_3">
+ <div class="q-head" onclick="toggleQ('q6_1_3')">
+ <div class="q-num">Q3</div>
+ <div class="q-text">Find the smallest number by which each of the following numbers must be divided to obtain a perfect cube:<br>
+ (i) 81 &nbsp;&nbsp; (ii) 128 &nbsp;&nbsp; (iii) 135 &nbsp;&nbsp; (iv) 192 &nbsp;&nbsp; (v) 704</div>
+ <div class="q-marks">3 Marks</div>
+ <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+ </div>
+ <div class="q-answer">
+ <div class="answer-box">
+ <div class="answer-label">✅ CBSE Standard Answer</div>
+ <div class="answer-text">
+ <p><em>Rule:</em> Divide by all factors that do not form complete triplets.</p>
+ <div class="step">(i) <span class="math">81 = (3 × 3 × 3) × 3</span>. Extra factor is 3. Smallest divisor = <strong>3</strong>.</div>
+ <div class="step">(ii) <span class="math">128 = (2³) × (2³) × 2</span>. Extra factor is 2. Smallest divisor = <strong>2</strong>.</div>
+ <div class="step">(iii) <span class="math">135 = (3 × 3 × 3) × 5</span>. Extra factor is 5. Smallest divisor = <strong>5</strong>.</div>
+ <div class="step">(iv) <span class="math">192 = (2³) × (2³) × 3</span>. Extra factor is 3. Smallest divisor = <strong>3</strong>.</div>
+ <div class="step">(v) <span class="math">704 = (2³) × (2³) × 11</span>. Extra factor is 11. Smallest divisor = <strong>11</strong>.</div>
+ </div>
+ <div class="marking-scheme">
+ <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+ <div class="marking-row"><span class="marking-key">Identification of extra unpaired factors</span><span class="marking-marks">1.5 Marks</span></div>
+ <div class="marking-row"><span class="marking-key">Divisors: 3, 2, 5, 3, 11</span><span class="marking-marks">1.5 Marks</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <div class="q-card" id="q6_1_4">
-    <div class="q-head" onclick="toggleQ('q6_1_4')">
-      <div class="q-num">Q4</div>
-      <div class="q-text">Parikshit makes a cuboid of plasticine of sides 5 cm, 2 cm, 5 cm. How many such cuboids will he need to form a cube?</div>
-      <div class="q-marks">2 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-          <div class="step">
-            Volume of one cuboid = <span class="math">5 \times 2 \times 5\text{ cm}^3 = 50\text{ cm}^3</span>.<br>
-            In prime factor form: <span class="math">5 \times 5 \times 2</span>.
-          </div>
-          <div class="step">
-            To make it a cube, each prime factor must appear in triplets:<br>
-            - We have two 5s, so we need <strong>one more 5</strong>.<br>
-            - We have one 2, so we need <strong>two more 2s</strong> (<span class="math">2 \times 2 = 4</span>).
-          </div>
-          <div class="step">
-            Number of cuboids required = <span class="math">5 \times 2 \times 2 = <strong>20</strong></span>.
-          </div>
-          <p><strong>Final Answer:</strong> Parikshit needs <strong>20 cuboids</strong> to form a cube of side 10 cm.</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Prime factor representation of cuboid volume</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Calculating required cuboids: 5 × 2 × 2 = 20</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="q-card" id="q6_1_4">
+ <div class="q-head" onclick="toggleQ('q6_1_4')">
+ <div class="q-num">Q4</div>
+ <div class="q-text">Parikshit makes a cuboid of plasticine of sides 5 cm, 2 cm, 5 cm. How many such cuboids will he need to form a cube?</div>
+ <div class="q-marks">2 Marks</div>
+ <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+ </div>
+ <div class="q-answer">
+ <div class="answer-box">
+ <div class="answer-label">✅ CBSE Standard Answer</div>
+ <div class="answer-text">
+ <div class="step">
+ Volume of one cuboid = <span class="math">5 × 2 × 5 cm³ = 50 cm³</span>.<br>
+ In prime factor form: <span class="math">5 × 5 × 2</span>.
+ </div>
+ <div class="step">
+ To make it a cube, each prime factor must appear in triplets:<br>
+ − We have two 5s, so we need <strong>one more 5</strong>.<br>
+ − We have one 2, so we need <strong>two more 2s</strong> (<span class="math">2 × 2 = 4</span>).
+ </div>
+ <div class="step">
+ Number of cuboids required = <span class="math">5 × 2 × 2 = <strong>20</strong></span>.
+ </div>
+ <p><strong>Final Answer:</strong> Parikshit needs <strong>20 cuboids</strong> to form a cube of side 10 cm.</p>
+ </div>
+ <div class="marking-scheme">
+ <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+ <div class="marking-row"><span class="marking-key">Prime factor representation of cuboid volume</span><span class="marking-marks">1 Mark</span></div>
+ <div class="marking-row"><span class="marking-key">Calculating required cuboids: 5 × 2 × 2 = 20</span><span class="marking-marks">1 Mark</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <!-- EXERCISE 6.2 -->
-  <div class="ex-div">NCERT Exercise 6.2</div>
+ <!-- EXERCISE 6.2 -->
+ <div class="ex-div">NCERT Exercise 6.2</div>
 
-  <div class="q-card" id="q6_2_1">
-    <div class="q-head" onclick="toggleQ('q6_2_1')">
-      <div class="q-num">Q5</div>
-      <div class="q-text">Find the cube root of each of the following numbers by Prime Factorisation method:<br>
-      (i) 64 &nbsp;&nbsp; (ii) 512 &nbsp;&nbsp; (iii) 10648 &nbsp;&nbsp; (iv) 27000 &nbsp;&nbsp; (v) 15625<br>
-      (vi) 13824 &nbsp;&nbsp; (vii) 110592 &nbsp;&nbsp; (viii) 46656 &nbsp;&nbsp; (ix) 175616 &nbsp;&nbsp; (x) 91125</div>
-      <div class="q-marks">5 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-          <div class="step">
-            (i) <span class="math">64 = 2^6 = (2^3) \times (2^3) \implies \sqrt[3]{64} = 2 \times 2 = <strong>4</strong></span>.<br>
-            (ii) <span class="math">512 = 2^9 = (2^3)^3 \implies \sqrt[3]{512} = 2 \times 2 \times 2 = <strong>8</strong></span>.<br>
-            (iii) <span class="math">10648 = (2 \times 2 \times 2) \times (11 \times 11 \times 11) \implies \sqrt[3]{10648} = 2 \times 11 = <strong>22</strong></span>.<br>
-            (iv) <span class="math">27000 = (3^3) \times (2^3) \times (5^3) \implies \sqrt[3]{27000} = 3 \times 2 \times 5 = <strong>30</strong></span>.<br>
-            (v) <span class="math">15625 = 5^6 = (5^3) \times (5^3) \implies \sqrt[3]{15625} = 5 \times 5 = <strong>25</strong></span>.<br>
-            (vi) <span class="math">13824 = 2^9 \times 3^3 \implies \sqrt[3]{13824} = 2^3 \times 3 = 8 \times 3 = <strong>24</strong></span>.<br>
-            (vii) <span class="math">110592 = 2^{12} \times 3^3 \implies \sqrt[3]{110592} = 2^4 \times 3 = 16 \times 3 = <strong>48</strong></span>.<br>
-            (viii) <span class="math">46656 = 2^6 \times 3^6 \implies \sqrt[3]{46656} = 2^2 \times 3^2 = 4 \times 9 = <strong>36</strong></span>.<br>
-            (ix) <span class="math">175616 = 2^9 \times 7^3 \implies \sqrt[3]{175616} = 2^3 \times 7 = 8 \times 7 = <strong>56</strong></span>.<br>
-            (x) <span class="math">91125 = 3^6 \times 5^3 \implies \sqrt[3]{91125} = 3^2 \times 5 = 9 \times 5 = <strong>45</strong></span>.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">0.5 marks each for correct prime factorization and evaluation</span><span class="marking-marks">5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="q-card" id="q6_2_1">
+ <div class="q-head" onclick="toggleQ('q6_2_1')">
+ <div class="q-num">Q5</div>
+ <div class="q-text">Find the cube root of each of the following numbers by Prime Factorisation method:<br>
+ (i) 64 &nbsp;&nbsp; (ii) 512 &nbsp;&nbsp; (iii) 10648 &nbsp;&nbsp; (iv) 27000 &nbsp;&nbsp; (v) 15625<br>
+ (vi) 13824 &nbsp;&nbsp; (vii) 110592 &nbsp;&nbsp; (viii) 46656 &nbsp;&nbsp; (ix) 175616 &nbsp;&nbsp; (x) 91125</div>
+ <div class="q-marks">5 Marks</div>
+ <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+ </div>
+ <div class="q-answer">
+ <div class="answer-box">
+ <div class="answer-label">✅ CBSE Standard Answer</div>
+ <div class="answer-text">
+ <div class="step">
+ (i) <span class="math">64 = 2⁶ = (2³) × (2³) ⇒ ∛64 = 2 × 2 = <strong>4</strong></span>.<br>
+ (ii) <span class="math">512 = 2⁹ = (2³)³ ⇒ ∛512 = 2 × 2 × 2 = <strong>8</strong></span>.<br>
+ (iii) <span class="math">10648 = (2 × 2 × 2) × (11 × 11 × 11) ⇒ ∛10648 = 2 × 11 = <strong>22</strong></span>.<br>
+ (iv) <span class="math">27000 = (3³) × (2³) × (5³) ⇒ ∛27000 = 3 × 2 × 5 = <strong>30</strong></span>.<br>
+ (v) <span class="math">15625 = 5⁶ = (5³) × (5³) ⇒ ∛15625 = 5 × 5 = <strong>25</strong></span>.<br>
+ (vi) <span class="math">13824 = 2⁹ × 3³ ⇒ ∛13824 = 2³ × 3 = 8 × 3 = <strong>24</strong></span>.<br>
+ (vii) <span class="math">110592 = 2¹² × 3³ ⇒ ∛110592 = 2⁴ × 3 = 16 × 3 = <strong>48</strong></span>.<br>
+ (viii) <span class="math">46656 = 2⁶ × 3⁶ ⇒ ∛46656 = 2² × 3² = 4 × 9 = <strong>36</strong></span>.<br>
+ (ix) <span class="math">175616 = 2⁹ × 7³ ⇒ ∛175616 = 2³ × 7 = 8 × 7 = <strong>56</strong></span>.<br>
+ (x) <span class="math">91125 = 3⁶ × 5³ ⇒ ∛91125 = 3² × 5 = 9 × 5 = <strong>45</strong></span>.
+ </div>
+ </div>
+ <div class="marking-scheme">
+ <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+ <div class="marking-row"><span class="marking-key">0.5 marks each for correct prime factorization and evaluation</span><span class="marking-marks">5 Marks</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <div class="q-card" id="q6_2_2">
-    <div class="q-head" onclick="toggleQ('q6_2_2')">
-      <div class="q-num">Q6</div>
-      <div class="q-text">State True or False:<br>
-      (i) Cube of any odd number is even.<br>
-      (ii) A perfect cube does not end with two zeros.<br>
-      (iii) If square of a number ends with 5, then its cube ends with 25.<br>
-      (iv) There is no perfect cube which ends with 8.<br>
-      (v) The cube of a two-digit number may be a three-digit number.<br>
-      (vi) The cube of a two-digit number may have 7 or more digits.<br>
-      (vii) The cube of a single digit number may be a single digit number.</div>
-      <div class="q-marks">3.5 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-          <div class="step"><strong>(i) False</strong> — Cube of an odd number is always odd (e.g. <span class="math">3^3 = 27</span>).</div>
-          <div class="step"><strong>(ii) True</strong> — A perfect cube ending in zeros always ends in multiples of three zeros (3, 6, 9 zeros).</div>
-          <div class="step"><strong>(iii) False</strong> — Example: <span class="math">15^2 = 225</span> (ends with 5), but <span class="math">15^3 = 3375</span> (ends with 75, not 25).</div>
-          <div class="step"><strong>(iv) False</strong> — Example: <span class="math">2^3 = 8</span> and <span class="math">12^3 = 1728</span> end with 8.</div>
-          <div class="step"><strong>(v) False</strong> — The smallest 2-digit number is 10, and <span class="math">10^3 = 1000</span> (a 4-digit number).</div>
-          <div class="step"><strong>(vi) False</strong> — The largest 2-digit number is 99, and <span class="math">99^3 = 970299</span> (a 6-digit number). It can never have 7 digits.</div>
-          <div class="step"><strong>(vii) True</strong> — Examples: <span class="math">1^3 = 1</span> and <span class="math">2^3 = 8</span> are single-digit numbers.</div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">0.5 marks each with counter-examples and justifications</span><span class="marking-marks">3.5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="q-card" id="q6_2_2">
+ <div class="q-head" onclick="toggleQ('q6_2_2')">
+ <div class="q-num">Q6</div>
+ <div class="q-text">State True or False:<br>
+ (i) Cube of any odd number is even.<br>
+ (ii) A perfect cube does not end with two zeros.<br>
+ (iii) If square of a number ends with 5, then its cube ends with 25.<br>
+ (iv) There is no perfect cube which ends with 8.<br>
+ (v) The cube of a two-digit number may be a three-digit number.<br>
+ (vi) The cube of a two-digit number may have 7 or more digits.<br>
+ (vii) The cube of a single digit number may be a single digit number.</div>
+ <div class="q-marks">3.5 Marks</div>
+ <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+ </div>
+ <div class="q-answer">
+ <div class="answer-box">
+ <div class="answer-label">✅ CBSE Standard Answer</div>
+ <div class="answer-text">
+ <div class="step"><strong>(i) False</strong> — Cube of an odd number is always odd (e.g. <span class="math">3³ = 27</span>).</div>
+ <div class="step"><strong>(ii) True</strong> — A perfect cube ending in zeros always ends in multiples of three zeros (3, 6, 9 zeros).</div>
+ <div class="step"><strong>(iii) False</strong> — Example: <span class="math">15² = 225</span> (ends with 5), but <span class="math">15³ = 3375</span> (ends with 75, not 25).</div>
+ <div class="step"><strong>(iv) False</strong> — Example: <span class="math">2³ = 8</span> and <span class="math">12³ = 1728</span> end with 8.</div>
+ <div class="step"><strong>(v) False</strong> — The smallest 2-digit number is 10, and <span class="math">10³ = 1000</span> (a 4-digit number).</div>
+ <div class="step"><strong>(vi) False</strong> — The largest 2-digit number is 99, and <span class="math">99³ = 970299</span> (a 6-digit number). It can never have 7 digits.</div>
+ <div class="step"><strong>(vii) True</strong> — Examples: <span class="math">1³ = 1</span> and <span class="math">2³ = 8</span> are single-digit numbers.</div>
+ </div>
+ <div class="marking-scheme">
+ <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+ <div class="marking-row"><span class="marking-key">0.5 marks each with counter-examples and justifications</span><span class="marking-marks">3.5 Marks</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <div class="q-card" id="q6_2_3">
-    <div class="q-head" onclick="toggleQ('q6_2_3')">
-      <div class="q-num">Q7</div>
-      <div class="q-text">You are told that 1,331 is a perfect cube. Can you guess without factorisation what its cube root is? Similarly, guess the cube roots of 4913, 12167, 32768.</div>
-      <div class="q-marks">4 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-          <p><em>Estimation Method:</em> Group digits into threes from the right.</p>
-          <div class="step">
-            <strong>(i) 1331:</strong> Groups: <span class="math">1</span> and <span class="math">331</span>.<br>
-            Group 1 (<span class="math">331</span>): Ends in 1 <span class="math">\implies</span> unit digit is <strong>1</strong>.<br>
-            Group 2 (<span class="math">1</span>): <span class="math">1^3 = 1 \implies</span> tens digit is <strong>1</strong>.<br>
-            <span class="math">\sqrt[3]{1331} = <strong>11</strong></span>.
-          </div>
-          <div class="step">
-            <strong>(ii) 4913:</strong> Groups: <span class="math">4</span> and <span class="math">913</span>.<br>
-            Group 1 (<span class="math">913</span>): Ends in 3 <span class="math">\implies</span> unit digit is <strong>7</strong> (since <span class="math">7^3 = 343</span>).<br>
-            Group 2 (<span class="math">4</span>): Lies between <span class="math">1^3 = 1</span> and <span class="math">2^3 = 8</span>. Take smaller: tens digit is <strong>1</strong>.<br>
-            <span class="math">\sqrt[3]{4913} = <strong>17</strong></span>.
-          </div>
-          <div class="step">
-            <strong>(iii) 12167:</strong> Groups: <span class="math">12</span> and <span class="math">167</span>.<br>
-            Group 1 (<span class="math">167</span>): Ends in 7 <span class="math">\implies</span> unit digit is <strong>3</strong>.<br>
-            Group 2 (<span class="math">12</span>): Lies between <span class="math">2^3 = 8</span> and <span class="math">3^3 = 27</span>. Smaller is 2: tens digit is <strong>2</strong>.<br>
-            <span class="math">\sqrt[3]{12167} = <strong>23</strong></span>.
-          </div>
-          <div class="step">
-            <strong>(iv) 32768:</strong> Groups: <span class="math">32</span> and <span class="math">768</span>.<br>
-            Group 1 (<span class="math">768</span>): Ends in 8 <span class="math">\implies</span> unit digit is <strong>2</strong>.<br>
-            Group 2 (<span class="math">32</span>): Lies between <span class="math">3^3 = 27</span> and <span class="math">4^3 = 64</span>. Smaller is 3: tens digit is <strong>3</strong>.<br>
-            <span class="math">\sqrt[3]{32768} = <strong>32</strong></span>.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">1 mark each for correct grouping and two-digit estimation</span><span class="marking-marks">4 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="q-card" id="q6_2_3">
+ <div class="q-head" onclick="toggleQ('q6_2_3')">
+ <div class="q-num">Q7</div>
+ <div class="q-text">You are told that 1,331 is a perfect cube. Can you guess without factorisation what its cube root is? Similarly, guess the cube roots of 4913, 12167, 32768.</div>
+ <div class="q-marks">4 Marks</div>
+ <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+ </div>
+ <div class="q-answer">
+ <div class="answer-box">
+ <div class="answer-label">✅ CBSE Standard Answer</div>
+ <div class="answer-text">
+ <p><em>Estimation Method:</em> Group digits into threes from the right.</p>
+ <div class="step">
+ <strong>(i) 1331:</strong> Groups: <span class="math">1</span> and <span class="math">331</span>.<br>
+ Group 1 (<span class="math">331</span>): Ends in 1 <span class="math"> ⇒ </span> unit digit is <strong>1</strong>.<br>
+ Group 2 (<span class="math">1</span>): <span class="math">1³ = 1 ⇒ </span> tens digit is <strong>1</strong>.<br>
+ <span class="math">∛1331 = <strong>11</strong></span>.
+ </div>
+ <div class="step">
+ <strong>(ii) 4913:</strong> Groups: <span class="math">4</span> and <span class="math">913</span>.<br>
+ Group 1 (<span class="math">913</span>): Ends in 3 <span class="math"> ⇒ </span> unit digit is <strong>7</strong> (since <span class="math">7³ = 343</span>).<br>
+ Group 2 (<span class="math">4</span>): Lies between <span class="math">1³ = 1</span> and <span class="math">2³ = 8</span>. Take smaller: tens digit is <strong>1</strong>.<br>
+ <span class="math">∛4913 = <strong>17</strong></span>.
+ </div>
+ <div class="step">
+ <strong>(iii) 12167:</strong> Groups: <span class="math">12</span> and <span class="math">167</span>.<br>
+ Group 1 (<span class="math">167</span>): Ends in 7 <span class="math"> ⇒ </span> unit digit is <strong>3</strong>.<br>
+ Group 2 (<span class="math">12</span>): Lies between <span class="math">2³ = 8</span> and <span class="math">3³ = 27</span>. Smaller is 2: tens digit is <strong>2</strong>.<br>
+ <span class="math">∛12167 = <strong>23</strong></span>.
+ </div>
+ <div class="step">
+ <strong>(iv) 32768:</strong> Groups: <span class="math">32</span> and <span class="math">768</span>.<br>
+ Group 1 (<span class="math">768</span>): Ends in 8 <span class="math"> ⇒ </span> unit digit is <strong>2</strong>.<br>
+ Group 2 (<span class="math">32</span>): Lies between <span class="math">3³ = 27</span> and <span class="math">4³ = 64</span>. Smaller is 3: tens digit is <strong>3</strong>.<br>
+ <span class="math">∛32768 = <strong>32</strong></span>.
+ </div>
+ </div>
+ <div class="marking-scheme">
+ <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+ <div class="marking-row"><span class="marking-key">1 mark each for correct grouping and two-digit estimation</span><span class="marking-marks">4 Marks</span></div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <!-- CBQ SECTION -->
-  <div class="cbq-section">
-    <div class="cbq-header">
-      <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
-      <span class="cbq-badge">CBSE Board Exam Pattern</span>
-    </div>
-    <div class="cbq-body">
-      <div class="cbq-card">
-        <div class="cbq-type" style="color:#4f46e5;">Case Study: Industrial Packaging</div>
-        <div class="cbq-question"><strong>Scenario:</strong> A pharmaceutical factory manufactures sterile cube-shaped medicine boxes each of volume <span class="math">216\text{ cm}^3</span>. (i) Find the edge length of each box. (ii) If 125 such boxes are packed into a larger shipping carton in the shape of a cube, what is the volume and edge length of the carton?</div>
-        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer">
-          <p><strong>(i) Edge length of one box:</strong><br>
-          <span class="math">\text{Edge} = \sqrt[3]{216} = <strong>6\text{ cm}</strong></span>.</p>
-          <p><strong>(ii) Carton dimensions:</strong><br>
-          Total volume = <span class="math">125 \times 216 = 27000\text{ cm}^3</span>.<br>
-          Edge of carton = <span class="math">\sqrt[3]{27000} = <strong>30\text{ cm}</strong></span>.<br>
-          <em>(Check: 5 boxes along each dimension: <span class="math">5 \times 6\text{ cm} = 30\text{ cm}</span>).</em></p>
-        </div>
-      </div>
-      <div class="cbq-card">
-        <div class="cbq-type" style="color:#10b981;">⚡ Number Pattern Discovery (HOTS)</div>
-        <div class="cbq-question">Express <span class="math">5^3</span> as the sum of consecutive odd numbers. State the general algebraic formula for expressing <span class="math">n^3</span> as the sum of <span class="math">n</span> consecutive odd numbers.</div>
-        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer">
-          <p>The first odd number in the sequence for <span class="math">n^3</span> is given by <span class="math">n(n - 1) + 1</span>.</p>
-          <p>For <span class="math">n = 5</span>: Starting odd number = <span class="math">5(4) + 1 = 21</span>.<br>
-          The 5 consecutive odd numbers are: <span class="math">21, 23, 25, 27, 29</span>.<br>
-          <span class="math">21 + 23 + 25 + 27 + 29 = 125 = 5^3</span>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+ <!-- CBQ SECTION -->
+ <div class="cbq-section">
+ <div class="cbq-header">
+ <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
+ <span class="cbq-badge">CBSE Board Exam Pattern</span>
+ </div>
+ <div class="cbq-body">
+ <div class="cbq-card">
+ <div class="cbq-type" style="color:#4f46e5;">Case Study: Industrial Packaging</div>
+ <div class="cbq-question"><strong>Scenario:</strong> A pharmaceutical factory manufactures sterile cube-shaped medicine boxes each of volume <span class="math">216 cm³</span>. (i) Find the edge length of each box. (ii) If 125 such boxes are packed into a larger shipping carton in the shape of a cube, what is the volume and edge length of the carton?</div>
+ <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+ <div class="cbq-answer">
+ <p><strong>(i) Edge length of one box:</strong><br>
+ <span class="math">Edge = ∛216 = <strong>6 cm</strong></span>.</p>
+ <p><strong>(ii) Carton dimensions:</strong><br>
+ Total volume = <span class="math">125 × 216 = 27000 cm³</span>.<br>
+ Edge of carton = <span class="math">∛27000 = <strong>30 cm</strong></span>.<br>
+ <em>(Check: 5 boxes along each dimension: <span class="math">5 × 6 cm = 30 cm</span>).</em></p>
+ </div>
+ </div>
+ <div class="cbq-card">
+ <div class="cbq-type" style="color:#10b981;">⚡ Number Pattern Discovery (HOTS)</div>
+ <div class="cbq-question">Express <span class="math">5³</span> as the sum of consecutive odd numbers. State the general algebraic formula for expressing <span class="math">n³</span> as the sum of <span class="math">n</span> consecutive odd numbers.</div>
+ <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+ <div class="cbq-answer">
+ <p>The first odd number in the sequence for <span class="math">n³</span> is given by <span class="math">n(n − 1) + 1</span>.</p>
+ <p>For <span class="math">n = 5</span>: Starting odd number = <span class="math">5(4) + 1 = 21</span>.<br>
+ The 5 consecutive odd numbers are: <span class="math">21, 23, 25, 27, 29</span>.<br>
+ <span class="math">21 + 23 + 25 + 27 + 29 = 125 = 5³</span>.</p>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  <div class="ch-nav-btns">
-    <button class="ch-nav-btn" onclick="showChapter(5)">← Chapter 5: Squares &amp; Roots</button>
-    <button class="ch-nav-btn next" onclick="showChapter(7)">Chapter 7: Comparing Quantities →</button>
-  </div>
+ <div class="ch-nav-btns">
+ <button class="ch-nav-btn" onclick="showChapter(5)">← Chapter 5: Squares &amp; Roots</button>
+ <button class="ch-nav-btn next" onclick="showChapter(7)">Chapter 7: Comparing Quantities →</button>
+ </div>
 </section>
