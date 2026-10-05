@@ -5,6 +5,7 @@ const subjects = [
   { name: 'Mathematics', dir: 'chapters-c10m', hub: 'ncert-solutions-class-10-maths.html', totalExpected: 14 },
   { name: 'Science', dir: 'chapters-c10s', hub: 'ncert-solutions-class-10-science.html', totalExpected: 13 },
   { name: 'Social Science', dir: 'chapters-c10sst', hub: 'ncert-solutions-class-10-sst.html', totalExpected: 22 },
+  { name: 'Hindi (Kshitij, Kritika, Sparsh, Sanchayan)', dir: 'chapters-c10h', hub: 'ncert-solutions-class-10-hindi.html', totalExpected: 32 },
   { name: 'English (Language & Literature)', dir: 'chapters-c10e', hub: 'ncert-solutions-class-10-english.html', totalExpected: 28 },
   { name: 'English (Communicative)', dir: 'chapters-c10ec', hub: 'ncert-solutions-class-10-english-communicative.html', totalExpected: 13 },
   { name: 'Sanskrit (Shemushi)', dir: 'chapters-c10sk', hub: 'ncert-solutions-class-10-sanskrit.html', totalExpected: 12 }
