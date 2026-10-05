@@ -254,6 +254,46 @@
       .main-content{padding:20px 16px 40px;}
       .breadcrumb-bar{padding:12px 16px;top:57px;}
     }
+  
+    /* ── COURSE SWITCHER BAR ── */
+    .course-switcher-bar {
+      background: #0c4a6e;
+      color: white;
+      padding: 8px 24px;
+      font-size: 0.82rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .course-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.78rem;
+      transition: all 0.2s;
+    }
+    .course-pill.active {
+      background: #0284c7;
+      color: white;
+      box-shadow: 0 2px 8px rgba(2,132,199,0.4);
+    }
+    .course-pill.inactive {
+      background: rgba(255,255,255,0.12);
+      color: #bae6fd;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .course-pill.inactive:hover {
+      background: rgba(255,255,255,0.22);
+      color: white;
+    }
+
   </style>
 
   <style>
@@ -388,6 +428,13 @@
     </div>
   </div>
 </nav>
+
+<!-- COURSE SWITCHER BANNER -->
+<div class="course-switcher-bar">
+  <span>📌 CBSE Class 10 English Papers:</span>
+  <span class="course-pill active">📘 English Language &amp; Literature (Code 184) • Active</span>
+  <a href="ncert-solutions-class-10-english-communicative.html" class="course-pill inactive">📗 Switch to English Communicative (Code 101) →</a>
+</div>
 
 <!-- NCERT SUBJECT BREADCRUMB -->
 <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
