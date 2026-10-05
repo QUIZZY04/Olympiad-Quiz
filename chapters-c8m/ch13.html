@@ -1,0 +1,238 @@
+<section class="chapter-section" id="ch13">
+  <div class="chapter-header">
+    <div class="ch-badge">13</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 13: Introduction to Graphs</h2>
+      <p>NCERT Exercises 13.1 &amp; 13.2 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Coordinate Geometry &amp; Graphing Concepts</div>
+    <ul class="concept-list">
+      <li><strong>Types of Graphs:</strong>
+        <ul>
+          <li><em>Line Graph:</em> Displays data that changes continuously over periods of time.</li>
+          <li><em>Linear Graph:</em> A line graph that consists of a single unbroken straight line.</li>
+        </ul>
+      </li>
+      <li><strong>Cartesian Coordinates:</strong>
+        <ul>
+          <li>Horizontal line is the <span class="math">x</span>-axis; vertical line is the <span class="math">y</span>-axis. Their intersection is the <strong>Origin</strong> <span class="math">(0, 0)</span>.</li>
+          <li>Any point is represented by an ordered pair <span class="math">(x, y)</span>, where <span class="math">x</span> is the <span class="math">x</span>-coordinate (abscissa) and <span class="math">y</span> is the <span class="math">y</span>-coordinate (ordinate).</li>
+          <li>Points on the <span class="math">x</span>-axis have <span class="math">y = 0</span>, of the form <span class="math">(a, 0)</span>.</li>
+          <li>Points on the <span class="math">y</span>-axis have <span class="math">x = 0</span>, of the form <span class="math">(0, b)</span>.</li>
+        </ul>
+      </li>
+      <li><strong>Variables in Graphing:</strong>
+        <ul>
+          <li><em>Independent Variable:</em> Plotted along the horizontal <span class="math">x</span>-axis (e.g. Time, Deposit, Quantity).</li>
+          <li><em>Dependent Variable:</em> Value changes in response to the independent variable, plotted on the vertical <span class="math">y</span>-axis (e.g. Temperature, Distance, Interest).</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- EXERCISE 13.1 -->
+  <div class="ex-div">NCERT Exercise 13.1</div>
+
+  <div class="q-card" id="q13_1_1">
+    <div class="q-head" onclick="toggleQ('q13_1_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">The following graph shows the temperature of a patient in a hospital, recorded every hour:<br>
+      (9 am: 35.5°C, 10 am: 36°C, 11 am: 39°C, 12 noon: 38.5°C, 1 pm: 36.5°C, 2 pm: 36.5°C, 3 pm: 37°C)<br>
+      (a) What was the patient's temperature at 1 p.m.?<br>
+      (b) When was the patient's temperature 38.5°C?<br>
+      (c) The patient's temperature was the same at two times during the period. What were these two times?<br>
+      (d) What was the temperature at 1.30 p.m.? How did you arrive at your answer?<br>
+      (e) During which periods did the patients' temperature show an upward trend?</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(a)</strong> At 1 p.m., the patient's temperature was <strong>36.5°C</strong>.</div>
+          <div class="step"><strong>(b)</strong> The patient's temperature was 38.5°C at <strong>12 noon</strong>.</div>
+          <div class="step"><strong>(c)</strong> The temperature was the same (36.5°C) at <strong>1 p.m. and 2 p.m.</strong></div>
+          <div class="step"><strong>(d)</strong> The point between 1 p.m. and 2 p.m. is horizontal at 36.5°C. Thus, the temperature at 1.30 p.m. was <strong>36.5°C</strong>.</div>
+          <div class="step"><strong>(e)</strong> Upward trends occurred during: <strong>9 a.m. to 10 a.m.</strong>, <strong>10 a.m. to 11 a.m.</strong>, and <strong>2 p.m. to 3 p.m.</strong></div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Accurate reading of graph for all sub-parts</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q13_1_6">
+    <div class="q-head" onclick="toggleQ('q13_1_6')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">A courier-person cycles from a town to a neighbouring suburban area to deliver a parcel to a merchant. His distance from the town at different times is shown by the following graph:<br>
+      (8 am: 0 km, 9 am: 10 km, 10 am: 16 km, 10:30 am: 16 km, 11:30 am: 22 km)<br>
+      (a) What is the scale taken for the time axis?<br>
+      (b) How much time did the person take for the travel?<br>
+      (c) How far is the place of the merchant from the town?<br>
+      (d) Did the person stop on his way? Explain.<br>
+      (e) During which period did he ride fastest?</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(a) Scale:</strong> 4 grid units = 1 hour (so each small unit represents 15 minutes).</div>
+          <div class="step"><strong>(b) Total travel time:</strong> From 8:00 a.m. to 11:30 a.m. = <span class="math">3\frac{1}{2}\text{ hours}</span> (or 3 hours 30 minutes).</div>
+          <div class="step"><strong>(c) Distance of merchant:</strong> The maximum distance at destination = <strong>22 km</strong>.</div>
+          <div class="step"><strong>(d) Did he stop?</strong> <strong>Yes</strong>, he stopped from <strong>10:00 a.m. to 10:30 a.m.</strong>, as indicated by the horizontal line segment where distance remained constant at 16 km.</div>
+          <div class="step"><strong>(e) Fastest riding period:</strong> Between <strong>8:00 a.m. and 9:00 a.m.</strong>, covering 10 km in 1 hour (Speed = 10 km/h, the steepest segment).</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 mark each for parts (a)-(e) with mathematical justification</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q13_1_7">
+    <div class="q-head" onclick="toggleQ('q13_1_7')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Can there be a time-temperature graph as follows? Justify your answer:<br>
+      (i) Temperature increasing linearly with time<br>
+      (ii) Temperature decreasing linearly with time<br>
+      (iii) Temperature constant over time (horizontal line)<br>
+      (iv) Vertical line parallel to temperature axis</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(i) Yes</strong> — Temperature can steadily rise as daytime progresses.</div>
+          <div class="step"><strong>(ii) Yes</strong> — Temperature can steadily drop during the evening/night.</div>
+          <div class="step"><strong>(iii) Yes</strong> — Temperature can remain constant over an interval (isothermal conditions).</div>
+          <div class="step"><strong>(iv) No</strong> — A vertical line means infinite different temperatures existing at the exact same instant of time, which is physically impossible.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Evaluation with physical reasoning</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 13.2 -->
+  <div class="ex-div">NCERT Exercise 13.2</div>
+
+  <div class="q-card" id="q13_2_1">
+    <div class="q-head" onclick="toggleQ('q13_2_1')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Draw a graph for the following:<br>
+      (a) Cost of apples: (Number of apples: 1, 2, 3, 4, 5 vs Cost in ₹: 5, 10, 15, 20, 25). Is it a linear graph?<br>
+      (b) Distance travelled by a car: (Time: 6 am, 7 am, 8 am, 9 am vs Dist in km: 40, 80, 120, 160). (i) How much distance did the car cover during the period 7.30 a.m. to 8 a.m.? (ii) What was the time when the car had covered a distance of 100 km since its start?</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Cost of Apples:</strong><br>
+            Points: <span class="math">(1, 5), (2, 10), (3, 15), (4, 20), (5, 25)</span>.<br>
+            Plotting these on graph paper, all points lie on a single unbroken straight line passing through origin <span class="math">(0, 0)</span>.<br>
+            <strong>Yes, it is a linear graph.</strong>
+          </div>
+          <div class="step">
+            <strong>(b) Distance Travelled by Car:</strong><br>
+            Points: (6 am, 40), (7 am, 80), (8 am, 120), (9 am, 160). Speed = 40 km/h constant.<br>
+            (i) Between 7.30 a.m. (distance 100 km) and 8 a.m. (distance 120 km):<br>
+            <span class="math">\text{Distance covered} = 120 - 100 = <strong>20\text{ km}</strong></span>.<br>
+            (ii) Distance of 100 km corresponds to time = <strong>7:30 a.m.</strong>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (a): Coordinates and confirming linear graph</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (b): 20 km and 7:30 a.m. evaluated from graph</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q13_2_2">
+    <div class="q-head" onclick="toggleQ('q13_2_2')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Draw a graph for:<br>
+      (i) Side of square (in cm): 2, 3, 3.5, 5, 6 vs Perimeter (in cm): 8, 12, 14, 20, 24. Is it a linear graph?<br>
+      (ii) Side of square (in cm): 2, 3, 4, 5, 6 vs Area (in cm²): 4, 9, 16, 25, 36. Is it a linear graph?</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i) Side vs Perimeter (<span class="math">P = 4s</span>):</strong><br>
+            The ratio <span class="math">\frac{P}{s} = 4</span> is constant. All points <span class="math">(2, 8), (3, 12), (3.5, 14), (5, 20), (6, 24)</span> lie along a straight line.<br>
+            <strong>Yes, it is a linear graph.</strong>
+          </div>
+          <div class="step">
+            <strong>(ii) Side vs Area (<span class="math">A = s^2</span>):</strong><br>
+            The ratio <span class="math">\frac{A}{s} = s</span> is not constant (it increases as side increases). Joining the points <span class="math">(2, 4), (3, 9), (4, 16), (5, 25), (6, 36)</span> yields a curve (parabola), not a straight line.<br>
+            <strong>No, it is NOT a linear graph.</strong>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Affirmative 'Yes' with P = 4s linear proof</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): Negative 'No' with quadratic relation proof</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ SECTION -->
+  <div class="cbq-section">
+    <div class="cbq-header">
+      <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
+      <span class="cbq-badge">CBSE Board Exam Pattern</span>
+    </div>
+    <div class="cbq-body">
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study: Telecommunication Data Plan</div>
+        <div class="cbq-question"><strong>Scenario:</strong> A cellular service provider charges a base monthly fee of ₹ 150 plus ₹ 2 per gigabyte (GB) of high-speed data consumed. (i) Write the linear equation relating total cost <span class="math">C</span> and data <span class="math">x</span> in GB. (ii) What are the coordinates of the graph where it crosses the vertical axis? (iii) Find the bill amount for consuming 45 GB of data.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p><strong>(i) Linear Equation:</strong><br>
+          <span class="math">C = 2x + 150</span>.</p>
+          <p><strong>(ii) Vertical Intercept (<span class="math">y</span>-intercept):</strong><br>
+          When data <span class="math">x = 0</span>, <span class="math">C = 150</span>. Point coordinates = <strong><span class="math">(0, 150)</span></strong>.</p>
+          <p><strong>(iii) Bill for 45 GB:</strong><br>
+          <span class="math">C = 2(45) + 150 = 90 + 150 = <strong>₹ 240</strong></span>.</p>
+        </div>
+      </div>
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#10b981;">⚡ Collinearity Verification (HOTS)</div>
+        <div class="cbq-question">Points A(2, 3), B(4, 5), and C(6, 7) are plotted on a graph. Verify algebraically and graphically whether these three points lie on the same straight line (are collinear).</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p>Slope between A and B = <span class="math">\frac{5 - 3}{4 - 2} = \frac{2}{2} = 1</span>.<br>
+          Slope between B and C = <span class="math">\frac{7 - 5}{6 - 4} = \frac{2}{2} = 1</span>.</p>
+          <p>Since the slopes are equal and point B is common to both segments, the points A, B, and C are <strong>strictly collinear</strong> and lie on the line <span class="math">y = x + 1</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(12)">← Chapter 12: Factorisation</button>
+    <button class="ch-nav-btn" disabled style="opacity:.35;">Next Chapter →</button>
+  </div>
+</section>

@@ -1,0 +1,333 @@
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.join(__dirname, '..', 'chapters-c8m');
+
+const ch8Html = `<section class="chapter-section" id="ch8">
+  <div class="chapter-header">
+    <div class="ch-badge">8</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 8: Algebraic Expressions and Identities</h2>
+      <p>NCERT Exercises 8.1, 8.2, 8.3 &amp; 8.4 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Algebraic Definitions &amp; Standard Identities</div>
+    <ul class="concept-list">
+      <li><strong>Classification by Number of Terms:</strong>
+        <ul>
+          <li><em>Monomial:</em> Expression with 1 term (e.g. <span class="math">7xy</span>, <span class="math">-5p^2</span>).</li>
+          <li><em>Binomial:</em> Expression with 2 terms (e.g. <span class="math">2x + 3y</span>).</li>
+          <li><em>Trinomial:</em> Expression with 3 terms (e.g. <span class="math">a + b + c</span>).</li>
+          <li><em>Polynomial:</em> Expression with one or more terms with non-negative integer exponents.</li>
+        </ul>
+      </li>
+      <li><strong>Like Terms:</strong> Terms having the exact same algebraic factors (e.g. <span class="math">7xy</span> and <span class="math">-3xy</span>). Only like terms can be added or subtracted.</li>
+      <li><strong>The Four Standard Identities:</strong>
+        <ul>
+          <li><strong>Identity I:</strong> <span class="math">(a + b)^2 = a^2 + 2ab + b^2</span></li>
+          <li><strong>Identity II:</strong> <span class="math">(a - b)^2 = a^2 - 2ab + b^2</span></li>
+          <li><strong>Identity III:</strong> <span class="math">(a + b)(a - b) = a^2 - b^2</span></li>
+          <li><strong>Identity IV:</strong> <span class="math">(x + a)(x + b) = x^2 + (a + b)x + ab</span></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- EXERCISE 8.1 -->
+  <div class="ex-div">NCERT Exercise 8.1</div>
+
+  <div class="q-card" id="q8_1_1">
+    <div class="q-head" onclick="toggleQ('q8_1_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Add the following:<br>
+      (i) <span class="math">ab - bc,\\; bc - ca,\\; ca - ab</span><br>
+      (ii) <span class="math">a - b + ab,\\; b - c + bc,\\; c - a + ac</span><br>
+      (iii) <span class="math">2p^2q^2 - 3pq + 4,\\; 5 + 7pq - 3p^2q^2</span><br>
+      (iv) <span class="math">l^2 + m^2,\\; m^2 + n^2,\\; n^2 + l^2,\\; 2lm + 2mn + 2nl</span></div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i)</strong> <span class="math">(ab - bc) + (bc - ca) + (ca - ab)</span><br>
+            <span class="math">= (ab - ab) + (-bc + bc) + (-ca + ca) = <strong>0</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii)</strong> <span class="math">(a - b + ab) + (b - c + bc) + (c - a + ac)</span><br>
+            <span class="math">= (a - a) + (-b + b) + (-c + c) + ab + bc + ac = <strong>ab + bc + ac</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iii)</strong> <span class="math">(2p^2q^2 - 3pq + 4) + (-3p^2q^2 + 7pq + 5)</span><br>
+            <span class="math">= (2 - 3)p^2q^2 + (-3 + 7)pq + (4 + 5) = <strong>-p^2q^2 + 4pq + 9</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iv)</strong> <span class="math">(l^2 + m^2) + (m^2 + n^2) + (n^2 + l^2) + (2lm + 2mn + 2nl)</span><br>
+            <span class="math">= 2l^2 + 2m^2 + 2n^2 + 2lm + 2mn + 2nl = <strong>2(l^2 + m^2 + n^2 + lm + mn + nl)</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 mark for each part evaluated by grouping like terms</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q8_1_2">
+    <div class="q-head" onclick="toggleQ('q8_1_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Subtract:<br>
+      (a) <span class="math">4a - 7ab + 3b + 12</span> from <span class="math">12a - 9ab + 5b - 3</span><br>
+      (b) <span class="math">3xy + 5yz - 7zx</span> from <span class="math">5xy - 2yz - 2zx + 10xyz</span></div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a)</strong> <span class="math">(12a - 9ab + 5b - 3) - (4a - 7ab + 3b + 12)</span><br>
+            Change signs of the second expression:<br>
+            <span class="math">= 12a - 9ab + 5b - 3 - 4a + 7ab - 3b - 12</span><br>
+            <span class="math">= (12 - 4)a + (-9 + 7)ab + (5 - 3)b + (-3 - 12)</span><br>
+            <span class="math">= <strong>8a - 2ab + 2b - 15</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(b)</strong> <span class="math">(5xy - 2yz - 2zx + 10xyz) - (3xy + 5yz - 7zx)</span><br>
+            <span class="math">= 5xy - 2yz - 2zx + 10xyz - 3xy - 5yz + 7zx</span><br>
+            <span class="math">= (5 - 3)xy + (-2 - 5)yz + (-2 + 7)zx + 10xyz</span><br>
+            <span class="math">= <strong>2xy - 7yz + 5zx + 10xyz</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (a): 8a - 2ab + 2b - 15</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (b): 2xy - 7yz + 5zx + 10xyz</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 8.2 -->
+  <div class="ex-div">NCERT Exercise 8.2</div>
+
+  <div class="q-card" id="q8_2_1">
+    <div class="q-head" onclick="toggleQ('q8_2_1')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Find the product of the following pairs of monomials:<br>
+      (i) <span class="math">4,\\; 7p</span> &nbsp;&nbsp; (ii) <span class="math">-4p,\\; 7p</span> &nbsp;&nbsp; (iii) <span class="math">-4p,\\; 7pq</span> &nbsp;&nbsp; (iv) <span class="math">4p^3,\\; -3p</span> &nbsp;&nbsp; (v) <span class="math">4p,\\; 0</span></div>
+      <div class="q-marks">2.5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">(i) <span class="math">4 \\times 7p = <strong>28p</strong></span></div>
+          <div class="step">(ii) <span class="math">-4p \\times 7p = (-4 \\times 7)(p \\times p) = <strong>-28p^2</strong></span></div>
+          <div class="step">(iii) <span class="math">-4p \\times 7pq = (-4 \\times 7)(p \\times p \\times q) = <strong>-28p^2q</strong></span></div>
+          <div class="step">(iv) <span class="math">4p^3 \\times (-3p) = (4 \\times -3)(p^3 \\times p) = <strong>-12p^4</strong></span></div>
+          <div class="step">(v) <span class="math">4p \\times 0 = <strong>0</strong></span></div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">0.5 marks each for correct algebraic monomial product</span><span class="marking-marks">2.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q8_2_4">
+    <div class="q-head" onclick="toggleQ('q8_2_4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Obtain the volume of rectangular boxes with the following length, breadth and height respectively:<br>
+      (i) <span class="math">5a,\\; 3a^2,\\; 7a^4</span><br>
+      (ii) <span class="math">2p,\\; 4q,\\; 8r</span><br>
+      (iii) <span class="math">xy,\\; 2x^2y,\\; 2xy^2</span><br>
+      (iv) <span class="math">a,\\; 2b,\\; 3c</span></div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Formula:</em> <span class="math">\\text{Volume} = \\text{length} \\times \\text{breadth} \\times \\text{height}</span>.</p>
+          <div class="step">(i) <span class="math">5a \\times 3a^2 \\times 7a^4 = (5 \\times 3 \\times 7)(a^{1+2+4}) = <strong>105a^7</strong></span>.</div>
+          <div class="step">(ii) <span class="math">2p \\times 4q \\times 8r = (2 \\times 4 \\times 8)(pqr) = <strong>64pqr</strong></span>.</div>
+          <div class="step">(iii) <span class="math">xy \\times 2x^2y \\times 2xy^2 = (1 \\times 2 \\times 2)(x^{1+2+1}y^{1+1+2}) = <strong>4x^4y^4</strong></span>.</div>
+          <div class="step">(iv) <span class="math">a \\times 2b \\times 3c = (1 \\times 2 \\times 3)(abc) = <strong>6abc</strong></span>.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">0.5 marks each for correct volume monomial expression</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 8.3 -->
+  <div class="ex-div">NCERT Exercise 8.3</div>
+
+  <div class="q-card" id="q8_3_4">
+    <div class="q-head" onclick="toggleQ('q8_3_4')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">(a) Simplify <span class="math">3x(4x - 5) + 3</span> and find its values for (i) <span class="math">x = 3</span>, (ii) <span class="math">x = \\frac{1}{2}</span>.<br>
+      (b) Simplify <span class="math">a(a^2 + a + 1) + 5</span> and find its value for (i) <span class="math">a = 0</span>, (ii) <span class="math">a = 1</span>, (iii) <span class="math">a = -1</span>.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Simplification:</strong> <span class="math">3x(4x - 5) + 3 = 12x^2 - 15x + 3</span>.<br>
+            (i) For <span class="math">x = 3</span>: <span class="math">12(3)^2 - 15(3) + 3 = 12(9) - 45 + 3 = 108 - 45 + 3 = <strong>66</strong></span>.<br>
+            (ii) For <span class="math">x = \\frac{1}{2}</span>: <span class="math">12\\left(\\frac{1}{4}\\right) - 15\\left(\\frac{1}{2}\\right) + 3 = 3 - \\frac{15}{2} + 3 = 6 - 7.5 = <strong>-\\frac{3}{2}</strong></span> (or <span class="math">-1.5</span>).
+          </div>
+          <div class="step">
+            <strong>(b) Simplification:</strong> <span class="math">a(a^2 + a + 1) + 5 = a^3 + a^2 + a + 5</span>.<br>
+            (i) For <span class="math">a = 0</span>: <span class="math">0 + 0 + 0 + 5 = <strong>5</strong></span>.<br>
+            (ii) For <span class="math">a = 1</span>: <span class="math">1^3 + 1^2 + 1 + 5 = 1 + 1 + 1 + 5 = <strong>8</strong></span>.<br>
+            (iii) For <span class="math">a = -1</span>: <span class="math">(-1)^3 + (-1)^2 + (-1) + 5 = -1 + 1 - 1 + 5 = <strong>4</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (a): Simplified expression + two evaluations</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (b): Simplified expression + three evaluations</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 8.4 -->
+  <div class="ex-div">NCERT Exercise 8.4</div>
+
+  <div class="q-card" id="q8_4_1">
+    <div class="q-head" onclick="toggleQ('q8_4_1')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Multiply the binomials:<br>
+      (i) <span class="math">(2x + 5)</span> and <span class="math">(4x - 3)</span><br>
+      (ii) <span class="math">(y - 8)</span> and <span class="math">(3y - 4)</span><br>
+      (iii) <span class="math">(2.5l - 0.5m)</span> and <span class="math">(2.5l + 0.5m)</span></div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i)</strong> <span class="math">(2x + 5)(4x - 3) = 2x(4x - 3) + 5(4x - 3)</span><br>
+            <span class="math">= 8x^2 - 6x + 20x - 15 = <strong>8x^2 + 14x - 15</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii)</strong> <span class="math">(y - 8)(3y - 4) = y(3y - 4) - 8(3y - 4)</span><br>
+            <span class="math">= 3y^2 - 4y - 24y + 32 = <strong>3y^2 - 28y + 32</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iii)</strong> Using Identity <span class="math">(a - b)(a + b) = a^2 - b^2</span>:<br>
+            <span class="math">= (2.5l)^2 - (0.5m)^2 = <strong>6.25l^2 - 0.25m^2</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 mark for each binomial product expansion</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q8_4_2">
+    <div class="q-head" onclick="toggleQ('q8_4_2')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">Use a suitable identity to get each of the following products:<br>
+      (i) <span class="math">(2y + 5)(2y + 5)</span><br>
+      (ii) <span class="math">(2a - 7)(2a - 7)</span><br>
+      (iii) <span class="math">(1.1m - 0.4)(1.1m + 0.4)</span><br>
+      (iv) <span class="math">(a^2 + b^2)(-a^2 + b^2)</span></div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i) Identity I <span class="math">(a + b)^2 = a^2 + 2ab + b^2</span>:</strong><br>
+            <span class="math">(2y + 5)^2 = (2y)^2 + 2(2y)(5) + 5^2 = <strong>4y^2 + 20y + 25</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii) Identity II <span class="math">(a - b)^2 = a^2 - 2ab + b^2</span>:</strong><br>
+            <span class="math">(2a - 7)^2 = (2a)^2 - 2(2a)(7) + 7^2 = <strong>4a^2 - 28a + 49</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iii) Identity III <span class="math">(a - b)(a + b) = a^2 - b^2</span>:</strong><br>
+            <span class="math">(1.1m)^2 - (0.4)^2 = <strong>1.21m^2 - 0.16</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iv) Rearrange as <span class="math">(b^2 + a^2)(b^2 - a^2)</span>:</strong><br>
+            <span class="math">= (b^2)^2 - (a^2)^2 = <strong>b^4 - a^4</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 mark each with explicit identity name and evaluation</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ SECTION -->
+  <div class="cbq-section">
+    <div class="cbq-header">
+      <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
+      <span class="cbq-badge">CBSE Board Exam Pattern</span>
+    </div>
+    <div class="cbq-body">
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study: Geometric Area &amp; Binomial Expansion</div>
+        <div class="cbq-question"><strong>Scenario:</strong> A square park has side length <span class="math">(3x + 4)</span> metres. A uniform gravel path of width 2 metres is built around the outside of the park. (i) Write the polynomial expression for the area of the original park. (ii) Write the polynomial expression for the area of the gravel path.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p><strong>(i) Area of original square park:</strong><br>
+          <span class="math">\\text{Area} = (3x + 4)^2 = (3x)^2 + 2(3x)(4) + 4^2 = <strong>(9x^2 + 24x + 16)\\text{ m}^2</strong></span>.</p>
+          <p><strong>(ii) Outer side length with 2 m path:</strong><br>
+          New side = <span class="math">(3x + 4) + 2(2) = (3x + 8)\\text{ m}</span>.<br>
+          Outer Area = <span class="math">(3x + 8)^2 = 9x^2 + 48x + 64</span>.<br>
+          Area of path = Outer Area - Inner Area:<br>
+          <span class="math">= (9x^2 + 48x + 64) - (9x^2 + 24x + 16) = <strong>(24x + 48)\\text{ m}^2</strong></span>.</p>
+        </div>
+      </div>
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#10b981;">⚡ Mental Math Identity Challenge (HOTS)</div>
+        <div class="cbq-question">Using standard algebraic identities, evaluate <span class="math">103 \\times 104</span> and <span class="math">95 \\times 96</span> without direct vertical multiplication.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p><strong>103 × 104:</strong> Write as <span class="math">(100 + 3)(100 + 4)</span>.<br>
+          Using <span class="math">(x + a)(x + b) = x^2 + (a + b)x + ab</span> with <span class="math">x = 100, a = 3, b = 4</span>:<br>
+          <span class="math">= 100^2 + (3 + 4)(100) + (3)(4) = 10000 + 700 + 12 = <strong>10,712</strong></span>.</p>
+          <p><strong>95 × 96:</strong> Write as <span class="math">(100 - 5)(100 - 4)</span>:<br>
+          <span class="math">= 100^2 + (-5 - 4)(100) + (-5)(-4) = 10000 - 900 + 20 = <strong>9,120</strong></span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(7)">← Chapter 7: Comparing Quantities</button>
+    <button class="ch-nav-btn next" onclick="showChapter(9)">Chapter 9: Mensuration →</button>
+  </div>
+</section>
+`;
+
+fs.writeFileSync(path.join(outDir, 'ch8.html'), ch8Html, 'utf8');
+console.log('Generated ch8.html');

@@ -1,0 +1,688 @@
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.join(__dirname, '..', 'chapters-c8m');
+
+const ch3Html = `<section class="chapter-section" id="ch3">
+  <div class="chapter-header">
+    <div class="ch-badge">3</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 3: Understanding Quadrilaterals</h2>
+      <p>NCERT Exercises 3.1, 3.2, 3.3 &amp; 3.4 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Geometric Theorems &amp; Properties</div>
+    <ul class="concept-list">
+      <li><strong>Polygons:</strong> A simple closed curve made up of only line segments.
+        <ul>
+          <li><em>Convex Polygon:</em> All diagonals lie completely inside the interior; every interior angle &lt; 180°.</li>
+          <li><em>Concave Polygon:</em> At least one diagonal lies in the exterior; at least one interior angle &gt; 180° (reflex angle).</li>
+          <li><em>Regular Polygon:</em> Both equiangular (all angles equal) and equilateral (all sides equal).</li>
+        </ul>
+      </li>
+      <li><strong>Angle Sum Formulas:</strong>
+        <ul>
+          <li>Sum of interior angles of an <span class="math">n</span>-sided polygon = <span class="math">(n - 2) \\times 180^\\circ</span>.</li>
+          <li>Each interior angle of a regular <span class="math">n</span>-sided polygon = <span class="math">\\frac{(n - 2) \\times 180^\\circ}{n}</span>.</li>
+          <li>Sum of measures of external angles of <em>any</em> convex polygon = <span class="math">360^\\circ</span>.</li>
+          <li>Each exterior angle of a regular <span class="math">n</span>-sided polygon = <span class="math">\\frac{360^\\circ}{n}</span>.</li>
+          <li>Number of sides = <span class="math">\\frac{360^\\circ}{\\text{Measure of each exterior angle}}</span>.</li>
+        </ul>
+      </li>
+      <li><strong>Quadrilateral Special Types:</strong>
+        <ul>
+          <li><strong>Parallelogram:</strong> Opposite sides are equal &amp; parallel; opposite angles are equal; adjacent angles are supplementary (<span class="math">180^\\circ</span>); diagonals bisect each other.</li>
+          <li><strong>Rhombus:</strong> All 4 sides equal; opposite angles equal; diagonals bisect each other perpendicularly (<span class="math">90^\\circ</span>).</li>
+          <li><strong>Rectangle:</strong> Parallelogram with four right angles (<span class="math">90^\\circ</span>); diagonals are equal and bisect each other.</li>
+          <li><strong>Square:</strong> Rectangle with all sides equal; diagonals are equal and perpendicular bisectors of each other.</li>
+          <li><strong>Trapezium:</strong> Exactly one pair of opposite sides is parallel.</li>
+          <li><strong>Kite:</strong> Two distinct pairs of adjacent equal sides; diagonals are perpendicular; one diagonal bisects the other.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- EXERCISE 3.1 -->
+  <div class="ex-div">NCERT Exercise 3.1</div>
+
+  <div class="q-card" id="q3_1_1">
+    <div class="q-head" onclick="toggleQ('q3_1_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Classify figures on the basis of: (a) Simple curve, (b) Simple closed curve, (c) Polygon, (d) Convex polygon, (e) Concave polygon.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(a) Simple curve:</strong> A curve that does not cross itself. Figures: 1, 2, 5, 6, 7.</div>
+          <div class="step"><strong>(b) Simple closed curve:</strong> A simple curve whose endpoints join to enclose an area. Figures: 1, 2, 5, 6, 7.</div>
+          <div class="step"><strong>(c) Polygon:</strong> A simple closed curve formed strictly by line segments. Figures: 1, 2.</div>
+          <div class="step"><strong>(d) Convex polygon:</strong> A polygon in which all interior angles are &lt; 180° and all diagonals lie inside. Figure: 2.</div>
+          <div class="step"><strong>(e) Concave polygon:</strong> A polygon in which at least one interior angle is reflex (&gt; 180°). Figure: 1.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Identification with proper geometric criteria</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_1_2">
+    <div class="q-head" onclick="toggleQ('q3_1_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">How many diagonals does each of the following have?<br>
+      (a) A convex quadrilateral &nbsp;&nbsp; (b) A regular hexagon &nbsp;&nbsp; (c) A triangle</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Formula:</em> Number of diagonals of an <span class="math">n</span>-sided polygon = <span class="math">\\frac{n(n - 3)}{2}</span>.</p>
+          <div class="step">
+            <strong>(a) Convex quadrilateral (<span class="math">n = 4</span>):</strong><br>
+            <span class="math">\\text{Diagonals} = \\frac{4(4 - 3)}{2} = \\frac{4 \\times 1}{2} = <strong>2</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(b) A regular hexagon (<span class="math">n = 6</span>):</strong><br>
+            <span class="math">\\text{Diagonals} = \\frac{6(6 - 3)}{2} = \\frac{6 \\times 3}{2} = <strong>9</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(c) A triangle (<span class="math">n = 3</span>):</strong><br>
+            <span class="math">\\text{Diagonals} = \\frac{3(3 - 3)}{2} = \\frac{3 \\times 0}{2} = <strong>0</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Formula stated: n(n-3)/2</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Quadrilateral = 2, Hexagon = 9, Triangle = 0</span><span class="marking-marks">2.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_1_3">
+    <div class="q-head" onclick="toggleQ('q3_1_3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">What is the sum of the measures of the angles of a convex quadrilateral? Will this property hold if the quadrilateral is not convex?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Angle sum of convex quadrilateral:</strong><br>
+            A quadrilateral can be divided into two triangles by drawing one diagonal.<br>
+            Angle sum = <span class="math">2 \\times 180^\\circ = <strong>360^\\circ</strong></span> (or <span class="math">(4 - 2) \\times 180^\\circ = 360^\\circ</span>).
+          </div>
+          <div class="step">
+            <strong>Non-convex (concave) quadrilateral:</strong><br>
+            <strong>Yes</strong>, this property holds even if the quadrilateral is concave (not convex). By drawing an internal diagonal between vertices, the concave quadrilateral also divides into two non-overlapping triangles, whose angle sum is <span class="math">180^\\circ + 180^\\circ = 360^\\circ</span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Stating 360° with triangle partition justification</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Affirmative 'Yes' for concave quadrilateral with proof</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_1_4">
+    <div class="q-head" onclick="toggleQ('q3_1_4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">What is the angle sum of a convex polygon with number of sides: (a) 7 &nbsp;&nbsp; (b) 8 &nbsp;&nbsp; (c) 10 &nbsp;&nbsp; (d) n</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Formula:</em> Angle sum of an <span class="math">n</span>-sided convex polygon = <span class="math">(n - 2) \\times 180^\\circ</span>.</p>
+          <div class="step"><strong>(a) <span class="math">n = 7</span>:</strong> <span class="math">(7 - 2) \\times 180^\\circ = 5 \\times 180^\\circ = <strong>900^\\circ</strong></span>.</div>
+          <div class="step"><strong>(b) <span class="math">n = 8</span>:</strong> <span class="math">(8 - 2) \\times 180^\\circ = 6 \\times 180^\\circ = <strong>1080^\\circ</strong></span>.</div>
+          <div class="step"><strong>(c) <span class="math">n = 10</span>:</strong> <span class="math">(10 - 2) \\times 180^\\circ = 8 \\times 180^\\circ = <strong>1440^\\circ</strong></span>.</div>
+          <div class="step"><strong>(d) <span class="math">n</span> sides:</strong> <span class="math"><strong>(n - 2) \\times 180^\\circ</strong></span>.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct evaluation (0.5 marks each)</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_1_5">
+    <div class="q-head" onclick="toggleQ('q3_1_5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">What is a regular polygon? State the name of a regular polygon of: (i) 3 sides, (ii) 4 sides, (iii) 6 sides.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Definition:</strong> A polygon is called a <strong>regular polygon</strong> if it is both <em>equilateral</em> (all sides of equal length) and <em>equiangular</em> (all interior angles of equal measure).
+          </div>
+          <div class="step"><strong>(i) 3 sides:</strong> <strong>Equilateral triangle</strong></div>
+          <div class="step"><strong>(ii) 4 sides:</strong> <strong>Square</strong></div>
+          <div class="step"><strong>(iii) 6 sides:</strong> <strong>Regular hexagon</strong></div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Definition of regular polygon</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Naming: Equilateral triangle, Square, Regular hexagon (0.5 mark each)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_1_6">
+    <div class="q-head" onclick="toggleQ('q3_1_6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Find the angle measure <span class="math">x</span> in the following figures:<br>
+      (a) Quadrilateral with angles <span class="math">50^\\circ, 130^\\circ, 120^\\circ, x</span><br>
+      (b) Quadrilateral with right-angle exterior, <span class="math">60^\\circ, 70^\\circ, x</span><br>
+      (c) Pentagon with top angle <span class="math">30^\\circ</span>, two equal angles <span class="math">x</span>, and base exterior angles <span class="math">70^\\circ</span> and <span class="math">60^\\circ</span><br>
+      (d) Regular pentagon with 5 equal angles <span class="math">x</span></div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Quadrilateral:</strong> Angle sum = <span class="math">360^\\circ</span>.<br>
+            <span class="math">50^\\circ + 130^\\circ + 120^\\circ + x = 360^\\circ</span><br>
+            <span class="math">300^\\circ + x = 360^\\circ \\implies <strong>x = 60^\\circ</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(b) Quadrilateral:</strong> Exterior angle = <span class="math">90^\\circ \\implies</span> adjacent interior angle = <span class="math">180^\\circ - 90^\\circ = 90^\\circ</span>.<br>
+            <span class="math">90^\\circ + 60^\\circ + 70^\\circ + x = 360^\\circ</span><br>
+            <span class="math">220^\\circ + x = 360^\\circ \\implies <strong>x = 140^\\circ</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(c) Pentagon:</strong> Angle sum = <span class="math">(5 - 2) \\times 180^\\circ = 540^\\circ</span>.<br>
+            Base interior angles via linear pair: <span class="math">180^\\circ - 70^\\circ = 110^\\circ</span> and <span class="math">180^\\circ - 60^\\circ = 120^\\circ</span>.<br>
+            <span class="math">30^\\circ + x + x + 110^\\circ + 120^\\circ = 540^\\circ</span><br>
+            <span class="math">2x + 260^\\circ = 540^\\circ \\implies 2x = 280^\\circ \\implies <strong>x = 140^\\circ</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(d) Regular pentagon:</strong> All 5 angles are equal to <span class="math">x</span>.<br>
+            <span class="math">5x = 540^\\circ \\implies x = \\frac{540^\\circ}{5} = <strong>108^\\circ</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (a): x = 60°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (b): x = 140°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (c): Base angles + 2x = 280° -> x = 140°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (d): 5x = 540° -> x = 108°</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 3.2 -->
+  <div class="ex-div">NCERT Exercise 3.2</div>
+
+  <div class="q-card" id="q3_2_1">
+    <div class="q-head" onclick="toggleQ('q3_2_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Find <span class="math">x</span> in the following figures:<br>
+      (a) Triangle with exterior angles <span class="math">125^\\circ, 125^\\circ, x</span><br>
+      (b) Pentagon with exterior angles <span class="math">70^\\circ, 60^\\circ, 90^\\circ, 90^\\circ, x</span></div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Theorem:</em> The sum of the exterior angles of any convex polygon is always <span class="math">360^\\circ</span>.</p>
+          <div class="step">
+            <strong>(a) In the triangle:</strong><br>
+            <span class="math">125^\\circ + 125^\\circ + x = 360^\\circ</span><br>
+            <span class="math">250^\\circ + x = 360^\\circ \\implies <strong>x = 110^\\circ</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(b) In the pentagon:</strong><br>
+            One interior right angle (<span class="math">90^\\circ</span>) gives an exterior angle of <span class="math">180^\\circ - 90^\\circ = 90^\\circ</span>.<br>
+            <span class="math">x + 90^\\circ + 60^\\circ + 90^\\circ + 70^\\circ = 360^\\circ</span><br>
+            <span class="math">x + 310^\\circ = 360^\\circ \\implies <strong>x = 50^\\circ</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Theorem: sum of exterior angles = 360°</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (a): x = 110°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (b): x = 50°</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_2_2">
+    <div class="q-head" onclick="toggleQ('q3_2_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Find the measure of each exterior angle of a regular polygon of: (i) 9 sides, (ii) 15 sides.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Formula:</em> Each exterior angle of a regular polygon = <span class="math">\\frac{360^\\circ}{n}</span>.</p>
+          <div class="step">
+            <strong>(i) For <span class="math">n = 9</span> sides:</strong><br>
+            <span class="math">\\text{Exterior angle} = \\frac{360^\\circ}{9} = <strong>40^\\circ</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii) For <span class="math">n = 15</span> sides:</strong><br>
+            <span class="math">\\text{Exterior angle} = \\frac{360^\\circ}{15} = <strong>24^\\circ</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): 40°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): 24°</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_2_3">
+    <div class="q-head" onclick="toggleQ('q3_2_3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">How many sides does a regular polygon have if the measure of an exterior angle is <span class="math">24^\\circ</span>?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Total measure of all exterior angles = <span class="math">360^\\circ</span>.<br>
+            Measure of each exterior angle = <span class="math">24^\\circ</span>.<br>
+            <span class="math">\\text{Number of sides } n = \\frac{360^\\circ}{24^\\circ} = <strong>15</strong></span>.
+          </div>
+          <p><strong>Final Answer:</strong> The regular polygon has <strong>15 sides</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Formula n = 360°/exterior angle</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation n = 15 sides</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_2_4">
+    <div class="q-head" onclick="toggleQ('q3_2_4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">How many sides does a regular polygon have if each of its interior angles is <span class="math">165^\\circ</span>?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Each interior angle = <span class="math">165^\\circ</span>.<br>
+            Exterior angle = <span class="math">180^\\circ - \\text{Interior angle} = 180^\\circ - 165^\\circ = <strong>15^\\circ</strong></span>.
+          </div>
+          <div class="step">
+            <span class="math">\\text{Number of sides } n = \\frac{360^\\circ}{\\text{Exterior angle}} = \\frac{360^\\circ}{15^\\circ} = <strong>24</strong></span>.
+          </div>
+          <p><strong>Final Answer:</strong> The regular polygon has <strong>24 sides</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Finding exterior angle = 180° - 165° = 15°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculating n = 360°/15° = 24</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_2_5">
+    <div class="q-head" onclick="toggleQ('q3_2_5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">(a) Is it possible to have a regular polygon with measure of each exterior angle as <span class="math">22^\\circ</span>?<br>
+      (b) Can it be an interior angle of a regular polygon? Why?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Exterior angle = <span class="math">22^\\circ</span>:</strong><br>
+            For a regular polygon, the number of sides <span class="math">n = \\frac{360^\\circ}{22^\\circ} = \\frac{180}{11} = 16.36</span>, which is not a whole number.<br>
+            Since the number of sides must be an integer <span class="math">\\ge 3</span>, <strong>No</strong>, it is not possible.
+          </div>
+          <div class="step">
+            <strong>(b) Interior angle = <span class="math">22^\\circ</span>:</strong><br>
+            If interior angle = <span class="math">22^\\circ</span>, then exterior angle = <span class="math">180^\\circ - 22^\\circ = 158^\\circ</span>.<br>
+            Then <span class="math">n = \\frac{360^\\circ}{158^\\circ} = \\frac{180}{79}</span>, which is not an integer.<br>
+            Therefore, <strong>No</strong>, <span class="math">22^\\circ</span> cannot be an interior angle of a regular polygon.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (a): Divisibility check showing 360 not divisible by 22</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (b): Exterior angle 158° and non-integer n</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_2_6">
+    <div class="q-head" onclick="toggleQ('q3_2_6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">(a) What is the minimum interior angle possible for a regular polygon? Why?<br>
+      (b) What is the maximum exterior angle possible for a regular polygon?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(a) Minimum interior angle:</strong><br>
+            The regular polygon with the fewest possible sides is an <strong>equilateral triangle</strong> (<span class="math">n = 3</span>).<br>
+            Each interior angle of an equilateral triangle = <span class="math">\\frac{(3 - 2) \\times 180^\\circ}{3} = <strong>60^\\circ</strong></span>.<br>
+            As <span class="math">n</span> increases, the interior angles increase. Hence, the minimum interior angle is <span class="math"><strong>60^\\circ</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(b) Maximum exterior angle:</strong><br>
+            Since Interior Angle + Exterior Angle = <span class="math">180^\\circ</span>, the maximum exterior angle occurs when the interior angle is at its minimum:<br>
+            <span class="math">\\text{Max exterior angle} = 180^\\circ - 60^\\circ = <strong>120^\\circ</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (a): 60° with equilateral triangle reasoning</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Part (b): 120° via linear pair property</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 3.3 -->
+  <div class="ex-div">NCERT Exercise 3.3</div>
+
+  <div class="q-card" id="q3_3_1">
+    <div class="q-head" onclick="toggleQ('q3_3_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Given a parallelogram ABCD. Complete each statement along with the definition or property used:<br>
+      (i) <span class="math">AD = \\dots</span><br>
+      (ii) <span class="math">\\angle DCB = \\dots</span><br>
+      (iii) <span class="math">OC = \\dots</span><br>
+      (iv) <span class="math">m\\angle DAB + m\\angle CDA = \\dots</span></div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(i) <span class="math">AD = BC</span></strong> — <em>Property:</em> Opposite sides of a parallelogram are equal in length.</div>
+          <div class="step"><strong>(ii) <span class="math">\\angle DCB = \\angle DAB</span></strong> — <em>Property:</em> Opposite angles of a parallelogram are equal.</div>
+          <div class="step"><strong>(iii) <span class="math">OC = OA</span></strong> — <em>Property:</em> The diagonals of a parallelogram bisect each other.</div>
+          <div class="step"><strong>(iv) <span class="math">m\\angle DAB + m\\angle CDA = 180^\\circ</span></strong> — <em>Property:</em> Adjacent angles of a parallelogram are supplementary (consecutive interior angles on the same side of transversal).</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each complete statement with correct geometric property (1 mark each)</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_3_2">
+    <div class="q-head" onclick="toggleQ('q3_3_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Consider the following parallelograms. Find the values of the unknowns <span class="math">x, y, z</span>:<br>
+      (i) Parallelogram ABCD with <span class="math">\\angle B = 100^\\circ</span><br>
+      (ii) Parallelogram with one angle <span class="math">50^\\circ</span><br>
+      (iii) Diagonals intersect at <span class="math">90^\\circ</span> with one angle <span class="math">30^\\circ</span><br>
+      (iv) Parallelogram with angle <span class="math">80^\\circ</span> and exterior angle <span class="math">z</span><br>
+      (v) Parallelogram with one angle <span class="math">112^\\circ</span> and triangle corner <span class="math">40^\\circ</span></div>
+      <div class="q-marks">5 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i)</strong> <span class="math">y = \\angle B = <strong>100^\\circ</strong></span> (opposite angles equal).<br>
+            <span class="math">x + 100^\\circ = 180^\\circ \\implies <strong>x = 80^\\circ</strong></span> (adjacent angles supplementary).<br>
+            <span class="math">z = x = <strong>80^\\circ</strong></span> (opposite angles equal).
+          </div>
+          <div class="step">
+            <strong>(ii)</strong> <span class="math">x + 50^\\circ = 180^\\circ \\implies <strong>x = 130^\\circ</strong></span> (adjacent angles).<br>
+            <span class="math">y = x = <strong>130^\\circ</strong></span> (opposite angles equal).<br>
+            <span class="math">z = y = <strong>130^\\circ</strong></span> (corresponding angles since opposite lines are parallel).
+          </div>
+          <div class="step">
+            <strong>(iii)</strong> <span class="math">x = <strong>90^\\circ</strong></span> (vertically opposite angles).<br>
+            In the right-angled triangle: <span class="math">x + y + 30^\\circ = 180^\\circ \\implies 90^\\circ + y + 30^\\circ = 180^\\circ \\implies <strong>y = 60^\\circ</strong></span>.<br>
+            <span class="math">z = y = <strong>60^\\circ</strong></span> (alternate interior angles).
+          </div>
+          <div class="step">
+            <strong>(iv)</strong> <span class="math">z = <strong>80^\\circ</strong></span> (corresponding angles).<br>
+            <span class="math">y = <strong>80^\\circ</strong></span> (opposite angles equal).<br>
+            <span class="math">x + 80^\\circ = 180^\\circ \\implies <strong>x = 100^\\circ</strong></span> (adjacent angles).
+          </div>
+          <div class="step">
+            <strong>(v)</strong> <span class="math">y = <strong>112^\\circ</strong></span> (opposite angles equal).<br>
+            In the upper triangle: <span class="math">40^\\circ + y + x = 180^\\circ \\implies 40^\\circ + 112^\\circ + x = 180^\\circ \\implies <strong>x = 28^\\circ</strong></span>.<br>
+            <span class="math">z = x = <strong>28^\\circ</strong></span> (alternate interior angles).
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 mark each for correct evaluation of x, y, z in each figure</span><span class="marking-marks">5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_3_5">
+    <div class="q-head" onclick="toggleQ('q3_3_5')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">The measures of two adjacent angles of a parallelogram are in the ratio <span class="math">3:2</span>. Find the measure of each of the angles of the parallelogram.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Let the two adjacent angles be <span class="math">3x</span> and <span class="math">2x</span>.
+          </div>
+          <div class="step">
+            <em>Property:</em> Adjacent angles of a parallelogram are supplementary (<span class="math">180^\\circ</span>):<br>
+            <span class="math">3x + 2x = 180^\\circ</span><br>
+            <span class="math">5x = 180^\\circ \\implies x = \\frac{180^\\circ}{5} = 36^\\circ</span>.
+          </div>
+          <div class="step">
+            The two adjacent angles are:<br>
+            <span class="math">3x = 3 \\times 36^\\circ = <strong>108^\\circ</strong></span><br>
+            <span class="math">2x = 2 \\times 36^\\circ = <strong>72^\\circ</strong></span>
+          </div>
+          <p>Since opposite angles are equal, the four angles of the parallelogram are <strong><span class="math">108^\\circ, 72^\\circ, 108^\\circ, 72^\\circ</span></strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Supplementary equation 3x + 2x = 180°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving x = 36°</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Listing all 4 angles (108°, 72°, 108°, 72°)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_3_8">
+    <div class="q-head" onclick="toggleQ('q3_3_8')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">The following figures GUNS and RUNS are parallelograms. Find <span class="math">x</span> and <span class="math">y</span> (lengths are in cm):<br>
+      (i) GUNS with sides <span class="math">GS = 3x</span>, <span class="math">UN = 18</span>, <span class="math">GU = 3y - 1</span>, <span class="math">SN = 26</span><br>
+      (ii) RUNS with diagonals intersecting at O, <span class="math">OU = y + 7</span>, <span class="math">ON = 20</span>, <span class="math">OS = x + y</span>, <span class="math">OR = 16</span></div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i) In GUNS:</strong> Opposite sides are equal.<br>
+            <span class="math">GS = UN \\implies 3x = 18 \\implies <strong>x = 6\\text{ cm}</strong></span>.<br>
+            <span class="math">GU = SN \\implies 3y - 1 = 26 \\implies 3y = 27 \\implies <strong>y = 9\\text{ cm}</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii) In RUNS:</strong> Diagonals bisect each other.<br>
+            First diagonal: <span class="math">y + 7 = 20 \\implies <strong>y = 13\\text{ cm}</strong></span>.<br>
+            Second diagonal: <span class="math">x + y = 16 \\implies x + 13 = 16 \\implies <strong>x = 3\\text{ cm}</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): x = 6 cm and y = 9 cm</span><span class="marking-marks">2 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Part (ii): y = 13 cm and x = 3 cm</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 3.4 -->
+  <div class="ex-div">NCERT Exercise 3.4</div>
+
+  <div class="q-card" id="q3_4_1">
+    <div class="q-head" onclick="toggleQ('q3_4_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">State whether True or False:<br>
+      (a) All rectangles are squares.<br>
+      (b) All rhombuses are parallelograms.<br>
+      (c) All squares are rhombuses and also rectangles.<br>
+      (d) All squares are not parallelograms.<br>
+      (e) All kites are rhombuses.<br>
+      (f) All rhombuses are kites.<br>
+      (g) All parallelograms are trapeziums.<br>
+      (h) All squares are trapeziums.</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(a) False</strong> — A rectangle does not necessarily have all four sides equal.</div>
+          <div class="step"><strong>(b) True</strong> — Opposite sides of every rhombus are parallel and equal in length.</div>
+          <div class="step"><strong>(c) True</strong> — A square has all sides equal (rhombus) and all angles 90° (rectangle).</div>
+          <div class="step"><strong>(d) False</strong> — Every square is a parallelogram because its opposite sides are parallel and equal.</div>
+          <div class="step"><strong>(e) False</strong> — In a kite, all four sides need not be equal (only pairs of adjacent sides are equal).</div>
+          <div class="step"><strong>(f) True</strong> — A rhombus has all 4 sides equal, so each pair of adjacent sides is equal, satisfying kite properties.</div>
+          <div class="step"><strong>(g) True</strong> — A trapezium requires at least one pair of parallel sides; a parallelogram has two pairs.</div>
+          <div class="step"><strong>(h) True</strong> — Every square has at least one pair of parallel opposite sides.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct evaluation with reasoning (0.5 marks each)</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q3_4_2">
+    <div class="q-head" onclick="toggleQ('q3_4_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Explain how a square is:<br>
+      (i) a quadrilateral &nbsp;&nbsp; (ii) a parallelogram &nbsp;&nbsp; (iii) a rhombus &nbsp;&nbsp; (iv) a rectangle</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(i) A quadrilateral:</strong> A square is a closed figure bounded by four line segments.</div>
+          <div class="step"><strong>(ii) A parallelogram:</strong> Its opposite sides are equal and parallel, and opposite angles are equal.</div>
+          <div class="step"><strong>(iii) A rhombus:</strong> It is a parallelogram with all four sides of equal length.</div>
+          <div class="step"><strong>(iv) A rectangle:</strong> It is a parallelogram in which every interior angle measures <span class="math">90^\\circ</span>.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct geometric definitions applied (1 mark each)</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ SECTION -->
+  <div class="cbq-section">
+    <div class="cbq-header">
+      <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
+      <span class="cbq-badge">CBSE Board Exam Pattern</span>
+    </div>
+    <div class="cbq-body">
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study: Tessellation in Architecture</div>
+        <div class="cbq-question"><strong>Scenario:</strong> An architect is designing floor tiles for a museum using regular polygons. Can a floor be tessellated (tiled without gaps or overlaps) using only regular pentagons? Justify mathematically.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p>For regular polygons to tessellate a flat surface around a vertex, the sum of interior angles meeting at each vertex must be exactly <span class="math">360^\\circ</span> (so <span class="math">360^\\circ</span> must be divisible by the interior angle).</p>
+          <p>Each interior angle of a regular pentagon = <span class="math">\\frac{(5 - 2) \\times 180^\\circ}{5} = \\frac{540^\\circ}{5} = 108^\\circ</span>.</p>
+          <p>Checking divisibility: <span class="math">\\frac{360^\\circ}{108^\\circ} = 3.33</span>, which is not an integer.</p>
+          <p><strong>Conclusion:</strong> <strong>No</strong>, regular pentagons cannot tessellate a floor by themselves because <span class="math">108^\\circ</span> does not divide <span class="math">360^\\circ</span> evenly.</p>
+        </div>
+      </div>
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#10b981;">⚡ Proof Challenge (HOTS)</div>
+        <div class="cbq-question">ABC is a right-angled triangle, right-angled at B, and O is the mid-point of the hypotenuse AC. Prove that O is equidistant from vertices A, B, and C.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p><strong>Construction:</strong> Produce BO to D such that <span class="math">BO = OD</span>. Join AD and DC.</p>
+          <p>In quadrilateral ABCD:<br>
+          <span class="math">AO = OC</span> (given) and <span class="math">BO = OD</span> (by construction).<br>
+          Since diagonals AC and BD bisect each other, ABCD is a parallelogram.</p>
+          <p>Since <span class="math">\\angle B = 90^\\circ</span>, parallelogram ABCD is a <strong>rectangle</strong>.</p>
+          <p>In a rectangle, diagonals are equal: <span class="math">AC = BD</span>.<br>
+          Taking halves: <span class="math">\\frac{1}{2}AC = \\frac{1}{2}BD \\implies OA = OC = OB</span>.<br>
+          Hence, O is equidistant from A, B, and C.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(2)">← Chapter 2: Linear Equations</button>
+    <button class="ch-nav-btn next" onclick="showChapter(4)">Chapter 4: Data Handling →</button>
+  </div>
+</section>
+`;
+
+fs.writeFileSync(path.join(outDir, 'ch3.html'), ch3Html, 'utf8');
+console.log('Generated ch3.html');

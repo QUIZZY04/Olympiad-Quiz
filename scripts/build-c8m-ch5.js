@@ -1,0 +1,486 @@
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.join(__dirname, '..', 'chapters-c8m');
+
+const ch5Html = `<section class="chapter-section" id="ch5">
+  <div class="chapter-header">
+    <div class="ch-badge">5</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 5: Squares and Square Roots</h2>
+      <p>NCERT Exercises 5.1, 5.2, 5.3 &amp; 5.4 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Concepts &amp; Formulas Summary</div>
+    <ul class="concept-list">
+      <li><strong>Square Number:</strong> A natural number <span class="math">m</span> is a perfect square if <span class="math">m = n^2</span> for some natural number <span class="math">n</span>.</li>
+      <li><strong>Unit Digit Rules:</strong>
+        <ul>
+          <li>Squares can only end in digits <span class="math">0, 1, 4, 5, 6, 9</span>. Numbers ending in <span class="math">2, 3, 7, 8</span> are <em>never</em> perfect squares.</li>
+          <li>Squares of even numbers are always even; squares of odd numbers are always odd.</li>
+          <li>A square number can only end in an <em>even</em> number of trailing zeros.</li>
+        </ul>
+      </li>
+      <li><strong>Pythagorean Triplet:</strong> Three numbers <span class="math">a, b, c</span> satisfying <span class="math">a^2 + b^2 = c^2</span>. For any natural number <span class="math">m > 1</span>, the triplet is <span class="math">(2m, m^2 - 1, m^2 + 1)</span>.</li>
+      <li><strong>Non-Square Numbers between Consecutive Squares:</strong> Between <span class="math">n^2</span> and <span class="math">(n + 1)^2</span>, there are exactly <span class="math">2n</span> non-square numbers.</li>
+      <li><strong>Methods to Find Square Root (<span class="math">\\sqrt{n}</span>):</strong>
+        <ul>
+          <li><em>Repeated Subtraction:</em> Successively subtract consecutive odd numbers <span class="math">1, 3, 5, 7, \\dots</span> from <span class="math">n</span> until 0 is reached. Number of steps = <span class="math">\\sqrt{n}</span>.</li>
+          <li><em>Prime Factorisation:</em> Group identical prime factors into pairs. Take one factor from each pair.</li>
+          <li><em>Long Division Method:</em> Pair digits from the right (units place) for whole numbers and from the decimal point for decimals.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- EXERCISE 5.1 -->
+  <div class="ex-div">NCERT Exercise 5.1</div>
+
+  <div class="q-card" id="q5_1_1">
+    <div class="q-head" onclick="toggleQ('q5_1_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">What will be the unit digit of the squares of the following numbers?<br>
+      (i) 81 &nbsp;&nbsp; (ii) 272 &nbsp;&nbsp; (iii) 799 &nbsp;&nbsp; (iv) 3853 &nbsp;&nbsp; (v) 1234<br>
+      (vi) 26387 &nbsp;&nbsp; (vii) 52698 &nbsp;&nbsp; (viii) 99880 &nbsp;&nbsp; (ix) 12796 &nbsp;&nbsp; (x) 55555</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Rule:</em> The unit digit of <span class="math">n^2</span> equals the unit digit of <span class="math">(\\text{unit digit of } n)^2</span>.</p>
+          <div class="step">
+            (i) 81: Unit digit is 1 <span class="math">\\implies 1^2 = 1 \\implies</span> <strong>1</strong><br>
+            (ii) 272: Unit digit is 2 <span class="math">\\implies 2^2 = 4 \\implies</span> <strong>4</strong><br>
+            (iii) 799: Unit digit is 9 <span class="math">\\implies 9^2 = 81 \\implies</span> <strong>1</strong><br>
+            (iv) 3853: Unit digit is 3 <span class="math">\\implies 3^2 = 9 \\implies</span> <strong>9</strong><br>
+            (v) 1234: Unit digit is 4 <span class="math">\\implies 4^2 = 16 \\implies</span> <strong>6</strong><br>
+            (vi) 26387: Unit digit is 7 <span class="math">\\implies 7^2 = 49 \\implies</span> <strong>9</strong><br>
+            (vii) 52698: Unit digit is 8 <span class="math">\\implies 8^2 = 64 \\implies</span> <strong>4</strong><br>
+            (viii) 99880: Unit digit is 0 <span class="math">\\implies 0^2 = 0 \\implies</span> <strong>0</strong><br>
+            (ix) 12796: Unit digit is 6 <span class="math">\\implies 6^2 = 36 \\implies</span> <strong>6</strong><br>
+            (x) 55555: Unit digit is 5 <span class="math">\\implies 5^2 = 25 \\implies</span> <strong>5</strong>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correctly stating rule + unit digits evaluated</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5_1_2">
+    <div class="q-head" onclick="toggleQ('q5_1_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">The following numbers are obviously not perfect squares. Give reasons:<br>
+      (i) 1057 &nbsp;&nbsp; (ii) 23453 &nbsp;&nbsp; (iii) 7928 &nbsp;&nbsp; (iv) 222222<br>
+      (v) 64000 &nbsp;&nbsp; (vi) 89722 &nbsp;&nbsp; (vii) 222000 &nbsp;&nbsp; (viii) 505050</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Properties:</em> (1) A number ending in 2, 3, 7, or 8 is never a square number. (2) A number ending in an odd number of zeros is never a square number.</p>
+          <div class="step">
+            (i) <strong>1057:</strong> Ends in digit <strong>7</strong>, so not a square.<br>
+            (ii) <strong>23453:</strong> Ends in digit <strong>3</strong>, so not a square.<br>
+            (iii) <strong>7928:</strong> Ends in digit <strong>8</strong>, so not a square.<br>
+            (iv) <strong>222222:</strong> Ends in digit <strong>2</strong>, so not a square.<br>
+            (v) <strong>64000:</strong> Ends in <strong>3 zeros</strong> (an odd number of zeros), so not a square.<br>
+            (vi) <strong>89722:</strong> Ends in digit <strong>2</strong>, so not a square.<br>
+            (vii) <strong>222000:</strong> Ends in <strong>3 zeros</strong> (odd count), so not a square.<br>
+            (viii) <strong>505050:</strong> Ends in <strong>1 zero</strong> (odd count), so not a square.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Reasoning based on ending digits and odd trailing zeros</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5_1_7">
+    <div class="q-head" onclick="toggleQ('q5_1_7')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Without adding, find the sum:<br>
+      (i) <span class="math">1 + 3 + 5 + 7 + 9</span><br>
+      (ii) <span class="math">1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19</span><br>
+      (iii) <span class="math">1 + 3 + 5 + 7 + \\dots + 23</span> (first 12 odd numbers)</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Theorem:</em> The sum of the first <span class="math">n</span> consecutive odd natural numbers is <span class="math">n^2</span>.</p>
+          <div class="step">
+            <strong>(i)</strong> Here, there are 5 odd numbers (<span class="math">n = 5</span>).<br>
+            <span class="math">\\text{Sum} = 5^2 = <strong>25</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii)</strong> Here, there are 10 odd numbers (<span class="math">n = 10</span>).<br>
+            <span class="math">\\text{Sum} = 10^2 = <strong>100</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iii)</strong> Here, there are 12 odd numbers (<span class="math">n = 12</span>).<br>
+            <span class="math">\\text{Sum} = 12^2 = <strong>144</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Stating property: Sum = n²</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Answers: 25, 100, 144</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5_1_9">
+    <div class="q-head" onclick="toggleQ('q5_1_9')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">How many numbers lie between squares of the following numbers?<br>
+      (i) 12 and 13 &nbsp;&nbsp; (ii) 25 and 26 &nbsp;&nbsp; (iii) 99 and 100</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Formula:</em> Between <span class="math">n^2</span> and <span class="math">(n + 1)^2</span>, there are <span class="math">2n</span> non-square numbers.</p>
+          <div class="step">
+            <strong>(i) 12 and 13 (<span class="math">n = 12</span>):</strong><br>
+            <span class="math">\\text{Count} = 2n = 2 \\times 12 = <strong>24</strong></span>.<br>
+            <em>(Check: 169 - 144 - 1 = 24).</em>
+          </div>
+          <div class="step">
+            <strong>(ii) 25 and 26 (<span class="math">n = 25</span>):</strong><br>
+            <span class="math">\\text{Count} = 2n = 2 \\times 25 = <strong>50</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iii) 99 and 100 (<span class="math">n = 99</span>):</strong><br>
+            <span class="math">\\text{Count} = 2n = 2 \\times 99 = <strong>198</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Formula 2n stated and applied (1 mark each)</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 5.2 -->
+  <div class="ex-div">NCERT Exercise 5.2</div>
+
+  <div class="q-card" id="q5_2_1">
+    <div class="q-head" onclick="toggleQ('q5_2_1')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Find the square of the following numbers without actual multiplication:<br>
+      (i) 32 &nbsp;&nbsp; (ii) 35 &nbsp;&nbsp; (iii) 86 &nbsp;&nbsp; (iv) 93 &nbsp;&nbsp; (v) 71 &nbsp;&nbsp; (vi) 46</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Identity:</em> <span class="math">(a + b)^2 = a^2 + 2ab + b^2</span>.</p>
+          <div class="step">
+            (i) <span class="math">32^2 = (30 + 2)^2 = 30^2 + 2(30)(2) + 2^2 = 900 + 120 + 4 = <strong>1024</strong></span>.<br>
+            (ii) <span class="math">35^2 = (30 + 5)^2 = 30(30 + 10) + 25 = 3 \\times 4 \\times 100 + 25 = 1200 + 25 = <strong>1225</strong></span>.<br>
+            (iii) <span class="math">86^2 = (80 + 6)^2 = 80^2 + 2(80)(6) + 6^2 = 6400 + 960 + 36 = <strong>7396</strong></span>.<br>
+            (iv) <span class="math">93^2 = (90 + 3)^2 = 90^2 + 2(90)(3) + 3^2 = 8100 + 540 + 9 = <strong>8649</strong></span>.<br>
+            (v) <span class="math">71^2 = (70 + 1)^2 = 70^2 + 2(70)(1) + 1^2 = 4900 + 140 + 1 = <strong>5041</strong></span>.<br>
+            (vi) <span class="math">46^2 = (40 + 6)^2 = 40^2 + 2(40)(6) + 6^2 = 1600 + 480 + 36 = <strong>2116</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Expansion using (a+b)² identity</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5_2_2">
+    <div class="q-head" onclick="toggleQ('q5_2_2')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Write a Pythagorean triplet whose one member is:<br>
+      (i) 6 &nbsp;&nbsp; (ii) 14 &nbsp;&nbsp; (iii) 16 &nbsp;&nbsp; (iv) 18</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p><em>Formula:</em> For any natural number <span class="math">m > 1</span>, the triplet is <span class="math">(2m, m^2 - 1, m^2 + 1)</span>.</p>
+          <div class="step">
+            <strong>(i) 6:</strong> Let <span class="math">2m = 6 \\implies m = 3</span>.<br>
+            <span class="math">m^2 - 1 = 3^2 - 1 = 8</span>;<br>
+            <span class="math">m^2 + 1 = 3^2 + 1 = 10</span>.<br>
+            Triplet: <strong>(6, 8, 10)</strong>.
+          </div>
+          <div class="step">
+            <strong>(ii) 14:</strong> Let <span class="math">2m = 14 \\implies m = 7</span>.<br>
+            <span class="math">m^2 - 1 = 7^2 - 1 = 48</span>;<br>
+            <span class="math">m^2 + 1 = 7^2 + 1 = 50</span>.<br>
+            Triplet: <strong>(14, 48, 50)</strong>.
+          </div>
+          <div class="step">
+            <strong>(iii) 16:</strong> Let <span class="math">2m = 16 \\implies m = 8</span>.<br>
+            <span class="math">m^2 - 1 = 8^2 - 1 = 63</span>;<br>
+            <span class="math">m^2 + 1 = 8^2 + 1 = 65</span>.<br>
+            Triplet: <strong>(16, 63, 65)</strong>.
+          </div>
+          <div class="step">
+            <strong>(iv) 18:</strong> Let <span class="math">2m = 18 \\implies m = 9</span>.<br>
+            <span class="math">m^2 - 1 = 9^2 - 1 = 80</span>;<br>
+            <span class="math">m^2 + 1 = 9^2 + 1 = 82</span>.<br>
+            Triplet: <strong>(18, 80, 82)</strong>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Formula (2m, m²-1, m²+1)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation of all 4 triplets</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 5.3 -->
+  <div class="ex-div">NCERT Exercise 5.3</div>
+
+  <div class="q-card" id="q5_3_3">
+    <div class="q-head" onclick="toggleQ('q5_3_3')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">Find the square roots of 100 and 169 by the method of repeated subtraction.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>For 100:</strong><br>
+            1. 100 - 1 = 99 &nbsp;&nbsp; 2. 99 - 3 = 96 &nbsp;&nbsp; 3. 96 - 5 = 91 &nbsp;&nbsp; 4. 91 - 7 = 84 &nbsp;&nbsp; 5. 84 - 9 = 75<br>
+            6. 75 - 11 = 64 &nbsp;&nbsp; 7. 64 - 13 = 51 &nbsp;&nbsp; 8. 51 - 15 = 36 &nbsp;&nbsp; 9. 36 - 17 = 19 &nbsp;&nbsp; 10. 19 - 19 = 0.<br>
+            Since we subtracted 10 consecutive odd numbers to reach 0, <span class="math">\\sqrt{100} = <strong>10</strong></span>.
+          </div>
+          <div class="step">
+            <strong>For 169:</strong><br>
+            1. 169-1=168, 2. 168-3=165, 3. 165-5=160, 4. 160-7=153, 5. 153-9=144, 6. 144-11=133, 7. 133-13=120, 8. 120-15=105, 9. 105-17=88, 10. 88-19=69, 11. 69-21=48, 12. 48-23=25, 13. 25-25=0.<br>
+            Since 13 subtractions were made, <span class="math">\\sqrt{169} = <strong>13</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Repeated subtraction steps shown clearly</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Final answers: √100 = 10, √169 = 13</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5_3_4">
+    <div class="q-head" onclick="toggleQ('q5_3_4')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">Find the square root of 7744 and 9216 by the Prime Factorisation method.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>For 7744:</strong><br>
+            <span class="math">7744 = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 11 \\times 11 = (2 \\times 2) \\times (2 \\times 2) \\times (2 \\times 2) \\times (11 \\times 11)</span>.<br>
+            Taking one factor from each pair:<br>
+            <span class="math">\\sqrt{7744} = 2 \\times 2 \\times 2 \\times 11 = <strong>88</strong></span>.
+          </div>
+          <div class="step">
+            <strong>For 9216:</strong><br>
+            <span class="math">9216 = 2^{10} \\times 3^2 = (2 \\times 2)^5 \\times (3 \\times 3)</span>.<br>
+            <span class="math">\\sqrt{9216} = 2^5 \\times 3 = 32 \\times 3 = <strong>96</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Prime factors correctly listed in pairs</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Square roots evaluated: 88 and 96</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5_3_5">
+    <div class="q-head" onclick="toggleQ('q5_3_5')">
+      <div class="q-num">Q9</div>
+      <div class="q-text">For 252, find the smallest whole number by which it should be multiplied so as to get a perfect square number. Also find the square root of the square number so obtained.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Prime factorisation of 252:<br>
+            <span class="math">252 = 2 \\times 2 \\times 3 \\times 3 \\times 7 = (2 \\times 2) \\times (3 \\times 3) \\times 7</span>.
+          </div>
+          <div class="step">
+            The prime factor <strong>7</strong> has no pair. To make it a perfect square, we must multiply 252 by 7:<br>
+            <span class="math">\\text{Smallest multiplier} = <strong>7</strong></span>.
+          </div>
+          <div class="step">
+            New number = <span class="math">252 \\times 7 = 1764</span>.<br>
+            <span class="math">\\sqrt{1764} = 2 \\times 3 \\times 7 = <strong>42</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Prime factorisation identifying unpaired 7</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Multiplier = 7</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Square root of new number = 42</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 5.4 -->
+  <div class="ex-div">NCERT Exercise 5.4</div>
+
+  <div class="q-card" id="q5_4_1">
+    <div class="q-head" onclick="toggleQ('q5_4_1')">
+      <div class="q-num">Q10</div>
+      <div class="q-text">Find the square root of each of the following numbers by Division method:<br>
+      (i) 2304 &nbsp;&nbsp; (ii) 4489 &nbsp;&nbsp; (iii) 3481 &nbsp;&nbsp; (iv) 529</div>
+      <div class="q-marks">4 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i) 2304:</strong> Bars placed as <span class="math">\\overline{23}\\;\\overline{04}</span>.<br>
+            <span class="math">4^2 = 16 \\le 23</span>. Remainder = 7. Bring down 04 <span class="math">\\to 704</span>.<br>
+            New divisor: <span class="math">4 \\times 2 = 8</span>. <span class="math">88 \\times 8 = 704</span>. Remainder = 0.<br>
+            <span class="math">\\sqrt{2304} = <strong>48</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(ii) 4489:</strong> Bars as <span class="math">\\overline{44}\\;\\overline{89}</span>.<br>
+            <span class="math">6^2 = 36 \\le 44</span>. Remainder = 8. Bring down 89 <span class="math">\\to 889</span>.<br>
+            New divisor: <span class="math">12</span>. <span class="math">127 \\times 7 = 889</span>. Remainder = 0.<br>
+            <span class="math">\\sqrt{4489} = <strong>67</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iii) 3481:</strong> Bars as <span class="math">\\overline{34}\\;\\overline{81}</span>.<br>
+            <span class="math">5^2 = 25 \\le 34</span>. Remainder = 9. Bring down 81 <span class="math">\\to 981</span>.<br>
+            New divisor: <span class="math">10</span>. <span class="math">109 \\times 9 = 981</span>. Remainder = 0.<br>
+            <span class="math">\\sqrt{3481} = <strong>59</strong></span>.
+          </div>
+          <div class="step">
+            <strong>(iv) 529:</strong> Bars as <span class="math">\\overline{5}\\;\\overline{29}</span>.<br>
+            <span class="math">2^2 = 4 \\le 5</span>. Remainder = 1. Bring down 29 <span class="math">\\to 129</span>.<br>
+            New divisor: 4. <span class="math">43 \\times 3 = 129</span>. Remainder = 0.<br>
+            <span class="math">\\sqrt{529} = <strong>23</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 mark each for correct long division steps and root</span><span class="marking-marks">4 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q5_4_4">
+    <div class="q-head" onclick="toggleQ('q5_4_4')">
+      <div class="q-num">Q11</div>
+      <div class="q-text">Find the least number which must be subtracted from 1989 so as to get a perfect square. Also find the square root of the perfect square.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Apply division method on 1989:<br>
+            Pairing: <span class="math">\\overline{19}\\;\\overline{89}</span>.<br>
+            <span class="math">4^2 = 16</span>. Remainder = 3. Bring down 89 <span class="math">\\to 389</span>.<br>
+            Divisor double = 8. Since <span class="math">84 \\times 4 = 336</span> and <span class="math">85 \\times 5 = 425</span>, quotient = 44.<br>
+            Remainder = <span class="math">389 - 336 = <strong>53</strong></span>.
+          </div>
+          <div class="step">
+            This shows <span class="math">44^2 < 1989</span> by 53.<br>
+            Therefore, the least number that must be subtracted is <strong>53</strong>.
+          </div>
+          <div class="step">
+            Perfect square = <span class="math">1989 - 53 = 1936</span>.<br>
+            <span class="math">\\sqrt{1936} = <strong>44</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Division method showing remainder 53</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Subtracting 53 and stating √1936 = 44</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ SECTION -->
+  <div class="cbq-section">
+    <div class="cbq-header">
+      <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
+      <span class="cbq-badge">CBSE Board Exam Pattern</span>
+    </div>
+    <div class="cbq-body">
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study: Garden Layout</div>
+        <div class="cbq-question"><strong>Scenario:</strong> A school gardener has 1000 saplings to plant. He wants to plant them in such a way that the number of rows equals the number of columns. What is the minimum number of additional saplings he needs?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p>Let the number of rows and columns be <span class="math">x</span>. Total plants = <span class="math">x^2</span>.</p>
+          <p>We find the next perfect square greater than 1000:<br>
+          <span class="math">31^2 = 961 < 1000 < 32^2 = 1024</span>.</p>
+          <p>To form a complete square of side 32, total plants needed = 1024.<br>
+          Additional saplings required = <span class="math">1024 - 1000 = <strong>24 saplings</strong></span>.</p>
+        </div>
+      </div>
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#10b981;">⚡ Pythagorean Distance in Navigation</div>
+        <div class="cbq-question">A ship sails 12 km due north and then 5 km due east. How far is the ship from its starting point? Explain how this relates to Pythagorean triplets.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p>North and East directions are mutually perpendicular (<span class="math">90^\\circ</span>).</p>
+          <p>By Pythagoras theorem, distance <span class="math">d = \\sqrt{12^2 + 5^2} = \\sqrt{144 + 25} = \\sqrt{169} = <strong>13\\text{ km}</strong></span>.</p>
+          <p>This directly forms the primitive Pythagorean triplet <strong>(5, 12, 13)</strong>, confirming <span class="math">5^2 + 12^2 = 13^2</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(4)">← Chapter 4: Data Handling</button>
+    <button class="ch-nav-btn next" onclick="showChapter(6)">Chapter 6: Cubes &amp; Roots →</button>
+  </div>
+</section>
+`;
+
+fs.writeFileSync(path.join(outDir, 'ch5.html'), ch5Html, 'utf8');
+console.log('Generated ch5.html');

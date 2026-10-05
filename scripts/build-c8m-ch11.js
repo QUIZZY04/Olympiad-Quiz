@@ -1,0 +1,315 @@
+const fs = require('fs');
+const path = require('path');
+
+const outDir = path.join(__dirname, '..', 'chapters-c8m');
+
+const ch11Html = `<section class="chapter-section" id="ch11">
+  <div class="chapter-header">
+    <div class="ch-badge">11</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 11: Direct and Inverse Proportions</h2>
+      <p>NCERT Exercises 11.1 &amp; 11.2 — Complete Solutions as per CBSE Marking Scheme 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Mathematical Definitions &amp; Formulas</div>
+    <ul class="concept-list">
+      <li><strong>Direct Proportion:</strong> Two quantities <span class="math">x</span> and <span class="math">y</span> vary directly if the ratio <span class="math">\\frac{x}{y} = k</span> (a constant).
+        <span class="math">\\frac{x_1}{y_1} = \\frac{x_2}{y_2}</span>.
+        <em>Characteristic:</em> When <span class="math">x</span> increases, <span class="math">y</span> increases at the same rate.
+      </li>
+      <li><strong>Inverse Proportion:</strong> Two quantities <span class="math">x</span> and <span class="math">y</span> vary inversely if their product <span class="math">x \\times y = k</span> (a constant).
+        <span class="math">x_1 y_1 = x_2 y_2</span>.
+        <em>Characteristic:</em> When <span class="math">x</span> increases, <span class="math">y</span> decreases proportionally so that their product remains constant.
+      </li>
+    </ul>
+  </div>
+
+  <!-- EXERCISE 11.1 -->
+  <div class="ex-div">NCERT Exercise 11.1</div>
+
+  <div class="q-card" id="q11_1_1">
+    <div class="q-head" onclick="toggleQ('q11_1_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Following are the car parking charges near a railway station up to:<br>
+      4 hours: ₹ 60 &nbsp;&nbsp; 8 hours: ₹ 100 &nbsp;&nbsp; 12 hours: ₹ 140 &nbsp;&nbsp; 24 hours: ₹ 180.<br>
+      Check if the parking charges are in direct proportion to the parking time.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>For direct proportion, the ratio <span class="math">\\frac{C}{T}</span> (Charges/Time) must remain constant.</p>
+          <div class="step">
+            <span class="math">\\frac{C_1}{T_1} = \\frac{60}{4} = 15</span><br>
+            <span class="math">\\frac{C_2}{T_2} = \\frac{100}{8} = 12.5</span><br>
+            <span class="math">\\frac{C_3}{T_3} = \\frac{140}{12} = 11.67</span><br>
+            <span class="math">\\frac{C_4}{T_4} = \\frac{180}{24} = 7.5</span>
+          </div>
+          <p>Since <span class="math">\\frac{C_1}{T_1} \\neq \\frac{C_2}{T_2} \\neq \\frac{C_3}{T_3} \\neq \\frac{C_4}{T_4}</span>, the parking charges are <strong>NOT in direct proportion</strong> to the parking time.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Calculating all ratios (15, 12.5, 11.67, 7.5)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Conclusion: Not in direct proportion</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q11_1_2">
+    <div class="q-head" onclick="toggleQ('q11_1_2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">A mixture of paint is prepared by mixing 1 part of red pigments with 8 parts of base. In the table, find the parts of base that need to be added for: 4, 7, 12, and 20 parts of red pigment.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <p>Let parts of red pigment be <span class="math">x</span> and base be <span class="math">y</span>. Ratio <span class="math">\\frac{x}{y} = \\frac{1}{8} \\implies y = 8x</span>.</p>
+          <div class="step">
+            - For <span class="math">x = 4</span>: <span class="math">y_1 = 4 \\times 8 = <strong>32</strong></span>.<br>
+            - For <span class="math">x = 7</span>: <span class="math">y_2 = 7 \\times 8 = <strong>56</strong></span>.<br>
+            - For <span class="math">x = 12</span>: <span class="math">y_3 = 12 \\times 8 = <strong>96</strong></span>.<br>
+            - For <span class="math">x = 20</span>: <span class="math">y_4 = 20 \\times 8 = <strong>160</strong></span>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Direct proportion formula stated</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Values: 32, 56, 96, 160 evaluated</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q11_1_4">
+    <div class="q-head" onclick="toggleQ('q11_1_4')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">A machine in a soft drink factory fills 840 bottles in 6 hours. How many bottles will it fill in 5 hours?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Number of bottles and time are in direct proportion:<br>
+            <span class="math">\\frac{x_1}{y_1} = \\frac{x_2}{y_2} \\implies \\frac{840}{6} = \\frac{x_2}{5}</span>
+          </div>
+          <div class="step">
+            <span class="math">x_2 = \\frac{840 \\times 5}{6} = 140 \\times 5 = <strong>700\\text{ bottles}</strong></span>.
+          </div>
+          <p><strong>Final Answer:</strong> The machine fills <strong>700 bottles</strong> in 5 hours.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Direct proportion equation: 840/6 = x/5</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving to get 700 bottles</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q11_1_10">
+    <div class="q-head" onclick="toggleQ('q11_1_10')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">A loaded truck travels 14 km in 25 minutes. If the speed remains the same, how far can it travel in 5 hours?</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Convert 5 hours into minutes: <span class="math">5 \\times 60 = 300\\text{ minutes}</span>.<br>
+            Distance and time are in direct proportion at constant speed.
+          </div>
+          <div class="step">
+            <span class="math">\\frac{14}{25} = \\frac{x}{300}</span><br>
+            <span class="math">x = \\frac{14 \\times 300}{25} = 14 \\times 12 = <strong>168\\text{ km}</strong></span>.
+          </div>
+          <p><strong>Final Answer:</strong> The truck travels <strong>168 km</strong> in 5 hours.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Converting 5 hours to 300 min</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Direct proportion calculation: 168 km</span><span class="marking-marks">2 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 11.2 -->
+  <div class="ex-div">NCERT Exercise 11.2</div>
+
+  <div class="q-card" id="q11_2_1">
+    <div class="q-head" onclick="toggleQ('q11_2_1')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Which of the following are in inverse proportion?<br>
+      (i) The number of workers on a job and the time to complete the job.<br>
+      (ii) The time taken for a journey and the distance travelled at a uniform speed.<br>
+      (iii) Area of cultivated land and the crop harvested.<br>
+      (iv) The time taken for a fixed journey and the speed of the vehicle.<br>
+      (v) The population of a country and the area of land per person.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step"><strong>(i) Inverse proportion</strong> — More workers require less time to complete the same job.</div>
+          <div class="step"><strong>(ii) Direct proportion</strong> — More time spent travelling means more distance covered at constant speed.</div>
+          <div class="step"><strong>(iii) Direct proportion</strong> — More cultivated land yields a larger crop harvest.</div>
+          <div class="step"><strong>(iv) Inverse proportion</strong> — Higher speed reduces the time needed for a fixed journey distance.</div>
+          <div class="step"><strong>(v) Inverse proportion</strong> — As population increases in a fixed territory, the area of land per person decreases.</div>
+          <p><strong>Statements in inverse proportion: (i), (iv), and (v).</strong></p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct categorization with justification</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q11_2_4">
+    <div class="q-head" onclick="toggleQ('q11_2_4')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">If a box of sweets is divided among 24 children, they will get 5 sweets each. How many would each get, if the number of the children is reduced by 4?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Total number of sweets is constant: <span class="math">x_1 y_1 = 24 \\times 5 = 120\\text{ sweets}</span>.<br>
+            Number of children is reduced by 4: <span class="math">x_2 = 24 - 4 = 20\\text{ children}</span>.
+          </div>
+          <div class="step">
+            Since number of children and sweets per child are inversely proportional:<br>
+            <span class="math">x_1 y_1 = x_2 y_2 \\implies 120 = 20 \\times y_2</span><br>
+            <span class="math">y_2 = \\frac{120}{20} = <strong>6\\text{ sweets}</strong></span>.
+          </div>
+          <p><strong>Final Answer:</strong> Each child would get <strong>6 sweets</strong>.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Total sweets = 120</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluating 120/20 = 6 sweets</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q11_2_9">
+    <div class="q-head" onclick="toggleQ('q11_2_9')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">A car takes 2 hours to reach a destination by travelling at the speed of 60 km/h. How long will it take when the car travels at the speed of 80 km/h?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Speed and time are in inverse proportion for a fixed distance:<br>
+            <span class="math">s_1 \\times t_1 = s_2 \\times t_2</span><br>
+            <span class="math">60 \\times 2 = 80 \\times t_2</span>
+          </div>
+          <div class="step">
+            <span class="math">t_2 = \\frac{120}{80} = \\frac{3}{2}\\text{ hours} = <strong>1\\frac{1}{2}\\text{ hours}</strong></span> (or 1 hour 30 minutes).
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Inverse proportion product: 60 × 2 = 80 × t</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Solving to get 1.5 hours (1 hr 30 min)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="q11_2_11">
+    <div class="q-head" onclick="toggleQ('q11_2_11')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">A school has 8 periods a day each of 45 minutes duration. How long would each period be, if the school has 9 periods a day, assuming the number of school hours to be the same?</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-text">
+          <div class="step">
+            Total instructional time is constant: <span class="math">8 \\times 45 = 360\\text{ minutes}</span>.<br>
+            Number of periods and duration of each period are inversely proportional.
+          </div>
+          <div class="step">
+            Let duration of each of the 9 periods be <span class="math">x</span> minutes:<br>
+            <span class="math">9 \\times x = 360 \\implies x = \\frac{360}{9} = <strong>40\\text{ minutes}</strong></span>.
+          </div>
+          <p><strong>Final Answer:</strong> Each period would be <strong>40 minutes</strong> long.</p>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Total time = 360 minutes</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Evaluation: 40 minutes per period</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ SECTION -->
+  <div class="cbq-section">
+    <div class="cbq-header">
+      <span>🎯 Competency-Based Questions (CBQ) &amp; HOTS</span>
+      <span class="cbq-badge">CBSE Board Exam Pattern</span>
+    </div>
+    <div class="cbq-body">
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#4f46e5;">Case Study: Disaster Relief Supply Allocation</div>
+        <div class="cbq-question"><strong>Scenario:</strong> A humanitarian relief camp has enough grain to sustain 150 refugees for 40 days. After 10 days, 50 more refugees join the camp. For how many more days will the remaining food last?</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p>After 10 days, the food would last for the original 150 refugees for: <span class="math">40 - 10 = 30\\text{ days}</span>.<br>
+          Total remaining refugee-days of food = <span class="math">150 \\times 30 = 4500</span>.</p>
+          <p>New total number of refugees = <span class="math">150 + 50 = 200\\text{ refugees}</span>.<br>
+          Number of people and days are inversely proportional:<br>
+          <span class="math">\\text{Remaining days} = \\frac{4500}{200} = <strong>22.5\\text{ days}</strong></span> (or 22 days and 12 hours).</p>
+        </div>
+      </div>
+      <div class="cbq-card">
+        <div class="cbq-type" style="color:#10b981;">⚡ Gear Ratio Mechanics (HOTS)</div>
+        <div class="cbq-question">In a bicycle, the front pedal chainring has 48 teeth and the rear wheel sprocket has 16 teeth. If the cyclist pedals at 60 RPM, what is the rotational speed of the rear wheel? Identify the type of proportion.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer">
+          <p>Number of teeth <span class="math">T</span> and Rotational Speed <span class="math">N</span> are <strong>inversely proportional</strong> (<span class="math">T_1 N_1 = T_2 N_2</span>).<br>
+          <span class="math">48 \\times 60 = 16 \\times N_2</span><br>
+          <span class="math">N_2 = \\frac{48 \\times 60}{16} = 3 \\times 60 = <strong>180\\text{ RPM}</strong></span>.<br>
+          The rear wheel rotates three times faster than the pedal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav-btns">
+    <button class="ch-nav-btn" onclick="showChapter(10)">← Chapter 10: Exponents &amp; Powers</button>
+    <button class="ch-nav-btn next" onclick="showChapter(12)">Chapter 12: Factorisation →</button>
+  </div>
+</section>
+`;
+
+fs.writeFileSync(path.join(outDir, 'ch11.html'), ch11Html, 'utf8');
+console.log('Generated ch11.html');
