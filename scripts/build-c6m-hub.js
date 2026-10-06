@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const ch1Html = fs.readFileSync(path.join(__dirname, '..', 'chapters-c6m', 'ch1.html'), 'utf8');
+const dir = path.join(__dirname, '..', 'chapters-c6m');
+
+const allChapters = {};
+for (let i = 1; i <= 12; i++) {
+  allChapters[i] = fs.readFileSync(path.join(dir, `ch${i}.html`), 'utf8');
+}
 
 const chapters = [
   { num: 1, title: 'Patterns in Mathematics', book: 'ganita-prakash', short: 'Ch 1', desc: 'Number Sequences & Rule Formulation' },
@@ -129,21 +134,6 @@ const html = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
-        displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
-        processEscapes: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    };
-  </script>
-  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
   <style>
     :root {
       --brand: #2563eb;
@@ -159,9 +149,11 @@ const html = `<!DOCTYPE html>
       --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: var(--light-bg); color: var(--slate); line-height: 1.6; }
-    .top-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--brand); z-index: 1000; transition: width .1s; }
-    
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--light-bg); color: var(--navy); line-height: 1.6; }
+
+    /* Top progress */
+    .top-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #2563eb, #3b82f6); z-index: 1000; width: 0%; transition: width .15s; }
+
     /* Navbar */
     .navbar { background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 900; }
     .navbar-inner { max-width: 1380px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -203,64 +195,75 @@ const html = `<!DOCTYPE html>
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
-    .chapter-nav { list-style: none; }
-    .chapter-nav li { margin-bottom: 6px; }
-    .chapter-nav li a { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; color: var(--slate); text-decoration: none; font-size: .85rem; font-weight: 500; transition: all .15s; cursor: pointer; }
-    .chapter-nav li a:hover { background: var(--brand-light); color: var(--brand-text); }
-    .chapter-nav li a.active { background: var(--brand); color: white; font-weight: 600; }
-    .chapter-nav li a.active strong { color: white; }
-    .chapter-nav li a.active small { color: #dbeafe !important; }
-    .ch-num { width: 24px; height: 24px; background: rgba(0,0,0,.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; }
-    .chapter-nav li a.active .ch-num { background: rgba(255,255,255,.25); color: white; }
-    
-    .main-content { flex: 1; padding: 28px 36px 48px; min-width: 0; max-width: 1070px; }
+    .chapter-nav { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .chapter-nav a { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; text-decoration: none; color: var(--slate); font-size: .82rem; font-weight: 500; transition: .18s; }
+    .chapter-nav a:hover { background: var(--brand-light); color: var(--brand-text); }
+    .chapter-nav a.active { background: var(--brand); color: white; font-weight: 700; }
+    .chapter-nav a.active small { color: #dbeafe !important; }
+    .chapter-nav .ch-num { width: 22px; height: 22px; border-radius: 6px; background: rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; }
+    .chapter-nav a.active .ch-num { background: rgba(255,255,255,0.25); color: white; }
 
-    /* Chapter Content */
-    .chapter-section { margin-bottom: 48px; scroll-margin-top: 140px; }
-    .chapter-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
-    .ch-badge { width: 44px; height: 44px; background: var(--brand); color: white; border-radius: 12px; font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .chapter-header-info h2 { font-size: 1.45rem; font-weight: 800; color: var(--navy); }
-    .chapter-header-info p { font-size: .825rem; color: var(--muted); margin-top: 2px; }
+    /* Main Content */
+    .main-content { flex: 1; min-width: 0; padding: 24px 32px 60px; }
+    .chapter-section { display: block; animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-    .concept-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; }
-    .concept-header { font-size: 0.85rem; font-weight: 800; color: var(--brand-text); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .concept-list { margin-left: 20px; font-size: 0.9rem; color: var(--slate); line-height: 1.65; }
-    .concept-list li { margin-bottom: 6px; }
+    .chapter-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--border); }
+    .chapter-header .ch-badge { width: 44px; height: 44px; border-radius: 12px; background: var(--brand); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; flex-shrink: 0; }
+    .chapter-header h2 { font-size: 1.45rem; font-weight: 800; color: var(--navy); }
+    .chapter-header p { font-size: .85rem; color: var(--muted); margin-top: 2px; }
 
-    .ex-div { background: #e0e7ff; color: #3730a3; font-weight: 800; font-size: 0.95rem; padding: 10px 16px; border-radius: 8px; margin: 30px 0 16px; border-left: 4px solid var(--brand); }
+    /* Concept Card */
+    .concept-card { background: white; border: 1.5px solid var(--border); border-left: 5px solid var(--brand); border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; box-shadow: var(--shadow); }
+    .concept-header { font-size: .95rem; font-weight: 800; color: var(--brand-text); margin-bottom: 12px; }
+    .concept-list { padding-left: 20px; font-size: .88rem; color: var(--slate); display: flex; flex-direction: column; gap: 8px; }
+    .concept-list ul { margin-top: 6px; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
 
-    /* Question Cards */
-    .q-card { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 18px; box-shadow: var(--shadow); transition: all .2s; overflow: hidden; }
-    .q-card:hover { border-color: #bfdbfe; box-shadow: var(--shadow-hover); }
-    .q-head { padding: 16px 20px; display: flex; align-items: flex-start; gap: 14px; cursor: pointer; user-select: none; }
-    .q-num { background: var(--brand-light); color: var(--brand-text); font-weight: 700; font-size: .8rem; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
-    .q-text { flex: 1; font-weight: 600; color: var(--navy); font-size: .95rem; line-height: 1.55; }
-    .q-marks { background: #f1f5f9; color: var(--slate); font-size: .725rem; font-weight: 600; padding: 4px 10px; border-radius: 12px; flex-shrink: 0; white-space: nowrap; }
-    .q-toggle { color: var(--muted); transition: transform .2s; flex-shrink: 0; margin-top: 4px; }
-    .q-toggle svg { width: 20px; height: 20px; }
-    .q-card.open .q-toggle { transform: rotate(45deg); color: var(--brand); }
-    .q-answer { display: none; padding: 0 18px 20px; border-top: 2px dashed rgba(37,99,235,.15); }
+    /* Exercise Divider */
+    .ex-div { background: #f1f5f9; border-left: 4px solid #64748b; padding: 8px 16px; font-size: .88rem; font-weight: 700; color: var(--slate); border-radius: 0 8px 8px 0; margin: 32px 0 16px; }
+
+    /* Question Card */
+    .q-card { background: white; border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 16px; box-shadow: var(--shadow); overflow: hidden; transition: box-shadow .2s; }
+    .q-card:hover { box-shadow: var(--shadow-hover); }
+    .q-head { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; cursor: pointer; user-select: none; background: white; transition: background .15s; }
+    .q-head:hover { background: #f8fafc; }
+    .q-num { font-size: .85rem; font-weight: 800; color: var(--brand); background: var(--brand-light); padding: 4px 10px; border-radius: 6px; flex-shrink: 0; }
+    .q-text { flex: 1; font-size: .92rem; font-weight: 600; color: var(--navy); line-height: 1.6; }
+    .q-marks { font-size: .78rem; font-weight: 700; color: #059669; background: #ecfdf5; padding: 4px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+    .q-toggle { width: 24px; height: 24px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; color: var(--muted); flex-shrink: 0; transition: transform .2s; }
+    .q-toggle svg { width: 14px; height: 14px; }
+    .q-card.open .q-toggle { transform: rotate(45deg); background: #fee2e2; color: #dc2626; }
+
+    /* Answer Body */
+    .q-answer { display: none; padding: 0 20px 20px; }
     .q-card.open .q-answer { display: block; }
-    .answer-box { border: 1px solid rgba(0,0,0,.08); border-radius: 12px; padding: 18px; margin-top: 14px; background: rgba(255,255,255,.95); }
-    .answer-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; color: #16a34a; letter-spacing: .04em; margin-bottom: 10px; }
-    .answer-text { font-size: .9rem; color: #1e293b; line-height: 1.7; }
-    .step { display: block; background: #f8fafc; border-left: 3px solid var(--brand); padding: 8px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: .88rem; }
-    
-    .marking-scheme { margin-top: 14px; background: #f8fafc; border: 1px solid rgba(0,0,0,.08); border-radius: 8px; padding: 12px 14px; font-size: .8rem; }
-    .marking-title { font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-    .marking-row { display: flex; justify-content: space-between; border-bottom: 1px solid #edf2f7; padding: 4px 0; }
+    .answer-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 18px 20px; }
+    .answer-label { font-size: .82rem; font-weight: 800; text-transform: uppercase; color: #059669; letter-spacing: .04em; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .answer-text { font-size: .9rem; color: var(--slate); line-height: 1.7; }
+    .answer-text p { margin-bottom: 10px; }
+    .answer-text .step { background: white; border: 1px solid #e2e8f0; border-left: 3px solid #2563eb; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; }
+
+    /* Marking Scheme */
+    .marking-scheme { margin-top: 14px; padding: 12px 16px; background: white; border: 1px solid #cbd5e1; border-radius: 8px; }
+    .marking-title { font-size: .78rem; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 8px; }
+    .marking-row { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; padding: 5px 0; border-bottom: 1px dashed #e2e8f0; }
     .marking-row:last-child { border-bottom: none; }
     .marking-key { color: var(--slate); }
-    .marking-marks { font-weight: 700; color: var(--brand-text); }
+    .marking-marks { font-weight: 700; color: #2563eb; }
 
-    /* Competency-Based Card */
-    .cbq-card { border: 1.5px solid #93c5fd; background: #f0f9ff; padding: 18px; border-radius: 10px; margin-top: 28px; }
-    .cbq-badge { display: inline-block; background: #0284c7; color: white; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; margin-bottom: 10px; text-transform: uppercase; }
+    /* Competency Card */
+    .cbq-card { background: linear-gradient(to right, #fdf4ff, #faf5ff); border: 1.5px solid #e9d5ff; border-radius: 12px; padding: 22px; margin: 30px 0 20px; }
+    .cbq-badge { display: inline-block; font-size: .75rem; font-weight: 800; text-transform: uppercase; color: #9333ea; background: #f3e8ff; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; letter-spacing: .04em; }
 
-    /* Mobile Responsive */
+    /* Math Diagram Styling */
+    .math-diagram-wrap { transition: transform .2s ease; }
+    .math-diagram-wrap:hover { transform: translateY(-2px); }
+
+    /* Responsive */
     @media (max-width: 900px) {
-      .sidebar { display: none; }
-      .main-content { padding: 20px 16px 36px; }
+      .main-layout { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); }
+      .main-content { padding: 20px 16px; }
     }
   </style>
 </head>
@@ -274,46 +277,44 @@ const html = `<!DOCTYPE html>
         <span class="logo-text">Olympiad<span>Quiz</span></span>
       </a>
       <div class="navbar-links">
-        <a href="ncert-solutions.html" class="nav-link">← All NCERT Solutions</a>
-        <a href="ncert-solutions-class-7-maths.html" class="nav-link">Class 7 Maths</a>
-        <a href="ncert-solutions-class-8-maths.html" class="nav-link">Class 8 Maths</a>
-        <a href="ncert-solutions-class-9-maths.html" class="nav-link">Class 9 Maths</a>
-        <a href="ncert-solutions-class-10-maths.html" class="nav-link">Class 10 Maths</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="ncert-solutions.html" class="nav-link" style="color:white;font-weight:700;">NCERT Hub</a>
+        <a href="ncert-solutions.html#class6" class="nav-link" style="color:#60a5fa;">Class 6</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
       </div>
       <div class="navbar-actions">
-        <a href="index.html#quiz" class="btn-login">Practice Quizzes</a>
+        <a href="ncert-solutions.html" class="btn-login">All NCERT Hub</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Banner -->
   <header class="hero-banner">
-    <h1>NCERT Solutions for Class 6 Maths (CBSE 2026-27)</h1>
-    <p>Complete chapter-wise textbook solutions for <strong>Ganita Prakash</strong> and foundation modules. Step-by-step working with properly labeled geometric diagrams and official CBSE marking schemes.</p>
     <div class="hero-badges">
-      <span class="hero-badge">📘 Prescribed Book: Ganita Prakash</span>
-      <span class="hero-badge">📐 100% Labeled Geometric Diagrams</span>
-      <span class="hero-badge">🎯 CBSE Marking Scheme 2026-27</span>
-      <span class="hero-badge">💡 Competency-Based Case Studies</span>
+      <span class="hero-badge">CBSE Curriculum 2026-27</span>
+      <span class="hero-badge">NCERT Ganita Prakash (गणित प्रकाश)</span>
+      <span class="hero-badge">100% Questions &amp; Marking Rubrics</span>
     </div>
+    <h1 style="margin-top:14px;">NCERT Solutions for Class 6 Mathematics</h1>
+    <p>Comprehensive step-by-step textbook solutions with high-definition labeled geometric diagrams, step marking schemes, and competency-based case studies.</p>
   </header>
 
-  <!-- Horizontal Scrolling Breadcrumb Chips -->
-  <div class="breadcrumb-bar">
+  <!-- Sticky Breadcrumb Chips Bar -->
+  <nav class="breadcrumb-bar" aria-label="Chapter quick selection">
     <div class="breadcrumb-inner">
-      <div class="breadcrumb-label">Jump Directly to Chapter:</div>
+      <div class="breadcrumb-label">Jump to Chapter</div>
       <div class="breadcrumb-chips" id="chipsBar">
 ${chipsHtml}
       </div>
     </div>
-  </div>
+  </nav>
 
   <!-- Main Layout -->
   <div class="main-layout">
-    <!-- Sidebar Navigation -->
+    <!-- Chapter Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar-title">All Chapters (1 to 12)</div>
-      <input type="text" class="search-box" id="searchBox" placeholder="Search chapters, topics..." onkeyup="filterChapters(this.value)">
+      <div class="sidebar-title">All Chapters</div>
+      <input type="text" class="search-box" id="chapterSearch" placeholder="Search chapters..." oninput="filterChapters(this.value)">
       <ul class="chapter-nav" id="chapterNav">
 ${sidebarHtml}
       </ul>
@@ -321,12 +322,14 @@ ${sidebarHtml}
 
     <!-- Main Content Area -->
     <main class="main-content" id="chapterContainer">
-${ch1Html}
+${allChapters[1]}
     </main>
   </div>
 
-  <!-- Preloaded Chapter Data Bundle for Instant Offline / Fast Switch -->
-  <script src="chapters-c6m/chapters-data.js"></script>
+  <!-- Inlined Preloaded Chapter Data Bundle: Guaranteed Instant Load Offline with Zero Cache Issues -->
+  <script>
+    window.CHAPTER_DATA = ${JSON.stringify(allChapters)};
+  </script>
 
   <script>
     let currentCh = 1;
@@ -355,27 +358,10 @@ ${ch1Html}
         a.classList.toggle('active', parseInt(a.dataset.ch) === n);
       });
 
-      // Load Chapter Content
+      // Load Chapter Content directly from inlined bundle
       const container = document.getElementById('chapterContainer');
-      function applyMathJax() {
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([container]).catch(() => {});
-        }
-      }
-
       if (window.CHAPTER_DATA && window.CHAPTER_DATA[n]) {
         container.innerHTML = window.CHAPTER_DATA[n];
-        applyMathJax();
-      } else {
-        fetch(\`chapters-c6m/ch\${n}.html\`)
-          .then(res => res.text())
-          .then(html => {
-            container.innerHTML = html;
-            applyMathJax();
-          })
-          .catch(err => {
-            console.error('Error loading chapter:', err);
-          });
       }
 
       if (updateHistory) {
@@ -404,9 +390,6 @@ ${ch1Html}
           return;
         }
       }
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise([document.getElementById('chapterContainer')]).catch(() => {});
-      }
     });
 
     window.addEventListener('hashchange', () => {
@@ -424,4 +407,4 @@ ${ch1Html}
 </html>`;
 
 fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-6-maths.html'), html, 'utf8');
-console.log('Successfully generated ncert-solutions-class-6-maths.html');
+console.log('Successfully generated ncert-solutions-class-6-maths.html with inlined CHAPTER_DATA!');

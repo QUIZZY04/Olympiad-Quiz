@@ -76,7 +76,7 @@ if (!fs.existsSync(hubFile)) {
 }
 
 const hubContent = fs.readFileSync(hubFile, 'utf8');
-const hasDataJs = hubContent.includes('chapters-c6m/chapters-data.js');
+const hasDataJs = hubContent.includes('chapters-c6m/chapters-data.js') || hubContent.includes('window.CHAPTER_DATA');
 const hasClassLinks = hubContent.includes('ncert-solutions.html');
 
 console.log(`Class 6 Maths Hub Verification:`);
