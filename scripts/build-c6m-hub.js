@@ -129,6 +129,21 @@ const html = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <!-- MathJax Configuration & Library for Crisp Formula Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+        displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <style>
     :root {
       --brand: #2563eb;
@@ -342,13 +357,21 @@ ${ch1Html}
 
       // Load Chapter Content
       const container = document.getElementById('chapterContainer');
+      function applyMathJax() {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([container]).catch(() => {});
+        }
+      }
+
       if (window.CHAPTER_DATA && window.CHAPTER_DATA[n]) {
         container.innerHTML = window.CHAPTER_DATA[n];
+        applyMathJax();
       } else {
         fetch(\`chapters-c6m/ch\${n}.html\`)
           .then(res => res.text())
           .then(html => {
             container.innerHTML = html;
+            applyMathJax();
           })
           .catch(err => {
             console.error('Error loading chapter:', err);
@@ -378,7 +401,11 @@ ${ch1Html}
         const ch = parseInt(match[1]);
         if (ch >= 1 && ch <= 12) {
           showChapter(ch, false);
+          return;
         }
+      }
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([document.getElementById('chapterContainer')]).catch(() => {});
       }
     });
 
