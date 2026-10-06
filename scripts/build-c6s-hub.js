@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const dir = path.join(__dirname, '..', 'chapters-c6m');
+const dir = path.join(__dirname, '..', 'chapters-c6s');
 
 const allChapters = {};
 for (let i = 1; i <= 12; i++) {
@@ -9,21 +9,21 @@ for (let i = 1; i <= 12; i++) {
 }
 
 const chapters = [
-  { num: 1, title: 'Patterns in Mathematics', short: 'Patterns in Maths', desc: 'Number Sequences & Rule Formulation' },
-  { num: 2, title: 'Lines and Angles', short: 'Lines & Angles', desc: 'Points, Rays, Angles & Revolutions' },
-  { num: 3, title: 'Number Play', short: 'Number Play', desc: 'Place Values, Large Numbers & Magic Squares' },
-  { num: 4, title: 'Data Handling and Presentation', short: 'Data Handling', desc: 'Tally Marks, Pictographs & Bar Graphs' },
-  { num: 5, title: 'Prime Time', short: 'Prime Time', desc: 'Divisibility Tests, Factor Trees, HCF & LCM' },
-  { num: 6, title: 'Perimeter and Area', short: 'Perimeter & Area', desc: 'Mensuration, Polygons, Area Formulas' },
-  { num: 7, title: 'Fractions', short: 'Fractions', desc: 'Visual Models, Number Line, Arithmetic' },
-  { num: 8, title: 'Playing with Constructions', short: 'Constructions', desc: 'Compass Bisectors & Standard Angles' },
-  { num: 9, title: 'Symmetry', short: 'Symmetry', desc: 'Lines of Symmetry & Mirror Reflections' },
-  { num: 10, title: 'The Other Side of Zero', short: 'Other Side of Zero', desc: 'Integers, Number Line Jumps & Arithmetic' },
-  { num: 11, title: 'Introduction to Algebra', short: 'Algebra', desc: 'Variables, Expressions & Simple Equations' },
-  { num: 12, title: 'Ratio and Proportion', short: 'Ratio & Proportion', desc: 'Simplest Form, Proportions & Unitary Method' }
+  { num: 1, title: 'The Wonderful World of Science', short: 'World of Science', desc: 'Observation, Inquiry & Scientific Method' },
+  { num: 2, title: 'Diversity in the Living World', short: 'Diversity in Living World', desc: 'Herbs, Shrubs, Trees, Venation & Flowers' },
+  { num: 3, title: 'Mindful Eating: A Path to a Healthy Body', short: 'Mindful Eating', desc: 'Nutrients, Food Tests & Balanced Diet' },
+  { num: 4, title: 'Exploring Magnets', short: 'Exploring Magnets', desc: 'Poles, Magnetic Compass & Field Laws' },
+  { num: 5, title: 'Measurement of Length and Motion', short: 'Measurement & Motion', desc: 'SI Units, Parallax Error & Motion Types' },
+  { num: 6, title: 'Materials Around Us', short: 'Materials Around Us', desc: 'Lustre, Hardness, Density & Transparency' },
+  { num: 7, title: 'Temperature and its Measurement', short: 'Temperature & Measurement', desc: 'Clinical vs Lab Thermometers & Kink' },
+  { num: 8, title: 'A Journey through States of Water', short: 'States of Water', desc: 'Evaporation, Condensation & Water Cycle' },
+  { num: 9, title: 'Methods of Separation in Everyday Life', short: 'Separation Methods', desc: 'Sedimentation, Decantation & Filtration' },
+  { num: 10, title: 'Living Creatures: Exploring their Characteristics', short: 'Living Creatures', desc: 'Cellular Life, Respiration & Stimuli' },
+  { num: 11, title: "Nature's Treasures", short: "Nature's Treasures", desc: 'Natural Resources, Forests & The 3Rs' },
+  { num: 12, title: 'Beyond Earth', short: 'Beyond Earth', desc: 'Moon Phases, Solar System & Constellations' }
 ];
 
-// Generate chips HTML (with concise short titles like Class 9)
+// Generate chips HTML
 const chipsHtml = chapters.map(ch => 
   `    <span class="bc-chip${ch.num === 1 ? ' active' : ''}" onclick="showChapter(${ch.num})" data-ch="${ch.num}"><span class="bc-n">${ch.num}</span>${ch.short}</span>`
 ).join('\n');
@@ -38,26 +38,26 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NCERT Solutions for Class 6 Maths (Ganita Prakash) CBSE 2026-27 | OlympiadQuiz</title>
-  <meta name="description" content="100% Free NCERT Solutions for Class 6 Mathematics (Ganita Prakash & Foundation) for CBSE 2026-27. Complete exercise solutions with labeled diagrams, CBSE step marking schemes & CBQs.">
-  <meta name="keywords" content="ncert solutions class 6 maths, class 6 maths ganita prakash solutions, ncert class 6 maths 2026-27, cbse class 6 maths chapter wise, patterns in mathematics class 6, lines and angles class 6, prime time class 6, fractions class 6">
-  <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-6-maths.html">
+  <title>NCERT Solutions for Class 6 Science (Curiosity) CBSE 2026-27 | OlympiadQuiz</title>
+  <meta name="description" content="100% Free NCERT Solutions for Class 6 Science (Curiosity) for CBSE 2026-27. Complete exercise solutions with labeled scientific diagrams, CBSE step marking schemes & CBQs.">
+  <meta name="keywords" content="ncert solutions class 6 science, class 6 science curiosity solutions, ncert class 6 science 2026-27, cbse class 6 science chapter wise, diversity in living world class 6, exploring magnets class 6, states of water class 6, methods of separation class 6">
+  <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-6-science.html">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="OlympiadQuiz">
-  <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-6-maths.html">
-  <meta property="og:title" content="NCERT Solutions for Class 6 Maths (Ganita Prakash) CBSE 2026-27 | OlympiadQuiz">
-  <meta property="og:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 Maths with labeled geometric diagrams, step-by-step CBSE marking schemes and competency-based questions.">
+  <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-6-science.html">
+  <meta property="og:title" content="NCERT Solutions for Class 6 Science (Curiosity) CBSE 2026-27 | OlympiadQuiz">
+  <meta property="og:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 Science with labeled biological and physical diagrams, step-by-step CBSE marking schemes and competency-based questions.">
   <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@OlympiadQuiz">
-  <meta name="twitter:title" content="NCERT Solutions for Class 6 Maths (Ganita Prakash) CBSE 2026-27">
-  <meta name="twitter:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 Maths with labeled diagrams and CBSE rubrics.">
+  <meta name="twitter:title" content="NCERT Solutions for Class 6 Science (Curiosity) CBSE 2026-27">
+  <meta name="twitter:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 Science with labeled diagrams and CBSE rubrics.">
   <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Search Engine Crawling -->
@@ -72,7 +72,7 @@ const html = `<!DOCTYPE html>
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
       { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
       { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions.html#class6" },
-      { "@type": "ListItem", "position": 4, "name": "Mathematics", "item": "https://olympiadquiz.org/ncert-solutions-class-6-maths.html" }
+      { "@type": "ListItem", "position": 4, "name": "Science", "item": "https://olympiadquiz.org/ncert-solutions-class-6-science.html" }
     ]
   }
   </script>
@@ -82,8 +82,8 @@ const html = `<!DOCTYPE html>
   {
     "@context": "https://schema.org",
     "@type": "LearningResource",
-    "name": "NCERT Solutions for Class 6 Maths (Ganita Prakash) CBSE 2026-27",
-    "description": "Comprehensive chapter-wise solutions for Class 6 Mathematics with geometric diagrams, step-by-step CBSE marking schemes, and competency-based questions.",
+    "name": "NCERT Solutions for Class 6 Science (Curiosity) CBSE 2026-27",
+    "description": "Comprehensive chapter-wise solutions for Class 6 Science with labeled scientific diagrams, step-by-step CBSE marking schemes, and competency-based questions.",
     "educationalLevel": "CBSE Class 6",
     "learningResourceType": "Textbook Solutions",
     "inLanguage": "en",
@@ -104,26 +104,26 @@ const html = `<!DOCTYPE html>
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Are these solutions based on the new Class 6 textbook 'Ganita Prakash'?",
+        "name": "Are these solutions aligned with the new Class 6 Science textbook 'Curiosity'?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, these solutions are 100% updated and strictly aligned with the new NCERT Class 6 Mathematics textbook 'Ganita Prakash' under NEP 2020 for the academic session 2026-27."
+          "text": "Yes, these solutions strictly follow the latest NCERT Class 6 Science textbook 'Curiosity' designed under NEP 2020 and NCF-SE 2023 for CBSE session 2026-27."
         }
       },
       {
         "@type": "Question",
-        "name": "Are geometrical diagrams and number lines labeled properly in the answers?",
+        "name": "Are biological, physical, and chemical diagrams included and labeled?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, every geometric construction, angle classification, polygon perimeter, and number line solution includes high-resolution, labeled vector diagrams with precise measurements."
+          "text": "Yes, every chapter features high-resolution labeled vector SVG diagrams (plant parts, flower anatomy, food tests, magnetic fields, water cycle, filtration, thermometer structure, etc.) with detailed scientific labeling."
         }
       },
       {
         "@type": "Question",
-        "name": "Do these answers include the official CBSE marking scheme breakdown?",
+        "name": "Do answers include the official CBSE step marking scheme?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Every question includes the official CBSE Board 2026-27 step marking scheme rubric indicating exact mark distribution for formula, calculation, and final unit answer."
+          "text": "Every major question is paired with an official CBSE marking scheme rubric indicating exact mark allocations for scientific principles, procedures, equations, and conclusions."
         }
       }
     ]
@@ -135,10 +135,10 @@ const html = `<!DOCTYPE html>
 
   <style>
     :root {
-      --brand: #4f46e5;
-      --brand-hover: #4338ca;
-      --brand-light: #eef2ff;
-      --brand-text: #3730a3;
+      --brand: #059669;
+      --brand-hover: #047857;
+      --brand-light: #ecfdf5;
+      --brand-text: #065f46;
       --navy: #0f172a;
       --slate: #334155;
       --muted: #64748b;
@@ -158,7 +158,7 @@ const html = `<!DOCTYPE html>
     .navbar-inner { max-width: 1380px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .navbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .logo-text { font-size: 1.15rem; font-weight: 800; color: white; }
-    .logo-text span { color: #818cf8; }
+    .logo-text span { color: #34d399; }
     .navbar-links { display: flex; align-items: center; gap: 8px; }
     .nav-link { color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
     .nav-link:hover { color: white; background: rgba(255,255,255,0.06); }
@@ -168,12 +168,12 @@ const html = `<!DOCTYPE html>
     .nav-dropdown-content a { display: block; padding: 8px 14px; color: #334155; text-decoration: none; font-size: 0.85rem; border-radius: 6px; transition: 0.2s; }
     .nav-dropdown-content a:hover { background: #f1f5f9; color: #0f172a !important; }
     .navbar-actions { display: flex; align-items: center; gap: 10px; }
-    .btn-login { background: #4f46e5; color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
-    .btn-login:hover { background: #4338ca; }
+    .btn-login { background: #059669; color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
+    .btn-login:hover { background: #047857; }
     .navbar-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
     .navbar-toggle span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
 
-    /* ── NCERT SUBJECT BREADCRUMB & SWITCHER (Matches Class 9 Maths) ── */
+    /* ── NCERT SUBJECT BREADCRUMB & SWITCHER (Matches Class 9 & Class 6 Maths) ── */
     .ncert-breadcrumb-nav {
       background: #ffffff;
       border-bottom: 1px solid #e2e8f0;
@@ -209,7 +209,7 @@ const html = `<!DOCTYPE html>
       transition: color 0.15s ease;
     }
     .ncert-bc-list a:hover {
-      color: #ff6b00;
+      color: #059669;
       text-decoration: underline;
     }
     .ncert-bc-sep {
@@ -217,7 +217,7 @@ const html = `<!DOCTYPE html>
       font-size: 0.75rem;
     }
     .ncert-bc-current {
-      color: #ff6b00;
+      color: #059669;
       font-weight: 700;
     }
     .ncert-bc-switch {
@@ -247,42 +247,42 @@ const html = `<!DOCTYPE html>
       white-space: nowrap;
     }
     .ncert-bc-pill:hover {
-      background: #fff7ed;
-      color: #ea580c;
-      border-color: #fdba74;
+      background: #ecfdf5;
+      color: #059669;
+      border-color: #a7f3d0;
       transform: translateY(-1px);
     }
     .ncert-bc-pill.active {
-      background: #ff6b00;
+      background: #059669;
       color: #ffffff;
-      border-color: #ff6b00;
-      box-shadow: 0 2px 6px rgba(255,107,0,0.3);
+      border-color: #059669;
+      box-shadow: 0 2px 6px rgba(5,150,105,0.3);
     }
     @media (max-width: 768px) {
       .ncert-breadcrumb-nav { padding: 8px 16px; }
       .ncert-bc-switch { overflow-x: auto; width: 100%; padding-bottom: 2px; }
     }
 
-    /* ── HERO BANNER (Matches Class 9 Maths) ── */
-    .hero-banner { background: linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%); color: white; padding: 36px 24px; text-align: center; border-bottom: 3px solid var(--brand); }
+    /* ── HERO BANNER (Matches Class 9 Science) ── */
+    .hero-banner { background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%); color: white; padding: 36px 24px; text-align: center; border-bottom: 3px solid var(--brand); }
     .hero-banner h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; }
-    .hero-banner p { color: #a5b4fc; font-size: .95rem; max-width: 720px; margin: 0 auto 16px; }
+    .hero-banner p { color: #a7f3d0; font-size: .95rem; max-width: 750px; margin: 0 auto 16px; }
     .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
     .hero-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); padding: 6px 14px; border-radius: 20px; font-size: .8rem; font-weight: 600; color: #e2e8f0; }
 
-    /* ── CHAPTER JUMP BREADCRUMB BAR (Matches Class 9 Maths) ── */
+    /* ── CHAPTER JUMP BREADCRUMB BAR ── */
     .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 36px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
     .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
     .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
     .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
     .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
-    .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(79,70,229,.35); }
+    .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(5,150,105,.35); }
     .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
     .bc-chip.active .bc-n { background: rgba(255,255,255,.25); }
 
     /* Layout */
     .main-layout { display: flex; max-width: 1380px; margin: 0 auto; }
-    .sidebar { width: 300px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
     .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
     .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
     .search-box:focus { outline: none; border-color: var(--brand); }
@@ -291,7 +291,7 @@ const html = `<!DOCTYPE html>
     .chapter-nav li a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; color: var(--slate); text-decoration: none; font-size: .85rem; font-weight: 500; transition: all .15s; cursor: pointer; }
     .chapter-nav li a:hover { background: var(--brand-light); color: var(--brand-text); }
     .chapter-nav li a.active { background: var(--brand); color: white; font-weight: 600; }
-    .chapter-nav li a.active small { color: #dbeafe !important; }
+    .chapter-nav li a.active small { color: #a7f3d0 !important; }
     .ch-num { width: 22px; height: 22px; background: rgba(0,0,0,.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; }
     .chapter-nav li a.active .ch-num { background: rgba(255,255,255,.25); color: white; }
 
@@ -310,11 +310,11 @@ const html = `<!DOCTYPE html>
     .concept-list ul { margin-top: 6px; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
 
     /* Exercise Divider */
-    .ex-div { font-size: .82rem; font-weight: 700; text-transform: uppercase; color: var(--brand-text); background: var(--brand-light); border: 1px solid #c7d2fe; border-radius: 8px; padding: 8px 16px; margin: 24px 0 16px; display: inline-block; letter-spacing: .04em; }
+    .ex-div { font-size: .82rem; font-weight: 700; text-transform: uppercase; color: var(--brand-text); background: var(--brand-light); border: 1px solid #a7f3d0; border-radius: 8px; padding: 8px 16px; margin: 24px 0 16px; display: inline-block; letter-spacing: .04em; }
 
     /* Question Card */
     .q-card { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 18px; box-shadow: var(--shadow); transition: all .2s; overflow: hidden; }
-    .q-card:hover { border-color: #c7d2fe; box-shadow: var(--shadow-hover); }
+    .q-card:hover { border-color: #a7f3d0; box-shadow: var(--shadow-hover); }
     .q-head { padding: 16px 20px; display: flex; align-items: flex-start; gap: 14px; cursor: pointer; user-select: none; }
     .q-num { background: var(--brand-light); color: var(--brand-text); font-weight: 700; font-size: .8rem; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
     .q-text { flex: 1; font-weight: 600; color: var(--navy); font-size: .95rem; line-height: 1.5; }
@@ -324,10 +324,10 @@ const html = `<!DOCTYPE html>
     .q-card.open .q-toggle { transform: rotate(45deg); color: var(--brand); }
 
     /* Answer Body */
-    .q-answer { display: none; padding: 0 16px 18px; border-top: 2px dashed rgba(79,70,229,.12); }
+    .q-answer { display: none; padding: 0 16px 18px; border-top: 2px dashed rgba(5,150,105,.15); }
     .q-card.open .q-answer { display: block; }
     .answer-box { border: 1px solid rgba(0,0,0,.08); border-radius: 12px; padding: 18px; margin-top: 14px; background: rgba(255,255,255,.9); }
-    .answer-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; color: #16a34a; letter-spacing: .04em; margin-bottom: 10px; }
+    .answer-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; color: #059669; letter-spacing: .04em; margin-bottom: 10px; }
     .answer-text { font-size: .9rem; color: #1e293b; line-height: 1.7; }
     .answer-text p { margin-bottom: 10px; }
     .answer-text .step { display: block; background: #f8fafc; border-left: 3px solid var(--brand); padding: 8px 12px; margin: 6px 0; border-radius: 0 6px 6px 0; font-size: .88rem; }
@@ -341,12 +341,18 @@ const html = `<!DOCTYPE html>
     .marking-marks { font-weight: 700; color: var(--brand-text); }
 
     /* Competency Card */
-    .cbq-card { background: linear-gradient(to right, #fdf4ff, #faf5ff); border: 1.5px solid #e9d5ff; border-radius: 12px; padding: 22px; margin: 30px 0 20px; }
-    .cbq-badge { display: inline-block; font-size: .75rem; font-weight: 800; text-transform: uppercase; color: #9333ea; background: #f3e8ff; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; letter-spacing: .04em; }
+    .cbq-card { background: linear-gradient(to right, #ecfdf5, #f0fdf4); border: 1.5px solid #a7f3d0; border-radius: 12px; padding: 22px; margin: 30px 0 20px; }
+    .cbq-badge { display: inline-block; font-size: .75rem; font-weight: 800; text-transform: uppercase; color: #065f46; background: #d1fae5; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; letter-spacing: .04em; }
 
-    /* Math Diagram Styling */
+    /* Science Diagram Wrap */
     .math-diagram-wrap { transition: transform .2s ease; }
     .math-diagram-wrap:hover { transform: translateY(-2px); }
+
+    /* Data Table */
+    .data-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: .85rem; }
+    .data-table th { background: var(--brand-light); color: var(--brand-text); padding: 8px; border: 1px solid #a7f3d0; text-align: left; }
+    .data-table td { padding: 6px 8px; border: 1px solid #e2e8f0; }
+    .data-table tr:nth-child(even) td { background: #f8fafc; }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -373,12 +379,12 @@ const html = `<!DOCTYPE html>
           <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="nav-dropdown-content">
             <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-            <a href="ncert-solutions-class-10-maths.html">Class 10 Maths 📐</a>
-            <a href="ncert-solutions-class-9-maths.html">Class 9 Maths ✨</a>
-            <a href="ncert-solutions-class-8-maths.html">Class 8 Maths</a>
-            <a href="ncert-solutions-class-7-maths.html">Class 7 Maths</a>
-            <a href="ncert-solutions-class-6-maths.html" style="font-weight:700;color:#4f46e5;background:#eef2ff;">Class 6 Maths ✨ (Active)</a>
-            <a href="ncert-solutions-class-6-science.html">Class 6 Science 🔬</a>
+            <a href="ncert-solutions-class-10-science.html">Class 10 Science 🔬</a>
+            <a href="ncert-solutions-class-9-science.html">Class 9 Science 🔬</a>
+            <a href="ncert-solutions-class-8-science.html">Class 8 Science 🔬</a>
+            <a href="ncert-solutions-class-7-science.html">Class 7 Science 🔬</a>
+            <a href="ncert-solutions-class-6-science.html" style="font-weight:700;color:#059669;background:#ecfdf5;">Class 6 Science ✨ (Active)</a>
+            <a href="ncert-solutions-class-6-maths.html">Class 6 Maths 📐</a>
           </div>
         </div>
         <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
@@ -392,7 +398,7 @@ const html = `<!DOCTYPE html>
     </div>
   </nav>
 
-  <!-- NCERT SUBJECT BREADCRUMB (Matching Class 9 Maths) -->
+  <!-- NCERT SUBJECT BREADCRUMB (Matching Class 9 & Class 6 Maths) -->
   <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
     <div class="ncert-bc-container">
       <ol class="ncert-bc-list">
@@ -402,33 +408,33 @@ const html = `<!DOCTYPE html>
         <li class="ncert-bc-sep">/</li>
         <li><a href="ncert-solutions.html#class6">Class 6</a></li>
         <li class="ncert-bc-sep">/</li>
-        <li class="ncert-bc-current">Mathematics</li>
+        <li class="ncert-bc-current">Science</li>
       </ol>
       <div class="ncert-bc-switch">
         <span class="ncert-bc-switch-label">Switch Subject:</span>
-        <a href="ncert-solutions-class-6-maths.html" class="ncert-bc-pill active">Maths</a>
-        <a href="ncert-solutions-class-6-science.html" class="ncert-bc-pill">Science</a>
+        <a href="ncert-solutions-class-6-science.html" class="ncert-bc-pill active">Science</a>
+        <a href="ncert-solutions-class-6-maths.html" class="ncert-bc-pill">Maths</a>
         <a href="ncert-solutions.html#class6" class="ncert-bc-pill">All Class 6 Subjects</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO BANNER (Matching Class 9 Maths) -->
+  <!-- HERO BANNER (Matching Class 9 Science) -->
   <header class="hero-banner">
-    <h1>Class 6 Maths — NCERT Exercise Solutions</h1>
-    <p>Complete <strong>100% question coverage</strong> for all exercises across <strong>all 12 chapters</strong> of NCERT Class 6 Mathematics (Ganita Prakash &amp; Foundation — CBSE 2026-27). Step-by-step solutions as per CBSE Marking Scheme with Labeled Diagrams &amp; Case Study Questions.</p>
+    <h1>Class 6 Science — NCERT Exercise Solutions</h1>
+    <p>Complete <strong>100% question coverage</strong> for all exercises across <strong>all 12 chapters</strong> of NCERT Class 6 Science (Curiosity — CBSE 2026-27). Step-by-step solutions as per CBSE Marking Scheme with Labeled Diagrams &amp; Competency-Based Case Studies.</p>
     <div class="hero-badges">
       <span class="hero-badge">✅ All 12 Chapters (100% Questions)</span>
-      <span class="hero-badge">📐 Ganita Prakash (NEP 2020)</span>
-      <span class="hero-badge">🔢 Step-by-Step Marking Scheme</span>
-      <span class="hero-badge">📊 Labeled Vector Diagrams</span>
+      <span class="hero-badge">🔬 Curiosity (NEP 2020)</span>
+      <span class="hero-badge">📝 Step-by-Step Marking Scheme</span>
+      <span class="hero-badge">📊 Labeled Scientific Diagrams</span>
       <span class="hero-badge">🎯 Case Study Questions</span>
     </div>
   </header>
 
-  <!-- CHAPTER JUMP BREADCRUMB BAR (Matching Class 9 Maths) -->
+  <!-- CHAPTER JUMP BREADCRUMB BAR (Matching Class 9 & Class 6 Maths) -->
   <div class="breadcrumb-bar">
-    <div class="breadcrumb-label">📐 Class 6 Maths — Jump to Chapter</div>
+    <div class="breadcrumb-label">🔬 Class 6 Science — Jump to Chapter</div>
     <div class="breadcrumb-chips" id="breadcrumbChips">
 ${chipsHtml}
     </div>
@@ -451,14 +457,13 @@ ${allChapters[1]}
     </main>
   </div>
 
-  <!-- Inlined Preloaded Chapter Data Bundle: Guaranteed Instant Load Offline with Zero Cache Issues -->
+  <!-- Inlined Preloaded Chapter Data Bundle: Instant Load Offline with Zero CORS issues -->
   <script>
     window.CHAPTER_DATA = ${JSON.stringify(allChapters)};
-  </script>
 
-  <script>
     let currentCh = 1;
 
+    // Toggle question card
     function toggleQ(id) {
       const card = document.getElementById(id);
       if (card) {
@@ -539,7 +544,8 @@ ${allChapters[1]}
     }
   </script>
 </body>
-</html>`;
+</html>
+`;
 
-fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-6-maths.html'), html, 'utf8');
-console.log('Successfully generated ncert-solutions-class-6-maths.html matching Class 9 Maths design!');
+fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-6-science.html'), html, 'utf8');
+console.log('Successfully generated ncert-solutions-class-6-science.html matching Class 9 & Class 6 Maths design!');
