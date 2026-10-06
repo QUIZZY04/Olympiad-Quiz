@@ -1,4 +1,362 @@
-<section class="chapter-section" id="ch12">
+const fs = require('fs');
+const path = require('path');
+const chDir = path.join(__dirname, '..', 'chapters-c6s');
+
+const ch10Html = fs.readFileSync(path.join(chDir, 'ch10.html'), 'utf8');
+
+// ==========================================
+// CHAPTER 11: Nature's Treasures
+// ==========================================
+const ch11Html = `<section class="chapter-section" id="ch11">
+  <div class="chapter-header">
+    <div class="ch-badge">11</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 11: Nature's Treasures</h2>
+      <p>NCERT Curiosity (Class 6) — Natural Resources, Renewable vs Non-Renewable, Forests, Fossil Fuels, Water &amp; Soil Conservation, The 3Rs | CBSE 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Environmental &amp; Resource Concepts</div>
+    <ul class="concept-list">
+      <li><strong>Natural Resources:</strong> Materials, energy, and ecosystems provided freely by nature that sustain life and human civilization (Air, Water, Soil, Sunlight, Forests, Minerals, Fossil Fuels).</li>
+      <li><strong>Classification by Exhaustibility:</strong>
+        <ul>
+          <li><em>Renewable Resources:</em> Inexhaustible or naturally replenished resources within human timescales (Sunlight, Wind, Biomass, Flowing water, Forests when managed sustainably).</li>
+          <li><em>Non-Renewable Resources:</em> Finite resources formed over millions of geological years that cannot be replenished once exhausted (Fossil fuels: Coal, Petroleum, Natural gas; Metallic minerals: Iron, Copper).</li>
+        </ul>
+      </li>
+      <li><strong>Ecological Importance of Forests:</strong> Lungs of the planet (oxygen producers &amp; carbon sinks), soil binders against erosion, water catchments, and biodiversity habitats.</li>
+      <li><strong>Conservation Framework (The 3Rs):</strong>
+        <ul>
+          <li><em>Reduce:</em> Minimize consumption and avoid waste.</li>
+          <li><em>Reuse:</em> Use objects repeatedly rather than discarding after single use.</li>
+          <li><em>Recycle:</em> Reprocess discarded paper, glass, plastic, and metals into new products.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="ex-div">NCERT Exercise: Let Us Enhance Our Learning (100% Textbook Questions)</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="c6s-ch11-q1">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Unscramble the jumbled names of natural resources: (i) A T W R E, (ii) N D I W, (iii) R E F O S T, and (iv) O C R K. Classify each unscrambled resource as Renewable or Non-renewable with reasons.</div>
+      <div class="q-marks">[2.5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Jumbled Name</th>
+                <th>Unscrambled Resource</th>
+                <th>Resource Classification</th>
+                <th>Scientific Justification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A T W R E</td>
+                <td><strong>WATER</strong></td>
+                <td><strong>Renewable Resource</strong></td>
+                <td>Replenished continuously across Earth via the natural hydrological water cycle.</td>
+              </tr>
+              <tr>
+                <td>N D I W</td>
+                <td><strong>WIND</strong></td>
+                <td><strong>Renewable Resource</strong></td>
+                <td>Driven by inexhaustible solar heating of atmospheric air masses; never runs out.</td>
+              </tr>
+              <tr>
+                <td>R E F O S T</td>
+                <td><strong>FOREST</strong></td>
+                <td><strong>Renewable Resource</strong></td>
+                <td>Trees regenerate naturally from seeds and can be regrown sustainably through afforestation.</td>
+              </tr>
+              <tr>
+                <td>O C R K</td>
+                <td><strong>ROCK</strong></td>
+                <td><strong>Non-Renewable Resource</strong></td>
+                <td>Rocks and building stones take millions of years of geological tectonic processes to form.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct unscrambling and renewable/non-renewable classification</span><span class="marking-marks">0.5 Mark each + 0.5 Mark for justifications (Total 2.5 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="c6s-ch11-q2">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">State whether the following statements are True (T) or False (F). If False, correct them scientifically: <br>(i) Nature has all the resources needed to meet human needs, but not human greed. <br>(ii) Machines are a resource found directly in nature. <br>(iii) Natural gas is a non-renewable fossil fuel resource. <br>(iv) Air is an exhaustible non-renewable resource.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i) True.</strong> Mahatma Gandhi famously stated that nature provides enough to satisfy everyone's essential needs, but excessive over-exploitation and greed deplete resources.<br>
+            <strong>(ii) False.</strong> Correction: Machines are <strong>human-made (artificial) resources</strong> constructed by humans using metals and natural materials; they are not found naturally.<br>
+            <strong>(iii) True.</strong> Natural gas is a fossil fuel formed from buried prehistoric organisms over millions of years and cannot be replenished within human timescales.<br>
+            <strong>(iv) False.</strong> Correction: Air is an <strong>inexhaustible renewable resource</strong> continuously recycled through photosynthesis and respiration.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct evaluation and rectification</span><span class="marking-marks">0.5 Mark each (Total 2 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="c6s-ch11-q3">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Fill in the blanks using the most appropriate scientific terms: <br>(i) A liquid fossil fuel commonly used in two-wheelers like scooters and motorcycles is ________. <br>(ii) An abundant natural source of clean, renewable energy that powers the water cycle is ________.</div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            (i) A liquid fossil fuel commonly used in two-wheelers like scooters and motorcycles is <strong>petrol (gasoline)</strong>.<br>
+            (ii) An abundant natural source of clean, renewable energy that powers the water cycle is <strong>solar energy (the Sun)</strong>.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct fill in the blank</span><span class="marking-marks">0.5 Mark each (Total 1 Mark)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="c6s-ch11-q4">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Classify the following as renewable or non-renewable resources: Coal, Natural gas, Forests, and Minerals (such as iron ore and copper).</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>1. Renewable Resources:</strong><br>
+            • <strong>Forests:</strong> Living plant ecosystems that naturally reproduce, regrow, and can be sustainably harvested and replenished through afforestation.
+          </div>
+          <div class="step">
+            <strong>2. Non-Renewable Resources:</strong><br>
+            • <strong>Coal:</strong> Fossil fuel formed from carbonized ancient plant remains over 300 million years; finite supply.<br>
+            • <strong>Natural Gas:</strong> Gaseous fossil fuel trapped in deep subterranean rock strata; finite and non-replenishable.<br>
+            • <strong>Minerals (Iron ore, Copper):</strong> Inanimate mineral ores formed by geological cooling of magma; non-replenishable once mined out.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Classifying Forests as Renewable</span><span class="marking-marks">0.5 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Classifying Coal, Natural gas, and Minerals as Non-Renewable with reasons</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="c6s-ch11-q5">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Why do we say that petroleum is a non-renewable resource? Explain its geological origin and why rapid consumption poses an energy crisis.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>1. Geological Origin of Petroleum:</strong><br>
+            Petroleum was formed from microscopic marine organisms (plankton, algae) that died millions of years ago and settled on ocean floors. Over hundreds of millions of years, they were buried under immense layers of silt and sand. Under intense geological heat, pressure, and absence of air, their biochemical remains were converted into crude petroleum oil.
+          </div>
+          <div class="step">
+            <strong>2. Why it is Non-Renewable:</strong><br>
+            • The rate of petroleum formation is extraordinarily slow (millions of years).<br>
+            • Human society is extracting and burning these reserves at millions of barrels per day.<br>
+            • Because its rate of consumption is millions of times faster than its geological formation, petroleum reserves on Earth are strictly limited and will inevitably be exhausted in a few decades.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Explaining millions of years geological formation from ancient marine biomass</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Contrasting ultra-fast consumption rate vs non-replenishable geological timeline</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="c6s-ch11-q6">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">"It is difficult to truly regrow a forest." Justify this statement scientifically. How does a natural virgin forest differ from a man-made tree plantation?</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Scientific Justification:</strong><br>
+            A forest is not merely a collection of planted trees; it is a highly evolved, complex, self-sustaining <strong>climax ecosystem</strong> that took thousands of years to establish:
+            1. <strong>Soil Degradation &amp; Humus Loss:</strong> When a forest is clear-cut, the delicate fertile topsoil rich in mycorrhizal fungi, earthworms, and organic humus is quickly eroded by wind and rain, making it harsh for new saplings.<br>
+            2. <strong>Intricate Web of Biodiversity:</strong> Natural virgin forests host multi-tiered canopies (mosses, herbs, shrubs, understory, and emergent trees) supporting diverse insects, birds, and herbivores. A man-made plantation usually contains only single-species trees (monoculture like eucalyptus) and lacks true biodiversity.<br>
+            3. <strong>Microclimate &amp; Hydrology:</strong> Natural forests maintain local humidity, cloud condensation, and groundwater aquifers that cannot be replicated quickly by planting saplings.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Loss of complex soil biology and humus layer</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Monoculture plantation vs multi-tiered diverse ecosystem distinction</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Disruption of microclimate, hydrology, and centuries-long ecological timeline</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="c6s-ch11-q7">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q7')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">Make an inventory of five natural resources you use directly or indirectly in your daily life. State one practical action for each resource that you and your family can take to conserve it.</div>
+      <div class="q-marks">[2.5 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Natural Resource</th>
+                <th>Daily Life Application</th>
+                <th>Practical Conservation Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Fresh Water</strong></td>
+                <td>Drinking, cooking, bathing, washing</td>
+                <td>Turn off running taps while brushing; install aerators; harvest rainwater.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Petroleum (Fossil Fuel)</strong></td>
+                <td>Fuel for family scooter/car; LPG for cooking</td>
+                <td>Use public transport, bicycles, or carpool; switch off vehicle engine at red lights.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Forest Wood / Paper</strong></td>
+                <td>Notebooks, pencils, furniture, packaging</td>
+                <td>Use both sides of notebook sheets; recycle old newspapers; avoid paper cups.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Electricity (from Coal)</strong></td>
+                <td>Lighting, fans, computer, refrigerator</td>
+                <td>Switch off fans and lights when leaving rooms; adopt LED bulbs and solar rooftop panels.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Soil</strong></td>
+                <td>Growing agricultural food grains and vegetables</td>
+                <td>Compost kitchen organic peels to enrich soil; avoid littering non-biodegradable plastics on ground.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Listing 5 resources with daily use and actionable conservation measure</span><span class="marking-marks">0.5 Mark each (Total 2.5 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="c6s-ch11-q8">
+    <div class="q-head" onclick="toggleQ('c6s-ch11-q8')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">Propose a practical, 3-point conservation action plan that students can implement in their school to reduce wastage of natural resources and adopt the 3Rs.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>School Conservation Action Plan (Based on the 3Rs):</strong><br>
+            1. <strong>Water Conservation (Catch the Rain &amp; Fix Leaks):</strong> Establish a student "Water Brigade" to inspect taps across campus for leaks. Place collection buckets under RO water purifier drain pipes to reuse wastewater for mopping and watering school gardens.<br>
+            2. <strong>Paper &amp; Plastic Reduction (Zero-Waste Classroom):</strong> Strictly ban single-use plastic covers. Establish a two-bin waste segregation system in every classroom (Blue for clean dry paper, Green for food scraps). Compost canteen vegetable peels in an on-campus pit.<br>
+            3. <strong>Energy Conservation (Solar &amp; Switch-Off Protocol):</strong> Nominate classroom Energy Monitors responsible for turning off fans and LED lights whenever students leave for sports or library periods. Advocate for rooftop solar panels to power school computer labs.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Three actionable, school-focused initiatives based on 3Rs and resource conservation</span><span class="marking-marks">1 Mark each (Total 3 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ Case Study -->
+  <div class="cbq-card">
+    <div class="cbq-badge">CBSE Competency-Based Question (Ecological Sustainability Case Study)</div>
+    <div class="q-text"><strong>Case Study: Solar Micro-Grids in Remote Villages:</strong><br>
+      A remote hilly village in Ladakh was previously disconnected from the electrical power grid, forcing villagers to burn kerosene lamps and dried wood for light and heat, emitting smoke.<br>
+      (a) Why is kerosene considered an unsustainable and health-hazardous fuel?<br>
+      (b) What type of natural resource is solar radiation? State two major ecological benefits of installing rooftop solar panels.<br>
+      (c) Explain how replacing wood burning with solar energy protects local mountain hillsides from soil erosion.
+    </div>
+    <div class="answer-box" style="margin-top: 15px;">
+      <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
+      <div class="answer-text">
+        <p><strong>(a) Kerosene Hazards:</strong><br>
+        Kerosene is a non-renewable petroleum product. Burning it indoors releases harmful soot, particulate matter, and toxic carbon monoxide, causing severe respiratory and eye diseases.</p>
+
+        <p><strong>(b) Solar Energy Benefits:</strong><br>
+        • Solar radiation is an <strong>inexhaustible renewable resource</strong>.<br>
+        • Benefits: (1) Zero greenhouse gas emissions during operation (mitigates climate change), (2) Free fuel from the sun, eliminating continuous recurring fuel costs.</p>
+
+        <p><strong>(c) Preventing Soil Erosion:</strong><br>
+        When villagers stop cutting down mountain trees and shrubs for firewood, the root networks remain intact in the soil. These roots bind the steep topsoil firmly, preventing rain and snowmelt from washing away fertile soil in landslides.</p>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+// ==========================================
+// CHAPTER 12: Beyond Earth
+// ==========================================
+const ch12Html = `<section class="chapter-section" id="ch12">
   <div class="chapter-header">
     <div class="ch-badge">12</div>
     <div class="chapter-header-info">
@@ -388,3 +746,8 @@
     </div>
   </div>
 </section>
+`;
+
+fs.writeFileSync(path.join(chDir, 'ch11.html'), ch11Html, 'utf8');
+fs.writeFileSync(path.join(chDir, 'ch12.html'), ch12Html, 'utf8');
+console.log('Chapters 11 (8 questions) and 12 (10 questions) updated with 100% NCERT Curiosity questions!');

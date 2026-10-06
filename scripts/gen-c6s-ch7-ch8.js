@@ -1,4 +1,11 @@
-<section class="chapter-section" id="ch7">
+const fs = require('fs');
+const path = require('path');
+const chDir = path.join(__dirname, '..', 'chapters-c6s');
+
+// ==========================================
+// CHAPTER 7: Temperature and its Measurement
+// ==========================================
+const ch7Html = `<section class="chapter-section" id="ch7">
   <div class="chapter-header">
     <div class="ch-badge">7</div>
     <div class="chapter-header-info">
@@ -488,3 +495,375 @@
     </div>
   </div>
 </section>
+`;
+
+// ==========================================
+// CHAPTER 8: A Journey through States of Water
+// ==========================================
+const ch8Html = `<section class="chapter-section" id="ch8">
+  <div class="chapter-header">
+    <div class="ch-badge">8</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 8: A Journey through States of Water</h2>
+      <p>NCERT Curiosity (Class 6) — Evaporation, Condensation, Transpiration, Water Cycle &amp; Water Conservation | CBSE 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Hydrological Principles &amp; Phase Changes</div>
+    <ul class="concept-list">
+      <li><strong>Three Physical States of Water:</strong>
+        <ul>
+          <li><em>Solid (Ice/Snow):</em> Rigid form with definite shape and volume; found in glaciers and polar ice sheets.</li>
+          <li><em>Liquid (Water):</em> Fluid form with definite volume but taking container shape; oceans, rivers, groundwater.</li>
+          <li><em>Gas (Water Vapour / Steam):</em> Invisible gaseous state expanding to fill space; present continuously in the atmosphere.</li>
+        </ul>
+      </li>
+      <li><strong>Phase Transformation Processes:</strong>
+        <ul>
+          <li><em>Evaporation:</em> Conversion of liquid water into water vapour below boiling point; absorbs latent heat, creating a cooling effect. Accelerated by high temperature, large surface area, wind, and low humidity.</li>
+          <li><em>Condensation:</em> Transformation of water vapour into tiny liquid droplets upon cooling; responsible for cloud, dew, and fog formation.</li>
+          <li><em>Transpiration:</em> Biological loss of water vapour through microscopic leaf stomata into the atmosphere.</li>
+        </ul>
+      </li>
+      <li><strong>The Water Cycle:</strong> The continuous cyclical circulation of water between Earth's surface and the atmosphere driven by solar radiation.</li>
+    </ul>
+  </div>
+
+  <div class="ex-div">NCERT Exercise: Let Us Enhance Our Learning (100% Textbook Questions)</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="c6s-ch8-q1">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Which of the following best describes condensation? <br>(i) The conversion of water into its vapour state <br>(ii) The process of water changing from a liquid into a gaseous state <br>(iii) The formation of clouds from tiny water droplets <br>(iv) The conversion of water vapour into its liquid state</div>
+      <div class="q-marks">[1 Mark]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Correct Option: (iv) The conversion of water vapour into its liquid state</strong><br>
+            <strong>Scientific Explanation:</strong> Condensation is defined specifically as the physical phase transition where water in its gaseous vapour state cools down and condenses back into liquid water droplets.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Selecting option (iv) with scientific phase definition</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="c6s-ch8-q2">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Identify in which of the given processes evaporation is very important: <br>(i) Colouring with: (a) crayons, (b) water colours, (c) acrylic colours, (d) pencil colour <br>(ii) Writing on paper with: (a) pencil, (b) ink pen, (c) ballpoint pen</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>(i) Colouring medium where evaporation is critical:</strong><br>
+            <strong>Correct Option: (b) Water colours</strong><br>
+            <em>Reason:</em> Water colours are applied by diluting pigment in liquid water. The painting dries and binds to paper only when the water solvent evaporates into the surrounding air. Wax crayons and pencil colours are dry solids that do not involve evaporation.
+          </div>
+          <div class="step">
+            <strong>(ii) Writing tool where evaporation is critical:</strong><br>
+            <strong>Correct Option: (b) Ink pen (Fountain pen)</strong><br>
+            <em>Reason:</em> Liquid fountain pen ink contains a high proportion of aqueous solvent. For the wet writing to dry on paper without smudging, the liquid water/solvent must evaporate. Pencils use solid graphite, and ballpoint pens use a thick oil-based paste that does not dry primarily by water evaporation.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct option (b) water colours with solvent evaporation reason</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Correct option (b) ink pen with drying mechanism reason</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="c6s-ch8-q3">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">We see green-coloured plastic artificial grass at many places these days. The space around natural living grass feels cooler than the space around plastic grass. Explain why scientifically.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>1. Transpiration &amp; Evaporative Cooling in Natural Grass:</strong><br>
+            Natural grass is a living plant that continuously absorbs water from the soil through its roots. It releases excess water into the surrounding air as invisible water vapour through microscopic pores (stomata) on its leaves. This biological process is called <strong>transpiration</strong>.<br>
+            When liquid water evaporates/transpires from the leaves, it absorbs heat energy (latent heat of vaporization) from the surrounding air. This loss of thermal energy produces a significant natural <strong>cooling effect</strong>.
+          </div>
+          <div class="step">
+            <strong>2. Heat Retention by Plastic Grass:</strong><br>
+            Artificial plastic grass is an inanimate petroleum-based synthetic polymer. It does not perform transpiration or evaporation. Instead, plastic absorbs solar radiation, heats up intensely, and radiates heat back into the surrounding air, making the vicinity feel hot and uncomfortable.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Explaining transpiration in living grass causing evaporative cooling</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Explaining plastic grass lacks transpiration and absorbs/radiates heat</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="c6s-ch8-q4">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Give examples of four liquids other than water that evaporate into the air at room temperature. What common property do they share?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Examples of Evaporating Liquids:</strong><br>
+            1. <strong>Ethyl Alcohol (found in Hand Sanitizers):</strong> Evaporates rapidly from hands, leaving a cooling sensation.<br>
+            2. <strong>Acetone (Nail Polish Remover):</strong> Evaporates almost instantly when left open in a bottle.<br>
+            3. <strong>Perfume / Cologne:</strong> Contains volatile alcohol-based fragrance molecules that evaporate into vapor.<br>
+            4. <strong>Petrol (Gasoline):</strong> Highly volatile hydrocarbon fuel that evaporates swiftly on contact with air.
+          </div>
+          <div class="step">
+            <strong>Common Scientific Property:</strong><br>
+            All these substances are <strong>volatile liquids</strong> possessing relatively weak intermolecular attractive forces, allowing their surface molecules to easily gain kinetic energy and escape into the vapour phase at room temperature.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Listing 4 valid evaporating liquids (sanitizer, perfume, petrol, acetone)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Identifying property of volatility / low boiling point</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="c6s-ch8-q5">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Electric fans blow air around, creating a cooling sensation. It might seem strange to turn on a fan to dry wet clothes, since fans usually make things cooler, not warmer. Normally, evaporation requires heat. Explain scientifically why a fan speeds up the drying of clothes.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Scientific Principle: Effect of Wind Speed on Evaporation:</strong><br>
+            1. <strong>Removal of Saturated Boundary Layer:</strong> When wet clothes hang in stagnant air, water evaporates and quickly forms a localized, highly humid layer of air immediately surrounding the fabric. High humidity slows down further evaporation.<br>
+            2. <strong>Continuous Air Circulation:</strong> When a ceiling fan is switched on, moving air swiftly blows away this humid boundary layer and replaces it with drier room air.<br>
+            3. <strong>Increased Rate of Evaporation:</strong> The continuous influx of drier air allows water molecules to escape from the wet cloth fibers much more rapidly.<br>
+            4. <strong>Heat Source:</strong> The water molecules absorb the necessary latent heat of vaporization from the room air and the clothes themselves. Hence, high wind speed dramatically accelerates evaporation even without raising the temperature.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Explaining that fan sweeps away humid air layer surrounding wet clothes</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Explaining replacement with drier air increases rate of evaporation</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="c6s-ch8-q6">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Usually, when wet sludge is dredged from municipal drains, it is left in heaps next to the drain for 3 to 4 days before being transported to fields or gardens as manure. What scientific changes occur during these 3-4 days?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Scientific Transformations During 3–4 Days of Heap Drying:</strong><br>
+            1. <strong>Evaporation of Water (Dehydration):</strong> The water present in wet sludge evaporates under sun and breeze, causing the heavy, runny sludge to dry out into semi-solid clumps. This drastically reduces weight and transportation cost.<br>
+            2. <strong>Solar Disinfection:</strong> Exposure to solar ultraviolet (UV) radiation and atmospheric oxygen kills harmful anaerobic pathogens, foul-smelling bacteria, and parasite eggs.<br>
+            3. <strong>Transformation into Safe Manure:</strong> Once dehydrated and aerated, the organic sludge becomes odourless, easy to handle, and safe to enrich garden soil with nitrogen and phosphorus.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Evaporation of excess water reducing weight and handling difficulty</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Sun exposure killing pathogens and neutralizing foul odour</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="c6s-ch8-q7">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q7')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">Observe activities in your house for a day. Identify at least four daily household activities that involve evaporation. How does understanding the process of evaporation help us perform these activities more efficiently?</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>1. Daily Household Activities Involving Evaporation:</strong><br>
+            • <em>Drying Wet Clothes:</em> Spreading wet laundry outdoors under the sun.<br>
+            • <em>Mopping Floors:</em> Washing tiled floors with a damp mop; the thin water film evaporates into room air within minutes.<br>
+            • <em>Drying Sweaty Skin:</em> Perspiration evaporates from skin under a fan, cooling the body.<br>
+            • <em>Cooling Drinking Water in an Earthen Pitcher (Matka):</em> Water seeps through porous clay pores and evaporates, cooling the stored water.
+          </div>
+          <div class="step">
+            <strong>2. Practical Benefits of Understanding Evaporation:</strong><br>
+            • <em>Spreading out Laundry (Surface Area):</em> Knowing that evaporation increases with surface area, we spread clothes wide instead of leaving them bunched up.<br>
+            • <em>Ventilation:</em> We open windows and switch on fans while mopping floors to dry them faster and prevent slipping accidents.<br>
+            • <em>Storage Precaution:</em> We seal bottles of medicines, sanitizers, and perfumes tightly to prevent loss through evaporation.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Listing 4 valid domestic activities involving evaporation</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Applying principles (surface area, airflow, temperature) for efficiency</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="c6s-ch8-q8">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q8')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">How is water present in the solid state in nature? Name three geographical locations where solid water is permanently found on Earth.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Natural Occurrence of Solid Water:</strong><br>
+            In nature, water exists in the solid state as <strong>ice, frost, hail, and snow</strong>. It forms naturally wherever environmental temperatures drop below water's freezing point (0 °C).
+          </div>
+          <div class="step">
+            <strong>Key Geographical Locations:</strong><br>
+            1. <strong>Polar Ice Caps (Antarctica and the Arctic):</strong> Massive continental ice sheets storing nearly 70% of Earth's fresh water.<br>
+            2. <strong>High Mountain Glaciers (The Himalayas, Alps, Andes):</strong> Perennial frozen rivers of compacted snow such as the Gangotri Glacier.<br>
+            3. <strong>High-Altitude Alpine Peaks:</strong> Snow-capped mountain summits permanently frozen throughout the year.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Stating forms of solid water (ice, snow, glaciers)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Naming 3 geographic locations (Antarctica, Arctic, Himalayas/Glaciers)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="c6s-ch8-q9">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q9')">
+      <div class="q-num">Q9</div>
+      <div class="q-text">Reflect on the environmental statement: "Water is our responsibility before it is our right." Share your thoughts on this statement with two actionable conservation practices.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>1. Ethical &amp; Scientific Reflection:</strong><br>
+            • Over 97% of Earth's water is saline ocean water unfit for consumption. Out of the remaining 3% freshwater, more than two-thirds is trapped in polar glaciers. Only less than 1% is readily available as surface water in rivers, lakes, and groundwater.<br>
+            • While clean drinking water is a fundamental human right for survival, claiming this right without exercising responsibility leads to reckless over-extraction, aquifer depletion, and toxic pollution.<br>
+            • Therefore, conserving and protecting water ecosystems must come first as our primary duty, ensuring equitable availability for future generations and wildlife.
+          </div>
+          <div class="step">
+            <strong>2. Actionable Conservation Practices:</strong><br>
+            1. <strong>Rooftop Rainwater Harvesting:</strong> Capturing monsoon rainwater from roofs and channeling it into percolation recharge pits to replenish depleted groundwater tables.<br>
+            2. <strong>Eliminating Wastage at Home:</strong> Fixing dripping taps promptly, using a bucket instead of running hoses to wash cars, and reusing kitchen RO wastewater for watering plants.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Discussion of scarcity of usable fresh water and ethical stewardship</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Two actionable conservation practices (Rainwater harvesting, waste prevention)</span><span class="marking-marks">1.5 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="c6s-ch8-q10">
+    <div class="q-head" onclick="toggleQ('c6s-ch8-q10')">
+      <div class="q-num">Q10</div>
+      <div class="q-text">The seat of a two-wheeler parked outside on a sunny afternoon has become scorching hot. How can you quickly cool it down using what you have learnt about evaporation?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Practical Cooling Solution:</strong><br>
+            1. <strong>Sprinkle a Little Water or Place a Damp Cloth:</strong> Sprinkle a few splashes of water onto the hot leatherette/vinyl seat, or cover it with a wet handkerchief/cloth.<br>
+            2. <strong>Scientific Mechanism:</strong> Because the dark seat surface is very hot, the applied water film absorbs its latent heat of vaporization directly from the seat material and rapidly evaporates into the surrounding air.<br>
+            3. <strong>Immediate Cooling Effect:</strong> The rapid transfer of heat from the seat to evaporating water molecules cools the seat down to ambient temperature within seconds, making it safe and comfortable to sit on.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Application of water/wet cloth onto hot seat</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Explaining that evaporating water absorbs heat from seat, cooling it rapidly</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ Case Study -->
+  <div class="cbq-card">
+    <div class="cbq-badge">CBSE Competency-Based Question (Hydrological Cycle Case Study)</div>
+    <div class="q-text"><strong>Case Study: Cloud Formation &amp; Groundwater Depletion:</strong><br>
+      During summer, riverbeds dry up while atmospheric humidity and towering thunderclouds increase. Later, heavy rainfall replenishes rivers, but city borewells still run dry.<br>
+      (a) Why do droplets of water appear on the outer surface of a glass tumbler containing ice-cold water?<br>
+      (b) Explain why urban cities face severe groundwater depletion despite receiving heavy monsoon rainfall.<br>
+      (c) What natural process purifies ocean water into fresh rainwater during the water cycle?
+    </div>
+    <div class="answer-box" style="margin-top: 15px;">
+      <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
+      <div class="answer-text">
+        <p><strong>(a) Condensation on Tumbler Surface:</strong><br>
+        Air contains invisible water vapour. When warm air collides with the cold outer surface of the ice tumbler, it cools down rapidly below its dew point. The vapour loses heat and <strong>condenses</strong> into visible liquid water droplets.</p>
+
+        <p><strong>(b) Reason for Urban Groundwater Depletion:</strong><br>
+        Urbanization covers vast land areas with concrete buildings, asphalt roads, and tiled pavements. This creates an impermeable barrier that prevents rainwater from seeping (percolating) into the soil. Most rainfall rushes into stormwater drains and is lost, preventing aquifer recharge.</p>
+
+        <p><strong>(c) Natural Purification via Water Cycle:</strong><br>
+        <strong>Solar Evaporation and Distillation:</strong> When ocean water evaporates under solar energy, only pure water molecules transform into vapour, leaving salts and impurities behind in the ocean. The condensed rainwater is pure freshwater.</p>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+fs.writeFileSync(path.join(chDir, 'ch7.html'), ch7Html, 'utf8');
+fs.writeFileSync(path.join(chDir, 'ch8.html'), ch8Html, 'utf8');
+console.log('Chapter 7 (13 questions) and Chapter 8 (10 questions) updated with 100% NCERT Curiosity questions!');

@@ -1,4 +1,11 @@
-<section class="chapter-section" id="ch9">
+const fs = require('fs');
+const path = require('path');
+const chDir = path.join(__dirname, '..', 'chapters-c6s');
+
+// ==========================================
+// CHAPTER 9: Methods of Separation in Everyday Life
+// ==========================================
+const ch9Html = `<section class="chapter-section" id="ch9">
   <div class="chapter-header">
     <div class="ch-badge">9</div>
     <div class="chapter-header-info">
@@ -391,3 +398,7 @@
     </div>
   </div>
 </section>
+`;
+
+fs.writeFileSync(path.join(chDir, 'ch9.html'), ch9Html, 'utf8');
+console.log('Chapter 9 updated with 100% NCERT Curiosity questions (Q1 to Q10 + CBQ).');

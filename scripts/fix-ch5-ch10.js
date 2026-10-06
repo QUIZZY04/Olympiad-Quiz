@@ -1,4 +1,588 @@
-<section class="chapter-section" id="ch10">
+const fs = require('fs');
+const path = require('path');
+const chDir = path.join(__dirname, '..', 'chapters-c6s');
+
+// ==========================================
+// CHAPTER 5: Measurement of Length and Motion (10 Questions + CBQ)
+// ==========================================
+const ch5Html = `<section class="chapter-section" id="ch5">
+  <div class="chapter-header">
+    <div class="ch-badge">5</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 5: Measurement of Length and Motion</h2>
+      <p>NCERT Curiosity (Class 6) — SI Standard Units, Metrology, Parallax Error, Measuring Curved Lines, Rest &amp; Motion, Types of Motion | CBSE 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Metrological &amp; Kinematic Principles</div>
+    <ul class="concept-list">
+      <li><strong>Need for Standard Units:</strong> Ancient non-standard units (handspan, cubit, foot, pace) varied from person to person. The International System of Units (SI) standardized the <strong>metre (m)</strong> as the universal base unit of length.</li>
+      <li><strong>Standard Length Conversions:</strong>
+        <ul>
+          <li>1 kilometre (km) = 1,000 metres (m)</li>
+          <li>1 metre (m) = 100 centimetres (cm) = 1,000 millimetres (mm)</li>
+          <li>1 centimetre (cm) = 10 millimetres (mm)</li>
+        </ul>
+      </li>
+      <li><strong>Three Essential Rules for Accurate Ruler Measurement:</strong>
+        <ul>
+          <li><em>Alignment:</em> Place the ruler exactly parallel and touching the length being measured.</li>
+          <li><em>Avoiding Damaged Ends:</em> If the zero mark is broken, start from any clear integer mark (e.g., 2.0 cm) and subtract that from the final reading: <code>True Length = Final Mark - Initial Mark</code>.</li>
+          <li><em>Eliminating Parallax Error:</em> The eye must be placed vertically directly above the scale mark. Looking from an oblique angle gives false readings.</li>
+        </ul>
+      </li>
+      <li><strong>Rest vs Motion:</strong> An object is in motion if its position changes relative to a stationary reference point (frame of reference) over time.</li>
+      <li><strong>Classification of Motion:</strong>
+        <ul>
+          <li><em>Linear (Rectilinear) Motion:</em> Movement along a straight line (e.g., car moving on a straight road, falling apple).</li>
+          <li><em>Circular Motion:</em> Movement along a circular path maintaining a constant distance from a fixed center (e.g., hands of a clock, blades of ceiling fan).</li>
+          <li><em>Periodic / Oscillatory Motion:</em> Motion that repeats itself at regular fixed intervals of time (e.g., pendulum of a clock, child on a swing, vibrating guitar string).</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SVG Diagram 1: Parallax Error and Eye Alignment -->
+  <div class="math-diagram-wrap" style="margin: 20px auto; text-align: center; max-width: 600px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <svg viewBox="0 0 540 180" width="100%" height="180" xmlns="http://www.w3.org/2000/svg">
+      <text x="270" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Correct Eye Position to Avoid Parallax Error in Ruler Readings</text>
+      
+      <!-- Ruler bar -->
+      <rect x="70" y="110" width="400" height="35" rx="3" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+      
+      <!-- Ruler graduations -->
+      <line x1="120" y1="110" x2="120" y2="125" stroke="#854d0e" stroke-width="2"/>
+      <text x="120" y="138" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#854d0e" text-anchor="middle">5.0</text>
+
+      <line x1="270" y1="110" x2="270" y2="132" stroke="#854d0e" stroke-width="2.5"/>
+      <text x="270" y="140" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#854d0e" text-anchor="middle">6.0 cm</text>
+
+      <line x1="420" y1="110" x2="420" y2="125" stroke="#854d0e" stroke-width="2"/>
+      <text x="420" y="138" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#854d0e" text-anchor="middle">7.0</text>
+
+      <!-- Eye Positions -->
+      <!-- Position A (Left Oblique) -->
+      <circle cx="170" cy="50" r="13" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+      <circle cx="170" cy="50" r="5" fill="#b91c1c"/>
+      <line x1="170" y1="64" x2="265" y2="110" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="170" y="32" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#b91c1c" text-anchor="middle">Position A (Wrong)</text>
+
+      <!-- Position B (Directly Above) -->
+      <circle cx="270" cy="45" r="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <circle cx="270" cy="45" r="5" fill="#15803d"/>
+      <line x1="270" y1="60" x2="270" y2="110" stroke="#16a34a" stroke-width="2"/>
+      <polygon points="266,104 270,111 274,104" fill="#16a34a"/>
+      <text x="270" y="27" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#15803d" text-anchor="middle">Position B (Correct ✓)</text>
+
+      <!-- Position C (Right Oblique) -->
+      <circle cx="370" cy="50" r="13" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+      <circle cx="370" cy="50" r="5" fill="#b91c1c"/>
+      <line x1="370" y1="64" x2="275" y2="110" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="370" y="32" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#b91c1c" text-anchor="middle">Position C (Wrong)</text>
+
+      <rect x="130" y="152" width="280" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="270" y="167" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">Eye must be vertically above the mark to eliminate error</text>
+    </svg>
+    <div style="font-size: 0.82rem; font-weight: 600; color: #475569; margin-top: 6px;">Figure 5.1: Geometry of Correct Scale Reading &amp; Parallax Avoidance</div>
+  </div>
+
+  <div class="ex-div">NCERT Exercise: Let Us Enhance Our Learning (100% Textbook Questions)</div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="c6s-ch5-q1">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Some lengths are given in Column I. Some units are given in Column II. Match the lengths with the most appropriate units for measuring them: <br>• Distance between Delhi and Lucknow <br>• Thickness of a coin <br>• Length of an eraser <br>• Length of school playground</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Column I (Object / Distance)</th>
+                <th>Column II (Most Suitable Unit)</th>
+                <th>Scientific Justification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Distance between Delhi and Lucknow</td>
+                <td><strong>Kilometre (km)</strong></td>
+                <td>Large geographical and inter-city distances require the kilometre unit (1 km = 1,000 m).</td>
+              </tr>
+              <tr>
+                <td>Thickness of a coin</td>
+                <td><strong>Millimetre (mm)</strong></td>
+                <td>Extremely tiny dimensions smaller than 1 cm require the precision of millimetres.</td>
+              </tr>
+              <tr>
+                <td>Length of an eraser</td>
+                <td><strong>Centimetre (cm)</strong></td>
+                <td>Small handheld stationery items are conveniently measured in centimetres (1 cm = 10 mm).</td>
+              </tr>
+              <tr>
+                <td>Length of school playground</td>
+                <td><strong>Metre (m)</strong></td>
+                <td>Medium outdoor human-scale distances are best measured using the SI standard unit of metre.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct matching with scientific reason</span><span class="marking-marks">0.5 Mark each (Total 2 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="c6s-ch5-q2">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Read the following statements and mark True (T) or False (F) against each. Correct the false statement(s): <br>(i) The motion of a car moving on a straight road is an example of linear motion. <br>(ii) Any object which is changing its position with respect to a reference point with time is said to be in motion. <br>(iii) 1 km = 100 cm.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Statement</th>
+                <th>True / False</th>
+                <th>Scientific Correction / Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>(i) The motion of a car moving on a straight road is an example of linear motion.</td>
+                <td><strong>TRUE</strong></td>
+                <td>Motion along a straight-line track is strictly rectilinear (linear) motion.</td>
+              </tr>
+              <tr>
+                <td>(ii) Any object which is changing its position with respect to a reference point with time is said to be in motion.</td>
+                <td><strong>TRUE</strong></td>
+                <td>This is the fundamental physics definition of relative motion.</td>
+              </tr>
+              <tr>
+                <td>(iii) 1 km = 100 cm.</td>
+                <td><strong>FALSE</strong></td>
+                <td><strong>Correction:</strong> 1 km = 1,000 m = 1,000 × 100 cm = <strong>100,000 cm</strong> (1 lakh cm).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Identifying True/False for parts (i) and (ii)</span><span class="marking-marks">0.5 Mark each</span></div>
+          <div class="marking-row"><span class="marking-key">Marking False and providing correct conversion for part (iii)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="c6s-ch5-q3">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Why cannot a handspan be used as a standard unit of length? Explain with a simple classroom example.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>1. Scientific Reason:</strong><br>
+            A handspan (the maximum distance between the tip of the thumb and the tip of the little finger when stretched out) varies widely from person to person depending on body size and age. An adult has a much longer handspan than a young child.
+          </div>
+          <div class="step">
+            <strong>2. Classroom Example:</strong><br>
+            If a teacher and a student both measure the length of the same classroom blackboard using their handspans:<br>
+            • The teacher's handspan may measure 10 handspans.<br>
+            • The student's smaller handspan may measure 14 handspans.<br>
+            Because the value is not constant and cannot be universally reproduced, a handspan cannot serve as a standard scientific unit. Standard units like the <strong>metre (m)</strong> have fixed, constant lengths worldwide.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Explanation of variation in body dimensions</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Classroom example illustrating discrepancy</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="c6s-ch5-q4">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Take two measuring scales from your geometry box. Compare their smallest markings (divisions). What is the least count of each scale? Why is least count important in measurement?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>1. Definition of Least Count:</strong><br>
+            The smallest value of a physical quantity that can be measured directly and accurately using a measuring instrument is called its <strong>least count</strong>.
+          </div>
+          <div class="step">
+            <strong>2. Comparison of Standard 15-cm School Rulers:</strong><br>
+            • On a standard school plastic ruler, each 1 centimetre is subdivided into 10 equal divisions.<br>
+            • Therefore, the value of 1 smallest division = 1 cm ÷ 10 = <strong>0.1 cm = 1 mm</strong>.<br>
+            • The least count of a standard school ruler is <strong>1 mm</strong> (0.1 cm).
+          </div>
+          <div class="step">
+            <strong>3. Importance of Least Count:</strong><br>
+            Least count determines the maximum precision and resolution of an instrument. An object whose dimension is smaller than 1 mm cannot be accurately measured with a standard ruler without error.
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct calculation of least count (1 mm or 0.1 cm)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Significance in precision and measurement limits</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="c6s-ch5-q5">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">The distance between Radhika's home and her school is 1.5 km. Express this distance in: <br>(i) metres (m) <br>(ii) centimetres (cm)</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Given:</strong> Distance = 1.5 km
+          </div>
+          <div class="step">
+            <strong>(i) Conversion into Metres (m):</strong><br>
+            We know that 1 km = 1,000 m.<br>
+            Therefore: Distance = 1.5 × 1,000 m = <strong>1,500 m</strong>.
+          </div>
+          <div class="step">
+            <strong>(ii) Conversion into Centimetres (cm):</strong><br>
+            We know that 1 m = 100 cm.<br>
+            Therefore: Distance = 1,500 × 100 cm = <strong>150,000 cm</strong> (1.5 × 10⁵ cm).
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Step-by-step conversion into metres (1,500 m)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Step-by-step conversion into centimetres (150,000 cm)</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="c6s-ch5-q6">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Explain with the help of a neat labelled diagram how you would measure the perimeter of the circular bottom of a drinking glass tumbler using a piece of thread and a metre scale.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <!-- SVG Diagram: Measuring Curved Rim with Thread -->
+          <div class="math-diagram-wrap" style="margin: 15px auto; text-align: center; max-width: 520px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px;">
+            <svg viewBox="0 0 480 150" width="100%" height="150" xmlns="http://www.w3.org/2000/svg">
+              <!-- Tumbler Base -->
+              <ellipse cx="120" cy="75" rx="65" ry="40" fill="#f8fafc" stroke="#0284c7" stroke-width="2.5"/>
+              <!-- Thread wrapped around -->
+              <ellipse cx="120" cy="75" rx="67" ry="42" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4"/>
+              <circle cx="53" cy="75" r="4" fill="#dc2626"/>
+              <text x="40" y="70" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#dc2626">Mark A</text>
+              <circle cx="187" cy="75" r="4" fill="#dc2626"/>
+              <text x="195" y="70" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#dc2626">Mark B</text>
+              <text x="120" y="80" font-family="system-ui, sans-serif" font-size="9.5" font-weight="600" fill="#0369a1" text-anchor="middle">Tumbler Rim</text>
+
+              <!-- Arrow pointing to straight ruler -->
+              <path d="M 230 75 L 260 75" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+              
+              <!-- Straightened thread on ruler -->
+              <rect x="270" y="80" width="190" height="20" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
+              <line x1="280" y1="80" x2="280" y2="92" stroke="#854d0e" stroke-width="1.5"/>
+              <text x="280" y="98" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#854d0e" text-anchor="middle">0</text>
+              <line x1="430" y1="80" x2="430" y2="92" stroke="#854d0e" stroke-width="1.5"/>
+              <text x="430" y="98" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#854d0e" text-anchor="middle">L</text>
+              <line x1="280" y1="70" x2="430" y2="70" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="355" y="62" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#dc2626" text-anchor="middle">Straightened Thread (Length = Perimeter)</text>
+            </svg>
+            <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 4px;">Figure 5.2: Method of Measuring Curved Perimeter with Thread and Ruler</div>
+          </div>
+
+          <div class="step">
+            <strong>Method &amp; Procedure:</strong><br>
+            A straight rigid ruler cannot bend around the circular boundary of a glass tumbler. Therefore, we use an inelastic piece of cotton thread:
+            <ol>
+              <li>Tie a small knot or put an ink mark 'A' near one end of the thread.</li>
+              <li>Place mark 'A' on any point along the rim of the tumbler base.</li>
+              <li>Wrap the thread snugly all the way around the circular circumference without stretching or overlapping.</li>
+              <li>Put a second ink mark 'B' where the thread meets mark 'A' to complete exactly one full turn.</li>
+              <li>Unwind and stretch the thread straight along a standard metre scale, placing mark 'A' at 0 cm.</li>
+              <li>The reading at mark 'B' directly gives the perimeter (circumference) of the tumbler base.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Step-by-step description of thread wrapping &amp; marking</span><span class="marking-marks">1.5 Marks</span></div>
+          <div class="marking-row"><span class="marking-key">Transferring to straight ruler &amp; reading procedure</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Neat labelled diagram</span><span class="marking-marks">0.5 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="c6s-ch5-q7">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q7')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">The height of a person is 1.65 m. Express this height into centimetres (cm) and millimetres (mm).</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+            <strong>Given:</strong> Height = 1.65 m
+          </div>
+          <div class="step">
+            <strong>1. Conversion into Centimetres (cm):</strong><br>
+            Since 1 m = 100 cm:<br>
+            Height = 1.65 × 100 cm = <strong>165 cm</strong>.
+          </div>
+          <div class="step">
+            <strong>2. Conversion into Millimetres (mm):</strong><br>
+            Since 1 cm = 10 mm (or 1 m = 1,000 mm):<br>
+            Height = 165 × 10 mm = <strong>1,650 mm</strong> (or 1.65 × 1,000 mm = 1,650 mm).
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Height in centimetres (165 cm) with working</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Height in millimetres (1,650 mm) with working</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="c6s-ch5-q8">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q8')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">A student wants to measure the thickness of a single 5-rupee coin using an ordinary 15-cm school ruler. How can this be done accurately? Explain with calculation steps.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <!-- SVG Diagram: Coin Stack Method -->
+          <div class="math-diagram-wrap" style="margin: 15px auto; text-align: center; max-width: 480px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px;">
+            <svg viewBox="0 0 440 130" width="100%" height="130" xmlns="http://www.w3.org/2000/svg">
+              <!-- Coin Stack -->
+              <g id="coin-stack">
+                <rect x="70" y="85" width="90" height="6" rx="2" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="78" width="90" height="6" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="71" width="90" height="6" rx="2" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="64" width="90" height="6" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="57" width="90" height="6" rx="2" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="50" width="90" height="6" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="43" width="90" height="6" rx="2" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="36" width="90" height="6" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="29" width="90" height="6" rx="2" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/>
+                <rect x="70" y="22" width="90" height="6" rx="2" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
+              </g>
+              <line x1="175" y1="22" x2="175" y2="91" stroke="#0284c7" stroke-width="2"/>
+              <line x1="170" y1="22" x2="180" y2="22" stroke="#0284c7" stroke-width="2"/>
+              <line x1="170" y1="91" x2="180" y2="91" stroke="#0284c7" stroke-width="2"/>
+              <text x="190" y="60" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#0369a1">Total Height H = 18 mm (10 coins)</text>
+
+              <!-- Formula Box -->
+              <rect x="250" y="25" width="180" height="75" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+              <text x="340" y="45" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#15803d" text-anchor="middle">Thickness of 1 Coin =</text>
+              <text x="340" y="65" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#166534" text-anchor="middle">Total Height (H) ÷ n</text>
+              <text x="340" y="85" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#15803d" text-anchor="middle">= 18 mm ÷ 10 = 1.8 mm</text>
+            </svg>
+            <div style="font-size: 0.8rem; font-weight: 600; color: #64748b; margin-top: 4px;">Figure 5.3: Method of Magnification via Multi-Coin Stacking</div>
+          </div>
+
+          <div class="step">
+            <strong>1. Experimental Problem:</strong><br>
+            A single coin is only about 1.5 to 2 mm thick. Because the smallest division on a standard school ruler is 1 mm, measuring a single coin directly carries high relative error.
+          </div>
+          <div class="step">
+            <strong>2. Method of Multi-Coin Stacking:</strong><br>
+            • Take 10 identical 5-rupee coins and stack them closely on top of each other without gaps.<br>
+            • Place the ruler vertically along the stack and measure the total height <em>H</em> of the 10 coins (suppose <em>H</em> = 18 mm).<br>
+            • Calculate the thickness of a single coin by dividing total height by 10:<br>
+            <code>Thickness of 1 Coin = Total Stack Height (H) ÷ Number of Coins (n) = 18 mm ÷ 10 = 1.8 mm</code> (0.18 cm).
+          </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Concept of stacking multiple coins to minimize least-count error</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Formula and division step</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="c6s-ch5-q9">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q9')">
+      <div class="q-num">Q9</div>
+      <div class="q-text">Differentiate between Rectilinear motion, Circular motion, and Periodic motion. Give two real-life examples for each type.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Type of Motion</th>
+                <th>Scientific Definition</th>
+                <th>Two Real-Life Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Rectilinear (Linear) Motion</strong></td>
+                <td>Motion in which an object moves along a straight line path with all parts travelling in the same direction.</td>
+                <td>1. A car moving on a straight highway.<br>2. An apple falling straight down from a tree.</td>
+              </tr>
+              <tr>
+                <td><strong>Circular Motion</strong></td>
+                <td>Motion in which an object moves along a circular path such that its distance from a fixed central point remains constant.</td>
+                <td>1. The tip of the second hand of a watch.<br>2. A point marked on the blade of a rotating ceiling fan.</td>
+              </tr>
+              <tr>
+                <td><strong>Periodic Motion</strong></td>
+                <td>Motion that repeats itself at regular, equal intervals of time.</td>
+                <td>1. The swinging of a clock pendulum.<br>2. A child swinging back and forth on a swing.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Rectilinear motion definition &amp; 2 examples</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Circular motion definition &amp; 2 examples</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Periodic motion definition &amp; 2 examples</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="c6s-ch5-q10">
+    <div class="q-head" onclick="toggleQ('c6s-ch5-q10')">
+      <div class="q-num">Q10</div>
+      <div class="q-text">Observe different everyday objects around you. It is easier and more convenient to express the dimensions of some objects in mm, some in cm, and some in m. Make a list of three objects in each category with scientific reasons.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Measurement Unit</th>
+                <th>Objects Best Expressed in this Unit</th>
+                <th>Scientific Convenience Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Millimetres (mm)</strong></td>
+                <td>1. Thickness of a 10-rupee coin<br>2. Diameter of a ballpoint pen tip (0.5 mm or 0.7 mm)<br>3. Length of a tiny grain of rice</td>
+                <td>These dimensions are extremely small (sub-centimetre); using cm would result in inconvenient decimal fractions.</td>
+              </tr>
+              <tr>
+                <td><strong>Centimetres (cm)</strong></td>
+                <td>1. Length of a pencil<br>2. Width of a science textbook<br>3. Length of a toothbrush</td>
+                <td>Handheld personal items have lengths between 5 cm and 30 cm, making the centimetre scale easy to read and visualize.</td>
+              </tr>
+              <tr>
+                <td><strong>Metres (m)</strong></td>
+                <td>1. Length of a classroom blackboard<br>2. Height of a room door<br>3. Length of a curtain or saree</td>
+                <td>Larger everyday dimensions exceed 100 cm; expressing them in metres avoids unwieldy large three- or four-digit numbers.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Three appropriate objects listed for millimetres (mm) with reason</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Three appropriate objects listed for centimetres (cm) with reason</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Three appropriate objects listed for metres (m) with reason</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CBQ Case Study -->
+  <div class="cbq-card">
+    <div class="cbq-badge">CBSE Competency-Based Question (Experimental Measurement Case Study)</div>
+    <div class="q-text"><strong>Case Study: Measuring with a Broken Zero Mark:</strong><br>
+      Sneha wanted to measure the length of her knitting needle using a 15-cm plastic ruler. However, the zero mark of the ruler was chipped and broken off. She placed the needle starting at the 2.0 cm mark and observed the other end at 14.3 cm.<br>
+      (a) What is the true length of Sneha's knitting needle?<br>
+      (b) What common error would occur if Sneha viewed the ruler mark from a side angle rather than vertically above?<br>
+      (c) A tailor uses a flexible tape to measure chest size rather than a wooden metre ruler. Why?
+    </div>
+    <div class="answer-box" style="margin-top: 15px;">
+      <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
+      <div class="answer-text">
+        <p><strong>(a) True Length Calculation:</strong><br>
+        When the zero mark is broken, subtract the initial reading from the final reading:<br>
+        True Length = Final mark - Initial mark = 14.3 cm - 2.0 cm = <strong>12.3 cm</strong> (or 123 mm).</p>
+
+        <p><strong>(b) Name of Error:</strong><br>
+        Viewing from an oblique angle causes <strong>Parallax Error</strong>, leading to an inaccurate reading. The eye must be positioned perpendicularly directly above the measurement mark.</p>
+
+        <p><strong>(c) Reason for Flexible Tape:</strong><br>
+        The human body has curved surfaces. A rigid wooden ruler cannot bend around curves, whereas a flexible measuring tape bends smoothly along bodily contours to measure circumferences accurately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+// ==========================================
+// CHAPTER 10: Living Creatures: Exploring their Characteristics (9 Questions + CBQ)
+// ==========================================
+const ch10Html = `<section class="chapter-section" id="ch10">
   <div class="chapter-header">
     <div class="ch-badge">10</div>
     <div class="chapter-header-info">
@@ -559,3 +1143,10 @@
     </div>
   </div>
 </section>
+`;
+
+fs.writeFileSync(path.join(chDir, 'ch5.html'), ch5Html, 'utf8');
+console.log('Chapter 5 correctly written with 10 questions + CBQ.');
+
+fs.writeFileSync(path.join(chDir, 'ch10.html'), ch10Html, 'utf8');
+console.log('Chapter 10 correctly written with 9 questions + CBQ.');

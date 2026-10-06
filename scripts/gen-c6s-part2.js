@@ -1,4 +1,14 @@
-<section class="chapter-section" id="ch6">
+const fs = require('fs');
+const path = require('path');
+const chDir = path.join(__dirname, '..', 'chapters-c6s');
+
+// (Keep Chapter 5 as above, append Chapters 6, 7, and 8)
+const ch5Html = fs.readFileSync(path.join(chDir, 'ch5.html'), 'utf8');
+
+// ==========================================
+// CHAPTER 6: Materials Around Us
+// ==========================================
+const ch6Html = `<section class="chapter-section" id="ch6">
   <div class="chapter-header">
     <div class="ch-badge">6</div>
     <div class="chapter-header-info">
@@ -390,3 +400,7 @@
     </div>
   </div>
 </section>
+`;
+
+fs.writeFileSync(path.join(chDir, 'ch6.html'), ch6Html, 'utf8');
+console.log('Chapter 6 updated with 100% NCERT Curiosity questions (Q1 to Q10 + CBQ).');
