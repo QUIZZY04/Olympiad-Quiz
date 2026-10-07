@@ -3,464 +3,115 @@
     <div class="ch-badge">14</div>
     <div class="chapter-header-info">
       <h2>Chapter 14: Area</h2>
-      <p>NCERT Ganita Prakash (Class 8 Part 2) — Mensuration, Area of Trapeziums &amp; Polygons, Surface Area &amp; Volume of Cubes, Cuboids &amp; Cylinders | CBSE 2026-27</p>
+      <p>NCERT Ganita Prakash (Part 2) — Measurement of Enclosed Space, Trapeziums, Rhombuses, General Polygons & Decompositions</p>
     </div>
   </div>
 
   <div class="concept-card">
-    <div class="concept-header">📌 Key Mensuration Formulas &amp; 3D Solid Geometry</div>
+    <div class="concept-header">📌 Key Concepts &amp; Mathematical Foundations</div>
     <ul class="concept-list">
-      <li><strong>Area of 2D Polygons:</strong>
-        <ul>
-          <li><strong>Trapezium:</strong> <code>Area = 1/2 × (a + b) × h</code>, where <em>a</em> and <em>b</em> are parallel sides, and <em>h</em> is the perpendicular distance between them.</li>
-          <li><strong>General Quadrilateral:</strong> <code>Area = 1/2 × d × (h₁ + h₂)</code>, where <em>d</em> is a diagonal, and <em>h₁, h₂</em> are perpendicular offsets from opposite vertices.</li>
-          <li><strong>Rhombus:</strong> <code>Area = 1/2 × d₁ × d₂</code>, where <em>d₁</em> and <em>d₂</em> are diagonal lengths.</li>
-        </ul>
-      </li>
-      <li><strong>Surface Area &amp; Volume of 3D Solids:</strong>
-        <ul>
-          <li><strong>Cube (edge l):</strong>
-            <ul>
-              <li>Lateral Surface Area (LSA) = <code>4l²</code></li>
-              <li>Total Surface Area (TSA) = <code>6l²</code></li>
-              <li>Volume = <code>l³</code></li>
-            </ul>
-          </li>
-          <li><strong>Cuboid (length l, breadth b, height h):</strong>
-            <ul>
-              <li>Lateral Surface Area (Area of 4 walls) = <code>2(l + b)h</code></li>
-              <li>Total Surface Area (TSA) = <code>2(lb + bh + hl)</code></li>
-              <li>Volume = <code>l × b × h</code></li>
-            </ul>
-          </li>
-          <li><strong>Right Circular Cylinder (radius r, height h):</strong>
-            <ul>
-              <li>Curved Surface Area (CSA) = <code>2πrh</code></li>
-              <li>Total Surface Area (TSA) = <code>2πr(r + h)</code></li>
-              <li>Volume = <code>πr²h</code></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><strong>Metric Capacity Conversions:</strong>
-        <ul>
-          <li><code>1 cm³ = 1 mL</code></li>
-          <li><code>1 L = 1,000 cm³ = 1,000 mL</code></li>
-          <li><code>1 m³ = 1,000,000 cm³ = 1,000 Litres = 1 kL</code></li>
-        </ul>
-      </li>
+
+      <li><strong>Area of Trapezium:</strong> <code>Area = ½ × (Sum of Parallel Sides) × Height = ½(a + b)h</code>.</li>
+      <li><strong>Area of Rhombus:</strong> <code>Area = ½ × d₁ × d₂</code> (half the product of its diagonals).</li>
+      <li><strong>Area of General Quadrilateral:</strong> Split into two triangles along a diagonal <em>d</em> with offset heights <em>h₁</em> and <em>h₂</em>: <code>Area = ½ d (h₁ + h₂)</code>.</li>
+      <li><strong>Decomposition Method:</strong> Any irregular polygon can be divided into non-overlapping triangles and trapeziums to calculate its total area.</li>
     </ul>
   </div>
 
-  <!-- SVG Diagram 14: Mensuration Geometric Models -->
-  <div class="math-diagram-wrap" style="margin: 20px auto; text-align: center; max-width: 620px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-    <svg viewBox="0 0 540 200" width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
-      <text x="270" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">Mensuration Geometries: Trapezium Plane &amp; Cylinder Solid</text>
-      
-      <!-- Left: Trapezium -->
-      <g transform="translate(40, 45)">
-        <polygon points="30,0 130,0 170,90 0,90" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-        <line x1="30" y1="0" x2="30" y2="90" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,2"/>
-        <rect x="30" y="80" width="10" height="10" fill="none" stroke="#ef4444" stroke-width="1"/>
-        <text x="80" y="-8" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#1e40af" text-anchor="middle">a (Top base)</text>
-        <text x="85" y="110" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#1e40af" text-anchor="middle">b (Bottom base)</text>
-        <text x="20" y="48" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#dc2626" text-anchor="end">h</text>
-        <text x="85" y="130" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#2563eb" text-anchor="middle">Area = 1/2(a + b)h</text>
-      </g>
+  <div class="ex-div">OlympiadQuiz Chapter Practice Questions &amp; Concept Applications</div>
 
-      <!-- Right: Cylinder -->
-      <g transform="translate(330, 40)">
-        <!-- Top Ellipse -->
-        <ellipse cx="70" cy="20" rx="55" ry="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
-        <!-- Body -->
-        <path d="M 15,20 L 15,100 A 55,16 0 0,0 125,100 L 125,20" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-        <!-- Bottom dashed back ellipse -->
-        <path d="M 15,100 A 55,16 0 0,1 125,100" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="3,2"/>
-        
-        <!-- Dimensions -->
-        <line x1="70" y1="20" x2="125" y2="20" stroke="#0f172a" stroke-width="1.5"/>
-        <circle cx="70" cy="20" r="2.5" fill="#0f172a"/>
-        <text x="95" y="14" font-family="system-ui, sans-serif" font-size="9.5" font-weight="700" fill="#0f172a">r</text>
-        
-        <line x1="135" y1="20" x2="135" y2="100" stroke="#ca8a04" stroke-width="1.5"/>
-        <text x="145" y="65" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ca8a04">h</text>
-
-        <text x="70" y="135" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#15803d" text-anchor="middle">Volume = πr²h | CSA = 2πrh</text>
-      </g>
-    </svg>
-    <div style="font-size: 0.82rem; font-weight: 600; color: #475569; margin-top: 6px;">Figure 14.1: Area Partitioning in 2D Trapeziums &amp; Surface Enclosure in 3D Cylinders</div>
-  </div>
-
-  <div class="ex-div">NCERT Ganita Prakash: Figure It Out &amp; Comprehensive Exercises (100% Questions Solved)</div>
-
-  <!-- Q1 -->
-  <div class="q-card" id="c8m-ch14-q1">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q1')">
+  <div class="q-card" id="c8m_ch14_q1">
+    <div class="q-head" onclick="toggleQ('c8m_ch14_q1')">
       <div class="q-num">Q1</div>
-      <div class="q-text">The shape of the top surface of a table is a trapezium. Find its area if its parallel sides are 1 m and 1.2 m and perpendicular distance between them is 0.8 m.</div>
-      <div class="q-marks">[2 Marks]</div>
+      <div class="q-text">The parallel sides of a trapezium are 12 cm and 20 cm, and the perpendicular distance between them is 8 cm. Find its area.</div>
+      <div class="q-marks">2 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-label">✓ Suggested Step-by-Step Solution</div>
         <div class="answer-text">
-          <p><strong>Trapezium Area Formula:</strong> <code>Area = 1/2 × (a + b) × h</code>.</p>
-          <div class="step">
-            1. Given: Parallel sides a = 1 m, b = 1.2 m, and height h = 0.8 m.<br><br>
-            2. Substituting values:<br>
-            Area = 1/2 × (1 + 1.2) × 0.8<br>
-            Area = 1/2 × 2.2 × 0.8<br>
-            Area = 1.1 × 0.8 = <strong>0.88 m²</strong>.<br><br>
-            Hence, the area of the top surface of the table is <strong>0.88 m²</strong>.
-          </div>
+          <div class="step">Area of trapezium = ½(a + b)h = ½(12 + 20) × 8 = ½(32) × 8 = 16 × 8 = <span class="math">128 cm²</span>.</div>
         </div>
         <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Formula: Area = 1/2(a + b)h</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Solving Area = 0.88 m²</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Trapezium area formula</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Area = 128 cm²</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q2 -->
-  <div class="q-card" id="c8m-ch14-q2">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q2')">
+  <div class="q-card" id="c8m_ch14_q2">
+    <div class="q-head" onclick="toggleQ('c8m_ch14_q2')">
       <div class="q-num">Q2</div>
-      <div class="q-text">The area of a trapezium is 34 cm² and the length of one of the parallel sides is 10 cm and its height is 4 cm. Find the length of the other parallel side.</div>
-      <div class="q-marks">[2 Marks]</div>
+      <div class="q-text">The area of a trapezium is 34 cm² and one parallel side is 10 cm. If its height is 4 cm, find the length of the other parallel side.</div>
+      <div class="q-marks">3 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-label">✓ Suggested Step-by-Step Solution</div>
         <div class="answer-text">
-          <div class="step">
-            1. Let the length of the unknown parallel side be <code>b</code> cm.<br>
-            Given: Area = 34 cm², side a = 10 cm, height h = 4 cm.<br><br>
-            2. Using formula: <code>Area = 1/2 × (a + b) × h</code><br>
-            34 = 1/2 × (10 + b) × 4<br>
-            34 = (10 + b) × 2<br><br>
-            3. Solving for b:<br>
-            10 + b = 34 / 2 = 17<br>
-            b = 17 − 10 = <strong>7 cm</strong>.<br><br>
-            Therefore, the length of the other parallel side is <strong>7 cm</strong>.
-          </div>
+          <div class="step">Area = ½(a + b)h ⟹ 34 = ½(10 + b) × 4 ⟹ 34 = 2(10 + b)</div>
+          <div class="step">17 = 10 + b ⟹ b = 17 − 10 = <span class="math">7 cm</span>.</div>
+          <div class="step"><strong>Answer:</strong> The other parallel side is <strong>7 cm</strong>.</div>
         </div>
         <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Equation setup: 34 = 2(10 + b)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Equation set up 34 = ½(10 + b)(4)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">10 + b = 17</span><span class="marking-marks">1 Mark</span></div>
           <div class="marking-row"><span class="marking-key">b = 7 cm</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q3 -->
-  <div class="q-card" id="c8m-ch14-q3">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q3')">
+  <div class="q-card" id="c8m_ch14_q3">
+    <div class="q-head" onclick="toggleQ('c8m_ch14_q3')">
       <div class="q-num">Q3</div>
-      <div class="q-text">The diagonal of a quadrilateral-shaped field is 24 m and the perpendiculars dropped on it from the remaining opposite vertices are 8 m and 13 m. Find the area of the field.</div>
-      <div class="q-marks">[2 Marks]</div>
+      <div class="q-text">The diagonal of a quadrilateral field is 24 m and perpendicular offsets from the opposite vertices are 8 m and 13 m. Find the total area of the field.</div>
+      <div class="q-marks">3 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-label">✓ Suggested Step-by-Step Solution</div>
         <div class="answer-text">
-          <p><strong>General Quadrilateral Area Formula:</strong> <code>Area = 1/2 × d × (h₁ + h₂)</code>.</p>
-          <div class="step">
-            1. Given: Diagonal d = 24 m, perpendicular offsets h₁ = 13 m and h₂ = 8 m.<br><br>
-            2. Substituting values:<br>
-            Area = 1/2 × 24 × (13 + 8)<br>
-            Area = 12 × 21 = <strong>252 m²</strong>.<br><br>
-            Hence, the area of the quadrilateral field is <strong>252 m²</strong>.
-          </div>
+          <div class="step">Area of general quadrilateral = ½ × d × (h₁ + h₂).</div>
+          <div class="step">Area = ½ × 24 × (8 + 13) = 12 × 21 = <span class="math">252 m²</span>.</div>
         </div>
         <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Formula: Area = 1/2 × d × (h₁ + h₂)</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Calculating Area = 252 m²</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Formula Area = ½ d (h₁ + h₂)</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Substitution ½ × 24 × 21</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Area = 252 m²</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Q4 -->
-  <div class="q-card" id="c8m-ch14-q4">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q4')">
-      <div class="q-num">Q4</div>
-      <div class="q-text">The diagonals of a rhombus are 7.5 cm and 12 cm. Find its area. If the perimeter of another rhombus is 40 cm and its altitude is 5 cm, find its area.</div>
-      <div class="q-marks">[3 Marks]</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-          <div class="step">
-            • <strong>Part 1: Rhombus with diagonals d₁ = 7.5 cm, d₂ = 12 cm:</strong><br>
-            Area = 1/2 × d₁ × d₂<br>
-            Area = 1/2 × 7.5 × 12 = 7.5 × 6 = <strong>45 cm²</strong>.<br><br>
 
-            • <strong>Part 2: Rhombus with Perimeter = 40 cm and Altitude = 5 cm:</strong><br>
-            Since all 4 sides of a rhombus are equal:<br>
-            Side = Perimeter / 4 = 40 / 4 = 10 cm.<br>
-            Since a rhombus is also a parallelogram:<br>
-            Area = Base × Altitude = Side × Altitude<br>
-            Area = 10 × 5 = <strong>50 cm²</strong>.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Diagonals area = 1/2 × 7.5 × 12 = 45 cm²</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Side = 10 cm and Base × Height Area = 50 cm²</span><span class="marking-marks">1.5 Marks</span></div>
-        </div>
+  <div class="cbq-section">
+    <div class="cbq-header"><span>🎯 Competency-Based Practice Questions — Chapter 14</span><span class="cbq-badge">NCF-SE / OlympiadQuiz</span></div>
+    <div class="cbq-body">
+      <div class="cbq-card" style="border-left:4px solid #4f46e5;">
+        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study &amp; Conceptual Modeling</div>
+        <div class="cbq-question"><strong>Surveying an Irregular Field by Triangulation:</strong> A surveyor plots a field by drawing a baseline AD = 100 m. Triangles are formed on either side with perpendicular offsets: to point B (height 30 m at distance 40 m from A) and to point C (height 40 m at distance 60 m from A).<br>(a) Explain how decomposition simplifies measuring irregular plots.<br>(b) Calculate the total field area.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>(a)</strong> Dividing the land into right triangles and trapeziums allows simple standard formulas to measure complex boundaries.<br><strong>(b)</strong> Total Area = Area(ΔABD) + Area(ΔACD) = ½(100 × 30) + ½(100 × 40) = 1500 + 2000 = <strong>3,500 m²</strong>.</div>
       </div>
-    </div>
-  </div>
-
-  <!-- Q5 -->
-  <div class="q-card" id="c8m-ch14-q5">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q5')">
-      <div class="q-num">Q5</div>
-      <div class="q-text">There are two cuboidal boxes. Box A has dimensions 60 cm × 40 cm × 50 cm. Box B is a cube of side 50 cm. Which box requires the lesser amount of material to make?</div>
-      <div class="q-marks">[3 Marks]</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-          <p><strong>Criterion:</strong> The material required to make a closed box corresponds to its <strong>Total Surface Area (TSA)</strong>.</p>
-          <div class="step">
-            • <strong>For Cuboidal Box A (l = 60 cm, b = 40 cm, h = 50 cm):</strong><br>
-            TSA = 2(lb + bh + hl)<br>
-            TSA = 2[(60 × 40) + (40 × 50) + (50 × 60)]<br>
-            TSA = 2[2400 + 2000 + 3000] = 2[7400] = <strong>14,800 cm²</strong>.<br><br>
-
-            • <strong>For Cubic Box B (side l = 50 cm):</strong><br>
-            TSA = 6l²<br>
-            TSA = 6 × 50² = 6 × 2500 = <strong>15,000 cm²</strong>.<br><br>
-
-            • <strong>Comparison:</strong><br>
-            Since 14,800 cm² &lt; 15,000 cm², <strong>Box A requires lesser material to make</strong> (by 200 cm²).
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">TSA of Box A = 14,800 cm²</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">TSA of Box B = 15,000 cm² and concluding Box A</span><span class="marking-marks">1.5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q6 -->
-  <div class="q-card" id="c8m-ch14-q6">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q6')">
-      <div class="q-num">Q6</div>
-      <div class="q-text">A suitcase with measures 80 cm × 48 cm × 24 cm is to be covered with a tarpaulin cloth. How many meters of tarpaulin of width 96 cm is required to cover 100 such suitcases?</div>
-      <div class="q-marks">[3 Marks]</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-          <div class="step">
-            1. Total Surface Area of 1 suitcase (l = 80, b = 48, h = 24):<br>
-            TSA = 2(lb + bh + hl)<br>
-            = 2[(80 × 48) + (48 × 24) + (24 × 80)]<br>
-            = 2[3840 + 1152 + 1920] = 2[6912] = <strong>13,824 cm²</strong>.<br><br>
-            2. Total Surface Area of 100 suitcases:<br>
-            Total Area = 100 × 13,824 = <strong>1,382,400 cm²</strong>.<br><br>
-            3. Tarpaulin cloth is rectangular with width = 96 cm and unknown length L:<br>
-            Area of cloth = Width × Length<br>
-            1,382,400 = 96 × L<br>
-            L = 1,382,400 / 96 = <strong>14,400 cm</strong>.<br><br>
-            4. Converting to meters:<br>
-            Length in meters = 14,400 / 100 = <strong>144 meters</strong>.<br><br>
-            Therefore, <strong>144 meters</strong> of tarpaulin cloth is required.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">TSA of one suitcase = 13,824 cm²</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Total area / 96 = 14,400 cm = 144 meters</span><span class="marking-marks">1.5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q7 -->
-  <div class="q-card" id="c8m-ch14-q7">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q7')">
-      <div class="q-num">Q7</div>
-      <div class="q-text">A road roller takes 750 complete revolutions to move once over to level a road. Find the area of the road if the diameter of the road roller is 84 cm and length is 1 m. (Take π = 22/7)</div>
-      <div class="q-marks">[3 Marks]</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-          <p><strong>Principle:</strong> In one revolution, a cylinder levels an area equal to its <strong>Curved Surface Area (CSA = 2πrh)</strong>.</p>
-          <div class="step">
-            1. Dimensions of the cylindrical roller:<br>
-            Diameter = 84 cm ⇒ Radius r = 84 / 2 = 42 cm = 0.42 m.<br>
-            Length (height h) = 1 m.<br><br>
-            2. Curved Surface Area (CSA):<br>
-            CSA = 2πrh = 2 × (22/7) × 0.42 × 1<br>
-            CSA = 2 × 22 × 0.06 × 1 = <strong>2.64 m²</strong>.<br><br>
-            3. Total area leveled in 750 revolutions:<br>
-            Total Area = 750 × CSA = 750 × 2.64 = <strong>1,980 m²</strong>.<br><br>
-            Hence, the area of the road is <strong>1,980 m²</strong>.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">CSA in 1 revolution = 2.64 m²</span><span class="marking-marks">1.5 Marks</span></div>
-          <div class="marking-row"><span class="marking-key">Area leveled = 750 × 2.64 = 1,980 m²</span><span class="marking-marks">1.5 Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q8 -->
-  <div class="q-card" id="c8m-ch14-q8">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q8')">
-      <div class="q-num">Q8</div>
-      <div class="q-text">A cuboidal water tank is 6 m long, 5 m wide and 4.5 m deep. How many litres of water can it hold? (1 m³ = 1000 litres)</div>
-      <div class="q-marks">[2 Marks]</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-          <div class="step">
-            1. Dimensions: Length l = 6 m, Breadth b = 5 m, Depth (height) h = 4.5 m.<br><br>
-            2. Volume of the cuboidal tank:<br>
-            Volume = l × b × h<br>
-            Volume = 6 × 5 × 4.5 = 30 × 4.5 = <strong>135 m³</strong>.<br><br>
-            3. Capacity in litres:<br>
-            Since 1 m³ = 1,000 litres:<br>
-            Capacity = 135 × 1,000 = <strong>1,35,000 litres</strong>.<br><br>
-            Hence, the tank can hold <strong>1,35,000 litres</strong> of water.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Volume = 6 × 5 × 4.5 = 135 m³</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Conversion: 135 × 1000 = 1,35,000 litres</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q9 -->
-  <div class="q-card" id="c8m-ch14-q9">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q9')">
-      <div class="q-num">Q9</div>
-      <div class="q-text">Find the height of a cylinder whose radius is 7 cm and the total surface area is 968 cm². (Take π = 22/7)</div>
-      <div class="q-marks">[2 Marks]</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-          <p><strong>Formula:</strong> <code>Total Surface Area (TSA) = 2πr(r + h)</code>.</p>
-          <div class="step">
-            1. Given: Radius r = 7 cm, TSA = 968 cm².<br><br>
-            2. Substituting into formula:<br>
-            968 = 2 × (22/7) × 7 × (7 + h)<br>
-            968 = 44 × (7 + h)<br><br>
-            3. Solving for h:<br>
-            7 + h = 968 / 44 = 22<br>
-            h = 22 − 7 = <strong>15 cm</strong>.<br><br>
-            Therefore, the height of the cylinder is <strong>15 cm</strong>.
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">Formulating 968 = 44(7 + h)</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">Solving h = 15 cm</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Q10 -->
-  <div class="q-card" id="c8m-ch14-q10">
-    <div class="q-head" onclick="toggleQ('c8m-ch14-q10')">
-      <div class="q-num">Q10</div>
-      <div class="q-text">If each edge of a cube is doubled: (i) how many times will its surface area increase? (ii) how many times will its volume increase?</div>
-      <div class="q-marks">[2 Marks]</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
-        <div class="answer-text">
-          <div class="step">
-            1. Let the original edge of the cube be <code>l</code>.<br>
-            Original Surface Area: <code>S₁ = 6l²</code>.<br>
-            Original Volume: <code>V₁ = l³</code>.<br><br>
-            2. When the edge is doubled, new edge = <code>2l</code>.<br><br>
-            • <strong>(i) New Surface Area (S₂):</strong><br>
-            S₂ = 6(2l)² = 6(4l²) = 4 × (6l²) = <strong>4 × S₁</strong>.<br>
-            Therefore, the surface area increases by <strong>4 times</strong> (or 2² times).<br><br>
-            • <strong>(ii) New Volume (V₂):</strong><br>
-            V₂ = (2l)³ = 8l³ = <strong>8 × V₁</strong>.<br>
-            Therefore, the volume increases by <strong>8 times</strong> (or 2³ times).
-          </div>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
-          <div class="marking-row"><span class="marking-key">(i) Surface area increases 4 times (2² factor)</span><span class="marking-marks">1 Mark</span></div>
-          <div class="marking-row"><span class="marking-key">(ii) Volume increases 8 times (2³ factor)</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Competency-Based Case Study (CBQ) -->
-  <div class="case-study-box" style="margin-top: 30px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 22px;">
-    <div class="case-study-title" style="font-size: 1.15rem; font-weight: 800; color: #1e293b; margin-bottom: 10px;">
-      🎯 Competency-Based Case Study Question (CBSE 2026-27 Pattern)
-    </div>
-    <div class="case-study-desc" style="font-size: 0.95rem; color: #475569; line-height: 1.6;">
-      <strong>Context — Municipal Rainwater Harvesting Cistern Architecture:</strong> A residential society constructs a cylindrical concrete rainwater harvesting tank with an internal radius of <code>3.5 meters</code> and depth (height) of <code>8 meters</code>.<br>
-      To prevent seepage and algae buildup, the society decides to waterproof both the interior curved wall and the base circular floor with an epoxy coating.<br><br>
-      (a) Calculate the total surface area that needs to be coated (curved cylindrical wall + flat bottom circular floor).<br>
-      (b) If epoxy waterproofing costs ₹ 120 per square meter, calculate the total cost of coating the tank.<br>
-      (c) Calculate the maximum water storage capacity of the tank in cubic meters and in litres. (Take π = 22/7).
-    </div>
-    <div class="answer-box" style="margin-top: 15px;">
-      <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
-      <div class="answer-text">
-        <p><strong>(a) Surface Area to be Coated:</strong><br>
-        Area = Curved Surface Area (CSA) + Base Circle Area<br>
-        = 2πrh + πr² = πr(2h + r)<br>
-        = (22/7) × 3.5 × [2(8) + 3.5]<br>
-        = 11 × [16 + 3.5] = 11 × 19.5 = <strong>214.5 m²</strong>.</p>
-
-        <p><strong>(b) Total Cost of Waterproofing:</strong><br>
-        Cost = Area × Rate = 214.5 × ₹ 120 = <strong>₹ 25,740</strong>.</p>
-
-        <p><strong>(c) Maximum Water Storage Capacity:</strong><br>
-        Volume = πr²h = (22/7) × (3.5)² × 8<br>
-        = (22/7) × 12.25 × 8 = 22 × 1.75 × 8 = <strong>308 m³</strong>.<br>
-        In litres = 308 × 1,000 = <strong>3,08,000 litres</strong>.</p>
+      <div class="cbq-card" style="border-left:4px solid #f59e0b;">
+        <div class="cbq-type" style="color:#f59e0b;">🧠 HOTS Practice Questions (Assertion-Reasoning)</div>
+        <div class="cbq-question"><strong>Assertion (A):</strong> The area of a rhombus is equal to half the product of its diagonals.<br><strong>Reason (R):</strong> The diagonals of a rhombus bisect each other perpendicularly, splitting it into four congruent right triangles.<br><em>Choose:</em> (a) Both A and R are true and R is correct explanation. (b) Both A and R are true but R is not explanation. (c) A is true, R is false. (d) A is false, R is true.</div>
+        <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
+        <div class="cbq-answer"><strong>Correct Choice: (a) Both A and R are true and R is the correct explanation.</strong><br><em>Explanation:</em> 4 × (½ × (d₁/2) × (d₂/2)) = 4 × (d₁d₂ / 8) = ½ d₁ d₂.</div>
       </div>
     </div>
   </div>
 
   <div class="ch-nav-btns">
     <button class="ch-nav-btn" onclick="showChapter(13)">← Chapter 13: Algebra Play</button>
-    <button class="ch-nav-btn" disabled style="opacity:.35;">Next Chapter →</button>
+    <button class="ch-nav-btn next" onclick="showChapter(1)" style="background:#10b981;border-color:#10b981;">⌂ Back to Chapter 1</button>
   </div>
 </section>
