@@ -24,7 +24,7 @@ if (fs.existsSync(envPath)) {
   });
 }
 
-const { generateQuizForClass } = require("../functions/quizAgent/geminiEngine");
+const { generateFullLiveQuizForClass } = require("../functions/quizAgent/geminiEngine");
 const { getNextSubject, SUBJECT_DETAILS } = require("../functions/quizAgent/syllabus");
 
 function parseArgs() {
@@ -32,13 +32,14 @@ function parseArgs() {
   const options = {
     subject: null,
     classes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    count: 15,
+    count: 50,
     date: null,
-    time: "18:00",
-    duration: 40,
-    price: 0,
+    time: "11:00",
+    duration: 60,
+    price: 99,
     dryRun: false,
-    apiKey: process.env.GEMINI_API_KEY || null
+    apiKey: process.env.GEMINI_API_KEY || null,
+    openAIKey: process.env.OPENAI_API_KEY || null
   };
 
   args.forEach(arg => {
@@ -48,6 +49,7 @@ function parseArgs() {
     else if (arg.startsWith("--count=")) options.count = parseInt(arg.split("=")[1], 10);
     else if (arg.startsWith("--date=")) options.date = arg.split("=")[1];
     else if (arg.startsWith("--api-key=")) options.apiKey = arg.split("=")[1];
+    else if (arg.startsWith("--openai-key=")) options.openAIKey = arg.split("=")[1];
   });
 
   return options;
@@ -57,13 +59,12 @@ async function main() {
   const options = parseArgs();
 
   console.log("==================================================");
-  console.log("🤖 Olympiad Quiz - Monday Live Quiz Generator");
+  console.log("🤖 Olympiad Quiz - Monday Live Quiz Generator (50 Questions)");
   console.log("==================================================");
 
-  if (!options.apiKey) {
-    console.error("❌ Error: GEMINI_API_KEY is not set.");
-    console.error("Provide it via environment variable or --api-key=YOUR_KEY");
-    console.error("You can get a free key at https://aistudio.google.com/app/apikey");
+  if (!options.apiKey && !options.openAIKey) {
+    console.error("❌ Error: No API key provided (set GEMINI_API_KEY or OPENAI_API_KEY).");
+    console.error("Provide it via environment variable or --api-key=YOUR_KEY / --openai-key=YOUR_KEY");
     process.exit(1);
   }
 
@@ -73,28 +74,29 @@ async function main() {
 
   console.log(`📌 Subject: ${SUBJECT_DETAILS[subject]?.name || subject}`);
   console.log(`🎯 Classes: ${options.classes.join(", ")}`);
-  console.log(`📝 Questions per class: ${options.count}`);
+  console.log(`📝 Questions per class: Exactly 50 (40 Regular @ 1M + 10 Achievers @ 2M)`);
   console.log(`📅 Target Date: ${dateStr}`);
-  console.log(`⚙️  Dry Run: ${options.dryRun ? "YES (will save to output_preview.json without database write)" : "NO"}`);
+  console.log(`⚙️  Dry Run: ${options.dryRun ? "YES (will save to latest_generated_quiz.json without database write)" : "NO"}`);
   console.log("--------------------------------------------------");
 
   const allClassResults = [];
 
   for (let i = 0; i < options.classes.length; i++) {
     const classNum = options.classes[i];
-    console.log(`⏳ [${i + 1}/${options.classes.length}] Generating Class ${classNum}...`);
+    console.log(`⏳ [${i + 1}/${options.classes.length}] Generating Class ${classNum} (40 Regular + 10 Achievers)...`);
 
     try {
-      const questions = await generateQuizForClass({
+      const quizResult = await generateFullLiveQuizForClass({
         apiKey: options.apiKey,
+        geminiKey: options.apiKey,
+        openAIKey: options.openAIKey,
         classNum,
         subject,
-        count: options.count,
-        dateStr: dateCompact
+        dateCompact
       });
 
-      console.log(`   ✅ Success: ${questions.length} questions validated.`);
-      allClassResults.push({ classNum, subject, questions });
+      console.log(`   ✅ Success: ${quizResult.regularQuestions.length} Regular + ${quizResult.achieverQuestions.length} Achievers = ${quizResult.totalCount} questions validated.`);
+      allClassResults.push(quizResult);
 
       if (i < options.classes.length - 1) {
         // 2s pause to remain well within free tier limits

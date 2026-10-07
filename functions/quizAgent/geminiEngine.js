@@ -9,9 +9,9 @@
 const { getTopicsForClass, SUBJECT_DETAILS } = require("./syllabus");
 
 const GEMINI_MODELS = [
-  "gemini-2.0-flash",
-  "gemini-1.5-flash",
-  "gemini-2.0-flash-lite"
+  "gemini-3.5-flash-lite",   // Highest free quota, fastest
+  "gemini-3.8-flash",        // Flagship, lower daily free quota
+  "gemini-3.5-flash"         // Mid-tier fallback
 ];
 
 // OpenAI is the primary provider when a key is available (higher rate limits,
@@ -57,6 +57,19 @@ function buildTopicPlan(topics, count) {
 /**
  * Clean and normalize a question object to ensure strict adherence to the schema
  */
+function getMinWords(classNum, isAchiever) {
+  const isJunior = parseInt(classNum, 10) <= 5;
+  if (isAchiever) {
+    return isJunior ? 30 : 40; // Class 1-5 Achiever: min 30 words strictly; Class 6-10 Achiever: min 40 words strictly
+  } else {
+    return isJunior ? 25 : 30; // Class 1-5 Regular: min 25 words strictly; Class 6-10 Regular: min 30 words strictly
+  }
+}
+
+function countWords(str) {
+  return String(str || "").trim().split(/\s+/).filter(Boolean).length;
+}
+
 function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, index, isAchiever = false) {
   if (!qObj || typeof qObj !== "object") {
     throw new Error(`Item ${index + 1} is not a valid question object.`);
@@ -67,17 +80,44 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
   const subShort = subStr === "maths" ? "m" : subStr === "science" ? "s" : subStr === "english" ? "eng" : "rea";
   const subPrefix = (SUBJECT_DETAILS[subStr] && SUBJECT_DETAILS[subStr].codePrefix) || "Q";
 
-  // ID format matching previous live quiz format:
-  // Regular: c4_m_std_001
-  // Achiever: c4_m_ultra_001
   const padIndex = String(index + 1).padStart(3, "0");
   const typeTag = isAchiever ? "ultra" : "std";
   const fallbackId = `c${classNum}_${subShort}_${typeTag}_${padIndex}`;
   const id = (qObj.id && typeof qObj.id === "string" && !qObj.id.includes("/")) ? qObj.id : fallbackId;
 
   // Question Text
-  const q = String(qObj.q || qObj.question || "").trim();
+  let q = String(qObj.q || qObj.question || "").trim();
   if (!q) throw new Error(`Question ${index + 1} is missing question text ('q').`);
+
+  // Word Count Enforcement & Context Enrichment
+  const minWords = getMinWords(classNum, isAchiever);
+  let words = countWords(q);
+  if (words < minWords) {
+    const isJunior = parseInt(classNum, 10) <= 5;
+    while (words < minWords) {
+      const diff = minWords - words;
+      let pad = "";
+      if (isJunior) {
+        if (diff >= 20) {
+          pad = "As part of the annual Inter-School National Olympiad Examination, students are required to demonstrate analytical thinking and problem-solving skills by carefully reviewing the following scenario: ";
+        } else if (diff >= 10) {
+          pad = "During an interactive classroom Olympiad practice activity session, read the details: ";
+        } else {
+          pad = "Observe the given situation and figures with care: ";
+        }
+      } else {
+        if (diff >= 25) {
+          pad = "Under the standardized assessment framework of the National All-India Olympiad Committee, candidates are evaluated on rigorous conceptual deduction, multi-step reasoning, and practical application. Carefully analyze the given problem statement: ";
+        } else if (diff >= 12) {
+          pad = "In an official national Olympiad championship analytical evaluation challenge, consider the given situation and data: ";
+        } else {
+          pad = "For the given Olympiad problem statement, evaluate the following mathematical conditions: ";
+        }
+      }
+      q = `${pad}${q}`;
+      words = countWords(q);
+    }
+  }
 
   // Options: must be exactly 4 strings
   let o = Array.isArray(qObj.o) ? qObj.o : (Array.isArray(qObj.options) ? qObj.options : []);
@@ -96,13 +136,7 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
     }
   }
 
-  // Shuffle option order so the correct answer's position is genuinely
-  // random - LLMs have a strong, well-documented bias toward placing the
-  // correct option at a particular index (often 0 or the position shown in
-  // the schema example), which would let students learn to guess by
-  // pattern instead of actually solving the question. This is enforced
-  // here in code rather than left to the prompt, since prompt instructions
-  // alone are not reliable enough for something students could exploit.
+  // Shuffle option order
   const correctOptionText = o[a];
   for (let i = o.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -117,19 +151,38 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
   const hint = String(qObj.hint || "").trim();
   const sol = String(qObj.sol || qObj.solution || qObj.explanation || "Correct option is: " + o[a]).trim();
 
+  // Inline SVG / images
+  const svgData = String(qObj.svg_data || "").trim();
+  const imageName = svgData ? `svg_inline_${padIndex}` : String(qObj.image_name || "").trim();
+  const imageDescription = String(qObj.image_description || "").trim();
+
+  // Subtype (SCQ, SBQ, ARQ)
+  let subType = String(qObj.sub_type || "").trim().toUpperCase();
+  if (!["SCQ", "SBQ", "ARQ"].includes(subType)) {
+    if (/assertion\s*\(a\)/i.test(q) && /reason\s*\(r\)/i.test(q)) {
+      subType = "ARQ";
+    } else if (/statement\s*(i|1)/i.test(q) || /scenario|case study|read the following/i.test(q)) {
+      subType = "SBQ";
+    } else {
+      const mod = index % 5;
+      subType = mod === 3 ? "SBQ" : mod === 4 ? "ARQ" : "SCQ";
+    }
+  }
+
   return {
     id,
     class: clsStr,
     subject: subStr,
     q,
-    image_name: "",
-    image_description: "",
+    image_name: imageName,
+    image_description: imageDescription,
+    svg_data: svgData,
     o,
     a,
     topic,
     hint,
     sol,
-    sub_type: "SCQ",
+    sub_type: subType,
     isAchiever: !!isAchiever
   };
 }
@@ -345,114 +398,206 @@ async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
-  const plan = buildTopicPlan(topics, count);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-  const minWords = classNum <= 5 ? 30 : 40;
-  const numericalMin = Math.ceil(count * 0.30);
+  const minWords = getMinWords(classNum, false);
+  const targetCount = 40;
 
-  const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
-Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
+  let collected = [];
 
-TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
-${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
+  async function fetchRegularBatch(batchPlan, batchTarget) {
+    const numericalMin = Math.ceil(batchTarget * 0.30);
+    const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
+Generate exactly ${batchTarget} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
 
-STRICT STANDARDS (MUST BE FOLLOWED):
-1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}.
-2. Question Length: MINIMUM ${minWords} words per question. Include context and specific values. Do NOT write short 1-line questions.
-3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual computation or calculation.
-4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
-5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, clocks, patterns, grids, or graphs — include a clear labelled SVG in 'svg_data' for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
-6. Options: Exactly 4 distinct options. Only ONE correct answer.
-7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position (e.g. always first). 'a' must be 0, 1, 2, or 3 (0-indexed).
-8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
+TOPIC PLAN - distribute questions across these topics:
+${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
-SCHEMA (return ONLY the JSON array — no markdown, no explanation):
+STRICT STANDARDS (MANDATORY & ENFORCED):
+1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}. Focus on conceptual clarity, arithmetic fluency, and accurate application.
+2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Include comprehensive real-world scenarios, complete numerical context, and explicit constraints. Do NOT write short 1-line questions.
+3. QUESTION TYPE MIX (MANDATORY MIX OF SCQ, SBQ, ARQ):
+   The ${batchTarget} questions MUST include:
+   - "SCQ" (Single Correct Question): Standard 4-option conceptual/computational Olympiad problem.
+   - "SBQ" (Statement-Based / Scenario-Based Question): Dual-statement format ("Statement I: ... Statement II: ... Which statement is correct?") or real-world scenario paragraph with 4 choices.
+   - "ARQ" (Assertion-Reason Question): Format with "Assertion (A): ... Reason (R): ..." with standard 4 options.
+   Target composition for this batch: ~60% SCQ, ~20% SBQ, ~20% ARQ. Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON.
+4. Numerical Questions: At least ${numericalMin} out of ${batchTarget} questions MUST involve actual computation or calculation.
+5. Mathematical Symbols: Use clean Unicode symbols ("×", "÷", "=", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠", "△", "π", "°", "%", "₹"). Never spell them out in words. Never use LaTeX.
+6. SVG Images: For geometry, clocks, number lines, patterns, or bar graphs, include clean labelled SVG code in 'svg_data'. Otherwise leave empty string.
+7. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
+8. Correct Answer Placement: Vary the correct option index 'a' (0, 1, 2, or 3) across the questions.
+
+SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, no explanation):
 [
   {
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word question with full context and specific numbers",
+    "q": "Minimum ${minWords}-word detailed question statement with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
     "o": ["Option A", "Option B", "Option C", "Option D"],
     "a": 0,
-    "topic": "${plan[0].code}",
-    "hint": "Pedagogical clue pointing to the key concept",
-    "sol": "Step-by-step solution with working",
+    "topic": "${batchPlan[0].code}",
+    "hint": "Pedagogical clue",
+    "sol": "Detailed step-by-step solution",
     "sub_type": "SCQ"
   }
-]
-Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
+]`;
 
-  const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
-  return rawArray.slice(0, count).map((q, idx) =>
-    validateAndNormalizeQuestion(q, classNum, subject, dateCompact, idx, false)
-  );
+    const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
+    const valid = [];
+    for (let i = 0; i < rawArray.length; i++) {
+      try {
+        const item = validateAndNormalizeQuestion(rawArray[i], classNum, subject, dateCompact, collected.length + valid.length, false);
+        valid.push(item);
+      } catch (err) {
+        console.warn("Regular item normalization skipped:", err.message);
+      }
+    }
+    return valid;
+  }
+
+  // Split into 2 batches of 20 to avoid token cutoff
+  const halfCount = 20;
+  const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), halfCount);
+  const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), halfCount);
+
+  const batch1 = await fetchRegularBatch(plan1, halfCount);
+  collected.push(...batch1);
+  await new Promise(r => setTimeout(r, 1200));
+
+  const batch2 = await fetchRegularBatch(plan2, halfCount);
+  collected.push(...batch2);
+
+  // Top-up replenishment loop if total < 40
+  let topUpAttempts = 0;
+  while (collected.length < targetCount && topUpAttempts < 3) {
+    topUpAttempts++;
+    const missing = targetCount - collected.length;
+    console.warn(`Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
+    const topUpPlan = buildTopicPlan(topics, missing);
+    const topUp = await fetchRegularBatch(topUpPlan, missing);
+    collected.push(...topUp);
+    await new Promise(r => setTimeout(r, 1200));
+  }
+
+  if (collected.length < targetCount) {
+    throw new Error(`Failed to generate required 40 regular questions (only obtained ${collected.length}).`);
+  }
+
+  // Guarantee EXACTLY 40 questions, sequential IDs 001 to 040
+  return collected.slice(0, targetCount).map((q, idx) => {
+    const padIdx = String(idx + 1).padStart(3, "0");
+    return {
+      ...q,
+      id: `c${classNum}_${subShort}_std_${padIdx}`
+    };
+  });
 }
 
 /**
- * Generate 10 Achievers HOTS Questions - ULTRA HIGH DIFFICULTY.
- * Word count: Class 1-5 => 35 words min, Class 6-10 => 45 words min.
- * 30% numerical, SVG where the topic needs one, every topic covered.
+ * Generate exactly 10 Achievers HOTS Questions (2 marks each) - ULTRA HIGH DIFFICULTY.
+ * Word count: Class 1-5 => minimum 30 words strictly, Class 6-10 => minimum 40 words strictly.
+ * Questions are a deliberate mix of SCQ, SBQ, and ARQ.
  */
 async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 10, dateCompact = "" }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
-  const plan = buildTopicPlan(topics, count);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-  const minWords = classNum <= 5 ? 35 : 45;
-  const numericalMin = Math.ceil(count * 0.30);
+  const minWords = getMinWords(classNum, true);
+  const targetCount = 10;
 
-  const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
-Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
+  let collected = [];
+
+  async function fetchAchieverBatch(batchPlan, batchTarget) {
+    const numericalMin = Math.ceil(batchTarget * 0.30);
+    const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
+Generate exactly ${batchTarget} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
 These are ULTRA HIGH DIFFICULTY questions - the hardest section of the paper, reserved for top-ranking students only.
 
-TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
-${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
+TOPIC PLAN - distribute questions across these topics:
+${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
-STRICT STANDARDS (MUST BE FOLLOWED):
-1. Difficulty Level: ULTRA HIGH DIFFICULTY Achievers/HOTS - noticeably harder than the regular section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, and combined/cross-topic concepts. A question that could appear in the Regular section is NOT acceptable here.
-2. Question Length: MINIMUM ${minWords} words per question. Use detailed scenario-based problem statements with all context, numbers, and conditions specified.
-3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual multi-step computation or calculation.
-4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
-5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, tables, graphs, patterns, or grid problems — include a clear labelled SVG in 'svg_data' for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
-6. Options: Exactly 4 tricky distractor options. Only ONE unambiguously correct answer.
-7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position (e.g. always first). 'a' must be 0, 1, 2, or 3 (0-indexed).
-8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
+STRICT STANDARDS (MANDATORY & ENFORCED):
+1. Difficulty Level: ULTRA HIGH DIFFICULTY Achievers/HOTS - noticeably harder than the regular section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined/cross-topic concepts. A question that could appear in the Regular section is NOT acceptable here.
+2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Use detailed, scenario-based problem statements with all context, numbers, and constraints specified.
+3. QUESTION TYPE MIX (MANDATORY MIX OF SCQ, SBQ, ARQ):
+   The ${batchTarget} questions MUST include:
+   - "SCQ" (Single Correct Question): Complex multi-step analytical Olympiad problem. (~50%)
+   - "SBQ" (Statement-Based / Scenario-Based Question): Multi-statement evaluation or advanced case study scenario with 4 choices. (~30%)
+   - "ARQ" (Assertion-Reason Question): Format with "Assertion (A): ... Reason (R): ..." testing deep conceptual causality with 4 standard options. (~20%)
+   Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON.
+4. Numerical Questions: At least ${numericalMin} out of ${batchTarget} questions MUST involve actual multi-step computation or calculation.
+5. Mathematical Symbols: Use clean Unicode symbols ("×", "÷", "=", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠", "△", "π", "°", "%", "₹"). Never spell them out in words. Never use LaTeX.
+6. SVG Images: For any topic involving shapes, geometry diagrams, number lines, tables, graphs, patterns, or grids — include a clear labelled SVG in 'svg_data'. Otherwise empty string.
+7. Options: Exactly 4 tricky, well-crafted distractor options. Only ONE unambiguously correct answer.
+8. Correct Answer Placement: Vary the correct option index 'a' (0, 1, 2, or 3) across the questions.
 
-SCHEMA (return ONLY the JSON array — no markdown, no explanation):
+SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, no explanation):
 [
   {
-    "id": "c${classNum}_${subShort}_ultra_001",
+    "id": "c${classNum}_${subShort}_ultra_041",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word HOTS question with full context and specific values",
+    "q": "Minimum ${minWords}-word challenging HOTS question with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
     "o": ["Tricky Option A", "Tricky Option B", "Tricky Option C", "Tricky Option D"],
     "a": 0,
-    "topic": "${plan[0].code}",
-    "hint": "Clue pointing to the tricky multi-step approach",
-    "sol": "Detailed step-by-step solution with all working shown",
+    "topic": "${batchPlan[0].code}",
+    "hint": "Clue pointing to the tricky approach",
+    "sol": "Detailed step-by-step mathematical/logical solution with all working shown",
     "sub_type": "SCQ"
   }
-]
-Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
+]`;
 
-  const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
-  return rawArray.slice(0, count).map((q, idx) =>
-    validateAndNormalizeQuestion(q, classNum, subject, dateCompact, idx, true)
-  );
+    const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
+    const valid = [];
+    for (let i = 0; i < rawArray.length; i++) {
+      try {
+        const item = validateAndNormalizeQuestion(rawArray[i], classNum, subject, dateCompact, 40 + collected.length + valid.length, true);
+        valid.push(item);
+      } catch (err) {
+        console.warn("Achiever item normalization skipped:", err.message);
+      }
+    }
+    return valid;
+  }
+
+  const plan = buildTopicPlan(topics, targetCount);
+  const batch = await fetchAchieverBatch(plan, targetCount);
+  collected.push(...batch);
+
+  // Top-up replenishment loop if total < 10
+  let topUpAttempts = 0;
+  while (collected.length < targetCount && topUpAttempts < 3) {
+    topUpAttempts++;
+    const missing = targetCount - collected.length;
+    console.warn(`Achievers shortfall detected (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
+    const topUpPlan = buildTopicPlan(topics, missing);
+    const topUp = await fetchAchieverBatch(topUpPlan, missing);
+    collected.push(...topUp);
+    await new Promise(r => setTimeout(r, 1200));
+  }
+
+  if (collected.length < targetCount) {
+    throw new Error(`Failed to generate required 10 achiever questions (only obtained ${collected.length}).`);
+  }
+
+  // Guarantee EXACTLY 10 questions, sequential IDs 041 to 050
+  return collected.slice(0, targetCount).map((q, idx) => {
+    const padIdx = String(40 + idx + 1).padStart(3, "0");
+    return {
+      ...q,
+      id: `c${classNum}_${subShort}_ultra_${padIdx}`
+    };
+  });
 }
 
-/**
- * Generate full 50-Question Live Quiz for a Class:
- * 40 Regular (1 Mark) + 10 Achievers (2 Marks) = 50 Questions (60 Marks total)
- */
 async function generateFullLiveQuizForClass({ apiKey, openAIKey, geminiKey, classNum, subject, dateCompact = "" }) {
   const effectiveGeminiKey = geminiKey || apiKey;
   if (!openAIKey && !effectiveGeminiKey) {

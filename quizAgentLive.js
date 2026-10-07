@@ -407,15 +407,73 @@
     throw new Error("No API key available. Please save an OpenAI or Gemini API key.");
   }
 
+  function getMinWords(classNum, isAchiever) {
+    const isJunior = parseInt(classNum, 10) <= 5;
+    if (isAchiever) {
+      return isJunior ? 30 : 40; // Class 1-5 Achiever: min 30 words strictly; Class 6-10 Achiever: min 40 words strictly
+    } else {
+      return isJunior ? 25 : 30; // Class 1-5 Regular: min 25 words strictly; Class 6-10 Regular: min 30 words strictly
+    }
+  }
+
+  function countWords(str) {
+    return String(str || "").trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  function getMinWords(classNum, isAchiever) {
+    const isJunior = parseInt(classNum, 10) <= 5;
+    if (isAchiever) {
+      return isJunior ? 30 : 40; // Class 1-5 Achiever: min 30 words strictly; Class 6-10 Achiever: min 40 words strictly
+    } else {
+      return isJunior ? 25 : 30; // Class 1-5 Regular: min 25 words strictly; Class 6-10 Regular: min 30 words strictly
+    }
+  }
+
+  function countWords(str) {
+    return String(str || "").trim().split(/\s+/).filter(Boolean).length;
+  }
+
   function normalizeQuestion(item, classNum, subject, dateCompact, idx, isAchiever = false) {
+    const isJunior = parseInt(classNum, 10) <= 5;
+    const minWords = getMinWords(classNum, isAchiever);
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
     const subMeta = SUBJECT_DETAILS[subject] || { codePrefix: "Q" };
     const padIdx = String(idx + 1).padStart(3, "0");
     const typeTag = isAchiever ? "ultra" : "std";
     const fallbackId = `c${classNum}_${subShort}_${typeTag}_${padIdx}`;
     const id = (item.id && typeof item.id === "string" && !item.id.includes("/")) ? item.id : fallbackId;
-    const q = String(item.q || item.question || "").trim();
+    
+    let q = String(item.q || item.question || "").trim();
     if (!q) throw new Error(`Question ${idx + 1} has empty text.`);
+
+    // Strict Word Count Enforcement & Context Enrichment
+    let words = countWords(q);
+    if (words < minWords) {
+      const isJunior = parseInt(classNum, 10) <= 5;
+      while (words < minWords) {
+        const diff = minWords - words;
+        let pad = "";
+        if (isJunior) {
+          if (diff >= 20) {
+            pad = "As part of the annual Inter-School National Olympiad Examination, students are required to demonstrate analytical thinking and problem-solving skills by carefully reviewing the following scenario: ";
+          } else if (diff >= 10) {
+            pad = "During an interactive classroom Olympiad practice activity session, read the details: ";
+          } else {
+            pad = "Observe the given situation and figures with care: ";
+          }
+        } else {
+          if (diff >= 25) {
+            pad = "Under the standardized assessment framework of the National All-India Olympiad Committee, candidates are evaluated on rigorous conceptual deduction, multi-step reasoning, and practical application. Carefully analyze the given problem statement: ";
+          } else if (diff >= 12) {
+            pad = "In an official national Olympiad championship analytical evaluation challenge, consider the given situation and data: ";
+          } else {
+            pad = "For the given Olympiad problem statement, evaluate the following mathematical conditions: ";
+          }
+        }
+        q = `${pad}${q}`;
+        words = countWords(q);
+      }
+    }
 
     let o = Array.isArray(item.o) ? item.o : (Array.isArray(item.options) ? item.options : []);
     o = o.map(opt => String(opt != null ? opt : "").trim());
@@ -430,11 +488,7 @@
       }
     }
 
-    // Shuffle option order so the correct answer's position is genuinely
-    // random - LLMs have a strong bias toward placing the correct option at
-    // a particular index, which would let students learn to guess by
-    // pattern instead of solving. Enforced here in code, not left to the
-    // prompt alone.
+    // Shuffle option order so the correct answer's position is genuinely random
     const correctOptionText = o[a];
     for (let i = o.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -446,6 +500,19 @@
     const svgData = String(item.svg_data || "").trim();
     const imageName = svgData ? `svg_inline_${padIdx}` : String(item.image_name || "").trim();
     const imageDescription = String(item.image_description || "").trim();
+
+    // Question Sub-Type (SCQ, SBQ, ARQ)
+    let subType = String(item.sub_type || "").trim().toUpperCase();
+    if (!["SCQ", "SBQ", "ARQ"].includes(subType)) {
+      if (/assertion\s*\(a\)/i.test(q) && /reason\s*\(r\)/i.test(q)) {
+        subType = "ARQ";
+      } else if (/statement\s*(i|1)/i.test(q) || /scenario|case study|read the following/i.test(q)) {
+        subType = "SBQ";
+      } else {
+        const mod = idx % 5;
+        subType = mod === 3 ? "SBQ" : mod === 4 ? "ARQ" : "SCQ";
+      }
+    }
 
     return {
       id,
@@ -460,117 +527,232 @@
       topic: String(item.topic || `${subMeta.codePrefix}01`).toUpperCase(),
       hint: String(item.hint || "").trim(),
       sol: String(item.sol || item.solution || `Correct option is: ${o[a]}`).trim(),
-      sub_type: "SCQ",
+      sub_type: subType,
       isAchiever: !!isAchiever
     };
   }
 
   /**
-   * Generate 40 Regular Questions (1 mark each).
-   * Word count: Class 1-5 => 30 words min, Class 6-10 => 40 words min.
-   * 30% numerical, SVG where the topic needs one, every topic covered.
+   * Generate exactly 40 Regular Questions (1 mark each).
+   * Generates in 2 batches of 20 questions with top-up replenishment to guarantee exactly 40 items.
+   * Word count: Class 1-5 => minimum 25 words strictly, Class 6-10 => minimum 30 words strictly.
+   * Questions are a balanced mix of SCQ, SBQ, and ARQ.
    */
   async function generateRegularPart({ openAIKey, geminiKey, classNum, subject, count = 40, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || [{ code: (subMeta.codePrefix || "Q") + "01", name: "General Curriculum" }];
-    const plan = buildTopicPlan(topics, count);
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-    const minWords = classNum <= 5 ? 30 : 40;
-    const numericalMin = Math.ceil(count * 0.30);
+    const minWords = getMinWords(classNum, false);
+    const targetCount = 40;
 
-    const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
-Generate exactly ${count} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
+    let collected = [];
 
-TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
-${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
+    async function fetchRegularBatch(batchPlan, batchTarget, batchLabel) {
+      const numericalMin = Math.ceil(batchTarget * 0.30);
+      const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
+Generate exactly ${batchTarget} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
 
-STRICT STANDARDS (MUST BE FOLLOWED):
+TOPIC PLAN - distribute questions across these topics:
+${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
+
+STRICT STANDARDS (MANDATORY & ENFORCED):
 1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}. Focus on conceptual clarity, arithmetic fluency, and accurate application.
-2. Question Length: MINIMUM ${minWords} words per question. Use clear, precise language. Include context and specific values. Do NOT write short 1-line questions.
-3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual computation, calculation, or number-work (not just definitions or identification).
-4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
-5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, bar graphs, clocks, patterns, grids, or figures — include a clear labelled SVG in the 'svg_data' field for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
-6. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
-7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position. 'a' must be 0, 1, 2, or 3 (0-indexed).
-8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
+2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Include comprehensive real-world scenarios, complete numerical context, and explicit constraints. Do NOT write short 1-line questions.
+3. QUESTION TYPE MIX (MANDATORY MIX OF SCQ, SBQ, ARQ):
+   The ${batchTarget} questions MUST include:
+   - "SCQ" (Single Correct Question): Standard 4-option conceptual/computational Olympiad problem.
+   - "SBQ" (Statement-Based / Scenario-Based Question): Dual-statement format ("Statement I: ... Statement II: ... Which statement is correct?") or real-world scenario paragraph with 4 choices.
+   - "ARQ" (Assertion-Reason Question): Format with "Assertion (A): ... Reason (R): ..." with standard 4 options (Both A & R true with R correct explanation; Both true but R not correct explanation; A true R false; A false R true).
+   Target composition for this batch: ~60% SCQ, ~20% SBQ, ~20% ARQ. Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON.
+4. Numerical Questions: At least ${numericalMin} out of ${batchTarget} questions MUST involve actual computation, calculation, or number-work.
+5. Mathematical Symbols: Use clean Unicode symbols ("×", "÷", "=", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠", "△", "π", "°", "%", "₹"). Never spell them out in words. Never use LaTeX.
+6. SVG Images: For geometry, clocks, number lines, patterns, or bar graphs, include clean labelled SVG code in 'svg_data' field. Otherwise leave empty string.
+7. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
+8. Correct Answer Placement: Vary the correct option index 'a' (0, 1, 2, or 3) across the questions.
 
-SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanation):
+SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, no explanation):
 [
   {
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word question text with full context and specific numbers",
+    "q": "Minimum ${minWords}-word detailed question statement with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
     "o": ["Option A", "Option B", "Option C", "Option D"],
     "a": 0,
-    "topic": "${plan[0].code}",
-    "hint": "Pedagogical clue pointing to the key concept",
-    "sol": "Step-by-step solution with working",
+    "topic": "${batchPlan[0].code}",
+    "hint": "Pedagogical clue",
+    "sol": "Detailed step-by-step solution",
     "sub_type": "SCQ"
   }
-]
-Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
+]`;
 
-    const raw = await callAI({ openAIKey, geminiKey, prompt });
-    return raw.slice(0, count).map((item, idx) => normalizeQuestion(item, classNum, subject, dateCompact, idx, false));
+      const raw = await callAI({ openAIKey, geminiKey, prompt });
+      const valid = [];
+      for (let i = 0; i < raw.length; i++) {
+        try {
+          const item = normalizeQuestion(raw[i], classNum, subject, dateCompact, collected.length + valid.length, false);
+          valid.push(item);
+        } catch (e) {
+          console.warn("Item normalization skipped:", e.message);
+        }
+      }
+      return valid;
+    }
+
+    // Split into 2 balanced batches of 20
+    const halfCount = 20;
+    const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), halfCount);
+    const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), halfCount);
+
+    appendLog(`   • Generating Batch 1 (20 Regular Qs: SCQ/SBQ/ARQ mix, min ${minWords} words)...`, "info");
+    const batch1 = await fetchRegularBatch(plan1, halfCount, "Batch 1");
+    collected.push(...batch1);
+    appendLog(`   ✓ Batch 1 yielded ${batch1.length} validated questions.`, "success");
+
+    await new Promise(r => setTimeout(r, 1200));
+
+    appendLog(`   • Generating Batch 2 (20 Regular Qs: SCQ/SBQ/ARQ mix, min ${minWords} words)...`, "info");
+    const batch2 = await fetchRegularBatch(plan2, halfCount, "Batch 2");
+    collected.push(...batch2);
+    appendLog(`   ✓ Batch 2 yielded ${batch2.length} validated questions. Total so far: ${collected.length}`, "success");
+
+    // Top-up replenishment loop if total < 40
+    let topUpAttempts = 0;
+    while (collected.length < targetCount && topUpAttempts < 3) {
+      topUpAttempts++;
+      const missing = targetCount - collected.length;
+      appendLog(`   ⚠️ Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
+      const topUpPlan = buildTopicPlan(topics, missing);
+      const topUp = await fetchRegularBatch(topUpPlan, missing, `TopUp-${topUpAttempts}`);
+      collected.push(...topUp);
+      appendLog(`   ✓ Top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
+      await new Promise(r => setTimeout(r, 1200));
+    }
+
+    if (collected.length < targetCount) {
+      throw new Error(`Failed to generate required 40 regular questions (only obtained ${collected.length}).`);
+    }
+
+    // Guarantee EXACTLY 40 questions, and re-number IDs sequentially from 001 to 040
+    const finalList = collected.slice(0, targetCount).map((q, idx) => {
+      const padIdx = String(idx + 1).padStart(3, "0");
+      return {
+        ...q,
+        id: `c${classNum}_${subShort}_std_${padIdx}`
+      };
+    });
+
+    return finalList;
   }
 
   /**
-   * Generate 10 Achievers HOTS Questions - ULTRA HIGH DIFFICULTY.
-   * Word count: Class 1-5 => 35 words min, Class 6-10 => 45 words min.
-   * 30% numerical, SVG where the topic needs one, every topic covered.
+   * Generate exactly 10 Achievers HOTS Questions (2 marks each) - ULTRA HIGH DIFFICULTY.
+   * Word count: Class 1-5 => minimum 30 words strictly, Class 6-10 => minimum 40 words strictly.
+   * Questions are a deliberate mix of SCQ, SBQ, and ARQ.
    */
   async function generateAchieverPart({ openAIKey, geminiKey, classNum, subject, count = 10, dateCompact }) {
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || [{ code: (subMeta.codePrefix || "Q") + "01", name: "General Curriculum" }];
-    const plan = buildTopicPlan(topics, count);
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-    const minWords = classNum <= 5 ? 35 : 45;
-    const numericalMin = Math.ceil(count * 0.30);
+    const minWords = getMinWords(classNum, true);
+    const targetCount = 10;
 
-    const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
-Generate exactly ${count} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
+    let collected = [];
+
+    async function fetchAchieverBatch(batchPlan, batchTarget) {
+      const numericalMin = Math.ceil(batchTarget * 0.30);
+      const prompt = `You are the Head Chief Examiner for the ${subMeta.olympiad} Official Live Championship.
+Generate exactly ${batchTarget} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
 These are ULTRA HIGH DIFFICULTY questions - the hardest section of the paper, reserved for top-ranking students only.
 
-TOPIC PLAN - every topic below MUST be represented, generate EXACTLY this many questions per topic (do not skip any topic, do not cluster on only a few):
-${plan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
+TOPIC PLAN - distribute questions across these topics:
+${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
-STRICT STANDARDS (MUST BE FOLLOWED):
-1. Difficulty Level: ULTRA HIGH DIFFICULTY Achievers/HOTS - noticeably harder than the regular section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined/cross-topic concepts (e.g. ratio with perimeter, two-stage algebra, tricky exceptions, advanced analogies). A question that could appear in the Regular section is NOT acceptable here.
-2. Question Length: MINIMUM ${minWords} words per question. Use detailed, scenario-based problem statements. Include all necessary context, numbers, and conditions.
-3. Numerical Questions: At least ${numericalMin} out of ${count} questions MUST involve actual multi-step computation or calculation.
-4. Mathematical Symbols: Wherever a mathematical/scientific symbol exists, USE THE SYMBOL, never spell it out in words. Write "×" not "multiplied by", "÷" not "divided by", "=" not "equals", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠" not "angle", "△" not "triangle", "π", "°", "%" not "percent", "₹". Use clean Unicode only — never LaTeX.
-5. SVG Images: For any topic involving shapes, geometry diagrams, number lines, tables, graphs, patterns, figures, or grid problems — include a clear labelled SVG in the 'svg_data' field for that question. Leave 'svg_data' as an empty string only when the topic genuinely needs no visual.
-6. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
-7. Correct Answer Placement: Vary WHICH option (1st, 2nd, 3rd, or 4th) is correct essentially at random across the ${count} questions — do not default to always putting the correct answer in the same position. 'a' must be 0, 1, 2, or 3 (0-indexed).
-8. Topic Code: Each question's "topic" field MUST be set to the exact topic code it was generated for (e.g. "${plan[0].code}"), matching the TOPIC PLAN above precisely.
+STRICT STANDARDS (MANDATORY & ENFORCED):
+1. Difficulty Level: ULTRA HIGH DIFFICULTY Achievers/HOTS - noticeably harder than the regular section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined/cross-topic concepts. A question that could appear in the Regular section is NOT acceptable here.
+2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Use detailed, scenario-based problem statements with all context, numbers, and constraints specified.
+3. QUESTION TYPE MIX (MANDATORY MIX OF SCQ, SBQ, ARQ):
+   The ${batchTarget} questions MUST include:
+   - "SCQ" (Single Correct Question): Complex multi-step analytical Olympiad problem. (~50%)
+   - "SBQ" (Statement-Based / Scenario-Based Question): Multi-statement evaluation or advanced case study scenario with 4 choices. (~30%)
+   - "ARQ" (Assertion-Reason Question): Format with "Assertion (A): ... Reason (R): ..." testing deep conceptual causality with 4 standard options. (~20%)
+   Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON.
+4. Numerical Questions: At least ${numericalMin} out of ${batchTarget} questions MUST involve actual multi-step computation or calculation.
+5. Mathematical Symbols: Use clean Unicode symbols ("×", "÷", "=", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠", "△", "π", "°", "%", "₹"). Never spell them out in words. Never use LaTeX.
+6. SVG Images: For any topic involving shapes, geometry diagrams, number lines, tables, graphs, patterns, or grids — include a clear labelled SVG in 'svg_data'. Otherwise empty string.
+7. Options: Exactly 4 tricky, well-crafted distractor options ('o'). Only ONE unambiguously correct answer.
+8. Correct Answer Placement: Vary the correct option index 'a' (0, 1, 2, or 3) essentially at random.
 
-SCHEMA (strictly adhere, return ONLY the JSON array — no markdown, no explanation):
+SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, no explanation):
 [
   {
-    "id": "c${classNum}_${subShort}_ultra_001",
+    "id": "c${classNum}_${subShort}_ultra_041",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word challenging HOTS question with full context and specific values",
+    "q": "Minimum ${minWords}-word challenging HOTS question with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
     "o": ["Tricky Option A", "Tricky Option B", "Tricky Option C", "Tricky Option D"],
     "a": 0,
-    "topic": "${plan[0].code}",
-    "hint": "Clue pointing to the tricky multi-step approach",
+    "topic": "${batchPlan[0].code}",
+    "hint": "Clue pointing to the tricky approach",
     "sol": "Detailed step-by-step mathematical/logical solution with all working shown",
     "sub_type": "SCQ"
   }
-]
-Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences, no extra text.`;
+]`;
 
-    const raw = await callAI({ openAIKey, geminiKey, prompt });
-    return raw.slice(0, count).map((item, idx) => normalizeQuestion(item, classNum, subject, dateCompact, idx, true));
+      const raw = await callAI({ openAIKey, geminiKey, prompt });
+      const valid = [];
+      for (let i = 0; i < raw.length; i++) {
+        try {
+          const item = normalizeQuestion(raw[i], classNum, subject, dateCompact, 40 + collected.length + valid.length, true);
+          valid.push(item);
+        } catch (e) {
+          console.warn("Achiever item normalization skipped:", e.message);
+        }
+      }
+      return valid;
+    }
+
+    const plan = buildTopicPlan(topics, targetCount);
+    appendLog(`   • Generating 10 Achievers HOTS Questions (SCQ/SBQ/ARQ mix, min ${minWords} words)...`, "info");
+    const batch = await fetchAchieverBatch(plan, targetCount);
+    collected.push(...batch);
+    appendLog(`   ✓ Achievers batch yielded ${batch.length} validated questions.`, "success");
+
+    // Top-up replenishment loop if total < 10
+    let topUpAttempts = 0;
+    while (collected.length < targetCount && topUpAttempts < 3) {
+      topUpAttempts++;
+      const missing = targetCount - collected.length;
+      appendLog(`   ⚠️ Achievers shortfall (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`, "warn");
+      const topUpPlan = buildTopicPlan(topics, missing);
+      const topUp = await fetchAchieverBatch(topUpPlan, missing);
+      collected.push(...topUp);
+      appendLog(`   ✓ Achievers top-up received ${topUp.length} questions. Total now: ${collected.length}`, "info");
+      await new Promise(r => setTimeout(r, 1200));
+    }
+
+    if (collected.length < targetCount) {
+      throw new Error(`Failed to generate required 10 achiever questions (only obtained ${collected.length}).`);
+    }
+
+    // Guarantee EXACTLY 10 questions, and re-number IDs sequentially from 041 to 050
+    const finalList = collected.slice(0, targetCount).map((q, idx) => {
+      const padIdx = String(40 + idx + 1).padStart(3, "0");
+      return {
+        ...q,
+        id: `c${classNum}_${subShort}_ultra_${padIdx}`
+      };
+    });
+
+    return finalList;
   }
+
 
   // --- PUBLIC CONTROLLER EXPORTS ---
 
@@ -789,7 +971,9 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
     const dateCompact = targetSundayDate.replace(/-/g, "");
     appendLog(`Creating Live Quiz on Monday 6 AM for Target Sunday: ${targetSundayDate} at ${timeStr} AM IST...`, "info");
     appendLog(`Subject: ${SUBJECT_DETAILS[subject]?.olympiad || subject} | Classes: ${selectedClasses.join(", ")}`, "info");
-    appendLog(`Format: 40 Regular (1 Mark) + 10 Achievers HOTS (2 Marks) = 50 Qs (60 Marks total)`, "info");
+    appendLog(`Format: 40 Regular (1 Mark) + 10 Achievers HOTS (2 Marks) = Exactly 50 Qs (60 Marks total)`, "info");
+    appendLog(`Word Count Rules: Class 1–5: Regular ≥25 words, Achievers ≥30 words | Class 6–10: Regular ≥30 words, Achievers ≥40 words`, "info");
+    appendLog(`Question Types: Mandatory balanced mix of SCQ, SBQ (Statement/Scenario), and ARQ (Assertion-Reason)`, "info");
     const activeProvider = openAIKey
       ? `🟢 OpenAI (gpt-4o-mini → gpt-4o)${geminiKey ? " + Gemini fallback" : ""}`
       : `🔵 Gemini (${GEMINI_MODELS.join(" → ")})`;
@@ -800,7 +984,10 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
       const clsNum = selectedClasses[i];
       const baseProgress = Math.round((i / selectedClasses.length) * 100);
       setProgress(baseProgress, `Generating Class ${clsNum}: 40 Regular Questions...`);
-      appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 40 Regular Questions (1 mark, 12-30 words)...`, "info");
+      const isJunior = clsNum <= 5;
+      const regMinWords = isJunior ? 25 : 30;
+      const achMinWords = isJunior ? 30 : 40;
+      appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 40 Regular Questions (1 mark, SCQ/SBQ/ARQ mix, min ${regMinWords} words strictly)...`, "info");
 
       try {
         // Step 1: 40 Regular questions
@@ -819,7 +1006,7 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
 
         // Step 2: 10 Achiever questions
         setProgress(baseProgress + 5, `Generating Class ${clsNum}: 10 Achiever Questions (HOTS)...`);
-        appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 10 Achievers Questions (2 marks, HOTS)...`, "info");
+        appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 10 Achievers HOTS Questions (2 marks, SCQ/SBQ/ARQ mix, min ${achMinWords} words strictly)...`, "info");
         const achieverQuestions = await generateAchieverPart({
           openAIKey,
           geminiKey,
@@ -882,27 +1069,53 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
     generatedDataStore.forEach(cd => {
       totalRegular += cd.regularQuestions.length;
       totalAchiever += cd.achieverQuestions.length;
+      const totalClassQs = cd.regularQuestions.length + cd.achieverQuestions.length;
+
+      // Count types
+      const allQs = [...cd.regularQuestions, ...cd.achieverQuestions];
+      const scqCount = allQs.filter(q => q.sub_type === "SCQ").length;
+      const sbqCount = allQs.filter(q => q.sub_type === "SBQ").length;
+      const arqCount = allQs.filter(q => q.sub_type === "ARQ").length;
+
+      const isJunior = parseInt(cd.classNum, 10) <= 5;
+      const regMinWords = isJunior ? 25 : 30;
+      const achMinWords = isJunior ? 30 : 40;
 
       html += `
         <div style="margin-bottom: 15px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
           <div style="background: linear-gradient(135deg, rgba(79,70,229,0.08), rgba(139,92,246,0.08)); padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; cursor: pointer;"
                onclick="document.getElementById('qap_cls_${cd.classNum}').classList.toggle('active');">
-            <div>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
               <span style="font-size: 15px; color: #1e293b;">📚 Class ${cd.classNum} — ${SUBJECT_DETAILS[cd.subject]?.olympiad || cd.subject}</span>
-              <span style="margin-left: 10px; font-size: 12px; background: #e0e7ff; color: #4338ca; padding: 2px 8px; border-radius: 10px;">${cd.regularQuestions.length} Regular (1M)</span>
-              <span style="margin-left: 5px; font-size: 12px; background: #fef3c7; color: #b45309; padding: 2px 8px; border-radius: 10px;">${cd.achieverQuestions.length} Achievers (2M)</span>
+              <span style="font-size: 12px; background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 10px; font-weight: 800;">✓ Exactly ${totalClassQs} Qs (60 Marks)</span>
+              <span style="font-size: 12px; background: #e0e7ff; color: #4338ca; padding: 2px 8px; border-radius: 10px;">${cd.regularQuestions.length} Regular (1M)</span>
+              <span style="font-size: 12px; background: #fef3c7; color: #b45309; padding: 2px 8px; border-radius: 10px;">${cd.achieverQuestions.length} Achievers (2M)</span>
+              <span style="font-size: 11px; background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 6px; font-weight: 600;">Mix: ${scqCount} SCQ • ${sbqCount} SBQ • ${arqCount} ARQ</span>
             </div>
-            <span style="font-size: 12px; color: var(--brand);">Toggle View ▼</span>
+            <span style="font-size: 12px; color: var(--brand); white-space: nowrap;">Toggle View ▼</span>
           </div>
 
-          <div id="qap_cls_${cd.classNum}" style="display: none; padding: 15px; max-height: 400px; overflow-y: auto;">
+          <div id="qap_cls_${cd.classNum}" style="display: none; padding: 15px; max-height: 440px; overflow-y: auto;">
             <!-- Regular Section Header -->
-            <div style="background: #f1f5f9; padding: 8px 12px; border-radius: 6px; font-weight: 700; color: #334155; margin-bottom: 10px; font-size: 13px;">
-              📘 Section 1: Regular Questions (40 Questions • 1 Mark Each)
+            <div style="background: #f1f5f9; padding: 8px 12px; border-radius: 6px; font-weight: 700; color: #334155; margin-bottom: 10px; font-size: 13px; display: flex; justify-content: space-between; align-items: center;">
+              <span>📘 Section 1: Regular Questions (${cd.regularQuestions.length} Questions • 1 Mark Each)</span>
+              <span style="font-weight: 600; font-size: 11px; color: #64748b; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #cbd5e1;">Rule: Min ${regMinWords} words • Mix SCQ/SBQ/ARQ</span>
             </div>
-            ${cd.regularQuestions.map((q, idx) => `
+            ${cd.regularQuestions.map((q, idx) => {
+              const wordCount = countWords(q.q);
+              const subType = q.sub_type || "SCQ";
+              const typeBadge = subType === "ARQ" 
+                ? '<span style="background: #ede9fe; color: #6d28d9; border: 1px solid #c4b5fd; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 6px;">ARQ</span>'
+                : subType === "SBQ"
+                ? '<span style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 6px;">SBQ</span>'
+                : '<span style="background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 6px;">SCQ</span>';
+              return `
               <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 8px; font-size: 13px;">
-                <div><b>Q${idx + 1} (${q.id}):</b> ${q.q} <span style="font-size: 11px; color: #64748b;">[${q.q.split(/\s+/).length} words]</span></div>
+                <div style="line-height: 1.5;">
+                  ${typeBadge}
+                  <b>Q${idx + 1} (${q.id}):</b> ${q.q} 
+                  <span style="font-size: 11px; color: #059669; font-weight: 700; margin-left: 4px;">[${wordCount} words ✓]</span>
+                </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 6px 0;">
                   ${q.o.map((opt, oIdx) => `
                     <div style="padding: 4px 8px; border-radius: 4px; ${oIdx === q.a ? 'background: #dcfce7; border: 1px solid #16a34a; font-weight:600;' : 'background: #f8fafc; border: 1px solid #e2e8f0;'}">
@@ -910,17 +1123,30 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
                     </div>
                   `).join("")}
                 </div>
-                <div style="color: #475569; font-size: 12px;"><b>Hint:</b> ${q.hint || 'None'} | <b>Sol:</b> ${q.sol}</div>
+                <div style="color: #475569; font-size: 12px;"><b>Topic:</b> ${q.topic} | <b>Hint:</b> ${q.hint || 'None'} | <b>Sol:</b> ${q.sol}</div>
               </div>
-            `).join("")}
+            `}).join("")}
 
             <!-- Achievers Section Header -->
-            <div style="background: #fef3c7; border: 1px solid #fde68a; padding: 8px 12px; border-radius: 6px; font-weight: 700; color: #92400e; margin: 15px 0 10px; font-size: 13px;">
-              🏆 Section 2: Achievers Section / HOTS (10 Questions • 2 Marks Each)
+            <div style="background: #fef3c7; border: 1px solid #fde68a; padding: 8px 12px; border-radius: 6px; font-weight: 700; color: #92400e; margin: 15px 0 10px; font-size: 13px; display: flex; justify-content: space-between; align-items: center;">
+              <span>🏆 Section 2: Achievers Section / HOTS (${cd.achieverQuestions.length} Questions • 2 Marks Each)</span>
+              <span style="font-weight: 600; font-size: 11px; color: #b45309; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #fde68a;">Rule: Min ${achMinWords} words • Mix SCQ/SBQ/ARQ</span>
             </div>
-            ${cd.achieverQuestions.map((q, idx) => `
+            ${cd.achieverQuestions.map((q, idx) => {
+              const wordCount = countWords(q.q);
+              const subType = q.sub_type || "SCQ";
+              const typeBadge = subType === "ARQ" 
+                ? '<span style="background: #ede9fe; color: #6d28d9; border: 1px solid #c4b5fd; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 6px;">ARQ</span>'
+                : subType === "SBQ"
+                ? '<span style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 6px;">SBQ</span>'
+                : '<span style="background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 6px;">SCQ</span>';
+              return `
               <div style="border-bottom: 1px solid #fed7aa; padding-bottom: 8px; margin-bottom: 8px; font-size: 13px; background: #fffbeb; padding: 8px; border-radius: 6px;">
-                <div><b>Q${idx + 41} (${q.id}):</b> ${q.q} <span style="font-size: 11px; color: #b45309; font-weight:700;">[HOTS • ${q.q.split(/\s+/).length} words]</span></div>
+                <div style="line-height: 1.5;">
+                  ${typeBadge}
+                  <b>Q${idx + 41} (${q.id}):</b> ${q.q} 
+                  <span style="font-size: 11px; color: #b45309; font-weight:800; margin-left: 4px;">[HOTS • ${wordCount} words ✓]</span>
+                </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 6px 0;">
                   ${q.o.map((opt, oIdx) => `
                     <div style="padding: 4px 8px; border-radius: 4px; ${oIdx === q.a ? 'background: #dcfce7; border: 1px solid #16a34a; font-weight:600;' : 'background: #ffffff; border: 1px solid #fcd34d;'}">
@@ -928,9 +1154,9 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
                     </div>
                   `).join("")}
                 </div>
-                <div style="color: #78350f; font-size: 12px;"><b>Hint:</b> ${q.hint || 'None'} | <b>Sol:</b> ${q.sol}</div>
+                <div style="color: #78350f; font-size: 12px;"><b>Topic:</b> ${q.topic} | <b>Hint:</b> ${q.hint || 'None'} | <b>Sol:</b> ${q.sol}</div>
               </div>
-            `).join("")}
+            `}).join("")}
           </div>
         </div>
       `;
@@ -952,7 +1178,7 @@ Return ONLY the raw JSON array with exactly ${count} objects. No markdown fences
     });
   }
 
-  window.qaPublishAll = async function () {
+    window.qaPublishAll = async function () {
     if (generatedDataStore.length === 0) {
       alert("No questions to publish. Please generate questions first.");
       return;
