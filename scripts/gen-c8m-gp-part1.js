@@ -1,4 +1,19 @@
-<section class="chapter-section" id="ch2">
+const fs = require('fs');
+const path = require('path');
+const chDir = path.join(__dirname, '..', 'chapters-c8m');
+
+if (!fs.existsSync(chDir)) {
+  fs.mkdirSync(chDir, { recursive: true });
+}
+
+// Read existing ch1Html from previous step or define it
+const ch1File = path.join(chDir, 'ch1.html');
+const ch1Html = fs.readFileSync(ch1File, 'utf8');
+
+// ==========================================
+// CHAPTER 2: Power Play (17 Questions + CBQ)
+// ==========================================
+const ch2Html = `<section class="chapter-section" id="ch2">
   <div class="chapter-header">
     <div class="ch-badge">2</div>
     <div class="chapter-header-info">
@@ -740,9 +755,8 @@
       </div>
     </div>
   </div>
-
-  <div class="ch-nav-btns">
-    <button class="ch-nav-btn" onclick="showChapter(1)">← Chapter 1: A Square and A Cube</button>
-    <button class="ch-nav-btn next" onclick="showChapter(3)">Chapter 3: A Story of Numbers →</button>
-  </div>
 </section>
+`;
+
+fs.writeFileSync(path.join(chDir, 'ch2.html'), ch2Html, 'utf8');
+console.log('Chapter 2 correctly written with 17 questions + CBQ.');

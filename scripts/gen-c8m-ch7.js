@@ -1,4 +1,8 @@
-<section class="chapter-section" id="ch7">
+const fs = require('fs');
+const path = require('path');
+const chDir = path.join(__dirname, '..', 'chapters-c8m');
+
+const ch7Html = `<section class="chapter-section" id="ch7">
   <div class="chapter-header">
     <div class="ch-badge">7</div>
     <div class="chapter-header-info">
@@ -410,9 +414,8 @@
       </div>
     </div>
   </div>
-
-  <div class="ch-nav-btns">
-    <button class="ch-nav-btn" onclick="showChapter(6)">← Chapter 6: We Distribute, Yet Things Multiply</button>
-    <button class="ch-nav-btn next" onclick="showChapter(8)">Chapter 8: Fractions in Disguise →</button>
-  </div>
 </section>
+`;
+
+fs.writeFileSync(path.join(chDir, 'ch7.html'), ch7Html, 'utf8');
+console.log('Chapter 7 successfully written with 10 questions + CBQ.');
