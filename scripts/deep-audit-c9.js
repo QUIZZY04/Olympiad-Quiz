@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const subjects = [
-  { name: 'Mathematics', dir: 'chapters-c9m', hub: 'ncert-solutions-class-9-maths.html', totalExpected: 12 },
+  { name: 'Mathematics (Ganit Manzari)', dir: 'chapters-c9m', hub: 'ncert-solutions-class-9-maths.html', totalExpected: 14 },
   { name: 'Science', dir: 'chapters-c9s', hub: 'ncert-solutions-class-9-science.html', totalExpected: 12 },
   { name: 'Social Science', dir: 'chapters-c9sst', hub: 'ncert-solutions-class-9-sst.html', totalExpected: 20 },
   { name: 'Hindi', dir: 'chapters-c9h', hub: 'ncert-solutions-class-9-hindi.html', totalExpected: 30 },

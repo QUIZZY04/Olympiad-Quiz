@@ -2,593 +2,166 @@
   <div class="chapter-header">
     <div class="ch-badge">10</div>
     <div class="chapter-header-info">
-      <h2>Chapter 10: Heron's Formula</h2>
-      <p>NCERT Exercise 10.1 & 10.2 — CBSE Marking Scheme 2026-27 — CBSE Marking Scheme 2026-27</p>
+      <h2>Chapter 10: How Quantities Combine &#8212; Understanding Data</h2>
+      <p>Ganita Manjari (Part II) &#8212; Exercise Sets 10.1, 10.2 &amp; 10.3 &#8212; CBSE Marking Scheme 2026-27</p>
     </div>
   </div>
-  <div class="ex-div">Exercise 10.1</div>
+
+  <div class="ex-div">Exercise Set 10.1 &#8212; Weighted Averages and Mixtures</div>
 
   <div class="q-card" id="q10_1_1">
     <div class="q-head" onclick="toggleQ('q10_1_1')">
       <div class="q-num">Q1</div>
-      <div class="q-text">A traffic signal board, indicating 'SCHOOL AHEAD', is an equilateral triangle with side 'a'. Find the area of the signal board, using Heron's formula. If its perimeter is 180 cm, what will be the area of the signal board?</div>
+      <div class="q-text">A student scored 72 in Maths (out of 100), 68 in Science (out of 80), and 55 in English (out of 60). Find the weighted average percentage, where the weights are the total marks.</div>
       <div class="q-marks">4 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-label">&#10003; CBSE Standard Answer</div>
         <div class="answer-text">
-<div class="step">
-  <strong>Part A: Derive Area Formula using Heron's Formula:</strong><br>
-  For an equilateral triangle with side <span class="math">a</span>:<br>
-  Three sides are <span class="math">a, b = a, c = a</span>.<br>
-  Semi-perimeter <span class="math">s = (a + a + a) / 2 = 3a / 2</span>.<br><br>
-  By Heron's Formula: <span class="math">Area = √[s(s - a)(s - b)(s - c)]</span><br>
-  <span class="math">s - a = 3a/2 - a = a/2</span><br>
-  <span class="math">s - b = a/2</span><br>
-  <span class="math">s - c = a/2</span><br><br>
-  <span class="math">Area = √[(3a/2) × (a/2) × (a/2) × (a/2)] = √[3a⁴ / 16] = (√3 / 4) a²</span>.
-</div>
-<div class="step">
-  <strong>Part B: When Perimeter is 180 cm:</strong><br>
-  Perimeter <span class="math">2s = 3a = 180</span> cm ⟹ <span class="math">a = 180 / 3 = 60</span> cm.<br>
-  Semi-perimeter <span class="math">s = 180 / 2 = 90</span> cm.<br><br>
-  Substituting <span class="math">a = 60</span> into the derived formula:<br>
-  <span class="math">Area = (√3 / 4) × (60)² = (√3 / 4) × 3600 = 900√3</span> cm².
-</div>
-<p><strong>Final Answer:</strong> Derived formula is <span class="math">(√3/4) a²</span> and the area of the signal board is <strong>900√3 cm²</strong> (≈ 1558.85 cm²).</p>
+<div class="step"><strong>Total marks obtained</strong> = 72 + 68 + 55 = 195</div>
+<div class="step"><strong>Total possible marks</strong> = 100 + 80 + 60 = 240</div>
+<div class="step"><strong>Weighted average percentage</strong> = (195/240) &#215; 100 = (195 &#215; 100)/240 = <span class="math">81.25%</span></div>
+<p>This differs from the simple average: (72% + 85% + 91.67%)/3 &#8776; 82.9% — illustrating why weights matter.</p>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Expressing semi-perimeter s = 3a/2 and factors (s-a) = a/2</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Deriving Area = (√3/4)a² via Heron's formula</span><span class="marking-marks">1½ Marks</span></div>
-<div class="marking-row"><span class="marking-key">Finding side a = 60 cm and computing Area = 900√3 cm²</span><span class="marking-marks">1½ Marks</span></div>
+<div class="marking-row"><span class="marking-key">Total marks obtained = 195</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Total possible = 240</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Weighted % = 81.25%</span><span class="marking-marks">2 Marks</span></div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="q-card" id="q10_1_2">
     <div class="q-head" onclick="toggleQ('q10_1_2')">
       <div class="q-num">Q2</div>
-      <div class="q-text">The triangular side walls of a flyover have been used for advertisements. The sides of the walls are 122 m, 22 m and 120 m. The advertisements yield an earning of ₹ 5000 per m² per year. A company hired one of its walls for 3 months. How much rent did it pay?</div>
-      <div class="q-marks">4 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Step 1: Calculate Area using Heron's Formula:</strong><br>
-  Sides of triangular wall: <span class="math">a = 122</span> m, <span class="math">b = 22</span> m, <span class="math">c = 120</span> m.<br>
-  Semi-perimeter <span class="math">s = (122 + 22 + 120) / 2 = 264 / 2 = 132</span> m.<br><br>
-  Differences:<br>
-  <span class="math">s - a = 132 - 122 = 10</span> m<br>
-  <span class="math">s - b = 132 - 22 = 110</span> m<br>
-  <span class="math">s - c = 132 - 120 = 12</span> m<br><br>
-  <span class="math">Area = √[s(s - a)(s - b)(s - c)] = √[132 × 10 × 110 × 12]</span><br>
-  Factorising:<br>
-  <span class="math">132 = 11 × 12</span>, <span class="math">110 = 11 × 10</span>.<br>
-  <span class="math">Area = √[(11 × 12) × 10 × (11 × 10) × 12] = √[11² × 12² × 10²] = 11 × 12 × 10 = 1320</span> m².
-</div>
-<div class="step">
-  <strong>Step 2: Calculate Rent for 3 Months:</strong><br>
-  Annual rate per m² = ₹ 5000 / year.<br>
-  Annual rent for 1320 m² = <span class="math">1320 × 5000 = ₹ 66,00,000</span>.<br>
-  Rent for 3 months (3/12 year = 1/4 year):<br>
-  <span class="math">Rent = 1320 × 5000 × (3 / 12) = 1320 × 5000 × (1 / 4) = 330 × 5000 = ₹ 16,50,000</span>.
-</div>
-<p><strong>Final Answer:</strong> The company paid <strong>₹ 16,50,000</strong> as rent.</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Finding s = 132 m and (s-a), (s-b), (s-c)</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Applying Heron's formula and calculating Area = 1320 m²</span><span class="marking-marks">1½ Marks</span></div>
-<div class="marking-row"><span class="marking-key">Calculating rent for 3 months = ₹ 16,50,000</span><span class="marking-marks">1½ Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="q-card" id="q10_1_3">
-    <div class="q-head" onclick="toggleQ('q10_1_3')">
-      <div class="q-num">Q3</div>
-      <div class="q-text">There is a slide in a park. One of its side walls has been painted in some colour with a message "KEEP THE PARK GREEN AND CLEAN". If the sides of the wall are 15 m, 11 m and 6 m, find the area painted in colour.</div>
+      <div class="q-text">20 litres of 30% salt solution is mixed with 30 litres of 50% salt solution. Find the concentration (%) of salt in the mixture.</div>
       <div class="q-marks">3 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-label">&#10003; CBSE Standard Answer</div>
         <div class="answer-text">
-<div class="step">
-  <strong>Given:</strong> Sides of triangular wall are <span class="math">a = 15</span> m, <span class="math">b = 11</span> m, <span class="math">c = 6</span> m.
-</div>
-<div class="step">
-  <strong>Step 1: Calculate semi-perimeter:</strong><br>
-  <span class="math">s = (a + b + c) / 2 = (15 + 11 + 6) / 2 = 32 / 2 = 16</span> m.
-</div>
-<div class="step">
-  <strong>Step 2: Calculate factors:</strong><br>
-  <span class="math">s - a = 16 - 15 = 1</span> m<br>
-  <span class="math">s - b = 16 - 11 = 5</span> m<br>
-  <span class="math">s - c = 16 - 6 = 10</span> m
-</div>
-<div class="step">
-  <strong>Step 3: Apply Heron's Formula:</strong><br>
-  <span class="math">Area = √[s(s - a)(s - b)(s - c)] = √[16 × 1 × 5 × 10]</span><br>
-  <span class="math">= √[16 × 5 × (5 × 2)] = √[16 × 25 × 2] = 4 × 5 × √2 = 20√2</span> m².
-</div>
-<p><strong>Final Answer:</strong> The area painted in colour is <strong>20√2 m²</strong> (≈ 28.28 m²).</p>
+<div class="step"><strong>Salt in first solution</strong> = 30% of 20 = 6 litres</div>
+<div class="step"><strong>Salt in second solution</strong> = 50% of 30 = 15 litres</div>
+<div class="step"><strong>Concentration</strong> = (6+15)/(20+30) &#215; 100 = 21/50 &#215; 100 = <span class="math">42%</span></div>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Finding semi-perimeter s = 16 m</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Evaluating differences and radical product √[16 × 1 × 5 × 10]</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Simplifying to final answer 20√2 m²</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Salt in each solution</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Total salt = 21 L</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Concentration = 42%</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="q-card" id="q10_1_4">
-    <div class="q-head" onclick="toggleQ('q10_1_4')">
-      <div class="q-num">Q4</div>
-      <div class="q-text">Find the area of a triangle two sides of which are 18 cm and 10 cm and the perimeter is 42 cm.</div>
-      <div class="q-marks">3 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Given:</strong><br>
-  • Perimeter <span class="math">P = 42</span> cm ⟹ <span class="math">s = 42 / 2 = 21</span> cm.<br>
-  • Side <span class="math">a = 18</span> cm, side <span class="math">b = 10</span> cm.
-</div>
-<div class="step">
-  <strong>Step 1: Find the third side c:</strong><br>
-  <span class="math">a + b + c = 42</span><br>
-  <span class="math">18 + 10 + c = 42 ⟹ 28 + c = 42 ⟹ c = 42 - 28 = 14</span> cm.
-</div>
-<div class="step">
-  <strong>Step 2: Calculate differences:</strong><br>
-  <span class="math">s - a = 21 - 18 = 3</span> cm<br>
-  <span class="math">s - b = 21 - 10 = 11</span> cm<br>
-  <span class="math">s - c = 21 - 14 = 7</span> cm
-</div>
-<div class="step">
-  <strong>Step 3: Apply Heron's Formula:</strong><br>
-  <span class="math">Area = √[s(s - a)(s - b)(s - c)] = √[21 × 3 × 11 × 7]</span><br>
-  Notice that <span class="math">21 = 3 × 7</span>:<br>
-  <span class="math">Area = √[(3 × 7) × 3 × 11 × 7] = √[3² × 7² × 11] = 3 × 7 × √11 = 21√11</span> cm².
-</div>
-<p><strong>Final Answer:</strong> The area of the triangle is <strong>21√11 cm²</strong> (≈ 69.65 cm²).</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Finding third side c = 14 cm</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Finding semi-perimeter s = 21 cm and differences</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Applying Heron's formula to get 21√11 cm²</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="q-card" id="q10_1_5">
-    <div class="q-head" onclick="toggleQ('q10_1_5')">
-      <div class="q-num">Q5</div>
-      <div class="q-text">Sides of a triangle are in the ratio of 12 : 17 : 25 and its perimeter is 540 cm. Find its area.</div>
-      <div class="q-marks">4 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Step 1: Find individual sides:</strong><br>
-  Ratio of sides = <span class="math">12 : 17 : 25</span>. Let sides be <span class="math">12x, 17x, 25x</span>.<br>
-  Perimeter: <span class="math">12x + 17x + 25x = 540</span> cm<br>
-  <span class="math">54x = 540 ⟹ x = 10</span>.<br><br>
-  Therefore, the side lengths are:<br>
-  <span class="math">a = 12 × 10 = 120</span> cm<br>
-  <span class="math">b = 17 × 10 = 170</span> cm<br>
-  <span class="math">c = 25 × 10 = 250</span> cm.
-</div>
-<div class="step">
-  <strong>Step 2: Semi-perimeter and differences:</strong><br>
-  <span class="math">s = 540 / 2 = 270</span> cm.<br>
-  <span class="math">s - a = 270 - 120 = 150</span> cm<br>
-  <span class="math">s - b = 270 - 170 = 100</span> cm<br>
-  <span class="math">s - c = 270 - 250 = 20</span> cm
-</div>
-<div class="step">
-  <strong>Step 3: Apply Heron's Formula:</strong><br>
-  <span class="math">Area = √[270 × 150 × 100 × 20]</span><br>
-  Factorising:<br>
-  <span class="math">= √[(27 × 10) × (15 × 10) × 100 × (2 × 10)]</span><br>
-  <span class="math">= √[(3³ × 10) × (3 × 5 × 10) × 10² × (2 × 10)]</span><br>
-  <span class="math">= √[3⁴ × (5 × 2) × 10⁴] = √[81 × 10 × 10⁴] = √[81 × 10⁶] = 9 × 10³ = 9000</span> cm².
-</div>
-<p><strong>Final Answer:</strong> The area of the triangle is <strong>9000 cm²</strong>.</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Solving 54x = 540 to find sides 120 cm, 170 cm, 250 cm</span><span class="marking-marks">1½ Marks</span></div>
-<div class="marking-row"><span class="marking-key">Finding s = 270 cm and differences (150, 100, 20)</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Applying Heron's formula and calculating Area = 9000 cm²</span><span class="marking-marks">1½ Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="q-card" id="q10_1_6">
-    <div class="q-head" onclick="toggleQ('q10_1_6')">
-      <div class="q-num">Q6</div>
-      <div class="q-text">An isosceles triangle has perimeter 30 cm and each of the equal sides is 12 cm. Find the area of the triangle.</div>
-      <div class="q-marks">3 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Given:</strong><br>
-  • Perimeter <span class="math">P = 30</span> cm ⟹ <span class="math">s = 30 / 2 = 15</span> cm.<br>
-  • Equal sides: <span class="math">a = 12</span> cm, <span class="math">b = 12</span> cm.
-</div>
-<div class="step">
-  <strong>Step 1: Find the third side c:</strong><br>
-  <span class="math">a + b + c = 30 ⟹ 12 + 12 + c = 30 ⟹ 24 + c = 30 ⟹ c = 6</span> cm.
-</div>
-<div class="step">
-  <strong>Step 2: Calculate differences:</strong><br>
-  <span class="math">s - a = 15 - 12 = 3</span> cm<br>
-  <span class="math">s - b = 15 - 12 = 3</span> cm<br>
-  <span class="math">s - c = 15 - 6 = 9</span> cm
-</div>
-<div class="step">
-  <strong>Step 3: Apply Heron's Formula:</strong><br>
-  <span class="math">Area = √[s(s - a)(s - b)(s - c)] = √[15 × 3 × 3 × 9]</span><br>
-  <span class="math">= √[15 × 3² × 3²] = 3 × 3 × √15 = 9√15</span> cm².
-</div>
-<p><strong>Final Answer:</strong> The area of the isosceles triangle is <strong>9√15 cm²</strong> (≈ 34.86 cm²).</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Finding third side c = 6 cm and semi-perimeter s = 15 cm</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Evaluating s-a, s-b, s-c as 3, 3, 9</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Heron's formula evaluation to get 9√15 cm²</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="ex-div">Exercise 10.2 (Applications of Heron's Formula)</div>
+
+  <div class="ex-div">Exercise Set 10.2 &#8212; Data Visualisation</div>
 
   <div class="q-card" id="q10_2_1">
     <div class="q-head" onclick="toggleQ('q10_2_1')">
       <div class="q-num">Q1</div>
-      <div class="q-text">A park, in the shape of a quadrilateral ABCD, has ∠C = 90°, AB = 9 m, BC = 12 m, CD = 5 m and AD = 8 m. How much area does it occupy?</div>
-      <div class="q-marks">4 Marks</div>
+      <div class="q-text">The following data shows the number of books read per month by 5 students: 4, 7, 3, 9, 5. Find the mean, median, and mode.</div>
+      <div class="q-marks">3 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-label">&#10003; CBSE Standard Answer</div>
         <div class="answer-text">
-<div class="step">
-  <strong>Construction:</strong> Join BD, dividing quadrilateral ABCD into two triangles: right-angled ΔBCD and general ΔABD.
-</div>
-<div class="step">
-  <strong>Step 1: Area of right-angled ΔBCD:</strong><br>
-  In right ΔBCD with ∠C = 90°:<br>
-  <span class="math">Area(ΔBCD) = 1/2 × Base × Height = 1/2 × 12 × 5 = 30</span> m².<br><br>
-  By Pythagoras theorem in ΔBCD:<br>
-  <span class="math">BD = √(BC² + CD²) = √(12² + 5²) = √(144 + 25) = √169 = 13</span> m.
-</div>
-<div class="step">
-  <strong>Step 2: Area of ΔABD using Heron's Formula:</strong><br>
-  Sides of ΔABD: <span class="math">a = 9</span> m, <span class="math">b = 8</span> m, <span class="math">c = 13</span> m.<br>
-  Semi-perimeter <span class="math">s = (9 + 8 + 13) / 2 = 30 / 2 = 15</span> m.<br>
-  <span class="math">s - a = 15 - 9 = 6</span> m<br>
-  <span class="math">s - b = 15 - 8 = 7</span> m<br>
-  <span class="math">s - c = 15 - 13 = 2</span> m<br><br>
-  <span class="math">Area(ΔABD) = √[15 × 6 × 7 × 2] = √[1260] = 6√35 ≈ 6 × 5.916 = 35.5</span> m² (approx).
-</div>
-<div class="step">
-  <strong>Step 3: Total Area of quadrilateral ABCD:</strong><br>
-  <span class="math">Total Area = Area(ΔBCD) + Area(ΔABD) = 30 + 35.5 = 65.5</span> m² (approx).
-</div>
-<p><strong>Final Answer:</strong> The park occupies approximately <strong>65.5 m²</strong>.</p>
+<div class="step"><strong>Mean</strong> = (4+7+3+9+5)/5 = 28/5 = <span class="math">5.6</span></div>
+<div class="step"><strong>Median:</strong> Arranged order: 3, 4, 5, 7, 9. Middle value = <span class="math">5</span></div>
+<div class="step"><strong>Mode:</strong> All values appear once &#8594; <span class="math">No mode</span></div>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Finding diagonal BD = 13 m using Pythagoras theorem in ΔBCD</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Calculating Area of ΔBCD = 30 m²</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Applying Heron's formula to ΔABD to get 6√35 ≈ 35.5 m²</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Adding both areas for total = 65.5 m²</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Mean = 5.6</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Median = 5 (with sorted order)</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Mode = none (or all)</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="q-card" id="q10_2_2">
     <div class="q-head" onclick="toggleQ('q10_2_2')">
       <div class="q-num">Q2</div>
-      <div class="q-text">Find the area of a quadrilateral ABCD in which AB = 3 cm, BC = 4 cm, CD = 4 cm, DA = 5 cm and AC = 5 cm.</div>
-      <div class="q-marks">4 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Given:</strong> Quadrilateral ABCD divided by diagonal AC = 5 cm into ΔABC and ΔACD.
-</div>
-<div class="step">
-  <strong>Step 1: Area of ΔABC:</strong><br>
-  Sides are <span class="math">AB = 3</span> cm, <span class="math">BC = 4</span> cm, <span class="math">AC = 5</span> cm.<br>
-  Notice that: <span class="math">3² + 4² = 9 + 16 = 25 = 5²</span>.<br>
-  By Converse of Pythagoras Theorem, ΔABC is right-angled at B (<span class="math">∠B = 90°</span>).<br>
-  <span class="math">Area(ΔABC) = 1/2 × AB × BC = 1/2 × 3 × 4 = 6</span> cm².
-</div>
-<div class="step">
-  <strong>Step 2: Area of ΔACD using Heron's Formula:</strong><br>
-  Sides are <span class="math">AC = 5</span> cm, <span class="math">CD = 4</span> cm, <span class="math">DA = 5</span> cm (Isosceles triangle).<br>
-  Semi-perimeter <span class="math">s = (5 + 4 + 5) / 2 = 14 / 2 = 7</span> cm.<br>
-  <span class="math">s - a = 7 - 5 = 2</span> cm<br>
-  <span class="math">s - b = 7 - 4 = 3</span> cm<br>
-  <span class="math">s - c = 7 - 5 = 2</span> cm<br><br>
-  <span class="math">Area(ΔACD) = √[7 × 2 × 3 × 2] = √[84] = 2√21 ≈ 2 × 4.583 = 9.17</span> cm² (approx).
-</div>
-<div class="step">
-  <strong>Step 3: Total Area of ABCD:</strong><br>
-  <span class="math">Total Area = Area(ΔABC) + Area(ΔACD) = 6 + 9.17 = 15.2</span> cm² (approx).
-</div>
-<p><strong>Final Answer:</strong> The area of quadrilateral ABCD is <strong>(6 + 2√21) cm² ≈ 15.2 cm²</strong>.</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Recognizing right triangle ΔABC (3,4,5) and area = 6 cm²</span><span class="marking-marks">1½ Marks</span></div>
-<div class="marking-row"><span class="marking-key">Applying Heron's formula to ΔACD to get 2√21 ≈ 9.17 cm²</span><span class="marking-marks">1½ Marks</span></div>
-<div class="marking-row"><span class="marking-key">Summing both areas to get 15.2 cm²</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="q-card" id="q10_2_3">
-    <div class="q-head" onclick="toggleQ('q10_2_3')">
-      <div class="q-num">Q3</div>
-      <div class="q-text">A triangle and a parallelogram have the same base and the same area. If the sides of the triangle are 26 cm, 28 cm and 30 cm, and the parallelogram stands on the base 28 cm, find the height of the parallelogram.</div>
+      <div class="q-text">What is a stacked bar chart? When is it more useful than a simple bar chart? Give one example scenario.</div>
       <div class="q-marks">3 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-label">&#10003; CBSE Standard Answer</div>
         <div class="answer-text">
-<div class="step">
-  <strong>Step 1: Find Area of Triangle using Heron's Formula:</strong><br>
-  Sides: <span class="math">a = 26</span> cm, <span class="math">b = 28</span> cm, <span class="math">c = 30</span> cm.<br>
-  Semi-perimeter <span class="math">s = (26 + 28 + 30) / 2 = 84 / 2 = 42</span> cm.<br><br>
-  Differences:<br>
-  <span class="math">s - a = 42 - 26 = 16</span> cm<br>
-  <span class="math">s - b = 42 - 28 = 14</span> cm<br>
-  <span class="math">s - c = 42 - 30 = 12</span> cm<br><br>
-  <span class="math">Area = √[42 × 16 × 14 × 12] = √[(14 × 3) × 16 × 14 × (4 × 3)] = √[14² × 3² × 4² × 2²] = 14 × 3 × 4 × 2 = 336</span> cm².
-</div>
-<div class="step">
-  <strong>Step 2: Find Height of Parallelogram:</strong><br>
-  Given: <span class="math">Area(Parallelogram) = Area(Triangle) = 336</span> cm².<br>
-  Formula: <span class="math">Area = Base × Height</span>.<br>
-  Base = 28 cm.<br>
-  <span class="math">28 × Height = 336 ⟹ Height = 336 / 28 = 12</span> cm.
-</div>
-<p><strong>Final Answer:</strong> The height of the parallelogram is <strong>12 cm</strong>.</p>
+<div class="step"><strong>Stacked bar chart:</strong> A bar chart where each bar is divided into segments representing different sub-categories, stacked on top of each other.</div>
+<div class="step"><strong>More useful when:</strong> You want to compare both the total value and the composition (proportions of sub-categories) across multiple groups simultaneously.</div>
+<div class="step"><strong>Example:</strong> Monthly sales data for a shop selling fruits, vegetables, and dairy &#8212; a stacked bar shows both total sales and the contribution of each product category per month.</div>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Finding s = 42 cm and applying Heron's formula to get Area = 336 cm²</span><span class="marking-marks">2 Marks</span></div>
-<div class="marking-row"><span class="marking-key">Equating Area = Base × Height (336 = 28 × h) to find h = 12 cm</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Definition of stacked bar chart</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">When it is more useful</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Relevant example</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="q-card" id="q10_2_4">
-    <div class="q-head" onclick="toggleQ('q10_2_4')">
-      <div class="q-num">Q4</div>
-      <div class="q-text">A rhombus shaped field has green grass for 18 cows to graze. If each side of the rhombus is 30 m and its longer diagonal is 48 m, how much area of grass field will each cow be getting?</div>
+
+  <div class="ex-div">Exercise Set 10.3 &#8212; Interpreting Data</div>
+
+  <div class="q-card" id="q10_3_1">
+    <div class="q-head" onclick="toggleQ('q10_3_1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">The marks scored by 8 students in a test are: 45, 67, 89, 34, 72, 67, 56, 89. Find the range and identify the outlier(s), if any.</div>
       <div class="q-marks">3 Marks</div>
       <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
     </div>
     <div class="q-answer">
       <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
+        <div class="answer-label">&#10003; CBSE Standard Answer</div>
         <div class="answer-text">
-<div class="step">
-  <strong>Step 1: Area of one half triangle:</strong><br>
-  The longer diagonal 48 m divides the rhombus into two congruent triangles.<br>
-  Each triangle has sides: <span class="math">a = 30</span> m, <span class="math">b = 30</span> m, <span class="math">c = 48</span> m.<br>
-  Semi-perimeter <span class="math">s = (30 + 30 + 48) / 2 = 108 / 2 = 54</span> m.<br>
-  <span class="math">s - a = 54 - 30 = 24</span> m<br>
-  <span class="math">s - b = 54 - 30 = 24</span> m<br>
-  <span class="math">s - c = 54 - 48 = 6</span> m<br><br>
-  <span class="math">Area(one triangle) = √[54 × 24 × 24 × 6] = √[(9 × 6) × 24² × 6] = √[3² × 6² × 24²] = 3 × 6 × 24 = 432</span> m².
-</div>
-<div class="step">
-  <strong>Step 2: Total Area of Rhombus:</strong><br>
-  <span class="math">Total Area = 2 × 432 = 864</span> m².
-</div>
-<div class="step">
-  <strong>Step 3: Area per cow:</strong><br>
-  Total cows = 18.<br>
-  <span class="math">Area per cow = 864 / 18 = 48</span> m².
-</div>
-<p><strong>Final Answer:</strong> Each cow will get <strong>48 m²</strong> of grass field.</p>
+<div class="step"><strong>Sorted data:</strong> 34, 45, 56, 67, 67, 72, 89, 89</div>
+<div class="step"><strong>Range</strong> = Maximum &#8722; Minimum = 89 &#8722; 34 = <span class="math">55</span></div>
+<div class="step"><strong>Mean</strong> &#8776; (34+45+56+67+67+72+89+89)/8 = 519/8 &#8776; 64.9. The value 34 is significantly below the mean. It could be considered an outlier (isolated low score).</div>
         </div>
         <div class="marking-scheme">
           <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Calculating triangle area = 432 m² using Heron's formula</span><span class="marking-marks">1½ Marks</span></div>
-<div class="marking-row"><span class="marking-key">Total area of rhombus = 2 × 432 = 864 m²</span><span class="marking-marks">½ Mark</span></div>
-<div class="marking-row"><span class="marking-key">Dividing by 18 cows to get 48 m² per cow</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Sorted data and range = 55</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Mean calculated &#8776; 64.9</span><span class="marking-marks">1 Mark</span></div>
+<div class="marking-row"><span class="marking-key">Identifying 34 as possible outlier with reasoning</span><span class="marking-marks">1 Mark</span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="q-card" id="q10_2_5">
-    <div class="q-head" onclick="toggleQ('q10_2_5')">
-      <div class="q-num">Q5</div>
-      <div class="q-text">An umbrella is made by stitching 10 triangular pieces of cloth of two different colours, each piece measuring 20 cm, 50 cm and 50 cm. How much cloth of each colour is required for the umbrella?</div>
-      <div class="q-marks">3 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Given:</strong> 10 triangular pieces in total, 5 pieces of each of the two colours.<br>
-  Dimensions of each triangular piece: <span class="math">a = 20</span> cm, <span class="math">b = 50</span> cm, <span class="math">c = 50</span> cm.
-</div>
-<div class="step">
-  <strong>Step 1: Area of one piece using Heron's Formula:</strong><br>
-  Semi-perimeter <span class="math">s = (20 + 50 + 50) / 2 = 120 / 2 = 60</span> cm.<br>
-  <span class="math">s - a = 60 - 20 = 40</span> cm<br>
-  <span class="math">s - b = 60 - 50 = 10</span> cm<br>
-  <span class="math">s - c = 60 - 50 = 10</span> cm<br><br>
-  <span class="math">Area = √[60 × 40 × 10 × 10] = √[(6 × 10) × (4 × 10) × 10²] = √[24 × 10⁴] = 100 × √24 = 100 × 2√6 = 200√6</span> cm².
-</div>
-<div class="step">
-  <strong>Step 2: Area of each colour:</strong><br>
-  Each colour has 5 triangular pieces:<br>
-  <span class="math">Cloth of each colour = 5 × 200√6 = 1000√6</span> cm².
-</div>
-<p><strong>Final Answer:</strong> <strong>1000√6 cm²</strong> (≈ 2449.49 cm²) of cloth of each colour is required.</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Semi-perimeter s = 60 cm and differences</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Area of one triangular piece = 200√6 cm²</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Total area for 5 pieces of each colour = 1000√6 cm²</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="q-card" id="q10_2_6">
-    <div class="q-head" onclick="toggleQ('q10_2_6')">
-      <div class="q-num">Q6</div>
-      <div class="q-text">A floral design on a floor is made up of 16 tiles which are triangular, the sides of the triangle being 9 cm, 28 cm and 35 cm. Find the cost of polishing the tiles at the rate of 50p per cm².</div>
-      <div class="q-marks">4 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Given:</strong> 16 identical triangular tiles with sides <span class="math">a = 9</span> cm, <span class="math">b = 28</span> cm, <span class="math">c = 35</span> cm. Rate = ₹ 0.50 per cm².
-</div>
-<div class="step">
-  <strong>Step 1: Area of one tile using Heron's Formula:</strong><br>
-  <span class="math">s = (9 + 28 + 35) / 2 = 72 / 2 = 36</span> cm.<br>
-  <span class="math">s - a = 36 - 9 = 27</span> cm<br>
-  <span class="math">s - b = 36 - 28 = 8</span> cm<br>
-  <span class="math">s - c = 36 - 35 = 1</span> cm<br><br>
-  <span class="math">Area = √[36 × 27 × 8 × 1] = √[(6²) × (9 × 3) × (4 × 2)] = √[36 × 9 × 4 × 6] = 6 × 3 × 2 × √6 = 36√6</span> cm².<br>
-  Since <span class="math">√6 ≈ 2.45</span>: <span class="math">Area ≈ 36 × 2.45 = 88.2</span> cm².
-</div>
-<div class="step">
-  <strong>Step 2: Total Area of 16 tiles:</strong><br>
-  <span class="math">Total Area = 16 × 36√6 = 576√6 ≈ 576 × 2.45 = 1411.2</span> cm².
-</div>
-<div class="step">
-  <strong>Step 3: Cost of Polishing:</strong><br>
-  <span class="math">Cost = 1411.2 × ₹ 0.50 = ₹ 705.60</span>.
-</div>
-<p><strong>Final Answer:</strong> Total cost of polishing is <strong>₹ 705.60</strong> (approx).</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Semi-perimeter s = 36 cm and Area of one tile = 36√6 cm²</span><span class="marking-marks">1½ Marks</span></div>
-<div class="marking-row"><span class="marking-key">Total area for 16 tiles = 576√6 ≈ 1411.2 cm²</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Cost calculation at 50 paise/cm² = ₹ 705.60</span><span class="marking-marks">1½ Marks</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="q-card" id="q10_2_7">
-    <div class="q-head" onclick="toggleQ('q10_2_7')">
-      <div class="q-num">Q7</div>
-      <div class="q-text">A field is in the shape of a trapezium whose parallel sides are 25 m and 10 m. The non-parallel sides are 14 m and 13 m. Find the area of the field.</div>
-      <div class="q-marks">4 Marks</div>
-      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">✅ CBSE Standard Answer</div>
-        <div class="answer-text">
-<div class="step">
-  <strong>Given:</strong> Trapezium ABCD with parallel sides <span class="math">AB = 25</span> m and <span class="math">CD = 10</span> m, non-parallel sides <span class="math">AD = 13</span> m and <span class="math">BC = 14</span> m.
-</div>
-<div class="step">
-  <strong>Construction:</strong> Through C, draw <span class="math">CE || DA</span> meeting AB at E.
-</div>
-<div class="step">
-  <strong>Step 1: Analyze parallelogram AECD and triangle ΔCEB:</strong><br>
-  In quadrilateral AECD:<br>
-  • <span class="math">CD || AE</span> and <span class="math">CE || DA ⟹ AECD is a parallelogram</span>.<br>
-  • Therefore, <span class="math">AE = CD = 10</span> m and <span class="math">CE = DA = 13</span> m.<br><br>
-  Now in ΔCEB:<br>
-  • Side <span class="math">EB = AB - AE = 25 - 10 = 15</span> m.<br>
-  • Side <span class="math">CE = 13</span> m.<br>
-  • Side <span class="math">BC = 14</span> m.
-</div>
-<div class="step">
-  <strong>Step 2: Area of ΔCEB using Heron's Formula:</strong><br>
-  <span class="math">s = (15 + 13 + 14) / 2 = 42 / 2 = 21</span> m.<br>
-  <span class="math">s - 15 = 6</span> m, <span class="math">s - 13 = 8</span> m, <span class="math">s - 14 = 7</span> m.<br>
-  <span class="math">Area(ΔCEB) = √[21 × 6 × 8 × 7] = √[(7 × 3) × (3 × 2) × 8 × 7] = √[7² × 3² × 16] = 7 × 3 × 4 = 84</span> m².
-</div>
-<div class="step">
-  <strong>Step 3: Height of trapezium (h):</strong><br>
-  Area of ΔCEB = <span class="math">1/2 × Base(EB) × Height(h)</span><br>
-  <span class="math">84 = 1/2 × 15 × h ⟹ h = (84 × 2) / 15 = 168 / 15 = 11.2</span> m.
-</div>
-<div class="step">
-  <strong>Step 4: Area of Trapezium ABCD:</strong><br>
-  <span class="math">Area = 1/2 × (Sum of parallel sides) × h = 1/2 × (25 + 10) × 11.2 = 1/2 × 35 × 11.2 = 35 × 5.6 = 196</span> m².
-</div>
-<p><strong>Final Answer:</strong> The area of the field is <strong>196 m²</strong>.</p>
-        </div>
-        <div class="marking-scheme">
-          <div class="marking-title">CBSE Marking Scheme 2026-27</div>
-<div class="marking-row"><span class="marking-key">Construction CE || DA and identifying parallelogram AECD and ΔCEB</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Applying Heron's formula to ΔCEB to find Area = 84 m²</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Finding height of trapezium h = 11.2 m</span><span class="marking-marks">1 Mark</span></div>
-<div class="marking-row"><span class="marking-key">Calculating Area of Trapezium = 196 m²</span><span class="marking-marks">1 Mark</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  
+  
   <div class="cbq-section">
-    <div class="cbq-header"><span>🎯 Competency Based Questions & HOTS — Chapter 10</span><span class="cbq-badge">CBSE 2026-27</span></div>
+    <div class="cbq-header"><span>🎯 Competency-Based Questions (CBQ) &amp; HOTS — Chapter 10</span><span class="cbq-badge">CBSE / NEP 2020</span></div>
     <div class="cbq-body">
       <div class="cbq-card" style="border-left:4px solid #4f46e5;">
-        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study Question</div>
-        <div class="cbq-question"><strong>Landscape Gardening Plot:</strong> A landscape architect divides a triangular patch of ornamental flowers with perimeter 60 m into two sections by constructing a low fence along a median. The sides of the triangular patch are 20 m, 24 m, and 16 m.<br>(a) Find the semi-perimeter of the plot.<br>(b) Calculate the total area of the triangular patch using Heron's formula.<br>(c) What is the area of each flower section divided by the median?</div>
+        <div class="cbq-type" style="color:#4f46e5;">📝 Case Study &amp; Real-Life Modeling</div>
+        <div class="cbq-question"><strong>Environmental Science & Weighted Air Quality Index:</strong> An environmental research station records the particulate matter (PM2.5) concentrations at four different monitoring points with weights based on population exposure:<br>Point 1: 45 µg/m³ (weight 3), Point 2: 60 µg/m³ (weight 2), Point 3: 80 µg/m³ (weight 4), Point 4: 110 µg/m³ (weight 1).<br>(a) Find the simple arithmetic mean of the four readings.<br>(b) Calculate the weighted mean concentration of PM2.5.<br>(c) Why is the weighted mean a more reliable representation than the simple mean?</div>
         <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer"><strong>(a)</strong> Semi-perimeter <span class="math">s = 60 / 2 = 30</span> m.<br><strong>(b)</strong> Differences: <span class="math">s - a = 10</span>, <span class="math">s - b = 6</span>, <span class="math">s - c = 14</span>.<br><span class="math">Area = √[30 × 10 × 6 × 14] = √[25200] = 60√7</span> m² (≈ 158.75 m²).<br><strong>(c)</strong> A median of a triangle divides it into two triangles of equal area. Hence each section has area <span class="math">1/2 × 60√7 = 30√7</span> m² (≈ 79.37 m²).</div>
+        <div class="cbq-answer"><strong>(a)</strong> Simple Mean = (45 + 60 + 80 + 110) / 4 = 295 / 4 = <strong>73.75 µg/m³</strong>.<br><strong>(b)</strong> Weighted Mean = Σ(w · x) / Σw = [3(45) + 2(60) + 4(80) + 1(110)] / (3 + 2 + 4 + 1) = [135 + 120 + 320 + 110] / 10 = 685 / 10 = <strong>68.5 µg/m³</strong>.<br><strong>(c)</strong> The weighted mean gives greater importance to heavily populated zones (Points 1 & 3), giving a truer measure of actual public health exposure.</div>
       </div>
       <div class="cbq-card" style="border-left:4px solid #f59e0b;">
-        <div class="cbq-type" style="color:#f59e0b;">🧠 HOTS</div>
-        <div class="cbq-question"><strong>HOTS:</strong> If each side of a triangle is doubled, find the percentage increase in its area.</div>
+        <div class="cbq-type" style="color:#f59e0b;">🧠 HOTS &amp; Assertion-Reasoning</div>
+        <div class="cbq-question"><strong>Assertion (A):</strong> The median is a more robust measure of central tendency than the mean when a dataset contains extreme outliers.<br><strong>Reason (R):</strong> The mean utilizes the numerical values of all observations, whereas the median depends only on the positional rank of observations.<br><em>Choose:</em> (a) Both A and R are true and R is the correct explanation. (b) Both A and R are true, but R is not correct explanation. (c) A is true, R is false. (d) A is false, R is true.</div>
         <button class="cbq-show-btn" onclick="toggleCBQ(this)">▶ Show Answer</button>
-        <div class="cbq-answer">Let original sides be a, b, c with semi-perimeter s and original area <span class="math">Δ = √[s(s-a)(s-b)(s-c)]</span>.<br>New sides are 2a, 2b, 2c with new semi-perimeter <span class="math">s' = 2s</span>.<br>New differences: <span class="math">s' - 2a = 2(s-a)</span>, <span class="math">s' - 2b = 2(s-b)</span>, <span class="math">s' - 2c = 2(s-c)</span>.<br>New Area <span class="math">Δ' = √[2s × 2(s-a) × 2(s-b) × 2(s-c)] = √[16 s(s-a)(s-b)(s-c)] = 4Δ</span>.<br>Increase in area = <span class="math">Δ' - Δ = 4Δ - Δ = 3Δ</span>.<br>Percentage increase = <span class="math">(3Δ / Δ) × 100% = 300%</span>.</div>
+        <div class="cbq-answer"><strong>Correct Choice: (a) Both A and R are true and R is the correct explanation.</strong><br><em>Explanation:</em> A single extreme value can shift the mean drastically, whereas the middle rank (median) remains stable. Reason (R) correctly explains this structural robustness.</div>
       </div>
     </div>
   </div>
+
+  
   <div class="ch-nav-btns">
-    <button class="ch-nav-btn" onclick="showChapter(9)">← Chapter 9</button>
-    <button class="ch-nav-btn next" onclick="showChapter(11)">Chapter 11 →</button>
+    <button class="ch-nav-btn" onclick="showChapter(9)">← Chapter 9: Propositions & Logic</button>
+    <button class="ch-nav-btn next" onclick="showChapter(11)">Chapter 11: World of Algorithms →</button>
   </div>
 </section>
