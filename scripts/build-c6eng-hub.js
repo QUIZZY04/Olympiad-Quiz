@@ -1,11 +1,11 @@
-// scripts/build-c6sst-hub.js
+// scripts/build-c6eng-hub.js
 const fs = require('fs');
 const path = require('path');
 
-const dir = path.join(__dirname, '..', 'chapters-c6sst');
+const dir = path.join(__dirname, '..', 'chapters-c6eng');
 
 const allChapters = {};
-for (let i = 1; i <= 14; i++) {
+for (let i = 1; i <= 15; i++) {
   const filePath = path.join(dir, `ch${i}.html`);
   if (!fs.existsSync(filePath)) {
     throw new Error(`Missing chapter file: ${filePath}`);
@@ -14,20 +14,21 @@ for (let i = 1; i <= 14; i++) {
 }
 
 const chapters = [
-  { num: 1, title: 'Locating Places on the Earth', short: 'Locating Places', desc: 'Latitudes, Longitudes, Grid & Standard Time (IST)' },
-  { num: 2, title: 'Oceans and Continents', short: 'Oceans & Continents', desc: '7 Continents, 5 Oceans, Hydrosphere & Tectonic Drift' },
-  { num: 3, title: 'Landforms and Life', short: 'Landforms & Life', desc: 'Mountains, Plateaus, Plains & Human Adaptations' },
-  { num: 4, title: 'Timeline and Sources of History', short: 'Timeline & Sources', desc: 'Archaeological vs Literary Sources, BCE/CE & Carbon Dating' },
-  { num: 5, title: 'India, That Is Bharat', short: 'India, That Is Bharat', desc: 'Bharatvarsha, Jambudvipa, Sindhu, Article 1 & Natural Frontiers' },
-  { num: 6, title: 'The Beginnings of Indian Civilisation', short: 'Beginnings of Civilisation', desc: 'Harappa, Mohenjo-daro, Town Planning, Great Bath & Lothal' },
-  { num: 7, title: "India’s Cultural Roots", short: "Cultural Roots", desc: 'Vedas, Upanishads, Mahavira, Buddha & Epics' },
-  { num: 8, title: 'Unity in Diversity', short: 'Unity in Diversity', desc: 'Ladakh vs Kerala Case Studies & Nehru’s Discovery of India' },
-  { num: 9, title: 'Family and Community', short: 'Family & Community', desc: 'Family Types, Equal Chores, Community Living & Civic Sense' },
-  { num: 10, title: 'Grassroots Democracy — Part 1: Governance', short: 'Governance (Part 1)', desc: 'Three Levels of Government, Rule of Law & Universal Franchise' },
-  { num: 11, title: 'Grassroots Democracy — Part 2: Rural Areas', short: 'Rural Governance (Part 2)', desc: 'Panchayati Raj, Gram Sabha, Sarpanch & Secretary' },
-  { num: 12, title: 'Grassroots Democracy — Part 3: Urban Areas', short: 'Urban Governance (Part 3)', desc: 'Municipal Corporations, Ward Councillors & Civic Services' },
-  { num: 13, title: 'The Value of Work', short: 'The Value of Work', desc: 'Dignity of Labour, Paid vs Unpaid Care Work & Shramdaan' },
-  { num: 14, title: 'Economic Activities Around Us', short: 'Economic Activities', desc: 'Primary, Secondary, Tertiary Sectors & Interdependence' }
+  { num: 1, title: 'A Bottle of Dew', short: 'Bottle of Dew', unit: 'Unit 1: Fables and Folk Tales', desc: 'Rama Natha, Madhumati, Sage Mahipati & Hard Work' },
+  { num: 2, title: 'The Raven and the Fox', short: 'Raven & Fox', unit: 'Unit 1: Fables and Folk Tales', desc: 'Poem from La Fontaine, Vanity & The Flattery Trap' },
+  { num: 3, title: 'Rama to the Rescue', short: 'Rama to Rescue', unit: 'Unit 1: Fables and Folk Tales', desc: 'Presence of Mind, Quick Thinking & Animal Compassion' },
+  { num: 4, title: 'The Unlikely Best Friends', short: 'Unlikely Friends', unit: 'Unit 2: Friendship', desc: 'Gajaraj the Royal Elephant & Buntee the Stray Dog' },
+  { num: 5, title: "A Friend’s Prayer", short: "Friend’s Prayer", unit: 'Unit 2: Friendship', desc: 'Lyrical Poem, Pure Selfless Devotion & Mutual Comfort' },
+  { num: 6, title: 'The Chair', short: 'The Chair', unit: 'Unit 2: Friendship', desc: 'Mario, The Invisible Magic Chair & True Friends Support' },
+  { num: 7, title: 'Neem Baba', short: 'Neem Baba', unit: 'Unit 3: Nurturing Nature', desc: 'Dialogue with Amber, Ancient Pharmacy & Botanical Gifts' },
+  { num: 8, title: 'What a Bird Thought', short: 'What a Bird Thought', unit: 'Unit 3: Nurturing Nature', desc: 'Lydia Maria Child Poem, Expanding Worldview: Shell to Sky' },
+  { num: 9, title: 'Spices that Heal Us', short: 'Healing Spices', unit: 'Unit 3: Nurturing Nature', desc: 'Turmeric, Ginger, Pepper, Clove, Cardamom & Kitchen Cures' },
+  { num: 10, title: 'Change of Heart', short: 'Change of Heart', unit: 'Unit 4: Sports and Wellness', desc: 'Prabhat, Integrity in Sports, Guilt & Moral Victory' },
+  { num: 11, title: 'The Winner', short: 'The Winner', unit: 'Unit 4: Sports and Wellness', desc: 'Inspirational Poem on Grit, Resilience & Never Surrendering' },
+  { num: 12, title: 'Yoga — A Way of Life', short: 'Yoga: Way of Life', unit: 'Unit 4: Sports and Wellness', desc: 'Asanas, Pranayama, Mindful Focus & International Yoga Day' },
+  { num: 13, title: 'Hamara Bharat — Incredible India!', short: 'Hamara Bharat', unit: 'Unit 5: Culture and Tradition', desc: 'Monuments, Weaves, Classical Dances & Cultural Unity' },
+  { num: 14, title: 'The Kites', short: 'The Kites', unit: 'Unit 5: Culture and Tradition', desc: 'Lyrical Poem on Soaring Kites, Makar Sankranti & Flight' },
+  { num: 15, title: 'Ila Sachani: Embroidering Dreams with her Feet', short: 'Ila Sachani', unit: 'Unit 5: Culture and Tradition', desc: 'Biographical Triumph of Gujarat Artist Overcoming Paralysis' }
 ];
 
 // Generate chips HTML
@@ -45,26 +46,26 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NCERT Solutions for Class 6 Social Science (Exploring Society: India and Beyond) CBSE 2026-27 | OlympiadQuiz</title>
-  <meta name="description" content="100% Free NCERT Solutions for Class 6 Social Science (Exploring Society: India and Beyond) CBSE 2026-27. Complete all 14 chapters with diagrams, maps, CBSE step marking schemes & CBQs.">
-  <meta name="keywords" content="ncert solutions class 6 social science, class 6 sst solutions exploring society india and beyond, class 6 social science ncert 2026-27, locating places on the earth class 6, oceans and continents class 6, india that is bharat class 6, beginnings of indian civilisation class 6, grassroots democracy class 6">
-  <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-6-sst.html">
+  <title>NCERT Solutions for Class 6 English (Poorvi) CBSE 2026-27 | OlympiadQuiz</title>
+  <meta name="description" content="100% Free NCERT Solutions for Class 6 English (Poorvi) CBSE 2026-27. Complete all 15 chapters across all 5 units with diagrams, CBSE step marking schemes, summaries & CBQs.">
+  <meta name="keywords" content="ncert solutions class 6 english, class 6 english poorvi solutions, class 6 english poorvi ncert 2026-27, a bottle of dew class 6, the raven and the fox class 6, the unlikely best friends class 6, neem baba class 6, what a bird thought class 6, spices that heal us class 6, ila sachani class 6">
+  <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-6-english.html">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="OlympiadQuiz">
-  <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-6-sst.html">
-  <meta property="og:title" content="NCERT Solutions for Class 6 Social Science (Exploring Society: India and Beyond) CBSE 2026-27 | OlympiadQuiz">
-  <meta property="og:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 Social Science with clear diagrams, maps, step-by-step CBSE marking schemes and competency-based questions.">
+  <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-6-english.html">
+  <meta property="og:title" content="NCERT Solutions for Class 6 English (Poorvi) CBSE 2026-27 | OlympiadQuiz">
+  <meta property="og:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 English (Poorvi) with comprehension, vocabulary, grammar, CBSE marking schemes and competency-based questions.">
   <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@OlympiadQuiz">
-  <meta name="twitter:title" content="NCERT Solutions for Class 6 Social Science (Exploring Society) CBSE 2026-27">
-  <meta name="twitter:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 Social Science covering all 14 chapters strictly based on the latest NCERT book.">
+  <meta name="twitter:title" content="NCERT Solutions for Class 6 English (Poorvi) CBSE 2026-27">
+  <meta name="twitter:description" content="Complete 100% chapter-wise NCERT solutions for Class 6 English covering all 15 chapters strictly based on the latest Poorvi textbook.">
   <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Search Engine Crawling -->
@@ -79,7 +80,7 @@ const html = `<!DOCTYPE html>
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
       { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
       { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions.html#class6" },
-      { "@type": "ListItem", "position": 4, "name": "Social Science", "item": "https://olympiadquiz.org/ncert-solutions-class-6-sst.html" }
+      { "@type": "ListItem", "position": 4, "name": "English", "item": "https://olympiadquiz.org/ncert-solutions-class-6-english.html" }
     ]
   }
   </script>
@@ -89,8 +90,8 @@ const html = `<!DOCTYPE html>
   {
     "@context": "https://schema.org",
     "@type": "LearningResource",
-    "name": "NCERT Solutions for Class 6 Social Science (Exploring Society: India and Beyond) CBSE 2026-27",
-    "description": "Comprehensive chapter-wise solutions for Class 6 Social Science with labeled historical and geographical diagrams, step-by-step CBSE marking schemes, and competency-based questions.",
+    "name": "NCERT Solutions for Class 6 English (Poorvi) CBSE 2026-27",
+    "description": "Comprehensive chapter-wise solutions for Class 6 English (Poorvi) with reading comprehension, character sketches, poetic devices, step-by-step CBSE marking schemes, and competency-based questions.",
     "educationalLevel": "CBSE Class 6",
     "learningResourceType": "Textbook Solutions",
     "inLanguage": "en",
@@ -111,26 +112,26 @@ const html = `<!DOCTYPE html>
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Are these solutions strictly based on the new Class 6 Social Science textbook 'Exploring Society: India and Beyond'?",
+        "name": "Are these solutions strictly based on the new Class 6 English textbook 'Poorvi'?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, these solutions strictly follow the latest integrated NCERT Class 6 Social Science textbook 'Exploring Society: India and Beyond' designed under NEP 2020 and NCF-SE for CBSE 2024–25 to 2026–27."
+          "text": "Yes, these solutions strictly follow the latest NCERT Class 6 English textbook 'Poorvi' designed under NEP 2020 and NCF-SE for CBSE 2024–25 to 2026–27."
         }
       },
       {
         "@type": "Question",
-        "name": "Are all 14 chapters and all textbook exercise questions 100% covered?",
+        "name": "Are all 15 chapters and poems 100% covered across all 5 units?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, all 14 chapters across all 5 themes (Land & People, Tapestry of Past, Cultural Heritage, Governance, and Economic Life) are 100% strictly covered with comprehensive answers and marking scheme rubrics."
+          "text": "Yes, all 15 chapters and poems across all 5 units (Fables and Folk Tales, Friendship, Nurturing Nature, Sports and Wellness, and Culture and Tradition) are 100% strictly covered with comprehensive answers, vocabulary, grammar, and marking schemes."
         }
       },
       {
         "@type": "Question",
-        "name": "Are visual maps, diagrams, and marking schemes included?",
+        "name": "Are official CBSE marking schemes included for English exams?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Every chapter features high-resolution vector SVG diagrams (Earth grid, continents and oceans, plate boundaries, Harappan city layout, spiritual streams, governance pyramids, care economy iceberg, and economic sectors) paired with CBSE exam rubrics."
+          "text": "Every question is paired with an official CBSE marking scheme rubric indicating exact mark distributions for content, expression, vocabulary accuracy, and grammatical correctness."
         }
       },
       {
@@ -138,7 +139,7 @@ const html = `<!DOCTYPE html>
         "name": "Is access completely free without payment or login?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, all NCERT solutions on OlympiadQuiz are 100% free with instant, preloaded offline access and no paywall or mandatory login."
+          "text": "Yes, all NCERT solutions on OlympiadQuiz are 100% free with instant, preloaded offline access and zero paywalls or mandatory account sign-up."
         }
       }
     ]
@@ -150,11 +151,11 @@ const html = `<!DOCTYPE html>
 
   <style>
     :root {
-      --brand: #0d9488;
-      --brand-hover: #0f766e;
-      --brand-light: #f0fdfa;
-      --brand-text: #115e59;
-      --accent: #14b8a6;
+      --brand: #0284c7;
+      --brand-hover: #0369a1;
+      --brand-light: #f0f9ff;
+      --brand-text: #0369a1;
+      --accent: #38bdf8;
       --navy: #0f172a;
       --slate: #334155;
       --muted: #64748b;
@@ -174,7 +175,7 @@ const html = `<!DOCTYPE html>
     .navbar-inner { max-width: 1380px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .navbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .logo-text { font-size: 1.15rem; font-weight: 800; color: white; font-family: 'Outfit', sans-serif; }
-    .logo-text span { color: #2dd4bf; }
+    .logo-text span { color: #38bdf8; }
     .navbar-links { display: flex; align-items: center; gap: 8px; }
     .nav-link { color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
     .nav-link:hover { color: white; background: rgba(255,255,255,0.06); }
@@ -184,8 +185,8 @@ const html = `<!DOCTYPE html>
     .nav-dropdown-content a { display: block; padding: 8px 14px; color: #334155; text-decoration: none; font-size: 0.85rem; border-radius: 6px; transition: 0.2s; }
     .nav-dropdown-content a:hover { background: #f1f5f9; color: #0f172a !important; }
     .navbar-actions { display: flex; align-items: center; gap: 10px; }
-    .btn-login { background: #0d9488; color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
-    .btn-login:hover { background: #0f766e; }
+    .btn-login { background: #0284c7; color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
+    .btn-login:hover { background: #0369a1; }
     .navbar-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
     .navbar-toggle span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
 
@@ -225,7 +226,7 @@ const html = `<!DOCTYPE html>
       transition: color 0.15s ease;
     }
     .ncert-bc-list a:hover {
-      color: #0d9488;
+      color: #0284c7;
       text-decoration: underline;
     }
     .ncert-bc-sep {
@@ -233,7 +234,7 @@ const html = `<!DOCTYPE html>
       font-size: 0.75rem;
     }
     .ncert-bc-current {
-      color: #0d9488;
+      color: #0284c7;
       font-weight: 700;
     }
     .ncert-bc-switch {
@@ -263,16 +264,16 @@ const html = `<!DOCTYPE html>
       white-space: nowrap;
     }
     .ncert-bc-pill:hover {
-      background: #f0fdfa;
-      color: #0d9488;
-      border-color: #99f6e4;
+      background: #f0f9ff;
+      color: #0284c7;
+      border-color: #bae6fd;
       transform: translateY(-1px);
     }
     .ncert-bc-pill.active {
-      background: #0d9488;
+      background: #0284c7;
       color: #ffffff;
-      border-color: #0d9488;
-      box-shadow: 0 2px 6px rgba(13,148,136,0.3);
+      border-color: #0284c7;
+      box-shadow: 0 2px 6px rgba(2,132,199,0.3);
     }
     @media (max-width: 768px) {
       .ncert-breadcrumb-nav { padding: 8px 16px; }
@@ -280,9 +281,9 @@ const html = `<!DOCTYPE html>
     }
 
     /* ── HERO BANNER ── */
-    .hero-banner { background: linear-gradient(135deg, #042f2e 0%, #0f172a 100%); color: white; padding: 36px 24px; text-align: center; border-bottom: 3px solid var(--brand); }
+    .hero-banner { background: linear-gradient(135deg, #082f49 0%, #0f172a 100%); color: white; padding: 36px 24px; text-align: center; border-bottom: 3px solid var(--brand); }
     .hero-banner h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; font-family: 'Outfit', sans-serif; }
-    .hero-banner p { color: #99f6e4; font-size: .95rem; max-width: 780px; margin: 0 auto 16px; }
+    .hero-banner p { color: #bae6fd; font-size: .95rem; max-width: 780px; margin: 0 auto 16px; }
     .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
     .hero-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); padding: 6px 14px; border-radius: 20px; font-size: .8rem; font-weight: 600; color: #e2e8f0; }
 
@@ -292,7 +293,7 @@ const html = `<!DOCTYPE html>
     .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
     .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
     .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
-    .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(13,148,136,.35); }
+    .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(2,132,199,.35); }
     .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
     .bc-chip.active .bc-n { background: rgba(255,255,255,.25); }
 
@@ -307,7 +308,7 @@ const html = `<!DOCTYPE html>
     .chapter-nav li a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; color: var(--slate); text-decoration: none; font-size: .85rem; font-weight: 500; transition: all .15s; cursor: pointer; }
     .chapter-nav li a:hover { background: var(--brand-light); color: var(--brand-text); }
     .chapter-nav li a.active { background: var(--brand); color: white; font-weight: 600; }
-    .chapter-nav li a.active small { color: #ccfbf1 !important; }
+    .chapter-nav li a.active small { color: #bae6fd !important; }
     .ch-num { width: 22px; height: 22px; background: rgba(0,0,0,.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; }
     .chapter-nav li a.active .ch-num { background: rgba(255,255,255,.25); color: white; }
 
@@ -327,11 +328,11 @@ const html = `<!DOCTYPE html>
 
     /* Exercise Divider */
     .ex-div { width: 100%; margin: 28px 0 16px; }
-    .ex-heading { font-size: .85rem; font-weight: 750; text-transform: uppercase; color: var(--brand-text); background: var(--brand-light); border: 1.5px solid #99f6e4; border-radius: 8px; padding: 10px 18px; display: inline-block; letter-spacing: .04em; }
+    .ex-heading { font-size: .85rem; font-weight: 750; text-transform: uppercase; color: var(--brand-text); background: var(--brand-light); border: 1.5px solid #bae6fd; border-radius: 8px; padding: 10px 18px; display: inline-block; letter-spacing: .04em; }
 
     /* Question Card */
     .q-card { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow); transition: all .2s; overflow: hidden; }
-    .q-card:hover { border-color: #99f6e4; box-shadow: var(--shadow-hover); }
+    .q-card:hover { border-color: #bae6fd; box-shadow: var(--shadow-hover); }
     .q-header { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; user-select: none; background: #fafafa; border-bottom: 1px solid #f1f5f9; }
     .q-title { font-weight: 700; color: var(--navy); font-size: .95rem; flex: 1; }
     .q-type { font-size: .72rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: .04em; }
@@ -343,11 +344,14 @@ const html = `<!DOCTYPE html>
     .badge-define { background: #ffedd5; color: #c2410c; }
     .badge-describe { background: #ede9fe; color: #6d28d9; }
     .badge-analyze { background: #e2e8f0; color: #334155; }
-    .badge-analysis { background: #e2e8f0; color: #334155; }
-    .badge-concept { background: #cffafe; color: #0e7490; }
-    .badge-application { background: #dbeafe; color: #1d4ed8; }
-    .badge-value-based { background: #fef08a; color: #854d0e; }
-    .badge-think { background: #fef9c3; color: #a16207; }
+    .badge-extractbased { background: #fef9c3; color: #854d0e; }
+    .badge-charactersketch { background: #fae8ff; color: #86198f; }
+    .badge-poeticdevices { background: #e0e7ff; color: #3730a3; }
+    .badge-poeticanalysis { background: #e0e7ff; color: #3730a3; }
+    .badge-grammar { background: #cffafe; color: #0e7490; }
+    .badge-valuebased { background: #fee2e2; color: #991b1b; }
+    .badge-think { background: #fef08a; color: #713f12; }
+    .badge-historicalcontext { background: #ffedd5; color: #9a3412; }
 
     .toggle-icon { color: var(--muted); font-size: 0.8rem; transition: transform .2s ease; }
 
@@ -356,7 +360,7 @@ const html = `<!DOCTYPE html>
     .question-text { font-size: .95rem; color: #0f172a; margin-bottom: 14px; line-height: 1.6; }
     .answer-box { background: #fbfcfe; border: 1.5px solid #f1f5f9; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
     .answer-box p { margin-bottom: 8px; font-size: .9rem; line-height: 1.65; }
-    .answer-box .step { display: block; background: #f0fdfa; border-left: 3.5px solid var(--brand); padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: .88rem; }
+    .answer-box .step { display: block; background: #f0f9ff; border-left: 3.5px solid var(--brand); padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: .88rem; }
     .answer-box .step-list { padding-left: 20px; font-size: .88rem; margin: 6px 0 10px; display: flex; flex-direction: column; gap: 4px; }
 
     /* Marking Scheme */
@@ -392,14 +396,14 @@ const html = `<!DOCTYPE html>
           <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="nav-dropdown-content">
             <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-            <a href="ncert-solutions-class-10-maths.html">Class 10 Maths 📐</a>
-            <a href="ncert-solutions-class-10-sst.html">Class 10 Social Science 🏛️</a>
-            <a href="ncert-solutions-class-9-maths.html">Class 9 Maths ✨</a>
-            <a href="ncert-solutions-class-9-science.html">Class 9 Science 🔬</a>
+            <a href="ncert-solutions-class-10-english.html">Class 10 English 📖</a>
+            <a href="ncert-solutions-class-9-english.html">Class 9 English 📖</a>
+            <a href="ncert-solutions-class-8-english.html">Class 8 English 📖</a>
+            <a href="ncert-solutions-class-7-english.html">Class 7 English 📖</a>
             <a href="ncert-solutions-class-6-maths.html">Class 6 Maths 📐</a>
             <a href="ncert-solutions-class-6-science.html">Class 6 Science 🔬</a>
-            <a href="ncert-solutions-class-6-sst.html" style="font-weight:700;color:#0d9488;background:#f0fdfa;">Class 6 Social Science 🌍 (Active)</a>
-            <a href="ncert-solutions-class-6-english.html">Class 6 English 📖</a>
+            <a href="ncert-solutions-class-6-sst.html">Class 6 Social Science 🌍</a>
+            <a href="ncert-solutions-class-6-english.html" style="font-weight:700;color:#0284c7;background:#f0f9ff;">Class 6 English 📖 (Active)</a>
           </div>
         </div>
         <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
@@ -423,26 +427,26 @@ const html = `<!DOCTYPE html>
         <li class="ncert-bc-sep">/</li>
         <li><a href="ncert-solutions.html#class6">Class 6</a></li>
         <li class="ncert-bc-sep">/</li>
-        <li class="ncert-bc-current">Social Science</li>
+        <li class="ncert-bc-current">English (Poorvi)</li>
       </ul>
       <div class="ncert-bc-switch">
         <span class="ncert-bc-switch-label">Class 6 Subjects:</span>
         <a href="ncert-solutions-class-6-maths.html" class="ncert-bc-pill">Maths (Ganita Prakash)</a>
         <a href="ncert-solutions-class-6-science.html" class="ncert-bc-pill">Science (Curiosity)</a>
-        <a href="ncert-solutions-class-6-sst.html" class="ncert-bc-pill active">Social Science (Exploring Society)</a>
-        <a href="ncert-solutions-class-6-english.html" class="ncert-bc-pill">English (Poorvi)</a>
+        <a href="ncert-solutions-class-6-sst.html" class="ncert-bc-pill">Social Science (Exploring Society)</a>
+        <a href="ncert-solutions-class-6-english.html" class="ncert-bc-pill active">English (Poorvi)</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Banner -->
   <header class="hero-banner">
-    <h1>NCERT Solutions for Class 6 Social Science</h1>
-    <p>Complete 100% Chapter-Wise Step-by-Step Solutions for <em>Exploring Society: India and Beyond</em> (CBSE 2026-27). Strictly covers all 14 chapters across Geography, History, Civics &amp; Economics with custom diagrams &amp; marking schemes.</p>
+    <h1>NCERT Solutions for Class 6 English</h1>
+    <p>Complete 100% Chapter-Wise Question &amp; Exercise Solutions for <em>Poorvi</em> (CBSE 2026-27). Strictly covers all 15 chapters across all 5 units with reading comprehension, character sketches, poetic devices &amp; CBSE marking schemes.</p>
     <div class="hero-badges">
-      <div class="hero-badge">📘 Exploring Society: India and Beyond</div>
+      <div class="hero-badge">📘 Poorvi (Latest NCERT Textbook)</div>
       <div class="hero-badge">✨ NEP 2020 &amp; NCF-SE Aligned</div>
-      <div class="hero-badge">🎯 100% Chapters Covered (14/14)</div>
+      <div class="hero-badge">🎯 100% Chapters Covered (15/15)</div>
       <div class="hero-badge">📊 CBSE Step Marking Schemes</div>
     </div>
   </header>
@@ -540,7 +544,7 @@ ${allChapters[1]}
       const match = hash.match(/^#ch(\\d+)$/);
       if (match) {
         const ch = parseInt(match[1]);
-        if (ch >= 1 && ch <= 14) {
+        if (ch >= 1 && ch <= 15) {
           showChapter(ch, false);
           return;
         }
@@ -552,7 +556,7 @@ ${allChapters[1]}
       const match = hash.match(/^#ch(\\d+)$/);
       if (match) {
         const ch = parseInt(match[1]);
-        if (ch >= 1 && ch <= 14 && ch !== currentCh) {
+        if (ch >= 1 && ch <= 15 && ch !== currentCh) {
           showChapter(ch, false);
         }
       }
@@ -581,9 +585,9 @@ ${allChapters[1]}
 </html>
 `;
 
-fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-6-sst.html'), html, 'utf8');
-console.log('Successfully generated ncert-solutions-class-6-sst.html with all 14 chapters!');
+fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-6-english.html'), html, 'utf8');
+console.log('Successfully generated ncert-solutions-class-6-english.html with all 15 chapters!');
 
-// Also create alias / mirror ncert-solutions-class-6-social-science.html
-fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-6-social-science.html'), html, 'utf8');
-console.log('Successfully generated ncert-solutions-class-6-social-science.html alias!');
+// Also create mirror alias ncert-solutions-class-6-eng.html
+fs.writeFileSync(path.join(__dirname, '..', 'ncert-solutions-class-6-eng.html'), html, 'utf8');
+console.log('Successfully generated ncert-solutions-class-6-eng.html alias!');
