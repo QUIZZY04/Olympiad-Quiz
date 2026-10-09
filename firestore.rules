@@ -118,6 +118,11 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
 
+    // 14c. Complimentary Access Grants Log
+    match /complementary_grants/{grantId} {
+      allow read, write: if isAdmin();
+    }
+
     // ========================
     // 15. USSC FINANCE FORUM
     // ========================

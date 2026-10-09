@@ -19,6 +19,8 @@ if (!admin.apps.length) {
 
 const db = admin.firestore();
 
+const ADMIN_EMAIL = "madhhu52@gmail.com";
+
 // ---------------------------------------------------------------------
 // Free-tier rate limit - two caps, both must be satisfied: 1 attempt per
 // calendar day AND 4 attempts per calendar week (Monday-Sunday, IST).
@@ -128,6 +130,7 @@ const COLLECTIONS = {
 module.exports = {
   admin,
   db,
+  ADMIN_EMAIL,
   FREE_TEST_LIMIT,
   FREE_TEST_WEEKLY_LIMIT,
   SILVER_DAILY_LIMIT,

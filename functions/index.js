@@ -1742,5 +1742,7 @@ exports.completeTestAttempt = testLimits.completeTestAttempt;
 exports.createPremiumPlan = premiumSubscriptions.createPremiumPlan;
 exports.createPremiumSubscription = premiumSubscriptions.createPremiumSubscription;
 exports.razorpayWebhook = premiumSubscriptions.razorpayWebhook;
+exports.grantComplementaryPremium = premiumSubscriptions.grantComplementaryPremium;
+exports.revokeComplementaryPremium = premiumSubscriptions.revokeComplementaryPremium;
 
 exports.claimIncludedLiveTest = liveTestCredits.claimIncludedLiveTest;

@@ -2079,6 +2079,164 @@ border-top:1px solid var(--border);
         </div>
     </div>
 
+    <!-- COMPLIMENTARY PREMIUM ACCESS SECTION -->
+    <div id="complementary-access-section" class="panel" style="border-top: 2px solid #8b5cf6;">
+        <div class="panel-header">
+            <h2 style="color:#8b5cf6;">🎁 Complimentary Premium Access</h2>
+        </div>
+        <div class="panel-content">
+            <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(217, 164, 6, 0.05)); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: 16px; padding: 20px; margin-bottom: 25px;">
+                <div style="display:flex; align-items:flex-start; gap:14px;">
+                    <div style="font-size: 32px; line-height: 1;">🎁</div>
+                    <div>
+                        <h3 style="margin: 0 0 6px 0; font-size: 1.15rem; color: #6d28d9; font-weight: 800;">Grant Free Premium Access to Registered Students</h3>
+                        <p style="margin:0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+                            Give 100% free premium access (Silver, Gold, or Diamond) to any registered student by entering their email address. The student will instantly unlock unlimited test attempts, detailed performance analytics, and all plan perks without paying.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRANT FORM CARD -->
+            <div style="background: var(--surface); border: 1.5px solid var(--border); border-radius: 18px; padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 30px;">
+                <h4 style="margin:0 0 16px 0; font-size: 1rem; color: var(--text); display:flex; align-items:center; gap:8px;">
+                    <span>⚡ New Complimentary Grant Form</span>
+                    <span style="font-size:11px; font-weight:700; color:#6d28d9; background:#ede9fe; padding:3px 8px; border-radius:6px; border:1px solid #ddd6fe;">Instant Live Activation</span>
+                </h4>
+
+                <div style="display: grid; grid-template-columns: 1.4fr 1.1fr 1fr; gap: 16px; align-items: start;">
+                    <!-- Email input -->
+                    <div>
+                        <label style="font-weight: 700; font-size: 13px; color: var(--text); display:flex; justify-content:space-between; align-items:center;">
+                            <span>Registered User Email <span style="color:var(--danger);">*</span></span>
+                            <span id="compUserCheckBadge" style="font-size:11px; font-weight:700; display:none;"></span>
+                        </label>
+                        <div style="position:relative;">
+                            <input type="email" id="compUserEmail" placeholder="Enter registered email (e.g. rahul@gmail.com)..." style="margin-top: 8px; padding-right: 80px;" oninput="window.debounceCompUserLookup()" onblur="window.checkCompUserEmail(true)" onkeydown="if(event.key==='Enter') window.grantComplementaryAccess()">
+                            <button type="button" onclick="window.checkCompUserEmail(false)" style="position:absolute; right:6px; top:14px; margin:0; padding:6px 12px; font-size:11px; background:#8b5cf6; color:#fff; border-radius:6px; font-weight:700;">Verify</button>
+                        </div>
+                        <div id="compUserInfoBox" style="display:none; margin-top:8px; padding:10px 14px; border-radius:10px; font-size:12px; line-height:1.4;"></div>
+                    </div>
+
+                    <!-- Plan select -->
+                    <div>
+                        <label style="font-weight: 700; font-size: 13px; color: var(--text);">Premium Plan <span style="color:var(--danger);">*</span></label>
+                        <select id="compPlanSelect" style="margin-top: 8px;" onchange="window.onCompPlanSelectChange()">
+                            <option value="diamond" selected>💎 Diamond Plan (VIP / 4 Live Tests + Guidance)</option>
+                            <option value="gold">🥇 Gold Plan (Unlimited Tests + 2 Live Tests)</option>
+                            <option value="silver">🥈 Silver Plan (4 Tests/Day, 40/Month)</option>
+                        </select>
+                        <div id="compPlanPerkBadge" style="margin-top:8px; font-size:11.5px; color:#0369a1; background:#e0f2fe; padding:6px 10px; border-radius:8px; border:1px solid #bae6fd; font-weight:500;">
+                            ✨ Diamond: Unlimited tests, 4 Live Tests/mo, 1:1 Guidance.
+                        </div>
+                    </div>
+
+                    <!-- Duration select -->
+                    <div>
+                        <label style="font-weight: 700; font-size: 13px; color: var(--text);">Duration / Validity <span style="color:var(--danger);">*</span></label>
+                        <select id="compDurationSelect" style="margin-top: 8px;" onchange="window.onCompDurationSelectChange()">
+                            <option value="365" selected>1 Year (365 Days)</option>
+                            <option value="30">1 Month (30 Days)</option>
+                            <option value="90">3 Months (90 Days)</option>
+                            <option value="180">6 Months (180 Days)</option>
+                            <option value="730">2 Years (730 Days)</option>
+                            <option value="3650">Lifetime / Permanent (10 Years)</option>
+                            <option value="custom">Custom Days...</option>
+                        </select>
+                        <div id="compCustomDaysWrap" style="display:none; margin-top:8px;">
+                            <input type="number" id="compCustomDays" placeholder="Enter days (e.g. 45)" min="1" max="5000" style="margin-top:0;" oninput="window.updateExpiryPreview()">
+                        </div>
+                        <div style="font-size:11.5px; color:var(--muted); margin-top:8px;">
+                            Expires: <b id="compExpiryPreview" style="color:var(--text);">in 1 year</b>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin note and submit button -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: end; margin-top: 16px;">
+                    <div>
+                        <label style="font-weight: 700; font-size: 13px; color: var(--text);">Internal Note / Reason (Optional)</label>
+                        <input type="text" id="compGrantNote" placeholder="e.g. Scholarship award, School topper, Promo tester, Demo..." style="margin-top: 8px;">
+                    </div>
+                    <div>
+                        <button type="button" id="compSubmitGrantBtn" onclick="window.grantComplementaryAccess()" class="upload" style="margin-top:8px; width:100%; padding:11px 18px; font-size:14px; background:linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow:0 4px 12px rgba(124,58,237,0.35); font-weight:800;">
+                            🎁 Grant Free Access
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Status alert banner -->
+                <div id="compStatusBanner" style="display:none; margin-top:16px; padding:12px 16px; border-radius:10px; font-size:13px; font-weight:600;"></div>
+            </div>
+
+            <!-- COMPLIMENTARY GRANTS DIRECTORY -->
+            <div style="margin-top: 25px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:15px;">
+                    <div>
+                        <h4 style="margin:0; font-size:1.05rem; color:var(--text); display:flex; align-items:center; gap:8px;">
+                            <span>📋 Complimentary Grants Directory</span>
+                        </h4>
+                        <p class="muted" style="margin:4px 0 0 0; font-size:12px;">Active and past students granted free access by the admin.</p>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button type="button" class="upload" style="background:#8b5cf6; padding:8px 14px; font-size:12px; margin:0;" onclick="window.loadComplementaryAccessList()">🔄 Refresh Directory</button>
+                    </div>
+                </div>
+
+                <!-- Filter Controls & Summary Pills -->
+                <div style="display:grid; grid-template-columns: 1fr auto auto; gap:12px; align-items:end; margin-bottom:15px;">
+                    <div>
+                        <label style="font-size:12px; font-weight:600;">Search Student Name, Email or Note</label>
+                        <input type="text" id="compSearchInput" placeholder="Search by name, email, note..." oninput="window.filterComplementaryTable()" style="margin-top:6px;">
+                    </div>
+                    <div>
+                        <label style="font-size:12px; font-weight:600;">Filter Plan</label>
+                        <select id="compFilterPlan" onchange="window.filterComplementaryTable()" style="margin-top:6px;">
+                            <option value="">All Plans</option>
+                            <option value="silver">Silver</option>
+                            <option value="gold">Gold</option>
+                            <option value="diamond">Diamond</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:12px; font-weight:600;">Filter Status</label>
+                        <select id="compFilterStatus" onchange="window.filterComplementaryTable()" style="margin-top:6px;">
+                            <option value="">All Statuses</option>
+                            <option value="active" selected>Active Only</option>
+                            <option value="expired">Expired / Revoked</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:10px; margin-bottom:16px; font-size:13px; flex-wrap:wrap;">
+                    <span id="compStatTotal" style="background:var(--bg,#f8fafc); border:1px solid var(--border); padding:6px 12px; border-radius:8px;">Total Granted: —</span>
+                    <span id="compStatActive" style="background:#dcfce7; color:#15803d; padding:6px 12px; border-radius:8px; font-weight:700;">Active Free Students: —</span>
+                    <span id="compStatDiamond" style="background:#e0f2fe; color:#0369a1; padding:6px 12px; border-radius:8px; font-weight:700;">Diamond VIPs: —</span>
+                </div>
+
+                <!-- Grants Table -->
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Email & Phone</th>
+                                <th>Granted Plan</th>
+                                <th>Status & Expiry</th>
+                                <th>Granted On</th>
+                                <th>Note / Reason</th>
+                                <th style="text-align:right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="complementaryGrantsTable">
+                            <tr><td colspan="7" style="text-align:center; color: var(--muted); padding:20px;">Click "Refresh Directory" to view complimentary grants.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- PREMIUM SUBSCRIPTIONS SECTION -->
     <div id="premium-subscriptions-section" class="panel" style="border-top: 2px solid #d9a406;">
         <div class="panel-header">
@@ -2565,6 +2723,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     else if (headerText.includes('H.O.T.S Problems')) { window.calculateNextHotsTitle(); window.loadHotsTestsList(); }
                     else if (headerText.includes('JEE Main PYQ')) { window.updatePyqTitleSuggestions(); window.loadJeePyqsList(); }
                     else if (headerText.includes('Student Profiles')) { window.loadStudentProfiles(); }
+                    else if (headerText.includes('Complimentary') || headerText.includes('Complementary')) { window.loadComplementaryAccessList(); }
                     else if (headerText.includes('Premium Subscriptions')) { window.loadPremiumSubscriptions(); }
                     else if (headerText.includes('User Activity Log')) { window.initUserActivityLog(); }
                     else if (headerText.includes('Search & Manage Questions')) { window.loadQuestions(); }
@@ -8292,12 +8451,18 @@ window.loadPremiumSubscriptions = async function() {
             const expiresOn = data.premiumExpiresAt?.toDate ? data.premiumExpiresAt.toDate().toLocaleDateString("en-GB") : "N/A";
             const subId = data.razorpaySubscriptionId || "N/A";
 
-            if (isActive) { activeCount++; estMrr += tierInfo.monthlyValueInr; }
+            const isComp = data.isComplementary === true || data.complementary === true || (data.razorpaySubscriptionId && data.razorpaySubscriptionId.startsWith("COMPLEMENTARY"));
+            if (isActive && !isComp) { estMrr += tierInfo.monthlyValueInr; }
+            if (isActive) { activeCount++; }
+
+            const compBadge = isComp 
+                ? `<span style="background:#ede9fe; color:#6d28d9; padding:2px 8px; border-radius:12px; font-size:10px; font-weight:800; margin-left:6px; border:1px solid #ddd6fe; display:inline-block; vertical-align:middle;">🎁 Free Grant</span>` 
+                : '';
 
             html += `<tr>
                 <td><b>${name}</b></td>
                 <td><div style="font-size:12px;">✉️ ${email}<br>📞 ${phone}</div></td>
-                <td><span style="background:${tierInfo.bg}; color:${tierInfo.color}; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:800;">${tierInfo.label}</span></td>
+                <td><span style="background:${tierInfo.bg}; color:${tierInfo.color}; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:800; display:inline-block; vertical-align:middle;">${tierInfo.label}</span>${compBadge}</td>
                 <td>${isActive
                     ? `<span style="color:#15803d; font-weight:700;">● Active</span>`
                     : `<span style="color:var(--muted); font-weight:700;">○ Cancelled/Expired</span>`}</td>
@@ -8482,6 +8647,569 @@ window.initUserActivityLog = async function() {
         } else {
             tbody.innerHTML = `<tr><td colspan='11' style='color:var(--danger); text-align:center;'>Error: ${e.message}</td></tr>`; 
         }
+    }
+};
+
+// =====================================================================
+// COMPLIMENTARY PREMIUM ACCESS MANAGEMENT
+// =====================================================================
+
+let compAllGrants = [];
+let compDebounceTimer = null;
+
+const COMP_PLAN_PERKS = {
+    diamond: "✨ Diamond: Unlimited tests, 4 Live Tests/mo, 1:1 Olympiad Guidance.",
+    gold: "✨ Gold: Unlimited chapterwise & mock tests, 2 Live Tests/mo.",
+    silver: "✨ Silver: Up to 4 tests/day, 40 tests/mo, 60-min cooldown between tests."
+};
+
+window.onCompPlanSelectChange = function() {
+    const plan = document.getElementById("compPlanSelect")?.value || "diamond";
+    const badge = document.getElementById("compPlanPerkBadge");
+    if (badge && COMP_PLAN_PERKS[plan]) {
+        badge.textContent = COMP_PLAN_PERKS[plan];
+    }
+    const durSelect = document.getElementById("compDurationSelect");
+    if (durSelect) {
+        if (plan === "silver") durSelect.value = "30";
+        else if (plan === "gold") durSelect.value = "90";
+        else if (plan === "diamond") durSelect.value = "365";
+    }
+    window.onCompDurationSelectChange();
+};
+
+window.onCompDurationSelectChange = function() {
+    const durVal = document.getElementById("compDurationSelect")?.value;
+    const customWrap = document.getElementById("compCustomDaysWrap");
+    if (customWrap) {
+        customWrap.style.display = (durVal === "custom") ? "block" : "none";
+    }
+    window.updateExpiryPreview();
+};
+
+window.updateExpiryPreview = function() {
+    const previewEl = document.getElementById("compExpiryPreview");
+    if (!previewEl) return;
+    const durVal = document.getElementById("compDurationSelect")?.value;
+    let days = 0;
+    if (durVal === "custom") {
+        days = parseInt(document.getElementById("compCustomDays")?.value || "0", 10);
+    } else {
+        days = parseInt(durVal || "365", 10);
+    }
+
+    if (days <= 0) {
+        previewEl.textContent = "Please specify days";
+        previewEl.style.color = "var(--danger)";
+        return;
+    }
+
+    const expDate = new Date();
+    expDate.setDate(expDate.getDate() + days);
+    const dateFormatted = expDate.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    if (days >= 3650) {
+        previewEl.textContent = `Lifetime (~10 yrs till ${dateFormatted})`;
+    } else if (days >= 365) {
+        const yrs = (days / 365).toFixed(1).replace('.0', '');
+        previewEl.textContent = `${dateFormatted} (~${yrs} year${yrs === '1' ? '' : 's'})`;
+    } else if (days >= 30) {
+        const mos = Math.round(days / 30);
+        previewEl.textContent = `${dateFormatted} (~${mos} month${mos === 1 ? '' : 's'})`;
+    } else {
+        previewEl.textContent = `${dateFormatted} (${days} days)`;
+    }
+    previewEl.style.color = "var(--text)";
+};
+
+window.debounceCompUserLookup = function() {
+    clearTimeout(compDebounceTimer);
+    compDebounceTimer = setTimeout(() => {
+        window.checkCompUserEmail(true);
+    }, 450);
+};
+
+window.checkCompUserEmail = async function(silent = false) {
+    const emailInput = document.getElementById("compUserEmail");
+    const badgeEl = document.getElementById("compUserCheckBadge");
+    const infoBox = document.getElementById("compUserInfoBox");
+    if (!emailInput) return null;
+
+    const email = emailInput.value.trim().toLowerCase();
+    if (!email || !email.includes("@") || !email.includes(".")) {
+        if (badgeEl) badgeEl.style.display = "none";
+        if (infoBox) infoBox.style.display = "none";
+        return null;
+    }
+
+    if (!silent && badgeEl) {
+        badgeEl.style.display = "inline";
+        badgeEl.style.color = "var(--muted)";
+        badgeEl.textContent = "Checking...";
+    }
+
+    try {
+        let matchedUsers = [];
+        const q = query(collection(db, "users"), where("email", "==", email));
+        const snap = await getDocs(q);
+        snap.forEach(d => matchedUsers.push({ id: d.id, ...d.data() }));
+
+        if (matchedUsers.length === 0) {
+            const allSnap = await getDocs(collection(db, "users"));
+            allSnap.forEach(d => {
+                const u = d.data();
+                const uEmail = (u.email || u.userEmail || "").trim().toLowerCase();
+                if (uEmail === email) {
+                    matchedUsers.push({ id: d.id, ...u });
+                }
+            });
+        }
+
+        if (matchedUsers.length > 0) {
+            const user = matchedUsers[0];
+            const name = user.name || user.fullName || user.displayName || "Student";
+            const grade = user.class || user.studentClass || "";
+            const phone = user.phone || user.mobile || user.phoneNumber || "";
+            const isPrem = user.isPremium === true;
+            const currentTier = (user.premiumTier || "").toUpperCase();
+            const expDate = user.premiumExpiresAt?.toDate ? user.premiumExpiresAt.toDate().toLocaleDateString("en-GB") : null;
+
+            if (badgeEl) {
+                badgeEl.style.display = "inline";
+                badgeEl.style.color = "#15803d";
+                badgeEl.textContent = "✓ User Found";
+            }
+
+            if (infoBox) {
+                infoBox.style.display = "block";
+                infoBox.style.background = "#f0fdf4";
+                infoBox.style.border = "1px solid #bbf7d0";
+                infoBox.style.color = "#166534";
+                infoBox.innerHTML = `
+                    <div style="font-weight:700; font-size:12.5px;">👤 ${name} ${grade ? '• Class ' + grade : ''}</div>
+                    <div style="font-size:11.5px; margin-top:2px; color:#15803d;">
+                        ${phone ? '📞 ' + phone + ' • ' : ''}Current Plan: <b>${isPrem ? (currentTier || 'Active') + (expDate ? ' (Exp: ' + expDate + ')' : '') : 'Free Account'}</b>
+                    </div>
+                `;
+            }
+            return matchedUsers;
+        } else {
+            if (badgeEl) {
+                badgeEl.style.display = "inline";
+                badgeEl.style.color = "var(--danger)";
+                badgeEl.textContent = "✕ Not Registered";
+            }
+            if (infoBox) {
+                infoBox.style.display = "block";
+                infoBox.style.background = "#fff1f2";
+                infoBox.style.border = "1px solid #fecdd3";
+                infoBox.style.color = "#9f1239";
+                infoBox.innerHTML = `
+                    <div style="font-weight:700; font-size:12px;">⚠️ No registered user found with this email.</div>
+                    <div style="font-size:11px; margin-top:2px;">The student must sign up or register on OlympiadQuiz before free premium access can be granted.</div>
+                `;
+            }
+            return [];
+        }
+    } catch (err) {
+        console.error("Error looking up user:", err);
+        return null;
+    }
+};
+
+window.grantComplementaryAccess = async function() {
+    const emailInput = document.getElementById("compUserEmail");
+    const planSelect = document.getElementById("compPlanSelect");
+    const durSelect = document.getElementById("compDurationSelect");
+    const noteInput = document.getElementById("compGrantNote");
+    const submitBtn = document.getElementById("compSubmitGrantBtn");
+
+    const email = (emailInput?.value || "").trim().toLowerCase();
+    if (!email || !email.includes("@") || !email.includes(".")) {
+        window.showCompBanner("Please enter a valid registered user email address.", "danger");
+        emailInput?.focus();
+        return;
+    }
+
+    const tier = (planSelect?.value || "diamond").toLowerCase();
+    let days = 0;
+    if (durSelect?.value === "custom") {
+        days = parseInt(document.getElementById("compCustomDays")?.value || "0", 10);
+    } else {
+        days = parseInt(durSelect?.value || "365", 10);
+    }
+
+    if (days <= 0) {
+        window.showCompBanner("Please select or enter a valid duration (minimum 1 day).", "danger");
+        return;
+    }
+
+    const note = (noteInput?.value || "").trim();
+
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "⏳ Verifying & Granting Access...";
+    }
+
+    try {
+        const matchedUsers = await window.checkCompUserEmail(false);
+        if (!matchedUsers || matchedUsers.length === 0) {
+            window.showCompBanner(`No registered user found with email "${email}". Make sure the student has signed up on OlympiadQuiz first.`, "danger");
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "🎁 Grant Free Access";
+            }
+            return;
+        }
+
+        const expDate = new Date();
+        expDate.setDate(expDate.getDate() + days);
+        expDate.setHours(23, 59, 59, 999);
+        const expiresAtTimestamp = Timestamp.fromDate(expDate);
+
+        const currentAdminEmail = (auth && auth.currentUser && auth.currentUser.email) ? auth.currentUser.email : "madhhu52@gmail.com";
+
+        const updates = {
+            isPremium: true,
+            premiumTier: tier,
+            premiumStartedAt: serverTimestamp(),
+            premiumExpiresAt: expiresAtTimestamp,
+            isComplementary: true,
+            complementary: true,
+            complementaryTier: tier,
+            complementaryDurationDays: days,
+            complementaryNote: note,
+            complementaryGrantedAt: serverTimestamp(),
+            complementaryGrantedBy: currentAdminEmail,
+            razorpaySubscriptionId: `COMPLEMENTARY_${tier.toUpperCase()}`,
+            premiumCancelledAt: null,
+        };
+
+        for (const u of matchedUsers) {
+            await setDoc(doc(db, "users", u.id), updates, { merge: true });
+        }
+
+        const primaryUser = matchedUsers[0];
+        try {
+            await addDoc(collection(db, "complementary_grants"), {
+                uid: primaryUser.id,
+                email: email,
+                studentName: primaryUser.name || primaryUser.fullName || primaryUser.displayName || "Student",
+                phone: primaryUser.phone || primaryUser.mobile || primaryUser.phoneNumber || "",
+                class: primaryUser.class || primaryUser.studentClass || "",
+                tier: tier,
+                durationDays: days,
+                expiresAt: expiresAtTimestamp,
+                note: note,
+                grantedAt: serverTimestamp(),
+                grantedBy: currentAdminEmail,
+                status: "active"
+            });
+        } catch (logErr) {
+            console.warn("Could not log to complementary_grants:", logErr);
+        }
+
+        const expFormatted = expDate.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        const studentName = primaryUser.name || primaryUser.fullName || email;
+
+        window.showCompBanner(
+            `🎉 <b>Success!</b> Granted <b>${tier.toUpperCase()} Plan</b> to <b>${studentName}</b> (${email}). Access is active immediately until <b>${expFormatted}</b>!`,
+            "success"
+        );
+
+        if (emailInput) emailInput.value = "";
+        if (noteInput) noteInput.value = "";
+        const infoBox = document.getElementById("compUserInfoBox");
+        if (infoBox) infoBox.style.display = "none";
+        const badgeEl = document.getElementById("compUserCheckBadge");
+        if (badgeEl) badgeEl.style.display = "none";
+
+        await window.loadComplementaryAccessList();
+        if (typeof window.loadPremiumSubscriptions === "function") {
+            window.loadPremiumSubscriptions();
+        }
+
+    } catch (err) {
+        console.error("Error granting complementary access:", err);
+        window.showCompBanner(`Failed to grant access: ${err.message}`, "danger");
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "🎁 Grant Free Access";
+        }
+    }
+};
+
+window.showCompBanner = function(message, type = "success") {
+    const banner = document.getElementById("compStatusBanner");
+    if (!banner) return;
+    banner.style.display = "block";
+    if (type === "success") {
+        banner.style.background = "#f0fdf4";
+        banner.style.border = "1.5px solid #86efac";
+        banner.style.color = "#166534";
+    } else {
+        banner.style.background = "#fef2f2";
+        banner.style.border = "1.5px solid #fca5a5";
+        banner.style.color = "#991b1b";
+    }
+    banner.innerHTML = message;
+    banner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+};
+
+window.loadComplementaryAccessList = async function() {
+    const tbody = document.getElementById("complementaryGrantsTable");
+    if (!tbody) return;
+    tbody.innerHTML = "<tr><td colspan='7' style='text-align:center; padding:20px;'>Loading complimentary directory...</td></tr>";
+
+    try {
+        const snap = await getDocs(collection(db, "users"));
+        const list = [];
+        const seenEmails = new Set();
+
+        snap.forEach(docSnap => {
+            const data = docSnap.data();
+            const isComp = data.isComplementary === true ||
+                data.complementary === true ||
+                (typeof data.razorpaySubscriptionId === "string" && data.razorpaySubscriptionId.startsWith("COMPLEMENTARY"));
+            if (!isComp) return;
+
+            const email = (data.email || data.userEmail || "").trim().toLowerCase();
+            const key = email || docSnap.id;
+            if (!seenEmails.has(key)) {
+                seenEmails.add(key);
+                list.push({ uid: docSnap.id, ...data });
+            }
+        });
+
+        try {
+            const grantSnap = await getDocs(collection(db, "complementary_grants"));
+            grantSnap.forEach(gSnap => {
+                const gData = gSnap.data();
+                const gEmail = (gData.email || "").trim().toLowerCase();
+                if (gEmail && !seenEmails.has(gEmail)) {
+                    seenEmails.add(gEmail);
+                    list.push({
+                        uid: gData.uid || gSnap.id,
+                        email: gEmail,
+                        name: gData.studentName || "Student",
+                        phone: gData.phone || "",
+                        premiumTier: gData.tier || "diamond",
+                        premiumExpiresAt: gData.expiresAt || null,
+                        premiumStartedAt: gData.grantedAt || null,
+                        complementaryNote: gData.note || "",
+                        complementaryGrantedBy: gData.grantedBy || "admin",
+                        isPremium: (gData.expiresAt && gData.expiresAt.toMillis ? gData.expiresAt.toMillis() > Date.now() : true)
+                    });
+                }
+            });
+        } catch (e) {
+            console.warn("complementary_grants collection query skipped:", e);
+        }
+
+        list.sort((a, b) => {
+            const ta = a.complementaryGrantedAt?.toDate ? a.complementaryGrantedAt.toDate().getTime() : (a.premiumStartedAt?.toDate ? a.premiumStartedAt.toDate().getTime() : 0);
+            const tb = b.complementaryGrantedAt?.toDate ? b.complementaryGrantedAt.toDate().getTime() : (b.premiumStartedAt?.toDate ? b.premiumStartedAt.toDate().getTime() : 0);
+            return tb - ta;
+        });
+
+        compAllGrants = list;
+        window.renderComplementaryTable(list);
+
+    } catch (err) {
+        console.error("Error loading complementary grants:", err);
+        tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color:var(--danger); padding:20px;'>Error: ${err.message}</td></tr>`;
+    }
+};
+
+window.filterComplementaryTable = function() {
+    const q = (document.getElementById("compSearchInput")?.value || "").trim().toLowerCase();
+    const planFilter = (document.getElementById("compFilterPlan")?.value || "").toLowerCase();
+    const statusFilter = (document.getElementById("compFilterStatus")?.value || "").toLowerCase();
+
+    const filtered = compAllGrants.filter(item => {
+        const name = (item.name || item.fullName || item.displayName || "Student").toLowerCase();
+        const email = (item.email || "").toLowerCase();
+        const note = (item.complementaryNote || "").toLowerCase();
+        const tier = (item.premiumTier || "").toLowerCase();
+
+        const expiresMs = item.premiumExpiresAt?.toMillis ? item.premiumExpiresAt.toMillis() : (item.premiumExpiresAt?.seconds ? item.premiumExpiresAt.seconds * 1000 : 0);
+        const isActive = item.isPremium === true && (expiresMs === 0 || expiresMs > Date.now());
+
+        if (q && !name.includes(q) && !email.includes(q) && !note.includes(q)) return false;
+        if (planFilter && tier !== planFilter) return false;
+        if (statusFilter === "active" && !isActive) return false;
+        if (statusFilter === "expired" && isActive) return false;
+
+        return true;
+    });
+
+    window.renderComplementaryTable(filtered);
+};
+
+window.renderComplementaryTable = function(grants) {
+    const tbody = document.getElementById("complementaryGrantsTable");
+    if (!tbody) return;
+
+    let activeCount = 0;
+    let diamondCount = 0;
+
+    compAllGrants.forEach(g => {
+        const expiresMs = g.premiumExpiresAt?.toMillis ? g.premiumExpiresAt.toMillis() : (g.premiumExpiresAt?.seconds ? g.premiumExpiresAt.seconds * 1000 : 0);
+        const isActive = g.isPremium === true && (expiresMs === 0 || expiresMs > Date.now());
+        if (isActive) activeCount++;
+        if ((g.premiumTier || "").toLowerCase() === "diamond") diamondCount++;
+    });
+
+    const statTotal = document.getElementById("compStatTotal");
+    const statActive = document.getElementById("compStatActive");
+    const statDiamond = document.getElementById("compStatDiamond");
+    if (statTotal) statTotal.textContent = `Total Granted: ${compAllGrants.length}`;
+    if (statActive) statActive.textContent = `Active Free Students: ${activeCount}`;
+    if (statDiamond) statDiamond.textContent = `Diamond VIPs: ${diamondCount}`;
+
+    if (!grants || grants.length === 0) {
+        tbody.innerHTML = `<tr><td colspan='7' style='text-align:center; color:var(--muted); padding:25px;'>No matching complimentary grants found.</td></tr>`;
+        return;
+    }
+
+    const now = Date.now();
+    let html = "";
+
+    grants.forEach(item => {
+        const name = item.name || item.fullName || item.displayName || "Student";
+        const email = (item.email || "N/A").trim();
+        const phone = (item.phone || item.mobile || "").trim();
+        const grade = item.class || item.studentClass || "";
+        const tier = (item.premiumTier || "diamond").toLowerCase();
+
+        const expiresMs = item.premiumExpiresAt?.toMillis ? item.premiumExpiresAt.toMillis() : (item.premiumExpiresAt?.seconds ? item.premiumExpiresAt.seconds * 1000 : 0);
+        const isActive = item.isPremium === true && (expiresMs === 0 || expiresMs > now);
+
+        const expFormatted = expiresMs ? new Date(expiresMs).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "Permanent / Lifetime";
+        const grantDate = item.complementaryGrantedAt?.toDate ? item.complementaryGrantedAt.toDate().toLocaleDateString("en-GB") : (item.premiumStartedAt?.toDate ? item.premiumStartedAt.toDate().toLocaleDateString("en-GB") : "N/A");
+        const grantedBy = item.complementaryGrantedBy || "admin";
+        const note = item.complementaryNote || "";
+
+        let daysRemainingText = "";
+        if (isActive) {
+            if (!expiresMs) {
+                daysRemainingText = "∞ Permanent";
+            } else {
+                const diffDays = Math.ceil((expiresMs - now) / (1000 * 60 * 60 * 24));
+                daysRemainingText = `${diffDays} days remaining`;
+            }
+        }
+
+        const tierMeta = {
+            diamond: { label: "💎 Diamond", color: "#0284c7", bg: "#e0f2fe" },
+            gold:    { label: "🥇 Gold",    color: "#c2410c", bg: "#fff7ed" },
+            silver:  { label: "🥈 Silver",  color: "#475569", bg: "#f1f5f9" }
+        }[tier] || { label: tier.toUpperCase(), color: "#6d28d9", bg: "#ede9fe" };
+
+        html += `
+            <tr style="border-bottom: 1px solid var(--border);">
+                <td>
+                    <b>${name}</b>
+                    ${grade ? `<div style="font-size:11px; color:var(--muted);">Class ${grade}</div>` : ''}
+                </td>
+                <td>
+                    <div style="font-size:12px;">✉️ ${email}</div>
+                    ${phone ? `<div style="font-size:11px; color:var(--muted);">📞 ${phone}</div>` : ''}
+                </td>
+                <td>
+                    <span style="background:${tierMeta.bg}; color:${tierMeta.color}; padding:4px 10px; border-radius:12px; font-size:11.5px; font-weight:800; display:inline-block; border:1px solid rgba(0,0,0,0.06);">
+                        ${tierMeta.label}
+                    </span>
+                    <span style="background:#ede9fe; color:#6d28d9; padding:2px 7px; border-radius:10px; font-size:10px; font-weight:800; margin-left:4px; border:1px solid #ddd6fe;">🎁 Free</span>
+                </td>
+                <td>
+                    ${isActive
+                        ? `<div><span style="color:#15803d; font-weight:800;">● Active</span></div>
+                           <div style="font-size:11px; color:var(--muted); margin-top:2px;">Till ${expFormatted} (${daysRemainingText})</div>`
+                        : `<div><span style="color:var(--danger); font-weight:800;">○ Expired / Revoked</span></div>
+                           <div style="font-size:11px; color:var(--muted); margin-top:2px;">Ended: ${expFormatted}</div>`}
+                </td>
+                <td>
+                    <div style="font-size:12px;">${grantDate}</div>
+                    <div style="font-size:10.5px; color:var(--muted);">${grantedBy}</div>
+                </td>
+                <td>
+                    <div style="font-size:11.5px; color:${note ? 'var(--text)' : 'var(--muted)'}; max-width:180px; word-break:break-word;">
+                        ${note || '—'}
+                    </div>
+                </td>
+                <td style="text-align:right; white-space:nowrap;">
+                    <button type="button" class="upload" style="background:#0284c7; padding:5px 9px; font-size:11px; border-radius:6px; margin:0 3px 0 0;" onclick="window.extendComplementaryAccess('${item.uid}', '${email}', 30)" title="Add 30 days">+30d</button>
+                    <button type="button" class="upload" style="background:#8b5cf6; padding:5px 9px; font-size:11px; border-radius:6px; margin:0 3px 0 0;" onclick="window.extendComplementaryAccess('${item.uid}', '${email}', 365)" title="Add 1 year">+1y</button>
+                    ${isActive ? `<button type="button" class="delete" style="padding:5px 9px; font-size:11px; border-radius:6px; margin:0;" onclick="window.revokeComplementaryAccess('${item.uid}', '${email}')" title="Revoke access">Revoke</button>` : ''}
+                </td>
+            </tr>
+        `;
+    });
+
+    tbody.innerHTML = html;
+};
+
+window.revokeComplementaryAccess = async function(uid, email) {
+    if (!confirm(`Are you sure you want to REVOKE free premium access for ${email}? The user will immediately return to the free tier.`)) {
+        return;
+    }
+
+    try {
+        const currentAdminEmail = (auth && auth.currentUser && auth.currentUser.email) ? auth.currentUser.email : "madhhu52@gmail.com";
+        await setDoc(doc(db, "users", uid), {
+            isPremium: false,
+            premiumCancelledAt: serverTimestamp(),
+            complementaryRevokedAt: serverTimestamp(),
+            complementaryRevokedBy: currentAdminEmail
+        }, { merge: true });
+
+        window.showCompBanner(`Access revoked for ${email}. User is now on the Free tier.`, "danger");
+        await window.loadComplementaryAccessList();
+        if (typeof window.loadPremiumSubscriptions === "function") {
+            window.loadPremiumSubscriptions();
+        }
+    } catch (err) {
+        console.error("Error revoking complementary access:", err);
+        alert(`Failed to revoke access: ${err.message}`);
+    }
+};
+
+window.extendComplementaryAccess = async function(uid, email, daysToAdd) {
+    try {
+        const uSnap = await getDoc(doc(db, "users", uid));
+        if (!uSnap.exists()) {
+            alert("User document not found.");
+            return;
+        }
+
+        const data = uSnap.data();
+        let baseDate = new Date();
+        const existingExpiresMs = data.premiumExpiresAt?.toMillis ? data.premiumExpiresAt.toMillis() : (data.premiumExpiresAt?.seconds ? data.premiumExpiresAt.seconds * 1000 : 0);
+        if (existingExpiresMs && existingExpiresMs > Date.now()) {
+            baseDate = new Date(existingExpiresMs);
+        }
+
+        baseDate.setDate(baseDate.getDate() + daysToAdd);
+        baseDate.setHours(23, 59, 59, 999);
+        const newExpiryTimestamp = Timestamp.fromDate(baseDate);
+
+        await setDoc(doc(db, "users", uid), {
+            isPremium: true,
+            premiumExpiresAt: newExpiryTimestamp,
+            premiumCancelledAt: null,
+            complementaryExtendedAt: serverTimestamp()
+        }, { merge: true });
+
+        const dateFormatted = baseDate.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        window.showCompBanner(`Extended ${email} by +${daysToAdd} days! New expiry is <b>${dateFormatted}</b>.`, "success");
+        await window.loadComplementaryAccessList();
+        if (typeof window.loadPremiumSubscriptions === "function") {
+            window.loadPremiumSubscriptions();
+        }
+    } catch (err) {
+        console.error("Error extending complementary access:", err);
+        alert(`Failed to extend access: ${err.message}`);
     }
 };
 

@@ -299,3 +299,112 @@ exports.razorpayWebhook = onRequest({
     res.status(500).send("processing error");
   }
 });
+
+/**
+ * Admin-only callable. Grants free, complementary premium access to any registered user by email.
+ */
+exports.grantComplementaryPremium = onCall(async (request) => {
+  if (!request.auth || request.auth.token.email !== ADMIN_EMAIL) {
+    throw new HttpsError("permission-denied", "Admin only.");
+  }
+  const { email, tier, durationDays, note } = request.data || {};
+  if (!email) throw new HttpsError("invalid-argument", "Email is required.");
+  const cleanEmail = email.trim().toLowerCase();
+  const validTier = (tier || "diamond").toLowerCase();
+  if (!["silver", "gold", "diamond"].includes(validTier)) {
+    throw new HttpsError("invalid-argument", "Invalid tier.");
+  }
+
+  // Find user by email
+  const snap = await db.collection("users").where("email", "==", cleanEmail).get();
+  let userDocs = snap.docs;
+  if (userDocs.length === 0) {
+    const allUsersSnap = await db.collection("users").get();
+    userDocs = allUsersSnap.docs.filter(d => {
+      const u = d.data();
+      return (u.email && u.email.trim().toLowerCase() === cleanEmail) ||
+             (u.userEmail && u.userEmail.trim().toLowerCase() === cleanEmail);
+    });
+  }
+
+  if (userDocs.length === 0) {
+    throw new HttpsError("not-found", `No registered user found with email ${cleanEmail}.`);
+  }
+
+  const days = parseInt(durationDays, 10);
+  let premiumExpiresAt = null;
+  if (days > 0) {
+    const expDate = new Date();
+    expDate.setDate(expDate.getDate() + days);
+    expDate.setHours(23, 59, 59, 999);
+    premiumExpiresAt = admin.firestore.Timestamp.fromDate(expDate);
+  }
+
+  const updates = {
+    isPremium: true,
+    premiumTier: validTier,
+    premiumStartedAt: admin.firestore.FieldValue.serverTimestamp(),
+    premiumExpiresAt,
+    isComplementary: true,
+    complementary: true,
+    complementaryTier: validTier,
+    complementaryDurationDays: days || 0,
+    complementaryNote: note || "",
+    complementaryGrantedAt: admin.firestore.FieldValue.serverTimestamp(),
+    complementaryGrantedBy: request.auth.token.email,
+    razorpaySubscriptionId: `COMPLEMENTARY_${validTier.toUpperCase()}`,
+    premiumCancelledAt: null,
+  };
+
+  for (const docSnap of userDocs) {
+    await docSnap.ref.set(updates, { merge: true });
+  }
+
+  await db.collection("complementary_grants").add({
+    userId: userDocs[0].id,
+    email: cleanEmail,
+    userName: userDocs[0].data().name || userDocs[0].data().fullName || "Student",
+    phone: userDocs[0].data().phone || "",
+    tier: validTier,
+    durationDays: days || 0,
+    expiresAt: premiumExpiresAt,
+    note: note || "",
+    grantedAt: admin.firestore.FieldValue.serverTimestamp(),
+    grantedBy: request.auth.token.email,
+    status: "active",
+  });
+
+  return { success: true, count: userDocs.length, tier: validTier, expiresAt: premiumExpiresAt ? premiumExpiresAt.toMillis() : null };
+});
+
+/**
+ * Admin-only callable. Revokes complementary premium access.
+ */
+exports.revokeComplementaryPremium = onCall(async (request) => {
+  if (!request.auth || request.auth.token.email !== ADMIN_EMAIL) {
+    throw new HttpsError("permission-denied", "Admin only.");
+  }
+  const { email, uid } = request.data || {};
+  if (!email && !uid) throw new HttpsError("invalid-argument", "email or uid is required.");
+
+  let userDocs = [];
+  if (uid) {
+    const docSnap = await db.collection("users").doc(uid).get();
+    if (docSnap.exists) userDocs.push(docSnap);
+  } else {
+    const cleanEmail = email.trim().toLowerCase();
+    const snap = await db.collection("users").where("email", "==", cleanEmail).get();
+    userDocs = snap.docs;
+  }
+
+  for (const docSnap of userDocs) {
+    await docSnap.ref.set({
+      isPremium: false,
+      premiumCancelledAt: admin.firestore.FieldValue.serverTimestamp(),
+      complementaryRevokedAt: admin.firestore.FieldValue.serverTimestamp(),
+      complementaryRevokedBy: request.auth.token.email,
+    }, { merge: true });
+  }
+
+  return { success: true, count: userDocs.length };
+});
