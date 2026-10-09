@@ -359,6 +359,19 @@ const html = `<!DOCTYPE html>
     .answer-box .step { display: block; background: #f0fdfa; border-left: 3.5px solid var(--brand); padding: 8px 12px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: .88rem; }
     .answer-box .step-list { padding-left: 20px; font-size: .88rem; margin: 6px 0 10px; display: flex; flex-direction: column; gap: 4px; }
 
+    .answer-box table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; font-size: 0.88rem; }
+    .answer-box th, .answer-box td { padding: 9px 12px; border: 1px solid var(--border); text-align: left; }
+    .answer-box th { background: #f1f5f9; font-weight: 700; color: var(--navy); }
+
+    /* Defensive SVG and Fallback Layout Constraints */
+    svg { max-width: 100%; }
+    .q-toggle { display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; }
+    .q-toggle svg { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; }
+    .q-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; padding: 14px 18px; background: #fafafa; border-bottom: 1px solid #f1f5f9; }
+    .q-head .q-num { font-weight: 800; color: var(--brand-text); }
+    .q-head .q-text { font-weight: 700; color: var(--navy); flex: 1; font-size: 0.95rem; }
+    .q-head .q-marks { font-size: 0.75rem; font-weight: 700; color: var(--muted); }
+
     /* Marking Scheme */
     .marking-scheme { background: #fffbeb; border: 1px solid #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 10px 14px; font-size: .82rem; color: #92400e; margin-top: 12px; }
     .ms-title { font-weight: 750; display: block; margin-bottom: 4px; color: #b45309; }
@@ -482,7 +495,7 @@ ${allChapters[1]}
     function toggleQ(id) {
       const card = document.getElementById(id);
       if (card) {
-        const body = card.querySelector('.q-body');
+        const body = card.querySelector('.q-body') || card.querySelector('.q-answer');
         const icon = card.querySelector('.toggle-icon');
         if (body) {
           const isClosed = body.style.display === 'none';
