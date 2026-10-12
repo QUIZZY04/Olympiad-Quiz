@@ -455,7 +455,7 @@ const html = `<!DOCTYPE html>
     <div class="hero-badges">
       <div class="hero-badge">📘 Exploring Society: India and Beyond</div>
       <div class="hero-badge">✨ NEP 2020 &amp; NCF-SE Aligned</div>
-      <div class="hero-badge">🎯 100% Chapters Covered (14/14)</div>
+      <div class="hero-badge">🎯 100% Questions &amp; Activities Covered (14/14 Chapters · 138+ Qs)</div>
       <div class="hero-badge">📊 CBSE Step Marking Schemes</div>
     </div>
   </header>
