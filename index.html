@@ -207,6 +207,17 @@
                 </div>
             </div>
             <div class="nav-dropdown">
+                <a href="ncert-solutions.html" class="nav-link">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-content">
+                    <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+                    <a href="ncert-solutions.html#class6" style="font-weight:700;color:#7c3aed;">Class 6 Solutions (All 6 Subjects) ✨</a>
+                    <a href="ncert-solutions.html#class7">Class 7 Solutions</a>
+                    <a href="ncert-solutions.html#class8">Class 8 Solutions</a>
+                    <a href="ncert-solutions.html#class9">Class 9 Solutions</a>
+                    <a href="ncert-solutions.html#class10">Class 10 Solutions</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
                 <a href="#" class="nav-link">Students Zone <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                 <div class="nav-dropdown-content">
                     <a href="study.html">Study Material</a>
@@ -353,7 +364,7 @@
                         </div>
                         <div class="path-text">
                             <h3 style="color: #ffffff;">CBSE NCERT</h3>
-                            <p style="color: rgba(255, 255, 255, 0.95);">Class 8, 9 &amp; 10 Solutions</p>
+                            <p style="color: rgba(255, 255, 255, 0.95);">Class 6 to 10 Solutions</p>
                         </div>
                         <svg class="path-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: rgba(255, 255, 255, 0.85);"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
@@ -484,91 +495,224 @@
     </section>
 
 
-    <!-- ================= NCERT SOLUTIONS SECTION ================= -->
+        <!-- ================= NCERT SOLUTIONS SECTION ================= -->
     <section class="container" style="padding: 20px 0 60px 0;" id="ncert-solutions-section">
         <div class="section-header">
-            <h2>Free NCERT Solutions — <span class="text-orange">Class 8, 9 &amp; 10 (CBSE 2026-27)</span></h2>
-            <p>Complete chapter-wise NCERT solutions with maximum word-count answers as per CBSE marking scheme. Class 9 Social Science, Hindi, English, Science &amp; Maths (All 5 Subjects) and Class 8 all subjects covered with step-by-step guidance.</p>
+            <h2>Free NCERT Solutions — <span class="text-orange">Class 6, 7, 8, 9 &amp; 10 (CBSE 2026-27)</span></h2>
+            <p>Complete chapter-wise NCERT solutions with maximum word-count answers as per CBSE marking scheme. Class 6 (Ganita Prakash, Curiosity, Exploring Society, Poorvi, Malhar, Deepakam), Class 7, Class 8, Class 9 &amp; Class 10 all covered with 100% question solutions.</p>
         </div>
+        
+        <!-- Class Quick Navigation Pills -->
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;">
+            <button class="home-class-tab active" onclick="filterHomeNcert('all', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #7c3aed;background:#7c3aed;color:white;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🌟 All Classes</button>
+            <button class="home-class-tab" onclick="filterHomeNcert('c6', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📘 Class 6 (New 2026-27) ✨</button>
+            <button class="home-class-tab" onclick="filterHomeNcert('c10', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🎓 Class 10</button>
+            <button class="home-class-tab" onclick="filterHomeNcert('c9', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📕 Class 9</button>
+            <button class="home-class-tab" onclick="filterHomeNcert('c8', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📙 Class 8</button>
+            <button class="home-class-tab" onclick="filterHomeNcert('c7', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📗 Class 7</button>
+        </div>
+
         <div style="background:linear-gradient(135deg,#0f172a 0%,#4c1d95 100%);border-radius:24px;padding:36px 40px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;box-shadow:0 20px 50px rgba(15,23,42,0.25);">
             <div style="flex:1;min-width:260px;">
                 <div style="display:inline-block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:5px 14px;border-radius:20px;font-size:0.78rem;font-weight:700;color:#c4b5fd;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;">📚 CBSE Syllabus 2026-27</div>
                 <h3 style="font-size:1.8rem;font-weight:800;color:white;margin:0 0 10px 0;line-height:1.3;">NCERT Solutions Hub</h3>
-                <p style="color:#c4b5fd;font-size:0.95rem;margin:0 0 20px 0;line-height:1.6;">All questions solved with detailed explanations. Max word-count answers. CBSE board pattern with marking scheme.</p>
+                <p style="color:#c4b5fd;font-size:0.95rem;margin:0 0 20px 0;line-height:1.6;">All questions solved with detailed explanations. Max word-count answers. Official CBSE board marking scheme and NEP 2020 Competency-Based Questions.</p>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
                     <a href="ncert-solutions.html" style="background:#7c3aed;color:white;padding:12px 24px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:0.2s;" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">View All NCERT Solutions &#8594;</a>
+                    <a href="ncert-solutions.html#class6" style="background:rgba(255,255,255,0.15);color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.25);">Class 6 Solutions ✨</a>
                 </div>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;min-width:280px;">
-                <a href="ncert-solutions-class-9-english.html" style="background:rgba(2,132,199,0.3);border:1.5px solid #38bdf8;border-radius:12px;padding:12px 14px;text-decoration:none;transition:0.2s;grid-column:span 2;" onmouseover="this.style.background='rgba(2,132,199,0.45)'" onmouseout="this.style.background='rgba(2,132,199,0.3)'">
-                    <div style="display:flex;align-items:center;justify-content:space-between;">
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">📖</span>
-                            <div>
-                                <div style="color:white;font-weight:800;font-size:0.88rem;">Class 9 English (Beehive &amp; Moments) <span style="background:#38bdf8;color:#0c4a6e;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;margin-left:3px;">LIVE NOW</span></div>
-                                <div style="color:#bae6fd;font-size:0.72rem;">26 Units • Prose, Poetry &amp; Supplementary • 100% CBSE Marking</div>
-                            </div>
+            
+            <div id="homeNcertCardsGrid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:12px;flex:2;min-width:300px;max-width:800px;">
+                <!-- CLASS 6 CARDS -->
+                <a href="ncert-solutions-class-6-maths.html" class="home-ncert-card c6" style="background:rgba(124,58,237,0.35);border:1.5px solid #a78bfa;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📐</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 6 Maths (Ganita Prakash) <span style="background:#22c55e;color:#0f172a;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#ddd6fe;font-size:0.72rem;">10 Chapters • Step-by-Step Solutions</div>
                         </div>
-                        <span style="color:#bae6fd;font-weight:800;font-size:0.95rem;">&rarr;</span>
                     </div>
                 </a>
-                <a href="ncert-solutions-class-9-science.html" style="background:rgba(5,150,105,0.3);border:1.5px solid #34d399;border-radius:12px;padding:12px 14px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(5,150,105,0.45)'" onmouseout="this.style.background='rgba(5,150,105,0.3)'">
-                    <div style="display:flex;align-items:center;justify-content:space-between;">
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">🔬</span>
-                            <div>
-                                <div style="color:white;font-weight:800;font-size:0.88rem;">Class 9 Science <span style="background:#34d399;color:#064e3b;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;margin-left:3px;">LIVE NOW</span></div>
-                                <div style="color:#a7f3d0;font-size:0.72rem;">12 Ch • 100% Q&amp;A • CBSE Marking</div>
-                            </div>
+
+                <a href="ncert-solutions-class-6-science.html" class="home-ncert-card c6" style="background:rgba(5,150,105,0.35);border:1.5px solid #34d399;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🔬</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 6 Science (Curiosity) <span style="background:#34d399;color:#064e3b;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#a7f3d0;font-size:0.72rem;">12 Chapters • 100% Questions Solved</div>
                         </div>
-                        <span style="color:#a7f3d0;font-weight:800;font-size:0.95rem;">&rarr;</span>
                     </div>
                 </a>
-                <a href="ncert-solutions-class-9-maths.html" style="background:rgba(124,58,237,0.3);border:1.5px solid #a78bfa;border-radius:12px;padding:12px 14px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(124,58,237,0.45)'" onmouseout="this.style.background='rgba(124,58,237,0.3)'">
-                    <div style="display:flex;align-items:center;justify-content:space-between;">
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <span style="font-size:1.5rem;">📐</span>
-                            <div>
-                                <div style="color:white;font-weight:800;font-size:0.88rem;">Class 9 Maths <span style="background:#22c55e;color:#0f172a;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;margin-left:3px;">LIVE NOW</span></div>
-                                <div style="color:#ddd6fe;font-size:0.72rem;">14 Ch (Ganita Manjari) • Step-by-Step • Suggested Marks Distribution</div>
-                            </div>
+
+                <a href="ncert-solutions-class-6-sst.html" class="home-ncert-card c6" style="background:rgba(217,119,6,0.35);border:1.5px solid #fbbf24;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🌍</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 6 Social Science <span style="background:#f59e0b;color:#451a03;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#fde68a;font-size:0.72rem;">Exploring Society • All Units Solved</div>
                         </div>
-                        <span style="color:#c4b5fd;font-weight:800;font-size:0.95rem;">&rarr;</span>
                     </div>
                 </a>
-                <a href="ncert-solutions-class-8-maths.html" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 16px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-                    <div style="font-size:1.4rem;margin-bottom:6px;">📐</div>
-                    <div style="color:white;font-weight:700;font-size:0.88rem;">Class 8 Maths</div>
-                    <div style="color:#a78bfa;font-size:0.75rem;">14 Ch (Ganita Prakash)</div>
+
+                <a href="ncert-solutions-class-6-sanskrit.html" class="home-ncert-card c6" style="background:rgba(147,51,234,0.35);border:1.5px solid #c084fc;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🕉️</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 6 Sanskrit (दीपकम् - Deepakam) <span style="background:#c084fc;color:#3b0764;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#f3e8ff;font-size:0.72rem;">16 Ch Deepakam + 15 Ch Ruchira • 100% Solved</div>
+                        </div>
+                    </div>
                 </a>
-                <a href="ncert-solutions-class-8-science.html" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 16px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-                    <div style="font-size:1.4rem;margin-bottom:6px;">🔬</div>
-                    <div style="color:white;font-weight:700;font-size:0.88rem;">Class 8 Science</div>
-                    <div style="color:#a78bfa;font-size:0.75rem;">18 Chapters</div>
+
+                <a href="ncert-solutions-class-6-english.html" class="home-ncert-card c6" style="background:rgba(2,132,199,0.35);border:1.5px solid #38bdf8;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📖</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 6 English (Poorvi) <span style="background:#38bdf8;color:#082f49;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#bae6fd;font-size:0.72rem;">13 Units • Prose, Poetry &amp; Grammar</div>
+                        </div>
+                    </div>
                 </a>
-                <a href="ncert-solutions-class-8-sst.html" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 16px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-                    <div style="font-size:1.4rem;margin-bottom:6px;">🌍</div>
-                    <div style="color:white;font-weight:700;font-size:0.88rem;">Social Science</div>
-                    <div style="color:#a78bfa;font-size:0.75rem;">19 Chapters</div>
+
+                <a href="ncert-solutions-class-6-hindi.html" class="home-ncert-card c6" style="background:rgba(234,88,12,0.35);border:1.5px solid #fb923c;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🇮🇳</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 6 Hindi (मल्हार - Malhar) <span style="background:#f97316;color:#431407;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#fed7aa;font-size:0.72rem;">17 Ch • सरल हिंदी व्याख्या व प्रश्नोत्तर</div>
+                        </div>
+                    </div>
                 </a>
-                <a href="ncert-solutions-class-8-english.html" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 16px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-                    <div style="font-size:1.4rem;margin-bottom:6px;">🇬🇧</div>
-                    <div style="color:white;font-weight:700;font-size:0.88rem;">Class 8 English</div>
-                    <div style="color:#a78bfa;font-size:0.75rem;">28 Chapters</div>
+
+                <!-- CLASS 10 CARDS -->
+                <a href="ncert-solutions-class-10-maths.html" class="home-ncert-card c10" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📐</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 10 Mathematics</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">14 Chapters • Complete Step Proofs</div>
+                        </div>
+                    </div>
                 </a>
-                <a href="ncert-solutions-class-8-hindi.html" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 16px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-                    <div style="font-size:1.4rem;margin-bottom:6px;">📖</div>
-                    <div style="color:white;font-weight:700;font-size:0.88rem;">Class 8 Hindi</div>
-                    <div style="color:#a78bfa;font-size:0.75rem;">36 Chapters</div>
+
+                <a href="ncert-solutions-class-10-science.html" class="home-ncert-card c10" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🔬</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 10 Science</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">13 Chapters • Physics, Chem, Bio</div>
+                        </div>
+                    </div>
                 </a>
-                <a href="ncert-solutions-class-8-sanskrit.html" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 16px;text-decoration:none;transition:0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.08)'">
-                    <div style="font-size:1.4rem;margin-bottom:6px;">🕉️</div>
-                    <div style="color:white;font-weight:700;font-size:0.88rem;">Class 8 Sanskrit</div>
-                    <div style="color:#a78bfa;font-size:0.75rem;">15 Chapters</div>
+
+                <a href="ncert-solutions-class-10-social-science.html" class="home-ncert-card c10" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🌍</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 10 Social Science</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">History, Geo, Civics &amp; Eco</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 9 CARDS -->
+                <a href="ncert-solutions-class-9-maths.html" class="home-ncert-card c9" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📐</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 9 Maths (Ganita Manjari)</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">14 Chapters • Step Marking</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-9-science.html" class="home-ncert-card c9" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🔬</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 9 Science</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">12 Chapters • 100% Q&amp;A</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-9-english.html" class="home-ncert-card c9" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📖</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 9 English</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">Beehive &amp; Moments (26 Units)</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 8 CARDS -->
+                <a href="ncert-solutions-class-8-maths.html" class="home-ncert-card c8" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📐</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 8 Maths</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">14 Ch (Ganita Prakash)</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-8-science.html" class="home-ncert-card c8" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🔬</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 8 Science</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">18 Chapters • Full Solutions</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CLASS 7 CARDS -->
+                <a href="ncert-solutions-class-7-maths.html" class="home-ncert-card c7" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📐</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 7 Maths</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">13 Chapters • Step-by-Step</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-7-science.html" class="home-ncert-card c7" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🔬</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 7 Science</div>
+                            <div style="color:#a78bfa;font-size:0.72rem;">13 Chapters • Complete Solutions</div>
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>
     </section>
+
+    <script>
+        function filterHomeNcert(cls, btn) {
+            document.querySelectorAll('.home-class-tab').forEach(b => {
+                b.style.background = 'white';
+                b.style.color = '#334155';
+                b.style.borderColor = '#cbd5e1';
+            });
+            btn.style.background = '#7c3aed';
+            btn.style.color = 'white';
+            btn.style.borderColor = '#7c3aed';
+
+            const cards = document.querySelectorAll('.home-ncert-card');
+            cards.forEach(card => {
+                if (cls === 'all' || card.classList.contains(cls)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
     <!-- ================= BLOG SECTION ================= -->
     <section class="blog-section container">
