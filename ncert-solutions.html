@@ -753,6 +753,7 @@
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
           <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub</a>
+          <a href="ncert-solutions.html#class5">Class 5</a>
           <a href="ncert-solutions.html#class6">Class 6</a>
           <a href="ncert-solutions.html#class7">Class 7</a>
           <a href="ncert-solutions.html#class8">Class 8</a>
@@ -814,6 +815,7 @@
         <div class="select-wrapper">
           <select class="custom-select" id="classSelect" onchange="onClassChange()" aria-label="Select Class">
             <option value="" disabled selected>-- Choose Class --</option>
+            <option value="5">Class 5</option>
             <option value="6">Class 6</option>
             <option value="7">Class 7</option>
             <option value="8">Class 8</option>
@@ -912,8 +914,9 @@
           <span class="faq-chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
         </summary>
         <div class="faq-answer">
-          <p>OlympiadQuiz offers comprehensive, 100% textbook question coverage for <strong>Classes 6, 7, 8, 9, and 10</strong> across all core CBSE subjects:</p>
+          <p>OlympiadQuiz offers comprehensive, 100% textbook question coverage for <strong>Classes 5, 6, 7, 8, 9, and 10</strong> across all core CBSE subjects:</p>
           <ul>
+            <li><strong>Class 5:</strong> Mathematics (New NCERT Maths Mela — All 15 Chapters strictly covered &amp; Math-Magic — All 14 Chapters with diagrams and CBSE rubrics).</li>
             <li><strong>Class 6:</strong> Mathematics (Ganita Prakash), Science (Curiosity), Social Science (Exploring Society: India and Beyond), English (Poorvi), Hindi (Vasant भाग-1 — All 17 Chapters strictly covered with CBSE rubrics), and Sanskrit (Ruchira भाग-1 — All 15 Chapters strictly covered with CBSE rubrics).</li>
             <li><strong>Class 7:</strong> Mathematics, Science (Curiosity), Social Science (Our Pasts II, Our Environment, Social &amp; Political Life II), English (Honeycomb &amp; An Alien Hand), and Hindi (Vasant, Bal Mahabharat Katha, Durva).</li>
             <li><strong>Class 8:</strong> Mathematics, Science, Social Science (Our Pasts III, Resources &amp; Development, Social &amp; Political Life III), English (Honeydew &amp; It So Happened), Hindi (Vasant &amp; Bharat Ki Khoj), and Sanskrit (Ruchira Bhag-3).</li>
@@ -1041,6 +1044,12 @@
 
   // Data mapping: Class -> Available Subjects with URLs
   const ncertSolutionsMap = {
+    "5": {
+      name: "Class 5",
+      subjects: [
+        { name: "Mathematics (Maths Mela & Math-Magic)", url: "ncert-solutions-class-5-maths.html" }
+      ]
+    },
     "6": {
       name: "Class 6",
       subjects: [
@@ -1234,7 +1243,8 @@
   function initFromHash() {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     let classVal = '';
-    if (hash === 'class6' || hash === '6') classVal = '6';
+    if (hash === 'class5' || hash === '5') classVal = '5';
+    else if (hash === 'class6' || hash === '6') classVal = '6';
     else if (hash === 'class7' || hash === '7') classVal = '7';
     else if (hash === 'class8' || hash === '8') classVal = '8';
     else if (hash === 'class9' || hash === '9') classVal = '9';
