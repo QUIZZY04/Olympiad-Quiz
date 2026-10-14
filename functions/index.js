@@ -202,7 +202,7 @@ exports.sendBulkEmail = onCall({
     throw new HttpsError("permission-denied", "You must be an admin to perform this action.");
   }
 
-  const { subject, htmlContent, targetEmails, extraContacts, consentAttested } = request.data;
+  const { subject, htmlContent, targetEmails, extraContacts, consentAttested, targetAudience, targetClasses, activeWithinDays } = request.data;
 
   // Strict email validator — Brevo rejects anything that doesn't match RFC format
   const isValidEmail = (email) => {
@@ -210,6 +210,13 @@ exports.sendBulkEmail = onCall({
     const trimmed = email.trim();
     // Must be non-empty, contain exactly one @, no spaces, and match basic RFC pattern
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed);
+  };
+
+  // Helper to extract numeric class (1-12)
+  const extractClassNum = (raw) => {
+    if (raw === undefined || raw === null || raw === "") return null;
+    const num = parseInt(String(raw).replace(/\D/g, ""), 10);
+    return (!isNaN(num) && num >= 1 && num <= 12) ? num : null;
   };
 
   // 2. Input Validation
@@ -228,7 +235,7 @@ exports.sendBulkEmail = onCall({
     );
   }
 
-  console.log("Starting bulk email process...");
+  console.log("Starting bulk email process... Target Audience:", targetAudience || (targetEmails?.length ? "custom_emails" : "all"));
 
   try {
     // 3. Fetch and clean email list using pagination to avoid memory overflow
@@ -243,6 +250,79 @@ exports.sendBulkEmail = onCall({
           console.warn(`Skipping invalid email from targetEmails: "${trimmed}"`);
         }
       });
+    } else if (targetAudience === "active_class_1_10" || targetAudience === "all_class_1_10") {
+      const allowedClasses = Array.isArray(targetClasses) && targetClasses.length > 0
+        ? targetClasses.map(Number)
+        : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      const days = Number(activeWithinDays) || 30;
+      const cutoffTime = Date.now() - (days * 24 * 60 * 60 * 1000);
+      const isOnlyActive = targetAudience === "active_class_1_10";
+
+      // 1. Gather active UIDs/emails from leaderboard if active-only
+      const activeKeys = new Set();
+      if (isOnlyActive) {
+        try {
+          const lbSnap = await db.collection("leaderboard").orderBy("date", "desc").limit(2000).get();
+          lbSnap.forEach((d) => {
+            const data = d.data();
+            const dateVal = data.date || data.timestamp || data.createdAt;
+            let timeMs = 0;
+            if (dateVal && typeof dateVal.toMillis === "function") timeMs = dateVal.toMillis();
+            else if (dateVal && typeof dateVal.toDate === "function") timeMs = dateVal.toDate().getTime();
+            else if (dateVal && dateVal.seconds) timeMs = dateVal.seconds * 1000;
+            else if (typeof dateVal === "number") timeMs = dateVal;
+
+            if (timeMs >= cutoffTime || days >= 3650) {
+              if (data.email) activeKeys.add(data.email.trim().toLowerCase());
+              if (data.uid) activeKeys.add(data.uid);
+            }
+          });
+        } catch (lbErr) {
+          console.warn("Could not query leaderboard for active students:", lbErr.message);
+        }
+      }
+
+      // 2. Query users collection and filter by class and activity
+      let lastDoc = null;
+      let hasMore = true;
+
+      while (hasMore) {
+        let usersQuery = db.collection("users").limit(500);
+        if (lastDoc) {
+          usersQuery = usersQuery.startAfter(lastDoc);
+        }
+        const snapshot = await usersQuery.get();
+        if (snapshot.empty) break;
+
+        snapshot.docs.forEach((doc) => {
+          const u = doc.data();
+          if (u.email_consent === false) return;
+          const email = (u.email || "").trim().toLowerCase();
+          if (!isValidEmail(email)) return;
+
+          const cls = extractClassNum(u.class ?? u.studentClass ?? u.grade);
+          if (cls !== null && !allowedClasses.includes(cls)) return;
+
+          if (isOnlyActive) {
+            let userTimeMs = 0;
+            const dt = u.lastLogin || u.lastActive || u.updatedAt || u.createdAt;
+            if (dt && typeof dt.toMillis === "function") userTimeMs = dt.toMillis();
+            else if (dt && typeof dt.toDate === "function") userTimeMs = dt.toDate().getTime();
+            else if (dt && dt.seconds) userTimeMs = dt.seconds * 1000;
+            else if (typeof dt === "number") userTimeMs = dt;
+
+            const hasRecentLogin = userTimeMs >= cutoffTime;
+            const hasRecentQuiz = activeKeys.has(email) || activeKeys.has(doc.id);
+            const hasTests = (Number(u.testsTaken) > 0 || Number(u.quizzesTaken) > 0);
+
+            if (!hasRecentLogin && !hasRecentQuiz && !hasTests) return;
+          }
+
+          uniqueEmails.add(email);
+        });
+
+        lastDoc = snapshot.docs[snapshot.docs.length - 1];
+      }
     } else {
       let lastDoc = null;
       let hasMore = true;
