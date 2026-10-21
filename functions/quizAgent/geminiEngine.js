@@ -6,6 +6,7 @@
  * Matching the exact structure of previous Olympiad Live Quizzes (e.g. 27 Sept 2026).
  */
 
+const crypto = require("crypto");
 const { getTopicsForClass, SUBJECT_DETAILS } = require("./syllabus");
 
 const GEMINI_MODELS = [
@@ -70,6 +71,82 @@ function countWords(str) {
   return String(str || "").trim().split(/\s+/).filter(Boolean).length;
 }
 
+/**
+ * Normalizes question text into a stable "template" signature for duplicate
+ * detection: strips digits/currency/punctuation and collapses whitespace, so
+ * two questions that are the same template with different numbers plugged in
+ * (a common LLM failure mode) still collide instead of slipping through as
+ * "different" questions.
+ */
+function normalizeForFingerprint(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/[0-9]+/g, "#")
+    .replace(/[^\w\s#]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function fingerprintOf(text) {
+  return crypto.createHash("sha1").update(normalizeForFingerprint(text)).digest("hex");
+}
+
+/**
+ * Exact integer type-count quota (not a percentage hint the model can drift
+ * from) so the type mix is something we can verify after generation rather
+ * than only ask for.
+ */
+function computeTypeQuota(total, ratios) {
+  const scq = Math.round(total * ratios.SCQ);
+  const sbq = Math.round(total * ratios.SBQ);
+  const arq = Math.max(0, total - scq - sbq);
+  return { SCQ: scq, SBQ: sbq, ARQ: arq };
+}
+
+/**
+ * Concrete, class-band-calibrated difficulty guidance (replacing vague
+ * "Standard to Advanced" / "Ultra High" adjectives) anchored to how real SOF
+ * Olympiad papers scale difficulty by grade band and section.
+ */
+function getDifficultyGuidance(classNum, isAchiever) {
+  const c = parseInt(classNum, 10);
+  const band = c <= 2 ? "lower-primary (Class 1-2)" : c <= 5 ? "upper-primary (Class 3-5)" : c <= 8 ? "middle school (Class 6-8)" : "secondary (Class 9-10)";
+
+  const regularByBand = {
+    "lower-primary (Class 1-2)": "match SOF Olympiad Level-1 difficulty for this band: direct application of one concept, but phrased so the student must read carefully and extract the right numbers/relationship rather than spot the answer instantly.",
+    "upper-primary (Class 3-5)": "match SOF Olympiad Level-1 difficulty for this band: a full word-problem requiring one clear multi-step calculation (not a one-line fact lookup), consistent with real SOF IMO/NSO paper questions at this grade.",
+    "middle school (Class 6-8)": "match SOF Olympiad Level-1 difficulty for this band: requires combining two steps or two related concepts from the syllabus, at the level of actual SOF Level-1 exam papers (not textbook-exercise-easy).",
+    "secondary (Class 9-10)": "match SOF Olympiad Level-1 difficulty for this band: genuine multi-step application requiring correct setup before computation, at the level of real SOF IMO/NSO Level-1 papers - harder than a standard school test question."
+  };
+
+  const achieverByBand = {
+    "lower-primary (Class 1-2)": "match SOF Achievers/HOTS section difficulty: a 2-step chain of reasoning (e.g. combine two operations or two pieces of given information) - clearly harder than anything in the Regular section, but still age-appropriate.",
+    "upper-primary (Class 3-5)": "match SOF Achievers/HOTS section difficulty: multi-step reasoning across 2-3 operations or combined concepts (e.g. geometry + arithmetic, or a logic puzzle requiring elimination) - the level reserved for top-ranking SOF students.",
+    "middle school (Class 6-8)": "match SOF Level-2 / Achievers difficulty: cross-topic problems combining two syllabus chapters, non-routine setups the student hasn't seen as a worked example, requiring genuine deduction rather than formula substitution.",
+    "secondary (Class 9-10)": "match SOF Level-2 difficulty: problems that would challenge students scoring in the top 10-15% - combined concepts, non-obvious setup, and at least one step that isn't a direct formula application."
+  };
+
+  return isAchiever ? achieverByBand[band] : regularByBand[band];
+}
+
+/**
+ * Heuristic: does this question's topic/text imply a visual (diagram, clock
+ * face, number line, graph, pattern grid) that the question can't be solved
+ * without? If so, `svg_data` MUST be present and valid - this is exactly the
+ * "references a chart that was never attached" defect class found auditing
+ * the live database, and this check stops new occurrences of it at
+ * generation time instead of discovering them after they've gone live.
+ */
+const DIAGRAM_KEYWORDS = /shape|geometr|clock|angle|triangle|circle|square|rectangle|polygon|quadrilateral|graph|chart|pictograph|bar\s*graph|number\s*line|pattern|grid|diagram|figure\s*(shown|given|below)|image\s*(shown|given|below)|picture\s*(shown|given|below)|shown\s*below|given\s*below|study\s*the|observe\s*the|look\s*at\s*the/i;
+
+function questionNeedsDiagram(questionText, topicName) {
+  return DIAGRAM_KEYWORDS.test(questionText) || DIAGRAM_KEYWORDS.test(topicName || "");
+}
+
+function isPlausibleSvg(svgData) {
+  return typeof svgData === "string" && /<svg[\s>]/i.test(svgData) && /<\/svg>/i.test(svgData);
+}
+
 function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, index, isAchiever = false) {
   if (!qObj || typeof qObj !== "object") {
     throw new Error(`Item ${index + 1} is not a valid question object.`);
@@ -125,6 +202,10 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
   if (o.length !== 4 || o.some(opt => opt.length === 0)) {
     throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") does not have exactly 4 non-empty options.`);
   }
+  const normalizedOptionSet = new Set(o.map(opt => opt.toLowerCase().replace(/\s+/g, " ").trim()));
+  if (normalizedOptionSet.size !== o.length) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") has duplicate option values.`);
+  }
 
   // Answer index: 0, 1, 2, or 3
   let a = parseInt(qObj.a != null ? qObj.a : qObj.answer, 10);
@@ -153,6 +234,12 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
 
   // Inline SVG / images
   const svgData = String(qObj.svg_data || "").trim();
+  if (svgData && !isPlausibleSvg(svgData)) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") has svg_data that isn't valid SVG markup.`);
+  }
+  if (!svgData && questionNeedsDiagram(q)) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") appears to need a diagram/chart but svg_data is empty - unsolvable as text-only.`);
+  }
   const imageName = svgData ? `svg_inline_${padIndex}` : String(qObj.image_name || "").trim();
   const imageDescription = String(qObj.image_description || "").trim();
 
@@ -389,43 +476,135 @@ async function callAIRaw({ openAIKey, geminiKey, prompt }) {
   throw new Error("No API key available - provide an OpenAI or Gemini API key.");
 }
 
+const ANSWER_LETTERS = ["A", "B", "C", "D"];
+const VERIFY_CHUNK_SIZE = 12;
+
+/**
+ * Independently re-solves a batch of already-generated questions (blind to
+ * which option is currently marked correct) and returns the subset whose
+ * stored answer the verifier disagrees with. This is the step that was
+ * completely missing before: validateAndNormalizeQuestion only checks shape
+ * (4 options, valid index 0-3), never whether the marked answer is actually
+ * right. Mismatches are dropped by the caller and regenerated rather than
+ * auto-corrected, since a same-tier AI's second opinion isn't trustworthy
+ * enough to silently overwrite an answer - only to veto one.
+ */
+async function verifyAnswers({ openAIKey, geminiKey, questions, subject }) {
+  const mismatchedIds = new Set();
+
+  for (let i = 0; i < questions.length; i += VERIFY_CHUNK_SIZE) {
+    const chunk = questions.slice(i, i + VERIFY_CHUNK_SIZE);
+    const prompt = `You are an independent answer-key verifier for a ${subject} Olympiad exam. Below are ${chunk.length} multiple-choice questions. For EACH one, solve it completely from scratch - do NOT assume any option is already correct, work out the real answer yourself first.
+
+${chunk.map((q, idx) => `${idx + 1}. [id: ${q.id}]\n${q.q}\nA) ${q.o[0]}\nB) ${q.o[1]}\nC) ${q.o[2]}\nD) ${q.o[3]}`).join("\n\n")}
+
+Return ONLY a raw JSON array (no markdown), one object per question, in this exact shape:
+[{"id": "<the id given above>", "correct_option": "A"|"B"|"C"|"D"}]`;
+
+    try {
+      const raw = await callAIRaw({ openAIKey, geminiKey, prompt });
+      const byId = new Map(questions.map(q => [q.id, q]));
+      for (const entry of raw) {
+        const q = byId.get(entry && entry.id);
+        if (!q) continue;
+        const letter = String(entry.correct_option || "").trim().toUpperCase();
+        const verifiedIndex = ANSWER_LETTERS.indexOf(letter);
+        if (verifiedIndex === -1) continue; // unparseable verdict - don't penalize the question for that
+        if (verifiedIndex !== q.a) mismatchedIds.add(q.id);
+      }
+    } catch (err) {
+      console.warn(`Answer verification chunk failed (${err.message}) - skipping verification for this chunk rather than blocking generation.`);
+    }
+
+    await new Promise(r => setTimeout(r, 800));
+  }
+
+  return mismatchedIds;
+}
+
 /**
  * Generate 40 Regular Questions (1 mark each).
  * Word count: Class 1-5 => 30 words min, Class 6-10 => 40 words min.
  * 30% numerical, SVG where the topic needs one, every topic covered.
  */
-async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 40, dateCompact = "" }) {
+async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 40, dateCompact = "", db = null, seenFingerprints = new Set() }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
   const minWords = getMinWords(classNum, false);
   const targetCount = 40;
+  const difficultyGuidance = getDifficultyGuidance(classNum, false);
 
   let collected = [];
 
+  /**
+   * Accepts valid, non-duplicate items from a raw AI batch into `collected`.
+   * Duplicate detection runs against both this run's own fingerprints
+   * (`seenFingerprints`, shared across regular+achiever for this class so the
+   * same question can't appear twice in one paper) and, when `db` is
+   * provided, against every fingerprint ever published for this class+subject
+   * (so a question can't repeat week over week either).
+   */
+  async function acceptValidatedItems(rawArray, startIndex) {
+    const valid = [];
+    for (let i = 0; i < rawArray.length; i++) {
+      let item;
+      try {
+        item = validateAndNormalizeQuestion(rawArray[i], classNum, subject, dateCompact, startIndex + valid.length, false);
+      } catch (err) {
+        console.warn("Regular item normalization skipped:", err.message);
+        continue;
+      }
+      const fp = fingerprintOf(item.q);
+      if (seenFingerprints.has(fp)) {
+        console.warn(`Regular item skipped: duplicate/near-duplicate of another question in this run ("${item.q.slice(0, 40)}...").`);
+        continue;
+      }
+      if (db) {
+        try {
+          const fpDoc = await db.collection("quiz_question_fingerprints").doc(`c${classNum}_${subject}_${fp}`).get();
+          if (fpDoc.exists) {
+            console.warn(`Regular item skipped: duplicate of a previously published question ("${item.q.slice(0, 40)}...").`);
+            continue;
+          }
+        } catch (err) {
+          console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", err.message);
+        }
+      }
+      seenFingerprints.add(fp);
+      item._fingerprint = fp;
+      valid.push(item);
+    }
+    return valid;
+  }
+
   async function fetchRegularBatch(batchPlan, batchTarget) {
     const numericalMin = Math.ceil(batchTarget * 0.30);
+    const typeQuota = computeTypeQuota(batchTarget, { SCQ: 0.6, SBQ: 0.2, ARQ: 0.2 });
     const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
 Generate exactly ${batchTarget} REGULAR SECTION multiple-choice questions for Class ${classNum} students (1 mark each).
+
+SUBJECT LOCK (MANDATORY): Every single question MUST be a pure ${subMeta.name} question testing ${subMeta.name} concepts ONLY. Do NOT include questions from any other subject, general knowledge, current affairs, or reasoning/logic puzzles unless ${subMeta.name} itself IS reasoning - stay strictly within the ${subMeta.name} syllabus for Class ${classNum}.
 
 TOPIC PLAN - distribute questions across these topics:
 ${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
 STRICT STANDARDS (MANDATORY & ENFORCED):
-1. Difficulty Level: Standard to Advanced Olympiad level for Class ${classNum}. Focus on conceptual clarity, arithmetic fluency, and accurate application.
+1. Difficulty Level: ${difficultyGuidance}
 2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Include comprehensive real-world scenarios, complete numerical context, and explicit constraints. Do NOT write short 1-line questions.
-3. QUESTION TYPE MIX (MANDATORY MIX OF SCQ, SBQ, ARQ):
-   The ${batchTarget} questions MUST include:
+3. QUESTION TYPE MIX (EXACT COUNTS, NOT APPROXIMATE):
+   Of these ${batchTarget} questions, exactly ${typeQuota.SCQ} MUST be "SCQ", exactly ${typeQuota.SBQ} MUST be "SBQ", and exactly ${typeQuota.ARQ} MUST be "ARQ". These are precise required counts.
    - "SCQ" (Single Correct Question): Standard 4-option conceptual/computational Olympiad problem.
    - "SBQ" (Statement-Based / Scenario-Based Question): Dual-statement format ("Statement I: ... Statement II: ... Which statement is correct?") or real-world scenario paragraph with 4 choices.
    - "ARQ" (Assertion-Reason Question): Format with "Assertion (A): ... Reason (R): ..." with standard 4 options.
-   Target composition for this batch: ~60% SCQ, ~20% SBQ, ~20% ARQ. Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON.
+   Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON for every question, matching the exact counts above.
 4. Numerical Questions: At least ${numericalMin} out of ${batchTarget} questions MUST involve actual computation or calculation.
 5. Mathematical Symbols: Use clean Unicode symbols ("×", "÷", "=", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠", "△", "π", "°", "%", "₹"). Never spell them out in words. Never use LaTeX.
-6. SVG Images: For geometry, clocks, number lines, patterns, or bar graphs, include clean labelled SVG code in 'svg_data'. Otherwise leave empty string.
-7. Options: Exactly 4 distinct options ('o'). Only ONE unambiguously correct answer.
+6. SVG Images (MANDATORY WHEN APPLICABLE): Any question whose topic involves geometry/shapes, clocks, number lines, patterns, grids, or bar/pictographs MUST include a clean, labelled, self-contained <svg>...</svg> in 'svg_data' with all values the question refers to actually drawn in it - a question that says "see the figure/chart below" with an empty svg_data will be discarded. For every other question, leave 'svg_data' as an empty string.
+7. Options: Exactly 4 distinct options ('o') - no two options may be the same value. Only ONE unambiguously correct answer.
 8. Correct Answer Placement: Vary the correct option index 'a' (0, 1, 2, or 3) across the questions.
+9. Uniqueness: Every question must be a genuinely distinct problem (different scenario/numbers/concept) - do not generate two questions that are the same template with only the numbers changed.
 
 SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, no explanation):
 [
@@ -447,16 +626,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 ]`;
 
     const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
-    const valid = [];
-    for (let i = 0; i < rawArray.length; i++) {
-      try {
-        const item = validateAndNormalizeQuestion(rawArray[i], classNum, subject, dateCompact, collected.length + valid.length, false);
-        valid.push(item);
-      } catch (err) {
-        console.warn("Regular item normalization skipped:", err.message);
-      }
-    }
-    return valid;
+    return acceptValidatedItems(rawArray, collected.length);
   }
 
   // Split into 2 batches of 20 to avoid token cutoff
@@ -471,9 +641,10 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
   const batch2 = await fetchRegularBatch(plan2, halfCount);
   collected.push(...batch2);
 
-  // Top-up replenishment loop if total < 40
+  // Top-up replenishment loop if total < 40 (also absorbs items dropped for
+  // being duplicates, having bad diagrams, etc. - any shortfall gets topped up)
   let topUpAttempts = 0;
-  while (collected.length < targetCount && topUpAttempts < 3) {
+  while (collected.length < targetCount && topUpAttempts < 4) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
     console.warn(`Shortfall detected (${collected.length}/40). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
@@ -485,6 +656,31 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
   if (collected.length < targetCount) {
     throw new Error(`Failed to generate required 40 regular questions (only obtained ${collected.length}).`);
+  }
+
+  // Independent answer-correctness verification pass - the step that used to
+  // not exist at all. Questions the verifier disagrees with are dropped and
+  // replaced via the same top-up mechanism, rather than published unchecked.
+  console.log(`Verifying answers for ${collected.length} regular questions (Class ${classNum} ${subject})...`);
+  let mismatches = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: collected, subject });
+  if (mismatches.size > 0) {
+    console.warn(`Verification flagged ${mismatches.size} regular question(s) with a disputed answer - dropping and regenerating.`);
+    collected = collected.filter(q => !mismatches.has(q.id));
+  }
+
+  let verifyTopUpAttempts = 0;
+  while (collected.length < targetCount && verifyTopUpAttempts < 2) {
+    verifyTopUpAttempts++;
+    const missing = targetCount - collected.length;
+    const topUpPlan = buildTopicPlan(topics, missing);
+    const topUp = await fetchRegularBatch(topUpPlan, missing);
+    const verifiedTopUp = topUp.length ? (mismatches = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: topUp, subject }), topUp.filter(q => !mismatches.has(q.id))) : topUp;
+    collected.push(...verifiedTopUp);
+    await new Promise(r => setTimeout(r, 1200));
+  }
+
+  if (collected.length < targetCount) {
+    throw new Error(`Failed to generate required 40 verified regular questions (only obtained ${collected.length}).`);
   }
 
   // Guarantee EXACTLY 40 questions, sequential IDs 001 to 040
@@ -502,39 +698,77 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
  * Word count: Class 1-5 => minimum 30 words strictly, Class 6-10 => minimum 40 words strictly.
  * Questions are a deliberate mix of SCQ, SBQ, and ARQ.
  */
-async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 10, dateCompact = "" }) {
+async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 10, dateCompact = "", db = null, seenFingerprints = new Set() }) {
   const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
   const minWords = getMinWords(classNum, true);
   const targetCount = 10;
+  const difficultyGuidance = getDifficultyGuidance(classNum, true);
 
   let collected = [];
 
+  async function acceptValidatedItems(rawArray, startIndex) {
+    const valid = [];
+    for (let i = 0; i < rawArray.length; i++) {
+      let item;
+      try {
+        item = validateAndNormalizeQuestion(rawArray[i], classNum, subject, dateCompact, startIndex + valid.length, true);
+      } catch (err) {
+        console.warn("Achiever item normalization skipped:", err.message);
+        continue;
+      }
+      const fp = fingerprintOf(item.q);
+      if (seenFingerprints.has(fp)) {
+        console.warn(`Achiever item skipped: duplicate/near-duplicate of another question in this run ("${item.q.slice(0, 40)}...").`);
+        continue;
+      }
+      if (db) {
+        try {
+          const fpDoc = await db.collection("quiz_question_fingerprints").doc(`c${classNum}_${subject}_${fp}`).get();
+          if (fpDoc.exists) {
+            console.warn(`Achiever item skipped: duplicate of a previously published question ("${item.q.slice(0, 40)}...").`);
+            continue;
+          }
+        } catch (err) {
+          console.warn("Fingerprint lookup failed, continuing without cross-history dedup for this item:", err.message);
+        }
+      }
+      seenFingerprints.add(fp);
+      item._fingerprint = fp;
+      valid.push(item);
+    }
+    return valid;
+  }
+
   async function fetchAchieverBatch(batchPlan, batchTarget) {
     const numericalMin = Math.ceil(batchTarget * 0.30);
+    const typeQuota = computeTypeQuota(batchTarget, { SCQ: 0.5, SBQ: 0.3, ARQ: 0.2 });
     const prompt = `You are the Head Chief Examiner for the ${olympiadName} Official Live Championship.
 Generate exactly ${batchTarget} ACHIEVERS SECTION (HOTS - Higher Order Thinking Skills) multiple-choice questions for Class ${classNum} students (2 marks each).
 These are ULTRA HIGH DIFFICULTY questions - the hardest section of the paper, reserved for top-ranking students only.
+
+SUBJECT LOCK (MANDATORY): Every single question MUST be a pure ${subMeta.name} question testing ${subMeta.name} concepts ONLY. Do NOT include questions from any other subject, general knowledge, current affairs, or reasoning/logic puzzles unless ${subMeta.name} itself IS reasoning - stay strictly within the ${subMeta.name} syllabus for Class ${classNum}.
 
 TOPIC PLAN - distribute questions across these topics:
 ${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s)`).join("\n")}
 
 STRICT STANDARDS (MANDATORY & ENFORCED):
-1. Difficulty Level: ULTRA HIGH DIFFICULTY Achievers/HOTS - noticeably harder than the regular section. Every question must test multi-step logical deduction, complex word problems, non-routine cases, combined/cross-topic concepts. A question that could appear in the Regular section is NOT acceptable here.
+1. Difficulty Level: ${difficultyGuidance} A question that could appear in the Regular section is NOT acceptable here.
 2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Use detailed, scenario-based problem statements with all context, numbers, and constraints specified.
-3. QUESTION TYPE MIX (MANDATORY MIX OF SCQ, SBQ, ARQ):
-   The ${batchTarget} questions MUST include:
-   - "SCQ" (Single Correct Question): Complex multi-step analytical Olympiad problem. (~50%)
-   - "SBQ" (Statement-Based / Scenario-Based Question): Multi-statement evaluation or advanced case study scenario with 4 choices. (~30%)
-   - "ARQ" (Assertion-Reason Question): Format with "Assertion (A): ... Reason (R): ..." testing deep conceptual causality with 4 standard options. (~20%)
-   Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON.
+3. QUESTION TYPE MIX (EXACT COUNTS, NOT APPROXIMATE):
+   Of these ${batchTarget} questions, exactly ${typeQuota.SCQ} MUST be "SCQ", exactly ${typeQuota.SBQ} MUST be "SBQ", and exactly ${typeQuota.ARQ} MUST be "ARQ". These are precise required counts.
+   - "SCQ" (Single Correct Question): Complex multi-step analytical Olympiad problem.
+   - "SBQ" (Statement-Based / Scenario-Based Question): Multi-statement evaluation or advanced case study scenario with 4 choices.
+   - "ARQ" (Assertion-Reason Question): Format with "Assertion (A): ... Reason (R): ..." testing deep conceptual causality with 4 standard options.
+   Explicitly set "sub_type" to "SCQ", "SBQ", or "ARQ" in the JSON for every question, matching the exact counts above.
 4. Numerical Questions: At least ${numericalMin} out of ${batchTarget} questions MUST involve actual multi-step computation or calculation.
 5. Mathematical Symbols: Use clean Unicode symbols ("×", "÷", "=", "≠", "≤", "≥", "±", "√", "∴", "∵", "∠", "△", "π", "°", "%", "₹"). Never spell them out in words. Never use LaTeX.
-6. SVG Images: For any topic involving shapes, geometry diagrams, number lines, tables, graphs, patterns, or grids — include a clear labelled SVG in 'svg_data'. Otherwise empty string.
-7. Options: Exactly 4 tricky, well-crafted distractor options. Only ONE unambiguously correct answer.
+6. SVG Images (MANDATORY WHEN APPLICABLE): Any question whose topic involves shapes, geometry diagrams, number lines, tables, graphs, patterns, or grids MUST include a clear, labelled, self-contained <svg>...</svg> in 'svg_data' with all values the question refers to actually drawn in it - a question that says "see the figure/chart below" with an empty svg_data will be discarded. For every other question, leave 'svg_data' as an empty string.
+7. Options: Exactly 4 tricky, well-crafted, DISTINCT distractor options - no two options may be the same value. Only ONE unambiguously correct answer.
 8. Correct Answer Placement: Vary the correct option index 'a' (0, 1, 2, or 3) across the questions.
+9. Uniqueness: Every question must be a genuinely distinct problem (different scenario/numbers/concept) - do not generate two questions that are the same template with only the numbers changed.
 
 SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, no explanation):
 [
@@ -556,25 +790,17 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 ]`;
 
     const rawArray = await callAIRaw({ openAIKey, geminiKey: geminiKey || apiKey, prompt });
-    const valid = [];
-    for (let i = 0; i < rawArray.length; i++) {
-      try {
-        const item = validateAndNormalizeQuestion(rawArray[i], classNum, subject, dateCompact, 40 + collected.length + valid.length, true);
-        valid.push(item);
-      } catch (err) {
-        console.warn("Achiever item normalization skipped:", err.message);
-      }
-    }
-    return valid;
+    return acceptValidatedItems(rawArray, 40 + collected.length);
   }
 
   const plan = buildTopicPlan(topics, targetCount);
   const batch = await fetchAchieverBatch(plan, targetCount);
   collected.push(...batch);
 
-  // Top-up replenishment loop if total < 10
+  // Top-up replenishment loop if total < 10 (also absorbs items dropped for
+  // being duplicates, having bad diagrams, etc.)
   let topUpAttempts = 0;
-  while (collected.length < targetCount && topUpAttempts < 3) {
+  while (collected.length < targetCount && topUpAttempts < 4) {
     topUpAttempts++;
     const missing = targetCount - collected.length;
     console.warn(`Achievers shortfall detected (${collected.length}/10). Requesting top-up batch for ${missing} missing questions (attempt ${topUpAttempts})...`);
@@ -588,6 +814,29 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     throw new Error(`Failed to generate required 10 achiever questions (only obtained ${collected.length}).`);
   }
 
+  // Independent answer-correctness verification pass.
+  console.log(`Verifying answers for ${collected.length} achiever questions (Class ${classNum} ${subject})...`);
+  let mismatches = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: collected, subject });
+  if (mismatches.size > 0) {
+    console.warn(`Verification flagged ${mismatches.size} achiever question(s) with a disputed answer - dropping and regenerating.`);
+    collected = collected.filter(q => !mismatches.has(q.id));
+  }
+
+  let verifyTopUpAttempts = 0;
+  while (collected.length < targetCount && verifyTopUpAttempts < 2) {
+    verifyTopUpAttempts++;
+    const missing = targetCount - collected.length;
+    const topUpPlan = buildTopicPlan(topics, missing);
+    const topUp = await fetchAchieverBatch(topUpPlan, missing);
+    const verifiedTopUp = topUp.length ? (mismatches = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: topUp, subject }), topUp.filter(q => !mismatches.has(q.id))) : topUp;
+    collected.push(...verifiedTopUp);
+    await new Promise(r => setTimeout(r, 1200));
+  }
+
+  if (collected.length < targetCount) {
+    throw new Error(`Failed to generate required 10 verified achiever questions (only obtained ${collected.length}).`);
+  }
+
   // Guarantee EXACTLY 10 questions, sequential IDs 041 to 050
   return collected.slice(0, targetCount).map((q, idx) => {
     const padIdx = String(40 + idx + 1).padStart(3, "0");
@@ -598,11 +847,16 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
   });
 }
 
-async function generateFullLiveQuizForClass({ apiKey, openAIKey, geminiKey, classNum, subject, dateCompact = "" }) {
+async function generateFullLiveQuizForClass({ apiKey, openAIKey, geminiKey, classNum, subject, dateCompact = "", db = null }) {
   const effectiveGeminiKey = geminiKey || apiKey;
   if (!openAIKey && !effectiveGeminiKey) {
     throw new Error("An OpenAI or Gemini API key is required.");
   }
+
+  // Shared across regular+achiever so the same question can't appear twice
+  // in one class's paper (as well as being checked against Firestore history
+  // via `db`, when provided, for week-over-week uniqueness).
+  const seenFingerprints = new Set();
 
   // Generate 40 Regular Questions
   const regularQuestions = await generateRegularQuestions({
@@ -611,7 +865,9 @@ async function generateFullLiveQuizForClass({ apiKey, openAIKey, geminiKey, clas
     classNum,
     subject,
     count: 40,
-    dateCompact
+    dateCompact,
+    db,
+    seenFingerprints
   });
 
   // Pacing pause (1.5s) - mainly relevant to Gemini Free Tier RPM; harmless
@@ -625,15 +881,29 @@ async function generateFullLiveQuizForClass({ apiKey, openAIKey, geminiKey, clas
     classNum,
     subject,
     count: 10,
-    dateCompact
+    dateCompact,
+    db,
+    seenFingerprints
   });
+
+  // Pull the fingerprints out for the caller to persist after a successful
+  // publish, and strip the internal field off the objects that get uploaded.
+  const fingerprints = [];
+  const stripFingerprint = (q) => {
+    if (q._fingerprint) fingerprints.push({ fingerprint: q._fingerprint, questionId: q.id });
+    const { _fingerprint, ...rest } = q;
+    return rest;
+  };
+  const cleanRegular = regularQuestions.map(stripFingerprint);
+  const cleanAchiever = achieverQuestions.map(stripFingerprint);
 
   return {
     classNum,
     subject,
-    regularQuestions,
-    achieverQuestions,
-    totalCount: regularQuestions.length + achieverQuestions.length
+    regularQuestions: cleanRegular,
+    achieverQuestions: cleanAchiever,
+    totalCount: cleanRegular.length + cleanAchiever.length,
+    fingerprints
   };
 }
 
@@ -645,5 +915,7 @@ module.exports = {
   generateRegularQuestions,
   generateAchieverQuestions,
   generateFullLiveQuizForClass,
-  validateAndNormalizeQuestion
+  validateAndNormalizeQuestion,
+  verifyAnswers,
+  fingerprintOf
 };

@@ -251,6 +251,19 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
 
+    // ========================
+    // 21. Quiz Question Fingerprints (AI Live Quiz Agent duplicate detection)
+    // ========================
+    // Read on generation (checked before accepting a new question) and
+    // written only after a successful publish - admin-only, same as the
+    // other quiz-agent settings docs. The Monday cron's own fingerprint
+    // reads/writes go through the Admin SDK in Cloud Functions, which
+    // bypasses these rules entirely - this rule is only for the admin
+    // panel's client-side manual-generation path.
+    match /quiz_question_fingerprints/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
   }
 }
 

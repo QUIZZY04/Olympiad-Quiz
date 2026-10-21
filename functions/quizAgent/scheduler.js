@@ -116,7 +116,8 @@ async function runMondayQuizPipeline({
         geminiKey: effectiveGeminiKey,
         classNum,
         subject,
-        dateCompact
+        dateCompact,
+        db
       });
 
       classResults.push(quiz);
@@ -148,6 +149,31 @@ async function runMondayQuizPipeline({
     price,
     priceAfterCoupon
   });
+
+  // Persist this run's question fingerprints only AFTER a successful publish,
+  // so a failed/aborted run never "burns" a fingerprint for a question that
+  // never actually went live. Future runs check these to avoid repeating a
+  // question that already appeared in a previous week's live quiz.
+  const fingerprintEntries = [];
+  for (const cr of classResults) {
+    for (const fp of cr.fingerprints || []) {
+      fingerprintEntries.push({ id: `c${cr.classNum}_${cr.subject}_${fp.fingerprint}`, questionId: fp.questionId });
+    }
+  }
+  const FP_BATCH_SIZE = 450;
+  for (let i = 0; i < fingerprintEntries.length; i += FP_BATCH_SIZE) {
+    const chunk = fingerprintEntries.slice(i, i + FP_BATCH_SIZE);
+    const fpBatch = db.batch();
+    chunk.forEach(entry => {
+      fpBatch.set(db.collection("quiz_question_fingerprints").doc(entry.id), {
+        questionId: entry.questionId,
+        targetSunday: effectiveSunday,
+        createdAt: admin.firestore.FieldValue.serverTimestamp()
+      });
+    });
+    await fpBatch.commit();
+  }
+  console.log(`[QUIZ AGENT] Recorded ${fingerprintEntries.length} question fingerprints for future duplicate detection.`);
 
   // Log execution
   await db.collection("system_settings").doc("live_quiz_logs").collection("runs").add({
@@ -184,7 +210,10 @@ const mondayLiveQuizScheduler = onSchedule(
   {
     schedule: "0 6 * * 1",
     timeZone: TIME_ZONE,
-    timeoutSeconds: 540,
+    // Raised from 540s: the independent answer-verification pass adds several
+    // extra AI calls per class on top of generation, so 10 classes need more
+    // headroom than generation alone used to.
+    timeoutSeconds: 1800,
     memory: "512MiB"
   },
   async (event) => {
@@ -203,7 +232,7 @@ const mondayLiveQuizScheduler = onSchedule(
  */
 const generateMondayQuizManual = onCall(
   {
-    timeoutSeconds: 540,
+    timeoutSeconds: 1800,
     memory: "512MiB"
   },
   async (request) => {
