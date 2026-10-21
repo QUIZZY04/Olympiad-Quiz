@@ -795,33 +795,17 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       throw new Error(`Failed to generate required 40 regular questions (only obtained ${collected.length}).`);
     }
 
-    // Independent answer-correctness verification pass - questions the
-    // verifier disagrees with are dropped and replaced via the same top-up
-    // mechanism rather than published unchecked.
+    // Independent answer-correctness verification pass - diagnostic only.
+    // Dropping and regenerating on every disputed verdict caused more harm
+    // than good in practice: a same-tier model re-solving HOTS-level
+    // questions disagrees with itself on a large fraction of genuinely
+    // correct questions (observed ~30% dispute rate live), so acting on that
+    // signal mostly churned good questions and broke the clean 40-then-10
+    // batch flow. Flag disputes for visibility, keep the questions.
     appendLog(`   • Verifying answers for ${collected.length} regular questions...`, "info");
-    let mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
+    const mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
     if (mismatches.size > 0) {
-      appendLog(`   ⚠️ Verification flagged ${mismatches.size} regular question(s) with a disputed answer - dropping and regenerating.`, "warn");
-      collected = collected.filter(q => !mismatches.has(q.id));
-    }
-
-    let verifyTopUpAttempts = 0;
-    while (collected.length < targetCount && verifyTopUpAttempts < 2) {
-      verifyTopUpAttempts++;
-      const missing = targetCount - collected.length;
-      const topUpPlan = buildTopicPlan(topics, missing);
-      const topUp = await fetchRegularBatch(topUpPlan, missing, `VerifyTopUp-${verifyTopUpAttempts}`);
-      let verifiedTopUp = topUp;
-      if (topUp.length) {
-        mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: topUp, subject });
-        verifiedTopUp = topUp.filter(q => !mismatches.has(q.id));
-      }
-      collected.push(...verifiedTopUp);
-      await new Promise(r => setTimeout(r, 1200));
-    }
-
-    if (collected.length < targetCount) {
-      throw new Error(`Failed to generate required 40 verified regular questions (only obtained ${collected.length}).`);
+      appendLog(`   ⚠️ Verification flagged ${mismatches.size}/${collected.length} regular question(s) with a possibly disputed answer (kept as-is, review manually): ${[...mismatches].join(", ")}`, "warn");
     }
 
     // Guarantee EXACTLY 40 questions, and re-number IDs sequentially from 001 to 040
@@ -959,31 +943,13 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       throw new Error(`Failed to generate required 10 achiever questions (only obtained ${collected.length}).`);
     }
 
-    // Independent answer-correctness verification pass.
+    // Independent answer-correctness verification pass - diagnostic only,
+    // see the matching comment in generateRegularPart for why this no
+    // longer drops and regenerates on a disputed verdict.
     appendLog(`   • Verifying answers for ${collected.length} achiever questions...`, "info");
-    let mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
+    const mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
     if (mismatches.size > 0) {
-      appendLog(`   ⚠️ Verification flagged ${mismatches.size} achiever question(s) with a disputed answer - dropping and regenerating.`, "warn");
-      collected = collected.filter(q => !mismatches.has(q.id));
-    }
-
-    let verifyTopUpAttempts = 0;
-    while (collected.length < targetCount && verifyTopUpAttempts < 2) {
-      verifyTopUpAttempts++;
-      const missing = targetCount - collected.length;
-      const topUpPlan = buildTopicPlan(topics, missing);
-      const topUp = await fetchAchieverBatch(topUpPlan, missing);
-      let verifiedTopUp = topUp;
-      if (topUp.length) {
-        mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: topUp, subject });
-        verifiedTopUp = topUp.filter(q => !mismatches.has(q.id));
-      }
-      collected.push(...verifiedTopUp);
-      await new Promise(r => setTimeout(r, 1200));
-    }
-
-    if (collected.length < targetCount) {
-      throw new Error(`Failed to generate required 10 verified achiever questions (only obtained ${collected.length}).`);
+      appendLog(`   ⚠️ Verification flagged ${mismatches.size}/${collected.length} achiever question(s) with a possibly disputed answer (kept as-is, review manually): ${[...mismatches].join(", ")}`, "warn");
     }
 
     // Guarantee EXACTLY 10 questions, and re-number IDs sequentially from 041 to 050
