@@ -137,7 +137,13 @@ function getDifficultyGuidance(classNum, isAchiever) {
  * the live database, and this check stops new occurrences of it at
  * generation time instead of discovering them after they've gone live.
  */
-const DIAGRAM_KEYWORDS = /shape|geometr|clock|angle|triangle|circle|square|rectangle|polygon|quadrilateral|graph|chart|pictograph|bar\s*graph|number\s*line|pattern|grid|diagram|figure\s*(shown|given|below)|image\s*(shown|given|below)|picture\s*(shown|given|below)|shown\s*below|given\s*below|study\s*the|observe\s*the|look\s*at\s*the/i;
+// Narrow and precise on purpose: only trigger when the question text
+// explicitly references an accompanying visual it depends on, never on
+// generic topical words (a prior broader version matched ordinary phrasing
+// like "observe the..." or "study the..." in plain Science questions that
+// need no diagram at all, causing mass false-positive rejections and
+// cascading generation failures across most classes).
+const DIAGRAM_KEYWORDS = /\b(shown|given|depicted|illustrated)\s+(in\s+the\s+)?(figure|diagram|image|picture|chart|graph|table)\b|\b(figure|diagram|image|picture|chart|graph|table)\s+(shown|given|below|above)\b|\bnumber\s*line\s+(shown|given|below|above)\b|\bclock\s*(face)?\s*(shown|given|below|above)\b|\bpictograph\b|\bbar\s*graph\b|\bsee\s+the\s+(figure|diagram|image|picture|chart|graph)\b/i;
 
 function questionNeedsDiagram(questionText, topicName) {
   return DIAGRAM_KEYWORDS.test(questionText) || DIAGRAM_KEYWORDS.test(topicName || "");
