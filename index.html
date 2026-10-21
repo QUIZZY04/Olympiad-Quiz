@@ -208,8 +208,12 @@
             </div>
             <div class="nav-dropdown">
                 <a href="ncert-solutions.html" class="nav-link">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
-                <div class="nav-dropdown-content">
+                <div class="nav-dropdown-content" style="min-width: 280px;">
                     <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+                    <a href="ncert-solutions.html#class5" style="font-weight:700;color:#10b981;">Class 5 NCERT Solutions 🌟</a>
+                    <a href="ncert-solutions-class-5-english.html" style="padding-left: 28px; font-size: 0.82rem; color: #cbd5e1;">↳ English (Santoor &amp; Marigold) 📖</a>
+                    <a href="ncert-solutions-class-5-maths.html" style="padding-left: 28px; font-size: 0.82rem; color: #cbd5e1;">↳ Maths (Maths Mela &amp; Math-Magic) 📐</a>
+                    <a href="ncert-solutions-class-5-evs.html" style="padding-left: 28px; font-size: 0.82rem; color: #cbd5e1;">↳ EVS (Looking Around) 🌿</a>
                     <a href="ncert-solutions.html#class6" style="font-weight:700;color:#7c3aed;">Class 6 Solutions (All 6 Subjects) ✨</a>
                     <a href="ncert-solutions.html#class7">Class 7 Solutions</a>
                     <a href="ncert-solutions.html#class8">Class 8 Solutions</a>
@@ -498,13 +502,14 @@
         <!-- ================= NCERT SOLUTIONS SECTION ================= -->
     <section class="container" style="padding: 20px 0 60px 0;" id="ncert-solutions-section">
         <div class="section-header">
-            <h2>Free NCERT Solutions — <span class="text-orange">Class 6, 7, 8, 9 &amp; 10 (CBSE 2026-27)</span></h2>
-            <p>Complete chapter-wise NCERT solutions with maximum word-count answers as per CBSE marking scheme. Class 6 (Ganita Prakash, Curiosity, Exploring Society, Poorvi, Malhar, Deepakam), Class 7, Class 8, Class 9 &amp; Class 10 all covered with 100% question solutions.</p>
+            <h2>Free NCERT Solutions — <span class="text-orange">Class 5, 6, 7, 8, 9 &amp; 10 (CBSE 2026-27)</span></h2>
+            <p>Complete chapter-wise NCERT solutions with maximum word-count answers as per CBSE marking scheme. Class 5 (Santoor, Maths Mela, Looking Around), Class 6 (Ganita Prakash, Curiosity, Exploring Society, Poorvi, Malhar, Deepakam), Class 7, Class 8, Class 9 &amp; Class 10 all covered with 100% question solutions.</p>
         </div>
         
         <!-- Class Quick Navigation Pills -->
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;justify-content:center;">
             <button class="home-class-tab active" onclick="filterHomeNcert('all', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #7c3aed;background:#7c3aed;color:white;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🌟 All Classes</button>
+            <button class="home-class-tab" onclick="filterHomeNcert('c5', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🌟 Class 5 (New 2026-27) ✨</button>
             <button class="home-class-tab" onclick="filterHomeNcert('c6', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📘 Class 6 (New 2026-27) ✨</button>
             <button class="home-class-tab" onclick="filterHomeNcert('c10', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">🎓 Class 10</button>
             <button class="home-class-tab" onclick="filterHomeNcert('c9', this)" style="padding:8px 18px;border-radius:999px;border:1.5px solid #cbd5e1;background:white;color:#334155;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;">📕 Class 9</button>
@@ -519,11 +524,42 @@
                 <p style="color:#c4b5fd;font-size:0.95rem;margin:0 0 20px 0;line-height:1.6;">All questions solved with detailed explanations. Max word-count answers. Official CBSE board marking scheme and NEP 2020 Competency-Based Questions.</p>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
                     <a href="ncert-solutions.html" style="background:#7c3aed;color:white;padding:12px 24px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:0.2s;" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">View All NCERT Solutions &#8594;</a>
+                    <a href="ncert-solutions.html#class5" style="background:rgba(255,255,255,0.15);color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.25);">Class 5 Solutions 🌟</a>
                     <a href="ncert-solutions.html#class6" style="background:rgba(255,255,255,0.15);color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-size:0.9rem;font-weight:700;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.25);">Class 6 Solutions ✨</a>
                 </div>
             </div>
             
             <div id="homeNcertCardsGrid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:12px;flex:2;min-width:300px;max-width:800px;">
+                <!-- CLASS 5 CARDS -->
+                <a href="ncert-solutions-class-5-english.html" class="home-ncert-card c5" style="background:rgba(37,99,235,0.35);border:1.5px solid #60a5fa;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📖</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 5 English <span style="background:#3b82f6;color:white;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#bfdbfe;font-size:0.72rem;">Santoor (NEP 2020) &amp; Marigold • 100% Solved</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-5-maths.html" class="home-ncert-card c5" style="background:rgba(234,88,12,0.35);border:1.5px solid #fb923c;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">📐</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 5 Maths <span style="background:#f97316;color:white;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#fed7aa;font-size:0.72rem;">Maths Mela &amp; Math-Magic • 29 Chapters</div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ncert-solutions-class-5-evs.html" class="home-ncert-card c5" style="background:rgba(5,150,105,0.35);border:1.5px solid #34d399;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.5rem;">🌿</span>
+                        <div>
+                            <div style="color:white;font-weight:800;font-size:0.88rem;">Class 5 EVS (Looking Around) <span style="background:#10b981;color:white;font-size:0.58rem;padding:2px 5px;border-radius:4px;font-weight:800;">NEW</span></div>
+                            <div style="color:#a7f3d0;font-size:0.72rem;">22 Chapters • Diagrams &amp; Marking Rubrics</div>
+                        </div>
+                    </div>
+                </a>
                 <!-- CLASS 6 CARDS -->
                 <a href="ncert-solutions-class-6-maths.html" class="home-ncert-card c6" style="background:rgba(124,58,237,0.35);border:1.5px solid #a78bfa;border-radius:12px;padding:14px;text-decoration:none;transition:0.2s;display:block;">
                     <div style="display:flex;align-items:center;gap:10px;">
