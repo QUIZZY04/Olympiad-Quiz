@@ -461,23 +461,22 @@ async function callOpenAIRaw({ apiKey, prompt }) {
 }
 
 /**
- * Provider auto-select: OpenAI first if a key is available (skipped
- * entirely, not retried, on an invalid-key error so a bad OpenAI key can't
- * silently block generation when a working Gemini key is also configured),
- * then Gemini as fallback.
+ * Provider auto-select: Gemini first if a key is available, OpenAI as
+ * fallback. (Swapped from OpenAI-primary on request - Gemini is now the
+ * default provider, OpenAI only kicks in if Gemini fails or no Gemini key
+ * is configured.)
  */
 async function callAIRaw({ openAIKey, geminiKey, prompt }) {
-  if (openAIKey) {
+  if (geminiKey) {
     try {
-      return await callOpenAIRaw({ apiKey: openAIKey, prompt });
+      return await callGeminiRaw({ apiKey: geminiKey, prompt });
     } catch (err) {
-      if (err.message && (err.message.includes("invalid") || err.message.includes("401"))) throw err;
-      console.warn(`OpenAI generation failed: ${err.message}. Trying Gemini fallback...`);
-      if (!geminiKey) throw err;
+      console.warn(`Gemini generation failed: ${err.message}. Trying OpenAI fallback...`);
+      if (!openAIKey) throw err;
     }
   }
-  if (geminiKey) {
-    return await callGeminiRaw({ apiKey: geminiKey, prompt });
+  if (openAIKey) {
+    return await callOpenAIRaw({ apiKey: openAIKey, prompt });
   }
   throw new Error("No API key available - provide an OpenAI or Gemini API key.");
 }
@@ -487,16 +486,13 @@ const VERIFY_CHUNK_SIZE = 12;
 
 /**
  * Independently re-solves a batch of already-generated questions (blind to
- * which option is currently marked correct) and returns the subset whose
- * stored answer the verifier disagrees with. This is the step that was
- * completely missing before: validateAndNormalizeQuestion only checks shape
- * (4 options, valid index 0-3), never whether the marked answer is actually
- * right. Mismatches are dropped by the caller and regenerated rather than
- * auto-corrected, since a same-tier AI's second opinion isn't trustworthy
- * enough to silently overwrite an answer - only to veto one.
+ * which option is currently marked correct) and returns every parseable
+ * verdict as id -> verifiedOptionIndex (not just mismatches), so callers can
+ * compare against the stored answer themselves and, for disagreements, run
+ * a tie-break instead of just vetoing the question.
  */
 async function verifyAnswers({ openAIKey, geminiKey, questions, subject }) {
-  const mismatchedIds = new Set();
+  const verdicts = new Map();
 
   for (let i = 0; i < questions.length; i += VERIFY_CHUNK_SIZE) {
     const chunk = questions.slice(i, i + VERIFY_CHUNK_SIZE);
@@ -509,14 +505,11 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
     try {
       const raw = await callAIRaw({ openAIKey, geminiKey, prompt });
-      const byId = new Map(questions.map(q => [q.id, q]));
       for (const entry of raw) {
-        const q = byId.get(entry && entry.id);
-        if (!q) continue;
-        const letter = String(entry.correct_option || "").trim().toUpperCase();
+        const letter = String(entry?.correct_option || "").trim().toUpperCase();
         const verifiedIndex = ANSWER_LETTERS.indexOf(letter);
-        if (verifiedIndex === -1) continue; // unparseable verdict - don't penalize the question for that
-        if (verifiedIndex !== q.a) mismatchedIds.add(q.id);
+        if (verifiedIndex === -1 || !entry?.id) continue; // unparseable verdict - skip rather than guess
+        verdicts.set(entry.id, verifiedIndex);
       }
     } catch (err) {
       console.warn(`Answer verification chunk failed (${err.message}) - skipping verification for this chunk rather than blocking generation.`);
@@ -525,7 +518,66 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
     await new Promise(r => setTimeout(r, 800));
   }
 
-  return mismatchedIds;
+  return verdicts;
+}
+
+/**
+ * For questions where the verifier's independent answer disagreed with the
+ * stored one, get a third opinion (blind, same format) to break the tie
+ * instead of either (a) blindly trusting the single verifier, which proved
+ * unreliable on its own (~30% self-disagreement rate observed live), or (b)
+ * dropping and regenerating the whole question, which was disruptive and
+ * usually unnecessary. Majority vote among {original, verifier, tie-break}:
+ * - tie-break agrees with the original -> keep the original, no change.
+ * - tie-break agrees with the verifier -> fix `a` in place to that index
+ *   (and replace `sol` with a plain confirmation, since the old explanation
+ *   text may no longer match the corrected option).
+ * - all three disagree -> leave as-is; genuinely ambiguous, flag for manual
+ *   review rather than guess.
+ * Mutates the question objects in `disputed` in place and returns a summary
+ * for logging.
+ */
+async function resolveDisputedAnswers({ openAIKey, geminiKey, disputed, subject }) {
+  const fixed = [];
+  const unresolved = [];
+
+  for (let i = 0; i < disputed.length; i += VERIFY_CHUNK_SIZE) {
+    const chunk = disputed.slice(i, i + VERIFY_CHUNK_SIZE);
+    const prompt = `You are a tie-breaking answer-key verifier for a ${subject} Olympiad exam. Two earlier checks disagreed on these ${chunk.length} questions. Solve each one completely and carefully from scratch, showing no work in your answer - just give your final, confident answer.
+
+${chunk.map((d, idx) => `${idx + 1}. [id: ${d.question.id}]\n${d.question.q}\nA) ${d.question.o[0]}\nB) ${d.question.o[1]}\nC) ${d.question.o[2]}\nD) ${d.question.o[3]}`).join("\n\n")}
+
+Return ONLY a raw JSON array (no markdown), one object per question, in this exact shape:
+[{"id": "<the id given above>", "correct_option": "A"|"B"|"C"|"D"}]`;
+
+    try {
+      const raw = await callAIRaw({ openAIKey, geminiKey, prompt });
+      const byId = new Map(chunk.map(d => [d.question.id, d]));
+      for (const entry of raw) {
+        const d = byId.get(entry?.id);
+        if (!d) continue;
+        const letter = String(entry.correct_option || "").trim().toUpperCase();
+        const tieBreakIndex = ANSWER_LETTERS.indexOf(letter);
+        if (tieBreakIndex === -1) continue;
+
+        if (tieBreakIndex === d.question.a) {
+          // Tie-break sides with the original - no change needed.
+        } else if (tieBreakIndex === d.verifierIndex) {
+          d.question.a = tieBreakIndex;
+          d.question.sol = `Correct option is: ${d.question.o[tieBreakIndex]}`;
+          fixed.push(d.question.id);
+        } else {
+          unresolved.push(d.question.id); // all three disagreed - leave untouched
+        }
+      }
+    } catch (err) {
+      console.warn(`Tie-break verification chunk failed (${err.message}) - leaving these questions as originally generated.`);
+    }
+
+    await new Promise(r => setTimeout(r, 800));
+  }
+
+  return { fixed, unresolved };
 }
 
 /**
@@ -672,9 +724,15 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
   // that signal mostly just churns good questions and breaks the clean
   // 40-then-10 batch flow. Flag disputes for visibility, keep the questions.
   console.log(`Verifying answers for ${collected.length} regular questions (Class ${classNum} ${subject})...`);
-  const mismatches = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: collected, subject });
-  if (mismatches.size > 0) {
-    console.warn(`Verification flagged ${mismatches.size}/${collected.length} regular question(s) with a possibly disputed answer (kept as-is, review manually): ${[...mismatches].join(", ")}`);
+  const regularVerdicts = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: collected, subject });
+  const regularDisputed = collected
+    .filter(q => regularVerdicts.has(q.id) && regularVerdicts.get(q.id) !== q.a)
+    .map(q => ({ question: q, verifierIndex: regularVerdicts.get(q.id) }));
+  if (regularDisputed.length > 0) {
+    console.log(`Verification disputed ${regularDisputed.length}/${collected.length} regular answer(s) - running tie-break...`);
+    const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey: geminiKey || apiKey, disputed: regularDisputed, subject });
+    if (fixed.length) console.warn(`Corrected ${fixed.length} regular answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`);
+    if (unresolved.length) console.warn(`${unresolved.length} regular question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`);
   }
 
   // Guarantee EXACTLY 40 questions, sequential IDs 001 to 040
@@ -812,9 +870,15 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
   // the matching comment in generateRegularQuestions for why this no longer
   // drops and regenerates on a disputed verdict.
   console.log(`Verifying answers for ${collected.length} achiever questions (Class ${classNum} ${subject})...`);
-  const mismatches = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: collected, subject });
-  if (mismatches.size > 0) {
-    console.warn(`Verification flagged ${mismatches.size}/${collected.length} achiever question(s) with a possibly disputed answer (kept as-is, review manually): ${[...mismatches].join(", ")}`);
+  const achieverVerdicts = await verifyAnswers({ openAIKey, geminiKey: geminiKey || apiKey, questions: collected, subject });
+  const achieverDisputed = collected
+    .filter(q => achieverVerdicts.has(q.id) && achieverVerdicts.get(q.id) !== q.a)
+    .map(q => ({ question: q, verifierIndex: achieverVerdicts.get(q.id) }));
+  if (achieverDisputed.length > 0) {
+    console.log(`Verification disputed ${achieverDisputed.length}/${collected.length} achiever answer(s) - running tie-break...`);
+    const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey: geminiKey || apiKey, disputed: achieverDisputed, subject });
+    if (fixed.length) console.warn(`Corrected ${fixed.length} achiever answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`);
+    if (unresolved.length) console.warn(`${unresolved.length} achiever question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`);
   }
 
   // Guarantee EXACTLY 10 questions, sequential IDs 041 to 050
@@ -897,5 +961,6 @@ module.exports = {
   generateFullLiveQuizForClass,
   validateAndNormalizeQuestion,
   verifyAnswers,
+  resolveDisputedAnswers,
   fingerprintOf
 };

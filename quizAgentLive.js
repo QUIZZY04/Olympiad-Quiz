@@ -388,21 +388,20 @@
   }
 
   /**
-   * Auto-select provider: OpenAI (if key available) → Gemini fallback
+   * Auto-select provider: Gemini (if key available) → OpenAI fallback.
+   * (Swapped from OpenAI-primary on request.)
    */
   async function callAI({ openAIKey, geminiKey, prompt }) {
-    if (openAIKey) {
+    if (geminiKey) {
       try {
-        return await callOpenAIRaw({ apiKey: openAIKey, prompt });
+        return await callGeminiRaw({ apiKey: geminiKey, prompt });
       } catch (err) {
-        // If invalid key, rethrow immediately
-        if (err.message && (err.message.includes("invalid") || err.message.includes("401"))) throw err;
-        appendLog(`⚠ OpenAI failed: ${err.message}. Trying Gemini fallback...`, "warn");
-        if (!geminiKey) throw err;
+        appendLog(`⚠ Gemini failed: ${err.message}. Trying OpenAI fallback...`, "warn");
+        if (!openAIKey) throw err;
       }
     }
-    if (geminiKey) {
-      return await callGeminiRaw({ apiKey: geminiKey, prompt });
+    if (openAIKey) {
+      return await callOpenAIRaw({ apiKey: openAIKey, prompt });
     }
     throw new Error("No API key available. Please save an OpenAI or Gemini API key.");
   }
@@ -522,7 +521,7 @@
    * caller and regenerated rather than auto-corrected.
    */
   async function verifyAnswers({ openAIKey, geminiKey, questions, subject }) {
-    const mismatchedIds = new Set();
+    const verdicts = new Map();
 
     for (let i = 0; i < questions.length; i += VERIFY_CHUNK_SIZE) {
       const chunk = questions.slice(i, i + VERIFY_CHUNK_SIZE);
@@ -535,14 +534,11 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
       try {
         const raw = await callAI({ openAIKey, geminiKey, prompt });
-        const byId = new Map(questions.map(q => [q.id, q]));
         for (const entry of raw) {
-          const q = byId.get(entry && entry.id);
-          if (!q) continue;
-          const letter = String(entry.correct_option || "").trim().toUpperCase();
+          const letter = String(entry?.correct_option || "").trim().toUpperCase();
           const verifiedIndex = ANSWER_LETTERS.indexOf(letter);
-          if (verifiedIndex === -1) continue;
-          if (verifiedIndex !== q.a) mismatchedIds.add(q.id);
+          if (verifiedIndex === -1 || !entry?.id) continue;
+          verdicts.set(entry.id, verifiedIndex);
         }
       } catch (err) {
         appendLog(`⚠ Answer verification chunk failed (${err.message}) - skipping verification for this chunk.`, "warn");
@@ -551,7 +547,60 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
       await new Promise(r => setTimeout(r, 800));
     }
 
-    return mismatchedIds;
+    return verdicts;
+  }
+
+  /**
+   * For questions where the verifier's independent answer disagreed with the
+   * stored one, get a third opinion to break the tie instead of blindly
+   * trusting a single verifier (unreliable on its own - ~30% self-
+   * disagreement rate observed live) or dropping/regenerating the whole
+   * question. Majority vote among {original, verifier, tie-break}: tie-break
+   * agrees with original -> keep it; agrees with verifier -> fix `a` in
+   * place (and replace `sol`, since the old explanation may no longer match);
+   * all three disagree -> leave as-is, flagged for manual review.
+   */
+  async function resolveDisputedAnswers({ openAIKey, geminiKey, disputed, subject }) {
+    const fixed = [];
+    const unresolved = [];
+
+    for (let i = 0; i < disputed.length; i += VERIFY_CHUNK_SIZE) {
+      const chunk = disputed.slice(i, i + VERIFY_CHUNK_SIZE);
+      const prompt = `You are a tie-breaking answer-key verifier for a ${subject} Olympiad exam. Two earlier checks disagreed on these ${chunk.length} questions. Solve each one completely and carefully from scratch, showing no work in your answer - just give your final, confident answer.
+
+${chunk.map((d, idx) => `${idx + 1}. [id: ${d.question.id}]\n${d.question.q}\nA) ${d.question.o[0]}\nB) ${d.question.o[1]}\nC) ${d.question.o[2]}\nD) ${d.question.o[3]}`).join("\n\n")}
+
+Return ONLY a raw JSON array (no markdown), one object per question, in this exact shape:
+[{"id": "<the id given above>", "correct_option": "A"|"B"|"C"|"D"}]`;
+
+      try {
+        const raw = await callAI({ openAIKey, geminiKey, prompt });
+        const byId = new Map(chunk.map(d => [d.question.id, d]));
+        for (const entry of raw) {
+          const d = byId.get(entry?.id);
+          if (!d) continue;
+          const letter = String(entry.correct_option || "").trim().toUpperCase();
+          const tieBreakIndex = ANSWER_LETTERS.indexOf(letter);
+          if (tieBreakIndex === -1) continue;
+
+          if (tieBreakIndex === d.question.a) {
+            // Tie-break sides with the original - no change needed.
+          } else if (tieBreakIndex === d.verifierIndex) {
+            d.question.a = tieBreakIndex;
+            d.question.sol = `Correct option is: ${d.question.o[tieBreakIndex]}`;
+            fixed.push(d.question.id);
+          } else {
+            unresolved.push(d.question.id);
+          }
+        }
+      } catch (err) {
+        appendLog(`⚠ Tie-break verification chunk failed (${err.message}) - leaving these questions as originally generated.`, "warn");
+      }
+
+      await new Promise(r => setTimeout(r, 800));
+    }
+
+    return { fixed, unresolved };
   }
 
   function normalizeQuestion(item, classNum, subject, dateCompact, idx, isAchiever = false) {
@@ -803,9 +852,15 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     // signal mostly churned good questions and broke the clean 40-then-10
     // batch flow. Flag disputes for visibility, keep the questions.
     appendLog(`   • Verifying answers for ${collected.length} regular questions...`, "info");
-    const mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
-    if (mismatches.size > 0) {
-      appendLog(`   ⚠️ Verification flagged ${mismatches.size}/${collected.length} regular question(s) with a possibly disputed answer (kept as-is, review manually): ${[...mismatches].join(", ")}`, "warn");
+    const regularVerdicts = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
+    const regularDisputed = collected
+      .filter(q => regularVerdicts.has(q.id) && regularVerdicts.get(q.id) !== q.a)
+      .map(q => ({ question: q, verifierIndex: regularVerdicts.get(q.id) }));
+    if (regularDisputed.length > 0) {
+      appendLog(`   ⚠️ Verification disputed ${regularDisputed.length}/${collected.length} regular answer(s) - running tie-break...`, "warn");
+      const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey, disputed: regularDisputed, subject });
+      if (fixed.length) appendLog(`   ✓ Corrected ${fixed.length} regular answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`, "success");
+      if (unresolved.length) appendLog(`   ⚠️ ${unresolved.length} regular question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`, "warn");
     }
 
     // Guarantee EXACTLY 40 questions, and re-number IDs sequentially from 001 to 040
@@ -947,9 +1002,15 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     // see the matching comment in generateRegularPart for why this no
     // longer drops and regenerates on a disputed verdict.
     appendLog(`   • Verifying answers for ${collected.length} achiever questions...`, "info");
-    const mismatches = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
-    if (mismatches.size > 0) {
-      appendLog(`   ⚠️ Verification flagged ${mismatches.size}/${collected.length} achiever question(s) with a possibly disputed answer (kept as-is, review manually): ${[...mismatches].join(", ")}`, "warn");
+    const achieverVerdicts = await verifyAnswers({ openAIKey, geminiKey, questions: collected, subject });
+    const achieverDisputed = collected
+      .filter(q => achieverVerdicts.has(q.id) && achieverVerdicts.get(q.id) !== q.a)
+      .map(q => ({ question: q, verifierIndex: achieverVerdicts.get(q.id) }));
+    if (achieverDisputed.length > 0) {
+      appendLog(`   ⚠️ Verification disputed ${achieverDisputed.length}/${collected.length} achiever answer(s) - running tie-break...`, "warn");
+      const { fixed, unresolved } = await resolveDisputedAnswers({ openAIKey, geminiKey, disputed: achieverDisputed, subject });
+      if (fixed.length) appendLog(`   ✓ Corrected ${fixed.length} achiever answer(s) after tie-break confirmed the original was wrong: ${fixed.join(", ")}`, "success");
+      if (unresolved.length) appendLog(`   ⚠️ ${unresolved.length} achiever question(s) remain genuinely ambiguous after 3-way disagreement (left as-is, needs manual review): ${unresolved.join(", ")}`, "warn");
     }
 
     // Guarantee EXACTLY 10 questions, and re-number IDs sequentially from 041 to 050
@@ -1214,9 +1275,9 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     appendLog(`Format: 40 Regular (1 Mark) + 10 Achievers HOTS (2 Marks) = Exactly 50 Qs (60 Marks total)`, "info");
     appendLog(`Word Count Rules: Class 1–5: Regular ≥25 words, Achievers ≥30 words | Class 6–10: Regular ≥30 words, Achievers ≥40 words`, "info");
     appendLog(`Question Types: Mandatory balanced mix of SCQ, SBQ (Statement/Scenario), and ARQ (Assertion-Reason)`, "info");
-    const activeProvider = openAIKey
-      ? `🟢 OpenAI (gpt-4o-mini → gpt-4o)${geminiKey ? " + Gemini fallback" : ""}`
-      : `🔵 Gemini (${GEMINI_MODELS.join(" → ")})`;
+    const activeProvider = geminiKey
+      ? `🔵 Gemini (${GEMINI_MODELS.join(" → ")})${openAIKey ? " + OpenAI fallback" : ""}`
+      : `🟢 OpenAI (gpt-4o-mini → gpt-4o)`;
     appendLog(`⚡ Engine [${GEMINI_MODEL_VERSION}] Provider: ${activeProvider}`, "info");
 
     let successCount = 0;
