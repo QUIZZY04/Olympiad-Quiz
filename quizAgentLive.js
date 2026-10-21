@@ -1156,7 +1156,36 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     }
   };
 
+  let qaGenerationInProgress = false;
+
   window.qaStartGeneration = async function (autoPublish = false) {
+    // Hard re-entrancy guard, set synchronously before any await. Without
+    // this, a double-click (or a second click during the async API-key
+    // lookup below, before the buttons visually disable) starts a second
+    // overlapping run that shares the same in-memory generatedDataStore -
+    // each run resets it to [] at its own start, so whichever class finishes
+    // right after the OTHER run's reset survives and the rest silently
+    // vanish. This produced exactly that symptom live: only every other
+    // selected class ended up in the final published set.
+    if (qaGenerationInProgress) {
+      alert("Generation is already running - please wait for it to finish before starting another.");
+      return;
+    }
+    qaGenerationInProgress = true;
+    // Disable synchronously too, before any await, as a second layer of defense.
+    const qaGenBtnNow = document.getElementById("qaGenBtn");
+    const qaAutoBtnNow = document.getElementById("qaAutoBtn");
+    if (qaGenBtnNow) qaGenBtnNow.disabled = true;
+    if (qaAutoBtnNow) qaAutoBtnNow.disabled = true;
+
+    try {
+      await qaStartGenerationInner(autoPublish);
+    } finally {
+      qaGenerationInProgress = false;
+    }
+  };
+
+  async function qaStartGenerationInner(autoPublish) {
     // Load both keys from UI or Firebase
     let openAIKey = (document.getElementById("qaOpenAIKey")?.value || "").trim();
     let geminiKey = (document.getElementById("qaApiKey")?.value || "").trim();
