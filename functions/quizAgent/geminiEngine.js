@@ -58,13 +58,31 @@ function buildTopicPlan(topics, count) {
 /**
  * Clean and normalize a question object to ensure strict adherence to the schema
  */
-function getMinWords(classNum, isAchiever) {
-  const isJunior = parseInt(classNum, 10) <= 5;
-  if (isAchiever) {
-    return isJunior ? 30 : 40; // Class 1-5 Achiever: min 30 words strictly; Class 6-10 Achiever: min 40 words strictly
-  } else {
-    return isJunior ? 25 : 30; // Class 1-5 Regular: min 25 words strictly; Class 6-10 Regular: min 30 words strictly
-  }
+/**
+ * Word-count band per class group, calibrated to how real SOF Olympiad
+ * (IMO/NSO/IEO) papers are actually written - concise for Regular, a bit
+ * longer for Achievers/HOTS since those need a multi-step scenario. Same
+ * four class bands as getDifficultyGuidance. Both a floor AND a ceiling:
+ * previously there was only a minimum, enforced by gluing generic filler
+ * text onto short questions, which produced artificially bloated questions
+ * (some over 60 words) with no cap at all on natural verbosity either.
+ */
+function getWordLimits(classNum, isAchiever) {
+  const c = parseInt(classNum, 10);
+  const band = c <= 2 ? 0 : c <= 5 ? 1 : c <= 8 ? 2 : 3;
+  const regularBands = [
+    { min: 15, max: 35 },  // Class 1-2
+    { min: 20, max: 40 },  // Class 3-5
+    { min: 25, max: 45 },  // Class 6-8
+    { min: 30, max: 50 }   // Class 9-10
+  ];
+  const achieverBands = [
+    { min: 25, max: 45 },  // Class 1-2
+    { min: 30, max: 55 },  // Class 3-5
+    { min: 35, max: 65 },  // Class 6-8
+    { min: 40, max: 70 }   // Class 9-10
+  ];
+  return (isAchiever ? achieverBands : regularBands)[band];
 }
 
 function countWords(str) {
@@ -172,34 +190,17 @@ function validateAndNormalizeQuestion(qObj, classNum, subject, dateCompact, inde
   let q = String(qObj.q || qObj.question || "").trim();
   if (!q) throw new Error(`Question ${index + 1} is missing question text ('q').`);
 
-  // Word Count Enforcement & Context Enrichment
-  const minWords = getMinWords(classNum, isAchiever);
-  let words = countWords(q);
+  // Word Count Enforcement: reject and let the caller regenerate rather than
+  // gluing generic filler text onto short questions (the old approach, which
+  // produced artificially bloated, formulaic-sounding questions and had no
+  // ceiling at all, letting naturally verbose ones run past 60+ words).
+  const { min: minWords, max: maxWords } = getWordLimits(classNum, isAchiever);
+  const words = countWords(q);
   if (words < minWords) {
-    const isJunior = parseInt(classNum, 10) <= 5;
-    while (words < minWords) {
-      const diff = minWords - words;
-      let pad = "";
-      if (isJunior) {
-        if (diff >= 20) {
-          pad = "As part of the annual Inter-School National Olympiad Examination, students are required to demonstrate analytical thinking and problem-solving skills by carefully reviewing the following scenario: ";
-        } else if (diff >= 10) {
-          pad = "During an interactive classroom Olympiad practice activity session, read the details: ";
-        } else {
-          pad = "Observe the given situation and figures with care: ";
-        }
-      } else {
-        if (diff >= 25) {
-          pad = "Under the standardized assessment framework of the National All-India Olympiad Committee, candidates are evaluated on rigorous conceptual deduction, multi-step reasoning, and practical application. Carefully analyze the given problem statement: ";
-        } else if (diff >= 12) {
-          pad = "In an official national Olympiad championship analytical evaluation challenge, consider the given situation and data: ";
-        } else {
-          pad = "For the given Olympiad problem statement, evaluate the following mathematical conditions: ";
-        }
-      }
-      q = `${pad}${q}`;
-      words = countWords(q);
-    }
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too short (${words} words, minimum ${minWords}).`);
+  }
+  if (words > maxWords) {
+    throw new Error(`Question ${index + 1} ("${q.slice(0, 30)}...") is too long (${words} words, maximum ${maxWords}).`);
   }
 
   // Options: must be exactly 4 strings
@@ -582,7 +583,8 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
 /**
  * Generate 40 Regular Questions (1 mark each).
- * Word count: Class 1-5 => 30 words min, Class 6-10 => 40 words min.
+ * Word count: see getWordLimits() - a min/max band per class group (1-2,
+ * 3-5, 6-8, 9-10).
  * 30% numerical, SVG where the topic needs one, every topic covered.
  */
 async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 40, dateCompact = "", db = null, seenFingerprints = new Set() }) {
@@ -590,7 +592,7 @@ async function generateRegularQuestions({ apiKey, openAIKey, geminiKey, classNum
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-  const minWords = getMinWords(classNum, false);
+  const { min: minWords, max: maxWords } = getWordLimits(classNum, false);
   const targetCount = 40;
   const difficultyGuidance = getDifficultyGuidance(classNum, false);
 
@@ -650,7 +652,7 @@ ${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s
 
 STRICT STANDARDS (MANDATORY & ENFORCED):
 1. Difficulty Level: ${difficultyGuidance}
-2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Include comprehensive real-world scenarios, complete numerical context, and explicit constraints. Do NOT write short 1-line questions.
+2. QUESTION LENGTH: Every question's "q" text MUST be between ${minWords} and ${maxWords} words (strict range - both too short and too long will be discarded). Include enough real-world scenario/numerical context to need that many words, but stay concise - do not pad with unnecessary preamble or filler sentences.
 3. QUESTION TYPE MIX (EXACT COUNTS, NOT APPROXIMATE):
    Of these ${batchTarget} questions, exactly ${typeQuota.SCQ} MUST be "SCQ", exactly ${typeQuota.SBQ} MUST be "SBQ", and exactly ${typeQuota.ARQ} MUST be "ARQ". These are precise required counts.
    - "SCQ" (Single Correct Question): Standard 4-option conceptual/computational Olympiad problem.
@@ -670,7 +672,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word detailed question statement with full scenario context...",
+    "q": "A ${minWords}-${maxWords} word detailed question statement with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
@@ -747,7 +749,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
 /**
  * Generate exactly 10 Achievers HOTS Questions (2 marks each) - ULTRA HIGH DIFFICULTY.
- * Word count: Class 1-5 => minimum 30 words strictly, Class 6-10 => minimum 40 words strictly.
+ * Word count: see getWordLimits() - a min/max band per class group (1-2,
+ * 3-5, 6-8, 9-10).
  * Questions are a deliberate mix of SCQ, SBQ, and ARQ.
  */
 async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNum, subject, count = 10, dateCompact = "", db = null, seenFingerprints = new Set() }) {
@@ -755,7 +758,7 @@ async function generateAchieverQuestions({ apiKey, openAIKey, geminiKey, classNu
   const olympiadName = OLYMPIAD_CODES[subject] || subMeta.name;
   const topics = getTopicsForClass(classNum, subject);
   const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-  const minWords = getMinWords(classNum, true);
+  const { min: minWords, max: maxWords } = getWordLimits(classNum, true);
   const targetCount = 10;
   const difficultyGuidance = getDifficultyGuidance(classNum, true);
 
@@ -808,7 +811,7 @@ ${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s
 
 STRICT STANDARDS (MANDATORY & ENFORCED):
 1. Difficulty Level: ${difficultyGuidance} A question that could appear in the Regular section is NOT acceptable here.
-2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Use detailed, scenario-based problem statements with all context, numbers, and constraints specified.
+2. QUESTION LENGTH: Every question's "q" text MUST be between ${minWords} and ${maxWords} words (strict range - both too short and too long will be discarded). Use a detailed, scenario-based problem statement with all context, numbers, and constraints specified, but stay concise - do not pad with unnecessary preamble or filler sentences.
 3. QUESTION TYPE MIX (EXACT COUNTS, NOT APPROXIMATE):
    Of these ${batchTarget} questions, exactly ${typeQuota.SCQ} MUST be "SCQ", exactly ${typeQuota.SBQ} MUST be "SBQ", and exactly ${typeQuota.ARQ} MUST be "ARQ". These are precise required counts.
    - "SCQ" (Single Correct Question): Complex multi-step analytical Olympiad problem.
@@ -828,7 +831,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     "id": "c${classNum}_${subShort}_ultra_041",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word challenging HOTS question with full scenario context...",
+    "q": "A ${minWords}-${maxWords} word challenging HOTS question with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",

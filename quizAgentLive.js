@@ -2,8 +2,8 @@
  * AI Live Quiz Agent Client (Gemini Flash Free Tier)
  * Configured for Official Olympiad Format:
  * - Created on Monday 6:00 AM for the coming Sunday 11:00 AM IST (6 Days Registration Window)
- * - 40 Regular Questions (1 mark each, 12-30 words)
- * - 10 Achievers Questions (2 marks each, 25-55 words, HOTS / High Hardship)
+ * - 40 Regular Questions (1 mark each, 15-50 words depending on class band)
+ * - 10 Achievers Questions (2 marks each, 25-70 words depending on class band, HOTS / High Hardship)
  * - 60 Minutes Duration, Price ₹99 (₹59 with coupon)
  */
 
@@ -406,26 +406,30 @@
     throw new Error("No API key available. Please save an OpenAI or Gemini API key.");
   }
 
-  function getMinWords(classNum, isAchiever) {
-    const isJunior = parseInt(classNum, 10) <= 5;
-    if (isAchiever) {
-      return isJunior ? 30 : 40; // Class 1-5 Achiever: min 30 words strictly; Class 6-10 Achiever: min 40 words strictly
-    } else {
-      return isJunior ? 25 : 30; // Class 1-5 Regular: min 25 words strictly; Class 6-10 Regular: min 30 words strictly
-    }
-  }
-
-  function countWords(str) {
-    return String(str || "").trim().split(/\s+/).filter(Boolean).length;
-  }
-
-  function getMinWords(classNum, isAchiever) {
-    const isJunior = parseInt(classNum, 10) <= 5;
-    if (isAchiever) {
-      return isJunior ? 30 : 40; // Class 1-5 Achiever: min 30 words strictly; Class 6-10 Achiever: min 40 words strictly
-    } else {
-      return isJunior ? 25 : 30; // Class 1-5 Regular: min 25 words strictly; Class 6-10 Regular: min 30 words strictly
-    }
+  /**
+   * Word-count band per class group, calibrated to how real SOF Olympiad
+   * (IMO/NSO/IEO) papers are actually written - see geminiEngine.js for the
+   * full rationale. Both a floor AND a ceiling: previously there was only a
+   * minimum, enforced by gluing generic filler text onto short questions,
+   * which produced artificially bloated questions (some over 60 words) with
+   * no cap at all on natural verbosity either.
+   */
+  function getWordLimits(classNum, isAchiever) {
+    const c = parseInt(classNum, 10);
+    const band = c <= 2 ? 0 : c <= 5 ? 1 : c <= 8 ? 2 : 3;
+    const regularBands = [
+      { min: 15, max: 35 },  // Class 1-2
+      { min: 20, max: 40 },  // Class 3-5
+      { min: 25, max: 45 },  // Class 6-8
+      { min: 30, max: 50 }   // Class 9-10
+    ];
+    const achieverBands = [
+      { min: 25, max: 45 },  // Class 1-2
+      { min: 30, max: 55 },  // Class 3-5
+      { min: 35, max: 65 },  // Class 6-8
+      { min: 40, max: 70 }   // Class 9-10
+    ];
+    return (isAchiever ? achieverBands : regularBands)[band];
   }
 
   function countWords(str) {
@@ -605,44 +609,27 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
 
   function normalizeQuestion(item, classNum, subject, dateCompact, idx, isAchiever = false) {
     const isJunior = parseInt(classNum, 10) <= 5;
-    const minWords = getMinWords(classNum, isAchiever);
+    const { min: minWords, max: maxWords } = getWordLimits(classNum, isAchiever);
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
     const subMeta = SUBJECT_DETAILS[subject] || { codePrefix: "Q" };
     const padIdx = String(idx + 1).padStart(3, "0");
     const typeTag = isAchiever ? "ultra" : "std";
     const fallbackId = `c${classNum}_${subShort}_${typeTag}_${padIdx}`;
     const id = (item.id && typeof item.id === "string" && !item.id.includes("/")) ? item.id : fallbackId;
-    
+
     let q = String(item.q || item.question || "").trim();
     if (!q) throw new Error(`Question ${idx + 1} has empty text.`);
 
-    // Strict Word Count Enforcement & Context Enrichment
-    let words = countWords(q);
+    // Word Count Enforcement: reject and let the caller regenerate rather
+    // than gluing generic filler text onto short questions (the old
+    // approach, which produced artificially bloated, formulaic-sounding
+    // questions and had no ceiling at all).
+    const words = countWords(q);
     if (words < minWords) {
-      const isJunior = parseInt(classNum, 10) <= 5;
-      while (words < minWords) {
-        const diff = minWords - words;
-        let pad = "";
-        if (isJunior) {
-          if (diff >= 20) {
-            pad = "As part of the annual Inter-School National Olympiad Examination, students are required to demonstrate analytical thinking and problem-solving skills by carefully reviewing the following scenario: ";
-          } else if (diff >= 10) {
-            pad = "During an interactive classroom Olympiad practice activity session, read the details: ";
-          } else {
-            pad = "Observe the given situation and figures with care: ";
-          }
-        } else {
-          if (diff >= 25) {
-            pad = "Under the standardized assessment framework of the National All-India Olympiad Committee, candidates are evaluated on rigorous conceptual deduction, multi-step reasoning, and practical application. Carefully analyze the given problem statement: ";
-          } else if (diff >= 12) {
-            pad = "In an official national Olympiad championship analytical evaluation challenge, consider the given situation and data: ";
-          } else {
-            pad = "For the given Olympiad problem statement, evaluate the following mathematical conditions: ";
-          }
-        }
-        q = `${pad}${q}`;
-        words = countWords(q);
-      }
+      throw new Error(`Question ${idx + 1} is too short (${words} words, minimum ${minWords}).`);
+    }
+    if (words > maxWords) {
+      throw new Error(`Question ${idx + 1} is too long (${words} words, maximum ${maxWords}).`);
     }
 
     let o = Array.isArray(item.o) ? item.o : (Array.isArray(item.options) ? item.options : []);
@@ -720,7 +707,7 @@ Return ONLY a raw JSON array (no markdown), one object per question, in this exa
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || [{ code: (subMeta.codePrefix || "Q") + "01", name: "General Curriculum" }];
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-    const minWords = getMinWords(classNum, false);
+    const { min: minWords, max: maxWords } = getWordLimits(classNum, false);
     const targetCount = 40;
     const difficultyGuidance = getDifficultyGuidance(classNum, false);
 
@@ -772,7 +759,7 @@ ${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s
 
 STRICT STANDARDS (MANDATORY & ENFORCED):
 1. Difficulty Level: ${difficultyGuidance}
-2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Include comprehensive real-world scenarios, complete numerical context, and explicit constraints. Do NOT write short 1-line questions.
+2. QUESTION LENGTH: Every question's "q" text MUST be between ${minWords} and ${maxWords} words (strict range - both too short and too long will be discarded). Include enough real-world scenario/numerical context to need that many words, but stay concise - do not pad with unnecessary preamble or filler sentences.
 3. QUESTION TYPE MIX (EXACT COUNTS, NOT APPROXIMATE):
    Of these ${batchTarget} questions, exactly ${typeQuota.SCQ} MUST be "SCQ", exactly ${typeQuota.SBQ} MUST be "SBQ", and exactly ${typeQuota.ARQ} MUST be "ARQ". These are precise required counts.
    - "SCQ" (Single Correct Question): Standard 4-option conceptual/computational Olympiad problem.
@@ -792,7 +779,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     "id": "c${classNum}_${subShort}_std_001",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word detailed question statement with full scenario context...",
+    "q": "A ${minWords}-${maxWords} word detailed question statement with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
@@ -814,14 +801,14 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     const plan1 = buildTopicPlan(topics.slice(0, Math.ceil(topics.length / 2)), halfCount);
     const plan2 = buildTopicPlan(topics.slice(Math.ceil(topics.length / 2)).concat(topics.length === 1 ? topics : []), halfCount);
 
-    appendLog(`   • Generating Batch 1 (20 Regular Qs: SCQ/SBQ/ARQ mix, min ${minWords} words)...`, "info");
+    appendLog(`   • Generating Batch 1 (20 Regular Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
     const batch1 = await fetchRegularBatch(plan1, halfCount, "Batch 1");
     collected.push(...batch1);
     appendLog(`   ✓ Batch 1 yielded ${batch1.length} validated questions.`, "success");
 
     await new Promise(r => setTimeout(r, 1200));
 
-    appendLog(`   • Generating Batch 2 (20 Regular Qs: SCQ/SBQ/ARQ mix, min ${minWords} words)...`, "info");
+    appendLog(`   • Generating Batch 2 (20 Regular Qs: SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
     const batch2 = await fetchRegularBatch(plan2, halfCount, "Batch 2");
     collected.push(...batch2);
     appendLog(`   ✓ Batch 2 yielded ${batch2.length} validated questions. Total so far: ${collected.length}`, "success");
@@ -884,7 +871,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     const subMeta = SUBJECT_DETAILS[subject] || { name: subject, olympiad: "Olympiad", codePrefix: "Q" };
     const topics = (SYLLABUS_BY_CLASS[classNum] && SYLLABUS_BY_CLASS[classNum][subject]) || [{ code: (subMeta.codePrefix || "Q") + "01", name: "General Curriculum" }];
     const subShort = subject === "maths" ? "m" : subject === "science" ? "s" : subject === "english" ? "eng" : "rea";
-    const minWords = getMinWords(classNum, true);
+    const { min: minWords, max: maxWords } = getWordLimits(classNum, true);
     const targetCount = 10;
     const difficultyGuidance = getDifficultyGuidance(classNum, true);
 
@@ -937,7 +924,7 @@ ${batchPlan.map(p => `Topic ${p.code} — ${p.name}: exactly ${p.qty} question(s
 
 STRICT STANDARDS (MANDATORY & ENFORCED):
 1. Difficulty Level: ${difficultyGuidance} A question that could appear in the Regular section is NOT acceptable here.
-2. QUESTION LENGTH: MINIMUM ${minWords} WORDS PER QUESTION STRICTLY. Every question's "q" text MUST contain at least ${minWords} words. Questions shorter than ${minWords} words will be discarded. Use detailed, scenario-based problem statements with all context, numbers, and constraints specified.
+2. QUESTION LENGTH: Every question's "q" text MUST be between ${minWords} and ${maxWords} words (strict range - both too short and too long will be discarded). Use a detailed, scenario-based problem statement with all context, numbers, and constraints specified, but stay concise - do not pad with unnecessary preamble or filler sentences.
 3. QUESTION TYPE MIX (EXACT COUNTS, NOT APPROXIMATE):
    Of these ${batchTarget} questions, exactly ${typeQuota.SCQ} MUST be "SCQ", exactly ${typeQuota.SBQ} MUST be "SBQ", and exactly ${typeQuota.ARQ} MUST be "ARQ". These are precise required counts.
    - "SCQ" (Single Correct Question): Complex multi-step analytical Olympiad problem.
@@ -957,7 +944,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     "id": "c${classNum}_${subShort}_ultra_041",
     "class": "class${classNum}",
     "subject": "${subject}",
-    "q": "Minimum ${minWords}-word challenging HOTS question with full scenario context...",
+    "q": "A ${minWords}-${maxWords} word challenging HOTS question with full scenario context...",
     "svg_data": "",
     "image_name": "",
     "image_description": "",
@@ -975,7 +962,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     }
 
     const plan = buildTopicPlan(topics, targetCount);
-    appendLog(`   • Generating 10 Achievers HOTS Questions (SCQ/SBQ/ARQ mix, min ${minWords} words)...`, "info");
+    appendLog(`   • Generating 10 Achievers HOTS Questions (SCQ/SBQ/ARQ mix, ${minWords}-${maxWords} words)...`, "info");
     const batch = await fetchAchieverBatch(plan, targetCount);
     collected.push(...batch);
     appendLog(`   ✓ Achievers batch yielded ${batch.length} validated questions.`, "success");
@@ -1273,7 +1260,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
     appendLog(`Creating Live Quiz on Monday 6 AM for Target Sunday: ${targetSundayDate} at ${timeStr} AM IST...`, "info");
     appendLog(`Subject: ${SUBJECT_DETAILS[subject]?.olympiad || subject} | Classes: ${selectedClasses.join(", ")}`, "info");
     appendLog(`Format: 40 Regular (1 Mark) + 10 Achievers HOTS (2 Marks) = Exactly 50 Qs (60 Marks total)`, "info");
-    appendLog(`Word Count Rules: Class 1–5: Regular ≥25 words, Achievers ≥30 words | Class 6–10: Regular ≥30 words, Achievers ≥40 words`, "info");
+    appendLog(`Word Count Rules: Class 1-2: Regular 15-35, Achievers 25-45 | Class 3-5: Regular 20-40, Achievers 30-55 | Class 6-8: Regular 25-45, Achievers 35-65 | Class 9-10: Regular 30-50, Achievers 40-70 words`, "info");
     appendLog(`Question Types: Mandatory balanced mix of SCQ, SBQ (Statement/Scenario), and ARQ (Assertion-Reason)`, "info");
     const activeProvider = geminiKey
       ? `🔵 Gemini (${GEMINI_MODELS.join(" → ")})${openAIKey ? " + OpenAI fallback" : ""}`
@@ -1285,10 +1272,9 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       const clsNum = selectedClasses[i];
       const baseProgress = Math.round((i / selectedClasses.length) * 100);
       setProgress(baseProgress, `Generating Class ${clsNum}: 40 Regular Questions...`);
-      const isJunior = clsNum <= 5;
-      const regMinWords = isJunior ? 25 : 30;
-      const achMinWords = isJunior ? 30 : 40;
-      appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 40 Regular Questions (1 mark, SCQ/SBQ/ARQ mix, min ${regMinWords} words strictly)...`, "info");
+      const regLimits = getWordLimits(clsNum, false);
+      const achLimits = getWordLimits(clsNum, true);
+      appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 40 Regular Questions (1 mark, SCQ/SBQ/ARQ mix, ${regLimits.min}-${regLimits.max} words)...`, "info");
 
       try {
         // Shared across regular+achiever so the same question can't appear
@@ -1313,7 +1299,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
 
         // Step 2: 10 Achiever questions
         setProgress(baseProgress + 5, `Generating Class ${clsNum}: 10 Achiever Questions (HOTS)...`);
-        appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 10 Achievers HOTS Questions (2 marks, SCQ/SBQ/ARQ mix, min ${achMinWords} words strictly)...`, "info");
+        appendLog(`[${i + 1}/${selectedClasses.length}] Class ${clsNum}: Generating 10 Achievers HOTS Questions (2 marks, SCQ/SBQ/ARQ mix, ${achLimits.min}-${achLimits.max} words)...`, "info");
         const achieverQuestions = await generateAchieverPart({
           openAIKey,
           geminiKey,
@@ -1385,9 +1371,8 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
       const sbqCount = allQs.filter(q => q.sub_type === "SBQ").length;
       const arqCount = allQs.filter(q => q.sub_type === "ARQ").length;
 
-      const isJunior = parseInt(cd.classNum, 10) <= 5;
-      const regMinWords = isJunior ? 25 : 30;
-      const achMinWords = isJunior ? 30 : 40;
+      const regLimits = getWordLimits(cd.classNum, false);
+      const achLimits = getWordLimits(cd.classNum, true);
 
       html += `
         <div style="margin-bottom: 15px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
@@ -1407,7 +1392,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
             <!-- Regular Section Header -->
             <div style="background: #f1f5f9; padding: 8px 12px; border-radius: 6px; font-weight: 700; color: #334155; margin-bottom: 10px; font-size: 13px; display: flex; justify-content: space-between; align-items: center;">
               <span>📘 Section 1: Regular Questions (${cd.regularQuestions.length} Questions • 1 Mark Each)</span>
-              <span style="font-weight: 600; font-size: 11px; color: #64748b; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #cbd5e1;">Rule: Min ${regMinWords} words • Mix SCQ/SBQ/ARQ</span>
+              <span style="font-weight: 600; font-size: 11px; color: #64748b; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #cbd5e1;">Rule: ${regLimits.min}-${regLimits.max} words • Mix SCQ/SBQ/ARQ</span>
             </div>
             ${cd.regularQuestions.map((q, idx) => {
               const wordCount = countWords(q.q);
@@ -1438,7 +1423,7 @@ SCHEMA (return ONLY the raw JSON array of ${batchTarget} objects, no markdown, n
             <!-- Achievers Section Header -->
             <div style="background: #fef3c7; border: 1px solid #fde68a; padding: 8px 12px; border-radius: 6px; font-weight: 700; color: #92400e; margin: 15px 0 10px; font-size: 13px; display: flex; justify-content: space-between; align-items: center;">
               <span>🏆 Section 2: Achievers Section / HOTS (${cd.achieverQuestions.length} Questions • 2 Marks Each)</span>
-              <span style="font-weight: 600; font-size: 11px; color: #b45309; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #fde68a;">Rule: Min ${achMinWords} words • Mix SCQ/SBQ/ARQ</span>
+              <span style="font-weight: 600; font-size: 11px; color: #b45309; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid #fde68a;">Rule: ${achLimits.min}-${achLimits.max} words • Mix SCQ/SBQ/ARQ</span>
             </div>
             ${cd.achieverQuestions.map((q, idx) => {
               const wordCount = countWords(q.q);
