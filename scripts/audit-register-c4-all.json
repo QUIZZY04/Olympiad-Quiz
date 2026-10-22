@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-22T08:23:09.126Z",
+  "timestamp": "2026-10-22T09:07:54.622Z",
   "targetSession": "2026-27",
   "filesAudited": [
     {
@@ -13,7 +13,7 @@
     {
       "title": "Mathematics",
       "filename": "ncert-solutions-class-4-maths.html",
-      "sizeBytes": 276455,
+      "sizeBytes": 396533,
       "chapterCount": 28,
       "schemasCount": 3,
       "status": "PASSED"
@@ -21,7 +21,7 @@
     {
       "title": "English",
       "filename": "ncert-solutions-class-4-english.html",
-      "sizeBytes": 198249,
+      "sizeBytes": 323545,
       "chapterCount": 22,
       "schemasCount": 3,
       "status": "PASSED"
@@ -29,7 +29,7 @@
     {
       "title": "Hindi",
       "filename": "ncert-solutions-class-4-hindi.html",
-      "sizeBytes": 233049,
+      "sizeBytes": 355677,
       "chapterCount": 27,
       "schemasCount": 3,
       "status": "PASSED"
@@ -37,7 +37,7 @@
     {
       "title": "The World Around Us (EVS)",
       "filename": "ncert-solutions-class-4-evs.html",
-      "sizeBytes": 326215,
+      "sizeBytes": 482537,
       "chapterCount": 37,
       "schemasCount": 3,
       "status": "PASSED"
