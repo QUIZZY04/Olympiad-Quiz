@@ -1,0 +1,533 @@
+// Generator for Class 3 NCERT Solutions Hub (ncert-solutions-class-3.html)
+// Central gateway connecting all 4 subjects and 8 textbooks for Academic Session 2026-27
+const fs = require('fs');
+const path = require('path');
+
+console.log("=== BUILDING NCERT CLASS 3 CENTRAL HUB PAGE ===");
+
+const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Solutions for Class 3 All Subjects CBSE 2026-27 | Maths, English, Hindi, EVS | OlympiadQuiz</title>
+  <meta name="description" content="100% Free &amp; Complete NCERT Class 3 Solutions for all subjects (Session 2026–27). Chapter-wise solutions for Maths (Maths Mela &amp; Math-Magic), English (Santoor &amp; Marigold), Hindi (Veena &amp; Rimjhim), and EVS (Our Wondrous World &amp; Looking Around). Step-by-step marking schemes, vector diagrams &amp; NEP 2020 CBQs.">
+  <meta name="keywords" content="ncert solutions class 3, class 3 ncert solutions all subjects, cbse class 3 2026-27, class 3 maths mela, class 3 math magic, class 3 santoor, class 3 marigold, class 3 veena hindi, class 3 rimjhim, class 3 our wondrous world, class 3 looking around evs, free class 3 ncert solutions">
+  <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-3.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OlympiadQuiz">
+  <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-3.html">
+  <meta property="og:title" content="NCERT Solutions for Class 3 All Subjects CBSE 2026-27 | OlympiadQuiz">
+  <meta property="og:description" content="100% complete chapter-wise NCERT solutions for Class 3 Maths, English, Hindi, and EVS covering both NEP 2020 and Classic CBSE textbooks. Vector diagrams, CBSE rubrics, and competency case studies.">
+  <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@OlympiadQuiz">
+  <meta name="twitter:title" content="NCERT Solutions for Class 3 All Subjects CBSE 2026-27 | OlympiadQuiz">
+  <meta name="twitter:description" content="Complete textbook solutions for Class 3 Maths, English, Hindi, and EVS across 8 official NCERT textbooks with step-by-step marking rubrics.">
+  <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
+      { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
+      { "@type": "ListItem", "position": 3, "name": "Class 3 Hub", "item": "https://olympiadquiz.org/ncert-solutions-class-3.html" }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org LearningResource -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "NCERT Solutions for Class 3 All Subjects CBSE 2026-27",
+    "description": "Comprehensive NCERT Solutions for Class 3 covering Mathematics (Maths Mela & Math-Magic), English (Santoor & Marigold), Hindi (Veena & Rimjhim), and Environmental Studies (Our Wondrous World & Looking Around).",
+    "educationalLevel": "CBSE Class 3",
+    "learningResourceType": "Textbook Solutions Hub",
+    "inLanguage": ["en", "hi"],
+    "isAccessibleForFree": true,
+    "publisher": {
+      "@type": "Organization",
+      "name": "OlympiadQuiz",
+      "url": "https://olympiadquiz.org/",
+      "logo": { "@type": "ImageObject", "url": "https://olympiadquiz.org/favicon.png" }
+    }
+  }
+  </script>
+
+  <!-- Schema.org FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which textbooks and subjects are covered in Class 3 NCERT Solutions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All 4 core subjects are 100% covered across both NEP 2020 (New NCF 2023) and Classic CBSE tracks: Mathematics (Maths Mela & Math-Magic), English (Santoor & Marigold), Hindi (Veena & Rimjhim), and EVS (Our Wondrous World & Looking Around), totaling 8 textbooks and 118 chapters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the solutions updated for the latest academic session 2026-27?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all solutions are strictly aligned with the latest CBSE 2026-27 curriculum, NCF-FS / NCF-SE guidelines, official CBSE step-marking schemes, and NEP 2020 competency-based questions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is access to Class 3 NCERT solutions free on OlympiadQuiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all Class 3 NCERT solutions are 100% free with no subscription, paywall, or mandatory login required."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0f172a;
+      --slate: #475569;
+      --border: #e2e8f0;
+      --brand: #2563eb;
+      --brand-orange: #ea580c;
+      --brand-green: #059669;
+      --brand-purple: #7c3aed;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: #1e293b; line-height: 1.6; }
+
+    /* Navbar */
+    .navbar { background: #0f172a; border-bottom: 1px solid #1e293b; padding: 0 20px; position: sticky; top: 0; z-index: 99; }
+    .navbar-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .navbar-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: white; font-weight: 800; font-size: 1.15rem; }
+    .navbar-logo span span { color: #f97316; }
+    .navbar-links { display: flex; gap: 20px; align-items: center; }
+    .nav-link { color: #cbd5e1; text-decoration: none; font-size: .9rem; font-weight: 600; transition: color .2s; }
+    .nav-link:hover { color: white; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: #ffffff; min-width: 270px; box-shadow: 0 10px 25px rgba(0,0,0,.15); border-radius: 12px; padding: 10px; border: 1px solid #e2e8f0; z-index: 100; }
+    .nav-dropdown:hover .nav-dropdown-content { display: block; }
+    .nav-dropdown-content a { display: block; padding: 8px 12px; color: #1e293b; text-decoration: none; font-size: .85rem; font-weight: 600; border-radius: 6px; transition: background .15s; }
+    .nav-dropdown-content a:hover { background: #eff6ff; color: #2563eb; }
+    .btn-login { background: #2563eb; color: white; padding: 6px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: .85rem; }
+    .btn-login:hover { background: #1d4ed8; }
+
+    /* Breadcrumbs Nav */
+    .ncert-breadcrumb-nav { background: #ffffff; border-bottom: 1px solid var(--border); padding: 10px 20px; }
+    .ncert-bc-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .ncert-bc-list { display: flex; align-items: center; gap: 6px; list-style: none; font-size: .85rem; }
+    .ncert-bc-list a { color: var(--slate); text-decoration: none; font-weight: 500; }
+    .ncert-bc-list a:hover { color: var(--brand); }
+    .ncert-bc-sep { color: #94a3b8; }
+    .ncert-bc-current { color: var(--navy); font-weight: 700; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #1e3a8a 100%); color: white; padding: 48px 20px 42px; text-align: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); padding: 4px 14px; border-radius: 20px; font-size: .82rem; font-weight: 700; color: #bfdbfe; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 14px; line-height: 1.25; }
+    .hero p { font-size: 1.05rem; max-width: 840px; margin: 0 auto 24px; color: #cbd5e1; line-height: 1.7; }
+    .hero-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-top: 10px; }
+    .stat-box { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 12px; padding: 12px 20px; min-width: 140px; }
+    .stat-num { font-size: 1.5rem; font-weight: 900; color: #60a5fa; }
+    .stat-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; font-weight: 700; }
+
+    /* Main Container */
+    .main-wrap { max-width: 1400px; margin: 40px auto 60px; padding: 0 20px; }
+
+    /* Section Headings */
+    .sec-head { text-align: center; margin-bottom: 32px; }
+    .sec-badge { font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--brand); background: #eff6ff; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
+    .sec-title { font-size: 1.8rem; font-weight: 900; color: var(--navy); }
+    .sec-sub { font-size: .95rem; color: var(--slate); margin-top: 4px; }
+
+    /* Subject Grid */
+    .subject-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 48px; }
+    .subject-card { background: white; border: 1.5px solid var(--border); border-radius: 20px; padding: 26px; box-shadow: 0 4px 12px rgba(0,0,0,.03); transition: all .25s ease; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+    .subject-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.08); border-color: #cbd5e1; }
+    .subject-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+    .sub-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+    .sub-card-maths .sub-icon { background: #eff6ff; }
+    .sub-card-english .sub-icon { background: #f5f3ff; }
+    .sub-card-hindi .sub-icon { background: #fff7ed; }
+    .sub-card-evs .sub-icon { background: #ecfdf5; }
+    .sub-badge { font-size: .75rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+    .sub-card-maths .sub-badge { background: #dbeafe; color: #1e40af; }
+    .sub-card-english .sub-badge { background: #ede9fe; color: #5b21b6; }
+    .sub-card-hindi .sub-badge { background: #ffedd5; color: #9a3412; }
+    .sub-card-evs .sub-badge { background: #d1fae5; color: #065f46; }
+
+    .sub-title { font-size: 1.35rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .sub-desc { font-size: .9rem; color: var(--slate); line-height: 1.6; margin-bottom: 16px; }
+    .sub-books { background: #f8fafc; border-radius: 12px; padding: 12px; margin-bottom: 20px; border: 1px solid #e2e8f0; font-size: .85rem; }
+    .sub-book-item { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #e2e8f0; }
+    .sub-book-item:last-child { border-bottom: none; }
+    .sub-book-name { font-weight: 700; color: #1e293b; }
+    .sub-book-count { font-weight: 700; color: #64748b; font-size: .8rem; }
+
+    .btn-view-sub { display: block; text-align: center; padding: 10px 18px; border-radius: 10px; font-weight: 700; font-size: .92rem; text-decoration: none; transition: all .2s; }
+    .sub-card-maths .btn-view-sub { background: #2563eb; color: white; }
+    .sub-card-maths .btn-view-sub:hover { background: #1d4ed8; }
+    .sub-card-english .btn-view-sub { background: #0284c7; color: white; }
+    .sub-card-english .btn-view-sub:hover { background: #0369a1; }
+    .sub-card-hindi .btn-view-sub { background: #d97706; color: white; }
+    .sub-card-hindi .btn-view-sub:hover { background: #b45309; }
+    .sub-card-evs .btn-view-sub { background: #059669; color: white; }
+    .sub-card-evs .btn-view-sub:hover { background: #047857; }
+
+    /* Features Grid */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 60px; }
+    .feature-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+    .f-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .f-title { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .f-desc { font-size: .88rem; color: var(--slate); line-height: 1.6; }
+
+    /* Syllabus Comparison Table */
+    .table-wrap { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 60px; overflow-x: auto; }
+    .syllabus-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .9rem; }
+    .syllabus-table th { background: #f8fafc; padding: 12px 16px; font-weight: 800; color: var(--navy); border-bottom: 2px solid var(--border); }
+    .syllabus-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: #334155; }
+    .syllabus-table tr:last-child td { border-bottom: none; }
+    .track-tag-new { background: #eff6ff; color: #1d4ed8; font-weight: 700; padding: 2px 8px; border-radius: 6px; font-size: .75rem; }
+    .track-tag-classic { background: #fef3c7; color: #92400e; font-weight: 700; padding: 2px 8px; border-radius: 6px; font-size: .75rem; }
+
+    /* FAQ Section */
+    .faq-wrap { max-width: 900px; margin: 0 auto 60px; }
+    .faq-item { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+    .faq-item summary { padding: 18px 20px; font-weight: 800; color: var(--navy); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-content { padding: 0 20px 20px; font-size: .92rem; color: #334155; line-height: 1.7; border-top: 1px solid #f1f5f9; padding-top: 14px; }
+
+    /* Footer */
+    .footer { background: #0f172a; color: #94a3b8; padding: 40px 20px; text-align: center; font-size: .85rem; border-top: 1px solid #1e293b; }
+    .footer a { color: #60a5fa; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+        <span class="logo-text">Olympiad<span>Quiz</span></span>
+      </a>
+      <div class="navbar-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-dropdown">
+          <a href="ncert-solutions.html" class="nav-link" style="color:white;">NCERT Solutions ▾</a>
+          <div class="nav-dropdown-content">
+            <a href="ncert-solutions-class-3.html"><strong>Class 3 Solutions (All Subjects)</strong></a>
+            <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+            <a href="ncert-solutions-class-5-maths.html">Class 5 Solutions</a>
+            <a href="ncert-solutions-class-6-maths.html">Class 6 Solutions</a>
+            <a href="ncert-solutions-class-7-maths.html">Class 7 Solutions</a>
+            <a href="ncert-solutions-class-8-maths.html">Class 8 Solutions</a>
+            <a href="ncert-solutions-class-9-maths.html">Class 9 Solutions</a>
+            <a href="ncert-solutions-class-10-maths.html">Class 10 Solutions</a>
+          </div>
+        </div>
+        <a href="dashboard.html" class="btn-login">Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div class="ncert-breadcrumb-nav">
+    <div class="ncert-bc-container">
+      <ul class="ncert-bc-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="ncert-bc-sep">/</li>
+        <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
+        <li class="ncert-bc-sep">/</li>
+        <li class="ncert-bc-current">Class 3 Solutions Hub</li>
+      </ul>
+      <span style="font-size:0.8rem;color:#059669;font-weight:700;">Academic Session 2026–27 • 100% Free</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-badge">CBSE Academic Session 2026–27 • Complete NCERT Solutions</div>
+    <h1>NCERT Solutions for Class 3</h1>
+    <p>100% Comprehensive, Textbook Question &amp; Activity Coverage for Class 3 across all 4 subjects and 8 official NCERT textbooks. Featuring step-by-step CBSE marking schemes, SVG vector illustrations, and NEP 2020 competency-based case studies.</p>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Core Subjects</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Official Books</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">118</div>
+        <div class="stat-label">Total Chapters</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Free &amp; Verified</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+
+    <!-- Subject Cards Section -->
+    <section class="sec-head">
+      <span class="sec-badge">Choose Your Subject</span>
+      <h2 class="sec-title">Class 3 Subjects &amp; Textbooks (2026–27)</h2>
+      <p class="sec-sub">Select a subject below to access complete chapter-wise solutions covering both New NEP 2020 and Classic CBSE textbooks.</p>
+    </section>
+
+    <div class="subject-grid">
+
+      <!-- Mathematics -->
+      <div class="subject-card sub-card-maths">
+        <div>
+          <div class="subject-card-top">
+            <div class="sub-icon">📐</div>
+            <span class="sub-badge">28 Chapters</span>
+          </div>
+          <h3 class="sub-title">Mathematics</h3>
+          <p class="sub-desc">Comprehensive step-by-step solutions for number systems, geometric shapes, patterns, measurements, time, money, and data handling.</p>
+          <div class="sub-books">
+            <div class="sub-book-item">
+              <span class="sub-book-name">📘 Maths Mela (New NCF 2023)</span>
+              <span class="sub-book-count">14 Chapters</span>
+            </div>
+            <div class="sub-book-item">
+              <span class="sub-book-name">📙 Math-Magic (Classic CBSE)</span>
+              <span class="sub-book-count">14 Chapters</span>
+            </div>
+          </div>
+        </div>
+        <a href="ncert-solutions-class-3-maths.html" class="btn-view-sub">Explore Maths Solutions →</a>
+      </div>
+
+      <!-- English -->
+      <div class="subject-card sub-card-english">
+        <div>
+          <div class="subject-card-top">
+            <div class="sub-icon">📖</div>
+            <span class="sub-badge">22 Chapters</span>
+          </div>
+          <h3 class="sub-title">English</h3>
+          <p class="sub-desc">Reading comprehension, poetic devices, vocabulary expansions, grammar rubrics, and creative writing tasks across poems and stories.</p>
+          <div class="sub-books">
+            <div class="sub-book-item">
+              <span class="sub-book-name">📘 Santoor (New NCF 2023)</span>
+              <span class="sub-book-count">12 Chapters</span>
+            </div>
+            <div class="sub-book-item">
+              <span class="sub-book-name">📙 Marigold (Classic CBSE)</span>
+              <span class="sub-book-count">10 Units</span>
+            </div>
+          </div>
+        </div>
+        <a href="ncert-solutions-class-3-english.html" class="btn-view-sub">Explore English Solutions →</a>
+      </div>
+
+      <!-- Hindi -->
+      <div class="subject-card sub-card-hindi">
+        <div>
+          <div class="subject-card-top">
+            <div class="sub-icon">🇮🇳</div>
+            <span class="sub-badge">32 Chapters</span>
+          </div>
+          <h3 class="sub-title">हिंदी (Hindi)</h3>
+          <p class="sub-desc">कक्षा 3 हिंदी के सभी पाठ्यपुस्तक अभ्यास, बोध प्रश्नोत्तर, शब्दार्थ, तुकबंदी, व्याकरण रूब्रिक्स एवं योग्यता-आधारित केस स्टडीज।</p>
+          <div class="sub-books">
+            <div class="sub-book-item">
+              <span class="sub-book-name">📕 वीणा भाग 1 (New NCF 2023)</span>
+              <span class="sub-book-count">18 पाठ</span>
+            </div>
+            <div class="sub-book-item">
+              <span class="sub-book-name">📙 रिमझिम भाग 3 (Classic CBSE)</span>
+              <span class="sub-book-count">14 पाठ</span>
+            </div>
+          </div>
+        </div>
+        <a href="ncert-solutions-class-3-hindi.html" class="btn-view-sub">Explore Hindi Solutions →</a>
+      </div>
+
+      <!-- EVS -->
+      <div class="subject-card sub-card-evs">
+        <div>
+          <div class="subject-card-top">
+            <div class="sub-icon">🌿</div>
+            <span class="sub-badge">36 Chapters</span>
+          </div>
+          <h3 class="sub-title">Environmental Studies (EVS)</h3>
+          <p class="sub-desc">Exploring family, neighborhood crafts, plants, animals, water conservation, nutrition, habitats, transport, and ecological harmony.</p>
+          <div class="sub-books">
+            <div class="sub-book-item">
+              <span class="sub-book-name">🌿 Our Wondrous World (New NCF)</span>
+              <span class="sub-book-count">12 Chapters</span>
+            </div>
+            <div class="sub-book-item">
+              <span class="sub-book-name">🌍 Looking Around (Classic CBSE)</span>
+              <span class="sub-book-count">24 Chapters</span>
+            </div>
+          </div>
+        </div>
+        <a href="ncert-solutions-class-3-evs.html" class="btn-view-sub">Explore EVS Solutions →</a>
+      </div>
+
+    </div>
+
+    <!-- Curriculum Comparison Table -->
+    <section class="sec-head">
+      <span class="sec-badge">Dual-Track Architecture</span>
+      <h2 class="sec-title">Class 3 Textbook Overview (2026–27)</h2>
+      <p class="sec-sub">OlympiadQuiz covers both the newly introduced NEP 2020 textbooks and the classic CBSE curriculum textbooks.</p>
+    </section>
+
+    <div class="table-wrap">
+      <table class="syllabus-table">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Track 1: New NCF 2023 / NEP 2020 Textbook</th>
+            <th>Track 2: Classic CBSE Textbook</th>
+            <th>Total Chapters</th>
+            <th>Direct Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mathematics</strong></td>
+            <td><span class="track-tag-new">Maths Mela (14 Chapters)</span></td>
+            <td><span class="track-tag-classic">Math-Magic (14 Chapters)</span></td>
+            <td><strong>28 Chapters</strong></td>
+            <td><a href="ncert-solutions-class-3-maths.html" style="color:#2563eb;font-weight:700;">Open Maths</a></td>
+          </tr>
+          <tr>
+            <td><strong>English</strong></td>
+            <td><span class="track-tag-new">Santoor (12 Chapters)</span></td>
+            <td><span class="track-tag-classic">Marigold (10 Units)</span></td>
+            <td><strong>22 Chapters</strong></td>
+            <td><a href="ncert-solutions-class-3-english.html" style="color:#0284c7;font-weight:700;">Open English</a></td>
+          </tr>
+          <tr>
+            <td><strong>Hindi</strong></td>
+            <td><span class="track-tag-new">वीणा भाग 1 (18 पाठ)</span></td>
+            <td><span class="track-tag-classic">रिमझिम भाग 3 (14 पाठ)</span></td>
+            <td><strong>32 Chapters</strong></td>
+            <td><a href="ncert-solutions-class-3-hindi.html" style="color:#d97706;font-weight:700;">Open Hindi</a></td>
+          </tr>
+          <tr>
+            <td><strong>Environmental Studies (EVS)</strong></td>
+            <td><span class="track-tag-new">Our Wondrous World (12 Chapters)</span></td>
+            <td><span class="track-tag-classic">Looking Around (24 Chapters)</span></td>
+            <td><strong>36 Chapters</strong></td>
+            <td><a href="ncert-solutions-class-3-evs.html" style="color:#059669;font-weight:700;">Open EVS</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Features Section -->
+    <section class="sec-head">
+      <span class="sec-badge">Key Pedagogical Highlights</span>
+      <h2 class="sec-title">Why OlympiadQuiz Solutions Lead CBSE Education</h2>
+      <p class="sec-sub">Designed specifically for primary grade learners, parents, and school educators.</p>
+    </section>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="f-icon">🎯</div>
+        <h4 class="f-title">Zero Omission Policy</h4>
+        <p class="f-desc">Every single question, activity, puzzle, poem comprehension, and project in all 8 NCERT textbooks is answered completely with zero placeholders.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">📋</div>
+        <h4 class="f-title">CBSE Step Marking Rubrics</h4>
+        <p class="f-desc">Each question includes official CBSE step marking schemes showing students exactly how examiners award full marks for correct mathematical steps and key terms.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🌟</div>
+        <h4 class="f-title">NEP 2020 Competency Case Studies</h4>
+        <p class="f-desc">Real-life case study questions in every chapter cultivate environmental sensitivity, critical thinking, problem-solving, and analytical acumen.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🎨</div>
+        <h4 class="f-title">Custom SVG Visualizations</h4>
+        <p class="f-desc">Crisp, scalable vector diagrams illustrate mathematical geometries, leaf venation patterns, animal food chains, and water cycles on any screen size.</p>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="sec-head">
+      <span class="sec-badge">Frequently Asked Questions</span>
+      <h2 class="sec-title">Class 3 NCERT Solutions FAQs</h2>
+    </section>
+
+    <div class="faq-wrap">
+      <details class="faq-item" open>
+        <summary>
+          <span>Which textbooks are prescribed by CBSE for Class 3 in academic session 2026–27?</span>
+          <span>▾</span>
+        </summary>
+        <div class="faq-content">
+          For Class 3, schools across India are transitioning under the National Curriculum Framework (NCF-FS / NCF-SE 2023) to new textbooks: <strong>Maths Mela</strong> (Mathematics), <strong>Santoor</strong> (English), <strong>Veena</strong> (Hindi), and <strong>Our Wondrous World</strong> (The World Around Us / EVS). To ensure no student is left behind, OlympiadQuiz provides complete solutions for both the new NCF books and the classic CBSE textbooks (<strong>Math-Magic</strong>, <strong>Marigold</strong>, <strong>Rimjhim</strong>, and <strong>Looking Around</strong>).
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span>Are the solutions available completely free without registration?</span>
+          <span>▾</span>
+        </summary>
+        <div class="faq-content">
+          Yes! All solutions on OlympiadQuiz are 100% free with no login walls, subscriptions, or credit card requirements. Students and parents can access them directly on smartphones, tablets, or laptops.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span>How do these solutions help in Olympiad exam preparation?</span>
+          <span>▾</span>
+        </summary>
+        <div class="faq-content">
+          Olympiad exams such as IMO, NSO, IEO, and UIEC test deep conceptual clarity derived from NCERT fundamentals. Our solutions break down the underlying mathematical principles, scientific inquiries, and grammatical rules, giving students the strong conceptual foundation needed to crack achiever-level Olympiad problems.
+        </div>
+      </details>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 OlympiadQuiz — <a href="index.html">Home</a> · <a href="ncert-solutions.html">NCERT Solutions Hub</a> · <a href="ncert-solutions-class-3-maths.html">Class 3 Maths</a> · <a href="ncert-solutions-class-3-english.html">Class 3 English</a> · <a href="ncert-solutions-class-3-hindi.html">Class 3 Hindi</a> · <a href="ncert-solutions-class-3-evs.html">Class 3 EVS</a></p>
+    <p style="margin-top:8px;font-size:0.8rem;color:#64748b;">All textbooks, logos, and curriculum trademarks belong to their respective statutory educational authorities (NCERT / CBSE).</p>
+  </footer>
+
+</body>
+</html>
+`;
+
+const outputPath = path.resolve(__dirname, '../ncert-solutions-class-3.html');
+fs.writeFileSync(outputPath, htmlContent, 'utf8');
+console.log(`✅ Successfully generated ncert-solutions-class-3.html (${htmlContent.length} bytes)!`);

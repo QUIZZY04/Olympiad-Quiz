@@ -753,6 +753,7 @@
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
           <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub</a>
+          <a href="ncert-solutions-class-3.html">Class 3</a>
           <a href="ncert-solutions-class-4.html">Class 4</a>
           <a href="ncert-solutions.html#class5">Class 5</a>
           <a href="ncert-solutions.html#class6">Class 6</a>
@@ -816,6 +817,7 @@
         <div class="select-wrapper">
           <select class="custom-select" id="classSelect" onchange="onClassChange()" aria-label="Select Class">
             <option value="" disabled selected>-- Choose Class --</option>
+            <option value="3">Class 3</option>
             <option value="4">Class 4</option>
             <option value="5">Class 5</option>
             <option value="6">Class 6</option>
@@ -1047,6 +1049,15 @@
 
   // Data mapping: Class -> Available Subjects with URLs
   const ncertSolutionsMap = {
+    "3": {
+      name: "Class 3",
+      subjects: [
+        { name: "Mathematics (Maths Mela & Math-Magic)", url: "ncert-solutions-class-3-maths.html" },
+        { name: "English (Santoor & Marigold)", url: "ncert-solutions-class-3-english.html" },
+        { name: "Hindi (वीणा - Veena & रिमझिम - Rimjhim)", url: "ncert-solutions-class-3-hindi.html" },
+        { name: "The World Around Us / EVS (Our Wondrous World & Looking Around)", url: "ncert-solutions-class-3-evs.html" }
+      ]
+    },
     "4": {
       name: "Class 4",
       subjects: [
