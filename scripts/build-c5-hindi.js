@@ -434,7 +434,7 @@ const htmlContent = `<!DOCTYPE html>
         <a href="ncert-solutions-class-5-hindi.html" class="ncert-bc-pill active">Hindi (वीणा / रिमझिम) 📖</a>
         <a href="ncert-solutions-class-5-english.html" class="ncert-bc-pill">English (Santoor / Marigold) 📖</a>
         <a href="ncert-solutions-class-5-maths.html" class="ncert-bc-pill">Maths (Maths Mela &amp; Math-Magic) 📐</a>
-        <a href="ncert-solutions-class-5-evs.html" class="ncert-bc-pill">EVS (Looking Around) 🌿</a>
+        <a href="ncert-solutions-class-5-evs.html" class="ncert-bc-pill">The World Around Us (Our Wondrous World) 🌿</a>
       </div>
     </div>
   </div>
