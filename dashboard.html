@@ -185,6 +185,362 @@
         #mobileVerifyPromptModal .promo-title { font-size: 1.25rem; }
     }
 
+    /* Live Quiz Upcoming Poster Modal (Class 1-10) */
+    #liveQuizPosterModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 15, 29, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 5500;
+        padding: 16px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #liveQuizPosterModal.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    #liveQuizPosterModal .poster-card {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        max-height: 94vh;
+        overflow-y: auto;
+        background: #0d111d;
+        color: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7),
+                    0 0 0 1px rgba(255, 107, 0, 0.4),
+                    0 0 45px rgba(255, 107, 0, 0.25);
+        transform: scale(0.92) translateY(20px);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
+    }
+    #liveQuizPosterModal.show .poster-card {
+        transform: scale(1) translateY(0);
+    }
+    #liveQuizPosterModal .poster-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        color: #ffffff;
+        font-size: 24px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 20;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    #liveQuizPosterModal .poster-close:hover {
+        background: #ef4444;
+        border-color: #ef4444;
+        transform: rotate(90deg) scale(1.08);
+    }
+    #liveQuizPosterModal .poster-image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 24px 24px 0 0;
+        overflow: hidden;
+        background: #0f172a;
+        line-height: 0;
+    }
+    #liveQuizPosterModal .poster-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        border-radius: 24px 24px 0 0;
+    }
+    #liveQuizPosterModal .poster-floating-badge {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #f8fafc;
+        border: 1px solid rgba(255, 107, 0, 0.5);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        z-index: 5;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    #liveQuizPosterModal .live-dot-pulse {
+        width: 8px;
+        height: 8px;
+        background: #ef4444;
+        border-radius: 50%;
+        box-shadow: 0 0 0 rgba(239, 68, 68, 0.7);
+        animation: posterPulse 1.8s infinite;
+    }
+    @keyframes posterPulse {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+        70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+    #liveQuizPosterModal .poster-content-footer {
+        padding: 16px 20px 20px;
+        background: linear-gradient(180deg, #131b2e 0%, #0a0e18 100%);
+        border-radius: 0 0 24px 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    #liveQuizPosterModal .poster-meta-header {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    #liveQuizPosterModal .poster-grade-pill {
+        background: rgba(59, 130, 246, 0.2);
+        color: #93c5fd;
+        border: 1px solid rgba(59, 130, 246, 0.4);
+        font-size: 0.72rem;
+        font-weight: 800;
+        padding: 3px 10px;
+        border-radius: 6px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+    #liveQuizPosterModal .poster-subject-pill {
+        background: rgba(16, 185, 129, 0.2);
+        color: #6ee7b7;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        font-size: 0.72rem;
+        font-weight: 800;
+        padding: 3px 10px;
+        border-radius: 6px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+    #liveQuizPosterModal .poster-title-row {
+        font-size: 1.12rem;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+    }
+    #liveQuizPosterModal .poster-schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 9px 12px;
+    }
+    #liveQuizPosterModal .schedule-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    #liveQuizPosterModal .schedule-icon {
+        font-size: 1.15rem;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+    #liveQuizPosterModal .schedule-info {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+    #liveQuizPosterModal .schedule-lbl {
+        font-size: 0.62rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+    }
+    #liveQuizPosterModal .schedule-val {
+        font-size: 0.76rem;
+        color: #f1f5f9;
+        font-weight: 800;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #liveQuizPosterModal .poster-countdown-banner {
+        background: linear-gradient(90deg, rgba(239, 68, 68, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%);
+        border: 1px solid rgba(249, 115, 22, 0.35);
+        border-radius: 10px;
+        padding: 7px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    #liveQuizPosterModal .countdown-lbl {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: #fb923c;
+        letter-spacing: 0.8px;
+    }
+    #liveQuizPosterModal .countdown-val {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.88rem;
+        font-weight: 900;
+        color: #ffffff;
+        letter-spacing: 1px;
+    }
+    #liveQuizPosterModal .poster-pricing-strip {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 5px;
+        margin-right: 4px;
+    }
+    #liveQuizPosterModal .poster-orig-price {
+        color: #94a3b8;
+        font-size: 0.82rem;
+        text-decoration: line-through;
+        font-weight: 600;
+    }
+    #liveQuizPosterModal .poster-offer-price {
+        color: #22c55e;
+        font-size: 1.1rem;
+        font-weight: 900;
+    }
+    #liveQuizPosterModal .poster-coupon-row {
+        background: linear-gradient(135deg, rgba(255, 193, 7, 0.12) 0%, rgba(255, 107, 0, 0.16) 100%);
+        border: 1.5px dashed rgba(251, 191, 36, 0.65);
+        border-radius: 14px;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    #liveQuizPosterModal .coupon-tag-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    #liveQuizPosterModal .coupon-lbl {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: #fde047;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+    #liveQuizPosterModal .coupon-code-pill {
+        background: #0f172a;
+        color: #fbbf24;
+        border: 1px solid rgba(251, 191, 36, 0.55);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.96rem;
+        font-weight: 900;
+        letter-spacing: 1.2px;
+        padding: 4px 10px;
+        border-radius: 7px;
+        user-select: all;
+    }
+    #liveQuizPosterModal .coupon-discount-badge {
+        background: rgba(34, 197, 94, 0.2);
+        color: #4ade80;
+        border: 1px solid rgba(34, 197, 94, 0.4);
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 6px;
+    }
+    #liveQuizPosterModal .poster-copy-btn {
+        background: #fbbf24;
+        color: #78350f;
+        border: none;
+        font-weight: 800;
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
+    }
+    #liveQuizPosterModal .poster-copy-btn:hover {
+        background: #fde047;
+        transform: translateY(-1px);
+    }
+    #liveQuizPosterModal .poster-actions-row {
+        display: flex;
+        gap: 12px;
+    }
+    #liveQuizPosterModal .poster-btn-later {
+        flex: 1;
+        padding: 13px 16px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #cbd5e1;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    #liveQuizPosterModal .poster-btn-later:hover {
+        background: rgba(255, 255, 255, 0.16);
+        color: #ffffff;
+    }
+    #liveQuizPosterModal .poster-btn-register {
+        flex: 2;
+        padding: 13px 20px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ff6b00 0%, #ea580c 100%);
+        color: #ffffff;
+        border: none;
+        font-size: 1rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 8px 22px rgba(255, 107, 0, 0.4);
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+    #liveQuizPosterModal .poster-btn-register:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(255, 107, 0, 0.6);
+        background: linear-gradient(135deg, #ff7a1a 0%, #f97316 100%);
+    }
+    @media (max-width: 480px) {
+        #liveQuizPosterModal { padding: 8px; }
+        #liveQuizPosterModal .poster-card { max-height: 96vh; border-radius: 20px; }
+        #liveQuizPosterModal .poster-image-wrapper { border-radius: 20px 20px 0 0; }
+        #liveQuizPosterModal .poster-content-footer { padding: 12px 14px 16px; border-radius: 0 0 20px 20px; gap: 8px; }
+        #liveQuizPosterModal .poster-schedule-grid { grid-template-columns: 1fr; gap: 6px; padding: 8px 10px; }
+        #liveQuizPosterModal .poster-coupon-row { flex-direction: column; align-items: stretch; text-align: center; gap: 8px; }
+        #liveQuizPosterModal .coupon-tag-info { justify-content: center; }
+        #liveQuizPosterModal .poster-copy-btn { justify-content: center; width: 100%; }
+        #liveQuizPosterModal .poster-actions-row { flex-direction: column-reverse; }
+    }
+
     .hero-panel { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%); border-radius: 24px; padding: 48px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: var(--shadow-lg); flex-wrap: wrap; gap: 40px; }
     .hero-panel::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
     .hero-left { position: relative; z-index: 1; flex: 1; min-width: 300px; }
@@ -777,6 +1133,86 @@
     </div>
 
 
+    <!-- Live Quiz Upcoming Poster Modal (Class 1-10) -->
+    <div id="liveQuizPosterModal" aria-modal="true" role="dialog" onclick="if(event.target.id==='liveQuizPosterModal') window.closeLiveQuizPoster()">
+        <div class="poster-card" onclick="event.stopPropagation()">
+            <button type="button" class="poster-close" id="livePosterCloseBtn" onclick="window.closeLiveQuizPoster()" aria-label="Close poster">&times;</button>
+            
+            <div class="poster-image-wrapper">
+                <div class="poster-floating-badge" id="livePosterFloatBadge">
+                    <span class="live-dot-pulse"></span> <span id="livePosterFloatBadgeText">UPCOMING LIVE OLYMPIAD</span>
+                </div>
+                <img src="live-quiz-poster.png" id="livePosterImg" alt="Live Olympiad Quiz" class="poster-img" loading="eager">
+            </div>
+
+            <div class="poster-content-footer">
+                <!-- Dynamic Subject & Grade Pills -->
+                <div class="poster-meta-header">
+                    <div class="poster-grade-pill" id="livePosterGradePill">Class 1 to 10</div>
+                    <div class="poster-subject-pill" id="livePosterSubjectPill">Science (NSO)</div>
+                </div>
+
+                <!-- Dynamic Quiz Title -->
+                <div class="poster-title-row" id="livePosterTitle">NSO (Science) Live Olympiad Test</div>
+
+                <!-- Dynamic Schedule & Timing Grid -->
+                <div class="poster-schedule-grid">
+                    <div class="schedule-item">
+                        <div class="schedule-icon">📅</div>
+                        <div class="schedule-info">
+                            <span class="schedule-lbl">Quiz Date</span>
+                            <strong class="schedule-val" id="livePosterDateVal">Upcoming Sunday</strong>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-icon">⏰</div>
+                        <div class="schedule-info">
+                            <span class="schedule-lbl">Start Time</span>
+                            <strong class="schedule-val" id="livePosterTimeVal">11:00 AM IST</strong>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-icon">⏳</div>
+                        <div class="schedule-info">
+                            <span class="schedule-lbl">Duration</span>
+                            <strong class="schedule-val" id="livePosterDurationVal">60 Mins</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Live Countdown -->
+                <div class="poster-countdown-banner" id="livePosterCountdownRow">
+                    <span class="countdown-lbl">⏳ STARTS IN:</span>
+                    <span class="countdown-val" id="livePosterCountdownVal">Loading...</span>
+                </div>
+
+                <!-- Dynamic Coupon & Pricing Strip -->
+                <div class="poster-coupon-row">
+                    <div class="coupon-tag-info">
+                        <div class="poster-pricing-strip">
+                            <span class="poster-orig-price" id="livePosterOrigPrice">₹99</span>
+                            <span class="poster-offer-price" id="livePosterOfferPrice">₹59</span>
+                        </div>
+                        <span class="coupon-lbl">Coupon:</span>
+                        <span class="coupon-code-pill" id="livePosterCouponVal">FREE59</span>
+                        <span class="coupon-discount-badge" id="livePosterDiscountBadge">Save ₹40</span>
+                    </div>
+                    <button type="button" class="poster-copy-btn" id="livePosterCopyBtn" onclick="window.copyLivePosterCoupon()">
+                        <span id="copyBtnIcon">📋</span> <span id="copyBtnText">Copy</span>
+                    </button>
+                </div>
+
+                <!-- Actions Row -->
+                <div class="poster-actions-row">
+                    <button type="button" class="poster-btn-later" onclick="window.closeLiveQuizPoster()">Later</button>
+                    <button type="button" class="poster-btn-register" id="livePosterRegisterBtn" onclick="window.registerLiveQuizFromPoster()">
+                        Register for Quiz →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- HOTS Genius Challenge Promo Popup -->
     <div id="hotsPromoToast">
         <div class="promo-card">
@@ -951,9 +1387,11 @@ onAuthStateChanged(auth, async (user) => {
             const hotsSnap = await getDocs(query(collection(db, 'leaderboard'), where('uid', '==', user.uid), where('isHotsTest', '==', true), limit(1)));
             if (hotsSnap.empty) {
                 setTimeout(() => {
+                    const poster = document.getElementById('liveQuizPosterModal');
+                    if (poster && poster.classList.contains('show')) return;
                     const toast = document.getElementById('hotsPromoToast');
                     if (toast) toast.classList.add('show');
-                }, 4500);
+                }, 6000);
             }
         } catch (e) {
             console.warn('HOTS promo check failed:', e);
@@ -1035,51 +1473,180 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 
+// --- DYNAMIC LIVE QUIZ UPCOMING POSTER (CLASS 1-10 ONLY) ---
+window.currentUpcomingSessionId = null;
+window.currentUpcomingSubject = "science";
+window.currentUserClass = null;
+window.activeUpcomingLiveSession = null;
+let livePosterTimerInterval = null;
+
+function startPosterCountdown(targetDate) {
+    if (livePosterTimerInterval) clearInterval(livePosterTimerInterval);
+    
+    function tick() {
+        const el = document.getElementById('livePosterCountdownVal');
+        if (!el) return;
+        const now = new Date();
+        const diff = targetDate.getTime() - now.getTime();
+        
+        if (diff <= 0) {
+            el.innerText = "🔥 Quiz is Live Now!";
+            el.style.color = "#ef4444";
+            const floatBadge = document.getElementById('livePosterFloatBadgeText');
+            if (floatBadge) floatBadge.innerText = "LIVE QUIZ IN PROGRESS";
+            return;
+        }
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        if (days > 0) {
+            el.innerText = `${days}d ${hours}h ${mins}m ${secs}s`;
+        } else {
+            el.innerText = `${hours}h ${mins}m ${secs}s`;
+        }
+    }
+    
+    tick();
+    livePosterTimerInterval = setInterval(tick, 1000);
+}
+
+window.closeLiveQuizPoster = () => {
+    const modal = document.getElementById('liveQuizPosterModal');
+    if (modal) modal.classList.remove('show');
+    if (window.currentUpcomingSessionId) {
+        sessionStorage.setItem(`livePosterDismissed_${window.currentUpcomingSessionId}`, 'true');
+    }
+    sessionStorage.setItem('livePosterDismissed', 'true');
+};
+
+window.openLiveQuizPoster = () => {
+    if (!window.activeUpcomingLiveSession) {
+        return; // No scheduled upcoming quiz currently active
+    }
+    const modal = document.getElementById('liveQuizPosterModal');
+    if (modal) modal.classList.add('show');
+};
+
+window.copyLivePosterCoupon = () => {
+    const codeEl = document.getElementById('livePosterCouponVal');
+    const code = codeEl ? codeEl.innerText.trim() : 'FREE59';
+    navigator.clipboard.writeText(code).then(() => {
+        const icon = document.getElementById('copyBtnIcon');
+        const text = document.getElementById('copyBtnText');
+        if (icon && text) {
+            icon.innerText = '✅';
+            text.innerText = 'Copied!';
+            setTimeout(() => {
+                icon.innerText = '📋';
+                text.innerText = 'Copy';
+            }, 2000);
+        }
+    }).catch(() => {
+        alert('Coupon Code: ' + code);
+    });
+};
+
+window.registerLiveQuizFromPoster = () => {
+    const codeEl = document.getElementById('livePosterCouponVal');
+    const code = codeEl ? codeEl.innerText.trim() : 'FREE59';
+    localStorage.setItem('active_promo_coupon', code);
+    if (window.currentUpcomingSessionId) {
+        localStorage.setItem(`appliedCoupon_${window.currentUpcomingSessionId}`, code);
+    }
+    window.closeLiveQuizPoster();
+    
+    let targetClass = window.currentUserClass || "";
+    let targetSubject = window.currentUpcomingSubject || "science";
+    let targetSession = window.currentUpcomingSessionId || "";
+    
+    let targetUrl = `live.html?subject=${encodeURIComponent(targetSubject)}&coupon=${encodeURIComponent(code)}`;
+    if (targetClass) targetUrl += `&grade=${encodeURIComponent(targetClass)}`;
+    if (targetSession) targetUrl += `&session=${encodeURIComponent(targetSession)}`;
+    
+    window.location.href = targetUrl;
+};
+
+// Dismiss poster on backdrop click or ESC key
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('liveQuizPosterModal');
+        if (modal && modal.classList.contains('show')) {
+            window.closeLiveQuizPoster();
+        }
+    }
+});
+
 async function checkLiveSessions(userClass) {
     const banner = document.getElementById("liveSessionBanner");
-    if (!banner) return;
+    window.currentUserClass = userClass;
     try {
-        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(15));
-        const snap = await getDocs(q);
+        let sessionDocs = [];
+        try {
+            const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(25));
+            const snap = await getDocs(q);
+            sessionDocs = snap.docs;
+        } catch (idxErr) {
+            const snap = await getDocs(collection(db, "test_sessions"));
+            sessionDocs = snap.docs;
+        }
+
         const now = new Date();
-        
         let activeSessions = [];
         let upcomingSessions = [];
-        
-        snap.forEach(d => {
+        let allJuniorUpcoming = [];
+
+        sessionDocs.forEach(d => {
             const s = d.data();
-            // Only show material of their selected class
-            if (userClass && parseInt(s.class) !== parseInt(userClass)) return;
-            
+            s.id = d.id;
+            if (s.archived) return;
+            const sClass = parseInt(s.class);
+            if (isNaN(sClass) || sClass < 1 || sClass > 10) return;
+            if (!s.startTime || !s.endTime) return;
+
             const start = s.startTime.toDate();
             const end = s.endTime.toDate();
-            if (now < end) { 
-                if (now >= start) {
-                    activeSessions.push(s);
-                } else {
-                    upcomingSessions.push(s);
+            if (now < end) {
+                allJuniorUpcoming.push(s);
+                // Class matching for banner
+                if (!userClass || sClass === parseInt(userClass)) {
+                    if (now >= start) {
+                        activeSessions.push(s);
+                    } else {
+                        upcomingSessions.push(s);
+                    }
                 }
             }
         });
 
-        if (activeSessions.length > 0 || upcomingSessions.length > 0) {
+        if (banner && (activeSessions.length > 0 || upcomingSessions.length > 0)) {
             banner.style.display = "flex";
+            banner.style.cursor = "pointer";
+            banner.title = "Click to view Live Quiz details";
+            banner.onclick = (e) => {
+                if (e.target.tagName !== 'A') {
+                    if (window.activeUpcomingLiveSession && document.getElementById('liveQuizPosterModal')) {
+                        window.openLiveQuizPoster();
+                    } else {
+                        window.location.href = "live.html";
+                    }
+                }
+            };
             const badge = document.getElementById("bannerBadge");
             let isLive = activeSessions.length > 0;
             
+            banner.style.background = "linear-gradient(90deg, var(--brand), var(--accent))";
+            banner.style.borderColor = "var(--brand)";
+            banner.style.boxShadow = "0 10px 25px rgba(255, 107, 0, 0.3)";
+            banner.style.color = "white";
+
             if (isLive) {
-                banner.style.background = "linear-gradient(90deg, var(--brand), var(--accent))";
-                banner.style.borderColor = "var(--brand)";
-                banner.style.boxShadow = "0 10px 25px rgba(255, 107, 0, 0.3)";
-                banner.style.color = "white";
                 badge.innerText = "LIVE NOW";
                 badge.style.background = "#ffffff";
                 badge.style.color = "var(--danger)";
             } else {
-                banner.style.background = "linear-gradient(90deg, var(--brand), var(--accent))";
-                banner.style.borderColor = "var(--brand)";
-                banner.style.boxShadow = "0 10px 25px rgba(255, 107, 0, 0.3)";
-                banner.style.color = "white";
                 badge.innerText = "UPCOMING";
                 badge.style.background = "#ffffff";
                 badge.style.color = "var(--warning)";
@@ -1096,12 +1663,141 @@ async function checkLiveSessions(userClass) {
                 messageParts.push(`⏳ <strong>${s.title}</strong> (Grade ${s.class} ${subj}) starts at ${timeStr}`);
             });
             
-            document.querySelector("#liveSessionBanner .scrolling-text").innerHTML = messageParts.join(" &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; ");
-            document.querySelector("#liveSessionBanner .scrolling-text").style.color = "#ffffff";
-            document.querySelector("#liveSessionBanner .scrolling-text").style.textShadow = "none";
+            const scrollingEl = document.querySelector("#liveSessionBanner .scrolling-text");
+            if (scrollingEl) {
+                scrollingEl.innerHTML = messageParts.join(" &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; ");
+                scrollingEl.style.color = "#ffffff";
+                scrollingEl.style.textShadow = "none";
+            }
         }
+
+        // --- DYNAMIC LIVE QUIZ POSTER TRIGGER (CLASS 1-10 ONLY) ---
+        // Dynamically populates poster with upcoming live quiz details.
+        // If NO live quiz is scheduled (or after the scheduled quiz has passed), the poster does NOT appear!
+        // When a new quiz is scheduled, it automatically loads and displays all details.
+        const isJuniorStudent = !userClass || (userClass >= 1 && userClass <= 10);
+        const posterModalEl = document.getElementById('liveQuizPosterModal');
+
+        if (!isJuniorStudent || allJuniorUpcoming.length === 0) {
+            // No scheduled upcoming quiz: hide poster and clear session
+            window.activeUpcomingLiveSession = null;
+            if (posterModalEl) posterModalEl.classList.remove('show');
+        } else {
+            // Find target upcoming session: student's class first, or earliest upcoming
+            let targetSession = null;
+            if (userClass) {
+                targetSession = allJuniorUpcoming.find(s => parseInt(s.class) === parseInt(userClass));
+            }
+            if (!targetSession && allJuniorUpcoming.length > 0) {
+                targetSession = allJuniorUpcoming.slice().sort((a,b) => a.startTime.toDate() - b.startTime.toDate())[0];
+            }
+
+            if (targetSession) {
+                const startDate = targetSession.startTime.toDate();
+                const endDate = targetSession.endTime.toDate();
+
+                // If scheduled quiz end time has already passed, do not show poster
+                if (now >= endDate) {
+                    window.activeUpcomingLiveSession = null;
+                    if (posterModalEl) posterModalEl.classList.remove('show');
+                    return;
+                }
+
+                window.activeUpcomingLiveSession = targetSession;
+                window.currentUpcomingSessionId = targetSession.id;
+                window.currentUpcomingSubject = targetSession.subject || 'science';
+                window.currentUserClass = targetSession.class;
+
+                // Dynamically populate Title
+                const titleEl = document.getElementById('livePosterTitle');
+                if (titleEl) {
+                    titleEl.innerText = targetSession.title || `Olympiad ${targetSession.subject?.toUpperCase() || ''} Live Test`;
+                }
+
+                // Dynamically populate Grade & Subject Pills
+                const gradePill = document.getElementById('livePosterGradePill');
+                if (gradePill) {
+                    gradePill.innerText = targetSession.class ? `Class ${targetSession.class}` : 'Class 1 to 10';
+                }
+
+                const subjPill = document.getElementById('livePosterSubjectPill');
+                if (subjPill) {
+                    const subjRaw = (targetSession.subject || 'science').toLowerCase();
+                    const subjMap = { science: 'Science (NSO)', maths: 'Mathematics (IMO)', english: 'English (IEO)', cyber: 'Cyber (NCO)', gk: 'General Knowledge (IGKO)' };
+                    subjPill.innerText = subjMap[subjRaw] || `${targetSession.subject.toUpperCase()} Olympiad`;
+                }
+
+                // Dynamically populate Date, Time & Duration
+                const dateVal = document.getElementById('livePosterDateVal');
+                if (dateVal) {
+                    const dateStr = startDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                    const weekday = startDate.toLocaleDateString('en-GB', { weekday: 'short' });
+                    dateVal.innerText = `${dateStr} (${weekday})`;
+                }
+
+                const timeVal = document.getElementById('livePosterTimeVal');
+                if (timeVal) {
+                    timeVal.innerText = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' IST';
+                }
+
+                const durVal = document.getElementById('livePosterDurationVal');
+                if (durVal) {
+                    durVal.innerText = `${targetSession.duration || 60} Mins`;
+                }
+
+                // Dynamically populate Pricing & Coupon
+                const origPrice = targetSession.price || 99;
+                const offerPrice = targetSession.priceAfterCoupon != null ? targetSession.priceAfterCoupon : 59;
+                const savings = Math.max(0, origPrice - offerPrice);
+                const couponCode = targetSession.couponCode || targetSession.coupon || 'FREE59';
+
+                const origPriceEl = document.getElementById('livePosterOrigPrice');
+                if (origPriceEl) origPriceEl.innerText = `₹${origPrice}`;
+
+                const offerPriceEl = document.getElementById('livePosterOfferPrice');
+                if (offerPriceEl) offerPriceEl.innerText = `₹${offerPrice}`;
+
+                const discountBadge = document.getElementById('livePosterDiscountBadge');
+                if (discountBadge) discountBadge.innerText = savings > 0 ? `Save ₹${savings}` : 'Offer Active';
+
+                const couponVal = document.getElementById('livePosterCouponVal');
+                if (couponVal) couponVal.innerText = couponCode;
+
+                // Support custom poster image from Firestore session if set
+                const posterImg = document.getElementById('livePosterImg');
+                if (posterImg && (targetSession.posterUrl || targetSession.bannerUrl || targetSession.imageUrl)) {
+                    posterImg.src = targetSession.posterUrl || targetSession.bannerUrl || targetSession.imageUrl;
+                }
+
+                // Start Live Countdown
+                startPosterCountdown(startDate);
+
+                // Check purchase status of logged-in student
+                const currentUser = auth.currentUser;
+                if (currentUser) {
+                    try {
+                        const pDoc = await getDoc(doc(db, "users", currentUser.uid, "purchases", targetSession.id));
+                        if (pDoc.exists()) {
+                            const regBtn = document.getElementById('livePosterRegisterBtn');
+                            if (regBtn) regBtn.innerText = "Enter Live Arena →";
+                        }
+                    } catch (e) {
+                        console.warn("Purchase check error:", e);
+                    }
+                }
+
+                // Auto-popup poster if not dismissed for this session in current browser session
+                const dismissKey = `livePosterDismissed_${targetSession.id}`;
+                if (sessionStorage.getItem(dismissKey) !== 'true') {
+                    setTimeout(() => {
+                        window.openLiveQuizPoster();
+                    }, 700);
+                }
+            }
+        }
+
     } catch (e) {
-        console.warn("Banner sync failed:", e);
+        console.warn("Banner & Live poster sync failed:", e);
     }
 }
 

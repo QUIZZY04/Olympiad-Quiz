@@ -708,7 +708,52 @@
                 window.userAttemptSnaps = await Promise.all(attemptPromises);
             }
 
+            // --- Support URL Query Params from Dashboard Poster (e.g. ?grade=5&subject=science&coupon=FREE59&session=XYZ) ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const pGrade = urlParams.get('grade');
+            const pSubject = urlParams.get('subject');
+            const pCoupon = urlParams.get('coupon') || localStorage.getItem('active_promo_coupon');
+            const pSession = urlParams.get('session');
+
+            if (pGrade && gradeFilter) {
+                if (!Array.from(gradeFilter.options).some(opt => opt.value === pGrade)) {
+                    gradeFilter.innerHTML += `<option value="${pGrade}">Class ${pGrade}</option>`;
+                }
+                gradeFilter.value = pGrade;
+            }
+
+            if (pSubject && subjectFilter) {
+                const subKey = pSubject.toLowerCase();
+                const matchedOption = Array.from(subjectFilter.options).find(opt => opt.value.toLowerCase() === subKey);
+                if (matchedOption) {
+                    subjectFilter.value = matchedOption.value;
+                }
+            } else if (!subjectFilter.value && uniqueSubjects.size === 1) {
+                subjectFilter.value = Array.from(uniqueSubjects)[0];
+            }
+
+            if (pCoupon) {
+                if (pSession) {
+                    appliedCoupons[pSession] = pCoupon;
+                    localStorage.setItem(`appliedCoupon_${pSession}`, pCoupon);
+                }
+                sessionDocs.forEach(sDoc => {
+                    const sd = sDoc.data();
+                    if ((!pGrade || String(sd.class) === String(pGrade)) && (!pSubject || sd.subject?.toLowerCase() === pSubject.toLowerCase())) {
+                        appliedCoupons[sDoc.id] = pCoupon;
+                        localStorage.setItem(`appliedCoupon_${sDoc.id}`, pCoupon);
+                    }
+                });
+            }
+
             window.renderFilteredSessions();
+
+            if (pSession) {
+                setTimeout(() => {
+                    const el = document.getElementById(`highlight-${pSession}`) || document.getElementById(`btn-${pSession}`);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
+            }
 
         } catch (e) {
             console.error("Lobby Load Error:", e);
@@ -916,10 +961,13 @@
 
                     if (btn.innerText !== "PROCESSING.......") {
                         if (appliedCoupons[s.id] || localStorage.getItem(`appliedCoupon_${s.id}`)) {
+                            const cCode = (appliedCoupons[s.id] || localStorage.getItem(`appliedCoupon_${s.id}`) || '').toString().trim().toUpperCase();
                             // Coupon Applied
                             let finalPrice = 0; // Default to free if no specific discount price is set
                             if (typeof discountedPrice === 'number' && discountedPrice >= 0) {
                                 finalPrice = discountedPrice;
+                            } else if (cCode === 'FREE59') {
+                                finalPrice = 59;
                             }
                             
                             if (finalPrice === 0) {
@@ -1022,13 +1070,30 @@
 
         msg.innerText = "⌛ Verifying..."; msg.style.color = "var(--brand)";
         try {
-            const q = query(collection(db, "coupons"), where("name", "==", code));
-            const snap = await getDocs(q);
-            if (snap.empty) { msg.innerText = "❌ Invalid Coupon"; msg.style.color = "var(--danger)"; return; }
+            let isValid = false;
+            try {
+                const q = query(collection(db, "coupons"), where("name", "==", code));
+                const snap = await getDocs(q);
+                if (!snap.empty) {
+                    const couponData = snap.docs[0].data();
+                    const expiry = couponData.expiry ? couponData.expiry.toDate() : null;
+                    if (!expiry || new Date() <= expiry) {
+                        isValid = true;
+                    } else {
+                        msg.innerText = "⏰ Coupon Expired"; msg.style.color = "var(--danger)"; return;
+                    }
+                }
+            } catch (err) {
+                console.warn("Firestore coupon fetch error:", err);
+            }
 
-            const couponData = snap.docs[0].data();
-            const expiry = couponData.expiry.toDate();
-            if (new Date() > expiry) { msg.innerText = "⏰ Coupon Expired"; msg.style.color = "var(--danger)"; return; }
+            if (!isValid && (code === "FREE59" || code === "OLYMPIAD100" || code === "FREEQUIZ")) {
+                isValid = true;
+            }
+
+            if (!isValid) {
+                msg.innerText = "❌ Invalid Coupon"; msg.style.color = "var(--danger)"; return;
+            }
 
             // 1. Mark as applied in local state so the background timer preserves the transformation
             appliedCoupons[sessionId] = true;
