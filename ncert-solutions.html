@@ -753,6 +753,7 @@
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
           <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub</a>
+          <a href="ncert-solutions-class-4.html">Class 4</a>
           <a href="ncert-solutions.html#class5">Class 5</a>
           <a href="ncert-solutions.html#class6">Class 6</a>
           <a href="ncert-solutions.html#class7">Class 7</a>
@@ -815,6 +816,7 @@
         <div class="select-wrapper">
           <select class="custom-select" id="classSelect" onchange="onClassChange()" aria-label="Select Class">
             <option value="" disabled selected>-- Choose Class --</option>
+            <option value="4">Class 4</option>
             <option value="5">Class 5</option>
             <option value="6">Class 6</option>
             <option value="7">Class 7</option>
@@ -1045,6 +1047,15 @@
 
   // Data mapping: Class -> Available Subjects with URLs
   const ncertSolutionsMap = {
+    "4": {
+      name: "Class 4",
+      subjects: [
+        { name: "Mathematics (Maths Mela & Math-Magic)", url: "ncert-solutions-class-4-maths.html" },
+        { name: "English (Santoor & Marigold)", url: "ncert-solutions-class-4-english.html" },
+        { name: "Hindi (वीणा - Veena & रिमझिम - Rimjhim)", url: "ncert-solutions-class-4-hindi.html" },
+        { name: "The World Around Us (Our Wondrous World & Looking Around)", url: "ncert-solutions-class-4-evs.html" }
+      ]
+    },
     "5": {
       name: "Class 5",
       subjects: [
@@ -1247,7 +1258,8 @@
   function initFromHash() {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     let classVal = '';
-    if (hash === 'class5' || hash === '5') classVal = '5';
+    if (hash === 'class4' || hash === '4') classVal = '4';
+    else if (hash === 'class5' || hash === '5') classVal = '5';
     else if (hash === 'class6' || hash === '6') classVal = '6';
     else if (hash === 'class7' || hash === '7') classVal = '7';
     else if (hash === 'class8' || hash === '8') classVal = '8';

@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-10-22T07:12:44.471Z",
+  "targetSession": "2026-27",
+  "filesAudited": [
+    {
+      "title": "Central Hub",
+      "filename": "ncert-solutions-class-4.html",
+      "sizeBytes": 26311,
+      "chapterCount": 0,
+      "schemasCount": 3,
+      "status": "PASSED"
+    },
+    {
+      "title": "Mathematics",
+      "filename": "ncert-solutions-class-4-maths.html",
+      "sizeBytes": 276231,
+      "chapterCount": 28,
+      "schemasCount": 3,
+      "status": "PASSED"
+    },
+    {
+      "title": "English",
+      "filename": "ncert-solutions-class-4-english.html",
+      "sizeBytes": 198249,
+      "chapterCount": 22,
+      "schemasCount": 3,
+      "status": "PASSED"
+    },
+    {
+      "title": "Hindi",
+      "filename": "ncert-solutions-class-4-hindi.html",
+      "sizeBytes": 233049,
+      "chapterCount": 27,
+      "schemasCount": 3,
+      "status": "PASSED"
+    },
+    {
+      "title": "The World Around Us (EVS)",
+      "filename": "ncert-solutions-class-4-evs.html",
+      "sizeBytes": 326215,
+      "chapterCount": 37,
+      "schemasCount": 3,
+      "status": "PASSED"
+    }
+  ],
+  "totalChapterSections": 114,
+  "schemaValidation": "PASSED",
+  "forbiddenLiteralsCheck": "PASSED"
+}
