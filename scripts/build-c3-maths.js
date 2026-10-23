@@ -48,6 +48,11 @@ function renderChapterSection(ch, bookKey) {
   const prefix = `${bookKey}_${ch.num}`;
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
   const questionsHtml = ch.questions.map((q, idx) => renderQuestionCard(q, idx, prefix)).join('');
+  
+  const isMela = bookKey === 'mela';
+  const modularUrl = isMela ? `chapters-c3m/maths-mela-ch${ch.num}.html` : `chapters-c3m/math-magic-ch${ch.num}.html`;
+  const bookName = isMela ? 'Maths Mela' : 'Math-Magic';
+  const qCount = isMela ? 22 : 27;
 
   return `
   <section class="chapter-section" id="ch_${ch.id}">
@@ -58,6 +63,18 @@ function renderChapterSection(ch, bookKey) {
         <h2>Chapter ${ch.num}: ${ch.title}</h2>
         <p>${ch.subtitle}</p>
       </div>
+    </div>
+
+    <!-- 100% Modular Solutions Banner -->
+    <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #ffffff; border-radius: 14px; padding: 18px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 14px rgba(37,99,235,0.22);">
+      <div>
+        <div style="display: inline-block; background: #fbbf24; color: #78350f; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 6px;">🚀 100% Comprehensive Textbook Solutions Available</div>
+        <div style="font-size: 1.12rem; font-weight: 800; color: #ffffff;">Looking for ALL ${qCount}+ Questions &amp; In-Text Exercises?</div>
+        <div style="font-size: 0.88rem; color: #dbeafe; margin-top: 3px;">Get every single exercise question with complete step-by-step working, diagrams, and CBSE marking rubrics.</div>
+      </div>
+      <a href="${modularUrl}" style="background: #ffffff; color: #1e40af; padding: 11px 22px; border-radius: 8px; font-weight: 800; font-size: 0.92rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); white-space: nowrap;">
+        Open Full Chapter ${ch.num} (${qCount}+ Qs) ➔
+      </a>
     </div>
 
     <!-- Key Concepts Card -->
@@ -75,9 +92,18 @@ function renderChapterSection(ch, bookKey) {
     </div>
 
     <!-- Complete Exercise Questions & Solutions -->
-    <div class="ex-div">📖 NCERT Textbook Exercise Solutions &amp; Step-by-Step Working (100% Coverage)</div>
+    <div class="ex-div">📖 NCERT Textbook Exercise Core Solutions (Preview)</div>
     <div class="questions-container">
       ${questionsHtml}
+    </div>
+
+    <!-- Bottom Full Chapter Navigation CTA -->
+    <div style="text-align: center; margin: 24px 0 28px; padding: 20px; background: #f0fdf4; border: 2px dashed #86efac; border-radius: 14px;">
+      <div style="font-size: 1rem; font-weight: 800; color: #166534; margin-bottom: 6px;">Want to practice all ${qCount}+ textbook exercises &amp; in-text activities?</div>
+      <p style="font-size: 0.88rem; color: #374151; margin-bottom: 14px; max-width: 600px; margin-left: auto; margin-right: auto;">Our standalone modular page contains 100% of all questions from the printed ${bookName} textbook without any omissions or truncation.</p>
+      <a href="${modularUrl}" style="display: inline-block; background: #16a34a; color: #ffffff; font-weight: 800; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">
+        👉 Go to Complete ${bookName} Chapter ${ch.num} Solutions (${qCount}+ Questions) ➔
+      </a>
     </div>
 
     <!-- NEP 2020 Competency Based Question (CBQ) -->
@@ -98,6 +124,38 @@ function renderChapterSection(ch, bookKey) {
 
 const melaSections = mathsMelaChapters.map(ch => renderChapterSection(ch, "mela")).join('\n');
 const magicSections = mathMagicChapters.map(ch => renderChapterSection(ch, "magic")).join('\n');
+
+const melaChapterDirectoryCards = mathsMelaChapters.map(ch => `
+  <a href="chapters-c3m/maths-mela-ch${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #1e40af; background: #dbeafe; padding: 2px 8px; border-radius: 4px;">Chapter ${ch.num}</span>
+        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">22+ Solved Qs</span>
+      </div>
+      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
+      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
+    </div>
+    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #2563eb; display: flex; align-items: center; gap: 4px;">
+      View Complete Solutions ➔
+    </div>
+  </a>
+`).join('\n');
+
+const magicChapterDirectoryCards = mathMagicChapters.map(ch => `
+  <a href="chapters-c3m/math-magic-ch${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #fed7aa; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #9a3412; background: #ffedd5; padding: 2px 8px; border-radius: 4px;">Chapter ${ch.num}</span>
+        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">27+ Solved Qs</span>
+      </div>
+      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
+      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
+    </div>
+    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #ea580c; display: flex; align-items: center; gap: 4px;">
+      View Complete Solutions ➔
+    </div>
+  </a>
+`).join('\n');
 
 const melaChips = mathsMelaChapters.map(ch => `
   <button class="bc-chip" data-target="ch_${ch.id}" onclick="showChapter('ch_${ch.id}')">
@@ -458,9 +516,35 @@ const htmlContent = `<!DOCTYPE html>
     <!-- Content Containers -->
     <main class="main-content">
       <div id="containerMela">
+        <!-- Direct Chapter Directory Banner -->
+        <div style="background: #ffffff; border: 1.5px solid #bfdbfe; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(37,99,235,0.06);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #eff6ff; padding-bottom: 12px;">
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; color: #1e3a8a; margin: 0;">📘 Maths Mela — Dedicated Standalone Chapter Pages (100% Ingestion)</h2>
+              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">Click any chapter below to access all 22+ questions, in-text activities, and diagrams without browser lag.</p>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #15803d; background: #dcfce7; padding: 4px 12px; border-radius: 999px;">14 Dedicated Chapter Pages</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
+            ${melaChapterDirectoryCards}
+          </div>
+        </div>
         ${melaSections}
       </div>
       <div id="containerMagic" style="display:none;">
+        <!-- Direct Chapter Directory Banner -->
+        <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(234,88,12,0.06);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #fff7ed; padding-bottom: 12px;">
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; color: #9a3412; margin: 0;">📙 Math-Magic — Dedicated Standalone Chapter Pages (100% Ingestion)</h2>
+              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">Click any chapter below to access all 27+ questions, in-text activities, and diagrams without browser lag.</p>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #c2410c; background: #ffedd5; padding: 4px 12px; border-radius: 999px;">14 Dedicated Chapter Pages</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
+            ${magicChapterDirectoryCards}
+          </div>
+        </div>
         ${magicSections}
       </div>
     </main>

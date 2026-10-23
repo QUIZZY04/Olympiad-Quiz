@@ -49,15 +49,32 @@ function renderChapterSection(ch, bookKey) {
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
   const questionsHtml = ch.questions.map((q, idx) => renderQuestionCard(q, idx, prefix)).join('');
 
+  const isSantoor = bookKey === 'st';
+  const modularUrl = isSantoor ? `chapters-c3e/santoor-ch${ch.num}.html` : `chapters-c3e/marigold-unit${ch.num}.html`;
+  const bookName = isSantoor ? 'Santoor' : 'Marigold';
+  const qCount = 20;
+
   return `
   <section class="chapter-section" id="ch_${ch.id}">
     <div class="chapter-header">
       <div class="ch-badge">${ch.num}</div>
       <div class="chapter-header-info">
         <span class="unit-tag">${ch.unit}</span>
-        <h2>Chapter ${ch.num}: ${ch.title}</h2>
+        <h2>${isSantoor ? `Chapter ${ch.num}: ${ch.title}` : `Unit ${ch.num}: ${ch.title}`}</h2>
         <p>${ch.subtitle}</p>
       </div>
+    </div>
+
+    <!-- 100% Modular Solutions Banner -->
+    <div style="background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%); color: #ffffff; border-radius: 14px; padding: 18px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 14px rgba(2,132,199,0.22);">
+      <div>
+        <div style="display: inline-block; background: #fef08a; color: #854d0e; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 6px;">🚀 100% Comprehensive Textbook Solutions Available</div>
+        <div style="font-size: 1.12rem; font-weight: 800; color: #ffffff;">Looking for ALL ${qCount}+ Questions &amp; Reading Activities?</div>
+        <div style="font-size: 0.88rem; color: #e0f2fe; margin-top: 3px;">Get every single exercise question with reading comprehension, word power, grammar rubrics, and creative writing.</div>
+      </div>
+      <a href="${modularUrl}" style="background: #ffffff; color: #0369a1; padding: 11px 22px; border-radius: 8px; font-weight: 800; font-size: 0.92rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); white-space: nowrap;">
+        Open Full ${isSantoor ? `Chapter ${ch.num}` : `Unit ${ch.num}`} (${qCount}+ Qs) ➔
+      </a>
     </div>
 
     <!-- Key Concepts Card -->
@@ -75,9 +92,18 @@ function renderChapterSection(ch, bookKey) {
     </div>
 
     <!-- Complete Exercise Questions & Solutions -->
-    <div class="ex-div">📖 NCERT Textbook Exercise Solutions &amp; Comprehension (100% Coverage)</div>
+    <div class="ex-div">📖 NCERT Textbook Exercise Core Solutions (Preview)</div>
     <div class="questions-container">
       ${questionsHtml}
+    </div>
+
+    <!-- Bottom Full Chapter Navigation CTA -->
+    <div style="text-align: center; margin: 24px 0 28px; padding: 20px; background: #f0fdf4; border: 2px dashed #86efac; border-radius: 14px;">
+      <div style="font-size: 1rem; font-weight: 800; color: #166534; margin-bottom: 6px;">Want to practice all ${qCount}+ textbook exercises &amp; reading activities?</div>
+      <p style="font-size: 0.88rem; color: #374151; margin-bottom: 14px; max-width: 600px; margin-left: auto; margin-right: auto;">Our standalone modular page contains 100% of all questions from the printed ${bookName} textbook without any omissions or truncation.</p>
+      <a href="${modularUrl}" style="display: inline-block; background: #16a34a; color: #ffffff; font-weight: 800; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">
+        👉 Go to Complete ${bookName} ${isSantoor ? `Chapter ${ch.num}` : `Unit ${ch.num}`} Solutions (${qCount}+ Questions) ➔
+      </a>
     </div>
 
     <!-- NEP 2020 Competency Based Question (CBQ) -->
@@ -98,6 +124,38 @@ function renderChapterSection(ch, bookKey) {
 
 const santoorSections = santoorChapters.map(ch => renderChapterSection(ch, "st")).join('\n');
 const marigoldSections = marigoldUnits.map(ch => renderChapterSection(ch, "mg")).join('\n');
+
+const santoorChapterDirectoryCards = santoorChapters.map(ch => `
+  <a href="chapters-c3e/santoor-ch${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #0369a1; background: #e0f2fe; padding: 2px 8px; border-radius: 4px;">Chapter ${ch.num}</span>
+        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">20+ Solved Qs</span>
+      </div>
+      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
+      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
+    </div>
+    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #0284c7; display: flex; align-items: center; gap: 4px;">
+      View Complete Solutions ➔
+    </div>
+  </a>
+`).join('\n');
+
+const marigoldChapterDirectoryCards = marigoldUnits.map(ch => `
+  <a href="chapters-c3e/marigold-unit${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #fed7aa; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #9a3412; background: #ffedd5; padding: 2px 8px; border-radius: 4px;">Unit ${ch.num}</span>
+        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">20+ Solved Qs</span>
+      </div>
+      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
+      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
+    </div>
+    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #ea580c; display: flex; align-items: center; gap: 4px;">
+      View Complete Solutions ➔
+    </div>
+  </a>
+`).join('\n');
 
 const santoorChips = santoorChapters.map(ch => `
   <button class="bc-chip" data-target="ch_${ch.id}" onclick="showChapter('ch_${ch.id}')">
@@ -448,9 +506,35 @@ const htmlContent = `<!DOCTYPE html>
     <!-- Content Containers -->
     <main class="main-content">
       <div id="containerSantoor">
+        <!-- Direct Chapter Directory Banner -->
+        <div style="background: #ffffff; border: 1.5px solid #bae6fd; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(2,132,199,0.06);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #f0f9ff; padding-bottom: 12px;">
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; color: #0369a1; margin: 0;">📘 Santoor — Dedicated Standalone Chapter Pages (100% Ingestion)</h2>
+              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">Click any chapter below to access all 20+ questions, reading comprehension, and activities without browser lag.</p>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #15803d; background: #dcfce7; padding: 4px 12px; border-radius: 999px;">12 Dedicated Chapter Pages</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
+            ${santoorChapterDirectoryCards}
+          </div>
+        </div>
         ${santoorSections}
       </div>
       <div id="containerMarigold" style="display:none;">
+        <!-- Direct Chapter Directory Banner -->
+        <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(234,88,12,0.06);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #fff7ed; padding-bottom: 12px;">
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; color: #9a3412; margin: 0;">📙 Marigold — Dedicated Standalone Chapter Pages (100% Ingestion)</h2>
+              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">Click any unit below to access all 20+ questions, reading comprehension, and activities without browser lag.</p>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #c2410c; background: #ffedd5; padding: 4px 12px; border-radius: 999px;">10 Dedicated Unit Pages</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
+            ${marigoldChapterDirectoryCards}
+          </div>
+        </div>
         ${marigoldSections}
       </div>
     </main>

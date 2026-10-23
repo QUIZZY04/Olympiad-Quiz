@@ -49,6 +49,11 @@ function renderChapterSection(ch, bookKey) {
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
   const questionsHtml = ch.questions.map((q, idx) => renderQuestionCard(q, idx, prefix)).join('');
 
+  const isVeena = bookKey === 'vn';
+  const modularUrl = isVeena ? `chapters-c3h/veena-ch${ch.num}.html` : `chapters-c3h/rimjhim-ch${ch.num}.html`;
+  const bookName = isVeena ? 'वीणा (Veena)' : 'रिमझिम (Rimjhim)';
+  const qCount = isVeena ? 14 : 16;
+
   return `
   <section class="chapter-section" id="ch_${ch.id}">
     <div class="chapter-header">
@@ -58,6 +63,18 @@ function renderChapterSection(ch, bookKey) {
         <h2>पाठ ${ch.num}: ${ch.title}</h2>
         <p>${ch.subtitle}</p>
       </div>
+    </div>
+
+    <!-- 100% Modular Solutions Banner -->
+    <div style="background: linear-gradient(135deg, #b45309 0%, #d97706 100%); color: #ffffff; border-radius: 14px; padding: 18px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 14px rgba(217,119,6,0.22);">
+      <div>
+        <div style="display: inline-block; background: #fef3c7; color: #78350f; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 6px;">🚀 100% संपूर्ण पाठ्यपुस्तक अभ्यास समाधान</div>
+        <div style="font-size: 1.12rem; font-weight: 800; color: #ffffff;">क्या आप सभी ${qCount}+ अभ्यास प्रश्न एवं भाषा कार्य देखना चाहते हैं?</div>
+        <div style="font-size: 0.88rem; color: #fef3c7; margin-top: 3px;">पाठ के सभी प्रश्नोत्तर, भाषा की बात (व्याकरण), सोचिए और लिखिए, एवं सीबीएसई अंकन योजना उपलब्ध है।</div>
+      </div>
+      <a href="${modularUrl}" style="background: #ffffff; color: #92400e; padding: 11px 22px; border-radius: 8px; font-weight: 800; font-size: 0.92rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); white-space: nowrap;">
+        पूरा पाठ ${ch.num} खोलें (${qCount}+ प्रश्न) ➔
+      </a>
     </div>
 
     <!-- Key Concepts Card -->
@@ -75,9 +92,18 @@ function renderChapterSection(ch, bookKey) {
     </div>
 
     <!-- Complete Exercise Questions & Solutions -->
-    <div class="ex-div">📖 एनसीईआरटी पाठ्यपुस्तक अभ्यास प्रश्नोत्तर एवं भाषा कार्य (100% कवरेज)</div>
+    <div class="ex-div">📖 एनसीईआरटी पाठ्यपुस्तक अभ्यास मुख्य प्रश्नोत्तर (पूर्वावलोकन)</div>
     <div class="questions-container">
       ${questionsHtml}
+    </div>
+
+    <!-- Bottom Full Chapter Navigation CTA -->
+    <div style="text-align: center; margin: 24px 0 28px; padding: 20px; background: #f0fdf4; border: 2px dashed #86efac; border-radius: 14px;">
+      <div style="font-size: 1rem; font-weight: 800; color: #166534; margin-bottom: 6px;">पाठ के सभी ${qCount}+ अभ्यास प्रश्नोत्तर एवं व्याकरण कार्य का अभ्यास करें:</div>
+      <p style="font-size: 0.88rem; color: #374151; margin-bottom: 14px; max-width: 600px; margin-left: auto; margin-right: auto;">समर्पित पाठ पृष्ठ पर ${bookName} पाठ्यपुस्तक के 100% सभी प्रश्न बिना किसी संक्षेप के उपलब्ध हैं।</p>
+      <a href="${modularUrl}" style="display: inline-block; background: #16a34a; color: #ffffff; font-weight: 800; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">
+        👉 ${bookName} पाठ ${ch.num} का संपूर्ण समाधान देखें (${qCount}+ प्रश्न) ➔
+      </a>
     </div>
 
     <!-- NEP 2020 Competency Based Question (CBQ) -->
@@ -98,6 +124,38 @@ function renderChapterSection(ch, bookKey) {
 
 const veenaSections = veenaChapters.map(ch => renderChapterSection(ch, "vn")).join('\n');
 const rimjhimSections = rimjhimChapters.map(ch => renderChapterSection(ch, "rj")).join('\n');
+
+const veenaChapterDirectoryCards = veenaChapters.map(ch => `
+  <a href="chapters-c3h/veena-ch${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #fed7aa; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #9a3412; background: #ffedd5; padding: 2px 8px; border-radius: 4px;">पाठ ${ch.num}</span>
+        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">14+ हल प्रश्न</span>
+      </div>
+      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
+      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
+    </div>
+    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #d97706; display: flex; align-items: center; gap: 4px;">
+      संपूर्ण समाधान देखें ➔
+    </div>
+  </a>
+`).join('\n');
+
+const rimjhimChapterDirectoryCards = rimjhimChapters.map(ch => `
+  <a href="chapters-c3h/rimjhim-ch${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #fed7aa; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #9a3412; background: #ffedd5; padding: 2px 8px; border-radius: 4px;">पाठ ${ch.num}</span>
+        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">16+ हल प्रश्न</span>
+      </div>
+      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
+      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
+    </div>
+    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #ea580c; display: flex; align-items: center; gap: 4px;">
+      संपूर्ण समाधान देखें ➔
+    </div>
+  </a>
+`).join('\n');
 
 const veenaChips = veenaChapters.map(ch => `
   <button class="bc-chip" data-target="ch_${ch.id}" onclick="showChapter('ch_${ch.id}')">
@@ -949,9 +1007,35 @@ const htmlContent = `<!DOCTYPE html>
     <!-- Content Containers -->
     <main class="main-content">
       <div id="containerVeena">
+        <!-- Direct Chapter Directory Banner -->
+        <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(217,119,6,0.06);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #fffbeb; padding-bottom: 12px;">
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; color: #9a3412; margin: 0;">📕 वीणा भाग 1 — समर्पित पाठ पृष्ठ (100% संपूर्ण कवरेज)</h2>
+              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">पाठ्यपुस्तक के सभी 14+ अभ्यास प्रश्न, भाषा की बात एवं व्याकरण समाधान देखने हेतु पाठ चुनें।</p>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #15803d; background: #dcfce7; padding: 4px 12px; border-radius: 999px;">18 समर्पित पाठ पृष्ठ</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
+            ${veenaChapterDirectoryCards}
+          </div>
+        </div>
         ${veenaSections}
       </div>
       <div id="containerRimjhim" style="display:none;">
+        <!-- Direct Chapter Directory Banner -->
+        <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(234,88,12,0.06);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #fff7ed; padding-bottom: 12px;">
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 800; color: #9a3412; margin: 0;">📙 रिमझिम भाग 3 — समर्पित पाठ पृष्ठ (100% संपूर्ण कवरेज)</h2>
+              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">पाठ्यपुस्तक के सभी 16+ अभ्यास प्रश्न, कविता से आगे एवं व्याकरण समाधान देखने हेतु पाठ चुनें।</p>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #c2410c; background: #ffedd5; padding: 4px 12px; border-radius: 999px;">14 समर्पित पाठ पृष्ठ</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
+            ${rimjhimChapterDirectoryCards}
+          </div>
+        </div>
         ${rimjhimSections}
       </div>
     </main>
