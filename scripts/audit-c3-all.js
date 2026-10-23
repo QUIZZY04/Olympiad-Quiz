@@ -126,7 +126,7 @@ const mainHubPath = path.resolve(__dirname, '../ncert-solutions.html');
 assert(fs.existsSync(mainHubPath), "ncert-solutions.html exists");
 
 const mainHubContent = fs.readFileSync(mainHubPath, 'utf8');
-assert(mainHubContent.includes('ncert-solutions-class-3.html'), "Main hub links to Class 3 Hub");
+assert(mainHubContent.includes('ncert-solutions-class-3-maths.html') || mainHubContent.includes('ncert-solutions-class-3.html'), "Main hub links to Class 3 Solutions");
 assert(mainHubContent.includes('<option value="3">Class 3</option>'), "Main hub class dropdown includes Class 3");
 assert(mainHubContent.includes('"3": {'), "Main hub JS ncertSolutionsMap includes Class 3 mapping");
 

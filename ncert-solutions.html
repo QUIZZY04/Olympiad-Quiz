@@ -753,9 +753,9 @@
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
           <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub</a>
-          <a href="ncert-solutions-class-3.html"><strong>Class 3 Solutions (All Subjects)</strong></a>
-          <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
-          <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+          <a href="ncert-solutions-class-3-maths.html"><strong>Class 3 Solutions ✨</strong></a>
+          <a href="ncert-solutions-class-4-maths.html">Class 4 Solutions</a>
+          <a href="ncert-solutions-class-5-maths.html">Class 5 Solutions</a>
           <a href="ncert-solutions.html#class6">Class 6</a>
           <a href="ncert-solutions.html#class7">Class 7</a>
           <a href="ncert-solutions.html#class8">Class 8</a>
@@ -1144,28 +1144,15 @@
     if (panel) panel.style.display = 'none';
 
     // Reset and repopulate subject dropdown
-    const prevSub = subjectSelect.value;
     subjectSelect.innerHTML = '';
-
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.textContent = '-- Choose Subject --';
-    defaultOption.disabled = true;
-    defaultOption.selected = true;
-    subjectSelect.appendChild(defaultOption);
-
-    // Keep "All Subjects" option
-    const allOpt = document.createElement('option');
-    allOpt.value = 'all';
-    allOpt.textContent = '🌟 All Subjects';
-    subjectSelect.appendChild(allOpt);
 
     if (selectedClass && ncertSolutionsMap[selectedClass]) {
       const subjects = ncertSolutionsMap[selectedClass].subjects;
-      subjects.forEach(sub => {
+      subjects.forEach((sub, idx) => {
         const opt = document.createElement('option');
         opt.value = sub.url;
         opt.textContent = sub.name;
+        if (idx === 0) opt.selected = true; // Auto-select primary subject (Mathematics)
         subjectSelect.appendChild(opt);
       });
       // Update URL hash smoothly without jumping
@@ -1179,16 +1166,13 @@
         { name: "Hindi", key: "hindi" },
         { name: "Sanskrit", key: "sanskrit" }
       ];
-      genericSubjects.forEach(sub => {
+      genericSubjects.forEach((sub, idx) => {
         const opt = document.createElement('option');
         opt.value = sub.key;
         opt.textContent = sub.name;
+        if (idx === 0) opt.selected = true;
         subjectSelect.appendChild(opt);
       });
-    }
-
-    if (prevSub === 'all') {
-      subjectSelect.value = 'all';
     }
   }
 
@@ -1198,13 +1182,12 @@
     if (panel) panel.style.display = 'none';
   }
 
-  // Navigate to selected solution
+  // Navigate directly to selected solution (Zero double navigation)
   function goToSolution() {
     const classVal = classSelect.value;
-    const subjectVal = subjectSelect.value;
+    let subjectVal = subjectSelect.value;
     const panel = document.getElementById('allSubjectsPanel');
-    const list = document.getElementById('allSubjectsList');
-    const title = document.getElementById('allSubjectsTitle');
+    if (panel) panel.style.display = 'none';
 
     if (!classVal) {
       showAlert('Please select your Class first.');
@@ -1212,37 +1195,15 @@
       return;
     }
 
-    if (!subjectVal) {
-      showAlert('Please select a Subject to continue.');
-      subjectSelect.focus();
-      return;
-    }
+    const classInfo = ncertSolutionsMap[classVal];
 
-    // If "All Subjects" is selected
-    if (subjectVal === 'all') {
-      if (classVal === '3') {
-        window.location.href = 'ncert-solutions-class-3.html';
-        return;
-      }
-      if (classVal === '4') {
-        window.location.href = 'ncert-solutions-class-4.html';
-        return;
-      }
-      const classInfo = ncertSolutionsMap[classVal];
+    // If subject is missing or "all", default directly to primary subject solutions (e.g. Maths)
+    if (!subjectVal || subjectVal === 'all') {
       if (classInfo && classInfo.subjects.length > 0) {
-        title.innerHTML = `<span>📚</span> ${classInfo.name} — All Available Subjects:`;
-        list.innerHTML = '';
-        classInfo.subjects.forEach(sub => {
-          const btn = document.createElement('a');
-          btn.href = sub.url;
-          btn.textContent = sub.name + ' →';
-          btn.style.cssText = 'display:block;padding:12px 16px;background:white;color:#0f172a;border:1.5px solid #cbd5e1;border-radius:12px;font-weight:700;font-size:0.9rem;text-decoration:none;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.03);transition:all 0.2s ease;';
-          btn.onmouseover = () => { btn.style.background = '#ff6b00'; btn.style.color = '#fff'; btn.style.borderColor = '#ff6b00'; };
-          btn.onmouseout = () => { btn.style.background = '#fff'; btn.style.color = '#0f172a'; btn.style.borderColor = '#cbd5e1'; };
-          list.appendChild(btn);
-        });
-        panel.style.display = 'block';
-        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        subjectVal = classInfo.subjects[0].url;
+      } else {
+        showAlert('Please select a Subject to continue.');
+        subjectSelect.focus();
         return;
       }
     }
@@ -1250,17 +1211,20 @@
     // Specific subject navigation
     let targetUrl = subjectVal;
     if (!targetUrl.endsWith('.html')) {
-      const classInfo = ncertSolutionsMap[classVal];
-      const match = classInfo.subjects.find(s => s.url.includes(targetUrl));
-      if (match) {
-        targetUrl = match.url;
+      if (classInfo) {
+        const match = classInfo.subjects.find(s => s.url.includes(targetUrl));
+        if (match) {
+          targetUrl = match.url;
+        } else {
+          targetUrl = classInfo.subjects[0].url;
+        }
       } else {
-        showAlert('This subject is not available for ' + classInfo.name + '. Please choose another.');
+        showAlert('This subject is not available for Class ' + classVal + '. Please choose another.');
         return;
       }
     }
 
-    // Navigate to that class and subject NCERT solution
+    // Direct 1-click navigation to the solutions page
     window.location.href = targetUrl;
   }
 

@@ -37,6 +37,6 @@ const mainHub = fs.readFileSync('ncert-solutions-class-3.html', 'utf8');
 console.log(`[Main Hub] Size: ${mainHub.length} bytes | Has #maths: ${mainHub.includes('id="maths"')} | Has #ch-dir-maths: ${mainHub.includes('id="ch-dir-maths"')}`);
 
 const portalHub = fs.readFileSync('ncert-solutions.html', 'utf8');
-console.log(`[Portal Hub] Has Class 3 dropdown: ${portalHub.includes('Class 3 Solutions (All Subjects)')} | Has Class 3 in hash listener: ${portalHub.includes("if (hash === 'class3' || hash === '3') classVal = '3'")}`);
+console.log(`[Portal Hub] Has Class 3 dropdown: ${portalHub.includes('Class 3 Solutions')} | Has Class 3 in hash listener: ${portalHub.includes("if (hash === 'class3' || hash === '3') classVal = '3'")}`);
 
 console.log("🎉 ALL IN-PAGE SUBJECT PAGES & NAVIGATION VERIFIED 100% CLEAN & COMPLETE!");

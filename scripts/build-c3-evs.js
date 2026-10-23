@@ -510,6 +510,10 @@ const htmlContent = `<!DOCTYPE html>
     .mob-toggle { display: none; position: fixed; bottom: 20px; right: 20px; background: var(--brand); color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: .9rem; box-shadow: 0 4px 14px rgba(0,0,0,.25); z-index: 999; cursor: pointer; }
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 950; }
 
+    .sidebar-book-tabs { display: flex; gap: 4px; background: #f1f5f9; padding: 4px; border-radius: 10px; margin-bottom: 12px; }
+    .sb-tab { flex: 1; border: none; background: transparent; padding: 7px 6px; font-size: 0.74rem; font-weight: 700; color: var(--slate); border-radius: 8px; cursor: pointer; transition: all 0.18s ease; font-family: inherit; }
+    .sb-tab.active { background: white; color: var(--brand); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
     @media (max-width: 900px) {
       .main-layout { flex-direction: column; }
       .sidebar { position: fixed; left: -330px; top: 0; height: 100vh; z-index: 960; transition: left .3s; }
@@ -541,11 +545,10 @@ const htmlContent = `<!DOCTYPE html>
           <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="nav-dropdown-content">
             <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
-            <a href="ncert-solutions-class-3.html" style="font-weight:700;color:#059669;background:#ecfdf5;">Class 3 Solutions Hub ✨ (Active)</a>
             <a href="ncert-solutions-class-3-maths.html">Class 3 Maths</a>
             <a href="ncert-solutions-class-3-english.html">Class 3 English</a>
             <a href="ncert-solutions-class-3-hindi.html">Class 3 Hindi</a>
-            <a href="ncert-solutions-class-3-evs.html">Class 3 EVS</a>
+            <a href="ncert-solutions-class-3-evs.html" style="font-weight:700;color:#059669;background:#ecfdf5;">Class 3 EVS ✨ (Active)</a>
             <a href="ncert-solutions-class-10-science.html">Class 10 Science</a>
           </div>
         </div>
@@ -568,7 +571,7 @@ const htmlContent = `<!DOCTYPE html>
         <li class="ncert-bc-sep">/</li>
         <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
         <li class="ncert-bc-sep">/</li>
-        <li><a href="ncert-solutions-class-3.html">Class 3</a></li>
+        <li><a href="ncert-solutions.html#class3">Class 3</a></li>
         <li class="ncert-bc-sep">/</li>
         <li class="ncert-bc-current">Environmental Studies (EVS)</li>
       </ol>
@@ -621,6 +624,10 @@ const htmlContent = `<!DOCTYPE html>
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-title" id="sidebarTitleText">📘 Our Wondrous World (12 Chapters)</div>
+      <div class="sidebar-book-tabs">
+        <button id="sbTabWw" class="sb-tab active" onclick="switchBook('ww')">📘 Our Wondrous World</button>
+        <button id="sbTabLa" class="sb-tab" onclick="switchBook('la')">📙 Looking Around</button>
+      </div>
       <input type="text" class="search-box" placeholder="Search chapters..." onkeyup="filterChapters(this.value)">
       <ul class="chapter-nav" id="navWw">
         ${wondrousWorldSidebar}
@@ -642,7 +649,7 @@ const htmlContent = `<!DOCTYPE html>
 
   <!-- Footer -->
   <footer class="site-footer">
-    <p>© 2026 OlympiadQuiz — <a href="index.html">Home</a> · <a href="ncert-solutions.html">NCERT Solutions Hub</a> · <a href="ncert-solutions-class-3.html">Class 3 Solutions Hub</a></p>
+    <p>© 2026 OlympiadQuiz — <a href="index.html">Home</a> · <a href="ncert-solutions.html">NCERT Solutions Hub</a> · <a href="ncert-solutions.html#class3">Class 3 Solutions</a></p>
   </footer>
 
   <script>
@@ -652,9 +659,13 @@ const htmlContent = `<!DOCTYPE html>
       currentBook = book;
       const isWw = (book === 'ww');
 
-      // Update tabs
+      // Update tabs in hero & sidebar
       document.getElementById('btnWw').classList.toggle('active', isWw);
       document.getElementById('btnLa').classList.toggle('active', !isWw);
+      const sbTabWw = document.getElementById('sbTabWw');
+      const sbTabLa = document.getElementById('sbTabLa');
+      if (sbTabWw) sbTabWw.classList.toggle('active', isWw);
+      if (sbTabLa) sbTabLa.classList.toggle('active', !isWw);
 
       // Update chips & sidebars
       document.getElementById('chipsWw').style.display = isWw ? 'flex' : 'none';
