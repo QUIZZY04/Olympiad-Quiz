@@ -45,9 +45,7 @@ function renderQuestionCard(qObj, idx, prefix) {
 }
 
 function renderChapterSection(ch, bookKey) {
-  const prefix = `${bookKey}_${ch.num || ch.id}`;
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
-  const questionsHtml = ch.questions.map((q, idx) => renderQuestionCard(q, idx, prefix)).join('');
 
   const isWw = bookKey === 'ww';
   const modularUrl = isWw ? `chapters-c3evs/wondrous-world-ch${ch.num}.html` : `chapters-c3evs/looking-around-ch${ch.num}.html`;
@@ -66,13 +64,13 @@ function renderChapterSection(ch, bookKey) {
     </div>
 
     <!-- 100% Modular Solutions Banner -->
-    <div style="background: linear-gradient(135deg, #065f46 0%, #059669 100%); color: #ffffff; border-radius: 14px; padding: 18px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 14px rgba(5,150,105,0.22);">
+    <div style="background: linear-gradient(135deg, #065f46 0%, #059669 100%); color: #ffffff; border-radius: 14px; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 14px rgba(5,150,105,0.22);">
       <div>
-        <div style="display: inline-block; background: #a7f3d0; color: #064e3b; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 6px;">🚀 100% Comprehensive Textbook Solutions Available</div>
-        <div style="font-size: 1.12rem; font-weight: 800; color: #ffffff;">Looking for ALL ${qCount}+ Questions &amp; Inquiry Activities?</div>
+        <div style="display: inline-block; background: #a7f3d0; color: #064e3b; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 6px;">🚀 100% Comprehensive Textbook Solutions Ingested</div>
+        <div style="font-size: 1.15rem; font-weight: 800; color: #ffffff;">All ${qCount}+ Questions &amp; Inquiry Activities</div>
         <div style="font-size: 0.88rem; color: #d1fae5; margin-top: 3px;">Get every single exercise question with observation tables, field surveys, and CBSE marking schemes.</div>
       </div>
-      <a href="${modularUrl}" style="background: #ffffff; color: #065f46; padding: 11px 22px; border-radius: 8px; font-weight: 800; font-size: 0.92rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); white-space: nowrap;">
+      <a href="${modularUrl}" style="background: #ffffff; color: #065f46; padding: 12px 24px; border-radius: 8px; font-weight: 800; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); white-space: nowrap;">
         Open Full Chapter ${ch.num} (${qCount}+ Qs) ➔
       </a>
     </div>
@@ -91,18 +89,18 @@ function renderChapterSection(ch, bookKey) {
       </div>
     </div>
 
-    <!-- Complete Exercise Questions & Solutions -->
-    <div class="ex-div">📖 NCERT Textbook Exercise Core Solutions (Preview)</div>
-    <div class="questions-container">
-      ${questionsHtml}
-    </div>
-
-    <!-- Bottom Full Chapter Navigation CTA -->
-    <div style="text-align: center; margin: 24px 0 28px; padding: 20px; background: #f0fdf4; border: 2px dashed #86efac; border-radius: 14px;">
-      <div style="font-size: 1rem; font-weight: 800; color: #166534; margin-bottom: 6px;">Want to practice all ${qCount}+ textbook exercises &amp; environmental observations?</div>
-      <p style="font-size: 0.88rem; color: #374151; margin-bottom: 14px; max-width: 600px; margin-left: auto; margin-right: auto;">Our standalone modular page contains 100% of all questions from the printed ${bookName} textbook without any omissions or truncation.</p>
-      <a href="${modularUrl}" style="display: inline-block; background: #16a34a; color: #ffffff; font-weight: 800; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">
-        👉 Go to Complete ${bookName} Chapter ${ch.num} Solutions (${qCount}+ Questions) ➔
+    <!-- 100% Complete Exercise Solutions Gateway Card -->
+    <div style="background: #ffffff; border: 2px solid #a7f3d0; border-radius: 16px; padding: 28px; margin: 24px 0; box-shadow: 0 4px 16px rgba(5,150,105,0.08); text-align: center;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: #dcfce7; color: #15803d; font-size: 0.82rem; font-weight: 800; padding: 5px 16px; border-radius: 999px; text-transform: uppercase; margin-bottom: 12px;">
+        <span>✅ 100% Question Coverage</span> • <span>All ${qCount}+ Solved Questions</span>
+      </div>
+      <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Chapter ${ch.num}: ${ch.title} — Full NCERT Solutions</h3>
+      <p style="font-size: 0.92rem; color: #475569; max-width: 680px; margin: 0 auto 20px; line-height: 1.6;">
+        Access all <strong>${qCount}+ textbook exercises, observation logs, field activities, and eco-awareness tasks</strong> with step-by-step CBSE marking schemes.
+      </p>
+      <a href="${modularUrl}" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: #ffffff; font-weight: 800; font-size: 1.05rem; padding: 14px 34px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(5,150,105,0.3); transition: transform 0.15s ease;">
+        <span>📖 Open Chapter ${ch.num} Complete Solutions (${qCount}+ Questions)</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
     </div>
 
@@ -158,24 +156,24 @@ const lookingAroundChapterDirectoryCards = lookingAroundChapters.map(ch => `
 `).join('\n');
 
 const wondrousWorldChips = wondrousWorldChapters.map(ch => `
-  <button class="bc-chip" data-target="ch_${ch.id}" onclick="showChapter('ch_${ch.id}')">
+  <a class="bc-chip" href="chapters-c3evs/wondrous-world-ch${ch.num}.html">
     <span class="bc-n">${ch.num}</span> ${ch.title.split('—')[0].trim()}
-  </button>
+  </a>
 `).join('');
 
 const lookingAroundChips = lookingAroundChapters.map(ch => `
-  <button class="bc-chip" data-target="ch_${ch.id}" onclick="showChapter('ch_${ch.id}')">
+  <a class="bc-chip" href="chapters-c3evs/looking-around-ch${ch.num}.html">
     <span class="bc-n">${ch.num}</span> ${ch.title.split('!')[0].trim()}
-  </button>
+  </a>
 `).join('');
 
 const wondrousWorldSidebar = wondrousWorldChapters.map(ch => `
   <li>
-    <a href="javascript:void(0)" data-target="ch_${ch.id}" onclick="showChapter('ch_${ch.id}')">
+    <a href="chapters-c3evs/wondrous-world-ch${ch.num}.html">
       <span class="ch-num">${ch.num}</span>
       <div class="ch-meta">
         <span class="ch-name">${ch.title}</span>
-        <span class="ch-sub">${ch.unit}</span>
+        <span class="ch-sub">${ch.unit} • 16+ Qs ➔</span>
       </div>
     </a>
   </li>
@@ -183,11 +181,11 @@ const wondrousWorldSidebar = wondrousWorldChapters.map(ch => `
 
 const lookingAroundSidebar = lookingAroundChapters.map(ch => `
   <li>
-    <a href="javascript:void(0)" data-target="ch_${ch.id}" onclick="showChapter('ch_${ch.id}')">
+    <a href="chapters-c3evs/looking-around-ch${ch.num}.html">
       <span class="ch-num">${ch.num}</span>
       <div class="ch-meta">
         <span class="ch-name">${ch.title}</span>
-        <span class="ch-sub">${ch.unit}</span>
+        <span class="ch-sub">${ch.unit} • 16+ Qs ➔</span>
       </div>
     </a>
   </li>
