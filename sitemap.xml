@@ -10,6 +10,39 @@
   </url>
 
   <!-- ================= NCERT Solutions ================= -->
+  <!-- Class 3 -->
+  <url>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-3.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-3-maths.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-3-english.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-3-hindi.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-3-evs.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Class 4 -->
   <url>
     <loc>https://olympiadquiz.org/ncert-solutions-class-4.html</loc>
     <lastmod>2026-10-22</lastmod>
@@ -40,27 +73,35 @@
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
+
+  <!-- Class 5 -->
   <url>
-    <loc>https://olympiadquiz.org/ncert-solutions-class-5-maths.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-5.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://olympiadquiz.org/ncert-solutions-class-5-evs.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-5-maths.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://olympiadquiz.org/ncert-solutions-class-5-english.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://olympiadquiz.org/ncert-solutions-class-5-hindi.html</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://olympiadquiz.org/ncert-solutions-class-5-evs.html</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>

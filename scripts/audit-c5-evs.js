@@ -1,9 +1,9 @@
-// Comprehensive Audit Suite for NCERT Class 5 The World Around Us: Our Wondrous World
+// Comprehensive Audit Suite for NCERT Class 5 EVS: Our Wondrous World & Looking Around
 const fs = require('fs');
 const path = require('path');
 
 const filePath = path.resolve(__dirname, '../ncert-solutions-class-5-evs.html');
-console.log("=== AUDITING NCERT CLASS 5 THE WORLD AROUND US (OUR WONDROUS WORLD) ===");
+console.log("=== AUDITING NCERT CLASS 5 EVS (OUR WONDROUS WORLD & LOOKING AROUND) ===");
 
 if (!fs.existsSync(filePath)) {
   console.error("❌ File not found:", filePath);
@@ -16,16 +16,16 @@ let warnings = 0;
 
 // 1. File Size Verification
 console.log(`[1] File Size: ${(content.length / 1024).toFixed(2)} KB`);
-if (content.length < 50000) {
-  console.error("❌ File size is suspiciously small!");
+if (content.length < 100000) {
+  console.error("❌ File size is suspiciously small for dual-track EVS!");
   errors++;
 } else {
-  console.log("✅ File size meets full-depth criteria (>50KB).");
+  console.log("✅ File size meets full-depth criteria (>100KB).");
 }
 
 // 2. Verify all 10 Official Chapters of Our Wondrous World
-console.log("\n[2] Verifying All 10 Official Chapters:");
-const expectedChapters = [
+console.log("\n[2] Verifying Track 1: Our Wondrous World (10 Chapters):");
+const expectedWondrous = [
   { id: "ch_oww1", num: 1, title: "Water — The Essence of Life" },
   { id: "ch_oww2", num: 2, title: "Journey of a River" },
   { id: "ch_oww3", num: 3, title: "The Mystery of Food" },
@@ -38,63 +38,65 @@ const expectedChapters = [
   { id: "ch_oww10", num: 10, title: "Earth — Our Shared Home" }
 ];
 
-let missingChapters = 0;
-expectedChapters.forEach(ch => {
+let missingWondrous = 0;
+expectedWondrous.forEach(ch => {
   const hasId = content.includes(`id="${ch.id}"`);
   const hasTitle = content.includes(ch.title);
   if (!hasId || !hasTitle) {
     console.error(`❌ Missing or mislabeled chapter: ${ch.id} (${ch.title})`);
-    missingChapters++;
+    missingWondrous++;
   } else {
     console.log(`   - Ch ${ch.num}: ${ch.title} present & verified.`);
   }
 });
-
-if (missingChapters === 0) {
-  console.log("✅ All 10 official chapters verified in correct sequence.");
+if (missingWondrous === 0) {
+  console.log("✅ All 10 Our Wondrous World chapters verified in sequence.");
 } else {
-  errors += missingChapters;
+  errors += missingWondrous;
 }
 
-// 3. Verify Removal of Old 22-Chapter Looking Around Structure
-console.log("\n[3] Checking Removal of Outdated 'Looking Around' Content:");
-const oldChapterSignatures = [
-  "Super Senses",
-  "A Snake Charmer's Story",
-  "From Tasting to Digesting",
-  "Mangoes Round the Year",
-  "Seeds and Seeds",
-  "Every Drop Counts",
-  "Experiments with Water",
-  "A Treat for Mosquitoes",
-  "Up You Go!",
-  "Walls Tell Stories",
-  "Sunita in Space",
-  "What if it Finishes...?",
-  "A Shelter so High!",
-  "When the Earth Shook!",
-  "Blow Hot, Blow Cold",
-  "Who will do this Work?",
-  "Across the Wall",
-  "No Place for Us?",
-  "A Seed tells a Farmer's Story",
-  "Whose Forests?",
-  "Like Father, Like Daughter",
-  "On the Move Again"
+// 3. Verify all 22 Official Chapters of Looking Around (Classic CBSE)
+console.log("\n[3] Verifying Track 2: Looking Around / आस-पास (22 Chapters):");
+const expectedLooking = [
+  { id: "ch_la_1", num: 1, title: "Super Senses" },
+  { id: "ch_la_2", num: 2, title: "A Snake Charmer's Story" },
+  { id: "ch_la_3", num: 3, title: "From Tasting to Digesting" },
+  { id: "ch_la_4", num: 4, title: "Mangoes Round the Year" },
+  { id: "ch_la_5", num: 5, title: "Seeds and Seeds" },
+  { id: "ch_la_6", num: 6, title: "Every Drop Counts" },
+  { id: "ch_la_7", num: 7, title: "Experiments with Water" },
+  { id: "ch_la_8", num: 8, title: "A Treat for Mosquitoes" },
+  { id: "ch_la_9", num: 9, title: "Up You Go!" },
+  { id: "ch_la_10", num: 10, title: "Walls Tell Stories" },
+  { id: "ch_la_11", num: 11, title: "Sunita in Space" },
+  { id: "ch_la_12", num: 12, title: "What if it Finishes...?" },
+  { id: "ch_la_13", num: 13, title: "A Shelter so High!" },
+  { id: "ch_la_14", num: 14, title: "When the Earth Shook!" },
+  { id: "ch_la_15", num: 15, title: "Blow Hot, Blow Cold" },
+  { id: "ch_la_16", num: 16, title: "Who will do this Work?" },
+  { id: "ch_la_17", num: 17, title: "Across the Wall" },
+  { id: "ch_la_18", num: 18, title: "No Place for Us?" },
+  { id: "ch_la_19", num: 19, title: "A Seed tells a Farmer's Story" },
+  { id: "ch_la_20", num: 20, title: "Whose Forests?" },
+  { id: "ch_la_21", num: 21, title: "Like Father, Like Daughter" },
+  { id: "ch_la_22", num: 22, title: "On the Move Again" }
 ];
 
-let lingeringOldChapters = 0;
-oldChapterSignatures.forEach(sig => {
-  if (content.includes(`<h2>Chapter`) && content.includes(sig)) {
-    console.error(`❌ Old textbook chapter found on active page: "${sig}"`);
-    lingeringOldChapters++;
+let missingLooking = 0;
+expectedLooking.forEach(ch => {
+  const hasId = content.includes(`id="${ch.id}"`);
+  const hasTitle = content.includes(ch.title);
+  if (!hasId || !hasTitle) {
+    console.error(`❌ Missing or mislabeled Looking Around chapter: ${ch.id} (${ch.title})`);
+    missingLooking++;
+  } else {
+    console.log(`   - Ch ${ch.num}: ${ch.title} present & verified.`);
   }
 });
-
-if (lingeringOldChapters === 0) {
-  console.log("✅ Confirmed: 0 old Looking Around chapters remain on the active page.");
+if (missingLooking === 0) {
+  console.log("✅ All 22 Looking Around chapters verified in sequence.");
 } else {
-  errors += lingeringOldChapters;
+  errors += missingLooking;
 }
 
 // 4. Component Metrics (Questions, Rubrics, Diagrams, CBQs)
@@ -109,18 +111,18 @@ console.log(`   - CBSE Step Marking Schemes:       ${rubrics}`);
 console.log(`   - NEP 2020 CBQ Case Studies:       ${cbqs}`);
 console.log(`   - Visual Schematics & Diagrams:    ${svgs}`);
 
-if (qCards < 60) {
-  console.warn("⚠️ Question count seems low for full coverage.");
+if (qCards < 160) {
+  console.warn(`⚠️ Question count (${qCards}) seems lower than expected for 32 chapters.`);
   warnings++;
 } else {
-  console.log("✅ Comprehensive question density verified (60+ items).");
+  console.log(`✅ Comprehensive question density verified (${qCards} items).`);
 }
 
-if (cbqs !== 10) {
-  console.error(`❌ Expected exactly 10 CBQs (1 per chapter), found ${cbqs}`);
+if (cbqs < 32) {
+  console.error(`❌ Expected 32 CBQs (1 per chapter), found ${cbqs}`);
   errors++;
 } else {
-  console.log("✅ Exactly 10 NEP 2020 Competency Case Studies present.");
+  console.log(`✅ All 32 NEP 2020 Competency Case Studies present (${cbqs}).`);
 }
 
 // 5. Syntax & Code Integrity
@@ -156,13 +158,14 @@ if (!jsonLdMatches || jsonLdMatches.length < 3) {
 // 7. Navigation Sanity
 console.log("\n[7] Checking Navigation Elements:");
 const chips = (content.match(/class="bc-chip"/g) || []).length;
-const navItems = (content.match(/#chapterNav li/g) || []).length || (content.match(/<ul class="chapter-nav"/g) || []).length;
 const hasSearch = content.includes('id="chapterSearch"');
+const hasBtnWondrous = content.includes('id="btnWondrous"');
+const hasBtnLooking = content.includes('id="btnLooking"');
 
-if (chips === 10 && navItems > 0 && hasSearch) {
-  console.log("✅ Quick jump chips (10/10), search box, and sidebar navigation verified.");
+if (chips === 32 && hasSearch && hasBtnWondrous && hasBtnLooking) {
+  console.log("✅ Quick jump chips (32/32), dual-book switcher, and search box verified.");
 } else {
-  console.error(`❌ Navigation mismatch: chips=${chips}, hasSearch=${hasSearch}`);
+  console.error(`❌ Navigation mismatch: chips=${chips}, hasSearch=${hasSearch}, switcher=${hasBtnWondrous && hasBtnLooking}`);
   errors++;
 }
 
