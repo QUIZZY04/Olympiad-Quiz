@@ -40,10 +40,10 @@ assert(ledger.summary.totalCompetencyCaseStudies === 118, `Expected 118 NEP 2020
 console.log("\n[2/5] Verifying 5 Published HTML Pages...");
 const pages = [
   { name: 'Hub Page', file: '../ncert-solutions-class-3.html', minSize: 20000 },
-  { name: 'Mathematics Page', file: '../ncert-solutions-class-3-maths.html', minSize: 200000 },
-  { name: 'English Page', file: '../ncert-solutions-class-3-english.html', minSize: 200000 },
-  { name: 'Hindi Page', file: '../ncert-solutions-class-3-hindi.html', minSize: 250000 },
-  { name: 'EVS Page', file: '../ncert-solutions-class-3-evs.html', minSize: 250000 }
+  { name: 'Mathematics Page', file: '../ncert-solutions-class-3-maths.html', minSize: 180000 },
+  { name: 'English Page', file: '../ncert-solutions-class-3-english.html', minSize: 150000 },
+  { name: 'Hindi Page', file: '../ncert-solutions-class-3-hindi.html', minSize: 200000 },
+  { name: 'EVS Page', file: '../ncert-solutions-class-3-evs.html', minSize: 200000 }
 ];
 
 const htmlContents = {};

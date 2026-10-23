@@ -2,6 +2,7 @@
 // Generates standalone, responsive, high-performance, SEO-optimized HTML pages for each chapter.
 
 function generateChapterPage({
+  classNum = 3,
   subjectName,
   subjectSlug,
   bookTitle,
@@ -120,20 +121,20 @@ function generateChapterPage({
   // Top & Bottom Pagers
   const prevButton = prevLink 
     ? `<a href="${prevLink.filename}" class="btn-pager">⬅️ ${prevLink.label}</a>`
-    : `<a href="../ncert-solutions-class-3-${subjectSlug}.html" class="btn-pager">⬅️ ${subjectName} Hub</a>`;
+    : `<a href="../ncert-solutions-class-${classNum}-${subjectSlug}.html" class="btn-pager">⬅️ ${subjectName} Hub</a>`;
   
   const nextButton = nextLink
     ? `<a href="${nextLink.filename}" class="btn-pager">${nextLink.label} ➡️</a>`
-    : `<a href="../ncert-solutions-class-3-${subjectSlug}.html" class="btn-pager">Back to ${subjectName} Hub ➡️</a>`;
+    : `<a href="../ncert-solutions-class-${classNum}-${subjectSlug}.html" class="btn-pager">Back to ${subjectName} Hub ➡️</a>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NCERT Solutions for Class 3 ${subjectName} Chapter ${chNum}: ${title} (${bookTitle}) CBSE 2026-27 | OlympiadQuiz</title>
-  <meta name="description" content="100% Comprehensive NCERT Solutions for Class 3 ${subjectName} (${bookTitle}) Chapter ${chNum}: ${title}. Complete ${questions.length} textbook exercises, in-text activities, CBSE marking schemes, and NEP 2020 case studies.">
-  <meta name="keywords" content="ncert solutions class 3 ${subjectSlug} chapter ${chNum}, ${title.toLowerCase()} class 3, ${bookSlug} chapter ${chNum} solutions, class 3 ${subjectSlug} ncert 2026-27, cbse class 3 ${subjectSlug} tiwari academy">
+  <title>NCERT Solutions for Class ${classNum} ${subjectName} Chapter ${chNum}: ${title} (${bookTitle}) CBSE 2026-27 | OlympiadQuiz</title>
+  <meta name="description" content="100% Comprehensive NCERT Solutions for Class ${classNum} ${subjectName} (${bookTitle}) Chapter ${chNum}: ${title}. Complete ${questions.length} textbook exercises, in-text activities, CBSE marking schemes, and NEP 2020 case studies.">
+  <meta name="keywords" content="ncert solutions class ${classNum} ${subjectSlug} chapter ${chNum}, ${title.toLowerCase()} class ${classNum}, ${bookSlug} chapter ${chNum} solutions, class ${classNum} ${subjectSlug} ncert 2026-27, cbse class ${classNum} ${subjectSlug} tiwari academy">
   <link rel="canonical" href="${canonicalUrl}">
   <link rel="icon" type="image/png" href="../favicon.png">
 
@@ -141,8 +142,8 @@ function generateChapterPage({
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="OlympiadQuiz">
   <meta property="og:url" content="${canonicalUrl}">
-  <meta property="og:title" content="NCERT Solutions Class 3 ${subjectName} Chapter ${chNum}: ${title} (100% Full Exercises)">
-  <meta property="og:description" content="Complete step-by-step solutions for all ${questions.length} questions of Class 3 ${bookTitle} Chapter ${chNum} with CBSE marking schemes and diagrams.">
+  <meta property="og:title" content="NCERT Solutions Class ${classNum} ${subjectName} Chapter ${chNum}: ${title} (100% Full Exercises)">
+  <meta property="og:description" content="Complete step-by-step solutions for all ${questions.length} questions of Class ${classNum} ${bookTitle} Chapter ${chNum} with CBSE marking schemes and diagrams.">
   <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Schema.org JSON-LD -->
@@ -153,8 +154,8 @@ function generateChapterPage({
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
       { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
-      { "@type": "ListItem", "position": 3, "name": "Class 3", "item": "https://olympiadquiz.org/ncert-solutions-class-3.html" },
-      { "@type": "ListItem", "position": 4, "name": "Class 3 ${subjectName}", "item": "https://olympiadquiz.org/ncert-solutions-class-3-${subjectSlug}.html" },
+      { "@type": "ListItem", "position": 3, "name": "Class ${classNum}", "item": "https://olympiadquiz.org/ncert-solutions-class-${classNum}.html" },
+      { "@type": "ListItem", "position": 4, "name": "Class ${classNum} ${subjectName}", "item": "https://olympiadquiz.org/ncert-solutions-class-${classNum}-${subjectSlug}.html" },
       { "@type": "ListItem", "position": 5, "name": "${bookTitle} Chapter ${chNum}", "item": "${canonicalUrl}" }
     ]
   }
@@ -164,10 +165,10 @@ function generateChapterPage({
   {
     "@context": "https://schema.org",
     "@type": "LearningResource",
-    "name": "NCERT Class 3 ${subjectName} Chapter ${chNum} Solutions - ${title}",
-    "description": "Complete solutions for Class 3 ${bookTitle} Chapter ${chNum}: ${title}.",
+    "name": "NCERT Class ${classNum} ${subjectName} Chapter ${chNum} Solutions - ${title}",
+    "description": "Complete solutions for Class ${classNum} ${bookTitle} Chapter ${chNum}: ${title}.",
     "learningResourceType": "Textbook Solutions",
-    "educationalLevel": "Grade 3",
+    "educationalLevel": "Grade ${classNum}",
     "audience": "Students, Teachers, Parents",
     "inLanguage": "en",
     "isAccessibleForFree": true
@@ -504,8 +505,8 @@ function generateChapterPage({
     </a>
     <div class="site-nav-links">
       <a href="../ncert-solutions.html">📚 All NCERT Hub</a>
-      <a href="../ncert-solutions-class-3.html">Class 3 Central Hub</a>
-      <a href="../ncert-solutions-class-3-${subjectSlug}.html">${subjectName} Hub</a>
+      <a href="../ncert-solutions-class-${classNum}.html">Class ${classNum} Central Hub</a>
+      <a href="../ncert-solutions-class-${classNum}-${subjectSlug}.html">${subjectName} Hub</a>
     </div>
   </nav>
 
@@ -516,9 +517,9 @@ function generateChapterPage({
       <li class="bc-sep">/</li>
       <li><a href="../ncert-solutions.html">NCERT Solutions</a></li>
       <li class="bc-sep">/</li>
-      <li><a href="../ncert-solutions-class-3.html">Class 3</a></li>
+      <li><a href="../ncert-solutions-class-${classNum}.html">Class ${classNum}</a></li>
       <li class="bc-sep">/</li>
-      <li><a href="../ncert-solutions-class-3-${subjectSlug}.html">${subjectName}</a></li>
+      <li><a href="../ncert-solutions-class-${classNum}-${subjectSlug}.html">${subjectName}</a></li>
       <li class="bc-sep">/</li>
       <li class="bc-active">${bookTitle} Chapter ${chNum}: ${title}</li>
     </ul>
@@ -534,8 +535,8 @@ function generateChapterPage({
       </ul>
       <div class="sidebar-title" style="margin-top: 24px;">Other Options</div>
       <ul class="sidebar-list">
-        <li><a href="../ncert-solutions-class-3-${subjectSlug}.html">← ${subjectName} Main Page</a></li>
-        <li><a href="../ncert-solutions-class-3.html">← Class 3 Central Hub</a></li>
+        <li><a href="../ncert-solutions-class-${classNum}-${subjectSlug}.html">← ${subjectName} Main Page</a></li>
+        <li><a href="../ncert-solutions-class-${classNum}.html">← Class ${classNum} Central Hub</a></li>
       </ul>
     </aside>
 
@@ -553,7 +554,7 @@ function generateChapterPage({
 
       <!-- Chapter Hero -->
       <header class="chapter-hero">
-        <span class="badge-pill">NCERT Class 3 ${subjectName} • ${trackName}</span>
+        <span class="badge-pill">NCERT Class ${classNum} ${subjectName} • ${trackName}</span>
         <h1>Chapter ${chNum}: ${title}</h1>
         <p>${subtitle} | CBSE Session 2026–27</p>
       </header>
@@ -600,8 +601,8 @@ function generateChapterPage({
   <footer class="page-footer">
     <div style="margin-bottom: 12px;">
       <a href="../index.html">Home</a> •
-      <a href="../ncert-solutions-class-3.html">Class 3 Hub</a> •
-      <a href="../ncert-solutions-class-3-${subjectSlug}.html">${subjectName} Solutions</a> •
+      <a href="../ncert-solutions-class-${classNum}.html">Class ${classNum} Hub</a> •
+      <a href="../ncert-solutions-class-${classNum}-${subjectSlug}.html">${subjectName} Solutions</a> •
       <a href="../ncert-solutions.html">All Classes</a>
     </div>
     <p>© 2026–27 OlympiadQuiz.org — 100% Free Complete NCERT Solutions for CBSE &amp; State Boards.</p>

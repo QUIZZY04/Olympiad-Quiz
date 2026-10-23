@@ -1,5 +1,5 @@
 // Generator for NCERT Class 3 English Solutions (100% Question Coverage: Santoor + Marigold)
-// Fully Aligned with Official NCERT Curriculum (New NEP 2020 Santoor + Classic CBSE Marigold)
+// Uniform Class 10 Design & Navigation Architecture
 const fs = require('fs');
 const path = require('path');
 
@@ -13,66 +13,25 @@ console.log(`Loaded ${santoorChapters.length} Santoor Chapters and ${marigoldUni
 // PART 1: RENDERING FUNCTIONS
 // -------------------------------------------------------------
 
-function renderQuestionCard(qObj, idx, prefix) {
-  const qId = `q_${prefix}_${idx}`;
-  const rubricRows = qObj.rubric.map(r => `
-    <div class="marking-row">
-      <span class="marking-key">${r.key}</span>
-      <span class="marking-marks">${r.marks}</span>
-    </div>
-  `).join('');
-
-  return `
-  <div class="q-card" id="${qId}">
-    <div class="q-head" onclick="toggleQ('${qId}')">
-      <span class="q-num">Q${idx + 1}</span>
-      <span class="q-text">${qObj.q}</span>
-      ${qObj.category ? `<span class="q-cat">${qObj.category}</span>` : ''}
-      <span class="q-marks">${qObj.marks} Marks</span>
-      <svg class="q-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-    </div>
-    <div class="q-answer">
-      <div class="answer-box">
-        <div class="answer-label">Model Answer &amp; Step-by-Step Explanation:</div>
-        <div class="answer-text">${qObj.ans}</div>
-        <div class="marking-scheme">
-          <div class="marking-title">📋 CBSE Official Step Marking Rubric (${qObj.marks} Marks):</div>
-          ${rubricRows}
-        </div>
-      </div>
-    </div>
-  </div>`;
-}
-
-function renderChapterSection(ch, bookKey) {
+function renderChapterSection(ch, bookKey, idx, arr) {
   const conceptsHtml = ch.concepts.map(c => `<li>${c}</li>`).join('');
 
   const isSantoor = bookKey === 'st';
   const modularUrl = isSantoor ? `chapters-c3e/santoor-ch${ch.num}.html` : `chapters-c3e/marigold-unit${ch.num}.html`;
-  const bookName = isSantoor ? 'Santoor' : 'Marigold';
   const qCount = 20;
 
+  const prevCh = idx > 0 ? arr[idx - 1] : null;
+  const nextCh = idx < arr.length - 1 ? arr[idx + 1] : null;
+
   return `
-  <section class="chapter-section" id="ch_${ch.id}">
+  <section class="chapter-section${(bookKey === 'st' && idx === 0) ? ' active' : ''}" id="ch_${ch.id}">
     <div class="chapter-header">
       <div class="ch-badge">${ch.num}</div>
       <div class="chapter-header-info">
-        <span class="unit-tag">${ch.unit}</span>
+        <div class="ch-category">${ch.unit} • Class 3 English (${isSantoor ? 'New NEP 2020' : 'Classic CBSE'})</div>
         <h2>${isSantoor ? `Chapter ${ch.num}: ${ch.title}` : `Unit ${ch.num}: ${ch.title}`}</h2>
         <p>${ch.subtitle}</p>
       </div>
-    </div>
-
-    <!-- 100% Modular Solutions Banner -->
-    <div style="background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%); color: #ffffff; border-radius: 14px; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 14px rgba(2,132,199,0.22);">
-      <div>
-        <div style="display: inline-block; background: #fef08a; color: #854d0e; font-size: 0.75rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 6px;">🚀 100% Comprehensive Textbook Solutions Ingested</div>
-        <div style="font-size: 1.15rem; font-weight: 800; color: #ffffff;">All ${qCount}+ Questions &amp; Reading Activities</div>
-        <div style="font-size: 0.88rem; color: #e0f2fe; margin-top: 3px;">Get every single exercise question with reading comprehension, word power, grammar rubrics, and creative writing.</div>
-      </div>
-      <a href="${modularUrl}" style="background: #ffffff; color: #0369a1; padding: 12px 24px; border-radius: 8px; font-weight: 800; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); white-space: nowrap;">
-        Open Full ${isSantoor ? `Chapter ${ch.num}` : `Unit ${ch.num}`} (${qCount}+ Qs) ➔
-      </a>
     </div>
 
     <!-- Key Concepts Card -->
@@ -89,16 +48,16 @@ function renderChapterSection(ch, bookKey) {
       </div>
     </div>
 
-    <!-- 100% Complete Exercise Solutions Gateway Card -->
-    <div style="background: #ffffff; border: 2px solid #bae6fd; border-radius: 16px; padding: 28px; margin: 24px 0; box-shadow: 0 4px 16px rgba(2,132,199,0.08); text-align: center;">
-      <div style="display: inline-flex; align-items: center; gap: 8px; background: #dcfce7; color: #15803d; font-size: 0.82rem; font-weight: 800; padding: 5px 16px; border-radius: 999px; text-transform: uppercase; margin-bottom: 12px;">
+    <!-- Single 100% Complete Exercise Solutions Gateway Card -->
+    <div class="gateway-card">
+      <div class="gateway-pill">
         <span>✅ 100% Question Coverage</span> • <span>All ${qCount}+ Solved Questions</span>
       </div>
-      <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">${isSantoor ? `Chapter ${ch.num}: ${ch.title}` : `Unit ${ch.num}: ${ch.title}`} — Full NCERT Solutions</h3>
-      <p style="font-size: 0.92rem; color: #475569; max-width: 680px; margin: 0 auto 20px; line-height: 1.6;">
+      <h3 class="gateway-title">${isSantoor ? `Chapter ${ch.num}: ${ch.title}` : `Unit ${ch.num}: ${ch.title}`} — Full NCERT Solutions</h3>
+      <p class="gateway-desc">
         Access all <strong>${qCount}+ comprehension questions, word fun, rhyming exercises, and grammar worksheets</strong> with step-by-step CBSE marking schemes.
       </p>
-      <a href="${modularUrl}" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; font-weight: 800; font-size: 1.05rem; padding: 14px 34px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(2,132,199,0.3); transition: transform 0.15s ease;">
+      <a href="${modularUrl}" class="btn-open-modular">
         <span>📖 Open ${isSantoor ? `Chapter ${ch.num}` : `Unit ${ch.num}`} Complete Solutions (${qCount}+ Questions)</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
@@ -108,10 +67,17 @@ function renderChapterSection(ch, bookKey) {
     <div class="cbq-card">
       <span class="cbq-badge">🌟 NEP 2020 Competency-Based Case Study (CBQ)</span>
       <h3 style="font-size:1.05rem;font-weight:800;color:#0f172a;margin-bottom:8px;">${ch.cbq.title}</h3>
-      <p style="font-size:0.9rem;color:#334155;margin-bottom:12px;background:rgba(255,255,255,0.7);padding:12px;border-radius:8px;border-left:3px solid #0284c7;"><strong>Real-Life Context:</strong> ${ch.cbq.text}</p>
+      <p style="font-size:0.9rem;color:#334155;margin-bottom:12px;background:rgba(255,255,255,0.7);padding:12px;border-radius:8px;border-left:3px solid var(--brand);"><strong>Real-Life Context:</strong> ${ch.cbq.text}</p>
       <p style="font-size:0.92rem;font-weight:700;color:#0f172a;margin-bottom:10px;"><strong>Analytical Task:</strong> ${ch.cbq.question}</p>
       <div style="font-size:0.88rem;line-height:1.6;color:#1e293b;">${ch.cbq.answer}</div>
-      <div style="margin-top:10px;padding-top:8px;border-top:1px dashed #bae6fd;font-size:0.8rem;font-weight:700;color:#0369a1;">CBSE Assessment Rubric: ${ch.cbq.rubric}</div>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px dashed #bae6fd;font-size:0.8rem;font-weight:700;color:var(--brand-text);">CBSE Assessment Rubric: ${ch.cbq.rubric}</div>
+    </div>
+
+    <!-- Chapter Navigation Buttons -->
+    <div class="ch-nav-btns">
+      ${prevCh ? `<button class="ch-nav-btn prev" onclick="showChapter('ch_${prevCh.id}')">← ${isSantoor ? 'Ch' : 'Unit'} ${prevCh.num}: ${prevCh.title.split('&')[0].trim()}</button>` : `<button class="ch-nav-btn prev" disabled>← Previous Chapter</button>`}
+      <a href="${modularUrl}" class="ch-nav-btn next" style="background:var(--brand);color:white;border-color:var(--brand);">Open ${isSantoor ? `Chapter ${ch.num}` : `Unit ${ch.num}`} Solutions ➔</a>
+      ${nextCh ? `<button class="ch-nav-btn next" onclick="showChapter('ch_${nextCh.id}')">${isSantoor ? 'Ch' : 'Unit'} ${nextCh.num}: ${nextCh.title.split('&')[0].trim()} →</button>` : `<button class="ch-nav-btn next" disabled>Next Chapter →</button>`}
     </div>
   </section>`;
 }
@@ -120,72 +86,40 @@ function renderChapterSection(ch, bookKey) {
 // PART 2: GENERATE SECTIONS & NAVIGATION
 // -------------------------------------------------------------
 
-const santoorSections = santoorChapters.map(ch => renderChapterSection(ch, "st")).join('\n');
-const marigoldSections = marigoldUnits.map(ch => renderChapterSection(ch, "mg")).join('\n');
+const santoorSections = santoorChapters.map((ch, idx, arr) => renderChapterSection(ch, "st", idx, arr)).join('\n');
+const marigoldSections = marigoldUnits.map((ch, idx, arr) => renderChapterSection(ch, "mg", idx, arr)).join('\n');
 
-const santoorChapterDirectoryCards = santoorChapters.map(ch => `
-  <a href="chapters-c3e/santoor-ch${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #bae6fd; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
-    <div>
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-        <span style="font-size: 0.75rem; font-weight: 800; color: #0369a1; background: #e0f2fe; padding: 2px 8px; border-radius: 4px;">Chapter ${ch.num}</span>
-        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">20+ Solved Qs</span>
-      </div>
-      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
-      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
-    </div>
-    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #0284c7; display: flex; align-items: center; gap: 4px;">
-      View Complete Solutions ➔
-    </div>
-  </a>
-`).join('\n');
-
-const marigoldChapterDirectoryCards = marigoldUnits.map(ch => `
-  <a href="chapters-c3e/marigold-unit${ch.num}.html" style="display: flex; flex-direction: column; justify-content: space-between; background: #f8fafc; border: 1.5px solid #fed7aa; border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: all 0.2s ease; color: inherit;">
-    <div>
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-        <span style="font-size: 0.75rem; font-weight: 800; color: #9a3412; background: #ffedd5; padding: 2px 8px; border-radius: 4px;">Unit ${ch.num}</span>
-        <span style="font-size: 0.72rem; font-weight: 800; color: #15803d; background: #dcfce7; padding: 2px 8px; border-radius: 4px;">20+ Solved Qs</span>
-      </div>
-      <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.35; margin-bottom: 4px;">${ch.title}</div>
-      <div style="font-size: 0.78rem; color: #64748b;">${ch.subtitle}</div>
-    </div>
-    <div style="margin-top: 12px; font-size: 0.82rem; font-weight: 800; color: #ea580c; display: flex; align-items: center; gap: 4px;">
-      View Complete Solutions ➔
-    </div>
-  </a>
-`).join('\n');
-
-const santoorChips = santoorChapters.map(ch => `
-  <a class="bc-chip" href="chapters-c3e/santoor-ch${ch.num}.html">
+const santoorChips = santoorChapters.map((ch, idx) => `
+  <span class="bc-chip${idx === 0 ? ' active' : ''}" onclick="showChapter('ch_${ch.id}')" data-target="ch_${ch.id}">
     <span class="bc-n">${ch.num}</span> ${ch.title.split('&')[0].trim()}
-  </a>
+  </span>
 `).join('');
 
-const marigoldChips = marigoldUnits.map(ch => `
-  <a class="bc-chip" href="chapters-c3e/marigold-unit${ch.num}.html">
+const marigoldChips = marigoldUnits.map((ch, idx) => `
+  <span class="bc-chip${idx === 0 ? ' active' : ''}" onclick="showChapter('ch_${ch.id}')" data-target="ch_${ch.id}">
     <span class="bc-n">${ch.num}</span> ${ch.title.split('&')[0].trim()}
-  </a>
+  </span>
 `).join('');
 
-const santoorSidebar = santoorChapters.map(ch => `
+const santoorSidebar = santoorChapters.map((ch, idx) => `
   <li>
-    <a href="chapters-c3e/santoor-ch${ch.num}.html">
+    <a onclick="showChapter('ch_${ch.id}')" data-target="ch_${ch.id}" class="${idx === 0 ? 'active' : ''}">
       <span class="ch-num">${ch.num}</span>
       <div class="ch-meta">
         <span class="ch-name">${ch.title}</span>
-        <span class="ch-sub">${ch.unit} • 20+ Qs ➔</span>
+        <span class="ch-sub">${ch.unit}</span>
       </div>
     </a>
   </li>
 `).join('');
 
-const marigoldSidebar = marigoldUnits.map(ch => `
+const marigoldSidebar = marigoldUnits.map((ch, idx) => `
   <li>
-    <a href="chapters-c3e/marigold-unit${ch.num}.html">
+    <a onclick="showChapter('ch_${ch.id}')" data-target="ch_${ch.id}" class="${idx === 0 ? 'active' : ''}">
       <span class="ch-num">${ch.num}</span>
       <div class="ch-meta">
         <span class="ch-name">${ch.title}</span>
-        <span class="ch-sub">${ch.unit} • 20+ Qs ➔</span>
+        <span class="ch-sub">${ch.unit}</span>
       </div>
     </a>
   </li>
@@ -201,8 +135,8 @@ const htmlContent = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NCERT Solutions for Class 3 English (Santoor &amp; Marigold) CBSE 2026-27 | OlympiadQuiz</title>
-  <meta name="description" content="100% Complete Class 3 NCERT English Solutions covering both textbooks: New NEP 2020 Santoor (12 Chapters) and Classic Marigold (10 Units). Reading comprehension, word meanings, grammar, CBSE step rubrics, and NEP 2020 case studies.">
-  <meta name="keywords" content="ncert solutions class 3 english, class 3 santoor solutions, marigold class 3 ncert, cbse class 3 english 2026-27, fun with friends, badal and moti, paper boats, good morning, the magic garden, bird talk, nina and the baby sparrows, the enormous turnip, little fish story, ship of the desert">
+  <meta name="description" content="100% Complete Class 3 NCERT English Solutions covering both textbooks: New NEP 2020 Santoor (12 Chapters) and Marigold (10 Units). Reading comprehension, word fun, rhyming schemes, CBSE marking rubrics, and NEP 2020 competency case studies.">
+  <meta name="keywords" content="ncert solutions class 3 english, santoor class 3 solutions, marigold class 3 ncert, cbse class 3 english 2026-27, colours santoor, badal and moti, best friends, out in the garden, talking utensils, good morning poem, the magic garden, bird talk, nina and the baby sparrows, little by little, the enormous turnip">
   <link rel="canonical" href="https://olympiadquiz.org/ncert-solutions-class-3-english.html">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -212,14 +146,14 @@ const htmlContent = `<!DOCTYPE html>
   <meta property="og:site_name" content="OlympiadQuiz">
   <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-3-english.html">
   <meta property="og:title" content="NCERT Solutions for Class 3 English (Santoor &amp; Marigold) CBSE 2026-27 | OlympiadQuiz">
-  <meta property="og:description" content="100% complete textbook question coverage for Class 3 English across all 22 chapters of Santoor and Marigold with CBSE rubrics and competency case studies.">
+  <meta property="og:description" content="100% question coverage for Class 3 English across all 22 chapters and units of Santoor and Marigold with story summaries, CBSE marking schemes and NEP 2020 competency questions.">
   <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@OlympiadQuiz">
   <meta name="twitter:title" content="NCERT Solutions for Class 3 English (Santoor &amp; Marigold) CBSE 2026-27">
-  <meta name="twitter:description" content="Complete textbook solutions for Class 3 English across Santoor and Marigold with comprehension, grammar exercises, and case studies.">
+  <meta name="twitter:description" content="Complete textbook solutions for Class 3 English across Santoor and Marigold with step-by-step marking rubrics and case studies.">
   <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -243,7 +177,7 @@ const htmlContent = `<!DOCTYPE html>
     "@context": "https://schema.org",
     "@type": "LearningResource",
     "name": "NCERT Solutions for Class 3 English (Santoor & Marigold) CBSE 2026-27",
-    "description": "Comprehensive chapter-wise solutions for Class 3 English covering both Santoor (12 Chapters) and Marigold (10 Units) with reading comprehension, grammar exercises, and NEP 2020 competency case studies.",
+    "description": "Comprehensive 100% textbook exercise solutions for NCERT Class 3 English covering all 12 chapters of Santoor and 10 units of Marigold with CBSE step rubrics, comprehension summaries, and competency-based questions.",
     "educationalLevel": "CBSE Class 3",
     "learningResourceType": "Textbook Solutions",
     "inLanguage": "en",
@@ -265,18 +199,26 @@ const htmlContent = `<!DOCTYPE html>
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Which English textbooks are covered for Class 3 on OlympiadQuiz?",
+        "name": "Which textbooks are covered under Class 3 NCERT English on OlympiadQuiz?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Both official NCERT Class 3 English textbooks are covered: the new NEP 2020 textbook 'Santoor' (12 chapters) and the classic CBSE textbook 'Marigold' (10 units)."
+          "text": "Both official NCERT Class 3 English textbooks are fully covered: the new NEP 2020 textbook 'Santoor' (12 chapters) and the classic CBSE textbook 'Marigold' (10 units)."
         }
       },
       {
         "@type": "Question",
-        "name": "Do these English solutions include grammar and vocabulary exercises?",
+        "name": "Do these solutions include reading comprehension, word power, and grammar activities?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, every chapter includes full coverage of reading comprehension, word power, compound words, prepositions, singular-plural nouns, and descriptive adjectives."
+          "text": "Yes, every single chapter and unit features full textbook question coverage including poem recitation, story understanding, rhyming words, grammar worksheets, and creative writing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are official CBSE step-marking rubrics provided for English answers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, every question provides a transparent step marking scheme showing how marks are awarded for factual accuracy, spelling, grammar correctness, and sentence formation."
         }
       }
     ]
@@ -290,131 +232,143 @@ const htmlContent = `<!DOCTYPE html>
   <style>
     :root {
       --brand: #0284c7;
-      --brand-dark: #0369a1;
+      --brand-hover: #0369a1;
       --brand-light: #f0f9ff;
+      --brand-text: #075985;
       --navy: #0f172a;
-      --slate: #475569;
-      --border: #bae6fd;
-      --card-bg: #ffffff;
-      --bg: #f8fafc;
+      --slate: #334155;
+      --muted: #64748b;
+      --light-bg: #f8fafc;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: #1e293b; line-height: 1.6; }
-    
-    #progressBar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #0284c7, #38bdf8); width: 0%; z-index: 1000; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--light-bg); color: var(--slate); line-height: 1.6; }
+    .top-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--brand); z-index: 1000; transition: width .1s; }
 
-    /* Header & Navigation */
-    .site-header { background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 12px 24px; position: sticky; top: 0; z-index: 99; }
-    .header-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .logo { color: #ffffff; text-decoration: none; font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-    .logo span { color: #ff6b00; }
-    .header-links { display: flex; align-items: center; gap: 16px; }
-    .header-links a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s; }
-    .header-links a:hover, .header-links a.active { color: #ffffff; }
+    /* Navbar */
+    .navbar { background: #0f172a; border-bottom: 1px solid rgba(255,255,255,0.08); position: sticky; top: 0; z-index: 900; }
+    .navbar-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .navbar-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-text { font-size: 1.15rem; font-weight: 800; color: white; }
+    .logo-text span { color: #818cf8; }
+    .navbar-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link { color: #94a3b8; font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; text-decoration: none; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+    .nav-link:hover { color: white; background: rgba(255,255,255,0.06); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown:hover .nav-dropdown-content { display: block !important; }
+    .nav-dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #e2e8f0; border-radius: 10px; min-width: 250px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 1000; padding: 6px; }
+    .nav-dropdown-content a { display: block; padding: 8px 14px; color: #334155; text-decoration: none; font-size: 0.85rem; border-radius: 6px; transition: 0.2s; }
+    .nav-dropdown-content a:hover { background: #f1f5f9; color: #0f172a !important; }
+    .navbar-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-login { background: var(--brand); color: white; font-size: 0.82rem; font-weight: 700; padding: 7px 18px; border-radius: 8px; text-decoration: none; transition: 0.2s; }
+    .btn-login:hover { background: var(--brand-hover); }
+    .navbar-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .navbar-toggle span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
 
-    /* Breadcrumbs Bar */
-    .breadcrumb-bar { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 10px 24px; font-size: 0.85rem; }
-    .breadcrumb-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 8px; color: #64748b; flex-wrap: wrap; }
-    .breadcrumb-inner a { color: #0284c7; text-decoration: none; font-weight: 600; }
-    .breadcrumb-inner a:hover { text-decoration: underline; }
-    .breadcrumb-inner span.sep { color: #cbd5e1; }
-    .breadcrumb-inner span.cur { color: #0f172a; font-weight: 700; }
+    /* NCERT Breadcrumb & Switcher */
+    .ncert-breadcrumb-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 10px 24px; position: relative; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+    .ncert-bc-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .ncert-bc-list { display: flex; align-items: center; gap: 8px; list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: #64748b; flex-wrap: wrap; }
+    .ncert-bc-list a { color: #0f172a; text-decoration: none; font-weight: 600; transition: color 0.15s ease; }
+    .ncert-bc-list a:hover { color: var(--brand); text-decoration: underline; }
+    .ncert-bc-sep { color: #cbd5e1; font-size: 0.75rem; }
+    .ncert-bc-current { color: var(--brand); font-weight: 700; }
+    .ncert-bc-switch { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .ncert-bc-switch-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; margin-right: 4px; }
+    .ncert-bc-pill { font-size: 0.78rem; font-weight: 700; padding: 5px 12px; border-radius: 999px; text-decoration: none; background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; transition: all 0.18s ease; white-space: nowrap; }
+    .ncert-bc-pill:hover { background: var(--brand-light); color: var(--brand-text); border-color: var(--brand); transform: translateY(-1px); }
+    .ncert-bc-pill.active { background: var(--brand); color: #ffffff; border-color: var(--brand); box-shadow: 0 2px 6px rgba(2,132,199,0.3); }
 
     /* Hero Banner */
-    .hero-banner { background: linear-gradient(135deg, #075985 0%, #0284c7 50%, #0369a1 100%); color: #ffffff; padding: 48px 24px; text-align: center; }
-    .hero-inner { max-width: 900px; margin: 0 auto; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 4px 14px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
-    .hero-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
-    .hero-desc { font-size: 1rem; color: #e0f2fe; max-width: 760px; margin: 0 auto 24px; line-height: 1.6; }
-    
-    /* Dual Track Toggle */
-    .book-toggle-bar { display: inline-flex; background: rgba(15, 23, 42, 0.4); border-radius: 12px; padding: 4px; gap: 4px; margin-top: 8px; }
-    .track-btn { border: none; background: transparent; color: #e2e8f0; padding: 10px 22px; border-radius: 9px; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
-    .track-btn.active { background: #ffffff; color: #0369a1; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .hero-banner { background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); color: white; padding: 40px 24px; text-align: center; border-bottom: 3px solid var(--brand); }
+    .hero-banner h1 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .hero-banner p { color: #c7d2fe; font-size: 0.98rem; max-width: 780px; margin: 0 auto 18px; line-height: 1.65; }
+    .hero-badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); padding: 6px 14px; border-radius: 20px; font-size: .8rem; font-weight: 600; color: #e2e8f0; }
 
-    /* Chip Scrollbar */
-    .chip-bar { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 10px 24px; position: sticky; top: 57px; z-index: 90; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
-    .chip-bar-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
-    .chip-label { font-size: 0.8rem; font-weight: 700; color: #64748b; white-space: nowrap; flex-shrink: 0; }
-    .chips-wrapper { display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 2px 0; scrollbar-width: thin; }
-    .chips-wrapper::-webkit-scrollbar { height: 4px; }
-    .chips-wrapper::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    .bc-chip { background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 999px; padding: 5px 14px; font-size: 0.8rem; font-weight: 600; color: #334155; white-space: nowrap; cursor: pointer; transition: all 0.15s ease; flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; }
-    .bc-chip .bc-n { background: #cbd5e1; color: #0f172a; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; }
-    .bc-chip:hover { background: #e2e8f0; }
-    .bc-chip.active { background: #0284c7; color: #ffffff; border-color: #0284c7; }
-    .bc-chip.active .bc-n { background: #ffffff; color: #0284c7; }
+    /* Track / Book Switcher in Hero */
+    .book-toggle-bar { display: inline-flex; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; padding: 4px; gap: 4px; margin-top: 14px; }
+    .track-btn { border: none; background: transparent; color: #e2e8f0; padding: 8px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px; }
+    .track-btn.active { background: var(--brand); color: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+
+    /* Breadcrumb Chips Bar */
+    .breadcrumb-bar { background: white; border-bottom: 1px solid var(--border); padding: 14px 32px; position: sticky; top: 60px; z-index: 800; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .breadcrumb-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .06em; margin-bottom: 10px; }
+    .breadcrumb-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bc-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); background: #f8fafc; color: var(--slate); transition: all .18s; user-select: none; }
+    .bc-chip:hover { border-color: var(--brand); color: var(--brand-text); background: var(--brand-light); }
+    .bc-chip.active { background: var(--brand); color: white; border-color: var(--brand); box-shadow: 0 3px 10px rgba(2,132,199,.35); }
+    .bc-chip .bc-n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(0,0,0,.12); border-radius: 50%; font-size: .68rem; font-weight: 800; }
+    .bc-chip.active .bc-n { background: rgba(255,255,255,.25); }
 
     /* Main Layout */
-    .content-layout { max-width: 1400px; margin: 28px auto; padding: 0 24px; display: grid; grid-template-columns: 290px 1fr; gap: 32px; align-items: start; }
-    @media (max-width: 960px) {
-      .content-layout { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
-    }
-
-    /* Sidebar */
-    .sidebar { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; position: sticky; top: 120px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .sidebar-head { font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
-    .sidebar-search { width: 100%; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 8px 12px; font-size: 0.85rem; margin-bottom: 12px; outline: none; }
-    .sidebar-search:focus { border-color: #0284c7; }
-    .chapter-nav { list-style: none; max-height: calc(100vh - 280px); overflow-y: auto; padding-right: 4px; }
+    .main-layout { display: flex; max-width: 1400px; margin: 0 auto; }
+    .sidebar { width: 310px; background: white; border-right: 1px solid var(--border); padding: 20px 16px; position: sticky; top: 117px; height: calc(100vh - 117px); overflow-y: auto; flex-shrink: 0; }
+    .sidebar-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
+    .search-box { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: .85rem; margin-bottom: 16px; font-family: inherit; }
+    .search-box:focus { outline: none; border-color: var(--brand); }
+    .chapter-nav { list-style: none; }
     .chapter-nav li { margin-bottom: 4px; }
-    .chapter-nav a { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: 8px; text-decoration: none; color: #334155; font-size: 0.82rem; font-weight: 600; line-height: 1.35; transition: all 0.15s ease; }
-    .chapter-nav a:hover { background: #f8fafc; color: #0284c7; }
-    .chapter-nav a.active { background: #f0f9ff; color: #0369a1; font-weight: 700; border-left: 3px solid #0284c7; }
-    .chapter-nav .ch-num { background: #f1f5f9; color: #64748b; min-width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 800; margin-top: 1px; }
-    .chapter-nav a.active .ch-num { background: #0284c7; color: #ffffff; }
-    .chapter-nav .ch-meta { display: flex; flex-direction: column; }
-    .chapter-nav .ch-sub { font-size: 0.72rem; color: #94a3b8; font-weight: 500; margin-top: 2px; }
+    .chapter-nav li a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; color: var(--slate); text-decoration: none; font-size: .84rem; font-weight: 500; transition: all .15s; cursor: pointer; }
+    .chapter-nav li a:hover { background: var(--brand-light); color: var(--brand-text); }
+    .chapter-nav li a.active { background: var(--brand); color: white; font-weight: 600; }
+    .ch-num { width: 22px; height: 22px; background: rgba(0,0,0,.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; }
+    .chapter-nav li a.active .ch-num { background: rgba(255,255,255,.25); color: white; }
+    .ch-meta { display: flex; flex-direction: column; min-width: 0; }
+    .ch-name { font-weight: 600; font-size: 0.83rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ch-sub { font-size: 0.72rem; opacity: 0.75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Chapter Content Sections */
-    .chapter-section { display: none; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 24px; }
-    .chapter-section.active { display: block; animation: fadeIn 0.25s ease; }
+    .main-content { flex: 1; padding: 0 36px 36px; min-width: 0; }
+    .chapter-section { display: none; margin-bottom: 48px; scroll-margin-top: 130px; padding-top: 28px; }
+    .chapter-section.active { display: block; animation: fadeIn .25s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-    .chapter-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 2px solid #f1f5f9; }
-    .ch-badge { width: 54px; height: 54px; border-radius: 14px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 900; flex-shrink: 0; }
-    .chapter-header-info h2 { font-size: 1.55rem; font-weight: 800; color: #0f172a; line-height: 1.25; margin-bottom: 4px; }
-    .chapter-header-info p { color: #64748b; font-size: 0.95rem; }
-    .unit-tag { display: inline-block; background: #e0f2fe; color: #0369a1; border-radius: 6px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+    .chapter-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--border); }
+    .ch-badge { width: 44px; height: 44px; background: var(--brand); color: white; border-radius: 12px; font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(2,132,199,0.3); }
+    .chapter-header-info .ch-category { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--brand); letter-spacing: 0.05em; margin-bottom: 2px; }
+    .chapter-header-info h2 { font-size: 1.45rem; font-weight: 800; color: var(--navy); }
+    .chapter-header-info p { font-size: .825rem; color: var(--muted); margin-top: 2px; }
 
-    /* Concept Card */
-    .concept-card { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-bottom: 28px; }
-    .concept-header { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.95rem; color: #0369a1; margin-bottom: 12px; }
+    /* Concept & Gateway Cards */
+    .concept-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px; box-shadow: var(--shadow); }
+    .concept-header { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.95rem; color: var(--brand); margin-bottom: 12px; }
     .concept-list { list-style: none; }
-    .concept-list li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.88rem; color: #334155; line-height: 1.5; }
-    .concept-list li::before { content: "•"; position: absolute; left: 6px; color: #0284c7; font-weight: 900; }
+    .concept-list li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.88rem; color: var(--slate); line-height: 1.5; }
+    .concept-list li::before { content: "•"; position: absolute; left: 6px; color: var(--brand); font-weight: 900; }
 
-    /* Exercise Header */
-    .ex-div { background: #f0f9ff; border-left: 4px solid #0284c7; padding: 12px 18px; border-radius: 0 10px 10px 0; font-weight: 800; font-size: 0.98rem; color: #075985; margin-bottom: 20px; }
-
-    /* Question Cards Accordion */
-    .q-card { border: 1.5px solid #e2e8f0; border-radius: 14px; margin-bottom: 14px; overflow: hidden; transition: border-color 0.2s; }
-    .q-card:hover { border-color: #cbd5e1; }
-    .q-head { background: #ffffff; padding: 16px 20px; display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
-    .q-num { background: #f1f5f9; color: #1e293b; width: 28px; height: 28px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; flex-shrink: 0; }
-    .q-text { font-size: 0.92rem; font-weight: 700; color: #0f172a; flex: 1; line-height: 1.4; }
-    .q-cat { background: #f1f5f9; color: #475569; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
-    .q-marks { background: #fef3c7; color: #92400e; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
-    .q-toggle { width: 18px; height: 18px; color: #64748b; transition: transform 0.2s ease; flex-shrink: 0; }
-    .q-card.open .q-toggle { transform: rotate(45deg); color: #0284c7; }
-
-    .q-answer { display: none; padding: 0 20px 20px; background: #ffffff; }
-    .q-card.open .q-answer { display: block; }
-    .answer-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-top: 4px; }
-    .answer-label { font-size: 0.78rem; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
-    .answer-text { font-size: 0.9rem; color: #1e293b; line-height: 1.6; margin-bottom: 14px; }
-    
-    /* Marking Scheme */
-    .marking-scheme { background: #ffffff; border: 1px solid #bae6fd; border-radius: 10px; padding: 12px 16px; margin-top: 12px; }
-    .marking-title { font-size: 0.8rem; font-weight: 800; color: #0369a1; margin-bottom: 8px; }
-    .marking-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: #334155; padding: 3px 0; border-bottom: 1px dashed #e2e8f0; }
-    .marking-row:last-child { border-bottom: none; }
-    .marking-marks { font-weight: 800; color: #047857; background: #d1fae5; padding: 1px 6px; border-radius: 4px; }
+    /* Single Gateway Card */
+    .gateway-card { background: linear-gradient(135deg, var(--brand-light) 0%, #ffffff 100%); border: 1.5px solid var(--border); border-left: 4px solid var(--brand); border-radius: 12px; padding: 24px; margin: 24px 0; box-shadow: var(--shadow); text-align: center; }
+    .gateway-pill { display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: #15803d; font-size: 0.78rem; font-weight: 800; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 10px; }
+    .gateway-title { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .gateway-desc { font-size: 0.9rem; color: var(--slate); max-width: 650px; margin: 0 auto 18px; line-height: 1.6; }
+    .btn-open-modular { display: inline-flex; align-items: center; gap: 8px; background: var(--brand); color: white; font-weight: 700; font-size: 0.95rem; padding: 12px 28px; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.12); transition: all 0.2s; }
+    .btn-open-modular:hover { background: var(--brand-hover); transform: translateY(-1px); }
 
     /* CBQ Card */
-    .cbq-card { background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%); border: 1.5px solid #bae6fd; border-radius: 16px; padding: 22px; margin-top: 28px; }
-    .cbq-badge { display: inline-block; background: #0284c7; color: #ffffff; border-radius: 6px; padding: 3px 10px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+    .cbq-card { border: 1.5px solid var(--border); border-radius: 12px; padding: 22px; background: #ffffff; margin-top: 24px; box-shadow: var(--shadow); }
+    .cbq-badge { display: inline-block; background: var(--brand-light); color: var(--brand-text); border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+
+    /* Navigation buttons */
+    .ch-nav-btns { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+    .ch-nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: .88rem; cursor: pointer; border: 1.5px solid var(--border); background: white; color: var(--slate); transition: all .2s; font-family: inherit; text-decoration: none; }
+    .ch-nav-btn:hover:not(:disabled) { background: var(--brand); color: white; border-color: var(--brand); }
+    .ch-nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .ch-nav-btn.next { background: var(--brand); color: white; border-color: var(--brand); }
+
+    .mob-toggle { display: none; position: fixed; bottom: 20px; right: 20px; background: var(--brand); color: white; border: none; padding: 12px 20px; border-radius: 30px; font-weight: 700; font-size: .9rem; box-shadow: 0 4px 14px rgba(0,0,0,.25); z-index: 999; cursor: pointer; }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 950; }
+
+    @media (max-width: 900px) {
+      .main-layout { flex-direction: column; }
+      .sidebar { position: fixed; left: -330px; top: 0; height: 100vh; z-index: 960; transition: left .3s; }
+      .sidebar.open { left: 0; }
+      .sidebar-overlay.show { display: block; }
+      .mob-toggle { display: block; }
+      .main-content { padding: 0 16px 28px; }
+      .breadcrumb-bar { padding: 12px 16px; top: 57px; }
+    }
 
     /* Footer */
     .site-footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 48px; }
@@ -422,77 +376,103 @@ const htmlContent = `<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <div id="progressBar"></div>
+  <div class="top-progress" id="progressBar"></div>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        <span>Olympiad</span>Quiz
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="favicon.png" alt="OlympiadQuiz Logo" width="32" height="32" style="height:32px;width:auto;" loading="lazy">
+        <span class="logo-text">Olympiad<span>Quiz</span></span>
       </a>
-      <nav class="header-links">
-        <a href="index.html">Home</a>
-        <a href="ncert-solutions.html" class="active">NCERT Solutions</a>
-        <a href="dashboard.html">Dashboard</a>
-      </nav>
+      <div class="navbar-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <div class="nav-dropdown" style="position:relative;">
+          <a href="ncert-solutions.html" style="color:white;text-decoration:none;font-size:0.9rem;font-weight:600;display:flex;align-items:center;gap:4px;">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="nav-dropdown-content">
+            <a href="ncert-solutions.html" style="font-weight:700;color:#c2410c;">📚 All NCERT Hub (2026-27)</a>
+            <a href="ncert-solutions-class-3.html" style="font-weight:700;color:#0284c7;background:#f0f9ff;">Class 3 Solutions Hub ✨ (Active)</a>
+            <a href="ncert-solutions-class-3-maths.html">Class 3 Maths</a>
+            <a href="ncert-solutions-class-3-english.html">Class 3 English</a>
+            <a href="ncert-solutions-class-3-hindi.html">Class 3 Hindi</a>
+            <a href="ncert-solutions-class-3-evs.html">Class 3 EVS</a>
+            <a href="ncert-solutions-class-10-maths.html">Class 10 Maths</a>
+            <a href="ncert-solutions-class-10-english.html">Class 10 English</a>
+          </div>
+        </div>
+        <a href="blog.html" class="nav-link">Guides &amp; Blog</a>
+      </div>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn-login">Login</a>
+        <button class="navbar-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- NCERT SUBJECT BREADCRUMB -->
+  <nav class="ncert-breadcrumb-nav" aria-label="Breadcrumb">
+    <div class="ncert-bc-container">
+      <ol class="ncert-bc-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="ncert-bc-sep">/</li>
+        <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
+        <li class="ncert-bc-sep">/</li>
+        <li><a href="ncert-solutions-class-3.html">Class 3</a></li>
+        <li class="ncert-bc-sep">/</li>
+        <li class="ncert-bc-current">English</li>
+      </ol>
+      <div class="ncert-bc-switch">
+        <span class="ncert-bc-switch-label">Switch Subject:</span>
+        <a href="ncert-solutions-class-3-maths.html" class="ncert-bc-pill">Maths</a>
+        <a href="ncert-solutions-class-3-english.html" class="ncert-bc-pill active">English</a>
+        <a href="ncert-solutions-class-3-hindi.html" class="ncert-bc-pill">Hindi</a>
+        <a href="ncert-solutions-class-3-evs.html" class="ncert-bc-pill">EVS</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <header class="hero-banner">
+    <h1>Class 3 English — NCERT Solutions (CBSE 2026-27)</h1>
+    <p>Complete <strong>100% textbook question coverage</strong> across all chapters of Santoor (New NEP 2020) and Marigold with step-by-step CBSE marking schemes, reading summaries, and competency case studies.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">✅ All 22 Chapters &amp; Units (100% Questions)</span>
+      <span class="hero-badge">📘 Santoor (12 Ch) &amp; 📙 Marigold (10 Units)</span>
+      <span class="hero-badge">📖 Reading &amp; Word Power Activities</span>
+      <span class="hero-badge">🔢 Step-by-Step Marking Schemes</span>
+      <span class="hero-badge">🎯 NEP 2020 Competency CBQs</span>
+    </div>
+    
+    <!-- Track Switcher -->
+    <div class="book-toggle-bar">
+      <button id="btnSantoor" class="track-btn active" onclick="switchBook('santoor')">
+        📘 Santoor (New NCF 2023 - 12 Ch)
+      </button>
+      <button id="btnMarigold" class="track-btn" onclick="switchBook('marigold')">
+        📙 Marigold (Classic CBSE - 10 Units)
+      </button>
     </div>
   </header>
 
-  <!-- Breadcrumbs -->
-  <div class="breadcrumb-bar">
-    <div class="breadcrumb-inner">
-      <a href="index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="ncert-solutions.html">NCERT Solutions</a>
-      <span class="sep">/</span>
-      <a href="ncert-solutions-class-3.html">Class 3 Hub</a>
-      <span class="sep">/</span>
-      <span class="cur">English</span>
-    </div>
-  </div>
-
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <div class="hero-inner">
-      <div class="hero-badge">CBSE 2026-27 Session • 100% NCERT Solutions</div>
-      <h1 class="hero-title">NCERT Class 3 English Solutions</h1>
-      <p class="hero-desc">Complete textbook exercise solutions, reading comprehension, vocabulary, grammar rubrics, and NEP 2020 competency-based case studies across Santoor and Marigold.</p>
-      
-      <!-- Track Switcher -->
-      <div class="book-toggle-bar">
-        <button id="btnSantoor" class="track-btn active" onclick="switchBook('santoor')">
-          📘 Santoor (New NCF 2023 - 12 Chapters)
-        </button>
-        <button id="btnMarigold" class="track-btn" onclick="switchBook('marigold')">
-          📙 Marigold (Classic CBSE - 10 Units)
-        </button>
-      </div>
-    </div>
-  </section>
-
   <!-- Sticky Chapter Chips Bar -->
-  <div class="chip-bar">
-    <div class="chip-bar-inner">
-      <span class="chip-label" id="chipBarLabel">Quick Jump To Chapter — Santoor (NEP 2020):</span>
-      <div class="chips-wrapper" id="chipsSantoor">
-        ${santoorChips}
-      </div>
-      <div class="chips-wrapper" id="chipsMarigold" style="display:none;">
-        ${marigoldChips}
-      </div>
+  <div class="breadcrumb-bar">
+    <div class="breadcrumb-label" id="chipBarLabel">📖 Quick Jump To Chapter — Santoor (NEP 2020):</div>
+    <div class="breadcrumb-chips" id="chipsSantoor">
+      ${santoorChips}
+    </div>
+    <div class="breadcrumb-chips" id="chipsMarigold" style="display:none;">
+      ${marigoldChips}
     </div>
   </div>
 
-  <!-- Main Content Layout -->
-  <div class="content-layout">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-head">
-        <span id="sidebarTitleText">📘 Santoor (Chapters)</span>
-        <span id="sidebarCount" style="font-size:0.75rem;background:#f0f9ff;color:#0369a1;padding:2px 8px;border-radius:6px;">12 Chapters</span>
-      </div>
-      <input type="text" class="sidebar-search" placeholder="Search chapters..." oninput="filterChapters(this.value)">
+  <!-- Main Layout -->
+  <div class="main-layout">
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-title" id="sidebarTitleText">📘 Santoor (12 Chapters)</div>
+      <input type="text" class="search-box" placeholder="Search chapters..." onkeyup="filterChapters(this.value)">
       <ul class="chapter-nav" id="navSantoor">
         ${santoorSidebar}
       </ul>
@@ -501,46 +481,19 @@ const htmlContent = `<!DOCTYPE html>
       </ul>
     </aside>
 
-    <!-- Content Containers -->
     <main class="main-content">
-      <div id="containerSantoor">
-        <!-- Direct Chapter Directory Banner -->
-        <div style="background: #ffffff; border: 1.5px solid #bae6fd; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(2,132,199,0.06);">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #f0f9ff; padding-bottom: 12px;">
-            <div>
-              <h2 style="font-size: 1.25rem; font-weight: 800; color: #0369a1; margin: 0;">📘 Santoor — Dedicated Standalone Chapter Pages (100% Ingestion)</h2>
-              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">Click any chapter below to access all 20+ questions, reading comprehension, and activities without browser lag.</p>
-            </div>
-            <span style="font-size: 0.8rem; font-weight: 700; color: #15803d; background: #dcfce7; padding: 4px 12px; border-radius: 999px;">12 Dedicated Chapter Pages</span>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
-            ${santoorChapterDirectoryCards}
-          </div>
-        </div>
+      <div id="chapter-content-area">
         ${santoorSections}
-      </div>
-      <div id="containerMarigold" style="display:none;">
-        <!-- Direct Chapter Directory Banner -->
-        <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 16px; padding: 24px; margin-bottom: 28px; box-shadow: 0 4px 12px rgba(234,88,12,0.06);">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; border-bottom: 2px solid #fff7ed; padding-bottom: 12px;">
-            <div>
-              <h2 style="font-size: 1.25rem; font-weight: 800; color: #9a3412; margin: 0;">📙 Marigold — Dedicated Standalone Chapter Pages (100% Ingestion)</h2>
-              <p style="font-size: 0.88rem; color: #64748b; margin: 4px 0 0;">Click any unit below to access all 20+ questions, reading comprehension, and activities without browser lag.</p>
-            </div>
-            <span style="font-size: 0.8rem; font-weight: 700; color: #c2410c; background: #ffedd5; padding: 4px 12px; border-radius: 999px;">10 Dedicated Unit Pages</span>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;">
-            ${marigoldChapterDirectoryCards}
-          </div>
-        </div>
         ${marigoldSections}
       </div>
     </main>
   </div>
 
+  <button class="mob-toggle" onclick="toggleSidebar()">📑 Chapters</button>
+
   <!-- Footer -->
   <footer class="site-footer">
-    <p>© 2026 OlympiadQuiz — <a href="index.html">Home</a> · <a href="ncert-solutions.html">NCERT Solutions Hub</a> · <a href="ncert-solutions-class-3.html">Class 3 Solutions</a></p>
+    <p>© 2026 OlympiadQuiz — <a href="index.html">Home</a> · <a href="ncert-solutions.html">NCERT Solutions Hub</a> · <a href="ncert-solutions-class-3.html">Class 3 Solutions Hub</a></p>
   </footer>
 
   <script>
@@ -557,52 +510,56 @@ const htmlContent = `<!DOCTYPE html>
       // Update chips & sidebars
       document.getElementById('chipsSantoor').style.display = isSantoor ? 'flex' : 'none';
       document.getElementById('chipsMarigold').style.display = isSantoor ? 'none' : 'flex';
-      document.getElementById('navSantoor').style.display = isSantoor ? 'flex' : 'none';
-      document.getElementById('navMarigold').style.display = isSantoor ? 'none' : 'flex';
+      document.getElementById('navSantoor').style.display = isSantoor ? 'block' : 'none';
+      document.getElementById('navMarigold').style.display = isSantoor ? 'none' : 'block';
 
-      document.getElementById('containerSantoor').style.display = isSantoor ? 'block' : 'none';
-      document.getElementById('containerMarigold').style.display = isSantoor ? 'none' : 'block';
-
-      document.getElementById('chipBarLabel').innerText = isSantoor ? 'Quick Jump To Chapter — Santoor (NEP 2020):' : 'Quick Jump To Chapter — Marigold:';
-      document.getElementById('sidebarTitleText').innerText = isSantoor ? '📘 Santoor (Chapters)' : '📙 Marigold (Units)';
-      document.getElementById('sidebarCount').innerText = isSantoor ? '12 Chapters' : '10 Units';
+      document.getElementById('chipBarLabel').innerText = isSantoor ? '📖 Quick Jump To Chapter — Santoor (NEP 2020):' : '📖 Quick Jump To Unit — Marigold:';
+      document.getElementById('sidebarTitleText').innerText = isSantoor ? '📘 Santoor (12 Chapters)' : '📙 Marigold (10 Units)';
 
       // Show first chapter of that book
       const defaultId = isSantoor ? 'ch_st1' : 'ch_mg_u1';
       showChapter(defaultId);
     }
 
-    function showChapter(targetId) {
-      document.querySelectorAll('.chapter-section').forEach(sec => sec.classList.remove('active'));
-      const activeSec = document.getElementById(targetId);
-      if (activeSec) {
-        activeSec.classList.add('active');
-        // Open first question accordion by default
-        const firstQ = activeSec.querySelector('.q-card');
-        if (firstQ) firstQ.classList.add('open');
-      }
+    function showChapter(targetId, updateHistory = true) {
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
 
-      // Update chips
+      // Toggle active chapter section
+      document.querySelectorAll('.chapter-section').forEach(s => s.classList.remove('active'));
+      targetEl.classList.add('active');
+
+      // Toggle active chips
       document.querySelectorAll('.bc-chip').forEach(c => {
         c.classList.toggle('active', c.getAttribute('data-target') === targetId);
       });
 
-      // Update sidebar
+      // Toggle active sidebar items
       document.querySelectorAll('.chapter-nav a').forEach(a => {
         a.classList.toggle('active', a.getAttribute('data-target') === targetId);
       });
 
-      // Scroll chip into view
+      // Close mobile drawer if open
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      if (sidebar) sidebar.classList.remove('open');
+      if (overlay) overlay.classList.remove('show');
+
+      // Scroll active chip into view
       const activeChip = document.querySelector('.bc-chip[data-target="' + targetId + '"]');
       if (activeChip) activeChip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 
-      // Update URL hash
-      history.replaceState(null, null, '#' + targetId);
-    }
+      // Update hash
+      if (updateHistory) {
+        history.replaceState(null, null, '#' + targetId);
+      }
 
-    function toggleQ(qId) {
-      const card = document.getElementById(qId);
-      if (card) card.classList.toggle('open');
+      // Smooth scroll to content top
+      const bc = document.querySelector('.breadcrumb-bar');
+      if (bc) {
+        const topOffset = bc.getBoundingClientRect().bottom + window.pageYOffset;
+        window.scrollTo({ top: topOffset - 75, behavior: 'smooth' });
+      }
     }
 
     function filterChapters(query) {
@@ -612,6 +569,16 @@ const htmlContent = `<!DOCTYPE html>
         const text = li.innerText.toLowerCase();
         li.style.display = text.includes(q) ? 'block' : 'none';
       });
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('show');
+    }
+
+    function toggleMobileNav() {
+      const navLinks = document.getElementById('navLinks');
+      if (navLinks) navLinks.classList.toggle('active');
     }
 
     // Scroll reading progress
@@ -629,16 +596,16 @@ const htmlContent = `<!DOCTYPE html>
       if (hash) {
         if (hash.startsWith('ch_mg')) {
           switchBook('marigold');
-          showChapter(hash);
+          showChapter(hash, false);
           return;
         } else if (hash.startsWith('ch_st')) {
           switchBook('santoor');
-          showChapter(hash);
+          showChapter(hash, false);
           return;
         }
       }
       // default: Santoor Chapter 1
-      showChapter('ch_st1');
+      showChapter('ch_st1', false);
     });
   </script>
 </body>
