@@ -1,1052 +1,1879 @@
-// Official NCERT Class 3 Hindi (Veena - वीणा भाग 1) Complete Dataset - Chapters 1 to 18
+// Official NCERT Class 3 Hindi (Veena / वीणा भाग 1) Complete Dataset - Chapters 1 to 18
 // Aligned with New NEP 2020 & NCF-FS / NCF-SE 2023 Curriculum (CBSE 2026-27 Session) - 100% Comprehensive Coverage
 
 const veenaChapters = [
-  // -------------------------------------------------------------------------
-  // इकाई 1: हमारा पर्यावरण
-  // -------------------------------------------------------------------------
   {
-    id: "vn1",
-    num: 1,
-    unit: "इकाई 1: हमारा पर्यावरण",
-    title: "सीखो (कविता)",
-    subtitle: "प्रकृति की अनमोल सीखें — फूलों, भौरों, पेड़ों और जलधारा से जीवन मूल्य",
-    concepts: [
+    "id": "vn1",
+    "num": 1,
+    "unit": "इकाई 1: हमारा पर्यावरण",
+    "title": "सीखो (कविता)",
+    "subtitle": "प्रकृति की अनमोल सीखें — फूलों, भौरों, पेड़ों और जलधारा से जीवन मूल्य",
+    "concepts": [
       "फूलों से नित हँसना और भौरों से नित गाना सीखना।",
       "तरु की झुकी डालियों से नित शीश झुकाना सीखना।",
       "हवा के झोंकों से कोमल भाव बहाना और दूध तथा पानी से मिलना-मिलाना सीखना।",
       "सूरज की किरणों से जगना-जगाना और लता तथा पेड़ों से सबको गले लगाना।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fffbeb" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">सीखो (कविता) — प्रकृति से जीवन के पावन संस्कार</text>
-      <circle cx="100" cy="75" r="24" fill="#fde047" stroke="#ca8a04" stroke-width="1.5"/><text x="100" y="81" font-size="20" text-anchor="middle">🌸</text>
-      <text x="100" y="125" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#78350f" text-anchor="middle">फूलों से हँसना</text>
-      <circle cx="230" cy="75" r="24" fill="#fed7aa" stroke="#c2410c" stroke-width="1.5"/><text x="230" y="81" font-size="20" text-anchor="middle">🐝</text>
-      <text x="230" y="125" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9a3412" text-anchor="middle">भौरों से गाना</text>
-      <circle cx="350" cy="75" r="24" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5"/><text x="350" y="81" font-size="20" text-anchor="middle">🌳</text>
-      <text x="350" y="125" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#14532d" text-anchor="middle">झुकना व विनम्रता</text>
-      <circle cx="470" cy="75" r="24" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/><text x="470" y="81" font-size="20" text-anchor="middle">🌊</text>
-      <text x="470" y="125" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#1e3a8a" text-anchor="middle">आगे बढ़ते रहना</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">"फूलों से नित हँसना सीखो, भौरों से नित गाना।"</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">सीखो (कविता) — प्रकृति से जीवन के पावन संस्कार</text>\n      <circle cx=\"100\" cy=\"75\" r=\"24\" fill=\"#fde047\" stroke=\"#ca8a04\" stroke-width=\"1.5\"/><text x=\"100\" y=\"81\" font-size=\"20\" text-anchor=\"middle\">🌸</text>\n      <text x=\"100\" y=\"125\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#78350f\" text-anchor=\"middle\">फूलों से हँसना</text>\n      <circle cx=\"230\" cy=\"75\" r=\"24\" fill=\"#fed7aa\" stroke=\"#c2410c\" stroke-width=\"1.5\"/><text x=\"230\" y=\"81\" font-size=\"20\" text-anchor=\"middle\">🐝</text>\n      <text x=\"230\" y=\"125\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#9a3412\" text-anchor=\"middle\">भौरों से गाना</text>\n      <circle cx=\"350\" cy=\"75\" r=\"24\" fill=\"#bbf7d0\" stroke=\"#16a34a\" stroke-width=\"1.5\"/><text x=\"350\" y=\"81\" font-size=\"20\" text-anchor=\"middle\">🌳</text>\n      <text x=\"350\" y=\"125\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#14532d\" text-anchor=\"middle\">झुकना व विनम्रता</text>\n      <circle cx=\"470\" cy=\"75\" r=\"24\" fill=\"#bfdbfe\" stroke=\"#1d4ed8\" stroke-width=\"1.5\"/><text x=\"470\" y=\"81\" font-size=\"20\" text-anchor=\"middle\">🌊</text>\n      <text x=\"470\" y=\"125\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#1e3a8a\" text-anchor=\"middle\">आगे बढ़ते रहना</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">\"फूलों से नित हँसना सीखो, भौरों से नित गाना।\"</text>\n    </svg>",
+    "questions": [
       {
-        category: "कविता बोध • बातचीत के लिए",
-        q: "कवि ने फूलों और भौरों से क्या सीखने को कहा है? पेड़ों की झुकी डालियों से हमें कौन सा जीवन मूल्य सीखने को मिलता है?",
-        ans: "<strong>उत्तर:</strong><br>1. कवि ने फूलों से सदा <strong>हँसते और मुस्कुराते रहना</strong> तथा भौरों से सदा <strong>मधुर गीत गाना</strong> सीखने को कहा है।<br>2. पेड़ों की झुकी हुई डालियाँ हमें <strong>विनम्रता और बड़ों के सामने आदर से शीश झुकाना</strong> सिखाती हैं।",
-        marks: 3,
-        rubric: [
-          { key: "फूलों और भौरों से सीख का सही उल्लेख", marks: "1.5 M" },
-          { key: "पेड़ों से विनम्रता व शीश झुकाने की सीख", marks: "1.5 M" }
+        "category": "कविता बोध • बातचीत के लिए",
+        "q": "कवि ने फूलों और भौरों से क्या सीखने को कहा है? पेड़ों की झुकी डालियों से हमें कौन सा जीवन मूल्य सीखने को मिलता है?",
+        "ans": "<strong>उत्तर:</strong><br>1. कवि ने फूलों से सदा <strong>हँसते और मुस्कुराते रहना</strong> तथा भौरों से सदा <strong>मधुर गीत गाना</strong> सीखने को कहा है।<br>2. पेड़ों की झुकी हुई डालियाँ हमें <strong>विनम्रता और बड़ों के सामने आदर से शीश झुकाना</strong> सिखाती हैं।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "फूलों और भौरों से सीख का सही उल्लेख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "पेड़ों से विनम्रता व शीश झुकाने की सीख",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "भाषा की बात • तुकबंदी वाले शब्द",
-        q: "कविता से खोजकर तुकबंदी (समान लय) वाले शब्द लिखिए: (क) हँसना, (ख) गाना, (ग) बहाना।",
-        ans: "<strong>तुकबंदी वाले शब्द:</strong><br>• (क) हँसना — <strong>फँसना / बसना</strong><br>• (ख) गाना — <strong>बजाना / जगाना</strong><br>• (ग) बहाना — <strong>सिखाना / मिलाना</strong>।",
-        marks: 3,
-        rubric: [
-          { key: "तीनों शब्दों की सही तुकबंदी (1M प्रत्येक)", marks: "3.0 M" }
+        "category": "भाषा की बात • तुकबंदी वाले शब्द",
+        "q": "कविता से खोजकर तुकबंदी (समान लय) वाले शब्द लिखिए: (क) हँसना, (ख) गाना, (ग) बहाना।",
+        "ans": "<strong>तुकबंदी वाले शब्द:</strong><br>• (क) हँसना — <strong>फँसना / बसना</strong><br>• (ख) गाना — <strong>बजाना / जगाना</strong><br>• (ग) बहाना — <strong>सिखाना / मिलाना</strong>।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों शब्दों की सही तुकबंदी (1M प्रत्येक)",
+            "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कविता से • प्रकृति की सीख",
+        "q": "कविता 'सीखो' के अनुसार हमें निम्नलिखित से क्या-क्या सीख मिलती है?<br>(क) फूलों से<br>(ख) भौंरों से<br>(ग) पेड़ों की झुकी डालियों से<br>(घ) हवा के झोंकों से",
+        "ans": "<strong>कविता के अनुसार प्रकृति की पावन सीख:</strong><br>• <strong>(क) फूलों से:</strong> हर परिस्थिति में सदा हँसते-मुस्कुराते रहना।<br>• <strong>(ख) भौंरों से:</strong> नित मधुर गीत गाना और प्रसन्न रहना।<br>• <strong>(ग) पेड़ों की झुकी डालियों से:</strong> विनम्र होना और शीश झुकाकर बड़ों का आदर करना।<br>• <strong>(घ) हवा के झोंकों से:</strong> कोमल भाव बहाना और सबके जीवन में शीतलता पहुँचाना।",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "फूलों और भौंरों की सीख का सही उल्लेख",
+            "marks": "2.0 अंक"
+          },
+          {
+            "key": "पेड़ों और हवा की सीख का सही उल्लेख",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "शब्दों की दुनिया • पर्यायवाची शब्द",
+        "q": "नीचे दिए गए शब्दों के दो-दो पर्यायवाची (समानार्थी) शब्द लिखिए:<br>(क) सूरज<br>(ख) हवा<br>(ग) पेड़<br>(घ) फूल",
+        "ans": "<strong>पर्यायवाची शब्द:</strong><br>• (क) <strong>सूरज:</strong> सूर्य, रवि, भास्कर<br>• (ख) <strong>हवा:</strong> वायु, समीर, पवन<br>• (ग) <strong>पेड़:</strong> वृक्ष, तरु, पादप<br>• (घ) <strong>फूल:</strong> पुष्प, सुमन, कुसुम",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "सूरज और हवा के शुद्ध पर्यायवाची शब्द",
+            "marks": "2.0 अंक"
+          },
+          {
+            "key": "पेड़ और फूल के शुद्ध पर्यायवाची शब्द",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "बातचीत के लिए • तुम्हारी बात",
+        "q": "दीपक हमें अंधकार दूर करने की सीख देता है। आप अपने घर और विद्यालय में किस प्रकार अच्छाई का प्रकाश फैला सकते हैं?",
+        "ans": "<strong>विद्यार्थी का आदर्श उत्तर:</strong><br>1. मैं अपने सहपाठियों की पढ़ाई में सहायता करके और कभी किसी से झूठ न बोलकर सच्चाई का प्रकाश फैलाऊँगा।<br>2. घर में अपने छोटे भाई-बहनों से प्रेम करके और माता-पिता के कामों में हाथ बँटाकर सुख और शांति का वातावरण बनाऊँगा।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "घर और विद्यालय में सकारात्मक आचरण के दो व्यावहारिक बिंदु",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "तुकांत शब्द • कविता का सौंदर्य",
+        "q": "कविता से समान तुक वाले (तुकांत) शब्दों के जोड़े ढूँढ़कर लिखिए:<br>(क) गाना<br>(ख) झुकना<br>(ग) चलना",
+        "ans": "<strong>तुकांत शब्द-जोड़े:</strong><br>• (क) गाना — <strong>बहाना / जगाना</strong><br>• (ख) झुकना — <strong>रुकना / सीखना</strong><br>• (ग) चलना — <strong>जलना / ढलना</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों शब्दों के सही तुकांत शब्द",
+            "marks": "3.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "प्रकृति संरक्षण और दैनिक जीवन",
-      text: "राघव अपने बाग में खिले फूलों को तोड़कर नीचे फेंक देता था। उसकी दादी ने उसे 'सीखो' कविता सुनाई।",
-      question: "फूलों को तोड़ने की जगह पौधों पर खिले रहने देने से पर्यावरण और मन पर क्या सकारात्मक प्रभाव पड़ता है?",
-      answer: "1. खिले हुए फूल तितलियों और मधुमक्खियों को परागकण (नेक्टर) प्रदान करते हैं, जिससे परागण होता है।<br>2. पौधों पर मुस्कुराते फूल देखकर हर देखने वाले का मन आनंद और ताजगी से भर जाता है।",
-      rubric: "1.5M पर्यावरण व परागण लाभ + 1.5M सौंदर्य और प्रसन्नता का प्रभाव।"
+    "cbq": {
+      "title": "प्रकृति संरक्षण और दैनिक जीवन",
+      "text": "राघव अपने बाग में खिले फूलों को तोड़कर नीचे फेंक देता था। उसकी दादी ने उसे 'सीखो' कविता सुनाई।",
+      "question": "फूलों को तोड़ने की जगह पौधों पर खिले रहने देने से पर्यावरण और मन पर क्या सकारात्मक प्रभाव पड़ता है?",
+      "answer": "1. खिले हुए फूल तितलियों और मधुमक्खियों को परागकण (नेक्टर) प्रदान करते हैं, जिससे परागण होता है।<br>2. पौधों पर मुस्कुराते फूल देखकर हर देखने वाले का मन आनंद और ताजगी से भर जाता है।",
+      "rubric": "1.5M पर्यावरण व परागण लाभ + 1.5M सौंदर्य और प्रसन्नता का प्रभाव।"
     }
   },
   {
-    id: "vn2",
-    num: 2,
-    unit: "इकाई 1: हमारा पर्यावरण",
-    title: "चींटी",
-    subtitle: "मेहनत, अनुशासन, एकता, दूरदर्शिता और चींटियों की संगठित कार्यशैली",
-    concepts: [
+    "id": "vn2",
+    "num": 2,
+    "unit": "इकाई 1: हमारा पर्यावरण",
+    "title": "चींटी",
+    "subtitle": "मेहनत, अनुशासन, एकता, दूरदर्शिता और चींटियों की संगठित कार्यशैली",
+    "concepts": [
       "चींटी का अथक परिश्रम: कभी खाली हाथ न बैठना और लगातार आगे बढ़ना।",
       "अनुशासन और एकता: कतार बनाकर चलना और एक-दूसरे से स्पर्श कर संकेत देना।",
       "भविष्य की तैयारी: बरसात और सर्दियों के लिए पहले से अन्न के कण संचित करना।",
       "विलोम शब्द: आलसी × परिश्रमी, हार × जीत, आगे × पीछे।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#f0fdf4" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle">चींटी — अनुशासन, परिश्रम और एकता का प्रतीक</text>
-      <!-- Ant trail -->
-      <g fill="#0f172a" stroke="#0f172a">
-        <circle cx="100" cy="80" r="4"/><circle cx="108" cy="80" r="5"/><circle cx="118" cy="80" r="6"/>
-        <circle cx="180" cy="80" r="4"/><circle cx="188" cy="80" r="5"/><circle cx="198" cy="80" r="6"/>
-        <circle cx="260" cy="80" r="4"/><circle cx="268" cy="80" r="5"/><circle cx="278" cy="80" r="6"/>
-        <circle cx="340" cy="80" r="4"/><circle cx="348" cy="80" r="5"/><circle cx="358" cy="80" r="6"/>
-      </g>
-      <!-- Sugar crystal -->
-      <polygon points="440,70 455,80 445,95 430,85" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-      <text x="440" y="115" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">अन्न कण</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#166534" text-anchor="middle">नन्हीं चींटी दाना लेकर चढ़ती दीवारों पर सौ बार फिसलती है, पर हिम्मत नहीं हारती!</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#f0fdf4\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#15803d\" text-anchor=\"middle\">चींटी — अनुशासन, परिश्रम और एकता का प्रतीक</text>\n      <!-- Ant trail -->\n      <g fill=\"#0f172a\" stroke=\"#0f172a\">\n        <circle cx=\"100\" cy=\"80\" r=\"4\"/><circle cx=\"108\" cy=\"80\" r=\"5\"/><circle cx=\"118\" cy=\"80\" r=\"6\"/>\n        <circle cx=\"180\" cy=\"80\" r=\"4\"/><circle cx=\"188\" cy=\"80\" r=\"5\"/><circle cx=\"198\" cy=\"80\" r=\"6\"/>\n        <circle cx=\"260\" cy=\"80\" r=\"4\"/><circle cx=\"268\" cy=\"80\" r=\"5\"/><circle cx=\"278\" cy=\"80\" r=\"6\"/>\n        <circle cx=\"340\" cy=\"80\" r=\"4\"/><circle cx=\"348\" cy=\"80\" r=\"5\"/><circle cx=\"358\" cy=\"80\" r=\"6\"/>\n      </g>\n      <!-- Sugar crystal -->\n      <polygon points=\"440,70 455,80 445,95 430,85\" fill=\"#ffffff\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/>\n      <text x=\"440\" y=\"115\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#047857\" text-anchor=\"middle\">अन्न कण</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#166534\" text-anchor=\"middle\">नन्हीं चींटी दाना लेकर चढ़ती दीवारों पर सौ बार फिसलती है, पर हिम्मत नहीं हारती!</text>\n    </svg>",
+    "questions": [
       {
-        category: "पाठ बोध • सोचिए और लिखिए",
-        q: "चींटी से हमें क्या-क्या अच्छी आदतें सीखनी चाहिए? चींटियाँ कतार में ही क्यों चलती हैं?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>अच्छी आदतें:</strong> चींटी से हमें <strong>कठिन परिश्रम करना, कभी हार न मानना, अनुशासन में रहना और मिल-जुलकर काम करना</strong> सीखना चाहिए।<br>2. <strong>कतार में चलना:</strong> चींटियाँ चलते समय रास्ते में एक विशेष प्रकार की गंध (फेरोमोन) छोड़ती हैं, जिसे सूंघते हुए पीछे वाली चींटियाँ कतार बनाए आगे बढ़ती हैं।",
-        marks: 3,
-        rubric: [
-          { key: "परिश्रम, अनुशासन व एकता की सीख", marks: "1.5 M" },
-          { key: "गंध सूंघकर कतार बनाने का वैज्ञानिक कारण", marks: "1.5 M" }
+        "category": "पाठ बोध • सोचिए और लिखिए",
+        "q": "चींटी से हमें क्या-क्या अच्छी आदतें सीखनी चाहिए? चींटियाँ कतार में ही क्यों चलती हैं?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>अच्छी आदतें:</strong> चींटी से हमें <strong>कठिन परिश्रम करना, कभी हार न मानना, अनुशासन में रहना और मिल-जुलकर काम करना</strong> सीखना चाहिए।<br>2. <strong>कतार में चलना:</strong> चींटियाँ चलते समय रास्ते में एक विशेष प्रकार की गंध (फेरोमोन) छोड़ती हैं, जिसे सूंघते हुए पीछे वाली चींटियाँ कतार बनाए आगे बढ़ती हैं।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "परिश्रम, अनुशासन व एकता की सीख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "गंध सूंघकर कतार बनाने का वैज्ञानिक कारण",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "भाषा की बात • विलोम शब्द",
-        q: "दिए गए शब्दों के विलोम शब्द लिखिए: (क) परिश्रमी, (ख) एकता, (ग) आगे, (घ) छोटा।",
-        ans: "<strong>विलोम शब्द:</strong><br>• (क) परिश्रमी × <strong>आलसी</strong><br>• (ख) एकता × <strong>अनेकता / फूट</strong><br>• (ग) आगे × <strong>पीछे</strong><br>• (घ) छोटा × <strong>बड़ा</strong>।",
-        marks: 2,
-        rubric: [
-          { key: "चारों विलोम शब्दों का सही उत्तर (0.5M प्रत्येक)", marks: "2.0 M" }
+        "category": "भाषा की बात • विलोम शब्द",
+        "q": "दिए गए शब्दों के विलोम शब्द लिखिए: (क) परिश्रमी, (ख) एकता, (ग) आगे, (घ) छोटा।",
+        "ans": "<strong>विलोम शब्द:</strong><br>• (क) परिश्रमी × <strong>आलसी</strong><br>• (ख) एकता × <strong>अनेकता / फूट</strong><br>• (ग) आगे × <strong>पीछे</strong><br>• (घ) छोटा × <strong>बड़ा</strong>।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "चारों विलोम शब्दों का सही उत्तर (0.5M प्रत्येक)",
+            "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "पाठ से • चींटी का जीवन",
+        "q": "चींटी के जीवन से हमें क्या प्रेरणा मिलती है? तीन मुख्य बातें लिखिए।",
+        "ans": "<strong>चींटी के जीवन से प्रेरणादायक सीख:</strong><br>1. <strong>सतत परिश्रम (मेहनत):</strong> चींटी कभी खाली नहीं बैठती, वह दिन-रात अपने भोजन के संचय के लिए अथक प्रयास करती है।<br>2. <strong>अनुशासन और एकता:</strong> चींटियाँ हमेशा एक सीधी कतार (पंक्ति) में मिलकर चलती हैं और आपस में कभी नहीं झगड़तीं।<br>3. <strong>धैर्य और लगन:</strong> दीवार पर बार-बार फिसलने के बाद भी वह हिम्मत नहीं हारती और अंततः अपनी मंजिल पर पहुँचती है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "परिश्रम, अनुशासन और धैर्य के तीन स्पष्ट बिंदु",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "भाषा की बात • वाक्य प्रयोग",
+        "q": "नीचे दिए गए शब्दों का अर्थ स्पष्ट करते हुए सार्थक वाक्य बनाइए:<br>(क) अनुशासन<br>(ख) कतार<br>(ग) संचय",
+        "ans": "<strong>सार्थक वाक्य प्रयोग:</strong><br>• (क) <strong>अनुशासन:</strong> प्रार्थना सभा में सभी विद्यार्थी अनुशासन के साथ खड़े थे।<br>• (ख) <strong>कतार:</strong> टिकट खिड़की पर सभी लोग कतार बनाकर अपनी बारी की प्रतीक्षा कर रहे थे।<br>• (ग) <strong>संचय:</strong> समझदार चींटियाँ वर्षा ऋतु से पहले ही भोजन का संचय कर लेती हैं।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों शब्दों के शुद्ध एवं व्याकरणिक वाक्य प्रयोग",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "सोचिए और बताइए • जीव-जगत",
+        "q": "चींटियाँ चलते समय एक-दूसरे से मुँह क्यों छूती हैं? क्या वे आपस में बात करती हैं?",
+        "ans": "<strong>वैज्ञानिक एवं पाठ्यपुस्तक समझ:</strong><br>• चींटियाँ चलते समय अपने सिर पर स्थित स्पर्श-तंतुओं (Antennae) से एक-दूसरे को छूकर गंध (फेरोमोन) और सूचना का आदान-प्रदान करती हैं। वे एक-दूसरे को भोजन के स्रोत का रास्ता बताती हैं और अपने समूह की पहचान करती हैं।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "स्पर्श-तंतुओं और गंध द्वारा संवाद की सही व्याख्या",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "विलोम शब्द • शब्द संपदा",
+        "q": "विलोम (उलटा अर्थ वाले) शब्द लिखिए:<br>(क) छोटा $\\times$ _____<br>(ख) आगे $\\times$ _____<br>(ग) मेहनत $\\times$ _____<br>(घ) दिन $\\times$ _____",
+        "ans": "<strong>विलोम शब्द:</strong><br>• (क) छोटा $\\times$ <strong>बड़ा</strong><br>• (ख) आगे $\\times$ <strong>पीछे</strong><br>• (ग) मेहनत $\\times$ <strong>आलस</strong><br>• (घ) दिन $\\times$ <strong>रात</strong>",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों शुद्ध विलोम शब्द",
+            "marks": "4.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "दूरदर्शिता और समय प्रबंधन",
-      text: "गर्मियों के मौसम में चींटियाँ दिन-रात मेहनत करके अपने बिलों में भोजन जमा करती हैं ताकि वर्षा ऋतु में उन्हें भूखा न रहना पड़े।",
-      question: "चींटियों के इस व्यवहार से विद्यार्थी परीक्षा की तैयारी के संबंध में क्या मूल्यवान सबक सीख सकते हैं?",
-      answer: "1. विद्यार्थियों को परीक्षा के अंतिम दिनों का इंतजार किए बिना साल की शुरुआत से ही रोज थोड़ा-थोड़ा पढ़ना चाहिए।<br>2. निरंतर और नियमित अभ्यास करने से परीक्षा के समय घबराहट नहीं होती और सफलता निश्चित मिलती है।",
-      rubric: "1.5M नियमित अध्ययन का सबक + 1.5M परीक्षा तनाव से बचाव का महत्व।"
+    "cbq": {
+      "title": "दूरदर्शिता और समय प्रबंधन",
+      "text": "गर्मियों के मौसम में चींटियाँ दिन-रात मेहनत करके अपने बिलों में भोजन जमा करती हैं ताकि वर्षा ऋतु में उन्हें भूखा न रहना पड़े।",
+      "question": "चींटियों के इस व्यवहार से विद्यार्थी परीक्षा की तैयारी के संबंध में क्या मूल्यवान सबक सीख सकते हैं?",
+      "answer": "1. विद्यार्थियों को परीक्षा के अंतिम दिनों का इंतजार किए बिना साल की शुरुआत से ही रोज थोड़ा-थोड़ा पढ़ना चाहिए।<br>2. निरंतर और नियमित अभ्यास करने से परीक्षा के समय घबराहट नहीं होती और सफलता निश्चित मिलती है।",
+      "rubric": "1.5M नियमित अध्ययन का सबक + 1.5M परीक्षा तनाव से बचाव का महत्व।"
     }
   },
   {
-    id: "vn3",
-    num: 3,
-    unit: "इकाई 1: हमारा पर्यावरण",
-    title: "कितने पैर?",
-    subtitle: "जीव-जंतुओं के शारीरिक अंग, पैरों की संख्या, गिनती, मिलान और प्रकृति निरीक्षण",
-    concepts: [
+    "id": "vn3",
+    "num": 3,
+    "unit": "इकाई 1: हमारा पर्यावरण",
+    "title": "कितने पैर?",
+    "subtitle": "जीव-जंतुओं के शारीरिक अंग, पैरों की संख्या, गिनती, मिलान और प्रकृति निरीक्षण",
+    "concepts": [
       "जीव-जंतुओं के पैरों की विविधता: दो पैर (पक्षी, मानव), चार पैर (गाय, कुत्ता, बिल्ली), छह पैर (कीट-पतंगे, चींटी), आठ पैर (मकड़ी)।",
       "बिना पैर वाले रेंगने वाले जीव: केंचुआ और साँप।",
       "गिनती और जोड़ का हिंदी भाषा में प्रयोग।",
       "पर्यावरण में सभी प्राणियों के अनोखे शारीरिक अनुकूलन को समझना।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#eff6ff" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e40af" text-anchor="middle">कितने पैर? — जीवों के पैरों की अनोखी दुनिया</text>
-      <rect x="50" y="50" width="100" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-      <text x="100" y="75" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a" text-anchor="middle">2 पैर</text>
-      <text x="100" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">तोता, चिड़िया, बगुला</text>
-      <rect x="175" y="50" width="100" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-      <text x="225" y="75" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a" text-anchor="middle">4 पैर</text>
-      <text x="225" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">गाय, घोड़ा, हिरण</text>
-      <rect x="305" y="50" width="100" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-      <text x="355" y="75" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a" text-anchor="middle">6 पैर</text>
-      <text x="355" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">मक्खी, चींटी, तितली</text>
-      <rect x="430" y="50" width="100" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-      <text x="480" y="75" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a" text-anchor="middle">8 पैर</text>
-      <text x="480" y="98" font-family="system-ui, sans-serif" font-size="10" fill="#1e40af" text-anchor="middle">मकड़ी, केकड़ा</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">प्रकृति ने हर प्राणी को उसके जीवन यापन के अनुसार पैर दिए हैं।</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">कितने पैर? — जीवों के पैरों की अनोखी दुनिया</text>\n      <rect x=\"50\" y=\"50\" width=\"100\" height=\"70\" rx=\"8\" fill=\"#dbeafe\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n      <text x=\"100\" y=\"75\" font-family=\"system-ui, sans-serif\" font-size=\"12\" font-weight=\"800\" fill=\"#1e3a8a\" text-anchor=\"middle\">2 पैर</text>\n      <text x=\"100\" y=\"98\" font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"#1e40af\" text-anchor=\"middle\">तोता, चिड़िया, बगुला</text>\n      <rect x=\"175\" y=\"50\" width=\"100\" height=\"70\" rx=\"8\" fill=\"#dbeafe\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n      <text x=\"225\" y=\"75\" font-family=\"system-ui, sans-serif\" font-size=\"12\" font-weight=\"800\" fill=\"#1e3a8a\" text-anchor=\"middle\">4 पैर</text>\n      <text x=\"225\" y=\"98\" font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"#1e40af\" text-anchor=\"middle\">गाय, घोड़ा, हिरण</text>\n      <rect x=\"305\" y=\"50\" width=\"100\" height=\"70\" rx=\"8\" fill=\"#dbeafe\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n      <text x=\"355\" y=\"75\" font-family=\"system-ui, sans-serif\" font-size=\"12\" font-weight=\"800\" fill=\"#1e3a8a\" text-anchor=\"middle\">6 पैर</text>\n      <text x=\"355\" y=\"98\" font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"#1e40af\" text-anchor=\"middle\">मक्खी, चींटी, तितली</text>\n      <rect x=\"430\" y=\"50\" width=\"100\" height=\"70\" rx=\"8\" fill=\"#dbeafe\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n      <text x=\"480\" y=\"75\" font-family=\"system-ui, sans-serif\" font-size=\"12\" font-weight=\"800\" fill=\"#1e3a8a\" text-anchor=\"middle\">8 पैर</text>\n      <text x=\"480\" y=\"98\" font-family=\"system-ui, sans-serif\" font-size=\"10\" fill=\"#1e40af\" text-anchor=\"middle\">मकड़ी, केकड़ा</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"600\" fill=\"#1e40af\" text-anchor=\"middle\">प्रकृति ने हर प्राणी को उसके जीवन यापन के अनुसार पैर दिए हैं।</text>\n    </svg>",
+    "questions": [
       {
-        category: "जीव-जंतु वर्गीकरण • मिलान",
-        q: "बताइए किसके कितने पैर होते हैं: (क) तितली, (ख) मकड़ी, (ग) गाय, (घ) कबूतर, (ङ) केंचुआ।",
-        ans: "<strong>पैरों की संख्या:</strong><br>• (क) तितली = <strong>6 पैर</strong> (कीट)<br>• (ख) मकड़ी = <strong>8 पैर</strong><br>• (ग) गाय = <strong>4 पैर</strong><br>• (घ) कबूतर = <strong>2 पैर</strong><br>• (ङ) केंचुआ = <strong>0 पैर</strong> (कोई पैर नहीं, मांसपेशियों से रेंगता है)।",
-        marks: 3,
-        rubric: [
-          { key: "पाँचों जीवों के पैरों का सही मिलान", marks: "3.0 M" }
+        "category": "जीव-जंतु वर्गीकरण • मिलान",
+        "q": "बताइए किसके कितने पैर होते हैं: (क) तितली, (ख) मकड़ी, (ग) गाय, (घ) कबूतर, (ङ) केंचुआ।",
+        "ans": "<strong>पैरों की संख्या:</strong><br>• (क) तितली = <strong>6 पैर</strong> (कीट)<br>• (ख) मकड़ी = <strong>8 पैर</strong><br>• (ग) गाय = <strong>4 पैर</strong><br>• (घ) कबूतर = <strong>2 पैर</strong><br>• (ङ) केंचुआ = <strong>0 पैर</strong> (कोई पैर नहीं, मांसपेशियों से रेंगता है)।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "पाँचों जीवों के पैरों का सही मिलान",
+            "marks": "3.0 M"
+          }
         ]
       },
       {
-        category: "गणित और भाषा एकीकरण • शब्द पहेली",
-        q: "एक खेत में 3 बकरियाँ और 4 मुर्गियाँ चर रही हैं। बताइए खेत में कुल कितने पैर हैं?",
-        ans: "<strong>गणना:</strong><br>1. बकरियों के पैर = 3 बकरियाँ × 4 पैर = <strong>12 पैर</strong>।<br>2. मुर्गियों के पैर = 4 मुर्गियाँ × 2 पैर = <strong>8 पैर</strong>।<br>3. कुल पैर = 12 + 8 = <strong>20 पैर</strong>।",
-        marks: 2,
-        rubric: [
-          { key: "बकरियों और मुर्गियों के पैरों की सही गणना", marks: "1.0 M" },
-          { key: "कुल पैरों का सही जोड़ (20 पैर)", marks: "1.0 M" }
+        "category": "गणित और भाषा एकीकरण • शब्द पहेली",
+        "q": "एक खेत में 3 बकरियाँ और 4 मुर्गियाँ चर रही हैं। बताइए खेत में कुल कितने पैर हैं?",
+        "ans": "<strong>गणना:</strong><br>1. बकरियों के पैर = 3 बकरियाँ × 4 पैर = <strong>12 पैर</strong>।<br>2. मुर्गियों के पैर = 4 मुर्गियाँ × 2 पैर = <strong>8 पैर</strong>।<br>3. कुल पैर = 12 + 8 = <strong>20 पैर</strong>।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "बकरियों और मुर्गियों के पैरों की सही गणना",
+            "marks": "1.0 M"
+          },
+          {
+            "key": "कुल पैरों का सही जोड़ (20 पैर)",
+            "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "जीव-जगत • पैरों की संख्या तालिका",
+        "q": "नीचे दिए गए जीवों को उनके पैरों की संख्या के अनुसार सही वर्ग में लिखिए:<br>कौआ, गाय, मकड़ी, तितली, मनुष्य, छिपकली, मक्खी।<br>• दो पैर वाले जीव<br>• चार पैर वाले जीव<br>• छह पैर वाले जीव<br>• आठ पैर वाले जीव",
+        "ans": "<strong>पैरों की संख्या के आधार पर वर्गीकरण:</strong><br>• <strong>दो पैर वाले जीव:</strong> मनुष्य, कौआ (पक्षी)<br>• <strong>चार पैर वाले जीव:</strong> गाय, छिपकली<br>• <strong>छह पैर वाले जीव (कीट-पतंगे):</strong> तितली, मक्खी<br>• <strong>आठ पैर वाले जीव:</strong> मकड़ी।",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "सभी जीवों का सही वर्ग में सटीक विभाजन",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "रोचक पहेलियाँ • जीव पहचान",
+        "q": "पहेलियाँ बूझिए और उत्तर लिखिए:<br>(क) 'आठ पैर हैं जाल बनाती, कीट-पतंगे खूब फंसाती।' $\\rightarrow$ _____<br>(ख) 'रंग-बिरंगे पंख हैं मेरे, फूलों का रस पीती हूँ।' $\\rightarrow$ _____<br>(ग) 'बिना पैर के रेंग-रेंग कर चलती, केंचुए जैसी दिखती।' $\\rightarrow$ _____",
+        "ans": "<strong>पहेलियों के उत्तर:</strong><br>• (क) <strong>मकड़ी (Spider)</strong><br>• (ख) <strong>तितली (Butterfly)</strong><br>• (ग) <strong>केंचुआ / साँप</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों पहेलियों के सटीक उत्तर",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "भाषा की बात • एकवचन और बहुवचन",
+        "q": "वचन बदलिए (एकवचन से बहुवचन बनाइए):<br>(क) तितली $\\rightarrow$ _____<br>(ख) मक्खी $\\rightarrow$ _____<br>(ग) चिड़िया $\\rightarrow$ _____<br>(घ) पैर $\\rightarrow$ _____",
+        "ans": "<strong>वचन परिवर्तन:</strong><br>• (क) तितली $\\rightarrow$ <strong>तितलियाँ</strong><br>• (ख) मक्खी $\\rightarrow$ <strong>मक्खियाँ</strong><br>• (ग) चिड़िया $\\rightarrow$ <strong>चिड़ियाँ</strong><br>• (घ) पैर $\\rightarrow$ <strong>पैर (या पैरों - संबंध कारक में)</strong>",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों शब्दों के शुद्ध बहुवचन रूप (इयांत नियम)",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "खोजो और बताओ • पक्षियों के पैर",
+        "q": "बत्तख के पैरों की बनावट मुर्गियों के पैरों से किस प्रकार भिन्न होती है और क्यों?",
+        "ans": "<strong>पैरों की बनावट का अंतर:</strong><br>• बत्तख के पैरों की उँगलियों के बीच पतली त्वचा की झिल्ली होती है, जिसे 'जालदार पैर' (Webbed feet) कहते हैं। यह झिल्ली पतवार की तरह पानी को पीछे धकेलकर तैरने में सहायता करती है।<br>• मुर्गी के पैरों में झिल्ली नहीं होती, उनके पैर लंबे और नुकीले पंजों वाले होते हैं ताकि वे जमीन खुरचकर दाना चुग सकें।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "जालदार पैरों का उल्लेख और तैरने में उपयोगिता",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "प्रकृति में अनुकूलन (Adaptation)",
-      text: "बतख के पैरों की उंगलियों के बीच में पतली झिल्ली (Webbed feet) होती है, जबकि बगुले के पैर पतले और लंबे होते हैं।",
-      question: "बतख और बगुले के पैरों की यह बनावट उन्हें पानी में रहने और भोजन खोजने में कैसे मदद करती है?",
-      answer: "1. बतख के जालीदार पैर पानी में चप्पू की तरह काम करते हैं, जिससे वह आसानी से तैर सकती है।<br>2. बगुले के लंबे पैर उसे गहरे कीचड़ और पानी में खड़े रहकर मछलियाँ पकड़ने में मदद करते हैं बिना पानी में डूबे।",
-      rubric: "1.5M बतख के जालीदार पैरों का तैरने में उपयोग + 1.5M बगुले के लंबे पैरों का कीचड़ में लाभ।"
+    "cbq": {
+      "title": "प्रकृति में अनुकूलन (Adaptation)",
+      "text": "बतख के पैरों की उंगलियों के बीच में पतली झिल्ली (Webbed feet) होती है, जबकि बगुले के पैर पतले और लंबे होते हैं।",
+      "question": "बतख और बगुले के पैरों की यह बनावट उन्हें पानी में रहने और भोजन खोजने में कैसे मदद करती है?",
+      "answer": "1. बतख के जालीदार पैर पानी में चप्पू की तरह काम करते हैं, जिससे वह आसानी से तैर सकती है।<br>2. बगुले के लंबे पैर उसे गहरे कीचड़ और पानी में खड़े रहकर मछलियाँ पकड़ने में मदद करते हैं बिना पानी में डूबे।",
+      "rubric": "1.5M बतख के जालीदार पैरों का तैरने में उपयोग + 1.5M बगुले के लंबे पैरों का कीचड़ में लाभ।"
     }
   },
   {
-    id: "vn4",
-    num: 4,
-    unit: "इकाई 1: हमारा पर्यावरण",
-    title: "बया हमारी चिड़िया रानी!",
-    subtitle: "बया (बुनकर पक्षी) का अद्भुत घोंसला, तिनकों की बुनाई, मेहनत और मातृत्व प्रेम",
-    concepts: [
+    "id": "vn4",
+    "num": 4,
+    "unit": "इकाई 1: हमारा पर्यावरण",
+    "title": "बया हमारी चिड़िया रानी!",
+    "subtitle": "बया (बुनकर पक्षी) का अद्भुत घोंसला, तिनकों की बुनाई, मेहनत और मातृत्व प्रेम",
+    "concepts": [
       "बया पक्षी की कारीगरी: घास और पत्तियों के रेशों से लालटेन जैसा लटकता हुआ सुंदर घोंसला बुनना।",
       "मेहनत और लगन: तिनका-तिनका चुनकर हवा और बारिश से सुरक्षित घर बनाना।",
       "पक्षियों के प्रति संवेदनशीलता और उनके घोंसलों को न छेड़ने का संकल्प।",
       "समानार्थी शब्द: नीड़ (घोंसला), तरु (पेड़), खग (पक्षी), वारि (पानी)।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fff7ed" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#9a3412" text-anchor="middle">बया हमारी चिड़िया रानी — तिनकों से बुना अनोखा महल</text>
-      <!-- Tree Branch -->
-      <line x1="80" y1="40" x2="480" y2="40" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
-      <!-- Hanging Nest -->
-      <g transform="translate(260, 40)">
-        <path d="M30,0 L20,35 Q10,70 30,85 Q50,70 40,35 Z" fill="#d97706" stroke="#92400e" stroke-width="1.5"/>
-        <ellipse cx="30" cy="70" rx="6" ry="10" fill="#1e293b"/>
-        <text x="30" y="105" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9a3412" text-anchor="middle">बया का घोंसला</text>
-      </g>
-      <!-- Baya Bird -->
-      <g transform="translate(180, 50)">
-        <ellipse cx="20" cy="15" rx="14" ry="10" fill="#fde047" stroke="#ca8a04" stroke-width="1"/>
-        <circle cx="30" cy="10" r="6" fill="#fde047"/>
-        <polygon points="36,10 42,12 36,14" fill="#ea580c"/>
-        <text x="20" y="38" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#9a3412" text-anchor="middle">बया चिड़िया</text>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#c2410c" text-anchor="middle">"तिनके ला-लाकर महल बनाती, ऊंची डाली पर लटकाती!"</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fff7ed\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#9a3412\" text-anchor=\"middle\">बया हमारी चिड़िया रानी — तिनकों से बुना अनोखा महल</text>\n      <!-- Tree Branch -->\n      <line x1=\"80\" y1=\"40\" x2=\"480\" y2=\"40\" stroke=\"#78350f\" stroke-width=\"6\" stroke-linecap=\"round\"/>\n      <!-- Hanging Nest -->\n      <g transform=\"translate(260, 40)\">\n        <path d=\"M30,0 L20,35 Q10,70 30,85 Q50,70 40,35 Z\" fill=\"#d97706\" stroke=\"#92400e\" stroke-width=\"1.5\"/>\n        <ellipse cx=\"30\" cy=\"70\" rx=\"6\" ry=\"10\" fill=\"#1e293b\"/>\n        <text x=\"30\" y=\"105\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#9a3412\" text-anchor=\"middle\">बया का घोंसला</text>\n      </g>\n      <!-- Baya Bird -->\n      <g transform=\"translate(180, 50)\">\n        <ellipse cx=\"20\" cy=\"15\" rx=\"14\" ry=\"10\" fill=\"#fde047\" stroke=\"#ca8a04\" stroke-width=\"1\"/>\n        <circle cx=\"30\" cy=\"10\" r=\"6\" fill=\"#fde047\"/>\n        <polygon points=\"36,10 42,12 36,14\" fill=\"#ea580c\"/>\n        <text x=\"20\" y=\"38\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#9a3412\" text-anchor=\"middle\">बया चिड़िया</text>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#c2410c\" text-anchor=\"middle\">\"तिनके ला-लाकर महल बनाती, ऊंची डाली पर लटकाती!\"</text>\n    </svg>",
+    "questions": [
       {
-        category: "कविता बोध • सोचिए और लिखिए",
-        q: "बया अपना घोंसला किन-किन चीजों से बनाती है? बया के घोंसले को 'सुंदर महल' क्यों कहा गया है?",
-        ans: "<strong>उत्तर:</strong><br>1. बया अपना घोंसला <strong>घास के लंबे तिनकों, पतली फुनगियों और पत्तियों के मजबूत रेशों</strong> को चोंच से बुनकर बनाती है।<br>2. उसके घोंसले को 'सुंदर महल' इसलिए कहा गया है क्योंकि वह किसी कुशल कारीगर की तरह हवा और बारिश से पूरी तरह सुरक्षित, लालटेन जैसा अनोखा और कलात्मक घोंसला तैयार करती है।",
-        marks: 3,
-        rubric: [
-          { key: "तिनकों व घास के रेशों का उल्लेख", marks: "1.5 M" },
-          { key: "घोंसले की कारीगरी और मजबूती का विवरण", marks: "1.5 M" }
+        "category": "कविता बोध • सोचिए और लिखिए",
+        "q": "बया अपना घोंसला किन-किन चीजों से बनाती है? बया के घोंसले को 'सुंदर महल' क्यों कहा गया है?",
+        "ans": "<strong>उत्तर:</strong><br>1. बया अपना घोंसला <strong>घास के लंबे तिनकों, पतली फुनगियों और पत्तियों के मजबूत रेशों</strong> को चोंच से बुनकर बनाती है।<br>2. उसके घोंसले को 'सुंदर महल' इसलिए कहा गया है क्योंकि वह किसी कुशल कारीगर की तरह हवा और बारिश से पूरी तरह सुरक्षित, लालटेन जैसा अनोखा और कलात्मक घोंसला तैयार करती है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तिनकों व घास के रेशों का उल्लेख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "घोंसले की कारीगरी और मजबूती का विवरण",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "पर्यायवाची शब्द • भाषा की बात",
-        q: "दिए गए शब्दों के दो-दो पर्यायवाची शब्द लिखिए: (क) चिड़िया, (ख) पेड़, (ग) घर।",
-        ans: "<strong>पर्यायवाची शब्द:</strong><br>• (क) चिड़िया — <strong>पक्षी, खग, विहग</strong><br>• (ख) पेड़ — <strong>वृक्ष, तरु, पादप</strong><br>• (ग) घर — <strong>गृह, सदन, आलय</strong>।",
-        marks: 3,
-        rubric: [
-          { key: "तीनों शब्दों के सही पर्यायवाची (1M प्रत्येक)", marks: "3.0 M" }
+        "category": "पर्यायवाची शब्द • भाषा की बात",
+        "q": "दिए गए शब्दों के दो-दो पर्यायवाची शब्द लिखिए: (क) चिड़िया, (ख) पेड़, (ग) घर।",
+        "ans": "<strong>पर्यायवाची शब्द:</strong><br>• (क) चिड़िया — <strong>पक्षी, खग, विहग</strong><br>• (ख) पेड़ — <strong>वृक्ष, तरु, पादप</strong><br>• (ग) घर — <strong>गृह, सदन, आलय</strong>।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों शब्दों के सही पर्यायवाची (1M प्रत्येक)",
+            "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कविता से • बया का घोंसला",
+        "q": "कविता 'बया हमारी चिड़िया रानी' के आधार पर बताइए:<br>(क) बया अपना घोंसला किन-किन चीज़ों से बनाती है?<br>(ख) बया के घोंसले को 'इंजीनियर पक्षी का कमाल' क्यों कहा जाता है?",
+        "ans": "<strong>कविता बोध:</strong><br><strong>(क) घोंसले की सामग्री:</strong><br>• बया घास के लंबे तिनके, बारीक रेशे और पत्तियों के धागे चुन-चुनकर लाती है और अपनी चोंच से बुनती है।<br><br><strong>(ख) घोंसले की बनावट का कमाल:</strong><br>• बया का घोंसला पेड़ की टहनी से नीचे की ओर लटकता हुआ एक सुंदर सुराही या लालटेन जैसा होता है। इसमें नीचे से अंदर जाने का सुरक्षित प्रवेश द्वार होता है, जिससे तेज हवा या बारिश में भी अंडे और बच्चे सुरक्षित रहते हैं।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "घास-तिनके और बुनने का सही उल्लेख",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "लटकते सुराहीदार घोंसले की शिल्पकला का वर्णन",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "पक्षी और उनके घोंसले • मिलान कार्य",
+        "q": "पक्षियों को उनके घोंसले के प्रकार से मिलाइए:<br>• बया: [पेड़ के तने में छेद, तिनकों का बुना लटकता घोंसला, पत्तों को सिलकर बनाया घोंसला, जमीन पर झाड़ियों में]<br>• दर्जी चिड़िया (Tailor bird): [पेड़ के तने में छेद, तिनकों का बुना लटकता घोंसला, पत्तों को सिलकर बनाया घोंसला, जमीन पर झाड़ियों में]<br>• कठफोड़वा (Woodpecker): [पेड़ के तने में छेद, तिनकों का बुना लटकता घोंसला, पत्तों को सिलकर बनाया घोंसला, जमीन पर झाड़ियों में]",
+        "ans": "<strong>पक्षियों के घोंसले:</strong><br>• <strong>बया:</strong> तिनकों का बुना लटकता सुराहीदार घोंसला<br>• <strong>दर्जी चिड़िया:</strong> दो पत्तों को अपनी चोंच रूपी सुई से सिलकर बनाया घोंसला<br>• <strong>कठफोड़वा:</strong> पेड़ के मजबूत तने में चोंच से गहरा छेद करके बनाया घोंसला",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों पक्षियों के घोंसलों का सटीक मिलान",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "कविता की पंक्तियाँ पूरी करो",
+        "q": "कविता की अधूरी पंक्तियाँ पूरी कीजिए:<br><em>'बया हमारी चिड़िया रानी!<br>तिनके लाकर महल बनाती,<br>____________________,<br>दाना चुगने नदियाँ जाती।'</em>",
+        "ans": "<strong>पूरी पंक्तियाँ:</strong><br>बया हमारी चिड़िया रानी!<br>तिनके लाकर महल बनाती,<br><strong>ऊँची डालों पर लटकाती</strong>,<br>दाना चुगने नदियाँ जाती।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सटीक काव्य पंक्ति की पूर्ति",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "पक्षियों की रक्षा • नैतिक संदेश",
+        "q": "गर्मियों के दिनों में पक्षियों के लिए आप अपनी बालकनी या छत पर क्या प्रबंध कर सकते हैं?",
+        "ans": "<strong>प्रबंध के उपाय:</strong><br>1. एक मिट्टी के चौड़े कटोरे में रोज़ ताजा और साफ पीने का पानी रखेंगे।<br>2. एक छोटी कटोरी में ज्वार, बाजरा या चावल के दाने नियमित रूप से बिखेरेंगे ताकि वे भूखे न रहें।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "जल और दाने के दो मानवीय प्रबंध बिंदु",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "पक्षी संरक्षण और मानवीय संवेदना",
-      text: "कुछ शरारती बच्चे पेड़ पर लटके चिड़ियों के घोंसलों पर पत्थर मारते हैं और अंडों को नुकसान पहुँचाते हैं।",
-      question: "पक्षियों के घोंसलों को नुकसान पहुँचाने से प्रकृति को क्या हानि होती है, और बच्चों को ऐसा करने से कैसे रोका जाए?",
-      answer: "1. घोंसले टूटने से नन्हे चूजों की जान चली जाती है और पक्षियों की आबादी घटती है, जिससे कीट-पतंगों की संख्या अनियंत्रित हो जाती है।<br>2. बच्चों को समझाना चाहिए कि पक्षी हमारी प्रकृति के मित्र हैं और विद्यालय में 'घोंसला सुरक्षा क्लब' बनाकर पक्षियों को दाना-पानी देने के लिए प्रेरित करना चाहिए।",
-      rubric: "1.5M पारिस्थितिक नुकसान की समझ + 1.5M जागरूकता और संरक्षण का उपाय।"
+    "cbq": {
+      "title": "पक्षी संरक्षण और मानवीय संवेदना",
+      "text": "कुछ शरारती बच्चे पेड़ पर लटके चिड़ियों के घोंसलों पर पत्थर मारते हैं और अंडों को नुकसान पहुँचाते हैं।",
+      "question": "पक्षियों के घोंसलों को नुकसान पहुँचाने से प्रकृति को क्या हानि होती है, और बच्चों को ऐसा करने से कैसे रोका जाए?",
+      "answer": "1. घोंसले टूटने से नन्हे चूजों की जान चली जाती है और पक्षियों की आबादी घटती है, जिससे कीट-पतंगों की संख्या अनियंत्रित हो जाती है।<br>2. बच्चों को समझाना चाहिए कि पक्षी हमारी प्रकृति के मित्र हैं और विद्यालय में 'घोंसला सुरक्षा क्लब' बनाकर पक्षियों को दाना-पानी देने के लिए प्रेरित करना चाहिए।",
+      "rubric": "1.5M पारिस्थितिक नुकसान की समझ + 1.5M जागरूकता और संरक्षण का उपाय।"
     }
   },
   {
-    id: "vn5",
-    num: 5,
-    unit: "इकाई 1: हमारा पर्यावरण",
-    title: "आम का पेड़",
-    subtitle: "वृक्षों की उपयोगिता, फल, छाया, लकड़ी, ऑक्सीजन और पर्यावरण संतुलन",
-    concepts: [
+    "id": "vn5",
+    "num": 5,
+    "unit": "इकाई 1: हमारा पर्यावरण",
+    "title": "आम का पेड़",
+    "subtitle": "वृक्षों की उपयोगिता, फल, छाया, लकड़ी, ऑक्सीजन और पर्यावरण संतुलन",
+    "concepts": [
       "आम के पेड़ के विभिन्न अंग: जड़, तना, शाखाएँ, पत्तियाँ, बौर (फूल) और रसीले फल।",
       "पेड़ों से मिलने वाले लाभ: मीठे फल, शीतल छाया, शुद्ध वायु (ऑक्सीजन), पक्षियों का बसेरा।",
       "आम को 'फलों का राजा' क्यों कहा जाता है।",
       "पेड़ लगाने और पर्यावरण को हरा-भरा रखने का संदेश।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#f0fdf4" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle">आम का पेड़ — फलों का राजा और जीवनदाता वृक्ष</text>
-      <!-- Tree Trunk -->
-      <rect x="275" y="80" width="30" height="50" rx="2" fill="#78350f"/>
-      <!-- Tree Canopy -->
-      <circle cx="290" cy="65" r="45" fill="#16a34a"/>
-      <circle cx="255" cy="70" r="30" fill="#22c55e"/>
-      <circle cx="325" cy="70" r="30" fill="#22c55e"/>
-      <!-- Mangoes on tree -->
-      <ellipse cx="265" cy="65" rx="6" ry="9" fill="#facc15"/><ellipse cx="305" cy="60" rx="6" ry="9" fill="#facc15"/>
-      <ellipse cx="285" cy="80" rx="6" ry="9" fill="#facc15"/><ellipse cx="320" cy="75" rx="6" ry="9" fill="#facc15"/>
-      <text x="160" y="90" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#166534">🌿 शुद्ध ऑक्सीजन</text>
-      <text x="420" y="90" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#166534">🥭 रसीले मीठे आम</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#15803d" text-anchor="middle">पेड़ लगाएं, जीवन बचाएं — पेड़ हमारे सच्चे मित्र हैं!</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#f0fdf4\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#15803d\" text-anchor=\"middle\">आम का पेड़ — फलों का राजा और जीवनदाता वृक्ष</text>\n      <!-- Tree Trunk -->\n      <rect x=\"275\" y=\"80\" width=\"30\" height=\"50\" rx=\"2\" fill=\"#78350f\"/>\n      <!-- Tree Canopy -->\n      <circle cx=\"290\" cy=\"65\" r=\"45\" fill=\"#16a34a\"/>\n      <circle cx=\"255\" cy=\"70\" r=\"30\" fill=\"#22c55e\"/>\n      <circle cx=\"325\" cy=\"70\" r=\"30\" fill=\"#22c55e\"/>\n      <!-- Mangoes on tree -->\n      <ellipse cx=\"265\" cy=\"65\" rx=\"6\" ry=\"9\" fill=\"#facc15\"/><ellipse cx=\"305\" cy=\"60\" rx=\"6\" ry=\"9\" fill=\"#facc15\"/>\n      <ellipse cx=\"285\" cy=\"80\" rx=\"6\" ry=\"9\" fill=\"#facc15\"/><ellipse cx=\"320\" cy=\"75\" rx=\"6\" ry=\"9\" fill=\"#facc15\"/>\n      <text x=\"160\" y=\"90\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#166534\">🌿 शुद्ध ऑक्सीजन</text>\n      <text x=\"420\" y=\"90\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#166534\">🥭 रसीले मीठे आम</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#15803d\" text-anchor=\"middle\">पेड़ लगाएं, जीवन बचाएं — पेड़ हमारे सच्चे मित्र हैं!</text>\n    </svg>",
+    "questions": [
       {
-        category: "पाठ बोध • सोचिए और लिखिए",
-        q: "आम के पेड़ से हमें क्या-क्या लाभ मिलते हैं? आम के पेड़ पर बौर किस ऋतु में आते हैं?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>लाभ:</strong> आम के पेड़ से हमें <strong>स्वादिष्ट मीठे फल, गर्मियों में शीतल छाया, शुद्ध ऑक्सीजन और पक्षियों को सुरक्षित बसेरा</strong> मिलता है। इसकी सूखी लकड़ियाँ हवन और ईंधन के काम आती हैं।<br>2. <strong>बौर:</strong> आम के पेड़ पर बसंत ऋतु (फरवरी-मार्च) में सुगंधित बौर (फूल) आते हैं।",
-        marks: 3,
-        rubric: [
-          { key: "आम के पेड़ के 3-4 प्रमुख लाभ", marks: "2.0 M" },
-          { key: "बसंत ऋतु में बौर आने का उल्लेख", marks: "1.0 M" }
+        "category": "पाठ बोध • सोचिए और लिखिए",
+        "q": "आम के पेड़ से हमें क्या-क्या लाभ मिलते हैं? आम के पेड़ पर बौर किस ऋतु में आते हैं?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>लाभ:</strong> आम के पेड़ से हमें <strong>स्वादिष्ट मीठे फल, गर्मियों में शीतल छाया, शुद्ध ऑक्सीजन और पक्षियों को सुरक्षित बसेरा</strong> मिलता है। इसकी सूखी लकड़ियाँ हवन और ईंधन के काम आती हैं।<br>2. <strong>बौर:</strong> आम के पेड़ पर बसंत ऋतु (फरवरी-मार्च) में सुगंधित बौर (फूल) आते हैं।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "आम के पेड़ के 3-4 प्रमुख लाभ",
+            "marks": "2.0 M"
+          },
+          {
+            "key": "बसंत ऋतु में बौर आने का उल्लेख",
+            "marks": "1.0 M"
+          }
         ]
       },
       {
-        category: "रचनात्मक लेखन • मेरा प्रिय फल",
-        q: "आम के विषय में तीन सुंदर वाक्य लिखिए। आम से कौन-कौन से खाद्य पदार्थ बनाए जाते हैं?",
-        ans: "<strong>वाक्य:</strong><br>1. आम भारत का राष्ट्रीय फल है और इसे 'फलों का राजा' कहा जाता है।<br>2. कच्चे आम से चटपटा अचार, आम पन्ना और चटनी बनाई जाती है।<br>3. पके हुए पीले आम से मीठा मैंगो शेक, आइसक्रीम और आम पापड़ बनता है।",
-        marks: 3,
-        rubric: [
-          { key: "आम पर सही व सुंदर वाक्य", marks: "1.5 M" },
-          { key: "कच्चे व पके आम से बनने वाले व्यंजन", marks: "1.5 M" }
+        "category": "रचनात्मक लेखन • मेरा प्रिय फल",
+        "q": "आम के विषय में तीन सुंदर वाक्य लिखिए। आम से कौन-कौन से खाद्य पदार्थ बनाए जाते हैं?",
+        "ans": "<strong>वाक्य:</strong><br>1. आम भारत का राष्ट्रीय फल है और इसे 'फलों का राजा' कहा जाता है।<br>2. कच्चे आम से चटपटा अचार, आम पन्ना और चटनी बनाई जाती है।<br>3. पके हुए पीले आम से मीठा मैंगो शेक, आइसक्रीम और आम पापड़ बनता है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "आम पर सही व सुंदर वाक्य",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "कच्चे व पके आम से बनने वाले व्यंजन",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "पाठ से • आम के पेड़ की उपयोगिता",
+        "q": "आम के पेड़ से हमें क्या-क्या लाभ मिलते हैं? किन्हीं चार लाभों का उल्लेख कीजिए।",
+        "ans": "<strong>आम के पेड़ के प्रमुख लाभ:</strong><br>1. <strong>स्वादिष्ट फल:</strong> गर्मियों में हमें मीठे, रसीले आम खाने को मिलते हैं। कच्चे आम से अचार, पना और चटनी बनती है।<br>2. <strong>शीतल छाया:</strong> तपती धूप में राहगीरों और पशु-पक्षियों को घनी छाया और ठंडक मिलती है।<br>3. <strong>पक्षियों का बसेरा:</strong> कोयल, तोते और अनेक पक्षी इस पर अपना घोंसला बनाते हैं।<br>4. <strong>हवन व पूजा सामग्री:</strong> आम की लकड़ी और पत्तों (तोरण) का प्रयोग भारतीय धार्मिक अनुष्ठानों में पवित्र माना जाता है।",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "फल, छाया, पक्षी बसेरा और सांस्कृतिक उपयोगिता के 4 बिंदु",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "आम की किस्में • सामान्य ज्ञान",
+        "q": "भारत में पाए जाने वाले आम की किन्हीं चार प्रमुख किस्मों (प्रकारों) के नाम लिखिए।",
+        "ans": "<strong>आम की प्रसिद्ध किस्में:</strong><br>1. <strong>दशहरी</strong> (उत्तर प्रदेश)<br>2. <strong>लंगड़ा</strong> (बिहार व उत्तर प्रदेश)<br>3. <strong>अल्फांसो (हापुस)</strong> (महाराष्ट्र)<br>4. <strong>चौसा</strong> (उत्तर भारत)",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "चारों सही आम की किस्मों के नाम",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "भाषा की बात • विशेषण शब्द",
+        "q": "नीचे दिए गए संज्ञा शब्दों के लिए उपयुक्त विशेषण शब्द लिखिए:<br>(क) _____ आम (मीठा / कड़वा)<br>(ख) _____ छाया (घनी / पतली)<br>(ग) _____ पत्तियाँ (हरी / नीली)<br>(घ) _____ कोयल (काली / लाल)",
+        "ans": "<strong>विशेषण-विशेष्य युग्म:</strong><br>• (क) <strong>मीठा</strong> आम<br>• (ख) <strong>घनी</strong> छाया<br>• (ग) <strong>हरी</strong> पत्तियाँ<br>• (घ) <strong>काली</strong> कोयल",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों सही विशेषण शब्दों का चयन",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "पेड़ लगाओ • पर्यावरण प्रतिज्ञा",
+        "q": "यदि आपको अपने जन्मदिन पर एक पौधा लगाने को कहा जाए, तो आप कौन-सा पौधा लगाएंगे और उसकी देखभाल कैसे करेंगे?",
+        "ans": "<strong>पर्यावरण संकल्प:</strong><br>• मैं अपने जन्मदिन पर <strong>नीम या आम</strong> का पौधा लगाऊँगा क्योंकि ये हवा को शुद्ध करते हैं और घनी छाया देते हैं।<br>• मैं प्रतिदिन सुबह उसमें पानी दूँगा, उसके चारों ओर सुरक्षा के लिए बाँस की जाली लगाऊँगा और उसमें जैविक खाद डालूँगा।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "पौधे का नाम और देखभाल के स्पष्ट उपाय",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "वृक्षारोपण और भावी पीढ़ी",
-      text: "दादाजी ने अपने पोते कबीर के जन्मदिन पर बगीचे में आम का पौधा लगाया और कहा, 'यह तुम्हारे साथ बड़ा होगा।'",
-      question: "जन्मदिन पर केक काटने के साथ-साथ एक पौधा लगाने की परंपरा समाज और पर्यावरण के लिए क्यों उत्तम है?",
-      answer: "1. पौधा लगाने से हर साल जन्मदिन पर प्रकृति को एक नया जीवन मिलता है जो आगे चलकर छाया, फल और शुद्ध वायु देता है।<br>2. इससे बच्चों में बचपन से ही प्रकृति के प्रति आत्मीयता, जिम्मेदारी और पर्यावरण संरक्षण के संस्कार विकसित होते हैं।",
-      rubric: "1.5M पर्यावरण संवर्धन का लाभ + 1.5M बच्चों में संस्कार और जिम्मेदारी का विकास।"
+    "cbq": {
+      "title": "वृक्षारोपण और भावी पीढ़ी",
+      "text": "दादाजी ने अपने पोते कबीर के जन्मदिन पर बगीचे में आम का पौधा लगाया और कहा, 'यह तुम्हारे साथ बड़ा होगा।'",
+      "question": "जन्मदिन पर केक काटने के साथ-साथ एक पौधा लगाने की परंपरा समाज और पर्यावरण के लिए क्यों उत्तम है?",
+      "answer": "1. पौधा लगाने से हर साल जन्मदिन पर प्रकृति को एक नया जीवन मिलता है जो आगे चलकर छाया, फल और शुद्ध वायु देता है।<br>2. इससे बच्चों में बचपन से ही प्रकृति के प्रति आत्मीयता, जिम्मेदारी और पर्यावरण संरक्षण के संस्कार विकसित होते हैं।",
+      "rubric": "1.5M पर्यावरण संवर्धन का लाभ + 1.5M बच्चों में संस्कार और जिम्मेदारी का विकास।"
     }
   },
-
-  // -------------------------------------------------------------------------
-  // इकाई 2: हमारे मित्र
-  // -------------------------------------------------------------------------
   {
-    id: "vn6",
-    num: 6,
-    unit: "इकाई 2: हमारे मित्र",
-    title: "बीरबल की खिचड़ी",
-    subtitle: "अकबर-बीरबल का प्रसिद्ध किस्सा, न्याय, बुद्धिचातुर्य और गरीब धोबी को उसका हक दिलाना",
-    concepts: [
+    "id": "vn6",
+    "num": 6,
+    "unit": "इकाई 2: हमारे मित्र",
+    "title": "बीरबल की खिचड़ी",
+    "subtitle": "अकबर-बीरबल का प्रसिद्ध किस्सा, न्याय, बुद्धिचातुर्य और गरीब धोबी को उसका हक दिलाना",
+    "concepts": [
       "अकबर की शर्त: कड़कड़ाती ठंड में यमुना के बर्फीले पानी में रात भर खड़े रहने की परीक्षा।",
       "धोबी की लगन: महल के जलते दीये को देखकर रात बिताना।",
       "अकबर का इनकार और बीरबल की युक्ति: बहुत ऊँचाई पर हाँडी टांगकर नीचे धीमी आग जलाना।",
       "न्याय की जीत: अकबर को अपनी भूल का अहसास होना और धोबी को पुरस्कार मिलना।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fffbeb" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">बीरबल की खिचड़ी — बुद्धि और न्याय की अनुपम युक्ति</text>
-      <!-- Tripod tall poles -->
-      <line x1="260" y1="110" x2="285" y2="45" stroke="#78350f" stroke-width="3"/>
-      <line x1="320" y1="110" x2="295" y2="45" stroke="#78350f" stroke-width="3"/>
-      <!-- Hanging Pot -->
-      <ellipse cx="290" cy="55" rx="14" ry="10" fill="#334155"/>
-      <text x="290" y="40" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#78350f" text-anchor="middle">खिचड़ी की हाँडी</text>
-      <!-- Distant fire on ground -->
-      <polygon points="285,115 295,100 290,110 300,105 295,115" fill="#ef4444"/>
-      <polygon points="288,115 292,108 296,115" fill="#f59e0b"/>
-      <text x="290" y="130" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#dc2626" text-anchor="middle">जमीन पर आग</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">जब इतनी दूर से हाँडी नहीं पक सकती, तो दूर के दीये से गर्मी कैसे मिल सकती है?</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">बीरबल की खिचड़ी — बुद्धि और न्याय की अनुपम युक्ति</text>\n      <!-- Tripod tall poles -->\n      <line x1=\"260\" y1=\"110\" x2=\"285\" y2=\"45\" stroke=\"#78350f\" stroke-width=\"3\"/>\n      <line x1=\"320\" y1=\"110\" x2=\"295\" y2=\"45\" stroke=\"#78350f\" stroke-width=\"3\"/>\n      <!-- Hanging Pot -->\n      <ellipse cx=\"290\" cy=\"55\" rx=\"14\" ry=\"10\" fill=\"#334155\"/>\n      <text x=\"290\" y=\"40\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#78350f\" text-anchor=\"middle\">खिचड़ी की हाँडी</text>\n      <!-- Distant fire on ground -->\n      <polygon points=\"285,115 295,100 290,110 300,105 295,115\" fill=\"#ef4444\"/>\n      <polygon points=\"288,115 292,108 296,115\" fill=\"#f59e0b\"/>\n      <text x=\"290\" y=\"130\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#dc2626\" text-anchor=\"middle\">जमीन पर आग</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">जब इतनी दूर से हाँडी नहीं पक सकती, तो दूर के दीये से गर्मी कैसे मिल सकती है?</text>\n    </svg>",
+    "questions": [
       {
-        category: "कहानी बोध • बातचीत के लिए",
-        q: "बादशाह अकबर ने गरीब धोबी को इनाम देने से मना क्यों कर दिया था? बीरबल ने बादशाह को उनकी गलती का अहसास कैसे कराया?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>अकबर का इनकार:</strong> अकबर ने यह कुतर्क दिया कि धोबी को महल के जलते हुए दीये से गर्मी मिली, इसलिए उसने शर्त बेईमानी से जीती है।<br>2. <strong>बीरबल की युक्ति:</strong> बीरबल ने जमीन पर आग जलाई और खिचड़ी की हाँडी को पाँच फीट ऊपर बाँस पर टांग दिया। जब अकबर ने पूछा कि इतनी दूर से खिचड़ी कैसे पकेगी, तब बीरबल ने कहा, 'जहाँपनाह! जैसे महल के दूर जलते दीये से धोबी को गर्मी मिल सकती है, वैसे ही खिचड़ी भी पक जाएगी।' अकबर समझ गए और धोबी को इनाम दिया।",
-        marks: 3,
-        rubric: [
-          { key: "अकबर द्वारा दीये की गर्मी का बहाना बनाने का उल्लेख", marks: "1.5 M" },
-          { key: "बीरबल की हाँडी वाली युक्ति और न्याय का सटीक विवरण", marks: "1.5 M" }
+        "category": "कहानी बोध • बातचीत के लिए",
+        "q": "बादशाह अकबर ने गरीब धोबी को इनाम देने से मना क्यों कर दिया था? बीरबल ने बादशाह को उनकी गलती का अहसास कैसे कराया?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>अकबर का इनकार:</strong> अकबर ने यह कुतर्क दिया कि धोबी को महल के जलते हुए दीये से गर्मी मिली, इसलिए उसने शर्त बेईमानी से जीती है।<br>2. <strong>बीरबल की युक्ति:</strong> बीरबल ने जमीन पर आग जलाई और खिचड़ी की हाँडी को पाँच फीट ऊपर बाँस पर टांग दिया। जब अकबर ने पूछा कि इतनी दूर से खिचड़ी कैसे पकेगी, तब बीरबल ने कहा, 'जहाँपनाह! जैसे महल के दूर जलते दीये से धोबी को गर्मी मिल सकती है, वैसे ही खिचड़ी भी पक जाएगी।' अकबर समझ गए और धोबी को इनाम दिया।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "अकबर द्वारा दीये की गर्मी का बहाना बनाने का उल्लेख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "बीरबल की हाँडी वाली युक्ति और न्याय का सटीक विवरण",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "चरित्र चित्रण • बुद्धि और चातुर्य",
-        q: "बीरबल के चरित्र की कौन-सी विशेषता आपको सबसे अधिक पसंद आई और क्यों?",
-        ans: "<strong>उत्तर:</strong><br>हमें बीरबल की <strong>न्यायप्रियता, बुद्धिमानी और निडरता</strong> सबसे अच्छी लगी। उन्होंने किसी गरीब और बेकसूर व्यक्ति पर हुए अन्याय को चुपचाप नहीं देखा, बल्कि अपनी सूझबूझ से बादशाह को बिना नाराज किए सच का आईना दिखाया।",
-        marks: 2,
-        rubric: [
-          { key: "बीरबल के चरित्र की अच्छाइयों का उल्लेख", marks: "1.0 M" },
-          { key: "सटीक कारण और जीवन सीख", marks: "1.0 M" }
+        "category": "चरित्र चित्रण • बुद्धि और चातुर्य",
+        "q": "बीरबल के चरित्र की कौन-सी विशेषता आपको सबसे अधिक पसंद आई और क्यों?",
+        "ans": "<strong>उत्तर:</strong><br>हमें बीरबल की <strong>न्यायप्रियता, बुद्धिमानी और निडरता</strong> सबसे अच्छी लगी। उन्होंने किसी गरीब और बेकसूर व्यक्ति पर हुए अन्याय को चुपचाप नहीं देखा, बल्कि अपनी सूझबूझ से बादशाह को बिना नाराज किए सच का आईना दिखाया।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "बीरबल के चरित्र की अच्छाइयों का उल्लेख",
+            "marks": "1.0 M"
+          },
+          {
+            "key": "सटीक कारण और जीवन सीख",
+            "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कहानी से • बीरबल की खिचड़ी",
+        "q": "बीरबल ने अकबर को अपनी बात समझाने के लिए खिचड़ी पकाने का क्या अनूठा तरीका अपनाया?",
+        "ans": "<strong>बीरबल की चतुराई:</strong><br>• बीरबल ने जमीन पर आग जलाई और खिचड़ी की हांडी को आग से कई फीट ऊपर ऊँचे बाँसों के सहारे लटका दिया। जब अकबर ने पूछा कि इतनी दूर से हांडी तक गरमी कैसे पहुँचेगी, तब बीरबल ने कहा—'जहाँपनाह, यदि यमुना के बर्फीले पानी में खड़े गरीब आदमी को दूर राजमहल के दीये की गरमी मिल सकती है, तो मेरी हांडी को भी इस आग से गरमी मिलकर खिचड़ी पक जाएगी!' इस युक्ति से अकबर को अपनी भूल का अहसास हुआ।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "ऊँचे बाँस पर हांडी लटकाने का प्रसंग",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "महल के दीये और हांडी की तुलना का तार्किक स्पष्टीकरण",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "मुहावरे • भाषा की बात",
+        "q": "मुहावरे 'खिचड़ी पकाना' का अर्थ लिखकर उसका वाक्य में प्रयोग कीजिए।",
+        "ans": "<strong>मुहावरा: खिचड़ी पकाना</strong><br>• <strong>अर्थ:</strong> छिपकर कोई गुप्त योजना या षड्यंत्र बनाना।<br>• <strong>वाक्य प्रयोग:</strong> दोनों दोस्त कोने में फुसफुसाकर न जाने क्या खिचड़ी पका रहे हैं।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सटीक अर्थ (गुप्त योजना बनाना)",
+            "marks": "1.0 अंक"
+          },
+          {
+            "key": "उचित एवं व्याकरणिक वाक्य प्रयोग",
+            "marks": "1.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "चरित्र चित्रण • बीरबल की बुद्धिमत्ता",
+        "q": "बीरबल के चरित्र की कौन-सी विशेषता आपको सबसे अच्छी लगी और क्यों?",
+        "ans": "<strong>चरित्र की विशेषता:</strong><br>• मुझे बीरबल की <strong>न्यायप्रियता और हाजिरजवाबी</strong> सबसे अच्छी लगी। उन्होंने बिना राजा को सीधे गलत कहे, एक व्यावहारिक उदाहरण के माध्यम से निर्दोष गरीब ब्राह्मण को उसका उचित इनाम दिलवाया।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सहानुभूति, न्यायप्रियता और बुद्धिमत्ता का विश्लेषण",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "संवाद लेखन • अकबर और बीरबल",
+        "q": "अकबर और बीरबल के बीच का कोई छोटा-सा रोचक संवाद अपनी भाषा में लिखिए।",
+        "ans": "<strong>रोचक संवाद:</strong><br><strong>अकबर:</strong> 'बीरबल, तुम्हारी यह खिचड़ी कब तक पकेगी? मुझे बहुत भूख लगी है!'<br><strong>बीरबल:</strong> 'जहाँपनाह, बस थोड़ा धैर्य रखिए। जैसे ही राजमहल के दीये की गरमी इस हांडी तक पहुँचेगी, खिचड़ी तुरंत पक जाएगी!'",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "व्यंग्यात्मक और सजीव संवाद प्रस्तुति",
+            "marks": "3.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "तर्कसंगत सोच और न्याय",
-      text: "कक्षा के मॉनिटर ने बिना गलती देखे सिर्फ सुनी-सुनाई बात पर एक शांत छात्र की शिकायत अध्यापक से कर दी।",
-      question: "बीरबल की कहानी से सीख लेते हुए किसी पर निर्णय लेने से पहले कौन-सी सावधानी बरतनी चाहिए?",
-      answer: "1. किसी भी आरोप पर तुरंत विश्वास करने से पहले दोनों पक्षों की बात निष्पक्ष रूप से सुननी चाहिए।<br>2. बिना पुख्ता प्रमाण और तर्क के किसी निर्दोष को दंडित नहीं करना चाहिए, न्याय हमेशा सत्य पर आधारित होना चाहिए।",
-      rubric: "1.5M निष्पक्ष जांच का महत्व + 1.5M प्रमाण आधारित न्याय की समझ।"
+    "cbq": {
+      "title": "तर्कसंगत सोच और न्याय",
+      "text": "कक्षा के मॉनिटर ने बिना गलती देखे सिर्फ सुनी-सुनाई बात पर एक शांत छात्र की शिकायत अध्यापक से कर दी।",
+      "question": "बीरबल की कहानी से सीख लेते हुए किसी पर निर्णय लेने से पहले कौन-सी सावधानी बरतनी चाहिए?",
+      "answer": "1. किसी भी आरोप पर तुरंत विश्वास करने से पहले दोनों पक्षों की बात निष्पक्ष रूप से सुननी चाहिए।<br>2. बिना पुख्ता प्रमाण और तर्क के किसी निर्दोष को दंडित नहीं करना चाहिए, न्याय हमेशा सत्य पर आधारित होना चाहिए।",
+      "rubric": "1.5M निष्पक्ष जांच का महत्व + 1.5M प्रमाण आधारित न्याय की समझ।"
     }
   },
   {
-    id: "vn7",
-    num: 7,
-    unit: "इकाई 2: हमारे मित्र",
-    title: "मित्र को पत्र",
-    subtitle: "पत्र लेखन की कला, संबोधन, कुशलक्षेम, त्योहारों का वर्णन और डाक व्यवस्था",
-    concepts: [
+    "id": "vn7",
+    "num": 7,
+    "unit": "इकाई 2: हमारे मित्र",
+    "title": "मित्र को पत्र",
+    "subtitle": "पत्र लेखन की कला, संबोधन, कुशलक्षेम, त्योहारों का वर्णन और डाक व्यवस्था",
+    "concepts": [
       "पत्र लेखन के अंग: प्रेषक का पता, दिनांक, आदरणीय संबोधन, अभिवादन, मुख्य विषय और समाप्ति।",
       "दशहरे / दीपावली मेले का सजीव वर्णन और दोस्तों को अपने घर आमंत्रित करना।",
       "डाक टिकट, पिन कोड (PIN Code) और पत्र पेटी (लेटर बॉक्स) का महत्व।",
       "पारस्परिक आत्मीयता और संबंधों में पत्र की मिठास।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fdf4ff" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#86198f" text-anchor="middle">मित्र को पत्र — औपचारिकता और आत्मीयता का सुंदर संगम</text>
-      <!-- Letter Form -->
-      <rect x="120" y="45" width="340" height="90" rx="8" fill="#ffffff" stroke="#c084fc" stroke-width="1.5"/>
-      <text x="140" y="65" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#701a75">स्थान: जयपुर | दिनांक: 15 अक्टूबर 2026</text>
-      <text x="140" y="82" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9333ea">प्रिय मित्र मयंक, सप्रेम नमस्ते।</text>
-      <text x="140" y="100" font-family="system-ui, sans-serif" font-size="9" fill="#334155">आशा है तुम सकुशल होगे। इस बार दशहरे की छुट्टियों में तुम जयपुर आओ...</text>
-      <text x="140" y="118" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#701a75">तुम्हारा अभिन्न मित्र, रोहित</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#86198f" text-anchor="middle">पत्र दूर बैठे अपनों को दिल के करीब ले आता है।</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fdf4ff\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#86198f\" text-anchor=\"middle\">मित्र को पत्र — औपचारिकता और आत्मीयता का सुंदर संगम</text>\n      <!-- Letter Form -->\n      <rect x=\"120\" y=\"45\" width=\"340\" height=\"90\" rx=\"8\" fill=\"#ffffff\" stroke=\"#c084fc\" stroke-width=\"1.5\"/>\n      <text x=\"140\" y=\"65\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#701a75\">स्थान: जयपुर | दिनांक: 15 अक्टूबर 2026</text>\n      <text x=\"140\" y=\"82\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#9333ea\">प्रिय मित्र मयंक, सप्रेम नमस्ते।</text>\n      <text x=\"140\" y=\"100\" font-family=\"system-ui, sans-serif\" font-size=\"9\" fill=\"#334155\">आशा है तुम सकुशल होगे। इस बार दशहरे की छुट्टियों में तुम जयपुर आओ...</text>\n      <text x=\"140\" y=\"118\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#701a75\">तुम्हारा अभिन्न मित्र, रोहित</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#86198f\" text-anchor=\"middle\">पत्र दूर बैठे अपनों को दिल के करीब ले आता है।</text>\n    </svg>",
+    "questions": [
       {
-        category: "रचनात्मक लेखन • पत्र प्रारूप",
-        q: "अपने मित्र को अपनी छुट्टियों की योजना बताते हुए एक छोटा अनौपचारिक पत्र लिखिए।",
-        ans: "<strong>पत्र का नमूना:</strong><br>परीक्षा भवन, नई दिल्ली<br>दिनांक: 20 अक्टूबर 2026<br><br>प्रिय मित्र अमन,<br>सप्रेम नमस्ते।<br><br>आशा है तुम सकुशल होगे। मैं यह पत्र तुम्हें यह बताने के लिए लिख रहा हूँ कि इस बार सर्दियों की छुट्टियों में मैं अपने दादाजी के गाँव जा रहा हूँ। वहाँ हम खेतों की सैर करेंगे, गुड़ बनते देखेंगे और गिल्ली-डंडा खेलेंगे। क्या तुम भी मेरे साथ गाँव चल सकते हो? अपने माता-पिता से पूछकर मुझे शीघ्र उत्तर देना।<br><br>चाचाजी और चाचीजी को मेरा सादर प्रणाम कहना।<br><br>तुम्हारा मित्र,<br>सुमित।",
-        marks: 4,
-        rubric: [
-          { key: "पता, दिनांक और संबोधन का सही प्रारूप", marks: "1.5 M" },
-          { key: "विषय-वस्तु की स्पष्टता और आत्मीय भाषा", marks: "1.5 M" },
-          { key: "समापन और हस्ताक्षर", marks: "1.0 M" }
+        "category": "रचनात्मक लेखन • पत्र प्रारूप",
+        "q": "अपने मित्र को अपनी छुट्टियों की योजना बताते हुए एक छोटा अनौपचारिक पत्र लिखिए।",
+        "ans": "<strong>पत्र का नमूना:</strong><br>परीक्षा भवन, नई दिल्ली<br>दिनांक: 20 अक्टूबर 2026<br><br>प्रिय मित्र अमन,<br>सप्रेम नमस्ते।<br><br>आशा है तुम सकुशल होगे। मैं यह पत्र तुम्हें यह बताने के लिए लिख रहा हूँ कि इस बार सर्दियों की छुट्टियों में मैं अपने दादाजी के गाँव जा रहा हूँ। वहाँ हम खेतों की सैर करेंगे, गुड़ बनते देखेंगे और गिल्ली-डंडा खेलेंगे। क्या तुम भी मेरे साथ गाँव चल सकते हो? अपने माता-पिता से पूछकर मुझे शीघ्र उत्तर देना।<br><br>चाचाजी और चाचीजी को मेरा सादर प्रणाम कहना।<br><br>तुम्हारा मित्र,<br>सुमित।",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "पता, दिनांक और संबोधन का सही प्रारूप",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "विषय-वस्तु की स्पष्टता और आत्मीय भाषा",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "समापन और हस्ताक्षर",
+            "marks": "1.0 M"
+          }
         ]
       },
       {
-        category: "सामान्य ज्ञान • डाक प्रणाली",
-        q: "पत्र पर 'पिन कोड' (PIN Code) लिखना क्यों आवश्यक होता है? पिन कोड कितने अंकों का होता है?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>पिन कोड का महत्व:</strong> पिन कोड (Postal Index Number) डाक विभाग को यह तुरंत समझने में मदद करता है कि पत्र किस राज्य, जिले और उप-डाकघर का है, जिससे पत्र बिना किसी देरी के सही पते पर पहुँच जाता है।<br>2. भारत में पिन कोड <strong>6 अंकों</strong> का होता है।",
-        marks: 2,
-        rubric: [
-          { key: "पिन कोड की आवश्यकता की सही व्याख्या", marks: "1.0 M" },
-          { key: "6 अंकों का सही उल्लेख", marks: "1.0 M" }
+        "category": "सामान्य ज्ञान • डाक प्रणाली",
+        "q": "पत्र पर 'पिन कोड' (PIN Code) लिखना क्यों आवश्यक होता है? पिन कोड कितने अंकों का होता है?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>पिन कोड का महत्व:</strong> पिन कोड (Postal Index Number) डाक विभाग को यह तुरंत समझने में मदद करता है कि पत्र किस राज्य, जिले और उप-डाकघर का है, जिससे पत्र बिना किसी देरी के सही पते पर पहुँच जाता है।<br>2. भारत में पिन कोड <strong>6 अंकों</strong> का होता है।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "पिन कोड की आवश्यकता की सही व्याख्या",
+            "marks": "1.0 M"
+          },
+          {
+            "key": "6 अंकों का सही उल्लेख",
+            "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "पत्र का प्रारूप • मित्र को पत्र",
+        "q": "एक अनौपचारिक पत्र लिखते समय सबसे ऊपर और सबसे नीचे क्या लिखा जाता है?",
+        "ans": "<strong>पत्र का सही प्रारूप:</strong><br>1. <strong>सबसे ऊपर (बाईं ओर):</strong> पत्र भेजने वाले का पता (मकान नंबर, नगर) और पत्र लिखने की <strong>तारीख (दिनांक)</strong> लिखी जाती है। इसके बाद मित्र के लिए संबोधन (जैसे—<em>'प्रिय मित्र रोहन, सप्रेम नमस्ते'</em>) लिखा जाता है।<br>2. <strong>सबसे नीचे:</strong> पत्र लिखने वाले का संबंध और नाम लिखा जाता है (जैसे—<em>'तुम्हारा अभिन्न मित्र, अमन'</em>)।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "शीर्ष भाग (पता, दिनांक, संबोधन) का सही उल्लेख",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "निचले भाग (संबंध और नाम) का सही उल्लेख",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "लिफ़ाफ़ा और पिन कोड",
+        "q": "पिन कोड (PIN Code) का क्या अर्थ है और लिफ़ाफ़े पर इसे लिखना क्यों अनिवार्य है?",
+        "ans": "<strong>पिन कोड का महत्व:</strong><br>• पिन कोड का पूरा नाम <strong>Postal Index Number</strong> है। यह 6 अंकों की एक विशेष संख्या होती है।<br>• भारत के प्रत्येक डाकघर का अपना अलग पिन कोड होता है। इसे लिखने से डाक छँटाई में कोई भ्रम नहीं होता और पत्र बिना देरी के सही पते पर शीघ्र पहुँच जाता है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "पिन कोड का पूरा नाम और 6 अंकों का उल्लेख",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "शीघ्र और सटीक डाक वितरण का कारण",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "रचनात्मक लेखन • जन्मदिन निमंत्रण",
+        "q": "अपने जन्मदिन पर मित्र को आमंत्रित करने के लिए दो पंक्तियाँ लिखिए।",
+        "ans": "<strong>निमंत्रण पंक्तियाँ:</strong><br>• <em>'अगले रविवार, 15 तारीख को शाम 5 बजे मेरे घर पर मेरे जन्मदिन का उत्सव मनाया जाएगा। तुम अवश्य आना, हम सब मिलकर केक काटेंगे और ढेर सारे खेल खेलेंगे!'</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "समय, स्थान और स्नेहपूर्ण निमंत्रण का समावेश",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "संबोधन शब्द • पत्र शिष्टाचार",
+        "q": "किसको क्या संबोधन लिखेंगे? मिलान कीजिए:<br>• मित्र को: [आदरणीय / पूज्य, प्रिय / सस्नेह]<br>• पिताजी को: [आदरणीय / पूज्य, प्रिय / सस्नेह]",
+        "ans": "<strong>संबोधन मिलान:</strong><br>• <strong>मित्र को:</strong> प्रिय मित्र / सस्नेह<br>• <strong>पिताजी को:</strong> पूज्य पिताजी / आदरणीय पिताजी",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "दोनों संबोधनों का सही मिलान",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "डिजिटल युग में हस्तलिखित पत्र",
-      text: "आजकल लोग तुरंत व्हाट्सएप मैसेज भेज देते हैं, लेकिन अपनी नानी के हाथ से लिखा हुआ पत्र पढ़कर रीमा खुशी से झूम उठी।",
-      question: "मोबाइल संदेश की तुलना में हाथ से लिखे पत्र में कौन-सा विशेष अपनापन होता है?",
-      answer: "1. हाथ से लिखे पत्र में लिखने वाले का स्नेह, समय, लिखावट और भावनाएँ जीवंत होती हैं।<br>2. इसे वर्षों तक संभालकर रखा जा सकता है, जो पुरानी यादों को संजोने का एक अनमोल साधन बनता है।",
-      rubric: "1.5M आत्मीयता व समय का महत्व + 1.5M भावनात्मक धरोहर की समझ।"
+    "cbq": {
+      "title": "डिजिटल युग में हस्तलिखित पत्र",
+      "text": "आजकल लोग तुरंत व्हाट्सएप मैसेज भेज देते हैं, लेकिन अपनी नानी के हाथ से लिखा हुआ पत्र पढ़कर रीमा खुशी से झूम उठी।",
+      "question": "मोबाइल संदेश की तुलना में हाथ से लिखे पत्र में कौन-सा विशेष अपनापन होता है?",
+      "answer": "1. हाथ से लिखे पत्र में लिखने वाले का स्नेह, समय, लिखावट और भावनाएँ जीवंत होती हैं।<br>2. इसे वर्षों तक संभालकर रखा जा सकता है, जो पुरानी यादों को संजोने का एक अनमोल साधन बनता है।",
+      "rubric": "1.5M आत्मीयता व समय का महत्व + 1.5M भावनात्मक धरोहर की समझ।"
     }
   },
   {
-    id: "vn8",
-    num: 8,
-    unit: "इकाई 2: हमारे मित्र",
-    title: "चतुर गीदड़",
-    subtitle: "पंचतंत्र की नीति कथा, सूझबूझ, संकट के समय धैर्य और ताकत पर बुद्धि की विजय",
-    concepts: [
+    "id": "vn8",
+    "num": 8,
+    "unit": "इकाई 2: हमारे मित्र",
+    "title": "चतुर गीदड़",
+    "subtitle": "पंचतंत्र की नीति कथा, सूझबूझ, संकट के समय धैर्य और ताकत पर बुद्धि की विजय",
+    "concepts": [
       "कथा का सार: घमंडी शेर का जंगल के जानवरों को सताना और गुफा पर अधिकार जमाना।",
       "गीदड़ की होशियारी: गुफा के बाहर शेर के पंजों के जाने के निशान देखना, पर वापस आने के निशान न पाना।",
       "गुफा से बातचीत का नाटक: 'अरी ओ गुफा! आज तू बोलती क्यों नहीं?'",
       "शेर की मूर्खता और गीदड़ का सही समय पर भाग निकलना।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fffbeb" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">चतुर गीदड़ — 'अरी ओ गुफा! आज तू बोलती क्यों नहीं?'</text>
-      <!-- Cave entrance -->
-      <path d="M120,120 Q170,40 220,120 Z" fill="#334155"/>
-      <text x="170" y="90" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fde047" text-anchor="middle">शेर छिपा बैठा</text>
-      <!-- Paw prints going in only -->
-      <ellipse cx="140" cy="125" rx="4" ry="3" fill="#78350f"/><ellipse cx="155" cy="122" rx="4" ry="3" fill="#78350f"/>
-      <ellipse cx="170" cy="120" rx="4" ry="3" fill="#78350f"/>
-      <!-- Smart Jackal outside -->
-      <g transform="translate(360, 65)">
-        <ellipse cx="30" cy="30" rx="25" ry="15" fill="#d97706"/>
-        <polygon points="50,20 65,15 55,30" fill="#d97706"/>
-        <text x="35" y="65" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#78350f" text-anchor="middle">चतुर गीदड़</text>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">बुद्धि बल से बड़ी होती है — बुद्धिमान संकट में अपनी जान बचा लेता है!</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">चतुर गीदड़ — 'अरी ओ गुफा! आज तू बोलती क्यों नहीं?'</text>\n      <!-- Cave entrance -->\n      <path d=\"M120,120 Q170,40 220,120 Z\" fill=\"#334155\"/>\n      <text x=\"170\" y=\"90\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#fde047\" text-anchor=\"middle\">शेर छिपा बैठा</text>\n      <!-- Paw prints going in only -->\n      <ellipse cx=\"140\" cy=\"125\" rx=\"4\" ry=\"3\" fill=\"#78350f\"/><ellipse cx=\"155\" cy=\"122\" rx=\"4\" ry=\"3\" fill=\"#78350f\"/>\n      <ellipse cx=\"170\" cy=\"120\" rx=\"4\" ry=\"3\" fill=\"#78350f\"/>\n      <!-- Smart Jackal outside -->\n      <g transform=\"translate(360, 65)\">\n        <ellipse cx=\"30\" cy=\"30\" rx=\"25\" ry=\"15\" fill=\"#d97706\"/>\n        <polygon points=\"50,20 65,15 55,30\" fill=\"#d97706\"/>\n        <text x=\"35\" y=\"65\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#78350f\" text-anchor=\"middle\">चतुर गीदड़</text>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#b45309\" text-anchor=\"middle\">बुद्धि बल से बड़ी होती है — बुद्धिमान संकट में अपनी जान बचा लेता है!</text>\n    </svg>",
+    "questions": [
       {
-        category: "कहानी बोध • सोचिए और लिखिए",
-        q: "गीदड़ को कैसे पता चला कि गुफा के अंदर कोई खूंखार जानवर छिपा है? गीदड़ ने गुफा को आवाज क्यों लगाई?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>पंजों के निशान:</strong> गीदड़ ने गुफा के बाहर शेर के पंजों के अंदर जाने के निशान तो देखे, लेकिन बाहर लौटने का कोई निशान नहीं था। इससे उसे संदेह हुआ।<br>2. <strong>आवाज लगाने का कारण:</strong> अपने संदेह को पक्का करने के लिए उसने नाटक किया कि गुफा रोज उसका स्वागत करती है। मूर्ख शेर ने सोचा कि सचमुच गुफा बोलती होगी और उसने दहाड़कर उत्तर दिया, जिससे भेद खुल गया और गीदड़ भाग निकला।",
-        marks: 3,
-        rubric: [
-          { key: "पंजों के निशान देखकर संदेह होना", marks: "1.5 M" },
-          { key: "गुफा से बात करने की चालाकी और शेर का भेद खुलना", marks: "1.5 M" }
+        "category": "कहानी बोध • सोचिए और लिखिए",
+        "q": "गीदड़ को कैसे पता चला कि गुफा के अंदर कोई खूंखार जानवर छिपा है? गीदड़ ने गुफा को आवाज क्यों लगाई?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>पंजों के निशान:</strong> गीदड़ ने गुफा के बाहर शेर के पंजों के अंदर जाने के निशान तो देखे, लेकिन बाहर लौटने का कोई निशान नहीं था। इससे उसे संदेह हुआ।<br>2. <strong>आवाज लगाने का कारण:</strong> अपने संदेह को पक्का करने के लिए उसने नाटक किया कि गुफा रोज उसका स्वागत करती है। मूर्ख शेर ने सोचा कि सचमुच गुफा बोलती होगी और उसने दहाड़कर उत्तर दिया, जिससे भेद खुल गया और गीदड़ भाग निकला।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "पंजों के निशान देखकर संदेह होना",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "गुफा से बात करने की चालाकी और शेर का भेद खुलना",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "मुहावरे • भाषा की बात",
-        q: "मुहावरों का अर्थ लिखकर वाक्यों में प्रयोग कीजिए: (क) नौ दो ग्यारह होना, (ख) होश उड़ जाना।",
-        ans: "<strong>मुहावरे:</strong><br>• (क) <strong>नौ दो ग्यारह होना:</strong> भाग जाना।<br><em>वाक्य:</em> पुलिस को आते देखकर चोर नौ दो ग्यारह हो गए।<br>• (ख) <strong>होश उड़ जाना:</strong> बहुत घबरा जाना।<br><em>वाक्य:</em> अचानक सामने शेर को देखकर शिकारी के होश उड़ गए।",
-        marks: 2,
-        rubric: [
-          { key: "दोनों मुहावरों का सही अर्थ (1M)", marks: "1.0 M" },
-          { key: "सटीक व व्याकरण सम्मत वाक्य प्रयोग (1M)", marks: "1.0 M" }
+        "category": "मुहावरे • भाषा की बात",
+        "q": "मुहावरों का अर्थ लिखकर वाक्यों में प्रयोग कीजिए: (क) नौ दो ग्यारह होना, (ख) होश उड़ जाना।",
+        "ans": "<strong>मुहावरे:</strong><br>• (क) <strong>नौ दो ग्यारह होना:</strong> भाग जाना।<br><em>वाक्य:</em> पुलिस को आते देखकर चोर नौ दो ग्यारह हो गए।<br>• (ख) <strong>होश उड़ जाना:</strong> बहुत घबरा जाना।<br><em>वाक्य:</em> अचानक सामने शेर को देखकर शिकारी के होश उड़ गए।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "दोनों मुहावरों का सही अर्थ (1M)",
+            "marks": "1.0 M"
+          },
+          {
+            "key": "सटीक व व्याकरण सम्मत वाक्य प्रयोग (1M)",
+            "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कहानी से • चतुर गीदड़",
+        "q": "कहानी 'चतुर गीदड़' में मगरमच्छ ने गीदड़ को पकड़ने की क्या योजना बनाई, और गीदड़ ने अपनी जान कैसे बचाई?",
+        "ans": "<strong>कहानी का सार:</strong><br>• मगरमच्छ नदी के किनारे गीदड़ का शिकार करने के लिए पानी के नीचे छिप गया। जब गीदड़ पानी पीने आया, तो उसने गीदड़ का पैर अपने जबड़े में दबा लिया।<br>• चतुर गीदड़ घबराया नहीं। उसने जोर से हँसते हुए कहा—'मूर्ख मगरमच्छ! तूने मेरे पैर की जगह पेड़ की सूखी लकड़ी पकड़ ली है!' यह सुनकर मगरमच्छ ने पैर छोड़ दिया और गीदड़ तुरंत कूदकर सुरक्षित भाग निकला।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "मगरमच्छ द्वारा पैर पकड़ने की घटना",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "गीदड़ की सूझबूझ और चालाकी से जान बचाने का वर्णन",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "शिक्षा • संकट में धैर्य",
+        "q": "इस कहानी से हमें क्या सीख मिलती है?",
+        "ans": "<strong>नैतिक शिक्षा:</strong><br>• संकट के समय घबराना नहीं चाहिए। कठिन से कठिन परिस्थिति में भी शांत मन और सूझबूझ से काम लेने पर बड़ी से बड़ी विपत्ति को टाला जा सकता है।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "संकट में धैर्य और बुद्धिमत्ता की सीख स्पष्ट करना",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "विलोम शब्द • शब्द भंडार",
+        "q": "विलोम शब्द लिखिए:<br>(क) मूर्ख $\\times$ _____<br>(ख) सूखी $\\times$ _____<br>(ग) शत्रु $\\times$ _____<br>(घ) पास $\\times$ _____",
+        "ans": "<strong>विलोम शब्द:</strong><br>• (क) मूर्ख $\\times$ <strong>विद्वान / चतुर</strong><br>• (ख) सूखी $\\times$ <strong>गीली</strong><br>• (ग) शत्रु $\\times$ <strong>मित्र</strong><br>• (घ) पास $\\times$ <strong>दूर</strong>",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों शुद्ध विलोम शब्द",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "जानवरों के स्वभाव • तुलना",
+        "q": "जंगल की कहानियों में अक्सर गीदड़/लोमड़ी को 'चालाक' और शेर को 'बलशाली' क्यों कहा जाता है?",
+        "ans": "<strong>जानवरों के स्वभाव का विश्लेषण:</strong><br>• शेर के पास शारीरिक बल, तेज पंजे और दहाड़ होती है जिससे वह सीधे शिकार करता है।<br>• गीदड़ और लोमड़ी शारीरिक रूप से छोटे और कमजोर होते हैं, इसलिए वे अपनी रक्षा और भोजन के लिए अपनी तेज बुद्धि और चतुराई का सहारा लेते हैं।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "शारीरिक बल बनाम बौद्धिक चालाकी का स्पष्ट अंतर",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "संकट प्रबंधन और सतर्कता",
-      text: "रास्ते में किसी अनजान व्यक्ति ने एक बच्चे को चॉकलेट देकर अपनी गाड़ी में बैठने को कहा।",
-      question: "गीदड़ की कहानी की तरह सजग और सतर्क रहकर बच्चे को ऐसी स्थिति में क्या करना चाहिए?",
-      answer: "1. बच्चे को अनजान व्यक्ति से कोई चीज नहीं लेनी चाहिए और तुरंत सुरक्षित दूरी बना लेनी चाहिए।<br>2. शोर मचाकर भीड़भाड़ वाली जगह पर जाना चाहिए और तुरंत अपने माता-पिता या अध्यापक को सूचित करना चाहिए।",
-      rubric: "1.5M अनजान व्यक्तियों से सतर्कता + 1.5M तत्काल सुरक्षा कदम उठाने का विवेक।"
+    "cbq": {
+      "title": "संकट प्रबंधन और सतर्कता",
+      "text": "रास्ते में किसी अनजान व्यक्ति ने एक बच्चे को चॉकलेट देकर अपनी गाड़ी में बैठने को कहा।",
+      "question": "गीदड़ की कहानी की तरह सजग और सतर्क रहकर बच्चे को ऐसी स्थिति में क्या करना चाहिए?",
+      "answer": "1. बच्चे को अनजान व्यक्ति से कोई चीज नहीं लेनी चाहिए और तुरंत सुरक्षित दूरी बना लेनी चाहिए।<br>2. शोर मचाकर भीड़भाड़ वाली जगह पर जाना चाहिए और तुरंत अपने माता-पिता या अध्यापक को सूचित करना चाहिए।",
+      "rubric": "1.5M अनजान व्यक्तियों से सतर्कता + 1.5M तत्काल सुरक्षा कदम उठाने का विवेक।"
     }
   },
   {
-    id: "vn9",
-    num: 9,
-    unit: "इकाई 2: हमारे मित्र",
-    title: "प्रकृति पर्व – फूलदेई",
-    subtitle: "उत्तराखंड का लोक पर्व, बसंत का स्वागत, बुरांश के फूल, बाल उमंग और सांस्कृतिक विरासत",
-    concepts: [
+    "id": "vn9",
+    "num": 9,
+    "unit": "इकाई 2: हमारे मित्र",
+    "title": "प्रकृति पर्व – फूलदेई",
+    "subtitle": "उत्तराखंड का लोक पर्व, बसंत का स्वागत, बुरांश के फूल, बाल उमंग और सांस्कृतिक विरासत",
+    "concepts": [
       "फूलदेई: उत्तराखंड के गढ़वाल और कुमाऊं का पावन लोकपर्व, जो चैत्र मास की संक्रांति पर मनाया जाता है।",
       "बालकों का उल्लास: बच्चे टोकरियों में बुरांश, सरसों और बासिंग के जंगली फूल चुनकर लाते हैं।",
       "दहली पूजन: 'फूलदेई, छम्मा देई, दैणी द्वार, भर भकार' लोकगीत गाते हुए हर घर की देहरी पर फूल सजाना।",
       "बदले में बड़ों से गुड़, चावल और आशीर्वाद (उपहार) प्राप्त करना।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fefce8" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#a16207" text-anchor="middle">प्रकृति पर्व – फूलदेई — 'फूलदेई, छम्मा देई, दैणी द्वार, भर भकार'</text>
-      <!-- Doorway -->
-      <rect x="220" y="45" width="140" height="90" rx="4" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
-      <rect x="235" y="55" width="110" height="80" fill="#fed7aa"/>
-      <!-- Flowers at threshold -->
-      <g fill="#ef4444">
-        <circle cx="250" cy="132" r="4"/><circle cx="270" cy="132" r="4"/><circle cx="290" cy="132" r="4"/><circle cx="310" cy="132" r="4"/><circle cx="330" cy="132" r="4"/>
-      </g>
-      <!-- Children celebrating -->
-      <circle cx="150" cy="85" r="14" fill="#fcd34d"/><rect x="142" y="99" width="16" height="26" fill="#3b82f6"/>
-      <circle cx="430" cy="85" r="14" fill="#fcd34d"/><rect x="422" y="99" width="16" height="26" fill="#ec4899"/>
-      <text x="150" y="142" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#1e40af" text-anchor="middle">फूल लिए बच्चे</text>
-      <text x="430" y="142" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#9d174d" text-anchor="middle">उपहार व आशीष</text>
-      <text x="290" y="150" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#713f12" text-anchor="middle">प्रकृति से प्रेम और घर-घर में खुशहाली लाने वाला सुंदर त्योहार</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fefce8\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#a16207\" text-anchor=\"middle\">प्रकृति पर्व – फूलदेई — 'फूलदेई, छम्मा देई, दैणी द्वार, भर भकार'</text>\n      <!-- Doorway -->\n      <rect x=\"220\" y=\"45\" width=\"140\" height=\"90\" rx=\"4\" fill=\"#ffffff\" stroke=\"#d97706\" stroke-width=\"2\"/>\n      <rect x=\"235\" y=\"55\" width=\"110\" height=\"80\" fill=\"#fed7aa\"/>\n      <!-- Flowers at threshold -->\n      <g fill=\"#ef4444\">\n        <circle cx=\"250\" cy=\"132\" r=\"4\"/><circle cx=\"270\" cy=\"132\" r=\"4\"/><circle cx=\"290\" cy=\"132\" r=\"4\"/><circle cx=\"310\" cy=\"132\" r=\"4\"/><circle cx=\"330\" cy=\"132\" r=\"4\"/>\n      </g>\n      <!-- Children celebrating -->\n      <circle cx=\"150\" cy=\"85\" r=\"14\" fill=\"#fcd34d\"/><rect x=\"142\" y=\"99\" width=\"16\" height=\"26\" fill=\"#3b82f6\"/>\n      <circle cx=\"430\" cy=\"85\" r=\"14\" fill=\"#fcd34d\"/><rect x=\"422\" y=\"99\" width=\"16\" height=\"26\" fill=\"#ec4899\"/>\n      <text x=\"150\" y=\"142\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">फूल लिए बच्चे</text>\n      <text x=\"430\" y=\"142\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#9d174d\" text-anchor=\"middle\">उपहार व आशीष</text>\n      <text x=\"290\" y=\"150\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#713f12\" text-anchor=\"middle\">प्रकृति से प्रेम और घर-घर में खुशहाली लाने वाला सुंदर त्योहार</text>\n    </svg>",
+    "questions": [
       {
-        category: "सांस्कृतिक बोध • बातचीत के लिए",
-        q: "फूलदेई त्योहार भारत के किस राज्य में मनाया जाता है? इस त्योहार में बच्चे क्या-क्या करते हैं?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>राज्य:</strong> फूलदेई त्योहार <strong>उत्तराखंड</strong> के पर्वतीय अंचलों (गढ़वाल और कुमाऊं) में बसंत ऋतु के आगमन पर मनाया जाता है।<br>2. <strong>बच्चों की गतिविधियाँ:</strong> बच्चे सुबह-सवेरे उठकर जंगलों और खेतों से <strong>बुरांश, सरसों, आडू और बासिंग के रंग-बिरंगे फूल</strong> चुनकर लाते हैं और गाँव के हर घर की देहरी पर सजाते हैं। वे मंगल गीत गाते हैं और गृहस्वामिनी उन्हें गुड़, चावल तथा पैसे भेंट करती है।",
-        marks: 3,
-        rubric: [
-          { key: "उत्तराखंड राज्य का सही उल्लेख", marks: "1.0 M" },
-          { key: "फूल चुनना, देहरी सजाना और मंगल गीत गाने का विवरण", marks: "2.0 M" }
+        "category": "सांस्कृतिक बोध • बातचीत के लिए",
+        "q": "फूलदेई त्योहार भारत के किस राज्य में मनाया जाता है? इस त्योहार में बच्चे क्या-क्या करते हैं?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>राज्य:</strong> फूलदेई त्योहार <strong>उत्तराखंड</strong> के पर्वतीय अंचलों (गढ़वाल और कुमाऊं) में बसंत ऋतु के आगमन पर मनाया जाता है।<br>2. <strong>बच्चों की गतिविधियाँ:</strong> बच्चे सुबह-सवेरे उठकर जंगलों और खेतों से <strong>बुरांश, सरसों, आडू और बासिंग के रंग-बिरंगे फूल</strong> चुनकर लाते हैं और गाँव के हर घर की देहरी पर सजाते हैं। वे मंगल गीत गाते हैं और गृहस्वामिनी उन्हें गुड़, चावल तथा पैसे भेंट करती है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "उत्तराखंड राज्य का सही उल्लेख",
+            "marks": "1.0 M"
+          },
+          {
+            "key": "फूल चुनना, देहरी सजाना और मंगल गीत गाने का विवरण",
+            "marks": "2.0 M"
+          }
         ]
       },
       {
-        category: "लोकगीत का अर्थ • भाषा ज्ञान",
-        q: "'फूलदेई, छम्मा देई, दैणी द्वार, भर भकार' — इस लोकगीत की पंक्ति का क्या अर्थ है?",
-        ans: "<strong>अर्थ:</strong><br>• <strong>फूलदेई:</strong> देहरी पर खिले हुए फूलों जैसी सुंदरता बनी रहे।<br>• <strong>छम्मा देई:</strong> हे ईश्वर! हम सभी को क्षमा और सुख-शांति प्रदान करें।<br>• <strong>दैणी द्वार:</strong> यह द्वार (घर) सदा सबके लिए मंगलकारी और शुभ हो।<br>• <strong>भर भकार:</strong> आपके घर के अन्न के भंडार (अनाज की कोठियाँ) सदा भरे रहें।",
-        marks: 3,
-        rubric: [
-          { key: "पंक्ति के चारों खंडों का सही व सुंदर भावार्थ", marks: "3.0 M" }
+        "category": "लोकगीत का अर्थ • भाषा ज्ञान",
+        "q": "'फूलदेई, छम्मा देई, दैणी द्वार, भर भकार' — इस लोकगीत की पंक्ति का क्या अर्थ है?",
+        "ans": "<strong>अर्थ:</strong><br>• <strong>फूलदेई:</strong> देहरी पर खिले हुए फूलों जैसी सुंदरता बनी रहे।<br>• <strong>छम्मा देई:</strong> हे ईश्वर! हम सभी को क्षमा और सुख-शांति प्रदान करें।<br>• <strong>दैणी द्वार:</strong> यह द्वार (घर) सदा सबके लिए मंगलकारी और शुभ हो।<br>• <strong>भर भकार:</strong> आपके घर के अन्न के भंडार (अनाज की कोठियाँ) सदा भरे रहें।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "पंक्ति के चारों खंडों का सही व सुंदर भावार्थ",
+            "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "लोक संस्कृति • प्रकृति पर्व फूलदेई",
+        "q": "उत्तराखंड के लोकपर्व 'फूलदेई' के बारे में तीन मुख्य बातें लिखिए।",
+        "ans": "<strong>फूलदेई पर्व की विशेषताएं:</strong><br>1. <strong>वसंत ऋतु का स्वागत:</strong> यह पर्व चैत्र मास की संक्रांति को वसंत ऋतु और नए फूलों के आगमन की खुशी में मनाया जाता है।<br>2. <strong>बच्चों का उल्लास:</strong> छोटे बच्चे सुबह-सुबह जंगलों से बुरांश, प्योंली और आड़ू के ताजे फूल चुनकर लाते हैं और गाँव के प्रत्येक घर की देहरी (दरवाजे) पर सजाते हैं।<br>3. <strong>आशीर्वाद व उपहार:</strong> बच्चे <em>'फूलदेई, छम्मा देई'</em> गाकर सबकी सुख-समृद्धि की कामना करते हैं और घर की गृहणियाँ बच्चों को गुड़, चावल और उपहार देती हैं।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "वसंत ऋतु, बच्चों द्वारा देहरी पर फूल सजाने और लोकगीत का उल्लेख",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "वसंत ऋतु के फूल • प्रकृति ज्ञान",
+        "q": "वसंत ऋतु में खिलने वाले किन्हीं तीन सुंदर फूलों के नाम लिखिए।",
+        "ans": "<strong>वसंत के प्रमुख फूल:</strong><br>1. <strong>बुरांश</strong> (लाल पहाड़ी फूल)<br>2. <strong>प्योंली</strong> (पीला जंगली फूल)<br>3. <strong>गेंदा व सरसों के पीले फूल</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीन प्राकृतिक वसंत कालीन फूलों के नाम",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "लोकगीत की समझ • 'फूलदेई, छम्मा देई'",
+        "q": "फूलदेई के लोकगीत की पंक्तियों का क्या भावार्थ है?",
+        "ans": "<strong>भावार्थ:</strong><br>• इस लोकगीत में बच्चे ईश्वर और प्रकृति से प्रार्थना करते हैं कि सभी घरों की देहरी (चौखट) सदा अन्न और धन से भरी रहे, घर में सुख-शांति आए और सभी लोग निरोगी रहें।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सुख, समृद्धि और अन्न-धन की मंगलकामना का भाव स्पष्ट करना",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "पर्यावरण के प्रति आभार",
+        "q": "प्रकृति पर्व हमें प्रकृति के प्रति किस प्रकार कृतज्ञ होना सिखाते हैं?",
+        "ans": "<strong>नैतिक व सांस्कृतिक संदेश:</strong><br>• प्रकृति पर्व हमें याद दिलाते हैं कि नदियाँ, पर्वत, पेड़-पौधे और फूल हमारे सच्चे मित्र हैं। हमें बिना सोचे-समझे पेड़ों को नहीं काटना चाहिए, बल्कि प्रकृति का आभार मानते हुए उनका संरक्षण करना चाहिए।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "प्रकृति संरक्षण और कृतज्ञता का सुंदर विचार",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "लोक संस्कृति और पर्यावरण का नाता",
-      text: "भारत के अधिकांश पारंपरिक त्योहार (जैसे फूलदेई, पोंगल, बैसाखी, ओणम) प्रकृति, फसलों और ऋतुओं से जुड़े हैं।",
-      question: "प्रकृति आधारित त्योहार हमें आधुनिक प्लास्टिक व प्रदूषण भरी जीवनशैली से दूर कर पर्यावरण की रक्षा करना कैसे सिखाते हैं?",
-      answer: "1. ये पर्व हमें सिखाते हैं कि हमारा जीवन मिट्टी, नदियों, पेड़ों और फसलों पर निर्भर है, इसलिए उनका सम्मान करना चाहिए।<br>2. प्राकृतिक फूलों और पत्तियों से सजे ये त्योहार प्लास्टिक कचरे को रोकते हैं और नई पीढ़ी को प्रकृति प्रेमी बनाते हैं।",
-      rubric: "1.5M प्रकृति पर मानव निर्भरता की सीख + 1.5M पर्यावरण अनुकूल जीवनशैली का महत्व।"
+    "cbq": {
+      "title": "लोक संस्कृति और पर्यावरण का नाता",
+      "text": "भारत के अधिकांश पारंपरिक त्योहार (जैसे फूलदेई, पोंगल, बैसाखी, ओणम) प्रकृति, फसलों और ऋतुओं से जुड़े हैं।",
+      "question": "प्रकृति आधारित त्योहार हमें आधुनिक प्लास्टिक व प्रदूषण भरी जीवनशैली से दूर कर पर्यावरण की रक्षा करना कैसे सिखाते हैं?",
+      "answer": "1. ये पर्व हमें सिखाते हैं कि हमारा जीवन मिट्टी, नदियों, पेड़ों और फसलों पर निर्भर है, इसलिए उनका सम्मान करना चाहिए।<br>2. प्राकृतिक फूलों और पत्तियों से सजे ये त्योहार प्लास्टिक कचरे को रोकते हैं और नई पीढ़ी को प्रकृति प्रेमी बनाते हैं।",
+      "rubric": "1.5M प्रकृति पर मानव निर्भरता की सीख + 1.5M पर्यावरण अनुकूल जीवनशैली का महत्व।"
     }
   },
-
-  // -------------------------------------------------------------------------
-  // इकाई 3: आओ खेलें
-  // -------------------------------------------------------------------------
   {
-    id: "vn10",
-    num: 10,
-    unit: "इकाई 3: आओ खेलें",
-    title: "रस्साकशी",
-    subtitle: "पारंपरिक खेल, शारीरिक शक्ति, टीम भावना, संतुलन और खेल भावना (Sportsmanship)",
-    concepts: [
+    "id": "vn10",
+    "num": 10,
+    "unit": "इकाई 3: आओ खेलें",
+    "title": "रस्साकशी",
+    "subtitle": "पारंपरिक खेल, शारीरिक शक्ति, टीम भावना, संतुलन और खेल भावना (Sportsmanship)",
+    "concepts": [
       "रस्साकशी का खेल: बीच में रेखा खींचना, मोटी रस्सी और दोनों तरफ बराबर खिलाड़ियों की दो टीमें।",
       "खेल के नियम: अपनी तरफ पूरी ताकत और तालमेल से खींचकर विरोधी टीम को मध्य रेखा पार कराना।",
       "सामूहिक तालमेल: अकेले की ताकत की तुलना में सभी का एक साथ 'ज़ोर लगा के हइशा' कहना अधिक प्रभावी होता है।",
       "खेल भावना: जीत में विनम्रता और हार में विरोधी टीम को बधाई देना।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#eff6ff" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e40af" text-anchor="middle">रस्साकशी — 'ज़ोर लगा के हइशा!' टीम भावना की जीत</text>
-      <!-- Center line -->
-      <line x1="290" y1="45" x2="290" y2="125" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4"/>
-      <text x="290" y="140" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#dc2626" text-anchor="middle">मध्य रेखा</text>
-      <!-- Rope -->
-      <line x1="120" y1="85" x2="460" y2="85" stroke="#78350f" stroke-width="5"/>
-      <rect x="286" y="80" width="8" height="10" fill="#ef4444"/>
-      <!-- Team A (Left) -->
-      <circle cx="150" cy="70" r="10" fill="#3b82f6"/><circle cx="190" cy="70" r="10" fill="#3b82f6"/><circle cx="230" cy="70" r="10" fill="#3b82f6"/>
-      <text x="190" y="115" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#1d4ed8" text-anchor="middle">टीम 'क'</text>
-      <!-- Team B (Right) -->
-      <circle cx="350" cy="70" r="10" fill="#10b981"/><circle cx="390" cy="70" r="10" fill="#10b981"/><circle cx="430" cy="70" r="10" fill="#10b981"/>
-      <text x="390" y="115" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#047857" text-anchor="middle">टीम 'ख'</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">रस्साकशी — 'ज़ोर लगा के हइशा!' टीम भावना की जीत</text>\n      <!-- Center line -->\n      <line x1=\"290\" y1=\"45\" x2=\"290\" y2=\"125\" stroke=\"#ef4444\" stroke-width=\"2.5\" stroke-dasharray=\"4,4\"/>\n      <text x=\"290\" y=\"140\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"800\" fill=\"#dc2626\" text-anchor=\"middle\">मध्य रेखा</text>\n      <!-- Rope -->\n      <line x1=\"120\" y1=\"85\" x2=\"460\" y2=\"85\" stroke=\"#78350f\" stroke-width=\"5\"/>\n      <rect x=\"286\" y=\"80\" width=\"8\" height=\"10\" fill=\"#ef4444\"/>\n      <!-- Team A (Left) -->\n      <circle cx=\"150\" cy=\"70\" r=\"10\" fill=\"#3b82f6\"/><circle cx=\"190\" cy=\"70\" r=\"10\" fill=\"#3b82f6\"/><circle cx=\"230\" cy=\"70\" r=\"10\" fill=\"#3b82f6\"/>\n      <text x=\"190\" y=\"115\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"800\" fill=\"#1d4ed8\" text-anchor=\"middle\">टीम 'क'</text>\n      <!-- Team B (Right) -->\n      <circle cx=\"350\" cy=\"70\" r=\"10\" fill=\"#10b981\"/><circle cx=\"390\" cy=\"70\" r=\"10\" fill=\"#10b981\"/><circle cx=\"430\" cy=\"70\" r=\"10\" fill=\"#10b981\"/>\n      <text x=\"390\" y=\"115\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"800\" fill=\"#047857\" text-anchor=\"middle\">टीम 'ख'</text>\n    </svg>",
+    "questions": [
       {
-        category: "पाठ बोध • खेल के नियम",
-        q: "रस्साकशी का खेल कैसे खेला जाता है? इसमें केवल व्यक्तिगत ताकत ही नहीं, बल्कि कौन-सी बात सबसे ज्यादा जरूरी है?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>खेल का तरीका:</strong> मैदान में बीच में एक लाल रेखा खींची जाती है। एक मजबूत रस्सी के बीच में लाल फीता बाँधा जाता है। दोनों टीमों के खिलाड़ी रस्सी पकड़कर खड़े होते हैं और सीटी बजते ही रस्सी को अपनी ओर खींचते हैं। जिस टीम का खिलाड़ी मध्य रेखा पार कर जाता है, वह टीम हार जाती है।<br>2. <strong>महत्वपूर्ण बात:</strong> इसमें व्यक्तिगत ताकत से ज्यादा <strong>पूरी टीम का एक साथ सही समय पर तालमेल और संतुलन (टीमवर्क)</strong> जरूरी होता है।",
-        marks: 3,
-        rubric: [
-          { key: "रस्साकशी खेल के नियमों का स्पष्ट विवरण", marks: "1.5 M" },
-          { key: "सामूहिक तालमेल और टीमवर्क का महत्व", marks: "1.5 M" }
+        "category": "पाठ बोध • खेल के नियम",
+        "q": "रस्साकशी का खेल कैसे खेला जाता है? इसमें केवल व्यक्तिगत ताकत ही नहीं, बल्कि कौन-सी बात सबसे ज्यादा जरूरी है?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>खेल का तरीका:</strong> मैदान में बीच में एक लाल रेखा खींची जाती है। एक मजबूत रस्सी के बीच में लाल फीता बाँधा जाता है। दोनों टीमों के खिलाड़ी रस्सी पकड़कर खड़े होते हैं और सीटी बजते ही रस्सी को अपनी ओर खींचते हैं। जिस टीम का खिलाड़ी मध्य रेखा पार कर जाता है, वह टीम हार जाती है।<br>2. <strong>महत्वपूर्ण बात:</strong> इसमें व्यक्तिगत ताकत से ज्यादा <strong>पूरी टीम का एक साथ सही समय पर तालमेल और संतुलन (टीमवर्क)</strong> जरूरी होता है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "रस्साकशी खेल के नियमों का स्पष्ट विवरण",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "सामूहिक तालमेल और टीमवर्क का महत्व",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "क्रिया शब्द • भाषा की बात",
-        q: "दिए गए वाक्यों में से क्रिया (Action words) छाँटकर लिखिए: (क) बच्चे मैदान में दौड़ रहे हैं। (ख) दोनों टीमों ने रस्सी खींची। (ग) रेफरी ने सीटी बजाई।",
-        ans: "<strong>क्रिया शब्द:</strong><br>• (क) दौड़ रहे हैं → <strong>दौड़ना</strong><br>• (ख) खींची → <strong>खींचना</strong><br>• (ग) बजाई → <strong>बजाना</strong>।",
-        marks: 3,
-        rubric: [
-          { key: "तीनों वाक्यों में सही क्रिया की पहचान (1M प्रत्येक)", marks: "3.0 M" }
+        "category": "क्रिया शब्द • भाषा की बात",
+        "q": "दिए गए वाक्यों में से क्रिया (Action words) छाँटकर लिखिए: (क) बच्चे मैदान में दौड़ रहे हैं। (ख) दोनों टीमों ने रस्सी खींची। (ग) रेफरी ने सीटी बजाई।",
+        "ans": "<strong>क्रिया शब्द:</strong><br>• (क) दौड़ रहे हैं → <strong>दौड़ना</strong><br>• (ख) खींची → <strong>खींचना</strong><br>• (ग) बजाई → <strong>बजाना</strong>।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों वाक्यों में सही क्रिया की पहचान (1M प्रत्येक)",
+            "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "खेल के नियम • रस्साकशी",
+        "q": "रस्साकशी (Tug of War) का खेल कैसे खेला जाता है? संक्षेप में समझाइए।",
+        "ans": "<strong>रस्साकशी खेल की विधि:</strong><br>1. जमीन पर बीच में एक सफेद सीमा-रेखा खींची जाती है और एक मजबूत मोटे रस्से के ठीक बीच में लाल रिबन बाँधा जाता है।<br>2. दोनों तरफ दो टीमें बराबर संख्या में खिलाड़ियों के साथ रस्से को मजबूती से दोनों हाथों से पकड़ती हैं।<br>3. सीटी बजते ही दोनों टीमें अपनी-अपनी ओर पूरी ताकत से रस्से को खींचती हैं। जो टीम विरोधी टीम के आगे वाले खिलाड़ी को खींचकर मध्य-रेखा के पार ले आती है, वह विजयी घोषित होती है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "मध्य रेखा, रिबन और दोनों टीमों के रस्सा खींचने के नियम का स्पष्ट विवरण",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "खेल भावना • टीम वर्क",
+        "q": "रस्साकशी के खेल में जीत केवल व्यक्तिगत ताकत से नहीं, बल्कि टीम भावना से मिलती है। कैसे?",
+        "ans": "<strong>टीम भावना का महत्व:</strong><br>• रस्साकशी में यदि सभी खिलाड़ी एक ही ताल और समय पर एक साथ पीछे की ओर जोर लगाते हैं, तभी अधिकतम शक्ति पैदा होती है। यदि कोई अकेला खिलाड़ी अपनी मर्जी से खींचेगा तो टीम हार जाएगी। इसलिए एकता और तालमेल ही जीत दिलाते हैं।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "एकता, तालमेल और सामूहिक प्रयास का महत्व समझाना",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "भाषा की बात • संयुक्त व्यंजन",
+        "q": "शब्द 'रस्साकशी' में 'स्स' संयुक्त व्यंजन है। नीचे दिए गए संयुक्त व्यंजनों से दो-दो नए शब्द बनाइए:<br>(क) क्क<br>(ख) च्च",
+        "ans": "<strong>संयुक्त व्यंजन वाले शब्द:</strong><br>• (क) <strong>क्क:</strong> पक्का, चक्का (धक्का)<br>• (ख) <strong>च्च:</strong> सच्चा, बच्चा (कच्चा)",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "दोनों संयुक्त व्यंजनों से दो-दो शुद्ध शब्द",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "पारंपरिक भारतीय खेल",
+        "q": "रस्साकशी के अलावा भारत के किन्हीं तीन पारंपरिक मैदानी खेलों के नाम लिखिए।",
+        "ans": "<strong>पारंपरिक खेल:</strong><br>1. <strong>कबड्डी</strong><br>2. <strong>खो-खो</strong><br>3. <strong>गिल्ली-डंडा (या सतोलिया/पिट्ठू)</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीन पारंपरिक भारतीय खेलों के नाम",
+            "marks": "3.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "सच्ची खेल भावना (Sportsmanship)",
-      text: "मैच हारने के बाद टीम 'ख' के कुछ छात्र नाराज होकर मैदान पर बैठ गए और जीतने वाली टीम से हाथ मिलाने से मना कर दिया।",
-      question: "खेल में हार और जीत को किस प्रकार स्वीकार करना चाहिए? सच्चा खिलाड़ी किसे कहते हैं?",
-      answer: "1. खेल में हार और जीत दोनों सिक्के के दो पहलू हैं। हार हमें अपनी कमजोरियों को सुधारने का अवसर देती है।<br>2. सच्चा खिलाड़ी वही है जो जीतने वाली टीम को मुस्कुराकर बधाई दे और अगली बार अधिक मेहनत करने का संकल्प ले।",
-      rubric: "1.5M खेल भावना और हार स्वीकार करने का विवेक + 1.5M सच्चे खिलाड़ी के गुणों का वर्णन।"
+    "cbq": {
+      "title": "सच्ची खेल भावना (Sportsmanship)",
+      "text": "मैच हारने के बाद टीम 'ख' के कुछ छात्र नाराज होकर मैदान पर बैठ गए और जीतने वाली टीम से हाथ मिलाने से मना कर दिया।",
+      "question": "खेल में हार और जीत को किस प्रकार स्वीकार करना चाहिए? सच्चा खिलाड़ी किसे कहते हैं?",
+      "answer": "1. खेल में हार और जीत दोनों सिक्के के दो पहलू हैं। हार हमें अपनी कमजोरियों को सुधारने का अवसर देती है।<br>2. सच्चा खिलाड़ी वही है जो जीतने वाली टीम को मुस्कुराकर बधाई दे और अगली बार अधिक मेहनत करने का संकल्प ले।",
+      "rubric": "1.5M खेल भावना और हार स्वीकार करने का विवेक + 1.5M सच्चे खिलाड़ी के गुणों का वर्णन।"
     }
   },
   {
-    id: "vn11",
-    num: 11,
-    unit: "इकाई 3: आओ खेलें",
-    title: "एक जादुई पिटारा",
-    subtitle: "कल्पनाशीलता, खिलौने, कठपुतली, लोक कला और बाल रचनात्मकता",
-    concepts: [
+    "id": "vn11",
+    "num": 11,
+    "unit": "इकाई 3: आओ खेलें",
+    "title": "एक जादुई पिटारा",
+    "subtitle": "कल्पनाशीलता, खिलौने, कठपुतली, लोक कला और बाल रचनात्मकता",
+    "concepts": [
       "जादुई पिटारा: पुराने संदूक में रखी पुरानी वस्तुएं, कठपुतलियाँ और रंगीन खिलौने।",
       "कठपुतली कला (Puppetry): राजस्थान की पारंपरिक धागों से नाचने वाली काठ की पुतलियाँ।",
       "कहानी बनाना: टूटी-फूटी चीजों से नई कहानियाँ और खेल रचना।",
       "मोबाइल स्क्रीन से हटकर हाथों से खेल खेलने का आनंद।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fffbeb" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">एक जादुई पिटारा — कठपुतलियाँ और लोक कला का संसार</text>
-      <!-- Chest Box -->
-      <rect x="220" y="60" width="140" height="65" rx="6" fill="#b45309" stroke="#78350f" stroke-width="2"/>
-      <rect x="210" y="50" width="160" height="15" rx="4" fill="#d97706" stroke="#78350f" stroke-width="1.5"/>
-      <circle cx="290" cy="75" r="6" fill="#fde047" stroke="#ca8a04"/>
-      <!-- Puppets emerging -->
-      <g transform="translate(150, 45)">
-        <circle cx="20" cy="15" r="8" fill="#fcd34d"/><line x1="20" y1="23" x2="20" y2="40" stroke="#ec4899" stroke-width="3"/>
-        <line x1="20" y1="0" x2="20" y2="10" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2"/>
-        <text x="20" y="55" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#9d174d" text-anchor="middle">कठपुतली</text>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">कल्पना की उड़ान से हर पुरानी वस्तु एक नई कहानी बन जाती है!</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">एक जादुई पिटारा — कठपुतलियाँ और लोक कला का संसार</text>\n      <!-- Chest Box -->\n      <rect x=\"220\" y=\"60\" width=\"140\" height=\"65\" rx=\"6\" fill=\"#b45309\" stroke=\"#78350f\" stroke-width=\"2\"/>\n      <rect x=\"210\" y=\"50\" width=\"160\" height=\"15\" rx=\"4\" fill=\"#d97706\" stroke=\"#78350f\" stroke-width=\"1.5\"/>\n      <circle cx=\"290\" cy=\"75\" r=\"6\" fill=\"#fde047\" stroke=\"#ca8a04\"/>\n      <!-- Puppets emerging -->\n      <g transform=\"translate(150, 45)\">\n        <circle cx=\"20\" cy=\"15\" r=\"8\" fill=\"#fcd34d\"/><line x1=\"20\" y1=\"23\" x2=\"20\" y2=\"40\" stroke=\"#ec4899\" stroke-width=\"3\"/>\n        <line x1=\"20\" y1=\"0\" x2=\"20\" y2=\"10\" stroke=\"#64748b\" stroke-width=\"1\" stroke-dasharray=\"2,2\"/>\n        <text x=\"20\" y=\"55\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#9d174d\" text-anchor=\"middle\">कठपुतली</text>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">कल्पना की उड़ान से हर पुरानी वस्तु एक नई कहानी बन जाती है!</text>\n    </svg>",
+    "questions": [
       {
-        category: "पाठ बोध • सोचिए और लिखिए",
-        q: "जादुई पिटारे में से कौन-कौन से अद्भुत खिलौने निकले? कठपुतली का नाच देखकर बच्चों को कैसा लगा?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>खिलौने:</strong> जादुई पिटारे में से रंग-बिरंगी <strong>राजस्थानी कठपुतलियाँ, मिट्टी की सीटियाँ, लकड़ी की फिरकी और जादू का चश्मा</strong> निकला।<br>2. <strong>अनुभव:</strong> जब धागों के सहारे राजा और रानी की कठपुतलियों ने ढोलक की थाप पर नाचना शुरू किया, तो सभी बच्चे तालियाँ बजाकर खुशी से झूम उठे।",
-        marks: 3,
-        rubric: [
-          { key: "पिटारे से निकली वस्तुओं का सही उल्लेख", marks: "1.5 M" },
-          { key: "कठपुतली नृत्य देखकर बच्चों का उल्लास", marks: "1.5 M" }
+        "category": "पाठ बोध • सोचिए और लिखिए",
+        "q": "जादुई पिटारे में से कौन-कौन से अद्भुत खिलौने निकले? कठपुतली का नाच देखकर बच्चों को कैसा लगा?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>खिलौने:</strong> जादुई पिटारे में से रंग-बिरंगी <strong>राजस्थानी कठपुतलियाँ, मिट्टी की सीटियाँ, लकड़ी की फिरकी और जादू का चश्मा</strong> निकला।<br>2. <strong>अनुभव:</strong> जब धागों के सहारे राजा और रानी की कठपुतलियों ने ढोलक की थाप पर नाचना शुरू किया, तो सभी बच्चे तालियाँ बजाकर खुशी से झूम उठे।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "पिटारे से निकली वस्तुओं का सही उल्लेख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "कठपुतली नृत्य देखकर बच्चों का उल्लास",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "क्रियाकलाप • हस्तकला (Craft)",
-        q: "घर पर बेकार पड़े मोज़ों या गत्ते के डिब्बों से आप कठपुतली कैसे बना सकते हैं? दो चरणों में बताइए।",
-        ans: "<strong>सरल विधि:</strong><br>1. <strong>दस्ताना कठपुतली (Sock Puppet):</strong> एक पुराने साफ मोज़े को हाथ में पहनें। अँगूठे और उँगलियों के जोड़ को मुँह बनाएँ। ऊपर दो बड़े बटन या ऊन चिपकाकर आँखें और बाल बना दें।<br>2. <strong>संवाद:</strong> हाथ हिलाकर पुतली का मुँह खोलें और अपनी आवाज बदलकर मजेदार संवाद बोलें।",
-        marks: 2,
-        rubric: [
-          { key: "मोज़े से कठपुतली बनाने की सही विधि", marks: "1.0 M" },
-          { key: "संवाद और अभिनय का प्रयोग", marks: "1.0 M" }
+        "category": "क्रियाकलाप • हस्तकला (Craft)",
+        "q": "घर पर बेकार पड़े मोज़ों या गत्ते के डिब्बों से आप कठपुतली कैसे बना सकते हैं? दो चरणों में बताइए।",
+        "ans": "<strong>सरल विधि:</strong><br>1. <strong>दस्ताना कठपुतली (Sock Puppet):</strong> एक पुराने साफ मोज़े को हाथ में पहनें। अँगूठे और उँगलियों के जोड़ को मुँह बनाएँ। ऊपर दो बड़े बटन या ऊन चिपकाकर आँखें और बाल बना दें।<br>2. <strong>संवाद:</strong> हाथ हिलाकर पुतली का मुँह खोलें और अपनी आवाज बदलकर मजेदार संवाद बोलें।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "मोज़े से कठपुतली बनाने की सही विधि",
+            "marks": "1.0 M"
+          },
+          {
+            "key": "संवाद और अभिनय का प्रयोग",
+            "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कहानी से • एक जादुई पिटारा",
+        "q": "कहानी 'एक जादुई पिटारा' में पिटारे की क्या विशेषता थी, और उसने गाँव वालों की क्या सहायता की?",
+        "ans": "<strong>कहानी बोध:</strong><br>• जादुई पिटारे की विशेषता यह थी कि उसमें से जो भी अच्छी और उपयोगी वस्तु सच्चे मन से दूसरों की भलाई के लिए माँगी जाती थी, वह तुरंत प्रकट हो जाती थी। जब गाँव में अकाल पड़ा, तो पिटारे ने सभी भूखे ग्रामीणों के लिए अनाज, ताजे फल और शुद्ध जल प्रदान किया।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "पिटारे की जादुई शक्ति का उल्लेख",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "गाँव वालों को अकाल में सहायता करने का प्रसंग",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "कल्पनाशीलता • तुम्हारा जादुई पिटारा",
+        "q": "यदि आपको एक जादुई पिटारा मिल जाए, तो आप उसमें से सबसे पहले क्या माँगेंगे और क्यों?",
+        "ans": "<strong>रचनात्मक उत्तर:</strong><br>• यदि मुझे जादुई पिटारा मिल जाए, तो मैं सबसे पहले उन सभी बच्चों के लिए सुंदर नई किताबें, स्कूल बैग और खिलौने माँगूँगा जो निर्धनता के कारण विद्यालय नहीं जा पाते, ताकि वे भी खुश होकर पढ़-लिख सकें।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सहानुभूतिपूर्ण और रचनात्मक विचार की अभिव्यक्ति",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "भाषा की बात • विशेषण और विशेष्य",
+        "q": "नीचे लिखे वाक्यों में से विशेषण और विशेष्य शब्द छाँटकर अलग कीजिए:<br>(क) पुराना पिटारा कोने में रखा था।<br>(ख) उसमें चमकीला पत्थर जड़ा था।",
+        "ans": "<strong>विशेषण और विशेष्य:</strong><br>• (क) <strong>विशेषण:</strong> पुराना | <strong>विशेष्य:</strong> पिटारा<br>• (ख) <strong>विशेषण:</strong> चमकीला | <strong>विशेष्य:</strong> पत्थर",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "दोनों वाक्यों के सही विशेषण और विशेष्य की पहचान",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "समानार्थी शब्द • शब्द ज्ञान",
+        "q": "समानार्थी शब्द लिखिए:<br>(क) पिटारा $\\rightarrow$ _____<br>(ख) अचरज $\\rightarrow$ _____",
+        "ans": "<strong>समानार्थी शब्द:</strong><br>• (क) पिटारा $\\rightarrow$ <strong>बक्सा / संदूक</strong><br>• (ख) अचरज $\\rightarrow$ <strong>आश्चर्य / हैरानी</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "दोनों शुद्ध समानार्थी शब्द",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "पारंपरिक लोक कलाओं का संरक्षण",
-      text: "आजकल के बच्चे वीडियो गेम में व्यस्त रहते हैं और हमारी सदियों पुरानी कठपुतली कला लुप्त होती जा रही है।",
-      question: "विद्यालय स्तर पर पारंपरिक कठपुतली कला को जीवित रखने के लिए क्या प्रयास किए जाने चाहिए?",
-      answer: "1. विद्यालय के बाल उत्सवों और वार्षिक कार्यक्रमों में स्थानीय कठपुतली कलाकारों को बुलाकर शो आयोजित करने चाहिए।<br>2. कला कक्षा में बच्चों को वेस्ट मटेरियल से स्वयं कठपुतली बनाने और ऐतिहासिक प्रेरक प्रसंगों का नाटक प्रस्तुत करने का प्रशिक्षण देना चाहिए।",
-      rubric: "1.5M कलाकारों को मंच और प्रोत्साहन देना + 1.5M स्कूल स्तर पर कार्यशालाओं का आयोजन।"
+    "cbq": {
+      "title": "पारंपरिक लोक कलाओं का संरक्षण",
+      "text": "आजकल के बच्चे वीडियो गेम में व्यस्त रहते हैं और हमारी सदियों पुरानी कठपुतली कला लुप्त होती जा रही है।",
+      "question": "विद्यालय स्तर पर पारंपरिक कठपुतली कला को जीवित रखने के लिए क्या प्रयास किए जाने चाहिए?",
+      "answer": "1. विद्यालय के बाल उत्सवों और वार्षिक कार्यक्रमों में स्थानीय कठपुतली कलाकारों को बुलाकर शो आयोजित करने चाहिए।<br>2. कला कक्षा में बच्चों को वेस्ट मटेरियल से स्वयं कठपुतली बनाने और ऐतिहासिक प्रेरक प्रसंगों का नाटक प्रस्तुत करने का प्रशिक्षण देना चाहिए।",
+      "rubric": "1.5M कलाकारों को मंच और प्रोत्साहन देना + 1.5M स्कूल स्तर पर कार्यशालाओं का आयोजन।"
     }
   },
-
-  // -------------------------------------------------------------------------
-  // इकाई 4: अपना-अपना काम
-  // -------------------------------------------------------------------------
   {
-    id: "vn12",
-    num: 12,
-    unit: "इकाई 4: अपना-अपना काम",
-    title: "अपना-अपना काम",
-    subtitle: "श्रम की गरिमा, विभिन्न व्यवसाय, समाज में परस्पर निर्भरता और हर काम का सम्मान",
-    concepts: [
+    "id": "vn12",
+    "num": 12,
+    "unit": "इकाई 4: अपना-अपना काम",
+    "title": "अपना-अपना काम",
+    "subtitle": "श्रम की गरिमा, विभिन्न व्यवसाय, समाज में परस्पर निर्भरता और हर काम का सम्मान",
+    "concepts": [
       "समाज के विभिन्न मददगार: किसान, शिक्षक, चिकित्सक, सफाई कर्मी, कुम्हार, बढ़ई और दर्जी।",
       "श्रम का सम्मान (Dignity of Labour): कोई भी काम छोटा या बड़ा नहीं होता।",
       "परस्पर निर्भरता: यदि कोई भी एक व्यक्ति अपना काम बंद कर दे, तो पूरा समाज ठहर जाएगा।",
       "वाक्य निर्माण और व्यवसायियों के औजारों की पहचान।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#f8fafc" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">अपना-अपना काम — समाज के आधारस्तंभ और श्रम का सम्मान</text>
-      <!-- 4 Helper Badges -->
-      <g transform="translate(60, 48)" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">
-        <rect x="0" y="0" width="95" height="70" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-        <text x="47" y="32" font-size="20">🌾</text><text x="47" y="55" fill="#14532d">किसान (अन्नदाता)</text>
-        <rect x="120" y="0" width="95" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-        <text x="167" y="32" font-size="20">🩺</text><text x="167" y="55" fill="#1e3a8a">डॉक्टर (उपचार)</text>
-        <rect x="240" y="0" width="95" height="70" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-        <text x="287" y="32" font-size="20">🧹</text><text x="287" y="55" fill="#92400e">सफाई मित्र (स्वच्छता)</text>
-        <rect x="360" y="0" width="95" height="70" rx="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
-        <text x="407" y="32" font-size="20">📚</text><text x="407" y="55" fill="#581c87">शिक्षक (शिक्षा)</text>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">हर काम का अपना महत्व है — सभी कर्मवीर सम्मान के पात्र हैं!</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#0f172a\" text-anchor=\"middle\">अपना-अपना काम — समाज के आधारस्तंभ और श्रम का सम्मान</text>\n      <!-- 4 Helper Badges -->\n      <g transform=\"translate(60, 48)\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">\n        <rect x=\"0\" y=\"0\" width=\"95\" height=\"70\" rx=\"8\" fill=\"#dcfce7\" stroke=\"#16a34a\" stroke-width=\"1.5\"/>\n        <text x=\"47\" y=\"32\" font-size=\"20\">🌾</text><text x=\"47\" y=\"55\" fill=\"#14532d\">किसान (अन्नदाता)</text>\n        <rect x=\"120\" y=\"0\" width=\"95\" height=\"70\" rx=\"8\" fill=\"#dbeafe\" stroke=\"#2563eb\" stroke-width=\"1.5\"/>\n        <text x=\"167\" y=\"32\" font-size=\"20\">🩺</text><text x=\"167\" y=\"55\" fill=\"#1e3a8a\">डॉक्टर (उपचार)</text>\n        <rect x=\"240\" y=\"0\" width=\"95\" height=\"70\" rx=\"8\" fill=\"#fef3c7\" stroke=\"#d97706\" stroke-width=\"1.5\"/>\n        <text x=\"287\" y=\"32\" font-size=\"20\">🧹</text><text x=\"287\" y=\"55\" fill=\"#92400e\">सफाई मित्र (स्वच्छता)</text>\n        <rect x=\"360\" y=\"0\" width=\"95\" height=\"70\" rx=\"8\" fill=\"#f3e8ff\" stroke=\"#9333ea\" stroke-width=\"1.5\"/>\n        <text x=\"407\" y=\"32\" font-size=\"20\">📚</text><text x=\"407\" y=\"55\" fill=\"#581c87\">शिक्षक (शिक्षा)</text>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#334155\" text-anchor=\"middle\">हर काम का अपना महत्व है — सभी कर्मवीर सम्मान के पात्र हैं!</text>\n    </svg>",
+    "questions": [
       {
-        category: "पाठ बोध • सोचिए और लिखिए",
-        q: "यदि हमारे शहर में सफाई कर्मचारी एक हफ्ते तक काम न करें, तो क्या होगा? हमें उनके प्रति कैसा व्यवहार रखना चाहिए?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>प्रभाव:</strong> यदि सफाई कर्मचारी एक हफ्ते काम न करें, तो सड़कों और गलियों में कचरे के ढ़ेर लग जाएँगे, बदबू फैलेगी, मक्खी-मच्छर पनपेंगे और बीमारियाँ फैलने लगेंगी।<br>2. <strong>हमारा व्यवहार:</strong> हमें सफाई कर्मचारियों के प्रति <strong>कृतज्ञ और सम्मानजनक व्यवहार</strong> रखना चाहिए, उन्हें 'सफाई मित्र' मानकर कचरा हमेशा डस्टबिन में ही डालना चाहिए।",
-        marks: 3,
-        rubric: [
-          { key: "सफाई न होने पर गंदगी व बीमारियों का प्रभाव", marks: "1.5 M" },
-          { key: "सफाई कर्मियों के प्रति सम्मान और कृतज्ञता", marks: "1.5 M" }
+        "category": "पाठ बोध • सोचिए और लिखिए",
+        "q": "यदि हमारे शहर में सफाई कर्मचारी एक हफ्ते तक काम न करें, तो क्या होगा? हमें उनके प्रति कैसा व्यवहार रखना चाहिए?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>प्रभाव:</strong> यदि सफाई कर्मचारी एक हफ्ते काम न करें, तो सड़कों और गलियों में कचरे के ढ़ेर लग जाएँगे, बदबू फैलेगी, मक्खी-मच्छर पनपेंगे और बीमारियाँ फैलने लगेंगी।<br>2. <strong>हमारा व्यवहार:</strong> हमें सफाई कर्मचारियों के प्रति <strong>कृतज्ञ और सम्मानजनक व्यवहार</strong> रखना चाहिए, उन्हें 'सफाई मित्र' मानकर कचरा हमेशा डस्टबिन में ही डालना चाहिए।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "सफाई न होने पर गंदगी व बीमारियों का प्रभाव",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "सफाई कर्मियों के प्रति सम्मान और कृतज्ञता",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "व्यवसाय और औजार • मिलान",
-        q: "बताइए कौन सा औजार किस काम आता है: (क) हल, (ख) स्टेथोस्कोप, (ग) आरी, (घ) चाक।",
-        ans: "<strong>औजार और संबंधित व्यवसायी:</strong><br>• (क) हल — <strong>किसान</strong> (खेत जोतने के लिए)<br>• (ख) स्टेथोस्कोप — <strong>डॉक्टर</strong> (हृदय की धड़कन सुनने के लिए)<br>• (ग) आरी — <strong>बढ़ई</strong> (लकड़ी काटने के लिए)<br>• (घ) चाक — <strong>कुम्हार</strong> (मिट्टी के बर्तन बनाने के लिए)।",
-        marks: 2,
-        rubric: [
-          { key: "चारों औजारों और व्यवसायियों का सही मिलान", marks: "2.0 M" }
+        "category": "व्यवसाय और औजार • मिलान",
+        "q": "बताइए कौन सा औजार किस काम आता है: (क) हल, (ख) स्टेथोस्कोप, (ग) आरी, (घ) चाक।",
+        "ans": "<strong>औजार और संबंधित व्यवसायी:</strong><br>• (क) हल — <strong>किसान</strong> (खेत जोतने के लिए)<br>• (ख) स्टेथोस्कोप — <strong>डॉक्टर</strong> (हृदय की धड़कन सुनने के लिए)<br>• (ग) आरी — <strong>बढ़ई</strong> (लकड़ी काटने के लिए)<br>• (घ) चाक — <strong>कुम्हार</strong> (मिट्टी के बर्तन बनाने के लिए)।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "चारों औजारों और व्यवसायियों का सही मिलान",
+            "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "पाठ से • श्रम की गरिमा",
+        "q": "पाठ 'अपना-अपना काम' में हमारे समाज के विभिन्न सहायकों के श्रम के महत्व को कैसे दर्शाया गया है?",
+        "ans": "<strong>श्रम का महत्व:</strong><br>• समाज में कोई भी काम छोटा या बड़ा नहीं होता। किसान अन्न उगाता है, दर्जी कपड़े सिलता है, कुम्हार बर्तन बनाता है, और सफाईकर्मी गलियों को स्वच्छ रखता है। यदि इनमें से कोई एक भी अपना काम बंद कर दे तो समाज का जीवन रुक जाएगा। इसलिए हमें सभी श्रमिकों का आदर करना चाहिए।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "विविध सहायकों के कार्यों का उल्लेख",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "श्रम की गरिमा और आदर की भावना की व्याख्या",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "सहायक और उनके औजार • मिलान",
+        "q": "हमारे सहायकों को उनके प्रमुख औजारों से सुमेलित कीजिए:<br>• बढ़ई (Carpenter): [चाक, आरी और हथौड़ा, कैंची और सुई-धागा, हल]<br>• दर्जी (Tailor): [चाक, आरी और हथौड़ा, कैंची और सुई-धागा, हल]<br>• कुम्हार (Potter): [चाक, आरी और हथौड़ा, कैंची और सुई-धागा, हल]<br>• किसान (Farmer): [चाक, आरी और हथौड़ा, कैंची और सुई-धागा, हल]",
+        "ans": "<strong>औजारों का मिलान:</strong><br>• <strong>बढ़ई:</strong> आरी और हथौड़ा<br>• <strong>दर्जी:</strong> कैंची और सुई-धागा<br>• <strong>कुम्हार:</strong> चाक (Potter's wheel)<br>• <strong>किसान:</strong> हल (और कुदाल)",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों सहायकों के औजारों का सही मिलान",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "सोचिए और लिखिए • हमारा कर्तव्य",
+        "q": "सफाईकर्मियों के प्रति हमारा क्या कर्तव्य है? दो मुख्य बातें लिखिए।",
+        "ans": "<strong>सफाईकर्मियों के प्रति कर्तव्य:</strong><br>1. हमें सूखा और गीला कचरा अलग-अलग कूड़ेदान में डालना चाहिए और कभी सड़क पर कचरा नहीं फेंकना चाहिए।<br>2. उनसे हमेशा शिष्ट और आदरपूर्वक बात करनी चाहिए।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "कूड़ा प्रबंधन और सम्मानजनक व्यवहार के दो बिंदु",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "वाक्य बनाइए • श्रम शब्दावली",
+        "q": "शब्द 'मेहनत' का प्रयोग करते हुए एक प्रेरक वाक्य बनाइए।",
+        "ans": "<strong>प्रेरक वाक्य:</strong><br>• सच्ची लगन और <strong>मेहनत</strong> से किया गया काम हमेशा सफलता का मीठा फल देता है।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सार्थक और प्रेरक वाक्य निर्माण",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "श्रम की गरिमा (Dignity of Labour)",
-      text: "कक्षा में एक छात्र ने अपने सहपाठी का यह कहकर उपहास उड़ाया कि उसके पिताजी कपड़े सिलने का काम करते हैं।",
-      question: "गांधीजी के 'श्रम की गरिमा' के सिद्धांत के आधार पर आप उस छात्र को क्या सीख देंगे?",
-      answer: "1. ईमानदारी और मेहनत से किया गया कोई भी काम छोटा नहीं होता। दर्जी हमारे लिए सुंदर और सभ्य वस्त्र सिलता है, जो अत्यंत कुशल कला है।<br>2. हमें व्यक्ति के काम से नहीं, बल्कि उसकी मेहनत और सच्चाई से उसका आदर करना चाहिए।",
-      rubric: "1.5M कोई काम छोटा न होने का सिद्धांत + 1.5M साथी के प्रति सम्मान और संवेदनशीलता।"
+    "cbq": {
+      "title": "श्रम की गरिमा (Dignity of Labour)",
+      "text": "कक्षा में एक छात्र ने अपने सहपाठी का यह कहकर उपहास उड़ाया कि उसके पिताजी कपड़े सिलने का काम करते हैं।",
+      "question": "गांधीजी के 'श्रम की गरिमा' के सिद्धांत के आधार पर आप उस छात्र को क्या सीख देंगे?",
+      "answer": "1. ईमानदारी और मेहनत से किया गया कोई भी काम छोटा नहीं होता। दर्जी हमारे लिए सुंदर और सभ्य वस्त्र सिलता है, जो अत्यंत कुशल कला है।<br>2. हमें व्यक्ति के काम से नहीं, बल्कि उसकी मेहनत और सच्चाई से उसका आदर करना चाहिए।",
+      "rubric": "1.5M कोई काम छोटा न होने का सिद्धांत + 1.5M साथी के प्रति सम्मान और संवेदनशीलता।"
     }
   },
   {
-    id: "vn13",
-    num: 13,
-    unit: "इकाई 4: अपना-अपना काम",
-    title: "पेड़ों की अम्मा 'थिमक्का'",
-    subtitle: "पद्मश्री सालुमरदा थिमक्का का प्रेरक जीवन, 8000+ पेड़ लगाना, निःस्वार्थ सेवा और पर्यावरण रक्षा",
-    concepts: [
+    "id": "vn13",
+    "num": 13,
+    "unit": "इकाई 4: अपना-अपना काम",
+    "title": "पेड़ों की अम्मा 'थिमक्का'",
+    "subtitle": "पद्मश्री सालुमरदा थिमक्का का प्रेरक जीवन, 8000+ पेड़ लगाना, निःस्वार्थ सेवा और पर्यावरण रक्षा",
+    "concepts": [
       "कर्नाटक की महान पर्यावरणविद सालुमरदा थिमक्का का जीवन परिचय।",
       "संतान न होने के दुख को प्रकृति प्रेम में बदलना: बरगद के 384+ विशाल वृक्षों को अपनी संतानों की तरह पालना।",
       "कठिन संघर्ष: मीलों दूर से घड़ों में पानी लाकर चिलचिलाती धूप में पौधों को सींचना और कंटीली बाड़ लगाना।",
       "भारत सरकार द्वारा 'पद्मश्री' सम्मान और वैश्विक प्रेरणा।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#f0fdf4" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle">पेड़ों की अम्मा — पद्मश्री सालुमरदा थिमक्का</text>
-      <!-- Highway with giant banyan trees -->
-      <line x1="50" y1="110" x2="530" y2="110" stroke="#64748b" stroke-width="4"/>
-      <!-- Banyan Trees -->
-      <g fill="#15803d">
-        <circle cx="120" cy="65" r="30"/><rect x="115" y="80" width="10" height="30" fill="#78350f"/>
-        <circle cx="240" cy="65" r="30"/><rect x="235" y="80" width="10" height="30" fill="#78350f"/>
-        <circle cx="360" cy="65" r="30"/><rect x="355" y="80" width="10" height="30" fill="#78350f"/>
-        <circle cx="470" cy="65" r="30"/><rect x="465" y="80" width="10" height="30" fill="#78350f"/>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#14532d" text-anchor="middle">"पेड़ ही मेरी संतानें हैं — 100 वर्ष की आयु में भी प्रकृति की अनथक सेवा!"</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#f0fdf4\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#15803d\" text-anchor=\"middle\">पेड़ों की अम्मा — पद्मश्री सालुमरदा थिमक्का</text>\n      <!-- Highway with giant banyan trees -->\n      <line x1=\"50\" y1=\"110\" x2=\"530\" y2=\"110\" stroke=\"#64748b\" stroke-width=\"4\"/>\n      <!-- Banyan Trees -->\n      <g fill=\"#15803d\">\n        <circle cx=\"120\" cy=\"65\" r=\"30\"/><rect x=\"115\" y=\"80\" width=\"10\" height=\"30\" fill=\"#78350f\"/>\n        <circle cx=\"240\" cy=\"65\" r=\"30\"/><rect x=\"235\" y=\"80\" width=\"10\" height=\"30\" fill=\"#78350f\"/>\n        <circle cx=\"360\" cy=\"65\" r=\"30\"/><rect x=\"355\" y=\"80\" width=\"10\" height=\"30\" fill=\"#78350f\"/>\n        <circle cx=\"470\" cy=\"65\" r=\"30\"/><rect x=\"465\" y=\"80\" width=\"10\" height=\"30\" fill=\"#78350f\"/>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"800\" fill=\"#14532d\" text-anchor=\"middle\">\"पेड़ ही मेरी संतानें हैं — 100 वर्ष की आयु में भी प्रकृति की अनथक सेवा!\"</text>\n    </svg>",
+    "questions": [
       {
-        category: "प्रेरक प्रसंग • सोचिए और लिखिए",
-        q: "सालुमरदा थिमक्का को 'पेड़ों की अम्मा' क्यों कहा जाता है? उन्होंने अपने जीवन के दुख को कैसे एक महान कार्य में बदल दिया?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>पेड़ों की अम्मा:</strong> थिमक्का ने अपने पति के साथ मिलकर कुदूर से हुलिकल राजमार्ग पर 4 किलोमीटर की दूरी में 384 से अधिक बरगद के पेड़ लगाए और 8000 से अधिक अन्य पेड़ रोपे। वे इन पेड़ों को अपने बच्चों की तरह मानती और पालती थीं, इसलिए लोग उन्हें आदर से 'सालुमरदा थिमक्का' (पेड़ों की कतार वाली अम्मा) कहते हैं।<br>2. <strong>दुख को शक्ति बनाना:</strong> शादी के कई साल बाद भी संतान न होने पर समाज के तानों को सहने के बजाय, उन्होंने पेड़ों को ही अपनी संतान मानकर उनकी सेवा में अपना पूरा जीवन समर्पित कर दिया।",
-        marks: 3,
-        rubric: [
-          { key: "बरगद के वृक्षों को संतानों की तरह पालने का उल्लेख", marks: "1.5 M" },
-          { key: "निःसंतान दुख को पर्यावरण सेवा में बदलने की प्रेरणा", marks: "1.5 M" }
+        "category": "प्रेरक प्रसंग • सोचिए और लिखिए",
+        "q": "सालुमरदा थिमक्का को 'पेड़ों की अम्मा' क्यों कहा जाता है? उन्होंने अपने जीवन के दुख को कैसे एक महान कार्य में बदल दिया?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>पेड़ों की अम्मा:</strong> थिमक्का ने अपने पति के साथ मिलकर कुदूर से हुलिकल राजमार्ग पर 4 किलोमीटर की दूरी में 384 से अधिक बरगद के पेड़ लगाए और 8000 से अधिक अन्य पेड़ रोपे। वे इन पेड़ों को अपने बच्चों की तरह मानती और पालती थीं, इसलिए लोग उन्हें आदर से 'सालुमरदा थिमक्का' (पेड़ों की कतार वाली अम्मा) कहते हैं।<br>2. <strong>दुख को शक्ति बनाना:</strong> शादी के कई साल बाद भी संतान न होने पर समाज के तानों को सहने के बजाय, उन्होंने पेड़ों को ही अपनी संतान मानकर उनकी सेवा में अपना पूरा जीवन समर्पित कर दिया।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "बरगद के वृक्षों को संतानों की तरह पालने का उल्लेख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "निःसंतान दुख को पर्यावरण सेवा में बदलने की प्रेरणा",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "कठिन परिश्रम और समर्पण",
-        q: "थिमक्का और उनके पति पौधों को पानी देने के लिए क्या-क्या कठिनाइयाँ उठाते थे?",
-        ans: "<strong>उत्तर:</strong><br>उनके गाँव में पानी की बहुत कमी थी। वे दोनों सुबह-सवेरे उठकर मीलों दूर से मिट्टी के घड़ों में पानी भरकर लाते थे। धूप से बचाने के लिए कंटीली झाड़ियों की बाड़ लगाते और कई किलोमीटर पैदल चलकर एक-एक पौधे को सींचते थे।",
-        marks: 2,
-        rubric: [
-          { key: "घड़ों में दूर से पानी लाने और बाड़ लगाने का विवरण", marks: "2.0 M" }
+        "category": "कठिन परिश्रम और समर्पण",
+        "q": "थिमक्का और उनके पति पौधों को पानी देने के लिए क्या-क्या कठिनाइयाँ उठाते थे?",
+        "ans": "<strong>उत्तर:</strong><br>उनके गाँव में पानी की बहुत कमी थी। वे दोनों सुबह-सवेरे उठकर मीलों दूर से मिट्टी के घड़ों में पानी भरकर लाते थे। धूप से बचाने के लिए कंटीली झाड़ियों की बाड़ लगाते और कई किलोमीटर पैदल चलकर एक-एक पौधे को सींचते थे।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "घड़ों में दूर से पानी लाने और बाड़ लगाने का विवरण",
+            "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "प्रेरणादायक जीवन • सालुमरदा थिमक्का",
+        "q": "सालुमरदा थिमक्का कौन हैं, और उन्हें 'पेड़ों की अम्मा' क्यों कहा जाता है?",
+        "ans": "<strong>सालुमरदा थिमक्का का परिचय:</strong><br>• सालुमरदा थिमक्का कर्नाटक की एक साधारण ग्रामीण महिला हैं, जिन्हें संतान न होने पर उन्होंने और उनके पति ने पेड़ों को ही अपनी संतान मानकर पाला।<br>• उन्होंने अपने गाँव के 4 किलोमीटर लंबे रास्ते के दोनों ओर <strong>385 से अधिक बरगद के पेड़</strong> लगाए और कई वर्षों तक दूर-दूर से पानी लाकर उनकी सींचाई की। पर्यावरण के प्रति इस असीम वात्सल्य के कारण पूरा देश उन्हें आदर से 'पेड़ों की अम्मा' (वृक्ष माता) कहता है। भारत सरकार ने उन्हें 'पद्मश्री' से सम्मानित किया।",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "कर्नाटक और 385 बरगद के पेड़ों का उल्लेख",
+            "marks": "2.0 अंक"
+          },
+          {
+            "key": "पेड़ों को संतानवत पालने और 'पद्मश्री' का उल्लेख",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "बरगद का पेड़ • वैज्ञानिक व सांस्कृतिक महत्व",
+        "q": "बरगद के पेड़ की क्या विशेषताएं हैं? दो बिंदु लिखिए।",
+        "ans": "<strong>बरगद की विशेषताएं:</strong><br>1. बरगद भारत का <strong>राष्ट्रीय वृक्ष</strong> है। इसकी शाखाओं से जटाएं (वायवीय जड़ें) निकलकर जमीन में धँस जाती हैं और विशाल तने को सहारा देती हैं।<br>2. यह सैकड़ों वर्षों तक जीवित रहता है और सैकड़ों पक्षियों, बंदरों और कीटों को आश्रय व भोजन देता है।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "राष्ट्रीय वृक्ष, जटाएं और दीर्घायु की दो विशेषताएं",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "शब्द-ज्ञान • 'सालुमरदा' का अर्थ",
+        "q": "कन्नड़ भाषा में 'सालुमरदा' शब्द का क्या अर्थ है?",
+        "ans": "<strong>शब्दार्थ:</strong><br>• कन्नड़ भाषा में 'सालुमरदा' का अर्थ होता है—<strong>'पेड़ों की कतार' (वृक्षों की पंक्ति)</strong>। क्योंकि थिमक्का ने सड़क के दोनों किनारों पर कतारबद्ध तरीके से बरगद के पेड़ लगाए थे, इसलिए उनका नाम 'सालुमरदा थिमक्का' पड़ा।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "'पेड़ों की कतार' का सही अर्थ और नामकरण का कारण",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "संदेश • एक बच्चा एक पेड़",
+        "q": "थिमक्का के जीवन से आज के विद्यार्थियों को क्या संकल्प लेना चाहिए?",
+        "ans": "<strong>संकल्प:</strong><br>• प्रत्येक विद्यार्थी को अपने जीवन में कम से कम एक पौधा अवश्य लगाना चाहिए और केवल लगाना ही नहीं, बल्कि एक बच्चे की तरह उसकी नियमित देखभाल और सींचाई करनी चाहिए।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "वृक्षारोपण और सतत देखभाल का संकल्प",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "एक व्यक्ति का असाधारण योगदान",
-      text: "अकेली अशिक्षित और निर्धन ग्रामीण महिला होते हुए भी थिमक्का ने पूरे राजमार्ग को एक विशाल हरित छतरी में बदल दिया।",
-      question: "थिमक्का की जीवन गाथा से यह कैसे सिद्ध होता है कि प्रकृति सेवा के लिए धन और डिग्री नहीं, केवल सच्ची लगन चाहिए?",
-      answer: "1. थिमक्का के पास न बड़ा बैंक खाता था और न ही कोई औपचारिक शिक्षा, फिर भी अपने दृढ़ संकल्प और पसीने से उन्होंने वह कर दिखाया जो बड़े-बड़े संगठन नहीं कर पाते।<br>2. यह हमें सिखाता है कि यदि हमारे मन में निस्वार्थ सेवा भाव हो, तो एक अकेला व्यक्ति भी धरती को स्वर्ग बना सकता है।",
-      rubric: "1.5M लगन व दृढ़ संकल्प का महत्व + 1.5M निस्वार्थ सेवा भाव की प्रेरणा।"
+    "cbq": {
+      "title": "एक व्यक्ति का असाधारण योगदान",
+      "text": "अकेली अशिक्षित और निर्धन ग्रामीण महिला होते हुए भी थिमक्का ने पूरे राजमार्ग को एक विशाल हरित छतरी में बदल दिया।",
+      "question": "थिमक्का की जीवन गाथा से यह कैसे सिद्ध होता है कि प्रकृति सेवा के लिए धन और डिग्री नहीं, केवल सच्ची लगन चाहिए?",
+      "answer": "1. थिमक्का के पास न बड़ा बैंक खाता था और न ही कोई औपचारिक शिक्षा, फिर भी अपने दृढ़ संकल्प और पसीने से उन्होंने वह कर दिखाया जो बड़े-बड़े संगठन नहीं कर पाते।<br>2. यह हमें सिखाता है कि यदि हमारे मन में निस्वार्थ सेवा भाव हो, तो एक अकेला व्यक्ति भी धरती को स्वर्ग बना सकता है।",
+      "rubric": "1.5M लगन व दृढ़ संकल्प का महत्व + 1.5M निस्वार्थ सेवा भाव की प्रेरणा।"
     }
   },
   {
-    id: "vn14",
-    num: 14,
-    unit: "इकाई 4: अपना-अपना काम",
-    title: "किसान की होशियारी",
-    subtitle: "सूझबूझ की लोककथा, भालू और किसान का समझौता, जमीन के ऊपर और नीचे की फसल",
-    concepts: [
+    "id": "vn14",
+    "num": 14,
+    "unit": "इकाई 4: अपना-अपना काम",
+    "title": "किसान की होशियारी",
+    "subtitle": "सूझबूझ की लोककथा, भालू और किसान का समझौता, जमीन के ऊपर और नीचे की फसल",
+    "concepts": [
       "किसान की मेहनत बनाम भालू की धूर्तता और आलस्य।",
       "पहला समझौता: भालू ने जमीन के ऊपर का हिस्सा माँगा → किसान ने आलू बोए (किसान को आलू मिले, भालू को पत्ते)।",
       "दूसरा समझौता: भालू ने जमीन के नीचे का हिस्सा माँगा → किसान ने गेहूँ बोए (किसान को बालियाँ मिलीं, भालू को जड़ें)।",
       "तीसरा समझौता: भालू ने ऊपर और नीचे दोनों माँगा → किसान ने गन्ना बोया (बीच का मीठा रस किसान ले गया)।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fffbeb" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">किसान की होशियारी — सूझबूझ से भालू को मात</text>
-      <!-- Soil ground -->
-      <line x1="60" y1="95" x2="520" y2="95" stroke="#78350f" stroke-width="4"/>
-      <!-- Potato harvest -->
-      <g transform="translate(140, 55)">
-        <path d="M20,40 L15,10 L25,10 Z" fill="#22c55e"/>
-        <ellipse cx="20" cy="55" rx="14" ry="10" fill="#d97706"/>
-        <text x="20" y="80" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#78350f" text-anchor="middle">आलू (जमीन के नीचे)</text>
-      </g>
-      <!-- Wheat harvest -->
-      <g transform="translate(380, 50)">
-        <line x1="20" y1="45" x2="20" y2="10" stroke="#eab308" stroke-width="3"/>
-        <ellipse cx="20" cy="12" rx="6" ry="12" fill="#fde047"/>
-        <text x="20" y="85" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#854d0e" text-anchor="middle">गेहूँ (जमीन के ऊपर)</text>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">सच्ची बुद्धि और मेहनत के आगे बलवान की धूर्तता भी हार जाती है!</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">किसान की होशियारी — सूझबूझ से भालू को मात</text>\n      <!-- Soil ground -->\n      <line x1=\"60\" y1=\"95\" x2=\"520\" y2=\"95\" stroke=\"#78350f\" stroke-width=\"4\"/>\n      <!-- Potato harvest -->\n      <g transform=\"translate(140, 55)\">\n        <path d=\"M20,40 L15,10 L25,10 Z\" fill=\"#22c55e\"/>\n        <ellipse cx=\"20\" cy=\"55\" rx=\"14\" ry=\"10\" fill=\"#d97706\"/>\n        <text x=\"20\" y=\"80\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#78350f\" text-anchor=\"middle\">आलू (जमीन के नीचे)</text>\n      </g>\n      <!-- Wheat harvest -->\n      <g transform=\"translate(380, 50)\">\n        <line x1=\"20\" y1=\"45\" x2=\"20\" y2=\"10\" stroke=\"#eab308\" stroke-width=\"3\"/>\n        <ellipse cx=\"20\" cy=\"12\" rx=\"6\" ry=\"12\" fill=\"#fde047\"/>\n        <text x=\"20\" y=\"85\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#854d0e\" text-anchor=\"middle\">गेहूँ (जमीन के ऊपर)</text>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#b45309\" text-anchor=\"middle\">सच्ची बुद्धि और मेहनत के आगे बलवान की धूर्तता भी हार जाती है!</text>\n    </svg>",
+    "questions": [
       {
-        category: "कहानी बोध • सोचिए और लिखिए",
-        q: "किसान ने भालू को मात देने के लिए किन-किन फसलों का सही चुनाव किया? भालू को हर बार निराशा क्यों हाथ लगी?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>फसलों का चुनाव:</strong><br>• जब भालू ने ऊपर का भाग माँगा, किसान ने <strong>आलू</strong> बोए (खाने योग्य आलू जमीन के नीचे होते हैं)।<br>• जब भालू ने नीचे का भाग माँगा, किसान ने <strong>गेहूँ</strong> बोया (गेहूँ के दाने ऊपर होते हैं)।<br>• जब भालू ने ऊपर और नीचे दोनों माँगा, किसान ने <strong>गन्ना</strong> बोया (गन्ने का मीठा तना बीच में होता है)।<br>2. <strong>भालू की निराशा:</strong> भालू बिना मेहनत किए मुफ्त में फसल हड़पना चाहता था, लेकिन किसान की कृषि सूझबूझ ने उसे हर बार खाली हाथ कर दिया।",
-        marks: 3,
-        rubric: [
-          { key: "तीनों फसलों (आलू, गेहूँ, गन्ना) का सही संदर्भ", marks: "1.5 M" },
-          { key: "किसान की बुद्धिमानी और भालू के आलस्य का विश्लेषण", marks: "1.5 M" }
+        "category": "कहानी बोध • सोचिए और लिखिए",
+        "q": "किसान ने भालू को मात देने के लिए किन-किन फसलों का सही चुनाव किया? भालू को हर बार निराशा क्यों हाथ लगी?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>फसलों का चुनाव:</strong><br>• जब भालू ने ऊपर का भाग माँगा, किसान ने <strong>आलू</strong> बोए (खाने योग्य आलू जमीन के नीचे होते हैं)।<br>• जब भालू ने नीचे का भाग माँगा, किसान ने <strong>गेहूँ</strong> बोया (गेहूँ के दाने ऊपर होते हैं)।<br>• जब भालू ने ऊपर और नीचे दोनों माँगा, किसान ने <strong>गन्ना</strong> बोया (गन्ने का मीठा तना बीच में होता है)।<br>2. <strong>भालू की निराशा:</strong> भालू बिना मेहनत किए मुफ्त में फसल हड़पना चाहता था, लेकिन किसान की कृषि सूझबूझ ने उसे हर बार खाली हाथ कर दिया।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों फसलों (आलू, गेहूँ, गन्ना) का सही संदर्भ",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "किसान की बुद्धिमानी और भालू के आलस्य का विश्लेषण",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "कृषि विज्ञान और भाषा",
-        q: "जमीन के नीचे उगने वाली किन्हीं तीन सब्जियों और जमीन के ऊपर फलने वाली तीन सब्जियों के नाम लिखिए।",
-        ans: "<strong>सब्जियों का वर्गीकरण:</strong><br>• <strong>जमीन के नीचे:</strong> आलू, गाजर, मूली (या शलजम)।<br>• <strong>जमीन के ऊपर:</strong> टमाटर, मटर, बैंगन (या भिंडी)।",
-        marks: 2,
-        rubric: [
-          { key: "जमीन के नीचे की 3 सही सब्जियां", marks: "1.0 M" },
-          { key: "जमीन के ऊपर की 3 सही सब्जियां", marks: "1.0 M" }
+        "category": "कृषि विज्ञान और भाषा",
+        "q": "जमीन के नीचे उगने वाली किन्हीं तीन सब्जियों और जमीन के ऊपर फलने वाली तीन सब्जियों के नाम लिखिए।",
+        "ans": "<strong>सब्जियों का वर्गीकरण:</strong><br>• <strong>जमीन के नीचे:</strong> आलू, गाजर, मूली (या शलजम)।<br>• <strong>जमीन के ऊपर:</strong> टमाटर, मटर, बैंगन (या भिंडी)।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "जमीन के नीचे की 3 सही सब्जियां",
+            "marks": "1.0 M"
+          },
+          {
+            "key": "जमीन के ऊपर की 3 सही सब्जियां",
+            "marks": "1.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कहानी से • किसान की होशियारी",
+        "q": "कहानी 'किसान की होशियारी' में किसान ने भालू से अपनी फसल की रक्षा के लिए क्या सूझबूझ दिखाई?",
+        "ans": "<strong>किसान की सूझबूझ:</strong><br>• जब भालू ने खेत में आकर हिस्सा माँगा, तो पहली बार किसान ने आलू बोए और भालू से कहा—'जमीन के ऊपर का भाग तुम्हारा और नीचे का मेरा।' भालू को सिर्फ बेकार पत्ते मिले और किसान को सारे आलू मिल गए।<br>• अगली बार भालू ने जमीन के नीचे का हिस्सा माँगा, तो किसान ने गेहूँ बो दिया। इस बार किसान को ऊपर की बालियाँ (दाना) मिलीं और भालू को नीचे की बेकाम जड़ें मिलीं। इस प्रकार अपनी अक्ल से किसान ने दोनों बार भालू को मात दी।",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "आलू की फसल और ऊपर-नीचे के बँटवारे का प्रसंग",
+            "marks": "2.0 अंक"
+          },
+          {
+            "key": "गेहूँ की फसल और चतुर युक्ति का स्पष्ट वर्णन",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "फसलों का वर्गीकरण • ऊपर और नीचे",
+        "q": "नीचे दी गई सब्जियों को 'जमीन के नीचे उगने वाली' और 'जमीन के ऊपर उगने वाली' में बाँटिए:<br>गाजर, टमाटर, मूली, बैंगन, आलू, भिंडी।",
+        "ans": "<strong>वर्गीकरण:</strong><br>• <strong>जमीन के नीचे उगने वाली:</strong> गाजर, मूली, आलू (जड़ें / कंद)<br>• <strong>जमीन के ऊपर उगने वाली:</strong> टमाटर, बैंगन, भिंडी (फल)",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "जमीन के नीचे की तीनों सही सब्जियां",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "जमीन के ऊपर की तीनों सही सब्जियां",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "कहानी की सीख • बुद्धि बनाम बल",
+        "q": "भालू बहुत ताकतवर था फिर भी वह किसान से हार गया। क्यों?",
+        "ans": "<strong>शिक्षा:</strong><br>• शारीरिक बल से बुद्धि हमेशा श्रेष्ठ होती है ('अक्ल बड़ी या भैंस')। भालू के पास केवल शरीर का बल था लेकिन किसान के पास बुद्धि और योजना थी।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "शारीरिक शक्ति पर बौद्धिक क्षमता की विजय स्पष्ट करना",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "विलोम शब्द • उल्टे अर्थ",
+        "q": "विलोम शब्द लिखिए:<br>(क) ऊपर $\\times$ _____<br>(ख) फायदा $\\times$ _____",
+        "ans": "<strong>विलोम शब्द:</strong><br>• (क) ऊपर $\\times$ <strong>नीचे</strong><br>• (ख) फायदा $\\times$ <strong>नुकसान</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "दोनों शुद्ध विलोम शब्द",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "बुद्धि और बाहुबल की तुलना",
-      text: "भालू ताकत में किसान से कई गुना बलवान था और उसे डराकर उसका सब कुछ छीनना चाहता था।",
-      question: "यह लोककथा हमें क्या सिखाती है कि जब कोई ताकतवर व्यक्ति हमें डराने का प्रयास करे, तो हमें क्या करना चाहिए?",
-      answer: "1. ताकतवर के सामने भयभीत होने के बजाय शांत रहकर अपनी बुद्धि और सूझबूझ का प्रयोग करना चाहिए।<br>2. बाहुबल केवल डरा सकता है, लेकिन धैर्य और विवेकपूर्ण रणनीति से बड़ी से बड़ी विपत्ति को टाला जा सकता है।",
-      rubric: "1.5M भयमुक्त होकर शांत रहने की सीख + 1.5M बाहुबल पर विवेक की विजय।"
+    "cbq": {
+      "title": "बुद्धि और बाहुबल की तुलना",
+      "text": "भालू ताकत में किसान से कई गुना बलवान था और उसे डराकर उसका सब कुछ छीनना चाहता था।",
+      "question": "यह लोककथा हमें क्या सिखाती है कि जब कोई ताकतवर व्यक्ति हमें डराने का प्रयास करे, तो हमें क्या करना चाहिए?",
+      "answer": "1. ताकतवर के सामने भयभीत होने के बजाय शांत रहकर अपनी बुद्धि और सूझबूझ का प्रयोग करना चाहिए।<br>2. बाहुबल केवल डरा सकता है, लेकिन धैर्य और विवेकपूर्ण रणनीति से बड़ी से बड़ी विपत्ति को टाला जा सकता है।",
+      "rubric": "1.5M भयमुक्त होकर शांत रहने की सीख + 1.5M बाहुबल पर विवेक की विजय।"
     }
   },
-
-  // -------------------------------------------------------------------------
-  // इकाई 5: हमारा देश
-  // -------------------------------------------------------------------------
   {
-    id: "vn15",
-    num: 15,
-    unit: "इकाई 5: हमारा देश",
-    title: "भारत",
-    subtitle: "देशभक्ति कविता, हिमालय का मुकुट, गंगा-यमुना की धाराएं, विविधता में एकता और भारत माता की वंदना",
-    concepts: [
+    "id": "vn15",
+    "num": 15,
+    "unit": "इकाई 5: हमारा देश",
+    "title": "भारत",
+    "subtitle": "देशभक्ति कविता, हिमालय का मुकुट, गंगा-यमुना की धाराएं, विविधता में एकता और भारत माता की वंदना",
+    "concepts": [
       "भारत का प्राकृतिक सौंदर्य: उत्तर में प्रहरी जैसा अडिग हिमालय, दक्षिण में हिन्द महासागर के चरण पखारते जल।",
       "पवित्र नदियाँ: गंगा, यमुना, ब्रह्मपुत्र, कृष्णा और गोदावरी का अमृततुल्य जल।",
       "विविधता में एकता: विभिन्न भाषाएँ, पहनावे और धर्म होते हुए भी हम सब एक हैं।",
       "देश सेवा, सत्य और अहिंसा के मार्ग पर चलने का पावन संकल्प।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#eff6ff" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e40af" text-anchor="middle">भारत — जय जननी, जय पावन भारत देश महान!</text>
-      <!-- Tiranga Flag -->
-      <g transform="translate(240, 48)">
-        <line x1="10" y1="0" x2="10" y2="80" stroke="#334155" stroke-width="3"/>
-        <rect x="10" y="0" width="80" height="15" fill="#ff9933"/>
-        <rect x="10" y="15" width="80" height="15" fill="#ffffff"/>
-        <rect x="10" y="30" width="80" height="15" fill="#138808"/>
-        <circle cx="50" cy="22.5" r="6" fill="none" stroke="#000088" stroke-width="1.2"/>
-      </g>
-      <text x="140" y="85" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">🏔️ मस्तक हिमालय</text>
-      <text x="440" y="85" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">🌊 चरण सिंधु</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#1e40af" text-anchor="middle">"उत्तर में रखवाला जिसके, खड़ा हिमालय मस्तक ताने!"</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">भारत — जय जननी, जय पावन भारत देश महान!</text>\n      <!-- Tiranga Flag -->\n      <g transform=\"translate(240, 48)\">\n        <line x1=\"10\" y1=\"0\" x2=\"10\" y2=\"80\" stroke=\"#334155\" stroke-width=\"3\"/>\n        <rect x=\"10\" y=\"0\" width=\"80\" height=\"15\" fill=\"#ff9933\"/>\n        <rect x=\"10\" y=\"15\" width=\"80\" height=\"15\" fill=\"#ffffff\"/>\n        <rect x=\"10\" y=\"30\" width=\"80\" height=\"15\" fill=\"#138808\"/>\n        <circle cx=\"50\" cy=\"22.5\" r=\"6\" fill=\"none\" stroke=\"#000088\" stroke-width=\"1.2\"/>\n      </g>\n      <text x=\"140\" y=\"85\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#1e3a8a\">🏔️ मस्तक हिमालय</text>\n      <text x=\"440\" y=\"85\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#1e3a8a\">🌊 चरण सिंधु</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">\"उत्तर में रखवाला जिसके, खड़ा हिमालय मस्तक ताने!\"</text>\n    </svg>",
+    "questions": [
       {
-        category: "कविता बोध • सोचिए और लिखिए",
-        q: "कविता में भारत के मुकुट और चरणों की तुलना किससे की गई है? भारत को 'सोने की चिड़िया' क्यों कहा जाता था?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>तुलना:</strong> कविता में भारत के सिर के मुकुट की तुलना <strong>उत्तर में स्थित बर्फ से ढके हिमालय पर्वत</strong> से और चरणों की तुलना <strong>दक्षिण में हिलोरे लेते हिन्द महासागर</strong> से की गई है।<br>2. <strong>सोने की चिड़िया:</strong> प्राचीन काल में भारत ज्ञान, विज्ञान, धन-धान्य, मसालों, रेशम और शांति में इतना समृद्ध था कि इसे पूरे विश्व में 'सोने की चिड़िया' के नाम से जाना जाता था।",
-        marks: 3,
-        rubric: [
-          { key: "हिमालय मुकुट और हिन्द महासागर चरणों का सही उल्लेख", marks: "1.5 M" },
-          { key: "भारत की ऐतिहासिक समृद्धि की व्याख्या", marks: "1.5 M" }
+        "category": "कविता बोध • सोचिए और लिखिए",
+        "q": "कविता में भारत के मुकुट और चरणों की तुलना किससे की गई है? भारत को 'सोने की चिड़िया' क्यों कहा जाता था?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>तुलना:</strong> कविता में भारत के सिर के मुकुट की तुलना <strong>उत्तर में स्थित बर्फ से ढके हिमालय पर्वत</strong> से और चरणों की तुलना <strong>दक्षिण में हिलोरे लेते हिन्द महासागर</strong> से की गई है।<br>2. <strong>सोने की चिड़िया:</strong> प्राचीन काल में भारत ज्ञान, विज्ञान, धन-धान्य, मसालों, रेशम और शांति में इतना समृद्ध था कि इसे पूरे विश्व में 'सोने की चिड़िया' के नाम से जाना जाता था।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "हिमालय मुकुट और हिन्द महासागर चरणों का सही उल्लेख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "भारत की ऐतिहासिक समृद्धि की व्याख्या",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "राष्ट्रीय प्रतीक • सामान्य ज्ञान",
-        q: "हमारे देश के राष्ट्रीय प्रतीकों के नाम लिखिए: (क) राष्ट्रीय पक्षी, (ख) राष्ट्रीय पशु, (ग) राष्ट्रीय पुष्प, (घ) राष्ट्रीय ध्वज।",
-        ans: "<strong>राष्ट्रीय प्रतीक:</strong><br>• (क) राष्ट्रीय पक्षी: <strong>मोर</strong><br>• (ख) राष्ट्रीय पशु: <strong>बाघ</strong><br>• (ग) राष्ट्रीय पुष्प: <strong>कमल</strong><br>• (घ) राष्ट्रीय ध्वज: <strong>तिरंगा</strong>।",
-        marks: 2,
-        rubric: [
-          { key: "चारों राष्ट्रीय प्रतीकों के सही नाम (0.5M प्रत्येक)", marks: "2.0 M" }
+        "category": "राष्ट्रीय प्रतीक • सामान्य ज्ञान",
+        "q": "हमारे देश के राष्ट्रीय प्रतीकों के नाम लिखिए: (क) राष्ट्रीय पक्षी, (ख) राष्ट्रीय पशु, (ग) राष्ट्रीय पुष्प, (घ) राष्ट्रीय ध्वज।",
+        "ans": "<strong>राष्ट्रीय प्रतीक:</strong><br>• (क) राष्ट्रीय पक्षी: <strong>मोर</strong><br>• (ख) राष्ट्रीय पशु: <strong>बाघ</strong><br>• (ग) राष्ट्रीय पुष्प: <strong>कमल</strong><br>• (घ) राष्ट्रीय ध्वज: <strong>तिरंगा</strong>।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "चारों राष्ट्रीय प्रतीकों के सही नाम (0.5M प्रत्येक)",
+            "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "राष्ट्रभक्ति कविता • भारत देश",
+        "q": "कविता 'भारत' में हमारे देश की किन प्राकृतिक विशेषताओं का गुणगान किया गया है?",
+        "ans": "<strong>प्राकृतिक विशेषताएं:</strong><br>1. उत्तर में मुकुट की तरह खड़ा विशाल और बर्फ से ढका <strong>हिमालय पर्वत</strong>।<br>2. पवित्र और अमृतमय जल बहाने वाली <strong>गंगा, यमुना और नर्मदा नदियाँ</strong>।<br>3. दक्षिण में चरण पखारता अगाध <strong>हिंद महासागर</strong> और हरे-भरे लहलहाते खेत।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "हिमालय, नदियाँ और हिंद महासागर का सटीक उल्लेख",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "राष्ट्रीय प्रतीक • सामान्य ज्ञान",
+        "q": "भारत के प्रमुख राष्ट्रीय प्रतीकों के नाम लिखिए:<br>(क) राष्ट्रीय ध्वज<br>(ख) राष्ट्रीय पक्षी<br>(ग) राष्ट्रीय पशु<br>(घ) राष्ट्रीय पुष्प",
+        "ans": "<strong>भारत के राष्ट्रीय प्रतीक:</strong><br>• (क) राष्ट्रीय ध्वज: <strong>तिरंगा (Tricolour)</strong><br>• (ख) राष्ट्रीय पक्षी: <strong>मोर (Peacock)</strong><br>• (ग) राष्ट्रीय पशु: <strong>बाघ (Royal Bengal Tiger)</strong><br>• (घ) राष्ट्रीय पुष्प: <strong>कमल (Lotus)</strong>",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों सही राष्ट्रीय प्रतीकों के नाम",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "तिरंगे के तीन रंग • अर्थ",
+        "q": "हमारे राष्ट्रीय ध्वज (तिरंगे) के तीनों रंग हमें क्या संदेश देते हैं?",
+        "ans": "<strong>तिरंगे के रंगों का संदेश:</strong><br>1. <strong>केसरिया (शीर्ष):</strong> साहस, त्याग और शौर्य का प्रतीक है।<br>2. <strong>सफेद (मध्य):</strong> शांति, सत्य और पवित्रता का प्रतीक है।<br>3. <strong>हरा (निचला):</strong> हरियाली, संपन्नता और समृद्धि का प्रतीक है।<br><em>(नीला चक्र: निरंतर प्रगति और धर्म का प्रतीक है)।</em>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "केसरिया, सफेद और हरे तीनों रंगों का सही प्रतीकात्मक अर्थ",
+            "marks": "3.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "देशभक्ति संकल्प • एक नागरिक के रूप में",
+        "q": "अपने देश को स्वच्छ और सुंदर बनाने के लिए आप क्या करेंगे?",
+        "ans": "<strong>नागरिक कर्तव्य:</strong><br>• मैं कभी सार्वजनिक स्थलों पर गंदगी नहीं फैलाऊँगा, अधिक से अधिक पेड़ लगाऊँगा और राष्ट्रीय संपत्ति (जैसे बसें, पार्क) की रक्षा करूँगा।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "स्वच्छता और नागरिक दायित्व के दो व्यावहारिक बिंदु",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "देशभक्ति का सच्चा अर्थ",
-      text: "कक्षा के एक छात्र ने कहा, 'देशभक्ति केवल सीमा पर जाकर बंदूक चलाने में है, स्कूल के बच्चों के लिए देशभक्ति नहीं होती।'",
-      question: "कक्षा 3 के एक छात्र के रूप में आप अपने विद्यालय और समाज में देशभक्ति किन छोटे-छोटे कार्यों से दिखा सकते हैं?",
-      answer: "1. सार्वजनिक संपत्ति (स्कूल डेस्क, पार्क, बस) को नुकसान न पहुँचाना और बिजली-पानी की बचत करना।<br>2. अपने आस-पास सफाई रखना, राष्ट्रध्वज का आदर करना, मन लगाकर पढ़ाई करना और सभी देशवासियों से प्रेम से रहना ही सच्ची देशभक्ति है।",
-      rubric: "1.5M दैनिक जीवन में देशभक्ति के व्यावहारिक कार्य + 1.5M नागरिक कर्तव्यों का बोध।"
+    "cbq": {
+      "title": "देशभक्ति का सच्चा अर्थ",
+      "text": "कक्षा के एक छात्र ने कहा, 'देशभक्ति केवल सीमा पर जाकर बंदूक चलाने में है, स्कूल के बच्चों के लिए देशभक्ति नहीं होती।'",
+      "question": "कक्षा 3 के एक छात्र के रूप में आप अपने विद्यालय और समाज में देशभक्ति किन छोटे-छोटे कार्यों से दिखा सकते हैं?",
+      "answer": "1. सार्वजनिक संपत्ति (स्कूल डेस्क, पार्क, बस) को नुकसान न पहुँचाना और बिजली-पानी की बचत करना।<br>2. अपने आस-पास सफाई रखना, राष्ट्रध्वज का आदर करना, मन लगाकर पढ़ाई करना और सभी देशवासियों से प्रेम से रहना ही सच्ची देशभक्ति है।",
+      "rubric": "1.5M दैनिक जीवन में देशभक्ति के व्यावहारिक कार्य + 1.5M नागरिक कर्तव्यों का बोध।"
     }
   },
   {
-    id: "vn16",
-    num: 16,
-    unit: "इकाई 5: हमारा देश",
-    title: "चंद्रयान (संवाद)",
-    subtitle: "अंतरिक्ष विज्ञान, चंद्रयान-3 की ऐतिहासिक लैंडिंग, इसरो वैज्ञानिकों का गौरव और बाल संवाद",
-    concepts: [
+    "id": "vn16",
+    "num": 16,
+    "unit": "इकाई 5: हमारा देश",
+    "title": "चंद्रयान (संवाद)",
+    "subtitle": "अंतरिक्ष विज्ञान, चंद्रयान-3 की ऐतिहासिक लैंडिंग, इसरो वैज्ञानिकों का गौरव और बाल संवाद",
+    "concepts": [
       "संवाद शैली: दादी, पोते आरव और दीदी के बीच चंद्रमा और भारत के चंद्रयान मिशन पर रोचक चर्चा।",
       "शिव शक्ति पॉइंट: चंद्रमा के दक्षिणी ध्रुव पर विक्रम लैंडर का सुरक्षित उतरना।",
       "प्रज्ञान रोवर: छह पहियों वाले रोवर द्वारा चाँद की सतह पर अशोक स्तंभ और इसरो का निशान छोड़ना।",
       "वैज्ञानिक दृष्टिकोण और अंधविश्वासों से परे विज्ञान की शक्ति।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#090d16" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#38bdf8" text-anchor="middle">चंद्रयान — चंद्रमा के दक्षिणी ध्रुव पर तिरंगे का परचम</text>
-      <!-- Moon surface -->
-      <path d="M0,125 Q290,105 580,125 L580,160 L0,160 Z" fill="#334155"/>
-      <!-- Vikram Lander -->
-      <rect x="260" y="60" width="60" height="45" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
-      <!-- Legs -->
-      <line x1="260" y1="105" x2="245" y2="120" stroke="#94a3b8" stroke-width="2"/>
-      <line x1="320" y1="105" x2="335" y2="120" stroke="#94a3b8" stroke-width="2"/>
-      <!-- Indian Flag -->
-      <rect x="275" y="68" width="30" height="6" fill="#ff9933"/>
-      <rect x="275" y="74" width="30" height="6" fill="#ffffff"/>
-      <rect x="275" y="80" width="30" height="6" fill="#138808"/>
-      <!-- Pragyan Rover -->
-      <rect x="360" y="110" width="30" height="15" rx="3" fill="#f59e0b"/>
-      <circle cx="365" cy="126" r="3" fill="#0f172a"/><circle cx="375" cy="126" r="3" fill="#0f172a"/><circle cx="385" cy="126" r="3" fill="#0f172a"/>
-      <text x="375" y="103" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#fbbf24" text-anchor="middle">प्रज्ञान</text>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle">भारत चंद्रमा के दक्षिणी ध्रुव पर पहुँचने वाला विश्व का पहला देश बना!</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#090d16\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#38bdf8\" text-anchor=\"middle\">चंद्रयान — चंद्रमा के दक्षिणी ध्रुव पर तिरंगे का परचम</text>\n      <!-- Moon surface -->\n      <path d=\"M0,125 Q290,105 580,125 L580,160 L0,160 Z\" fill=\"#334155\"/>\n      <!-- Vikram Lander -->\n      <rect x=\"260\" y=\"60\" width=\"60\" height=\"45\" rx=\"4\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1.5\"/>\n      <!-- Legs -->\n      <line x1=\"260\" y1=\"105\" x2=\"245\" y2=\"120\" stroke=\"#94a3b8\" stroke-width=\"2\"/>\n      <line x1=\"320\" y1=\"105\" x2=\"335\" y2=\"120\" stroke=\"#94a3b8\" stroke-width=\"2\"/>\n      <!-- Indian Flag -->\n      <rect x=\"275\" y=\"68\" width=\"30\" height=\"6\" fill=\"#ff9933\"/>\n      <rect x=\"275\" y=\"74\" width=\"30\" height=\"6\" fill=\"#ffffff\"/>\n      <rect x=\"275\" y=\"80\" width=\"30\" height=\"6\" fill=\"#138808\"/>\n      <!-- Pragyan Rover -->\n      <rect x=\"360\" y=\"110\" width=\"30\" height=\"15\" rx=\"3\" fill=\"#f59e0b\"/>\n      <circle cx=\"365\" cy=\"126\" r=\"3\" fill=\"#0f172a\"/><circle cx=\"375\" cy=\"126\" r=\"3\" fill=\"#0f172a\"/><circle cx=\"385\" cy=\"126\" r=\"3\" fill=\"#0f172a\"/>\n      <text x=\"375\" y=\"103\" font-family=\"system-ui, sans-serif\" font-size=\"8\" font-weight=\"800\" fill=\"#fbbf24\" text-anchor=\"middle\">प्रज्ञान</text>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#38bdf8\" text-anchor=\"middle\">भारत चंद्रमा के दक्षिणी ध्रुव पर पहुँचने वाला विश्व का पहला देश बना!</text>\n    </svg>",
+    "questions": [
       {
-        category: "पाठ बोध • सोचिए और लिखिए",
-        q: "चंद्रयान-3 मिशन में 'विक्रम' और 'प्रज्ञान' क्या थे? चंद्रयान की सफलता से पूरे विश्व में भारत का मान कैसे बढ़ा?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>विक्रम और प्रज्ञान:</strong><br>• <strong>विक्रम:</strong> वह लैंडर था जिसने चंद्रमा की सतह पर सुरक्षित और कोमल लैंडिंग (Soft Landing) की।<br>• <strong>प्रज्ञान:</strong> वह छह पहियों वाला रोबोटिक रोवर था जो लैंडर से बाहर निकलकर चाँद की मिट्टी पर चला और शोध किया।<br>2. <strong>विश्व में सम्मान:</strong> चंद्रमा के दुर्गम और बर्फीले <strong>दक्षिणी ध्रुव</strong> पर पहुँचने वाला भारत विश्व का <strong>पहला देश</strong> बना। इससे भारत के वैज्ञानिकों और तकनीकी क्षमता का लोहा पूरी दुनिया ने माना।",
-        marks: 3,
-        rubric: [
-          { key: "विक्रम (लैंडर) और प्रज्ञान (रोवर) का सही कार्य", marks: "1.5 M" },
-          { key: "दक्षिणी ध्रुव पर पहला देश बनने का ऐतिहासिक गौरव", marks: "1.5 M" }
+        "category": "पाठ बोध • सोचिए और लिखिए",
+        "q": "चंद्रयान-3 मिशन में 'विक्रम' और 'प्रज्ञान' क्या थे? चंद्रयान की सफलता से पूरे विश्व में भारत का मान कैसे बढ़ा?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>विक्रम और प्रज्ञान:</strong><br>• <strong>विक्रम:</strong> वह लैंडर था जिसने चंद्रमा की सतह पर सुरक्षित और कोमल लैंडिंग (Soft Landing) की।<br>• <strong>प्रज्ञान:</strong> वह छह पहियों वाला रोबोटिक रोवर था जो लैंडर से बाहर निकलकर चाँद की मिट्टी पर चला और शोध किया।<br>2. <strong>विश्व में सम्मान:</strong> चंद्रमा के दुर्गम और बर्फीले <strong>दक्षिणी ध्रुव</strong> पर पहुँचने वाला भारत विश्व का <strong>पहला देश</strong> बना। इससे भारत के वैज्ञानिकों और तकनीकी क्षमता का लोहा पूरी दुनिया ने माना।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "विक्रम (लैंडर) और प्रज्ञान (रोवर) का सही कार्य",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "दक्षिणी ध्रुव पर पहला देश बनने का ऐतिहासिक गौरव",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "संवाद लेखन • विज्ञान और जिज्ञासा",
-        q: "चाँद पर उतरने के विषय में दो मित्रों के बीच तीन पंक्तियों का संवाद लिखिए।",
-        ans: "<strong>संवाद:</strong><br>• <strong>रोहन:</strong> 'अरे सुमित! क्या तुमने कल रात टीवी पर चंद्रयान को चाँद पर उतरते देखा?'<br>• <strong>सुमित:</strong> 'हाँ रोहन! जब हमारे तिरंगे वाला विक्रम लैंडर चाँद पर उतरा, तो मेरी आँखों में खुशी के आँसू आ गए!'<br>• <strong>रोहन:</strong> 'मैं भी बड़ा होकर इसरो का वैज्ञानिक बनूँगा और मंगल ग्रह पर यान भेजूँगा!'",
-        marks: 3,
-        rubric: [
-          { key: "रोचक, भावपूर्ण और स्वाभाविक संवाद लेखन", marks: "3.0 M" }
+        "category": "संवाद लेखन • विज्ञान और जिज्ञासा",
+        "q": "चाँद पर उतरने के विषय में दो मित्रों के बीच तीन पंक्तियों का संवाद लिखिए।",
+        "ans": "<strong>संवाद:</strong><br>• <strong>रोहन:</strong> 'अरे सुमित! क्या तुमने कल रात टीवी पर चंद्रयान को चाँद पर उतरते देखा?'<br>• <strong>सुमित:</strong> 'हाँ रोहन! जब हमारे तिरंगे वाला विक्रम लैंडर चाँद पर उतरा, तो मेरी आँखों में खुशी के आँसू आ गए!'<br>• <strong>रोहन:</strong> 'मैं भी बड़ा होकर इसरो का वैज्ञानिक बनूँगा और मंगल ग्रह पर यान भेजूँगा!'",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "रोचक, भावपूर्ण और स्वाभाविक संवाद लेखन",
+            "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "संवाद से • चंद्रयान की सफलता",
+        "q": "पाठ 'चंद्रयान' में चंद्रमा पर भारत के पहुँचने पर बच्चों के बीच क्या बातचीत हुई?",
+        "ans": "<strong>संवाद का सार:</strong><br>• बच्चे गर्व से टीवी पर लाइव प्रसारण देख रहे थे जब विक्रम लैंडर ने चंद्रमा के दक्षिणी ध्रुव पर तिरंगा फहराया। बच्चों ने चर्चा की कि भारत चंद्रमा के दक्षिणी ध्रुव पर उतरने वाला विश्व का पहला देश बना है, और हमारे वैज्ञानिकों की कड़ी मेहनत ने पूरे विश्व में भारत का सिर ऊँचा कर दिया है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "दक्षिणी ध्रुव पर पहली लैंडिंग का ऐतिहासिक तथ्य",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "इसरो वैज्ञानिकों के परिश्रम पर गर्व की अभिव्यक्ति",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "वैज्ञानिक शब्दावली • चंद्रमा",
+        "q": "चंद्रमा के बारे में दो वैज्ञानिक तथ्य लिखिए जो आपने इस पाठ से सीखे।",
+        "ans": "<strong>चंद्रमा के वैज्ञानिक तथ्य:</strong><br>1. चंद्रमा का अपना कोई प्रकाश नहीं होता, वह सूर्य के प्रकाश से चमकता है।<br>2. चंद्रमा पर वायुमंडल (हवा) नहीं है, इसलिए वहाँ अंतरिक्ष यात्रियों को ऑक्सीजन सिलेंडर ले जाना पड़ता है और वहाँ कोई ध्वनि सुनाई नहीं देती।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "प्रकाश और वायुमंडल हीनता के दो वैज्ञानिक तथ्य",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "संवाद लेखन • अंतरिक्ष यात्री",
+        "q": "यदि आपको अंतरिक्ष में जाने का अवसर मिले, तो आप वहाँ क्या देखना चाहेंगे?",
+        "ans": "<strong>रचनात्मक विचार:</strong><br>• मैं अंतरिक्ष से अपनी सुंदर नीली पृथ्वी को घूमते हुए देखना चाहूँगा और चंद्रमा की सतह पर तैरते हुए कदम रखकर मिट्टी के नमूने एकत्र करूँगा।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "रोचक और वैज्ञानिक कल्पना की सुंदर अभिव्यक्ति",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "शब्द-ज्ञान • इसरो",
+        "q": "इसरो (ISRO) का पूरा नाम हिंदी या अंग्रेजी में लिखिए।",
+        "ans": "<strong>इसरो का पूरा नाम:</strong><br>• <strong>भारतीय अंतरिक्ष अनुसंधान संगठन</strong> (Indian Space Research Organisation)।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "पूर्ण एवं शुद्ध संस्था का नाम",
+            "marks": "2.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "वैज्ञानिक दृष्टिकोण का विकास",
-      text: "प्राचीन काल में लोग सोचते थे कि चाँद पर एक बुढ़िया चरखा कातती है, लेकिन आज हमारे वैज्ञानिकों ने रोवर भेजकर वहाँ की मिट्टी की जाँच कर ली।",
-      question: "यह बदलाव हमें क्या सिखाता है कि अंधविश्वासों को छोड़कर विज्ञान और तार्किक सोच अपनाना क्यों आवश्यक है?",
-      answer: "1. विज्ञान हमें किसी बात को आँख मूँदकर मानने के बजाय प्रश्न पूछना, प्रयोग करना और सच खोजना सिखाता है।<br>2. वैज्ञानिक दृष्टिकोण ही देश को अशिक्षा, पिछड़ेपन और अंधविश्वास से मुक्त कर प्रगति की नई ऊँचाइयों पर ले जाता है।",
-      rubric: "1.5M तार्किक सोच और जिज्ञासा का विकास + 1.5M अंधविश्वास मुक्ति और देश की प्रगति।"
+    "cbq": {
+      "title": "वैज्ञानिक दृष्टिकोण का विकास",
+      "text": "प्राचीन काल में लोग सोचते थे कि चाँद पर एक बुढ़िया चरखा कातती है, लेकिन आज हमारे वैज्ञानिकों ने रोवर भेजकर वहाँ की मिट्टी की जाँच कर ली।",
+      "question": "यह बदलाव हमें क्या सिखाता है कि अंधविश्वासों को छोड़कर विज्ञान और तार्किक सोच अपनाना क्यों आवश्यक है?",
+      "answer": "1. विज्ञान हमें किसी बात को आँख मूँदकर मानने के बजाय प्रश्न पूछना, प्रयोग करना और सच खोजना सिखाता है।<br>2. वैज्ञानिक दृष्टिकोण ही देश को अशिक्षा, पिछड़ेपन और अंधविश्वास से मुक्त कर प्रगति की नई ऊँचाइयों पर ले जाता है।",
+      "rubric": "1.5M तार्किक सोच और जिज्ञासा का विकास + 1.5M अंधविश्वास मुक्ति और देश की प्रगति।"
     }
   },
   {
-    id: "vn17",
-    num: 17,
-    unit: "इकाई 5: हमारा देश",
-    title: "बोलने वाली माँद",
-    subtitle: "लोककथा, चालाक लोमड़ी और मूर्ख शेर, पदचिह्न निरीक्षण और त्वरित बुद्धि से आत्मरक्षा",
-    concepts: [
+    "id": "vn17",
+    "num": 17,
+    "unit": "इकाई 5: हमारा देश",
+    "title": "बोलने वाली माँद",
+    "subtitle": "लोककथा, चालाक लोमड़ी और मूर्ख शेर, पदचिह्न निरीक्षण और त्वरित बुद्धि से आत्मरक्षा",
+    "concepts": [
       "कहानी का कथानक: बूढ़े शेर का शिकार न कर पाना और गुफा में छिपकर बैठना।",
       "लोमड़ी की सजगता: गुफा के मुहाने पर शेर के पंजों के जाने के निशान देखना।",
       "चालाकी की परीक्षा: 'ओ माँद! तू आज मुझसे बोलती क्यों नहीं?'",
       "शेर का भारी आवाज में बोलना और लोमड़ी का हँसते हुए भाग जाना।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fffbeb" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">बोलने वाली माँद — शेर की मूर्खता और लोमड़ी की बुद्धिमत्ता</text>
-      <!-- Cave -->
-      <path d="M120,115 Q170,35 220,115 Z" fill="#334155"/>
-      <text x="170" y="80" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#fde047" text-anchor="middle">शेर दहाड़ा:</text>
-      <text x="170" y="95" font-family="system-ui, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">"आ जा लोमड़ी!"</text>
-      <!-- Fox laughing outside -->
-      <g transform="translate(350, 65)">
-        <ellipse cx="30" cy="25" rx="22" ry="14" fill="#f97316"/>
-        <polygon points="48,15 60,10 52,24" fill="#f97316"/>
-        <text x="35" y="55" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#c2410c" text-anchor="middle">हँसती लोमड़ी</text>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">"अरे मूर्ख शेर! कहीं पत्थर की माँद भी बोला करती है?"</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">बोलने वाली माँद — शेर की मूर्खता और लोमड़ी की बुद्धिमत्ता</text>\n      <!-- Cave -->\n      <path d=\"M120,115 Q170,35 220,115 Z\" fill=\"#334155\"/>\n      <text x=\"170\" y=\"80\" font-family=\"system-ui, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#fde047\" text-anchor=\"middle\">शेर दहाड़ा:</text>\n      <text x=\"170\" y=\"95\" font-family=\"system-ui, sans-serif\" font-size=\"9\" fill=\"#ffffff\" text-anchor=\"middle\">\"आ जा लोमड़ी!\"</text>\n      <!-- Fox laughing outside -->\n      <g transform=\"translate(350, 65)\">\n        <ellipse cx=\"30\" cy=\"25\" rx=\"22\" ry=\"14\" fill=\"#f97316\"/>\n        <polygon points=\"48,15 60,10 52,24\" fill=\"#f97316\"/>\n        <text x=\"35\" y=\"55\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"800\" fill=\"#c2410c\" text-anchor=\"middle\">हँसती लोमड़ी</text>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">\"अरे मूर्ख शेर! कहीं पत्थर की माँद भी बोला करती है?\"</text>\n    </svg>",
+    "questions": [
       {
-        category: "कहानी बोध • सोचिए और लिखिए",
-        q: "लोमड़ी ने अपनी जान बचाने के लिए क्या चालाकी की? शेर ने क्या मूर्खता की जिससे उसकी पोल खुल गई?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>लोमड़ी की चालाकी:</strong> लोमड़ी ने गुफा के बाहर शेर के पंजों के अंदर जाने के निशान देखे। वह बाहर खड़ी होकर जोर से बोली, 'अरी ओ माँद! आज तू चुप क्यों है? जब तक तू मुझे अंदर आने को नहीं कहेगी, मैं नहीं आऊँगी।'<br>2. <strong>शेर की मूर्खता:</strong> मूर्ख शेर ने सोचा कि माँद सचमुच रोज लोमड़ी से बात करती होगी और आज उसके डर से चुप है। इसलिए शेर ने खुद गुफा के अंदर से दहाड़कर कह दिया, 'आओ सखी लोमड़ी, अंदर आ जाओ!' शेर की आवाज सुनते ही लोमड़ी समझ गई और भाग निकली।",
-        marks: 3,
-        rubric: [
-          { key: "लोमड़ी द्वारा गुफा से बातचीत के नाटक का विवरण", marks: "1.5 M" },
-          { key: "शेर की मूर्खतापूर्ण दहाड़ और पोल खुलने का विवरण", marks: "1.5 M" }
+        "category": "कहानी बोध • सोचिए और लिखिए",
+        "q": "लोमड़ी ने अपनी जान बचाने के लिए क्या चालाकी की? शेर ने क्या मूर्खता की जिससे उसकी पोल खुल गई?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>लोमड़ी की चालाकी:</strong> लोमड़ी ने गुफा के बाहर शेर के पंजों के अंदर जाने के निशान देखे। वह बाहर खड़ी होकर जोर से बोली, 'अरी ओ माँद! आज तू चुप क्यों है? जब तक तू मुझे अंदर आने को नहीं कहेगी, मैं नहीं आऊँगी।'<br>2. <strong>शेर की मूर्खता:</strong> मूर्ख शेर ने सोचा कि माँद सचमुच रोज लोमड़ी से बात करती होगी और आज उसके डर से चुप है। इसलिए शेर ने खुद गुफा के अंदर से दहाड़कर कह दिया, 'आओ सखी लोमड़ी, अंदर आ जाओ!' शेर की आवाज सुनते ही लोमड़ी समझ गई और भाग निकली।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "लोमड़ी द्वारा गुफा से बातचीत के नाटक का विवरण",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "शेर की मूर्खतापूर्ण दहाड़ और पोल खुलने का विवरण",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "भाषा की बात • विलोम और अर्थ",
-        q: "शब्दों के अर्थ स्पष्ट कीजिए: (क) माँद, (ख) चालाकी, (ग) दहाड़।",
-        ans: "<strong>शब्दार्थ:</strong><br>• (क) माँद — <strong>जंगली हिंसक पशुओं (जैसे शेर, बाघ) के रहने की प्राकृतिक गुफा</strong>।<br>• (ख) चालाकी — <strong>चतुराई या होशियारी</strong>।<br>• (ग) दहाड़ — <strong>शेर की भयंकर और गूँजती हुई आवाज</strong>।",
-        marks: 3,
-        rubric: [
-          { key: "तीनों शब्दों का सटीक व शुद्ध अर्थ (1M प्रत्येक)", marks: "3.0 M" }
+        "category": "भाषा की बात • विलोम और अर्थ",
+        "q": "शब्दों के अर्थ स्पष्ट कीजिए: (क) माँद, (ख) चालाकी, (ग) दहाड़।",
+        "ans": "<strong>शब्दार्थ:</strong><br>• (क) माँद — <strong>जंगली हिंसक पशुओं (जैसे शेर, बाघ) के रहने की प्राकृतिक गुफा</strong>।<br>• (ख) चालाकी — <strong>चतुराई या होशियारी</strong>।<br>• (ग) दहाड़ — <strong>शेर की भयंकर और गूँजती हुई आवाज</strong>।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों शब्दों का सटीक व शुद्ध अर्थ (1M प्रत्येक)",
+            "marks": "3.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कहानी से • बोलने वाली माँद",
+        "q": "कहानी 'बोलने वाली माँद' में लोमड़ी ने शेर की उपस्थिति का पता कैसे लगाया?",
+        "ans": "<strong>लोमड़ी की बुद्धिमत्ता:</strong><br>• लोमड़ी ने अपनी गुफा (माँद) के बाहर जमीन पर शेर के पंजों के निशान देखे जो अंदर जाने के थे, लेकिन बाहर आने का कोई निशान नहीं था।<br>• सच्चाई जानने के लिए उसने दूर खड़े होकर गुफा को पुकारा—'अरे माँद! तू आज मुझसे बोलती क्यों नहीं? रोज तो तू कहती थी कि आ जा मेरी सखी!' अंदर बैठे मूर्ख शेर ने सोचा कि माँद सचमुच बोलती होगी और उसने दहाड़कर उत्तर दिया। शेर की आवाज सुनते ही लोमड़ी तुरंत भाग गई।",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "पंजों के निशान (अंदर जाने के, बाहर न आने के) की पहचान",
+            "marks": "2.0 अंक"
+          },
+          {
+            "key": "गुफा से बात करने की चालाकी और शेर की दहाड़ का प्रसंग",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "सावधानी और सतर्कता • जीवन पाठ",
+        "q": "लोमड़ी के इस व्यवहार से हमें जीवन में क्या सीख मिलती है?",
+        "ans": "<strong>जीवन पाठ:</strong><br>• हमें किसी भी अनजान स्थान पर आँख मूँदकर कदम नहीं रखना चाहिए। अपने आस-पास के वातावरण और संकेतों (जैसे पैरों के निशान) पर सतर्क दृष्टि रखनी चाहिए। समझदारी इसी में है कि खतरे की जाँच पहले ही कर ली जाए।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सतर्कता और विवेकपूर्ण निर्णय की सीख",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "मुहावरे • भाषा की बात",
+        "q": "मुहावरे 'दबे पाँव आना' का अर्थ लिखकर वाक्य में प्रयोग कीजिए।",
+        "ans": "<strong>मुहावरा: दबे पाँव आना</strong><br>• <strong>अर्थ:</strong> बिना कोई आवाज किए बहुत चुपके से आना।<br>• <strong>वाक्य प्रयोग:</strong> बिल्ली दबे पाँव आई और मेज पर रखा सारा दूध पी गई।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "सटीक अर्थ और वाक्य प्रयोग",
+            "marks": "2.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "शब्द संपदा • पशुओं के आवास",
+        "q": "नीचे दिए गए पशुओं के आवास को क्या कहते हैं?<br>(क) शेर $\\rightarrow$ _____<br>(ख) पक्षी $\\rightarrow$ _____<br>(ग) घोड़ा $\\rightarrow$ _____",
+        "ans": "<strong>पशुओं के आवास:</strong><br>• (क) शेर $\\rightarrow$ <strong>माँद / गुफा (Den)</strong><br>• (ख) पक्षी $\\rightarrow$ <strong>घोंसला (Nest)</strong><br>• (ग) घोड़ा $\\rightarrow$ <strong>अस्तबल (Stable)</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "तीनों सही आवास नाम",
+            "marks": "3.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "सावधानी हटी, दुर्घटना घटी",
-      text: "लोमड़ी अगर पंजों के निशानों की अनदेखी करके बिना सोचे-समझे सीधे गुफा के अंदर घुस जाती, तो शेर का शिकार बन जाती।",
-      question: "दैनिक जीवन में किसी अपरिचित स्थान या अनजान खतरे के सामने हमें किन संकेतों पर ध्यान देना चाहिए?",
-      answer: "1. हमें किसी भी स्थान पर प्रवेश करते समय अपने आस-पास के माहौल, चेतावनी बोर्ड और असामान्य संकेतों पर ध्यान देना चाहिए।<br>2. बिना सोचे-समझे जल्दबाजी में कोई कदम नहीं उठाना चाहिए; सजगता ही सुरक्षा की सबसे बड़ी ढाल है।",
-      rubric: "1.5M संकेतों और चेतावनियों पर ध्यान देने की सीख + 1.5M सुरक्षा और सजगता का महत्व।"
+    "cbq": {
+      "title": "सावधानी हटी, दुर्घटना घटी",
+      "text": "लोमड़ी अगर पंजों के निशानों की अनदेखी करके बिना सोचे-समझे सीधे गुफा के अंदर घुस जाती, तो शेर का शिकार बन जाती।",
+      "question": "दैनिक जीवन में किसी अपरिचित स्थान या अनजान खतरे के सामने हमें किन संकेतों पर ध्यान देना चाहिए?",
+      "answer": "1. हमें किसी भी स्थान पर प्रवेश करते समय अपने आस-पास के माहौल, चेतावनी बोर्ड और असामान्य संकेतों पर ध्यान देना चाहिए।<br>2. बिना सोचे-समझे जल्दबाजी में कोई कदम नहीं उठाना चाहिए; सजगता ही सुरक्षा की सबसे बड़ी ढाल है।",
+      "rubric": "1.5M संकेतों और चेतावनियों पर ध्यान देने की सीख + 1.5M सुरक्षा और सजगता का महत्व।"
     }
   },
   {
-    id: "vn18",
-    num: 18,
-    unit: "इकाई 5: हमारा देश",
-    title: "हम अनेक किंतु एक",
-    subtitle: "राष्ट्रीय एकता, अनेकता में एकता, विभिन्न प्रांत, वेशभूषा, भाषाएँ और साझा भारतीय पहचान",
-    concepts: [
+    "id": "vn18",
+    "num": 18,
+    "unit": "इकाई 5: हमारा देश",
+    "title": "हम अनेक किंतु एक",
+    "subtitle": "राष्ट्रीय एकता, अनेकता में एकता, विभिन्न प्रांत, वेशभूषा, भाषाएँ और साझा भारतीय पहचान",
+    "concepts": [
       "भारत की बहुरंगी छटा: कश्मीर से कन्याकुमारी और गुजरात से असम तक विविध संस्कृतियाँ।",
       "विविधता के रूप: अलग-अलग भाषाएँ (हिंदी, तमिल, बांग्ला, मराठी), अलग-अलग खान-पान और पहनावे।",
       "साझा सूत्र: जैसे विभिन्न फूलों से एक सुंदर माला बनती है, वैसे ही हम सब भारत माता की संतान हैं।",
       "सद्भाव, भाईचारा और शांति का पावन संदेश।"
     ],
-    svg: `<svg viewBox="0 0 580 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="#fdf4ff" rx="12"/>
-      <text x="290" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#86198f" text-anchor="middle">हम अनेक किंतु एक — अनेकता में एकता ही भारत की शान</text>
-      <!-- Circular Garland with diverse flower children -->
-      <g transform="translate(140, 50)" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">
-        <circle cx="40" cy="35" r="22" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/><text x="40" y="38" font-size="14">👳</text><text x="40" y="70" fill="#9a3412">पंजाब</text>
-        <circle cx="120" cy="35" r="22" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5"/><text x="120" y="38" font-size="14">🧔</text><text x="120" y="70" fill="#14532d">केरल</text>
-        <circle cx="200" cy="35" r="22" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/><text x="200" y="38" font-size="14">🧒</text><text x="200" y="70" fill="#1e3a8a">असम</text>
-        <circle cx="280" cy="35" r="22" fill="#fbcfe8" stroke="#db2777" stroke-width="1.5"/><text x="280" y="38" font-size="14">👧</text><text x="280" y="70" fill="#9d174d">गुजरात</text>
-      </g>
-      <text x="290" y="148" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#701a75" text-anchor="middle">"भाषा, वेश, प्रदेश भिन्न हैं, फिर भी हम सब भारतवासी एक हैं!"</text>
-    </svg>`,
-    questions: [
+    "svg": "<svg viewBox=\"0 0 580 160\" width=\"100%\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\">\n      <rect width=\"100%\" height=\"100%\" fill=\"#fdf4ff\" rx=\"12\"/>\n      <text x=\"290\" y=\"24\" font-family=\"system-ui, sans-serif\" font-size=\"13\" font-weight=\"700\" fill=\"#86198f\" text-anchor=\"middle\">हम अनेक किंतु एक — अनेकता में एकता ही भारत की शान</text>\n      <!-- Circular Garland with diverse flower children -->\n      <g transform=\"translate(140, 50)\" font-family=\"system-ui, sans-serif\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">\n        <circle cx=\"40\" cy=\"35\" r=\"22\" fill=\"#fed7aa\" stroke=\"#ea580c\" stroke-width=\"1.5\"/><text x=\"40\" y=\"38\" font-size=\"14\">👳</text><text x=\"40\" y=\"70\" fill=\"#9a3412\">पंजाब</text>\n        <circle cx=\"120\" cy=\"35\" r=\"22\" fill=\"#bbf7d0\" stroke=\"#16a34a\" stroke-width=\"1.5\"/><text x=\"120\" y=\"38\" font-size=\"14\">🧔</text><text x=\"120\" y=\"70\" fill=\"#14532d\">केरल</text>\n        <circle cx=\"200\" cy=\"35\" r=\"22\" fill=\"#bfdbfe\" stroke=\"#1d4ed8\" stroke-width=\"1.5\"/><text x=\"200\" y=\"38\" font-size=\"14\">🧒</text><text x=\"200\" y=\"70\" fill=\"#1e3a8a\">असम</text>\n        <circle cx=\"280\" cy=\"35\" r=\"22\" fill=\"#fbcfe8\" stroke=\"#db2777\" stroke-width=\"1.5\"/><text x=\"280\" y=\"38\" font-size=\"14\">👧</text><text x=\"280\" y=\"70\" fill=\"#9d174d\">गुजरात</text>\n      </g>\n      <text x=\"290\" y=\"148\" font-family=\"system-ui, sans-serif\" font-size=\"11\" font-weight=\"800\" fill=\"#701a75\" text-anchor=\"middle\">\"भाषा, वेश, प्रदेश भिन्न हैं, फिर भी हम सब भारतवासी एक हैं!\"</text>\n    </svg>",
+    "questions": [
       {
-        category: "पाठ बोध • सोचिए और लिखिए",
-        q: "पाठ 'हम अनेक किंतु एक' में भारत की विविधता को किस सुंदर उपमा से समझाया गया है? भारत की 'अनेकता में एकता' का क्या अर्थ है?",
-        ans: "<strong>उत्तर:</strong><br>1. <strong>सुंदर उपमा:</strong> भारत की तुलना एक <strong>रंग-बिरंगे बगीचे और सुंदर पुष्पमाला</strong> से की गई है, जहाँ अलग-अलग रंग और सुगंध के फूल एक ही धागे में पिरोए जाकर माला की शोभा बढ़ाते हैं।<br>2. <strong>अनेकता में एकता:</strong> हमारे देश में विभिन्न भाषाएँ, धर्म, त्योहार, वेशभूषा और खान-पान हैं, फिर भी जब देश की बात आती है, तो हम सब एक ही तिरंगे के नीचे 'भारतीय' बनकर खड़े होते हैं। यही हमारी एकता की ताकत है।",
-        marks: 3,
-        rubric: [
-          { key: "बगीचे व फूलों की माला की उपमा का उल्लेख", marks: "1.5 M" },
-          { key: "अनेकता में एकता का सुंदर और सच्चा अर्थ", marks: "1.5 M" }
+        "category": "पाठ बोध • सोचिए और लिखिए",
+        "q": "पाठ 'हम अनेक किंतु एक' में भारत की विविधता को किस सुंदर उपमा से समझाया गया है? भारत की 'अनेकता में एकता' का क्या अर्थ है?",
+        "ans": "<strong>उत्तर:</strong><br>1. <strong>सुंदर उपमा:</strong> भारत की तुलना एक <strong>रंग-बिरंगे बगीचे और सुंदर पुष्पमाला</strong> से की गई है, जहाँ अलग-अलग रंग और सुगंध के फूल एक ही धागे में पिरोए जाकर माला की शोभा बढ़ाते हैं।<br>2. <strong>अनेकता में एकता:</strong> हमारे देश में विभिन्न भाषाएँ, धर्म, त्योहार, वेशभूषा और खान-पान हैं, फिर भी जब देश की बात आती है, तो हम सब एक ही तिरंगे के नीचे 'भारतीय' बनकर खड़े होते हैं। यही हमारी एकता की ताकत है।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "बगीचे व फूलों की माला की उपमा का उल्लेख",
+            "marks": "1.5 M"
+          },
+          {
+            "key": "अनेकता में एकता का सुंदर और सच्चा अर्थ",
+            "marks": "1.5 M"
+          }
         ]
       },
       {
-        category: "भारत के राज्य और भाषाएँ • सामान्य ज्ञान",
-        q: "दिए गए राज्यों में बोली जाने वाली मुख्य भाषा का नाम लिखिए: (क) पंजाब, (ख) तमिलनाडु, (ग) महाराष्ट्र, (घ) पश्चिम बंगाल।",
-        ans: "<strong>राज्य और भाषा:</strong><br>• (क) पंजाब — <strong>पंजाबी</strong><br>• (ख) तमिलनाडु — <strong>तमिल</strong><br>• (ग) महाराष्ट्र — <strong>मराठी</strong><br>• (घ) पश्चिम बंगाल — <strong>बांग्ला</strong>।",
-        marks: 2,
-        rubric: [
-          { key: "चारों राज्यों की सही भाषाओं के नाम (0.5M प्रत्येक)", marks: "2.0 M" }
+        "category": "भारत के राज्य और भाषाएँ • सामान्य ज्ञान",
+        "q": "दिए गए राज्यों में बोली जाने वाली मुख्य भाषा का नाम लिखिए: (क) पंजाब, (ख) तमिलनाडु, (ग) महाराष्ट्र, (घ) पश्चिम बंगाल।",
+        "ans": "<strong>राज्य और भाषा:</strong><br>• (क) पंजाब — <strong>पंजाबी</strong><br>• (ख) तमिलनाडु — <strong>तमिल</strong><br>• (ग) महाराष्ट्र — <strong>मराठी</strong><br>• (घ) पश्चिम बंगाल — <strong>बांग्ला</strong>।",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "चारों राज्यों की सही भाषाओं के नाम (0.5M प्रत्येक)",
+            "marks": "2.0 M"
+          }
+        ]
+      },
+      {
+        "category": "कविता से • अनेकता में एकता",
+        "q": "कविता 'हम अनेक किंतु एक' में भारत की विविधता और एकता को किस प्रकार दर्शाया गया है?",
+        "ans": "<strong>कविता का केंद्रीय भाव:</strong><br>• भारत में अनेक भाषाएं (हिंदी, तमिल, बांग्ला, मराठी), अलग-अलग वेशभूषाएं और खान-पान हैं। लेकिन जिस प्रकार विभिन्न रंगों और खुशबुओं के फूलों से मिलकर एक सुंदर माला बनती है, उसी प्रकार हम सब विविध होते हुए भी एक ही भारत माता की संतान हैं और एक ही तिरंगे के नीचे खड़े भारतीय हैं।",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "भाषा, वेशभूषा की विविधता का उल्लेख",
+            "marks": "1.5 अंक"
+          },
+          {
+            "key": "फूलों की माला और भारतीयता की एकता का सुंदर रूपक",
+            "marks": "1.5 अंक"
+          }
+        ]
+      },
+      {
+        "category": "भाषाएं और अभिवादन • सांस्कृतिक ज्ञान",
+        "q": "विभिन्न भारतीय भाषाओं में अभिवादन (नमस्ते) के शब्दों का मिलान कीजिए:<br>• हिंदी: [नमस्कार / नमस्ते, वणक्कम, सत श्री अकाल, आदाब]<br>• तमिल: [नमस्कार / नमस्ते, वणक्कम, सत श्री अकाल, आदाब]<br>• पंजाबी: [नमस्कार / नमस्ते, वणक्कम, सत श्री अकाल, आदाब]<br>• उर्दू: [नमस्कार / नमस्ते, वणक्कम, सत श्री अकाल, आदाब]",
+        "ans": "<strong>अभिवादन मिलान:</strong><br>• <strong>हिंदी:</strong> नमस्कार / नमस्ते<br>• <strong>तमिल:</strong> वणक्कम (Vanakkam)<br>• <strong>पंजाबी:</strong> सत श्री अकाल (Sat Sri Akal)<br>• <strong>उर्दू:</strong> आदाब (Adaab)",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों भाषाओं के अभिवादन शब्दों का सही मिलान",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "त्योहारों की माला • भारतीय संस्कृति",
+        "q": "भारत के किन्हीं चार प्रमुख त्योहारों के नाम लिखिए जो अलग-अलग समुदायों द्वारा बड़े प्रेम से मनाए जाते हैं।",
+        "ans": "<strong>भारत के प्रमुख त्योहार:</strong><br>1. <strong>दीपावली</strong> (प्रकाश का पर्व)<br>2. <strong>ईद</strong> (भाईचारे व सेवइयों का पर्व)<br>3. <strong>क्रिसमस</strong> (प्रेम व दया का पर्व)<br>4. <strong>गुरुपर्व</strong> (गुरु वाणी व लंगर का पर्व)",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "चारों सर्वसमावेशी राष्ट्रीय त्योहारों के नाम",
+            "marks": "4.0 अंक"
+          }
+        ]
+      },
+      {
+        "category": "राष्ट्रगान और राष्ट्रगीत • ज्ञान",
+        "q": "भारत के राष्ट्रगान 'जन गण मन' के रचयिता कौन हैं?",
+        "ans": "<strong>रचयिता का नाम:</strong><br>• गुरुदेव <strong>रवींद्रनाथ टैगोर</strong>।",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "गुरुदेव रवींद्रनाथ टैगोर का शुद्ध नाम",
+            "marks": "1.0 अंक"
+          }
         ]
       }
     ],
-    cbq: {
-      title: "कक्षा में सांस्कृतिक समरसता",
-      text: "कक्षा में अलग-अलग राज्यों से आए बच्चे पढ़ते हैं। लंच ब्रेक में कोई इडली-डोसा लाता है, कोई ढोकला, तो कोई मक्के की रोटी।",
-      question: "कक्षा में विभिन्न राज्यों के मित्रों के साथ टिफिन शेयर करने से हमारे अंदर कौन-से मानवीय संस्कार पुष्ट होते हैं?",
-      answer: "1. विभिन्न व्यंजनों को साथ बैठकर खाने से दूसरों की संस्कृति और खान-पान के प्रति सम्मान और प्रेम बढ़ता है।<br>2. इससे बच्चों के मन से भेदभाव समाप्त होता है और वे अनुभव करते हैं कि विविधता ही हमारे भारत की सबसे बड़ी सुंदरता है।",
-      rubric: "1.5M दूसरों की संस्कृति के प्रति आदर + 1.5M भेदभाव की समाप्ति और राष्ट्रीय एकता।"
+    "cbq": {
+      "title": "कक्षा में सांस्कृतिक समरसता",
+      "text": "कक्षा में अलग-अलग राज्यों से आए बच्चे पढ़ते हैं। लंच ब्रेक में कोई इडली-डोसा लाता है, कोई ढोकला, तो कोई मक्के की रोटी।",
+      "question": "कक्षा में विभिन्न राज्यों के मित्रों के साथ टिफिन शेयर करने से हमारे अंदर कौन-से मानवीय संस्कार पुष्ट होते हैं?",
+      "answer": "1. विभिन्न व्यंजनों को साथ बैठकर खाने से दूसरों की संस्कृति और खान-पान के प्रति सम्मान और प्रेम बढ़ता है।<br>2. इससे बच्चों के मन से भेदभाव समाप्त होता है और वे अनुभव करते हैं कि विविधता ही हमारे भारत की सबसे बड़ी सुंदरता है।",
+      "rubric": "1.5M दूसरों की संस्कृति के प्रति आदर + 1.5M भेदभाव की समाप्ति और राष्ट्रीय एकता।"
     }
   }
 ];
