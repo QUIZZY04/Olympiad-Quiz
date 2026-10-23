@@ -1132,4 +1132,5 @@ const rimjhimUnits = [
   }
 ];
 
-module.exports = { rimjhimUnits };
+module.exports = { rimjhimUnits, rimjhimChapters: rimjhimUnits };
+
