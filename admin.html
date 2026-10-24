@@ -2202,7 +2202,7 @@ border-top:1px solid var(--border);
                         <select id="compPlanSelect" style="margin-top: 8px;" onchange="window.onCompPlanSelectChange()">
                             <option value="diamond" selected>💎 Diamond Plan (VIP / 4 Live Tests + Guidance)</option>
                             <option value="gold">🥇 Gold Plan (Unlimited Tests + 2 Live Tests)</option>
-                            <option value="silver">🥈 Silver Plan (4 Tests/Day, 40/Month)</option>
+                            <option value="silver">🥈 Silver Plan (Unlimited Tests)</option>
                         </select>
                         <div id="compPlanPerkBadge" style="margin-top:8px; font-size:11.5px; color:#0369a1; background:#e0f2fe; padding:6px 10px; border-radius:8px; border:1px solid #bae6fd; font-weight:500;">
                             ✨ Diamond: Unlimited tests, 4 Live Tests/mo, 1:1 Guidance.
@@ -8853,9 +8853,9 @@ window.loadStudentProfiles = async function() {
 
 // Mirrors functions/premium/config.js's PREMIUM_TIERS - display/estimate only.
 const PREMIUM_TIER_INFO = {
-    silver:  { label: "Silver",  color: "#64748B", bg: "#F1F5F9", priceInr: 99,  monthlyValueInr: 99 },
-    gold:    { label: "Gold",    color: "#c2410c", bg: "#FFF4ED", priceInr: 199, monthlyValueInr: 199 / 3 },
-    diamond: { label: "Diamond", color: "#0284c7", bg: "#EBF8FF", priceInr: 599, monthlyValueInr: 599 / 12 },
+    silver:  { label: "Silver",  color: "#64748B", bg: "#F1F5F9", priceInr: 149, monthlyValueInr: 149 },
+    gold:    { label: "Gold",    color: "#c2410c", bg: "#FFF4ED", priceInr: 349, monthlyValueInr: 349 / 3 },
+    diamond: { label: "Diamond", color: "#0284c7", bg: "#EBF8FF", priceInr: 599, monthlyValueInr: 599 / 6 },
 };
 
 window.loadPremiumSubscriptions = async function() {
@@ -9118,7 +9118,7 @@ let compDebounceTimer = null;
 const COMP_PLAN_PERKS = {
     diamond: "✨ Diamond: Unlimited tests, 4 Live Tests/mo, 1:1 Olympiad Guidance.",
     gold: "✨ Gold: Unlimited chapterwise & mock tests, 2 Live Tests/mo.",
-    silver: "✨ Silver: Up to 4 tests/day, 40 tests/mo, 60-min cooldown between tests."
+    silver: "✨ Silver: Unlimited chapterwise & mock tests + detailed analytics."
 };
 
 window.onCompPlanSelectChange = function() {

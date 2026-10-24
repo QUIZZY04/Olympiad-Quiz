@@ -125,6 +125,13 @@ Razorpay can't reach `localhost`, so for local webhook testing either:
       Diamond's Plan wasn't touched since its price didn't change. If prices ever change
       again, repeat this same process: `createPremiumPlan({tier})` for whichever tier(s)
       changed, rotate that tier's `RAZORPAY_*_PLAN_ID` secret, redeploy.
+- [ ] **Plans restructured** (Silver ₹199→₹149/month, Gold ₹299→₹349/3 months, Diamond
+      ₹599/year→₹599/6 months; Silver's 4/day-40/month cap and 1-hour cooldown removed, so
+      every paid tier is now fully unlimited). Still to do: run `createPremiumPlan({tier})`
+      for all three tiers (Diamond too, since its billing period changed), rotate
+      `RAZORPAY_SILVER_PLAN_ID`/`RAZORPAY_GOLD_PLAN_ID`/`RAZORPAY_DIAMOND_PLAN_ID` to the
+      returned ids, then redeploy `createPremiumSubscription`, `razorpayWebhook` and
+      `canStartTest`. Existing subscribers keep their original price and billing period.
 - [ ] Register the deployed `razorpayWebhook` URL in the Razorpay Dashboard
       (Settings → Webhooks), subscribed to: `subscription.activated`, `subscription.charged`,
       `subscription.cancelled`, `subscription.completed`, `subscription.halted`, `payment.failed`.

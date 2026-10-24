@@ -22,9 +22,6 @@ const {
   db,
   FREE_TEST_LIMIT,
   FREE_TEST_WEEKLY_LIMIT,
-  SILVER_DAILY_LIMIT,
-  SILVER_MONTHLY_LIMIT,
-  SILVER_COOLDOWN_MINUTES,
   IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
@@ -33,7 +30,6 @@ const {
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const VOID_CUTOFF_MS = ABANDON_VOID_WINDOW_MINUTES * 60 * 1000;
-const SILVER_COOLDOWN_MS = SILVER_COOLDOWN_MINUTES * 60 * 1000;
 
 /**
  * Calendar-day boundaries in IST for whichever instant `nowMs` falls in.
@@ -61,25 +57,6 @@ function getIstWeekBounds(nowMs) {
   const isoDow = shiftedDay.getUTCDay() || 7; // Mon=1 ... Sun=7 (getUTCDay: Sun=0)
   const startOfWeekMs = startOfDayMs - (isoDow - 1) * DAY_MS;
   return { startOfWeekMs, startOfNextWeekMs: startOfWeekMs + 7 * DAY_MS };
-}
-
-/**
- * Calendar-month boundaries in IST (1st 00:00 - the 1st of the next month
- * 00:00), for whichever instant `nowMs` falls in. Used for Silver's monthly
- * cap - always a superset of the day/week windows, so a single query scoped
- * to the month start covers the free tier's day+week caps AND Silver's
- * day+month caps without needing separate queries per tier.
- * @param {number} nowMs
- * @returns {{startOfMonthMs: number, startOfNextMonthMs: number}}
- */
-function getIstMonthBounds(nowMs) {
-  const shifted = new Date(nowMs + IST_OFFSET_MS);
-  const y = shifted.getUTCFullYear();
-  const m = shifted.getUTCMonth();
-  return {
-    startOfMonthMs: Date.UTC(y, m, 1) - IST_OFFSET_MS,
-    startOfNextMonthMs: Date.UTC(y, m + 1, 1) - IST_OFFSET_MS,
-  };
 }
 
 /**
@@ -139,27 +116,23 @@ exports.canStartTest = onCall(async (request) => {
 
   // The user-doc read and the attempt-window query are independent - run
   // them concurrently to cut this function's own latency roughly in half.
-  // The query is always scoped to the MONTH start, not day/week - that's
-  // the broadest window any tier below Gold/Diamond ever needs (Silver's
-  // monthly cap; the free tier's day+week caps are just narrower, client-
-  // side filters of this same result set), so one query serves all of them.
+  // The query is scoped to the WEEK start - the free tier's daily cap is
+  // just a narrower, client-side filter of this same result set.
   const now = Date.now();
   const { startOfDayMs, startOfNextDayMs } = getIstDayBounds(now);
   const { startOfWeekMs, startOfNextWeekMs } = getIstWeekBounds(now);
-  const { startOfMonthMs, startOfNextMonthMs } = getIstMonthBounds(now);
-  const monthStart = admin.firestore.Timestamp.fromMillis(startOfMonthMs);
+  const weekStart = admin.firestore.Timestamp.fromMillis(startOfWeekMs);
   const [userSnap, snap] = await Promise.all([
     db.collection("users").doc(uid).get(),
     db.collection(COLLECTIONS.TEST_ATTEMPTS)
       .where("uid", "==", uid)
-      .where("startedAt", ">=", monthStart)
+      .where("startedAt", ">=", weekStart)
       .orderBy("startedAt", "asc")
       .get(),
   ]);
 
   const userData = userSnap.exists ? userSnap.data() : {};
   const isPremium = isPremiumActive(userData);
-  const tier = userData.premiumTier;
 
   const createAttempt = (premiumAtStart) => db.collection(COLLECTIONS.TEST_ATTEMPTS).add({
     uid,
@@ -172,52 +145,20 @@ exports.canStartTest = onCall(async (request) => {
     premiumAtStart,
   });
 
-  // Gold/Diamond: fully unlimited, no tracking needed beyond the attempt
-  // record itself (kept for analytics/admin visibility, never counted).
-  if (isPremium && (tier === "gold" || tier === "diamond")) {
+  // Every paid tier (Silver/Gold/Diamond): fully unlimited, no tracking
+  // needed beyond the attempt record itself (kept for analytics/admin
+  // visibility, never counted).
+  if (isPremium) {
     if (dryRun) return { allowed: true, isPremium: true };
     const attemptRef = await createAttempt(true);
     return { allowed: true, attemptId: attemptRef.id, isPremium: true };
   }
 
-  const monthCounted = filterCountedAttempts(snap.docs); // this month's counted attempts
-  const dailyCounted = monthCounted.filter((docSnap) => {
+  // Free tier: 1/day AND 4/week, both must be satisfied.
+  const weekCounted = filterCountedAttempts(snap.docs); // this week's counted attempts
+  const dailyCounted = weekCounted.filter((docSnap) => {
     const startedAtMs = docSnap.data().startedAt?.toMillis ? docSnap.data().startedAt.toMillis() : 0;
     return startedAtMs >= startOfDayMs;
-  });
-
-  // Silver: capped, not unlimited - 4/day AND 40/month, both must be
-  // satisfied, PLUS a fixed cooldown after every attempt (Gold/Diamond have
-  // none). Checked first since it's the cap most likely to be hit day-to-day.
-  if (isPremium && tier === "silver") {
-    if (monthCounted.length > 0) {
-      const lastAttempt = monthCounted[monthCounted.length - 1].data();
-      const lastStartedAtMs = lastAttempt.startedAt?.toMillis ? lastAttempt.startedAt.toMillis() : 0;
-      const cooldownEndsMs = lastStartedAtMs + SILVER_COOLDOWN_MS;
-      if (now < cooldownEndsMs) {
-        return { allowed: false, unlocksAt: cooldownEndsMs, limit: SILVER_DAILY_LIMIT, isPremium: true };
-      }
-    }
-    if (dailyCounted.length >= SILVER_DAILY_LIMIT) {
-      return { allowed: false, unlocksAt: startOfNextDayMs, limit: SILVER_DAILY_LIMIT, isPremium: true };
-    }
-    if (monthCounted.length >= SILVER_MONTHLY_LIMIT) {
-      return { allowed: false, unlocksAt: startOfNextMonthMs, limit: SILVER_MONTHLY_LIMIT, isPremium: true };
-    }
-    const remaining = Math.min(
-      SILVER_DAILY_LIMIT - dailyCounted.length - 1,
-      SILVER_MONTHLY_LIMIT - monthCounted.length - 1
-    );
-    if (dryRun) return { allowed: true, isPremium: true, remaining, limit: SILVER_DAILY_LIMIT };
-    const attemptRef = await createAttempt(true);
-    return { allowed: true, attemptId: attemptRef.id, isPremium: true, remaining, limit: SILVER_DAILY_LIMIT };
-  }
-
-  // Free tier: 1/day AND 4/week, both must be satisfied. The week window is
-  // narrower than the month window already queried above.
-  const weekCounted = monthCounted.filter((docSnap) => {
-    const startedAtMs = docSnap.data().startedAt?.toMillis ? docSnap.data().startedAt.toMillis() : 0;
-    return startedAtMs >= startOfWeekMs;
   });
 
   if (dailyCounted.length >= FREE_TEST_LIMIT) {
