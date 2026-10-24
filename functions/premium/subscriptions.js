@@ -244,10 +244,19 @@ exports.razorpayWebhook = onRequest({
         const premiumStartedAt = subEntity.start_at
           ? admin.firestore.Timestamp.fromMillis(subEntity.start_at * 1000)
           : admin.firestore.FieldValue.serverTimestamp();
+        // Only include premiumTier in the write when resolveTier() actually
+        // finds one - if it can't be determined (e.g. a very old
+        // subscription with neither notes.tier nor a plan_id matching any
+        // currently-configured tier, which can happen after rotating a
+        // tier's Razorpay Plan/plan_id), merge:true leaves whatever tier is
+        // already on the user doc untouched instead of clobbering it with
+        // null. isPremium/premiumExpiresAt always update regardless, since
+        // those come straight from Razorpay and are never ambiguous.
+        const resolvedTier = resolveTier();
         await setPremiumBySubscriptionId(subscriptionId, notesUid, {
           isPremium: true,
           premiumExpiresAt,
-          premiumTier: resolveTier(),
+          ...(resolvedTier ? { premiumTier: resolvedTier } : {}),
           razorpaySubscriptionId: subscriptionId,
           premiumStartedAt,
           premiumCancelledAt: null,
@@ -258,10 +267,14 @@ exports.razorpayWebhook = onRequest({
         const premiumExpiresAt = subEntity.current_end
           ? admin.firestore.Timestamp.fromMillis(subEntity.current_end * 1000)
           : null;
+        // See subscription.activated above re: only setting premiumTier
+        // when resolveTier() finds one, so a renewal never wipes out an
+        // already-correct tier on the user doc.
+        const resolvedTier = resolveTier();
         await setPremiumBySubscriptionId(subscriptionId, notesUid, {
           isPremium: true,
           premiumExpiresAt,
-          premiumTier: resolveTier(),
+          ...(resolvedTier ? { premiumTier: resolvedTier } : {}),
           razorpaySubscriptionId: subscriptionId,
         });
         break;
