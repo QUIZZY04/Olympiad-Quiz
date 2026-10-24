@@ -71,7 +71,7 @@ const html = `<!DOCTYPE html>
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
       { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
-      { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions.html#class6" },
+      { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions-class-6.html" },
       { "@type": "ListItem", "position": 4, "name": "Science", "item": "https://olympiadquiz.org/ncert-solutions-class-6-science.html" }
     ]
   }
@@ -406,7 +406,7 @@ const html = `<!DOCTYPE html>
         <li class="ncert-bc-sep">/</li>
         <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
         <li class="ncert-bc-sep">/</li>
-        <li><a href="ncert-solutions.html#class6">Class 6</a></li>
+        <li><a href="ncert-solutions-class-6.html">Class 6</a></li>
         <li class="ncert-bc-sep">/</li>
         <li class="ncert-bc-current">Science</li>
       </ol>

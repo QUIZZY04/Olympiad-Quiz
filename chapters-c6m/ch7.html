@@ -1,212 +1,387 @@
 <section class="chapter-section" id="ch7">
- <div class="chapter-header">
- <div class="ch-badge">7</div>
- <div class="chapter-header-info">
- <h2>Chapter 7: Fractions</h2>
- <p>NCERT Ganita Prakash (Class 6) — Parts of a Whole, Number Line Representation, Proper/Improper/Mixed, Equivalent Fractions &amp; Fraction Arithmetic | CBSE 2026-27</p>
- </div>
- </div>
+  <div class="chapter-header">
+    <div class="ch-badge">7</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 7: Fractions</h2>
+      <p>NCERT Ganita Prakash (Class 6) — Proper, Improper &amp; Mixed Fractions, Number Line Models, Equivalent Fractions, Simplest Form &amp; Arithmetic | CBSE 2026-27</p>
+    </div>
+  </div>
 
- <div class="concept-card">
- <div class="concept-header">📌 Key Fraction Concepts &amp; Properties</div>
- <ul class="concept-list">
- <li><strong>Fraction:</strong> A number representing a part of a whole. Written as a/b, where a is the numerator and b is the denominator (b 
-e 0).</li>
- <li><strong>Types of Fractions:</strong>
- <ul>
- <li><em>Proper Fraction:</em> Numerator &lt; Denominator (e.g., 3/5). Value &lt; 1.</li>
- <li><em>Improper Fraction:</em> Numerator ≥ Denominator (e.g., 7/4). Value ≥ 1.</li>
- <li><em>Mixed Fraction:</em> Combination of a whole number and a proper fraction (e.g., 1 3/4).</li>
- </ul>
- </li>
- <li><strong>Equivalent Fractions:</strong> Fractions having identical value, obtained by multiplying or dividing numerator and denominator by the same non-zero integer: a/b = a × k/b × k.</li>
- <li><strong>Simplest Form:</strong> When numerator and denominator have no common factor other than 1 (HCF = 1).</li>
- </ul>
- </div>
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Fraction Concepts &amp; Operation Rules</div>
+    <ul class="concept-list">
+      <li><strong>Fraction:</strong> A number representing a part of a whole. In $\frac{a}{b}$, $a$ is numerator and $b$ is denominator ($b \neq 0$).</li>
+      <li><strong>Types of Fractions:</strong>
+        <ul>
+          <li><em>Proper Fraction:</em> Numerator &lt; Denominator (value &lt; 1), e.g., $\frac{3}{7}$.</li>
+          <li><em>Improper Fraction:</em> Numerator $\ge$ Denominator (value $\ge$ 1), e.g., $\frac{11}{4}$.</li>
+          <li><em>Mixed Fraction:</em> Combination of a whole number and a proper fraction, e.g., $2\frac{3}{4} = \frac{2 \times 4 + 3}{4} = \frac{11}{4}$.</li>
+        </ul>
+      </li>
+      <li><strong>Equivalent Fractions:</strong> Fractions having identical values, obtained by multiplying or dividing numerator and denominator by the same non-zero integer.</li>
+      <li><strong>Simplest Form:</strong> A fraction $\frac{a}{b}$ is in simplest form if $\text{HCF}(a, b) = 1$.</li>
+      <li><strong>Addition &amp; Subtraction:</strong> Convert unlike fractions to like fractions using the LCM of their denominators before adding or subtracting.</li>
+    </ul>
+  </div>
 
- <div class="math-diagram-wrap" style="margin: 20px auto; text-align: center; max-width: 540px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
- <svg viewBox="0 0 500 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
- <text x="250" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">Visual Fraction Models: Shaded Circle 3/4 &amp; Number Line (0 to 1)</text>
- 
- <!-- Circle Fraction: 3/4 shaded -->
- <circle cx="90" cy="85" r="45" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
- <!-- Shaded 3 quadrants: 0 to 270 deg -->
- <path d="M 90,85 L 135,85 A 45,45 0 1,1 90,40 Z" fill="#3b82f6" fill-opacity="0.8" stroke="#2563eb" stroke-width="1.5"/>
- <line x1="45" y1="85" x2="135" y2="85" stroke="#334155" stroke-width="1.8"/>
- <line x1="90" y1="40" x2="90" y2="130" stroke="#334155" stroke-width="1.8"/>
- <text x="90" y="148" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">3/4 Shaded</text>
+  <div class="ex-div">NCERT Exercise 7.1: Visual Fractions &amp; Number Line</div>
 
- <!-- Number Line from 0 to 1 with fourths -->
- <line x1="200" y1="85" x2="470" y2="85" stroke="#1e293b" stroke-width="2.5"/>
- <!-- Ticks -->
- <line x1="220" y1="75" x2="220" y2="95" stroke="#1e293b" stroke-width="2"/>
- <text x="220" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">0</text>
+  
+  <div class="q-card" id="c6m-ch7-q1">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Write the fraction representing the shaded portion in the following figures:<br>(a) A circle divided into 8 equal parts with 3 parts shaded.<br>(b) A rectangle divided into 6 equal parts with 5 parts shaded.<br>(c) What fraction of a day is 8 hours?<br>(d) What fraction of an hour is 40 minutes?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(a) Circle:</strong> Shaded parts = 3, Total parts = 8 $\implies \mathbf{\frac{3}{8}}$.<br>
+      <strong>(b) Rectangle:</strong> Shaded parts = 5, Total parts = 6 $\implies \mathbf{\frac{5}{6}}$.<br>
+      <strong>(c) 8 hours of a day (24 hours):</strong> $\frac{8}{24} = \mathbf{\frac{1}{3}}$.<br>
+      <strong>(d) 40 minutes of an hour (60 minutes):</strong> $\frac{40}{60} = \mathbf{\frac{2}{3}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct fraction in lowest form</span><span class="marking-marks">0.5 Mark each (Total 2 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
- <line x1="280" y1="78" x2="280" y2="92" stroke="#64748b" stroke-width="2"/>
- <text x="280" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#2563eb" text-anchor="middle">1/4</text>
+  
+  <div class="q-card" id="c6m-ch7-q2">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Represent the following fractions on a number line:<br>(a) 2/5 &nbsp;&nbsp; (b) 3/5 &nbsp;&nbsp; (c) 7/5</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>Construction on Number Line:</strong><br>
+      1. Draw a straight line and mark 0, 1, and 2.<br>
+      2. Divide the unit interval between 0 and 1 into 5 equal parts (each step is $\frac{1}{5}$).<br>
+      3. Point at 2 steps from 0 marks <strong>2/5</strong>.<br>
+      4. Point at 3 steps from 0 marks <strong>3/5</strong>.<br>
+      5. Divide the interval between 1 and 2 into 5 equal parts. Point at 2 steps beyond 1 ($1 + \frac{2}{5} = \frac{7}{5}$) marks <strong>7/5</strong>.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Dividing unit segment into 5 equal intervals</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Correctly locating 2/5, 3/5, and 7/5</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
- <line x1="340" y1="78" x2="340" y2="92" stroke="#64748b" stroke-width="2"/>
- <text x="340" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#2563eb" text-anchor="middle">2/4 1/2</text>
+  <div class="ex-div">NCERT Exercise 7.2: Types of Fractions &amp; Conversions</div>
 
- <line x1="400" y1="78" x2="400" y2="92" stroke="#64748b" stroke-width="2"/>
- <circle cx="400" cy="85" r="5" fill="#dc2626"/>
- <text x="400" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#dc2626" text-anchor="middle">3/4</text>
+  
+  <div class="q-card" id="c6m-ch7-q3">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">(a) Express the following as mixed fractions: (i) 20/3 &nbsp;&nbsp; (ii) 27/5<br>(b) Express the following as improper fractions: (i) 7 3/4 &nbsp;&nbsp; (ii) 5 6/7</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(a) Mixed Fractions:</strong><br>
+      (i) $20 \div 3 = 6$ (quotient) with remainder 2 $\implies \mathbf{6\frac{2}{3}}$.<br>
+      (ii) $27 \div 5 = 5$ (quotient) with remainder 2 $\implies \mathbf{5\frac{2}{5}}$.
+    </div>
+    <div class="step">
+      <strong>(b) Improper Fractions:</strong><br>
+      (i) $7\frac{3}{4} = \frac{7 \times 4 + 3}{4} = \frac{28 + 3}{4} = \mathbf{\frac{31}{4}}$.<br>
+      (ii) $5\frac{6}{7} = \frac{5 \times 7 + 6}{7} = \frac{35 + 6}{7} = \mathbf{\frac{41}{7}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each conversion correct</span><span class="marking-marks">0.5 Mark each (Total 2 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
- <line x1="460" y1="75" x2="460" y2="95" stroke="#1e293b" stroke-width="2"/>
- <text x="460" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">1 4/4</text>
- </svg>
- <div style="font-size: 0.82rem; font-weight: 600; color: #475569; margin-top: 6px;">Figure 7.1: Visualizing 3/4 through Area Model and Partitioned Number Line</div>
- </div>
+  <div class="ex-div">NCERT Exercise 7.3: Equivalent Fractions &amp; Simplest Form</div>
 
- <div class="ex-div">NCERT Exercise 7.1: Equivalent Fractions &amp; Number Line</div>
+  
+  <div class="q-card" id="c6m-ch7-q4">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Find the equivalent fraction of 3/5 having:<br>(a) Denominator 20<br>(b) Numerator 9<br>(c) Denominator 30</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(a) Denominator 20:</strong> Multiply numerator and denominator by 4:<br>
+      $\frac{3 \times 4}{5 \times 4} = \mathbf{\frac{12}{20}}$.
+    </div>
+    <div class="step">
+      <strong>(b) Numerator 9:</strong> Multiply numerator and denominator by 3:<br>
+      $\frac{3 \times 3}{5 \times 3} = \mathbf{\frac{9}{15}}$.
+    </div>
+    <div class="step">
+      <strong>(c) Denominator 30:</strong> Multiply numerator and denominator by 6:<br>
+      $\frac{3 \times 6}{5 \times 6} = \mathbf{\frac{18}{30}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 Mark per correct equivalent fraction</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
- <div class="q-card" id="c6m-ch7-q1">
- <div class="q-head" onclick="toggleQ('c6m-ch7-q1')">
- <div class="q-num">Q1</div>
- <div class="q-text">Find the equivalent fraction of 3/5 having:<br>
- (a) Denominator 20<br>
- (b) Numerator 9<br>
- (c) Denominator 30</div>
- <div class="q-marks">[3 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <p><em>Rule:</em> To obtain an equivalent fraction, multiply both numerator and denominator by the same integer factor k.</p>
- <div class="step">
- <strong>(a) Denominator 20:</strong><br>
- To convert denominator 5 to 20, multiply by 4 (20 ÷ 5 = 4):<br>
- 3/5 = 3 × 4/5 × 4 = <strong>12/20</strong>}
- </div>
- <div class="step">
- <strong>(b) Numerator 9:</strong><br>
- To convert numerator 3 to 9, multiply by 3 (9 ÷ 3 = 3):<br>
- 3/5 = 3 × 3/5 × 3 = <strong>9/15</strong>}
- </div>
- <div class="step">
- <strong>(c) Denominator 30:</strong><br>
- To convert denominator 5 to 30, multiply by 6 (30 ÷ 5 = 6):<br>
- 3/5 = 3 × 6/5 × 6 = <strong>18/30</strong>}
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Part (a): 12/20</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (b): 9/15</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (c): 18/30</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+  
+  <div class="q-card" id="c6m-ch7-q5">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Reduce the following fractions to their simplest (lowest) form by dividing by HCF:<br>(a) 48/60 &nbsp;&nbsp; (b) 84/98 &nbsp;&nbsp; (c) 12/52</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(a) 48/60:</strong> $\text{HCF}(48, 60) = 12$.<br>
+      $\frac{48 \div 12}{60 \div 12} = \mathbf{\frac{4}{5}}$.
+    </div>
+    <div class="step">
+      <strong>(b) 84/98:</strong> $\text{HCF}(84, 98) = 14$.<br>
+      $\frac{84 \div 14}{98 \div 14} = \mathbf{\frac{6}{7}}$.
+    </div>
+    <div class="step">
+      <strong>(c) 12/52:</strong> $\text{HCF}(12, 52) = 4$.<br>
+      $\frac{12 \div 4}{52 \div 4} = \mathbf{\frac{3}{13}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 Mark per reduction with HCF step</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
- <div class="q-card" id="c6m-ch7-q2">
- <div class="q-head" onclick="toggleQ('c6m-ch7-q2')">
- <div class="q-num">Q2</div>
- <div class="q-text">Compare the fractions using &lt;, &gt;, or =:<br>
- (i) 3/6 and 5/6<br>
- (ii) 1/7 and 1/4<br>
- (iii) 4/5 and 5/6</div>
- <div class="q-marks">[3 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <div class="step">
- <strong>(i) 3/6 and 5/6:</strong><br>
- These are like fractions (same denominator 6). Compare numerators: 3 &lt; 5.<br>
- <strong>3/6</strong> &lt; 5/6}
- </div>
- <div class="step">
- <strong>(ii) 1/7 and 1/4:</strong><br>
- Fractions with the same numerator 1: The fraction with the smaller denominator is larger.<br>
- Since 7 &gt; 4, 1/7 &lt; 1/4.<br>
- <strong>1/7</strong> &lt; 1/4}
- </div>
- <div class="step">
- <strong>(iii) 4/5 and 5/6:</strong><br>
- Convert unlike fractions to common denominator LCM(5, 6) = 30:<br>
- 4/5 = 4 × 6/5 × 6 = 24/30<br>
- 5/6 = 5 × 5/6 × 5 = 25/30<br>
- Since 24 &lt; 25,<br>
- <strong>4/5</strong> &lt; 5/6}
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Part (i): Like fraction comparison 3/6 &lt; 5/6</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (ii): Unit fraction comparison 1/7 &lt; 1/4</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (iii): Converting to common denominator 30 and concluding 4/5 &lt; 5/6</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+  <div class="ex-div">NCERT Exercise 7.4: Fraction Comparison &amp; Ordering</div>
 
- <div class="q-card" id="c6m-ch7-q3">
- <div class="q-head" onclick="toggleQ('c6m-ch7-q3')">
- <div class="q-num">Q3</div>
- <div class="q-text">Evaluate the following fraction operations:<br>
- (a) 5/8 + 1/8<br>
- (b) 5/6 - 1/4<br>
- (c) 2 1/5 + 3 1/2</div>
- <div class="q-marks">[3 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <div class="step">
- <strong>(a) Like Fractions Addition:</strong><br>
- 5/8 + 1/8 = 5 + 1/8 = 6/8 = <strong>3/4</strong>} (in simplest form)
- </div>
- <div class="step">
- <strong>(b) Unlike Fractions Subtraction:</strong><br>
- LCM(6, 4) = 12.<br>
- 5/6 = 5 × 2/6 × 2 = 10/12<br>
- 1/4 = 1 × 3/4 × 3 = 3/12<br>
- 10/12 - 3/12 = <strong>7/12</strong>}
- </div>
- <div class="step">
- <strong>(c) Mixed Fractions Addition:</strong><br>
- Convert to improper fractions:<br>
- 2 1/5 = 11/5, &nbsp; 3 1/2 = 7/2.<br>
- LCM(5, 2) = 10.<br>
- 11/5 = 22/10, &nbsp; 7/2 = 35/10.<br>
- Sum = (22 + 35)/10 = 57/10 = 5 7/10 = <strong>5 7/10</strong>
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Part (a): 6/8 simplified to 3/4</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (b): Finding LCM 12 and evaluating 7/12</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (c): Mixed to improper + LCM 10 + answer 5 7/10 or 5 7/10</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+  
+  <div class="q-card" id="c6m-ch7-q6">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Compare the following pairs of fractions and place appropriate sign (&lt;, =, &gt;):<br>(a) 3/6 and 5/6<br>(b) 1/4 and 1/7<br>(c) 4/5 and 5/6</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(a) 3/6 and 5/6:</strong> Like fractions; since $3 &lt; 5$, $\mathbf{\frac{3}{6} &lt; \frac{5}{6}}$.
+    </div>
+    <div class="step">
+      <strong>(b) 1/4 and 1/7:</strong> Same numerator; the fraction with the smaller denominator is larger: $\mathbf{\frac{1}{4} &gt; \frac{1}{7}}$.
+    </div>
+    <div class="step">
+      <strong>(c) 4/5 and 5/6:</strong> Unlike fractions. $\text{LCM}(5, 6) = 30$.<br>
+      $\frac{4}{5} = \frac{24}{30}$ and $\frac{5}{6} = \frac{25}{30}$.<br>
+      Since $24 &lt; 25$, $\mathbf{\frac{4}{5} &lt; \frac{5}{6}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">1 Mark per comparison with clear reasoning</span><span class="marking-marks">3 Marks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
- <!-- Competency-Based Question -->
- <div class="cbq-card">
- <div class="cbq-badge">CBSE Competency-Based Question (Daily Life Measurement)</div>
- <div class="q-text"><strong>Case Study: Recipe Ingredient Fraction Balancing:</strong><br>
- Sarita bought 2/5 metre of ribbon and Lalita bought 3/4 metre of ribbon. What is the total length of ribbon they bought together? Who bought more ribbon, and by how much?</div>
- <div class="answer-box" style="margin-top: 15px;">
- <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
- <div class="answer-text">
- <p><strong>Step 1: Total Length of Ribbon Bought:</strong><br>
- Total = 2/5 + 3/4
- LCM(5, 4) = 20.<br>
- 2/5 = 8/20, &nbsp; 3/4 = 15/20.<br>
- Total = (8 + 15)/20 = 23/20 = 23/20 m = <strong>1 3/20 metres</strong></p>
+  <div class="ex-div">NCERT Exercise 7.5: Addition &amp; Subtraction of Fractions</div>
 
- <p><strong>Step 2: Comparison &amp; Difference:</strong><br>
- Since 15/20 &gt; 8/20, <strong>Lalita bought more ribbon</strong>.<br>
- Difference = 15/20 - 8/20 = <strong>7/20</strong> metre}.</p>
- </div>
- </div>
- </div>
+  
+  <div class="q-card" id="c6m-ch7-q7">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q7')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">Solve the following:<br>(a) 1/18 + 1/18<br>(b) 8/15 + 3/15<br>(c) 7/7 - 5/7<br>(d) 1 - 2/3</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(a)</strong> $\frac{1}{18} + \frac{1}{18} = \frac{2}{18} = \mathbf{\frac{1}{9}}$.<br>
+      <strong>(b)</strong> $\frac{8}{15} + \frac{3}{15} = \mathbf{\frac{11}{15}}$.<br>
+      <strong>(c)</strong> $\frac{7}{7} - \frac{5}{7} = \mathbf{\frac{2}{7}}$.<br>
+      <strong>(d)</strong> $1 - \frac{2}{3} = \frac{3}{3} - \frac{2}{3} = \mathbf{\frac{1}{3}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Each correct evaluation in simplest form</span><span class="marking-marks">0.5 Mark each (Total 2 Marks)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch7-q8">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q8')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">Find the sum: 2/3 + 3/4 + 1/2.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      Step 1: Find LCM of denominators 3, 4, and 2:<br>
+      $\text{LCM}(3, 4, 2) = 12$.<br>
+      Step 2: Convert to like fractions:<br>
+      $\frac{2}{3} = \frac{8}{12}$; $\frac{3}{4} = \frac{9}{12}$; $\frac{1}{2} = \frac{6}{12}$.<br>
+      Step 3: Add numerators:<br>
+      $\text{Sum} = \frac{8 + 9 + 6}{12} = \frac{23}{12} = \mathbf{1\frac{11}{12}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">LCM = 12 and conversion to like fractions</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Sum = 23/12 or 1 11/12</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch7-q9">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q9')">
+      <div class="q-num">Q9</div>
+      <div class="q-text">Subtract 2 1/5 from 4 2/3.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      Convert mixed numbers to improper fractions:<br>
+      $4\frac{2}{3} = \frac{14}{3}$; $2\frac{1}{5} = \frac{11}{5}$.<br>
+      $\text{LCM}(3, 5) = 15$.<br>
+      $\frac{14}{3} = \frac{70}{15}$; $\frac{11}{5} = \frac{33}{15}$.<br>
+      Difference = $\frac{70 - 33}{15} = \frac{37}{15} = \mathbf{2\frac{7}{15}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Improper conversion and LCM = 15</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Answer 37/15 or 2 7/15</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch7-q10">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q10')">
+      <div class="q-num">Q10</div>
+      <div class="q-text">Sarita bought 2/5 metre of ribbon and Lalita 3/4 metre of ribbon. What is the total length of the ribbon they bought?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      Total length = $\frac{2}{5} + \frac{3}{4}\text{ metres}$.<br>
+      $\text{LCM}(5, 4) = 20$.<br>
+      $\frac{2}{5} = \frac{8}{20}$; $\frac{3}{4} = \frac{15}{20}$.<br>
+      Total = $\frac{8 + 15}{20} = \frac{23}{20} = \mathbf{1\frac{3}{20}\text{ metres}}$ (or 1.15 m).
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Formulating sum with LCM = 20</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Answer 23/20 m or 1 3/20 m</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch7-q11">
+    <div class="q-head" onclick="toggleQ('c6m-ch7-q11')">
+      <div class="q-num">Q11</div>
+      <div class="q-text">A piece of wire 7/8 metre long broke into two pieces. One piece was 1/4 metre long. How long is the other piece?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      Length of other piece = Total length - First piece<br>
+      $= \frac{7}{8} - \frac{1}{4}$.<br>
+      $\text{LCM}(8, 4) = 8$.<br>
+      $\frac{1}{4} = \frac{2}{8}$.<br>
+      Length = $\frac{7 - 2}{8} = \mathbf{\frac{5}{8}\text{ metre}}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Subtraction setup with LCM</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Answer: 5/8 metre</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="cbq-card">
+    <div class="cbq-badge">CBSE Competency-Based Question (Culinary Recipe Fractions)</div>
+    <div class="q-text"><strong>Case Study: Culinary Recipe Scaling &amp; Nutritional Fractions:</strong><br>
+    A chef is baking a traditional carrot cake. The original recipe requires $2\frac{1}{2}$ cups of flour, $\frac{3}{4}$ cup of brown sugar, and $1\frac{1}{4}$ cups of grated carrots.<br>
+    (a) If the chef wants to bake double the batch (2 times), how much flour and brown sugar will be required?<br>
+    (b) If the chef has only 3 cups of flour available, how much more flour is needed for the double batch?<br>
+    (c) Express the total liquid sweetener and vegetable ratio as a combined fraction.</div>
+    <div class="answer-box" style="margin-top: 15px;">
+      <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
+      <div class="answer-text">
+        <p><strong>(a) Doubling the Ingredients:</strong><br>
+    - Flour = $2 \times 2\frac{1}{2} = 2 \times \frac{5}{2} = \mathbf{5\text{ cups}}$.<br>
+    - Sugar = $2 \times \frac{3}{4} = \frac{6}{4} = \frac{3}{2} = \mathbf{1\frac{1}{2}\text{ cups}}$.</p>
+    <p><strong>(b) Extra Flour Needed:</strong><br>
+    $5\text{ cups} - 3\text{ cups} = \mathbf{2\text{ cups of flour}}$.</p>
+    <p><strong>(c) Combined Sugar and Carrots:</strong><br>
+    $\frac{3}{4} + 1\frac{1}{4} = \frac{3}{4} + \frac{5}{4} = \frac{8}{4} = \mathbf{2\text{ cups}}$.</p>
+      </div>
+    </div>
+  </div>
 </section>

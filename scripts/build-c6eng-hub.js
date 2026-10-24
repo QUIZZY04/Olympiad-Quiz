@@ -79,7 +79,7 @@ const html = `<!DOCTYPE html>
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
       { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
-      { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions.html#class6" },
+      { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions-class-6.html" },
       { "@type": "ListItem", "position": 4, "name": "English", "item": "https://olympiadquiz.org/ncert-solutions-class-6-english.html" }
     ]
   }
@@ -425,16 +425,20 @@ const html = `<!DOCTYPE html>
         <li class="ncert-bc-sep">/</li>
         <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
         <li class="ncert-bc-sep">/</li>
-        <li><a href="ncert-solutions.html#class6">Class 6</a></li>
+        <li><a href="ncert-solutions-class-6.html">Class 6</a></li>
         <li class="ncert-bc-sep">/</li>
         <li class="ncert-bc-current">English (Poorvi)</li>
       </ul>
       <div class="ncert-bc-switch">
-        <span class="ncert-bc-switch-label">Class 6 Subjects:</span>
-        <a href="ncert-solutions-class-6-maths.html" class="ncert-bc-pill">Maths (Ganita Prakash)</a>
-        <a href="ncert-solutions-class-6-science.html" class="ncert-bc-pill">Science (Curiosity)</a>
-        <a href="ncert-solutions-class-6-sst.html" class="ncert-bc-pill">Social Science (Exploring Society)</a>
-        <a href="ncert-solutions-class-6-english.html" class="ncert-bc-pill active">English (Poorvi)</a>
+        <span class="ncert-bc-switch-label">Switch Subject:</span>
+        <a href="ncert-solutions-class-6-maths.html" class="ncert-bc-pill">Maths</a>
+        <a href="ncert-solutions-class-6-science.html" class="ncert-bc-pill">Science</a>
+        <a href="ncert-solutions-class-6-sst.html" class="ncert-bc-pill">Social Science</a>
+        <a href="ncert-solutions-class-6-english.html" class="ncert-bc-pill active">English</a>
+        <a href="ncert-solutions-class-6-hindi-malhar.html" class="ncert-bc-pill">Hindi (Malhar)</a>
+        <a href="ncert-solutions-class-6-hindi.html" class="ncert-bc-pill">Hindi (Vasant)</a>
+        <a href="ncert-solutions-class-6-sanskrit.html" class="ncert-bc-pill">Sanskrit</a>
+        <a href="ncert-solutions-class-6.html" class="ncert-bc-pill">All Class 6 Hub</a>
       </div>
     </div>
   </nav>
