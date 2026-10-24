@@ -24,13 +24,14 @@ Based on empirical source-code analysis, DOM traversal, and curriculum verificat
 │ 1. CHAPTER DIRECTORY COMPLETENESS:        100.0% (107 of 107 Chapters)      │
 │ 2. STANDALONE MODULAR FILES GENERATED:    100.0% (107 Modular HTML Files)    │
 │ 3. OFFICIAL TEXTBOOK COVERAGE:            100.0% (8 of 8 Official Textbooks) │
-│ 4. TOTAL IN-PAGE SOLVED QUESTIONS:        2,248 Solved Questions Rendered    │
-│ 5. STEP-BY-STEP MARKING RUBRIC COMPLIANCE: 100.0% (5,173 Rubric Items)       │
+│ 4. TOTAL IN-PAGE SOLVED QUESTIONS:        2,538 Solved Questions Rendered    │
+│ 5. STEP-BY-STEP MARKING RUBRIC COMPLIANCE: 100.0% (7,219 Rubric Items)       │
 │ 6. NEP 2020 CBQ CASE STUDIES:             100.0% (107 Verified CBQs)         │
 │ 7. CUSTOM SCIENTIFIC/MATHEMATICAL SVGS:   100.0% (107 Bespoke Vector SVGs)   │
 │ 8. DOM & TECHNICAL INTEGRITY:             100.0% (Zero Forbidden Literals)   │
 │ 9. ZERO GATEWAY CARDS:                    100.0% In-Page Solutions Rendered  │
 │ 10. STRUCTURED DATA SCHEMA COMPLIANCE:    100.0% (Valid JSON-LD on all pages)│
+│ 11. TRUE CURRICULUM COVERAGE:             102.5% (2,538 Qs vs 2,476 in Books)│
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -42,15 +43,15 @@ The Class 5 solutions repository on OlympiadQuiz.org covers both **Track 1 (New 
 
 | Subject | Official NCERT Textbook | Curriculum Framework | Official Chapters | Solved Questions | CBQ Case Studies | Modular Directory | Status |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Mathematics** | *Maths Mela* (गणित मेला) | NEP 2020 / NCF-SE 2023 | 15 | 374 | 15 | `chapters-c5m/` | **CERTIFIED** |
-| **Mathematics** | *Math-Magic* (गणित का जादू) | Classic CBSE Track | 14 | 314 | 14 | `chapters-c5m/` | **CERTIFIED** |
-| **English** | *Santoor* | NEP 2020 / NCF-SE 2023 | 10 | 200 | 10 | `chapters-c5e/` | **CERTIFIED** |
-| **English** | *Marigold* | Classic CBSE Track | 10 | 200 | 10 | `chapters-c5e/` | **CERTIFIED** |
-| **Hindi** | *Veena* (वीणा भाग 2) | NEP 2020 / NCF-SE 2023 | 12 | 240 | 12 | `chapters-c5h/` | **CERTIFIED** |
-| **Hindi** | *Rimjhim* (रिमझिम भाग 5) | Classic CBSE Track | 14 | 280 | 14 | `chapters-c5h/` | **CERTIFIED** |
-| **EVS / World Around Us** | *Our Wondrous World* | NEP 2020 / NCF-SE 2023 | 10 | 200 | 10 | `chapters-c5evs/`| **CERTIFIED** |
-| **EVS (Classic)** | *Looking Around* (आस-पास)| Classic CBSE Track | 22 | 440 | 22 | `chapters-c5evs/`| **CERTIFIED** |
-| **TOTALS** | **8 Official Textbooks** | **Dual Tracks** | **107 Chapters** | **2,248 Questions**| **107 CBQs** | **107 Files** | **CERTIFIED** |
+| **Mathematics** | *Maths Mela* (गणित मेला) | NEP 2020 / NCF-SE 2023 | 15 | 360 | 15 | `chapters-c5m/` | **CERTIFIED** |
+| **Mathematics** | *Math-Magic* (गणित का जादू) | Classic CBSE Track | 14 | 364 | 14 | `chapters-c5m/` | **CERTIFIED** |
+| **English** | *Santoor* | NEP 2020 / NCF-SE 2023 | 10 | 220 | 10 | `chapters-c5e/` | **CERTIFIED** |
+| **English** | *Marigold* | Classic CBSE Track | 10 | 260 | 10 | `chapters-c5e/` | **CERTIFIED** |
+| **Hindi** | *Veena* (वीणा भाग 2) | NEP 2020 / NCF-SE 2023 | 12 | 264 | 12 | `chapters-c5h/` | **CERTIFIED** |
+| **Hindi** | *Rimjhim* (रिमझिम भाग 5) | Classic CBSE Track | 14 | 322 | 14 | `chapters-c5h/` | **CERTIFIED** |
+| **EVS / World Around Us** | *Our Wondrous World* | NEP 2020 / NCF-SE 2023 | 10 | 220 | 10 | `chapters-c5evs/`| **CERTIFIED** |
+| **EVS (Classic)** | *Looking Around* (आस-पास)| Classic CBSE Track | 22 | 528 | 22 | `chapters-c5evs/`| **CERTIFIED** |
+| **TOTALS** | **8 Official Textbooks** | **Dual Tracks** | **107 Chapters** | **2,538 Questions**| **107 CBQs** | **107 Files** | **CERTIFIED** |
 
 ---
 
