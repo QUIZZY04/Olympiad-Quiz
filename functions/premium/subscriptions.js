@@ -288,6 +288,33 @@ exports.razorpayWebhook = onRequest({
         });
         break;
       }
+      // Fires when the customer pauses their OWN subscription via Razorpay's
+      // self-serve customer portal (the auto-generated short_url every
+      // subscription gets) - distinct from cancelled/halted, and previously
+      // fell through to the unhandled `default` case below with no trace
+      // left anywhere, so a paused subscription looked identical to a
+      // healthy one in the admin panel. Deliberately does NOT touch
+      // isPremium - the student keeps access they already paid for until
+      // premiumExpiresAt naturally passes (no further charge will occur
+      // while paused), same as before this case existed; this only adds
+      // premiumStatus so admin.html can show it instead of a false "Active".
+      case "subscription.paused": {
+        await setPremiumBySubscriptionId(subscriptionId, notesUid, {
+          premiumStatus: "paused",
+          premiumPausedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        break;
+      }
+      // Fires if the customer (or Razorpay) resumes a paused subscription -
+      // clears the premiumStatus flag set above so admin.html goes back to
+      // showing a plain "Active" badge.
+      case "subscription.resumed": {
+        await setPremiumBySubscriptionId(subscriptionId, notesUid, {
+          premiumStatus: admin.firestore.FieldValue.delete(),
+          premiumPausedAt: null,
+        });
+        break;
+      }
       case "payment.failed": {
         // Visibility only - does NOT touch isPremium. See doc comment above.
         const paymentEntity = req.body.payload?.payment?.entity;

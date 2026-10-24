@@ -8921,9 +8921,11 @@ window.loadPremiumSubscriptions = async function() {
                 <td><b>${name}</b></td>
                 <td><div style="font-size:12px;">✉️ ${email}<br>📞 ${phone}</div></td>
                 <td><span style="background:${tierInfo.bg}; color:${tierInfo.color}; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:800; display:inline-block; vertical-align:middle;">${tierInfo.label}</span>${compBadge}</td>
-                <td>${isActive
-                    ? `<span style="color:#15803d; font-weight:700;">● Active</span>`
-                    : `<span style="color:var(--muted); font-weight:700;">○ Cancelled/Expired</span>`}</td>
+                <td>${!isActive
+                    ? `<span style="color:var(--muted); font-weight:700;">○ Cancelled/Expired</span>`
+                    : data.premiumStatus === "paused"
+                        ? `<span style="color:#b45309; font-weight:700;" title="Customer paused autopay via their Razorpay link - access runs out on the expiry date below with no further charge, won't auto-renew">⏸ Paused (won't renew)</span>`
+                        : `<span style="color:#15803d; font-weight:700;">● Active</span>`}</td>
                 <td>${startedOn}</td>
                 <td>${expiresOn}</td>
                 <td style="font-size:11px; font-family:monospace;">${subId}</td>
