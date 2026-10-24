@@ -16,17 +16,17 @@ A strict, comprehensive audit was conducted on all Class 6 NCERT textbook soluti
 
 ### Summary Comparison Table: Before Audit vs. Post-Rectification
 
-| Subject | Textbook Track | Pre-Audit Qs | Post-Rectification Qs | SVG Diagrams | CBSE Rubrics | CBQs | Audit Status |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Central Portal** | `ncert-solutions-class-6.html` | 0 (Missing) | **Portal Created** | Full CSS Grid | Meta Tags | FAQs | 🟢 **100% Live** |
-| **Mathematics** | *Ganita Prakash* (NEP 2020) — 12 Chapters | 48 | **125** | 120 | 113 | 12 | 🟢 **100% Covered** |
-| **English** | *Poorvi* (NEP 2020) — 15 Chapters | 48 | **116** | 15 Flowcharts | 108 | 15 | 🟢 **100% Covered** |
-| **Hindi** | *Malhar* (NEP 2020) — 13 Chapters | 59 (Ch 1-8 only) | **93** | 13 Diagrams | 93 | 13 | 🟢 **100% Covered** |
-| **Hindi** | *Vasant Bhag-1* (Classic CBSE) — 17 Chapters | 71 | **71** | Pre-rendered | 71 | 17 | 🟢 **100% Covered** |
-| **Science** | *Curiosity* (NEP 2020) — 12 Chapters | 120 | **120** | 12 Lab Diagrams | 108 | 12 | 🟢 **100% Covered** |
-| **Social Science** | *Exploring Society* (NEP 2020) — 14 Chapters | 138 | **153** | 14 Historical Maps | 138 | 14 | 🟢 **100% Covered** |
-| **Sanskrit** | *Deepakam* & *Ruchira* (31 Sections) | 119 | **119** | Tables & Charts | 119 | 16 | 🟢 **100% Covered** |
-| **TOTAL** | **All Class 6 Subjects Combined** | **603** | **797+ Questions** | **174+ Assets** | **750+ Rubrics** | **99 CBQs** | 🟢 **100% CERTIFIED** |
+| Subject | Textbook Track | Pre-Audit Qs | Standalone Modules | Total Qs Covered | SVG Diagrams | CBSE Rubrics | CBQs | Audit Status |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Central Portal** | `ncert-solutions-class-6.html` | 0 (Missing) | Central Hub | **Portal Created** | Full CSS Grid | Meta Tags | FAQs | 🟢 **100% Live** |
+| **Mathematics** | *Ganita Prakash* (NEP 2020) — 12 Chapters | 48 | 12 Standalone Pages | **140** | 120 | 140 | 12 | 🟢 **100% Covered** |
+| **English** | *Poorvi* (NEP 2020) — 15 Chapters | 48 | 15 Standalone Pages | **116** | 15 Flowcharts | 108 | 15 | 🟢 **100% Covered** |
+| **Hindi** | *Malhar* (NEP 2020) — 13 Chapters | 59 (Ch 1-8 only) | 13 Standalone Pages | **93** | 13 Diagrams | 93 | 13 | 🟢 **100% Covered** |
+| **Hindi** | *Vasant Bhag-1* (Classic CBSE) — 17 Chapters | 71 | Integrated Hub | **71** | Pre-rendered | 71 | 17 | 🟢 **100% Covered** |
+| **Science** | *Curiosity* (NEP 2020) — 12 Chapters | 120 | 12 Standalone Pages | **112** | 12 Lab Diagrams | 108 | 12 | 🟢 **100% Covered** |
+| **Social Science** | *Exploring Society* (NEP 2020) — 14 Chapters | 138 | 14 Standalone Pages | **153** | 14 Historical Maps | 138 | 14 | 🟢 **100% Covered** |
+| **Sanskrit** | *Deepakam* & *Ruchira* (31 Sections) | 119 | Integrated Hub | **119** | Tables & Charts | 119 | 16 | 🟢 **100% Covered** |
+| **TOTAL** | **All Class 6 Subjects Combined** | **603** | **66 Standalone Modules** | **777+ Questions** | **174+ Assets** | **770+ Rubrics** | **99 CBQs** | 🟢 **100% CERTIFIED** |
 
 ---
 
@@ -34,8 +34,8 @@ A strict, comprehensive audit was conducted on all Class 6 NCERT textbook soluti
 
 ### 2.1 Mathematics (*Ganita Prakash* — 12 Chapters)
 - **Central Subject Hub:** `ncert-solutions-class-6-maths.html` (332.8 KB)
-- **Standalone Chapter Directory:** `chapters-c6m/` (ch1.html to ch12.html)
-- **Total Exercises Covered:** 100% of all exercises in Ganita Prakash
+- **Standalone Chapter Directory:** `chapters-c6m/` (`ganita-prakash-ch1.html` to `ch12.html` and `ch1.html` to `ch12.html`)
+- **Total Exercises Covered:** 100% of all exercises in Ganita Prakash (140 comprehensive questions)
 
 | Chapter # | Chapter Title | Exercises & Topics Covered | Q Count | Diagrams | CBQ Case Study |
 | :---: | :--- | :--- | :---: | :---: | :---: |
@@ -46,12 +46,12 @@ A strict, comprehensive audit was conducted on all Class 6 NCERT textbook soluti
 | **Ch 5** | Prime Time | Divisibility (2, 3, 4, 5, 6, 8, 9, 11), factor trees, co-primes, HCF & LCM | **12** | Factor trees & Venn grids | Synchronized traffic signals |
 | **Ch 6** | Perimeter and Area | Perimeter of regular polygons, area of rectangle & square, tile tiling puzzles | **11** | Grid square & rect models | Community garden fencing |
 | **Ch 7** | Fractions | Number line plotting, proper/improper/mixed, equivalent fractions, additions | **11** | Fraction pie & bars | Sharing food / pizza slices |
-| **Ch 8** | Playing with Constructions | Perpendicular bisector, angle bisectors ($60^\circ, 90^\circ, 45^\circ, 30^\circ$) with ruler/compass | **6** | Step-by-step compass arcs | Architectural park layout |
-| **Ch 9** | Symmetry | Horizontal, vertical, diagonal lines of symmetry in polygons & alphabet | **5** | Mirror reflection axes | Rangoli pattern design |
-| **Ch 10** | The Other Side of Zero | Integer comparisons, directed distance, number line addition & subtraction | **7** | Integer number lines | Cold storage temperature changes |
-| **Ch 11** | Introduction to Algebra | Variables, constants, forming algebraic expressions, solving linear equations | **7** | Balance scale models | Express courier weight pricing |
-| **Ch 12** | Ratio and Proportion | Simplest ratio form, unitary method, equivalent ratios, scaling recipe | **8** | Proportional bar models | Drink mixture & map scale ratio |
-| **Total** | **All 12 Chapters** | **Complete Ganita Prakash Syllabus** | **113 + 12 CBQs = 125** | **120 SVG Assets** | **12 Case Studies** |
+| **Ch 8** | Playing with Constructions | Line segments, perpendicular bisectors, angle bisectors ($60^\circ, 90^\circ, 45^\circ, 30^\circ$, $120^\circ$) with ruler & compass | **12** | Step-by-step compass arcs | Architectural park layout |
+| **Ch 9** | Symmetry | Horizontal, vertical, diagonal lines of symmetry in regular polygons, alphabet, mirror lines | **12** | Mirror reflection axes | Rangoli pattern design |
+| **Ch 10** | The Other Side of Zero | Integer representation, opposite scenarios, number line addition/subtraction, absolute values | **12** | Integer number lines | Cold storage temperature changes |
+| **Ch 11** | Introduction to Algebra | Variables, constants, forming algebraic expressions, solving linear equations, matchstick rules | **12** | Balance scale models | Express courier weight pricing |
+| **Ch 12** | Ratio and Proportion | Simplest ratio form, unitary method, equivalent ratios, scaling recipes, proportions | **12** | Proportional bar models | Drink mixture & map scale ratio |
+| **Total** | **All 12 Chapters** | **Complete Ganita Prakash Syllabus** | **140 Questions** | **120 SVG Assets** | **12 Case Studies** |
 
 ---
 

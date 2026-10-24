@@ -10,7 +10,9 @@ for (let i = 1; i <= 15; i++) {
   if (!fs.existsSync(filePath)) {
     throw new Error(`Missing chapter file: ${filePath}`);
   }
-  allChapters[i] = fs.readFileSync(filePath, 'utf8');
+  const rawContent = fs.readFileSync(filePath, 'utf8');
+  const sectionMatch = rawContent.match(/<section[\s\S]*?<\/section>/);
+  allChapters[i] = sectionMatch ? sectionMatch[0] : rawContent;
 }
 
 const chapters = [

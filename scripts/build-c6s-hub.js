@@ -5,7 +5,9 @@ const dir = path.join(__dirname, '..', 'chapters-c6s');
 
 const allChapters = {};
 for (let i = 1; i <= 12; i++) {
-  allChapters[i] = fs.readFileSync(path.join(dir, `ch${i}.html`), 'utf8');
+  const rawContent = fs.readFileSync(path.join(dir, `ch${i}.html`), 'utf8');
+  const sectionMatch = rawContent.match(/<section[\s\S]*?<\/section>/);
+  allChapters[i] = sectionMatch ? sectionMatch[0] : rawContent;
 }
 
 const chapters = [
