@@ -104,11 +104,7 @@ const sanSidebar = santoorChapters.map(ch => ({
 }));
 
 santoorChapters.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const target = targetCounts[chId] || 20;
-  const generated = generateEnglishQuestions(ch, baseQs.length, target);
-  const currentQs = [...baseQs, ...generated];
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Ch ${idx}: ${santoorChapters[idx - 1].title}`, filename: `santoor-ch${idx}.html` } : null;
   const nextLink = idx < santoorChapters.length - 1 ? { label: `Ch ${idx + 2}: ${santoorChapters[idx + 1].title}`, filename: `santoor-ch${idx + 2}.html` } : null;
@@ -148,11 +144,7 @@ const mgSidebar = marigoldUnits.map(ch => ({
 }));
 
 marigoldUnits.forEach((ch, idx) => {
-  const chId = ch.id;
-  const baseQs = ch.questions || [];
-  const target = targetCounts[chId] || 20;
-  const generated = generateEnglishQuestions(ch, baseQs.length, target);
-  const currentQs = [...baseQs, ...generated];
+  const currentQs = ch.questions || [];
 
   const prevLink = idx > 0 ? { label: `Unit ${idx}: ${marigoldUnits[idx - 1].title}`, filename: `marigold-unit${idx}.html` } : null;
   const nextLink = idx < marigoldUnits.length - 1 ? { label: `Unit ${idx + 2}: ${marigoldUnits[idx + 1].title}`, filename: `marigold-unit${idx + 2}.html` } : null;

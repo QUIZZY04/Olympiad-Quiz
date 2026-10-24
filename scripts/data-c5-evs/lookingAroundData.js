@@ -1,4 +1,4 @@
-// Official NCERT Class 5 EVS: "Looking Around" (आस-पास) (Classic CBSE Track)
+// Official NCERT Class 5 EVS: "Looking Around" (Classic CBSE Track)
 // 100% Comprehensive Question Dataset - Chapters 1 to 22
 // Aligned with CBSE Marking Scheme (2026-27 Session)
 
@@ -457,46 +457,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Super Senses",
-        "q": "[Textbook Activity & Question 1] In 'Super Senses', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Super Senses</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Super Senses",
-        "q": "[Textbook Activity & Question 2] In 'Super Senses', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Super Senses</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -933,46 +893,6 @@ const lookingAroundChapters = [
       {
         "category": "Find Out and Write • Observational Field Study • A Snake Charmer's Story",
         "q": "[Textbook Activity & Question 18] In 'A Snake Charmer's Story', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Snake Charmer's Story</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • A Snake Charmer's Story",
-        "q": "[Textbook Activity & Question 1] In 'A Snake Charmer's Story', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Snake Charmer's Story</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • A Snake Charmer's Story",
-        "q": "[Textbook Activity & Question 2] In 'A Snake Charmer's Story', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Snake Charmer's Story</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -1449,46 +1369,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • From Tasting to Digesting",
-        "q": "[Textbook Activity & Question 1] In 'From Tasting to Digesting', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>From Tasting to Digesting</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • From Tasting to Digesting",
-        "q": "[Textbook Activity & Question 2] In 'From Tasting to Digesting', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>From Tasting to Digesting</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -1928,46 +1808,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • Mangoes Round the Year",
         "q": "[Textbook Activity & Question 17] In 'Mangoes Round the Year', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Mangoes Round the Year</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Mangoes Round the Year",
-        "q": "[Textbook Activity & Question 1] In 'Mangoes Round the Year', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Mangoes Round the Year</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Mangoes Round the Year",
-        "q": "[Textbook Activity & Question 2] In 'Mangoes Round the Year', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Mangoes Round the Year</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -2435,46 +2275,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Seeds and Seeds",
-        "q": "[Textbook Activity & Question 1] In 'Seeds and Seeds', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Seeds and Seeds</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Seeds and Seeds",
-        "q": "[Textbook Activity & Question 2] In 'Seeds and Seeds', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Seeds and Seeds</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -2925,46 +2725,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Every Drop Counts",
-        "q": "[Textbook Activity & Question 1] In 'Every Drop Counts', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Every Drop Counts</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Every Drop Counts",
-        "q": "[Textbook Activity & Question 2] In 'Every Drop Counts', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Every Drop Counts</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -3399,46 +3159,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • Experiments with Water",
         "q": "[Textbook Activity & Question 17] In 'Experiments with Water', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Experiments with Water</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Experiments with Water",
-        "q": "[Textbook Activity & Question 1] In 'Experiments with Water', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Experiments with Water</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Experiments with Water",
-        "q": "[Textbook Activity & Question 2] In 'Experiments with Water', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Experiments with Water</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -3910,46 +3630,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • A Treat for Mosquitoes",
-        "q": "[Textbook Activity & Question 1] In 'A Treat for Mosquitoes', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Treat for Mosquitoes</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • A Treat for Mosquitoes",
-        "q": "[Textbook Activity & Question 2] In 'A Treat for Mosquitoes', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Treat for Mosquitoes</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -4399,46 +4079,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Up You Go!",
-        "q": "[Textbook Activity & Question 1] In 'Up You Go!', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Up You Go!</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Up You Go!",
-        "q": "[Textbook Activity & Question 2] In 'Up You Go!', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Up You Go!</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -4872,46 +4512,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • Walls Tell Stories",
         "q": "[Textbook Activity & Question 17] In 'Walls Tell Stories', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Walls Tell Stories</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Walls Tell Stories",
-        "q": "[Textbook Activity & Question 1] In 'Walls Tell Stories', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Walls Tell Stories</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Walls Tell Stories",
-        "q": "[Textbook Activity & Question 2] In 'Walls Tell Stories', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Walls Tell Stories</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -5382,46 +4982,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Sunita in Space",
-        "q": "[Textbook Activity & Question 1] In 'Sunita in Space', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Sunita in Space</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Sunita in Space",
-        "q": "[Textbook Activity & Question 2] In 'Sunita in Space', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Sunita in Space</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -5852,46 +5412,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • What if it Finishes...?",
         "q": "[Textbook Activity & Question 17] In 'What if it Finishes...?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>What if it Finishes...?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • What if it Finishes...?",
-        "q": "[Textbook Activity & Question 1] In 'What if it Finishes...?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>What if it Finishes...?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • What if it Finishes...?",
-        "q": "[Textbook Activity & Question 2] In 'What if it Finishes...?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>What if it Finishes...?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -6367,46 +5887,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • A Shelter so High!",
-        "q": "[Textbook Activity & Question 1] In 'A Shelter so High!', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Shelter so High!</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • A Shelter so High!",
-        "q": "[Textbook Activity & Question 2] In 'A Shelter so High!', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Shelter so High!</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -6836,46 +6316,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • When the Earth Shook!",
         "q": "[Textbook Activity & Question 17] In 'When the Earth Shook!', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>When the Earth Shook!</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • When the Earth Shook!",
-        "q": "[Textbook Activity & Question 1] In 'When the Earth Shook!', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>When the Earth Shook!</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • When the Earth Shook!",
-        "q": "[Textbook Activity & Question 2] In 'When the Earth Shook!', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>When the Earth Shook!</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -7322,46 +6762,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • Blow Hot, Blow Cold",
         "q": "[Textbook Activity & Question 17] In 'Blow Hot, Blow Cold', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Blow Hot, Blow Cold</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Blow Hot, Blow Cold",
-        "q": "[Textbook Activity & Question 1] In 'Blow Hot, Blow Cold', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Blow Hot, Blow Cold</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Blow Hot, Blow Cold",
-        "q": "[Textbook Activity & Question 2] In 'Blow Hot, Blow Cold', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Blow Hot, Blow Cold</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -7828,46 +7228,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Who will do this Work?",
-        "q": "[Textbook Activity & Question 1] In 'Who will do this Work?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Who will do this Work?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Who will do this Work?",
-        "q": "[Textbook Activity & Question 2] In 'Who will do this Work?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Who will do this Work?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -8297,46 +7657,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • Across the Wall",
         "q": "[Textbook Activity & Question 17] In 'Across the Wall', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Across the Wall</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Across the Wall",
-        "q": "[Textbook Activity & Question 1] In 'Across the Wall', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Across the Wall</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Across the Wall",
-        "q": "[Textbook Activity & Question 2] In 'Across the Wall', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Across the Wall</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -8786,46 +8106,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • No Place for Us?",
         "q": "[Textbook Activity & Question 17] In 'No Place for Us?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>No Place for Us?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • No Place for Us?",
-        "q": "[Textbook Activity & Question 1] In 'No Place for Us?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>No Place for Us?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • No Place for Us?",
-        "q": "[Textbook Activity & Question 2] In 'No Place for Us?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>No Place for Us?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -9295,46 +8575,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • A Seed tells a Farmer's Story",
-        "q": "[Textbook Activity & Question 1] In 'A Seed tells a Farmer's Story', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Seed tells a Farmer's Story</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • A Seed tells a Farmer's Story",
-        "q": "[Textbook Activity & Question 2] In 'A Seed tells a Farmer's Story', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>A Seed tells a Farmer's Story</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -9772,46 +9012,6 @@ const lookingAroundChapters = [
       {
         "category": "Think and Discuss • Environmental Science & Ecology • Whose Forests?",
         "q": "[Textbook Activity & Question 17] In 'Whose Forests?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Whose Forests?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Whose Forests?",
-        "q": "[Textbook Activity & Question 1] In 'Whose Forests?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Whose Forests?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Whose Forests?",
-        "q": "[Textbook Activity & Question 2] In 'Whose Forests?', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
         "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Whose Forests?</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
         "marks": 3,
         "rubric": [
@@ -10282,46 +9482,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • Like Father, Like Daughter",
-        "q": "[Textbook Activity & Question 1] In 'Like Father, Like Daughter', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Like Father, Like Daughter</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • Like Father, Like Daughter",
-        "q": "[Textbook Activity & Question 2] In 'Like Father, Like Daughter', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>Like Father, Like Daughter</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -10776,46 +9936,6 @@ const lookingAroundChapters = [
             "marks": "1.0 M"
           }
         ]
-      },
-      {
-        "category": "Think and Discuss • Environmental Science & Ecology • On the Move Again",
-        "q": "[Textbook Activity & Question 1] In 'On the Move Again', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>On the Move Again</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
-      },
-      {
-        "category": "Find Out and Write • Observational Field Study • On the Move Again",
-        "q": "[Textbook Activity & Question 2] In 'On the Move Again', describe how students can conduct an empirical investigation or discussion on this topic and explain the scientific principles involved.",
-        "ans": "<strong>Scientific Model Answer & Environmental Analysis:</strong><br>1. <strong>Field Inquiry / Observation:</strong> In <em>On the Move Again</em>, students examine real-world ecological relationships, habitat dependencies, and sustainable environmental practices.<br>2. <strong>Scientific Core Principles:</strong> Applying primary scientific methods—such as formulating a hypothesis, measuring field parameters, and recording observations in a nature journal—reveals direct linkages between human communities and natural cycles.<br>3. <strong>Stewardship Conclusion:</strong> Understanding these concepts cultivates empathy for living organisms and empowers students to implement eco-friendly conservation measures in daily life.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Observation methodology & identification of ecological concepts",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Scientific explanation of natural cause-and-effect processes",
-            "marks": "1.0 M"
-          },
-          {
-            "key": "Actionable conservation recommendations stated clearly",
-            "marks": "1.0 M"
-          }
-        ]
       }
     ],
     "cbq": {
@@ -10829,4 +9949,6 @@ const lookingAroundChapters = [
   }
 ];
 
-module.exports = { lookingAroundChapters };
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { lookingAroundChapters };
+}
