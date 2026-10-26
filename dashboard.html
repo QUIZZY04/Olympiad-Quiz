@@ -376,11 +376,16 @@
                 <div class="nav-dropdown">
                     <a href="ncert-solutions.html" class="nav-link">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 2px;"><path d="m6 9 6 6 6-6"/></svg></a>
                     <div class="nav-dropdown-content">
-                        <a href="ncert-solutions.html" style="font-weight:700;">📚 All NCERT Hub (2026-27)</a>
-                        <a href="ncert-solutions.html#class7">Class 7</a>
-                        <a href="ncert-solutions.html#class8">Class 8</a>
-                        <a href="ncert-solutions.html#class9">Class 9</a>
-                        <a href="ncert-solutions.html#class10">Class 10</a>
+                        <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub (2026-27)</a>
+                        <a href="ncert-solutions-class-2.html">Class 2 Solutions ✨</a>
+                        <a href="ncert-solutions-class-3.html">Class 3 Solutions ✨</a>
+                        <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
+                        <a href="ncert-solutions-class-5.html">Class 5 Solutions</a>
+                        <a href="ncert-solutions-class-6.html">Class 6 Solutions</a>
+                        <a href="ncert-solutions.html#class7">Class 7 Solutions</a>
+                        <a href="ncert-solutions.html#class8">Class 8 Solutions</a>
+                        <a href="ncert-solutions.html#class9">Class 9 Solutions</a>
+                        <a href="ncert-solutions.html#class10">Class 10 Solutions</a>
                     </div>
                 </div>
                 <a href="leaderboard.html" class="nav-link">Leaderboard</a>
@@ -565,7 +570,7 @@
                 <div style="position:absolute;top:-10px;right:15px;background:#4f46e5;color:white;padding:4px 10px;border-radius:8px;font-size:10px;font-weight:800;letter-spacing:1px;box-shadow:0 4px 10px rgba(79,70,229,0.4);z-index:10;">CBSE 2026-27</div>
                 <div class="card-content">
                     <h3>NCERT Solutions</h3>
-                    <p>Complete NCERT solutions for <b style="color:var(--brand-text);">Classes 7, 8, 9 &amp; 10</b> — All subjects with full CBSE marking scheme &amp; competency questions.</p>
+                    <p>Complete NCERT solutions for <b style="color:var(--brand-text);">Classes 2 to 10</b> — All subjects with full CBSE marking scheme &amp; competency questions.</p>
                 </div>
                 <div class="icon-wrapper">📚</div>
             </div>
@@ -953,7 +958,7 @@ onAuthStateChanged(auth, async (user) => {
                 setTimeout(() => {
                     const toast = document.getElementById('hotsPromoToast');
                     if (toast) toast.classList.add('show');
-                }, 4500);
+                }, 6000);
             }
         } catch (e) {
             console.warn('HOTS promo check failed:', e);
@@ -1035,51 +1040,75 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 
+// --- DYNAMIC LIVE QUIZ UPCOMING POSTER (CLASS 1-10 ONLY) ---
+window.currentUpcomingSessionId = null;
+window.currentUpcomingSubject = "science";
+window.currentUserClass = null;
+window.activeUpcomingLiveSession = null;
 async function checkLiveSessions(userClass) {
     const banner = document.getElementById("liveSessionBanner");
-    if (!banner) return;
+    window.currentUserClass = userClass;
     try {
-        const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(15));
-        const snap = await getDocs(q);
+        let sessionDocs = [];
+        try {
+            const q = query(collection(db, "test_sessions"), orderBy("startTime", "desc"), limit(25));
+            const snap = await getDocs(q);
+            sessionDocs = snap.docs;
+        } catch (idxErr) {
+            const snap = await getDocs(collection(db, "test_sessions"));
+            sessionDocs = snap.docs;
+        }
+
         const now = new Date();
-        
         let activeSessions = [];
         let upcomingSessions = [];
-        
-        snap.forEach(d => {
+        let allJuniorUpcoming = [];
+
+        sessionDocs.forEach(d => {
             const s = d.data();
-            // Only show material of their selected class
-            if (userClass && parseInt(s.class) !== parseInt(userClass)) return;
-            
+            s.id = d.id;
+            if (s.archived) return;
+            const sClass = parseInt(s.class);
+            if (isNaN(sClass) || sClass < 1 || sClass > 10) return;
+            if (!s.startTime || !s.endTime) return;
+
             const start = s.startTime.toDate();
             const end = s.endTime.toDate();
-            if (now < end) { 
-                if (now >= start) {
-                    activeSessions.push(s);
-                } else {
-                    upcomingSessions.push(s);
+            if (now < end) {
+                allJuniorUpcoming.push(s);
+                // Class matching for banner
+                if (!userClass || sClass === parseInt(userClass)) {
+                    if (now >= start) {
+                        activeSessions.push(s);
+                    } else {
+                        upcomingSessions.push(s);
+                    }
                 }
             }
         });
 
-        if (activeSessions.length > 0 || upcomingSessions.length > 0) {
+        if (banner && (activeSessions.length > 0 || upcomingSessions.length > 0)) {
             banner.style.display = "flex";
+            banner.style.cursor = "pointer";
+            banner.title = "Click to view Live Quiz details";
+            banner.onclick = (e) => {
+                if (e.target.tagName !== 'A') {
+                    window.location.href = "live.html";
+                }
+            };
             const badge = document.getElementById("bannerBadge");
             let isLive = activeSessions.length > 0;
             
+            banner.style.background = "linear-gradient(90deg, var(--brand), var(--accent))";
+            banner.style.borderColor = "var(--brand)";
+            banner.style.boxShadow = "0 10px 25px rgba(255, 107, 0, 0.3)";
+            banner.style.color = "white";
+
             if (isLive) {
-                banner.style.background = "linear-gradient(90deg, var(--brand), var(--accent))";
-                banner.style.borderColor = "var(--brand)";
-                banner.style.boxShadow = "0 10px 25px rgba(255, 107, 0, 0.3)";
-                banner.style.color = "white";
                 badge.innerText = "LIVE NOW";
                 badge.style.background = "#ffffff";
                 badge.style.color = "var(--danger)";
             } else {
-                banner.style.background = "linear-gradient(90deg, var(--brand), var(--accent))";
-                banner.style.borderColor = "var(--brand)";
-                banner.style.boxShadow = "0 10px 25px rgba(255, 107, 0, 0.3)";
-                banner.style.color = "white";
                 badge.innerText = "UPCOMING";
                 badge.style.background = "#ffffff";
                 badge.style.color = "var(--warning)";
@@ -1096,10 +1125,16 @@ async function checkLiveSessions(userClass) {
                 messageParts.push(`⏳ <strong>${s.title}</strong> (Grade ${s.class} ${subj}) starts at ${timeStr}`);
             });
             
-            document.querySelector("#liveSessionBanner .scrolling-text").innerHTML = messageParts.join(" &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; ");
-            document.querySelector("#liveSessionBanner .scrolling-text").style.color = "#ffffff";
-            document.querySelector("#liveSessionBanner .scrolling-text").style.textShadow = "none";
+            const scrollingEl = document.querySelector("#liveSessionBanner .scrolling-text");
+            if (scrollingEl) {
+                scrollingEl.innerHTML = messageParts.join(" &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; ");
+                scrollingEl.style.color = "#ffffff";
+                scrollingEl.style.textShadow = "none";
+            }
         }
+
+        // --- LIVE QUIZ POSTER REMOVED (Past 25th October Session) ---
+        window.activeUpcomingLiveSession = null;
     } catch (e) {
         console.warn("Banner sync failed:", e);
     }

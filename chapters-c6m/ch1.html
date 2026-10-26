@@ -1,353 +1,1274 @@
-<section class="chapter-section" id="ch1">
- <div class="chapter-header">
- <div class="ch-badge">1</div>
- <div class="chapter-header-info">
- <h2>Chapter 1: Patterns in Mathematics</h2>
- <p>NCERT Ganita Prakash (Class 6) — Number Sequences, Triangular & Square Numbers, Matchstick Patterns & Rule Formulation | CBSE 2026-27</p>
- </div>
- </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCERT Solutions for Class 6 Mathematics Chapter 1: Patterns in Mathematics (Ganita Prakash) CBSE 2026-27 | OlympiadQuiz</title>
+  <meta name="description" content="100% Comprehensive NCERT Solutions for Class 6 Mathematics (Ganita Prakash) Chapter 1: Patterns in Mathematics. Complete textbook exercises, in-text activities, labeled diagrams, CBSE step marking schemes, and NEP 2020 case studies.">
+  <meta name="keywords" content="ncert solutions class 6 maths chapter 1, patterns in mathematics class 6, ganita-prakash chapter 1 solutions, class 6 maths ncert 2026-27, cbse class 6 maths tiwari academy, ganita prakash chapter 1">
+  <link rel="canonical" href="https://olympiadquiz.org/chapters-c6m/ganita-prakash-ch1.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
 
- <div class="concept-card">
- <div class="concept-header">📌 Key Mathematical Concepts &amp; Formulas</div>
- <ul class="concept-list">
- <li><strong>Patterns:</strong> A sequence of numbers, shapes, or designs that follow a definite, repeatable rule.</li>
- <li><strong>Triangular Numbers:</strong> Numbers that can be arranged in the shape of an equilateral triangle: 1, 3, 6, 10, 15, ... The n-th triangular number is given by Tₙ = (n(n + 1) / 2).</li>
- <li><strong>Square Numbers:</strong> Numbers formed by multiplying an integer by itself: 1²=1, 2²=4, 3²=9, 4²=16, ... (Sₙ = n²). Sum of consecutive triangular numbers gives a square number: Tₙ₋₁ + Tₙ = n².</li>
- <li><strong>Matchstick Patterns &amp; Algebraic Rules:</strong> If each additional unit requires a fixed number of sticks d, the rule for n shapes is given by d × n + c. For example, a row of squares requires 3n + 1 matchsticks.</li>
- </ul>
- </div>
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OlympiadQuiz">
+  <meta property="og:url" content="https://olympiadquiz.org/chapters-c6m/ganita-prakash-ch1.html">
+  <meta property="og:title" content="NCERT Solutions Class 6 Mathematics Chapter 1: Patterns in Mathematics (100% Full Exercises)">
+  <meta property="og:description" content="Complete step-by-step solutions for Chapter 1: Patterns in Mathematics (Ganita Prakash) with CBSE marking schemes, custom diagrams, and competency-based questions.">
+  <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
- <div class="math-diagram-wrap" style="margin: 20px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
- <svg viewBox="0 0 540 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
- <!-- Title -->
- <text x="270" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">Visual Pattern: Triangular Numbers Sequence (T₁ to T₄)</text>
- <!-- T1 = 1 -->
- <circle cx="50" cy="90" r="7" fill="#2563eb"/>
- <text x="50" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₁ = 1</text>
- <!-- T2 = 3 -->
- <circle cx="140" cy="76" r="7" fill="#2563eb"/>
- <circle cx="128" cy="100" r="7" fill="#2563eb"/>
- <circle cx="152" cy="100" r="7" fill="#2563eb"/>
- <text x="140" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₂ = 3</text>
- <!-- T3 = 6 -->
- <circle cx="260" cy="64" r="7" fill="#2563eb"/>
- <circle cx="248" cy="86" r="7" fill="#2563eb"/>
- <circle cx="272" cy="86" r="7" fill="#2563eb"/>
- <circle cx="236" cy="108" r="7" fill="#2563eb"/>
- <circle cx="260" cy="108" r="7" fill="#2563eb"/>
- <circle cx="284" cy="108" r="7" fill="#2563eb"/>
- <text x="260" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₃ = 6</text>
- <!-- T4 = 10 -->
- <circle cx="420" cy="52" r="7" fill="#2563eb"/>
- <circle cx="408" cy="72" r="7" fill="#2563eb"/>
- <circle cx="432" cy="72" r="7" fill="#2563eb"/>
- <circle cx="396" cy="92" r="7" fill="#2563eb"/>
- <circle cx="420" cy="92" r="7" fill="#2563eb"/>
- <circle cx="444" cy="92" r="7" fill="#2563eb"/>
- <circle cx="384" cy="112" r="7" fill="#2563eb"/>
- <circle cx="408" cy="112" r="7" fill="#2563eb"/>
- <circle cx="432" cy="112" r="7" fill="#2563eb"/>
- <circle cx="456" cy="112" r="7" fill="#2563eb"/>
- <text x="420" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₄ = 10</text>
- <!-- Formula caption -->
- <text x="270" y="155" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">General Rule: Tₙ = n(n + 1)/2 | Sum of Two Consecutive Triangular Numbers = Square Number</text>
- </svg>
- <div style="font-size: 0.82rem; font-weight: 600; color: #475569; margin-top: 6px;">Figure 1.1: Dot Array Models for Triangular Numbers Sequence</div>
- </div>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@OlympiadQuiz">
+  <meta name="twitter:title" content="NCERT Solutions Class 6 Mathematics Chapter 1: Patterns in Mathematics">
+  <meta name="twitter:description" content="100% textbook exercises and marking schemes for Class 6 Mathematics Chapter 1.">
+  <meta name="twitter:image" content="https://olympiadquiz.org/favicon.png">
 
- <div class="ex-div">NCERT Exercise 1.1: Number Patterns &amp; Triangular Numbers</div>
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
+      { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
+      { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions-class-6.html" },
+      { "@type": "ListItem", "position": 4, "name": "Class 6 Mathematics", "item": "https://olympiadquiz.org/ncert-solutions-class-6-maths.html" },
+      { "@type": "ListItem", "position": 5, "name": "Ganita Prakash Chapter 1", "item": "https://olympiadquiz.org/chapters-c6m/ganita-prakash-ch1.html" }
+    ]
+  }
+  </script>
 
- <div class="q-card" id="c6m-ch1-q1">
- <div class="q-head" onclick="toggleQ('c6m-ch1-q1')">
- <div class="q-num">Q1</div>
- <div class="q-text">Observe the number sequence: 1, 3, 6, 10, 15, ...<br>(i) Write the next three numbers of this sequence.<br>(ii) What is the special mathematical name given to these numbers?<br>(iii) Show that the sum of the 3ʳᵈ and 4ᵗʰ numbers forms a perfect square.</div>
- <div class="q-marks">[3 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <div class="step">
- <strong>(i) Pattern Rule &amp; Next Three Numbers:</strong><br>
- Let us find the difference between consecutive terms:<br>
- 3 - 1 = 2<br>
- 6 - 3 = 3<br>
- 10 - 6 = 4<br>
- 15 - 10 = 5<br>
- Notice that each step adds the next natural number (+2, +3, +4, +5).<br>
- Therefore:<br>
- - Next term: 15 + 6 = <strong>21</strong><br>
- - Next term: 21 + 7 = <strong>28</strong><br>
- - Next term: 28 + 8 = <strong>36</strong><br>
- The next three numbers are <strong>21, 28, and 36</strong>.
- </div>
- <div class="step">
- <strong>(ii) Mathematical Name:</strong><br>
- These numbers are called <strong>Triangular Numbers</strong> because they can be represented as ... forming an equilateral triangle.
- </div>
- <div class="step">
- <strong>(iii) Sum of 3ʳᵈ and 4ᵗʰ Triangular Numbers:</strong><br>
- 3ʳᵈ triangular number = 6<br>
- 4ᵗʰ triangular number = 10<br>
- Sum = 6 + 10 = 16 = 4²<br>
- Since 16 = 4 × 4, the sum is indeed a <strong>perfect square</strong>.
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Part (i): Identifying addition pattern and writing 21, 28, 36</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (ii): Stating "Triangular Numbers"</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (iii): Computing 6 + 10 = 16 and verifying 4²</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "NCERT Class 6 Mathematics Chapter 1 Solutions - Patterns in Mathematics",
+    "description": "Comprehensive textbook solutions for Class 6 Ganita Prakash Chapter 1: Patterns in Mathematics.",
+    "learningResourceType": "Textbook Solutions",
+    "educationalLevel": "Grade 6",
+    "audience": "Students, Teachers, Parents",
+    "inLanguage": "en",
+    "isAccessibleForFree": true
+  }
+  </script>
 
- <div class="q-card" id="c6m-ch1-q2">
- <div class="q-head" onclick="toggleQ('c6m-ch1-q2')">
- <div class="q-num">Q2</div>
- <div class="q-text">Find the 10ᵗʰ triangular number using the formula Tₙ = n(n+1)/2. Verify your answer by summing the first 10 natural numbers.</div>
- <div class="q-marks">[2 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <div class="step">
- <strong>Step 1: Formula Calculation:</strong><br>
- Given n = 10,<br>
- T₁₀ = 10 × (10 + 1)/2 = 10 × 11/2 = 5 × 11 = <strong>55</strong>.
- </div>
- <div class="step">
- <strong>Step 2: Verification by Addition:</strong><br>
- 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = (1 + 10) + (2 + 9) + (3 + 8) + (4 + 7) + (5 + 6)<br>
- = 11 × 5 = <strong>55</strong>.<br>
- Both methods yield <strong>55</strong>. Hence verified.
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Correct substitution and evaluation to 55</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Step-by-step verification by consecutive addition</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{"@type":"Question","name":"Observe the number sequence: 1, 3, 6, 10, 15, ... (i) Write the next three numbers of this sequence. (ii) What is the special mathematical name given to these n","acceptedAnswer":{"@type":"Answer","text":"(i) Pattern Rule &amp; Next Three Numbers: Let us find the difference between consecutive terms: 3 - 1 = 2, 6 - 3 = 3, 10 - 6 = 4, 15 - 10 = 5. Each step adds the next natural number (+2, +3, +4, +5). Therefore: - Next term: 15 + 6 = 21 - Next term: 21 + 7 = 28 - Next term: 28 + 8 = 36 The next thre"}},{"@type":"Question","name":"Find the 10ᵗʰ triangular number using the formula $T_n = \\frac{n(n+1)}{2}$. Verify your answer by summing the first 10 natural numbers.","acceptedAnswer":{"@type":"Answer","text":"Step 1: Formula Calculation: Given $n = 10$, $T_{10} = \\frac{10 \\times (10 + 1)}{2} = \\frac{10 \\times 11}{2} = 5 \\times 11 = \\mathbf{55}$."}},{"@type":"Question","name":"A student makes a row of connected squares using matchsticks as shown in Figure 1.2. (i) Find the number of matchsticks required for 1 square, 2 squares, 3 squa","acceptedAnswer":{"@type":"Answer","text":"(i) Count of Matchsticks: - For 1 square: 4 matchsticks. - For 2 connected squares: 4 + 3 = 7 matchsticks (1 edge shared). - For 3 connected squares: 7 + 3 = 10 matchsticks. - For 4 connected squares: 10 + 3 = 13 matchsticks."}},{"@type":"Question","name":"A series of connected equilateral triangles is formed using matchsticks. (i) How many matchsticks are required for 1, 2, 3, and 4 triangles? (ii) Find the rule ","acceptedAnswer":{"@type":"Answer","text":"(i) Count of Matchsticks for Triangles: - 1 triangle requires 3 matchsticks. - 2 connected triangles share 1 common side: 3 + 2 = 5 matchsticks. - 3 connected triangles: 5 + 2 = 7 matchsticks. - 4 connected triangles: 7 + 2 = 9 matchsticks."}},{"@type":"Question","name":"Observe the pattern in the following number pyramid: 1 × 8 + 1 = 9 12 × 8 + 2 = 98 123 × 8 + 3 = 987 1234 × 8 + 4 = 9876 Write down the next two lines of this p","acceptedAnswer":{"@type":"Answer","text":"Pattern Rule Analysis: - In the first factor, digits 1, 2, 3, ... are appended in ascending sequence. - The number added is the next natural number (1, 2, 3, 4, 5, 6). - The product digits decrease consecutively starting from 9. Line 5: 12345 × 8 + 5 = 98765 Line 6: 123456 × 8 + 6 = 987654"}},{"@type":"Question","name":"A sequence is defined by the rule: \"Multiply the term number by 4 and then subtract 3\". (i) Write the first 5 terms of this sequence. (ii) Find the 20ᵗʰ term. (","acceptedAnswer":{"@type":"Answer","text":"(i) First 5 Terms: Formula: $a_n = 4n - 3$. - For $n = 1$: $4(1) - 3 = 1$ - For $n = 2$: $4(2) - 3 = 5$ - For $n = 3$: $4(3) - 3 = 9$ - For $n = 4$: $4(4) - 3 = 13$ - For $n = 5$: $4(5) - 3 = 17$ The first 5 terms are 1, 5, 9, 13, 17 ."}},{"@type":"Question","name":"Observe the dot pattern for square numbers: 1, 4, 9, 16, 25, 36, ... (i) Express 25 as the sum of consecutive odd natural numbers. (ii) Express 36 as the sum of","acceptedAnswer":{"@type":"Answer","text":"(i) Expressing 25 as sum of odd numbers: $25 = 5^2$. It is the sum of the first 5 odd natural numbers: $25 = \\mathbf{1 + 3 + 5 + 7 + 9}$."}},{"@type":"Question","name":"Observe the palindromic multiplication pattern: 11 × 11 = 121 111 × 111 = 12321 1111 × 1111 = 1234321 (i) Without actual calculation, predict the value of 11111","acceptedAnswer":{"@type":"Answer","text":"(i) Value of 11111 × 11111: Since there are 5 ones, digits increase from 1 up to 5 and then decrease back to 1: $11111 \\times 11111 = \\mathbf{123454321}$."}},{"@type":"Question","name":"A calendar page displays a 3 × 3 square of dates as follows: &nbsp;&nbsp;4 &nbsp;&nbsp;&nbsp; 5 &nbsp;&nbsp;&nbsp; 6 &nbsp;11 &nbsp;&nbsp; 12 &nbsp;&nbsp; 13 &n","acceptedAnswer":{"@type":"Answer","text":"(i) Sum of all 9 numbers: $4 + 5 + 6 + 11 + 12 + 13 + 18 + 19 + 20 = 108$."}},{"@type":"Question","name":"A pattern of \"matchstick houses\" is built in a row. The first house requires 6 matchsticks. Each subsequent connected house requires 5 additional matchsticks. (","acceptedAnswer":{"@type":"Answer","text":"(i) Rule Formulation: For 1 house: 6 matchsticks. For 2 houses: 6 + 5 = 11 matchsticks. For 3 houses: 11 + 5 = 16 matchsticks. Rule for $h$ houses: $6 + 5(h - 1) = \\mathbf{5h + 1}$."}}]
+  }
+  </script>
+  
 
- <div class="math-diagram-wrap" style="margin: 20px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
- <svg viewBox="0 0 540 140" width="100%" height="140" xmlns="http://www.w3.org/2000/svg">
- <text x="270" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">Matchstick Square Pattern Sequence: Rule Formulation</text>
- <!-- 1 Square: 4 sticks -->
- <rect x="35" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
- <circle cx="35" cy="45" r="3.5" fill="#eab308"/>
- <circle cx="75" cy="45" r="3.5" fill="#eab308"/>
- <circle cx="35" cy="85" r="3.5" fill="#eab308"/>
- <circle cx="75" cy="85" r="3.5" fill="#eab308"/>
- <text x="55" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">n = 1 (4 sticks)</text>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --primary-light: #eff6ff;
+      --primary-border: #dbeafe;
+      --accent: #ff6b00;
+      --navy: #0f172a;
+      --slate: #334155;
+      --muted: #64748b;
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --border: #e2e8f0;
+      --radius: 14px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow: 0 4px 14px rgba(0,0,0,0.08);
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Devanagari', Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
 
- <!-- 2 Squares: 7 sticks -->
- <rect x="150" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
- <rect x="190" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
- <text x="190" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">n = 2 (7 sticks)</text>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-page);
+      color: var(--slate);
+      line-height: 1.65;
+    }
 
- <!-- 3 Squares: 10 sticks -->
- <rect x="300" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
- <rect x="340" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
- <rect x="380" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
- <text x="360" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">n = 3 (10 sticks)</text>
+    /* Reading Progress Bar */
+    .top-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0%;
+      z-index: 2000;
+      transition: width 0.1s ease;
+    }
 
- <!-- General rule annotation -->
- <text x="270" y="132" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0284c7" text-anchor="middle">Rule for n Squares: 3n + 1 matchsticks (First square takes 4, each extra square adds 3)</text>
- </svg>
- <div style="font-size: 0.82rem; font-weight: 600; color: #475569; margin-top: 6px;">Figure 1.2: Matchstick Pattern of Connected Squares</div>
- </div>
+    /* Sticky Navbar */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .site-nav a { color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.92rem; }
+    .site-nav-logo { display: flex; align-items: center; gap: 8px; font-size: 1.15rem; font-weight: 800; }
+    .site-nav-links { display: flex; gap: 16px; align-items: center; }
+    .site-nav-links a { color: #94a3b8; transition: color 0.2s; }
+    .site-nav-links a:hover { color: #ffffff; }
+    .btn-hub-nav {
+      background: var(--primary);
+      color: #ffffff !important;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 700 !important;
+      font-size: 0.85rem !important;
+    }
 
- <div class="ex-div">NCERT Exercise 1.2: Matchstick Patterns &amp; Algebraic Generalization</div>
+    /* Breadcrumbs */
+    .bc-nav {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .bc-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .bc-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .bc-list a { color: var(--navy); text-decoration: none; font-weight: 600; }
+    .bc-list a:hover { color: var(--primary); text-decoration: underline; }
+    .bc-sep { color: #cbd5e1; font-size: 0.75rem; }
+    .bc-active { color: var(--primary); font-weight: 700; }
+    .bc-switch-pills { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .bc-pill {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #e2e8f0;
+      transition: all 0.15s;
+    }
+    .bc-pill:hover, .bc-pill.active { background: var(--primary); color: white; border-color: var(--primary); }
 
- <div class="q-card" id="c6m-ch1-q3">
- <div class="q-head" onclick="toggleQ('c6m-ch1-q3')">
- <div class="q-num">Q3</div>
- <div class="q-text">A student makes a row of connected squares using matchsticks as shown in Figure 1.2.<br>(i) Find the number of matchsticks required for 1 square, 2 squares, 3 squares, and 4 squares.<br>(ii) Write the general rule for the number of matchsticks required to make n squares.<br>(iii) How many matchsticks are needed to make a row of 25 connected squares?</div>
- <div class="q-marks">[3 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <div class="step">
- <strong>(i) Count of Matchsticks:</strong><br>
- - For 1 square: 4 matchsticks.<br>
- - For 2 connected squares: 4 + 3 = 7 matchsticks (1 common edge shared).<br>
- - For 3 connected squares: 7 + 3 = 10 matchsticks.<br>
- - For 4 connected squares: 10 + 3 = 13 matchsticks.
- </div>
- <div class="step">
- <strong>(ii) Formulation of General Rule:</strong><br>
- Observe the pattern: 4 = 3(1) + 1, 7 = 3(2) + 1, 10 = 3(3) + 1, 13 = 3(4) + 1.<br>
- Therefore, for n connected squares, the general rule is:<br>
- Number of matchsticks = 3n + 1
- </div>
- <div class="step">
- <strong>(iii) Calculation for n = 25:</strong><br>
- Matchsticks = 3(25) + 1 = 75 + 1 = <strong>76</strong>
- Hence, <strong>76 matchsticks</strong> are needed to form 25 connected squares.
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Part (i): Tabulating stick counts (4, 7, 10, 13)</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (ii): Writing correct formula (3n + 1)</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (iii): Correct substitution and answer 76</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+    /* Page Layout */
+    .page-layout {
+      max-width: 1400px;
+      margin: 24px auto 60px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
 
- <div class="q-card" id="c6m-ch1-q4">
- <div class="q-head" onclick="toggleQ('c6m-ch1-q4')">
- <div class="q-num">Q4</div>
- <div class="q-text">Observe the pattern in the following number pyramid:<br>
- 1 × 8 + 1 = 9<br>
- 12 × 8 + 2 = 98<br>
- 123 × 8 + 3 = 987<br>
- 1234 × 8 + 4 = 9876<br>
- Write down the next two lines of this pattern without actual multiplication.</div>
- <div class="q-marks">[2 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <p><strong>Pattern Analysis:</strong></p>
- <ul>
- <li>In the first factor, digits 1, 2, 3, ... are appended in ascending order.</li>
- <li>The number added is the next natural number (1, 2, 3, 4, 5, 6).</li>
- <li>The resulting product displays digits starting from 9 in descending order.</li>
- </ul>
- <div class="step">
- <strong>Line 5:</strong><br>
- <strong>12345 × 8 + 5 = 98765</strong>
- </div>
- <div class="step">
- <strong>Line 6:</strong><br>
- <strong>123456 × 8 + 6 = 987654</strong>
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Correctly writing line 5 (12345 × 8 + 5 = 98765)</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Correctly writing line 6 (123456 × 8 + 6 = 987654)</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+    /* Sidebar Navigation */
+    .sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: sticky;
+      top: 76px;
+      max-height: calc(100vh - 96px);
+      overflow-y: auto;
+      box-shadow: var(--shadow-sm);
+    }
+    .sidebar-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--primary-border);
+      padding-bottom: 8px;
+    }
+    .sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .sidebar-list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      font-size: 0.86rem;
+      color: #334155;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+    .sidebar-list a:hover { background: var(--primary-light); color: var(--primary); }
+    .sidebar-list a.active {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .ch-badge-num {
+      width: 24px;
+      height: 24px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .sidebar-list a.active .ch-badge-num {
+      background: rgba(255,255,255,0.25);
+      color: white;
+    }
 
- <div class="q-card" id="c6m-ch1-q5">
- <div class="q-head" onclick="toggleQ('c6m-ch1-q5')">
- <div class="q-num">Q5</div>
- <div class="q-text">A sequence is defined by the rule: "Multiply the term number by 4 and then subtract 3".<br>(i) Write the first 5 terms of this sequence.<br>(ii) Find the 20ᵗʰ term.<br>(iii) Is the number 85 a term in this sequence? Justify your answer.</div>
- <div class="q-marks">[3 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <div class="step">
- <strong>(i) First 5 Terms:</strong><br>
- General term formula: aₙ = 4n - 3.<br>
- - For n = 1: 4(1) - 3 = 1<br>
- - For n = 2: 4(2) - 3 = 5<br>
- - For n = 3: 4(3) - 3 = 9<br>
- - For n = 4: 4(4) - 3 = 13<br>
- - For n = 5: 4(5) - 3 = 17<br>
- The first 5 terms are <strong>1, 5, 9, 13, 17</strong>.
- </div>
- <div class="step">
- <strong>(ii) 20ᵗʰ Term:</strong><br>
- a₂₀ = 4(20) - 3 = 80 - 3 = <strong>77</strong>
- </div>
- <div class="step">
- <strong>(iii) Checking if 85 is in the sequence:</strong><br>
- Set 4n - 3 = 85:<br>
- 4n = 85 + 3 = 88<br>
- n = 88/4 = 22<br>
- Since n = 22 is a whole number (natural number), <strong>Yes, 85 is the 22ⁿᵈ term</strong> of the sequence.
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Part (i): Computing first 5 terms accurately</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (ii): Finding a₂₀ = 77</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (iii): Solving 4n - 3 = 85 and concluding n = 22</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+    /* Content Area */
+    .content-area {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      box-shadow: var(--shadow-sm);
+      min-width: 0;
+    }
 
- <div class="q-card" id="c6m-ch1-q6">
- <div class="q-head" onclick="toggleQ('c6m-ch1-q6')">
- <div class="q-num">Q6</div>
- <div class="q-text">Observe the dot pattern for square numbers: 1, 4, 9, 16, 25, ...<br>(i) Express 25 as the sum of consecutive odd natural numbers.<br>(ii) Express 36 as the sum of two consecutive triangular numbers.</div>
- <div class="q-marks">[2 Marks]</div>
- <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
- </div>
- <div class="q-answer">
- <div class="answer-box">
- <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
- <div class="answer-text">
- <div class="step">
- <strong>(i) Sum of Consecutive Odd Numbers:</strong><br>
- Every square number n² is the sum of the first n odd natural numbers.<br>
- Here, 25 = 5². Therefore:<br>
- 25 = <strong>1 + 3 + 5 + 7 + 9</strong>
- </div>
- <div class="step">
- <strong>(ii) Sum of Two Consecutive Triangular Numbers:</strong><br>
- 36 = 6². A square number n² is the sum of the (n-1)ᵗʰ and nᵗʰ triangular numbers.<br>
- T₅ = 5 × 6/2 = 15<br>
- T₆ = 6 × 7/2 = 21<br>
- 36 = <strong>15 + 21</strong>
- </div>
- </div>
- <div class="marking-scheme">
- <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
- <div class="marking-row"><span class="marking-key">Part (i): Stating 1 + 3 + 5 + 7 + 9 = 25</span><span class="marking-marks">1 Mark</span></div>
- <div class="marking-row"><span class="marking-key">Part (ii): Identifying T₅ = 15, T₆ = 21 and writing 15 + 21 = 36</span><span class="marking-marks">1 Mark</span></div>
- </div>
- </div>
- </div>
- </div>
+    /* Chapter Pager (Top & Bottom) */
+    .chapter-pager {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+    }
+    .btn-pager {
+      padding: 7px 14px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-pager:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
- <!-- Competency-Based Question -->
- <div class="cbq-card">
- <div class="cbq-badge">CBSE Competency-Based Question (Real-Life Case Study)</div>
- <div class="q-text"><strong>Case Study: School Auditorium Seating Arrangement:</strong><br>
- In a newly constructed school auditorium, the chairs in the rows are arranged in a triangular stage pattern. Row 1 has 3 chairs, Row 2 has 5 chairs, Row 3 has 7 chairs, and so on.<br>
- (a) Formulate the algebraic rule for the number of chairs in Row n.<br>
- (b) How many chairs are in the 15ᵗʰ row?<br>
- (c) If the last row contains 41 chairs, find the total number of rows in the auditorium.</div>
- <div class="answer-box" style="margin-top: 15px;">
- <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
- <div class="answer-text">
- <p><strong>(a) Algebraic Rule:</strong><br>
- The number of chairs in consecutive rows is 3, 5, 7, 9, ...<br>
- The common difference is d = 2.<br>
- For Row 1: 2(1) + 1 = 3<br>
- For Row 2: 2(2) + 1 = 5<br>
- Therefore, for Row n: <strong>Chairs</strong> = 2n + 1.</p>
+    /* Chapter Header */
+    .chapter-header {
+      background: var(--primary-light);
+      border: 1.5px solid var(--primary-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .ch-badge {
+      width: 52px;
+      height: 52px;
+      background: var(--primary);
+      color: white;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+    .chapter-header-info h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .chapter-header-info p {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
 
- <p><strong>(b) Chairs in 15ᵗʰ Row:</strong><br>
- Substitute n = 15:<br>
- Chairs = 2(15) + 1 = 30 + 1 = <strong>31 chairs</strong>.</p>
+    /* Concepts Box */
+    .concept-card {
+      background: #fafaf9;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--primary);
+    }
+    .concept-header {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .concept-list {
+      padding-left: 20px;
+      font-size: 0.92rem;
+      color: var(--slate);
+      line-height: 1.8;
+    }
+    .concept-list li { margin-bottom: 6px; }
 
- <p><strong>(c) Total Number of Rows when Last Row has 41 Chairs:</strong><br>
- 2n + 1 = 41 ⇒ 2n = 41 - 1 = 40 ⇒ n = 40/2 = <strong>20 rows</strong>.</p>
- </div>
- </div>
- </div>
+    /* Visual Diagrams */
+    .math-diagram-wrap, .diagram-wrap {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 22px auto;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      max-width: 640px;
+    }
+
+    /* Exercise Heading Dividers */
+    .ex-div {
+      background: #f1f5f9;
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 12px 18px;
+      border-radius: 10px;
+      margin: 30px 0 16px;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Q-Cards Accordions */
+    .q-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+    .q-card:hover {
+      box-shadow: var(--shadow);
+      border-color: #cbd5e1;
+    }
+    .q-head {
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #ffffff;
+      user-select: none;
+    }
+    .q-num {
+      min-width: 42px;
+      height: 36px;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .q-text {
+      flex: 1;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+    .q-marks {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 3px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      border: 1px solid var(--primary-border);
+    }
+    .q-toggle {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+    }
+    .q-card.open .q-toggle svg { transform: rotate(180deg); }
+    .q-answer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: #fafaf9;
+    }
+    .q-card.open .q-answer { display: block; }
+    .answer-box { padding: 20px 24px; }
+    .answer-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #15803d;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .answer-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--slate);
+    }
+    .answer-text p { margin-bottom: 10px; }
+    .answer-text ul, .answer-text ol { padding-left: 24px; margin-bottom: 10px; }
+    .answer-text li { margin-bottom: 6px; }
+    .step {
+      background: #ffffff;
+      border-left: 3px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+      border: 1px solid #f1f5f9;
+      border-left-width: 3px;
+    }
+
+    /* Marking Scheme */
+    .marking-scheme {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 8px;
+    }
+    .marking-title {
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .marking-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      padding: 4px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .marking-row:last-child { border-bottom: none; }
+    .marking-key { color: var(--slate); font-weight: 500; }
+    .marking-marks { font-weight: 700; color: var(--primary-dark); }
+
+    /* Competency-Based Case Study (CBQ) */
+    .cbq-card, .cbq-box {
+      background: #fdf4ff;
+      border: 1.5px solid #f0abfc;
+      border-radius: 14px;
+      padding: 24px;
+      margin: 32px 0 20px;
+    }
+    .cbq-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #c026d3;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    /* Footer */
+    .page-footer {
+      background: var(--navy);
+      color: #94a3b8;
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 0.88rem;
+      border-top: 1px solid #1e293b;
+      margin-top: 60px;
+    }
+    .page-footer a { color: #93c5fd; text-decoration: none; font-weight: 600; }
+    .page-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 1024px) {
+      .page-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .content-area { padding: 24px 20px; }
+      .chapter-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-progress" id="progressBar"></div>
+
+  <!-- Sticky Navbar -->
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav-logo">
+      <img src="../favicon.png" alt="OlympiadQuiz Logo" width="28" height="28" style="vertical-align: middle;">
+      <span>Olympiad<span>Quiz</span></span>
+    </a>
+    <div class="site-nav-links">
+      <a href="../ncert-solutions.html">📚 All NCERT</a>
+      <a href="../ncert-solutions-class-6.html">Class 6 Hub</a>
+      <a href="../ncert-solutions-class-6-maths.html" class="btn-hub-nav">Mathematics Hub →</a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <nav class="bc-nav" aria-label="Breadcrumb">
+    <div class="bc-container">
+      <ul class="bc-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="bc-sep">/</li>
+        <li><a href="../ncert-solutions.html">NCERT Solutions</a></li>
+        <li class="bc-sep">/</li>
+        <li><a href="../ncert-solutions-class-6.html">Class 6</a></li>
+        <li class="bc-sep">/</li>
+        <li><a href="../ncert-solutions-class-6-maths.html">Mathematics</a></li>
+        <li class="bc-sep">/</li>
+        <li class="bc-active">Ganita Prakash Ch 1</li>
+      </ul>
+      <div class="bc-switch-pills">
+        <a href="../ncert-solutions-class-6-maths.html" class="bc-pill active">Maths</a>
+        <a href="../ncert-solutions-class-6-science.html" class="bc-pill ">Science</a>
+        <a href="../ncert-solutions-class-6-sst.html" class="bc-pill ">Social Science</a>
+        <a href="../ncert-solutions-class-6-english.html" class="bc-pill ">English</a>
+        <a href="../ncert-solutions-class-6-hindi-malhar.html" class="bc-pill ">Hindi</a>
+        <a href="../ncert-solutions-class-6-sanskrit.html" class="bc-pill">Sanskrit</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Ganita Prakash (12 Chapters)</div>
+      <ul class="sidebar-list">
+        
+    <li>
+      <a href="ganita-prakash-ch1.html" class="active">
+        <span class="ch-badge-num">1</span>
+        <span class="ch-name-txt">Patterns in Mathematics</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch2.html" class="">
+        <span class="ch-badge-num">2</span>
+        <span class="ch-name-txt">Lines and Angles</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch3.html" class="">
+        <span class="ch-badge-num">3</span>
+        <span class="ch-name-txt">Number Play</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch4.html" class="">
+        <span class="ch-badge-num">4</span>
+        <span class="ch-name-txt">Data Handling and Presentation</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch5.html" class="">
+        <span class="ch-badge-num">5</span>
+        <span class="ch-name-txt">Prime Time</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch6.html" class="">
+        <span class="ch-badge-num">6</span>
+        <span class="ch-name-txt">Perimeter and Area</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch7.html" class="">
+        <span class="ch-badge-num">7</span>
+        <span class="ch-name-txt">Fractions</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch8.html" class="">
+        <span class="ch-badge-num">8</span>
+        <span class="ch-name-txt">Playing with Constructions</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch9.html" class="">
+        <span class="ch-badge-num">9</span>
+        <span class="ch-name-txt">Symmetry</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch10.html" class="">
+        <span class="ch-badge-num">10</span>
+        <span class="ch-name-txt">The Other Side of Zero</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch11.html" class="">
+        <span class="ch-badge-num">11</span>
+        <span class="ch-name-txt">Introduction to Algebra</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="ganita-prakash-ch12.html" class="">
+        <span class="ch-badge-num">12</span>
+        <span class="ch-name-txt">Ratio and Proportion</span>
+      </a>
+    </li>
+  
+      </ul>
+      <div class="sidebar-title" style="margin-top: 24px;">Hub Navigation</div>
+      <ul class="sidebar-list">
+        <li><a href="../ncert-solutions-class-6-maths.html">← Mathematics Main Page</a></li>
+        <li><a href="../ncert-solutions-class-6.html">← Class 6 Central Hub</a></li>
+        <li><a href="../ncert-solutions.html">← All NCERT Solutions</a></li>
+      </ul>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="content-area">
+
+      <!-- Pager Top -->
+      <div class="chapter-pager">
+        <span style="font-size: 0.85rem; color: #64748b; font-weight: 700;">Chapter 1 of 12</span>
+        <div style="display: flex; gap: 8px;">
+          <a href="../ncert-solutions-class-6-maths.html" class="btn-pager">⬅️ Mathematics Hub</a>
+          <a href="ganita-prakash-ch2.html" class="btn-pager">Ch 2: Lines and Angles ➡️</a>
+        </div>
+      </div>
+
+      <!-- Ingested Chapter Content -->
+      <div class="chapter-module-body">
+        <section class="chapter-section" id="ch1">
+  <div class="chapter-header">
+    <div class="ch-badge">1</div>
+    <div class="chapter-header-info">
+      <h2>Chapter 1: Patterns in Mathematics</h2>
+      <p>NCERT Ganita Prakash (Class 6) — Number Sequences, Triangular &amp; Square Numbers, Matchstick Patterns, Palindromes &amp; Rule Formulation | CBSE 2026-27</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="concept-header">📌 Key Mathematical Concepts &amp; Formulas</div>
+    <ul class="concept-list">
+      <li><strong>Patterns:</strong> A sequence of numbers, geometric shapes, or designs that follow a definite, repeatable rule.</li>
+      <li><strong>Triangular Numbers:</strong> Numbers that can be arranged in the shape of an equilateral triangle: 1, 3, 6, 10, 15, 21, 28, 36, ... The n-th triangular number is given by $T_n = \frac{n(n + 1)}{2}$.</li>
+      <li><strong>Square Numbers:</strong> Numbers formed by multiplying an integer by itself: $1^2=1, 2^2=4, 3^2=9, 4^2=16, 5^2=25, ...$ ($S_n = n^2$). Sum of two consecutive triangular numbers gives a square number: $T_{n-1} + T_n = n^2$.</li>
+      <li><strong>Sum of First n Odd Numbers:</strong> The sum of the first $n$ odd consecutive numbers equals $n^2$: $1 + 3 + 5 + \dots + (2n - 1) = n^2$.</li>
+      <li><strong>Matchstick Patterns &amp; Algebraic Rules:</strong> If each additional unit requires a fixed number of sticks $d$, the rule for $n$ shapes is given by $d \cdot n + c$. For example, a row of $n$ squares requires $3n + 1$ matchsticks; a row of $n$ triangles requires $2n + 1$ matchsticks.</li>
+    </ul>
+  </div>
+
+  <div class="math-diagram-wrap" style="margin: 20px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <svg viewBox="0 0 540 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
+      <text x="270" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">Visual Pattern: Triangular Numbers Sequence (T₁ to T₄)</text>
+      <!-- T1 = 1 -->
+      <circle cx="50" cy="90" r="7" fill="#2563eb"/>
+      <text x="50" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₁ = 1</text>
+      <!-- T2 = 3 -->
+      <circle cx="140" cy="76" r="7" fill="#2563eb"/>
+      <circle cx="128" cy="100" r="7" fill="#2563eb"/>
+      <circle cx="152" cy="100" r="7" fill="#2563eb"/>
+      <text x="140" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₂ = 3</text>
+      <!-- T3 = 6 -->
+      <circle cx="260" cy="64" r="7" fill="#2563eb"/>
+      <circle cx="248" cy="86" r="7" fill="#2563eb"/>
+      <circle cx="272" cy="86" r="7" fill="#2563eb"/>
+      <circle cx="236" cy="108" r="7" fill="#2563eb"/>
+      <circle cx="260" cy="108" r="7" fill="#2563eb"/>
+      <circle cx="284" cy="108" r="7" fill="#2563eb"/>
+      <text x="260" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₃ = 6</text>
+      <!-- T4 = 10 -->
+      <circle cx="420" cy="52" r="7" fill="#2563eb"/>
+      <circle cx="408" cy="72" r="7" fill="#2563eb"/>
+      <circle cx="432" cy="72" r="7" fill="#2563eb"/>
+      <circle cx="396" cy="92" r="7" fill="#2563eb"/>
+      <circle cx="420" cy="92" r="7" fill="#2563eb"/>
+      <circle cx="444" cy="92" r="7" fill="#2563eb"/>
+      <circle cx="384" cy="112" r="7" fill="#2563eb"/>
+      <circle cx="408" cy="112" r="7" fill="#2563eb"/>
+      <circle cx="432" cy="112" r="7" fill="#2563eb"/>
+      <circle cx="456" cy="112" r="7" fill="#2563eb"/>
+      <text x="420" y="135" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">T₄ = 10</text>
+      <text x="270" y="155" font-family="system-ui, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">General Rule: Tₙ = n(n + 1)/2 | Sum of Two Consecutive Triangular Numbers = Square Number</text>
+    </svg>
+    <div style="font-size: 0.82rem; font-weight: 600; color: #475569; margin-top: 6px;">Figure 1.1: Dot Array Models for Triangular Numbers Sequence</div>
+  </div>
+
+  <div class="ex-div">NCERT Exercise 1.1: Number Patterns &amp; Triangular Numbers</div>
+
+  
+  <div class="q-card" id="c6m-ch1-q1">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q1')">
+      <div class="q-num">Q1</div>
+      <div class="q-text">Observe the number sequence: 1, 3, 6, 10, 15, ...<br>(i) Write the next three numbers of this sequence.<br>(ii) What is the special mathematical name given to these numbers?<br>(iii) Show that the sum of the 3ʳᵈ and 4ᵗʰ numbers forms a perfect square.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Pattern Rule &amp; Next Three Numbers:</strong><br>
+      Let us find the difference between consecutive terms:<br>
+      3 - 1 = 2, 6 - 3 = 3, 10 - 6 = 4, 15 - 10 = 5.<br>
+      Each step adds the next natural number (+2, +3, +4, +5).<br>
+      Therefore:<br>
+      - Next term: 15 + 6 = <strong>21</strong><br>
+      - Next term: 21 + 7 = <strong>28</strong><br>
+      - Next term: 28 + 8 = <strong>36</strong><br>
+      The next three numbers are <strong>21, 28, and 36</strong>.
+    </div>
+    <div class="step">
+      <strong>(ii) Mathematical Name:</strong><br>
+      These numbers are called <strong>Triangular Numbers</strong> because dots representing them can be arranged into an equilateral triangle.
+    </div>
+    <div class="step">
+      <strong>(iii) Sum of 3ʳᵈ and 4ᵗʰ Triangular Numbers:</strong><br>
+      3ʳᵈ triangular number = 6; 4ᵗʰ triangular number = 10.<br>
+      Sum = 6 + 10 = 16 = 4².<br>
+      Since 16 = 4 × 4, the sum is indeed a <strong>perfect square</strong>.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Identifying pattern and writing 21, 28, 36</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Stating "Triangular Numbers"</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Computing 6 + 10 = 16 and verifying 4²</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q2">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q2')">
+      <div class="q-num">Q2</div>
+      <div class="q-text">Find the 10ᵗʰ triangular number using the formula $T_n = \frac{n(n+1)}{2}$. Verify your answer by summing the first 10 natural numbers.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>Step 1: Formula Calculation:</strong><br>
+      Given $n = 10$,<br>
+      $T_{10} = \frac{10 \times (10 + 1)}{2} = \frac{10 \times 11}{2} = 5 \times 11 = \mathbf{55}$.
+    </div>
+    <div class="step">
+      <strong>Step 2: Verification by Addition:</strong><br>
+      $1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = (1 + 10) + (2 + 9) + (3 + 8) + (4 + 7) + (5 + 6)$<br>
+      $= 11 \times 5 = \mathbf{55}$.<br>
+      Both methods yield <strong>55</strong>. Hence verified.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Correct substitution in formula yielding 55</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Verification by grouping or consecutive addition</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="math-diagram-wrap" style="margin: 20px auto; text-align: center; max-width: 580px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <svg viewBox="0 0 540 140" width="100%" height="140" xmlns="http://www.w3.org/2000/svg">
+      <text x="270" y="20" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">Matchstick Square Pattern Sequence: Rule Formulation</text>
+      <!-- 1 Square: 4 sticks -->
+      <rect x="35" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
+      <circle cx="35" cy="45" r="3.5" fill="#eab308"/><circle cx="75" cy="45" r="3.5" fill="#eab308"/><circle cx="35" cy="85" r="3.5" fill="#eab308"/><circle cx="75" cy="85" r="3.5" fill="#eab308"/>
+      <text x="55" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">n = 1 (4 sticks)</text>
+      <!-- 2 Squares: 7 sticks -->
+      <rect x="150" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
+      <rect x="190" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
+      <text x="190" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">n = 2 (7 sticks)</text>
+      <!-- 3 Squares: 10 sticks -->
+      <rect x="300" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
+      <rect x="340" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
+      <rect x="380" y="45" width="40" height="40" fill="#f8fafc" stroke="#dc2626" stroke-width="3" rx="2"/>
+      <text x="360" y="112" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">n = 3 (10 sticks)</text>
+      <text x="270" y="132" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0284c7" text-anchor="middle">Rule for n Squares: 3n + 1 matchsticks (First square takes 4, each extra square adds 3)</text>
+    </svg>
+    <div style="font-size: 0.82rem; font-weight: 600; color: #475569; margin-top: 6px;">Figure 1.2: Matchstick Pattern of Connected Squares</div>
+  </div>
+
+  <div class="ex-div">NCERT Exercise 1.2: Matchstick Patterns &amp; Algebraic Generalization</div>
+
+  
+  <div class="q-card" id="c6m-ch1-q3">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">A student makes a row of connected squares using matchsticks as shown in Figure 1.2.<br>(i) Find the number of matchsticks required for 1 square, 2 squares, 3 squares, and 4 squares.<br>(ii) Write the general rule for the number of matchsticks required to make n squares.<br>(iii) How many matchsticks are needed to make a row of 25 connected squares?</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Count of Matchsticks:</strong><br>
+      - For 1 square: 4 matchsticks.<br>
+      - For 2 connected squares: 4 + 3 = 7 matchsticks (1 edge shared).<br>
+      - For 3 connected squares: 7 + 3 = 10 matchsticks.<br>
+      - For 4 connected squares: 10 + 3 = 13 matchsticks.
+    </div>
+    <div class="step">
+      <strong>(ii) Formulation of General Rule:</strong><br>
+      Notice: 4 = 3(1) + 1, 7 = 3(2) + 1, 10 = 3(3) + 1, 13 = 3(4) + 1.<br>
+      Therefore, for $n$ connected squares, the general rule is:<br>
+      <strong>Number of matchsticks = 3n + 1</strong>.
+    </div>
+    <div class="step">
+      <strong>(iii) Calculation for n = 25:</strong><br>
+      Matchsticks = 3(25) + 1 = 75 + 1 = <strong>76 matchsticks</strong>.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Tabulating stick counts (4, 7, 10, 13)</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Deriving formula 3n + 1</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Correct calculation yielding 76</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q4">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">A series of connected equilateral triangles is formed using matchsticks.<br>(i) How many matchsticks are required for 1, 2, 3, and 4 triangles?<br>(ii) Find the rule for the number of matchsticks needed for n triangles.<br>(iii) If 41 matchsticks are used, how many triangles are formed in the row?</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Count of Matchsticks for Triangles:</strong><br>
+      - 1 triangle requires 3 matchsticks.<br>
+      - 2 connected triangles share 1 common side: 3 + 2 = 5 matchsticks.<br>
+      - 3 connected triangles: 5 + 2 = 7 matchsticks.<br>
+      - 4 connected triangles: 7 + 2 = 9 matchsticks.
+    </div>
+    <div class="step">
+      <strong>(ii) General Rule:</strong><br>
+      Observe: 3 = 2(1) + 1, 5 = 2(2) + 1, 7 = 2(3) + 1, 9 = 2(4) + 1.<br>
+      Therefore, for $n$ triangles: <strong>Matchsticks = 2n + 1</strong>.
+    </div>
+    <div class="step">
+      <strong>(iii) Finding n when 41 matchsticks are used:</strong><br>
+      $2n + 1 = 41 \implies 2n = 40 \implies n = 20$.<br>
+      Therefore, <strong>20 triangles</strong> are formed.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Correct counts (3, 5, 7, 9)</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Writing general rule 2n + 1</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Solving 2n + 1 = 41 to get n = 20</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q5">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Observe the pattern in the following number pyramid:<br>1 × 8 + 1 = 9<br>12 × 8 + 2 = 98<br>123 × 8 + 3 = 987<br>1234 × 8 + 4 = 9876<br>Write down the next two lines of this pattern without actual multiplication, and describe the rule.</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>Pattern Rule Analysis:</strong><br>
+      - In the first factor, digits 1, 2, 3, ... are appended in ascending sequence.<br>
+      - The number added is the next natural number (1, 2, 3, 4, 5, 6).<br>
+      - The product digits decrease consecutively starting from 9.<br>
+      <strong>Line 5:</strong> 12345 × 8 + 5 = <strong>98765</strong><br>
+      <strong>Line 6:</strong> 123456 × 8 + 6 = <strong>987654</strong>
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Line 5 correct: 12345 × 8 + 5 = 98765</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Line 6 correct: 123456 × 8 + 6 = 987654</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q6">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">A sequence is defined by the rule: "Multiply the term number by 4 and then subtract 3".<br>(i) Write the first 5 terms of this sequence.<br>(ii) Find the 20ᵗʰ term.<br>(iii) Is the number 85 a term in this sequence? Justify your answer.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) First 5 Terms:</strong><br>
+      Formula: $a_n = 4n - 3$.<br>
+      - For $n = 1$: $4(1) - 3 = 1$<br>
+      - For $n = 2$: $4(2) - 3 = 5$<br>
+      - For $n = 3$: $4(3) - 3 = 9$<br>
+      - For $n = 4$: $4(4) - 3 = 13$<br>
+      - For $n = 5$: $4(5) - 3 = 17$<br>
+      The first 5 terms are <strong>1, 5, 9, 13, 17</strong>.
+    </div>
+    <div class="step">
+      <strong>(ii) 20ᵗʰ Term:</strong><br>
+      $a_{20} = 4(20) - 3 = 80 - 3 = \mathbf{77}$.
+    </div>
+    <div class="step">
+      <strong>(iii) Checking if 85 is in the sequence:</strong><br>
+      Set $4n - 3 = 85 \implies 4n = 88 \implies n = 22$.<br>
+      Since $n = 22$ is a whole number, <strong>Yes, 85 is the 22ⁿᵈ term</strong>.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Computing first 5 terms (1, 5, 9, 13, 17)</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Finding a₂₀ = 77</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Solving 4n - 3 = 85 and concluding n = 22</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q7">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q7')">
+      <div class="q-num">Q7</div>
+      <div class="q-text">Observe the dot pattern for square numbers: 1, 4, 9, 16, 25, 36, ...<br>(i) Express 25 as the sum of consecutive odd natural numbers.<br>(ii) Express 36 as the sum of two consecutive triangular numbers.<br>(iii) Express 49 as the sum of consecutive odd natural numbers.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Expressing 25 as sum of odd numbers:</strong><br>
+      $25 = 5^2$. It is the sum of the first 5 odd natural numbers:<br>
+      $25 = \mathbf{1 + 3 + 5 + 7 + 9}$.
+    </div>
+    <div class="step">
+      <strong>(ii) Expressing 36 as sum of two consecutive triangular numbers:</strong><br>
+      $36 = 6^2$. A square number $n^2$ is the sum of the $(n-1)$-th and $n$-th triangular numbers.<br>
+      $T_5 = \frac{5 \times 6}{2} = 15$; $T_6 = \frac{6 \times 7}{2} = 21$.<br>
+      $36 = \mathbf{15 + 21}$.
+    </div>
+    <div class="step">
+      <strong>(iii) Expressing 49 as sum of odd numbers:</strong><br>
+      $49 = 7^2$. It is the sum of the first 7 odd natural numbers:<br>
+      $49 = \mathbf{1 + 3 + 5 + 7 + 9 + 11 + 13}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Writing 1 + 3 + 5 + 7 + 9 = 25</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Writing 15 + 21 = 36</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Writing 1 + 3 + 5 + 7 + 9 + 11 + 13 = 49</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q8">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q8')">
+      <div class="q-num">Q8</div>
+      <div class="q-text">Observe the palindromic multiplication pattern:<br>11 × 11 = 121<br>111 × 111 = 12321<br>1111 × 1111 = 1234321<br>(i) Without actual calculation, predict the value of 11111 × 11111.<br>(ii) What is the square root of 12345654321?</div>
+      <div class="q-marks">[2 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Value of 11111 × 11111:</strong><br>
+      Since there are 5 ones, digits increase from 1 up to 5 and then decrease back to 1:<br>
+      $11111 \times 11111 = \mathbf{123454321}$.
+    </div>
+    <div class="step">
+      <strong>(ii) Square root of 12345654321:</strong><br>
+      The peak middle digit is 6, which indicates the number is the square of a 6-digit number consisting of all 1s:<br>
+      $\sqrt{12345654321} = \mathbf{111111}$.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Stating 123454321 correctly</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Identifying 111111</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q9">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q9')">
+      <div class="q-num">Q9</div>
+      <div class="q-text">A calendar page displays a 3 × 3 square of dates as follows:<br>&nbsp;&nbsp;4 &nbsp;&nbsp;&nbsp; 5 &nbsp;&nbsp;&nbsp; 6<br>&nbsp;11 &nbsp;&nbsp; 12 &nbsp;&nbsp; 13<br>&nbsp;18 &nbsp;&nbsp; 19 &nbsp;&nbsp; 20<br>(i) Find the sum of all 9 numbers in this square.<br>(ii) Relate this total sum to the central number (12).<br>(iii) Does this rule hold true for any 3 × 3 date block on a calendar? Give a mathematical reason.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Sum of all 9 numbers:</strong><br>
+      $4 + 5 + 6 + 11 + 12 + 13 + 18 + 19 + 20 = 108$.
+    </div>
+    <div class="step">
+      <strong>(ii) Relationship to central number:</strong><br>
+      Notice that $108 = 9 \times 12$.<br>
+      The total sum of all 9 numbers equals <strong>9 times the central number</strong>.
+    </div>
+    <div class="step">
+      <strong>(iii) Mathematical Justification:</strong><br>
+      Let the central number be $x$. The 8 surrounding numbers are symmetric around $x$:<br>
+      $(x-8) + (x-7) + (x-6) + (x-1) + x + (x+1) + (x+6) + (x+7) + (x+8) = 9x$.<br>
+      The positive and negative offsets cancel out completely. Hence, the rule holds true for <strong>any 3 × 3 square</strong> on any calendar month.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Calculating total sum 108</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Stating Sum = 9 × Central Number (9 × 12 = 108)</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Algebraic proof with cancellation of symmetric offsets</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q10">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q10')">
+      <div class="q-num">Q10</div>
+      <div class="q-text">A pattern of "matchstick houses" is built in a row. The first house requires 6 matchsticks. Each subsequent connected house requires 5 additional matchsticks.<br>(i) Write the rule for the number of matchsticks required for h houses.<br>(ii) Find the number of matchsticks needed to build 12 houses.<br>(iii) If a student has 106 matchsticks, how many complete houses can be built?</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Rule Formulation:</strong><br>
+      For 1 house: 6 matchsticks.<br>
+      For 2 houses: 6 + 5 = 11 matchsticks.<br>
+      For 3 houses: 11 + 5 = 16 matchsticks.<br>
+      Rule for $h$ houses: $6 + 5(h - 1) = \mathbf{5h + 1}$.
+    </div>
+    <div class="step">
+      <strong>(ii) Matchsticks for 12 houses:</strong><br>
+      $5(12) + 1 = 60 + 1 = \mathbf{61\text{ matchsticks}}$.
+    </div>
+    <div class="step">
+      <strong>(iii) Houses from 106 matchsticks:</strong><br>
+      $5h + 1 = 106 \implies 5h = 105 \implies h = 21$.<br>
+      Thus, <strong>21 complete houses</strong> can be built.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Deriving rule 5h + 1</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Finding 61 matchsticks</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Solving for h = 21</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="q-card" id="c6m-ch1-q11">
+    <div class="q-head" onclick="toggleQ('c6m-ch1-q11')">
+      <div class="q-num">Q11</div>
+      <div class="q-text">Consider the Fibonacci-like pattern: 1, 1, 2, 3, 5, 8, 13, 21, ...<br>(i) Explain the rule used to generate each subsequent term.<br>(ii) Write the next two terms of this sequence.<br>(iii) What is the sum of the first 6 terms? Verify that it equals the 8ᵗʰ term minus 1.</div>
+      <div class="q-marks">[3 Marks]</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✅ CBSE Standard Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">
+      <strong>(i) Generation Rule:</strong><br>
+      Each term after the first two is obtained by adding the two immediately preceding terms:<br>
+      $1 + 1 = 2$, $1 + 2 = 3$, $2 + 3 = 5$, $3 + 5 = 8$, $5 + 8 = 13$, $8 + 13 = 21$.
+    </div>
+    <div class="step">
+      <strong>(ii) Next Two Terms:</strong><br>
+      - 9ᵗʰ term: $13 + 21 = \mathbf{34}$<br>
+      - 10ᵗʰ term: $21 + 34 = \mathbf{55}$
+    </div>
+    <div class="step">
+      <strong>(iii) Sum and Verification:</strong><br>
+      Sum of first 6 terms = $1 + 1 + 2 + 3 + 5 + 8 = 20$.<br>
+      8ᵗʰ term = 21.<br>
+      Verification: $21 - 1 = 20$. Hence verified.
+    </div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">CBSE Board Marking Scheme 2026-27</div>
+          <div class="marking-row"><span class="marking-key">Part (i): Stating addition of previous two terms</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (ii): Calculating 34 and 55</span><span class="marking-marks">1 Mark</span></div>
+    <div class="marking-row"><span class="marking-key">Part (iii): Verifying Sum = 20 = 21 - 1</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="cbq-card">
+    <div class="cbq-badge">CBSE Competency-Based Question (Real-Life Case Study)</div>
+    <div class="q-text"><strong>Case Study: School Auditorium Seating Arrangement:</strong><br>
+    In a newly constructed school auditorium, the chairs in the rows are arranged in a triangular stage pattern. Row 1 has 3 chairs, Row 2 has 5 chairs, Row 3 has 7 chairs, and so on.<br>
+    (a) Formulate the algebraic rule for the number of chairs in Row n.<br>
+    (b) How many chairs are in the 15ᵗʰ row?<br>
+    (c) If the last row contains 41 chairs, find the total number of rows in the auditorium.<br>
+    (d) Calculate the total seating capacity of the first 10 rows.</div>
+    <div class="answer-box" style="margin-top: 15px;">
+      <div class="answer-label">Detailed Analytical Solution &amp; Marking Scheme</div>
+      <div class="answer-text">
+        <p><strong>(a) Algebraic Rule:</strong><br>
+    The number of chairs in consecutive rows is 3, 5, 7, 9, ...<br>
+    Common difference $d = 2$. For Row 1: $2(1) + 1 = 3$.<br>
+    Therefore, for Row $n$: <strong>Chairs = 2n + 1</strong>.</p>
+    <p><strong>(b) Chairs in 15ᵗʰ Row:</strong><br>
+    Substitute $n = 15$: Chairs = $2(15) + 1 = 30 + 1 = \mathbf{31\text{ chairs}}$.</p>
+    <p><strong>(c) Total Number of Rows when Last Row has 41 Chairs:</strong><br>
+    $2n + 1 = 41 \implies 2n = 40 \implies n = \mathbf{20\text{ rows}}$.</p>
+    <p><strong>(d) Total Seating Capacity of First 10 Rows:</strong><br>
+    Sum = $3 + 5 + 7 + \dots + 21$.<br>
+    Notice this is $(1 + 3 + 5 + \dots + 21) - 1 = 11^2 - 1 = 121 - 1 = \mathbf{120\text{ seats}}$.</p>
+      </div>
+    </div>
+  </div>
 </section>
+      </div>
+
+      <!-- Pager Bottom -->
+      <div class="chapter-pager" style="margin-top: 36px;">
+        <span style="font-size: 0.85rem; color: #64748b; font-weight: 700;">Chapter 1 of 12</span>
+        <div style="display: flex; gap: 8px;">
+          <a href="../ncert-solutions-class-6-maths.html" class="btn-pager">⬅️ Mathematics Hub</a>
+          <a href="ganita-prakash-ch2.html" class="btn-pager">Ch 2: Lines and Angles ➡️</a>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div style="margin-bottom: 12px;">
+      <a href="../index.html">Home</a> •
+      <a href="../ncert-solutions-class-6.html">Class 6 Hub</a> •
+      <a href="../ncert-solutions-class-6-maths.html">Mathematics Solutions</a> •
+      <a href="../ncert-solutions.html">All Classes</a>
+    </div>
+    <p>© 2026–27 OlympiadQuiz.org — 100% Free Complete NCERT Solutions for CBSE &amp; State Boards.</p>
+  </footer>
+
+  <script>
+    // Toggle Question Accordion
+    function toggleQ(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('open');
+    }
+
+    // Toggle Competency Answer
+    function toggleCbq(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('show');
+    }
+
+    // Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('progressBar');
+      if (bar) bar.style.width = scrolled + '%';
+    });
+  </script>
+
+</body>
+</html>

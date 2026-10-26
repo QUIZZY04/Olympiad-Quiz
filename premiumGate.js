@@ -161,18 +161,17 @@ let premiumUnsubscribe = null;
 // and LIVE_TEST_MONTHLY_CREDITS/LIVE_TEST_CREDIT_VALUE_INR. If those ever
 // change, update both places (backend is the source of truth for what's
 // actually charged/granted; this is display-only).
-const SILVER_PRICE_INR = 199;
-const GOLD_PRICE_INR = 299;       // billed every 3 months
-const DIAMOND_PRICE_INR = 599;    // billed yearly
-const SILVER_DAILY_LIMIT = 4;     // Silver is capped, not unlimited - mirrors functions/premium/config.js
-const SILVER_MONTHLY_LIMIT = 40;
-const SILVER_COOLDOWN_MINUTES = 60; // fixed wait after every Silver attempt - mirrors functions/premium/config.js
+const SILVER_PRICE_INR = 149;     // billed monthly
+const GOLD_PRICE_INR = 349;       // billed every 3 months
+const DIAMOND_PRICE_INR = 599;    // billed every 6 months
 const GOLD_LIVE_TESTS_PER_MONTH = 2;
 const DIAMOND_LIVE_TESTS_PER_MONTH = 4;
 const LIVE_TEST_VALUE_INR = 99;
-// Savings vs. paying the Silver monthly price for the same span (3 months / 1 year).
+// Savings vs. paying the Silver monthly price for the same span (3 / 6 months).
 const GOLD_SAVINGS_PCT = Math.round((1 - GOLD_PRICE_INR / (SILVER_PRICE_INR * 3)) * 100);
-const DIAMOND_SAVINGS_PCT = Math.round((1 - DIAMOND_PRICE_INR / (SILVER_PRICE_INR * 12)) * 100);
+const DIAMOND_SAVINGS_PCT = Math.round((1 - DIAMOND_PRICE_INR / (SILVER_PRICE_INR * 6)) * 100);
+const GOLD_PER_MONTH_INR = Math.round(GOLD_PRICE_INR / 3);
+const DIAMOND_PER_MONTH_INR = Math.round(DIAMOND_PRICE_INR / 6);
 
 function featureLi(text, included) {
   const icon = included
@@ -196,30 +195,21 @@ function featureLi(text, included) {
  *   modal clears itself the instant isPremium flips true (e.g. upgraded in
  *   another tab) - onResolved is also called when the countdown reaches
  *   zero naturally, so neither path ever needs a manual page refresh.
- * @param {"free"|"silver"} [blockedTier] - which plan actually hit its limit
- *   (canStartTest's response includes isPremium:true when it's Silver, since
- *   Silver is capped rather than unlimited) - controls the heading/lead text
- *   and which plan renders as "Your Current Plan" vs. a purchasable upgrade.
  */
-export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, blockedTier = "free") {
+export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
   injectStyles();
-  // Always rebuilt (not reused across calls) - the content depends on
-  // blockedTier, which can differ between calls in the same page session.
   document.getElementById("pgBlockOverlay")?.remove();
   const overlay = document.createElement("div");
   overlay.id = "pgBlockOverlay";
-  const isSilverBlocked = blockedTier === "silver";
   overlay.innerHTML = `
       <div class="pg-box">
         <div class="pg-icon">⏱️</div>
-        <h2>${isSilverBlocked ? "Silver Plan Limit Reached" : "Free Test Limit Reached"}</h2>
-        <p class="pg-lead">${isSilverBlocked
-          ? `Silver includes up to ${SILVER_DAILY_LIMIT} tests a day and ${SILVER_MONTHLY_LIMIT} a month. Your next test unlocks in:`
-          : "Free accounts get 1 test a day, up to 4 a week. Your next free test unlocks in:"}</p>
+        <h2>Free Test Limit Reached</h2>
+        <p class="pg-lead">Free accounts get 1 test a day, up to 4 a week. Your next free test unlocks in:</p>
         <div id="pgCountdown">--:--:--</div>
-        <div class="pg-plans-heading">${isSilverBlocked ? "Or upgrade right now for truly unlimited tests" : "Or continue right now with unlimited tests"}</div>
+        <div class="pg-plans-heading">Or continue right now with unlimited tests</div>
         <div class="pg-plans">
-          ${isSilverBlocked ? "" : `<div class="pg-plan">
+          <div class="pg-plan">
             <div class="pg-plan-name">Current Plan</div>
             <div class="pg-plan-price">Free</div>
             <ul class="pg-plan-features">
@@ -232,27 +222,25 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, blockedTi
               ${featureLi("Priority support", false)}
             </ul>
             <button class="pg-plan-btn pg-plan-btn-disabled" disabled>Your Current Plan</button>
-          </div>`}
+          </div>
           <div class="pg-plan">
-            <div class="pg-plan-name">Silver Plan</div>
+            <div class="pg-plan-name">Silver &middot; 1 Month</div>
             <div class="pg-plan-price">&#8377;${SILVER_PRICE_INR}<span>/month</span></div>
             <ul class="pg-plan-features">
-              ${featureLi(`Up to ${SILVER_DAILY_LIMIT} tests/day, ${SILVER_MONTHLY_LIMIT}/month`, true)}
+              ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
               ${featureLi("Detailed performance analytics", true)}
-              ${featureLi(`${SILVER_COOLDOWN_MINUTES}-minute wait between tests`, true)}
+              ${featureLi("No waiting between tests", true)}
               ${featureLi("All India Live Tests included", false)}
               ${featureLi("Personal Olympiad guidance", false)}
               ${featureLi("Priority support", false)}
             </ul>
-            ${isSilverBlocked
-              ? `<button class="pg-plan-btn pg-plan-btn-disabled" disabled>Your Current Plan</button>`
-              : `<button class="pg-plan-btn" id="pgSilverBtn">Choose Silver</button>`}
+            <button class="pg-plan-btn" id="pgSilverBtn">Choose Silver</button>
           </div>
           <div class="pg-plan pg-plan-gold">
-            <div class="pg-plan-name">Gold Plan</div>
+            <div class="pg-plan-name">Gold &middot; 3 Months</div>
             <div class="pg-plan-price">&#8377;${GOLD_PRICE_INR}<span>/3 months</span></div>
-            <div class="pg-plan-save">Save ${GOLD_SAVINGS_PCT}% vs. Silver monthly</div>
+            <div class="pg-plan-save">Just &#8377;${GOLD_PER_MONTH_INR}/month &middot; Save ${GOLD_SAVINGS_PCT}%</div>
             <ul class="pg-plan-features">
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
@@ -266,9 +254,9 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, blockedTi
           </div>
           <div class="pg-plan pg-plan-diamond">
             <div class="pg-plan-badge">Best Value</div>
-            <div class="pg-plan-name">Diamond Plan</div>
-            <div class="pg-plan-price">&#8377;${DIAMOND_PRICE_INR}<span>/year</span></div>
-            <div class="pg-plan-save">Save ${DIAMOND_SAVINGS_PCT}% vs. Silver monthly</div>
+            <div class="pg-plan-name">Diamond &middot; 6 Months</div>
+            <div class="pg-plan-price">&#8377;${DIAMOND_PRICE_INR}<span>/6 months</span></div>
+            <div class="pg-plan-save">Just &#8377;${DIAMOND_PER_MONTH_INR}/month &middot; Save ${DIAMOND_SAVINGS_PCT}%</div>
             <ul class="pg-plan-features">
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
@@ -285,8 +273,7 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, blockedTi
       </div>
     `;
   document.body.appendChild(overlay);
-  const silverBtn = document.getElementById("pgSilverBtn");
-  if (silverBtn) silverBtn.onclick = () => onUpgrade && onUpgrade("silver");
+  document.getElementById("pgSilverBtn").onclick = () => onUpgrade && onUpgrade("silver");
   document.getElementById("pgGoldBtn").onclick = () => onUpgrade && onUpgrade("gold");
   document.getElementById("pgDiamondBtn").onclick = () => onUpgrade && onUpgrade("diamond");
   document.getElementById("pgBackBtn").onclick = () => {
@@ -337,7 +324,7 @@ const BUTTON_ID_BY_TIER = { silver: "pgSilverBtn", gold: "pgGoldBtn", diamond: "
 const TIER_LABEL = {
   silver: `Silver - ₹${SILVER_PRICE_INR}/month`,
   gold: `Gold - ₹${GOLD_PRICE_INR}/3 months`,
-  diamond: `Diamond - ₹${DIAMOND_PRICE_INR}/year`,
+  diamond: `Diamond - ₹${DIAMOND_PRICE_INR}/6 months`,
 };
 
 /**
@@ -436,7 +423,7 @@ export async function guardQuizNavigation(app, testType, navigate, onBlocked) {
         db: getFirestore(app),
         uid: user.uid,
         onResolved: () => { hideBlockedModal(); navigate(); },
-      }, gate.isPremium ? "silver" : "free");
+      });
       return;
     }
   } catch (e) {

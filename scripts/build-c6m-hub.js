@@ -5,7 +5,9 @@ const dir = path.join(__dirname, '..', 'chapters-c6m');
 
 const allChapters = {};
 for (let i = 1; i <= 12; i++) {
-  allChapters[i] = fs.readFileSync(path.join(dir, `ch${i}.html`), 'utf8');
+  const rawContent = fs.readFileSync(path.join(dir, `ch${i}.html`), 'utf8');
+  const sectionMatch = rawContent.match(/<section[\s\S]*?<\/section>/);
+  allChapters[i] = sectionMatch ? sectionMatch[0] : rawContent;
 }
 
 const chapters = [
@@ -71,7 +73,7 @@ const html = `<!DOCTYPE html>
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://olympiadquiz.org/" },
       { "@type": "ListItem", "position": 2, "name": "NCERT Solutions", "item": "https://olympiadquiz.org/ncert-solutions.html" },
-      { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions.html#class6" },
+      { "@type": "ListItem", "position": 3, "name": "Class 6", "item": "https://olympiadquiz.org/ncert-solutions-class-6.html" },
       { "@type": "ListItem", "position": 4, "name": "Mathematics", "item": "https://olympiadquiz.org/ncert-solutions-class-6-maths.html" }
     ]
   }
@@ -400,7 +402,7 @@ const html = `<!DOCTYPE html>
         <li class="ncert-bc-sep">/</li>
         <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
         <li class="ncert-bc-sep">/</li>
-        <li><a href="ncert-solutions.html#class6">Class 6</a></li>
+        <li><a href="ncert-solutions-class-6.html">Class 6</a></li>
         <li class="ncert-bc-sep">/</li>
         <li class="ncert-bc-current">Mathematics</li>
       </ol>

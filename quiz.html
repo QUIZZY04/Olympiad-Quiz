@@ -1321,14 +1321,11 @@ onAuthStateChanged(auth, async(user)=>{
             // whole gate fresh rather than trying to resume mid-flow,
             // simplest way to guarantee a clean state either way.
             onResolved: () => window.location.reload()
-        }, gateResult.isPremium ? "silver" : "free");
+        });
         return;
     }
     if (gateResult) {
         currentAttemptId = gateResult.attemptId || null;
-        // Only for the free tier - "free tests remaining" copy doesn't fit
-        // a paying Silver subscriber, whose (much higher) 4/day-40/month
-        // cap isn't worth the same urgency.
         if (!gateResult.isPremium && gateResult.remaining === 1) showRemainingNotice(gateResult.remaining);
     }
 
