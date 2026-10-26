@@ -1,6 +1,6 @@
 // scripts/build-c2-hub.js
 // Generator for Class 2 NCERT Solutions Central Hub (ncert-solutions-class-2.html)
-// Connects all 4 subjects and 8 textbooks across 120 chapters for Academic Session 2026-27
+// Connects all 4 subjects and 8 textbooks across 124 chapters for Academic Session 2026-27
 
 const fs = require('fs');
 const path = require('path');
@@ -39,7 +39,7 @@ const htmlContent = `<!DOCTYPE html>
   <meta property="og:site_name" content="OlympiadQuiz">
   <meta property="og:url" content="https://olympiadquiz.org/ncert-solutions-class-2.html">
   <meta property="og:title" content="NCERT Solutions for Class 2 All Subjects CBSE 2026-27 | OlympiadQuiz">
-  <meta property="og:description" content="100% complete chapter-wise NCERT solutions for Class 2 Maths, English, Hindi, and EVS covering both NEP 2020 and Classic CBSE textbooks across 120 chapters.">
+  <meta property="og:description" content="100% complete chapter-wise NCERT solutions for Class 2 Maths, English, Hindi, and EVS covering both NEP 2020 and Classic CBSE textbooks across 124 chapters.">
   <meta property="og:image" content="https://olympiadquiz.org/favicon.png">
 
   <!-- Twitter Card -->
@@ -94,7 +94,7 @@ const htmlContent = `<!DOCTYPE html>
         "name": "Which textbooks and subjects are covered in Class 2 NCERT Solutions?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "All 4 core subjects are 100% covered across both NEP 2020 (New NCF-FS) and Classic CBSE tracks: Mathematics (Joyful Mathematics & Math-Magic), English (Mridang & Marigold), Hindi (Sarangi & Rimjhim), and EVS (Our Living World & Surroundings), totaling 8 textbooks and 120 standalone chapters."
+          "text": "All 4 core subjects are 100% covered across both NEP 2020 (New NCF-FS) and Classic CBSE tracks: Mathematics (Joyful Mathematics & Math-Magic), English (Mridang & Marigold), Hindi (Sarangi & Rimjhim), and EVS (Our Living World & Surroundings), totaling 8 textbooks and 124 standalone chapters."
         }
       },
       {
@@ -278,7 +278,7 @@ const htmlContent = `<!DOCTYPE html>
         <div class="stat-label">Official Books</div>
       </div>
       <div class="stat-box">
-        <div class="stat-num">120</div>
+        <div class="stat-num">124</div>
         <div class="stat-label">Total Chapters</div>
       </div>
       <div class="stat-box">
@@ -328,14 +328,14 @@ const htmlContent = `<!DOCTYPE html>
         <div>
           <div class="subject-card-top">
             <div class="sub-icon">📖</div>
-            <span class="sub-badge">29 Chapters Total</span>
+            <span class="sub-badge">33 Chapters Total</span>
           </div>
           <h3 class="sub-title">English</h3>
           <p class="sub-desc">Exhaustive chapter modules for Mridang and Marigold Book 2 across joyful poems and stories. Complete reading comprehension, vocabulary banks, grammar, and writing rubrics.</p>
           <div class="sub-books">
             <div class="sub-book-item">
               <span class="sub-book-name">📘 Mridang (NEP 2020)</span>
-              <span class="sub-book-count">9 Chapters</span>
+              <span class="sub-book-count">13 Chapters</span>
             </div>
             <div class="sub-book-item">
               <span class="sub-book-name">📙 Marigold Book 2 (Classic CBSE)</span>
@@ -397,7 +397,7 @@ const htmlContent = `<!DOCTYPE html>
     <!-- Chapterwise Modular Directory (100% Comprehensive Coverage) -->
     <section class="sec-head" style="margin-top: 50px;">
       <span class="sec-badge" style="background:#dcfce7;color:#15803d;">🚀 Modular Chapter-Wise Pages (100% Coverage)</span>
-      <h2 class="sec-title">Quick Direct Chapter Directory (All 120 Chapters)</h2>
+      <h2 class="sec-title">Quick Direct Chapter Directory (All 124 Chapters)</h2>
       <p class="sec-sub">Access dedicated, standalone chapter pages with every single exercise, in-text activity, and CBSE marking rubric from NCERT &amp; Tiwari Academy.</p>
     </section>
 
@@ -418,8 +418,8 @@ const htmlContent = `<!DOCTYPE html>
 
       <!-- English Card -->
       <div style="background:#ffffff; border:1.5px solid #bae6fd; border-radius:12px; padding:20px; box-shadow:0 4px 12px rgba(2,132,199,0.06);">
-        <h4 style="color:#0369a1; font-size:1.05rem; font-weight:800; margin-bottom:10px;">📖 English (29 Chapters)</h4>
-        <div style="font-size:0.8rem; font-weight:700; color:#475569; margin-bottom:6px;">📘 Mridang (9 Chs):</div>
+        <h4 style="color:#0369a1; font-size:1.05rem; font-weight:800; margin-bottom:10px;">📖 English (33 Chapters)</h4>
+        <div style="font-size:0.8rem; font-weight:700; color:#475569; margin-bottom:6px;">📘 Mridang (13 Chs):</div>
         <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
           ${mridangChapters.map(ch => `<a href="chapters-c2e/mridang-ch${ch.num}.html" class="ch-dir-pill">Ch ${ch.num}</a>`).join('')}
         </div>
