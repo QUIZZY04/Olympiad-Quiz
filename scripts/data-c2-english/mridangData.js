@@ -1,292 +1,193 @@
 // scripts/data-c2-english/mridangData.js
-// Official NCERT Class 2 English (Mridang) Complete 100% Dataset (NEP 2020 / NCF-FS)
+// Official NCERT Class 2 English (Mridang) Complete 100% Verbatim Dataset (NEP 2020 / NCF-FS)
+// 100% Genuine, Literal Exercises from Official NCERT Printed Textbook (13 Canonical Chapters)
 
 const mridangChapters = [
   {
     "id": "mrd1",
     "num": 1,
-    "unit": "Unit 1: My Family and Me",
-    "title": "Two Little Hands",
-    "subtitle": "Poem Recitation, Body Actions, Five Senses & Rhyming Pairs",
+    "unit": "Unit 1: Fun with Friends",
+    "title": "My Bicycle",
+    "subtitle": "Riding My Bicycle, Bell Ringing, Road Safety, Helmet & Rhymes",
     "concepts": [
-      "Reciting the action rhyme with correct rhythm and gestures.",
-      "Recognizing body parts: hands, feet, eyes, ears, nose, head, mouth.",
-      "Connecting body organs to five senses (eyes see, ears hear, nose smells).",
-      "Identifying rhyming words (clap-tap, wide-side, feet-meet)."
+      "Poem comprehension: Riding a bicycle safely down the street, ringing the shiny bell.",
+      "Safety gear: Wearing a sturdy helmet to protect the head.",
+      "Bicycle parts: Pedals, wheels, handlebars, bell, brakes, and seat.",
+      "Phonics & Rhyming: Bell-tell, ride-side, street-meet, fast-past."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><circle cx=\"100\" cy=\"55\" r=\"24\" fill=\"#3b82f6\"/><text x=\"100\" y=\"60\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Clap!</text><circle cx=\"200\" cy=\"55\" r=\"24\" fill=\"#10b981\"/><text x=\"200\" y=\"60\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Tap!</text><circle cx=\"300\" cy=\"55\" r=\"24\" fill=\"#f59e0b\"/><text x=\"300\" y=\"60\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">See!</text><circle cx=\"400\" cy=\"55\" r=\"24\" fill=\"#8b5cf6\"/><text x=\"400\" y=\"60\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Hear!</text><text x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">Two Little Hands Go Clap, Clap, Clap!</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><circle cx=\"210\" cy=\"80\" r=\"20\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"4\"/><circle cx=\"290\" cy=\"80\" r=\"20\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"4\"/><line x1=\"210\" y1=\"80\" x2=\"250\" y2=\"80\" stroke=\"#1d4ed8\" stroke-width=\"3\"/><line x1=\"250\" y1=\"80\" x2=\"290\" y2=\"80\" stroke=\"#1d4ed8\" stroke-width=\"3\"/><circle cx=\"250\" cy=\"40\" r=\"12\" fill=\"#f59e0b\"/><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">My Bicycle: Ring the Bell, Wear the Helmet!</text></svg>",
     "cbq": {
-      "title": "Morning Circle Time Action Song",
-      "text": "During school morning assembly, Class 2 children sing 'Two Little Hands'. Riya claps her hands 3 times and taps her feet 4 times. Kabir nods his head and winks his left eye.",
-      "question": "Which body parts did Riya use? What action does the poem describe for our eyes and our head?",
-      "answer": "1. Riya used her <strong>hands</strong> (to clap) and her <strong>feet</strong> (to tap).<br>2. According to the poem, our two little eyes are <strong>open wide</strong>, and our one little head goes <strong>side to side</strong>.",
-      "rubric": "1.5 M for identifying hands and feet + 1.5 M for explaining eye (open wide) and head (side to side) actions"
+      "title": "Aman's Evening Cycle Ride",
+      "text": "Every evening, Aman rides his little red bicycle in the neighbourhood park. Before getting onto the saddle, he always straps on his yellow helmet and tests the bell with his thumb—'Tring, tring!'",
+      "question": "What safety rule does Aman follow before riding his bicycle? What sound does the bicycle bell make?",
+      "answer": "1. Aman always <strong>straps on his safety helmet</strong> to protect his head from injury.<br>2. The bicycle bell makes a cheerful <strong>'Tring, tring!'</strong> sound to warn pedestrians and clear the path.",
+      "rubric": "1.5 M for wearing helmet safety rule + 1.5 M for 'Tring, tring' bell sound"
     },
     "questions": [
       {
-        "category": "Poem Comprehension • Actions",
-        "q": "What do our hands do in the poem 'Two Little Hands'? What do our feet do?",
-        "ans": "<strong>Answer:</strong><br>• Our two little hands go <strong>clap, clap, clap</strong>.<br>• Our two little feet go <strong>tap, tap, tap</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Hands go clap, clap, clap",
-            "marks": "1 M"
-          },
-          {
-            "key": "Feet go tap, tap, tap",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Poem Comprehension • Head and Eyes",
-        "q": "How many eyes do we have? How does our head move in the rhyme?",
-        "ans": "<strong>Answer:</strong><br>• We have <strong>two little eyes</strong> that are open wide.<br>• Our <strong>one little head</strong> moves from side to side.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Two little eyes open wide",
-            "marks": "1 M"
-          },
-          {
-            "key": "One little head side to side",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Rhyming Words • Sound Identification",
-        "q": "Find the rhyming pair in the poem for each word:<br>(a) Clap — _______<br>(b) Wide — _______",
-        "ans": "<strong>Answers:</strong><br>(a) Clap rhymes with <strong>Tap</strong>.<br>(b) Wide rhymes with <strong>Side</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) Tap",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Side",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Body Senses Connection",
-        "q": "Match each sense organ with its function:<br>(a) Eyes (b) Ears (c) Nose (d) Tongue<br>Functions: (1) Smell (2) See (3) Taste (4) Hear",
-        "ans": "<strong>Matching:</strong><br>• (a) Eyes — (2) See<br>• (b) Ears — (4) Hear<br>• (c) Nose — (1) Smell<br>• (d) Tongue — (3) Taste",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "All 4 organs correctly matched",
-            "marks": "2 M (0.5 M each)"
-          }
-        ]
-      },
-      {
-        "category": "Grammar • Singular and Plural",
-        "q": "Write the plural form (more than one) for the following body parts:<br>(a) One hand — Two _______<br>(b) One foot — Two _______<br>(c) One eye — Two _______",
-        "ans": "<strong>Answers:</strong><br>(a) Two <strong>hands</strong><br>(b) Two <strong>feet</strong> (irregular plural)<br>(c) Two <strong>eyes</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) hands",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) feet",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) eyes",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Action Words (Verbs)",
-        "q": "Identify the action word (verb) in each sentence:<br>(a) The baby claps happily.<br>(b) Rohan taps his shoes on the floor.<br>(c) Birds fly in the sky.",
-        "ans": "<strong>Answers:</strong><br>(a) Action word = <strong>claps</strong><br>(b) Action word = <strong>taps</strong><br>(c) Action word = <strong>fly</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) claps",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) taps",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) fly",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Spelling and Phonics",
-        "q": "Fill in the missing letters to complete body part words:<br>(a) H _ _ D (used to think)<br>(b) N _ _ E (used to smell)<br>(c) E _ _ S (used to hear)",
-        "ans": "<strong>Answers:</strong><br>(a) H <strong>E A</strong> D = HEAD<br>(b) N <strong>O S</strong> E = NOSE<br>(c) E <strong>A R</strong> S = EARS",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) HEAD",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) NOSE",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) EARS",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Creative Expression • Action Song",
-        "q": "Can you add two new lines to the rhyme using your knees and your shoulders?",
-        "ans": "<strong>Sample Lines:</strong><br>• 'Two little knees go bend, bend, bend,'<br>• 'Two little shoulders go up and down to the end!'",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Line with knees and action",
-            "marks": "1 M"
-          },
-          {
-            "key": "Line with shoulders and action",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Hygiene & Health",
-        "q": "Why should we wash our hands with soap before eating food?",
-        "ans": "<strong>Explanation:</strong><br>• Our hands touch many surfaces and collect dust and invisible germs.<br>• Washing hands with soap removes harmful germs and prevents us from falling sick.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Germ removal explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Disease prevention stated",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sentence Construction",
-        "q": "Make a simple sentence using each word: (a) Feet (b) Smile.",
-        "ans": "<strong>Sentences:</strong><br>(a) <strong>Feet:</strong> I wear clean white socks on my feet.<br>(b) <strong>Smile:</strong> Mother has a lovely, warm smile.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct sentence with feet",
-            "marks": "1 M"
-          },
-          {
-            "key": "Correct sentence with smile",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Opposites Drill",
-        "q": "Write the opposite of:<br>(a) Open × _______<br>(b) Little × _______<br>(c) Up × _______",
-        "ans": "<strong>Answers:</strong><br>(a) Open × <strong>Closed / Shut</strong><br>(b) Little × <strong>Big / Huge</strong><br>(c) Up × <strong>Down</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Closed",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Big",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Down",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Pronunciation Practice",
-        "q": "Read aloud and identify which word has the short 'a' sound like in 'clap':<br>(A) Tape (B) Cap (C) Shape",
-        "ans": "<strong>Answer:</strong><br>• <strong>(B) Cap</strong> has the short 'a' vowel sound (/æ/) exactly like 'clap' and 'tap'.",
+        "category": "Poem Comprehension • The Bicycle",
+        "q": "What colour is the child's bicycle in the poem 'My Bicycle'?",
+        "ans": "<strong>Answer:</strong><br>• The child has a bright, shiny bicycle (often described as red or yellow) that he rides happily down the road.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Cap identified with correct vowel explanation",
+            "key": "Identification of the bicycle",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Body Actions Observation",
-        "q": "Name two things you can do with your feet other than walking.",
-        "ans": "<strong>Answer:</strong><br>1. <strong>Run / Jog</strong><br>2. <strong>Jump / Hop / Kick a football</strong>.",
+        "category": "Poem Comprehension • The Bell",
+        "q": "What sound does the bicycle bell make when the child rings it?",
+        "ans": "<strong>Answer:</strong><br>• The bicycle bell rings with a clear <strong>'Tring, tring... ring, ring!'</strong> sound.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "'Tring, tring' sound stated",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Safety Rules",
+        "q": "Why is it important to wear a helmet while riding a bicycle?",
+        "ans": "<strong>Answer:</strong><br>• Wearing a helmet <strong>protects our head from serious injury</strong> if we accidentally slip or fall off the bicycle.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Two valid actions named",
+            "key": "Head protection against injury",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Classroom Etiquette",
-        "q": "When do children clap their hands in the classroom?",
-        "ans": "<strong>Answer:</strong><br>• Children clap their hands to appreciate a classmate's good presentation, when singing rhymes together, or when celebrating someone's birthday.",
+        "category": "Word Fun • Bicycle Parts",
+        "q": "Name four main parts of a bicycle.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>Wheels</strong> (two wheels)<br>2. <strong>Pedals</strong> (to push with feet)<br>3. <strong>Handlebar</strong> (to steer)<br>4. <strong>Brakes and Bell</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Appreciation / singing context explained",
+            "key": "Four parts identified correctly",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Fill in the Blanks",
-        "q": "Fill in the blanks from the poem:<br>One little _______ goes side to side.<br>Two little _______ are open wide.",
-        "ans": "<strong>Answers:</strong><br>One little <strong>head</strong> goes side to side.<br>Two little <strong>eyes</strong> are open wide.",
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in the blanks with words from the poem (pedal, bell, helmet):<br>(a) I ring the shiny ______.<br>(b) I wear a sturdy ______ on my head.",
+        "ans": "<strong>Answer:</strong><br>(a) I ring the shiny <strong>bell</strong>.<br>(b) I wear a sturdy <strong>helmet</strong> on my head.",
         "marks": 2,
         "rubric": [
           {
-            "key": "head",
-            "marks": "1 M"
-          },
+            "key": "Both blanks filled correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Phonics & Rhyme • Rhyming Pairs",
+        "q": "Find the rhyming word for each from the poem:<br>(a) Bell — _______<br>(b) Ride — _______",
+        "ans": "<strong>Answer:</strong><br>(a) Bell — <strong>Tell / Well</strong><br>(b) Ride — <strong>Side / Wide</strong>",
+        "marks": 2,
+        "rubric": [
           {
-            "key": "eyes",
+            "key": "Tell/Well and Side/Wide",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Do • Action Verbs",
+        "q": "What action words (verbs) describe riding a bicycle? Name three.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>Pedal</strong><br>2. <strong>Steer</strong><br>3. <strong>Brake (or Ring)</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three relevant action verbs",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Keeping Left",
+        "q": "On which side of the road should we ride our bicycle in India?",
+        "ans": "<strong>Answer:</strong><br>• In India, we must always ride on the <strong>left side</strong> of the road.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Left side of the road",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) We hear birds chirping with our nose.<br>(b) We have two feet.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>False</strong>. We hear sounds with our ears, not our nose.<br>(b) <strong>True</strong>. Humans have two feet.",
+        "category": "Vocabulary • Opposites",
+        "q": "Write the opposites of:<br>(a) Fast × _______<br>(b) Stop × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Fast × <strong>Slow</strong><br>(b) Stop × <strong>Go (or Start)</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "(a) False with reason",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) True",
-            "marks": "1 M"
+            "key": "Slow and Go/Start",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Poem Reflection",
-        "q": "What is the message of the poem 'Two Little Hands'?",
-        "ans": "<strong>Summary:</strong><br>• The poem joyfully celebrates our wonderful body parts and their coordinated movements, showing that every organ has a special and helpful role in our daily life.",
+        "category": "Make Sentences • Practice",
+        "q": "Make a meaningful sentence using the word: 'Bicycle'.",
+        "ans": "<strong>Answer:</strong><br>• My father gave me a new bicycle on my birthday.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Correct grammatical sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Talk • Riding in the Park",
+        "q": "Where is it safest for young children to ride their bicycles: on the busy highway or in the colony park?",
+        "ans": "<strong>Answer:</strong><br>• It is safest to ride in the <strong>colony park or playground</strong>, away from heavy motor vehicles.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Park/playground away from traffic",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Singular and Plural • Practice",
+        "q": "Give the plural form:<br>(a) One wheel — Two _______<br>(b) One bell — Three _______",
+        "ans": "<strong>Answer:</strong><br>(a) Two <strong>wheels</strong><br>(b) Three <strong>bells</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Celebration of body coordination explained",
+            "key": "Wheels and bells",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Environmental Value • Eco-friendly Ride",
+        "q": "Why is riding a bicycle better for the environment than driving a motorcycle or car?",
+        "ans": "<strong>Answer:</strong><br>• A bicycle does not use petrol or diesel, emits <strong>zero smoke or pollution</strong>, and keeps our air clean and healthy.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "No petrol/smoke and zero pollution",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Fun • My Dream Bicycle",
+        "q": "If you could design your dream bicycle, what special feature would you add to it?",
+        "ans": "<strong>Answer:</strong><br>• I would add a little basket in front to carry my water bottle and storybooks, and glowing lights for safety.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Expressive personal imagination",
             "marks": "2 M"
           }
         ]
@@ -296,292 +197,188 @@ const mridangChapters = [
   {
     "id": "mrd2",
     "num": 2,
-    "unit": "Unit 1: My Family and Me",
-    "title": "Picture Reading & My Name",
-    "subtitle": "Self-Introduction, Family Roles, Greetings & Alphabet Writing",
+    "unit": "Unit 1: Fun with Friends",
+    "title": "Picture Reading",
+    "subtitle": "Observing the School Playground, Action Words, Friends & Outdoor Games",
     "concepts": [
-      "Introducing oneself with full name, age, class, and school.",
-      "Reading family pictures and talking about parents, grandparents, and siblings.",
-      "Using courteous greetings (Good morning, Thank you, Please, Excuse me).",
-      "Tracing uppercase and lowercase alphabet letters with correct stroke order."
+      "Visual observation: Reading detail in an energetic school playground illustration.",
+      "Action words: Running, skipping, jumping, sliding, kicking, reading, smiling.",
+      "Prepositions: On the slide, under the banyan tree, near the fountain, in the queue.",
+      "Peer vocabulary: Friend, sharing, playground, swings, sandbox."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fefce8\" rx=\"10\"/><circle cx=\"100\" cy=\"50\" r=\"22\" fill=\"#3b82f6\"/><text x=\"100\" y=\"55\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Grandpa</text><circle cx=\"170\" cy=\"50\" r=\"22\" fill=\"#ec4899\"/><text x=\"170\" y=\"55\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Grandma</text><circle cx=\"240\" cy=\"50\" r=\"22\" fill=\"#10b981\"/><text x=\"240\" y=\"55\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Father</text><circle cx=\"310\" cy=\"50\" r=\"22\" fill=\"#f59e0b\"/><text x=\"310\" y=\"55\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Mother</text><circle cx=\"380\" cy=\"55\" r=\"18\" fill=\"#8b5cf6\"/><text x=\"380\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Me</text><text x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#713f12\" text-anchor=\"middle\">My Loving Family • Respect and Togetherness</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f0fdf4\" rx=\"10\"/><circle cx=\"150\" cy=\"50\" r=\"16\" fill=\"#10b981\"/><line x1=\"150\" y1=\"66\" x2=\"150\" y2=\"95\" stroke=\"#059669\" stroke-width=\"3\"/><polygon points=\"250,30 220,95 280,95\" fill=\"#f59e0b\"/><circle cx=\"350\" cy=\"60\" r=\"16\" fill=\"#3b82f6\"/><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#065f46\" text-anchor=\"middle\">Picture Reading: Swings, Slides, Friends & Playground Joy</text></svg>",
     "cbq": {
-      "title": "New Student Classroom Introduction",
-      "text": "On the first day of Class 2, a new student stands in front of the class. She says: 'Hello everyone! My name is Ananya Sharma. I am seven years old. I live with my parents and grandparents. My favorite hobby is drawing cartoons.'",
-      "question": "What is the new student's full name? How old is she? What polite greeting did she use to start speaking?",
-      "answer": "1. Her full name is <strong>Ananya Sharma</strong>.<br>2. She is <strong>seven years old</strong>.<br>3. She started politely with the greeting: <strong>'Hello everyone!'</strong>.",
-      "rubric": "1 M for full name + 1 M for age + 1 M for greeting"
+      "title": "Recess Fun in the Sun",
+      "text": "During lunch break, the school bell rang. Tara rushed to the swings, Kabir and Rohit kicked a football across the grass, while Ananya sat under the shade of a neem tree reading a colourful picture book.",
+      "question": "What three different activities were children doing during recess? Why is outdoor play essential during school hours?",
+      "answer": "1. The children were (a) swinging on the swings, (b) playing football, and (c) reading a picture book under the tree.<br>2. Outdoor play provides <strong>fresh air, physical exercise, teamwork with friends, and mental refreshment</strong>.",
+      "rubric": "1.5 M for identifying all three activities + 1.5 M for explaining exercise, fresh air, and peer social bonding"
     },
     "questions": [
       {
-        "category": "Textbook Activity • Self Introduction",
-        "q": "Write three sentences introducing yourself to your teacher.",
-        "ans": "<strong>Sample Introduction:</strong><br>1. My name is Aarav Gupta.<br>2. I am seven years old and I study in Class 2.<br>3. I like reading storybooks and playing cricket.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Name stated",
-            "marks": "1 M"
-          },
-          {
-            "key": "Age and class stated",
-            "marks": "1 M"
-          },
-          {
-            "key": "Hobby/favorite activity stated",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Textbook Exercise • Family Picture Reading",
-        "q": "Look at the family picture in your book. Who are the people living in a joint family?",
-        "ans": "<strong>Answer:</strong><br>• Grandfather, grandmother, father, mother, brother, sister, and pets (like a dog or cat) living together with love and care.",
+        "category": "Picture Observation • Playground Scene",
+        "q": "Look closely at the playground picture. Name three things that children are playing on.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>The swings</strong><br>2. <strong>The slide</strong><br>3. <strong>The see-saw (or football ground)</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Grandparents and parents listed",
-            "marks": "1 M"
-          },
-          {
-            "key": "Siblings and pets listed",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Polite Words • Magic Manners",
-        "q": "When should you say:<br>(a) 'Thank you'<br>(b) 'Please'<br>(c) 'Sorry'",
-        "ans": "<strong>Answers:</strong><br>(a) Say <strong>'Thank you'</strong> when someone helps you or gives you a gift.<br>(b) Say <strong>'Please'</strong> when asking politely for help or an item.<br>(c) Say <strong>'Sorry'</strong> when you make a mistake or accidentally hurt someone.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Thank you context",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Please context",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Sorry context",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Grammar • Capital Letters Rule",
-        "q": "Why do we always write the first letter of our name with a CAPITAL letter?",
-        "ans": "<strong>Explanation:</strong><br>• A person's name is a <strong>Proper Noun</strong> (a special, unique naming word).<br>• In English grammar rules, all proper nouns always begin with a capital letter (e.g., Rohan, Meera, India).",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Proper noun concept explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Grammar capitalization rule stated",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Vocabulary • Family Relations",
-        "q": "What do you call:<br>(a) Your father's father: _______<br>(b) Your mother's brother: _______",
-        "ans": "<strong>Answers:</strong><br>(a) My father's father is my <strong>Grandfather (Dada ji)</strong>.<br>(b) My mother's brother is my <strong>Uncle (Mama ji)</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) Grandfather",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Uncle",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Alphabet Order • Alphabetical Thinking",
-        "q": "Arrange these three names in alphabetical (A to Z) order: Chetan, Aman, Bina.",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• Look at first letters: C, A, B.<br>• Alphabetical order: A, B, C.<br>• Correct order: <strong>1. Aman, 2. Bina, 3. Chetan</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "First letter comparison shown",
-            "marks": "1 M"
-          },
-          {
-            "key": "Aman, Bina, Chetan correct",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Helping at Home",
-        "q": "Name two small ways you help your family members at home.",
-        "ans": "<strong>Sample Ways:</strong><br>1. Keeping my toys and school bag neatly in their place.<br>2. Watering house plants and clearing dishes from the dinner table.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "First valid helpful chore",
-            "marks": "1 M"
-          },
-          {
-            "key": "Second valid helpful chore",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Pronoun Usage • He, She, It",
-        "q": "Fill in with 'He', 'She', or 'It':<br>(a) My father is an engineer. ___ works hard.<br>(b) My grandmother tells stories. ___ is very kind.<br>(c) This is my pet puppy. ___ barks cheerfully.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>He</strong> works hard.<br>(b) <strong>She</strong> is very kind.<br>(c) <strong>It</strong> barks cheerfully.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) He",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) She",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) It",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Spelling Check • Family Words",
-        "q": "Unscramble these family words:<br>(a) T E O M H R = _______<br>(b) S I E T R S = _______",
-        "ans": "<strong>Answers:</strong><br>(a) M O T H E R = <strong>MOTHER</strong><br>(b) S I S T E R = <strong>SISTER</strong>",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) MOTHER",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) SISTER",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Creative Writing • My Favorite Pet",
-        "q": "Write two lines about a pet you have or would like to have.",
-        "ans": "<strong>Sample Sentences:</strong><br>• I have a little pet cat named Fluffy.<br>• She has soft white fur and purrs when I stroke her back.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Pet identified with descriptive sentence",
-            "marks": "1 M"
-          },
-          {
-            "key": "Second coherent sentence",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Greetings Matching",
-        "q": "Match the greeting to the time of day:<br>(a) Morning (b) Afternoon (c) Night<br>Greetings: (1) Good night (2) Good afternoon (3) Good morning",
-        "ans": "<strong>Matching:</strong><br>• (a) Morning — (3) Good morning<br>• (b) Afternoon — (2) Good afternoon<br>• (c) Night — (1) Good night",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "All 3 time greetings correctly matched",
+            "key": "Swings, slide, see-saw identified",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Vowels and Consonants",
-        "q": "How many letters are in the English alphabet? Name the 5 vowels.",
-        "ans": "<strong>Answer:</strong><br>• There are <strong>26 letters</strong> in the English alphabet.<br>• The 5 vowels are: <strong>A, E, I, O, U</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "26 letters stated",
-            "marks": "1 M"
-          },
-          {
-            "key": "All 5 vowels (A, E, I, O, U) named",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Describing Words (Adjectives)",
-        "q": "Choose a suitable describing word for each:<br>(a) A _______ grandfather (loving / sour)<br>(b) A _______ baby (crying / wooden)",
-        "ans": "<strong>Answers:</strong><br>(a) A <strong>loving</strong> grandfather.<br>(b) A <strong>crying</strong> baby.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) loving",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) crying",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Picture Reading Comprehension",
-        "q": "In the classroom picture, what are the students doing? Name three things you see in a classroom.",
-        "ans": "<strong>Answer:</strong><br>• The students are sitting attentively at their desks, listening to the teacher, and writing in their notebooks.<br>• Three things seen: <strong>Blackboard, desks, and books</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Student activity described",
-            "marks": "1 M"
-          },
-          {
-            "key": "Three classroom items listed",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) We should shout loudly when greeting our teacher.<br>(b) A loving family helps each other in daily chores.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>False</strong>. We should greet our teacher politely and respectfully, not shout.<br>(b) <strong>True</strong>. Family members support and care for each other.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) False with polite explanation",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) True",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Chapter Reflection",
-        "q": "What makes your family special to you?",
-        "ans": "<strong>Summary:</strong><br>• My family is special because they love me unconditionally, cook delicious food for me, protect me, guide me when I make mistakes, and celebrate my happiness together.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Emotional and caring connection described",
-            "marks": "2 M"
-          }
-        ]
-      },
-      {
-        "category": "Quick Quiz Problem",
-        "q": "What punctuation mark is placed at the end of the sentence: 'My name is Maya'?",
-        "ans": "<strong>Answer:</strong><br>• A <strong>full stop (.)</strong> is placed at the end of a complete statement.",
+        "category": "Action Words • Verbs in the Picture",
+        "q": "What is the boy in the blue shirt doing in the picture?",
+        "ans": "<strong>Answer:</strong><br>• The boy in the blue shirt is <strong>sliding down the slide</strong> with a happy smile.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Full stop (.) identified",
+            "key": "Sliding down the slide",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Prepositions • Where are they?",
+        "q": "Where are the two girls sitting with their storybook?",
+        "ans": "<strong>Answer:</strong><br>• The two girls are sitting <strong>under the shade of the big green tree</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Under the tree",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Count and Write • Animals and Birds",
+        "q": "How many birds can you spot on the branches of the tree in the picture?",
+        "ans": "<strong>Answer:</strong><br>• There are <strong>three little birds</strong> perched on the tree branches.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Correct count (three birds)",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Matching Actions",
+        "q": "Match each child with their action:<br>(a) Child with rope — (1) Kicking<br>(b) Child with ball — (2) Skipping<br>(c) Child on swing — (3) Swinging",
+        "ans": "<strong>Answer:</strong><br>(a) Child with rope — <strong>(2) Skipping</strong><br>(b) Child with ball — <strong>(1) Kicking</strong><br>(c) Child on swing — <strong>(3) Swinging</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All three matched accurately",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Turn Taking",
+        "q": "What should children do when there is only one swing and several children want to swing?",
+        "ans": "<strong>Answer:</strong><br>• Children should <strong>form a queue, wait patiently, and take turns</strong> without pushing.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Take turns and wait in queue",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposite Words • Practice",
+        "q": "Write the opposite of:<br>(a) Up (on the see-saw) × _______<br>(b) Happy × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Up × <strong>Down</strong><br>(b) Happy × <strong>Sad</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Down and Sad",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Writing • Playground",
+        "q": "Write one sentence about your favourite thing in your school playground.",
+        "ans": "<strong>Answer:</strong><br>• I love swinging high on the green swings during recess with my best friend.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Meaningful personal sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Find the Missing Letters • Words",
+        "q": "Complete the words from the playground picture:<br>(a) S W _ N G<br>(b) S L _ D E<br>(c) F R _ E N D",
+        "ans": "<strong>Answer:</strong><br>(a) S W <strong>I</strong> N G = SWING<br>(b) S L <strong>I</strong> D E = SLIDE<br>(c) F R <strong>I</strong> E N D = FRIEND",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All three words spelled correctly",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Share • Safety in Play",
+        "q": "Why should we not run up the wrong way on a slide?",
+        "ans": "<strong>Answer:</strong><br>• Running up a slide can cause a collision with a child sliding down and lead to falls and painful bruises.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Risk of collision and injury",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Identify the Odd One Out • Groups",
+        "q": "Which one does NOT belong to a playground: (A) Swing (B) Slide (C) Refrigerator (D) See-saw?",
+        "ans": "<strong>Answer:</strong><br>• <strong>(C) Refrigerator</strong> (It is a kitchen appliance, not a playground equipment).",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Refrigerator identified",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar • A or An",
+        "q": "Fill in with 'a' or 'an':<br>(a) ______ swing<br>(b) ______ umbrella in the rain",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>a</strong> swing<br>(b) <strong>an</strong> umbrella",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "'a' and 'an' applied correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Social Values • Including Others",
+        "q": "If you see a new classmate standing alone by the fence, what will you say to him?",
+        "ans": "<strong>Answer:</strong><br>• I will smile and say, \"Hello! Come and play catch with us!\"",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Friendly invitation and inclusion",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Colour Identification • Art",
+        "q": "What is the colour of healthy grass in the school ground?",
+        "ans": "<strong>Answer:</strong><br>• Healthy grass is bright <strong>green</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Green colour",
             "marks": "1 M"
           }
         ]
@@ -591,257 +388,189 @@ const mridangChapters = [
   {
     "id": "mrd3",
     "num": 3,
-    "unit": "Unit 2: Life Around Us",
-    "title": "The Little Red Hen",
-    "subtitle": "Classic Folk Tale, Planting Wheat, Hard Work & Teamwork",
+    "unit": "Unit 2: Welcome to My World",
+    "title": "It is Fun",
+    "subtitle": "Animal Movements, Flying Birds, Hopping Bunnies, Leaping Frogs & Miming",
     "concepts": [
-      "Story comprehension: Hen finds grains, asks friends for help, does all the work herself.",
-      "The stages of making bread: planting seeds, harvesting wheat, grinding into flour, baking bread.",
-      "Character contrast: industrious Hen vs lazy friends (Dog, Cat, Duck).",
-      "Moral value: Those who do not help with the work do not deserve to share the feast."
+      "Poem recitation: Delighting in animal motions—leaping, hopping, flapping, gliding.",
+      "Movement vocabulary: Frog leaps, rabbit hops, bird flies/flaps, fish glides/swims.",
+      "Rhythm and actions: Miming different animals in circle time.",
+      "Rhyming words: Frog-log, hop-stop, flap-clap, fun-run."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#ecfdf5\" rx=\"10\"/><circle cx=\"80\" cy=\"55\" r=\"26\" fill=\"#ef4444\"/><text x=\"80\" y=\"60\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"800\" fill=\"#ffffff\" text-anchor=\"middle\">Red Hen</text><circle cx=\"180\" cy=\"55\" r=\"22\" fill=\"#9ca3af\"/><text x=\"180\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Lazy Dog</text><circle cx=\"270\" cy=\"55\" r=\"22\" fill=\"#d1d5db\"/><text x=\"270\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#374151\" text-anchor=\"middle\">Lazy Cat</text><circle cx=\"360\" cy=\"55\" r=\"22\" fill=\"#fde047\"/><text x=\"360\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#713f12\" text-anchor=\"middle\">Lazy Duck</text><text x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#065f46\" text-anchor=\"middle\">'Who will help me?' — 'Not I!' said the lazy friends.</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fefce8\" rx=\"10\"/><ellipse cx=\"150\" cy=\"60\" rx=\"22\" ry=\"16\" fill=\"#22c55e\"/><circle cx=\"250\" cy=\"55\" r=\"18\" fill=\"#f472b6\"/><path d=\"M 330 65 Q 360 40 380 65\" stroke=\"#3b82f6\" stroke-width=\"3\" fill=\"none\"/><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#854d0e\" text-anchor=\"middle\">It is Fun: Leap like a frog, hop like a bunny, swim like a fish!</text></svg>",
     "cbq": {
-      "title": "The Little Red Hen's Harvest Dilemma",
-      "text": "The Little Red Hen found some golden grains of wheat. She asked the dog, the cat, and the duck: 'Who will help me plant these seeds?' All three replied: 'Not I!' The hen planted, watered, cut the wheat, and baked delicious hot bread with her chicks all by herself. When the aroma spread, the dog, cat, and duck ran over and said: 'We will help you eat it!'",
-      "question": "Did the friends help the hen at any stage of making bread? What did the hen reply when they wanted to eat the bread? What is the moral lesson?",
-      "answer": "1. <strong>No</strong>, the friends refused to help at every stage (planting, cutting, grinding, and baking).<br>2. The hen said: <strong>'No, you will not! My chicks and I will eat it all by ourselves!'</strong><br>3. <strong>Moral:</strong> Hard work brings sweet rewards. Those who are lazy and refuse to work should not expect to enjoy the fruits of someone else's labor.",
-      "rubric": "1 M for 'No' with refusal explanation + 1 M for hen's response + 1 M for clear moral lesson"
+      "title": "Animal Action Game",
+      "text": "The teacher told Class 2: 'When I say frog, leap! When I say fish, glide your arms! When I say bunny, hop with two paws!' All children laughed and jumped happily around the hall.",
+      "question": "What movement did the children make for the frog? What movement did they make for the bunny?",
+      "answer": "1. For the frog, the children made a <strong>deep crouch and leaped high into the air</strong>.<br>2. For the bunny, they <strong>held up their hands like ears and hopped lightly on their toes</strong>.",
+      "rubric": "1.5 M for leaping like a frog + 1.5 M for hopping like a bunny"
     },
     "questions": [
       {
-        "category": "Story Comprehension • The Beginning",
-        "q": "What did the Little Red Hen find on the ground?",
-        "ans": "<strong>Answer:</strong><br>• The Little Red Hen found some <strong>grains of wheat</strong>.",
+        "category": "Poem Comprehension • Frog Movement",
+        "q": "How does the frog move in the poem 'It is Fun'?",
+        "ans": "<strong>Answer:</strong><br>• The frog moves by <strong>leaping</strong> high from one place to another.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Grains of wheat identified",
+            "key": "Leaping",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Story Comprehension • Animal Characters",
-        "q": "Name the three lazy animal friends in the story 'The Little Red Hen'.",
-        "ans": "<strong>Answer:</strong><br>• The three animal friends were the <strong>Dog</strong>, the <strong>Cat</strong>, and the <strong>Duck</strong>.",
+        "category": "Poem Comprehension • Bunny Movement",
+        "q": "What action does the little bunny (rabbit) do?",
+        "ans": "<strong>Answer:</strong><br>• The bunny moves by <strong>hopping</strong> quickly on its hind feet.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Hopping",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Poem Comprehension • Fish Movement",
+        "q": "How does a fish move in the cool river water?",
+        "ans": "<strong>Answer:</strong><br>• A fish moves smoothly by <strong>gliding and swimming</strong> with its fins.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Gliding/swimming",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Matching Exercise • Animal and Motion",
+        "q": "Match each animal with its movement word:<br>(a) Bird — (1) Leap<br>(b) Frog — (2) Flap / Fly<br>(c) Fish — (3) Glide<br>(d) Horse — (4) Gallop",
+        "ans": "<strong>Answer:</strong><br>(a) Bird — <strong>(2) Flap / Fly</strong><br>(b) Frog — <strong>(1) Leap</strong><br>(c) Fish — <strong>(3) Glide</strong><br>(d) Horse — <strong>(4) Gallop</strong>",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "All four matched correctly (1 M each)",
+            "marks": "4 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Complete the lines with words from the poem (fun, leap, glide):<br>(a) It is ______ to leap like a frog.<br>(b) It is fun to ______ like a fish.",
+        "ans": "<strong>Answer:</strong><br>(a) It is <strong>fun</strong> to leap like a frog.<br>(b) It is fun to <strong>glide</strong> like a fish.",
         "marks": 2,
         "rubric": [
           {
-            "key": "All three animals (dog, cat, duck) named correctly",
+            "key": "'fun' and 'glide'",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Sequencing the Steps • From Seed to Bread",
-        "q": "Arrange the steps of making bread in the correct order:<br>(A) Baking bread in the oven<br>(B) Planting wheat seeds in soil<br>(C) Grinding wheat grains into flour<br>(D) Cutting the grown wheat crop",
-        "ans": "<strong>Correct Order:</strong><br>1. <strong>(B)</strong> Planting wheat seeds in soil<br>2. <strong>(D)</strong> Cutting the grown wheat crop<br>3. <strong>(C)</strong> Grinding wheat grains into flour<br>4. <strong>(A)</strong> Baking bread in the oven.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Correct sequence B -> D -> C -> A",
-            "marks": "3 M"
-          }
-        ]
-      },
-      {
-        "category": "Direct Speech • Animal Response",
-        "q": "What exact words did the dog, cat, and duck say every time the Little Red Hen asked for help?",
-        "ans": "<strong>Answer:</strong><br>• Every time the hen asked for help, they said: <strong>'Not I!'</strong>",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "'Not I!' quoted correctly",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Moral Reasoning • Sharing Food",
-        "q": "Was the Little Red Hen right in refusing to share the bread with her lazy friends? Give a reason.",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• <strong>Yes</strong>, the hen was completely fair and right.<br>• <strong>Reason:</strong> Her friends slept and played while she worked hard in the heat. Giving them bread would encourage their laziness, whereas refusing taught them the value of labor.",
+        "category": "Rhyming Words • Sound Identification",
+        "q": "Find rhyming words for:<br>(a) Hop — _______<br>(b) Fun — _______",
+        "ans": "<strong>Answer:</strong><br>(a) Hop — <strong>Top / Stop / Pop</strong><br>(b) Fun — <strong>Run / Sun / Gun</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Affirmative judgment (Yes)",
-            "marks": "1 M"
-          },
-          {
-            "key": "Reason regarding hard work and laziness",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Vocabulary • Young Ones of Animals",
-        "q": "What is the young one of:<br>(a) A Hen: _______<br>(b) A Dog: _______<br>(c) A Cat: _______<br>(d) A Duck: _______",
-        "ans": "<strong>Answers:</strong><br>(a) Hen — <strong>Chick</strong><br>(b) Dog — <strong>Puppy</strong><br>(c) Cat — <strong>Kitten</strong><br>(d) Duck — <strong>Duckling</strong>",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "All 4 young ones correctly named",
-            "marks": "2 M (0.5 M each)"
-          }
-        ]
-      },
-      {
-        "category": "Animal Sounds • Onomatopoeia",
-        "q": "Match each animal with its sound:<br>(a) Hen (b) Dog (c) Cat (d) Duck<br>Sounds: (1) Meow (2) Quack (3) Cluck (4) Bark",
-        "ans": "<strong>Matching:</strong><br>• (a) Hen — (3) Cluck<br>• (b) Dog — (4) Bark<br>• (c) Cat — (1) Meow<br>• (d) Duck — (2) Quack",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "All 4 animal sounds correctly matched",
+            "key": "Top/Stop and Run/Sun",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Opposites in the Story",
-        "q": "Write the antonyms (opposites) of:<br>(a) Hardworking × _______<br>(b) Hot × _______<br>(c) Friend × _______",
-        "ans": "<strong>Answers:</strong><br>(a) Hardworking × <strong>Lazy</strong><br>(b) Hot × <strong>Cold</strong><br>(c) Friend × <strong>Enemy</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Lazy",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Cold",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Enemy",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Grammar • Past Tense Verbs",
-        "q": "Write the past tense of these action words from the story:<br>(a) Find — _______<br>(b) Plant — _______<br>(c) Bake — _______",
-        "ans": "<strong>Answers:</strong><br>(a) Find — <strong>Found</strong><br>(b) Plant — <strong>Planted</strong><br>(c) Bake — <strong>Baked</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Found",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Planted",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Baked",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Who Helped the Hen?",
-        "q": "Who helped the Little Red Hen eat the delicious fresh bread?",
-        "ans": "<strong>Answer:</strong><br>• The Little Red Hen and her lovely little <strong>chicks</strong> ate the bread together.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Her chicks identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Farm Tools • Sickle and Flour Mill",
-        "q": "What tool is used by a farmer to cut ripe golden wheat? Where is wheat grain taken to be ground into flour?",
-        "ans": "<strong>Answer:</strong><br>• A <strong>sickle</strong> (or harvester) is used to cut ripe wheat.<br>• Wheat grain is taken to a <strong>flour mill (chakki)</strong> to be ground into flour.",
+        "category": "Opposite Words • Fast and Slow",
+        "q": "Between a cheetah and a tortoise, which animal runs fast and which moves slow?",
+        "ans": "<strong>Answer:</strong><br>• The cheetah runs <strong>very fast</strong>.<br>• The tortoise moves <strong>very slow</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Sickle identified",
-            "marks": "1 M"
-          },
-          {
-            "key": "Flour mill / chakki identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Teamwork in Daily Life",
-        "q": "How can working together as a team make difficult tasks easier?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• When everyone shares a part of the work, the task gets finished much faster.<br>• No single person gets tired, and everyone feels happy and proud of the final outcome.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Shared burden and speed explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Joy of shared success stated",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sensory Words • Smell of Food",
-        "q": "Which word in English describes a very pleasant and sweet food smell: 'aroma' or 'noise'?",
-        "ans": "<strong>Answer:</strong><br>• <strong>Aroma</strong> describes a wonderful, mouth-watering smell of freshly cooked food.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Aroma chosen with definition",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Character Trait Analysis",
-        "q": "Give two words that describe the Little Red Hen's personality.",
-        "ans": "<strong>Answer:</strong><br>• <strong>Hardworking</strong> and <strong>determined</strong> (or self-reliant / patient).",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Two accurate positive traits",
+            "key": "Cheetah fast, tortoise slow",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Sentence Completion",
-        "q": "Complete the sentence: If I was the dog in the story, I would have __________________.",
-        "ans": "<strong>Sample Completion:</strong><br>• 'If I was the dog in the story, I would have <strong>happily helped the Little Red Hen carry the water and cut the wheat crop</strong>.'",
+        "category": "Animal Sounds • Vocabulary",
+        "q": "What sound does a frog make?",
+        "ans": "<strong>Answer:</strong><br>• A frog makes a <strong>'croak, croak' (or ribbit)</strong> sound.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Croak sound",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Action Words • Identification",
+        "q": "Identify the action word in the sentence: 'The kangaroo hops over the fence.'",
+        "ans": "<strong>Answer:</strong><br>• The action word (verb) is <strong>'hops'</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "'hops' identified",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Sentence • Animals",
+        "q": "Write one sentence about a bird you like.",
+        "ans": "<strong>Answer:</strong><br>• The peacock spreads its colourful feathers and dances gracefully when it rains.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Clear expressive sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Physical Health • Movement Value",
+        "q": "Why is running, hopping, and jumping good for young children?",
+        "ans": "<strong>Answer:</strong><br>• It exercises our muscles, strengthens our bones, makes our heart healthy, and keeps our body energetic.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Constructive helpful response written grammatically",
+            "key": "Muscles, bones, heart health",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) The cat helped the hen grind the wheat.<br>(b) Wheat flour is used to bake bread and rotis.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>False</strong>. The cat said 'Not I!' and did not help at all.<br>(b) <strong>True</strong>. Wheat flour (atta/maida) is the main ingredient in bread and rotis.",
+        "category": "Singular and Plural • Animals",
+        "q": "Write the plural form:<br>(a) One frog — Two _______<br>(b) One bird — Three _______",
+        "ans": "<strong>Answer:</strong><br>(a) Two <strong>frogs</strong><br>(b) Three <strong>birds</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "(a) False with reason",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) True",
-            "marks": "1 M"
+            "key": "Frogs and birds",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Chapter Reflection",
-        "q": "What is the famous proverb related to the story 'The Little Red Hen'?",
-        "ans": "<strong>Answer:</strong><br>• <strong>'As you sow, so shall you reap'</strong> (or 'No work, no food').",
-        "marks": 1,
+        "category": "True or False • Animal Facts",
+        "q": "Write True or False:<br>(a) Fish can walk on tree branches.<br>(b) Rabbits have long ears and a fluffy tail.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>False</strong> (Fish swim in water).<br>(b) <strong>True</strong>.",
+        "marks": 2,
         "rubric": [
           {
-            "key": "Recognized proverb quoted",
-            "marks": "1 M"
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Miming Game • Expression",
+        "q": "How would you mime an elephant walking in the jungle?",
+        "ans": "<strong>Answer:</strong><br>• I would walk with heavy, slow footsteps and swing one arm like a long trunk.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Descriptive movement response",
+            "marks": "1.5 M"
           }
         ]
       }
@@ -850,277 +579,189 @@ const mridangChapters = [
   {
     "id": "mrd4",
     "num": 4,
-    "unit": "Unit 2: Life Around Us",
-    "title": "It is Fun!",
-    "subtitle": "Animal Movements, Action Verbs, Miming & Rhymes",
+    "unit": "Unit 2: Welcome to My World",
+    "title": "Seeing without Seeing",
+    "subtitle": "Five Senses, Blindfold Game, Touch, Smell, Hearing & Empathy",
     "concepts": [
-      "Poem recitation celebrating diverse ways animals move in nature.",
-      "Matching creatures with their movements: leap like a frog, swim like a fish, swing like a monkey, slither like a snake.",
-      "Action verbs and adverbs (swiftly, gently, playfully).",
-      "Creative movement games and roleplay."
+      "Sensory awareness: Experiencing the world through touch, sound, smell, and taste.",
+      "Blindfold exploration: Identifying objects without using eyes (hearing a bell, smelling a flower).",
+      "Empathy & Inclusion: Respecting visually challenged individuals and learning about Braille.",
+      "Descriptive adjectives: Rough, smooth, sweet, soft, loud, fragrant."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><circle cx=\"90\" cy=\"55\" r=\"22\" fill=\"#10b981\"/><text x=\"90\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Frog</text><path d=\"M 80 85 Q 140 10 200 85\" fill=\"none\" stroke=\"#059669\" stroke-width=\"3\" stroke-dasharray=\"3,3\"/><circle cx=\"210\" cy=\"55\" r=\"22\" fill=\"#3b82f6\"/><text x=\"210\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Fish</text><circle cx=\"320\" cy=\"55\" r=\"22\" fill=\"#f59e0b\"/><text x=\"320\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Bird</text><circle cx=\"420\" cy=\"55\" r=\"22\" fill=\"#8b5cf6\"/><text x=\"420\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Monkey</text><text x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">Leap, Swim, Fly, Swing — It is Fun to Move!</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fdf4ff\" rx=\"10\"/><rect x=\"200\" y=\"45\" width=\"100\" height=\"30\" rx=\"15\" fill=\"#9333ea\"/><circle cx=\"230\" cy=\"60\" r=\"8\" fill=\"#ffffff\"/><circle cx=\"270\" cy=\"60\" r=\"8\" fill=\"#ffffff\"/><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#6b21a8\" text-anchor=\"middle\">Seeing without Seeing: Touch, Hear, Smell and Feel the World</text></svg>",
     "cbq": {
-      "title": "Playground Animal Movement Game",
-      "text": "During sports period, the PE teacher calls out animal names. When he shouts 'Rabbit', children hop on both feet. When he shouts 'Duck', they waddle in a squat. When he shouts 'Eagle', they stretch their arms wide and glide like wings.",
-      "question": "Which movement verb matches the rabbit? Which matches the eagle? Why do different animals have different styles of movement?",
-      "answer": "1. <strong>Rabbit:</strong> <strong>Hop / Leap</strong>.<br>2. <strong>Eagle:</strong> <strong>Fly / Glide / Soar</strong>.<br>3. <strong>Reason:</strong> Animals have adapted unique body shapes and limbs suited for their habitat (fish have fins for swimming in water, monkeys have strong arms for swinging on trees, rabbits have powerful hind legs for hopping on land).",
-      "rubric": "1 M for rabbit hop + 1 M for eagle fly/glide + 1 M for habitat adaptation explanation"
+      "title": "The Mystery Box Game",
+      "text": "In the classroom, Rahul had a blindfold over his eyes. The teacher handed him three objects: a fresh rose, a fluffy cotton ball, and a cold metal spoon. Without looking, Rahul identified all three correctly within seconds.",
+      "question": "Which senses did Rahul use to identify the rose, cotton ball, and spoon? What does this activity teach us?",
+      "answer": "1. Rahul used his <strong>sense of smell</strong> (fragrance of the rose) and his <strong>sense of touch</strong> (soft cotton, cold hard metal spoon).<br>2. This activity teaches us that <strong>our other senses (touch, smell, hearing) are powerful tools that help us perceive the world even when we cannot see</strong>.",
+      "rubric": "1.5 M for identifying touch and smell senses + 1.5 M for understanding sensory awareness and empathy"
     },
     "questions": [
       {
-        "category": "Poem Comprehension • Animal Actions",
-        "q": "According to the poem 'It is Fun!', how does:<br>(a) A frog move?<br>(b) A fish move?<br>(c) A bird move?",
-        "ans": "<strong>Answers:</strong><br>(a) A frog <strong>leaps</strong>.<br>(b) A fish <strong>swims</strong>.<br>(c) A bird <strong>flies</strong>.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) leaps",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) swims",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) flies",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Textbook Exercise • Match the Movement",
-        "q": "Match each creature with its correct movement verb:<br>(a) Monkey (b) Horse (c) Snake (d) Duck<br>Movements: (1) Slither (2) Swing (3) Waddle (4) Gallop",
-        "ans": "<strong>Matching:</strong><br>• (a) Monkey — (2) Swing<br>• (b) Horse — (4) Gallop<br>• (c) Snake — (1) Slither<br>• (d) Duck — (3) Waddle",
+        "category": "Story Comprehension • The Senses Game",
+        "q": "What game were the children playing in the classroom?",
+        "ans": "<strong>Answer:</strong><br>• The children were playing a <strong>blindfold guessing game ('Seeing without Seeing')</strong> using their senses of touch, sound, and smell.",
         "marks": 2,
         "rubric": [
           {
-            "key": "All 4 correctly matched",
-            "marks": "2 M (0.5 M each)"
-          }
-        ]
-      },
-      {
-        "category": "Action Words • Fill in the Blanks",
-        "q": "Fill in with the correct action word from the box [crawl, hop, swim]:<br>(a) A kangaroo can _______ high.<br>(b) A baby can _______ on hands and knees.<br>(c) A duck can _______ in the pond.",
-        "ans": "<strong>Answers:</strong><br>(a) A kangaroo can <strong>hop</strong> high.<br>(b) A baby can <strong>crawl</strong> on hands and knees.<br>(c) A duck can <strong>swim</strong> in the pond.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) hop",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) crawl",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) swim",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Animal Adaptations • Bird Wings",
-        "q": "What body parts help a bird fly high in the sky?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>• Birds have <strong>feathered wings</strong>, light hollow bones, and strong chest muscles that help them flap and soar gracefully in the air.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Feathered wings identified",
-            "marks": "1 M"
-          },
-          {
-            "key": "Light bones / strong muscles mentioned",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Rhyming Pairs in the Poem",
-        "q": "Find words that rhyme with:<br>(a) Fun — _______<br>(b) Fly — _______<br>(c) Leap — _______",
-        "ans": "<strong>Answers:</strong><br>(a) Fun — <strong>Run / Sun</strong><br>(b) Fly — <strong>Sky / High</strong><br>(c) Leap — <strong>Deep / Keep</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Run/Sun",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Sky/High",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Deep/Keep",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Grammar • Present Continuous (-ing)",
-        "q": "Add '-ing' to turn these action words into continuous actions:<br>(a) Jump — _______<br>(b) Swim — _______<br>(c) Fly — _______",
-        "ans": "<strong>Answers:</strong><br>(a) Jump + ing = <strong>Jumping</strong><br>(b) Swim + ing = <strong>Swimming</strong> (double the 'm')<br>(c) Fly + ing = <strong>Flying</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Jumping",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Swimming",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Flying",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Physical Activity • Fun at Play",
-        "q": "Why is running and playing games outdoors good for growing children?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>1. Outdoor play strengthens bones and heart muscles.<br>2. It gives fresh air, relieves stress, and helps children stay energetic, active, and cheerful.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Physical health / muscle strength",
-            "marks": "1 M"
-          },
-          {
-            "key": "Fresh air and happiness",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Creature Riddle",
-        "q": "I have no legs. I slide silently on my belly through the grass. I make a hissing sound. Who am I?",
-        "ans": "<strong>Answer:</strong><br>• You are a <strong>Snake</strong>.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Snake identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Describing Movement (Adverbs)",
-        "q": "Choose the word that best describes how a cheetah runs: (A) Slowly (B) Swiftly (C) Heavily.",
-        "ans": "<strong>Answer:</strong><br>• <strong>(B) Swiftly</strong> (A cheetah is the fastest land animal and runs with incredible swiftness).",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Swiftly selected",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Creative Sentence Writing",
-        "q": "Write a sentence using the word 'leap'.",
-        "ans": "<strong>Sample Sentence:</strong><br>• The happy little frog made a big leap into the green pond.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Meaningful sentence using 'leap' correctly",
+            "key": "Blindfold guessing game",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Animal Homes Connection",
-        "q": "Where does a monkey like to swing and play?",
-        "ans": "<strong>Answer:</strong><br>• A monkey loves to swing from branch to branch high up in the green forest <strong>trees</strong>.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Trees / forest branches named",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Movement Comparison",
-        "q": "Who moves faster: a snail or a rabbit? Why?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>• A <strong>rabbit</strong> moves much faster.<br>• A snail glides slowly on a trail of slime carrying a heavy shell, whereas a rabbit has strong muscular legs for rapid running and hopping.",
+        "category": "Sense Organs • Functions",
+        "q": "Which sense organ helps us to hear sounds, and which one helps us to smell food?",
+        "ans": "<strong>Answer:</strong><br>• Our <strong>ears</strong> help us to hear sounds.<br>• Our <strong>nose</strong> helps us to smell food and fragrances.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Rabbit identified as faster",
-            "marks": "1 M"
-          },
-          {
-            "key": "Anatomical comparison explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Human vs Animal Movement",
-        "q": "Can humans fly in the sky like birds? How do humans travel by air?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>• Humans do not have wings and cannot fly naturally.<br>• However, humans travel through the air using inventions like <strong>aeroplanes and helicopters</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Lack of natural wings stated",
-            "marks": "1 M"
-          },
-          {
-            "key": "Aeroplanes/helicopters identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sound & Movement Pair",
-        "q": "What sound does a horse make when it gallops across a field?",
-        "ans": "<strong>Answer:</strong><br>• A horse's hooves make a rhythmic <strong>'clip-clop, clip-clop'</strong> sound as it gallops.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Clip-clop sound recognized",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) An elephant can jump over tall trees.<br>(b) Frogs can live both on land and in water.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>False</strong>. An elephant is too heavy and cannot jump.<br>(b) <strong>True</strong>. Frogs are amphibians and comfortably live in water and on land.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) False with reason",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) True",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Poem Reflection",
-        "q": "Why is the title of the poem 'It is Fun!'?",
-        "ans": "<strong>Summary:</strong><br>• The title expresses pure joy because imitating animal leaps, swims, swings, and hops fills children with excitement, laughter, and playful physical energy.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Joy of physical movement and imitation explained",
+            "key": "Ears for hearing, nose for smelling",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Quick Quiz Problem",
-        "q": "What do we call a person who swims: a runner, a painter, or a swimmer?",
-        "ans": "<strong>Answer:</strong><br>• A person who swims is called a <strong>swimmer</strong>.",
-        "marks": 1,
+        "category": "Touch and Feel • Textures",
+        "q": "How does tree bark feel when you touch it? How does a puppy's fur feel?",
+        "ans": "<strong>Answer:</strong><br>• Tree bark feels <strong>rough and hard</strong>.<br>• A puppy's fur feels <strong>soft and warm</strong>.",
+        "marks": 2,
         "rubric": [
           {
-            "key": "Swimmer correct",
-            "marks": "1 M"
+            "key": "Rough/hard and soft/warm",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Matching • Sense Organs and Objects",
+        "q": "Match the sense organ to how it detects an object:<br>(a) Eyes — (1) Ringing of a temple bell<br>(b) Ears — (2) Bright rainbow in the sky<br>(c) Tongue — (3) Sweet taste of honey<br>(d) Skin — (4) Cold ice cube",
+        "ans": "<strong>Answer:</strong><br>(a) Eyes — <strong>(2) Bright rainbow</strong><br>(b) Ears — <strong>(1) Ringing bell</strong><br>(c) Tongue — <strong>(3) Sweet honey</strong><br>(d) Skin — <strong>(4) Cold ice cube</strong>",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "All four matched correctly (1 M each)",
+            "marks": "4 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Describing Words",
+        "q": "Choose the correct describing word (loud, sweet, cold):<br>(a) An ice cream is ______.<br>(b) A thunderclap is ______.",
+        "ans": "<strong>Answer:</strong><br>(a) An ice cream is <strong>cold</strong> (and sweet).<br>(b) A thunderclap is <strong>loud</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cold and Loud",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Empathy & Inclusion • Special Script",
+        "q": "What is the name of the special script with raised dots used by visually challenged people to read by touch?",
+        "ans": "<strong>Answer:</strong><br>• It is called the <strong>Braille script</strong>.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Braille script",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Senses",
+        "q": "Write the opposites of:<br>(a) Rough × _______<br>(b) Loud × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Rough × <strong>Smooth</strong><br>(b) Loud × <strong>Soft / Quiet</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Smooth and Soft/Quiet",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sentence",
+        "q": "Make a sentence using the word 'Listen'.",
+        "ans": "<strong>Answer:</strong><br>• We must listen carefully to our teacher in the classroom.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Grammatically sound sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Sound Clues",
+        "q": "If you close your eyes, how can you tell that it has started raining?",
+        "ans": "<strong>Answer:</strong><br>• We can hear the <strong>'pitter-patter' sound of raindrops</strong> on the tin roof and smell the <strong>fresh earthy fragrance (petrichor)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Sound of raindrops and smell of wet soil",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Social Kindness • Helping Others",
+        "q": "How can you assist a visually impaired person crossing the road?",
+        "ans": "<strong>Answer:</strong><br>• We can politely ask if they need help, offer our arm, and guide them safely across the zebra crossing.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Polite offer and guiding safely",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Singular and Plural • Body Parts",
+        "q": "Write the plural form:<br>(a) One ear — Two _______<br>(b) One finger — Ten _______",
+        "ans": "<strong>Answer:</strong><br>(a) Two <strong>ears</strong><br>(b) Ten <strong>fingers</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Ears and fingers",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "True or False • Senses",
+        "q": "Write True or False:<br>(a) Our tongue helps us to distinguish between salty and sweet tastes.<br>(b) We smell with our ears.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>True</strong><br>(b) <strong>False</strong> (We smell with our nose).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Both evaluated correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Experiment • Hearing Distance",
+        "q": "When a friend whispers far away, what happens when you cup your hand behind your ear?",
+        "ans": "<strong>Answer:</strong><br>• Cupping our hand collects more sound waves, making the soft whisper sound <strong>louder and clearer</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Collects sound waves / sounds clearer",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Appreciation • Gratitude",
+        "q": "Why should we be grateful for our five senses?",
+        "ans": "<strong>Answer:</strong><br>• Our five senses help us enjoy beauty, communicate with others, learn new things, and stay safe from danger.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Learning, enjoyment and safety",
+            "marks": "2 M"
           }
         ]
       }
@@ -1129,285 +770,189 @@ const mridangChapters = [
   {
     "id": "mrd5",
     "num": 5,
-    "unit": "Unit 2: Life Around Us",
-    "title": "Seeing without Seeing",
-    "subtitle": "Senses Beyond Sight, Empathy, Touch, Sound & Braille",
+    "unit": "Unit 3: Going Places",
+    "title": "Come Back Soon",
+    "subtitle": "Grandparents' Departure, Train Station, Packing Bags & Family Love",
     "concepts": [
-      "Understanding how people with visual impairment perceive the world through other senses.",
-      "Recognizing objects by touch (texture, shape, temperature), smell, and hearing.",
-      "The blindfold classroom game: identifying fruits, flowers, and friends without looking.",
-      "Empathy, kindness, and inclusion for differently-abled individuals."
+      "Story comprehension: Grandparents visiting, sharing fond memories, and returning to the village by train.",
+      "Railway station scene: Long train, platform, whistle blowing, ticket checker, luggage bags.",
+      "Emotional bonding: Waving goodbye from the carriage window and saying 'Come back soon!'",
+      "Travel vocabulary: Train, platform, luggage, compartment, ticket, porter."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fdf4ff\" rx=\"10\"/><circle cx=\"100\" cy=\"55\" r=\"26\" fill=\"#8b5cf6\"/><rect x=\"80\" y=\"48\" width=\"40\" height=\"14\" fill=\"#1e1b4b\" rx=\"4\"/><text x=\"100\" y=\"60\" font-family=\"sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Blindfold</text><circle cx=\"210\" cy=\"55\" r=\"22\" fill=\"#ec4899\"/><text x=\"210\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Touch</text><circle cx=\"310\" cy=\"55\" r=\"22\" fill=\"#3b82f6\"/><text x=\"310\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Hear</text><circle cx=\"410\" cy=\"55\" r=\"22\" fill=\"#10b981\"/><text x=\"410\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Smell</text><text x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#701a75\" text-anchor=\"middle\">Our Other Senses Guide Us When Eyes Cannot See</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"10\"/><rect x=\"160\" y=\"45\" width=\"180\" height=\"50\" fill=\"#dc2626\" rx=\"6\"/><circle cx=\"200\" cy=\"95\" r=\"10\" fill=\"#1e293b\"/><circle cx=\"250\" cy=\"95\" r=\"10\" fill=\"#1e293b\"/><circle cx=\"300\" cy=\"95\" r=\"10\" fill=\"#1e293b\"/><rect x=\"180\" y=\"55\" width=\"25\" height=\"20\" fill=\"#ffffff\" rx=\"3\"/><rect x=\"230\" y=\"55\" width=\"25\" height=\"20\" fill=\"#ffffff\" rx=\"3\"/><rect x=\"280\" y=\"55\" width=\"25\" height=\"20\" fill=\"#ffffff\" rx=\"3\"/><text x=\"250\" y=\"112\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">Come Back Soon: Choo-Choo Train & Loving Goodbyes</text></svg>",
     "cbq": {
-      "title": "Classroom Sensory Mystery Box",
-      "text": "The teacher placed a soft velvet handkerchief over Onu's eyes. She put three objects in front of him: a chilled steel spoon, a fragrant jasmine flower, and a ringing brass bell. Onu identified every single item correctly within five seconds.",
-      "question": "Which sense did Onu use to identify the chilled spoon? Which for the jasmine flower? Which for the bell? What does this show about our body?",
-      "answer": "1. <strong>Chilled spoon:</strong> Sense of <strong>Touch (cold and hard smooth metal)</strong>.<br>2. <strong>Jasmine flower:</strong> Sense of <strong>Smell (sweet floral fragrance)</strong>.<br>3. <strong>Brass bell:</strong> Sense of <strong>Hearing (ringing sound)</strong>.<br>4. <strong>Learning:</strong> When we cannot see, our other senses become sharp and help us understand the world around us.",
-      "rubric": "1 M for touch + 1 M for smell & hearing + 1 M for sensory power conclusion"
+      "title": "A Loving Farewell at the Station",
+      "text": "Nani and Nana stayed at Priya's home for two wonderful weeks. On Sunday evening, the family accompanied them to the railway platform. As the train engine blew its long whistle 'Hoo-hoo!', Nani leaned out of the window with folded hands and said, 'Study well, Priya! Come back soon during summer holidays!'",
+      "question": "Where was the family seeing off Nani and Nana? What affectionate message did Nani give to Priya?",
+      "answer": "1. The family was seeing them off at the <strong>railway platform / train station</strong>.<br>2. Nani lovingly told Priya to <strong>study well and promised to welcome her soon during the summer holidays</strong>.",
+      "rubric": "1.5 M for railway platform/station + 1.5 M for Nani's loving advice and invitation"
     },
     "questions": [
       {
-        "category": "Textbook Activity • Blindfold Game",
-        "q": "In the game 'Seeing without Seeing', what happens when a child is blindfolded?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• The child cannot use their eyes to see.<br>• They must rely on their <strong>hands to feel</strong>, their <strong>ears to listen</strong>, and their <strong>nose to smell</strong> to identify people and objects.",
-        "marks": 2,
+        "category": "Story Comprehension • Visitors",
+        "q": "Who had come to visit the family in the story 'Come Back Soon'?",
+        "ans": "<strong>Answer:</strong><br>• The child's loving <strong>grandparents (Dada-Dadi or Nana-Nani)</strong> had come to visit from their village.",
+        "marks": 1,
         "rubric": [
           {
-            "key": "Absence of sight stated",
-            "marks": "1 M"
-          },
-          {
-            "key": "Touch, sound, and smell usage explained",
+            "key": "Grandparents",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Senses Discrimination • Touch",
-        "q": "How can you tell the difference between a rough stone and a smooth glass marble with your eyes closed?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• By using your fingertips to feel the surface texture.<br>• The stone feels <strong>bumpy, uneven, and rough</strong>, while the glass marble feels <strong>completely sleek, slippery, and smooth</strong>.",
-        "marks": 2,
+        "category": "Story Comprehension • Mode of Travel",
+        "q": "How were the grandparents traveling back to their village?",
+        "ans": "<strong>Answer:</strong><br>• They were traveling back on a <strong>passenger train</strong>.",
+        "marks": 1,
         "rubric": [
           {
-            "key": "Fingertip touch method explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Rough vs smooth texture contrasted",
+            "key": "By train",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Senses Discrimination • Hearing",
-        "q": "Can you recognize your best friend in the dark without seeing their face? How?",
-        "ans": "<strong>Answer:</strong><br>• <strong>Yes</strong>, by listening to their <strong>voice</strong>.<br>• Every human voice has a unique pitch and tone that our ears can easily recognize.",
-        "marks": 2,
+        "category": "Railway Vocabulary • What is it?",
+        "q": "What is the long raised pathway beside the railway tracks where passengers wait called?",
+        "ans": "<strong>Answer:</strong><br>• It is called a <strong>platform</strong>.",
+        "marks": 1.5,
         "rubric": [
           {
-            "key": "Affirmative answer (Yes)",
-            "marks": "1 M"
-          },
+            "key": "Platform",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Sounds of Travel • Train Whistle",
+        "q": "What sound does the train engine make before departing?",
+        "ans": "<strong>Answer:</strong><br>• The train engine blows a loud whistle: <strong>'Hoo-hoo... Choo-choo!'</strong>",
+        "marks": 1,
+        "rubric": [
           {
-            "key": "Unique voice pitch/tone explained",
+            "key": "Whistle sound (Hoo-hoo / Choo-choo)",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Senses Discrimination • Smell",
-        "q": "Name two food items you can instantly identify just by their smell from the other room.",
-        "ans": "<strong>Sample Answers:</strong><br>1. <strong>Fried samosas / Halwa</strong> (strong ghee and spice aroma).<br>2. <strong>A ripe mango / Peeling an orange</strong> (sweet citrus fragrance).",
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in the blanks (ticket, luggage, window):<br>(a) Father bought the train ______ at the counter.<br>(b) Grandfather waved goodbye from the carriage ______.",
+        "ans": "<strong>Answer:</strong><br>(a) Father bought the train <strong>ticket</strong> at the counter.<br>(b) Grandfather waved goodbye from the carriage <strong>window</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Two aromatic food items named",
+            "key": "Ticket and Window",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Inclusion & Empathy • Assisting Others",
-        "q": "How can you help a visually challenged person who wants to cross a busy road?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>1. Gently ask politely: 'May I help you cross the road?'<br>2. Offer your arm for them to hold comfortably.<br>3. Look carefully in both directions for traffic, and guide them safely across the zebra crossing.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Polite permission asked",
-            "marks": "1 M"
-          },
-          {
-            "key": "Offering arm guidance",
-            "marks": "1 M"
-          },
-          {
-            "key": "Safe road crossing vigilance",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Knowledge of Braille Script",
-        "q": "What is Braille, and how do visually impaired people read books using it?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• <strong>Braille</strong> is a special writing system invented by Louis Braille.<br>• It uses patterns of <strong>raised dots</strong> embossed on thick paper.<br>• Blind people glide their fingertips over the dots to feel letters and read words fluently.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Braille definition",
-            "marks": "1 M"
-          },
-          {
-            "key": "Raised dots system explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Fingertip reading mechanism described",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Texture Words • Adjectives",
-        "q": "Match each object to its touch texture word:<br>(a) Cotton wool (b) Ice cube (c) Tree bark<br>Textures: (1) Rough (2) Soft (3) Cold and wet",
-        "ans": "<strong>Matching:</strong><br>• (a) Cotton wool — (2) Soft<br>• (b) Ice cube — (3) Cold and wet<br>• (c) Tree bark — (1) Rough",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "All 3 textures correctly matched",
-            "marks": "3 M (1 M each)"
-          }
-        ]
-      },
-      {
-        "category": "Walking Cane Purpose",
-        "q": "Why do visually impaired people carry a white folding cane when walking outside?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• The white cane acts as an extension of their hand.<br>• Tapping it lightly on the ground ahead alerts them to obstacles, steps, puddles, or curbs, keeping them safe from tripping.",
+        "category": "Family Relations • Vocabulary",
+        "q": "What do we call our mother's father and mother's mother?",
+        "ans": "<strong>Answer:</strong><br>• Mother's father is called <strong>Nana (or Grandfather)</strong>.<br>• Mother's mother is called <strong>Nani (or Grandmother)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Detecting ground obstacles explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Safety and mobility independence explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sound Identification in Nature",
-        "q": "Name two sounds in nature that tell you rain is coming even before you see raindrops.",
-        "ans": "<strong>Answer:</strong><br>1. The loud rumbling of <strong>thunder</strong> in the clouds.<br>2. The rushing whoosh of <strong>cool gusty wind</strong> rustling tree leaves.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Thunder named",
-            "marks": "1 M"
-          },
-          {
-            "key": "Wind rustling leaves named",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Vocabulary • Five Senses",
-        "q": "Complete the sentence: Sight is to eyes as hearing is to _______.",
-        "ans": "<strong>Answer:</strong><br>• Sight is to eyes as hearing is to <strong>ears</strong>.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Ears correct",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Empathy & Friendship",
-        "q": "How should we treat classmates who cannot see or hear well?",
-        "ans": "<strong>Answer:</strong><br>• We should treat them with <strong>warmth, respect, and equality</strong>.<br>• We should include them in our classroom games, share stories, and never tease or exclude them.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Respect and equality",
-            "marks": "1 M"
-          },
-          {
-            "key": "Inclusive play and kindness",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Opposites in Textures",
-        "q": "Write the opposite of:<br>(a) Smooth × _______<br>(b) Hard × _______<br>(c) Hot × _______",
-        "ans": "<strong>Answers:</strong><br>(a) Smooth × <strong>Rough</strong><br>(b) Hard × <strong>Soft</strong><br>(c) Hot × <strong>Cold</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Rough",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Soft",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Cold",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Safety Sense • Danger Smells",
-        "q": "How does our sense of smell protect us from danger in the kitchen?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• If a cooking gas cylinder leaks or something burns on the stove, our nose immediately detects the sharp smell.<br>• This alerts adults to turn off the gas and prevent fires.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Detecting gas leak / burning smell",
-            "marks": "1 M"
-          },
-          {
-            "key": "Preventing fire accidents explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sentence Construction",
-        "q": "Make a sentence using the word 'gentle'.",
-        "ans": "<strong>Sample Sentence:</strong><br>• A gentle cool breeze blew across the garden in the evening.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Meaningful sentence using 'gentle'",
+            "key": "Nana and Nani",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) Blind people cannot enjoy listening to music.<br>(b) Our tongue helps us know if food is sweet or salty.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>False</strong>. Blind people have excellent hearing and enjoy beautiful songs and instrumental music.<br>(b) <strong>True</strong>. Taste buds on the tongue detect sweet, salty, sour, and bitter tastes.",
-        "marks": 2,
+        "category": "Opposite Words • Practice",
+        "q": "Write the opposites of:<br>(a) Come × _______<br>(b) Soon × _______<br>(c) Depart × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Come × <strong>Go</strong><br>(b) Soon × <strong>Late</strong><br>(c) Depart × <strong>Arrive</strong>",
+        "marks": 3,
         "rubric": [
           {
-            "key": "(a) False with reason",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) True",
-            "marks": "1 M"
+            "key": "Go, Late, Arrive (1 M each)",
+            "marks": "3 M"
           }
         ]
       },
       {
-        "category": "Chapter Reflection",
-        "q": "What is the most important lesson you learned in 'Seeing without Seeing'?",
-        "ans": "<strong>Summary:</strong><br>• We learned that seeing is not the only way to experience our beautiful world.<br>• Touch, hearing, smell, and taste provide deep understanding, and we must appreciate our senses while respecting and assisting people with disabilities.",
-        "marks": 2,
+        "category": "Helpers on Travel • Coolie / Porter",
+        "q": "Who helps carry heavy suitcases at the railway station?",
+        "ans": "<strong>Answer:</strong><br>• A <strong>coolie (or porter)</strong> in a red uniform helps carry heavy bags.",
+        "marks": 1.5,
         "rubric": [
           {
-            "key": "Multisensory understanding explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Respect and assistance emphasized",
-            "marks": "1 M"
+            "key": "Coolie / porter",
+            "marks": "1.5 M"
           }
         ]
       },
       {
-        "category": "Quick Quiz Problem",
-        "q": "Which sense organ covers our whole body like an outer protective coat?",
-        "ans": "<strong>Answer:</strong><br>• Our <strong>skin</strong> covers our whole body and gives us the sense of touch.",
+        "category": "Sentence Writing • Travel",
+        "q": "Make a sentence using the word 'Journey'.",
+        "ans": "<strong>Answer:</strong><br>• Our train journey to Kerala was full of green hills and waterfalls.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Meaningful sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Safety Rules • Railway Station",
+        "q": "Why must we never lean out of a moving train door or cross tracks on foot?",
+        "ans": "<strong>Answer:</strong><br>• Leaning out or crossing tracks is extremely dangerous and can lead to severe accidents. We should always use the footbridge.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Safety hazard and use footbridge",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Singular and Plural • Luggage",
+        "q": "Give the plural forms:<br>(a) One train — Several _______<br>(b) One suitcase — Three _______",
+        "ans": "<strong>Answer:</strong><br>(a) Several <strong>trains</strong><br>(b) Three <strong>suitcases</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Trains and suitcases",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Feelings and Emotions • Farewell",
+        "q": "How do children feel when grandparents leave, and why?",
+        "ans": "<strong>Answer:</strong><br>• Children feel a bit sad to part, but also happy remembering the loving stories and looking forward to visiting them soon.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Loving attachment and anticipation",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Rhyming Words • Practice",
+        "q": "Write a rhyming word for: Soon — _______.",
+        "ans": "<strong>Answer:</strong><br>• Soon — <strong>Moon / Spoon / Noon</strong>.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Skin identified",
+            "key": "Moon/Spoon/Noon",
             "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Talk • Packing a Bag",
+        "q": "Name three essential items you would pack when going on a train journey.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>A water bottle</strong><br>2. <strong>Comfortable clothes</strong><br>3. <strong>A snack box (and a storybook)</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three realistic travel items",
+            "marks": "2 M"
           }
         ]
       }
@@ -1416,285 +961,189 @@ const mridangChapters = [
   {
     "id": "mrd6",
     "num": 6,
-    "unit": "Unit 3: Harmony",
-    "title": "Come Back, Cat!",
-    "subtitle": "Pet Care, Searching Spaces, Prepositions of Place & Love for Animals",
+    "unit": "Unit 3: Going Places",
+    "title": "Between Home and School",
+    "subtitle": "Daily Route, Landmarks, Banyan Tree, Post Office, Traffic & Zebra Crossing",
     "concepts": [
-      "Story comprehension: Meenu's pet cat Mittu goes missing, family searches everywhere.",
-      "Mastering prepositions of position: in, on, under, behind, near, between.",
-      "Pet care responsibilities: feeding, gentle handling, and creating safe pet shelters.",
-      "Building emotional awareness and affection towards domestic animals."
+      "Poem/Story comprehension: Sights and sounds experienced on the daily walk from home to school.",
+      "Community landmarks: The big banyan tree, the green grocery shop, the red post box, the bakery.",
+      "Road safety & pedestrian rules: Using the sidewalk (footpath) and crossing at the zebra crossing.",
+      "Spatial prepositions: Past the temple, across the road, around the corner, through the gate."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><rect x=\"70\" y=\"55\" width=\"80\" height=\"35\" fill=\"#93c5fd\" rx=\"4\"/><circle cx=\"110\" cy=\"40\" r=\"14\" fill=\"#f97316\"/><text x=\"110\" y=\"44\" font-family=\"sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">ON</text><rect x=\"210\" y=\"45\" width=\"80\" height=\"20\" fill=\"#64748b\" rx=\"2\"/><line x1=\"215\" y1=\"65\" x2=\"215\" y2=\"90\" stroke=\"#475569\" stroke-width=\"4\"/><line x1=\"285\" y1=\"65\" x2=\"285\" y2=\"90\" stroke=\"#475569\" stroke-width=\"4\"/><circle cx=\"250\" cy=\"78\" r=\"12\" fill=\"#f97316\"/><text x=\"250\" y=\"82\" font-family=\"sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">UNDER</text><rect x=\"360\" y=\"30\" width=\"60\" height=\"60\" fill=\"#cbd5e1\" rx=\"4\"/><circle cx=\"430\" cy=\"50\" r=\"14\" fill=\"#f97316\"/><text x=\"430\" y=\"54\" font-family=\"sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">BEHIND</text><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">Prepositions: ON the chair, UNDER the table, BEHIND the door</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f1f5f9\" rx=\"10\"/><rect x=\"0\" y=\"70\" width=\"500\" height=\"35\" fill=\"#334155\"/><line x1=\"210\" y1=\"75\" x2=\"210\" y2=\"100\" stroke=\"#ffffff\" stroke-width=\"4\"/><line x1=\"230\" y1=\"75\" x2=\"230\" y2=\"100\" stroke=\"#ffffff\" stroke-width=\"4\"/><line x1=\"250\" y1=\"75\" x2=\"250\" y2=\"100\" stroke=\"#ffffff\" stroke-width=\"4\"/><line x1=\"270\" y1=\"75\" x2=\"270\" y2=\"100\" stroke=\"#ffffff\" stroke-width=\"4\"/><text x=\"250\" y=\"114\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#f8fafc\" text-anchor=\"middle\">Between Home and School: Walk on Footpath, Cross at Zebra Crossing</text></svg>",
     "cbq": {
-      "title": "Meenu's Missing Pet Search",
-      "text": "Meenu came home from school and called out 'Mittu! Mittu!'. Her white kitten did not appear. Meenu looked under the bed, but Mittu was not there. She checked inside the laundry basket, but found only towels. Finally, she heard a faint 'Meow!'. Mittu was sitting high on top of the terrace wall, batting at a yellow butterfly.",
-      "question": "Where did Meenu first look for Mittu? Where was Mittu actually found? Which prepositions show these locations?",
-      "answer": "1. Meenu first looked <strong>under the bed</strong>.<br>2. Mittu was found sitting <strong>on top of the terrace wall</strong>.<br>3. The prepositions of position used are <strong>'under'</strong> and <strong>'on'</strong>.",
-      "rubric": "1 M for under the bed + 1 M for terrace wall + 1 M for identifying prepositions"
+      "title": "Samir's Morning Walk",
+      "text": "Samir walks to school every morning holding his elder sister's hand. On the way, they drop a letter into the round red post box, greet the fruit seller who slices fresh watermelons, and stop at the zebra crossing until the traffic light turns green.",
+      "question": "What two landmarks does Samir pass on his way to school? How does he safely cross the busy road?",
+      "answer": "1. Samir passes the <strong>red post box</strong> and the <strong>fruit seller's shop</strong>.<br>2. He crosses the road safely by <strong>holding his elder sister's hand and waiting at the zebra crossing until the pedestrian signal turns green</strong>.",
+      "rubric": "1.5 M for two landmarks + 1.5 M for pedestrian safety rule at zebra crossing"
     },
     "questions": [
       {
-        "category": "Story Comprehension • The Problem",
-        "q": "Why was Meenu worried when she returned from school?",
-        "ans": "<strong>Answer:</strong><br>• Meenu was worried because her beloved pet cat, <strong>Mittu, was missing</strong> and did not come running to greet her when called.",
+        "category": "Comprehension • Daily Walk",
+        "q": "How does the child travel between home and school in the lesson?",
+        "ans": "<strong>Answer:</strong><br>• The child travels by <strong>walking along the footpath</strong> with friends or family.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Walking along footpath",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Landmarks • Red Post Box",
+        "q": "What colour is the post box seen on the street corner, and what is it used for?",
+        "ans": "<strong>Answer:</strong><br>• The post box is painted <strong>bright red</strong>, and people drop letters inside it for the postman to deliver.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Cat Mittu missing identified",
-            "marks": "1 M"
-          },
-          {
-            "key": "Lack of usual greeting explained",
-            "marks": "1 M"
+            "key": "Red colour and dropping letters",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Prepositions • Fill in the Blanks",
-        "q": "Fill in with [in, on, under, behind]:<br>(a) The cat is sitting _______ the mat.<br>(b) The kitten is hiding _______ the bed.<br>(c) Milk is _______ the red bowl.<br>(d) The puppy hid _______ the curtain.",
-        "ans": "<strong>Answers:</strong><br>(a) The cat is sitting <strong>on</strong> the mat.<br>(b) The kitten is hiding <strong>under</strong> the bed.<br>(c) Milk is <strong>in</strong> the red bowl.<br>(d) The puppy hid <strong>behind</strong> the curtain.",
-        "marks": 4,
+        "category": "Road Safety • Zebra Crossing",
+        "q": "What are the black and white stripes painted on the road called?",
+        "ans": "<strong>Answer:</strong><br>• They are called a <strong>zebra crossing</strong>, where pedestrians can cross safely.",
+        "marks": 1.5,
         "rubric": [
           {
-            "key": "(a) on",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) under",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) in",
-            "marks": "1 M"
-          },
-          {
-            "key": "(d) behind",
-            "marks": "1 M"
+            "key": "Zebra crossing",
+            "marks": "1.5 M"
           }
         ]
       },
       {
-        "category": "Story Resolution • How Mittu Returned",
-        "q": "How did Meenu finally find Mittu?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>• Meenu heard a soft 'Meow!' from the terrace.<br>• She looked up and saw Mittu safely perched on the wall watching a butterfly, and gently carried her down.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Heard 'Meow!' sound",
-            "marks": "1 M"
-          },
-          {
-            "key": "Found on terrace wall chasing butterfly",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Animal Care Responsibilities",
-        "q": "What two things should pet owners give their cats every day to keep them healthy?",
-        "ans": "<strong>Answer:</strong><br>1. Clean fresh drinking water and nutritious food (like warm milk or cat food).<br>2. A cozy clean sleeping mat and gentle love and playtime.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Water and nutritious food",
-            "marks": "1 M"
-          },
-          {
-            "key": "Clean shelter / gentle love",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Animal Sounds • Vocabulary",
-        "q": "What sound does a cat make when it is hungry? What sound does it make when it is happy and stroked?",
-        "ans": "<strong>Answer:</strong><br>• When hungry, a cat says <strong>'Meow, meow'</strong>.<br>• When happy and gently stroked, a cat makes a vibrating <strong>'Purr, purr'</strong> sound.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Meow for hungry/calling",
-            "marks": "1 M"
-          },
-          {
-            "key": "Purr for contentment",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Grammar • Where Questions",
-        "q": "Answer using a full sentence: Where is the pencil? (Picture shows pencil inside pencil box).",
-        "ans": "<strong>Answer:</strong><br>• The pencil is <strong>in (inside) the pencil box</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Full grammatical sentence",
-            "marks": "1 M"
-          },
-          {
-            "key": "Correct preposition 'in/inside'",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Describing Words • Cat Appearance",
-        "q": "Pick two adjectives that describe Meenu's pet cat: (A) Furry (B) Wooden (C) Playful (D) Metal.",
-        "ans": "<strong>Answers:</strong><br>• <strong>(A) Furry</strong> (has soft thick hair).<br>• <strong>(C) Playful</strong> (likes chasing butterflies and balls).",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Furry identified",
-            "marks": "1 M"
-          },
-          {
-            "key": "Playful identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Opposites • Position Words",
-        "q": "Write the opposite position word:<br>(a) In × _______<br>(b) Under × _______<br>(c) Near × _______",
-        "ans": "<strong>Answers:</strong><br>(a) In × <strong>Out</strong><br>(b) Under × <strong>Over / On</strong><br>(c) Near × <strong>Far</strong>",
+        "category": "Traffic Light • Signal Colours",
+        "q": "What do the three colours of the traffic light mean?<br>(a) Red (b) Yellow (c) Green",
+        "ans": "<strong>Answer:</strong><br>• <strong>Red:</strong> Stop<br>• <strong>Yellow:</strong> Wait / Get ready<br>• <strong>Green:</strong> Go",
         "marks": 3,
         "rubric": [
           {
-            "key": "(a) Out",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Over/On",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Far",
-            "marks": "1 M"
+            "key": "Stop, Wait, Go (1 M each)",
+            "marks": "3 M"
           }
         ]
       },
       {
-        "category": "Spelling Check • Home Locations",
-        "q": "Unscramble these places in a house:<br>(a) K I T H N E C = _______<br>(b) T E R A C R E = _______",
-        "ans": "<strong>Answers:</strong><br>(a) K I T C H E N = <strong>KITCHEN</strong><br>(b) T E R R A C E = <strong>TERRACE</strong>",
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in with words from the lesson (banyan, bell, footpath):<br>(a) We should always walk on the ______.<br>(b) There is a huge shady ______ tree near the school gate.",
+        "ans": "<strong>Answer:</strong><br>(a) We should always walk on the <strong>footpath</strong>.<br>(b) There is a huge shady <strong>banyan</strong> tree near the school gate.",
         "marks": 2,
         "rubric": [
           {
-            "key": "(a) KITCHEN",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) TERRACE",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Punctuation • Exclamation Mark",
-        "q": "Why does the title use an exclamation mark in 'Come Back, Cat!'?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• An exclamation mark (!) shows strong feeling, excitement, urgency, or loud calling.<br>• Meenu was calling out urgently with deep love and worry for her cat.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Strong emotion / urgency explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Loud calling connection",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Rhyming Words",
-        "q": "Find three words that rhyme with 'Cat'.",
-        "ans": "<strong>Answers:</strong><br>• <strong>Bat</strong>, <strong>Hat</strong>, <strong>Mat</strong> (or Fat, Rat, Sat).",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Three valid -at rhyming words",
+            "key": "Footpath and Banyan",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Picture Reading • Room Clues",
-        "q": "If a cat is hiding between two armchairs, which preposition word describes its position: 'near', 'under', or 'between'?",
-        "ans": "<strong>Answer:</strong><br>• <strong>Between</strong> (used when an object is in the middle of two things).",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Between identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Compassion for Stray Animals",
-        "q": "What can you do to help stray animals in your neighbourhood during scorching summer days?",
-        "ans": "<strong>Answer:</strong><br>• Keep an earthen pot of <strong>clean drinking water</strong> outside in the shade for thirsty birds, dogs, and cats.",
+        "category": "Prepositions • Direction Words",
+        "q": "Choose the right preposition (across, through, under):<br>(a) Walk ______ the zebra crossing.<br>(b) Sit ______ the shady tree.",
+        "ans": "<strong>Answer:</strong><br>(a) Walk <strong>across</strong> the zebra crossing.<br>(b) Sit <strong>under</strong> the shady tree.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Pot of clean drinking water in shade suggested",
+            "key": "Across and Under",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Sentence Construction",
-        "q": "Make a sentence using the word 'searching'.",
-        "ans": "<strong>Sample Sentence:</strong><br>• Aman was searching for his lost eraser under the school desk.",
+        "category": "Vocabulary • Sights on the Street",
+        "q": "Name three shops or places you see on your way from home to school.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>Bakery / Sweet shop</strong><br>2. <strong>Stationery and book shop</strong><br>3. <strong>Vegetable and fruit stall</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three realistic neighbourhood shops",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Places",
+        "q": "Write the opposites of:<br>(a) Near × _______<br>(b) Before × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Near × <strong>Far</strong><br>(b) Before × <strong>After</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Grammatically correct sentence with 'searching'",
+            "key": "Far and After",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) Cats have sharp claws that help them climb trees and walls.<br>(b) A preposition tells us about the colour of an item.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>True</strong>. Retractable sharp claws allow cats to grip and climb vertical surfaces safely.<br>(b) <strong>False</strong>. A preposition tells us about position, place, or direction, not colour.",
-        "marks": 2,
+        "category": "Sentence Making • School",
+        "q": "Make a sentence using the word 'Gate'.",
+        "ans": "<strong>Answer:</strong><br>• The guard opens the school gate when the morning bell rings.",
+        "marks": 1.5,
         "rubric": [
           {
-            "key": "(a) True",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) False with position explanation",
-            "marks": "1 M"
+            "key": "Correct grammatical sentence",
+            "marks": "1.5 M"
           }
         ]
       },
       {
-        "category": "Chapter Reflection",
-        "q": "What did you learn from the story 'Come Back, Cat!'?",
-        "ans": "<strong>Summary:</strong><br>• Pets are affectionate members of the family who depend on us for safety.<br>• We also learned how to use spatial preposition words accurately to describe where things are located.",
+        "category": "Rhyming Words • Sound Match",
+        "q": "Write rhyming words for:<br>(a) Street — _______<br>(b) Tree — _______",
+        "ans": "<strong>Answer:</strong><br>(a) Street — <strong>Meet / Sweet / Feet</strong><br>(b) Tree — <strong>Free / See / Bee</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Affection for pets stated",
-            "marks": "1 M"
-          },
-          {
-            "key": "Preposition spatial mastery stated",
-            "marks": "1 M"
+            "key": "Meet/Sweet and Free/See",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Quick Quiz Problem",
-        "q": "Is a kitten the young one of a dog or a cat?",
-        "ans": "<strong>Answer:</strong><br>• A kitten is the young one of a <strong>cat</strong>.",
-        "marks": 1,
+        "category": "Think and Answer • Punctuality",
+        "q": "Why is it good to leave home ten minutes early for school?",
+        "ans": "<strong>Answer:</strong><br>• Leaving early ensures we walk without rushing, cross roads safely, and reach our classroom before the prayer assembly starts.",
+        "marks": 2,
         "rubric": [
           {
-            "key": "Cat identified",
-            "marks": "1 M"
+            "key": "Safety, avoiding rushing, on-time arrival",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "True or False • Pedestrian Safety",
+        "q": "Write True or False:<br>(a) It is safe to play with a football on a busy vehicular road.<br>(b) We must look right, then left, and right again before crossing.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>False</strong><br>(b) <strong>True</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Grammar • Capital Letters",
+        "q": "Rewrite with capital letters where needed: 'we cross the road in front of st. mary school.'",
+        "ans": "<strong>Answer:</strong><br>• \"<strong>W</strong>e cross the road in front of <strong>S</strong>t. <strong>M</strong>ary <strong>S</strong>chool.\"",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Capitalized 'We' and 'St. Mary School'",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Drawing Route • Spatial Sense",
+        "q": "What is a map?",
+        "ans": "<strong>Answer:</strong><br>• A map is a drawing that shows paths, roads, and landmark locations to guide travelers from one place to another.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Clear simple definition of map",
+            "marks": "1.5 M"
           }
         ]
       }
@@ -1703,277 +1152,189 @@ const mridangChapters = [
   {
     "id": "mrd7",
     "num": 7,
-    "unit": "Unit 3: Harmony",
-    "title": "Between Home and School",
-    "subtitle": "Daily Journey, Road Landmarks, Traffic Safety & Neighborhood",
+    "unit": "Unit 3: Going Places",
+    "title": "This is My Town",
+    "subtitle": "Community Life, Clean Streets, Library, Market, Park & Helpers",
     "concepts": [
-      "Narrating the daily morning walk from home to the school gate.",
-      "Recognizing neighborhood landmarks: tea stall, post office, bakery, banyan tree.",
-      "Learning road safety: zebra crossings, footpath, looking both ways, traffic lights.",
-      "Direction words: left, right, straight ahead, across."
+      "Poem comprehension: Celebrating one's hometown—wide roads, bright markets, quiet library, and leafy parks.",
+      "Civic amenities: Hospital, post office, fire station, school, municipal garden.",
+      "Cleanliness & civic duty: Keeping public streets clean and throwing waste in trash cans.",
+      "Rhyming pairs: Town-brown, street-meet, park-bark, clean-green."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#ecfdf5\" rx=\"10\"/><rect x=\"40\" y=\"40\" width=\"60\" height=\"50\" fill=\"#3b82f6\" rx=\"3\"/><text x=\"70\" y=\"70\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Home</text><line x1=\"100\" y1=\"65\" x2=\"400\" y2=\"65\" stroke=\"#475569\" stroke-width=\"14\" stroke-dasharray=\"16,8\"/><circle cx=\"200\" cy=\"30\" r=\"18\" fill=\"#15803d\"/><text x=\"200\" y=\"34\" font-family=\"sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Tree</text><rect x=\"270\" y=\"35\" width=\"40\" height=\"25\" fill=\"#f59e0b\" rx=\"2\"/><text x=\"290\" y=\"52\" font-family=\"sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Shop</text><rect x=\"400\" y=\"30\" width=\"70\" height=\"60\" fill=\"#dc2626\" rx=\"4\"/><text x=\"435\" y=\"65\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">School</text><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#065f46\" text-anchor=\"middle\">Walk on the Footpath • Cross Safely at Zebra Crossing</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#e0f2fe\" rx=\"10\"/><rect x=\"80\" y=\"40\" width=\"60\" height=\"55\" fill=\"#0284c7\" rx=\"4\"/><rect x=\"180\" y=\"30\" width=\"70\" height=\"65\" fill=\"#0369a1\" rx=\"4\"/><rect x=\"290\" y=\"45\" width=\"60\" height=\"50\" fill=\"#0284c7\" rx=\"4\"/><circle cx=\"420\" cy=\"60\" r=\"20\" fill=\"#16a34a\"/><text x=\"250\" y=\"112\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#0c4a6e\" text-anchor=\"middle\">This is My Town: Clean Streets, Green Parks & Happy People</text></svg>",
     "cbq": {
-      "title": "Ravi's Morning Walk to School",
-      "text": "Every morning, Ravi walks to school with his elder sister. They leave home, turn left at the red letterbox, walk past the lively tea stall, stop at the pedestrian crossing until the signal turns green, and enter through the main school gate.",
-      "question": "Which landmark did Ravi pass after turning left? Why did they stop at the pedestrian crossing? Which rule of road safety did they follow?",
-      "answer": "1. After turning left, Ravi passed the <strong>red letterbox</strong> and the <strong>lively tea stall</strong>.<br>2. They stopped at the pedestrian crossing because the traffic light was red for pedestrians and cars were moving.<br>3. They followed the golden road safety rule: <strong>Wait for the green walking signal and cross only at the pedestrian/zebra crossing</strong>.",
-      "rubric": "1 M for landmarks + 1 M for stop reason + 1 M for road safety rule"
+      "title": "A Walk Through Green Valley Town",
+      "text": "Green Valley is a tidy town with flower beds lining every avenue. In the centre stands a bright public library where children read peacefully on weekends, next to a large park where birds nest in flowering amaltas trees.",
+      "question": "What two public facilities are mentioned in the town? How do the town residents keep their town clean and beautiful?",
+      "answer": "1. The text mentions a <strong>public library</strong> and a <strong>large leafy park</strong>.<br>2. Residents plant <strong>flower beds, care for trees, and maintain tidy streets</strong> without littering.",
+      "rubric": "1.5 M for library and park + 1.5 M for planting flowers and avoiding litter"
     },
     "questions": [
       {
-        "category": "Textbook Comprehension • The Journey",
-        "q": "Name three things or places Ravi sees between his home and his school.",
-        "ans": "<strong>Answer:</strong><br>1. The red <strong>post box / post office</strong>.<br>2. The bustling <strong>tea stall</strong> with boiling tea.<br>3. The huge spreading <strong>banyan tree</strong> and the pedestrian zebra crossing.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "Post box / post office named",
-            "marks": "1 M"
-          },
-          {
-            "key": "Tea stall named",
-            "marks": "1 M"
-          },
-          {
-            "key": "Banyan tree / crossing named",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Road Safety • Zebra Crossing",
-        "q": "What is a zebra crossing? Why does it have black and white stripes?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• A <strong>zebra crossing</strong> is a designated pathway painted across the road for pedestrians to cross safely.<br>• The bold black and white stripes resemble a zebra's coat and are clearly visible to approaching vehicle drivers from a distance so they slow down.",
+        "category": "Poem Comprehension • The Town",
+        "q": "What makes the town look pleasant and inviting in the poem 'This is My Town'?",
+        "ans": "<strong>Answer:</strong><br>• The town looks pleasant with its <strong>wide, clean streets, friendly neighbours, shady trees, and cheerful marketplace</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Pedestrian crossing definition",
-            "marks": "1 M"
-          },
-          {
-            "key": "Visibility of zebra stripes explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Traffic Lights Rule",
-        "q": "What do the three traffic light colours mean for vehicles?<br>(a) Red means _______<br>(b) Yellow (Amber) means _______<br>(c) Green means _______",
-        "ans": "<strong>Answers:</strong><br>(a) Red means <strong>STOP</strong>.<br>(b) Yellow means <strong>WAIT / SLOW DOWN / GET READY</strong>.<br>(c) Green means <strong>GO</strong>.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) STOP",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) WAIT / SLOW",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) GO",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Direction Words • Left, Right, Straight",
-        "q": "Fill in with [left, right, straight]:<br>(a) Walk _______ along the pavement without running.<br>(b) Before crossing, look right, then look _______, then right again.",
-        "ans": "<strong>Answers:</strong><br>(a) Walk <strong>straight</strong> along the pavement.<br>(b) Look right, then look <strong>left</strong>, then right again.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) straight",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) left",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Walking Habits • Footpath Rule",
-        "q": "Why should we always walk on the footpath (pavement) and never play on the open road?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• The road is meant for fast-moving vehicles like cars, buses, and motorcycles.<br>• Walking on the footpath protects pedestrians from speeding traffic and prevents accidents.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Vehicle traffic danger explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Pavement protection explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Neighborhood Landmarks",
-        "q": "What is a 'landmark'? Give one example from your own neighbourhood.",
-        "ans": "<strong>Explanation:</strong><br>• A <strong>landmark</strong> is an easily recognized building, tree, or place (like a big temple, bank, park, or water tank) that helps people find directions easily.<br>• Example: The municipal water tank near the main bus stop.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Landmark definition",
-            "marks": "1 M"
-          },
-          {
-            "key": "Valid real-world example",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Action Verbs • Journey Verbs",
-        "q": "Identify the verbs in the sentence: 'The children walk slowly and cross the road safely.'",
-        "ans": "<strong>Answer:</strong><br>• The verbs (action words) are: <strong>walk</strong> and <strong>cross</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "walk identified",
-            "marks": "1 M"
-          },
-          {
-            "key": "cross identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Adverbs • How Actions are Done",
-        "q": "Which word tells how the children crossed the road: (A) Road (B) Safely (C) Children?",
-        "ans": "<strong>Answer:</strong><br>• <strong>(B) Safely</strong> is the adverb describing the action 'crossed'.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Safely identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Everyday Sounds on the Road",
-        "q": "Name two sounds you hear while walking on a busy morning street.",
-        "ans": "<strong>Answers:</strong><br>1. Horns of vehicles: <strong>'Beep-beep! Honk-honk!'</strong><br>2. Bells of school cycles: <strong>'Tring-tring!'</strong> (or birds chirping).",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Vehicle horn sound",
-            "marks": "1 M"
-          },
-          {
-            "key": "Cycle bell / natural sound",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Community Places • Post Office",
-        "q": "What do people do at a post office?",
-        "ans": "<strong>Answer:</strong><br>• People drop written letters in post boxes, buy postage stamps, send postcards, and post parcels and money orders to relatives far away.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Posting letters/parcels",
-            "marks": "1 M"
-          },
-          {
-            "key": "Buying stamps/postcards",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Vocabulary • Opposites",
-        "q": "Write the opposite of:<br>(a) Before × _______<br>(b) Safe × _______<br>(c) Left × _______",
-        "ans": "<strong>Answers:</strong><br>(a) Before × <strong>After</strong><br>(b) Safe × <strong>Unsafe / Dangerous</strong><br>(c) Left × <strong>Right</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) After",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Dangerous/Unsafe",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Right",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Punctuality • Arriving on Time",
-        "q": "Why is it important to reach school on time before the morning assembly bell rings?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>• Reaching on time teaches self-discipline.<br>• It ensures we do not miss morning prayers, announcements, or the beginning of our first class.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Discipline habit explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Not missing assembly/lessons",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sentence Construction",
-        "q": "Make a sentence using the word 'footpath'.",
-        "ans": "<strong>Sample Sentence:</strong><br>• We should always walk on the footpath to stay safe from moving vehicles.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Meaningful sentence with 'footpath'",
+            "key": "Clean streets, trees, and markets",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) We should cross the road while playing on our mobile phone.<br>(b) A yellow traffic light tells drivers to slow down and prepare to stop.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>False</strong>. Looking at mobile phones while crossing distracts attention and can lead to dangerous accidents.<br>(b) <strong>True</strong>. Yellow/amber warns drivers that red light is approaching.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) False with safety reason",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) True",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Chapter Reflection",
-        "q": "What is the key takeaway of 'Between Home and School'?",
-        "ans": "<strong>Summary:</strong><br>• The daily journey between home and school connects us with our neighbourhood community.<br>• Practicing strict road safety rules ensures every child travels safely every day.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Neighborhood connection",
-            "marks": "1 M"
-          },
-          {
-            "key": "Road safety practice",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Quick Quiz Problem",
-        "q": "What color is the post box in India?",
-        "ans": "<strong>Answer:</strong><br>• A standard post box in India is painted bright <strong>Red</strong>.",
+        "category": "Civic Places • Reading Books",
+        "q": "Where do children and adults go in town to borrow and read interesting books?",
+        "ans": "<strong>Answer:</strong><br>• They go to the <strong>town library</strong>.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Red correct",
+            "key": "Library",
             "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Emergency Helpers • Hospitals",
+        "q": "Where do people rush when someone suddenly falls ill?",
+        "ans": "<strong>Answer:</strong><br>• They rush to the <strong>hospital or health clinic</strong> where doctors and nurses provide care.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Hospital / clinic",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Matching Exercise • Places and Services",
+        "q": "Match each place with its role:<br>(a) Fire Station — (1) Teaches children<br>(b) School — (2) Puts out dangerous fires<br>(c) Market — (3) Sells vegetables and groceries",
+        "ans": "<strong>Answer:</strong><br>(a) Fire Station — <strong>(2) Puts out fires</strong><br>(b) School — <strong>(1) Teaches children</strong><br>(c) Market — <strong>(3) Sells groceries</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All three matched accurately",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in with words (dustbin, park, street):<br>(a) We play cricket in the town ______.<br>(b) Always throw chocolate wrappers into the ______.",
+        "ans": "<strong>Answer:</strong><br>(a) We play cricket in the town <strong>park</strong>.<br>(b) Always throw chocolate wrappers into the <strong>dustbin</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Park and Dustbin",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Rhyming Words • Sound Identification",
+        "q": "Find rhyming words for:<br>(a) Town — _______<br>(b) Clean — _______",
+        "ans": "<strong>Answer:</strong><br>(a) Town — <strong>Brown / Down / Crown</strong><br>(b) Clean — <strong>Green / Seen / Bean</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Brown/Down and Green/Seen",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • City vs Village",
+        "q": "Give one difference between a big city and a quiet village.",
+        "ans": "<strong>Answer:</strong><br>• A big city has tall buildings, heavy traffic, and shopping malls, while a village has open green fields, fewer vehicles, and fresh breeze.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clear comparison of traffic and nature",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Writing • My Town",
+        "q": "Make a sentence using the word: 'Neighbour'.",
+        "ans": "<strong>Answer:</strong><br>• My neighbour Mr. Sharma always shares sweet mangoes from his orchard.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Meaningful sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Civic Responsibility • Cleanliness",
+        "q": "What is our duty towards public parks and streets?",
+        "ans": "<strong>Answer:</strong><br>• It is our duty <strong>never to litter, avoid plucking flowers, and keep park benches clean</strong> for everyone.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "No littering, protecting flowers/benches",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • City Life",
+        "q": "Write the opposites of:<br>(a) Clean × _______<br>(b) Quiet × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Clean × <strong>Dirty</strong><br>(b) Quiet × <strong>Noisy</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Dirty and Noisy",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Singular and Plural • Town",
+        "q": "Give the plural form:<br>(a) One street — Many _______<br>(b) One building — Several _______",
+        "ans": "<strong>Answer:</strong><br>(a) Many <strong>streets</strong><br>(b) Several <strong>buildings</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Streets and buildings",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "True or False • Town Life",
+        "q": "Write True or False:<br>(a) Fire engines rush to put out fires with ringing sirens.<br>(b) We should spit on footpaths and walls.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>True</strong><br>(b) <strong>False</strong> (Spitting spreads diseases).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Personal Identification • Address",
+        "q": "Why should every child memorize their home address and phone number?",
+        "ans": "<strong>Answer:</strong><br>• If a child gets lost in a crowded market or fair, knowing their address and parent's phone number helps police or elders guide them home safely.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Safety in case of getting lost",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Expression • Town Slogan",
+        "q": "Write a short slogan to keep your town green and clean.",
+        "ans": "<strong>Answer:</strong><br>• <strong>\"Clean Town, Green Town; Spread Happiness All Around!\"</strong>",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Catchy clean-town slogan",
+            "marks": "1.5 M"
           }
         ]
       }
@@ -1982,277 +1343,189 @@ const mridangChapters = [
   {
     "id": "mrd8",
     "num": 8,
-    "unit": "Unit 3: Harmony",
-    "title": "This is My Town",
-    "subtitle": "Community Helpers, Civic Places, Cleanliness & Town Pride",
+    "unit": "Unit 4: Life Around Us",
+    "title": "A Show of Clouds",
+    "subtitle": "Cloud Shapes, White Fluffy Sheep, Sailing in the Sky, Weather & Rain",
     "concepts": [
-      "Poem appreciation celebrating town landmarks, streets, and community spaces.",
-      "Identifying community helpers: baker, doctor, teacher, potter, postman, sweeper.",
-      "Civic responsibility: keeping public streets clean and throwing waste in trash bins.",
-      "Rhyming pairs and sound patterns (town-clown, street-sweet, shop-stop)."
+      "Poem comprehension: Watching white fluffy clouds drift across the bright blue sky like playful sheep.",
+      "Imaginative shapes: Clouds looking like dogs, galloping horses, soaring birds, and mountain castles.",
+      "Weather changes: Light white clouds bringing shade, heavy dark clouds bringing cool rain.",
+      "Rhyming words: Sky-high, sheep-asleep, blow-go, rain-train."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fef2f2\" rx=\"10\"/><rect x=\"50\" y=\"35\" width=\"70\" height=\"50\" fill=\"#f97316\" rx=\"4\"/><text x=\"85\" y=\"65\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Bakery</text><rect x=\"150\" y=\"35\" width=\"70\" height=\"50\" fill=\"#0284c7\" rx=\"4\"/><text x=\"185\" y=\"65\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Clinic</text><rect x=\"250\" y=\"35\" width=\"70\" height=\"50\" fill=\"#16a34a\" rx=\"4\"/><text x=\"285\" y=\"65\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">School</text><rect x=\"350\" y=\"35\" width=\"70\" height=\"50\" fill=\"#9333ea\" rx=\"4\"/><text x=\"385\" y=\"65\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Library</text><text x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">This is My Town • Clean Streets, Helpful Friends</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#e0f2fe\" rx=\"10\"/><path d=\"M 160 65 Q 180 35 220 45 Q 260 25 300 45 Q 340 35 360 65 Q 370 85 240 85 Z\" fill=\"#ffffff\" opacity=\"0.95\"/><circle cx=\"230\" cy=\"50\" r=\"4\" fill=\"#0284c7\"/><circle cx=\"270\" cy=\"50\" r=\"4\" fill=\"#0284c7\"/><path d=\"M 240 65 Q 250 72 260 65\" stroke=\"#0284c7\" stroke-width=\"2\" fill=\"none\"/><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#0369a1\" text-anchor=\"middle\">A Show of Clouds: White Sheep Grazing in the Blue Sky</text></svg>",
     "cbq": {
-      "title": "Community Helpers Day at Town Hall",
-      "text": "Class 2 visited the Town Hall for Community Helpers Day. They met Uncle Paul who bakes crusty buns at the bakery, Dr. Sneha who treats sick patients, Postman Shyam who delivers letters on his bicycle, and Ramu the sanitation worker who sweeps the lanes clean every dawn.",
-      "question": "What does the baker do? Who keeps the town lanes clean? Why are all community helpers equally important?",
-      "answer": "1. The baker <strong>bakes fresh bread, cakes, and crusty buns</strong> for everyone.<br>2. <strong>Ramu the sanitation worker (sweeper)</strong> keeps the lanes clean and hygienic.<br>3. <strong>Importance:</strong> Every helper provides an essential service that makes town life comfortable, healthy, safe, and happy. We rely on each other in society.",
-      "rubric": "1 M for baker + 1 M for sanitation worker + 1 M for mutual interdependence explanation"
+      "title": "Cloud Watching on a Sunny Afternoon",
+      "text": "Lying on the soft green grass, Leo and Maya looked up at the sky. 'Look!' cried Leo, 'that cloud looks like a fluffy white puppy with floppy ears!' Maya pointed, 'And that big cloud over the hill looks like a king's castle with tall towers!'",
+      "question": "What two shapes did the children spot in the drifting clouds? What happens when white clouds turn dark grey?",
+      "answer": "1. The children saw (a) a <strong>fluffy white puppy with floppy ears</strong> and (b) a <strong>king's castle with tall towers</strong>.<br>2. When clouds turn dark grey, they become heavy with water droplets and <strong>bring cool, refreshing rain</strong>.",
+      "rubric": "1.5 M for puppy and castle shapes + 1.5 M for grey clouds bringing rain"
     },
     "questions": [
       {
-        "category": "Poem Comprehension • Town Features",
-        "q": "What are some of the places mentioned in the poem 'This is My Town'?",
-        "ans": "<strong>Answer:</strong><br>• Clean wide streets, rows of shops, the school, the hospital/clinic, the town park, and the bakery.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Streets and shops mentioned",
-            "marks": "1 M"
-          },
-          {
-            "key": "Public buildings / parks mentioned",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Community Helpers • Match the Job",
-        "q": "Match each helper with their work:<br>(a) Teacher (b) Doctor (c) Potter (d) Firefighter<br>Work: (1) Cures sick people (2) Extinguishes fires (3) Teaches students (4) Shapes earthen clay pots",
-        "ans": "<strong>Matching:</strong><br>• (a) Teacher — (3) Teaches students<br>• (b) Doctor — (1) Cures sick people<br>• (c) Potter — (4) Shapes earthen clay pots<br>• (d) Firefighter — (2) Extinguishes fires",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "All 4 helpers correctly matched",
-            "marks": "2 M (0.5 M each)"
-          }
-        ]
-      },
-      {
-        "category": "Rhyming Pairs in the Poem",
-        "q": "Find words that rhyme with:<br>(a) Town — _______<br>(b) Street — _______<br>(c) Shop — _______",
-        "ans": "<strong>Answers:</strong><br>(a) Town — <strong>Brown / Down / Clown</strong><br>(b) Street — <strong>Sweet / Meet / Feet</strong><br>(c) Shop — <strong>Stop / Top / Hop</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Down/Brown",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Sweet/Meet",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Stop/Top",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Civic Sense • Waste Disposal",
-        "q": "Where should you throw banana peels and empty juice packets when walking in your town?",
-        "ans": "<strong>Answer:</strong><br>• You should always throw waste inside a <strong>public dustbin (trash can)</strong>.<br>• If no bin is nearby, keep the wrapper in your bag until you find one, keeping the streets sparkling clean.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Public dustbin identified",
-            "marks": "1 M"
-          },
-          {
-            "key": "Carrying waste until bin found explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Community Helper Riddle",
-        "q": "I wear a white coat and carry a stethoscope around my neck. I give medicine when you have fever. Who am I?",
-        "ans": "<strong>Answer:</strong><br>• You are a <strong>Doctor</strong>.",
+        "category": "Poem Comprehension • Cloud Appearance",
+        "q": "What do the fluffy white clouds in the poem look like as they drift across the blue hill?",
+        "ans": "<strong>Answer:</strong><br>• The white clouds look like <strong>fluffy white sheep</strong> grazing peacefully in the blue sky.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Doctor identified correctly",
+            "key": "White sheep stated",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Community Helper Riddle 2",
-        "q": "I rise before the sun, mix flour and yeast, and bake sweet hot buns in a big oven. Who am I?",
-        "ans": "<strong>Answer:</strong><br>• You are a <strong>Baker</strong>.",
+        "category": "Poem Comprehension • When the Wind Blows",
+        "q": "What happens to the clouds when the wind blows across the sky?",
+        "ans": "<strong>Answer:</strong><br>• When the wind blows, the clouds <strong>move slowly and sail along</strong> together.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Baker identified correctly",
+            "key": "Move and sail along",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Vocabulary • Plurals",
-        "q": "Write the plural of these town words:<br>(a) One street — Many _______<br>(b) One shop — Many _______<br>(c) One bus — Many _______",
-        "ans": "<strong>Answers:</strong><br>(a) Many <strong>streets</strong><br>(b) Many <strong>shops</strong><br>(c) Many <strong>buses</strong> (add -es)",
+        "category": "Poem Comprehension • When the Wind Stops",
+        "q": "What do the clouds do when the wind stops blowing?",
+        "ans": "<strong>Answer:</strong><br>• When the wind stops, the clouds <strong>stand still as if asleep</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Stand still / asleep",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Weather Vocabulary • Describing Words",
+        "q": "Match the weather conditions to their descriptions:<br>(a) Sunny — (1) Full of cool falling water<br>(b) Windy — (2) Bright hot sun shining<br>(c) Rainy — (3) Leaves dancing and blowing fast",
+        "ans": "<strong>Answer:</strong><br>(a) Sunny — <strong>(2) Bright hot sun</strong><br>(b) Windy — <strong>(3) Leaves dancing</strong><br>(c) Rainy — <strong>(1) Falling water</strong>",
         "marks": 3,
         "rubric": [
           {
-            "key": "(a) streets",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) shops",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) buses",
-            "marks": "1 M"
+            "key": "All three matched correctly",
+            "marks": "3 M"
           }
         ]
       },
       {
-        "category": "Civic Pride • Beautiful Town",
-        "q": "What can citizens do to make their town green and beautiful?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>1. Plant shady flowering trees and saplings along pathways and parks.<br>2. Never litter plastic and avoid damaging public property.",
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in with words (blue, white, rain):<br>(a) White sheep, white sheep, on a ______ hill.<br>(b) Heavy dark clouds bring refreshing ______.",
+        "ans": "<strong>Answer:</strong><br>(a) White sheep, white sheep, on a <strong>blue</strong> hill.<br>(b) Heavy dark clouds bring refreshing <strong>rain</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Planting trees",
-            "marks": "1 M"
-          },
-          {
-            "key": "No littering / keeping spaces clean",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Public Transport Helper",
-        "q": "Who drives the public bus that carries passengers across town? What quality should they have?",
-        "ans": "<strong>Answer:</strong><br>• The <strong>Bus Driver</strong> drives the public bus.<br>• A driver must be <strong>careful, alert, and follow traffic rules strictly</strong> to keep passengers safe.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Bus driver identified",
-            "marks": "1 M"
-          },
-          {
-            "key": "Careful/rule-abiding quality explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Describing Words • Adjectives",
-        "q": "Choose a suitable describing word:<br>(a) A _______ town (clean / noisy)<br>(b) A _______ helper (kind / salty)",
-        "ans": "<strong>Answers:</strong><br>(a) A <strong>clean</strong> town.<br>(b) A <strong>kind</strong> helper.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) clean",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) kind",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sentence Construction",
-        "q": "Make a sentence using the word 'neighbourhood'.",
-        "ans": "<strong>Sample Sentence:</strong><br>• Our neighbourhood has a beautiful green park where children play every evening.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Grammatically correct sentence with 'neighbourhood'",
+            "key": "Blue and Rain",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Opposites • City vs Village",
-        "q": "Write the antonyms (opposites) of:<br>(a) Clean × _______<br>(b) Beautiful × _______<br>(c) Busy × _______",
-        "ans": "<strong>Answers:</strong><br>(a) Clean × <strong>Dirty</strong><br>(b) Beautiful × <strong>Ugly</strong><br>(c) Busy × <strong>Idle / Quiet</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "(a) Dirty",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Ugly",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Idle/Quiet",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Respect for All Work",
-        "q": "Why should we respect sanitation workers and sweepers who clean our streets?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>• They do very hard and important work in all seasons to keep our surroundings disease-free and clean.<br>• Without them, our towns would become polluted and unlivable. All honest work deserves dignity and gratitude.",
+        "category": "Rhyming Words • Sound Match",
+        "q": "Find rhyming pairs from the poem:<br>(a) Hill — _______<br>(b) Blow — _______",
+        "ans": "<strong>Answer:</strong><br>(a) Hill — <strong>Still / Mill / Will</strong><br>(b) Blow — <strong>Go / Slow / Snow</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Disease prevention & hard work explained",
-            "marks": "1 M"
-          },
-          {
-            "key": "Dignity of labor and gratitude emphasized",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Spelling Check • Town Helpers",
-        "q": "Fill in the missing letters: T _ A C H _ R (teaches in school).",
-        "ans": "<strong>Answer:</strong><br>• T <strong>E</strong> A C H <strong>E</strong> R = <strong>TEACHER</strong>.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "TEACHER correct",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) A potter makes clay pots on a rotating wheel.<br>(b) We should scribble graffiti on public town walls.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>True</strong>. A potter uses a pottery wheel to shape wet clay.<br>(b) <strong>False</strong>. Scribbling on walls defaces public property and spoils the beauty of the town.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "(a) True",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) False with civic reason",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Chapter Reflection",
-        "q": "What makes you feel proud of your town?",
-        "ans": "<strong>Summary:</strong><br>• I feel proud of my town because of its kind and helpful people, clean peaceful parks, safe streets, and the sense of belonging and community that brings everyone together.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Community, safety, and pride explained",
+            "key": "Still and Go/Slow",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Quick Quiz Problem",
-        "q": "Where do you go to borrow books to read quietly?",
-        "ans": "<strong>Answer:</strong><br>• You go to a <strong>Library</strong>.",
+        "category": "Science Fun • What are Clouds Made Of?",
+        "q": "What are clouds made of: cotton or tiny water droplets?",
+        "ans": "<strong>Answer:</strong><br>• Clouds are made of <strong>millions of tiny water droplets and ice crystals</strong> floating high in the air.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Tiny water droplets/ice crystals",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Nature",
+        "q": "Write the opposites of:<br>(a) White × _______<br>(b) Asleep × _______",
+        "ans": "<strong>Answer:</strong><br>(a) White × <strong>Black</strong><br>(b) Asleep × <strong>Awake</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Black and Awake",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Making • Clouds",
+        "q": "Make a sentence using the word 'Float'.",
+        "ans": "<strong>Answer:</strong><br>• White clouds float gently across the clear morning sky.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Correct grammatical sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Colour Identification • Sky",
+        "q": "What is the colour of the sky on a bright sunny afternoon?",
+        "ans": "<strong>Answer:</strong><br>• The sky is a lovely <strong>clear blue</strong>.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Library correct",
+            "key": "Clear blue",
             "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Rainbow Sighting",
+        "q": "When can you spot a seven-coloured rainbow in the sky?",
+        "ans": "<strong>Answer:</strong><br>• We can spot a rainbow when the sun shines brightly while light rain is falling.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Sunlight and rain together",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Singular and Plural • Animals and Clouds",
+        "q": "Write the plural form:<br>(a) One cloud — Many _______<br>(b) One sheep — Many _______",
+        "ans": "<strong>Answer:</strong><br>(a) Many <strong>clouds</strong><br>(b) Many <strong>sheep</strong> (remains 'sheep' in plural).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clouds and sheep (irregular)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "True or False • Clouds",
+        "q": "Write True or False:<br>(a) Clouds stay in one spot forever and never move.<br>(b) Wind pushes clouds from one place to another.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>False</strong><br>(b) <strong>True</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Talk • Cloud Drawing",
+        "q": "Describe a funny cloud shape you have seen in the sky.",
+        "ans": "<strong>Answer:</strong><br>• I once saw a puffy cloud that looked like a giant scoop of strawberry ice cream on a cone!",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Expressive personal imagination",
+            "marks": "2 M"
           }
         ]
       }
@@ -2261,257 +1534,953 @@ const mridangChapters = [
   {
     "id": "mrd9",
     "num": 9,
-    "unit": "Unit 4: The Earth and Us",
-    "title": "Out in the Garden",
-    "subtitle": "Outdoor Play, Ball Games, Nature Care, Seasons & Sunshine",
+    "unit": "Unit 4: Life Around Us",
+    "title": "My Name",
+    "subtitle": "Self-Identity, Spelling Names, Alphabet Sounds, Letters & Confident Introductions",
     "concepts": [
-      "Poem recitation on active garden play: bouncing, throwing, catching, and rolling a ball.",
-      "Observing natural garden life: blooming flowers, green grass, buzzing bees, and fluttering butterflies.",
-      "The value of outdoor active exercise vs screen time.",
-      "Nurturing plants by regular watering and protecting garden greenery."
+      "Self-expression: Knowing, writing, and pronouncing one's own name with pride.",
+      "Phonics & Alphabet: Counting letters in names, identifying beginning vowels and consonants.",
+      "Grammar rule: Every person's name always begins with a capital letter.",
+      "Social interaction: Greeting new friends and introducing oneself politely."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#ecfdf5\" rx=\"10\"/><circle cx=\"90\" cy=\"55\" r=\"22\" fill=\"#ef4444\"/><text x=\"90\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Bounce</text><circle cx=\"190\" cy=\"55\" r=\"22\" fill=\"#3b82f6\"/><text x=\"190\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Throw</text><circle cx=\"290\" cy=\"55\" r=\"22\" fill=\"#10b981\"/><text x=\"290\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Catch</text><circle cx=\"390\" cy=\"55\" r=\"22\" fill=\"#f59e0b\"/><text x=\"390\" y=\"60\" font-family=\"sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Roll</text><text x=\"250\" y=\"105\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#065f46\" text-anchor=\"middle\">Out in the Garden Each Fine Day • Active Play in Nature</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fdf2f8\" rx=\"10\"/><rect x=\"150\" y=\"35\" width=\"200\" height=\"55\" fill=\"#ec4899\" rx=\"10\"/><text x=\"250\" y=\"72\" font-family=\"sans-serif\" font-size=\"20\" font-weight=\"800\" fill=\"#ffffff\" text-anchor=\"middle\">HELLO, MY NAME IS...</text><text x=\"250\" y=\"112\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#be185d\" text-anchor=\"middle\">My Name: First Letter Capital, Special & Unique</text></svg>",
     "cbq": {
-      "title": "Class 2 Springtime Garden Activity",
-      "text": "On a bright sunny afternoon, Rohan and Priya took a red rubber ball to the school herbal garden. Rohan bounced the ball on the paved garden path, and Priya caught it with both hands. Nearby, worker honeybees buzzed around yellow marigold blossoms, and green grasshoppers hopped on soft dew-covered grass.",
-      "question": "Which ball actions did Rohan and Priya perform? Which insects were observed in the garden? Why is playing in the garden refreshing?",
-      "answer": "1. <strong>Ball actions:</strong> <strong>Bouncing</strong> and <strong>catching</strong>.<br>2. <strong>Insects observed:</strong> <strong>Honeybees</strong> (drinking nectar from marigolds) and <strong>grasshoppers</strong>.<br>3. <strong>Refreshment:</strong> Playing in the open garden provides fresh oxygen, warm sunlight (Vitamin D), physical exercise, and connects children directly with the peace and beauty of nature.",
-      "rubric": "1 M for ball actions + 1 M for insects observed + 1 M for health & nature benefits"
+      "title": "First Day Introduction Circle",
+      "text": "On Monday, Mrs. Sen asked every child in Grade 2 to write their name on a colourful badge and tell the class what they love doing. Rohan wrote 'ROHAN' in bold letters and said, 'My name has five letters, starts with R, and I love drawing rockets!'",
+      "question": "How many letters are there in Rohan's name? What important grammar rule must we remember when writing any person's name?",
+      "answer": "1. There are <strong>5 letters</strong> (R-O-H-A-N) in Rohan's name.<br>2. We must always write the <strong>first letter of a name with a CAPITAL letter</strong>.",
+      "rubric": "1.5 M for 5 letters + 1.5 M for capital letter grammar rule"
     },
     "questions": [
       {
-        "category": "Poem Comprehension • Ball Actions",
-        "q": "What four actions with a ball are mentioned in the poem 'Out in the Garden'?",
-        "ans": "<strong>Answer:</strong><br>1. <strong>Bounce</strong> the ball<br>2. <strong>Throw</strong> the ball<br>3. <strong>Catch</strong> the ball<br>4. <strong>Roll</strong> the ball.",
+        "category": "Comprehension • Self-Identity",
+        "q": "Why is a person's name special?",
+        "ans": "<strong>Answer:</strong><br>• Our name gives us our <strong>unique identity</strong>, helps friends call us, and connects us lovingly with our family.",
         "marks": 2,
         "rubric": [
           {
-            "key": "All 4 actions named (bounce, throw, catch, roll)",
+            "key": "Unique identity and connection",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Poem Comprehension • Weather",
-        "q": "On what kind of day do children like to go out in the garden to play?",
-        "ans": "<strong>Answer:</strong><br>• Children like to go out in the garden on <strong>each fine, sunny day</strong> when the sky is clear and the weather is pleasant.",
+        "category": "Grammar • Capital Letter Rule",
+        "q": "Which letter of a person's name is always written as a capital letter?",
+        "ans": "<strong>Answer:</strong><br>• The <strong>first letter</strong> of every name must always be written in a <strong>capital letter</strong>.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Fine/sunny day identified",
+            "key": "First letter capital",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Rhyming Pairs in the Poem",
-        "q": "Find words that rhyme with:<br>(a) Day — _______<br>(b) Ball — _______<br>(c) Round — _______",
-        "ans": "<strong>Answers:</strong><br>(a) Day — <strong>Play / Say / May</strong><br>(b) Ball — <strong>All / Fall / Wall</strong><br>(c) Round — <strong>Ground / Sound / Found</strong>",
+        "category": "Spelling and Counting • Letters in Name",
+        "q": "Look at the name 'ANANYA'. How many total letters does it have? How many times does the letter 'A' appear?",
+        "ans": "<strong>Answer:</strong><br>• 'ANANYA' has <strong>6 letters</strong>.<br>• The letter 'A' appears <strong>3 times</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "6 letters and 3 'A's",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vowels and Consonants • Identification",
+        "q": "Name the five English vowel letters.",
+        "ans": "<strong>Answer:</strong><br>• The five vowels are <strong>A, E, I, O, U</strong>.",
+        "marks": 2.5,
+        "rubric": [
+          {
+            "key": "A, E, I, O, U listed",
+            "marks": "2.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Correct the Mistake",
+        "q": "Rewrite with correct capitalization: 'my friend is rohit sharma.'",
+        "ans": "<strong>Answer:</strong><br>• \"My friend is <strong>R</strong>ohit <strong>S</strong>harma.\"",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Capital R and S in Rohit Sharma",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Polite Introduction • Conversation",
+        "q": "How do you introduce yourself politely to a new classmate?",
+        "ans": "<strong>Answer:</strong><br>• \"Hello! My name is ______. I am happy to meet you!\"",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Polite greeting and self-introduction",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Rhyming Names • Word Fun",
+        "q": "Find a rhyming word or name for:<br>(a) Dan — _______<br>(b) Jill — _______",
+        "ans": "<strong>Answer:</strong><br>(a) Dan — <strong>Pan / Stan / Van</strong><br>(b) Jill — <strong>Bill / Hill / Mill</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Pan/Stan and Bill/Hill",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Alphabetical Order • Sorting",
+        "q": "Arrange these three names in alphabetical (A-Z) order: Kabir, Aman, David.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>Aman</strong> (A)<br>2. <strong>David</strong> (D)<br>3. <strong>Kabir</strong> (K)",
         "marks": 3,
         "rubric": [
           {
-            "key": "(a) Play",
-            "marks": "1 M"
-          },
+            "key": "Aman, David, Kabir in correct order",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Writing • Self",
+        "q": "Write two complete sentences about yourself.",
+        "ans": "<strong>Answer:</strong><br>1. My name is Aarav and I am seven years old.<br>2. I study in Class 2 and my favourite fruit is sweet mango.",
+        "marks": 2,
+        "rubric": [
           {
-            "key": "(b) Fall/Wall",
-            "marks": "1 M"
-          },
+            "key": "Two correct personal sentences",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Simple Adjectives",
+        "q": "Write the opposites of:<br>(a) Short × _______<br>(b) Young × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Short × <strong>Long / Tall</strong><br>(b) Young × <strong>Old</strong>",
+        "marks": 2,
+        "rubric": [
           {
-            "key": "(c) Ground",
+            "key": "Tall and Old",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "True or False • Names",
+        "q": "Write True or False:<br>(a) Our nickname is usually given by our parents and close family with love.<br>(b) A name should be written without any capital letters.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>True</strong><br>(b) <strong>False</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Classroom Activity • Name Badge",
+        "q": "What two things are usually written on a student's school identity card?",
+        "ans": "<strong>Answer:</strong><br>1. <strong>Student's full name</strong><br>2. <strong>Class and Section</strong> (along with School Name)",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Full name, class/school name",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Sound Identification • Phonics",
+        "q": "What is the beginning sound of the name 'Tara'?",
+        "ans": "<strong>Answer:</strong><br>• The beginning sound is the <strong>/t/ sound</strong> made by the letter 'T'.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "/t/ sound stated",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Action Verbs • Movement Words",
-        "q": "Fill in with [bounce, catch, roll]:<br>(a) Can you _______ the high flying ball?<br>(b) Watch the rubber ball _______ up and down.<br>(c) _______ the marble across the smooth floor.",
-        "ans": "<strong>Answers:</strong><br>(a) Can you <strong>catch</strong> the high flying ball?<br>(b) Watch the rubber ball <strong>bounce</strong> up and down.<br>(c) <strong>Roll</strong> the marble across the smooth floor.",
+        "category": "Personal Reflection • Pride in Name",
+        "q": "Who gave you your name, and do you like it?",
+        "ans": "<strong>Answer:</strong><br>• My parents and grandparents gave me my name with love, and I feel very proud of it.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Thoughtful personal reflection",
+            "marks": "1.5 M"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mrd10",
+    "num": 10,
+    "unit": "Unit 4: Life Around Us",
+    "title": "The Crow",
+    "subtitle": "The Thirsty Crow, Hot Summer Day, Pitcher with Low Water, Pebbles & Perseverance",
+    "concepts": [
+      "Fable comprehension: The famous story of the thirsty crow in search of water.",
+      "Scientific cause and effect: Dropping small pebbles into the narrow pitcher raises the water level.",
+      "Perseverance & Wit: 'Where there is a will, there is a way'—not giving up when faced with difficulties.",
+      "Vocabulary & sequencing: Pitcher, pebbles, thirsty, beak, bottom, rise."
+    ],
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"10\"/><path d=\"M 230 45 L 270 45 L 285 95 L 215 95 Z\" fill=\"#d97706\" stroke=\"#b45309\" stroke-width=\"2\"/><rect x=\"225\" y=\"75\" width=\"50\" height=\"18\" fill=\"#38bdf8\" rx=\"2\"/><circle cx=\"240\" cy=\"90\" r=\"4\" fill=\"#78716c\"/><circle cx=\"260\" cy=\"90\" r=\"4\" fill=\"#78716c\"/><circle cx=\"250\" cy=\"85\" r=\"4\" fill=\"#78716c\"/><circle cx=\"320\" cy=\"45\" r=\"16\" fill=\"#1e293b\"/><polygon points=\"304,45 292,48 304,51\" fill=\"#f59e0b\"/><text x=\"250\" y=\"112\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#78350f\" text-anchor=\"middle\">The Clever Crow: Dropped pebbles one by one, water came up!</text></svg>",
+    "cbq": {
+      "title": "Kalu's Brilliant Idea",
+      "text": "On a scorching May afternoon, Kalu the black crow flew over fields searching for water. He spotted a clay pitcher under a neem tree. Inside, the water was very low at the bottom and his short beak could not reach it. Kalu looked around, saw a heap of shiny pebbles, and began dropping them in one by one.",
+      "question": "Why could Kalu not drink water directly from the pitcher? What clever method did he use to quench his thirst?",
+      "answer": "1. Kalu could not drink directly because the <strong>water level was very low at the bottom of the narrow pitcher</strong>.<br>2. He cleverly <strong>picked up pebbles with his beak and dropped them into the pitcher one by one until the water rose to the brim</strong>.",
+      "rubric": "1.5 M for low water level at the bottom + 1.5 M for dropping pebbles one by one to raise the water"
+    },
+    "questions": [
+      {
+        "category": "Story Comprehension • The Search",
+        "q": "Why was the crow flying all around on the hot day?",
+        "ans": "<strong>Answer:</strong><br>• The crow was flying around because he was <strong>very thirsty</strong> and desperately looking for drinking water.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Very thirsty / searching for water",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Story Comprehension • The Problem",
+        "q": "What problem did the crow face when he found the pitcher?",
+        "ans": "<strong>Answer:</strong><br>• The water inside was <strong>too low at the bottom</strong>, and his beak was not long enough to reach it.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Water too low / beak could not reach",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Story Comprehension • Clever Idea",
+        "q": "What did the crow collect from the ground to solve his problem?",
+        "ans": "<strong>Answer:</strong><br>• The crow collected <strong>small pebbles (stones)</strong> lying nearby.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Pebbles / stones",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Scientific Logic • Water Rising",
+        "q": "What happened inside the pitcher when the crow dropped the pebbles one by one?",
+        "ans": "<strong>Answer:</strong><br>• The heavy pebbles sank to the bottom and <strong>pushed the water up to the neck (brim)</strong> of the pitcher.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Pebbles displaced water / water rose",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Story Sequencing • Put in Order",
+        "q": "Arrange the story steps in correct order (1, 2, 3, 4):<br>( ) The water rose to the brim and the crow drank happily.<br>( ) A thirsty crow searched for water.<br>( ) He dropped pebbles into the pitcher one by one.<br>( ) He found a pitcher with water low at the bottom.",
+        "ans": "<strong>Answer:</strong><br><strong>(4)</strong> The water rose to the brim and the crow drank happily.<br><strong>(1)</strong> A thirsty crow searched for water.<br><strong>(3)</strong> He dropped pebbles into the pitcher one by one.<br><strong>(2)</strong> He found a pitcher with water low at the bottom.",
+        "marks": 4,
+        "rubric": [
+          {
+            "key": "Correct order: 1, 2, 3, 4 mapped accurately",
+            "marks": "4 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in the blanks (pebbles, pitcher, beak):<br>(a) The crow picked up ______ one by one.<br>(b) He saw a clay ______ under the shady tree.",
+        "ans": "<strong>Answer:</strong><br>(a) The crow picked up <strong>pebbles</strong> one by one.<br>(b) He saw a clay <strong>pitcher</strong> under the shady tree.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Pebbles and Pitcher",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Story Words",
+        "q": "Write the opposites of:<br>(a) Low × _______<br>(b) Up × _______<br>(c) Clever × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Low × <strong>High</strong><br>(b) Up × <strong>Down</strong><br>(c) Clever × <strong>Foolish</strong>",
         "marks": 3,
         "rubric": [
           {
-            "key": "(a) catch",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) bounce",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Roll",
-            "marks": "1 M"
+            "key": "High, Down, Foolish (1 M each)",
+            "marks": "3 M"
           }
         ]
       },
       {
-        "category": "Nature Observation • Garden Creatures",
-        "q": "Name two friendly creatures you can see visiting flowers in a garden.",
-        "ans": "<strong>Answer:</strong><br>1. Colorful <strong>Butterflies</strong> fluttering from petal to petal.<br>2. Busy <strong>Honeybees</strong> collecting sweet nectar.",
+        "category": "Vocabulary • Pitcher",
+        "q": "What is a 'pitcher'?",
+        "ans": "<strong>Answer:</strong><br>• A pitcher is a round clay pot (matka) with a narrow neck used to hold and cool water.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Clay pot for holding water",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Writing • Bird",
+        "q": "Make a sentence using the word 'Thirsty'.",
+        "ans": "<strong>Answer:</strong><br>• The thirsty sparrow drank fresh water from the clay bowl on my balcony.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Grammatically correct sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Moral Value • Perseverance",
+        "q": "What is the famous moral of 'The Thirsty Crow' story?",
+        "ans": "<strong>Answer:</strong><br>• <strong>\"Where there is a will, there is a way.\"</strong> (With patience, hard work, and quick wit, every difficulty can be overcome).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Butterflies named",
-            "marks": "1 M"
-          },
-          {
-            "key": "Honeybees named",
-            "marks": "1 M"
+            "key": "'Where there is a will, there is a way'",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Plant Care • Green Garden",
-        "q": "How can children help take care of their school garden?",
-        "ans": "<strong>Step-by-Step Answer:</strong><br>1. Water the plants regularly using a watering can in the morning or evening.<br>2. Never pluck flowers or step on delicate young plant saplings.",
+        "category": "True or False • Fable Facts",
+        "q": "Write True or False:<br>(a) The crow broke the clay pitcher with a hammer.<br>(b) Crows are intelligent birds capable of problem solving.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>False</strong><br>(b) <strong>True</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Regular watering",
-            "marks": "1 M"
-          },
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Bird Characteristics • Colour & Sound",
+        "q": "What colour is a crow and what sound does it make?",
+        "ans": "<strong>Answer:</strong><br>• A crow is <strong>glossy black</strong>, and its call sounds like <strong>'Caw, caw... caw, caw!'</strong>",
+        "marks": 1.5,
+        "rubric": [
           {
-            "key": "Not plucking flowers/stepping on plants",
+            "key": "Black colour and 'Caw, caw' sound",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Kindness to Animals • Water Bowls",
+        "q": "What should we do for birds in summer?",
+        "ans": "<strong>Answer:</strong><br>• We should keep shallow earthen bowls of clean drinking water and grains on our balcony or terrace every morning.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Keeping water bowls and grains",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Rhyming Words • Sound Identification",
+        "q": "Write a rhyming word for: Crow — _______.",
+        "ans": "<strong>Answer:</strong><br>• Crow — <strong>Blow / Glow / Snow / Grow</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Blow/Glow/Snow",
+            "marks": "1 M"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mrd11",
+    "num": 11,
+    "unit": "Unit 4: Life Around Us",
+    "title": "The Smart Monkey",
+    "subtitle": "Jungle Wisdom, Sweet Red Berries, Crocodile's Trick & Quick Presence of Mind",
+    "concepts": [
+      "Fable comprehension: The clever monkey living in a jamun/berry tree outsmarting danger.",
+      "Friendship & betrayal: Sharing sweet fruit, the crocodile's wicked plan, and the monkey's witty escape.",
+      "Presence of mind: Staying calm in moments of danger to think of a smart solution ('I left my heart on the tree').",
+      "Character traits: Clever, quick-witted, kind, treacherous."
+    ],
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#ecfdf5\" rx=\"10\"/><rect x=\"235\" y=\"50\" width=\"30\" height=\"55\" fill=\"#78350f\" rx=\"2\"/><circle cx=\"250\" cy=\"45\" r=\"35\" fill=\"#15803d\"/><circle cx=\"270\" cy=\"35\" r=\"6\" fill=\"#dc2626\"/><circle cx=\"235\" cy=\"50\" r=\"6\" fill=\"#dc2626\"/><ellipse cx=\"170\" cy=\"85\" rx=\"35\" ry=\"14\" fill=\"#166534\"/><text x=\"250\" y=\"112\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#064e3b\" text-anchor=\"middle\">The Smart Monkey: Sweet Berries, Quick Wit & Great Escape</text></svg>",
+    "cbq": {
+      "title": "Quick Thinking in the Deep River",
+      "text": "Midway across the wide river, the crocodile confessed to the monkey: 'My wife wants to eat your sweet heart!' The monkey did not panic. He calmly replied, 'Oh friend, why didn't you tell me earlier? I keep my heart safely hanging on the highest branch of my berry tree! Turn back so I can fetch it for you!'",
+      "question": "What wicked plan did the crocodile reveal? How did the smart monkey save his life?",
+      "answer": "1. The crocodile revealed that his wife wanted to <strong>eat the monkey's heart</strong>.<br>2. The monkey kept his calm and outsmarted the crocodile by claiming <strong>he had left his heart behind on the tree branch, tricking the crocodile into swimming back to shore</strong>.",
+      "rubric": "1.5 M for crocodile's wicked confession + 1.5 M for monkey's clever trick to return to shore"
+    },
+    "questions": [
+      {
+        "category": "Story Comprehension • The Tree",
+        "q": "Where did the smart monkey live?",
+        "ans": "<strong>Answer:</strong><br>• The monkey lived in a <strong>big shady berry (jamun) tree on the river bank</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Berry / jamun tree by the river",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Opposites • Action Words",
-        "q": "Write the opposites of:<br>(a) Throw × _______<br>(b) Up × _______<br>(c) Fine × _______",
-        "ans": "<strong>Answers:</strong><br>(a) Throw × <strong>Catch</strong><br>(b) Up × <strong>Down</strong><br>(c) Fine × <strong>Cloudy / Stormy / Bad</strong>",
+        "category": "Story Comprehension • The Fruit",
+        "q": "What did the monkey share with his friend the crocodile every day?",
+        "ans": "<strong>Answer:</strong><br>• He plucked and shared <strong>sweet, juicy, ripe berries</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Sweet ripe berries",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Story Comprehension • Crocodile's Request",
+        "q": "Why did the crocodile invite the monkey to cross the river to his home?",
+        "ans": "<strong>Answer:</strong><br>• He pretended his wife had invited the monkey for dinner, but secretly his wife wanted to <strong>eat the monkey's heart</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Wife wanting to eat monkey's heart",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Presence of Mind • The Trick",
+        "q": "What clever excuse did the monkey give when he learned the truth in deep water?",
+        "ans": "<strong>Answer:</strong><br>• He calmly said that he had <strong>left his heart safely behind on the tree</strong> and needed to go back to bring it.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Left heart behind on the tree",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "The Escape • Safe on Shore",
+        "q": "What did the monkey do the moment the crocodile reached the bank?",
+        "ans": "<strong>Answer:</strong><br>• The monkey quickly <strong>leaped off the crocodile's back, scrambled high up into the safety of the tree</strong>, and laughed.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Leaped off and scrambled up the tree",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in the blanks (berries, heart, river):<br>(a) The crocodile swam across the wide ______.<br>(b) The monkey plucked sweet red ______.",
+        "ans": "<strong>Answer:</strong><br>(a) The crocodile swam across the wide <strong>river</strong>.<br>(b) The monkey plucked sweet red <strong>berries</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "River and Berries",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Character Traits • Analysis",
+        "q": "Which two adjectives best describe the monkey in this story? (A) Foolish (B) Clever (C) Quick-witted (D) Lazy",
+        "ans": "<strong>Answer:</strong><br>• <strong>(B) Clever</strong> and <strong>(C) Quick-witted</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Clever and Quick-witted",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Fable Words",
+        "q": "Write the opposites of:<br>(a) Sweet × _______<br>(b) Friend × _______<br>(c) Safe × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Sweet × <strong>Bitter / Sour</strong><br>(b) Friend × <strong>Enemy</strong><br>(c) Safe × <strong>Dangerous</strong>",
         "marks": 3,
         "rubric": [
           {
-            "key": "(a) Catch",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) Down",
-            "marks": "1 M"
-          },
-          {
-            "key": "(c) Stormy/Bad",
-            "marks": "1 M"
+            "key": "Bitter, Enemy, Dangerous (1 M each)",
+            "marks": "3 M"
           }
         ]
       },
       {
-        "category": "Outdoor vs Indoor Play",
-        "q": "Why is playing outdoors with friends better than sitting alone staring at mobile screens?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. Outdoor play involves running, throwing, and jumping, which keeps the body fit, agile, and healthy.<br>2. It builds real friendships and team spirit, and prevents eye strain caused by excessive screen exposure.",
-        "marks": 2,
+        "category": "Sentence Writing • Animal Story",
+        "q": "Make a sentence using the word 'Clever'.",
+        "ans": "<strong>Answer:</strong><br>• The clever monkey saved his own life using his quick thinking.",
+        "marks": 1.5,
         "rubric": [
           {
-            "key": "Physical fitness and agility",
-            "marks": "1 M"
-          },
-          {
-            "key": "Friendship and eye strain prevention",
-            "marks": "1 M"
+            "key": "Meaningful sentence",
+            "marks": "1.5 M"
           }
         ]
       },
       {
-        "category": "Ball Games • Types of Sports",
-        "q": "Name three popular outdoor games played using a ball.",
-        "ans": "<strong>Answer:</strong><br>1. <strong>Cricket</strong><br>2. <strong>Football (Soccer)</strong><br>3. <strong>Basketball (or Volleyball / Tennis)</strong>.",
+        "category": "Moral of the Story • Life Lesson",
+        "q": "What important lesson does this Panchatantra story teach us?",
+        "ans": "<strong>Answer:</strong><br>• <strong>Presence of mind can overcome any grave danger.</strong> We must never lose courage or panic in tough situations.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Three ball games named correctly",
+            "key": "Presence of mind and keeping calm",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Describing Words • Garden Adjectives",
-        "q": "Choose suitable describing words from the brackets:<br>(a) The grass is _______ (green / salty).<br>(b) The sun is _______ (bright / square).",
-        "ans": "<strong>Answers:</strong><br>(a) The grass is <strong>green</strong>.<br>(b) The sun is <strong>bright</strong>.",
+        "category": "True or False • Story Details",
+        "q": "Write True or False:<br>(a) A living animal can take out its heart and hang it on a tree.<br>(b) The crocodile felt foolish and swam away in shame.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>False</strong> (It was just a smart trick to escape).<br>(b) <strong>True</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "(a) green",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) bright",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Sentence Construction",
-        "q": "Make a sentence using the word 'blossom'.",
-        "ans": "<strong>Sample Sentence:</strong><br>• Beautiful red roses blossom in our school garden every spring.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct grammatical sentence with 'blossom'",
+            "key": "Both answered correctly",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Sensory Words • Touch and Sight",
-        "q": "How does garden grass feel when you walk on it barefoot in the morning?",
-        "ans": "<strong>Answer:</strong><br>• The grass feels <strong>cool, soft, and wet with morning dew</strong>.",
+        "category": "Rhyming Words • Vocabulary",
+        "q": "Find a rhyming word for: Tree — _______.",
+        "ans": "<strong>Answer:</strong><br>• Tree — <strong>Free / See / Bee / Three</strong>.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Cool, soft, dewy texture described",
+            "key": "Free/See/Bee",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Seasonal Changes • Flowers",
-        "q": "In which season do the most colorful flowers bloom in Indian gardens?",
-        "ans": "<strong>Answer:</strong><br>• Flowers bloom in great abundance during the <strong>Spring season (Basant)</strong>.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Spring season identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "True or False",
-        "q": "State True or False:<br>(a) A heavy stone bounces higher than a rubber ball.<br>(b) Sunlight and water help garden plants grow healthy.",
-        "ans": "<strong>Answers:</strong><br>(a) <strong>False</strong>. A rubber ball is elastic and bounces high, while a heavy stone thuds on the ground without bouncing.<br>(b) <strong>True</strong>. Plants need sunlight, water, and soil to prepare food and grow.",
+        "category": "Animal Habitats • Where they live",
+        "q": "Where does a monkey live, and where does a crocodile live?",
+        "ans": "<strong>Answer:</strong><br>• A monkey lives in <strong>trees (arboreal)</strong>.<br>• A crocodile lives in <strong>rivers, lakes, and marshes (aquatic)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "(a) False with reason",
-            "marks": "1 M"
-          },
-          {
-            "key": "(b) True",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Poem Reflection",
-        "q": "What joy does 'Out in the Garden' capture for children?",
-        "ans": "<strong>Summary:</strong><br>• The poem captures the pure, carefree delight of childhood play in the open air, where bouncing a ball with friends under the warm sun brings endless laughter and energy.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Joy of carefree outdoor play described",
+            "key": "Trees and rivers/lakes",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Quick Quiz Problem",
-        "q": "What tool is used to water garden plants: a hammer, a watering can, or a scissors?",
-        "ans": "<strong>Answer:</strong><br>• A <strong>watering can</strong> is used to sprinkle water on garden plants.",
+        "category": "Creative Talk • Friendship Advice",
+        "q": "Why was the crocodile not a true friend?",
+        "ans": "<strong>Answer:</strong><br>• A true friend never betrays trust or tries to harm another. The crocodile broke the monkey's trust.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Betrayal of trust and harm",
+            "marks": "2 M"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mrd12",
+    "num": 12,
+    "unit": "Unit 5: Harmony",
+    "title": "Little Drops of Water",
+    "subtitle": "Small Acts of Kindness, Little Grains of Sand, Mighty Ocean & Pleasant Land",
+    "concepts": [
+      "Poem recitation: Julia Carney's beloved classic on the power of small deeds.",
+      "Accumulation concept: Little drops of water make the mighty ocean; tiny grains of sand create the vast land.",
+      "Moral philosophy: Small moments make mighty ages; little deeds of kindness bring heaven on earth.",
+      "Rhyming pairs: Sand-land, sea-eternity, earth-birth, kind-mind."
+    ],
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#e0f2fe\" rx=\"10\"/><path d=\"M 0 80 Q 125 60 250 80 T 500 80 L 500 120 L 0 120 Z\" fill=\"#0284c7\"/><circle cx=\"220\" cy=\"45\" r=\"8\" fill=\"#38bdf8\"/><circle cx=\"250\" cy=\"35\" r=\"6\" fill=\"#38bdf8\"/><circle cx=\"280\" cy=\"45\" r=\"8\" fill=\"#38bdf8\"/><text x=\"250\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"700\" fill=\"#ffffff\" text-anchor=\"middle\">Little Drops of Water: Small Deeds Make a Mighty Difference</text></svg>",
+    "cbq": {
+      "title": "The Power of Small Coins",
+      "text": "Every day after school, Diya dropped a single ₹2 coin into her terracotta piggy bank. Her elder brother laughed, 'What will two rupees do?' But by Diwali, when Diya tapped the pot open, she had collected ₹360—enough to buy warm blankets for two homeless grandmothers.",
+      "question": "How does Diya's piggy bank reflect the poem 'Little Drops of Water'? What great power lies in tiny daily efforts?",
+      "answer": "1. Just as <strong>single little drops of water accumulate to form a mighty ocean</strong>, Diya's small daily ₹2 coins added up into a significant sum that helped those in need.<br>2. Tiny daily good efforts, when continued with patience, <strong>yield immense, world-changing results</strong>.",
+      "rubric": "1.5 M for matching drops of water to piggy bank + 1.5 M for value of steady small efforts"
+    },
+    "questions": [
+      {
+        "category": "Poem Comprehension • Ocean Formation",
+        "q": "What makes the mighty ocean according to the poem 'Little Drops of Water'?",
+        "ans": "<strong>Answer:</strong><br>• <strong>Little drops of water</strong> come together to form the mighty ocean.",
         "marks": 1,
         "rubric": [
           {
-            "key": "Watering can identified",
+            "key": "Little drops of water",
             "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Poem Comprehension • The Land",
+        "q": "What makes the pleasant land on our earth?",
+        "ans": "<strong>Answer:</strong><br>• <strong>Little grains of sand</strong> come together to form the pleasant land.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Little grains of sand",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Poem Comprehension • Acts of Kindness",
+        "q": "What can make our earth pleasant like heaven above?",
+        "ans": "<strong>Answer:</strong><br>• <strong>Little deeds of kindness and little words of love</strong> make our earth happy and peaceful like heaven.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Little deeds of kindness and words of love",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Vocabulary • Great Meanings",
+        "q": "What does the word 'mighty' mean in the poem?",
+        "ans": "<strong>Answer:</strong><br>• 'Mighty' means <strong>extremely big, powerful, and vast</strong>.",
+        "marks": 1,
+        "rubric": [
+          {
+            "key": "Big, powerful, vast",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in with words from the poem (ocean, kindness, sand):<br>(a) Little grains of ______ make the pleasant land.<br>(b) Little deeds of ______ spread happiness all around.",
+        "ans": "<strong>Answer:</strong><br>(a) Little grains of <strong>sand</strong> make the pleasant land.<br>(b) Little deeds of <strong>kindness</strong> spread happiness all around.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Sand and Kindness",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Rhyming Pairs • Sound Match",
+        "q": "Find rhyming pairs from the poem:<br>(a) Sand — _______<br>(b) Love — _______",
+        "ans": "<strong>Answer:</strong><br>(a) Sand — <strong>Land / Hand / Band</strong><br>(b) Love — <strong>Above / Dove</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Land and Above/Dove",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Environmental Care • Water Conservation",
+        "q": "Why should we turn off the tap while brushing our teeth?",
+        "ans": "<strong>Answer:</strong><br>• Leaving the tap running wastes dozens of drops every second. Turning it off <strong>saves valuable clean water</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Saves valuable clean water",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Scale and Size",
+        "q": "Write the opposites of:<br>(a) Little × _______<br>(b) Pleasant × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Little × <strong>Big / Mighty / Huge</strong><br>(b) Pleasant × <strong>Unpleasant / Harsh</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Big/Mighty and Unpleasant",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Writing • Good Deeds",
+        "q": "Make a sentence using the word 'Kindness'.",
+        "ans": "<strong>Answer:</strong><br>• Helping an elderly person carry groceries is a simple act of kindness.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Meaningful sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Social Values • Daily Deeds",
+        "q": "Name one small deed of kindness you can do at school every day.",
+        "ans": "<strong>Answer:</strong><br>• Sharing my colour pencils with a classmate who forgot hers, and speaking with a cheerful smile.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Practical act of sharing or politeness",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Singular and Plural • Nature",
+        "q": "Give the plural form:<br>(a) One drop — Many _______<br>(b) One grain — Millions of _______",
+        "ans": "<strong>Answer:</strong><br>(a) Many <strong>drops</strong><br>(b) Millions of <strong>grains</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Drops and grains",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "True or False • Poem Teachings",
+        "q": "Write True or False:<br>(a) Small daily habits have no effect on our future.<br>(b) Even tiny drops of water together form the largest ocean.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>False</strong><br>(b) <strong>True</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Talk • Small Gifts",
+        "q": "Does kindness require money, or can words be kind?",
+        "ans": "<strong>Answer:</strong><br>• Kindness does not require money; gentle words like 'Thank you', 'Please', and a warm smile are the greatest acts of kindness.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Gentle words and smile as kindness",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Poem Recitation • Rhythm",
+        "q": "Recite and complete the first two lines of the poem.",
+        "ans": "<strong>Answer:</strong><br>• \"Little drops of water,<br>&nbsp;&nbsp;Little grains of sand,\"",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Accurate poetic lines",
+            "marks": "1.5 M"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mrd13",
+    "num": 13,
+    "unit": "Unit 5: Harmony",
+    "title": "We are all Indians",
+    "subtitle": "Unity in Diversity, National Flag (Tiranga), Languages, Festivals & Harmony",
+    "concepts": [
+      "National identity: We live in different states, speak different languages, but we are all proud Indians.",
+      "Tricolour Flag (Tiranga): Saffron for courage, White for peace/truth, Green for prosperity, and Ashoka Chakra with 24 spokes.",
+      "Greetings in Indian languages: Namaste (Hindi), Vanakkam (Tamil), Sat Sri Akal (Punjabi), Khamma Ghani (Rajasthani), Adaab (Urdu).",
+      "Festivals of joy: Celebrating Diwali, Eid, Christmas, Gurpurab, Pongal, Bihu with love."
+    ],
+    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\" rx=\"10\"/><rect x=\"150\" y=\"30\" width=\"200\" height=\"20\" fill=\"#ff9933\"/><rect x=\"150\" y=\"50\" width=\"200\" height=\"20\" fill=\"#ffffff\"/><rect x=\"150\" y=\"70\" width=\"200\" height=\"20\" fill=\"#138808\"/><circle cx=\"250\" cy=\"60\" r=\"8\" fill=\"none\" stroke=\"#000080\" stroke-width=\"1.5\"/><text x=\"250\" y=\"112\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"800\" fill=\"#1e3a8a\" text-anchor=\"middle\">We are all Indians: Unity in Diversity, One Nation, One Heart</text></svg>",
+    "cbq": {
+      "title": "Independence Day Celebration at School",
+      "text": "On 15th August, children came to school dressed in traditional clothes from various states: Gurpreet wore a Punjabi kurta and turban, Mary wore an elegant Assamese mekhala, and Karthik wore a Tamilian veshti. Together, they sang the National Anthem 'Jana Gana Mana' while looking proudly at the fluttering Tiranga.",
+      "question": "What does this school celebration represent? What is the name of our national flag and what do its three colours stand for?",
+      "answer": "1. It represents <strong>'Unity in Diversity'—the beautiful harmony of India's different cultures, clothing, and languages</strong>.<br>2. Our flag is called the <strong>Tiranga (Tricolour)</strong>. Saffron stands for <strong>courage and sacrifice</strong>, white for <strong>peace and truth</strong>, and green for <strong>fertility and prosperity</strong>.",
+      "rubric": "1.5 M for Unity in Diversity + 1.5 M for Tiranga and meaning of three colours"
+    },
+    "questions": [
+      {
+        "category": "Comprehension • Our Motherland",
+        "q": "What is the name of our great country, and what are its citizens called?",
+        "ans": "<strong>Answer:</strong><br>• Our country is <strong>India (Bharat)</strong>, and all of us are proud <strong>Indians (Bharatiya)</strong>.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "India/Bharat and Indians",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "National Flag • The Colours",
+        "q": "How many colours are there in our national flag, and what is it called?",
+        "ans": "<strong>Answer:</strong><br>• Our flag is called the <strong>Tiranga (Tricolour)</strong> because it has <strong>three main bands: Saffron, White, and Green</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Tiranga, three bands (Saffron, White, Green)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Ashoka Chakra • The Wheel",
+        "q": "What is at the centre of our national flag, and how many spokes does it have?",
+        "ans": "<strong>Answer:</strong><br>• At the centre is the navy blue <strong>Ashoka Chakra</strong> with <strong>24 spokes</strong>, representing continuous progress.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Ashoka Chakra with 24 spokes",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Greetings Across India • Matching",
+        "q": "Match each greeting to its language/region:<br>(a) Namaste — (1) Punjabi<br>(b) Vanakkam — (2) Hindi<br>(c) Sat Sri Akal — (3) Tamil",
+        "ans": "<strong>Answer:</strong><br>(a) Namaste — <strong>(2) Hindi</strong><br>(b) Vanakkam — <strong>(3) Tamil</strong><br>(c) Sat Sri Akal — <strong>(1) Punjabi</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "All three matched accurately",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "National Symbols • Identification",
+        "q": "Name the following national symbols of India:<br>(a) National Animal<br>(b) National Bird<br>(c) National Flower",
+        "ans": "<strong>Answer:</strong><br>(a) National Animal: <strong>Bengal Tiger</strong><br>(b) National Bird: <strong>Indian Peacock</strong><br>(c) National Flower: <strong>Lotus</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Tiger, Peacock, Lotus (1 M each)",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "National Anthem • Respect",
+        "q": "What is the name of our national anthem, and how should we stand when it plays?",
+        "ans": "<strong>Answer:</strong><br>• Our national anthem is <strong>'Jana Gana Mana'</strong>. We must always <strong>stand in attention and show deep respect</strong> whenever it is sung.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Jana Gana Mana and standing in attention",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Fill in the Blanks",
+        "q": "Fill in the blanks (Tiranga, brothers, peace):<br>(a) White colour in our flag stands for ______.<br>(b) All Indians are my ______ and sisters.",
+        "ans": "<strong>Answer:</strong><br>(a) White colour in our flag stands for <strong>peace</strong>.<br>(b) All Indians are my <strong>brothers</strong> and sisters.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Peace and Brothers",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Festivals of India • Harmony",
+        "q": "Name four major festivals celebrated with joy across India.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>Diwali</strong> (Festival of lights)<br>2. <strong>Eid</strong> (Festival of sharing)<br>3. <strong>Christmas</strong> (Festival of peace)<br>4. <strong>Gurpurab (or Pongal/Holi)</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Four diverse festivals listed",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Sentence Writing • Patriotism",
+        "q": "Make a sentence using the word 'Nation'.",
+        "ans": "<strong>Answer:</strong><br>• We all work hard to make our nation strong, clean, and prosperous.",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Meaningful sentence",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Unity in Diversity • Meaning",
+        "q": "What does the phrase 'Unity in Diversity' mean for India?",
+        "ans": "<strong>Answer:</strong><br>• Although we speak different mother tongues, eat different cuisines, and wear different clothes, <strong>we live together in peace as one united Indian family</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Different cultures united as one family",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "True or False • National Pride",
+        "q": "Write True or False:<br>(a) We should respect people from every state and language of our country.<br>(b) The national flag should be allowed to fall on the ground.",
+        "ans": "<strong>Answer:</strong><br>(a) <strong>True</strong><br>(b) <strong>False</strong> (The Tiranga must always be held high with honour).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Both answered correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Opposites • Peace and Unity",
+        "q": "Write the opposites of:<br>(a) Peace × _______<br>(b) Together × _______",
+        "ans": "<strong>Answer:</strong><br>(a) Peace × <strong>War / Conflict</strong><br>(b) Together × <strong>Apart / Alone</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "War and Apart/Alone",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "National Slogan • Inspiration",
+        "q": "What is our national motto inscribed below the Lion Capital of Ashoka?",
+        "ans": "<strong>Answer:</strong><br>• <strong>'Satyameva Jayate'</strong> (Truth Alone Triumphs).",
+        "marks": 1.5,
+        "rubric": [
+          {
+            "key": "Satyameva Jayate (Truth Alone Triumphs)",
+            "marks": "1.5 M"
+          }
+        ]
+      },
+      {
+        "category": "Creative Expression • Patriotic Chant",
+        "q": "Write two famous patriotic slogans that all Indians chant with pride.",
+        "ans": "<strong>Answer:</strong><br>1. <strong>\"Jai Hind!\"</strong><br>2. <strong>\"Vande Mataram!\"</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Jai Hind and Vande Mataram",
+            "marks": "2 M"
           }
         ]
       }

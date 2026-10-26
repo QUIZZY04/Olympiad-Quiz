@@ -1,7 +1,7 @@
 // scripts/build-all-c2-modules.js
-// Generates all 120 Standalone Chapter Modules for Class 2 across 4 Subjects:
+// Generates all 124 Standalone Chapter Modules for Class 2 across 4 Subjects:
 // 1. Mathematics: Joyful Mathematics (11 Ch) + Math-Magic (15 Ch) = 26 Ch
-// 2. English: Mridang (9 Ch) + Marigold (20 Ch) = 29 Ch
+// 2. English: Mridang (13 Ch) + Marigold (20 Ch) = 33 Ch
 // 3. Hindi: Sarangi (26 Ch) + Rimjhim (15 Ch) = 41 Ch
 // 4. EVS: Living World (12 Ch) + Surroundings (12 Ch) = 24 Ch
 
@@ -106,7 +106,7 @@ buildTrack({
   filePrefix: 'math-magic'
 });
 
-// 2. ENGLISH (29 Ch)
+// 2. ENGLISH (33 Ch)
 buildTrack({
   chapters: mridangChapters,
   subjectName: 'English',
@@ -176,5 +176,5 @@ buildTrack({
 });
 
 console.log("\n=======================================================");
-console.log("✅ ALL 120 CLASS 2 STANDALONE MODULES GENERATED!");
+console.log("✅ ALL 124 CLASS 2 STANDALONE MODULES GENERATED!");
 console.log("=======================================================");

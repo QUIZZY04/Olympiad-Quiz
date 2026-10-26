@@ -6,7 +6,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 
-// 1. DATASETS IMPORT (ALL 8 TEXTBOOKS, 120 CHAPTERS, 1,742 QUESTIONS)
+// 1. DATASETS IMPORT (ALL 8 TEXTBOOKS, 124 CHAPTERS, 1,958 VERBATIM QUESTIONS)
 const { joyfulMathsChapters } = require('./data-c2-maths/joyfulMathsData.js');
 const { mathMagicChapters } = require('./data-c2-maths/mathMagicData.js');
 
@@ -790,7 +790,7 @@ const englishHtml = buildSubjectHub({
   track1: {
     name: 'Mridang',
     code: 'mridang',
-    label: '📘 Mridang (NEP 2020) — 9 Chapters',
+    label: '📘 Mridang (NEP 2020) — 13 Chapters',
     tabLabel: '📘 Mridang',
     chapters: mridangChapters,
     dir: 'chapters-c2e',
@@ -805,12 +805,12 @@ const englishHtml = buildSubjectHub({
     dir: 'chapters-c2e',
     prefix: 'marigold'
   },
-  metaDesc: '100% Complete NCERT Solutions for Class 2 English covering Mridang (9 Ch) & Marigold Book 2 (20 Ch) with reading comprehension, rhyming words, grammar worksheets, and CBSE step marking rubrics.',
+  metaDesc: '100% Complete NCERT Solutions for Class 2 English covering Mridang (13 Ch) & Marigold Book 2 (20 Ch) with reading comprehension, rhyming words, grammar worksheets, and CBSE step marking rubrics.',
   keywords: 'ncert solutions class 2 english, mridang class 2 solutions, marigold class 2 ncert, my bicycle class 2, picture reading class 2, first day at school class 2, haldis adventure, cbse class 2 english 2026-27',
   faqItems: [
     {
       q: 'Which textbooks are covered under Class 2 NCERT English?',
-      a: 'Both official NCERT Class 2 English textbooks are fully covered: the new NEP 2020 textbook Mridang (9 chapters) and the classic CBSE textbook Marigold Book 2 (20 chapters).'
+      a: 'Both official NCERT Class 2 English textbooks are fully covered: the new NEP 2020 textbook Mridang (13 chapters) and the classic CBSE textbook Marigold Book 2 (20 chapters).'
     },
     {
       q: 'Are rhyming words, sight words, and phonetic drills included?',
