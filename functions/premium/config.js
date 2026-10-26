@@ -37,6 +37,12 @@ const ABANDON_VOID_WINDOW_MINUTES = 2;   // an attempt with 0 answers older than
 // Razorpay Orders paywall and are deliberately NOT double-gated here.
 const RATE_LIMITED_TEST_TYPES = ["chapterwise", "mock", "hots"];
 
+// Silver is the one paid tier that still has a (short) wait between tests -
+// Gold and Diamond remain fully wait-free. This is a deliberate product
+// differentiator, not a technical limit: Silver's test *count* is still
+// unlimited, only the pacing between consecutive attempts is gated.
+const SILVER_COOLDOWN_MINUTES = 60;
+
 // ---------------------------------------------------------------------
 // Premium subscription - three autopay tiers that differ only in billing
 // length (1 / 3 / 6 months) and perks; all three grant the same fully
@@ -126,6 +132,7 @@ module.exports = {
   IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
+  SILVER_COOLDOWN_MINUTES,
   PREMIUM_TIERS,
   LIVE_TEST_MONTHLY_CREDITS,
   LIVE_TEST_CREDIT_VALUE_INR,

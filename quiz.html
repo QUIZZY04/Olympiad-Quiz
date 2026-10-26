@@ -1321,7 +1321,7 @@ onAuthStateChanged(auth, async(user)=>{
             // whole gate fresh rather than trying to resume mid-flow,
             // simplest way to guarantee a clean state either way.
             onResolved: () => window.location.reload()
-        });
+        }, gateResult.isPremium === true);
         return;
     }
     if (gateResult) {
