@@ -753,6 +753,7 @@
         <a href="ncert-solutions.html" class="nav-link active">NCERT Solutions <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;"><path d="m6 9 6 6 6-6"/></svg></a>
         <div class="nav-dropdown-content">
           <a href="ncert-solutions.html" style="font-weight:700;color:#ff6b00;">📚 All NCERT Hub</a>
+          <a href="ncert-solutions-class-1.html"><strong>Class 1 Solutions ✨</strong></a>
           <a href="ncert-solutions-class-2.html"><strong>Class 2 Solutions ✨</strong></a>
           <a href="ncert-solutions-class-3.html"><strong>Class 3 Solutions ✨</strong></a>
           <a href="ncert-solutions-class-4.html">Class 4 Solutions</a>
@@ -818,6 +819,7 @@
         <div class="select-wrapper">
           <select class="custom-select" id="classSelect" onchange="onClassChange()" aria-label="Select Class">
             <option value="" disabled selected>-- Choose Class --</option>
+            <option value="1">Class 1</option>
             <option value="2">Class 2</option>
             <option value="3">Class 3</option>
             <option value="4">Class 4</option>
@@ -923,6 +925,7 @@
         <div class="faq-answer">
           <p>OlympiadQuiz offers comprehensive, 100% textbook question coverage for <strong>Classes 2, 3, 4, 5, 6, 7, 8, 9, and 10</strong> across all core CBSE subjects:</p>
           <ul>
+            <li><strong>Class 1:</strong> Mathematics (Joyful Mathematics &amp; Math-Magic Book 1), English (Mridang &amp; Marigold Book 1), Hindi (सारंगी - Sarangi &amp; रिमझिम - Rimjhim), and Environmental Studies (Our Living World &amp; Surroundings) — All 117 Chapters strictly covered with 100% question coverage, CBSE rubrics &amp; NEP 2020 Case Studies.</li>
             <li><strong>Class 2:</strong> Mathematics (Joyful Mathematics &amp; Math-Magic Book 2), English (Mridang &amp; Marigold Book 2), Hindi (सारंगी - Sarangi &amp; रिमझिम - Rimjhim), and Environmental Studies (Our Living World &amp; Surroundings) — All 120 Chapters strictly covered with 100% question coverage, CBSE rubrics &amp; NEP 2020 Case Studies.</li>
             <li><strong>Class 3:</strong> Mathematics (Maths Mela &amp; Math-Magic), English (Santoor &amp; Marigold), Hindi (वीणा - Veena &amp; रिमझिम - Rimjhim), and The World Around Us / EVS (Our Wondrous World &amp; Looking Around) — All 118 Chapters strictly covered.</li>
             <li><strong>Class 4:</strong> Mathematics (Maths Mela &amp; Math-Magic), English (Santoor &amp; Marigold), Hindi (वीणा - Veena &amp; रिमझिम - Rimjhim), and The World Around Us / EVS (Our Wondrous World &amp; Looking Around) — All 114 Chapters strictly covered.</li>
@@ -1259,7 +1262,8 @@
   function initFromHash() {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     let classVal = '';
-    if (hash === 'class2' || hash === '2') classVal = '2';
+    if (hash === 'class1' || hash === '1') classVal = '1';
+    else if (hash === 'class2' || hash === '2') classVal = '2';
     else if (hash === 'class3' || hash === '3') classVal = '3';
     else if (hash === 'class4' || hash === '4') classVal = '4';
     else if (hash === 'class5' || hash === '5') classVal = '5';
