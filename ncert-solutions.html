@@ -1057,6 +1057,16 @@
 
   // Data mapping: Class -> Available Subjects with URLs
   const ncertSolutionsMap = {
+    "1": {
+      name: "Class 1",
+      hubUrl: "ncert-solutions-class-1.html",
+      subjects: [
+        { name: "Mathematics (Joyful Mathematics & Math-Magic)", url: "ncert-solutions-class-1-maths.html" },
+        { name: "English (Mridang & Marigold)", url: "ncert-solutions-class-1-english.html" },
+        { name: "Hindi (सारंगी - Sarangi & रिमझिम - Rimjhim)", url: "ncert-solutions-class-1-hindi.html" },
+        { name: "Environmental Studies / EVS (Our Living World & Surroundings)", url: "ncert-solutions-class-1-evs.html" }
+      ]
+    },
     "2": {
       name: "Class 2",
       hubUrl: "ncert-solutions-class-2.html",
@@ -1168,14 +1178,23 @@
     subjectSelect.innerHTML = '';
 
     if (selectedClass && ncertSolutionsMap[selectedClass]) {
-      const subjects = ncertSolutionsMap[selectedClass].subjects;
-      subjects.forEach((sub, idx) => {
+      const classInfo = ncertSolutionsMap[selectedClass];
+      const subjects = classInfo.subjects;
+
+      // Add "All Subjects (Class X Hub)" as the first option
+      const optAll = document.createElement('option');
+      optAll.value = classInfo.hubUrl || ('ncert-solutions-class-' + selectedClass + '.html');
+      optAll.textContent = 'All Subjects (' + classInfo.name + ' Hub)';
+      subjectSelect.appendChild(optAll);
+
+      // Add each subject
+      subjects.forEach((sub) => {
         const opt = document.createElement('option');
         opt.value = sub.url;
         opt.textContent = sub.name;
-        if (idx === 0) opt.selected = true; // Auto-select primary subject (Mathematics)
         subjectSelect.appendChild(opt);
       });
+
       // Update URL hash smoothly without jumping
       history.replaceState(null, null, '#class' + selectedClass);
     } else {
@@ -1217,36 +1236,39 @@
     }
 
     const classInfo = ncertSolutionsMap[classVal];
+    if (!classInfo) {
+      showAlert('Solutions for Class ' + classVal + ' are currently being updated.');
+      return;
+    }
 
-    // If subject is missing or "all", default directly to primary subject solutions (e.g. Maths)
+    // If subject is missing or "all", default to class hub or first subject
     if (!subjectVal || subjectVal === 'all') {
-      if (classInfo && classInfo.subjects.length > 0) {
-        subjectVal = classInfo.subjects[0].url;
-      } else {
-        showAlert('Please select a Subject to continue.');
-        subjectSelect.focus();
-        return;
-      }
+      window.location.href = classInfo.hubUrl || classInfo.subjects[0].url;
+      return;
     }
 
-    // Specific subject navigation
-    let targetUrl = subjectVal;
-    if (!targetUrl.endsWith('.html')) {
-      if (classInfo) {
-        const match = classInfo.subjects.find(s => s.url.includes(targetUrl));
-        if (match) {
-          targetUrl = match.url;
-        } else {
-          targetUrl = classInfo.subjects[0].url;
-        }
-      } else {
-        showAlert('This subject is not available for Class ' + classVal + '. Please choose another.');
-        return;
-      }
+    // If the subject value is already a full URL (.html), navigate directly
+    if (subjectVal.endsWith('.html')) {
+      window.location.href = subjectVal;
+      return;
     }
 
-    // Direct 1-click navigation to the solutions page
-    window.location.href = targetUrl;
+    // Otherwise, match generic key (maths, english, hindi, evs, science, sst, etc.)
+    const cleanKey = subjectVal.toLowerCase();
+    const match = classInfo.subjects.find(s => {
+      const u = s.url.toLowerCase();
+      if (cleanKey === 'evs') return u.includes('-evs.') || u.includes('-science.');
+      if (cleanKey === 'sst') return u.includes('-sst.') || u.includes('-social-science.');
+      return u.includes('-' + cleanKey + '.');
+    });
+
+    if (match) {
+      window.location.href = match.url;
+    } else if (classInfo.hubUrl) {
+      window.location.href = classInfo.hubUrl;
+    } else {
+      showAlert('Subject not available for Class ' + classVal + '. Please choose another.');
+    }
   }
 
   function showAlert(msg) {
