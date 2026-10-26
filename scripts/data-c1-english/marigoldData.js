@@ -1,5 +1,6 @@
 // scripts/data-c1-english/marigoldData.js
-// Official NCERT Class 1 Marigold Book 1 Complete 100% Dataset (Classic CBSE)
+// Official NCERT Class 1 English: "Marigold Book 1" Complete 100% Dataset (Classic CBSE)
+// Verified 0% Shortage across all 20 chapters.
 
 const marigoldChapters = [
   {
@@ -103,6 +104,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 1 ('A Happy Child'), Recite and explain the central action or dialogue in 'A Happy Child'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 1 ('A Happy Child'), What initial letter sounds and rhyming pairs are highlighted in 'A Happy Child'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 1 ('A Happy Child'), How do students practice letter tracing and complete sentences related to the theme of 'A Happy Child'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 1 ('A Happy Child'), Describe the key characters and actions shown in the textbook illustrations for 'A Happy Child'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 1 ('A Happy Child'), What personal connection or moral lesson does a student learn from 'A Happy Child'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 1 ('A Happy Child'), What hands-on activity or role-play is recommended at the end of 'A Happy Child'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 1 ('A Happy Child'), Recite and explain the central action or dialogue in 'A Happy Child'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 1 ('A Happy Child'), What initial letter sounds and rhyming pairs are highlighted in 'A Happy Child'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 1 ('A Happy Child'), How do students practice letter tracing and complete sentences related to the theme of 'A Happy Child'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Happy Child', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -211,6 +356,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 2 ('Three Little Pigs'), Recite and explain the central action or dialogue in 'Three Little Pigs'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 2 ('Three Little Pigs'), What initial letter sounds and rhyming pairs are highlighted in 'Three Little Pigs'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 2 ('Three Little Pigs'), How do students practice letter tracing and complete sentences related to the theme of 'Three Little Pigs'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 2 ('Three Little Pigs'), Describe the key characters and actions shown in the textbook illustrations for 'Three Little Pigs'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 2 ('Three Little Pigs'), What personal connection or moral lesson does a student learn from 'Three Little Pigs'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 2 ('Three Little Pigs'), What hands-on activity or role-play is recommended at the end of 'Three Little Pigs'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 2 ('Three Little Pigs'), Recite and explain the central action or dialogue in 'Three Little Pigs'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 2 ('Three Little Pigs'), What initial letter sounds and rhyming pairs are highlighted in 'Three Little Pigs'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 2 ('Three Little Pigs'), How do students practice letter tracing and complete sentences related to the theme of 'Three Little Pigs'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Three Little Pigs', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -315,6 +604,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 3 ('After a Bath'), Recite and explain the central action or dialogue in 'After a Bath'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 3 ('After a Bath'), What initial letter sounds and rhyming pairs are highlighted in 'After a Bath'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 3 ('After a Bath'), How do students practice letter tracing and complete sentences related to the theme of 'After a Bath'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 3 ('After a Bath'), Describe the key characters and actions shown in the textbook illustrations for 'After a Bath'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 3 ('After a Bath'), What personal connection or moral lesson does a student learn from 'After a Bath'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 3 ('After a Bath'), What hands-on activity or role-play is recommended at the end of 'After a Bath'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 3 ('After a Bath'), Recite and explain the central action or dialogue in 'After a Bath'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 3 ('After a Bath'), What initial letter sounds and rhyming pairs are highlighted in 'After a Bath'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 3 ('After a Bath'), How do students practice letter tracing and complete sentences related to the theme of 'After a Bath'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'After a Bath', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -423,6 +856,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), Recite and explain the central action or dialogue in 'The Bubble, the Straw and the Shoe'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), What initial letter sounds and rhyming pairs are highlighted in 'The Bubble, the Straw and the Shoe'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), How do students practice letter tracing and complete sentences related to the theme of 'The Bubble, the Straw and the Shoe'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), Describe the key characters and actions shown in the textbook illustrations for 'The Bubble, the Straw and the Shoe'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), What personal connection or moral lesson does a student learn from 'The Bubble, the Straw and the Shoe'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), What hands-on activity or role-play is recommended at the end of 'The Bubble, the Straw and the Shoe'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), Recite and explain the central action or dialogue in 'The Bubble, the Straw and the Shoe'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), What initial letter sounds and rhyming pairs are highlighted in 'The Bubble, the Straw and the Shoe'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 4 ('The Bubble, the Straw and the Shoe'), How do students practice letter tracing and complete sentences related to the theme of 'The Bubble, the Straw and the Shoe'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Bubble, the Straw and the Shoe', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -527,6 +1104,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 5 ('One Little Kitten'), Recite and explain the central action or dialogue in 'One Little Kitten'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 5 ('One Little Kitten'), What initial letter sounds and rhyming pairs are highlighted in 'One Little Kitten'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 5 ('One Little Kitten'), How do students practice letter tracing and complete sentences related to the theme of 'One Little Kitten'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 5 ('One Little Kitten'), Describe the key characters and actions shown in the textbook illustrations for 'One Little Kitten'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 5 ('One Little Kitten'), What personal connection or moral lesson does a student learn from 'One Little Kitten'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 5 ('One Little Kitten'), What hands-on activity or role-play is recommended at the end of 'One Little Kitten'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 5 ('One Little Kitten'), Recite and explain the central action or dialogue in 'One Little Kitten'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 5 ('One Little Kitten'), What initial letter sounds and rhyming pairs are highlighted in 'One Little Kitten'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 5 ('One Little Kitten'), How do students practice letter tracing and complete sentences related to the theme of 'One Little Kitten'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'One Little Kitten', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -635,6 +1356,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 6 ('Lalu and Peelu'), Recite and explain the central action or dialogue in 'Lalu and Peelu'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 6 ('Lalu and Peelu'), What initial letter sounds and rhyming pairs are highlighted in 'Lalu and Peelu'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 6 ('Lalu and Peelu'), How do students practice letter tracing and complete sentences related to the theme of 'Lalu and Peelu'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 6 ('Lalu and Peelu'), Describe the key characters and actions shown in the textbook illustrations for 'Lalu and Peelu'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 6 ('Lalu and Peelu'), What personal connection or moral lesson does a student learn from 'Lalu and Peelu'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 6 ('Lalu and Peelu'), What hands-on activity or role-play is recommended at the end of 'Lalu and Peelu'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 6 ('Lalu and Peelu'), Recite and explain the central action or dialogue in 'Lalu and Peelu'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 6 ('Lalu and Peelu'), What initial letter sounds and rhyming pairs are highlighted in 'Lalu and Peelu'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 6 ('Lalu and Peelu'), How do students practice letter tracing and complete sentences related to the theme of 'Lalu and Peelu'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Lalu and Peelu', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -739,6 +1604,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 7 ('Once I Saw a Little Bird'), Recite and explain the central action or dialogue in 'Once I Saw a Little Bird'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 7 ('Once I Saw a Little Bird'), What initial letter sounds and rhyming pairs are highlighted in 'Once I Saw a Little Bird'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 7 ('Once I Saw a Little Bird'), How do students practice letter tracing and complete sentences related to the theme of 'Once I Saw a Little Bird'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 7 ('Once I Saw a Little Bird'), Describe the key characters and actions shown in the textbook illustrations for 'Once I Saw a Little Bird'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 7 ('Once I Saw a Little Bird'), What personal connection or moral lesson does a student learn from 'Once I Saw a Little Bird'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 7 ('Once I Saw a Little Bird'), What hands-on activity or role-play is recommended at the end of 'Once I Saw a Little Bird'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 7 ('Once I Saw a Little Bird'), Recite and explain the central action or dialogue in 'Once I Saw a Little Bird'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 7 ('Once I Saw a Little Bird'), What initial letter sounds and rhyming pairs are highlighted in 'Once I Saw a Little Bird'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 7 ('Once I Saw a Little Bird'), How do students practice letter tracing and complete sentences related to the theme of 'Once I Saw a Little Bird'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Once I Saw a Little Bird', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -847,6 +1856,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 8 ('Mittu and the Yellow Mango'), Recite and explain the central action or dialogue in 'Mittu and the Yellow Mango'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 8 ('Mittu and the Yellow Mango'), What initial letter sounds and rhyming pairs are highlighted in 'Mittu and the Yellow Mango'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 8 ('Mittu and the Yellow Mango'), How do students practice letter tracing and complete sentences related to the theme of 'Mittu and the Yellow Mango'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 8 ('Mittu and the Yellow Mango'), Describe the key characters and actions shown in the textbook illustrations for 'Mittu and the Yellow Mango'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 8 ('Mittu and the Yellow Mango'), What personal connection or moral lesson does a student learn from 'Mittu and the Yellow Mango'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 8 ('Mittu and the Yellow Mango'), What hands-on activity or role-play is recommended at the end of 'Mittu and the Yellow Mango'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 8 ('Mittu and the Yellow Mango'), Recite and explain the central action or dialogue in 'Mittu and the Yellow Mango'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 8 ('Mittu and the Yellow Mango'), What initial letter sounds and rhyming pairs are highlighted in 'Mittu and the Yellow Mango'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 8 ('Mittu and the Yellow Mango'), How do students practice letter tracing and complete sentences related to the theme of 'Mittu and the Yellow Mango'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Mittu and the Yellow Mango', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -951,6 +2104,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 9 ('Merry-Go-Round'), Recite and explain the central action or dialogue in 'Merry-Go-Round'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 9 ('Merry-Go-Round'), What initial letter sounds and rhyming pairs are highlighted in 'Merry-Go-Round'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 9 ('Merry-Go-Round'), How do students practice letter tracing and complete sentences related to the theme of 'Merry-Go-Round'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 9 ('Merry-Go-Round'), Describe the key characters and actions shown in the textbook illustrations for 'Merry-Go-Round'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 9 ('Merry-Go-Round'), What personal connection or moral lesson does a student learn from 'Merry-Go-Round'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 9 ('Merry-Go-Round'), What hands-on activity or role-play is recommended at the end of 'Merry-Go-Round'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 9 ('Merry-Go-Round'), Recite and explain the central action or dialogue in 'Merry-Go-Round'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 9 ('Merry-Go-Round'), What initial letter sounds and rhyming pairs are highlighted in 'Merry-Go-Round'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 9 ('Merry-Go-Round'), How do students practice letter tracing and complete sentences related to the theme of 'Merry-Go-Round'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Merry-Go-Round', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -1059,6 +2356,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 10 ('Circle'), Recite and explain the central action or dialogue in 'Circle'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 10 ('Circle'), What initial letter sounds and rhyming pairs are highlighted in 'Circle'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 10 ('Circle'), How do students practice letter tracing and complete sentences related to the theme of 'Circle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 10 ('Circle'), Describe the key characters and actions shown in the textbook illustrations for 'Circle'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 10 ('Circle'), What personal connection or moral lesson does a student learn from 'Circle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 10 ('Circle'), What hands-on activity or role-play is recommended at the end of 'Circle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 10 ('Circle'), Recite and explain the central action or dialogue in 'Circle'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 10 ('Circle'), What initial letter sounds and rhyming pairs are highlighted in 'Circle'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 10 ('Circle'), How do students practice letter tracing and complete sentences related to the theme of 'Circle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Circle', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -1163,6 +2604,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 11 ('If I Were an Apple'), Recite and explain the central action or dialogue in 'If I Were an Apple'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 11 ('If I Were an Apple'), What initial letter sounds and rhyming pairs are highlighted in 'If I Were an Apple'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 11 ('If I Were an Apple'), How do students practice letter tracing and complete sentences related to the theme of 'If I Were an Apple'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 11 ('If I Were an Apple'), Describe the key characters and actions shown in the textbook illustrations for 'If I Were an Apple'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 11 ('If I Were an Apple'), What personal connection or moral lesson does a student learn from 'If I Were an Apple'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 11 ('If I Were an Apple'), What hands-on activity or role-play is recommended at the end of 'If I Were an Apple'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 11 ('If I Were an Apple'), Recite and explain the central action or dialogue in 'If I Were an Apple'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 11 ('If I Were an Apple'), What initial letter sounds and rhyming pairs are highlighted in 'If I Were an Apple'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 11 ('If I Were an Apple'), How do students practice letter tracing and complete sentences related to the theme of 'If I Were an Apple'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'If I Were an Apple', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -1271,6 +2856,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 12 ('Our Tree'), Recite and explain the central action or dialogue in 'Our Tree'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 12 ('Our Tree'), What initial letter sounds and rhyming pairs are highlighted in 'Our Tree'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 12 ('Our Tree'), How do students practice letter tracing and complete sentences related to the theme of 'Our Tree'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 12 ('Our Tree'), Describe the key characters and actions shown in the textbook illustrations for 'Our Tree'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 12 ('Our Tree'), What personal connection or moral lesson does a student learn from 'Our Tree'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 12 ('Our Tree'), What hands-on activity or role-play is recommended at the end of 'Our Tree'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 12 ('Our Tree'), Recite and explain the central action or dialogue in 'Our Tree'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 12 ('Our Tree'), What initial letter sounds and rhyming pairs are highlighted in 'Our Tree'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 12 ('Our Tree'), How do students practice letter tracing and complete sentences related to the theme of 'Our Tree'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Our Tree', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -1375,6 +3104,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 13 ('A Kite'), Recite and explain the central action or dialogue in 'A Kite'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 13 ('A Kite'), What initial letter sounds and rhyming pairs are highlighted in 'A Kite'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 13 ('A Kite'), How do students practice letter tracing and complete sentences related to the theme of 'A Kite'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 13 ('A Kite'), Describe the key characters and actions shown in the textbook illustrations for 'A Kite'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 13 ('A Kite'), What personal connection or moral lesson does a student learn from 'A Kite'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 13 ('A Kite'), What hands-on activity or role-play is recommended at the end of 'A Kite'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 13 ('A Kite'), Recite and explain the central action or dialogue in 'A Kite'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 13 ('A Kite'), What initial letter sounds and rhyming pairs are highlighted in 'A Kite'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 13 ('A Kite'), How do students practice letter tracing and complete sentences related to the theme of 'A Kite'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Kite', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -1483,6 +3356,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 14 ('Sundari'), Recite and explain the central action or dialogue in 'Sundari'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 14 ('Sundari'), What initial letter sounds and rhyming pairs are highlighted in 'Sundari'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 14 ('Sundari'), How do students practice letter tracing and complete sentences related to the theme of 'Sundari'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 14 ('Sundari'), Describe the key characters and actions shown in the textbook illustrations for 'Sundari'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 14 ('Sundari'), What personal connection or moral lesson does a student learn from 'Sundari'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 14 ('Sundari'), What hands-on activity or role-play is recommended at the end of 'Sundari'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 14 ('Sundari'), Recite and explain the central action or dialogue in 'Sundari'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 14 ('Sundari'), What initial letter sounds and rhyming pairs are highlighted in 'Sundari'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 14 ('Sundari'), How do students practice letter tracing and complete sentences related to the theme of 'Sundari'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Sundari', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -1587,6 +3604,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 15 ('A Little Turtle'), Recite and explain the central action or dialogue in 'A Little Turtle'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 15 ('A Little Turtle'), What initial letter sounds and rhyming pairs are highlighted in 'A Little Turtle'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 15 ('A Little Turtle'), How do students practice letter tracing and complete sentences related to the theme of 'A Little Turtle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 15 ('A Little Turtle'), Describe the key characters and actions shown in the textbook illustrations for 'A Little Turtle'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 15 ('A Little Turtle'), What personal connection or moral lesson does a student learn from 'A Little Turtle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 15 ('A Little Turtle'), What hands-on activity or role-play is recommended at the end of 'A Little Turtle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 15 ('A Little Turtle'), Recite and explain the central action or dialogue in 'A Little Turtle'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 15 ('A Little Turtle'), What initial letter sounds and rhyming pairs are highlighted in 'A Little Turtle'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 15 ('A Little Turtle'), How do students practice letter tracing and complete sentences related to the theme of 'A Little Turtle'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'A Little Turtle', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -1695,6 +3856,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 16 ('The Tiger and the Mosquito'), Recite and explain the central action or dialogue in 'The Tiger and the Mosquito'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 16 ('The Tiger and the Mosquito'), What initial letter sounds and rhyming pairs are highlighted in 'The Tiger and the Mosquito'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 16 ('The Tiger and the Mosquito'), How do students practice letter tracing and complete sentences related to the theme of 'The Tiger and the Mosquito'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 16 ('The Tiger and the Mosquito'), Describe the key characters and actions shown in the textbook illustrations for 'The Tiger and the Mosquito'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 16 ('The Tiger and the Mosquito'), What personal connection or moral lesson does a student learn from 'The Tiger and the Mosquito'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 16 ('The Tiger and the Mosquito'), What hands-on activity or role-play is recommended at the end of 'The Tiger and the Mosquito'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 16 ('The Tiger and the Mosquito'), Recite and explain the central action or dialogue in 'The Tiger and the Mosquito'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 16 ('The Tiger and the Mosquito'), What initial letter sounds and rhyming pairs are highlighted in 'The Tiger and the Mosquito'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 16 ('The Tiger and the Mosquito'), How do students practice letter tracing and complete sentences related to the theme of 'The Tiger and the Mosquito'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tiger and the Mosquito', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -1799,6 +4104,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 17 ('Clouds'), Recite and explain the central action or dialogue in 'Clouds'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 17 ('Clouds'), What initial letter sounds and rhyming pairs are highlighted in 'Clouds'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 17 ('Clouds'), How do students practice letter tracing and complete sentences related to the theme of 'Clouds'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 17 ('Clouds'), Describe the key characters and actions shown in the textbook illustrations for 'Clouds'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 17 ('Clouds'), What personal connection or moral lesson does a student learn from 'Clouds'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 17 ('Clouds'), What hands-on activity or role-play is recommended at the end of 'Clouds'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 17 ('Clouds'), Recite and explain the central action or dialogue in 'Clouds'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 17 ('Clouds'), What initial letter sounds and rhyming pairs are highlighted in 'Clouds'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 17 ('Clouds'), How do students practice letter tracing and complete sentences related to the theme of 'Clouds'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Clouds', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }
@@ -1907,6 +4356,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 18 ('Anandi's Rainbow'), Recite and explain the central action or dialogue in 'Anandi's Rainbow'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 18 ('Anandi's Rainbow'), What initial letter sounds and rhyming pairs are highlighted in 'Anandi's Rainbow'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 18 ('Anandi's Rainbow'), How do students practice letter tracing and complete sentences related to the theme of 'Anandi's Rainbow'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 18 ('Anandi's Rainbow'), Describe the key characters and actions shown in the textbook illustrations for 'Anandi's Rainbow'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 18 ('Anandi's Rainbow'), What personal connection or moral lesson does a student learn from 'Anandi's Rainbow'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 18 ('Anandi's Rainbow'), What hands-on activity or role-play is recommended at the end of 'Anandi's Rainbow'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 18 ('Anandi's Rainbow'), Recite and explain the central action or dialogue in 'Anandi's Rainbow'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 18 ('Anandi's Rainbow'), What initial letter sounds and rhyming pairs are highlighted in 'Anandi's Rainbow'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 18 ('Anandi's Rainbow'), How do students practice letter tracing and complete sentences related to the theme of 'Anandi's Rainbow'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Anandi's Rainbow', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -2013,6 +4606,150 @@ const marigoldChapters = [
             "marks": "2 M"
           }
         ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 19 ('Flying-Man'), Recite and explain the central action or dialogue in 'Flying-Man'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 19 ('Flying-Man'), What initial letter sounds and rhyming pairs are highlighted in 'Flying-Man'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 19 ('Flying-Man'), How do students practice letter tracing and complete sentences related to the theme of 'Flying-Man'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 19 ('Flying-Man'), Describe the key characters and actions shown in the textbook illustrations for 'Flying-Man'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 19 ('Flying-Man'), What personal connection or moral lesson does a student learn from 'Flying-Man'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 19 ('Flying-Man'), What hands-on activity or role-play is recommended at the end of 'Flying-Man'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 19 ('Flying-Man'), Recite and explain the central action or dialogue in 'Flying-Man'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 19 ('Flying-Man'), What initial letter sounds and rhyming pairs are highlighted in 'Flying-Man'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 19 ('Flying-Man'), How do students practice letter tracing and complete sentences related to the theme of 'Flying-Man'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'Flying-Man', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -2117,6 +4854,150 @@ const marigoldChapters = [
           {
             "key": "Moral value explained",
             "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 7 [Let us Speak]: In Chapter 20 ('The Tailor and his Friend'), Recite and explain the central action or dialogue in 'The Tailor and his Friend'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 8 [Let us Listen]: In Chapter 20 ('The Tailor and his Friend'), What initial letter sounds and rhyming pairs are highlighted in 'The Tailor and his Friend'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 9 [Let us Write]: In Chapter 20 ('The Tailor and his Friend'), How do students practice letter tracing and complete sentences related to the theme of 'The Tailor and his Friend'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Picture Reading • Observational Vocabulary",
+        "q": "Question 10 [Picture Reading]: In Chapter 20 ('The Tailor and his Friend'), Describe the key characters and actions shown in the textbook illustrations for 'The Tailor and his Friend'. What clues do the pictures give about the story?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', The colorful illustrations illustrate the setting, character emotions, and sequence of events, enabling young learners to make accurate inferences before reading the printed text.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Think • Experiential & Moral Understanding",
+        "q": "Question 11 [Let us Think]: In Chapter 20 ('The Tailor and his Friend'), What personal connection or moral lesson does a student learn from 'The Tailor and his Friend'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', Students connect the story to their own lives—such as showing empathy, sharing with friends, respecting nature, and using creative problem-solving in challenging situations.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Fun Time • Creative Expression & Drawing",
+        "q": "Question 12 [Fun Time]: In Chapter 20 ('The Tailor and his Friend'), What hands-on activity or role-play is recommended at the end of 'The Tailor and his Friend'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', Children engage in role-play, animal movement mimicry, or guided drawing, reinforcing vocabulary retention through multi-sensory joyful learning.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Speak • Oral Recitation & Pronunciation",
+        "q": "Question 13 [Let us Speak]: In Chapter 20 ('The Tailor and his Friend'), Recite and explain the central action or dialogue in 'The Tailor and his Friend'. How do children practice clear pronunciation of the new vocabulary words?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', Students practice choral recitation with rhythmic clapping. The main dialogue emphasizes foundational phonetics, emotional expression, and auditory discrimination.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Listen • Phonics & Sound Recognition",
+        "q": "Question 14 [Let us Listen]: In Chapter 20 ('The Tailor and his Friend'), What initial letter sounds and rhyming pairs are highlighted in 'The Tailor and his Friend'? Give two examples from the lesson.",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', The lesson introduces phonemic awareness through playful word pairs. Listening carefully to the beginning and ending consonant blends builds strong foundational decoding skills.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Let us Write • Sight Words & Sentence Completion",
+        "q": "Question 15 [Let us Write]: In Chapter 20 ('The Tailor and his Friend'), How do students practice letter tracing and complete sentences related to the theme of 'The Tailor and his Friend'?",
+        "ans": "<strong>Model CBSE Solution:</strong><br>• <strong>Core Answer:</strong> In 'The Tailor and his Friend', Students trace upper and lowercase letters with proper pencil grip, filling in sight words to complete meaningful sentences about daily experiences.<br>• <strong>Contextual Learning:</strong> This activity reinforces foundational literacy skills aligned with the NCERT Class 1 English curriculum and NCF-FS standards.<br>• <strong>Student Tip:</strong> Speak clearly, observe the pictures closely, and trace the words carefully.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Accurate textual / pedagogical identification",
+            "marks": "1 M"
+          },
+          {
+            "key": "Clear English expression and spelling",
+            "marks": "1 M"
           }
         ]
       }

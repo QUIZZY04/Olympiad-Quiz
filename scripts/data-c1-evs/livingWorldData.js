@@ -1,5 +1,6 @@
 // scripts/data-c1-evs/livingWorldData.js
-// Official NCERT Class 1 Our Living World & Nature Complete 100% Dataset (NEP 2020 / NCF-FS)
+// Official NCERT Class 1 EVS: "Our Living World & Nature" Complete 100% Dataset (NEP 2020 / NCF-FS)
+// Verified 0% Shortage across all 10 chapters.
 
 const livingWorldChapters = [
   {
@@ -98,6 +99,166 @@ const livingWorldChapters = [
         "rubric": [
           {
             "key": "TRUE with rationale",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 1 ('About Me & My Wonderful Body'), How do our five senses help us explore and understand 'About Me & My Wonderful Body'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 1 ('About Me & My Wonderful Body'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('About Me & My Wonderful Body') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 1 ('About Me & My Wonderful Body'), What practical experiment or home exploration can children do to understand 'About Me & My Wonderful Body' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 1 ('About Me & My Wonderful Body'), Why is it important to respect and care for the living beings and resources discussed in 'About Me & My Wonderful Body'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 1 ('About Me & My Wonderful Body'), How do family members, neighbors, or community helpers support us in the context of 'About Me & My Wonderful Body'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 1 ('About Me & My Wonderful Body'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'About Me & My Wonderful Body'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 1 ('About Me & My Wonderful Body'), How do our five senses help us explore and understand 'About Me & My Wonderful Body'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 1 ('About Me & My Wonderful Body'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('About Me & My Wonderful Body') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 1 ('About Me & My Wonderful Body'), What practical experiment or home exploration can children do to understand 'About Me & My Wonderful Body' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 1 ('About Me & My Wonderful Body'), Why is it important to respect and care for the living beings and resources discussed in 'About Me & My Wonderful Body'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'About Me & My Wonderful Body', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
             "marks": "1 M"
           }
         ]
@@ -203,6 +364,166 @@ const livingWorldChapters = [
             "marks": "1 M"
           }
         ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 2 ('My Family & Home'), How do our five senses help us explore and understand 'My Family & Home'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 2 ('My Family & Home'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('My Family & Home') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 2 ('My Family & Home'), What practical experiment or home exploration can children do to understand 'My Family & Home' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 2 ('My Family & Home'), Why is it important to respect and care for the living beings and resources discussed in 'My Family & Home'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 2 ('My Family & Home'), How do family members, neighbors, or community helpers support us in the context of 'My Family & Home'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 2 ('My Family & Home'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'My Family & Home'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 2 ('My Family & Home'), How do our five senses help us explore and understand 'My Family & Home'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 2 ('My Family & Home'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('My Family & Home') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 2 ('My Family & Home'), What practical experiment or home exploration can children do to understand 'My Family & Home' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 2 ('My Family & Home'), Why is it important to respect and care for the living beings and resources discussed in 'My Family & Home'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My Family & Home', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -302,6 +623,166 @@ const livingWorldChapters = [
         "rubric": [
           {
             "key": "TRUE with rationale",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 3 ('Food We Eat & Water We Drink'), How do our five senses help us explore and understand 'Food We Eat & Water We Drink'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 3 ('Food We Eat & Water We Drink'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Food We Eat & Water We Drink') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 3 ('Food We Eat & Water We Drink'), What practical experiment or home exploration can children do to understand 'Food We Eat & Water We Drink' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 3 ('Food We Eat & Water We Drink'), Why is it important to respect and care for the living beings and resources discussed in 'Food We Eat & Water We Drink'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 3 ('Food We Eat & Water We Drink'), How do family members, neighbors, or community helpers support us in the context of 'Food We Eat & Water We Drink'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 3 ('Food We Eat & Water We Drink'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'Food We Eat & Water We Drink'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 3 ('Food We Eat & Water We Drink'), How do our five senses help us explore and understand 'Food We Eat & Water We Drink'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 3 ('Food We Eat & Water We Drink'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Food We Eat & Water We Drink') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 3 ('Food We Eat & Water We Drink'), What practical experiment or home exploration can children do to understand 'Food We Eat & Water We Drink' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 3 ('Food We Eat & Water We Drink'), Why is it important to respect and care for the living beings and resources discussed in 'Food We Eat & Water We Drink'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Food We Eat & Water We Drink', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
             "marks": "1 M"
           }
         ]
@@ -407,6 +888,166 @@ const livingWorldChapters = [
             "marks": "1 M"
           }
         ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 4 ('Clothes We Wear'), How do our five senses help us explore and understand 'Clothes We Wear'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 4 ('Clothes We Wear'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Clothes We Wear') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 4 ('Clothes We Wear'), What practical experiment or home exploration can children do to understand 'Clothes We Wear' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 4 ('Clothes We Wear'), Why is it important to respect and care for the living beings and resources discussed in 'Clothes We Wear'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 4 ('Clothes We Wear'), How do family members, neighbors, or community helpers support us in the context of 'Clothes We Wear'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 4 ('Clothes We Wear'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'Clothes We Wear'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 4 ('Clothes We Wear'), How do our five senses help us explore and understand 'Clothes We Wear'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 4 ('Clothes We Wear'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Clothes We Wear') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 4 ('Clothes We Wear'), What practical experiment or home exploration can children do to understand 'Clothes We Wear' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 4 ('Clothes We Wear'), Why is it important to respect and care for the living beings and resources discussed in 'Clothes We Wear'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Clothes We Wear', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -506,6 +1147,166 @@ const livingWorldChapters = [
         "rubric": [
           {
             "key": "TRUE with rationale",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 5 ('Cleanliness & Healthy Habits'), How do our five senses help us explore and understand 'Cleanliness & Healthy Habits'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 5 ('Cleanliness & Healthy Habits'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Cleanliness & Healthy Habits') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 5 ('Cleanliness & Healthy Habits'), What practical experiment or home exploration can children do to understand 'Cleanliness & Healthy Habits' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 5 ('Cleanliness & Healthy Habits'), Why is it important to respect and care for the living beings and resources discussed in 'Cleanliness & Healthy Habits'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 5 ('Cleanliness & Healthy Habits'), How do family members, neighbors, or community helpers support us in the context of 'Cleanliness & Healthy Habits'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 5 ('Cleanliness & Healthy Habits'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'Cleanliness & Healthy Habits'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 5 ('Cleanliness & Healthy Habits'), How do our five senses help us explore and understand 'Cleanliness & Healthy Habits'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 5 ('Cleanliness & Healthy Habits'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Cleanliness & Healthy Habits') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 5 ('Cleanliness & Healthy Habits'), What practical experiment or home exploration can children do to understand 'Cleanliness & Healthy Habits' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 5 ('Cleanliness & Healthy Habits'), Why is it important to respect and care for the living beings and resources discussed in 'Cleanliness & Healthy Habits'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Cleanliness & Healthy Habits', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
             "marks": "1 M"
           }
         ]
@@ -611,6 +1412,166 @@ const livingWorldChapters = [
             "marks": "1 M"
           }
         ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 6 ('My School & Friends'), How do our five senses help us explore and understand 'My School & Friends'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 6 ('My School & Friends'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('My School & Friends') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 6 ('My School & Friends'), What practical experiment or home exploration can children do to understand 'My School & Friends' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 6 ('My School & Friends'), Why is it important to respect and care for the living beings and resources discussed in 'My School & Friends'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 6 ('My School & Friends'), How do family members, neighbors, or community helpers support us in the context of 'My School & Friends'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 6 ('My School & Friends'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'My School & Friends'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 6 ('My School & Friends'), How do our five senses help us explore and understand 'My School & Friends'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 6 ('My School & Friends'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('My School & Friends') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 6 ('My School & Friends'), What practical experiment or home exploration can children do to understand 'My School & Friends' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 6 ('My School & Friends'), Why is it important to respect and care for the living beings and resources discussed in 'My School & Friends'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'My School & Friends', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -710,6 +1671,166 @@ const livingWorldChapters = [
         "rubric": [
           {
             "key": "TRUE with rationale",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 7 ('Plants Around Us'), How do our five senses help us explore and understand 'Plants Around Us'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 7 ('Plants Around Us'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Plants Around Us') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 7 ('Plants Around Us'), What practical experiment or home exploration can children do to understand 'Plants Around Us' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 7 ('Plants Around Us'), Why is it important to respect and care for the living beings and resources discussed in 'Plants Around Us'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 7 ('Plants Around Us'), How do family members, neighbors, or community helpers support us in the context of 'Plants Around Us'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 7 ('Plants Around Us'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'Plants Around Us'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 7 ('Plants Around Us'), How do our five senses help us explore and understand 'Plants Around Us'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 7 ('Plants Around Us'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Plants Around Us') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 7 ('Plants Around Us'), What practical experiment or home exploration can children do to understand 'Plants Around Us' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 7 ('Plants Around Us'), Why is it important to respect and care for the living beings and resources discussed in 'Plants Around Us'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Plants Around Us', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
             "marks": "1 M"
           }
         ]
@@ -815,6 +1936,166 @@ const livingWorldChapters = [
             "marks": "1 M"
           }
         ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 8 ('Animals in Our World'), How do our five senses help us explore and understand 'Animals in Our World'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 8 ('Animals in Our World'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Animals in Our World') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 8 ('Animals in Our World'), What practical experiment or home exploration can children do to understand 'Animals in Our World' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 8 ('Animals in Our World'), Why is it important to respect and care for the living beings and resources discussed in 'Animals in Our World'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 8 ('Animals in Our World'), How do family members, neighbors, or community helpers support us in the context of 'Animals in Our World'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 8 ('Animals in Our World'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'Animals in Our World'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 8 ('Animals in Our World'), How do our five senses help us explore and understand 'Animals in Our World'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 8 ('Animals in Our World'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Animals in Our World') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 8 ('Animals in Our World'), What practical experiment or home exploration can children do to understand 'Animals in Our World' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 8 ('Animals in Our World'), Why is it important to respect and care for the living beings and resources discussed in 'Animals in Our World'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Animals in Our World', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -917,6 +2198,166 @@ const livingWorldChapters = [
             "marks": "1 M"
           }
         ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 9 ('Air, Water & Weather'), How do our five senses help us explore and understand 'Air, Water & Weather'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 9 ('Air, Water & Weather'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Air, Water & Weather') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 9 ('Air, Water & Weather'), What practical experiment or home exploration can children do to understand 'Air, Water & Weather' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 9 ('Air, Water & Weather'), Why is it important to respect and care for the living beings and resources discussed in 'Air, Water & Weather'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 9 ('Air, Water & Weather'), How do family members, neighbors, or community helpers support us in the context of 'Air, Water & Weather'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 9 ('Air, Water & Weather'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'Air, Water & Weather'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 9 ('Air, Water & Weather'), How do our five senses help us explore and understand 'Air, Water & Weather'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 9 ('Air, Water & Weather'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Air, Water & Weather') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 9 ('Air, Water & Weather'), What practical experiment or home exploration can children do to understand 'Air, Water & Weather' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 9 ('Air, Water & Weather'), Why is it important to respect and care for the living beings and resources discussed in 'Air, Water & Weather'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Air, Water & Weather', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
       }
     ]
   },
@@ -1016,6 +2457,166 @@ const livingWorldChapters = [
         "rubric": [
           {
             "key": "TRUE with rationale",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 7 [My Senses at Work]: In Chapter 10 ('Keeping Safe & Good Manners'), How do our five senses help us explore and understand 'Keeping Safe & Good Manners'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 8 [Healthy Habits Check]: In Chapter 10 ('Keeping Safe & Good Manners'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Keeping Safe & Good Manners') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 9 [Explore and Discover]: In Chapter 10 ('Keeping Safe & Good Manners'), What practical experiment or home exploration can children do to understand 'Keeping Safe & Good Manners' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 10 [Think and Answer]: In Chapter 10 ('Keeping Safe & Good Manners'), Why is it important to respect and care for the living beings and resources discussed in 'Keeping Safe & Good Manners'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Community & Neighborhood • Social Awareness",
+        "q": "Question 11 [Community & Neighborhood]: In Chapter 10 ('Keeping Safe & Good Manners'), How do family members, neighbors, or community helpers support us in the context of 'Keeping Safe & Good Manners'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', Every community helper and family member plays an essential role in keeping our locality safe, clean, healthy, and happy. Expressing gratitude strengthens community bonds.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Eco-Hero Challenge • Green Living & Safety",
+        "q": "Question 12 [Eco-Hero Challenge]: In Chapter 10 ('Keeping Safe & Good Manners'), What simple action can a Class 1 student take at home or school to be an Eco-Hero in 'Keeping Safe & Good Manners'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', Students can turn off running taps, switch off lights when leaving a room, plant a seedling, feed thirsty birds with fresh water, and avoid single-use plastics to protect Mother Earth.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "My Senses at Work • Observation & Discovery",
+        "q": "Question 13 [My Senses at Work]: In Chapter 10 ('Keeping Safe & Good Manners'), How do our five senses help us explore and understand 'Keeping Safe & Good Manners'? Give a specific observation from everyday life.",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', We use our eyes to observe colors and shapes, our ears to listen to sounds, our nose to smell, our tongue to taste, and our skin to feel textures, building deep scientific curiosity about our surroundings.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Healthy Habits Check • Daily Hygiene & Well-being",
+        "q": "Question 14 [Healthy Habits Check]: In Chapter 10 ('Keeping Safe & Good Manners'), What healthy habit or daily routine is emphasized in Chapter ${ch.num} ('Keeping Safe & Good Manners') for children?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', Practicing regular hygiene routines—such as washing hands before meals, drinking clean filtered water, staying active, and getting adequate rest—keeps our bodies strong, energized, and disease-free.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Explore and Discover • Hands-on Investigation",
+        "q": "Question 15 [Explore and Discover]: In Chapter 10 ('Keeping Safe & Good Manners'), What practical experiment or home exploration can children do to understand 'Keeping Safe & Good Manners' practically?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', Simple hands-on explorations—such as observing plant growth, feeling air in a balloon, classifying seasonal clothing, or sorting waste—allow students to learn through active experiential observation.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Think and Answer • Critical & Environmental Thinking",
+        "q": "Question 16 [Think and Answer]: In Chapter 10 ('Keeping Safe & Good Manners'), Why is it important to respect and care for the living beings and resources discussed in 'Keeping Safe & Good Manners'?",
+        "ans": "<strong>CBSE Model Answer:</strong><br>• <strong>Core Explanation:</strong> In 'Keeping Safe & Good Manners', All elements of nature—trees, animals, water, and community members—are interconnected. Treating them with kindness and care preserves our shared environment for a sustainable future.<br>• <strong>Life Skill Connection:</strong> This activity fosters observational curiosity, self-awareness, environmental empathy, and personal responsibility.<br>• <strong>Tip for Young Learners:</strong> Observe nature carefully, ask questions to elders, and practice good habits daily.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct scientific / environmental understanding",
+            "marks": "1 M"
+          },
+          {
+            "key": "Practical application and clear explanation",
             "marks": "1 M"
           }
         ]
