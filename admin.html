@@ -2738,8 +2738,9 @@ quill.root.addEventListener('paste', (e) => {
 
 const questionsRef=collection(db,"questions");
 const feedbackRef=collection(db,"feedback");
-const expFeedbackRef=collection(db,"feedbacks"); 
+const expFeedbackRef=collection(db,"feedbacks");
 const sessionsRef=collection(db,"test_sessions");
+const setUserDisabledFn = httpsCallable(functions, 'setUserDisabledStatus');
 
 let uploadedImageUrls = {};
 let allQuestionWiseChapterRows = []; 
@@ -3297,6 +3298,28 @@ window.logout = async () => {
     }
 };
 
+// Shared by the Error Reports and Experience Feedback panels - both tables
+// already have the reporting user's uid on hand, so a bad actor can be
+// disabled right from wherever the admin spotted the problem instead of
+// hunting them down in a separate user-management screen.
+window.toggleUserDisabled = async (uid, currentlyDisabled, displayName) => {
+    if (!uid || uid === "anonymous") {
+        alert("No linked user account found for this entry (anonymous/guest submission).");
+        return;
+    }
+    const action = currentlyDisabled ? "re-enable" : "disable";
+    const confirmMsg = currentlyDisabled
+        ? `Re-enable ${displayName || "this user"}'s account? They will be able to sign in again.`
+        : `Disable ${displayName || "this user"}'s account? This blocks them from signing in or using the site further. You can re-enable it anytime.`;
+    if (!confirm(confirmMsg)) return;
+    try {
+        await setUserDisabledFn({ uid, disabled: !currentlyDisabled });
+        alert(`User account ${action}d successfully.`);
+    } catch (e) {
+        alert(`Failed to ${action} user: ` + (e.message || e));
+    }
+};
+
 function loadFeedback() {
     onSnapshot(query(feedbackRef, orderBy("timestamp", "desc")), async (snap) => {
         document.getElementById("feedbackTable").innerHTML = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>Loading question details...</td></tr>";
@@ -3321,10 +3344,12 @@ function loadFeedback() {
             }
             const email = f.email || f.userEmail || "N/A";
             let name = f.name || "Student";
+            let disabled = false;
 
             if (f.uid && f.uid !== "anonymous") {
                 if (userCache[f.uid]) {
-                    name = userCache[f.uid];
+                    name = userCache[f.uid].name;
+                    disabled = userCache[f.uid].disabled;
                 } else {
                     try {
                         const uSnap = await getDoc(doc(db, "users", f.uid));
@@ -3332,31 +3357,38 @@ function loadFeedback() {
                             const uData = uSnap.data();
                             if (uData.name && uData.name !== "Student") name = uData.name;
                             else if (uData.fullName) name = uData.fullName;
-                            userCache[f.uid] = name;
+                            disabled = !!uData.disabled;
+                            userCache[f.uid] = { name, disabled };
                         }
                     } catch(e) {}
                 }
             }
 
             if (name === "Guest" || name === "Visitor" || name === "User" || name === "anonymous") name = "Student";
-            return { id: d.id, f, date, qText, qDetails, email, name };
+            return { id: d.id, f, date, qText, qDetails, email, name, uid: f.uid || "", disabled };
         }));
-        
+
         let html="";
-        rowsData.forEach(row => { 
+        rowsData.forEach(row => {
             const safeReply = row.f.adminReply ? row.f.adminReply.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
             const encodedReply = encodeURIComponent(row.f.adminReply || '').replace(/'/g, "%27");
             const replyHtml = row.f.adminReply ? `<div style="margin-top:8px; padding:8px; background:rgba(37,99,235,0.08); border-left:4px solid #2563eb; border-radius:4px; font-size:12px; color:#1e293b;"><b>Admin Reply:</b> ${safeReply}</div>` : '';
-            
+
             const replyBtnText = row.f.adminReply ? 'Edit Reply' : 'Reply';
             const delReplyBtn = row.f.adminReply ? `<button class="delete" onclick="deleteReplyFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px; background:var(--warning);">🗑 Del Reply</button>` : '';
+            const disabledBadge = row.disabled ? `<br><span style="font-size:10px; font-weight:800; color:#fff; background:var(--danger); padding:1px 6px; border-radius:8px;">🚫 DISABLED</span>` : '';
+            const encodedName = encodeURIComponent(row.name || '').replace(/'/g, "%27");
+            const userBtn = row.uid && row.uid !== "anonymous"
+                ? `<button class="${row.disabled ? 'upload' : 'delete'}" onclick="toggleUserDisabled('${row.uid}', ${row.disabled}, decodeURIComponent('${encodedName}'))" style="margin:0; padding:6px 10px; font-size:12px; ${row.disabled ? 'background:var(--success);' : ''}">${row.disabled ? '✅ Enable User' : '🚫 Disable User'}</button>`
+                : '';
 
-            html+=`<tr><td>${row.date}</td><td><b>${row.name}</b><br><span style="font-size:12px; color:var(--muted);">${row.email}</span></td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}${replyHtml}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;">
+            html+=`<tr><td>${row.date}</td><td><b>${row.name}</b>${disabledBadge}<br><span style="font-size:12px; color:var(--muted);">${row.email}</span></td><td><b>${row.f.questionId}</b></td><td>${row.qDetails}<div style="font-size:12px; margin-top:5px; max-width:280px; max-height:60px; overflow-y:auto;">${row.qText}</div></td><td>${row.f.message}${replyHtml}</td><td>${row.f.context || ''}</td><td style="display:flex; gap:5px; flex-direction:column;">
                 <button class="upload" onclick="replyFB('${row.id}', '${encodedReply}')" style="margin:0; padding:6px 10px; font-size:12px; background:var(--brand);">💬 ${replyBtnText}</button>
                 ${delReplyBtn}
                 <button class="edit-btn" onclick="openEdit('${row.f.questionId}')" style="margin:0; padding:6px 10px; font-size:12px;">✏️ Edit Q</button>
                 <button class="delete" onclick="deleteFB('${row.id}')" style="margin:0; padding:6px 10px; font-size:12px;">🗑 Dismiss</button>
-            </td></tr>`; 
+                ${userBtn}
+            </td></tr>`;
         });
         if (html === "") html = "<tr><td colspan='7' style='text-align:center; color: var(--muted);'>No error reports found.</td></tr>";
         document.getElementById("feedbackTable").innerHTML=html;
@@ -3392,10 +3424,12 @@ function loadExpFeedback() {
         const rowsData = await Promise.all(snap.docs.map(async (d) => {
             const f = d.data();
             let dispName = f.name || 'Student';
-            
+            let disabled = false;
+
             if (f.uid && f.uid !== "anonymous") {
                 if (userCache[f.uid]) {
-                    dispName = userCache[f.uid];
+                    dispName = userCache[f.uid].name;
+                    disabled = userCache[f.uid].disabled;
                 } else {
                     try {
                         const uSnap = await getDoc(doc(db, "users", f.uid));
@@ -3403,37 +3437,44 @@ function loadExpFeedback() {
                             const uData = uSnap.data();
                             if (uData.name && uData.name !== "Student") dispName = uData.name;
                             else if (uData.fullName) dispName = uData.fullName;
-                            userCache[f.uid] = dispName;
+                            disabled = !!uData.disabled;
+                            userCache[f.uid] = { name: dispName, disabled };
                         }
                     } catch(e) {}
                 }
             }
             if (dispName === "Guest" || dispName === "Visitor" || dispName === "User" || dispName === "anonymous") dispName = "Student";
-            return { id: d.id, f: f, dispName: dispName };
+            return { id: d.id, f: f, dispName: dispName, uid: f.uid || "", disabled };
         }));
 
-        let html=""; 
-        rowsData.forEach(row => { 
-            const f = row.f; 
+        let html="";
+        rowsData.forEach(row => {
+            const f = row.f;
             const dateStr = f.timestamp ? f.timestamp.toDate().toLocaleString() : (f.date || 'N/A');
-            
+
             const ratingCat = `<div><b>${f.rating || 'N/A'}</b></div><div style="font-size:11px; color:var(--brand);">${f.category || 'General'}</div>`;
             const sourceInfo = `<div><b>${f.score || '-'}</b></div><div style="font-size:11px; color:var(--muted);">${f.pageSource || 'Result Page'}<br>${f.quizName ? '('+f.quizName+')' : ''}</div>`;
-            
+
             const safeSuggestion = f.suggestion ? f.suggestion.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '-';
             const safeReply = f.adminReply ? f.adminReply.replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
             const encodedReply = encodeURIComponent(f.adminReply || '').replace(/'/g, "%27");
-            
+
             const replyHtml = f.adminReply ? `<div style="margin-top:8px; padding:8px; background:rgba(37,99,235,0.08); border-left:4px solid #2563eb; border-radius:4px; font-size:12px; color:#1e293b;"><b>Admin Reply:</b> ${safeReply}</div>` : '';
-            
+
             const replyBtnText = f.adminReply ? 'Edit Reply' : 'Reply';
             const delReplyBtn = f.adminReply ? `<button class="delete" onclick="deleteReplyExpFB('${row.id}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--warning);">🗑 Del Reply</button><br>` : '';
+            const disabledBadge = row.disabled ? `<br><span style="font-size:10px; font-weight:800; color:#fff; background:var(--danger); padding:1px 6px; border-radius:8px;">🚫 DISABLED</span>` : '';
+            const encodedName = encodeURIComponent(row.dispName || '').replace(/'/g, "%27");
+            const userBtn = row.uid && row.uid !== "anonymous"
+                ? `<button class="${row.disabled ? 'upload' : 'delete'}" onclick="toggleUserDisabled('${row.uid}', ${row.disabled}, decodeURIComponent('${encodedName}'))" style="margin:5px 0 0 0; padding:6px 12px; font-size:12px; min-width:85px; ${row.disabled ? 'background:var(--success);' : ''}">${row.disabled ? '✅ Enable' : '🚫 Disable'}</button>`
+                : '';
 
-            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${row.dispName}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${safeSuggestion}${replyHtml}</td><td style="white-space:nowrap; text-align:center;">
+            html+=`<tr><td style="white-space:nowrap;">${dateStr}</td><td>${row.dispName}${disabledBadge}<br><span style="font-size:11px; color:var(--muted);">${f.email || ''}</span></td><td>${ratingCat}</td><td>${sourceInfo}</td><td style="max-width:300px; overflow-wrap:break-word;">${safeSuggestion}${replyHtml}</td><td style="white-space:nowrap; text-align:center;">
                 <button class="upload" onclick="replyExpFB('${row.id}', '${encodedReply}')" style="margin:0 0 5px 0; padding:6px 12px; font-size:12px; min-width:85px; background:var(--brand);">💬 ${replyBtnText}</button><br>
                 ${delReplyBtn}
-                <button class="delete" onclick="deleteExpFB('${row.id}')" style="margin:0; padding:6px 12px; font-size:12px; min-width:85px;">🗑 Delete</button>
-            </td></tr>`; 
+                <button class="delete" onclick="deleteExpFB('${row.id}')" style="margin:0; padding:6px 12px; font-size:12px; min-width:85px;">🗑 Delete</button><br>
+                ${userBtn}
+            </td></tr>`;
         });
         if (html === "") html = "<tr><td colspan='6' style='text-align:center; color: var(--muted);'>No feedback reports found.</td></tr>";
         document.getElementById("expFeedbackTable").innerHTML=html;

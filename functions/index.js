@@ -1826,3 +1826,6 @@ exports.grantComplementaryPremium = premiumSubscriptions.grantComplementaryPremi
 exports.revokeComplementaryPremium = premiumSubscriptions.revokeComplementaryPremium;
 
 exports.claimIncludedLiveTest = liveTestCredits.claimIncludedLiveTest;
+
+const userModeration = require("./userModeration");
+exports.setUserDisabledStatus = userModeration.setUserDisabledStatus;
