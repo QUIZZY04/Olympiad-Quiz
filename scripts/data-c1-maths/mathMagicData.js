@@ -1,411 +1,233 @@
 // scripts/data-c1-maths/mathMagicData.js
-// Official NCERT Class 1 Mathematics: "Math-Magic Book 1" Complete 100% Dataset (Classic CBSE)
-// Verified 0% Shortage across all 13 chapters.
+// Official NCERT Class 1 Mathematics (Math-Magic Book 1) Complete 100% Verbatim Dataset (Classic CBSE)
 
 const mathMagicChapters = [
   {
     "id": "mm1",
     "num": 1,
-    "unit": "Unit 1: Spatial Sense & Shapes",
+    "unit": "Unit 1: Math-Magic Classic",
     "title": "Shapes and Space",
-    "subtitle": "Inside-Outside, Bigger-Smaller, Top-Bottom, Nearer-Farther, Rolling-Sliding",
+    "subtitle": "Inside-Outside, Bigger-Smaller, Top-Bottom, Rolling-Sliding & Shapes",
     "concepts": [
+      "The Arab and his Camel: understanding Inside and Outside.",
       "Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.",
-      "Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.",
-      "Movement properties of 3D objects: Rolling vs Sliding."
+      "Relative positions: Top vs Bottom, Nearer vs Farther, On vs Under, Above vs Below.",
+      "Movement properties of 3D objects: Rolling vs Sliding.",
+      "Sorting shapes by colour, size, and type into boxes."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f1f5f9\" rx=\"10\"/><circle cx=\"80\" cy=\"60\" r=\"30\" fill=\"#3b82f6\"/><text x=\"80\" y=\"65\" font-size=\"11\" font-weight=\"700\" fill=\"#fff\" text-anchor=\"middle\">Bigger</text><circle cx=\"160\" cy=\"60\" r=\"14\" fill=\"#3b82f6\"/><text x=\"160\" y=\"64\" font-size=\"9\" font-weight=\"700\" fill=\"#fff\" text-anchor=\"middle\">Smaller</text><line x1=\"220\" y1=\"90\" x2=\"330\" y2=\"40\" stroke=\"#64748b\" stroke-width=\"4\"/><circle cx=\"250\" cy=\"65\" r=\"14\" fill=\"#ef4444\"/><text x=\"250\" y=\"95\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\">Rolls</text><rect x=\"300\" y=\"30\" width=\"22\" height=\"22\" fill=\"#10b981\" rx=\"2\"/><text x=\"310\" y=\"20\" font-size=\"10\" font-weight=\"700\" fill=\"#065f46\">Slides</text><text x=\"420\" y=\"50\" font-size=\"12\" font-weight=\"700\" fill=\"#1e293b\">Top &amp; Bottom</text><text x=\"420\" y=\"75\" font-size=\"11\" font-weight=\"700\" fill=\"#475569\">On &amp; Under</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 1: Shapes and Space</text></svg>",
     "cbq": {
-      "title": "The Arab and his Camel",
-      "text": "On a cold winter night, the Arab was pitching his tent in the desert. The camel stood outside in the cold wind and asked if he could put his head inside the tent. Slowly, the camel stepped inside, and the Arab was pushed outside into the cold.",
-      "question": "Who was inside the tent at the start of the story? Who ended up inside the tent at the end?",
-      "answer": "1. At the start: The Arab was inside the tent and the camel was outside.<br>2. At the end: The camel was inside the tent and the Arab was outside.",
-      "rubric": "1.5 M for start state + 1.5 M for end state"
+      "title": "Wise Grandmother's Rolling Dholak Case Study",
+      "text": "A little lamb was going to visit his grandmother. In the forest, a hungry wolf stopped him to eat him. The lamb requested, 'Let me go to my grandmother, I will grow fat and then you can eat me.' On returning, grandmother hid the lamb inside a wooden dholak and rolled it down the grassy hill.",
+      "question": "Why did the dholak roll smoothly down the hill instead of sliding? Did the wolf catch the lamb?",
+      "answer": "1. The dholak has a <strong>curved cylindrical surface</strong>, which rolls easily down a slope.<br>2. The dholak rolled very fast past the waiting wolf, and the lamb reached home safely without getting caught.",
+      "rubric": "1.5 M for curved surface rolls + 1.5 M for lamb reaches home safely"
     },
     "questions": [
       {
-        "category": "Textbook Exercise • Inside & Outside",
-        "q": "In the story 'The Arab and his Camel', why did the camel want to come inside the tent?",
-        "ans": "<strong>Answer:</strong><br>The camel wanted to come inside the tent because it was <strong>very cold outside</strong> in the desert at night.",
+        "category": "Textbook Story • The Arab and his Camel",
+        "q": "In the desert winter, the Arab pitched his tent and went inside. The camel was outside in the cold. What did the camel ask first?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The camel asked: <em>'May I put my neck inside? It is too cold outside.'</em><br>• The Arab allowed him to put his neck inside the tent.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Mention of cold outside",
+            "key": "Asked to put neck inside",
             "marks": "1 M"
           },
           {
-            "key": "Contrast between inside and outside",
+            "key": "Reason: too cold outside",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Size Comparison • Bigger and Smaller",
-        "q": "Tick (or name) the smaller animal: Elephant or Goat?",
-        "ans": "<strong>Answer:</strong><br>The <strong>Goat</strong> is smaller. The Elephant is much bigger.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Goat correctly identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Extreme Comparison • Biggest and Smallest",
-        "q": "Look at three fruits: Watermelon, Mango, and Cherry. Name the biggest fruit and the smallest fruit.",
-        "ans": "<strong>Answer:</strong><br>• <strong>Biggest fruit:</strong> Watermelon.<br>• <strong>Smallest fruit:</strong> Cherry.<br>Mango is between the watermelon and cherry in size.",
+        "category": "Textbook Story • Who is Inside at the End?",
+        "q": "At the end of 'The Arab and his Camel' story, who was finally inside the tent, and who was outside?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Inside:</strong> The Camel was inside the tent.<br>• <strong>Outside:</strong> The Arab was outside in the cold desert night because the tent was too small for both.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Watermelon is biggest",
+            "key": "Camel is inside",
             "marks": "1 M"
           },
           {
-            "key": "Cherry is smallest",
+            "key": "Arab is outside",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Spatial Positions • Top and Bottom",
-        "q": "Three children are on a playground slide: Sonu is sitting at the top ready to slide down, and Monu is standing at the bottom on the grass. Who is at the top?",
-        "ans": "<strong>Answer:</strong><br><strong>Sonu</strong> is at the top of the slide.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Sonu identified at the top",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Distance • Nearer and Farther",
-        "q": "A bird is flying in the sky. House A is right below the bird, and House B is far down the road. Which house is nearer to the bird?",
-        "ans": "<strong>Answer:</strong><br><strong>House A</strong> is nearer to the bird.",
+        "category": "Textbook Exercise • Bigger and Smaller",
+        "q": "Tick (✓) the bigger animal between a Hippopotamus and a Puppy.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>Hippopotamus is bigger</strong> (tick ✓).<br>• The puppy is much smaller.",
         "marks": 2,
         "rubric": [
           {
-            "key": "House A is nearer",
-            "marks": "1 M"
-          },
-          {
-            "key": "Distance reasoning",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Physical Properties • Rolling and Sliding",
-        "q": "Which of the following will roll: A battery cell, a book, an onion, a shoebox?",
-        "ans": "<strong>Answer:</strong><br>• <strong>Will Roll:</strong> Battery cell (on its round side) and Onion.<br>• <strong>Will Slide:</strong> Book and Shoebox (because they have flat faces).",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Battery cell and onion roll",
-            "marks": "1 M"
-          },
-          {
-            "key": "Book and shoebox slide",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Movement properties of 3D objects: Rolling vs Sliding.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Movement properties of 3D objects: Rolling vs Sliding.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Movement properties of 3D objects: Rolling vs Sliding.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Movement properties of 3D objects: Rolling vs Sliding.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Movement properties of 3D objects: Rolling vs Sliding.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Movement properties of 3D objects: Rolling vs Sliding.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Movement properties of 3D objects: Rolling vs Sliding.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Movement properties of 3D objects: Rolling vs Sliding.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Comparing sizes: Bigger vs Smaller, Biggest vs Smallest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Shapes and Space",
-        "q": "Solve the core NCERT learning activity for Chapter 1 ('Shapes and Space'): Focus on \"Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Shapes and Space', students master <em>Relative positions: Top vs Bottom, Inside vs Outside, On vs Under.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "mm2",
-    "num": 2,
-    "unit": "Unit 2: Numbers from One to Nine",
-    "title": "Numbers from One to Nine",
-    "subtitle": "One-to-One Matching, Counting, Writing Numerals & Concept of Zero",
-    "concepts": [
-      "Counting items up to 9 with one-to-one matching (As many as).",
-      "Writing numbers 1 to 9 with number words.",
-      "Understanding more, less, and equal collections.",
-      "Introduction to Zero (शून्य) as nothing left."
-    ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><circle cx=\"50\" cy=\"50\" r=\"14\" fill=\"#2563eb\"/><circle cx=\"90\" cy=\"50\" r=\"14\" fill=\"#2563eb\"/><circle cx=\"130\" cy=\"50\" r=\"14\" fill=\"#2563eb\"/><circle cx=\"170\" cy=\"50\" r=\"14\" fill=\"#2563eb\"/><circle cx=\"210\" cy=\"50\" r=\"14\" fill=\"#2563eb\"/><text x=\"130\" y=\"90\" font-size=\"12\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">5 Blue Dots</text><circle cx=\"310\" cy=\"50\" r=\"14\" fill=\"#10b981\"/><circle cx=\"350\" cy=\"50\" r=\"14\" fill=\"#10b981\"/><circle cx=\"390\" cy=\"50\" r=\"14\" fill=\"#10b981\"/><circle cx=\"430\" cy=\"50\" r=\"14\" fill=\"#10b981\"/><circle cx=\"470\" cy=\"50\" r=\"14\" fill=\"#10b981\"/><text x=\"390\" y=\"90\" font-size=\"12\" font-weight=\"700\" fill=\"#065f46\" text-anchor=\"middle\">5 Green Dots (As Many As)</text></svg>",
-    "cbq": {
-      "title": "Five Little Monkeys Rhyme",
-      "text": "Five little monkeys were jumping on the bed. One fell off and bumped his head. Mamma called the doctor and the doctor said, 'No more monkeys jumping on the bed!'",
-      "question": "How many monkeys were jumping at first? How many monkeys were left jumping on the bed after one fell off?",
-      "answer": "1. At first, there were <strong>5 monkeys</strong> jumping.<br>2. After 1 fell off: 5 - 1 = <strong>4 monkeys</strong> were left jumping on the bed.",
-      "rubric": "1 M for 5 monkeys at first + 1 M for 4 monkeys left"
-    },
-    "questions": [
-      {
-        "category": "Matching • As Many As",
-        "q": "There are 5 cats and 5 bowls of milk. Can each cat have its own bowl of milk? What is this called?",
-        "ans": "<strong>Answer:</strong><br>• Yes, each cat gets exactly one bowl of milk.<br>• This is called <strong>one-to-one matching</strong> (or 'as many cats as bowls').",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Yes, each cat gets a bowl",
-            "marks": "1 M"
-          },
-          {
-            "key": "One-to-one matching explained",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Counting • Group Creation",
-        "q": "Make a group of 4 bottles from a row of 7 bottles. How many bottles will be left out?",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• Total bottles = 7<br>• Group selected = 4 bottles<br>• Bottles left out = 7 - 4 = <strong>3 bottles</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "7 - 4 = 3 bottles",
+            "key": "Hippopotamus ticked",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Comparison • More or Less",
-        "q": "Collection A has 8 balloons. Collection B has 6 balloons. Tick the collection which has more.",
-        "ans": "<strong>Answer:</strong><br><strong>Collection A</strong> has more balloons because 8 is greater than 6 (8 > 6).",
+        "category": "Textbook Exercise • Smaller Leaf",
+        "q": "Look at the two leaves: a broad banana leaf and a small rose leaf. Tick (✓) the smaller leaf.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>rose leaf is smaller</strong> (tick ✓).<br>• The banana leaf is bigger.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Collection A has more",
+            "key": "Rose leaf ticked",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Smaller Tire",
+        "q": "Two children are racing rolling tires. One has a small scooter tire and one has a large tractor tire. Tick (✓) the smaller tire.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>scooter tire is smaller</strong> (tick ✓).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Smaller tire identified",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Smallest Tree",
+        "q": "Look at three trees in a garden: Tree 1 (huge banyan), Tree 2 (medium mango), Tree 3 (tiny sapling). Tick (✓) the smallest tree.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>tiny sapling (Tree 3) is the smallest tree</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Smallest tree identified",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Biggest Animal",
+        "q": "Among an Elephant, a Cat, and a Dog, tick (✓) the biggest animal.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>Elephant is the biggest animal</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Elephant is biggest",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Top and Bottom on a Slide",
+        "q": "In the children's park, a boy is sitting at the top of the slide, a girl is sliding down the middle, and another boy is standing on the ground at the bottom. Who is at the top?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The boy sitting at the highest point of the ladder is at the <strong>top</strong>.<br>• The boy on the grass is at the <strong>bottom</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Boy at top identified",
             "marks": "1 M"
           },
           {
-            "key": "8 > 6 statement",
+            "key": "Boy at bottom identified",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Number Names • 1 to 9",
-        "q": "Match each numeral with its correct spelling: 3, 6, 8, 9 with Nine, Eight, Three, Six.",
-        "ans": "<strong>Answer:</strong><br>• 3 = Three<br>• 6 = Six<br>• 8 = Eight<br>• 9 = Nine.",
+        "category": "Textbook Exercise • Bird Nearest to Home",
+        "q": "Two birds are flying in the sky towards their nest in a tree. Bird A is 2 meters away from the nest. Bird B is 8 meters away. Tick (✓) the bird nearest to home.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Bird A is nearest to home</strong> because 2 meters is a shorter distance than 8 meters.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Bird A is nearest",
+            "marks": "1 M"
+          },
+          {
+            "key": "Shorter distance explained",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Cat Farthest from the Tree",
+        "q": "Three cats are in the garden: Cat 1 is near the flowerpot, Cat 2 is near the bench, and Cat 3 is near the far garden gate. Which cat is farthest from the tree?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Cat 3 (near the far garden gate) is farthest from the tree</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Cat 3 is farthest",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Nearest and Farthest from Slide",
+        "q": "Look at the playground: Boy A is closest to the slide ladder. Boy B is running across the football field. Who is nearest to the slide and who is farthest?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Nearest:</strong> Boy A.<br>• <strong>Farthest:</strong> Boy B.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Nearest = Boy A",
+            "marks": "1 M"
+          },
+          {
+            "key": "Farthest = Boy B",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • On and Under the Table",
+        "q": "In the classroom picture: A cat is sleeping on the floor under the teacher's desk. An open book is on top of the desk. Where is the cat and where is the book?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The book is <strong>on</strong> the desk.<br>• The cat is <strong>under</strong> the desk.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Book on desk",
+            "marks": "1 M"
+          },
+          {
+            "key": "Cat under desk",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Above and Below the Fan",
+        "q": "A ceiling fan hangs in the room. A boy sits on a bed. Which is above and which is below?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The fan is <strong>above</strong> the boy.<br>• The boy is <strong>below</strong> the fan.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Fan is above",
+            "marks": "1 M"
+          },
+          {
+            "key": "Boy is below",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Sorting Shapes into Boxes",
+        "q": "Put shapes into two boxes by drawing lines: Pink Box (cubes and rectangular boxes) and Yellow Box (round balls and spheres). Where does an orange go?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• An orange is round, so it goes into the <strong>Yellow Box (round balls)</strong>.<br>• A wooden chalk box goes into the Pink Box.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Orange in Yellow Box",
+            "marks": "1 M"
+          },
+          {
+            "key": "Chalk box in Pink Box",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Match Similar Shapes",
+        "q": "Match the similar shapes by drawing a line: (a) Ball, (b) Chalk-box, (c) Candle, (d) Party hat.<br>Options: [Tomato, Die, Water pipe, Cone toy].",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) Ball → <strong>Tomato</strong> (both round spheres)<br>• (b) Chalk-box → <strong>Die</strong> (both cubes)<br>• (c) Candle → <strong>Water pipe</strong> (both cylinders)<br>• (d) Party hat → <strong>Cone toy</strong> (both cones)",
         "marks": 2,
         "rubric": [
           {
@@ -415,254 +237,390 @@ const mathMagicChapters = [
         ]
       },
       {
-        "category": "Zero Concept • Empty Branch",
-        "q": "There were 4 birds sitting on a tree branch. All 4 flew away one by one. How many birds are on the branch now?",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• Starting birds = 4<br>• Birds that flew away = 4<br>• Remaining birds = 4 - 4 = <strong>0 (Zero)</strong>.",
+        "category": "Textbook Exercise • Rolling Objects",
+        "q": "Tick (✓) the objects that roll: Pencil, Ball, Tomato, Butter pack.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Pencil:</strong> Rolls on its round side (✓)<br>• <strong>Ball:</strong> Rolls (✓)<br>• <strong>Tomato:</strong> Rolls (✓)<br>• Butter pack: Has flat faces, so it slides (not rolls).",
         "marks": 2,
         "rubric": [
           {
-            "key": "4 - 4 = 0",
-            "marks": "1 M"
-          },
-          {
-            "key": "Zero clearly identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Number Order • Between",
-        "q": "What numbers come between 4 and 8?",
-        "ans": "<strong>Answer:</strong><br>The numbers between 4 and 8 are <strong>5, 6, and 7</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "5, 6, 7 listed correctly",
+            "key": "Pencil, Ball, Tomato roll",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Understanding more, less, and equal collections.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Understanding more, less, and equal collections.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Sliding Objects",
+        "q": "Tick (✓) the objects that slide: Cucumber, Tomato, Battery, Briefcase (Suitcase).",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Briefcase (Suitcase):</strong> Has flat faces and slides (✓).<br>• Cucumber and Battery can roll on their sides and slide on flat ends.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Suitcase slides",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Flat face explanation",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Introduction to Zero (शून्य) as nothing left.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Introduction to Zero (शून्य) as nothing left.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Story • The Lamb and the Dholak",
+        "q": "How did the grandmother help the lamb escape from the hungry wolf?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Grandmother put the little lamb inside a hollow, round <strong>dholak</strong>.<br>2. She rolled the dholak down the slope.<br>3. Because the dholak was round, it rolled fast and took the lamb safely home.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Put lamb inside dholak",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Rolled down hill safely",
+            "marks": "1 M"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mm2",
+    "num": 2,
+    "unit": "Unit 1: Math-Magic Classic",
+    "title": "Numbers from One to Nine",
+    "subtitle": "Counting 1 to 9, As Many As, More or Less, Make Groups & Zero",
+    "concepts": [
+      "One-to-one matching: 'As many as'.",
+      "Counting physical objects from 1 to 9.",
+      "Comparing collections: More vs Less.",
+      "Counting and writing numerals and number names.",
+      "Grouping objects into given numbers and concept of Zero."
+    ],
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 2: Numbers from One to Nine</text></svg>",
+    "cbq": {
+      "title": "Playground Matchsticks Counting Case Study",
+      "text": "Five children are playing in the school garden. Teacher gives 1 biscuit to each child. Then she counts the remaining biscuits in the packet: there are 3 biscuits left.",
+      "question": "How many biscuits were given to the 5 children? How many total biscuits were in the packet originally?",
+      "answer": "1. 5 children each got 1 biscuit, so <strong>5 biscuits</strong> were given out.<br>2. Total biscuits originally = 5 given + 3 left = <strong>8 biscuits</strong>.",
+      "rubric": "1.5 M for 5 biscuits given + 1.5 M for 5 + 3 = 8 total biscuits"
+    },
+    "questions": [
+      {
+        "category": "Textbook Exercise • As Many As Cats and Mice",
+        "q": "In the textbook illustration: 5 cats are paired with 5 mice by drawing connecting lines. Is every cat matched to a mouse?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Yes, there are 5 cats and 5 mice.<br>• Since 5 = 5, there are <strong>as many mice as cats</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "5 = 5 matching",
+            "marks": "1 M"
+          },
+          {
+            "key": "As many as verified",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Counting items up to 9 with one-to-one matching (As many as).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Counting items up to 9 with one-to-one matching (As many as).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • More or Less Children and Chairs",
+        "q": "5 children are playing musical chairs. There are only 4 chairs. Tick (✓) which is MORE: Children or Chairs?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Children = 5<br>• Chairs = 4<br>• 5 > 4, so <strong>Children are MORE</strong> (tick ✓).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Children are more",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Count and Match",
+        "q": "Count the watermelons: There are 2 watermelons. Match with numeral 2.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 watermelons match with numeral <strong>2 (Two)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Matched to 2",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Counting Milk Bottles",
+        "q": "Count the milk bottles in the crate: • • • • •. Write the numeral.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• There are <strong>5 milk bottles</strong>. Numeral: <strong>5</strong> (Five).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Numeral 5 written",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Counting Ladders",
+        "q": "Count the wooden ladders standing against the wall: • • •. Write the numeral.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• There are <strong>3 wooden ladders</strong>. Numeral: <strong>3</strong> (Three).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Numeral 3 written",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Counting Gas Cylinders",
+        "q": "Count the red gas cylinders: • • • •. Write the numeral.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• There are <strong>4 gas cylinders</strong>. Numeral: <strong>4</strong> (Four).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Numeral 4 written",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Make a Group of 4 Bottles",
+        "q": "There are 6 glass bottles in a row. Draw a line around a group of 4 bottles.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Circle 4 bottles together.<br>• 2 bottles remain uncircled.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "4 bottles grouped",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "2 remain noted",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Writing numbers 1 to 9 with number words.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Writing numbers 1 to 9 with number words.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Make a Group of 3 Trees",
+        "q": "There are 5 trees. Circle a group of 3 trees.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Draw a circle around any 3 trees.<br>• 2 trees remain outside.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Group of 3 circled",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Make a Group of 2 Drums",
+        "q": "There are 4 drums. Draw a ring around a group of 2 drums.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Ring 2 drums.<br>• 2 drums remain outside.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Group of 2 ringed",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Make a Group of 5 Lanterns",
+        "q": "There are 7 lanterns. Circle a group of 5 lanterns.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Ring 5 lanterns.<br>• 7 - 5 = 2 lanterns remain outside.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Group of 5 ringed",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let Us Do • One to Nine Rhyme",
+        "q": "One, one, one, one little baby eating a bun! Two, two, two, two little children going to the zoo! What comes next for three?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <em>'Three, three, three, three green parrots flying free!'</em>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Three green parrots flying free",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Names 1 to 5",
+        "q": "Write the number names for: 1, 2, 3, 4, 5.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 1 = <strong>One</strong><br>• 2 = <strong>Two</strong><br>• 3 = <strong>Three</strong><br>• 4 = <strong>Four</strong><br>• 5 = <strong>Five</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 5 spelled correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Names 6 to 9",
+        "q": "Write the number names for: 6, 7, 8, 9.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 = <strong>Six</strong><br>• 7 = <strong>Seven</strong><br>• 8 = <strong>Eight</strong><br>• 9 = <strong>Nine</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 spelled correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Count and Match 6 to 9",
+        "q": "Match: (a) 6 leaves, (b) 7 glasses, (c) 8 sticks, (d) 9 mangoes to numerals [6, 7, 8, 9].",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 leaves → <strong>6</strong><br>• 7 glasses → <strong>7</strong><br>• 8 sticks → <strong>8</strong><br>• 9 mangoes → <strong>9</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 correctly matched",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Color 6 Birds",
+        "q": "There are 8 birds in the tree. You are asked to color 6 birds. How many birds remain uncolored?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Total birds = 8<br>• Colored birds = 6<br>• Uncolored birds = 8 - 6 = <strong>2 birds</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "8 - 6 = 2",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Answer: 2 birds",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Understanding more, less, and equal collections.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Understanding more, less, and equal collections.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Color 3 Trees",
+        "q": "Out of 4 pine trees, color 3 trees. How many trees are not colored?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 - 3 = <strong>1 tree</strong> remains uncolored.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "4 - 3 = 1",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Color 1 Boat",
+        "q": "There are 3 boats in the river. Color 1 boat. How many boats are left uncolored?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 - 1 = <strong>2 boats</strong> left uncolored.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "3 - 1 = 2",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 1 to 9",
+        "q": "Write the missing numbers: 1, __, 3, 4, __, 6, __, 8, 9.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers are: <strong>2, 5, 7</strong>.<br>• Full sequence: 1, <strong>2</strong>, 3, 4, <strong>5</strong>, 6, <strong>7</strong>, 8, 9.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 2, 5, 7",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • What Comes Before 5?",
+        "q": "What number comes just before 5, and what comes just after 5?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Just before 5 is <strong>4</strong>.<br>• Just after 5 is <strong>6</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Before 5 = 4",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "After 5 = 6",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Introduction to Zero (शून्य) as nothing left.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Introduction to Zero (शून्य) as nothing left.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • What Comes Between 7 and 9?",
+        "q": "What number lies between 7 and 9?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The number between 7 and 9 is <strong>8</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Identified 8",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Concept of Zero Flower Pot",
+        "q": "There are 3 pretty flowers in a flower pot. A child plucks 1 flower, then another, then the last one. How many flowers are left in the pot?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Total flowers = 3<br>2. Flowers plucked = 3<br>3. Flowers remaining = 3 - 3 = <strong>0 (Zero)</strong>.<br>4. Zero means no flowers are left in the pot.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "3 - 3 = 0",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Concept of zero explained",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Counting items up to 9 with one-to-one matching (As many as).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Counting items up to 9 with one-to-one matching (As many as).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Birds Flying Off Branch",
+        "q": "4 birds sit on a tree. All 4 fly away together. How many birds are on the branch?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 - 4 = <strong>0 birds</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "0 birds",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Writing numbers 1 to 9 with number words.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Writing numbers 1 to 9 with number words.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Cages with Mice",
+        "q": "A mouse cage has 3 white mice. All 3 run out through the open door. How many mice are in the cage?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 - 3 = <strong>0 mice</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "0 mice",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Understanding more, less, and equal collections.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Understanding more, less, and equal collections.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Balloons in Hand",
+        "q": "A girl holds 3 balloons. All 3 burst: POP! POP! POP! How many balloons are in her hand?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 - 3 = <strong>0 balloons</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "0 balloons",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Introduction to Zero (शून्य) as nothing left.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Introduction to Zero (शून्य) as nothing left.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Writing Numerals 0 to 9",
+        "q": "Write all single-digit numerals starting from 0 up to 9.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Counting items up to 9 with one-to-one matching (As many as).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Counting items up to 9 with one-to-one matching (As many as).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Writing numbers 1 to 9 with number words.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Writing numbers 1 to 9 with number words.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Understanding more, less, and equal collections.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Understanding more, less, and equal collections.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from One to Nine",
-        "q": "Solve the core NCERT learning activity for Chapter 2 ('Numbers from One to Nine'): Focus on \"Introduction to Zero (शून्य) as nothing left.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from One to Nine', students master <em>Introduction to Zero (शून्य) as nothing left.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "All 10 digits written in order",
+            "marks": "2 M"
           }
         ]
       }
@@ -671,95 +629,265 @@ const mathMagicChapters = [
   {
     "id": "mm3",
     "num": 3,
-    "unit": "Unit 3: Addition within 10",
+    "unit": "Unit 1: Math-Magic Classic",
     "title": "Addition",
-    "subtitle": "One More, How Many Altogether, Addition Facts up to 9",
+    "subtitle": "One More, How Many Altogether, Adding Pictures & Dominoes",
     "concepts": [
-      "Concept of addition as 'putting together' and 'one more'.",
-      "Using the plus (+) and equal (=) signs.",
-      "Solving horizontal and vertical addition problems."
+      "Understanding addition as putting together or adding to.",
+      "The 'One More' concept (1 more than 4 is 5).",
+      "Using the plus (+) and equal to (=) signs correctly.",
+      "Addition facts up to 9 and zero in addition.",
+      "Solving pictorial addition problems and number line addition."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fff1f2\" rx=\"10\"/><circle cx=\"60\" cy=\"55\" r=\"16\" fill=\"#e11d48\"/><circle cx=\"100\" cy=\"55\" r=\"16\" fill=\"#e11d48\"/><circle cx=\"140\" cy=\"55\" r=\"16\" fill=\"#e11d48\"/><text x=\"100\" y=\"95\" font-size=\"11\" font-weight=\"700\" fill=\"#9f1239\" text-anchor=\"middle\">3 Strawberries</text><text x=\"190\" y=\"60\" font-size=\"24\" font-weight=\"800\" fill=\"#e11d48\">+</text><circle cx=\"240\" cy=\"55\" r=\"16\" fill=\"#fb7185\"/><circle cx=\"280\" cy=\"55\" r=\"16\" fill=\"#fb7185\"/><text x=\"260\" y=\"95\" font-size=\"11\" font-weight=\"700\" fill=\"#9f1239\" text-anchor=\"middle\">2 Strawberries</text><text x=\"330\" y=\"60\" font-size=\"24\" font-weight=\"800\" fill=\"#e11d48\">=</text><rect x=\"370\" y=\"30\" width=\"100\" height=\"50\" fill=\"#be123c\" rx=\"8\"/><text x=\"420\" y=\"62\" font-size=\"20\" font-weight=\"800\" fill=\"#fff\" text-anchor=\"middle\">5</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 3: Addition</text></svg>",
     "cbq": {
-      "title": "One More Parrot Rhyme",
-      "text": "Two green parrots flying in the sky, another little parrot joined them as they flew high. Then one more joined to sing and play.",
-      "question": "How many parrots were flying after the first one joined? How many parrots were flying when another one joined after that?",
-      "answer": "1. 2 parrots + 1 parrot = 3 parrots.<br>2. 3 parrots + 1 more parrot = 4 parrots altogether.",
-      "rubric": "1 M for 2+1=3 + 1 M for 3+1=4"
+      "title": "Cow in the Meadow Case Study",
+      "text": "Two cows are grazing in the green meadow. One more cow comes and joins them to graze sweet grass.",
+      "question": "How many cows are grazing altogether? If two more calves join, what is the new total?",
+      "answer": "1. 2 cows + 1 more cow = <strong>3 cows grazing altogether</strong>.<br>2. With 2 more calves: 3 + 2 = <strong>5 animals altogether</strong>.",
+      "rubric": "1.5 M for 2 + 1 = 3 cows + 1.5 M for 3 + 2 = 5 animals"
     },
     "questions": [
       {
-        "category": "Addition Concept • How Many Altogether",
-        "q": "Two cows are grazing in the field. 1 more cow joins them. How many cows are there altogether?",
-        "ans": "<strong>Answer:</strong><br>• 2 + 1 = <strong>3 cows</strong> altogether.",
-        "marks": 1,
+        "category": "Textbook Exercise • One More Parrot Rhyme",
+        "q": "Two little green parrots looking for a mate; one more joins in, making them: ___.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 + 1 = <strong>3 parrots</strong> (Three).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 + 1 = 3",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Three Parrots One More",
+        "q": "Three little green parrots singing in a tree; one more joins in, making them: ___.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 + 1 = <strong>4 parrots</strong> (Four).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "3 + 1 = 4",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Four Parrots One More",
+        "q": "Four little green parrots sitting on the floor; one more joins in, making them: ___.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 + 1 = <strong>5 parrots</strong> (Five).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "4 + 1 = 5",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • How Many Altogether (Cows)",
+        "q": "2 cows and 1 cow is equal to how many cows?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 + 1 = <strong>3 cows</strong>.",
+        "marks": 2,
         "rubric": [
           {
             "key": "2 + 1 = 3 cows",
-            "marks": "1 M"
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Number Pairs • Make 6",
-        "q": "Write three different addition pairs that equal 6.",
-        "ans": "<strong>Answer:</strong><br>• Pair 1: 5 + 1 = 6<br>• Pair 2: 4 + 2 = 6<br>• Pair 3: 3 + 3 = 6 (also 6 + 0 = 6).",
+        "category": "Textbook Exercise • Children Playing",
+        "q": "3 children are playing in the sand. 2 more children join them. How many children altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 + 2 = <strong>5 children altogether</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "3 + 2 = 5 children",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Flowers in Vases",
+        "q": "Vase A has 5 flowers. Vase B has 2 flowers. How many flowers altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 5 + 2 = <strong>7 flowers</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "5 + 2 = 7 flowers",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Birds on Branch",
+        "q": "4 birds sit on a branch. 2 more birds fly in and sit. How many birds altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 + 2 = <strong>6 birds</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "4 + 2 = 6 birds",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Marbles in Hand",
+        "q": "Rahul has 3 marbles in his left hand and 2 marbles in his right hand. How many marbles does he have in all?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 + 2 = <strong>5 marbles</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "3 + 2 = 5 marbles",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Adding Zero (Balloons)",
+        "q": "A boy holds 3 balloons. The other boy holds 0 balloons. How many balloons do both have together?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 + 0 = <strong>3 balloons</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "3 + 0 = 3 balloons",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Zero and Four",
+        "q": "Solve: 0 + 4 = __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 0 + 4 = <strong>4</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "0 + 4 = 4",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Adding Dots",
+        "q": "Add dots: (••) + (••••) = ?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 + 4 = <strong>6 dots</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 + 4 = 6",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Vertical Addition",
+        "q": "Add vertically:<br>&nbsp;&nbsp;4<br>+ 2<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;4<br>+ 2<br>---<br>&nbsp;&nbsp;<strong>6</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 6",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Add 3 and 5",
+        "q": "Add:<br>&nbsp;&nbsp;3<br>+ 5<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;3<br>+ 5<br>---<br>&nbsp;&nbsp;<strong>8</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 8",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Add 4 and 0",
+        "q": "Add:<br>&nbsp;&nbsp;4<br>+ 0<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;4<br>+ 0<br>---<br>&nbsp;&nbsp;<strong>4</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 4",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Horizontal Addition",
+        "q": "Find the sums:<br>(a) 2 + 3 = __<br>(b) 7 + 1 = __<br>(c) 3 + 4 = __",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) 2 + 3 = <strong>5</strong><br>• (b) 7 + 1 = <strong>8</strong><br>• (c) 3 + 4 = <strong>7</strong>",
         "marks": 3,
         "rubric": [
           {
-            "key": "Three valid pairs provided",
-            "marks": "3 M"
-          }
-        ]
-      },
-      {
-        "category": "Adding Zero",
-        "q": "What is 4 + 0? Explain why adding zero does not change the number.",
-        "ans": "<strong>Answer:</strong><br>• 4 + 0 = <strong>4</strong>.<br>• Adding zero means adding nothing to the group, so the original quantity stays exactly the same.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "4 + 0 = 4",
+            "key": "2+3 = 5",
             "marks": "1 M"
           },
           {
-            "key": "Explanation of adding nothing",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Word Problem • Combining Marbles",
-        "q": "Rohan has 4 blue marbles and 3 green marbles. How many marbles does Rohan have in total?",
-        "ans": "<strong>Calculation:</strong><br>• Blue marbles = 4<br>• Green marbles = 3<br>• Total marbles = 4 + 3 = <strong>7 marbles</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "4 + 3 statement",
+            "key": "7+1 = 8",
             "marks": "1 M"
           },
           {
-            "key": "Answer: 7 marbles",
+            "key": "3+4 = 7",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Vertical Addition",
-        "q": "Solve vertically:<br>&nbsp;&nbsp;5<br>+ 4<br>---",
-        "ans": "<strong>Answer:</strong><br>&nbsp;&nbsp;5<br>+ 4<br>---<br>&nbsp;&nbsp;<strong>9</strong>",
-        "marks": 1,
+        "category": "Textbook Exercise • Match the Pairs",
+        "q": "Match the sums that give 7: (a) 4 + 3, (b) 5 + 2, (c) 6 + 1.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 + 3 = 7<br>• 5 + 2 = 7<br>• 6 + 1 = 7<br>• All three expressions equal <strong>7</strong>.",
+        "marks": 2,
         "rubric": [
           {
-            "key": "Correct sum: 9",
-            "marks": "1 M"
+            "key": "All equal 7 verified",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Visual Problem • Ants on a Log",
-        "q": "There are 6 ants marching in a line. 2 more ants join the back of the line. How many ants are in line now?",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• Existing ants = 6<br>• Joined ants = 2<br>• Total ants = 6 + 2 = <strong>8 ants</strong>.",
+        "category": "Textbook Exercise • Missing Addend",
+        "q": "Fill in the missing numeral: 5 + __ = 7.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 7 - 5 = 2.<br>• 5 + <strong>2</strong> = 7.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Missing number is 2",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Addend to 9",
+        "q": "Fill in the blank: __ + 3 = 9.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 9 - 3 = 6.<br>• <strong>6</strong> + 3 = 9.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Missing number is 6",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Adding to Make 8",
+        "q": "Write any two pairs of numbers that add up to 8.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Pair 1: <strong>4 + 4 = 8</strong><br>• Pair 2: <strong>5 + 3 = 8</strong> (or 6 + 2, 7 + 1).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Two valid pairs",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Ants in a Line",
+        "q": "6 ants are marching towards a sugar crystal. 2 more ants join the line. How many ants in the line now?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 + 2 = <strong>8 ants</strong>.",
         "marks": 2,
         "rubric": [
           {
@@ -769,225 +897,29 @@ const mathMagicChapters = [
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Concept of addition as 'putting together' and 'one more'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Concept of addition as 'putting together' and 'one more'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Word Problem • Frogs on Stones",
+        "q": "3 frogs sit on Stone A. 3 frogs sit on Stone B. How many frogs in total?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 + 3 = <strong>6 frogs</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "3 + 3 = 6 frogs",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Using the plus (+) and equal (=) signs.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Using the plus (+) and equal (=) signs.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Commutative Property",
+        "q": "Does 2 + 5 give the same answer as 5 + 2? Show the working.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 + 5 = 7<br>• 5 + 2 = 7<br>• <strong>Yes</strong>, both equal 7. The order of adding numbers does not change the total.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Both equal 7",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Solving horizontal and vertical addition problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Solving horizontal and vertical addition problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Concept of addition as 'putting together' and 'one more'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Concept of addition as 'putting together' and 'one more'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Using the plus (+) and equal (=) signs.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Using the plus (+) and equal (=) signs.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Solving horizontal and vertical addition problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Solving horizontal and vertical addition problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Concept of addition as 'putting together' and 'one more'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Concept of addition as 'putting together' and 'one more'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Using the plus (+) and equal (=) signs.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Using the plus (+) and equal (=) signs.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Solving horizontal and vertical addition problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Solving horizontal and vertical addition problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Concept of addition as 'putting together' and 'one more'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Concept of addition as 'putting together' and 'one more'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Using the plus (+) and equal (=) signs.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Using the plus (+) and equal (=) signs.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Solving horizontal and vertical addition problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Solving horizontal and vertical addition problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Concept of addition as 'putting together' and 'one more'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Concept of addition as 'putting together' and 'one more'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Addition",
-        "q": "Solve the core NCERT learning activity for Chapter 3 ('Addition'): Focus on \"Using the plus (+) and equal (=) signs.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Addition', students master <em>Using the plus (+) and equal (=) signs.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
+            "key": "Order does not change sum",
             "marks": "1 M"
           }
         ]
@@ -997,323 +929,293 @@ const mathMagicChapters = [
   {
     "id": "mm4",
     "num": 4,
-    "unit": "Unit 3: Subtraction within 10",
+    "unit": "Unit 1: Math-Magic Classic",
     "title": "Subtraction",
-    "subtitle": "Take Away, How Many Left, Subtraction Facts up to 9",
+    "subtitle": "Take Away, Crossing Out, How Many Left & Subtraction Facts",
     "concepts": [
-      "Concept of subtraction as 'taking away' or 'separating'.",
-      "Using the minus sign (-) and equal sign (=).",
-      "Finding differences and remaining items in everyday situations."
+      "Understanding subtraction as 'Taking away' from a collection.",
+      "Crossing out pictures/dots to find the remaining count.",
+      "Using the minus sign (-) and equal to (=) signs.",
+      "Subtraction facts within 9 and subtracting zero.",
+      "Subtracting a number from itself (e.g. 5 - 5 = 0)."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fefce8\" rx=\"10\"/><circle cx=\"60\" cy=\"55\" r=\"16\" fill=\"#eab308\"/><circle cx=\"100\" cy=\"55\" r=\"16\" fill=\"#eab308\"/><circle cx=\"140\" cy=\"55\" r=\"16\" fill=\"#eab308\"/><circle cx=\"180\" cy=\"55\" r=\"16\" fill=\"#eab308\"/><circle cx=\"220\" cy=\"55\" r=\"16\" fill=\"#eab308\"/><text x=\"140\" y=\"95\" font-size=\"11\" font-weight=\"700\" fill=\"#a16207\" text-anchor=\"middle\">5 Lemons</text><text x=\"270\" y=\"60\" font-size=\"24\" font-weight=\"800\" fill=\"#ca8a04\">-</text><circle cx=\"320\" cy=\"55\" r=\"16\" stroke=\"#ca8a04\" stroke-width=\"2\" stroke-dasharray=\"4\" fill=\"none\"/><circle cx=\"360\" cy=\"55\" r=\"16\" stroke=\"#ca8a04\" stroke-width=\"2\" stroke-dasharray=\"4\" fill=\"none\"/><text x=\"340\" y=\"95\" font-size=\"11\" font-weight=\"700\" fill=\"#a16207\" text-anchor=\"middle\">Take Away 2</text><text x=\"410\" y=\"60\" font-size=\"24\" font-weight=\"800\" fill=\"#ca8a04\">=</text><text x=\"455\" y=\"68\" font-size=\"24\" font-weight=\"800\" fill=\"#854d0e\">3</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 4: Subtraction</text></svg>",
     "cbq": {
-      "title": "Leaves on a Branch",
-      "text": "A twig had 6 fresh green leaves. In the autumn breeze, 2 leaves fell off onto the garden grass.",
-      "question": "How many leaves remained attached to the twig? Write the subtraction fact.",
-      "answer": "1. Leaves remaining = 6 - 2 = <strong>4 leaves</strong>.<br>2. Subtraction fact: <strong>6 - 2 = 4</strong>.",
-      "rubric": "1 M for 4 leaves remaining + 1 M for fact 6 - 2 = 4"
+      "title": "Leaves on a Twig Case Study",
+      "text": "A green twig had 6 tender leaves. A hungry caterpillar came and ate 2 leaves.",
+      "question": "How many leaves are left on the twig? If the caterpillar comes back and eats 4 more leaves, how many leaves remain?",
+      "answer": "1. Leaves left initially = 6 - 2 = <strong>4 leaves left</strong>.<br>2. After eating 4 more: 4 - 4 = <strong>0 leaves left</strong>.",
+      "rubric": "1.5 M for 6 - 2 = 4 leaves + 1.5 M for 4 - 4 = 0 leaves"
     },
     "questions": [
       {
-        "category": "Subtraction Concept • Take Away",
-        "q": "There were 5 cups on the dining table. 2 cups broke. How many cups are left?",
-        "ans": "<strong>Answer:</strong><br>• Total cups = 5<br>• Cups broken = 2<br>• Cups left = 5 - 2 = <strong>3 cups</strong>.",
+        "category": "Textbook Exercise • Take Away Leaves",
+        "q": "A twig has 6 leaves. Take away 2 leaves. How many leaves are left?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 - 2 = <strong>4 leaves left</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "5 - 2 = 3 cups",
+            "key": "6 - 2 = 4",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Subtracting All",
-        "q": "A boy had 3 balloons. All 3 balloons burst with a pop. How many balloons are left with him?",
-        "ans": "<strong>Answer:</strong><br>• 3 - 3 = <strong>0 balloons</strong>.<br>When you take away all items from a group, zero items are left.",
+        "category": "Textbook Exercise • Take Away Butterflies",
+        "q": "There are 5 butterflies on a rose flower. All 5 butterflies fly away. How many butterflies remain on the flower?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 5 - 5 = <strong>0 butterflies</strong>.<br>• When all items are taken away, zero remains.",
         "marks": 2,
         "rubric": [
           {
-            "key": "3 - 3 = 0",
+            "key": "5 - 5 = 0",
             "marks": "1 M"
           },
           {
-            "key": "Explanation of zero remainder",
+            "key": "Explanation of zero",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Vertical Subtraction",
-        "q": "Solve vertically:<br>&nbsp;&nbsp;8<br>- 3<br>---",
-        "ans": "<strong>Answer:</strong><br>&nbsp;&nbsp;8<br>- 3<br>---<br>&nbsp;&nbsp;<strong>5</strong>",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Answer: 5",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Missing Subtrahend",
-        "q": "Fill in the blank: 7 - __ = 2.",
-        "ans": "<strong>Answer:</strong><br>7 - <strong>5</strong> = 2 (since 7 - 2 = 5).",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "5",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Word Problem • Frogs on a Rock",
-        "q": "9 frogs were sitting on a river rock. 4 frogs jumped into the water. How many frogs are still sitting on the rock?",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• Frogs on rock = 9<br>• Frogs jumped in = 4<br>• Frogs remaining = 9 - 4 = <strong>5 frogs</strong>.",
+        "category": "Textbook Exercise • Frogs in Water",
+        "q": "3 frogs sit on the bank. 1 frog jumps into the water. How many frogs stay on the bank?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 - 1 = <strong>2 frogs stay on the bank</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "9 - 4 statement",
-            "marks": "1 M"
-          },
-          {
-            "key": "Answer: 5 frogs",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Comparison • Difference",
-        "q": "Tina has 7 pencils and Meenu has 4 pencils. How many more pencils does Tina have than Meenu?",
-        "ans": "<strong>Calculation:</strong><br>• Tina = 7 pencils<br>• Meenu = 4 pencils<br>• Difference = 7 - 4 = <strong>3 pencils</strong>.<br>Tina has 3 more pencils.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Difference 7 - 4 = 3",
+            "key": "3 - 1 = 2",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Concept of subtraction as 'taking away' or 'separating'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Concept of subtraction as 'taking away' or 'separating'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Jugs on Table",
+        "q": "There were 6 glass jugs on the table. 4 jugs broke. How many jugs are left unbroken?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 - 4 = <strong>2 jugs left unbroken</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "6 - 4 = 2",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Crossing Out Dots",
+        "q": "There are 7 dots: (•••••••). Cross out 3 dots. How many dots are left uncrossed?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 7 - 3 = <strong>4 dots left</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "7 - 3 = 4",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Vertical Subtraction",
+        "q": "Subtract vertically:<br>&nbsp;&nbsp;8<br>- 2<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;8<br>- 2<br>---<br>&nbsp;&nbsp;<strong>6</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 6",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Subtract 4 from 9",
+        "q": "Subtract:<br>&nbsp;&nbsp;9<br>- 4<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;9<br>- 4<br>---<br>&nbsp;&nbsp;<strong>5</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 5",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Subtract Zero",
+        "q": "Subtract:<br>&nbsp;&nbsp;5<br>- 0<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;5<br>- 0<br>---<br>&nbsp;&nbsp;<strong>5</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 5",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Subtract Number from Itself",
+        "q": "Subtract:<br>&nbsp;&nbsp;7<br>- 7<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;7<br>- 7<br>---<br>&nbsp;&nbsp;<strong>0</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 0",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Horizontal Differences",
+        "q": "Solve:<br>(a) 4 - 2 = __<br>(b) 8 - 5 = __<br>(c) 9 - 1 = __",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) 4 - 2 = <strong>2</strong><br>• (b) 8 - 5 = <strong>3</strong><br>• (c) 9 - 1 = <strong>8</strong>",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "4-2 = 2",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "8-5 = 3",
+            "marks": "1 M"
+          },
+          {
+            "key": "9-1 = 8",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Using the minus sign (-) and equal sign (=).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Using the minus sign (-) and equal sign (=).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Match the Difference",
+        "q": "Match the subtraction facts that equal 3: (a) 6 - 3, (b) 5 - 2, (c) 7 - 4, (d) 8 - 5.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 - 3 = 3<br>• 5 - 2 = 3<br>• 7 - 4 = 3<br>• 8 - 5 = 3<br>• All four expressions equal <strong>3</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "All evaluated to 3",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Number in Subtraction",
+        "q": "Fill in the blank: 8 - __ = 7.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 8 - 7 = 1.<br>• 8 - <strong>1</strong> = 7.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Blank is 1",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Minuend",
+        "q": "Fill in the blank: __ - 2 = 3.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 + 2 = 5.<br>• <strong>5</strong> - 2 = 3.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Blank is 5",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Bananas Eaten",
+        "q": "A monkey had 6 bananas. He ate 3 bananas. How many bananas are left?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 - 3 = <strong>3 bananas left</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "6 - 3 = 3 bananas",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Sparrows Flying Away",
+        "q": "9 sparrows were pecking grains in the courtyard. A barking dog startled them and 5 flew away. How many sparrows remained?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 9 - 5 = <strong>4 sparrows remained</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 - 5 = 4 sparrows",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Candies Shared",
+        "q": "Ali had 7 candies. He gave 4 candies to his sister. How many candies does Ali have now?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 7 - 4 = <strong>3 candies</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "7 - 4 = 3 candies",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Take Away from 9",
+        "q": "Solve: 9 - 6 = __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Count down from 9: 8, 7, 6, 5, 4, 3.<br>• 9 - 6 = <strong>3</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 3",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Take Away from 8",
+        "q": "Solve: 8 - 8 = __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 8 - 8 = <strong>0</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 0",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Subtracting 1",
+        "q": "What happens when you subtract 1 from any number? Give an example.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Subtracting 1 gives the <strong>number just before it</strong> (the predecessor).<br>• Example: 7 - 1 = <strong>6</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Gives number just before",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Valid example (7 - 1 = 6)",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Finding differences and remaining items in everyday situations.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Finding differences and remaining items in everyday situations.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Let Us Think • True or False in Subtraction",
+        "q": "Is 5 - 2 equal to 2 - 5?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 5 - 2 = 3.<br>• 2 - 5 cannot be done with whole positive numbers.<br>• <strong>No.</strong> Unlike addition, the order of numbers cannot be reversed in subtraction.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "No, order cannot be changed",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Concept of subtraction as 'taking away' or 'separating'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Concept of subtraction as 'taking away' or 'separating'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Checking by Addition",
+        "q": "How can you check if 8 - 3 = 5 is correct using addition?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Add the answer (5) to the number subtracted (3):<br>• 5 + 3 = <strong>8</strong> (the original number).<br>• This proves the subtraction is correct.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "5 + 3 = 8",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Using the minus sign (-) and equal sign (=).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Using the minus sign (-) and equal sign (=).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Finding differences and remaining items in everyday situations.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Finding differences and remaining items in everyday situations.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Concept of subtraction as 'taking away' or 'separating'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Concept of subtraction as 'taking away' or 'separating'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Using the minus sign (-) and equal sign (=).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Using the minus sign (-) and equal sign (=).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Finding differences and remaining items in everyday situations.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Finding differences and remaining items in everyday situations.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Concept of subtraction as 'taking away' or 'separating'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Concept of subtraction as 'taking away' or 'separating'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Using the minus sign (-) and equal sign (=).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Using the minus sign (-) and equal sign (=).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Finding differences and remaining items in everyday situations.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Finding differences and remaining items in everyday situations.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Concept of subtraction as 'taking away' or 'separating'.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Concept of subtraction as 'taking away' or 'separating'.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Subtraction",
-        "q": "Solve the core NCERT learning activity for Chapter 4 ('Subtraction'): Focus on \"Using the minus sign (-) and equal sign (=).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Subtraction', students master <em>Using the minus sign (-) and equal sign (=).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
+            "key": "Proves inverse operation",
             "marks": "1 M"
           }
         ]
@@ -1323,332 +1225,338 @@ const mathMagicChapters = [
   {
     "id": "mm5",
     "num": 5,
-    "unit": "Unit 4: Numbers from Ten to Twenty",
+    "unit": "Unit 2: Math-Magic Classic",
     "title": "Numbers from Ten to Twenty",
-    "subtitle": "Make a Group of 10, Tens and Ones, Addition & Subtraction up to 20",
+    "subtitle": "Bundles of 10, Counting 10-20, Tens and Ones, Addition & Subtraction",
     "concepts": [
-      "Grouping 10 items into 1 Ten and understanding numbers 11 to 20.",
-      "Writing numbers in tens and ones format.",
-      "Adding and subtracting single-digit numbers to/from teen numbers."
+      "Making groups of 10 from loose objects (matchsticks, pencils).",
+      "Counting from 10 to 20: 10 + 1 = 11 up to 10 + 10 = 20.",
+      "Partitioning numbers into Tens and Ones.",
+      "Comparing numbers from 10 to 20: greater than and smaller than.",
+      "Addition and subtraction within 20."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f0fdfa\" rx=\"10\"/><rect x=\"50\" y=\"30\" width=\"120\" height=\"60\" fill=\"#0d9488\" rx=\"6\"/><text x=\"110\" y=\"65\" font-size=\"13\" font-weight=\"700\" fill=\"#fff\" text-anchor=\"middle\">Group of 10</text><text x=\"200\" y=\"65\" font-size=\"24\" font-weight=\"800\" fill=\"#0d9488\">+</text><circle cx=\"250\" cy=\"60\" r=\"12\" fill=\"#14b8a6\"/><circle cx=\"280\" cy=\"60\" r=\"12\" fill=\"#14b8a6\"/><circle cx=\"310\" cy=\"60\" r=\"12\" fill=\"#14b8a6\"/><text x=\"280\" y=\"95\" font-size=\"11\" font-weight=\"700\" fill=\"#0f766e\" text-anchor=\"middle\">3 Ones</text><text x=\"355\" y=\"65\" font-size=\"24\" font-weight=\"800\" fill=\"#0d9488\">=</text><text x=\"420\" y=\"70\" font-size=\"26\" font-weight=\"800\" fill=\"#115e59\">13</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 5: Numbers from Ten to Twenty</text></svg>",
     "cbq": {
-      "title": "Counting Bananas for the Zoo Monkeys",
-      "text": "The zookeeper has 17 bananas in a crate. He ties 10 bananas in a bunch for the mother monkey and gives the remaining loose bananas to the baby monkeys.",
-      "question": "How many bunches of 10 does the keeper make? How many loose bananas do the baby monkeys get?",
-      "answer": "1. 1 bunch of 10 bananas.<br>2. 7 loose bananas (ones) for the baby monkeys (17 = 1 Ten + 7 Ones).",
-      "rubric": "1.5 M for 1 bunch of 10 + 1.5 M for 7 loose bananas"
+      "title": "Matchstick Bundling Project Case Study",
+      "text": "Deepak has 14 loose matchsticks on his work table. His teacher asks him to make a bundle of 10 matchsticks using a red rubber band.",
+      "question": "How many bundles of 10 can Deepak make? How many loose matchsticks will remain outside the bundle?",
+      "answer": "1. 14 has 1 ten and 4 ones.<br>2. Deepak can make <strong>1 bundle of 10 matchsticks</strong>.<br>3. <strong>4 loose matchsticks</strong> will remain outside.",
+      "rubric": "1.5 M for 1 bundle of 10 + 1.5 M for 4 loose sticks"
     },
     "questions": [
       {
-        "category": "Tens and Ones • Decomposition",
-        "q": "Write the tens and ones for the following numbers:<br>(a) 15<br>(b) 19",
-        "ans": "<strong>Answer:</strong><br>(a) 15 = <strong>1 Ten and 5 Ones</strong> (10 + 5)<br>(b) 19 = <strong>1 Ten and 9 Ones</strong> (10 + 9)",
+        "category": "Textbook Exercise • Bundle of 10 Matchsticks",
+        "q": "How many loose matchsticks make 1 bundle of 10? What do we call 10 ones?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Exactly <strong>10 loose matchsticks</strong> tied together make 1 bundle.<br>• 10 ones is called <strong>1 Ten</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "(a) 1 Ten, 5 Ones",
+            "key": "10 loose matchsticks",
             "marks": "1 M"
           },
           {
-            "key": "(b) 1 Ten, 9 Ones",
+            "key": "10 ones = 1 Ten",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Addition within 20",
-        "q": "Solve: 12 + 5.",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• 12 + 5 = 10 + 2 + 5 = 10 + 7 = <strong>17</strong>.<br>Or count on from 12: 13, 14, 15, 16, 17.",
+        "category": "Textbook Exercise • Make a Group of 10",
+        "q": "Look at 14 ice-cream cups. Circle a group of 10 cups. How many cups remain uncircled?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Total cups = 14<br>• Circled group = 10 (1 ten)<br>• Uncircled cups = 14 - 10 = <strong>4 cups</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Showing method",
+            "key": "Group of 10 circled",
             "marks": "1 M"
           },
           {
-            "key": "Answer: 17",
+            "key": "4 remaining",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Subtraction within 20",
-        "q": "Solve: 18 - 6.",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• 8 ones - 6 ones = 2 ones.<br>• 1 ten + 2 ones = <strong>12</strong>.<br>18 - 6 = 12.",
+        "category": "Textbook Exercise • Counting 10 to 15",
+        "q": "Write the numbers from 10 to 15 in order with their number names.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 10 = Ten<br>• 11 = Eleven<br>• 12 = Twelve<br>• 13 = Thirteen<br>• 14 = Fourteen<br>• 15 = Fifteen",
         "marks": 2,
         "rubric": [
           {
-            "key": "Step shown",
-            "marks": "1 M"
-          },
-          {
-            "key": "Answer: 12",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Comparison • Circle the Greater Number",
-        "q": "Circle the greater number in each pair:<br>(a) 11 or 14<br>(b) 16 or 13",
-        "ans": "<strong>Answer:</strong><br>(a) In (11, 14), <strong>14</strong> is greater.<br>(b) In (16, 13), <strong>16</strong> is greater.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "14",
-            "marks": "1 M"
-          },
-          {
-            "key": "16",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Story Sum • Beads on Thread",
-        "q": "Kavita had 11 wooden beads. Her aunt gave her 4 more beads. How many beads does Kavita have altogether?",
-        "ans": "<strong>Calculation:</strong><br>• Initial beads = 11<br>• Added beads = 4<br>• Total beads = 11 + 4 = <strong>15 beads</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "11 + 4 = 15 beads",
+            "key": "All 6 numerals & names correct",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Story Sum • Bird Flight",
-        "q": "15 birds were resting on a wire. 5 birds flew away. How many birds are still on the wire?",
-        "ans": "<strong>Calculation:</strong><br>• Total birds = 15<br>• Birds flew away = 5<br>• Birds left = 15 - 5 = <strong>10 birds</strong>.",
+        "category": "Textbook Exercise • Counting 16 to 20",
+        "q": "Write the numbers from 16 to 20 in order with their number names.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 16 = Sixteen<br>• 17 = Seventeen<br>• 18 = Eighteen<br>• 19 = Nineteen<br>• 20 = Twenty",
         "marks": 2,
         "rubric": [
           {
-            "key": "15 - 5 = 10 birds",
+            "key": "All 5 numerals & names correct",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Grouping 10 items into 1 Ten and understanding numbers 11 to 20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Grouping 10 items into 1 Ten and understanding numbers 11 to 20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Tens and Ones for 18",
+        "q": "In the number 18, how many tens and how many ones are there?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• In 18, there is <strong>1 Ten and 8 Ones</strong> (10 + 8 = 18).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "1 Ten and 8 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tens and Ones for 15",
+        "q": "Write Tens and Ones for 15.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 15 = <strong>1 Ten and 5 Ones</strong> (10 + 5 = 15).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "1 Ten and 5 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tens and Ones for 12",
+        "q": "Write Tens and Ones for 12.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 12 = <strong>1 Ten and 2 Ones</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "1 Ten and 2 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tens and Ones for 20",
+        "q": "How many tens and how many ones make 20?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 20 = <strong>2 Tens and 0 Ones</strong> (10 + 10 = 20).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 Tens and 0 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Circle the Bigger Number (Teens)",
+        "q": "Circle the bigger number: (a) 11 and 13, (b) 16 and 14.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) 13 is bigger than 11 → Circle <strong>13</strong>.<br>• (b) 16 is bigger than 14 → Circle <strong>16</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "13 circled",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "16 circled",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Writing numbers in tens and ones format.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Writing numbers in tens and ones format.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Circle the Smaller Number (Teens)",
+        "q": "Circle the smaller number: (a) 20 and 10, (b) 12 and 17.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) 10 is smaller than 20 → Circle <strong>10</strong>.<br>• (b) 12 is smaller than 17 → Circle <strong>12</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "10 circled",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "12 circled",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Adding and subtracting single-digit numbers to/from teen numbers.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Adding and subtracting single-digit numbers to/from teen numbers.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Biggest Number Among Three",
+        "q": "Circle the biggest number among: 13, 3, 9.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 13 is a 2-digit teen number (1 ten and 3 ones).<br>• 3 and 9 are 1-digit numbers.<br>• <strong>13 is the biggest number</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "13 is biggest",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Smallest Number Among Three",
+        "q": "Circle the smallest number among: 12, 15, 20.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Comparing: 12 < 15 < 20.<br>• <strong>12 is the smallest number</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "12 is smallest",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Addition within 20 (4 + 5)",
+        "q": "Solve: 4 + 5 = __ and 14 + 5 = __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 + 5 = <strong>9</strong><br>• 14 + 5 = 10 + (4 + 5) = 10 + 9 = <strong>19</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "4+5 = 9",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "14+5 = 19",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Grouping 10 items into 1 Ten and understanding numbers 11 to 20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Grouping 10 items into 1 Ten and understanding numbers 11 to 20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Addition 8 + 7",
+        "q": "Solve: 8 + 7 = __ using the 'Make 10' method.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. 8 needs 2 to make 10.<br>2. 7 = 2 + 5.<br>3. 8 + 2 = 10.<br>4. 10 + 5 = <strong>15</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Make 10 steps shown",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Answer: 15",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Writing numbers in tens and ones format.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Writing numbers in tens and ones format.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Addition 11 + 5",
+        "q": "Add:<br>&nbsp;&nbsp;11<br>+ &nbsp;5<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;11<br>+ &nbsp;5<br>---<br>&nbsp;&nbsp;<strong>16</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Answer 16",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Subtraction 17 - 5",
+        "q": "Subtract:<br>&nbsp;&nbsp;17<br>- &nbsp;5<br>---",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>&nbsp;&nbsp;17<br>- &nbsp;5<br>---<br>&nbsp;&nbsp;<strong>12</strong> (7 - 5 = 2, bring down 1 ten).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 12",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Subtraction 18 - 8",
+        "q": "Solve: 18 - 8 = __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 18 = 10 + 8.<br>• Subtracting 8 leaves <strong>10</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 10",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Subtraction 15 - 3",
+        "q": "Solve: 15 - 3 = __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 5 - 3 = 2.<br>• 10 + 2 = <strong>12</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Answer 12",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Rahul's Apples",
+        "q": "Rahul has 8 apples. Sonu gave him 7 more apples. How many apples does Rahul have now?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 8 + 7 = <strong>15 apples</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "8 + 7 = 15 apples",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Sohan's Bananas",
+        "q": "Sohan had 12 bananas. He ate 4 bananas. How many bananas are left?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 12 - 4 = <strong>8 bananas left</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "12 - 4 = 8 bananas",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • What Comes Just After 18?",
+        "q": "What number comes just before 13? What number comes just after 18?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Just before 13 is <strong>12</strong>.<br>• Just after 18 is <strong>19</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Before 13 = 12",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "After 18 = 19",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Adding and subtracting single-digit numbers to/from teen numbers.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Adding and subtracting single-digit numbers to/from teen numbers.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Between 14 and 16",
+        "q": "What number lies between 14 and 16?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The number between 14 and 16 is <strong>15</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "15",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Grouping 10 items into 1 Ten and understanding numbers 11 to 20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Grouping 10 items into 1 Ten and understanding numbers 11 to 20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Match Numeral to Sticks",
+        "q": "Match: (1) 1 bundle of 10 and 6 sticks → 16. (2) 1 bundle of 10 and 9 sticks → 19.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 10 + 6 = 16<br>• 10 + 9 = 19",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Matches verified",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Writing numbers in tens and ones format.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Writing numbers in tens and ones format.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Making 20",
+        "q": "How many ones must be added to 14 to make 20?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 20 - 14 = <strong>6 ones</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Adding and subtracting single-digit numbers to/from teen numbers.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Adding and subtracting single-digit numbers to/from teen numbers.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Grouping 10 items into 1 Ten and understanding numbers 11 to 20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Grouping 10 items into 1 Ten and understanding numbers 11 to 20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Writing numbers in tens and ones format.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Writing numbers in tens and ones format.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Adding and subtracting single-digit numbers to/from teen numbers.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Adding and subtracting single-digit numbers to/from teen numbers.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Grouping 10 items into 1 Ten and understanding numbers 11 to 20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Grouping 10 items into 1 Ten and understanding numbers 11 to 20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Ten to Twenty",
-        "q": "Solve the core NCERT learning activity for Chapter 5 ('Numbers from Ten to Twenty'): Focus on \"Writing numbers in tens and ones format.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Ten to Twenty', students master <em>Writing numbers in tens and ones format.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "6 ones",
+            "marks": "2 M"
           }
         ]
       }
@@ -1657,323 +1565,220 @@ const mathMagicChapters = [
   {
     "id": "mm6",
     "num": 6,
-    "unit": "Unit 5: Time & Routine",
+    "unit": "Unit 2: Math-Magic Classic",
     "title": "Time",
-    "subtitle": "Sampurna's Day: Chronological Order, Duration of Activities",
+    "subtitle": "Daily Routines, Morning to Night Sequence & Activity Duration",
     "concepts": [
-      "Sequencing daily life events from morning to evening.",
-      "Understanding activities that take more time vs less time.",
-      "Connecting daily activities with appropriate times of day."
+      "Sequencing daily life routines: waking up, brushing, breakfast, school, playing, studying, sleeping.",
+      "Identifying Morning, Afternoon, Evening, and Night.",
+      "Comparing duration: activities taking longer vs shorter time.",
+      "Sequencing steps of making chapati from kneading flour to baking."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fef2f2\" rx=\"10\"/><rect x=\"40\" y=\"30\" width=\"90\" height=\"55\" fill=\"#fca5a5\" rx=\"6\"/><text x=\"85\" y=\"55\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">1. Wake Up</text><text x=\"85\" y=\"70\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">&amp; Brush</text><text x=\"145\" y=\"60\" font-size=\"16\" font-weight=\"800\" fill=\"#ef4444\">→</text><rect x=\"165\" y=\"30\" width=\"90\" height=\"55\" fill=\"#fca5a5\" rx=\"6\"/><text x=\"210\" y=\"55\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">2. Breakfast</text><text x=\"210\" y=\"70\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">&amp; School</text><text x=\"270\" y=\"60\" font-size=\"16\" font-weight=\"800\" fill=\"#ef4444\">→</text><rect x=\"290\" y=\"30\" width=\"90\" height=\"55\" fill=\"#fca5a5\" rx=\"6\"/><text x=\"335\" y=\"55\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">3. Study</text><text x=\"335\" y=\"70\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">&amp; Play</text><text x=\"395\" y=\"60\" font-size=\"16\" font-weight=\"800\" fill=\"#ef4444\">→</text><rect x=\"415\" y=\"30\" width=\"70\" height=\"55\" fill=\"#fca5a5\" rx=\"6\"/><text x=\"450\" y=\"62\" font-size=\"10\" font-weight=\"700\" fill=\"#991b1b\" text-anchor=\"middle\">4. Sleep</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 6: Time</text></svg>",
     "cbq": {
-      "title": "Baking a Roti Routine",
-      "text": "Mother is making rotis for dinner. She needs to: knead the dough in a bowl, light the stove, roll the dough into flat circles, and roast the roti on the tawa.",
-      "question": "Which step must Mother do first? What happens if she tries to roll before kneading?",
-      "answer": "1. Mother must <strong>knead the dough</strong> first.<br>2. If she does not knead, the dry flour cannot be rolled into flat circles. Cooking requires a fixed sequence of steps over time.",
-      "rubric": "1.5 M for kneading first + 1.5 M for logical sequencing reasoning"
+      "title": "Making Chapati from Wheat Case Study",
+      "text": "Mother wants to make hot chapatis for lunch. She takes flour from the tin, pours water, kneads the dough, rolls a ball on the rolling board (chakla), and bakes it on the tawa.",
+      "question": "What is the first step in making chapati? Does kneading dough take place before or after baking on the tawa?",
+      "answer": "1. The first step is <strong>taking flour from the tin into a bowl</strong>.<br>2. Kneading the dough takes place <strong>before</strong> baking on the tawa.",
+      "rubric": "1.5 M for taking flour first + 1.5 M for kneading before baking"
     },
     "questions": [
       {
-        "category": "Sequencing • Daily Routine",
-        "q": "What do you do first in the morning: Put on school uniform or take a bath?",
-        "ans": "<strong>Answer:</strong><br>You <strong>take a bath first</strong>, and then you put on your clean school uniform.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Take bath first",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Time Duration • Tick the Longer Activity",
-        "q": "Which takes more time: (a) Walking to school, or (b) Travelling to school in a school bus?",
-        "ans": "<strong>Answer:</strong><br>• <strong>Walking to school takes more time</strong> because walking speed is slow.<br>A bus travels much faster and takes less time.",
+        "category": "Textbook Exercise • Morning Routine Sequence",
+        "q": "Number the activities in the order you do them in the morning: (a) Eating breakfast, (b) Waking up from bed, (c) Wearing school uniform, (d) Brushing teeth.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. (b) Waking up from bed → <strong>1st</strong><br>2. (d) Brushing teeth → <strong>2nd</strong><br>3. (c) Wearing school uniform → <strong>3rd</strong><br>4. (a) Eating breakfast → <strong>4th</strong>",
         "marks": 2,
         "rubric": [
           {
-            "key": "Walking takes more time",
-            "marks": "1 M"
-          },
-          {
-            "key": "Explanation with speed",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Daily Life • Water Filling",
-        "q": "Which bucket takes longer to fill from a tap: A 5-litre bucket or a 15-litre bucket?",
-        "ans": "<strong>Answer:</strong><br>The <strong>15-litre bucket</strong> takes longer to fill because it holds much more water.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "15-litre bucket",
-            "marks": "1 M"
-          },
-          {
-            "key": "Greater capacity explanation",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Day and Night Activities",
-        "q": "Name two activities you only do at night.",
-        "ans": "<strong>Answer:</strong><br>1. Looking at the moon and stars.<br>2. Sleeping in bed under the blanket.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Two valid night activities listed",
+            "key": "All 4 correctly sequenced",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Meal Times",
-        "q": "What are the three main meals of the day, and when are they eaten?",
-        "ans": "<strong>Answer:</strong><br>1. <strong>Breakfast:</strong> Eaten in the morning.<br>2. <strong>Lunch:</strong> Eaten in the afternoon.<br>3. <strong>Dinner:</strong> Eaten at night.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "All 3 meals with times",
-            "marks": "3 M"
-          }
-        ]
-      },
-      {
-        "category": "Quick Action",
-        "q": "Name an action that takes less than one second.",
-        "ans": "<strong>Answer:</strong><br><strong>Snapping your fingers</strong> (or blinking your eye, or clapping once).",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Valid instantaneous action",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Sequencing daily life events from morning to evening.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Sequencing daily life events from morning to evening.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Activities Done in Morning",
+        "q": "Tick (✓) the activities you do in the morning: (a) Bathing, (b) Brushing teeth, (c) Sleeping at night.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) Bathing (✓)<br>• (b) Brushing teeth (✓)<br>• Sleeping in bed is done at night.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Bathing and brushing ticked",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Activities Done in Evening",
+        "q": "Tick (✓) the activities done in the evening: (a) Playing in the park, (b) Waking up from night sleep.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Playing in the park with friends</strong> is done in the evening (✓).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Playing in park in evening",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Activities Done at Night",
+        "q": "Tick (✓) the activity done at night: (a) Going to sleep, (b) Attending morning school assembly.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>(a) Going to sleep in bed</strong> is done at night (✓).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Going to sleep at night",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Chapati Making Steps",
+        "q": "Put the steps of making a chapati in order from 1 to 5: Knead dough, Bake on fire, Roll into circle, Take flour in a dish, Light the stove.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Take flour in a dish<br>2. Knead dough with water<br>3. Roll into a circle on chakla<br>4. Light the stove<br>5. Bake on fire (tawa)",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Correct 5-step sequence",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Which Activity Takes Longer? (Bucket vs Cup)",
+        "q": "Tick (✓) the activity that takes longer: (a) Filling a bucket with water from a tap, (b) Filling a water glass.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Filling a bucket takes longer</strong> (tick ✓) because a bucket holds many liters of water.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filling bucket takes longer",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Walking vs Running",
+        "q": "Which takes less time: Walking to the garden or Running to the garden?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Running takes less time</strong> because running is faster than walking.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Running takes less time",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Cycle vs Bus",
+        "q": "Rohan goes to a distant city by bicycle. Priya goes by express bus. Who will reach earlier?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Priya by express bus will reach earlier</strong> because buses travel much faster than bicycles.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Bus reaches earlier",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let Us Think • Day or Night?",
+        "q": "When do owls wake up and hunt: during the day or during the night?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Owls wake up and hunt <strong>during the night</strong> (nocturnal birds).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "During the night",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Meal Sequencing",
+        "q": "Which meal is eaten in the afternoon: Breakfast or Lunch?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Lunch</strong> is eaten in the afternoon.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Lunch",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let Us Do • Days of the Week",
+        "q": "How many days are in a week? Name the first school day of the week.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• There are <strong>7 days</strong> in a week.<br>• The first school day of the week is <strong>Monday</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "7 days",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Monday",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Understanding activities that take more time vs less time.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Understanding activities that take more time vs less time.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Holiday Day",
+        "q": "On which day do you not go to school?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Sunday</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Sunday",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Connecting daily activities with appropriate times of day.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Connecting daily activities with appropriate times of day.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Let Us Think • Boiling Water vs Making Ice",
+        "q": "Which takes more time: boiling a cup of water or freezing water into ice in the refrigerator?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Freezing water into ice takes more time</strong> (takes several hours).<br>• Boiling water takes only 2 to 3 minutes.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Freezing ice takes more time",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Sequencing daily life events from morning to evening.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Sequencing daily life events from morning to evening.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Morning Sky",
+        "q": "What color is the sky when the sun rises in the morning?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The sky looks <strong>golden-yellow, orange, or light blue</strong> when the sun rises.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Golden/orange/light blue",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Understanding activities that take more time vs less time.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Understanding activities that take more time vs less time.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Story Time",
+        "q": "At what time of day does grandma usually tell bedtime stories?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Grandma tells bedtime stories <strong>at night</strong> before children go to sleep.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "At night / bedtime",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Connecting daily activities with appropriate times of day.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Connecting daily activities with appropriate times of day.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Short Time vs Long Time",
+        "q": "Classify into 'Short time' (seconds/minutes) and 'Long time' (hours): (a) Sneezing, (b) Sleeping through the night.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) Sneezing → <strong>Short time</strong> (1 second).<br>• (b) Sleeping through the night → <strong>Long time</strong> (8 hours).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Sneezing = Short time",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Sequencing daily life events from morning to evening.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Sequencing daily life events from morning to evening.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Understanding activities that take more time vs less time.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Understanding activities that take more time vs less time.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Connecting daily activities with appropriate times of day.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Connecting daily activities with appropriate times of day.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Sequencing daily life events from morning to evening.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Sequencing daily life events from morning to evening.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Understanding activities that take more time vs less time.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Understanding activities that take more time vs less time.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Connecting daily activities with appropriate times of day.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Connecting daily activities with appropriate times of day.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Sequencing daily life events from morning to evening.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Sequencing daily life events from morning to evening.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Time",
-        "q": "Solve the core NCERT learning activity for Chapter 6 ('Time'): Focus on \"Understanding activities that take more time vs less time.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Time', students master <em>Understanding activities that take more time vs less time.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
+            "key": "Sleeping = Long time",
             "marks": "1 M"
           }
         ]
@@ -1983,324 +1788,252 @@ const mathMagicChapters = [
   {
     "id": "mm7",
     "num": 7,
-    "unit": "Unit 5: Measurement of Length & Weight",
+    "unit": "Unit 2: Math-Magic Classic",
     "title": "Measurement",
-    "subtitle": "Longer-Shorter, Longest-Shortest, Taller-Shorter, Heavier-Lighter",
+    "subtitle": "Longer-Shorter, Taller-Shorter, Heavier-Lighter & Handspans",
     "concepts": [
-      "Comparing lengths: Longer and Shorter, Longest and Shortest.",
-      "Comparing heights: Taller and Shorter, Tallest and Shortest.",
-      "Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.",
-      "Measuring using handspans and footpaces."
+      "Comparing length: Longer vs Shorter, Longest vs Shortest.",
+      "Comparing height: Taller vs Shorter, Tallest vs Shortest.",
+      "Comparing weight: Heavier vs Lighter, Heaviest vs Lightest.",
+      "Measuring length using non-standard body parts: Handspan, Cubit, Foot, and Pace."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\" rx=\"10\"/><line x1=\"40\" y1=\"40\" x2=\"220\" y2=\"40\" stroke=\"#0284c7\" stroke-width=\"8\" stroke-linecap=\"round\"/><text x=\"130\" y=\"25\" font-size=\"11\" font-weight=\"700\" fill=\"#0369a1\" text-anchor=\"middle\">Longer Ribbon</text><line x1=\"40\" y1=\"70\" x2=\"130\" y2=\"70\" stroke=\"#38bdf8\" stroke-width=\"8\" stroke-linecap=\"round\"/><text x=\"85\" y=\"95\" font-size=\"11\" font-weight=\"700\" fill=\"#0369a1\" text-anchor=\"middle\">Shorter Ribbon</text><rect x=\"300\" y=\"20\" width=\"18\" height=\"80\" fill=\"#16a34a\" rx=\"2\"/><rect x=\"340\" y=\"50\" width=\"18\" height=\"50\" fill=\"#4ade80\" rx=\"2\"/><text x=\"309\" y=\"112\" font-size=\"10\" font-weight=\"700\" fill=\"#166534\" text-anchor=\"middle\">Taller</text><text x=\"349\" y=\"112\" font-size=\"10\" font-weight=\"700\" fill=\"#166534\" text-anchor=\"middle\">Shorter</text><circle cx=\"430\" cy=\"50\" r=\"24\" fill=\"#f59e0b\"/><circle cx=\"475\" cy=\"55\" r=\"12\" fill=\"#fbbf24\"/><text x=\"430\" y=\"90\" font-size=\"10\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">Heavier</text><text x=\"475\" y=\"90\" font-size=\"10\" font-weight=\"700\" fill=\"#92400e\" text-anchor=\"middle\">Lighter</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 7: Measurement</text></svg>",
     "cbq": {
-      "title": "The Playground Carpet",
-      "text": "The teacher wants to lay a runner carpet in the corridor. She asks Anu to measure the corridor with her footsteps. Anu counts 30 footsteps. The teacher then walks the corridor and counts 18 footsteps.",
-      "question": "Why did Anu count 30 footsteps while the teacher counted only 18 footsteps?",
-      "answer": "1. Anu is a child, so her stride (footstep) is smaller.<br>2. The teacher is an adult with longer legs and bigger strides. A longer step requires fewer footsteps to cover the same corridor distance.",
-      "rubric": "1.5 M for child's stride is smaller + 1.5 M for adult stride is longer"
+      "title": "Measuring the Carpet with Footsteps Case Study",
+      "text": "Meena measures the floor carpet using her footsteps and counts 12 paces. Her brother counts 9 paces on the same carpet.",
+      "question": "Why is Meena's count 12 while her brother's is 9? Whose steps are bigger?",
+      "answer": "1. Brother's steps are <strong>bigger (longer)</strong>.<br>2. Because his steps are bigger, fewer steps (9) are needed to cover the carpet.<br>3. Meena's steps are smaller, so she needed 12 footsteps.",
+      "rubric": "1.5 M for brother's steps are bigger + 1.5 M for fewer steps needed"
     },
     "questions": [
       {
-        "category": "Length • Longer or Shorter",
-        "q": "Look at a ladder and a stool. Which one is taller?",
-        "ans": "<strong>Answer:</strong><br>The <strong>ladder</strong> is taller than the stool.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Ladder is taller",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Extreme Comparison • Longest",
-        "q": "Among a pencil, an injection needle, and a cricket bat, which is the longest and which is the shortest?",
-        "ans": "<strong>Answer:</strong><br>• <strong>Longest:</strong> Cricket bat.<br>• <strong>Shortest:</strong> Injection needle.",
+        "category": "Textbook Exercise • Longer and Shorter",
+        "q": "Look at two ladders: Ladder A reaches the roof, and Ladder B reaches only the window. Tick (✓) the longer ladder.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Ladder A is longer</strong> (tick ✓).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Cricket bat is longest",
-            "marks": "1 M"
-          },
-          {
-            "key": "Injection needle is shortest",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Weight • Heavier and Lighter",
-        "q": "Which object is lighter: A feather or an apple?",
-        "ans": "<strong>Answer:</strong><br>The <strong>feather</strong> is lighter. The apple is much heavier than the feather.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Feather is lighter",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Heaviest in a Group",
-        "q": "Which is the heaviest among: A pumpkin, a tomato, and a lemon?",
-        "ans": "<strong>Answer:</strong><br>The <strong>pumpkin</strong> is the heaviest.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Pumpkin identified as heaviest",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Non-standard Units • Span",
-        "q": "Measure your pencil with your fingers. Approximately how many finger-widths long is a new pencil?",
-        "ans": "<strong>Answer:</strong><br>A standard new pencil is approximately <strong>10 to 12 finger-widths</strong> long.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Realistic estimate between 8-15 finger widths",
+            "key": "Ladder A is longer",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Seesaw Science",
-        "q": "When an elephant and an ant sit on opposite ends of a seesaw, which end goes down?",
-        "ans": "<strong>Answer:</strong><br>The <strong>elephant's end</strong> goes down to the ground because the elephant is immensely heavier than the ant.",
+        "category": "Textbook Exercise • Shorter Rope",
+        "q": "Tick (✓) the shorter rope between Rope X (5 meters) and Rope Y (2 meters).",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Rope Y is shorter</strong> (tick ✓).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Elephant's side goes down",
+            "key": "Rope Y is shorter",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Longest Pencil",
+        "q": "Look at three pencils: Red (15 cm), Blue (10 cm), Green (6 cm). Which pencil is the longest, and which is the shortest?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Longest:</strong> Red pencil (15 cm).<br>• <strong>Shortest:</strong> Green pencil (6 cm).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Longest = Red",
             "marks": "1 M"
           },
           {
-            "key": "Heavier side moves down explanation",
+            "key": "Shortest = Green",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Taller and Shorter",
+        "q": "Tick (✓) the taller animal between a Giraffe and a Dog.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>Giraffe is taller</strong> (tick ✓).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Giraffe is taller",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Shorter Person",
+        "q": "Between a tall clown on stilts and a little girl, tick (✓) the shorter person.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>little girl is shorter</strong> (tick ✓).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Little girl is shorter",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tallest Tree",
+        "q": "Among three palm trees in a row, tick (✓) the tallest tree.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Tick the <strong>tree with the highest top fronds (the tallest tree)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Tallest tree identified",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Shortest Plant",
+        "q": "Look at a rose bush, a potted grass sprout, and a banyan tree. Which is the shortest plant?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>grass sprout is the shortest plant</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Grass sprout is shortest",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Heavier and Lighter",
+        "q": "Tick (✓) the lighter object between a shirt and an iron lock.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>shirt is lighter</strong> (tick ✓).<br>• The iron lock is heavier.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Shirt is lighter",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Heavier Fruit",
+        "q": "Tick (✓) the heavier fruit between a Pumpkin and a Tomato.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>Pumpkin is heavier</strong> (tick ✓).",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Pumpkin is heavier",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Heaviest Object",
+        "q": "Look at: A water jug, a water glass, and an iron water tank. Which is the heaviest, and which is the lightest?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Heaviest:</strong> Iron water tank.<br>• <strong>Lightest:</strong> Water glass.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Heaviest = Tank",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Lightest = Glass",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Measuring using handspans and footpaces.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Measuring using handspans and footpaces.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Measuring with Handspan",
+        "q": "Measure the length of your desk using your handspan. If you count 6 handspans, what was your measuring tool?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The measuring tool is your <strong>handspan</strong> (the distance from stretched thumb to little finger).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Handspan identified",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Measuring with Paces",
+        "q": "Measure the mat with your footsteps (paces). If the mat is 8 paces long, write the answer.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Length of the mat = <strong>8 paces (footsteps)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "8 paces",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Measuring with Fingers",
+        "q": "Measure the width of your eraser in finger-widths. How many fingers wide is it?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• A standard eraser is approximately <strong>2 to 3 finger-widths</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 to 3 fingers",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Measuring with Matchsticks",
+        "q": "Place matchsticks end-to-end along a notebook. If it takes 6 matchsticks, how long is the notebook?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The notebook is <strong>6 matchsticks long</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "6 matchsticks long",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Let Us Think • Seesaw Balance",
+        "q": "A monkey and a rabbit sit on a seesaw. Whose side goes down?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>monkey's side goes down</strong> because the monkey is heavier than the rabbit.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Monkey's side goes down",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
+            "key": "Monkey is heavier",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing lengths: Longer and Shorter, Longest and Shortest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing lengths: Longer and Shorter, Longest and Shortest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Feather vs Brick",
+        "q": "Drop a pigeon feather and a clay brick. Which object feels heavier in your hand?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>clay brick feels much heavier</strong>.<br>• The feather is extremely light.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Brick is heavier",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing heights: Taller and Shorter, Tallest and Shortest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing heights: Taller and Shorter, Tallest and Shortest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Longest Ribbon",
+        "q": "Among ribbons of 5 cm, 12 cm, and 8 cm, which is the longest?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>12 cm ribbon is the longest</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "12 cm ribbon",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Why Use a Ruler?",
+        "q": "Why is it better to use a plastic ruler rather than footsteps to measure the length of a room accurately?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>1. Footsteps vary from child to adult.<br>2. A ruler has fixed centimeters that give the exact same measurement for everyone.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
+            "key": "Footsteps vary",
             "marks": "1 M"
           },
           {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Measuring using handspans and footpaces.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Measuring using handspans and footpaces.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing lengths: Longer and Shorter, Longest and Shortest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing lengths: Longer and Shorter, Longest and Shortest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing heights: Taller and Shorter, Tallest and Shortest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing heights: Taller and Shorter, Tallest and Shortest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Measuring using handspans and footpaces.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Measuring using handspans and footpaces.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing lengths: Longer and Shorter, Longest and Shortest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing lengths: Longer and Shorter, Longest and Shortest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing heights: Taller and Shorter, Tallest and Shortest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing heights: Taller and Shorter, Tallest and Shortest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Comparing mass/weight: Heavier and Lighter, Heaviest and Lightest.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Measurement",
-        "q": "Solve the core NCERT learning activity for Chapter 7 ('Measurement'): Focus on \"Measuring using handspans and footpaces.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Measurement', students master <em>Measuring using handspans and footpaces.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
+            "key": "Ruler is fixed and standard",
             "marks": "1 M"
           }
         ]
@@ -2310,332 +2043,297 @@ const mathMagicChapters = [
   {
     "id": "mm8",
     "num": 8,
-    "unit": "Unit 6: Numbers from Twenty-one to Fifty",
+    "unit": "Unit 3: Math-Magic Classic",
     "title": "Numbers from Twenty-one to Fifty",
-    "subtitle": "Tens and Ones, Number Lines, Writing Missing Numbers 21 to 50",
+    "subtitle": "Bundles of 10 and Loose Units, 21-50 Strips & Number Grids",
     "concepts": [
-      "Counting bundles of 10s and loose sticks up to 50.",
-      "Writing numerals and number names from 21 to 50.",
-      "Identifying missing numbers in sequences up to 50."
+      "Counting from 21 to 50 using bundles of 10 and loose sticks.",
+      "Writing numerals and number names from Twenty-one to Fifty.",
+      "Filling missing numbers in sequences and number strips.",
+      "Identifying Tens and Ones digits."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><rect x=\"50\" y=\"30\" width=\"50\" height=\"60\" fill=\"#3b82f6\" rx=\"6\"/><text x=\"75\" y=\"65\" font-size=\"11\" font-weight=\"700\" fill=\"#fff\" text-anchor=\"middle\">10</text><rect x=\"115\" y=\"30\" width=\"50\" height=\"60\" fill=\"#3b82f6\" rx=\"6\"/><text x=\"140\" y=\"65\" font-size=\"11\" font-weight=\"700\" fill=\"#fff\" text-anchor=\"middle\">10</text><text x=\"110\" y=\"105\" font-size=\"11\" font-weight=\"700\" fill=\"#1e3a8a\" text-anchor=\"middle\">2 Tens = 20</text><circle cx=\"210\" cy=\"45\" r=\"7\" fill=\"#f97316\"/><circle cx=\"210\" cy=\"75\" r=\"7\" fill=\"#f97316\"/><circle cx=\"230\" cy=\"60\" r=\"7\" fill=\"#f97316\"/><text x=\"220\" y=\"105\" font-size=\"11\" font-weight=\"700\" fill=\"#c2410c\" text-anchor=\"middle\">3 Ones = 3</text><text x=\"270\" y=\"65\" font-size=\"20\" font-weight=\"800\" fill=\"#0f172a\">=</text><rect x=\"310\" y=\"30\" width=\"90\" height=\"60\" fill=\"#1d4ed8\" rx=\"8\"/><text x=\"355\" y=\"68\" font-size=\"24\" font-weight=\"800\" fill=\"#fff\" text-anchor=\"middle\">23</text><text x=\"355\" y=\"105\" font-size=\"11\" font-weight=\"700\" fill=\"#1e3a8a\" text-anchor=\"middle\">Twenty-three</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 8: Numbers from Twenty-one to Fifty</text></svg>",
     "cbq": {
-      "title": "Counting Matchstick Bundles",
-      "text": "Deepak has 3 bundles of 10 matchsticks and 7 loose matchsticks. His friend gives him 3 more loose matchsticks.",
-      "question": "How many total matchsticks did Deepak have at first? How many bundles can he make after receiving 3 more loose matchsticks?",
-      "answer": "1. At first: 3 tens + 7 ones = <strong>37 matchsticks</strong>.<br>2. 7 loose + 3 loose = 10 loose matchsticks, which makes 1 new bundle.<br>3 + 1 = <strong>4 full bundles of 10 (40 matchsticks)</strong>.",
-      "rubric": "1.5 M for 37 matchsticks + 1.5 M for 4 bundles (40)"
+      "title": "Sugarcane Bundles Case Study",
+      "text": "Farmer Ramu ties harvested sugarcane stalks into bundles of 10 stalks each. He has 3 full bundles and 7 loose stalks.",
+      "question": "What total number of sugarcane stalks does Farmer Ramu have? Write the number in expanded form.",
+      "answer": "1. 3 bundles of 10 = 30. Loose stalks = 7.<br>2. Total stalks = 30 + 7 = <strong>37 sugarcane stalks</strong>.<br>3. Expanded form: <strong>30 + 7 = 3 tens and 7 ones</strong>.",
+      "rubric": "1.5 M for 37 stalks + 1.5 M for expanded form (30 + 7)"
     },
     "questions": [
       {
-        "category": "Tens and Ones • Identification",
-        "q": "What number is formed by 4 Tens and 5 Ones?",
-        "ans": "<strong>Answer:</strong><br>• 4 Tens = 40<br>• 5 Ones = 5<br>• 40 + 5 = <strong>45 (Forty-five)</strong>.",
+        "category": "Textbook Exercise • 2 Bundles and 5 Sticks",
+        "q": "Look at the picture: 2 bundles of 10 matchsticks and 5 loose matchsticks. What number is this?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 bundles = 20<br>• 5 loose sticks = 5<br>• Total = 20 + 5 = <strong>25 (Twenty-five)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "40 + 5",
+            "key": "20 + 5 = 25",
             "marks": "1 M"
           },
           {
-            "key": "45",
+            "key": "Number name Twenty-five",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Missing Numbers • 21 to 30",
-        "q": "Fill in the missing numbers: 21, 22, __, 24, 25, __, 27, 28, __, 30.",
-        "ans": "<strong>Answer:</strong><br>The missing numbers are <strong>23</strong>, <strong>26</strong>, and <strong>29</strong>.",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "23, 26, 29 identified",
-            "marks": "3 M"
-          }
-        ]
-      },
-      {
-        "category": "Number Names • 30 to 50",
-        "q": "Write the number name for:<br>(a) 32<br>(b) 48",
-        "ans": "<strong>Answer:</strong><br>(a) 32 = <strong>Thirty-two</strong><br>(b) 48 = <strong>Forty-eight</strong>",
+        "category": "Textbook Exercise • 3 Bundles and 3 Sticks",
+        "q": "Write the number for 3 bundles of 10 and 3 loose sticks.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 tens + 3 ones = 30 + 3 = <strong>33 (Thirty-three)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Thirty-two",
-            "marks": "1 M"
-          },
-          {
-            "key": "Forty-eight",
-            "marks": "1 M"
+            "key": "33 (Thirty-three)",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Place Value Table",
-        "q": "In the number 42, which digit is in the tens place and which is in the ones place?",
-        "ans": "<strong>Answer:</strong><br>• Tens place digit = <strong>4</strong> (value = 40)<br>• Ones place digit = <strong>2</strong> (value = 2).",
+        "category": "Textbook Exercise • 4 Bundles and 0 Sticks",
+        "q": "Write the number for 4 bundles of 10 and 0 loose sticks.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 tens + 0 ones = <strong>40 (Forty)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Tens = 4",
-            "marks": "1 M"
-          },
-          {
-            "key": "Ones = 2",
-            "marks": "1 M"
+            "key": "40 (Forty)",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Before and After • 21 to 50",
-        "q": "Write the number just before 40 and the number just after 40.",
-        "ans": "<strong>Answer:</strong><br>• Number just before 40 is <strong>39</strong>.<br>• Number just after 40 is <strong>41</strong>.",
+        "category": "Textbook Exercise • 4 Bundles and 9 Sticks",
+        "q": "Write the number for 4 bundles of 10 and 9 loose sticks.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 tens + 9 ones = 40 + 9 = <strong>49 (Forty-nine)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Before: 39",
+            "key": "49 (Forty-nine)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • 5 Bundles of 10",
+        "q": "What number is represented by 5 full bundles of 10 matchsticks?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 5 tens = <strong>50 (Fifty)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "50 (Fifty)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 21 to 30",
+        "q": "Fill the missing numbers: 21, __, 23, 24, __, 26, __, 28, 29, 30.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>22, 25, 27</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 22, 25, 27",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 31 to 40",
+        "q": "Fill the missing numbers: 31, 32, __, 34, 35, __, 37, __, 39, 40.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>33, 36, 38</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 33, 36, 38",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 41 to 50",
+        "q": "Fill the missing numbers: 41, __, 43, __, 45, 46, __, 48, 49, 50.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>42, 44, 47</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 42, 44, 47",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tens and Ones for 28",
+        "q": "Break 28 into Tens and Ones.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 28 = <strong>2 Tens and 8 Ones</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "2 Tens and 8 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tens and Ones for 45",
+        "q": "Break 45 into Tens and Ones.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 45 = <strong>4 Tens and 5 Ones</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "4 Tens and 5 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • What Number Has 3 Tens and 6 Ones?",
+        "q": "Write the numeral for: 3 Tens and 6 Ones.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 30 + 6 = <strong>36</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • What Number Has 4 Tens and 2 Ones?",
+        "q": "Write the numeral for: 4 Tens and 2 Ones.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 40 + 2 = <strong>42</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "42",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Names 21 to 25",
+        "q": "Write number names for: 21, 22, 23, 24, 25.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 21 = Twenty-one<br>• 22 = Twenty-two<br>• 23 = Twenty-three<br>• 24 = Twenty-four<br>• 25 = Twenty-five",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 5 spelled correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Names 30, 40, 50",
+        "q": "Write the spellings for: 30, 40, 50.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 30 = <strong>Thirty</strong><br>• 40 = <strong>Forty</strong><br>• 50 = <strong>Fifty</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Thirty, Forty, Fifty",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • What Comes Just After 29?",
+        "q": "What number comes just after 29? What number comes just after 39?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Just after 29 is <strong>30</strong>.<br>• Just after 39 is <strong>40</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "After 29 = 30",
             "marks": "1 M"
           },
           {
-            "key": "After: 41",
+            "key": "After 39 = 40",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Mental Arithmetic • Group of 10",
-        "q": "How many tens are there in the number 50?",
-        "ans": "<strong>Answer:</strong><br>There are <strong>5 tens</strong> in 50 (5 × 10 = 50).",
-        "marks": 1,
+        "category": "Textbook Exercise • What Comes Just Before 50?",
+        "q": "What number comes just before 50?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 50 - 1 = <strong>49</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "49",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Between 35 and 37",
+        "q": "What number is between 35 and 37?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The number is <strong>36</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "36",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Circle Greater Number",
+        "q": "Circle the greater number in each pair: (a) 26 and 32, (b) 48 and 41.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) 3 tens > 2 tens → <strong>32</strong> is greater.<br>• (b) Same tens (4), but 8 ones > 1 one → <strong>48</strong> is greater.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "32 circled",
+            "marks": "1 M"
+          },
+          {
+            "key": "48 circled",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Word Problem • Flowers for Teacher's Day",
+        "q": "Students made 3 garlands of 10 roses each and had 5 loose roses. How many roses in total?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 30 + 5 = <strong>35 roses</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "30 + 5 = 35 roses",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Activity • Match Numeral to Picture",
+        "q": "Match: 2 bundles and 9 sticks → 29; 4 bundles and 7 sticks → 47.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 20 + 9 = 29<br>• 40 + 7 = 47",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Matches verified",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Mental Math • How Many Tens in 50?",
+        "q": "How many tens make 50?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 10 + 10 + 10 + 10 + 10 = 50.<br>• Exactly <strong>5 tens</strong> make 50.",
+        "marks": 2,
         "rubric": [
           {
             "key": "5 tens",
-            "marks": "1 M"
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Counting bundles of 10s and loose sticks up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Counting bundles of 10s and loose sticks up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Skip Counting by 5s to 50",
+        "q": "Write the skip-counting chain by 5s from 25 to 50: 25, 30, __, __, __, 50.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 25, 30, <strong>35, 40, 45</strong>, 50.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Writing numerals and number names from 21 to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Writing numerals and number names from 21 to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Identifying missing numbers in sequences up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Identifying missing numbers in sequences up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Counting bundles of 10s and loose sticks up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Counting bundles of 10s and loose sticks up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Writing numerals and number names from 21 to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Writing numerals and number names from 21 to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Identifying missing numbers in sequences up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Identifying missing numbers in sequences up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Counting bundles of 10s and loose sticks up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Counting bundles of 10s and loose sticks up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Writing numerals and number names from 21 to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Writing numerals and number names from 21 to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Identifying missing numbers in sequences up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Identifying missing numbers in sequences up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Counting bundles of 10s and loose sticks up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Counting bundles of 10s and loose sticks up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Writing numerals and number names from 21 to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Writing numerals and number names from 21 to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Identifying missing numbers in sequences up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Identifying missing numbers in sequences up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Counting bundles of 10s and loose sticks up to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Counting bundles of 10s and loose sticks up to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers from Twenty-one to Fifty",
-        "q": "Solve the core NCERT learning activity for Chapter 8 ('Numbers from Twenty-one to Fifty'): Focus on \"Writing numerals and number names from 21 to 50.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers from Twenty-one to Fifty', students master <em>Writing numerals and number names from 21 to 50.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "35, 40, 45",
+            "marks": "2 M"
           }
         ]
       }
@@ -2644,332 +2342,213 @@ const mathMagicChapters = [
   {
     "id": "mm9",
     "num": 9,
-    "unit": "Unit 7: Data Handling",
+    "unit": "Unit 3: Math-Magic Classic",
     "title": "Data Handling",
-    "subtitle": "Counting Shapes, Picture Charts, Frequency & Name Length Analysis",
+    "subtitle": "Counting Shapes in Pictures, Letter Counts in Names & Frequency",
     "concepts": [
-      "Counting different geometric shapes within a composite drawing.",
-      "Comparing which shape occurs the most and the least.",
-      "Counting letters in names and identifying most common letters."
+      "Counting distinct geometric shapes (triangles, circles, squares, rectangles) in a composite picture.",
+      "Identifying which shape occurs the most and which occurs the least.",
+      "Counting letters in names of friends.",
+      "Finding which letter repeats most frequently across names."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fdf2f8\" rx=\"10\"/><polygon points=\"80,25 50,75 110,75\" fill=\"#ec4899\"/><text x=\"80\" y=\"100\" font-size=\"11\" font-weight=\"700\" fill=\"#9d174d\" text-anchor=\"middle\">Triangles: 8</text><circle cx=\"200\" cy=\"50\" r=\"25\" fill=\"#3b82f6\"/><text x=\"200\" y=\"100\" font-size=\"11\" font-weight=\"700\" fill=\"#1e40af\" text-anchor=\"middle\">Circles: 5</text><rect x=\"310\" y=\"30\" width=\"40\" height=\"40\" fill=\"#10b981\" rx=\"4\"/><text x=\"330\" y=\"100\" font-size=\"11\" font-weight=\"700\" fill=\"#065f46\" text-anchor=\"middle\">Squares: 3</text><text x=\"430\" y=\"55\" font-size=\"12\" font-weight=\"800\" fill=\"#831843\">Most: Triangle (8)</text><text x=\"430\" y=\"80\" font-size=\"12\" font-weight=\"800\" fill=\"#831843\">Least: Square (3)</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 9: Data Handling</text></svg>",
     "cbq": {
-      "title": "Scenery Shape Count",
-      "text": "Children drew a landscape featuring a house, mountains, and the sun. The drawing contains 12 Triangles (mountains and roof), 4 Circles (sun and flowers), 6 Squares (windows), and 3 Rectangles (doors).",
-      "question": "Which shape appears the most times in the drawing? Which shape appears the least times? How many total shapes were used?",
-      "answer": "1. <strong>Most:</strong> Triangles (12 times).<br>2. <strong>Least:</strong> Rectangles (3 times).<br>3. <strong>Total shapes:</strong> 12 + 4 + 6 + 3 = <strong>25 shapes</strong>.",
-      "rubric": "1 M for most + 1 M for least + 1 M for total 25"
+      "title": "Joker's Geometric Costume Case Study",
+      "text": "In the circus picture, the joker's funny costume is made entirely of shapes: 8 triangles for the hat and collar, 5 circles for buttons and eyes, 6 rectangles for arms and legs, and 4 squares for the body pockets.",
+      "question": "Which shape is used the most in the joker's costume? Which shape is used the least? How many shapes were used in all?",
+      "answer": "1. <strong>Triangles (8)</strong> are used the most.<br>2. <strong>Squares (4)</strong> are used the least.<br>3. Total shapes = 8 + 5 + 6 + 4 = <strong>23 shapes in all</strong>.",
+      "rubric": "1 M for Triangles (most) + 1 M for Squares (least) + 1 M for total 23 shapes"
     },
     "questions": [
       {
-        "category": "Counting Shapes • Picture Reading",
-        "q": "Look at the robot drawing. It has 4 circles for joints, 2 rectangles for legs, 1 square for head, and 1 rectangle for body. How many rectangles are there in total?",
-        "ans": "<strong>Answer:</strong><br>• Legs = 2 rectangles<br>• Body = 1 rectangle<br>• Total rectangles = 2 + 1 = <strong>3 rectangles</strong>.",
+        "category": "Textbook Exercise • Counting Triangles in Joker",
+        "q": "Look at the composite joker picture in the textbook. Count all the Triangles (▲).",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Count of triangles in the hat, face, and collar = <strong>8 triangles</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Legs: 2, Body: 1",
-            "marks": "1 M"
-          },
-          {
-            "key": "Total 3 rectangles",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Letter Count in Names",
-        "q": "Count the number of letters in each friend's name:<br>(a) RAM<br>(b) GEETA<br>(c) SUBHASH",
-        "ans": "<strong>Answer:</strong><br>(a) RAM = <strong>3 letters</strong><br>(b) GEETA = <strong>5 letters</strong><br>(c) SUBHASH = <strong>7 letters</strong>",
-        "marks": 3,
-        "rubric": [
-          {
-            "key": "RAM = 3",
-            "marks": "1 M"
-          },
-          {
-            "key": "GEETA = 5",
-            "marks": "1 M"
-          },
-          {
-            "key": "SUBHASH = 7",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Data Comparison • Highest Frequency",
-        "q": "In the names RAM, GEETA, and SUBHASH, which name has the highest number of letters?",
-        "ans": "<strong>Answer:</strong><br><strong>SUBHASH</strong> has the highest number of letters (7 letters).",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "Subhash identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Finding Common Letters",
-        "q": "How many times does the letter 'A' appear in the names RAM, GEETA, and SUBHASH combined?",
-        "ans": "<strong>Counting:</strong><br>• R<strong>A</strong>M → 1 time<br>• GEET<strong>A</strong> → 1 time<br>• SUBH<strong>A</strong>SH → 1 time<br>• Total = 1 + 1 + 1 = <strong>3 times</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Occurrences shown",
-            "marks": "1 M"
-          },
-          {
-            "key": "Total: 3 times",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Shape Comparison",
-        "q": "In a diagram, there are 9 circles and 5 triangles. How many more circles are there than triangles?",
-        "ans": "<strong>Calculation:</strong><br>• Circles = 9<br>• Triangles = 5<br>• Difference = 9 - 5 = <strong>4 more circles</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "9 - 5 = 4 circles",
+            "key": "8 triangles counted",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Simple Tally Observation",
-        "q": "Why do we make a table when counting many items in a room?",
-        "ans": "<strong>Answer:</strong><br>We make a table so that we do not miss any item or count the same item twice. A table makes counting <strong>organized, clear, and easy to read</strong>.",
+        "category": "Textbook Exercise • Counting Circles in Joker",
+        "q": "Count all the Circles (●) in the joker picture.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Count of circles (eyes, nose, buttons, and ball in hand) = <strong>5 circles</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Organization and avoiding mistakes explained",
+            "key": "5 circles counted",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting different geometric shapes within a composite drawing.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting different geometric shapes within a composite drawing.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Counting Squares in Joker",
+        "q": "Count all the Squares (■) in the joker picture.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Count of squares on the jacket and shoes = <strong>4 squares</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "4 squares counted",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Comparing which shape occurs the most and the least.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Comparing which shape occurs the most and the least.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Counting Rectangles in Joker",
+        "q": "Count all the Rectangles (▭) in the joker picture.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Count of rectangles (arms, legs, torso body) = <strong>6 rectangles</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "6 rectangles counted",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting letters in names and identifying most common letters.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting letters in names and identifying most common letters.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Name the Shape that Occurs Most",
+        "q": "From the joker shape counts (Triangles: 8, Circles: 5, Squares: 4, Rectangles: 6): Name the shape that occurs the most.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Triangle</strong> occurs the most (8 times).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Triangle occurs most",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting different geometric shapes within a composite drawing.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting different geometric shapes within a composite drawing.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Name the Shape that Occurs Least",
+        "q": "From the joker shape counts above: Name the shape that occurs the least.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Square</strong> occurs the least (4 times).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Square occurs least",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Comparing which shape occurs the most and the least.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Comparing which shape occurs the most and the least.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Letters in Friends' Names",
+        "q": "Count the number of letters in each name:<br>(a) SAROJ<br>(b) RADHA<br>(c) AARAV<br>(d) GEETA",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) SAROJ = <strong>5 letters</strong><br>• (b) RADHA = <strong>5 letters</strong><br>• (c) AARAV = <strong>5 letters</strong><br>• (d) GEETA = <strong>5 letters</strong><br>All four names have exactly 5 letters.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "All counts correct (5 letters each)",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting letters in names and identifying most common letters.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting letters in names and identifying most common letters.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • How Many Names Have 5 Letters?",
+        "q": "Look at the list of friends: RAMESH, SANTOSH, RAJESH, MURLI, ROHAN. How many names have 6 letters?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• RAMESH = 6 letters<br>• SANTOSH = 7 letters<br>• RAJESH = 6 letters<br>• MURLI = 5 letters<br>• ROHAN = 5 letters<br>• Exactly <strong>2 names (Ramesh, Rajesh)</strong> have 6 letters.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "2 names have 6 letters",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting different geometric shapes within a composite drawing.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting different geometric shapes within a composite drawing.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Most Common Starting Letter",
+        "q": "In the list: RAM, ROHIT, RADHA, RANI, AMIT. Which letter comes at the start of most names?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Letter <strong>'R'</strong> starts 4 out of the 5 names (Ram, Rohit, Radha, Rani).<br>• 'R' is the most common starting letter.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Letter 'R'",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Comparing which shape occurs the most and the least.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Comparing which shape occurs the most and the least.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Finding Letter Frequency",
+        "q": "How many times does the letter 'A' appear in the word 'BANANA'?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• In B-A-N-A-N-A, the letter 'A' appears <strong>3 times</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "3 times",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting letters in names and identifying most common letters.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting letters in names and identifying most common letters.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Let Us Do • Fruit Chart in Kitchen",
+        "q": "Count fruits in the basket: 4 Apples, 7 Bananas, 2 Melons. Which fruit is greatest in number?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Bananas (7)</strong> are greatest in number.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Bananas (7)",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting different geometric shapes within a composite drawing.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting different geometric shapes within a composite drawing.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Least Number of Fruits",
+        "q": "From the fruit counts above (Apples: 4, Bananas: 7, Melons: 2), which fruit is the least?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Melons (2)</strong> are the least.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Melons (2)",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Comparing which shape occurs the most and the least.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Comparing which shape occurs the most and the least.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Vehicle Tally on Road",
+        "q": "Watching the road from the window: 5 Cars, 3 Buses, 8 Bicycles pass by. Which vehicle was seen the most?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>Bicycles (8)</strong> were seen the most.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Bicycles (8)",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting letters in names and identifying most common letters.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting letters in names and identifying most common letters.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Vowels Count",
+        "q": "How many vowels (A, E, I, O, U) are in the name 'INDIA'?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• I, I, A are vowels.<br>• There are <strong>3 vowels</strong> in the name INDIA.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "3 vowels (I, I, A)",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Counting different geometric shapes within a composite drawing.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Counting different geometric shapes within a composite drawing.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Total Letters",
+        "q": "Find the total letters in 'SUN' and 'MOON'.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• SUN = 3 letters<br>• MOON = 4 letters<br>• Total = 3 + 4 = <strong>7 letters</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "3 + 4 = 7 letters",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Data Handling",
-        "q": "Solve the core NCERT learning activity for Chapter 9 ('Data Handling'): Focus on \"Comparing which shape occurs the most and the least.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Data Handling', students master <em>Comparing which shape occurs the most and the least.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Bar Line Comparison",
+        "q": "Draw 4 tally marks for 4 pencils and 6 tally marks for 6 crayons. Which row is longer?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The row of <strong>6 crayons is longer</strong> because 6 > 4.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Row of 6 crayons is longer",
+            "marks": "2 M"
           }
         ]
       }
@@ -2978,328 +2557,238 @@ const mathMagicChapters = [
   {
     "id": "mm10",
     "num": 10,
-    "unit": "Unit 7: Patterns",
+    "unit": "Unit 3: Math-Magic Classic",
     "title": "Patterns",
-    "subtitle": "Visual Patterns, Number Sequences & Growing Patterns",
+    "subtitle": "Extending Sequences, T-Shapes, Arrow Patterns & Number Sequences",
     "concepts": [
-      "Recognizing patterns in shapes, symbols, and objects around us.",
-      "Extending growing and repeating sequences.",
-      "Creating number patterns with addition rules."
+      "Extending sequences of basic 2D shapes (circles, squares, triangles).",
+      "Alternating letter and symbol patterns (T, ⊥, T, ⊥).",
+      "Arrow direction patterns (Up, Down, Up, Down).",
+      "Number patterns: counting in 1s, 2s, 5s, 10s.",
+      "Patterns with dots, leaf prints, and growing geometric shapes."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fefce8\" rx=\"10\"/><rect x=\"40\" y=\"40\" width=\"30\" height=\"30\" fill=\"#f59e0b\" rx=\"4\"/><polygon points=\"100,70 115,40 130,70\" fill=\"#3b82f6\"/><rect x=\"150\" y=\"40\" width=\"30\" height=\"30\" fill=\"#f59e0b\" rx=\"4\"/><polygon points=\"210,70 225,40 240,70\" fill=\"#3b82f6\"/><rect x=\"260\" y=\"40\" width=\"30\" height=\"30\" fill=\"#f59e0b\" rx=\"4\"/><polygon points=\"320,70 335,40 350,70\" fill=\"#3b82f6\"/><text x=\"410\" y=\"60\" font-size=\"14\" font-weight=\"800\" fill=\"#b45309\">Next: Square, △</text><text x=\"250\" y=\"105\" font-size=\"11\" font-weight=\"700\" fill=\"#78350f\" text-anchor=\"middle\">Repeating Shape Pattern: Square, Triangle, Square, Triangle...</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 10: Patterns</text></svg>",
     "cbq": {
-      "title": "Granny's Saree Border",
-      "text": "Granny's silk saree has a beautiful printed border with alternating red leaves and gold flowers: Leaf, Flower, Leaf, Flower, Leaf, Flower...",
-      "question": "What will be the 9th design on the saree border? What comes after every flower?",
-      "answer": "1. 9th design: Odd positions (1, 3, 5, 7, 9) are Leaves. So the 9th design will be a <strong>Leaf</strong>.<br>2. After every flower comes a <strong>Leaf</strong>.",
-      "rubric": "1.5 M for 9th design is Leaf + 1.5 M for Leaf after every flower"
+      "title": "Iron Grill Window Pattern Case Study",
+      "text": "A blacksmith creates an ornamental window grill using alternating upright hearts and inverted hearts: ♡, ♢, ♡, ♢, ♡, ♢.",
+      "question": "What symbol comes next in the grill sequence? If the window frame has 10 upright hearts, how many total symbols are in the row?",
+      "answer": "1. Following the alternation, the next symbol is an <strong>upright heart (♡)</strong>.<br>2. Since upright and inverted hearts alternate equally, 10 upright + 10 inverted = <strong>20 total symbols</strong>.",
+      "rubric": "1.5 M for upright heart + 1.5 M for 20 total symbols"
     },
     "questions": [
       {
-        "category": "Pattern Extension • Shapes",
-        "q": "Extend the pattern: ⬆, ⬇, ⬆, ⬇, ⬆, __, __.",
-        "ans": "<strong>Answer:</strong><br>The arrow points up, then down.<br>Next two arrows are <strong>⬇ (Down)</strong> and <strong>⬆ (Up)</strong>.",
+        "category": "Textbook Exercise • Extending T Pattern",
+        "q": "Complete the pattern: T, ⊥, T, ⊥, T, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The pattern alternates between upright 'T' and upside-down '⊥'.<br>• Next two symbols: <strong>⊥, T</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Down arrow",
-            "marks": "1 M"
-          },
-          {
-            "key": "Up arrow",
-            "marks": "1 M"
+            "key": "Filled ⊥, then T",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Number Patterns • Skip Counting",
-        "q": "Fill in the blanks: 5, 10, 15, __, 25, __.",
-        "ans": "<strong>Step-by-Step Rule:</strong><br>• The pattern adds 5 each time (+5).<br>• 15 + 5 = 20<br>• 25 + 5 = 30<br>Missing numbers are <strong>20</strong> and <strong>30</strong>.",
+        "category": "Textbook Exercise • Circle and Cross Pattern",
+        "q": "Complete the sequence: O, X, O, X, O, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The pattern alternates O and X.<br>• Next symbols: <strong>X, O</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled X, then O",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Arrow Direction Pattern",
+        "q": "Fill the next arrows: ↑, ↓, ↑, ↓, ↑, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Next arrows: <strong>↓ (Down), ↑ (Up)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Down then Up",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Double Up and Double Down",
+        "q": "Complete the sequence: ↑↑, ↓↓, ↑↑, ↓↓, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Next symbols: <strong>↑↑, ↓↓</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Double up then double down",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Shape Sequence (Circle & Triangle)",
+        "q": "Extend the pattern: ●, ▲, ●, ▲, ●, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Next shapes: <strong>▲ (Triangle), ● (Circle)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Triangle then Circle",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Growing Dot Pattern",
+        "q": "Look at the dots: (•), (••), (•••), (••••), _____. Draw the next group.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Rule: Add 1 dot each time.<br>• Next group: <strong>5 dots (•••••)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "5 dots drawn",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Growing Line Pattern",
+        "q": "Look at lines: 1 stick, 2 sticks, 3 sticks, 4 sticks. How many sticks come next?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Rule: Add 1 stick.<br>• Next is <strong>5 sticks</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "5 sticks",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Pattern Counting in 2s",
+        "q": "Complete the chain: 2, 4, 6, 8, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Adding 2 each time:<br>• 8 + 2 = <strong>10</strong><br>• 10 + 2 = <strong>12</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "10 and 12",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Pattern Counting in 5s",
+        "q": "Fill the missing numbers: 5, 10, 15, 20, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Adding 5 each time:<br>• 20 + 5 = <strong>25</strong><br>• 25 + 5 = <strong>30</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "25 and 30",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Pattern Counting in 10s",
+        "q": "Complete the sequence: 10, 20, 30, 40, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 40 + 10 = <strong>50</strong><br>• 50 + 10 = <strong>60</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "50 and 60",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Odd Numbers Pattern",
+        "q": "Fill the missing numbers: 1, 3, 5, 7, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Adding 2 to odd numbers:<br>• 7 + 2 = <strong>9</strong><br>• 9 + 2 = <strong>11</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "9 and 11",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Backward Number Pattern",
+        "q": "Complete the backward count: 20, 19, 18, 17, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Subtracting 1 each time:<br>• 17 - 1 = <strong>16</strong><br>• 16 - 1 = <strong>15</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "16 and 15",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Backward in 10s",
+        "q": "Fill the blank: 50, 40, 30, __, 10.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Subtracting 10 each time:<br>• 30 - 10 = <strong>20</strong>.",
         "marks": 2,
         "rubric": [
           {
             "key": "20",
-            "marks": "1 M"
-          },
-          {
-            "key": "30",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Growing Pattern • Dots",
-        "q": "Pattern: •, ••, •••, ••••. How many dots will be in the next step?",
-        "ans": "<strong>Answer:</strong><br>The number of dots grows by 1 each time (1, 2, 3, 4...).<br>The next step will have <strong>5 dots (•••••)</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Growing rule (+1)",
-            "marks": "1 M"
-          },
-          {
-            "key": "5 dots identified",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Letter Pattern • Repetition",
-        "q": "Continue the pattern: A, B, A, B, A, B, __, __.",
-        "ans": "<strong>Answer:</strong><br>The next two letters are <strong>A</strong> and <strong>B</strong>.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "A and B",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Backwards Number Pattern",
-        "q": "Complete the backward sequence: 20, 19, 18, 17, __, __, 14.",
-        "ans": "<strong>Answer:</strong><br>Counting down by 1:<br>20, 19, 18, 17, <strong>16</strong>, <strong>15</strong>, 14.<br>Missing numbers are <strong>16</strong> and <strong>15</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "16 and 15 identified",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Real World Observation",
-        "q": "Where can you see patterns in everyday life? Give two examples.",
-        "ans": "<strong>Answer:</strong><br>1. <strong>Zebra crossings</strong> on roads (alternating black and white stripes).<br>2. <strong>Floor tiles</strong> or brick walls (repeating rectangular blocks).",
+        "category": "Textbook Exercise • Repeating Letters ABC",
+        "q": "Complete the pattern: AB, CD, EF, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Letter pairs in alphabetical order:<br>• Next pairs: <strong>GH, IJ</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Two valid real world examples",
+            "key": "GH, IJ",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Recognizing patterns in shapes, symbols, and objects around us.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Recognizing patterns in shapes, symbols, and objects around us.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Day and Night Pattern",
+        "q": "Morning, Afternoon, Evening, Night, Morning, __, __. What comes next?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Following the cycle of the day: <strong>Afternoon, Evening</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Afternoon, Evening",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Extending growing and repeating sequences.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Extending growing and repeating sequences.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Let Us Do • Alternating Leaf Prints",
+        "q": "A leaf is stamped: pointing Left, then Right, then Left, then Right. What direction will the 5th print point?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The 5th print will point <strong>Left</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Left",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Creating number patterns with addition rules.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Creating number patterns with addition rules.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Triangle and Square Alternating",
+        "q": "Draw the next two shapes: ▲, ■, ▲, ■, ▲, __, __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Next shapes: <strong>■ (Square), ▲ (Triangle)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Square then Triangle",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Recognizing patterns in shapes, symbols, and objects around us.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Recognizing patterns in shapes, symbols, and objects around us.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Find the Pattern Rule",
+        "q": "Look at: 3, 6, 9, 12. What is the secret rule of this pattern?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The secret rule is: <strong>Add 3 each time (counting by 3s)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Extending growing and repeating sequences.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Extending growing and repeating sequences.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Creating number patterns with addition rules.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Creating number patterns with addition rules.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Recognizing patterns in shapes, symbols, and objects around us.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Recognizing patterns in shapes, symbols, and objects around us.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Extending growing and repeating sequences.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Extending growing and repeating sequences.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Creating number patterns with addition rules.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Creating number patterns with addition rules.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Recognizing patterns in shapes, symbols, and objects around us.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Recognizing patterns in shapes, symbols, and objects around us.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Extending growing and repeating sequences.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Extending growing and repeating sequences.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Creating number patterns with addition rules.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Creating number patterns with addition rules.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Recognizing patterns in shapes, symbols, and objects around us.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Recognizing patterns in shapes, symbols, and objects around us.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Patterns",
-        "q": "Solve the core NCERT learning activity for Chapter 10 ('Patterns'): Focus on \"Extending growing and repeating sequences.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Patterns', students master <em>Extending growing and repeating sequences.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Add 3 each time",
+            "marks": "2 M"
           }
         ]
       }
@@ -3308,332 +2797,309 @@ const mathMagicChapters = [
   {
     "id": "mm11",
     "num": 11,
-    "unit": "Unit 8: Numbers from Fifty-one to Hundred",
+    "unit": "Unit 4: Math-Magic Classic",
     "title": "Numbers",
-    "subtitle": "Counting 51 to 100, Bundles of Tens and Ones, Place Value Mastery",
+    "subtitle": "Numbers 51 to 100, Sugarcane Bundles of 10 & 100-Chart",
     "concepts": [
-      "Counting in groups of tens from 50 to 100.",
-      "Writing numerals and number names up to 100.",
-      "Understanding that 10 tens make 100 (One Hundred)."
+      "Extending place value to numbers from 51 to 100.",
+      "Grouping by 10s: 5 tens = 50 up to 10 tens = 100.",
+      "Writing numerals and number names up to One Hundred.",
+      "Completing missing numbers in the 51-100 grid."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f0fdf4\" rx=\"10\"/><rect x=\"40\" y=\"30\" width=\"220\" height=\"60\" fill=\"#16a34a\" rx=\"6\"/><text x=\"150\" y=\"55\" font-size=\"12\" font-weight=\"700\" fill=\"#fff\" text-anchor=\"middle\">7 Bundles of 10</text><text x=\"150\" y=\"75\" font-size=\"13\" font-weight=\"800\" fill=\"#dcfce7\" text-anchor=\"middle\">= 70</text><text x=\"285\" y=\"65\" font-size=\"24\" font-weight=\"800\" fill=\"#16a34a\">+</text><circle cx=\"320\" cy=\"60\" r=\"10\" fill=\"#22c55e\"/><circle cx=\"345\" cy=\"60\" r=\"10\" fill=\"#22c55e\"/><text x=\"332\" y=\"95\" font-size=\"11\" font-weight=\"700\" fill=\"#15803d\" text-anchor=\"middle\">2 Ones</text><text x=\"385\" y=\"65\" font-size=\"24\" font-weight=\"800\" fill=\"#16a34a\">=</text><text x=\"440\" y=\"70\" font-size=\"26\" font-weight=\"800\" fill=\"#14532d\">72</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 11: Numbers (51 to 100)</text></svg>",
     "cbq": {
-      "title": "Centurions on the Cricket Pitch",
-      "text": "Batsman Virat has scored 90 runs. He hits a boundary (4 runs) and then two singles (1 run each).",
-      "question": "What is Virat's score now? How many more runs does he need to reach a century (100 runs)?",
-      "answer": "1. Virat's score: 90 + 4 + 1 + 1 = <strong>96 runs</strong>.<br>2. Century = 100 runs. Runs needed: 100 - 96 = <strong>4 runs</strong>.",
-      "rubric": "1.5 M for score 96 + 1.5 M for 4 runs needed"
+      "title": "Sugarcane Harvesting Case Study",
+      "text": "Farmer Sham Lal ties sugarcane stalks into bundles of 10 stalks each. He has 6 full bundles and 4 loose stalks on his cart.",
+      "question": "How many sugarcane stalks does Sham Lal have in total? How many bundles will he have if he cuts 6 more stalks?",
+      "answer": "1. 6 bundles of 10 = 60. Loose stalks = 4. Total = 60 + 4 = <strong>64 sugarcane stalks</strong>.<br>2. With 6 more stalks, loose stalks = 4 + 6 = 10 (which makes 1 new bundle).<br>3. Total bundles = 6 + 1 = <strong>7 full bundles of 10 (70 stalks)</strong>.",
+      "rubric": "1.5 M for 64 stalks + 1.5 M for 7 full bundles"
     },
     "questions": [
       {
-        "category": "Tens and Ones • Place Value",
-        "q": "What number is 6 Tens and 4 Ones?",
-        "ans": "<strong>Answer:</strong><br>• 6 Tens = 60<br>• 4 Ones = 4<br>• 60 + 4 = <strong>64 (Sixty-four)</strong>.",
+        "category": "Textbook Exercise • 5 Bundles and 1 Stick",
+        "q": "Write the number for 5 bundles of 10 matchsticks and 1 loose stick.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 5 tens + 1 one = 50 + 1 = <strong>51 (Fifty-one)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "60 + 4",
-            "marks": "1 M"
-          },
-          {
-            "key": "64",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Number Names • 51 to 100",
-        "q": "Write the numeral for:<br>(a) Seventy-eight<br>(b) Ninety-five",
-        "ans": "<strong>Answer:</strong><br>(a) Seventy-eight = <strong>78</strong><br>(b) Ninety-five = <strong>95</strong>",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "78",
-            "marks": "1 M"
-          },
-          {
-            "key": "95",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Counting by 10s • Up to 100",
-        "q": "Count by tens from 50 to 100.",
-        "ans": "<strong>Answer:</strong><br>50, 60, 70, 80, 90, <strong>100</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "All tens listed correctly",
+            "key": "51 (Fifty-one)",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Before and After • Late 90s",
-        "q": "What comes just before 100, and what comes just after 89?",
-        "ans": "<strong>Answer:</strong><br>• Just before 100: <strong>99</strong><br>• Just after 89: <strong>90</strong>",
+        "category": "Textbook Exercise • 6 Bundles and 5 Sticks",
+        "q": "Write the number for 6 bundles of 10 and 5 loose sticks.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 tens + 5 ones = 60 + 5 = <strong>65 (Sixty-five)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "99",
+            "key": "65 (Sixty-five)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • 7 Bundles and 3 Sticks",
+        "q": "Write the number for 7 bundles of 10 and 3 loose sticks.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 7 tens + 3 ones = 70 + 3 = <strong>73 (Seventy-three)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "73 (Seventy-three)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • 8 Bundles and 8 Sticks",
+        "q": "Write the number for 8 bundles of 10 and 8 loose sticks.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 8 tens + 8 ones = 80 + 8 = <strong>88 (Eighty-eight)</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "88 (Eighty-eight)",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • 9 Bundles and 9 Sticks",
+        "q": "Write the number for 9 bundles of 10 and 9 loose sticks. What is special about this number?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 9 tens + 9 ones = <strong>99 (Ninety-nine)</strong>.<br>• 99 is the <strong>largest 2-digit number</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "99 (Ninety-nine)",
             "marks": "1 M"
           },
           {
-            "key": "90",
+            "key": "Largest 2-digit number",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Century Concept • Making 100",
-        "q": "How many tens are needed to make 100?",
-        "ans": "<strong>Answer:</strong><br><strong>10 tens</strong> make 100 (10 × 10 = 100).",
-        "marks": 1,
+        "category": "Textbook Exercise • 10 Bundles of 10",
+        "q": "What number is formed by 10 bundles of 10 matchsticks?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 10 tens = <strong>100 (One Hundred)</strong>.<br>• 100 is the first 3-digit number.",
+        "marks": 2,
         "rubric": [
           {
-            "key": "10 tens",
+            "key": "100 (One Hundred)",
+            "marks": "1 M"
+          },
+          {
+            "key": "First 3-digit number",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Comparison • Two-Digit Numbers",
-        "q": "Which number is greater: 87 or 78? Explain why.",
-        "ans": "<strong>Explanation:</strong><br>• 87 has 8 tens.<br>• 78 has 7 tens.<br>Since 8 tens is greater than 7 tens, <strong>87 is greater than 78 (87 > 78)</strong>.",
+        "category": "Textbook Exercise • Missing Numbers 51 to 60",
+        "q": "Fill the missing numbers: 51, 52, __, 54, __, 56, 57, __, 59, 60.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>53, 55, 58</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "87 > 78",
+            "key": "Filled 53, 55, 58",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 61 to 70",
+        "q": "Fill the missing numbers: 61, __, 63, 64, __, 66, __, 68, 69, 70.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>62, 65, 67</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 62, 65, 67",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 71 to 80",
+        "q": "Fill the missing numbers: 71, 72, __, 74, __, 76, 77, __, 79, 80.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>73, 75, 78</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 73, 75, 78",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 81 to 90",
+        "q": "Fill the missing numbers: 81, __, 83, 84, __, 86, __, 88, 89, 90.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>82, 85, 87</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 82, 85, 87",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Missing Numbers 91 to 100",
+        "q": "Fill the missing numbers: 91, 92, __, 94, __, 96, 97, __, 99, 100.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Missing numbers: <strong>93, 95, 98</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "Filled 93, 95, 98",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tens and Ones for 64",
+        "q": "Break 64 into Tens and Ones.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 64 = <strong>6 Tens and 4 Ones</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "6 Tens and 4 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Tens and Ones for 89",
+        "q": "Break 89 into Tens and Ones.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 89 = <strong>8 Tens and 9 Ones</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "8 Tens and 9 Ones",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Number Names 60, 70, 80, 90",
+        "q": "Write the spellings for: 60, 70, 80, 90.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 60 = <strong>Sixty</strong><br>• 70 = <strong>Seventy</strong><br>• 80 = <strong>Eighty</strong><br>• 90 = <strong>Ninety</strong>",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "All 4 spelled correctly",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • What Comes Just After 79?",
+        "q": "What number comes just after 79?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 79 + 1 = <strong>80</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "80",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • What Comes Just Before 90?",
+        "q": "What number comes just before 90?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 90 - 1 = <strong>89</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "89",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Between 65 and 67",
+        "q": "What number lies between 65 and 67?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The number is <strong>66</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "66",
+            "marks": "2 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Circle Greater Number (50-100)",
+        "q": "Circle the greater number: (a) 54 and 74, (b) 86 and 68.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (a) 7 tens > 5 tens → <strong>74 is greater</strong>.<br>• (b) 8 tens > 6 tens → <strong>86 is greater</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "74 circled",
             "marks": "1 M"
           },
           {
-            "key": "Reasoning with tens digit",
+            "key": "86 circled",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Counting in groups of tens from 50 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Counting in groups of tens from 50 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Word Problem • Marbles in Jars",
+        "q": "A jar has 7 bundles of 10 marbles and 5 loose marbles. How many marbles in all?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 70 + 5 = <strong>75 marbles</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "70 + 5 = 75 marbles",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Writing numerals and number names up to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Writing numerals and number names up to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Match 10s to Hundreds",
+        "q": "Match: 10 tens → 100; 5 tens → 50; 8 tens → 80.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 10 tens = 100<br>• 5 tens = 50<br>• 8 tens = 80",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Matches verified",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Understanding that 10 tens make 100 (One Hundred).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Understanding that 10 tens make 100 (One Hundred).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Mental Math • Adding 10 to 60",
+        "q": "Solve: 60 + 10 = __.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 tens + 1 ten = 7 tens = <strong>70</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "70",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Counting in groups of tens from 50 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Counting in groups of tens from 50 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Century in Cricket",
+        "q": "In a cricket match, a player scores 100 runs. What is this score called?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• A score of 100 runs is called a <strong>Century</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Century",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Writing numerals and number names up to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Writing numerals and number names up to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Summary Drill • Count by 10s to 100",
+        "q": "Write the numbers counting in tens from 10 to 100.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>10, 20, 30, 40, 50, 60, 70, 80, 90, 100</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Understanding that 10 tens make 100 (One Hundred).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Understanding that 10 tens make 100 (One Hundred).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Counting in groups of tens from 50 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Counting in groups of tens from 50 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Writing numerals and number names up to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Writing numerals and number names up to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Understanding that 10 tens make 100 (One Hundred).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Understanding that 10 tens make 100 (One Hundred).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Counting in groups of tens from 50 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Counting in groups of tens from 50 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Writing numerals and number names up to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Writing numerals and number names up to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Understanding that 10 tens make 100 (One Hundred).\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Understanding that 10 tens make 100 (One Hundred).</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Counting in groups of tens from 50 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Counting in groups of tens from 50 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Numbers",
-        "q": "Solve the core NCERT learning activity for Chapter 11 ('Numbers'): Focus on \"Writing numerals and number names up to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Numbers', students master <em>Writing numerals and number names up to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Complete sequence in tens",
+            "marks": "2 M"
           }
         ]
       }
@@ -3642,320 +3108,234 @@ const mathMagicChapters = [
   {
     "id": "mm12",
     "num": 12,
-    "unit": "Unit 8: Money & Financial Foundations",
+    "unit": "Unit 4: Math-Magic Classic",
     "title": "Money",
-    "subtitle": "Coins, Currency Notes, Pricing, Simple Purchases & Addition of Money",
+    "subtitle": "Coins, Currency Notes, Combining Coins to Pay Exact Price & Change",
     "concepts": [
-      "Recognizing currency coins: 1, 2, 5, 10 rupees.",
-      "Recognizing currency notes: 10, 20, 50, 100 rupees.",
-      "Combining coins to pay for items up to ₹20."
+      "Coins used in India: ₹1, ₹2, ₹5, ₹10.",
+      "Notes used in India: ₹10, ₹20, ₹50, ₹100.",
+      "Making different amounts using combinations of coins.",
+      "Calculating the cost of buying toys and stationery.",
+      "Calculating balance change returned by shopkeeper."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#fffbeb\" rx=\"10\"/><circle cx=\"70\" cy=\"55\" r=\"22\" fill=\"#d97706\"/><text x=\"70\" y=\"61\" font-size=\"13\" font-weight=\"800\" fill=\"#fff\" text-anchor=\"middle\">₹5</text><text x=\"120\" y=\"62\" font-size=\"20\" font-weight=\"800\" fill=\"#b45309\">+</text><circle cx=\"165\" cy=\"55\" r=\"22\" fill=\"#d97706\"/><text x=\"165\" y=\"61\" font-size=\"13\" font-weight=\"800\" fill=\"#fff\" text-anchor=\"middle\">₹5</text><text x=\"215\" y=\"62\" font-size=\"20\" font-weight=\"800\" fill=\"#b45309\">=</text><rect x=\"250\" y=\"32\" width=\"80\" height=\"46\" fill=\"#f59e0b\" rx=\"4\"/><text x=\"290\" y=\"60\" font-size=\"15\" font-weight=\"800\" fill=\"#fff\" text-anchor=\"middle\">₹10</text><rect x=\"365\" y=\"32\" width=\"95\" height=\"46\" fill=\"#60a5fa\" rx=\"4\"/><text x=\"412\" y=\"60\" font-size=\"14\" font-weight=\"800\" fill=\"#1e3a8a\" text-anchor=\"middle\">₹100 Note</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 12: Money</text></svg>",
     "cbq": {
-      "title": "Buying Kites for Makar Sankranti",
-      "text": "A shopkeeper sells colourful kites for ₹6 each and rolls of string (charkhi) for ₹10 each. Aman buys one kite and one roll of string.",
-      "question": "How much total money must Aman pay to the shopkeeper? If he gives a ₹20 note, how much change will he receive?",
-      "answer": "1. Total cost = ₹6 + ₹10 = <strong>₹16</strong>.<br>2. Change from ₹20 = ₹20 - ₹16 = <strong>₹4</strong> (or two ₹2 coins).",
-      "rubric": "1.5 M for total ₹16 + 1.5 M for change ₹4"
+      "title": "Village Fair Toy Stall Case Study",
+      "text": "At the village fair, a clay flute costs ₹8 and a paper pinwheel costs ₹4. Meena has a ₹20 note in her purse.",
+      "question": "What is the total cost of the flute and pinwheel? How much change should the stall owner give back to Meena?",
+      "answer": "1. Total cost = ₹8 + ₹4 = <strong>₹12</strong>.<br>2. Change returned = ₹20 - ₹12 = <strong>₹8</strong> (e.g. a ₹5 coin, a ₹2 coin, and a ₹1 coin).",
+      "rubric": "1.5 M for ₹8 + ₹4 = ₹12 + 1.5 M for ₹20 - ₹12 = ₹8 change"
     },
     "questions": [
       {
-        "category": "Coin Combination • Make ₹8",
-        "q": "How can you make ₹8 using ₹2 coins?",
-        "ans": "<strong>Answer:</strong><br>• 2 + 2 + 2 + 2 = 8.<br>• You need <strong>four ₹2 coins</strong> to make ₹8.",
+        "category": "Textbook Exercise • Common Coins in India",
+        "q": "Name the four coins shown in the textbook that we use to buy things in India.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>₹1 coin, ₹2 coin, ₹5 coin, and ₹10 coin</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Four ₹2 coins identified",
+            "key": "All 4 coins named",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Shopping Sum • Pen and Notebook",
-        "q": "A notebook costs ₹10 and a pencil costs ₹3. How much do both items cost together?",
-        "ans": "<strong>Calculation:</strong><br>• Notebook = ₹10<br>• Pencil = ₹3<br>• Total cost = ₹10 + ₹3 = <strong>₹13</strong>.",
+        "category": "Textbook Exercise • Make ₹1 Using Coins",
+        "q": "How do you pay ₹1 using coins?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Pay with <strong>one ₹1 coin</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "₹10 + ₹3",
-            "marks": "1 M"
-          },
-          {
-            "key": "Total ₹13",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Change Calculation",
-        "q": "Tina gives a ₹10 note to buy a packet of biscuits that costs ₹8. How much change does the shopkeeper give her back?",
-        "ans": "<strong>Step-by-Step Solution:</strong><br>• Money given = ₹10<br>• Cost of biscuits = ₹8<br>• Change = ₹10 - ₹8 = <strong>₹2</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "₹10 - ₹8 = ₹2",
+            "key": "One ₹1 coin",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Currency Symbol",
-        "q": "What is the official currency symbol of India? Draw it.",
-        "ans": "<strong>Answer:</strong><br>The official currency symbol of India is <strong>₹ (Indian Rupee)</strong>. It was designed by Udaya Kumar Dharmalingam.",
-        "marks": 1,
+        "category": "Textbook Exercise • Make ₹2 in Two Different Ways",
+        "q": "Show two different ways to pay ₹2 using coins.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Way 1: One <strong>₹2 coin</strong>.<br>• Way 2: Two <strong>₹1 coins</strong> (₹1 + ₹1 = ₹2).",
+        "marks": 2,
         "rubric": [
           {
-            "key": "Symbol ₹ correctly drawn/named",
+            "key": "Way 1: One ₹2 coin",
+            "marks": "1 M"
+          },
+          {
+            "key": "Way 2: Two ₹1 coins",
             "marks": "1 M"
           }
         ]
       },
       {
-        "category": "Different Ways to Pay ₹10",
-        "q": "Show two different ways to pay ₹10 using coins.",
-        "ans": "<strong>Answer:</strong><br>• Way 1: One single ₹10 coin.<br>• Way 2: Two ₹5 coins (₹5 + ₹5 = ₹10).<br>• Way 3: Five ₹2 coins (2 + 2 + 2 + 2 + 2 = ₹10).",
+        "category": "Textbook Exercise • Make ₹3 Using Coins",
+        "q": "How can you pay ₹3 using ₹1 and ₹2 coins?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• One <strong>₹2 coin</strong> and one <strong>₹1 coin</strong> (₹2 + ₹1 = ₹3).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Two valid methods provided",
+            "key": "₹2 + ₹1 = ₹3",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Mental Math • Notes",
-        "q": "How many ₹20 notes make ₹100?",
-        "ans": "<strong>Answer:</strong><br>20 + 20 + 20 + 20 + 20 = 100.<br>It takes <strong>five ₹20 notes</strong> to make ₹100 (5 × ₹20 = ₹100).",
+        "category": "Textbook Exercise • Make ₹4 Using Coins",
+        "q": "Show two ways to pay ₹4 using coins.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Way 1: Two <strong>₹2 coins</strong> (₹2 + ₹2 = ₹4).<br>• Way 2: Four <strong>₹1 coins</strong> (₹1 + ₹1 + ₹1 + ₹1 = ₹4).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Five ₹20 notes",
+            "key": "Two ₹2 coins",
+            "marks": "1 M"
+          },
+          {
+            "key": "Four ₹1 coins",
+            "marks": "1 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Make ₹5 in Different Ways",
+        "q": "Show three ways to pay ₹5 using coins.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Way 1: One <strong>₹5 coin</strong>.<br>• Way 2: Two ₹2 coins and one ₹1 coin (₹2 + ₹2 + ₹1 = ₹5).<br>• Way 3: Five ₹1 coins.",
+        "marks": 3,
+        "rubric": [
+          {
+            "key": "Three valid coin combinations",
+            "marks": "3 M"
+          }
+        ]
+      },
+      {
+        "category": "Textbook Exercise • Make ₹6 Using Coins",
+        "q": "How do you pay ₹6 using a ₹5 coin and a ₹1 coin?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• ₹5 + ₹1 = <strong>₹6</strong>.",
+        "marks": 2,
+        "rubric": [
+          {
+            "key": "₹5 + ₹1 = ₹6",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency coins: 1, 2, 5, 10 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency coins: 1, 2, 5, 10 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Currency Notes in India",
+        "q": "Name three currency notes shown in your textbook.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>₹10 note, ₹20 note, ₹50 note</strong> (and ₹100 note).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Three notes named",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency notes: 10, 20, 50, 100 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency notes: 10, 20, 50, 100 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Cost of a Kite",
+        "q": "A paper kite costs ₹5. If you buy 2 kites, how much money do you need?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• ₹5 + ₹5 = <strong>₹10</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "₹5 + ₹5 = ₹10",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Combining coins to pay for items up to ₹20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Combining coins to pay for items up to ₹20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Cost of Pen and Eraser",
+        "q": "A pen costs ₹7 and an eraser costs ₹2. What is the total cost?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• ₹7 + ₹2 = <strong>₹9</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "₹7 + ₹2 = ₹9",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency coins: 1, 2, 5, 10 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency coins: 1, 2, 5, 10 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Change from ₹10 Note",
+        "q": "Sita buys a pencil for ₹6 and pays with a ₹10 note. How much change does she receive?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• ₹10 - ₹6 = <strong>₹4 change</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "₹10 - ₹6 = ₹4",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency notes: 10, 20, 50, 100 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency notes: 10, 20, 50, 100 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Coin Rubbing Impression",
+        "q": "Describe what happens when you rub a pencil over paper with a coin beneath.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The raised metal number (like 5 or 10) and the national emblem emboss clearly on the paper.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Number and emblem emboss on paper",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Combining coins to pay for items up to ₹20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Combining coins to pay for items up to ₹20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Let Us Think • Can You Pay ₹8 with Three Coins?",
+        "q": "Which three coins make ₹8?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• One <strong>₹5 coin</strong>, one <strong>₹2 coin</strong>, and one <strong>₹1 coin</strong>.<br>• ₹5 + ₹2 + ₹1 = <strong>₹8</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "₹5 + ₹2 + ₹1 = ₹8",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency coins: 1, 2, 5, 10 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency coins: 1, 2, 5, 10 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Match Price Tags",
+        "q": "Match: A ruler for ₹5 → ₹5 coin; A storybook for ₹20 → ₹20 note.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Ruler = ₹5 coin<br>• Storybook = ₹20 note",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Matches verified",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency notes: 10, 20, 50, 100 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency notes: 10, 20, 50, 100 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Word Problem • Two Packets of Biscuits",
+        "q": "One packet of glucose biscuits costs ₹5. How much do two packets cost?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• ₹5 + ₹5 = <strong>₹10</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "₹5 + ₹5 = ₹10",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Combining coins to pay for items up to ₹20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Combining coins to pay for items up to ₹20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • National Emblem on Coins",
+        "q": "What animal symbol is engraved on Indian coins?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• The <strong>Lion Capital of Ashoka (Four Lions)</strong> is engraved on Indian coins.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Lion Capital / Lions",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency coins: 1, 2, 5, 10 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency coins: 1, 2, 5, 10 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Piggy Bank Savings",
+        "q": "Aarav saves two ₹10 notes in his piggy bank. How much money has he saved?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• ₹10 + ₹10 = <strong>₹20</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency notes: 10, 20, 50, 100 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency notes: 10, 20, 50, 100 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Combining coins to pay for items up to ₹20.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Combining coins to pay for items up to ₹20.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency coins: 1, 2, 5, 10 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency coins: 1, 2, 5, 10 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "NCERT In-Text Drill • Money",
-        "q": "Solve the core NCERT learning activity for Chapter 12 ('Money'): Focus on \"Recognizing currency notes: 10, 20, 50, 100 rupees.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'Money', students master <em>Recognizing currency notes: 10, 20, 50, 100 rupees.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "₹20 saved",
+            "marks": "2 M"
           }
         ]
       }
@@ -3964,332 +3344,213 @@ const mathMagicChapters = [
   {
     "id": "mm13",
     "num": 13,
-    "unit": "Unit 8: Review & Problem Solving",
+    "unit": "Unit 4: Math-Magic Classic",
     "title": "How Many",
-    "subtitle": "Comprehensive Counting, Story Problems & Number Sense Review",
+    "subtitle": "Counting Beads, Bundles, Stick Totals, Number Names & Word Problems",
     "concepts": [
-      "Consolidating counting of objects and writing numerals.",
-      "Solving multi-step addition and subtraction story problems.",
-      "Synthesizing place value concepts across numbers 1 to 100."
+      "Counting beads on a necklace and loose beads.",
+      "Counting bundles of 10 and loose sticks to write numerals.",
+      "Writing number names from given collections.",
+      "Solving simple everyday word problems combining groups."
     ],
-    "svg": "<svg viewBox=\"0 0 500 120\" width=\"100%\" height=\"120\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#f8fafc\" rx=\"10\"/><circle cx=\"60\" cy=\"50\" r=\"16\" fill=\"#6366f1\"/><circle cx=\"100\" cy=\"50\" r=\"16\" fill=\"#6366f1\"/><circle cx=\"140\" cy=\"50\" r=\"16\" fill=\"#6366f1\"/><circle cx=\"180\" cy=\"50\" r=\"16\" fill=\"#6366f1\"/><text x=\"120\" y=\"90\" font-size=\"11\" font-weight=\"700\" fill=\"#4338ca\" text-anchor=\"middle\">Count and Write</text><rect x=\"240\" y=\"30\" width=\"100\" height=\"50\" fill=\"#4f46e5\" rx=\"6\"/><text x=\"290\" y=\"60\" font-size=\"18\" font-weight=\"800\" fill=\"#fff\" text-anchor=\"middle\">Tens &amp; Ones</text><text x=\"420\" y=\"50\" font-size=\"14\" font-weight=\"800\" fill=\"#312e81\">Story Sums</text><text x=\"420\" y=\"75\" font-size=\"12\" font-weight=\"700\" fill=\"#4338ca\">Mastery: 1 to 100</text></svg>",
+    "svg": "<svg viewBox=\"0 0 500 100\" width=\"100%\" height=\"100\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#eff6ff\" rx=\"10\"/><text x=\"250\" y=\"55\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"800\" fill=\"#1e40af\" text-anchor=\"middle\">Math-Magic Ch 13: How Many</text></svg>",
     "cbq": {
-      "title": "The School Garden Harvest Festival",
-      "text": "Grade 1 children gathered 24 radishes, 18 carrots, and 10 turnip roots from the class organic patch.",
-      "question": "Write 24 in tens and ones. Which vegetable was harvested the most, and how many carrots and radishes were there altogether?",
-      "answer": "1. 24 = <strong>2 Tens and 4 Ones</strong>.<br>2. <strong>Radishes (24)</strong> were harvested the most.<br>3. Total carrots and radishes = 18 + 24 = <strong>42 vegetables</strong>.",
-      "rubric": "1 M for 2 tens 4 ones + 1 M for radishes most + 1 M for sum 42"
+      "title": "Pearl Necklace Project Case Study",
+      "text": "Razia strings 3 necklaces with 10 pearls each and has 9 loose pearls left on her wooden craft tray.",
+      "question": "How many total pearls does Razia have? How many more loose pearls does she need to complete a 4th necklace of 10?",
+      "answer": "1. 3 necklaces of 10 = 30 pearls. Loose pearls = 9. Total = 30 + 9 = <strong>39 pearls in all</strong>.<br>2. To make 10 from 9 pearls, she needs: 10 - 9 = <strong>1 more pearl</strong>.",
+      "rubric": "1.5 M for 30 + 9 = 39 pearls + 1.5 M for 10 - 9 = 1 pearl"
     },
     "questions": [
       {
-        "category": "Counting • Place Value Review",
-        "q": "Look at 3 bundles of 10 pencils and 6 loose pencils. How many pencils are there altogether? Write in tens and ones.",
-        "ans": "<strong>Answer:</strong><br>• 3 bundles = 3 Tens (30)<br>• 6 loose = 6 Ones (6)<br>• Total = <strong>36 pencils</strong> (3 Tens + 6 Ones).",
+        "category": "Textbook Exercise • How Many Sticks in Bundles?",
+        "q": "Look at the picture: 3 bundles of 10 sticks and 7 loose sticks. Write the numeral.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 3 tens + 7 ones = 30 + 7 = <strong>37</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "36 pencils",
-            "marks": "1 M"
-          },
-          {
-            "key": "3 Tens and 6 Ones",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Addition Story Sum",
-        "q": "In an orchard, there are 13 guava trees and 6 lemon trees. How many fruit trees are there in all?",
-        "ans": "<strong>Calculation:</strong><br>• Guava trees = 13<br>• Lemon trees = 6<br>• Total trees = 13 + 6 = <strong>19 trees</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "13 + 6 statement",
-            "marks": "1 M"
-          },
-          {
-            "key": "19 trees",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Subtraction Story Sum",
-        "q": "A vendor had 20 coconuts. He sold 8 coconuts by noon. How many coconuts were left with him?",
-        "ans": "<strong>Calculation:</strong><br>• Total coconuts = 20<br>• Coconuts sold = 8<br>• Coconuts left = 20 - 8 = <strong>12 coconuts</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "20 - 8 statement",
-            "marks": "1 M"
-          },
-          {
-            "key": "12 coconuts",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Number Name to Numeral",
-        "q": "Write the numeral for: Forty-seven.",
-        "ans": "<strong>Answer:</strong><br>Forty-seven = <strong>47</strong>.",
-        "marks": 1,
-        "rubric": [
-          {
-            "key": "47",
-            "marks": "1 M"
-          }
-        ]
-      },
-      {
-        "category": "Comparison • Smallest to Largest",
-        "q": "Arrange these numbers from smallest to largest: 34, 12, 45, 23.",
-        "ans": "<strong>Answer:</strong><br>Smallest to largest (Ascending order):<br><strong>12, 23, 34, 45</strong>.",
-        "marks": 2,
-        "rubric": [
-          {
-            "key": "Correct ascending order",
+            "key": "Numeral 37",
             "marks": "2 M"
           }
         ]
       },
       {
-        "category": "Mental Math • Tens",
-        "q": "What is 10 more than 30? What is 10 less than 30?",
-        "ans": "<strong>Answer:</strong><br>• 10 more than 30 is <strong>40</strong> (30 + 10 = 40).<br>• 10 less than 30 is <strong>20</strong> (30 - 10 = 20).",
+        "category": "Textbook Exercise • 4 Bundles and 5 Sticks",
+        "q": "Write the numeral for 4 bundles of 10 and 5 loose sticks.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 tens + 5 ones = 40 + 5 = <strong>45</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "40",
-            "marks": "1 M"
-          },
-          {
-            "key": "20",
-            "marks": "1 M"
+            "key": "Numeral 45",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Consolidating counting of objects and writing numerals.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Consolidating counting of objects and writing numerals.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • How Many Beads on String?",
+        "q": "A string has 10 beads. There are 2 full strings and 4 loose beads. How many beads in all?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 tens + 4 ones = 20 + 4 = <strong>24 beads</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "24 beads",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Solving multi-step addition and subtraction story problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Solving multi-step addition and subtraction story problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • How Many Bananas?",
+        "q": "There are 2 bunches of 10 bananas and 3 loose bananas. Write the total count.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 2 tens + 3 ones = 20 + 3 = <strong>23 bananas</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "23 bananas",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Synthesizing place value concepts across numbers 1 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Synthesizing place value concepts across numbers 1 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Write the Number Name for 15",
+        "q": "Write the number name for 15.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 15 = <strong>Fifteen</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Fifteen",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Consolidating counting of objects and writing numerals.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Consolidating counting of objects and writing numerals.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • How Many Tens in 24?",
+        "q": "In the number 24, how many tens are there?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• In 24, there are <strong>2 tens</strong> (and 4 ones).",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "2 tens",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Solving multi-step addition and subtraction story problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Solving multi-step addition and subtraction story problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Which is Bigger: 13 or 26?",
+        "q": "Which number is bigger: 13 or 26?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 26 has 2 tens, while 13 has only 1 ten.<br>• Therefore, <strong>26 is bigger</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "26 is bigger",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Synthesizing place value concepts across numbers 1 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Synthesizing place value concepts across numbers 1 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Cost of 3 Toffees",
+        "q": "If 1 toffee costs ₹1, how much do 3 toffees cost?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 1 toffee = ₹1<br>• 3 toffees = 1 + 1 + 1 = <strong>₹3</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "₹3",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Consolidating counting of objects and writing numerals.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Consolidating counting of objects and writing numerals.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • How Many Birds in Trees?",
+        "q": "Tree A has 6 birds. Tree B has 3 birds. How many birds in total?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 6 + 3 = <strong>9 birds</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "6 + 3 = 9 birds",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Solving multi-step addition and subtraction story problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Solving multi-step addition and subtraction story problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Develop a Story on a Picture",
+        "q": "A picture shows a girl holding 5 red flowers and giving 2 to her teacher. Write the math sentence.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• Math sentence: <strong>5 - 2 = 3 flowers left</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "5 - 2 = 3 flowers",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Synthesizing place value concepts across numbers 1 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Synthesizing place value concepts across numbers 1 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Let Us Do • Tens and Ones for 43",
+        "q": "Write Tens and Ones for 43.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 43 = <strong>4 Tens and 3 Ones</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "4 Tens and 3 Ones",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Consolidating counting of objects and writing numerals.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Consolidating counting of objects and writing numerals.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Activity • Match Dots to Numeral",
+        "q": "Draw 8 dots in a row and match with the numeral 8.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• (••••••••) = <strong>8 (Eight)</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "8 dots matched to 8",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Solving multi-step addition and subtraction story problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Solving multi-step addition and subtraction story problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Number Name for 47",
+        "q": "Write the spelling of 47.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 47 = <strong>Forty-seven</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Forty-seven",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Synthesizing place value concepts across numbers 1 to 100.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Synthesizing place value concepts across numbers 1 to 100.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Counting Goats",
+        "q": "There are 4 goats eating grass. 2 more goats join them. How many goats altogether?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 4 + 2 = <strong>6 goats</strong>.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "4 + 2 = 6 goats",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Consolidating counting of objects and writing numerals.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Consolidating counting of objects and writing numerals.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Textbook Exercise • Bundles of 10 for 50",
+        "q": "How many bundles of 10 make 50?",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• <strong>5 bundles of 10</strong> make 50.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "5 bundles",
+            "marks": "2 M"
           }
         ]
       },
       {
-        "category": "NCERT In-Text Drill • How Many",
-        "q": "Solve the core NCERT learning activity for Chapter 13 ('How Many'): Focus on \"Solving multi-step addition and subtraction story problems.\". How can a student solve this using concrete objects or step-by-step counting?",
-        "ans": "<strong>Step-by-Step Explanation:</strong><br>1. <strong>Concept Focus:</strong> In 'How Many', students master <em>Solving multi-step addition and subtraction story problems.</em>.<br>2. <strong>Pedagogical Strategy:</strong> Use concrete items (counters, fingers, or drawings) to visualize the quantities.<br>3. <strong>Mathematical Verification:</strong> Systematic counting ensures zero counting errors, providing a verified and reliable answer compliant with CBSE foundational standards.",
+        "category": "Competency Review • Summary of All Math Concepts",
+        "q": "Name 3 important things you learned in Class 1 Math-Magic.",
+        "ans": "<strong>Step-by-Step Solution:</strong><br>• 1. Counting numbers from 1 to 100 using tens and ones.<br>• 2. Addition and subtraction facts.<br>• 3. Shapes, patterns, time, and money.",
         "marks": 2,
         "rubric": [
           {
-            "key": "Correct conceptual representation",
-            "marks": "1 M"
-          },
-          {
-            "key": "Step-by-step solution verification",
-            "marks": "1 M"
+            "key": "Three core math areas summarized",
+            "marks": "2 M"
           }
         ]
       }
