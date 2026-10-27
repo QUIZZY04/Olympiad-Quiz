@@ -78,6 +78,7 @@ function injectStyles() {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
       margin-bottom: 24px; align-items: stretch;
     }
+    #pgBlockOverlay .pg-plans.pg-plans-3col { grid-template-columns: repeat(3, 1fr); }
     #pgBlockOverlay .pg-plan {
       background: var(--bg, #f8fafc); border: 1.5px solid var(--border);
       border-radius: 18px; padding: 24px 18px; display: flex; flex-direction: column;
@@ -195,21 +196,43 @@ function featureLi(text, included) {
  *   modal clears itself the instant isPremium flips true (e.g. upgraded in
  *   another tab) - onResolved is also called when the countdown reaches
  *   zero naturally, so neither path ever needs a manual page refresh.
+ * @param {boolean} [isSilverCooldown] - true when this block is Silver's
+ *   between-test wait (canStartTest returned isPremium:true), not the free
+ *   daily/weekly limit. Swaps the header/lead copy, shows Silver itself as
+ *   the (disabled) "Current Plan" with its real feature list instead of
+ *   Free's, and drops the redundant "Choose Silver" card since they're
+ *   already on it - only Gold/Diamond are offered as the no-wait upgrade.
  */
-export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
+export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live, isSilverCooldown) {
   injectStyles();
   document.getElementById("pgBlockOverlay")?.remove();
   const overlay = document.createElement("div");
   overlay.id = "pgBlockOverlay";
-  overlay.innerHTML = `
-      <div class="pg-box">
-        <div class="pg-icon">⏱️</div>
-        <h2>Free Test Limit Reached</h2>
-        <p class="pg-lead">Free accounts get 1 test a day, up to 4 a week. Your next free test unlocks in:</p>
-        <div id="pgCountdown">--:--:--</div>
-        <div class="pg-plans-heading">Or continue right now with unlimited tests</div>
-        <div class="pg-plans">
-          <div class="pg-plan">
+
+  const headerHtml = isSilverCooldown
+    ? `<div class="pg-icon">⏳</div>
+       <h2>Silver Cooldown Active</h2>
+       <p class="pg-lead">The Silver plan has a 1-hour wait between tests. Upgrade to Gold or Diamond for completely unlimited, wait-free testing - or your next test unlocks in:</p>`
+    : `<div class="pg-icon">⏱️</div>
+       <h2>Free Test Limit Reached</h2>
+       <p class="pg-lead">Free accounts get 1 test a day, up to 4 a week. Your next free test unlocks in:</p>`;
+
+  const currentPlanCardHtml = isSilverCooldown
+    ? `<div class="pg-plan">
+            <div class="pg-plan-name">Current Plan &middot; Silver</div>
+            <div class="pg-plan-price">&#8377;${SILVER_PRICE_INR}<span>/month</span></div>
+            <ul class="pg-plan-features">
+              ${featureLi("Unlimited test attempts", true)}
+              ${featureLi("All chapterwise &amp; mock tests", true)}
+              ${featureLi("Detailed performance analytics", true)}
+              ${featureLi("1-hour wait between tests", false)}
+              ${featureLi("All India Live Tests included", false)}
+              ${featureLi("Personal Olympiad guidance", false)}
+              ${featureLi("Priority support", false)}
+            </ul>
+            <button class="pg-plan-btn pg-plan-btn-disabled" disabled>Your Current Plan</button>
+          </div>`
+    : `<div class="pg-plan">
             <div class="pg-plan-name">Current Plan</div>
             <div class="pg-plan-price">Free</div>
             <ul class="pg-plan-features">
@@ -230,13 +253,21 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
               ${featureLi("Unlimited test attempts", true)}
               ${featureLi("All chapterwise &amp; mock tests", true)}
               ${featureLi("Detailed performance analytics", true)}
-              ${featureLi("No waiting between tests", true)}
+              ${featureLi("1-hour wait between tests", false)}
               ${featureLi("All India Live Tests included", false)}
               ${featureLi("Personal Olympiad guidance", false)}
               ${featureLi("Priority support", false)}
             </ul>
             <button class="pg-plan-btn" id="pgSilverBtn">Choose Silver</button>
-          </div>
+          </div>`;
+
+  overlay.innerHTML = `
+      <div class="pg-box">
+        ${headerHtml}
+        <div id="pgCountdown">--:--:--</div>
+        <div class="pg-plans-heading">${isSilverCooldown ? "Upgrade now for unlimited, wait-free tests" : "Or continue right now with unlimited tests"}</div>
+        <div class="pg-plans${isSilverCooldown ? " pg-plans-3col" : ""}">
+          ${currentPlanCardHtml}
           <div class="pg-plan pg-plan-gold">
             <div class="pg-plan-name">Gold &middot; 3 Months</div>
             <div class="pg-plan-price">&#8377;${GOLD_PRICE_INR}<span>/3 months</span></div>
@@ -273,7 +304,10 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
       </div>
     `;
   document.body.appendChild(overlay);
-  document.getElementById("pgSilverBtn").onclick = () => onUpgrade && onUpgrade("silver");
+  // pgSilverBtn only exists in the free-limit layout - the Silver-cooldown
+  // layout omits that card since the user is already on Silver.
+  const silverBtn = document.getElementById("pgSilverBtn");
+  if (silverBtn) silverBtn.onclick = () => onUpgrade && onUpgrade("silver");
   document.getElementById("pgGoldBtn").onclick = () => onUpgrade && onUpgrade("gold");
   document.getElementById("pgDiamondBtn").onclick = () => onUpgrade && onUpgrade("diamond");
   document.getElementById("pgBackBtn").onclick = () => {
@@ -304,7 +338,16 @@ export function showBlockedModal(unlocksAtMs, onUpgrade, onBack, live) {
   if (premiumUnsubscribe) { premiumUnsubscribe(); premiumUnsubscribe = null; }
   if (live?.db && live?.uid) {
     premiumUnsubscribe = onSnapshot(doc(live.db, "users", live.uid), (snap) => {
-      if (snap.exists() && snap.data().isPremium === true) {
+      if (!snap.exists()) return;
+      const data = snap.data();
+      // Silver-cooldown case: the user already has isPremium:true, so that
+      // alone would fire instantly - only an actual tier upgrade away from
+      // Silver means anything here. Free-limit case: unchanged, any
+      // isPremium flip resolves it.
+      const resolved = isSilverCooldown
+        ? data.isPremium === true && data.premiumTier !== "silver"
+        : data.isPremium === true;
+      if (resolved) {
         countdownEl.textContent = "Premium activated! Loading your test...";
         clearInterval(countdownTimer);
         if (live.onResolved) live.onResolved();
@@ -423,7 +466,7 @@ export async function guardQuizNavigation(app, testType, navigate, onBlocked) {
         db: getFirestore(app),
         uid: user.uid,
         onResolved: () => { hideBlockedModal(); navigate(); },
-      });
+      }, gate.isPremium === true);
       return;
     }
   } catch (e) {

@@ -25,11 +25,13 @@ const {
   IST_OFFSET_MS,
   ABANDON_VOID_WINDOW_MINUTES,
   RATE_LIMITED_TEST_TYPES,
+  SILVER_COOLDOWN_MINUTES,
   COLLECTIONS,
 } = require("./config");
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const VOID_CUTOFF_MS = ABANDON_VOID_WINDOW_MINUTES * 60 * 1000;
+const SILVER_COOLDOWN_MS = SILVER_COOLDOWN_MINUTES * 60 * 1000;
 
 /**
  * Calendar-day boundaries in IST for whichever instant `nowMs` falls in.
@@ -98,7 +100,10 @@ function isPremiumActive(data) {
  *   creating call; the dry-run pre-check never writes anything, so the
  *   two calls together never double-count a single test as 2 attempts.
  * @returns {{allowed: true, attemptId?: string, isPremium?: true, remaining?: number, limit?: number} |
- *           {allowed: false, unlocksAt: number, limit: number}}
+ *           {allowed: false, unlocksAt: number, limit?: number, isPremium?: true, cooldownMinutes?: number}}
+ *   A blocked response has isPremium:true + cooldownMinutes set only for the
+ *   Silver cooldown case - that's how the frontend tells "free daily limit"
+ *   and "Silver's between-test wait" apart without a third response field.
  */
 exports.canStartTest = onCall(async (request) => {
   if (!request.auth) {
@@ -145,10 +150,25 @@ exports.canStartTest = onCall(async (request) => {
     premiumAtStart,
   });
 
-  // Every paid tier (Silver/Gold/Diamond): fully unlimited, no tracking
-  // needed beyond the attempt record itself (kept for analytics/admin
-  // visibility, never counted).
+  // Every paid tier (Silver/Gold/Diamond) has unlimited test COUNT - no
+  // daily/weekly cap. Silver additionally has a short cooldown between
+  // consecutive attempts (Gold/Diamond do not); reuse the same week-scoped
+  // query already fetched above rather than a second round-trip. Stale,
+  // untouched abandons are excluded via filterCountedAttempts, same as the
+  // free-tier count below, so a 2-second accidental open doesn't start an
+  // hour-long lock.
   if (isPremium) {
+    if (userData.premiumTier === "silver") {
+      const recentReal = filterCountedAttempts(snap.docs); // this week, already startedAt-asc
+      const lastAttempt = recentReal[recentReal.length - 1];
+      if (lastAttempt) {
+        const lastStartedMs = lastAttempt.data().startedAt?.toMillis ? lastAttempt.data().startedAt.toMillis() : 0;
+        const unlocksAt = lastStartedMs + SILVER_COOLDOWN_MS;
+        if (unlocksAt > now) {
+          return { allowed: false, unlocksAt, isPremium: true, cooldownMinutes: SILVER_COOLDOWN_MINUTES };
+        }
+      }
+    }
     if (dryRun) return { allowed: true, isPremium: true };
     const attemptRef = await createAttempt(true);
     return { allowed: true, attemptId: attemptRef.id, isPremium: true };
