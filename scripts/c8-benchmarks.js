@@ -4,11 +4,11 @@
 
 module.exports = {
   maths: [
-    { ch: 1, title: 'A Square and A Cube', physicalQ: 12, sub: 'Square numbers, odd sums, 100-locker, cubes, Pythagorean triplets' },
-    { ch: 2, title: 'Power Play', physicalQ: 10, sub: 'Laws of exponents, negative powers, scientific notation' },
-    { ch: 3, title: 'A Story of Numbers', physicalQ: 8, sub: 'Divisibility rules, generalized numbers, number riddles' },
-    { ch: 4, title: 'Quadrilaterals', physicalQ: 10, sub: 'Angle sum, polygons, special parallelograms' },
-    { ch: 5, title: 'Number Play', physicalQ: 8, sub: 'Magic squares, digital roots, arithmetic sequences' },
+    { ch: 1, title: 'A Square and A Cube', physicalQ: 16, sub: 'Square numbers, odd sums, 100-locker, cubes, Pythagorean triplets' },
+    { ch: 2, title: 'Power Play', physicalQ: 17, sub: 'Laws of exponents, negative powers, scientific notation' },
+    { ch: 3, title: 'A Story of Numbers', physicalQ: 15, sub: 'Divisibility rules, generalized numbers, number riddles' },
+    { ch: 4, title: 'Quadrilaterals', physicalQ: 12, sub: 'Angle sum, polygons, special parallelograms' },
+    { ch: 5, title: 'Number Play', physicalQ: 12, sub: 'Magic squares, digital roots, arithmetic sequences' },
     { ch: 6, title: 'We Distribute, Yet Things Multiply', physicalQ: 10, sub: 'Algebraic terms, binomial products, area models' },
     { ch: 7, title: 'Proportional Reasoning - 1', physicalQ: 10, sub: 'Direct variation, unit rates, map scales' },
     { ch: 8, title: 'Fractions in Disguise', physicalQ: 10, sub: 'Percentages, profit & loss, discount, sales tax, simple interest' },
@@ -17,7 +17,7 @@ module.exports = {
     { ch: 11, title: 'Exploring Some Geometric Themes', physicalQ: 10, sub: 'Polyhedra, Euler formula, 3D nets, isometric drawings' },
     { ch: 12, title: 'Tales by Dots and Lines', physicalQ: 10, sub: 'Cartesian coordinates, line graphs, travel graphs' },
     { ch: 13, title: 'Algebra Play', physicalQ: 12, sub: 'Standard identities, factorization using identities' },
-    { ch: 14, title: 'Area', physicalQ: 12, sub: 'Trapezium, rhombus, general polygon, surface area & volume' }
+    { ch: 14, title: 'Area', physicalQ: 10, sub: 'Trapezium, rhombus, general polygon, surface area & volume' }
   ],
 
   science: [
