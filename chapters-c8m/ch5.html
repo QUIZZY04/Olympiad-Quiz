@@ -69,6 +69,105 @@
   </div>
 
 
+    <div class="q-card" id="c8m_ch5_q3">
+    <div class="q-head" onclick="toggleQ('c8m_ch5_q3')">
+      <div class="q-num">Q3</div>
+      <div class="q-text">Explain why any two-digit number "ab" and its reverse "ba" when added together are always divisible by 11.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✓ Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">In generalized place value form: ab = 10a + b and ba = 10b + a.</div>
+          <div class="step">Sum = (10a + b) + (10b + a) = 11a + 11b = 11(a + b).</div>
+          <div class="step">Since 11 is a factor of the sum, the sum is <strong>always divisible by 11</strong>, and the quotient is the sum of the digits (a + b).</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Writing expanded decimal forms 10a+b and 10b+a</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Factoring out 11(a+b) to prove divisibility</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="c8m_ch5_q4">
+    <div class="q-head" onclick="toggleQ('c8m_ch5_q4')">
+      <div class="q-num">Q4</div>
+      <div class="q-text">Construct a 3 × 3 magic square using natural numbers from 1 to 9 such that the sum along every row, column, and diagonal is 15.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✓ Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">Sum of 1 to 9 = (9 × 10)/2 = 45. In 3 rows, magic constant M = 45 / 3 = 15.</div>
+          <div class="step">The central number must be the median: 15 / 3 = 5.</div>
+          <div class="step">Arrangement (Lo Shu square):<br>Row 1: <strong>8, 1, 6</strong> (sum = 15)<br>Row 2: <strong>3, 5, 7</strong> (sum = 15)<br>Row 3: <strong>4, 9, 2</strong> (sum = 15).</div>
+          <div class="step">Verification: Columns: 8+3+4=15; 1+5+9=15; 6+7+2=15. Diagonals: 8+5+2=15; 6+5+4=15.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Deducing central value = 5 and magic constant = 15</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Correctly placing numbers in 3x3 grid</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Verifying all row, column, diagonal sums = 15</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="c8m_ch5_q5">
+    <div class="q-head" onclick="toggleQ('c8m_ch5_q5')">
+      <div class="q-num">Q5</div>
+      <div class="q-text">Find the digital root (beejank) of: (i) 87654 (ii) 999999, and explain how digital roots verify the addition: 347 + 586 = 933.</div>
+      <div class="q-marks">3 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✓ Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">(i) 87654: 8 + 7 + 6 + 5 + 4 = 30 ⟹ 3 + 0 = <strong>3</strong>.</div>
+          <div class="step">(ii) 999999: Sum of digits = 54 ⟹ 5 + 4 = <strong>9</strong>.</div>
+          <div class="step">Verification of 347 + 586 = 933:<br>Beejank of 347 = 3+4+7 = 14 ⟹ 5.<br>Beejank of 586 = 5+8+6 = 19 ⟹ 1+0 = 1.<br>Sum of beejanks = 5 + 1 = 6.<br>Beejank of answer 933 = 9+3+3 = 15 ⟹ 1+5 = 6.<br>Since 6 = 6, the calculation is verified.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Finding digital roots 3 and 9</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Calculating addends digital roots: 5 and 1 -> 6</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Matching answer digital root 6</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card" id="c8m_ch5_q6">
+    <div class="q-head" onclick="toggleQ('c8m_ch5_q6')">
+      <div class="q-num">Q6</div>
+      <div class="q-text">Write down the general form of a 3-digit number "abc" and show that (abc − cba) is always a multiple of 99.</div>
+      <div class="q-marks">2 Marks</div>
+      <div class="q-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    </div>
+    <div class="q-answer">
+      <div class="answer-box">
+        <div class="answer-label">✓ Suggested Step-by-Step Solution</div>
+        <div class="answer-text">
+          <div class="step">General form: abc = 100a + 10b + c, and reversed cba = 100c + 10b + a.</div>
+          <div class="step">Difference = (100a + 10b + c) − (100c + 10b + a) = (100a − a) + (10b − 10b) + (c − 100c) = 99a − 99c = <strong>99(a − c)</strong>.</div>
+          <div class="step">Since 99 is a factor, the difference is <strong>always divisible by 99</strong>.</div>
+        </div>
+        <div class="marking-scheme">
+          <div class="marking-title">Suggested Marks Distribution</div>
+          <div class="marking-row"><span class="marking-key">Writing expanded forms 100a+10b+c and 100c+10b+a</span><span class="marking-marks">1 Mark</span></div>
+          <div class="marking-row"><span class="marking-key">Simplifying to 99(a − c) and concluding divisibility</span><span class="marking-marks">1 Mark</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="cbq-section">
     <div class="cbq-header"><span>🎯 Competency-Based Practice Questions — Chapter 5</span><span class="cbq-badge">NCF-SE / OlympiadQuiz</span></div>
     <div class="cbq-body">
@@ -87,6 +186,7 @@
     </div>
   </div>
 
+  
   <div class="ch-nav-btns">
     <button class="ch-nav-btn" onclick="showChapter(4)">← Chapter 4: Quadrilaterals</button>
     <button class="ch-nav-btn next" onclick="showChapter(6)">Chapter 6: We Distribute, Yet Things Multiply →</button>
